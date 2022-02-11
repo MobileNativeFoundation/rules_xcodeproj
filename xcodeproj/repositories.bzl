@@ -1,5 +1,6 @@
 """Definitions for handling Bazel repositories used by rules_xcodeproj."""
 
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:logging.bzl",
     "green",
@@ -63,4 +64,10 @@ def xcodeproj_rules_dependencies(ignore_version_differences = False):
         ignore_version_differences: If `True`, warnings about potentially
             incompatible versions of dependency repositories will be silenced.
     """
-    pass
+    _maybe(
+        http_archive,
+        name = "build_bazel_rules_swift",
+        url = "https://github.com/bazelbuild/rules_swift/releases/download/0.26.0/rules_swift.0.26.0.tar.gz",
+        sha256 = "3e52a508cdc47a7adbad36a3d2b712e282cc39cc211b0d63efcaf608961eb36b",
+        ignore_version_differences = ignore_version_differences,
+    )
