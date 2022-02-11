@@ -275,6 +275,11 @@ def _process_swiftcopts(opts, build_settings):
     Returns:
         A list of unhandled Swift compiler options.
     """
+    # Xcode needs a value for SWIFT_VERSION, so we set it to "5" by default.
+    # We will have to figure out a way to detect what the default is before
+    # Swift 6 (which will probably have a new language version).
+    build_settings["SWIFT_VERSION"] = "5"
+
     defines = []
     def process(opt):
         if opt.startswith("-O"):
@@ -288,6 +293,9 @@ def _process_swiftcopts(opts, build_settings):
         compilation_mode = _SWIFT_COMPILATION_MODE_OPTS.get(opt, "")
         if compilation_mode:
             build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode
+            return True
+        if opt.startswith("-swift-version="):
+            build_settings["SWIFT_VERSION"] = opt[15:]
             return True
         if opt.startswith("-D"):
             defines.append(opt[2:])
