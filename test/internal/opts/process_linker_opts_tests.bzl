@@ -67,7 +67,7 @@ def process_linker_opts_test_suite(name):
             "-another-thing",
         ],
         expected_build_settings = {
-            "OTHER_LDFLAGS": "[\"-something\", \"-another-thing\"]",
+            "OTHER_LDFLAGS": '''["-something", "-another-thing"]''',
         },
     )
 
