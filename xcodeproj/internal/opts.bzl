@@ -2,6 +2,10 @@
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:build_settings.bzl",
+    "set_if_true",
+)
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
@@ -316,7 +320,7 @@ def _process_swiftcopts(opts, build_settings):
         opts, _SWIFTC_SKIP_OPTS, process
     )
 
-    _set_not_empty(
+    set_if_true(
         build_settings,
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS",
         defines,
@@ -342,17 +346,17 @@ def _process_compiler_opts(conlyopts, cxxopts, swiftcopts, build_settings):
     # TODO: Split out `GCC_PREPROCESSOR_DEFINITIONS`? (Must maintain order, and only ones that apply to both c and cxx)
     # TODO: Handle `defines` and `local_defines` as well
 
-    _set_not_empty(
+    set_if_true(
         build_settings,
         "OTHER_CFLAGS",
         conlyopts,
     )
-    _set_not_empty(
+    set_if_true(
         build_settings,
         "OTHER_CPLUSPLUSFLAGS",
         cxxopts,
     )
-    _set_not_empty(
+    set_if_true(
         build_settings,
         "OTHER_SWIFT_FLAGS",
         swiftcopts,
@@ -382,7 +386,7 @@ def _process_linker_opts(linkopts, build_settings):
         build_settings: A mutable dictionary that will be updated with build
             settings that are parsed from `linkopts`.
     """
-    _set_not_empty(
+    set_if_true(
         build_settings,
         "OTHER_LDFLAGS",
         linkopts,
@@ -422,15 +426,6 @@ def _expand_make_variables(ctx, values, attribute_name):
         ctx.expand_make_variables(attribute_name, value, {})
         for value in values
     ]
-
-def _set_not_empty(build_settings, key, value):
-    """Sets `build_settings[key]` to `value` if `value` is not empty.
-
-    This is useful for setting build settings that are lists, but only when we
-    have a value to set.
-    """
-    if value:
-        build_settings[key] = value
 
 def _xcode_std_value(std):
     """Converts a '-std' option value to an Xcode recognized value."""
