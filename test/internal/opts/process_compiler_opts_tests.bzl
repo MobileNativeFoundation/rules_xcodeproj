@@ -21,6 +21,7 @@ def _process_compiler_opts_test_impl(ctx):
     string_build_settings = _stringify_dict(build_settings)
     expected_build_settings = {
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+        "SWIFT_VERSION": "5",
     }
     expected_build_settings.update(ctx.attr.expected_build_settings)
 
@@ -424,6 +425,16 @@ def process_compiler_opts_test_suite(name):
         swiftcopts = ["-Osize"],
         expected_build_settings = {
             "SWIFT_OPTIMIZATION_LEVEL": "-Osize",
+        },
+    )
+
+    # SWIFT_VERSION
+
+    _add_test(
+        name = "{}_swift_option-swift-version".format(name),
+        swiftcopts = ["-swift-version=42"],
+        expected_build_settings = {
+            "SWIFT_VERSION": "42",
         },
     )
 
