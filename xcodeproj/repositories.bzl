@@ -80,3 +80,61 @@ def xcodeproj_rules_dependencies(ignore_version_differences = False):
         sha256 = "3e52a508cdc47a7adbad36a3d2b712e282cc39cc211b0d63efcaf608961eb36b",
         ignore_version_differences = ignore_version_differences,
     )
+
+    _maybe(
+        http_archive,
+        name = "com_github_kylef_pathkit",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "PathKit",
+    srcs = glob(["Sources/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+""",
+        sha256 = "fcda78cdf12c1c6430c67273333e060a9195951254230e524df77841a0235dae",
+        strip_prefix = "PathKit-1.0.1",
+        url = "https://github.com/kylef/PathKit/archive/refs/tags/1.0.1.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
+    _maybe(
+        http_archive,
+        name = "com_github_tadija_aexml",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "AEXML",
+    srcs = glob(["Sources/AEXML/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+""",
+        sha256 = "5a76c28e4fa9dcc1cbfb87a8518652628e990e522ecfbc98bdad17eabf4631d5",
+        strip_prefix = "AEXML-4.6.1",
+        url = "https://github.com/tadija/AEXML/archive/refs/tags/4.6.1.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
+    _maybe(
+        http_archive,
+        name = "com_github_tuist_xcodeproj",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "XcodeProj",
+    srcs = glob(["Sources/XcodeProj/**/*.swift"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_tadija_aexml//:AEXML",
+        "@com_github_kylef_pathkit//:PathKit",
+    ],
+)
+""",
+        sha256 = "83e3b19effa03338482989d38d6c8875faf3bee82fc4ababf81bda29cbdcf849",
+        strip_prefix = "XcodeProj-8.7.1",
+        url = "https://github.com/tuist/XcodeProj/archive/refs/tags/8.7.1.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
