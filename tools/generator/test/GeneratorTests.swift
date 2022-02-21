@@ -1,3 +1,4 @@
+import CustomDump
 import XCTest
 
 @testable import generator
@@ -45,9 +46,6 @@ final class GeneratorTests: XCTestCase {
 
         // All the functions should be called with the correct parameters, the
         // correct number of times, and in the correct order.
-        XCTAssertEqual(
-            createProjectCalled,
-            expectedCreateProjectCalled
-        )
+        XCTAssertNoDifference(createProjectCalled, expectedCreateProjectCalled)
     }
 }

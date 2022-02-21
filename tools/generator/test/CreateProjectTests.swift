@@ -1,3 +1,4 @@
+import CustomDump
 import XCTest
 
 @testable import generator
@@ -46,20 +47,7 @@ final class CreateProjectTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(createdPBXProject, createdPBXProj.rootObject)
-        XCTAssertEqual(createdPBXProject.mainGroup, expectedMainGroup)
-
-        // Break cycle before testing
-        createdPBXProj.objects.delete(
-            reference: createdPBXProj.rootObjectReference!
-        )
-        createdPBXProj.rootObject = nil
-        expectedPBXProj.objects.delete(
-            reference: expectedPBXProj.rootObjectReference!
-        )
-        expectedPBXProj.rootObject = nil
-        XCTAssertEqual(createdPBXProj, expectedPBXProj)
-
-        XCTAssertEqual(createdPBXProject, expectedPBXProject)
+        XCTAssertNoDifference(createdPBXProj, expectedPBXProj)
+        XCTAssertNoDifference(createdPBXProject, expectedPBXProject)
     }
 }
