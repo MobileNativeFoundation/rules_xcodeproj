@@ -133,6 +133,9 @@ swift_library(
     ],
 )
 """,
+        patches = [
+            "@com_github_buildbuddy_io_rules_xcodeproj//third_party/com_github_tuist_xcodeproj:parent_equatable.patch",
+        ],
         sha256 = "83e3b19effa03338482989d38d6c8875faf3bee82fc4ababf81bda29cbdcf849",
         strip_prefix = "XcodeProj-8.7.1",
         url = "https://github.com/tuist/XcodeProj/archive/refs/tags/8.7.1.tar.gz",
