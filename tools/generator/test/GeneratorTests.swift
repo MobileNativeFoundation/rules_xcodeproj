@@ -19,7 +19,7 @@ final class GeneratorTests: XCTestCase {
             let project: Project
         }
 
-        var createProjectCalled = [CreateProjectCalled]()
+        var createProjectCalled: [CreateProjectCalled] = []
         func createProject(project: Project) -> (PBXProj, PBXProject) {
             createProjectCalled.append(CreateProjectCalled(
                 project: project

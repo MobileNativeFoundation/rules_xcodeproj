@@ -18,7 +18,7 @@ final class CreateProjectTests: XCTestCase {
         let expectedBuildConfigurationList = XCConfigurationList()
         expectedPBXProj.add(object: expectedBuildConfigurationList)
 
-        let attributes = [
+        let attributes: [String: Any] = [
             "BuildIndependentTargetsInParallel": 1,
             "LastSwiftUpdateCheck": 1320,
             "LastUpgradeCheck": 1320,
