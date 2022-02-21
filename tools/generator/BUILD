@@ -20,6 +20,7 @@ swift_library(
     srcs = glob(["test/**/*.swift"]),
     testonly = True,
     deps = [
+        "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
         ":generator.library",
     ],
 )

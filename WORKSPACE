@@ -27,3 +27,39 @@ swift_rules_extra_dependencies()
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
+
+# Setup Swift Custom Dump test dependency.
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "com_github_pointfreeco_xctest_dynamic_overlay",
+    build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "XCTestDynamicOverlay",
+    srcs = glob(["Sources/XCTestDynamicOverlay/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+""",
+    sha256 = "97169124feb98b409f5b890bd95bb147c2fba0dba3098f9bf24c539270ee9601",
+    strip_prefix = "xctest-dynamic-overlay-0.2.1",
+    url = "https://github.com/pointfreeco/xctest-dynamic-overlay/archive/refs/tags/0.2.1.tar.gz",
+)
+
+http_archive(
+    name = "com_github_pointfreeco_swift_custom_dump",
+    build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "CustomDump",
+    srcs = glob(["Sources/CustomDump/**/*.swift"]),
+    deps = ["@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay"],
+    visibility = ["//visibility:public"],
+)
+""",
+    sha256 = "47584a4af47d8dd8033a8a48806951789a1c13ce3b58a19824f6397874505faf",
+    strip_prefix = "swift-custom-dump-0.3.0",
+    url = "https://github.com/pointfreeco/swift-custom-dump/archive/refs/tags/0.3.0.tar.gz",
+)
