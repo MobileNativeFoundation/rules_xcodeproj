@@ -38,7 +38,7 @@ final class CreateProjectTests: XCTestCase {
 
         // Act
 
-        let (createdPBXProj, createdPBXProject) = Generator.createProject(
+        let createdPBXProj = Generator.createProject(
             project: project
         )
 
@@ -48,6 +48,5 @@ final class CreateProjectTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(createdPBXProj, expectedPBXProj)
-        XCTAssertNoDifference(createdPBXProject, expectedPBXProject)
     }
 }

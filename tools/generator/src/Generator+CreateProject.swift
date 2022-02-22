@@ -2,7 +2,10 @@ import XcodeProj
 
 extension Generator {
     /// Creates the `PBXProj` and `PBXProject` objects for the given `Project`.
-    static func createProject(project: Project) -> (PBXProj, PBXProject) {
+    ///
+    /// The `PBXProject` is also created and assigned as the `PBXProj`'s
+    /// `rootObject`.
+    static func createProject(project: Project) -> PBXProj {
         let pbxProj = PBXProj()
 
         let mainGroup = PBXGroup()
@@ -32,6 +35,6 @@ extension Generator {
         pbxProj.add(object: pbxProject)
         pbxProj.rootObject = pbxProject
 
-        return (pbxProj, pbxProject)
+        return pbxProj
     }
 }
