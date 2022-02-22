@@ -151,7 +151,7 @@ def _process_base_compiler_opts(opts, skip_opts, extra_processing = None):
         if skip_next:
             skip_next -= 1
             continue
-        if opt.find("__BAZEL_XCODE_") != -1:
+        if "__BAZEL_XCODE_" in opt:
             # Theses options are already handled by Xcode
             continue
         root_opt = opt.split("=")[0]
