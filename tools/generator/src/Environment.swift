@@ -13,6 +13,4 @@ struct Environment {
         _ potentialTargetMerges: [TargetID: Set<TargetID>],
         _ requiredLinks: Set<Path>
     ) throws -> [InvalidMerge]
-
-    let logger: Logger
 }

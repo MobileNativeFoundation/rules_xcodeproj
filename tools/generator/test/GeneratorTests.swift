@@ -84,10 +84,12 @@ final class GeneratorTests: XCTestCase {
         let logger = StubLogger()
         let environment = Environment(
             createProject: createProject,
-            processTargetMerges: processTargetMerges,
+            processTargetMerges: processTargetMerges
+        )
+        let generator = Generator(
+            environment: environment,
             logger: logger
         )
-        let generator = Generator(environment: environment)
 
         // Act
 
