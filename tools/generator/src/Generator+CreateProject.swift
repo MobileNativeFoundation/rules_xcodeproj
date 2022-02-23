@@ -1,6 +1,7 @@
 import XcodeProj
 
 extension Generator {
+    /// Creates the `PBXProj` and `PBXProject` objects for the given `Project`.
     static func createProject(project: Project) -> (PBXProj, PBXProject) {
         let pbxProj = PBXProj()
 
