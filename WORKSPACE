@@ -59,6 +59,9 @@ swift_library(
     visibility = ["//visibility:public"],
 )
 """,
+    patches = [
+        "//third_party/com_github_pointfreeco_swift_custom_dump:type_name.patch",
+    ],
     sha256 = "47584a4af47d8dd8033a8a48806951789a1c13ce3b58a19824f6397874505faf",
     strip_prefix = "swift-custom-dump-0.3.0",
     url = "https://github.com/pointfreeco/swift-custom-dump/archive/refs/tags/0.3.0.tar.gz",

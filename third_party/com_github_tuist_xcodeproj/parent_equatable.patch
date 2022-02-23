@@ -1,0 +1,11 @@
+--- Sources/XcodeProj/Objects/Sourcery/Equality.generated.swift
++++ Sources/XcodeProj/Objects/Sourcery/Equality.generated.swift
+@@ -91,7 +91,7 @@ extension PBXFileElement {
+         if indentWidth != rhs.indentWidth { return false }
+         if tabWidth != rhs.tabWidth { return false }
+         if wrapsLines != rhs.wrapsLines { return false }
+-        if parent != rhs.parent { return false }
++        if parent?.uuid != rhs.parent?.uuid { return false }
+         return super.isEqual(to: rhs)
+     }
+ }
