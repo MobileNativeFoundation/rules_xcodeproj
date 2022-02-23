@@ -1,6 +1,5 @@
 import CustomDump
 import PathKit
-import XcodeProj
 import XCTest
 
 @testable import generator
@@ -10,7 +9,7 @@ final class TargetMergingTests: XCTestCase {
         // Arrange
 
         var targets = Fixtures.targets
-        let potentialTargetMerges: [TargetID: TargetID] = [:]
+        let potentialTargetMerges: [TargetID: Set<TargetID>] = [:]
         let requiredLinks = Set<Path>()
 
         let expectedTargets = Fixtures.targets
@@ -34,9 +33,9 @@ final class TargetMergingTests: XCTestCase {
         // Arrange
 
         var targets = Fixtures.targets
-        let potentialTargetMerges: [TargetID: TargetID] = [
-            "A 1": "A 2",
-            "B 1": "B 2",
+        let potentialTargetMerges: [TargetID: Set<TargetID>] = [
+            "A 1": ["A 2"],
+            "B 1": ["B 2", "B 3"],
         ]
         let requiredLinks = Set<Path>()
 
@@ -56,15 +55,23 @@ final class TargetMergingTests: XCTestCase {
             ],
             // Inherited "A 1"'s sources
             srcs: targets["A 1"]!.srcs,
-            // Removed "A 2"'s product
+            // Removed "A 1"'s product
             links: ["a/c.a"],
-            // Removed "A 2"
+            // Inherited "A 1"'s dependencies and removed "A 1"
             dependencies: ["C 1"]
         )
         expectedTargets["B 2"] = Target.mock(
             product: targets["B 2"]!.product,
             srcs: targets["B 1"]!.srcs,
             // Removed "A 1"'s and "B 1"'s product
+            links: [],
+            // Inherited "B 1"'s dependencies and removed "A 1"
+            dependencies: ["A 2"]
+        )
+        expectedTargets["B 3"] = Target.mock(
+            product: targets["B 3"]!.product,
+            srcs: targets["B 1"]!.srcs,
+            // Removed "B 1"'s product
             links: [],
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
             dependencies: ["A 2"]
@@ -98,9 +105,9 @@ final class TargetMergingTests: XCTestCase {
             links: ["z/A.a", "a/b.a"],
             dependencies: targets["B 2"]!.dependencies
         )
-        let potentialTargetMerges: [TargetID: TargetID] = [
-            "A 1": "A 2",
-            "B 1": "B 2",
+        let potentialTargetMerges: [TargetID: Set<TargetID>] = [
+            "A 1": ["A 2"],
+            "B 1": ["B 2", "B 3"],
         ]
         let requiredLinks: Set<Path> = ["z/A.a"]
 
@@ -111,10 +118,19 @@ final class TargetMergingTests: XCTestCase {
             srcs: targets["B 1"]!.srcs,
             // Removed "B 1"'s product
             links: ["z/A.a"],
-            dependencies: ["A 1"]
+            // Inherited "B 1"'s dependencies
+            dependencies: ["A 1", "A 2"]
+        )
+        expectedTargets["B 3"] = Target.mock(
+            product: targets["B 3"]!.product,
+            srcs: targets["B 1"]!.srcs,
+            // Removed "B 1"'s product
+            links: [],
+            // Inherited "B 1"'s dependencies
+            dependencies: ["A 1", "A 2"]
         )
         let expectedInvalidMerges = [
-            InvalidMerge(src: "A 1", dest: "A 2"),
+            InvalidMerge(source: "A 1", destinations: ["A 2"]),
         ]
 
         // Act

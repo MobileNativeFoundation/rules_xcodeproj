@@ -10,7 +10,7 @@ struct Environment {
 
     let processTargetMerges: (
         _ targets: inout [TargetID: Target],
-        _ potentialTargetMerges: [TargetID: TargetID],
+        _ potentialTargetMerges: [TargetID: Set<TargetID>],
         _ requiredLinks: Set<Path>
     ) throws -> [InvalidMerge]
 

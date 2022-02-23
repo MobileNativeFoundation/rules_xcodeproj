@@ -51,14 +51,14 @@ final class GeneratorTests: XCTestCase {
 
         struct ProcessTargetMergesCalled: Equatable {
             let targets: [TargetID: Target]
-            let potentialTargetMerges: [TargetID: TargetID]
+            let potentialTargetMerges: [TargetID: Set<TargetID>]
             let requiredLinks: Set<Path>
         }
 
         var processTargetMergesCalled: [ProcessTargetMergesCalled] = []
         func processTargetMerges(
             targets: inout [TargetID: Target],
-            potentialTargetMerges: [TargetID: TargetID],
+            potentialTargetMerges: [TargetID: Set<TargetID>],
             requiredLinks: Set<Path>
         ) throws -> [InvalidMerge] {
             processTargetMergesCalled.append(ProcessTargetMergesCalled(
@@ -67,7 +67,7 @@ final class GeneratorTests: XCTestCase {
                 requiredLinks: requiredLinks
             ))
             targets = mergedTargets
-            return [InvalidMerge(src: "Y", dest: "Z")]
+            return [InvalidMerge(source: "Y", destinations: ["Z"])]
         }
 
         let expectedProcessTargetMergesCalled = [ProcessTargetMergesCalled(

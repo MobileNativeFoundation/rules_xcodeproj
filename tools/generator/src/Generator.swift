@@ -30,12 +30,14 @@ class Generator {
         )
 
         for invalidMerge in invalidMerges {
-            environment.logger.logWarning("""
-Was unable to merge "\(targets[invalidMerge.src]!.label) \
-(\(targets[invalidMerge.src]!.configuration))" into \
-"\(targets[invalidMerge.dest]!.label) \
-(\(targets[invalidMerge.dest]!.configuration))"
+            for destination in invalidMerge.destinations {
+                environment.logger.logWarning("""
+Was unable to merge "\(targets[invalidMerge.source]!.label) \
+(\(targets[invalidMerge.source]!.configuration))" into \
+"\(targets[destination]!.label) \
+(\(targets[destination]!.configuration))"
 """)
+            }
         }
     }
 }
@@ -48,6 +50,6 @@ struct PreconditionError: Error {
 /// When a potential merge wasn't valid, then the ids of the targets involved
 /// are returned in this `struct`.
 struct InvalidMerge: Equatable {
-    let src: TargetID
-    let dest: TargetID
+    let source: TargetID
+    let destinations: Set<TargetID>
 }
