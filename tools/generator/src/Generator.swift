@@ -42,11 +42,6 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
     }
 }
 
-/// An `Error` that represents a programming error.
-struct PreconditionError: Error {
-    let message: String
-}
-
 /// When a potential merge wasn't valid, then the ids of the targets involved
 /// are returned in this `struct`.
 struct InvalidMerge: Equatable {
