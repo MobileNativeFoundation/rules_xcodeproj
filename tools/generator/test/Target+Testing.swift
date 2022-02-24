@@ -8,6 +8,7 @@ extension Target {
         configuration: String = "a1b2c",
         platform: Platform? = nil,
         product: Product,
+        testHost: TargetID? = nil,
         buildSettings: [String: BuildSetting] = [:],
         srcs: Set<Path> = [],
         links: Set<Path> = [],
@@ -24,6 +25,7 @@ extension Target {
                 environment: nil
             ),
             product: product,
+            testHost: testHost,
             buildSettings: buildSettings,
             srcs: srcs,
             links: links,

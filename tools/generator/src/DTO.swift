@@ -16,6 +16,7 @@ struct Target: Equatable, Decodable {
     let configuration: String
     let platform: Platform
     let product: Product
+    let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
     var srcs: Set<Path>
     var links: Set<Path>

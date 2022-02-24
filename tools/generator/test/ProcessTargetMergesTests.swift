@@ -62,6 +62,7 @@ final class TargetMergingTests: XCTestCase {
         )
         expectedTargets["B 2"] = Target.mock(
             product: targets["B 2"]!.product,
+            testHost: "A 2",
             srcs: targets["B 1"]!.srcs,
             // Removed "A 1"'s and "B 1"'s product
             links: [],
@@ -70,6 +71,7 @@ final class TargetMergingTests: XCTestCase {
         )
         expectedTargets["B 3"] = Target.mock(
             product: targets["B 3"]!.product,
+            testHost: "A 2",
             srcs: targets["B 1"]!.srcs,
             // Removed "B 1"'s product
             links: [],
@@ -123,6 +125,7 @@ final class TargetMergingTests: XCTestCase {
         )
         expectedTargets["B 3"] = Target.mock(
             product: targets["B 3"]!.product,
+            testHost: "A 2",
             srcs: targets["B 1"]!.srcs,
             // Removed "B 1"'s product
             links: [],

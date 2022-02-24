@@ -266,6 +266,36 @@ final class GeneratorTests: XCTestCase {
             products: products,
             files: files
         )]
+        
+        // MARK: setTargetConfigurations()
+
+        struct SetTargetConfigurationsCalled: Equatable {
+            let pbxProj: PBXProj
+            let disambiguatedTargets: [TargetID: DisambiguatedTarget]
+            let pbxTargets: [TargetID: PBXNativeTarget]
+        }
+
+        var setTargetConfigurationsCalled: [SetTargetConfigurationsCalled] = []
+        func setTargetConfigurations(
+            in pbxProj: PBXProj,
+            for disambiguatedTargets: [TargetID: DisambiguatedTarget],
+            pbxTargets: [TargetID: PBXNativeTarget]
+        ) {
+            setTargetConfigurationsCalled.append(.init(
+                pbxProj: pbxProj,
+                disambiguatedTargets: disambiguatedTargets,
+                pbxTargets: pbxTargets
+            ))
+        }
+
+        let expectedSetTargetConfigurationsCalled = [
+            SetTargetConfigurationsCalled(
+                pbxProj: pbxProj,
+                disambiguatedTargets: disambiguatedTargets,
+                pbxTargets: pbxTargets
+            )
+        ]
+
 
         // MARK: generate()
 
@@ -277,7 +307,8 @@ final class GeneratorTests: XCTestCase {
             createProducts: createProducts,
             populateMainGroup: populateMainGroup,
             disambiguateTargets: disambiguateTargets,
-            addTargets: addTargets
+            addTargets: addTargets,
+            setTargetConfigurations: setTargetConfigurations
         )
         let generator = Generator(
             environment: environment,
@@ -323,6 +354,10 @@ final class GeneratorTests: XCTestCase {
             expectedDisambiguateTargetsCalled
         )
         XCTAssertNoDifference(addTargetsCalled, expectedAddTargetsCalled)
+        XCTAssertNoDifference(
+            setTargetConfigurationsCalled,
+            expectedSetTargetConfigurationsCalled
+        )
 
         // The correct messages should have been logged
         XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
