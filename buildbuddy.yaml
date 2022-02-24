@@ -1,0 +1,12 @@
+actions:
+  - name: Test
+    os: "darwin"
+    triggers:
+      push:
+        branches:
+          - "main"
+      pull_request:
+        branches:
+          - "main"
+    bazel_commands:
+      - "test --config=workflows //tools/... //test/..."
