@@ -55,7 +55,7 @@ enum Fixtures {
             srcs: ["external/another_repo/b.swift"]
         ),
     ]
-    static func pbxProject() -> (PBXProj, PBXProject) {
+    static func pbxProj() -> PBXProj {
         let pbxProj = PBXProj()
 
         let mainGroup = PBXGroup()
@@ -73,6 +73,6 @@ enum Fixtures {
         pbxProj.add(object: pbxProject)
         pbxProj.rootObject = pbxProject
 
-        return (pbxProj, pbxProject)
+        return pbxProj
     }
 }

@@ -15,7 +15,7 @@ final class GeneratorTests: XCTestCase {
             potentialTargetMerges: [:],
             requiredLinks: []
         )
-        let (pbxProj, pbxProject) = Fixtures.pbxProject()
+        let pbxProj = Fixtures.pbxProj()
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
                 configuration: "a1b2c",
@@ -36,11 +36,11 @@ final class GeneratorTests: XCTestCase {
         }
 
         var createProjectCalled: [CreateProjectCalled] = []
-        func createProject(project: Project) -> (PBXProj, PBXProject) {
+        func createProject(project: Project) -> PBXProj {
             createProjectCalled.append(CreateProjectCalled(
                 project: project
             ))
-            return (pbxProj, pbxProject)
+            return pbxProj
         }
 
         let expectedCreateProjectCalled = [CreateProjectCalled(
