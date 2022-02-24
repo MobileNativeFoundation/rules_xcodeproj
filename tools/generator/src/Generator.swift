@@ -17,7 +17,8 @@ class Generator {
         addTargets: Generator.addTargets,
         setTargetConfigurations: Generator.setTargetConfigurations,
         setTargetDependencies: Generator.setTargetDependencies,
-        createXcodeProj: Generator.createXcodeProj
+        createXcodeProj: Generator.createXcodeProj,
+        writeXcodeProj: Generator.writeXcodeProj
     )
 
     let environment: Environment
@@ -37,7 +38,8 @@ class Generator {
         projectRootDirectory: Path,
         externalDirectory: Path,
         internalDirectoryName: String,
-        workspaceOutputPath: Path
+        workspaceOutputPath: Path,
+        outputPath: Path
     ) throws {
         let pbxProj = environment.createProject(project, projectRootDirectory)
         guard let pbxProject = pbxProj.rootObject else {
@@ -102,6 +104,12 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
         )
 
          let xcodeProj = environment.createXcodeProj(pbxProj)
+         try environment.writeXcodeProj(
+            xcodeProj,
+            files,
+            internalDirectoryName,
+            outputPath
+         )
     }
 }
 

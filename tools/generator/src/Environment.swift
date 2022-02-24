@@ -64,4 +64,11 @@ struct Environment {
     ) throws -> Void
 
     let createXcodeProj: (_ pbxProj: PBXProj) -> XcodeProj
+
+    let writeXcodeProj: (
+        _ xcodeProj: XcodeProj,
+        _ files: [FilePath: PBXFileElement],
+        _ internalDirectoryName: String,
+        _ outputPath: Path
+    ) throws -> Void
 }

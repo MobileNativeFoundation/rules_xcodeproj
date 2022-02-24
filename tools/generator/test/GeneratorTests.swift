@@ -27,6 +27,7 @@ final class GeneratorTests: XCTestCase {
         let externalDirectory: Path = "/var/tmp/_bazel_BB/HASH/external"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
+        let outputPath: Path = "P.xcodeproj"
         
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
@@ -344,6 +345,36 @@ final class GeneratorTests: XCTestCase {
             pbxProj: pbxProj
         )]
 
+        // MARK: writeXcodeProj()
+
+        struct WriteXcodeProjCalled: Equatable {
+            let xcodeProj: XcodeProj
+            let files: [FilePath: PBXFileElement]
+            let internalDirectoryName: String
+            let outputPath: Path
+        }
+
+        var writeXcodeProjCalled: [WriteXcodeProjCalled] = []
+        func writeXcodeProj(
+            xcodeProj: XcodeProj,
+            files: [FilePath: PBXFileElement],
+            internalDirectoryName: String,
+            to outputPath: Path
+        ) {
+            writeXcodeProjCalled.append(.init(
+                xcodeProj: xcodeProj,
+                files: files,
+                internalDirectoryName: internalDirectoryName,
+                outputPath: outputPath
+            ))
+        }
+
+        let expectedWriteXcodeProjCalled = [WriteXcodeProjCalled(
+            xcodeProj: xcodeProj,
+            files: files,
+            internalDirectoryName: internalDirectoryName,
+            outputPath: outputPath
+        )]
 
         // MARK: generate()
 
@@ -358,7 +389,8 @@ final class GeneratorTests: XCTestCase {
             addTargets: addTargets,
             setTargetConfigurations: setTargetConfigurations,
             setTargetDependencies: setTargetDependencies,
-            createXcodeProj: createXcodeProj
+            createXcodeProj: createXcodeProj,
+            writeXcodeProj: writeXcodeProj
         )
         let generator = Generator(
             environment: environment,
@@ -372,7 +404,8 @@ final class GeneratorTests: XCTestCase {
             projectRootDirectory: projectRootDirectory,
             externalDirectory: externalDirectory,
             internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            workspaceOutputPath: workspaceOutputPath,
+            outputPath: outputPath
         )
 
         // Assert
@@ -415,6 +448,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             createXcodeProjCalled,
             expectedCreateXcodeProjCalled
+        )
+        XCTAssertNoDifference(
+            writeXcodeProjCalled,
+            expectedWriteXcodeProjCalled
         )
 
         // The correct messages should have been logged
