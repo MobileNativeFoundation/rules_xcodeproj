@@ -16,7 +16,8 @@ class Generator {
         disambiguateTargets: Generator.disambiguateTargets,
         addTargets: Generator.addTargets,
         setTargetConfigurations: Generator.setTargetConfigurations,
-        setTargetDependencies: Generator.setTargetDependencies
+        setTargetDependencies: Generator.setTargetDependencies,
+        createXcodeProj: Generator.createXcodeProj
     )
 
     let environment: Environment
@@ -99,6 +100,8 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             disambiguatedTargets,
             pbxTargets
         )
+
+         let xcodeProj = environment.createXcodeProj(pbxProj)
     }
 }
 

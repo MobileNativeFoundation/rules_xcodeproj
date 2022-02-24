@@ -62,4 +62,6 @@ struct Environment {
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
         _ pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> Void
+
+    let createXcodeProj: (_ pbxProj: PBXProj) -> XcodeProj
 }
