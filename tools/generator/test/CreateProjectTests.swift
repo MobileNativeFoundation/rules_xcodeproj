@@ -12,7 +12,7 @@ final class CreateProjectTests: XCTestCase {
 
         let expectedPBXProj = PBXProj()
 
-        let expectedMainGroup = PBXGroup()
+        let expectedMainGroup = PBXGroup(sourceTree: .group)
         expectedPBXProj.add(object: expectedMainGroup)
 
         let expectedBuildConfigurationList = XCConfigurationList()

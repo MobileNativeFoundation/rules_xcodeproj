@@ -8,7 +8,7 @@ extension Generator {
     static func createProject(project: Project) -> PBXProj {
         let pbxProj = PBXProj()
 
-        let mainGroup = PBXGroup()
+        let mainGroup = PBXGroup(sourceTree: .group)
         pbxProj.add(object: mainGroup)
 
         let buildConfigurationList = XCConfigurationList()
