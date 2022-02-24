@@ -11,7 +11,8 @@ class Generator {
         createProject: Generator.createProject,
         processTargetMerges: Generator.processTargetMerges,
         createFilesAndGroups: Generator.createFilesAndGroups,
-        createProducts: Generator.createProducts
+        createProducts: Generator.createProducts,
+        populateMainGroup: populateMainGroup
     )
 
     let environment: Environment
@@ -34,6 +35,12 @@ class Generator {
         workspaceOutputPath: Path
     ) throws {
         let pbxProj = environment.createProject(project, projectRootDirectory)
+        guard let pbxProject = pbxProj.rootObject else {
+            throw PreconditionError(message: """
+`rootObject` not set on `pbxProj`
+""")
+        }
+        let mainGroup: PBXGroup = pbxProject.mainGroup
 
         var targets = project.targets
         let invalidMerges = try environment.processTargetMerges(
@@ -53,7 +60,7 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             }
         }
 
-        let _ = environment.createFilesAndGroups(
+        let (_, rootElements) = environment.createFilesAndGroups(
             pbxProj,
             targets,
             project.extraFiles,
@@ -61,9 +68,15 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             internalDirectoryName,
             workspaceOutputPath
         )
-        let _ = environment.createProducts(
+        let (_, productsGroup) = environment.createProducts(
             pbxProj,
             targets
+        )
+        environment.populateMainGroup(
+            mainGroup,
+            pbxProj,
+            rootElements,
+            productsGroup
         )
     }
 }
