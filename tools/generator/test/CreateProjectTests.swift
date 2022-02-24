@@ -15,7 +15,15 @@ final class CreateProjectTests: XCTestCase {
         let expectedMainGroup = PBXGroup(sourceTree: .group)
         expectedPBXProj.add(object: expectedMainGroup)
 
-        let expectedBuildConfigurationList = XCConfigurationList()
+        let debugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: project.buildSettings.asDictionary
+        )
+        expectedPBXProj.add(object: debugConfiguration)
+        let expectedBuildConfigurationList = XCConfigurationList(
+            buildConfigurations: [debugConfiguration],
+            defaultConfigurationName: debugConfiguration.name
+        )
         expectedPBXProj.add(object: expectedBuildConfigurationList)
 
         let attributes: [String: Any] = [

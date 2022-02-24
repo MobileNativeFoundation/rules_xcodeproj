@@ -5,6 +5,11 @@ import XcodeProj
 enum Fixtures {
     static let project = Project(
         name: "Bazel",
+        buildSettings: [
+            "ALWAYS_SEARCH_USER_PATHS": .bool(false),
+            "COPY_PHASE_STRIP": .bool(false),
+            "ONLY_ACTIVE_ARCH": .bool(true),
+        ],
         targets: targets,
         potentialTargetMerges: [:],
         requiredLinks: []

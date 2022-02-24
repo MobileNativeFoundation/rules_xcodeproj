@@ -11,7 +11,15 @@ extension Generator {
         let mainGroup = PBXGroup(sourceTree: .group)
         pbxProj.add(object: mainGroup)
 
-        let buildConfigurationList = XCConfigurationList()
+        let debugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: project.buildSettings.asDictionary
+        )
+        pbxProj.add(object: debugConfiguration)
+        let buildConfigurationList = XCConfigurationList(
+            buildConfigurations: [debugConfiguration],
+            defaultConfigurationName: debugConfiguration.name
+        )
         pbxProj.add(object: buildConfigurationList)
 
         let attributes = [

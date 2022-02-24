@@ -11,6 +11,7 @@ final class GeneratorTests: XCTestCase {
 
         let project = Project(
             name: "P",
+            buildSettings: [:],
             targets: Fixtures.targets,
             potentialTargetMerges: [:],
             requiredLinks: []
