@@ -1,5 +1,16 @@
 import Foundation
 
+/// An `Error` that represents a user error.
+struct UsageError: Error {
+    let message: String
+}
+
+// MARK: LocalizedError
+
+extension UsageError: LocalizedError {
+    var errorDescription: String? { message }
+}
+
 /// An `Error` that represents a programming error.
 struct PreconditionError: Error {
     let message: String

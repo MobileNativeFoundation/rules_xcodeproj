@@ -1,5 +1,6 @@
 load(
     "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_binary",
     "swift_library",
     "swift_test",
 )
@@ -12,6 +13,14 @@ swift_library(
         "@com_github_tuist_xcodeproj//:XcodeProj",
         "@com_github_kylef_pathkit//:PathKit",
     ],
+)
+
+swift_binary(
+    name = "generator",
+    deps = [
+        ":generator.library",
+    ],
+    visibility = ["//visibility:public"],
 )
 
 swift_library(
