@@ -10,7 +10,7 @@ load(
 # C and C++ compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
-_CC_SKIP_COPTS = {
+_CC_SKIP_OPTS = {
     "-isysroot": 2,
     "-mios-simulator-version-min": 1,
     "-miphoneos-version-min": 1,
@@ -67,7 +67,7 @@ _UNSUPPORTED_CC_FEATURES = [
 
 # Compiler option processing
 
-def _get_unprocessed_compiler_opts(ctx, target):
+def _get_unprocessed_compiler_opts(*, ctx, target):
     """Returns the unprocessed compiler options for the given target.
 
     Args:
@@ -131,7 +131,7 @@ def _get_unprocessed_compiler_opts(ctx, target):
         raw_swiftcopts,
     )
 
-def _process_base_compiler_opts(opts, skip_opts, extra_processing = None):
+def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
     """Process compiler options, skipping options that should be skipped.
 
     Args:
@@ -185,12 +185,14 @@ def _process_conlyopts(opts):
         return False
 
     unhandled_opts = _process_base_compiler_opts(
-        opts, _CC_SKIP_COPTS, process,
+        opts = opts,
+        skip_opts = _CC_SKIP_OPTS,
+        extra_processing = process,
     )
 
     return unhandled_opts, optimizations
 
-def _process_cxxopts(opts, build_settings):
+def _process_cxxopts(*, opts, build_settings):
     """Processes C++ compiler options.
 
     Args:
@@ -220,12 +222,14 @@ def _process_cxxopts(opts, build_settings):
         return False
 
     unhandled_opts = _process_base_compiler_opts(
-        opts, _CC_SKIP_COPTS, process,
+        opts = opts,
+        skip_opts = _CC_SKIP_OPTS,
+        extra_processing = process,
     )
 
     return unhandled_opts, optimizations
 
-def _process_copts(conlyopts, cxxopts, build_settings):
+def _process_copts(*, conlyopts, cxxopts, build_settings):
     """Processes C and C++ compiler options.
 
     Args:
@@ -242,8 +246,8 @@ def _process_copts(conlyopts, cxxopts, build_settings):
     """
     conlyopts, conly_optimizations = _process_conlyopts(conlyopts)
     cxxopts, cxx_optimizations = _process_cxxopts(
-        cxxopts,
-        build_settings,
+        opts = cxxopts,
+        build_settings = build_settings,
     )
 
     # Calculate GCC_OPTIMIZATION_LEVEL, preserving C/C++ specific settings
@@ -268,7 +272,7 @@ def _process_copts(conlyopts, cxxopts, build_settings):
 
     return conly_optimizations + conlyopts, cxx_optimizations + cxxopts
 
-def _process_swiftcopts(opts, build_settings):
+def _process_swiftcopts(*, opts, build_settings):
     """Processes Swift compiler options.
 
     Args:
@@ -317,7 +321,9 @@ def _process_swiftcopts(opts, build_settings):
     build_settings["SWIFT_OPTIMIZATION_LEVEL"] = "-Onone"
 
     unhandled_opts = _process_base_compiler_opts(
-        opts, _SWIFTC_SKIP_OPTS, process
+        opts = opts,
+        skip_opts = _SWIFTC_SKIP_OPTS,
+        extra_processing = process,
     )
 
     set_if_true(
@@ -328,7 +334,7 @@ def _process_swiftcopts(opts, build_settings):
 
     return unhandled_opts
 
-def _process_compiler_opts(conlyopts, cxxopts, swiftcopts, build_settings):
+def _process_compiler_opts(*, conlyopts, cxxopts, swiftcopts, build_settings):
     """Processes compiler options.
 
     Args:
@@ -339,8 +345,15 @@ def _process_compiler_opts(conlyopts, cxxopts, swiftcopts, build_settings):
             settings that are parsed the `conlyopts`, `cxxopts`, and
             `swiftcopts` lists.
     """
-    conlyopts, cxxopts = _process_copts(conlyopts, cxxopts, build_settings)
-    swiftcopts = _process_swiftcopts(swiftcopts, build_settings)
+    conlyopts, cxxopts = _process_copts(
+        conlyopts = conlyopts,
+        cxxopts = cxxopts,
+        build_settings = build_settings,
+    )
+    swiftcopts = _process_swiftcopts(
+        opts = swiftcopts,
+        build_settings = build_settings,
+    )
 
     # TODO: Split out `WARNING_CFLAGS`? (Must maintain order, and only ones that apply to both c and cxx)
     # TODO: Split out `GCC_PREPROCESSOR_DEFINITIONS`? (Must maintain order, and only ones that apply to both c and cxx)
@@ -362,7 +375,7 @@ def _process_compiler_opts(conlyopts, cxxopts, swiftcopts, build_settings):
         swiftcopts,
     )
 
-def _process_target_compiler_opts(ctx, target, build_settings):
+def _process_target_compiler_opts(*, ctx, target, build_settings):
     """Processes the compiler options for a target.
 
     Args:
@@ -372,13 +385,19 @@ def _process_target_compiler_opts(ctx, target, build_settings):
             settings that are parsed from the target's compiler options.
     """
     conlyopts, cxxopts, swiftcopts = _get_unprocessed_compiler_opts(
-        ctx, target,
+        ctx = ctx,
+        target = target,
     )
-    _process_compiler_opts(conlyopts, cxxopts, swiftcopts, build_settings)
+    _process_compiler_opts(
+        conlyopts = conlyopts,
+        cxxopts = cxxopts,
+        swiftcopts = swiftcopts,
+        build_settings = build_settings,
+    )
 
 # Linker option parsing
 
-def _process_linker_opts(linkopts, build_settings):
+def _process_linker_opts(*, linkopts, build_settings):
     """Processes linker options.
 
     Args:
@@ -392,7 +411,7 @@ def _process_linker_opts(linkopts, build_settings):
         linkopts,
     )
 
-def _process_target_linker_opts(ctx, build_settings):
+def _process_target_linker_opts(*, ctx, build_settings):
     """Processes the linker options for a target.
 
     Args:
@@ -401,16 +420,20 @@ def _process_target_linker_opts(ctx, build_settings):
             settings that are parsed from the target's linker options.
     """
     rule_linkopts = getattr(ctx.rule.attr, "linkopts", [])
-    rule_linkopts = _expand_make_variables(ctx, rule_linkopts, "linkopts")
+    rule_linkopts = _expand_make_variables(
+        ctx = ctx,
+        values = rule_linkopts,
+        attribute_name = "linkopts",
+    )
 
     _process_linker_opts(
-        ctx.fragments.cpp.linkopts + rule_linkopts,
-        build_settings
+        linkopts = ctx.fragments.cpp.linkopts + rule_linkopts,
+        build_settings = build_settings,
     )
 
 # Utility
 
-def _expand_make_variables(ctx, values, attribute_name):
+def _expand_make_variables(*, ctx, values, attribute_name):
     """Expands all references to Make variables in each of the given values.
 
     Args:
@@ -437,7 +460,7 @@ def _xcode_std_value(std):
 
 # API
 
-def process_opts(ctx, target):
+def process_opts(*, ctx, target):
     """Processes the compiler and linker options for a target.
 
     Args:
@@ -450,8 +473,15 @@ def process_opts(ctx, target):
         linker options for the target.
     """
     build_settings = {}
-    _process_target_compiler_opts(ctx, target, build_settings)
-    _process_target_linker_opts(ctx, build_settings)
+    _process_target_compiler_opts(
+        ctx = ctx,
+        target = target,
+        build_settings = build_settings,
+    )
+    _process_target_linker_opts(
+        ctx = ctx,
+        build_settings = build_settings,
+    )
     return build_settings
 
 # These functions are exposed only for access in unit tests.

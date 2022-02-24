@@ -12,7 +12,10 @@ def _process_linker_opts_test_impl(ctx):
     env = unittest.begin(ctx)
 
     build_settings = {}
-    process_linker_opts(ctx.attr.linkopts, build_settings)
+    process_linker_opts(
+        linkopts = ctx.attr.linkopts,
+        build_settings = build_settings
+    )
     string_build_settings = _stringify_dict(build_settings)
 
     asserts.equals(
