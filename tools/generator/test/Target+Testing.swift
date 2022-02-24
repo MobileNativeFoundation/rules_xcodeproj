@@ -6,6 +6,7 @@ import XCTest
 extension Target {
     static func mock(
         configuration: String = "a1b2c",
+        platform: Platform? = nil,
         product: Product,
         buildSettings: [String: BuildSetting] = [:],
         srcs: Set<Path> = [],
@@ -16,6 +17,12 @@ extension Target {
             name: product.name,
             label: "//\(product.name)",
             configuration: configuration,
+            platform: platform ?? Platform(
+                os: "macOS",
+                arch: "arm64",
+                minimumOsVersion: "12.0",
+                environment: nil
+            ),
             product: product,
             buildSettings: buildSettings,
             srcs: srcs,

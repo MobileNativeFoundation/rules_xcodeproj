@@ -14,6 +14,7 @@ struct Target: Equatable, Decodable {
     let name: String
     let label: String
     let configuration: String
+    let platform: Platform
     let product: Product
     var buildSettings: [String: BuildSetting]
     var srcs: Set<Path>
@@ -25,4 +26,11 @@ struct Product: Equatable, Decodable {
     let type: PBXProductType
     let name: String
     let path: Path
+}
+
+struct Platform: Equatable, Decodable {
+    let os: String
+    let arch: String
+    let minimumOsVersion: String
+    let environment: String?
 }

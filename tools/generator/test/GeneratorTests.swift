@@ -38,6 +38,13 @@ final class GeneratorTests: XCTestCase {
                 product: .init(type: .application, name: "Z", path: "")
             ),
         ]
+        let disambiguatedTargets: [TargetID: DisambiguatedTarget] = [
+            "A": .init(
+                name: "A (3456a)",
+                nameBuildSetting: "A-1234567",
+                target: mergedTargets["Y"]!
+            ),
+        ]
         let files = Fixtures.files(
             in: pbxProj,
             externalDirectory: externalDirectory,
@@ -204,6 +211,25 @@ final class GeneratorTests: XCTestCase {
             productsGroup: productsGroup
         )]
 
+        // MARK: disambiguateTargets()
+
+        struct DisambiguateTargetsCalled: Equatable {
+            let targets: [TargetID: Target]
+        }
+
+        var disambiguateTargetsCalled: [DisambiguateTargetsCalled] = []
+        func disambiguateTargets(
+            targets: [TargetID: Target]
+        ) -> [TargetID: DisambiguatedTarget] {
+            disambiguateTargetsCalled.append(.init(
+                targets: targets
+            ))
+            return disambiguatedTargets
+        }
+
+        let expectedDisambiguateTargetsCalled = [DisambiguateTargetsCalled(
+            targets: mergedTargets
+        )]
         // MARK: generate()
 
         let logger = StubLogger()
@@ -212,7 +238,8 @@ final class GeneratorTests: XCTestCase {
             processTargetMerges: processTargetMerges,
             createFilesAndGroups: createFilesAndGroups,
             createProducts: createProducts,
-            populateMainGroup: populateMainGroup
+            populateMainGroup: populateMainGroup,
+            disambiguateTargets: disambiguateTargets
         )
         let generator = Generator(
             environment: environment,
@@ -252,6 +279,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             populateMainGroupCalled,
             expectedPopulateMainGroupCalled
+        )
+        XCTAssertNoDifference(
+            disambiguateTargetsCalled,
+            expectedDisambiguateTargetsCalled
         )
 
         // The correct messages should have been logged
