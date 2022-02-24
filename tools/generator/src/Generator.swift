@@ -8,13 +8,17 @@ import XcodeProj
 class Generator {
     static let defaultEnvironment = Environment(
         createProject: Generator.createProject,
-        processTargetMerges: Generator.processTargetMerges,
-        logger: DefaultLogger()
+        processTargetMerges: Generator.processTargetMerges
     )
 
     let environment: Environment
+    let logger: Logger
 
-    init(environment: Environment = Generator.defaultEnvironment) {
+    init(
+        environment: Environment = Generator.defaultEnvironment, 
+        logger: Logger
+    ) {
+        self.logger = logger
         self.environment = environment
     }
 
@@ -31,7 +35,7 @@ class Generator {
 
         for invalidMerge in invalidMerges {
             for destination in invalidMerge.destinations {
-                environment.logger.logWarning("""
+                logger.logWarning("""
 Was unable to merge "\(targets[invalidMerge.source]!.label) \
 (\(targets[invalidMerge.source]!.configuration))" into \
 "\(targets[destination]!.label) \
