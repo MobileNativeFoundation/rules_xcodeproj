@@ -43,3 +43,20 @@ extension TargetID: ExpressibleByStringLiteral {
         self.init(value)
     }
 }
+
+extension FilePath: ExpressibleByStringLiteral {
+    public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
+    public typealias UnicodeScalarLiteralType = StringLiteralType
+
+    public init(extendedGraphemeClusterLiteral path: StringLiteralType) {
+        self = .input(Path(path))
+    }
+
+    public init(unicodeScalarLiteral path: StringLiteralType) {
+        self = .input(Path(path))
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self = .input(Path(value))
+    }
+}

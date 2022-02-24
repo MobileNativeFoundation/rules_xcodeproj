@@ -9,7 +9,8 @@ import XcodeProj
 class Generator {
     static let defaultEnvironment = Environment(
         createProject: Generator.createProject,
-        processTargetMerges: Generator.processTargetMerges
+        processTargetMerges: Generator.processTargetMerges,
+        createFilesAndGroups: Generator.createFilesAndGroups
     )
 
     let environment: Environment
@@ -26,9 +27,12 @@ class Generator {
     /// Generates an Xcode project for a given `Project`.
     func generate(
         project: Project,
-        projectRootDirectory: Path
+        projectRootDirectory: Path,
+        externalDirectory: Path,
+        internalDirectoryName: String,
+        workspaceOutputPath: Path
     ) throws {
-        let _ = environment.createProject(project, projectRootDirectory)
+        let pbxProj = environment.createProject(project, projectRootDirectory)
 
         var targets = project.targets
         let invalidMerges = try environment.processTargetMerges(
@@ -47,6 +51,15 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
 """)
             }
         }
+
+        let _ = environment.createFilesAndGroups(
+            pbxProj,
+            targets,
+            project.extraFiles,
+            externalDirectory,
+            internalDirectoryName,
+            workspaceOutputPath
+        )
     }
 }
 

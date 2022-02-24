@@ -7,6 +7,7 @@ struct Project: Equatable, Decodable {
     var targets: [TargetID: Target]
     let potentialTargetMerges: [TargetID: Set<TargetID>]
     let requiredLinks: Set<Path>
+    let extraFiles: Set<Path>
 }
 
 struct Target: Equatable, Decodable {

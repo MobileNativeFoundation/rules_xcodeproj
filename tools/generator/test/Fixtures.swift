@@ -1,3 +1,4 @@
+import PathKit
 import XcodeProj
 
 @testable import generator
@@ -12,7 +13,13 @@ enum Fixtures {
         ],
         targets: targets,
         potentialTargetMerges: [:],
-        requiredLinks: []
+        requiredLinks: [],
+        extraFiles: [
+            "a/a.h",
+            "a/c.h",
+            "a/d/a.h",
+            "Assets.xcassets/Contents.json",
+        ]
     )
 
     static let targets: [TargetID: Target] = [
@@ -84,5 +91,165 @@ enum Fixtures {
         pbxProj.rootObject = pbxProject
 
         return pbxProj
+    }
+
+    static func files(
+        in pbxProj: PBXProj,
+        parentGroup group: PBXGroup? = nil,
+        externalDirectory: Path = "/var/tmp/_bazel_U/HASH/external",
+        internalDirectoryName: String = "rules_xcodeproj",
+        workspaceOutputPath: Path = "some/Project.xcodeproj"
+    ) -> [FilePath: PBXFileElement] {
+        var elements: [FilePath: PBXFileElement] = [:]
+
+        // external/a_repo/a.swift
+        elements["external/a_repo/a.swift"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.swift",
+            path: "a.swift"
+        )
+        elements["external/a_repo"] = PBXGroup(
+            children: [elements["external/a_repo/a.swift"]!],
+            sourceTree: .group,
+            path: "a_repo"
+        )
+
+        // external/another_repo/b.swift
+        elements["external/another_repo/b.swift"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.swift",
+            path: "b.swift"
+        )
+        elements["external/another_repo"] = PBXGroup(
+            children: [elements["external/another_repo/b.swift"]!],
+            sourceTree: .group,
+            path: "another_repo"
+        )
+
+        // external
+        elements["external"] = PBXGroup(
+            children: [
+                elements["external/a_repo"]!,
+                elements["external/another_repo"]!,
+            ],
+            sourceTree: .absolute,
+            name: "Bazel External Repositories",
+            path: externalDirectory.string
+        )
+
+        // a/a.h
+        elements["a/a.h"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.h",
+            path: "a.h"
+        )
+
+        // a/c.h
+        elements["a/c.h"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.h",
+            path: "c.h"
+        )
+
+        // a/d/a.h
+        elements["a/d/a.h"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.h",
+            path: "a.h"
+        )
+        elements["a/d"] = PBXGroup(
+            children: [elements["a/d/a.h"]!],
+            sourceTree: .group,
+            path: "d"
+        )
+
+        // a/b/c.m
+        elements["a/b/c.m"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.objc",
+            path: "c.m"
+        )
+        elements["a/b"] = PBXGroup(
+            children: [elements["a/b/c.m"]!],
+            sourceTree: .group,
+            path: "b"
+        )
+
+        // Parent of the 4 above
+        elements["a"] = PBXGroup(
+            children: [
+                // Folders are before files, then alphabetically
+                elements["a/b"]!,
+                elements["a/d"]!,
+                elements["a/a.h"]!,
+                elements["a/c.h"]!,
+            ],
+            sourceTree: .group,
+            path: "a"
+        )
+
+        // b.c
+
+        elements["b.c"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.c",
+            path: "b.c"
+        )
+
+        // x/y.swift
+
+        elements["x/y.swift"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.swift",
+            path: "y.swift"
+        )
+        elements["x"] = PBXGroup(
+            children: [elements["x/y.swift"]!],
+            sourceTree: .group,
+            path: "x"
+        )
+
+        // z.mm
+
+        elements["z.mm"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.cpp.objcpp",
+            path: "z.mm"
+        )
+
+        // Assets.xcassets/Contents.json
+
+        elements["Assets.xcassets"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "folder.assetcatalog",
+            path: "Assets.xcassets"
+        )
+
+        // `internal`/CompileStub.swift
+
+        elements[.internal("CompileStub.swift")] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.swift",
+            path: "CompileStub.swift"
+        )
+        elements[.internal("")] = PBXGroup(
+            children: [elements[.internal("CompileStub.swift")]!],
+            sourceTree: .group,
+            name: internalDirectoryName,
+            path: (workspaceOutputPath + internalDirectoryName).string
+        )
+
+        elements.values.forEach { pbxProj.add(object: $0) }
+
+        if let group = group {
+            // The order files are added to a group matters for uuid fixing
+            elements.values.sortedLocalizedStandard().forEach { file in
+                if file is PBXGroup || file.parent == nil {
+                    group.addChild(file)
+                }
+            }
+        }
+
+        return elements
     }
 }
