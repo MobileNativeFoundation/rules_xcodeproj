@@ -75,11 +75,11 @@ def _get_unprocessed_compiler_opts(ctx, target):
         target: The `Target` that the compiler options will be retrieved from.
 
     Returns:
-        A tuple containing three elements:
+        A `tuple` containing three elements:
 
-        *   A list of C compiler options.
-        *   A list of C++ compiler options.
-        *   A list of Swift compiler options.
+        *   A `list` of C compiler options.
+        *   A `list` of C++ compiler options.
+        *   A `list` of Swift compiler options.
     """
     cc_toolchain = find_cpp_toolchain(ctx)
 
@@ -135,15 +135,15 @@ def _process_base_compiler_opts(opts, skip_opts, extra_processing = None):
     """Process compiler options, skipping options that should be skipped.
 
     Args:
-        opts: A list of compiler options.
-        skip_opts: A dictionary of options to skip. The values are the number of
+        opts: A `list` of compiler options.
+        skip_opts: A `dict` of options to skip. The values are the number of
             arguments to skip.
         extra_processing: An optional function that provides further processing
             of an option. Returns `True` if the option was handled, otherwise
             `False`.
 
     Returns:
-        A list of unhandled options.
+        A `list` of unhandled options.
     """
     unhandled_opts = []
     skip_next = 0
@@ -169,13 +169,13 @@ def _process_conlyopts(opts):
     """Processes C compiler options.
 
     Args:
-        opts: A list of C compiler options.
+        opts: A `list` of C compiler options.
 
     Returns:
-        A tuple containing two elements:
+        A `tuple` containing two elements:
 
-        *   A list of unhandled C compiler options.
-        *   A list of C compiler optimization levels parsed.
+        *   A `list` of unhandled C compiler options.
+        *   A `list` of C compiler optimization levels parsed.
     """
     optimizations = []
     def process(opt):
@@ -194,15 +194,15 @@ def _process_cxxopts(opts, build_settings):
     """Processes C++ compiler options.
 
     Args:
-        opts: A list of C++ compiler options.
-        build_settings: A mutable dictionary that will be updated with build
+        opts: A `list` of C++ compiler options.
+        build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from `opts`.
 
     Returns:
-        A tuple containing two elements:
+        A `tuple` containing two elements:
 
-        *   A list of unhandled C++ compiler options.
-        *   A list of C++ compiler optimization levels parsed.
+        *   A `list` of unhandled C++ compiler options.
+        *   A `list` of C++ compiler optimization levels parsed.
     """
     optimizations = []
     def process(opt):
@@ -229,16 +229,16 @@ def _process_copts(conlyopts, cxxopts, build_settings):
     """Processes C and C++ compiler options.
 
     Args:
-        conlyopts: A list of C compiler options.
-        cxxopts: A list of C++ compiler options.
-        build_settings: A mutable dictionary that will be updated with build
+        conlyopts: A `list` of C compiler options.
+        cxxopts: A `list` of C++ compiler options.
+        build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from `conlyopts` and `cxxopts`.
 
     Returns:
-        A tuple containing two elements:
+        A `tuple` containing two elements:
 
-        *   A list of unhandled C compiler options.
-        *   A list of unhandled C++ compiler options.
+        *   A `list` of unhandled C compiler options.
+        *   A `list` of unhandled C++ compiler options.
     """
     conlyopts, conly_optimizations = _process_conlyopts(conlyopts)
     cxxopts, cxx_optimizations = _process_cxxopts(
@@ -272,12 +272,12 @@ def _process_swiftcopts(opts, build_settings):
     """Processes Swift compiler options.
 
     Args:
-        opts: A list of Swift compiler options.
-        build_settings: A mutable dictionary that will be updated with build
+        opts: A `list` of Swift compiler options.
+        build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from `opts`.
 
     Returns:
-        A list of unhandled Swift compiler options.
+        A `list` of unhandled Swift compiler options.
     """
     # Xcode needs a value for SWIFT_VERSION, so we set it to "5" by default.
     # We will have to figure out a way to detect what the default is before
@@ -332,10 +332,10 @@ def _process_compiler_opts(conlyopts, cxxopts, swiftcopts, build_settings):
     """Processes compiler options.
 
     Args:
-        conlyopts: A list of C compiler options.
-        cxxopts: A list of C++ compiler options.
-        swiftcopts: A list of Swift compiler options.
-        build_settings: A mutable dictionary that will be updated with build
+        conlyopts: A `list` of C compiler options.
+        cxxopts: A `list` of C++ compiler options.
+        swiftcopts: A `list` of Swift compiler options.
+        build_settings: A mutable `dict` that will be updated with build
             settings that are parsed the `conlyopts`, `cxxopts`, and
             `swiftcopts` lists.
     """
@@ -368,7 +368,7 @@ def _process_target_compiler_opts(ctx, target, build_settings):
     Args:
         ctx: The aspect context.
         target: The `Target` that the compiler options will be retrieved from.
-        build_settings: A mutable dictionary that will be updated with build
+        build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from the target's compiler options.
     """
     conlyopts, cxxopts, swiftcopts = _get_unprocessed_compiler_opts(
@@ -382,8 +382,8 @@ def _process_linker_opts(linkopts, build_settings):
     """Processes linker options.
 
     Args:
-        linkopts: A list of linker options.
-        build_settings: A mutable dictionary that will be updated with build
+        linkopts: A `list` of linker options.
+        build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from `linkopts`.
     """
     set_if_true(
@@ -397,7 +397,7 @@ def _process_target_linker_opts(ctx, build_settings):
 
     Args:
         ctx: The aspect context.
-        build_settings: A mutable dictionary that will be updated with build
+        build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from the target's linker options.
     """
     rule_linkopts = getattr(ctx.rule.attr, "linkopts", [])
@@ -415,12 +415,13 @@ def _expand_make_variables(ctx, values, attribute_name):
 
     Args:
         ctx: The aspect context.
-        values: A list of strings, which may contain Make variable placeholders.
+        values: A `list` of strings, which may contain Make variable
+            placeholders.
         attribute_name: The attribute name string that will be presented in the
             console when an error occurs.
 
     Returns:
-        A list of strings with Make variables placeholders filled in.
+        A `list` of strings with Make variables placeholders filled in.
     """
     return [
         ctx.expand_make_variables(attribute_name, value, {})
@@ -445,7 +446,7 @@ def process_opts(ctx, target):
             retrieved from.
 
     Returns:
-        A dictionary of Xcode build settings that correspond to the compiler and
+        A `dict` of Xcode build settings that correspond to the compiler and
         linker options for the target.
     """
     build_settings = {}
