@@ -13,10 +13,10 @@ def _process_compiler_opts_test_impl(ctx):
 
     build_settings = {}
     process_compiler_opts(
-        ctx.attr.conlyopts,
-        ctx.attr.cxxopts,
-        ctx.attr.swiftcopts,
-        build_settings,
+        conlyopts = ctx.attr.conlyopts,
+        cxxopts = ctx.attr.cxxopts,
+        swiftcopts = ctx.attr.swiftcopts,
+        build_settings = build_settings,
     )
     string_build_settings = _stringify_dict(build_settings)
     expected_build_settings = {
