@@ -40,7 +40,12 @@ enum Fixtures {
         "B 2": Target.mock(
             product: .init(type: .unitTestBundle, name: "B", path: "B.xctest"),
             links: ["a/b.a"],
-            dependencies: ["B 1"]
+            dependencies: ["A 2", "B 1"]
+        ),
+        "B 3": Target.mock(
+            product: .init(type: .uiTestBundle, name: "B3", path: "B3.xctest"),
+            links: ["a/b.a"],
+            dependencies: ["A 2", "B 1"]
         ),
         "C 1": Target.mock(
             product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),

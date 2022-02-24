@@ -30,59 +30,62 @@ extension Generator {
     ///   couldn't be performed.
     static func processTargetMerges(
         targets: inout [TargetID: Target],
-        potentialTargetMerges: [TargetID: TargetID],
+        potentialTargetMerges: [TargetID: Set<TargetID>],
         requiredLinks: Set<Path>
     ) throws -> [InvalidMerge] {
         var validTargetMerges = potentialTargetMerges
         var invalidMerges: [InvalidMerge] = []
-        for (src, dest) in potentialTargetMerges {
-            guard let merging = targets[src] else {
+        for (source, destinations) in potentialTargetMerges {
+            guard let merging = targets[source] else {
                 throw PreconditionError(message: """
-`potentialTargetMerges.key` (\(src)) references target that doesn't exist
+`potentialTargetMerges.key` (\(source)) references target that doesn't exist
 """)
             }
 
             guard !requiredLinks.contains(merging.product.path) else {
-                validTargetMerges.removeValue(forKey: src)
-                invalidMerges.append(InvalidMerge(src: src, dest: dest))
+                validTargetMerges.removeValue(forKey: source)
+                invalidMerges.append(.init(
+                    source: source,
+                    destinations: destinations
+                ))
                 continue
             }
 
-            guard var merged = targets[dest] else {
-                throw PreconditionError(message: """
-`potentialTargetMerges.value` (\(dest)) references target that doesn't exist
+            for destination in destinations {
+                guard var merged = targets[destination] else {
+                    throw PreconditionError(message: """
+`potentialTargetMerges.value` (\(destination)) references target that doesn't \
+exist
 """)
+                }
+
+                // Remove src
+                targets.removeValue(forKey: source)
+
+                // Merge build settings
+                merged.buildSettings["PRODUCT_MODULE_NAME"] = merging.buildSettings["PRODUCT_MODULE_NAME"]
+                merged.buildSettings.merge(merging.buildSettings) { l, _ in l }
+
+                // Update sources
+                merged.srcs = merging.srcs
+
+                // Update links
+                merged.links.remove(merging.product.path)
+
+                // Update dependencies
+                merged.dependencies.formUnion(merging.dependencies)
+
+                // Commit dest
+                targets[destination] = merged
             }
-
-            // Remove src
-            targets.removeValue(forKey: src)
-
-            // Merge build settings
-            merged.buildSettings["PRODUCT_MODULE_NAME"] = merging.buildSettings["PRODUCT_MODULE_NAME"]
-            merged.buildSettings.merge(merging.buildSettings) { lhs, _ in lhs }
-
-            // Update sources
-            merged.srcs = merging.srcs
-
-            // Update links
-            merged.links.remove(merging.product.path)
-
-            // Update dependencies
-            merged.dependencies.formUnion(merging.dependencies)
-
-            // Commit dest
-            targets[dest] = merged
         }
 
         // Update all targets
         for (id, target) in targets {
             // Dependencies
             for dependency in target.dependencies {
-                if let dest = validTargetMerges[dependency] {
+                if validTargetMerges[dependency] != nil {
                     targets[id]!.dependencies.remove(dependency)
-                    if id != dest {
-                        targets[id]!.dependencies.insert(dest)
-                    }
                 }
             }
         }
