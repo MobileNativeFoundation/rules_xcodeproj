@@ -1,3 +1,4 @@
+import PathKit
 import XcodeProj
 
 /// A class that generates and writes to disk an Xcode project.
@@ -23,8 +24,11 @@ class Generator {
     }
 
     /// Generates an Xcode project for a given `Project`.
-    func generate(project: Project) throws {
-        let _ = environment.createProject(project)
+    func generate(
+        project: Project,
+        projectRootDirectory: Path
+    ) throws {
+        let _ = environment.createProject(project, projectRootDirectory)
 
         var targets = project.targets
         let invalidMerges = try environment.processTargetMerges(

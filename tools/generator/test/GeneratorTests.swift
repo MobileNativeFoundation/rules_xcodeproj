@@ -17,6 +17,7 @@ final class GeneratorTests: XCTestCase {
             requiredLinks: []
         )
         let pbxProj = Fixtures.pbxProj()
+        let projectRootDirectory: Path = "~/project"
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
                 configuration: "a1b2c",
@@ -34,18 +35,24 @@ final class GeneratorTests: XCTestCase {
 
         struct CreateProjectCalled: Equatable {
             let project: Project
+            let projectRootDirectory: Path
         }
 
         var createProjectCalled: [CreateProjectCalled] = []
-        func createProject(project: Project) -> PBXProj {
-            createProjectCalled.append(CreateProjectCalled(
-                project: project
+        func createProject(
+            project: Project,
+            projectRootDirectory: Path
+        ) -> PBXProj {
+            createProjectCalled.append(.init(
+                project: project,
+                projectRootDirectory: projectRootDirectory
             ))
             return pbxProj
         }
 
         let expectedCreateProjectCalled = [CreateProjectCalled(
-            project: project
+            project: project,
+            projectRootDirectory: projectRootDirectory
         )]
 
         // MARK: processTargetMerges()
@@ -62,7 +69,7 @@ final class GeneratorTests: XCTestCase {
             potentialTargetMerges: [TargetID: Set<TargetID>],
             requiredLinks: Set<Path>
         ) throws -> [InvalidMerge] {
-            processTargetMergesCalled.append(ProcessTargetMergesCalled(
+            processTargetMergesCalled.append(.init(
                 targets: targets,
                 potentialTargetMerges: potentialTargetMerges,
                 requiredLinks: requiredLinks
@@ -94,7 +101,10 @@ final class GeneratorTests: XCTestCase {
 
         // Act
 
-        try generator.generate(project: project)
+        try generator.generate(
+            project: project,
+            projectRootDirectory: projectRootDirectory
+        )
 
         // Assert
 
