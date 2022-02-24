@@ -1,3 +1,4 @@
+import PathKit
 import XcodeProj
 
 extension Generator {
@@ -5,7 +6,10 @@ extension Generator {
     ///
     /// The `PBXProject` is also created and assigned as the `PBXProj`'s
     /// `rootObject`.
-    static func createProject(project: Project) -> PBXProj {
+    static func createProject(
+        project: Project,
+        projectRootDirectory: Path
+    ) -> PBXProj {
         let pbxProj = PBXProj()
 
         let mainGroup = PBXGroup(sourceTree: .group)
@@ -38,6 +42,10 @@ extension Generator {
             // TODO: Make regions configurable?
             developmentRegion: "en",
             knownRegions: ["en", "Base"],
+            // TODO: Make this configurable?
+            // Normal Xcode projects set this to `""` when at the workspace
+            // level. Maybe we should as well?
+            projectDirPath: projectRootDirectory.normalize().string,
             attributes: attributes
         )
         pbxProj.add(object: pbxProject)

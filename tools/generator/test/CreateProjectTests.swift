@@ -1,4 +1,5 @@
 import CustomDump
+import PathKit
 import XCTest
 
 @testable import generator
@@ -9,6 +10,7 @@ final class CreateProjectTests: XCTestCase {
         // Arrange
 
         let project = Fixtures.project
+        let projectRootDirectory = Path("~/Developer/project")
 
         let expectedPBXProj = PBXProj()
 
@@ -39,6 +41,7 @@ final class CreateProjectTests: XCTestCase {
             mainGroup: expectedMainGroup,
             developmentRegion: "en",
             knownRegions: ["en", "Base"],
+            projectDirPath: projectRootDirectory.normalize().string,
             attributes: attributes
         )
         expectedPBXProj.add(object: expectedPBXProject)
@@ -47,7 +50,8 @@ final class CreateProjectTests: XCTestCase {
         // Act
 
         let createdPBXProj = Generator.createProject(
-            project: project
+            project: project,
+            projectRootDirectory: projectRootDirectory
         )
 
         try createdPBXProj.fixReferences()
