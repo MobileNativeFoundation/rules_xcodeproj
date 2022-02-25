@@ -3,8 +3,14 @@ load(
     ":calculate_module_name_tests.bzl",
     "calculate_module_name_test_suite",
 )
+load(
+    ":get_targeted_device_family_tests.bzl",
+    "get_targeted_device_family_test_suite",
+)
 
 calculate_module_name_test_suite(name = "calculate_module_name")
+
+get_targeted_device_family_test_suite(name = "get_targeted_device_family")
 
 test_suite(name = "build_settings")
 
