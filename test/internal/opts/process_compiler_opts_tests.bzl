@@ -1,12 +1,10 @@
-"""Tests for compiler and linking options processing functions."""
+"""Tests for compiler options processing functions."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+load("//test:utils.bzl", "stringify_dict")
 load("//xcodeproj/internal:opts.bzl", "testable")
 
 process_compiler_opts = testable.process_compiler_opts
-
-def _stringify_dict(dict):
-    return {k: str(v) for k, v in dict.items()}
 
 def _process_compiler_opts_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -18,7 +16,7 @@ def _process_compiler_opts_test_impl(ctx):
         swiftcopts = ctx.attr.swiftcopts,
         build_settings = build_settings,
     )
-    string_build_settings = _stringify_dict(build_settings)
+    string_build_settings = stringify_dict(build_settings)
     expected_build_settings = {
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         "SWIFT_VERSION": "5",
@@ -54,6 +52,7 @@ def process_compiler_opts_test_suite(name):
     test_names = []
 
     def _add_test(
+        *,
         name,
         expected_build_settings,
         conlyopts = [],

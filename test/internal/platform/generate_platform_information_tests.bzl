@@ -1,12 +1,10 @@
 """Tests for platform processing functions."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+load("//test:utils.bzl", "stringify_dict")
 load("//xcodeproj/internal:platform.bzl", "testable")
 
 generate_platform_information = testable.generate_platform_information
-
-def _stringify_dict(dict):
-    return {k: str(v) for k, v in dict.items()}
 
 def _generate_platform_information_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -19,8 +17,8 @@ def _generate_platform_information_test_impl(ctx):
         minimum_deployment_os_version = ctx.attr.minimum_deployment_os_version,
         build_settings = build_settings,
     )
-    string_platform = _stringify_dict(platform)
-    string_build_settings = _stringify_dict(build_settings)
+    string_platform = stringify_dict(platform)
+    string_build_settings = stringify_dict(build_settings)
 
     asserts.equals(
         env,
@@ -59,6 +57,7 @@ def generate_platform_information_test_suite(name):
     test_names = []
 
     def _add_test(
+        *,
         name,
         platform_key,
         arch,

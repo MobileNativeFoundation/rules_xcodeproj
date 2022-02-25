@@ -1,12 +1,10 @@
-"""Tests for compiler and linking options processing functions."""
+"""Tests for linking options processing functions."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+load("//test:utils.bzl", "stringify_dict")
 load("//xcodeproj/internal:opts.bzl", "testable")
 
 process_linker_opts = testable.process_linker_opts
-
-def _stringify_dict(dict):
-    return {k: str(v) for k, v in dict.items()}
 
 def _process_linker_opts_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -16,7 +14,7 @@ def _process_linker_opts_test_impl(ctx):
         linkopts = ctx.attr.linkopts,
         build_settings = build_settings
     )
-    string_build_settings = _stringify_dict(build_settings)
+    string_build_settings = stringify_dict(build_settings)
 
     asserts.equals(
         env,
@@ -45,6 +43,7 @@ def process_linker_opts_test_suite(name):
     test_names = []
 
     def _add_test(
+        *,
         name,
         linkopts,
         expected_build_settings):
