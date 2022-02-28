@@ -53,7 +53,11 @@ final class GeneratorTests: XCTestCase {
         )
         let rootElements = [files["a"]!, files["x"]!]
         let products = Fixtures.products(in: pbxProj)
+        
         let productsGroup = PBXGroup(name: "42")
+        let pbxTargets: [TargetID: PBXNativeTarget] = [
+            "A": PBXNativeTarget(name: "A (3456a)"),
+        ]
 
         var expectedMessagesLogged: [StubLogger.MessageLogged] = []
 
@@ -230,6 +234,39 @@ final class GeneratorTests: XCTestCase {
         let expectedDisambiguateTargetsCalled = [DisambiguateTargetsCalled(
             targets: mergedTargets
         )]
+
+        // MARK: addTargets()
+
+        struct AddTargetsCalled: Equatable {
+            let pbxProj: PBXProj
+            let disambiguatedTargets: [TargetID: DisambiguatedTarget]
+            let products: Products
+            let files: [FilePath: PBXFileElement]
+        }
+
+        var addTargetsCalled: [AddTargetsCalled] = []
+        func addTargets(
+            in pbxProj: PBXProj,
+            for disambiguatedTargets: [TargetID: DisambiguatedTarget],
+            products: Products,
+            files: [FilePath: PBXFileElement]
+        ) throws -> [TargetID: PBXNativeTarget] {
+            addTargetsCalled.append(.init(
+                pbxProj: pbxProj,
+                disambiguatedTargets: disambiguatedTargets,
+                products: products,
+                files: files
+            ))
+            return pbxTargets
+        }
+
+        let expectedAddTargetsCalled = [AddTargetsCalled(
+            pbxProj: pbxProj,
+            disambiguatedTargets: disambiguatedTargets,
+            products: products,
+            files: files
+        )]
+
         // MARK: generate()
 
         let logger = StubLogger()
@@ -239,7 +276,8 @@ final class GeneratorTests: XCTestCase {
             createFilesAndGroups: createFilesAndGroups,
             createProducts: createProducts,
             populateMainGroup: populateMainGroup,
-            disambiguateTargets: disambiguateTargets
+            disambiguateTargets: disambiguateTargets,
+            addTargets: addTargets
         )
         let generator = Generator(
             environment: environment,
@@ -284,6 +322,7 @@ final class GeneratorTests: XCTestCase {
             disambiguateTargetsCalled,
             expectedDisambiguateTargetsCalled
         )
+        XCTAssertNoDifference(addTargetsCalled, expectedAddTargetsCalled)
 
         // The correct messages should have been logged
         XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)

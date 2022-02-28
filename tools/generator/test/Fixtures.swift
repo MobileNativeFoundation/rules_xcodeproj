@@ -1,3 +1,4 @@
+import Foundation
 import PathKit
 import XcodeProj
 
@@ -72,6 +73,23 @@ enum Fixtures {
             srcs: ["external/another_repo/b.swift"]
         ),
     ]
+
+    static func disambiguatedTargets(
+        _ targets: [TargetID: Target]
+    ) -> [TargetID: DisambiguatedTarget] {
+        var disambiguatedTargets = Dictionary<TargetID, DisambiguatedTarget>(
+            minimumCapacity: targets.count
+        )
+        for (id, target) in targets {
+            disambiguatedTargets[id] = DisambiguatedTarget(
+                name: "\(id.rawValue) (Distinguished)",
+                nameBuildSetting: Data(id.rawValue.utf8).base64EncodedString(),
+                target: target
+            )
+        }
+        return disambiguatedTargets
+    }
+
     static func pbxProj() -> PBXProj {
         let pbxProj = PBXProj()
 
@@ -363,5 +381,193 @@ enum Fixtures {
         pbxProj.add(object: group)
 
         return group
+    }
+
+    static func pbxTargets(
+        in pbxProj: PBXProj,
+        disambiguatedTargets: [TargetID : DisambiguatedTarget],
+        files: [FilePath : PBXFileElement],
+        products: Products
+    ) -> [TargetID: PBXNativeTarget] {
+        // Build phases
+
+        func buildFiles(_ buildFiles: [PBXBuildFile]) -> [PBXBuildFile] {
+            buildFiles.forEach { pbxProj.add(object: $0) }
+            return buildFiles
+        }
+
+        let buildPhases: [TargetID: [PBXBuildPhase]] = [
+            "A 1": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: files["b.c"]),
+                        PBXBuildFile(file: files["x/y.swift"]),
+                    ])
+                ),
+                PBXFrameworksBuildPhase(),
+            ],
+            "A 2": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: files[.internal("CompileStub.swift")]
+                    )])
+                ),
+                PBXFrameworksBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: products.byTarget["A 1"]),
+                        PBXBuildFile(file: products.byTarget["C 1"]),
+                    ])
+                ),
+            ],
+            "B 1": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: files["z.mm"]),
+                    ])
+                ),
+                PBXFrameworksBuildPhase(),
+            ],
+            "B 2": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: files[.internal("CompileStub.swift")]
+                    )])
+                ),
+                PBXFrameworksBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: products.byTarget["B 1"]),
+                    ])
+                ),
+            ],
+            "B 3": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: files[.internal("CompileStub.swift")]
+                    )])
+                ),
+                PBXFrameworksBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: products.byTarget["B 1"]),
+                    ])
+                ),
+            ],
+            "C 1": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: files["a/b/c.m"]),
+                    ])
+                ),
+                PBXFrameworksBuildPhase(),
+            ],
+            "E1": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: files["external/a_repo/a.swift"]),
+                    ])
+                ),
+                PBXFrameworksBuildPhase(),
+            ],
+            "E2": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: files["external/another_repo/b.swift"]
+                    )])
+                ),
+                PBXFrameworksBuildPhase(),
+            ],
+        ]
+        buildPhases.values.forEach { buildPhases in
+            buildPhases.forEach { pbxProj.add(object: $0) }
+        }
+
+        // Targets
+
+        let pbxTargets: [TargetID: PBXNativeTarget] = [
+            "A 1": PBXNativeTarget(
+                name: disambiguatedTargets["A 1"]!.name,
+                buildPhases: buildPhases["A 1"] ?? [],
+                productName: "a",
+                product: products.byTarget["A 1"],
+                productType: .staticLibrary
+            ),
+            "A 2": PBXNativeTarget(
+                name: disambiguatedTargets["A 2"]!.name,
+                buildPhases: buildPhases["A 2"] ?? [],
+                productName: "A",
+                product: products.byTarget["A 2"],
+                productType: .application
+            ),
+            "B 1": PBXNativeTarget(
+                name: disambiguatedTargets["B 1"]!.name,
+                buildPhases: buildPhases["B 1"] ?? [],
+                productName: "b",
+                product: products.byTarget["B 1"],
+                productType: .staticLibrary
+            ),
+            "B 2": PBXNativeTarget(
+                name: disambiguatedTargets["B 2"]!.name,
+                buildPhases: buildPhases["B 2"] ?? [],
+                productName: "B",
+                product: products.byTarget["B 2"],
+                productType: .unitTestBundle
+            ),
+            "B 3": PBXNativeTarget(
+                name: disambiguatedTargets["B 3"]!.name,
+                buildPhases: buildPhases["B 3"] ?? [],
+                productName: "B3",
+                product: products.byTarget["B 3"],
+                productType: .uiTestBundle
+            ),
+            "C 1": PBXNativeTarget(
+                name: disambiguatedTargets["C 1"]!.name,
+                buildPhases: buildPhases["C 1"] ?? [],
+                productName: "c",
+                product: products.byTarget["C 1"],
+                productType: .staticLibrary
+            ),
+            "E1": PBXNativeTarget(
+                name: disambiguatedTargets["E1"]!.name,
+                buildPhases: buildPhases["E1"] ?? [],
+                productName: "E1",
+                product: products.byTarget["E1"],
+                productType: .staticLibrary
+            ),
+            "E2": PBXNativeTarget(
+                name: disambiguatedTargets["E2"]!.name,
+                buildPhases: buildPhases["E2"] ?? [],
+                productName: "E2",
+                product: products.byTarget["E2"],
+                productType: .staticLibrary
+            ),
+        ]
+        // The order target are added to `PBXProject`s matter for uuid fixing.
+        for pbxTarget in pbxTargets.values.sortedLocalizedStandard(\.name) {
+            pbxProj.add(object: pbxTarget)
+            pbxProj.rootObject!.targets.append(pbxTarget)
+        }
+
+        return pbxTargets
+    }
+
+    static func pbxTargets(
+        in pbxProj: PBXProj,
+        targets: [TargetID: Target]
+    ) -> ([TargetID: PBXNativeTarget], [TargetID : DisambiguatedTarget]) {
+        let pbxProject = pbxProj.rootObject!
+        let mainGroup = pbxProject.mainGroup!
+
+        let files = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
+        let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
+
+        let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)
+
+        let pbxTargets = Fixtures.pbxTargets(
+            in: pbxProj,
+            disambiguatedTargets: disambiguatedTargets,
+            files: files,
+            products: products
+        )
+
+        return (pbxTargets, disambiguatedTargets)
     }
 }

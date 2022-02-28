@@ -42,6 +42,12 @@ extension Sequence where Element: PBXFileElement {
     }
 }
 
+extension Sequence where Element == PBXBuildFile {
+    func sortedLocalizedStandard() -> [Element] {
+        return sortedLocalizedStandard(\.file!.namePathSortString)
+    }
+}
+
 extension Array where Element: PBXFileElement {
     mutating func sortGroupedLocalizedStandard() {
         let fileSort = Self.sortByLocalizedStandard(\.namePathSortString)
