@@ -64,7 +64,7 @@ def process_compiler_opts_test_suite(name):
             conlyopts = conlyopts,
             cxxopts = cxxopts,
             swiftcopts = swiftcopts,
-            expected_build_settings = expected_build_settings,
+            expected_build_settings = stringify_dict(expected_build_settings),
         )
 
     # Base
@@ -115,8 +115,8 @@ def process_compiler_opts_test_suite(name):
         ],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
-            "OTHER_SWIFT_FLAGS": '''["weird", "-unhandled"]''',
-            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": '''["DEBUG"]''',
+            "OTHER_SWIFT_FLAGS": ["weird", "-unhandled"],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": ["DEBUG"],
         },
     )
 
@@ -233,13 +233,27 @@ def process_compiler_opts_test_suite(name):
             "-passthrough",
         ],
         expected_build_settings = {
-            "OTHER_CFLAGS": '''["-passthrough", "-passthrough", \
-"-passthrough", "-passthrough"]''',
-            "OTHER_CPLUSPLUSFLAGS": '''["-passthrough", "-passthrough", \
-"-passthrough"]''',
-            "OTHER_SWIFT_FLAGS": '''["-passthrough", "-passthrough", \
-"-passthrough", "-passthrough", "-passthrough", "-passthrough", \
-"-keep-me=something.swift", "-passthrough"]''',
+            "OTHER_CFLAGS": [
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+            ],
+            "OTHER_SWIFT_FLAGS": [
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+                "-keep-me=something.swift",
+                "-passthrough",
+            ],
         },
     )
 
@@ -253,7 +267,7 @@ def process_compiler_opts_test_suite(name):
         cxxopts = ["-std=c++42"],
         expected_build_settings = {
             "CLANG_CXX_LANGUAGE_STANDARD": "c++42",
-            "OTHER_CFLAGS": '''["-std=c++42"]''',
+            "OTHER_CFLAGS": ["-std=c++42"],
         },
     )
 
@@ -273,7 +287,7 @@ def process_compiler_opts_test_suite(name):
         cxxopts = ["-stdlib=random"],
         expected_build_settings = {
             "CLANG_CXX_LIBRARY": "random",
-            "OTHER_CFLAGS": '''["-stdlib=random"]''',
+            "OTHER_CFLAGS": ["-stdlib=random"],
         },
     )
 
@@ -294,8 +308,8 @@ def process_compiler_opts_test_suite(name):
         conlyopts = ["-O0"],
         cxxopts = ["-O1"],
         expected_build_settings = {
-            "OTHER_CFLAGS": '''["-O0"]''',
-            "OTHER_CPLUSPLUSFLAGS": '''["-O1"]''',
+            "OTHER_CFLAGS": ["-O0"],
+            "OTHER_CPLUSPLUSFLAGS": ["-O1"],
         },
     )
 
@@ -305,8 +319,8 @@ def process_compiler_opts_test_suite(name):
         cxxopts = ["-O1", "-O2"],
         expected_build_settings = {
             "GCC_OPTIMIZATION_LEVEL": "1",
-            "OTHER_CFLAGS": '''["-O0"]''',
-            "OTHER_CPLUSPLUSFLAGS": '''["-O2"]''',
+            "OTHER_CFLAGS": ["-O0"],
+            "OTHER_CPLUSPLUSFLAGS": ["-O2"],
         },
     )
 
@@ -315,8 +329,8 @@ def process_compiler_opts_test_suite(name):
         conlyopts = ["-O1", "-O0"],
         cxxopts = ["-O0", "-O1"],
         expected_build_settings = {
-            "OTHER_CFLAGS": '''["-O1", "-O0"]''',
-            "OTHER_CPLUSPLUSFLAGS": '''["-O0", "-O1"]''',
+            "OTHER_CFLAGS": ["-O1", "-O0"],
+            "OTHER_CPLUSPLUSFLAGS": ["-O0", "-O1"],
         },
     )
 
@@ -340,7 +354,12 @@ def process_compiler_opts_test_suite(name):
             "-DBAZEL=1",
         ],
         expected_build_settings = {
-            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": '''["DEBUG", "BAZEL=1", "DEBUG=1", "BAZEL=1"]''',
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": [
+                "DEBUG",
+                "BAZEL=1",
+                "DEBUG=1",
+                "BAZEL=1",
+            ],
         },
     )
 
