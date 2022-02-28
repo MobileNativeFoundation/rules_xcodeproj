@@ -15,7 +15,8 @@ class Generator {
         populateMainGroup: populateMainGroup,
         disambiguateTargets: Generator.disambiguateTargets,
         addTargets: Generator.addTargets,
-        setTargetConfigurations: Generator.setTargetConfigurations
+        setTargetConfigurations: Generator.setTargetConfigurations,
+        setTargetDependencies: Generator.setTargetDependencies
     )
 
     let environment: Environment
@@ -91,6 +92,10 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
         )
         try environment.setTargetConfigurations(
             pbxProj,
+            disambiguatedTargets,
+            pbxTargets
+        )
+        try environment.setTargetDependencies(
             disambiguatedTargets,
             pbxTargets
         )

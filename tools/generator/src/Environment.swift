@@ -57,4 +57,9 @@ struct Environment {
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
         _ pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> Void
+
+    let setTargetDependencies: (
+        _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        _ pbxTargets: [TargetID: PBXNativeTarget]
+    ) throws -> Void
 }

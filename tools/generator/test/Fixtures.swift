@@ -653,4 +653,21 @@ enum Fixtures {
 
         return pbxTargets
     }
+
+    static func pbxTargetsWithDependencies(
+        in pbxProj: PBXProj,
+        targets: [TargetID: Target]
+    ) -> [TargetID: PBXNativeTarget] {
+        let (pbxTargets, _) = Fixtures.pbxTargets(in: pbxProj, targets: targets)
+
+        _ = try! pbxTargets["A 2"]!.addDependency(target: pbxTargets["A 1"]!)
+        _ = try! pbxTargets["A 2"]!.addDependency(target: pbxTargets["C 1"]!)
+        _ = try! pbxTargets["B 1"]!.addDependency(target: pbxTargets["A 1"]!)
+        _ = try! pbxTargets["B 2"]!.addDependency(target: pbxTargets["A 2"]!)
+        _ = try! pbxTargets["B 2"]!.addDependency(target: pbxTargets["B 1"]!)
+        _ = try! pbxTargets["B 3"]!.addDependency(target: pbxTargets["A 2"]!)
+        _ = try! pbxTargets["B 3"]!.addDependency(target: pbxTargets["B 1"]!)
+
+        return pbxTargets
+    }
 }
