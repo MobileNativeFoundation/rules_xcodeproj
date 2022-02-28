@@ -58,6 +58,11 @@ final class GeneratorTests: XCTestCase {
         let pbxTargets: [TargetID: PBXNativeTarget] = [
             "A": PBXNativeTarget(name: "A (3456a)"),
         ]
+        let xcodeProj = XcodeProj(
+            workspace: XCWorkspace(),
+            pbxproj: pbxProj,
+            sharedData: nil
+        )
 
         var expectedMessagesLogged: [StubLogger.MessageLogged] = []
 
@@ -319,6 +324,26 @@ final class GeneratorTests: XCTestCase {
             pbxTargets: pbxTargets
         )]
 
+        // MARK: createXcodeProj()
+
+        struct CreateXcodeProjCalled: Equatable {
+            let pbxProj: PBXProj
+        }
+
+        var createXcodeProjCalled: [CreateXcodeProjCalled] = []
+        func createXcodeProj(
+            for pbxProj: PBXProj
+        ) -> XcodeProj {
+            createXcodeProjCalled.append(.init(
+                pbxProj: pbxProj
+            ))
+            return xcodeProj
+        }
+
+        let expectedCreateXcodeProjCalled = [CreateXcodeProjCalled(
+            pbxProj: pbxProj
+        )]
+
 
         // MARK: generate()
 
@@ -332,7 +357,8 @@ final class GeneratorTests: XCTestCase {
             disambiguateTargets: disambiguateTargets,
             addTargets: addTargets,
             setTargetConfigurations: setTargetConfigurations,
-            setTargetDependencies: setTargetDependencies
+            setTargetDependencies: setTargetDependencies,
+            createXcodeProj: createXcodeProj
         )
         let generator = Generator(
             environment: environment,
@@ -385,6 +411,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             setTargetDependenciesCalled,
             expectedSetTargetDependenciesCalled
+        )
+        XCTAssertNoDifference(
+            createXcodeProjCalled,
+            expectedCreateXcodeProjCalled
         )
 
         // The correct messages should have been logged
