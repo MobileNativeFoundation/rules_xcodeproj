@@ -4,6 +4,10 @@ load(
     "swift_library",
     "swift_test",
 )
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "xcodeproj",
+)
 
 swift_library(
     name = "generator.library",
@@ -39,4 +43,15 @@ swift_test(
     deps = [
         ":tests.library",
     ],
+)
+
+xcodeproj(
+    name = "xcodeproj",
+    project_name = "generator",
+    targets = [
+        ":generator",
+        ":tests",
+    ],
+    tags = ["manual"],
+    visibility = ["//test:__subpackages__"],
 )
