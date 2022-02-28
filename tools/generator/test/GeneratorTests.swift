@@ -14,10 +14,16 @@ final class GeneratorTests: XCTestCase {
             buildSettings: [:],
             targets: Fixtures.targets,
             potentialTargetMerges: [:],
-            requiredLinks: []
+            requiredLinks: [],
+            extraFiles: []
         )
         let pbxProj = Fixtures.pbxProj()
+        
         let projectRootDirectory: Path = "~/project"
+        let externalDirectory: Path = "/var/tmp/_bazel_BB/HASH/external"
+        let internalDirectoryName = "rules_xcodeproj"
+        let workspaceOutputPath: Path = "P.xcodeproj"
+        
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
                 configuration: "a1b2c",
@@ -28,6 +34,13 @@ final class GeneratorTests: XCTestCase {
                 product: .init(type: .application, name: "Z", path: "")
             ),
         ]
+        let files = Fixtures.files(
+            in: pbxProj,
+            externalDirectory: externalDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+        let rootElements = [files["a"]!, files["x"]!]
 
         var expectedMessagesLogged: [StubLogger.MessageLogged] = []
 
@@ -87,12 +100,56 @@ final class GeneratorTests: XCTestCase {
  Was unable to merge "//Y (a1b2c)" into "//Z (1a2b3)"
  """))
 
+        // MARK: createFilesAndGroups()
+
+        struct CreateFilesAndGroupsCalled: Equatable {
+            let pbxProj: PBXProj
+            let targets: [TargetID: Target]
+            let extraFiles: Set<Path>
+            let externalDirectory: Path
+            let internalDirectoryName: String
+            let workspaceOutputPath: Path
+        }
+
+        var createFilesAndGroupsCalled: [CreateFilesAndGroupsCalled] = []
+        func createFilesAndGroups(
+            in pbxProj: PBXProj,
+            targets: [TargetID: Target],
+            extraFiles: Set<Path>,
+            externalDirectory: Path,
+            internalDirectoryName: String,
+            workspaceOutputPath: Path
+        ) -> (
+            elements: [FilePath: PBXFileElement],
+            rootElements: [PBXFileElement]
+        ) {
+            createFilesAndGroupsCalled.append(.init(
+                pbxProj: pbxProj,
+                targets: targets,
+                extraFiles: extraFiles,
+                externalDirectory: externalDirectory,
+                internalDirectoryName: internalDirectoryName,
+                workspaceOutputPath: workspaceOutputPath
+            ))
+            return (files, rootElements)
+        }
+
+        let expectedCreateFilesAndGroupsCalled = [CreateFilesAndGroupsCalled(
+            pbxProj: pbxProj,
+            targets: mergedTargets,
+            extraFiles: project.extraFiles,
+            externalDirectory: externalDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )]
+
         // MARK: generate()
 
         let logger = StubLogger()
         let environment = Environment(
             createProject: createProject,
-            processTargetMerges: processTargetMerges
+            processTargetMerges: processTargetMerges,
+            createFilesAndGroups: createFilesAndGroups
         )
         let generator = Generator(
             environment: environment,
@@ -103,7 +160,10 @@ final class GeneratorTests: XCTestCase {
 
         try generator.generate(
             project: project,
-            projectRootDirectory: projectRootDirectory
+            projectRootDirectory: projectRootDirectory,
+            externalDirectory: externalDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
         )
 
         // Assert
@@ -117,6 +177,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             processTargetMergesCalled,
             expectedProcessTargetMergesCalled
+        )
+        XCTAssertNoDifference(
+            createFilesAndGroupsCalled,
+            expectedCreateFilesAndGroupsCalled
         )
 
         // The correct messages should have been logged

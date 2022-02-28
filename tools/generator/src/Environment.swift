@@ -16,4 +16,16 @@ struct Environment {
         _ potentialTargetMerges: [TargetID: Set<TargetID>],
         _ requiredLinks: Set<Path>
     ) throws -> [InvalidMerge]
+
+    let createFilesAndGroups: (
+        _ pbxProj: PBXProj,
+        _ targets: [TargetID: Target],
+        _ extraFiles: Set<Path>,
+        _ externalDirectory: Path,
+        _ internalDirectoryName: String,
+        _ workspaceOutputPath: Path
+    ) -> (
+        elements: [FilePath: PBXFileElement],
+        rootElements: [PBXFileElement]
+    )
 }
