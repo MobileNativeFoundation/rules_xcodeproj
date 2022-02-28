@@ -308,7 +308,7 @@ def _xcode_target(
     # Since we use a custom dictionary key type in
     # `//tools/generator/src:DTO.swift`, we need to use alternating keys and
     # values to get the correct dictionary representation.
-    return '''"{id}", {target}'''.format(id = id, target = target)
+    return '"{id}",{target}'.format(id = id, target = target)
 
 # Top-level targets
 
