@@ -83,6 +83,14 @@ def xcodeproj_rules_dependencies(ignore_version_differences = False):
 
     _maybe(
         http_archive,
+        name = "build_bazel_rules_apple",
+        sha256 = "a5f00fd89eff67291f6cd3efdc8fad30f4727e6ebb90718f3f05bbf3c3dd5ed7",
+        url = "https://github.com/bazelbuild/rules_apple/releases/download/0.33.0/rules_apple.0.33.0.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
+    _maybe(
+        http_archive,
         name = "com_github_kylef_pathkit",
         build_file_content = """\
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")

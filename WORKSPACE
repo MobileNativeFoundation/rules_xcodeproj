@@ -5,6 +5,13 @@ load("//xcodeproj:repositories.bzl", "xcodeproj_rules_dependencies")
 xcodeproj_rules_dependencies()
 
 load(
+    "@build_bazel_rules_apple//apple:repositories.bzl",
+    "apple_rules_dependencies",
+)
+
+apple_rules_dependencies()
+
+load(
     "@build_bazel_rules_swift//swift:repositories.bzl",
     "swift_rules_dependencies",
 )
