@@ -40,4 +40,8 @@ struct Environment {
         _ rootElements: [PBXFileElement],
         _ productsGroup: PBXGroup
     ) -> Void
+
+    let disambiguateTargets: (
+        _ targets: [TargetID: Target]
+    ) -> [TargetID: DisambiguatedTarget]
 }

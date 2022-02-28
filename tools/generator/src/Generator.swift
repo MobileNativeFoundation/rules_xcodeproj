@@ -12,7 +12,8 @@ class Generator {
         processTargetMerges: Generator.processTargetMerges,
         createFilesAndGroups: Generator.createFilesAndGroups,
         createProducts: Generator.createProducts,
-        populateMainGroup: populateMainGroup
+        populateMainGroup: populateMainGroup,
+        disambiguateTargets: Generator.disambiguateTargets
     )
 
     let environment: Environment
@@ -78,6 +79,8 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             rootElements,
             productsGroup
         )
+
+        let _ = environment.disambiguateTargets(targets)
     }
 }
 
