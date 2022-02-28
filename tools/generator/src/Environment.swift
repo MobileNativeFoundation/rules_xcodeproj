@@ -44,4 +44,11 @@ struct Environment {
     let disambiguateTargets: (
         _ targets: [TargetID: Target]
     ) -> [TargetID: DisambiguatedTarget]
+    
+    let addTargets: (
+        _ pbxProj: PBXProj,
+        _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        _ products: Products,
+        _ files: [FilePath: PBXFileElement]
+    ) throws -> [TargetID: PBXNativeTarget]
 }

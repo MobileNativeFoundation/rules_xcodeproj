@@ -13,7 +13,8 @@ class Generator {
         createFilesAndGroups: Generator.createFilesAndGroups,
         createProducts: Generator.createProducts,
         populateMainGroup: populateMainGroup,
-        disambiguateTargets: Generator.disambiguateTargets
+        disambiguateTargets: Generator.disambiguateTargets,
+        addTargets: Generator.addTargets
     )
 
     let environment: Environment
@@ -61,7 +62,7 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             }
         }
 
-        let (_, rootElements) = environment.createFilesAndGroups(
+        let (files, rootElements) = environment.createFilesAndGroups(
             pbxProj,
             targets,
             project.extraFiles,
@@ -69,7 +70,7 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             internalDirectoryName,
             workspaceOutputPath
         )
-        let (_, productsGroup) = environment.createProducts(
+        let (products, productsGroup) = environment.createProducts(
             pbxProj,
             targets
         )
@@ -80,7 +81,13 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             productsGroup
         )
 
-        let _ = environment.disambiguateTargets(targets)
+        let disambiguatedTargets = environment.disambiguateTargets(targets)
+        let _ = try environment.addTargets(
+            pbxProj,
+            disambiguatedTargets,
+            products,
+            files
+        )
     }
 }
 
