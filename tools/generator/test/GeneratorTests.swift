@@ -296,6 +296,29 @@ final class GeneratorTests: XCTestCase {
             )
         ]
 
+        // MARK: setTargetDependencies()
+
+        struct SetTargetDependenciesCalled: Equatable {
+            let disambiguatedTargets: [TargetID: DisambiguatedTarget]
+            let pbxTargets: [TargetID: PBXNativeTarget]
+        }
+
+        var setTargetDependenciesCalled: [SetTargetDependenciesCalled] = []
+        func setTargetDependencies(
+            disambiguatedTargets: [TargetID: DisambiguatedTarget],
+            pbxTargets: [TargetID: PBXNativeTarget]
+        ) {
+            setTargetDependenciesCalled.append(SetTargetDependenciesCalled(
+                disambiguatedTargets: disambiguatedTargets,
+                pbxTargets: pbxTargets
+            ))
+        }
+
+        let expectedSetTargetDependenciesCalled = [SetTargetDependenciesCalled(
+            disambiguatedTargets: disambiguatedTargets,
+            pbxTargets: pbxTargets
+        )]
+
 
         // MARK: generate()
 
@@ -308,7 +331,8 @@ final class GeneratorTests: XCTestCase {
             populateMainGroup: populateMainGroup,
             disambiguateTargets: disambiguateTargets,
             addTargets: addTargets,
-            setTargetConfigurations: setTargetConfigurations
+            setTargetConfigurations: setTargetConfigurations,
+            setTargetDependencies: setTargetDependencies
         )
         let generator = Generator(
             environment: environment,
@@ -357,6 +381,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             setTargetConfigurationsCalled,
             expectedSetTargetConfigurationsCalled
+        )
+        XCTAssertNoDifference(
+            setTargetDependenciesCalled,
+            expectedSetTargetDependenciesCalled
         )
 
         // The correct messages should have been logged
