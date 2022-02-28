@@ -1,5 +1,19 @@
 """Functions for handling Xcode build settings."""
 
+# Maps the strings passed in to the `families` attribute to the numerical
+# representation in the "TARGETED_DEVICE_FAMILY" build setting.
+# @unsorted-dict-items
+_DEVICE_FAMILY_VALUES = {
+    "iphone": "1",
+    "ipad": "2",
+    "tv": "3",
+    "watch": "4",
+    # We want `get_targeted_device_family` to find `None` for the valid "mac"
+    # family since macOS doesn't use "TARGETED_DEVICE_FAMILY", but we still want
+    # to catch invalid families with a `KeyError`.
+    "mac": None,
+}
+
 def _calculate_module_name(*, label, module_name):
     """Calculates a module name.
 
@@ -55,6 +69,27 @@ def get_product_module_name(*, ctx, target):
         label = target.label,
         module_name = getattr(ctx.rule.attr, "module_name", None),
     )
+
+def get_targeted_device_family(families):
+    """Generates a TARGETED_DEVICE_FAMILY based string.
+
+    Args:
+        families: A `list` of strings representing the device families. This
+            value should come from the `families` attribute on the `Target`. See
+            https://github.com/bazelbuild/rules_apple/blob/master/doc/rules-ios.md#ios_application-families.
+
+    Returns:
+        An optional string that is can be used for the TARGETED_DEVICE_FAMILY
+        Xcode build setting.
+    """
+    family_ids = []
+    for family in families:
+        number = _DEVICE_FAMILY_VALUES[family]
+        if number:
+            family_ids.append(number)
+    if family_ids:
+        return ",".join(family_ids)
+    return None
 
 # These functions are exposed only for access in unit tests.
 testable = struct(
