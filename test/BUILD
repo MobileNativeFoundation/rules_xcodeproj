@@ -15,3 +15,8 @@ bzl_library(
         "//test/internal/opts:starlark_tests_bzls",
     ]
 )
+
+bzl_library(
+    name = "utils",
+    srcs = ["utils.bzl"],
+)
