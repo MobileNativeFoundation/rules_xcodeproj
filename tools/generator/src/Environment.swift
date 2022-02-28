@@ -28,4 +28,9 @@ struct Environment {
         elements: [FilePath: PBXFileElement],
         rootElements: [PBXFileElement]
     )
+
+    let createProducts: (
+        _ pbxProj: PBXProj,
+        _ targets: [TargetID: Target]
+    ) -> (Products, PBXGroup)
 }

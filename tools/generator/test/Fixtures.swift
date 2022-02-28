@@ -252,4 +252,116 @@ enum Fixtures {
 
         return elements
     }
+
+    static func products(
+        in pbxProj: PBXProj,
+        parentGroup group: PBXGroup? = nil
+    ) -> Products {
+        let products = Products([
+            Products.ProductKeys(
+                target: "A 1",
+                path: "z/A.a"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.staticLibrary.fileType,
+                path: "A.a",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
+                target: "A 2",
+                path: "z/A.app"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.application.fileType,
+                path: "A.app",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
+                target: "B 1",
+                path: "a/b.a"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.staticLibrary.fileType,
+                path: "b.a",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
+                target: "B 2",
+                path: "B.xctest"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.unitTestBundle.fileType,
+                path: "B.xctest",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
+                target: "B 3",
+                path: "B3.xctest"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.uiTestBundle.fileType,
+                path: "B3.xctest",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
+                target: "C 1",
+                path: "a/c.a"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.staticLibrary.fileType,
+                path: "c.a",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
+                target: "E1",
+                path: "e1/E.a"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.staticLibrary.fileType,
+                path: "E.a",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
+                target: "E2",
+                path: "e2/E.a"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.staticLibrary.fileType,
+                path: "E.a",
+                includeInIndex: false
+            ),
+        ])
+        products.byTarget.values.forEach { pbxProj.add(object: $0) }
+
+        if let group = group {
+            // The order products are added to a group matters for uuid fixing
+            products.byTarget.sortedLocalizedStandard().forEach { product in
+                group.addChild(product)
+            }
+        }
+
+        return products
+    }
+
+    static func productsGroup(
+        in pbxProj: PBXProj, products: Products
+    ) -> PBXGroup {
+        let group = PBXGroup(
+            children: [
+                products.byPath["z/A.a"]!,
+                products.byPath["z/A.app"]!,
+                products.byPath["a/b.a"]!,
+                products.byPath["B.xctest"]!,
+                products.byPath["B3.xctest"]!,
+                products.byPath["a/c.a"]!,
+                products.byPath["e1/E.a"]!,
+                products.byPath["e2/E.a"]!,
+            ],
+            sourceTree: .group,
+            name: "Products"
+        )
+        pbxProj.add(object: group)
+
+        return group
+    }
 }

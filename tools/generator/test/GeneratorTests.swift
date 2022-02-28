@@ -41,6 +41,8 @@ final class GeneratorTests: XCTestCase {
             workspaceOutputPath: workspaceOutputPath
         )
         let rootElements = [files["a"]!, files["x"]!]
+        let products = Fixtures.products(in: pbxProj)
+        let productsGroup = PBXGroup(name: "42")
 
         var expectedMessagesLogged: [StubLogger.MessageLogged] = []
 
@@ -143,13 +145,38 @@ final class GeneratorTests: XCTestCase {
             workspaceOutputPath: workspaceOutputPath
         )]
 
+        // MARK: createProducts()
+
+        struct CreateProductsCalled: Equatable {
+            let pbxProj: PBXProj
+            let targets: [TargetID: Target]
+        }
+
+        var createProductsCalled: [CreateProductsCalled] = []
+        func createProducts(
+            pbxProj: PBXProj,
+            targets: [TargetID: Target]
+        ) -> (Products, PBXGroup) {
+            createProductsCalled.append(.init(
+                pbxProj: pbxProj,
+                targets: targets
+            ))
+            return (products, productsGroup)
+        }
+
+        let expectedCreateProductsCalled = [CreateProductsCalled(
+            pbxProj: pbxProj,
+            targets: mergedTargets
+        )]
+
         // MARK: generate()
 
         let logger = StubLogger()
         let environment = Environment(
             createProject: createProject,
             processTargetMerges: processTargetMerges,
-            createFilesAndGroups: createFilesAndGroups
+            createFilesAndGroups: createFilesAndGroups,
+            createProducts: createProducts
         )
         let generator = Generator(
             environment: environment,
@@ -181,6 +208,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             createFilesAndGroupsCalled,
             expectedCreateFilesAndGroupsCalled
+        )
+        XCTAssertNoDifference(
+            createProductsCalled,
+            expectedCreateProductsCalled
         )
 
         // The correct messages should have been logged

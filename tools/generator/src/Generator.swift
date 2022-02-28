@@ -10,7 +10,8 @@ class Generator {
     static let defaultEnvironment = Environment(
         createProject: Generator.createProject,
         processTargetMerges: Generator.processTargetMerges,
-        createFilesAndGroups: Generator.createFilesAndGroups
+        createFilesAndGroups: Generator.createFilesAndGroups,
+        createProducts: Generator.createProducts
     )
 
     let environment: Environment
@@ -59,6 +60,10 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             externalDirectory,
             internalDirectoryName,
             workspaceOutputPath
+        )
+        let _ = environment.createProducts(
+            pbxProj,
+            targets
         )
     }
 }
