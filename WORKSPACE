@@ -28,6 +28,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "XCTestDynamicOverlay",
+    module_name = "XCTestDynamicOverlay",
     srcs = glob(["Sources/XCTestDynamicOverlay/**/*.swift"]),
     visibility = ["//visibility:public"],
 )
@@ -44,6 +45,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "CustomDump",
+    module_name = "CustomDump",
     srcs = glob(["Sources/CustomDump/**/*.swift"]),
     deps = ["@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay"],
     visibility = ["//visibility:public"],
