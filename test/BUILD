@@ -4,6 +4,7 @@ test_suite(
     name = "test",
     tests = [
         "//test/internal/opts",
+        "//test/internal/platform",
     ],
 )
 
