@@ -17,7 +17,11 @@ final class GeneratorTests: XCTestCase {
             requiredLinks: [],
             extraFiles: []
         )
+
         let pbxProj = Fixtures.pbxProj()
+        let pbxProject = pbxProj.rootObject!
+        let mainGroup = PBXGroup(name: "Main")
+        pbxProject.mainGroup = mainGroup
         
         let projectRootDirectory: Path = "~/project"
         let externalDirectory: Path = "/var/tmp/_bazel_BB/HASH/external"
@@ -169,6 +173,37 @@ final class GeneratorTests: XCTestCase {
             targets: mergedTargets
         )]
 
+        // MARK: populateMainGroup()
+
+        struct PopulateMainGroupCalled: Equatable {
+            let mainGroup: PBXGroup
+            let pbxProj: PBXProj
+            let rootElements: [PBXFileElement]
+            let productsGroup: PBXGroup
+        }
+
+        var populateMainGroupCalled: [PopulateMainGroupCalled] = []
+        func populateMainGroup(
+            _ mainGroup: PBXGroup,
+            in pbxProj: PBXProj,
+            rootElements: [PBXFileElement],
+            productsGroup: PBXGroup
+        ) {
+            populateMainGroupCalled.append(.init(
+                mainGroup: mainGroup,
+                pbxProj: pbxProj,
+                rootElements: rootElements,
+                productsGroup: productsGroup
+            ))
+        }
+
+        let expectedPopulateMainGroupCalled = [PopulateMainGroupCalled(
+            mainGroup: mainGroup,
+            pbxProj: pbxProj,
+            rootElements: rootElements,
+            productsGroup: productsGroup
+        )]
+
         // MARK: generate()
 
         let logger = StubLogger()
@@ -176,7 +211,8 @@ final class GeneratorTests: XCTestCase {
             createProject: createProject,
             processTargetMerges: processTargetMerges,
             createFilesAndGroups: createFilesAndGroups,
-            createProducts: createProducts
+            createProducts: createProducts,
+            populateMainGroup: populateMainGroup
         )
         let generator = Generator(
             environment: environment,
@@ -212,6 +248,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             createProductsCalled,
             expectedCreateProductsCalled
+        )
+        XCTAssertNoDifference(
+            populateMainGroupCalled,
+            expectedPopulateMainGroupCalled
         )
 
         // The correct messages should have been logged

@@ -33,4 +33,11 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ targets: [TargetID: Target]
     ) -> (Products, PBXGroup)
+
+    let populateMainGroup: (
+        _ mainGroup: PBXGroup,
+        _ pbxProj: PBXProj,
+        _ rootElements: [PBXFileElement],
+        _ productsGroup: PBXGroup
+    ) -> Void
 }
