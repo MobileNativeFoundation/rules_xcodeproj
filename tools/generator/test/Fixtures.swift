@@ -52,11 +52,13 @@ enum Fixtures {
         // relationship. This allows "A 1" to merge into "A 2".
         "B 2": Target.mock(
             product: .init(type: .unitTestBundle, name: "B", path: "B.xctest"),
+            testHost: "A 2",
             links: ["a/b.a"],
             dependencies: ["A 2", "B 1"]
         ),
         "B 3": Target.mock(
             product: .init(type: .uiTestBundle, name: "B3", path: "B3.xctest"),
+            testHost: "A 2",
             links: ["a/b.a"],
             dependencies: ["A 2", "B 1"]
         ),
@@ -569,5 +571,86 @@ enum Fixtures {
         )
 
         return (pbxTargets, disambiguatedTargets)
+    }
+
+    static func pbxTargetsWithConfigurations(
+        in pbxProj: PBXProj,
+        targets: [TargetID: Target]
+    ) -> [TargetID: PBXNativeTarget] {
+        let (pbxTargets, distinguished) = Fixtures.pbxTargets(
+            in: pbxProj,
+            targets: targets
+        )
+
+        let baseAttributes: [String: Any] = [
+            "CreatedOnToolsVersion": "13.2.1",
+            "LastSwiftMigration": 1320,
+        ]
+
+        let attributes: [TargetID: [String: Any]] = [
+            "A 1": baseAttributes,
+            "A 2": baseAttributes,
+            "B 1": baseAttributes,
+            "B 2": baseAttributes.merging([
+                "TestTargetID": pbxTargets["A 2"]!,
+            ]) { $1 },
+            "B 3": baseAttributes.merging([
+                "TestTargetID": pbxTargets["A 2"]!,
+            ]) { $1 },
+            "C 1": baseAttributes,
+            "E1": baseAttributes,
+            "E2": baseAttributes,
+        ]
+
+        let pbxProject = pbxProj.rootObject!
+        for (id, targetAttributes) in attributes {
+            let pbxTarget = pbxTargets[id]!
+            pbxProject.setTargetAttributes(targetAttributes, target: pbxTarget)
+        }
+
+        let buildSettings: [TargetID: [String: Any]] = [
+            "A 1": targets["A 1"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["A 1"]!.nameBuildSetting,
+            ]) { $1 },
+            "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["A 2"]!.nameBuildSetting,
+            ]) { $1 },
+            "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["B 1"]!.nameBuildSetting,
+            ]) { $1 },
+            "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["B 2"]!.nameBuildSetting,
+                "BUNDLE_LOADER": "$(TEST_HOST)",
+                "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/A.app/A",
+            ]) { $1 },
+            "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["B 3"]!.nameBuildSetting,
+                "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
+            ]) { $1 },
+            "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["C 1"]!.nameBuildSetting,
+            ]) { $1 },
+            "E1": targets["E1"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["E1"]!.nameBuildSetting,
+            ]) { $1 },
+            "E2": targets["E2"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["E2"]!.nameBuildSetting,
+            ]) { $1 },
+        ]
+        for (id, buildSettings) in buildSettings {
+            let debugConfiguration = XCBuildConfiguration(
+                name: "Debug",
+                buildSettings: buildSettings
+            )
+            pbxProj.add(object: debugConfiguration)
+            let configurationList = XCConfigurationList(
+                buildConfigurations: [debugConfiguration],
+                defaultConfigurationName: debugConfiguration.name
+            )
+            pbxProj.add(object: configurationList)
+            pbxTargets[id]!.buildConfigurationList = configurationList
+        }
+
+        return pbxTargets
     }
 }

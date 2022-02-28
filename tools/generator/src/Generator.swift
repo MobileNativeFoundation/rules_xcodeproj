@@ -14,7 +14,8 @@ class Generator {
         createProducts: Generator.createProducts,
         populateMainGroup: populateMainGroup,
         disambiguateTargets: Generator.disambiguateTargets,
-        addTargets: Generator.addTargets
+        addTargets: Generator.addTargets,
+        setTargetConfigurations: Generator.setTargetConfigurations
     )
 
     let environment: Environment
@@ -82,11 +83,16 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
         )
 
         let disambiguatedTargets = environment.disambiguateTargets(targets)
-        let _ = try environment.addTargets(
+        let pbxTargets = try environment.addTargets(
             pbxProj,
             disambiguatedTargets,
             products,
             files
+        )
+        try environment.setTargetConfigurations(
+            pbxProj,
+            disambiguatedTargets,
+            pbxTargets
         )
     }
 }

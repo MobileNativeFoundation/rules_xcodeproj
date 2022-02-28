@@ -51,4 +51,10 @@ struct Environment {
         _ products: Products,
         _ files: [FilePath: PBXFileElement]
     ) throws -> [TargetID: PBXNativeTarget]
+
+    let setTargetConfigurations: (
+        _ pbxProj: PBXProj,
+        _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        _ pbxTargets: [TargetID: PBXNativeTarget]
+    ) throws -> Void
 }
