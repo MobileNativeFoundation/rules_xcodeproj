@@ -89,6 +89,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "PathKit",
+    module_name = "PathKit",
     srcs = glob(["Sources/**/*.swift"]),
     visibility = ["//visibility:public"],
 )
@@ -107,6 +108,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "AEXML",
+    module_name = "AEXML",
     srcs = glob(["Sources/AEXML/**/*.swift"]),
     visibility = ["//visibility:public"],
 )
@@ -125,6 +127,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "XcodeProj",
+    module_name = "XcodeProj",
     srcs = glob(["Sources/XcodeProj/**/*.swift"]),
     visibility = ["//visibility:public"],
     deps = [
