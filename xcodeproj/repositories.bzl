@@ -137,10 +137,11 @@ swift_library(
 )
 """,
         patches = [
+            # Custom for our tests
             "@com_github_buildbuddy_io_rules_xcodeproj//third_party/com_github_tuist_xcodeproj:parent_equatable.patch",
         ],
-        sha256 = "83e3b19effa03338482989d38d6c8875faf3bee82fc4ababf81bda29cbdcf849",
-        strip_prefix = "XcodeProj-8.7.1",
-        url = "https://github.com/tuist/XcodeProj/archive/refs/tags/8.7.1.tar.gz",
+        sha256 = "d0a3d00f43f4f96a729542b67e76c259a871a230b31548cff528bbd1bc6f37d5",
+        strip_prefix = "XcodeProj-b030c965498b9e7d76044049b22844910fee23eb",
+        url = "https://github.com/tuist/XcodeProj/archive/b030c965498b9e7d76044049b22844910fee23eb.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
