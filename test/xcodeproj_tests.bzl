@@ -87,6 +87,15 @@ def xcodeproj_test_suite(name):
         expected_xcodeproj = "//test/fixtures/ios_app:xcodeproj",
     )
 
+    # generator
+
+    _add_test(
+        name = "{}_generator".format(name),
+        target_under_test = "//tools/generator:xcodeproj",
+        expected_spec = "//test/fixtures/generator:spec.json",
+        expected_xcodeproj = "//test/fixtures/generator:xcodeproj",
+    )
+
     # Test suite
 
     native.test_suite(
