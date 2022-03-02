@@ -113,7 +113,11 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
         rule_copts = []
     elif CcInfo in target:
         rule_copts = getattr(ctx.rule.attr, "copts", [])
-        rule_copts = _expand_make_variables(ctx, rule_copts, "copts")
+        rule_copts = _expand_make_variables(
+            ctx = ctx,
+            values = rule_copts,
+            attribute_name = "copts",
+        )
     else:
         rule_copts = []
 
