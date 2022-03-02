@@ -6,6 +6,7 @@ test_suite(
         "//test/internal/build_settings",
         "//test/internal/opts",
         "//test/internal/platform",
+        "//test/internal/target",
     ],
 )
 
