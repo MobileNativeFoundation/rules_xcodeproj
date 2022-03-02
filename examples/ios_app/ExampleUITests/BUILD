@@ -14,5 +14,10 @@ swift_library(
     name = "ExampleUITests.library",
     module_name = "ExampleUITests",
     testonly = True,
+    srcs = [":Sources"],
+)
+
+filegroup(
+    name = "Sources",
     srcs = glob(["**/*.swift"]),
 )
