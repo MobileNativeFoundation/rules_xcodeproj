@@ -188,6 +188,9 @@ def _process_product(
     else:
         path = target[DefaultInfo].files_to_run.executable.path
 
+    if not path:
+        fail("Could not find product for target {}".format(target.label))
+
     build_settings["PRODUCT_NAME"] = product_name
 
     return {
@@ -623,7 +626,7 @@ def _should_process_target(target):
         only include their files in the project, but we don't create targets
         for them.
     """
-    return AppleResourceBundleInfo not in target
+    return AppleResourceBundleInfo not in target and target.files != depset()
 
 def _should_passthrough_target(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
