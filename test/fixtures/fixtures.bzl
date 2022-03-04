@@ -19,6 +19,11 @@ def _fixtures_transition_impl(settings, attr):
     """Rule transition that standardizes command-line options for fixtures."""
     return {
         "//command_line_option:cpu": "darwin_x86_64",
+        "//command_line_option:ios_minimum_os": "14.1",
+        "//command_line_option:macos_cpus": "x86_64",
+        "//command_line_option:macos_minimum_os": "11.0",
+        "//command_line_option:tvos_minimum_os": "9.2",
+        "//command_line_option:watchos_minimum_os": "7.6.2",
     }
 
 fixtures_transition = transition(
@@ -26,6 +31,11 @@ fixtures_transition = transition(
     inputs = [],
     outputs = [
         "//command_line_option:cpu",
+        "//command_line_option:ios_minimum_os",
+        "//command_line_option:macos_cpus",
+        "//command_line_option:macos_minimum_os",
+        "//command_line_option:tvos_minimum_os",
+        "//command_line_option:watchos_minimum_os",
     ],
 )
 
