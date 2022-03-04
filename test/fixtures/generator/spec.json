@@ -9,32 +9,32 @@
     "extra_files": [],
     "name": "generator",
     "potential_target_merges": [
-        "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
         [
-            "//tools/generator:generator darwin_x86_64-fastbuild-ST-ca167766cb5a"
+            "//tools/generator:generator darwin_x86_64-fastbuild-ST-1b9bd654f600"
         ],
-        "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
         [
-            "//tools/generator:tests darwin_x86_64-fastbuild-ST-ca167766cb5a"
+            "//tools/generator:tests darwin_x86_64-fastbuild-ST-1b9bd654f600"
         ]
     ],
     "required_links": [
-        "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
-        "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tadija_aexml/libAEXML.a",
-        "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_kylef_pathkit/libPathKit.a",
-        "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
-        "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
-        "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/libgenerator.library.a"
+        "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+        "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
+        "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
+        "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
+        "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
+        "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a"
     ],
     "targets": [
-        "@com_github_tadija_aexml//:AEXML darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "@com_github_tadija_aexml//:AEXML darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -78,7 +78,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
             "label": "@com_github_tadija_aexml//:AEXML",
             "links": [],
@@ -86,19 +86,19 @@
             "outputs": {
                 "swift_module": {
                     "name": "AEXML.swiftmodule",
-                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tadija_aexml/AEXML.swiftdoc",
-                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tadija_aexml/AEXML.swiftsourceinfo"
+                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/AEXML.swiftdoc",
+                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/AEXML.swiftsourceinfo"
                 }
             },
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
                 "name": "AEXML",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tadija_aexml/libAEXML.a",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
                 "type": "com.apple.product-type.library.static"
             },
             "srcs": [
@@ -110,14 +110,14 @@
             ],
             "test_host": null
         },
-        "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -161,7 +161,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
             "label": "@com_github_kylef_pathkit//:PathKit",
             "links": [],
@@ -169,19 +169,19 @@
             "outputs": {
                 "swift_module": {
                     "name": "PathKit.swiftmodule",
-                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_kylef_pathkit/PathKit.swiftdoc",
-                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_kylef_pathkit/PathKit.swiftsourceinfo"
+                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/PathKit.swiftdoc",
+                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/PathKit.swiftsourceinfo"
                 }
             },
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
                 "name": "PathKit",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
                 "type": "com.apple.product-type.library.static"
             },
             "srcs": [
@@ -189,14 +189,14 @@
             ],
             "test_host": null
         },
-        "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -240,10 +240,10 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "@com_github_tadija_aexml//:AEXML darwin_x86_64-fastbuild-ST-ca167766cb5a",
-                "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-ca167766cb5a"
+                "@com_github_tadija_aexml//:AEXML darwin_x86_64-fastbuild-ST-1b9bd654f600",
+                "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "label": "@com_github_tuist_xcodeproj//:XcodeProj",
             "links": [],
@@ -251,19 +251,19 @@
             "outputs": {
                 "swift_module": {
                     "name": "XcodeProj.swiftmodule",
-                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftdoc",
-                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftsourceinfo"
+                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftdoc",
+                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftsourceinfo"
                 }
             },
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
                 "name": "XcodeProj",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
                 "type": "com.apple.product-type.library.static"
             },
             "srcs": [
@@ -365,14 +365,14 @@
             ],
             "test_host": null
         },
-        "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -416,10 +416,10 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-ca167766cb5a",
-                "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-ca167766cb5a"
+                "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-1b9bd654f600",
+                "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "label": "//tools/generator:generator.library",
             "links": [],
@@ -427,19 +427,19 @@
             "outputs": {
                 "swift_module": {
                     "name": "generator.swiftmodule",
-                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/generator.swiftdoc",
-                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/generator.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/generator.swiftsourceinfo"
+                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/generator.swiftdoc",
+                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/generator.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/generator.swiftsourceinfo"
                 }
             },
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
                 "name": "generator.library",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/libgenerator.library.a",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
                 "type": "com.apple.product-type.library.static"
             },
             "srcs": [
@@ -469,11 +469,11 @@
             ],
             "test_host": null
         },
-        "//tools/generator:generator darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "//tools/generator:generator darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -517,40 +517,40 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-ca167766cb5a"
+                "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "label": "//tools/generator:generator",
             "links": [
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/libgenerator.library.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tadija_aexml/libAEXML.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_kylef_pathkit/libPathKit.a"
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a"
             ],
             "name": "generator",
             "outputs": {},
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
                 "name": "generator",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/generator",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/generator",
                 "type": "com.apple.product-type.tool"
             },
             "srcs": [],
             "test_host": null
         },
-        "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -594,7 +594,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
             "label": "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay",
             "links": [],
@@ -602,19 +602,19 @@
             "outputs": {
                 "swift_module": {
                     "name": "XCTestDynamicOverlay.swiftmodule",
-                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftdoc",
-                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftsourceinfo"
+                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftdoc",
+                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftsourceinfo"
                 }
             },
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
                 "name": "XCTestDynamicOverlay",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
                 "type": "com.apple.product-type.library.static"
             },
             "srcs": [
@@ -622,14 +622,14 @@
             ],
             "test_host": null
         },
-        "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -673,9 +673,9 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-ca167766cb5a"
+                "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "label": "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
             "links": [],
@@ -683,19 +683,19 @@
             "outputs": {
                 "swift_module": {
                     "name": "CustomDump.swiftmodule",
-                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftdoc",
-                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftsourceinfo"
+                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftdoc",
+                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftsourceinfo"
                 }
             },
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
                 "name": "CustomDump",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
                 "type": "com.apple.product-type.library.static"
             },
             "srcs": [
@@ -727,7 +727,7 @@
             ],
             "test_host": null
         },
-        "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -735,7 +735,7 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -779,10 +779,10 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-ca167766cb5a",
-                "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-ca167766cb5a"
+                "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600",
+                "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "label": "//tools/generator:tests.library",
             "links": [],
@@ -790,19 +790,19 @@
             "outputs": {
                 "swift_module": {
                     "name": "tests.swiftmodule",
-                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/tests.swiftdoc",
-                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/tests.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/tests.swiftsourceinfo"
+                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/tests.swiftdoc",
+                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/tests.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/tests.swiftsourceinfo"
                 }
             },
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
                 "name": "tests.library",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/libtests.library.a",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a",
                 "type": "com.apple.product-type.library.static"
             },
             "srcs": [
@@ -824,12 +824,12 @@
             ],
             "test_host": null
         },
-        "//tools/generator:tests darwin_x86_64-fastbuild-ST-ca167766cb5a",
+        "//tools/generator:tests darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "GENERATE_INFOPLIST_FILE": true,
-                "MACOSX_DEPLOYMENT_TARGET": "12.1",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
@@ -873,25 +873,25 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-ca167766cb5a",
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-ca167766cb5a"
+                "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "label": "//tools/generator:tests",
             "links": [
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/libtests.library.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/tools/generator/libgenerator.library.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_tadija_aexml/libAEXML.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-ca167766cb5a/bin/external/com_github_kylef_pathkit/libPathKit.a"
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a"
             ],
             "name": "tests",
             "outputs": {},
             "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.1",
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
                 "os": "macOS"
             },
             "product": {
