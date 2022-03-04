@@ -26,7 +26,7 @@ extension Generator {
             // TODO: Handle in-workspace "external/" paths
             if filePath == .input("external") {
                 group = PBXGroup(
-                    sourceTree: .absolute,
+                    sourceTree: externalDirectory.sourceTree,
                     name: "Bazel External Repositories",
                     path: externalDirectory.string
                 )
@@ -168,4 +168,8 @@ func +(lhs: FilePath, rhs: String) -> FilePath {
     case .internal(let path):
         return .internal(path + rhs)
     }
+}
+
+private extension Path {
+    var sourceTree: PBXSourceTree { isAbsolute ? .absolute : .group }
 }

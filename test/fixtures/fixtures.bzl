@@ -111,6 +111,7 @@ def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
 
     xcodeproj(
         name = name,
+        external_dir_override = "bazel-rules_xcodeproj/external",
         project_name = project_name,
         targets = targets,
         visibility = ["//test:__subpackages__"],
