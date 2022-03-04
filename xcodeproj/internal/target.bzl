@@ -27,9 +27,6 @@ load(
 XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",
     fields = {
-        "all_inputs": """\
-A `depset` of all the files in the project.
-""",
         "extra_files": """\
 A `depset` of files that should be added to the Xcode project, but not
 associated with any targets.
@@ -71,8 +68,6 @@ def _input_files(*, ctx, transitive_infos):
     Returns:
         A `struct` containing the following fields:
 
-        *   `all_inputs`: A `depset` of all input files gathered from `Target`
-            and its transitive dependencies.
         *   `extra_files`: A `depset` of all non-source files gathered from
             `Target` and its transitive dependencies.
         *   `unbound_srcs`: A `depset` of source files gathered from `Target`
@@ -87,7 +82,6 @@ def _input_files(*, ctx, transitive_infos):
             srcs.extend(getattr(ctx.rule.files, attr, []))
         elif attr in ["data", "hdrs", "structured_resources", "resources"]:
             extra_files.extend(getattr(ctx.rule.files, attr, []))
-    all_inputs = extra_files + srcs
 
     return struct(
         unbound_srcs = depset(
@@ -97,10 +91,6 @@ def _input_files(*, ctx, transitive_infos):
         extra_files = depset(
             extra_files,
             transitive = [info.extra_files for info in transitive_infos],
-        ),
-        all_inputs = depset(
-            all_inputs,
-            transitive = [info.all_inputs for info in transitive_infos],
         ),
     )
 
@@ -788,7 +778,6 @@ def process_target(*, ctx, target, transitive_infos):
 
     if not _should_process_target(target):
         return XcodeProjInfo(
-            all_inputs = inputs.all_inputs,
             potential_target_merges = depset(),
             extra_files = inputs.extra_files,
             required_links = depset(),
@@ -810,7 +799,6 @@ def process_target(*, ctx, target, transitive_infos):
         )
 
     return XcodeProjInfo(
-        all_inputs = inputs.all_inputs,
         extra_files = inputs.extra_files,
         unbound_srcs = depset(),
         **info_fields
@@ -827,7 +815,6 @@ def as_resource(info):
         `unbound_srcs`.
     """
     return XcodeProjInfo(
-        all_inputs = info.all_inputs,
         extra_files = depset(
             transitive = [info.extra_files, info.unbound_srcs],
         ),

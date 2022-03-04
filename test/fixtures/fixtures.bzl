@@ -1,12 +1,12 @@
 """Functions for updating test fixtures."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load("//xcodeproj:xcodeproj.bzl", "internal", "XcodeProjOutputInfo")
+load("//xcodeproj:xcodeproj.bzl", "xcodeproj", "XcodeProjOutputInfo")
 
 # Utility
 
 def _install_path(xcodeproj):
-    # "example/ios_app/p.xcodeproj" -> "test/fixtures/ios_app/p.xcodeproj"
+    # "example/ios_app/p.xcodeproj" -> "test/fixtures/ios_app/project.xcodeproj"
     return paths.join(
         "test/fixtures",
         xcodeproj.short_path.split("/")[1],
@@ -43,18 +43,11 @@ fixtures_transition = transition(
 
 def _update_fixtures_impl(ctx):
     specs = [target[XcodeProjOutputInfo].spec for target in ctx.attr.targets]
+    installers = [
+        target[XcodeProjOutputInfo].installer for target in ctx.attr.targets
+    ]
     xcodeprojs = [
         target[XcodeProjOutputInfo].xcodeproj for target in ctx.attr.targets
-    ]
-
-    installers = [
-        internal.write_installer(
-            ctx = ctx,
-            name = "xcodeproj-{}".format(idx),
-            install_path = _install_path(xcodeproj),
-            xcodeproj = xcodeproj,
-        )
-        for idx, xcodeproj in enumerate(xcodeprojs)
     ]
 
     updater = ctx.actions.declare_file(
@@ -111,12 +104,27 @@ def update_fixtures(**kwargs):
         **kwargs
     )
 
-def xcodeproj_srcs():
-    return native.glob(
-        ["project.xcodeproj/**/*"],
-        exclude = [
-            "project.xcodeproj/xcshareddata/**/*",
-            "project.xcodeproj/**/xcuserdata/**/*",
-            "project.xcodeproj/*.xcuserdatad/**/*",
-        ],
+def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
+    native.exports_files([
+        "spec.json",
+    ])
+
+    xcodeproj(
+        name = name,
+        project_name = project_name,
+        targets = targets,
+        visibility = ["//test:__subpackages__"],
+    )
+
+    native.filegroup(
+        name = "{}_output".format(name),
+        srcs = native.glob(
+            ["{}.xcodeproj/**/*".format(project_name)],
+            exclude = [
+                "{}.xcodeproj/xcshareddata/**/*".format(project_name),
+                "{}.xcodeproj/**/xcuserdata/**/*".format(project_name),
+                "{}.xcodeproj/*.xcuserdatad/**/*".format(project_name),
+            ],
+        ),
+        visibility = ["//test:__subpackages__"],
     )

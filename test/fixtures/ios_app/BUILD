@@ -1,11 +1,6 @@
-load("//test/fixtures:fixtures.bzl", "xcodeproj_srcs")
+load("//examples/ios_app:xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
+load("//test/fixtures:fixtures.bzl", "xcodeproj_fixture")
 
-exports_files([
-    "spec.json",
-])
-
-filegroup(
-    name = "xcodeproj",
-    srcs = xcodeproj_srcs(),
-    visibility = ["//test:__subpackages__"],
+xcodeproj_fixture(
+    targets = XCODEPROJ_TARGETS,
 )

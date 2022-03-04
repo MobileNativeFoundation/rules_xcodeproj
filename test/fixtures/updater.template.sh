@@ -10,9 +10,8 @@ readonly installers=(
 )
 
 for spec in "${specs[@]}"; do
-  # "example/ios_app/something.json" -> "//test/fixtures/ios_app/spec.json"
-  dir="${spec#*/}"
-  dir="${BUILD_WORKSPACE_DIRECTORY}/test/fixtures/${dir%/*}"
+  # "fixtures/app/xcodeproj_spec.json" -> "//test/fixtures/app/spec.json"
+  dir="${BUILD_WORKSPACE_DIRECTORY}/${spec%/*}"
   dest="$dir/spec.json"
 
   mkdir -p "$dir"

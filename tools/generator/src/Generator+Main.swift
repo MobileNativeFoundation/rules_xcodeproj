@@ -15,7 +15,7 @@ extension Generator {
 
             try Generator(logger: logger).generate(
                 project: project,
-                projectRootDirectory: rootDirs.projectRootDirectory,
+                projectRootDirectory: arguments.projectRootDirectory,
                 externalDirectory: rootDirs.externalDirectory,
                 internalDirectoryName: "rules_xcodeproj",
                 workspaceOutputPath: arguments.workspaceOutputPath,
@@ -32,6 +32,7 @@ extension Generator {
         let specPath: Path
         let outputPath: Path
         let workspaceOutputPath: Path
+        let projectRootDirectory: Path
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
@@ -43,16 +44,26 @@ Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
 """)
         }
 
+        let workspaceOutput = CommandLine.arguments[4]
+        let workspaceOutputComponents = workspaceOutput.split(separator: "/")
+
+        // Generate a relative path to the project root
+        // e.g. "examples/ios/iOS App.xcodeproj" -> "../.."
+        // e.g. "project.xcodeproj" -> ""
+        let projectRoot = (0..<(workspaceOutputComponents.count-1))
+            .map { _ in ".." }
+            .joined(separator: "/")
+
         return Arguments(
             rootDirsPath: Path(CommandLine.arguments[1]),
             specPath: Path(CommandLine.arguments[2]),
             outputPath: Path(CommandLine.arguments[3]),
-            workspaceOutputPath: Path(CommandLine.arguments[4])
+            workspaceOutputPath: Path(workspaceOutput),
+            projectRootDirectory: Path(projectRoot)
         )
     }
 
     struct RootDirectories {
-        let projectRootDirectory: Path
         let externalDirectory: Path
     }
 
@@ -61,16 +72,15 @@ Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
             .split(separator: "\n")
             .map(String.init)
 
-        guard rootDirs.count == 2 else {
+        guard rootDirs.count == 1 else {
             throw UsageError(message: """
-The root_dirs_file must contain two lines, one for the source root and one for \
-external repositories directory
+The root_dirs_file must contain one line: one for the external repositories \
+directory
 """)
         }
 
         return RootDirectories(
-            projectRootDirectory: Path(rootDirs[0]),
-            externalDirectory: Path(rootDirs[1])
+            externalDirectory: Path(rootDirs[0])
         )
     }
 
