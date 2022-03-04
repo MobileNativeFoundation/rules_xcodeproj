@@ -3,6 +3,8 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("//xcodeproj:xcodeproj.bzl", "internal", "XcodeProjOutputInfo")
 
+# Utility
+
 def _install_path(xcodeproj):
     # "example/ios_app/p.xcodeproj" -> "test/fixtures/ios_app/p.xcodeproj"
     return paths.join(
@@ -10,6 +12,24 @@ def _install_path(xcodeproj):
         xcodeproj.short_path.split("/")[1],
         "project.xcodeproj",
     )
+
+# Transition
+
+def _fixtures_transition_impl(settings, attr):
+    """Rule transition that standardizes command-line options for fixtures."""
+    return {
+        "//command_line_option:cpu": "darwin_x86_64",
+    }
+
+fixtures_transition = transition(
+    implementation = _fixtures_transition_impl,
+    inputs = [],
+    outputs = [
+        "//command_line_option:cpu",
+    ],
+)
+
+# Rule
 
 def _update_fixtures_impl(ctx):
     specs = [target[XcodeProjOutputInfo].spec for target in ctx.attr.targets]
@@ -54,8 +74,12 @@ _update_fixtures = rule(
     implementation = _update_fixtures_impl,
     attrs = {
         "targets": attr.label_list(
+            cfg = fixtures_transition,
             mandatory = True,
             providers = [XcodeProjOutputInfo],
+        ),
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
         "_installer_template": attr.label(
             allow_single_file = True,

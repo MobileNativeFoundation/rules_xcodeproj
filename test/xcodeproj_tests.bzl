@@ -1,5 +1,6 @@
 """Tests for the `xcodeproj` rule."""
 
+load("//test/fixtures:fixtures.bzl", "fixtures_transition")
 load("//xcodeproj:xcodeproj.bzl", "XcodeProjOutputInfo")
 
 def _xcodeproj_test_impl(ctx):
@@ -7,7 +8,7 @@ def _xcodeproj_test_impl(ctx):
         "{}-spec-validator.sh".format(ctx.label.name),
     )
 
-    xcodeproj_outputs = ctx.attr.target_under_test[XcodeProjOutputInfo]
+    xcodeproj_outputs = ctx.attr.target_under_test[0][XcodeProjOutputInfo]
     spec = xcodeproj_outputs.spec
     expected_spec = ctx.file.expected_spec
     xcodeproj = xcodeproj_outputs.xcodeproj
@@ -42,11 +43,15 @@ xcodeproj_test = rule(
     implementation = _xcodeproj_test_impl,
     attrs = {
         "target_under_test": attr.label(
+            cfg = fixtures_transition,
             mandatory = True,
             providers = [XcodeProjOutputInfo],
         ),
         "expected_spec": attr.label(mandatory = True, allow_single_file = True),
         "expected_xcodeproj": attr.label(mandatory = True, allow_files = True),
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
         "_validator_template": attr.label(
             allow_single_file = True,
             default = ":validator.template.sh",
