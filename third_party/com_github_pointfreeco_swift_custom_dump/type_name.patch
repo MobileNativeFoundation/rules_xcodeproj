@@ -17,7 +17,7 @@
 +      let subjectType = typeName(type(of: lhs))
        if visitedItems.contains(lhsItem) || visitedItems.contains(rhsItem) {
          print(
-           "\(subjectType)(↩︎)"
+           "\(lhsName.map { "\($0): " } ?? "")\(subjectType)(↩︎)"
 
 --- Sources/CustomDump/Dump.swift
 +++ Sources/CustomDump/Dump.swift
