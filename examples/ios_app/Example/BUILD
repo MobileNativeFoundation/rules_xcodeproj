@@ -24,11 +24,16 @@ swift_library(
     module_name = "Example",
     data = glob(["Assets.xcassets/**"]) + select({
         ":release_build": [],
-        "//conditions:default": glob(["Preview Content/**"]),
+        "//conditions:default": [":PreviewContent"],
     }),
     srcs = glob(["**/*.swift"]),
     deps = [
         "//examples/ios_app/Utils",
     ],
     visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "PreviewContent",
+    srcs = glob(["Preview Content/**"]),
 )

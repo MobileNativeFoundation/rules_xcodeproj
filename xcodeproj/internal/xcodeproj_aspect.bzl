@@ -2,36 +2,43 @@
 
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:target.bzl",
+    "as_resource",
     "process_target",
     "XcodeProjInfo",
 )
 
-_ASPECT_ATTR= [
+_ASPECT_DEP_ATTR= [
     "test_host",
 ]
 
-_ASPECT_ATTRS = [
-    "data",
+_ASPECT_DEP_ATTRS = [
     "deps",
+    "srcs",
+]
+
+_ASPECT_RESOURCES_ATTRS = [
+    "data",
     "resources",
 ]
 
 # Utility
 
 def _transitive_infos(*, ctx):
-    list_of_deps = []
-    for attr in _ASPECT_ATTR:
-        single = getattr(ctx.rule.attr, attr, None)
-        if single:
-            list_of_deps.append([single])
-    for attr in _ASPECT_ATTRS:
-        list_of_deps.append(getattr(ctx.rule.attr, attr, []))
-
     transitive_infos = []
-    for deps in list_of_deps:
+    for attr in _ASPECT_RESOURCES_ATTRS:
+        deps = getattr(ctx.rule.attr, attr, [])
+        for dep in deps:
+            if XcodeProjInfo in dep:
+                transitive_infos.append(as_resource(dep[XcodeProjInfo]))
+    for attr in _ASPECT_DEP_ATTRS:
+        deps = getattr(ctx.rule.attr, attr, [])
         for dep in deps:
             if XcodeProjInfo in dep:
                 transitive_infos.append(dep[XcodeProjInfo])
+    for attr in _ASPECT_DEP_ATTR:
+        dep = getattr(ctx.rule.attr, attr, None)
+        if dep:
+            transitive_infos.append(dep[XcodeProjInfo])
 
     return transitive_infos
 
@@ -48,7 +55,9 @@ def _xcodeproj_aspect_impl(target, ctx):
 
 xcodeproj_aspect = aspect(
     implementation = _xcodeproj_aspect_impl,
-    attr_aspects = _ASPECT_ATTR + _ASPECT_ATTRS,
+    attr_aspects = (
+        _ASPECT_DEP_ATTR + _ASPECT_DEP_ATTRS + _ASPECT_RESOURCES_ATTRS
+    ),
     attrs = {
         "_xcode_config": attr.label(
             default = configuration_field(

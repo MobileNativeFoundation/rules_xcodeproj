@@ -82,11 +82,11 @@ def _input_files(*, ctx, transitive_infos):
     srcs = []
     extra_files = []
     for attr in dir(ctx.rule.files):
-        if attr in ["data", "hdrs", "structured_resources", "resources"]:
-            extra_files.extend(getattr(ctx.rule.files, attr, []))
-        elif attr == "srcs" or attr == "non_arc_srcs":
+        if attr == "srcs" or attr == "non_arc_srcs":
             # TODO: account for non-arc in Xcode properly
             srcs.extend(getattr(ctx.rule.files, attr, []))
+        elif attr in ["data", "hdrs", "structured_resources", "resources"]:
+            extra_files.extend(getattr(ctx.rule.files, attr, []))
     all_inputs = extra_files + srcs
 
     return struct(
@@ -626,7 +626,15 @@ def _should_process_target(target):
         only include their files in the project, but we don't create targets
         for them.
     """
-    return AppleResourceBundleInfo not in target and target.files != depset()
+    # Targets that don't produce files are ignored (e.g. imports)
+    return target.files != depset() and (
+        # Top level bundles
+        AppleBundleInfo in target or
+        # Libraries
+        apple_common.Objc in target or
+        # Bare executables
+        target[DefaultInfo].files_to_run.executable
+    )
 
 def _should_passthrough_target(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
@@ -806,6 +814,28 @@ def process_target(*, ctx, target, transitive_infos):
         extra_files = inputs.extra_files,
         unbound_srcs = depset(),
         **info_fields
+    )
+
+def as_resource(info):
+    """Converts an `XcodeProjInfo` to one that provides resources.
+
+    Args:
+        info: The `XcodeProjInfo` to convert.
+
+    Returns:
+        An `XcodeProjInfo`, but with `extra_files` containing what was in
+        `unbound_srcs`.
+    """
+    return XcodeProjInfo(
+        all_inputs = info.all_inputs,
+        extra_files = depset(
+            transitive = [info.extra_files, info.unbound_srcs],
+        ),
+        potential_target_merges = info.potential_target_merges,
+        required_links = info.required_links,
+        target = info.target,
+        unbound_srcs = depset(),
+        xcode_targets = info.xcode_targets,
     )
 
 # These functions are exposed only for access in unit tests.
