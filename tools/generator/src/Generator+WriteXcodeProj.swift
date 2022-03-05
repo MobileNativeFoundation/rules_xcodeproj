@@ -28,21 +28,5 @@ extension Generator {
 }
 
 private extension FilePath {
-    var isInternal: Bool {
-        switch self {
-        case .internal:
-            return true
-        default:
-            return false
-        }
-    }
-
-    var path: Path {
-        switch self {
-        case .internal(let path):
-            return path
-        case .input(let path):
-            return path
-        }
-    }
+    var isInternal: Bool { type == .internal }
 }

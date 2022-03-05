@@ -128,7 +128,7 @@ final class GeneratorTests: XCTestCase {
         struct CreateFilesAndGroupsCalled: Equatable {
             let pbxProj: PBXProj
             let targets: [TargetID: Target]
-            let extraFiles: Set<Path>
+            let extraFiles: Set<FilePath>
             let externalDirectory: Path
             let internalDirectoryName: String
             let workspaceOutputPath: Path
@@ -138,7 +138,7 @@ final class GeneratorTests: XCTestCase {
         func createFilesAndGroups(
             in pbxProj: PBXProj,
             targets: [TargetID: Target],
-            extraFiles: Set<Path>,
+            extraFiles: Set<FilePath>,
             externalDirectory: Path,
             internalDirectoryName: String,
             workspaceOutputPath: Path

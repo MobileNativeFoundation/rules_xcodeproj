@@ -7,7 +7,7 @@ extension Generator {
     static func createFilesAndGroups(
         in pbxProj: PBXProj,
         targets: [TargetID: Target],
-        extraFiles: Set<Path>,
+        extraFiles: Set<FilePath>,
         externalDirectory: Path,
         internalDirectoryName: String,
         workspaceOutputPath: Path
@@ -95,32 +95,29 @@ extension Generator {
         }
 
         // Collect all files
-        var allInputPaths = Set(extraFiles.map(FilePath.input))
+        var allInputPaths = extraFiles
         for target in targets.values {
             if target.srcs.isEmpty {
                 allInputPaths.insert(.internal(compileStubPath))
             } else {
-                allInputPaths.formUnion(Set(target.srcs.map(FilePath.input)))
+                allInputPaths.formUnion(target.srcs)
             }
         }
 
         var rootElements: [PBXFileElement] = []
         for fullFilePath in allInputPaths {
-            let fullPath: Path
             var filePath: FilePath
             var lastElement: PBXFileElement?
-            switch fullFilePath {
-            case .input(let path):
-                fullPath = path
+            switch fullFilePath.type {
+            case .input:
                 filePath = .input(Path())
                 lastElement = nil
-            case .internal(let path):
-                fullPath = path
+            case .internal:
                 filePath = .internal(Path())
                 lastElement = createInternalGroup()
             }
 
-            let components = fullPath.components
+            let components = fullFilePath.path.components
             for (offset, component) in components.enumerated() {
                 filePath = filePath + component
                 let (element, isNew) = createElement(
@@ -158,20 +155,6 @@ extension Generator {
         }
 
         return (elements, rootElements)
-    }
-}
-
-enum FilePath: Hashable {
-    case input(Path)
-    case `internal`(Path)
-}
-
-func +(lhs: FilePath, rhs: String) -> FilePath {
-    switch lhs {
-    case .input(let path):
-        return .input(path + rhs)
-    case .internal(let path):
-        return .internal(path + rhs)
     }
 }
 
