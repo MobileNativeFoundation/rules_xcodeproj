@@ -42,10 +42,6 @@ the target that can be merged into the target with the id of the 'dest' field.
 A `struct` that contains information about the current target that is
 potentially needed by the dependent targets.
 """,
-        "unbound_srcs": """\
-A `depset` of files that should be added to the Compile Sources phase of
-the next eligible target.
-""",
         "xcode_targets": """\
 A `depset` of partial json `dict` strings (e.g. a single '"Key": "Value"'
 without the enclosing braces), which potentially will become targets in the
@@ -69,24 +65,13 @@ def _input_files(*, ctx, transitive_infos):
 
         *   `extra_files`: A `depset` of all non-source files gathered from
             `Target` and its transitive dependencies.
-        *   `unbound_srcs`: A `depset` of source files gathered from `Target`
-            and any non-processed transitive dependencies (see
-            `_should_process_target()`).
     """
-    srcs = []
     extra_files = []
     for attr in dir(ctx.rule.files):
-        if attr == "srcs" or attr == "non_arc_srcs":
-            # TODO: account for non-arc in Xcode properly
-            srcs.extend(getattr(ctx.rule.files, attr, []))
-        elif attr in ["data", "hdrs", "structured_resources", "resources"]:
+        if attr in ["data", "hdrs", "structured_resources", "resources"]:
             extra_files.extend(getattr(ctx.rule.files, attr, []))
 
     return struct(
-        unbound_srcs = depset(
-            srcs,
-            transitive = [info.unbound_srcs for info in transitive_infos],
-        ),
         extra_files = depset(
             extra_files,
             transitive = [info.extra_files for info in transitive_infos],
@@ -511,13 +496,12 @@ def _process_top_level_target(*, ctx, target, bundle_info):
 
 # Library targets
 
-def _process_library_target(*, ctx, target, srcs, transitive_infos):
+def _process_library_target(*, ctx, target, transitive_infos):
     """Gathers information about a library target.
 
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
-        srcs: A `list` of source file paths for `target`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
@@ -567,6 +551,16 @@ def _process_library_target(*, ctx, target, srcs, transitive_infos):
         minimum_deployment_os_version = None,
         build_settings = build_settings,
     )
+
+    # TODO: account for non-arc in Xcode properly
+    src_files = depset(transitive = [
+        dep.files
+        for dep in (
+            getattr(ctx.rule.attr, "srcs", []) +
+            getattr(ctx.rule.attr, "non_arc_srcs", [])
+        )
+    ]).to_list()
+    srcs = [file.path for file in src_files]
 
     return struct(
         potential_target_merges = [],
@@ -706,13 +700,12 @@ def _passthrough_target(*, transitive_infos):
         ),
     )
 
-def _process_target(*, ctx, target, srcs, transitive_infos):
+def _process_target(*, ctx, target, transitive_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
 
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
-        srcs: A `list` of source file paths for `target`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
@@ -736,7 +729,6 @@ def _process_target(*, ctx, target, srcs, transitive_infos):
         processed_target = _process_library_target(
             ctx = ctx,
             target = target,
-            srcs = srcs,
             transitive_infos = transitive_infos,
         )
 
@@ -781,7 +773,6 @@ def process_target(*, ctx, target, transitive_infos):
             extra_files = inputs.extra_files,
             required_links = depset(),
             target = None,
-            unbound_srcs = inputs.unbound_srcs,
             xcode_targets = depset(),
         )
 
@@ -793,13 +784,11 @@ def process_target(*, ctx, target, transitive_infos):
         info_fields = _process_target(
             ctx = ctx,
             target = target,
-            srcs = [file.path for file in inputs.unbound_srcs.to_list()],
             transitive_infos = transitive_infos,
         )
 
     return XcodeProjInfo(
         extra_files = inputs.extra_files,
-        unbound_srcs = depset(),
         **info_fields
     )
 
@@ -814,13 +803,10 @@ def as_resource(info):
         `unbound_srcs`.
     """
     return XcodeProjInfo(
-        extra_files = depset(
-            transitive = [info.extra_files, info.unbound_srcs],
-        ),
+        extra_files = info.extra_files,
         potential_target_merges = info.potential_target_merges,
         required_links = info.required_links,
         target = info.target,
-        unbound_srcs = depset(),
         xcode_targets = info.xcode_targets,
     )
 
