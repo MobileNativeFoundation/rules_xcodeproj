@@ -1,6 +1,10 @@
 """Implementation of the `xcodeproj` rule."""
 
 load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:files.bzl",
+    "file_path",
+)
+load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:flattened_key_values.bzl",
     "flattened_key_values",
 )
@@ -80,9 +84,9 @@ def _write_json_spec(*, ctx, project_name, infos):
 "targets":{targets}\
 }}
 """.format(
-        extra_files = json.encode(
-            [file.path for file in extra_files.to_list()],
-        ),
+        extra_files = json.encode([
+            file_path(file) for file in extra_files.to_list()
+        ]),
         potential_target_merges = potential_target_merges_json,
         name = project_name,
         targets = targets_json,
