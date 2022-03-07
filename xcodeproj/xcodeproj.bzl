@@ -9,10 +9,12 @@ load(
     "xcodeproj_aspect",
 )
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
 XcodeProjOutputInfo = provider(
     "Provides information about the outputs of the `xcodeproj` rule.",
     fields = {
+        "installer": "The xcodeproj installer",
         "root_dirs": "The root directories file",
         "spec": "The json spec",
         "xcodeproj": "The xcodeproj file",
@@ -83,32 +85,21 @@ def _write_json_spec(*, ctx, project_name, infos):
 
     return output
 
-def _write_root_dirs(*, ctx, infos):
-    all_inputs = depset(transitive = [info.all_inputs for info in infos])
-
-    a_project_input = None
-    for input in all_inputs.to_list():
-        if not input.owner.workspace_name:
-            a_project_input = input
-            break
+def _write_root_dirs(*, ctx):
     an_external_input = ctx.file._external_file_marker
 
     output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
     ctx.actions.run_shell(
-        inputs = [a_project_input, an_external_input],
+        inputs = [an_external_input],
         outputs = [output],
         command = """\
 # `readlink -f` doesn't exist on macOS, so use perl instead
-full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{src_full}";)"
 external_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{external_full}";)"
 # Strip `/private` prefix from external_full_path (as it breaks breakpoints)
 external_full_path="${{external_full_path#/private}}"
-# Trim the short_path suffix from full_path
-echo "${{full_path%/{src_short}}}" > "{out_full}"
+# Trim the suffix from external_full_path
 echo "${{external_full_path%/{external_full}}}/external" >> "{out_full}"
 """.format(
-            src_full = a_project_input.path,
-            src_short = a_project_input.short_path,
             external_full = an_external_input.path,
             out_full = output.path,
         ),
@@ -128,10 +119,12 @@ def _write_xcodeproj(*, ctx, project_name, root_dirs_file, spec_file):
         "{}.xcodeproj".format(ctx.attr.name),
     )
 
-    install_path = paths.join(
-        paths.dirname(xcodeproj.short_path),
-        "{}.xcodeproj".format(project_name),
-    )
+    install_path = ctx.attr._install_path[BuildSettingInfo].value
+    if not install_path:
+        install_path = paths.join(
+            paths.dirname(xcodeproj.short_path),
+            "{}.xcodeproj".format(project_name),
+        )
 
     args = ctx.actions.args()
     args.add(root_dirs_file.path)
@@ -181,10 +174,7 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         infos = infos,
     )
-    root_dirs_file = _write_root_dirs(
-        ctx = ctx,
-        infos = infos,
-    )
+    root_dirs_file = _write_root_dirs(ctx = ctx)
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
         project_name = project_name,
@@ -204,6 +194,7 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         XcodeProjOutputInfo(
+            installer = installer,
             root_dirs = root_dirs_file,
             spec = spec_file,
             xcodeproj = xcodeproj,
@@ -232,6 +223,10 @@ _xcodeproj = rule(
             # to.
             default = "@build_bazel_rules_apple//:LICENSE",
         ),
+        "_install_path": attr.label(
+            default = Label("//xcodeproj/internal:install_path"),
+            providers = [BuildSettingInfo],
+        ),
         "_installer_template": attr.label(
             allow_single_file = True,
             executable = False,
@@ -247,7 +242,3 @@ def xcodeproj(**kwargs):
         testonly = testonly,
         **kwargs
     )
-
-internal = struct(
-    write_installer = _write_installer,
-)

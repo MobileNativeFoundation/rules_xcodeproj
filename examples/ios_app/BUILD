@@ -1,13 +1,9 @@
 load("//xcodeproj:xcodeproj.bzl", "xcodeproj")
+load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 xcodeproj(
     name = "xcodeproj",
     project_name = "iOS App",
-    targets = [
-        "//examples/ios_app/Example",
-        "//examples/ios_app/ExampleTests",
-        "//examples/ios_app/ExampleUITests",
-    ],
+    targets = XCODEPROJ_TARGETS,
     tags = ["manual"],
-    visibility = ["//visibility:public"],
 )
