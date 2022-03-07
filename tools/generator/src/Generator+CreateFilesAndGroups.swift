@@ -89,6 +89,11 @@ extension Generator {
             return group
         }
 
+        func isSpecialGroup(_ element: PBXFileElement) -> Bool {
+            return element == externalGroup
+                || element == internalGroup
+        }
+
         // Collect all files
         var allInputPaths = Set(extraFiles.map(FilePath.input))
         for target in targets.values {
@@ -128,7 +133,7 @@ extension Generator {
                     if let group = lastElement as? PBXGroup {
                         // This will be the case for all non-root elements
                         group.addChild(element)
-                    } else if element != externalGroup {
+                    } else if !isSpecialGroup(element) {
                         rootElements.append(element)
                     }
                 }
