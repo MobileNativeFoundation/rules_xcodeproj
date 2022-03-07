@@ -13,7 +13,6 @@ _ASPECT_DEP_ATTR= [
 
 _ASPECT_DEP_ATTRS = [
     "deps",
-    "srcs",
 ]
 
 _ASPECT_RESOURCES_ATTRS = [
