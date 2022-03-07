@@ -1,7 +1,12 @@
 """Functions for updating test fixtures."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load("//xcodeproj:xcodeproj.bzl", "xcodeproj", "XcodeProjOutputInfo")
+load(
+    "//xcodeproj:xcodeproj.bzl",
+    "make_xcodeproj_rule",
+    "xcodeproj",
+    "XcodeProjOutputInfo",
+)
 
 # Utility
 
@@ -104,6 +109,10 @@ def update_fixtures(**kwargs):
         **kwargs
     )
 
+_fixture_xcodeproj = make_xcodeproj_rule(
+    transition = fixtures_transition,
+)
+
 def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
     native.exports_files([
         "spec.json",
@@ -114,6 +123,7 @@ def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
         external_dir_override = "bazel-rules_xcodeproj/external",
         project_name = project_name,
         targets = targets,
+        xcodeproj_rule = _fixture_xcodeproj,
         visibility = ["//test:__subpackages__"],
     )
 
