@@ -47,13 +47,13 @@ final class GeneratorTests: XCTestCase {
                 target: mergedTargets["Y"]!
             ),
         ]
-        let files = Fixtures.files(
+        let (files, filesAndGroups) = Fixtures.files(
             in: pbxProj,
             externalDirectory: externalDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
-        let rootElements = [files["a"]!, files["x"]!]
+        let rootElements = [filesAndGroups["a"]!, filesAndGroups["x"]!]
         let products = Fixtures.products(in: pbxProj)
         
         let productsGroup = PBXGroup(name: "42")
@@ -146,7 +146,7 @@ final class GeneratorTests: XCTestCase {
             internalDirectoryName: String,
             workspaceOutputPath: Path
         ) -> (
-            elements: [FilePath: PBXFileElement],
+            files: [FilePath: File],
             rootElements: [PBXFileElement]
         ) {
             createFilesAndGroupsCalled.append(.init(
@@ -252,7 +252,7 @@ final class GeneratorTests: XCTestCase {
             let pbxProj: PBXProj
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
             let products: Products
-            let files: [FilePath: PBXFileElement]
+            let files: [FilePath: File]
         }
 
         var addTargetsCalled: [AddTargetsCalled] = []
@@ -260,7 +260,7 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             for disambiguatedTargets: [TargetID: DisambiguatedTarget],
             products: Products,
-            files: [FilePath: PBXFileElement]
+            files: [FilePath: File]
         ) throws -> [TargetID: PBXNativeTarget] {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
@@ -354,7 +354,7 @@ final class GeneratorTests: XCTestCase {
 
         struct WriteXcodeProjCalled: Equatable {
             let xcodeProj: XcodeProj
-            let files: [FilePath: PBXFileElement]
+            let files: [FilePath: File]
             let internalDirectoryName: String
             let outputPath: Path
         }
@@ -362,7 +362,7 @@ final class GeneratorTests: XCTestCase {
         var writeXcodeProjCalled: [WriteXcodeProjCalled] = []
         func writeXcodeProj(
             xcodeProj: XcodeProj,
-            files: [FilePath: PBXFileElement],
+            files: [FilePath: File],
             internalDirectoryName: String,
             to outputPath: Path
         ) {

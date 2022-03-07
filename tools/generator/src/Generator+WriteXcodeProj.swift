@@ -5,7 +5,7 @@ extension Generator {
     ///
     static func writeXcodeProj(
         _ xcodeProj: XcodeProj,
-        files: [FilePath: PBXFileElement],
+        files: [FilePath: File],
         internalDirectoryName: String,
         to outputPath: Path
     ) throws {
@@ -13,16 +13,10 @@ extension Generator {
 
         let internalOutputPath = outputPath + internalDirectoryName
 
-        // This will have to be improved when we eventually write different
-        // types of internal files
-        for (filePath, fileElement) in files.filter(\.key.isInternal) {
+        for (filePath, file) in files.filter(\.key.isInternal) {
             let path = internalOutputPath + filePath.path
-            if fileElement is PBXGroup {
-                try path.mkpath()
-            } else {
-                try path.parent().mkpath()
-                try path.write("")
-            }
+            try path.parent().mkpath()
+            try path.write(file.content)
         }
     }
 }

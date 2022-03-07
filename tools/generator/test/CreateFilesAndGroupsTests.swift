@@ -26,24 +26,24 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath = Path("Project.xcodeproj")
 
-        let expectedFilesAndGroups: [FilePath: PBXFileElement] = [
-            "a.swift": PBXFileReference(
+        let expectedFiles: [FilePath: File] = [
+            "a.swift": File(reference: PBXFileReference(
                 sourceTree: .group,
                 lastKnownFileType: "sourcecode.swift",
                 path: "a.swift"
-            ),
+            )),
         ]
-        expectedPBXProj.add(object: expectedFilesAndGroups["a.swift"]!)
+        expectedPBXProj.add(object: expectedFiles["a.swift"]!.reference)
 
         let expectedRootElements: [PBXFileElement] = [
-            expectedFilesAndGroups["a.swift"]!,
+            expectedFiles["a.swift"]!.reference,
         ]
         expectedMainGroup.addChildren(expectedRootElements)
 
         // Act
 
         let (
-            createdFilesAndGroups,
+            createdFiles,
             createdRootElements
         ) = Generator.createFilesAndGroups(
             in: pbxProj,
@@ -65,7 +65,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(createdRootElements, expectedRootElements)
-        XCTAssertNoDifference(createdFilesAndGroups, expectedFilesAndGroups)
+        XCTAssertNoDifference(createdFiles, expectedFiles)
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }
@@ -85,7 +85,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath = Path("Project.xcodeproj")
 
-        let expectedFilesAndGroups = Fixtures.files(
+        let (expectedFiles, expectedElements) = Fixtures.files(
             in: expectedPBXProj,
             externalDirectory: externalDirectory,
             generatedDirectory: generatedDirectory,
@@ -95,26 +95,26 @@ final class CreateFilesAndGroupsTests: XCTestCase {
 
         let expectedRootElements: [PBXFileElement] = [
             // Root group that holds "a/b/c.m" and "a/a.h"
-            expectedFilesAndGroups["a"]!,
+            expectedElements["a"]!,
             // Root group that holds "x/y.swift"
-            expectedFilesAndGroups["x"]!,
+            expectedElements["x"]!,
             // Files are sorted below groups
-            expectedFilesAndGroups["Assets.xcassets"]!,
-            expectedFilesAndGroups["b.c"]!,
-            expectedFilesAndGroups["z.mm"]!,
+            expectedElements["Assets.xcassets"]!,
+            expectedElements["b.c"]!,
+            expectedElements["z.mm"]!,
             // Then Bazel External Repositories
-            expectedFilesAndGroups[.external("")]!,
+            expectedElements[.external("")]!,
             // Then Bazel Generated Files
-            expectedFilesAndGroups[.generated("")]!,
+            expectedElements[.generated("")]!,
             // And finally the internal (rules_xcodeproj) group
-            expectedFilesAndGroups[.internal("")]!,
+            expectedElements[.internal("")]!,
         ]
         expectedMainGroup.addChildren(expectedRootElements)
 
         // Act
 
         let (
-            createdFilesAndGroups,
+            createdFiles,
             createdRootElements
         ) = Generator.createFilesAndGroups(
             in: pbxProj,
@@ -136,7 +136,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(createdRootElements, expectedRootElements)
-        XCTAssertNoDifference(createdFilesAndGroups, expectedFilesAndGroups)
+        XCTAssertNoDifference(createdFiles, expectedFiles)
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }

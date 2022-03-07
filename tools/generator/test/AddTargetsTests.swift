@@ -15,8 +15,8 @@ final class AddTargetsTests: XCTestCase {
 
         let targets = Fixtures.targets
 
-        let files = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
-        let expectedFiles = Fixtures.files(
+        let (files, _) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
+        let (expectedFiles, _) = Fixtures.files(
             in: expectedPBXProj,
             parentGroup: expectedMainGroup
         )
