@@ -1,12 +1,12 @@
 """Implementation of the `xcodeproj` rule."""
 
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:xcodeproj_aspect.bzl",
-    "xcodeproj_aspect",
-)
-load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:target.bzl",
     "XcodeProjInfo",
+)
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:xcodeproj_aspect.bzl",
+    "xcodeproj_aspect",
 )
 load("@bazel_skylib//lib:paths.bzl", "paths")
 
