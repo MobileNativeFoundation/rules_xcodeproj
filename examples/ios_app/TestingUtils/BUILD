@@ -4,6 +4,12 @@ swift_library(
     name = "TestingUtils",
     module_name = "TestingUtils",
     testonly = True,
-    srcs = glob(["**/*.swift"]),
+    srcs = [":gen_TestingUtils.swift"],
     visibility = ["//visibility:public"],
+)
+
+genrule(
+    name = "gen_TestingUtils.swift",
+    outs = ["TestingUtils.swift"],
+    cmd = '''echo 'public let expectedGreeting = "Hello, world?"' > $@''',
 )

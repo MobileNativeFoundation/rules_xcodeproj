@@ -16,6 +16,7 @@ enum Fixtures {
         potentialTargetMerges: [:],
         requiredLinks: [],
         extraFiles: [
+            .generated("a1b2c/bin/t.c"),
             "a/a.h",
             "a/c.h",
             "a/d/a.h",
@@ -117,10 +118,34 @@ enum Fixtures {
         in pbxProj: PBXProj,
         parentGroup group: PBXGroup? = nil,
         externalDirectory: Path = "/var/tmp/_bazel_U/HASH/external",
+        generatedDirectory: Path = "/var/tmp/_bazel_U/H/execroot/W/bazel-out",
         internalDirectoryName: String = "rules_xcodeproj",
         workspaceOutputPath: Path = "some/Project.xcodeproj"
     ) -> [FilePath: PBXFileElement] {
         var elements: [FilePath: PBXFileElement] = [:]
+
+        // bazel-out/a1b2c/bin/t.c
+        elements[.generated("a1b2c/bin/t.c")] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.c",
+            path: "t.c"
+        )
+        elements[.generated("a1b2c/bin")] = PBXGroup(
+            children: [elements[.generated("a1b2c/bin/t.c")]!],
+            sourceTree: .group,
+            path: "bin"
+        )
+        elements[.generated("a1b2c")] = PBXGroup(
+            children: [elements[.generated("a1b2c/bin")]!],
+            sourceTree: .group,
+            path: "a1b2c"
+        )
+        elements[.generated("")] = PBXGroup(
+            children: [elements[.generated("a1b2c")]!],
+            sourceTree: .absolute,
+            name: "Bazel Generated Files",
+            path: generatedDirectory.string
+        )
 
         // external/a_repo/a.swift
         elements[.external("a_repo/a.swift")] = PBXFileReference(

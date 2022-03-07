@@ -4,6 +4,7 @@ struct FilePath: Hashable, Decodable {
     enum PathType: String, Decodable {
         case project = "p"
         case external = "e"
+        case generated = "g"
         case `internal` = "i"
     }
 
@@ -44,6 +45,10 @@ extension FilePath {
 
     static func external(_ path: Path) -> FilePath {
         return FilePath(type: .external, path: path)
+    }
+
+    static func generated(_ path: Path) -> FilePath {
+        return FilePath(type: .generated, path: path)
     }
 
     static func `internal`(_ path: Path) -> FilePath {

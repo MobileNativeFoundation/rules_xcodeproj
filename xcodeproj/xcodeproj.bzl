@@ -99,26 +99,38 @@ def _write_json_spec(*, ctx, project_name, infos):
     return output
 
 def _write_root_dirs(*, ctx):
-    output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
-
-    if ctx.attr.external_dir_override:
-        ctx.actions.write(output, ctx.attr.external_dir_override)
-        return output
-
     an_external_input = ctx.file._external_file_marker
 
+    output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
     ctx.actions.run_shell(
         inputs = [an_external_input],
         outputs = [output],
         command = """\
-# `readlink -f` doesn't exist on macOS, so use perl instead
-external_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{external_full}";)"
-# Strip `/private` prefix from external_full_path (as it breaks breakpoints)
-external_full_path="${{external_full_path#/private}}"
-# Trim the suffix from external_full_path
-echo "${{external_full_path%/{external_full}}}/external" >> "{out_full}"
+if [ -n "{external_dir_override}" ]; then
+  echo "{external_dir_override}" >> "{out_full}"
+else
+  # `readlink -f` doesn't exist on macOS, so use perl instead
+  external_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{external_full}";)"
+  # Strip `/private` prefix from paths (as it breaks breakpoints)
+  external_full_path="${{external_full_path#/private}}"
+  # Trim the suffix from the paths
+  echo "${{external_full_path%/{external_full}}}/external" >> "{out_full}"
+fi
+if [ -n "{generated_dir_override}" ]; then
+  echo "{generated_dir_override}" >> "{out_full}"
+else
+  # `readlink -f` doesn't exist on macOS, so use perl instead
+  generated_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{generated_full}";)"
+  # Strip `/private` prefix from paths (as it breaks breakpoints)
+  generated_full_path="${{generated_full_path#/private}}"
+  # Trim the suffix from the paths
+  echo "${{generated_full_path%/{generated_full}}}/bazel-out" >> "{out_full}"
+fi
 """.format(
             external_full = an_external_input.path,
+            external_dir_override = ctx.attr.external_dir_override,
+            generated_full = ctx.bin_dir.path,
+            generated_dir_override = ctx.attr.generated_dir_override,
             out_full = output.path,
         ),
         mnemonic = "CalculateXcodeProjRootDirs",
@@ -222,6 +234,9 @@ def _xcodeproj_impl(ctx):
 def make_xcodeproj_rule(*, transition = None):
     attrs = {
         "external_dir_override": attr.string(
+            default = "",
+        ),
+        "generated_dir_override": attr.string(
             default = "",
         ),
         "project_name": attr.string(),

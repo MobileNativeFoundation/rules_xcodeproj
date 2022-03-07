@@ -25,6 +25,7 @@ final class GeneratorTests: XCTestCase {
         
         let projectRootDirectory: Path = "~/project"
         let externalDirectory: Path = "/var/tmp/_bazel_BB/HASH/external"
+        let generatedDirectory: Path = "/var/tmp/_bazel/H/execroot/W/bazel-out"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
         let outputPath: Path = "P.xcodeproj"
@@ -130,6 +131,7 @@ final class GeneratorTests: XCTestCase {
             let targets: [TargetID: Target]
             let extraFiles: Set<FilePath>
             let externalDirectory: Path
+            let generatedDirectory: Path
             let internalDirectoryName: String
             let workspaceOutputPath: Path
         }
@@ -140,6 +142,7 @@ final class GeneratorTests: XCTestCase {
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
             externalDirectory: Path,
+            generatedDirectory: Path,
             internalDirectoryName: String,
             workspaceOutputPath: Path
         ) -> (
@@ -151,6 +154,7 @@ final class GeneratorTests: XCTestCase {
                 targets: targets,
                 extraFiles: extraFiles,
                 externalDirectory: externalDirectory,
+                generatedDirectory: generatedDirectory,
                 internalDirectoryName: internalDirectoryName,
                 workspaceOutputPath: workspaceOutputPath
             ))
@@ -162,6 +166,7 @@ final class GeneratorTests: XCTestCase {
             targets: mergedTargets,
             extraFiles: project.extraFiles,
             externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )]
@@ -403,6 +408,7 @@ final class GeneratorTests: XCTestCase {
             project: project,
             projectRootDirectory: projectRootDirectory,
             externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath,
             outputPath: outputPath

@@ -22,6 +22,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ]
         let extraFiles: Set<FilePath> = []
         let externalDirectory = Path("/ext")
+        let generatedDirectory = Path("/bazel-leave")
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath = Path("Project.xcodeproj")
 
@@ -49,6 +50,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             targets: targets,
             extraFiles: extraFiles,
             externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -79,12 +81,14 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let targets = Fixtures.targets
         let extraFiles = Fixtures.project.extraFiles
         let externalDirectory = Path("/ext")
+        let generatedDirectory = Path("/bazel-leave")
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath = Path("Project.xcodeproj")
 
         let expectedFilesAndGroups = Fixtures.files(
             in: expectedPBXProj,
             externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -100,6 +104,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFilesAndGroups["z.mm"]!,
             // Then Bazel External Repositories
             expectedFilesAndGroups[.external("")]!,
+            // Then Bazel Generated Files
+            expectedFilesAndGroups[.generated("")]!,
             // And finally the internal (rules_xcodeproj) group
             expectedFilesAndGroups[.internal("")]!,
         ]
@@ -115,6 +121,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             targets: targets,
             extraFiles: extraFiles,
             externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )

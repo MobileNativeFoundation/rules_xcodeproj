@@ -9,6 +9,7 @@ extension Generator {
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
         externalDirectory: Path,
+        generatedDirectory: Path,
         internalDirectoryName: String,
         workspaceOutputPath: Path
     ) -> (
@@ -76,6 +77,24 @@ extension Generator {
             return group
         }
 
+        var generatedGroup: PBXGroup?
+        func createGeneratedGroup() -> PBXGroup {
+            if let generatedGroup = generatedGroup {
+                return generatedGroup
+            }
+
+            let group = PBXGroup(
+                sourceTree: generatedDirectory.sourceTree,
+                name: "Bazel Generated Files",
+                path: generatedDirectory.string
+            )
+            pbxProj.add(object: group)
+            elements[.generated("")] = group
+            generatedGroup = group
+
+            return group
+        }
+
         var internalGroup: PBXGroup?
         func createInternalGroup() -> PBXGroup {
             if let internalGroup = internalGroup {
@@ -96,6 +115,7 @@ extension Generator {
 
         func isSpecialGroup(_ element: PBXFileElement) -> Bool {
             return element == externalGroup
+                || element == generatedGroup
                 || element == internalGroup
         }
 
@@ -120,6 +140,9 @@ extension Generator {
             case .external:
                 filePath = .external(Path())
                 lastElement = createExternalGroup()
+            case .generated:
+                filePath = .generated(Path())
+                lastElement = createGeneratedGroup()
             case .internal:
                 filePath = .internal(Path())
                 lastElement = createInternalGroup()
@@ -150,12 +173,16 @@ extension Generator {
             }
         }
 
-        // Handle internal
+        // Handle special groups
 
         rootElements.sortGroupedLocalizedStandard()
         if let externalGroup = externalGroup {
             externalGroup.children.sortGroupedLocalizedStandard()
             rootElements.append(externalGroup)
+        }
+        if let generatedGroup = generatedGroup {
+            generatedGroup.children.sortGroupedLocalizedStandard()
+            rootElements.append(generatedGroup)
         }
         if let internalGroup = internalGroup {
             internalGroup.children.sortGroupedLocalizedStandard()
