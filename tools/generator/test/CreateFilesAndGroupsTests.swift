@@ -14,6 +14,68 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let expectedPBXProj = Fixtures.pbxProj()
         let expectedMainGroup = expectedPBXProj.rootObject!.mainGroup!
 
+        let targets: [TargetID: Target] = [
+            "A": Target.mock(
+                product: .init(type: .staticLibrary, name: "a", path: "liba.a"),
+                srcs: ["a.swift"]
+            ),
+        ]
+        let extraFiles: Set<Path> = []
+        let externalDirectory = Path("/ext")
+        let internalDirectoryName = "rules_xcp"
+        let workspaceOutputPath = Path("Project.xcodeproj")
+
+        let expectedFilesAndGroups: [FilePath: PBXFileElement] = [
+            "a.swift": PBXFileReference(
+                sourceTree: .group,
+                lastKnownFileType: "sourcecode.swift",
+                path: "a.swift"
+            ),
+        ]
+        expectedPBXProj.add(object: expectedFilesAndGroups["a.swift"]!)
+
+        let expectedRootElements: [PBXFileElement] = [
+            expectedFilesAndGroups["a.swift"]!,
+        ]
+        expectedMainGroup.addChildren(expectedRootElements)
+
+        // Act
+
+        let (
+            createdFilesAndGroups,
+            createdRootElements
+        ) = Generator.createFilesAndGroups(
+            in: pbxProj,
+            targets: targets,
+            extraFiles: extraFiles,
+            externalDirectory: externalDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+
+        // We need to add the `rootElements` to a group to allow references to
+        // become fixed
+        mainGroup.addChildren(createdRootElements)
+
+        try pbxProj.fixReferences()
+        try expectedPBXProj.fixReferences()
+
+        // Assert
+
+        XCTAssertNoDifference(createdRootElements, expectedRootElements)
+        XCTAssertNoDifference(createdFilesAndGroups, expectedFilesAndGroups)
+
+        XCTAssertNoDifference(pbxProj, expectedPBXProj)
+    }
+
+    func test_full() throws {
+        // Arrange
+
+        let pbxProj = Fixtures.pbxProj()
+        let mainGroup = pbxProj.rootObject!.mainGroup!
+        let expectedPBXProj = Fixtures.pbxProj()
+        let expectedMainGroup = expectedPBXProj.rootObject!.mainGroup!
+
         let targets = Fixtures.targets
         let extraFiles = Fixtures.project.extraFiles
         let externalDirectory = Path("/ext")
