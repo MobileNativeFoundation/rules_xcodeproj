@@ -86,9 +86,14 @@ def _write_json_spec(*, ctx, project_name, infos):
     return output
 
 def _write_root_dirs(*, ctx):
+    output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
+
+    if ctx.attr.external_dir_override:
+        ctx.actions.write(output, ctx.attr.external_dir_override)
+        return output
+
     an_external_input = ctx.file._external_file_marker
 
-    output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
     ctx.actions.run_shell(
         inputs = [an_external_input],
         outputs = [output],
@@ -204,6 +209,9 @@ def _xcodeproj_impl(ctx):
 _xcodeproj = rule(
     implementation = _xcodeproj_impl,
     attrs = {
+        "external_dir_override": attr.string(
+            default = "",
+        ),
         "project_name": attr.string(),
         "targets": attr.label_list(
             mandatory = True,
