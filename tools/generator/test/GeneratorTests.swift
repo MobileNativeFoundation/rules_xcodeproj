@@ -11,6 +11,7 @@ final class GeneratorTests: XCTestCase {
 
         let project = Project(
             name: "P",
+            label: "//a/P:xcodeproj",
             buildSettings: [:],
             targets: Fixtures.targets,
             potentialTargetMerges: [:],
@@ -29,7 +30,7 @@ final class GeneratorTests: XCTestCase {
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
         let outputPath: Path = "P.xcodeproj"
-        
+
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
                 configuration: "a1b2c",
@@ -253,6 +254,7 @@ final class GeneratorTests: XCTestCase {
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
             let products: Products
             let files: [FilePath: File]
+            let xcodeprojBazelLabel: String
         }
 
         var addTargetsCalled: [AddTargetsCalled] = []
@@ -260,13 +262,15 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             for disambiguatedTargets: [TargetID: DisambiguatedTarget],
             products: Products,
-            files: [FilePath: File]
+            files: [FilePath: File],
+            xcodeprojBazelLabel: String
         ) throws -> [TargetID: PBXNativeTarget] {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
                 products: products,
-                files: files
+                files: files,
+                xcodeprojBazelLabel: xcodeprojBazelLabel
             ))
             return pbxTargets
         }
@@ -275,7 +279,8 @@ final class GeneratorTests: XCTestCase {
             pbxProj: pbxProj,
             disambiguatedTargets: disambiguatedTargets,
             products: products,
-            files: files
+            files: files,
+            xcodeprojBazelLabel: project.label
         )]
         
         // MARK: setTargetConfigurations()

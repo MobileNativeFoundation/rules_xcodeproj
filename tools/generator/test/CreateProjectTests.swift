@@ -10,7 +10,7 @@ final class CreateProjectTests: XCTestCase {
         // Arrange
 
         let project = Fixtures.project
-        let projectRootDirectory = Path("~/Developer/project")
+        let projectRootDirectory: Path = "~/Developer/project"
 
         let expectedPBXProj = PBXProj()
 

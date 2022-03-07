@@ -21,10 +21,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             ),
         ]
         let extraFiles: Set<FilePath> = []
-        let externalDirectory = Path("/ext")
-        let generatedDirectory = Path("/bazel-leave")
+        let externalDirectory: Path = "/ext"
+        let generatedDirectory: Path = "/bazel-leave"
         let internalDirectoryName = "rules_xcp"
-        let workspaceOutputPath = Path("Project.xcodeproj")
+        let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let expectedFiles: [FilePath: File] = [
             "a.swift": File(reference: PBXFileReference(
@@ -80,10 +80,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
 
         let targets = Fixtures.targets
         let extraFiles = Fixtures.project.extraFiles
-        let externalDirectory = Path("/ext")
-        let generatedDirectory = Path("/bazel-leave")
+        let externalDirectory: Path = "/ext"
+        let generatedDirectory: Path = "/bazel-leave"
         let internalDirectoryName = "rules_xcp"
-        let workspaceOutputPath = Path("Project.xcodeproj")
+        let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let (expectedFiles, expectedElements) = Fixtures.files(
             in: expectedPBXProj,

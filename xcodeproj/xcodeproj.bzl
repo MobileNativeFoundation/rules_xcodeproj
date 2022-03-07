@@ -71,6 +71,7 @@ def _write_json_spec(*, ctx, project_name, infos):
 {{\
 "build_settings":{{\
 "ALWAYS_SEARCH_USER_PATHS":false,\
+"BAZEL_PATH":"{bazel_path}",\
 "CLANG_ENABLE_OBJC_ARC":true,\
 "COPY_PHASE_STRIP":false,\
 "CURRENT_PROJECT_VERSION":"1",\
@@ -78,15 +79,18 @@ def _write_json_spec(*, ctx, project_name, infos):
 "ONLY_ACTIVE_ARCH":true\
 }},\
 "extra_files":{extra_files},\
-"name": "{name}",\
+"label":"{label}",\
+"name":"{name}",\
 "potential_target_merges":{potential_target_merges},\
 "required_links":{required_links},\
 "targets":{targets}\
 }}
 """.format(
+        bazel_path = ctx.attr.bazel_path,
         extra_files = json.encode([
             file_path(file) for file in extra_files.to_list()
         ]),
+        label = ctx.label,
         potential_target_merges = potential_target_merges_json,
         name = project_name,
         targets = targets_json,
@@ -239,6 +243,9 @@ def _xcodeproj_impl(ctx):
 
 def make_xcodeproj_rule(*, transition = None):
     attrs = {
+        "bazel_path": attr.string(
+            default = "bazel",
+        ),
         "external_dir_override": attr.string(
             default = "",
         ),

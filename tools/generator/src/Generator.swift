@@ -93,7 +93,8 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             pbxProj,
             disambiguatedTargets,
             products,
-            files
+            files,
+            project.label
         )
         try environment.setTargetConfigurations(
             pbxProj,

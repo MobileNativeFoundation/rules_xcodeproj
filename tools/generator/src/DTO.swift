@@ -3,6 +3,7 @@ import XcodeProj
 
 struct Project: Equatable, Decodable {
     let name: String
+    let label: String
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
     let potentialTargetMerges: [TargetID: Set<TargetID>]

@@ -1,6 +1,7 @@
 {
     "build_settings": {
         "ALWAYS_SEARCH_USER_PATHS": false,
+        "BAZEL_PATH": "bazel",
         "CLANG_ENABLE_OBJC_ARC": true,
         "COPY_PHASE_STRIP": false,
         "CURRENT_PROJECT_VERSION": "1",
@@ -8,6 +9,7 @@
         "ONLY_ACTIVE_ARCH": true
     },
     "extra_files": [],
+    "label": "//test/fixtures/generator:xcodeproj",
     "name": "project",
     "potential_target_merges": [
         "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
