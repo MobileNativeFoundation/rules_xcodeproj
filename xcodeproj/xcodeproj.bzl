@@ -206,14 +206,14 @@ def _xcodeproj_impl(ctx):
         ),
     ]
 
-_xcodeproj = rule(
-    implementation = _xcodeproj_impl,
+def make_xcodeproj_rule(*, transition = None):
     attrs = {
         "external_dir_override": attr.string(
             default = "",
         ),
         "project_name": attr.string(),
         "targets": attr.label_list(
+            cfg = transition,
             mandatory = True,
             allow_empty = False,
             aspects = [xcodeproj_aspect],
@@ -240,13 +240,25 @@ _xcodeproj = rule(
             executable = False,
             default = Label("//xcodeproj/internal:installer.template.sh"),
         ),
-    },
-    executable = True,
-)
+    }
 
-def xcodeproj(**kwargs):
+    if transition:
+        attrs["_allowlist_function_transition"] = attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        )
+
+    return rule(
+        implementation = _xcodeproj_impl,
+        attrs = attrs,
+        executable = True,
+    )
+
+_xcodeproj = make_xcodeproj_rule()
+
+def xcodeproj(*, xcodeproj_rule = _xcodeproj, **kwargs):
     testonly = kwargs.pop("testonly", True)
-    _xcodeproj(
+
+    xcodeproj_rule(
         testonly = testonly,
         **kwargs
     )
