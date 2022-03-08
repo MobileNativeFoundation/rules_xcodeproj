@@ -110,4 +110,6 @@ You can then create the Xcode project with:
 bazel run //:xcodeproj
 ```
 
+The generated project will be in the workspace at `App.xcodeproj`.
+
 See the [examples](examples) directory for sample setups.

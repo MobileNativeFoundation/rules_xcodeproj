@@ -59,3 +59,5 @@ plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 # TODO: Uncomment once we create schemes ourselves
 # # Prevent Xcode from prompting the user to autocreate schemes for all targets
 # plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
+
+echo 'Updated project at "%output_path%"'
