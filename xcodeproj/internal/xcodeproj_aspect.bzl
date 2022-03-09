@@ -1,6 +1,10 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
 load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:input_files_aspect.bzl",
+    "input_files_aspect",
+)
+load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:target.bzl",
     "as_resource",
     "process_target",
@@ -69,4 +73,5 @@ xcodeproj_aspect = aspect(
         )),
     },
     fragments = ["apple", "cpp"],
+    requires = [input_files_aspect],
 )

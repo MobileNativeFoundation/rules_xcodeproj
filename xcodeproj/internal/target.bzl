@@ -19,6 +19,10 @@ load(
     "file_path",
 )
 load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:input_files_aspect.bzl",
+    "InputFilesInfo",
+)
+load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:opts.bzl",
     "process_opts",
 )
@@ -57,33 +61,30 @@ Xcode project.
     },
 )
 
-# Inputs
+# Files
 
-def _input_files(*, ctx, transitive_infos):
-    """Gathers files needed for creating an `XcodeProjInfo` provider.
+_EXTRA_FILE_ATTRS = (
+    "data",
+    "hdrs",
+    "structured_resources",
+    "resources",
+)
+
+def _extra_files(*, ctx):
+    """Gathers a Target's non-source files.
 
     Args:
         ctx: The aspect context.
-        transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
-            transitive dependencies of `Target`.
 
     Returns:
-        A `struct` containing the following fields:
-
-        *   `extra_files`: A `depset` of all non-source files gathered from
-            `Target` and its transitive dependencies.
+        A `list` of all non-source `File`s gathered from `Target`.
     """
     extra_files = []
     for attr in dir(ctx.rule.files):
-        if attr in ["data", "hdrs", "structured_resources", "resources"]:
+        if attr in _EXTRA_FILE_ATTRS:
             extra_files.extend(getattr(ctx.rule.files, attr, []))
 
-    return struct(
-        extra_files = depset(
-            extra_files,
-            transitive = [info.extra_files for info in transitive_infos],
-        ),
-    )
+    return extra_files
 
 # Configuration
 
@@ -408,13 +409,15 @@ def _process_top_level_target(*, ctx, target, bundle_info):
     Returns:
         A `struct` containing the following fields:
 
-        *   `generated_inputs`: A list of `File`s that will be in the
+        *   `extra_files`: A `list` of `File`s that will be in the
+            `XcodeProjInfo.extra_files` `depset`.
+        *   `generated_inputs`: A `list` of `File`s that will be in the
             `XcodeProjInfo.generated_inputs` `depset`.
-        *   `potential_target_merges`: A list of `struct`s that will be in the
+        *   `potential_target_merges`: A `list` of `struct`s that will be in the
             `XcodeProjInfo.potential_target_merges` `depset`.
-        *   `required_links`: An array of file paths that will be in the
+        *   `required_links`: A `list` of strings that will be in the
             `XcodeProjInfo.required_links` `depset`.
-        *   `target`: The `XcodeProjInfo.target` struct.
+        *   `target`: The `XcodeProjInfo.target` `struct`.
         *   `xcode_target`: A string that will be in the
             `XcodeProjInfo.xcode_targets` `depset`.
     """
@@ -490,6 +493,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     return struct(
+        extra_files = _extra_files(ctx = ctx),
         generated_inputs = [],
         potential_target_merges = potential_target_merges,
         required_links = required_links,
@@ -538,13 +542,15 @@ def _process_library_target(*, ctx, target, transitive_infos):
     Returns:
         A `struct` containing the following fields:
 
-        *   `generated_inputs`: A list of `File`s that will be in the
+        *   `extra_files`: A `list` of `File`s that will be in the
+            `XcodeProjInfo.extra_files` `depset`.
+        *   `generated_inputs`: A `list` of `File`s that will be in the
             `XcodeProjInfo.generated_inputs` `depset`.
-        *   `potential_target_merges`: A list of `struct`s that will be in the
+        *   `potential_target_merges`: A `list` of `struct`s that will be in the
             `XcodeProjInfo.potential_target_merges` `depset`.
-        *   `required_links`: An array of file paths that will be in the
+        *   `required_links`: A `list` of strings that will be in the
             `XcodeProjInfo.required_links` `depset`.
-        *   `target`: The `XcodeProjInfo.target` struct.
+        *   `target`: The `XcodeProjInfo.target` `struct`.
         *   `xcode_target`: A string that will be in the
             `XcodeProjInfo.xcode_targets` `depset`.
     """
@@ -585,13 +591,21 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
 
     # TODO: account for non-arc in Xcode properly
+    src_deps = (
+        getattr(ctx.rule.attr, "srcs", []) +
+        getattr(ctx.rule.attr, "non_arc_srcs", [])
+    )
     src_files = depset(transitive = [
         dep.files
-        for dep in (
-            getattr(ctx.rule.attr, "srcs", []) +
-            getattr(ctx.rule.attr, "non_arc_srcs", [])
-        )
+        for dep in src_deps
     ]).to_list()
+
+    extra_files = _extra_files(ctx = ctx)
+    extra_files.extend(depset(transitive = [
+        dep[InputFilesInfo].files
+        for dep in src_deps
+        if InputFilesInfo in dep
+    ]).to_list())
 
     generated_inputs = []
     srcs = []
@@ -601,6 +615,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             generated_inputs.append(file)
 
     return struct(
+        extra_files = extra_files,
         generated_inputs = generated_inputs,
         potential_target_merges = [],
         required_links = [],
@@ -681,6 +696,7 @@ def _should_passthrough_target(*, ctx, target):
 
 def _target_info_fields(
     *,
+    extra_files,
     generated_inputs,
     potential_target_merges,
     required_links,
@@ -691,6 +707,7 @@ def _target_info_fields(
     This should be merged with other fields to fully create an `XcodeProjInfo`.
 
     Args:
+        extra_files: Maps to the `XcodeProjInfo.extra_files` field.
         generated_inputs: Maps to the `XcodeProjInfo.generated_inputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
@@ -701,6 +718,7 @@ def _target_info_fields(
     Returns:
         A `dict` containing the following fields:
 
+        *   `extra_files`
         *   `generated_inputs`
         *   `potential_target_merges`
         *   `required_links`
@@ -708,6 +726,7 @@ def _target_info_fields(
         *   `xcode_targets`
     """
     return {
+        "extra_files": extra_files,
         "generated_inputs": generated_inputs,
         "potential_target_merges": potential_target_merges,
         "required_links": required_links,
@@ -730,6 +749,11 @@ def _passthrough_target(*, transitive_infos):
         `transitive_infos`.
     """
     return _target_info_fields(
+        extra_files = depset(
+            transitive = [
+                info.extra_files for info in transitive_infos
+            ],
+        ),
         generated_inputs = depset(
             transitive = [
                 info.generated_inputs for info in transitive_infos
@@ -782,6 +806,12 @@ def _process_target(*, ctx, target, transitive_infos):
         )
 
     return _target_info_fields(
+        extra_files = depset(
+            processed_target.extra_files,
+            transitive = [
+                info.extra_files for info in transitive_infos
+            ],
+        ),
         generated_inputs = depset(
             processed_target.generated_inputs,
             transitive = [
@@ -820,12 +850,13 @@ def process_target(*, ctx, target, transitive_infos):
         An `XcodeProjInfo` populated with information from `target` and
         `transitive_infos`.
     """
-    inputs = _input_files(ctx = ctx, transitive_infos = transitive_infos)
-
     if not _should_process_target(target):
         return XcodeProjInfo(
             potential_target_merges = depset(),
-            extra_files = inputs.extra_files,
+            extra_files = depset(
+                _extra_files(ctx = ctx),
+                transitive = [info.extra_files for info in transitive_infos],
+            ),
             generated_inputs = depset(),
             required_links = depset(),
             target = None,
@@ -844,7 +875,6 @@ def process_target(*, ctx, target, transitive_infos):
         )
 
     return XcodeProjInfo(
-        extra_files = inputs.extra_files,
         **info_fields
     )
 
