@@ -105,6 +105,7 @@
 		9CB6D296D69A65E745F047E7 /* XCScheme+BuildableReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DEB17156FF65DE687F9936 /* XCScheme+BuildableReference.swift */; };
 		9D8FBAE0360C9BE0A8886967 /* Bool+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76833E2B2EBB7309BEB734AF /* Bool+Extras.swift */; };
 		9DD130108731945F797E342E /* Generator+CreateXcodeProj.swift in Sources */ = {isa = PBXBuildFile; fileRef = B457F8A6356EEF67179A8493 /* Generator+CreateXcodeProj.swift */; };
+		9EF8E3DAB45468EDB60B957D /* Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84F4D559B6B8649F93D4F71 /* Inputs.swift */; };
 		A0B6DEA65A87858C429FF8F9 /* XCScheme+AditionalOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA08BF6080F2C8424DA82C3 /* XCScheme+AditionalOption.swift */; };
 		A156CADDA5AB3E556B6469BA /* Generator+CreateProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3DE88A7DBF65BE60D3C5 /* Generator+CreateProject.swift */; };
 		A286613F14BE6BEFAAEBA92C /* XCScheme+ArchiveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C223DD4F3A5D9EA02C6456 /* XCScheme+ArchiveAction.swift */; };
@@ -374,6 +375,7 @@
 		C143D81F6A1B41F282251112 /* PBXProductType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXProductType.swift; sourceTree = "<group>"; };
 		C3C2CE05F25BBF2CE18BA0D7 /* Path+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+Extras.swift"; sourceTree = "<group>"; };
 		C3EB7777A1B1F6EBE1AAD2FF /* GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorTests.swift; sourceTree = "<group>"; };
+		C84F4D559B6B8649F93D4F71 /* Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inputs.swift; sourceTree = "<group>"; };
 		C85C339FAB91CEA53509EC58 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		C8ACD5BA25E0982AAD8A5581 /* PathKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathKit.swift; sourceTree = "<group>"; };
 		C8D92EC4C1A8794F66DD8F2E /* libXCTestDynamicOverlay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXCTestDynamicOverlay.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -862,6 +864,7 @@
 				2D5C2371A119FC59736FCFFA /* Generator+SetTargetConfigurations.swift */,
 				FC1E9BD53767409F1520A194 /* Generator+SetTargetDependencies.swift */,
 				5763D83215FDFA5A0C0DADA6 /* Generator+WriteXcodeProj.swift */,
+				C84F4D559B6B8649F93D4F71 /* Inputs.swift */,
 				D1E858A25C7EE9A7AB1BB78E /* Logger.swift */,
 				6FDF0F2BD8DA0C9C64F3EC2D /* Path+Extensions.swift */,
 				8F19B18C578050514056544B /* PBXGroup+Extensions.swift */,
@@ -1219,6 +1222,7 @@
 				BF26635EE4D6F237D1996E30 /* Generator+SetTargetConfigurations.swift in Sources */,
 				99D1A2811044EFBAFBECFEFF /* Generator+SetTargetDependencies.swift in Sources */,
 				FE917160264C0A21A6C4E0AF /* Generator+WriteXcodeProj.swift in Sources */,
+				9EF8E3DAB45468EDB60B957D /* Inputs.swift in Sources */,
 				E2F66D3F3B8FE2F01305E9AB /* Logger.swift in Sources */,
 				AC51F2EC61A2165B467F806A /* Path+Extensions.swift in Sources */,
 				688C039393D003303E732F1B /* PBXGroup+Extensions.swift in Sources */,

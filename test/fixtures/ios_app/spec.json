@@ -103,6 +103,7 @@
             "dependencies": [
                 "//examples/ios_app/Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "inputs": {},
             "label": "//examples/ios_app/Example:Example",
             "links": [
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Example/libExample.library.a",
@@ -123,7 +124,6 @@
                 "path": "bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Example/Example_archive-root/Payload/Example.app",
                 "type": "com.apple.product-type.application"
             },
-            "srcs": [],
             "test_host": null
         },
         "//examples/ios_app/Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
@@ -181,6 +181,12 @@
             "dependencies": [
                 "//examples/ios_app/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "inputs": {
+                "srcs": [
+                    "examples/ios_app/Example/ContentView.swift",
+                    "examples/ios_app/Example/ExampleApp.swift"
+                ]
+            },
             "label": "//examples/ios_app/Example:Example.library",
             "links": [],
             "name": "Example",
@@ -203,10 +209,6 @@
                 "path": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Example/libExample.library.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                "examples/ios_app/Example/ContentView.swift",
-                "examples/ios_app/Example/ExampleApp.swift"
-            ],
             "test_host": null
         },
         "//examples/ios_app/ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
@@ -265,6 +267,7 @@
                 "//examples/ios_app/ExampleTests:ExampleTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
                 "//examples/ios_app/Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "inputs": {},
             "label": "//examples/ios_app/ExampleTests:ExampleTests.__internal__.__test_bundle",
             "links": [
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/ExampleTests/libExampleTests.library.a",
@@ -285,7 +288,6 @@
                 "path": "bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/ExampleTests/ExampleTests.__internal__.__test_bundle_archive-root/ExampleTests.xctest",
                 "type": "com.apple.product-type.bundle.unit-test"
             },
-            "srcs": [],
             "test_host": "//examples/ios_app/Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
         },
         "//examples/ios_app/ExampleTests:ExampleTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
@@ -346,6 +348,11 @@
                 "//examples/ios_app/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
                 "//examples/ios_app/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "inputs": {
+                "srcs": [
+                    "examples/ios_app/ExampleTests/ExampleTests.swift"
+                ]
+            },
             "label": "//examples/ios_app/ExampleTests:ExampleTests.library",
             "links": [],
             "name": "ExampleTests",
@@ -368,9 +375,6 @@
                 "path": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/ExampleTests/libExampleTests.library.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                "examples/ios_app/ExampleTests/ExampleTests.swift"
-            ],
             "test_host": null
         },
         "//examples/ios_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
@@ -429,6 +433,7 @@
                 "//examples/ios_app/ExampleUITests:ExampleUITests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
                 "//examples/ios_app/Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "inputs": {},
             "label": "//examples/ios_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "links": [
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/ExampleUITests/libExampleUITests.library.a"
@@ -448,7 +453,6 @@
                 "path": "bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle_archive-root/ExampleUITests.xctest",
                 "type": "com.apple.product-type.bundle.ui-testing"
             },
-            "srcs": [],
             "test_host": "//examples/ios_app/Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
         },
         "//examples/ios_app/ExampleUITests:ExampleUITests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
@@ -505,6 +509,12 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
+            "inputs": {
+                "srcs": [
+                    "examples/ios_app/ExampleUITests/ExampleUITests.swift",
+                    "examples/ios_app/ExampleUITests/ExampleUITestsLaunchTests.swift"
+                ]
+            },
             "label": "//examples/ios_app/ExampleUITests:ExampleUITests.library",
             "links": [],
             "name": "ExampleUITests",
@@ -527,10 +537,6 @@
                 "path": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/ExampleUITests/libExampleUITests.library.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                "examples/ios_app/ExampleUITests/ExampleUITests.swift",
-                "examples/ios_app/ExampleUITests/ExampleUITestsLaunchTests.swift"
-            ],
             "test_host": null
         },
         "//examples/ios_app/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
@@ -587,6 +593,14 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/TestingUtils/TestingUtils.swift",
+                        "t": "g"
+                    }
+                ]
+            },
             "label": "//examples/ios_app/TestingUtils:TestingUtils",
             "links": [],
             "name": "TestingUtils",
@@ -609,12 +623,6 @@
                 "path": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/TestingUtils/libTestingUtils.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/TestingUtils/TestingUtils.swift",
-                    "t": "g"
-                }
-            ],
             "test_host": null
         },
         "//examples/ios_app/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
@@ -670,6 +678,11 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
+            "inputs": {
+                "srcs": [
+                    "examples/ios_app/Utils/Utils.swift"
+                ]
+            },
             "label": "//examples/ios_app/Utils:Utils",
             "links": [],
             "name": "Utils",
@@ -692,9 +705,6 @@
                 "path": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Utils/libUtils.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                "examples/ios_app/Utils/Utils.swift"
-            ],
             "test_host": null
         }
     ]

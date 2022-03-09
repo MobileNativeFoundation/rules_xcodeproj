@@ -86,6 +86,30 @@ def _extra_files(*, ctx):
 
     return extra_files
 
+def _process_inputs(*, srcs, non_arc_srcs):
+    """Generates a `dict` for inputs of a target for use with `_xcode_target()`.
+
+    Args:
+        srcs: A `list` of `srcs` `File`s.
+        non_arc_srcs: A `list` of `non_arc_srcs` `File`s.
+
+    Returns:
+        A `dict` containing the following elements:
+
+        *   `srcs`: A `list` of `FilePath`s for `srcs`.
+        *   `non_arc_srcs`: A `list` of `FilePath`s for `non_arc_srcs`.
+    """
+    inputs = {}
+
+    def _process_attr(attr, value):
+        if value:
+            inputs[attr] = [file_path(file) for file in value]
+
+    _process_attr("srcs", srcs)
+    _process_attr("non_arc_srcs", non_arc_srcs)
+
+    return inputs
+
 # Configuration
 
 def _calculate_configuration(*, bin_dir_path):
@@ -258,7 +282,7 @@ def _xcode_target(
     product,
     test_host,
     build_settings,
-    srcs,
+    inputs,
     links,
     dependencies,
     outputs):
@@ -278,7 +302,7 @@ def _xcode_target(
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
-        srcs: A `list` of source file paths for `target`.
+        inputs: An inputs `dict` as returned from `_process_inputs()`.
         links: A `list` of file paths for libraries that the target links
             against.
         dependencies: A `list` of `id`s of targets that this target depends on.
@@ -297,7 +321,7 @@ def _xcode_target(
         product = product,
         test_host = test_host,
         build_settings = build_settings,
-        srcs = srcs,
+        inputs = inputs,
         links = links,
         dependencies = dependencies,
         outputs = outputs,
@@ -501,7 +525,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             id = id,
             label = target.label,
             build_settings = build_settings,
-            srcs = [],
             libraries = libraries,
             dependencies = dependencies,
         ),
@@ -521,7 +544,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             ),
             test_host = test_host_target.id if test_host_target else None,
             build_settings = build_settings,
-            srcs = [],
+            inputs = _process_inputs(srcs = [], non_arc_srcs = []),
             links = links,
             dependencies = dependencies,
             outputs = _process_outputs(target),
@@ -590,27 +613,27 @@ def _process_library_target(*, ctx, target, transitive_infos):
         build_settings = build_settings,
     )
 
-    # TODO: account for non-arc in Xcode properly
-    src_deps = (
-        getattr(ctx.rule.attr, "srcs", []) +
-        getattr(ctx.rule.attr, "non_arc_srcs", [])
-    )
-    src_files = depset(transitive = [
+    srcs = depset(transitive = [
         dep.files
-        for dep in src_deps
+        for dep in getattr(ctx.rule.attr, "srcs", [])
+    ]).to_list()
+    non_arc_srcs = depset(transitive = [
+        dep.files
+        for dep in getattr(ctx.rule.attr, "non_arc_srcs", [])
     ]).to_list()
 
     extra_files = _extra_files(ctx = ctx)
     extra_files.extend(depset(transitive = [
         dep[InputFilesInfo].files
-        for dep in src_deps
+        for dep in (
+            getattr(ctx.rule.attr, "srcs", []) +
+            getattr(ctx.rule.attr, "non_arc_srcs", [])
+        )
         if InputFilesInfo in dep
     ]).to_list())
 
     generated_inputs = []
-    srcs = []
-    for file in src_files:
-        srcs.append(file_path(file))
+    for file in srcs:
         if not file.is_source:
             generated_inputs.append(file)
 
@@ -623,7 +646,6 @@ def _process_library_target(*, ctx, target, transitive_infos):
             id = id,
             label = target.label,
             build_settings = build_settings,
-            srcs = srcs,
             libraries = libraries,
             dependencies = dependencies,
         ),
@@ -643,7 +665,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             platform = platform,
             build_settings = build_settings,
             test_host = None,
-            srcs = srcs,
+            inputs = _process_inputs(srcs = srcs, non_arc_srcs = non_arc_srcs),
             links = [],
             dependencies = dependencies,
             outputs = _process_outputs(target),
