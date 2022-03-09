@@ -6,6 +6,25 @@ used to generate Xcode projects.
 If you run into any problems with these rules, please
 [file an issue](https://github.com/buildbuddy-io/rules_xcodeproj/issues/new/choose)!
 
+## Features
+
+- [x] Build Bazel targets with Xcode (_not_ Bazel), with full support for:
+  - [x] Indexing (i.e. autocomplete, syntax highlighting, jump to
+    definition)
+  - [x] Debugging
+  - [x] Tests (Unit and UI)
+  - [x] SwiftUI Previews
+
+**Note:** Not all rules are supported yet, and the rules that are supported
+don't have full support yet. See the
+[1.0 Project](https://github.com/orgs/buildbuddy-io/projects/2/views/3)
+for details on progress towards the 1.0 release. Here are a few of the planned
+high level features:
+
+- [ ] [Support all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/1)
+- [ ] [Build Bazel targets with Bazel, in Xcode](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/2)
+- [ ] [Easier target discovery and focused projects](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/3)
+
 ## Compatibility
 
 - Xcode 13.2.1
