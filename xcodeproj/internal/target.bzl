@@ -399,10 +399,17 @@ def _process_top_level_target(*, ctx, target, bundle_info):
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
 
-    if len(ctx.rule.attr.deps) > 1:
-        fail("xcodeproj requires {} rules to have a single dep. {} has {}"
-          .format(ctx.rule.kind, target.label, len(ctx.rule.attr.deps)))
-    merged_target = ctx.rule.attr.deps[0][XcodeProjInfo].target
+    library_dep_targets = [
+        dep[XcodeProjInfo].target
+        for dep in ctx.rule.attr.deps
+        if dep[XcodeProjInfo].target.libraries
+    ]
+
+    if len(library_dep_targets) > 1:
+        fail("""\
+The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
+""".format(ctx.rule.kind, target.label, len(library_dep_targets)))
+    merged_target = library_dep_targets[0]
     libraries = merged_target.libraries
     potential_target_merges = [struct(src = merged_target.id, dest = id)]
 
