@@ -464,19 +464,20 @@ def _xcode_std_value(std):
 
 # API
 
-def process_opts(*, ctx, target):
+def process_opts(*, ctx, target, build_settings):
     """Processes the compiler and linker options for a target.
 
     Args:
         ctx: The aspect context.
         target: The `Target` that the compiler and linker options will be
             retrieved from.
+        build_settings: A mutable `dict` that will be updated with build
+            settings that are parsed from the compiler and linker options.
 
     Returns:
         A `dict` of Xcode build settings that correspond to the compiler and
         linker options for the target.
     """
-    build_settings = {}
     _process_target_compiler_opts(
         ctx = ctx,
         target = target,
@@ -486,7 +487,6 @@ def process_opts(*, ctx, target):
         ctx = ctx,
         build_settings = build_settings,
     )
-    return build_settings
 
 # These functions are exposed only for access in unit tests.
 testable = struct(
