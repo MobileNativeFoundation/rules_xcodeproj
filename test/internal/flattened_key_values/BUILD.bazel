@@ -1,0 +1,3 @@
+load(":flattened_key_values_tests.bzl", "flattened_key_values_test_suite")
+
+flattened_key_values_test_suite()

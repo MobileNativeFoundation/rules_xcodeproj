@@ -1,11 +1,11 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
-load("//xcodeproj/internal:lists.bzl", "lists")
+load("//xcodeproj/internal:flattened_key_values.bzl", "flattened_key_values")
 
 def _flattened_key_values_to_dict_test(ctx):
     env = unittest.begin(ctx)
 
     # Empty iterable
-    actual = lists.flattened_key_values_to_dict([])
+    actual = flattened_key_values.flattened_key_values_to_dict([])
     expected = {}
     asserts.equals(env, expected, actual, "Empty iterable.")
 
@@ -18,7 +18,7 @@ def _flattened_key_values_to_dict_test(ctx):
         "key2",
         ["key2_value"],
     ]
-    actual = lists.flattened_key_values_to_dict(iterable)
+    actual = flattened_key_values.flattened_key_values_to_dict(iterable)
     expected = {
         "key0": ["key0_value"],
         "key1": ["key1_value"],
@@ -34,7 +34,7 @@ def _dict_to_flattened_key_values_test(ctx):
     env = unittest.begin(ctx)
 
     # Empty dict
-    actual = lists.dict_to_flattened_key_values({})
+    actual = flattened_key_values.dict_to_flattened_key_values({})
     expected = []
     asserts.equals(env, expected, actual, "Empty dict.")
 
@@ -44,7 +44,7 @@ def _dict_to_flattened_key_values_test(ctx):
         "key1": ["key1_value"],
         "key2": ["key2_value"],
     }
-    actual = lists.dict_to_flattened_key_values(key_values_dict)
+    actual = flattened_key_values.dict_to_flattened_key_values(key_values_dict)
     expected = [
         "key0",
         ["key0_value"],
@@ -63,7 +63,7 @@ def _sort_flattened_key_values_test(ctx):
     env = unittest.begin(ctx)
 
     # Empty iterable
-    actual = lists.sort_flattened_key_values([])
+    actual = flattened_key_values.sort_flattened_key_values([])
     expected = []
     asserts.equals(env, expected, actual, "Empty iterable.")
 
@@ -76,7 +76,7 @@ def _sort_flattened_key_values_test(ctx):
         "key2",
         ["key2_value"],
     ]
-    actual = lists.sort_flattened_key_values(iterable)
+    actual = flattened_key_values.sort_flattened_key_values(iterable)
     expected = [
         "key0",
         ["key0_value"],
@@ -91,7 +91,7 @@ def _sort_flattened_key_values_test(ctx):
 
 sort_flattened_key_values_test = unittest.make(_sort_flattened_key_values_test)
 
-def lists_test_suite():
+def flattened_key_values_test_suite():
     return unittest.suite(
         "lists_tests",
         flattened_key_values_to_dict_test,
