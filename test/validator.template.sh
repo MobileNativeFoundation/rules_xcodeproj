@@ -3,8 +3,8 @@
 set -euo pipefail
 
 if ! diff=$(\
-  diff <(python -m json.tool "%spec%") \
-    <(python -m json.tool "%expected_spec%") \
+  diff <(python -m json.tool --sort-keys "%spec%") \
+    <(python -m json.tool --sort-keys "%expected_spec%") \
 ); then
   echo "Spec doesn't match expected:"
   echo "$diff"

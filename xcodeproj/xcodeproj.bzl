@@ -1,5 +1,11 @@
 """Implementation of the `xcodeproj` rule."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:flattened_key_values.bzl",
+    "flattened_key_values",
+)
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:target.bzl",
     "XcodeProjInfo",
@@ -8,8 +14,6 @@ load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:xcodeproj_aspect.bzl",
     "xcodeproj_aspect",
 )
-load("@bazel_skylib//lib:paths.bzl", "paths")
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
 XcodeProjOutputInfo = provider(
     "Provides information about the outputs of the `xcodeproj` rule.",
@@ -51,8 +55,12 @@ def _write_json_spec(*, ctx, project_name, infos):
     # `xcode_targets` is partial json dictionary strings. It and
     # `potential_target_merges` are dictionaries in alternating key and value
     # array format.
-    targets_json = "[{}]".format(",".join(xcode_targets.to_list()))
-    potential_target_merges_json = json.encode(potential_target_merges_array)
+    sorted_xcode_targets = sorted(xcode_targets.to_list())
+    sorted_potential_target_merges_array = flattened_key_values.sort(
+        potential_target_merges_array,
+    )
+    targets_json = "[{}]".format(",".join(sorted_xcode_targets))
+    potential_target_merges_json = json.encode(sorted_potential_target_merges_array)
 
     # TODO: Set CURRENT_PROJECT_VERSION and MARKETING_VERSION from `version`
     spec_json = """\
@@ -77,7 +85,7 @@ def _write_json_spec(*, ctx, project_name, infos):
         potential_target_merges = potential_target_merges_json,
         name = project_name,
         targets = targets_json,
-        required_links = json.encode(required_links.to_list()),
+        required_links = json.encode(sorted(required_links.to_list())),
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))
@@ -111,9 +119,9 @@ echo "${{external_full_path%/{external_full}}}/external" >> "{out_full}"
         mnemonic = "CalculateXcodeProjRootDirs",
         # This has to run locally
         execution_requirements = {
-            "no-sandbox": "1",
-            "no-remote": "1",
             "local": "1",
+            "no-remote": "1",
+            "no-sandbox": "1",
         },
     )
 
@@ -157,8 +165,8 @@ def _write_installer(*, ctx, name = None, install_path, xcodeproj):
         output = installer,
         is_executable = True,
         substitutions = {
-            "%source_path%": xcodeproj.short_path,
             "%output_path%": install_path,
+            "%source_path%": xcodeproj.short_path,
         },
     )
 
@@ -218,18 +226,18 @@ def make_xcodeproj_rule(*, transition = None):
             allow_empty = False,
             aspects = [xcodeproj_aspect],
         ),
-        "_generator": attr.label(
-            cfg = "exec",
-            # TODO: Use universal generator when done debugging
-            default = Label("//tools/generator:generator"),
-            executable = True,
-        ),
         "_external_file_marker": attr.label(
             allow_single_file = True,
             # This just has to point to a source file in an external repo. It is
             # only used by a local action, so it doesn't matter what it points
             # to.
             default = "@build_bazel_rules_apple//:LICENSE",
+        ),
+        "_generator": attr.label(
+            cfg = "exec",
+            # TODO: Use universal generator when done debugging
+            default = Label("//tools/generator:generator"),
+            executable = True,
         ),
         "_install_path": attr.label(
             default = Label("//xcodeproj/internal:install_path"),
