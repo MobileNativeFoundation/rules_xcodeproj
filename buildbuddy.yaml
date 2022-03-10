@@ -21,4 +21,4 @@ actions:
   #       branches:
   #         - "main"
   #   bazel_commands:
-  #     - "run //:buildifier.check"
+  #     - "run --config=workflows //:buildifier.check"
