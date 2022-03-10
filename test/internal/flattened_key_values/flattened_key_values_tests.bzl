@@ -1,11 +1,11 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("//xcodeproj/internal:flattened_key_values.bzl", "flattened_key_values")
 
-def _flattened_key_values_to_dict_test(ctx):
+def _to_dict_test(ctx):
     env = unittest.begin(ctx)
 
     # Empty iterable
-    actual = flattened_key_values.flattened_key_values_to_dict([])
+    actual = flattened_key_values.to_dict([])
     expected = {}
     asserts.equals(env, expected, actual, "Empty iterable.")
 
@@ -18,7 +18,7 @@ def _flattened_key_values_to_dict_test(ctx):
         "key2",
         ["key2_value"],
     ]
-    actual = flattened_key_values.flattened_key_values_to_dict(iterable)
+    actual = flattened_key_values.to_dict(iterable)
     expected = {
         "key0": ["key0_value"],
         "key1": ["key1_value"],
@@ -28,13 +28,13 @@ def _flattened_key_values_to_dict_test(ctx):
 
     return unittest.end(env)
 
-flattened_key_values_to_dict_test = unittest.make(_flattened_key_values_to_dict_test)
+to_dict_test = unittest.make(_to_dict_test)
 
-def _dict_to_flattened_key_values_test(ctx):
+def _to_list_test(ctx):
     env = unittest.begin(ctx)
 
     # Empty dict
-    actual = flattened_key_values.dict_to_flattened_key_values({})
+    actual = flattened_key_values.to_list({})
     expected = []
     asserts.equals(env, expected, actual, "Empty dict.")
 
@@ -44,7 +44,7 @@ def _dict_to_flattened_key_values_test(ctx):
         "key1": ["key1_value"],
         "key2": ["key2_value"],
     }
-    actual = flattened_key_values.dict_to_flattened_key_values(key_values_dict)
+    actual = flattened_key_values.to_list(key_values_dict)
     expected = [
         "key0",
         ["key0_value"],
@@ -57,13 +57,13 @@ def _dict_to_flattened_key_values_test(ctx):
 
     return unittest.end(env)
 
-dict_to_flattened_key_values_test = unittest.make(_dict_to_flattened_key_values_test)
+to_list_test = unittest.make(_to_list_test)
 
-def _sort_flattened_key_values_test(ctx):
+def _sort_test(ctx):
     env = unittest.begin(ctx)
 
     # Empty iterable
-    actual = flattened_key_values.sort_flattened_key_values([])
+    actual = flattened_key_values.sort([])
     expected = []
     asserts.equals(env, expected, actual, "Empty iterable.")
 
@@ -76,7 +76,7 @@ def _sort_flattened_key_values_test(ctx):
         "key2",
         ["key2_value"],
     ]
-    actual = flattened_key_values.sort_flattened_key_values(iterable)
+    actual = flattened_key_values.sort(iterable)
     expected = [
         "key0",
         ["key0_value"],
@@ -89,12 +89,12 @@ def _sort_flattened_key_values_test(ctx):
 
     return unittest.end(env)
 
-sort_flattened_key_values_test = unittest.make(_sort_flattened_key_values_test)
+sort_test = unittest.make(_sort_test)
 
 def flattened_key_values_test_suite():
     return unittest.suite(
         "lists_tests",
-        flattened_key_values_to_dict_test,
-        dict_to_flattened_key_values_test,
-        sort_flattened_key_values_test,
+        to_dict_test,
+        to_list_test,
+        sort_test,
     )

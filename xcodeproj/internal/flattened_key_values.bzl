@@ -1,4 +1,4 @@
-def _flattened_key_values_to_dict(iterable):
+def _to_dict(iterable):
     iterable_len = len(iterable)
     if iterable_len % 2 != 0:
         fail(
@@ -17,7 +17,7 @@ Expected the iterable to have an even number of items. length: {len}\
 
     return key_values
 
-def _dict_to_flattened_key_values(key_values_dict, sort = True):
+def _to_list(key_values_dict, sort = True):
     keys = key_values_dict.keys()
     if sort:
         keys = sorted(keys)
@@ -27,13 +27,13 @@ def _dict_to_flattened_key_values(key_values_dict, sort = True):
         iterable.extend([key, key_values_dict[key]])
     return iterable
 
-def _sort_flattened_key_values(iterable):
-    return _dict_to_flattened_key_values(
-        _flattened_key_values_to_dict(iterable),
+def _sort(iterable):
+    return _to_list(
+        _to_dict(iterable),
     )
 
 flattened_key_values = struct(
-    flattened_key_values_to_dict = _flattened_key_values_to_dict,
-    dict_to_flattened_key_values = _dict_to_flattened_key_values,
-    sort_flattened_key_values = _sort_flattened_key_values,
+    to_dict = _to_dict,
+    to_list = _to_list,
+    sort = _sort,
 )
