@@ -27,7 +27,13 @@ def _dict_to_flattened_key_values(key_values_dict, sort = True):
         iterable.extend([key, key_values_dict[key]])
     return iterable
 
+def _sort_flattened_key_values(iterable):
+    return _dict_to_flattened_key_values(
+        _flattened_key_values_to_dict(iterable),
+    )
+
 lists = struct(
     flattened_key_values_to_dict = _flattened_key_values_to_dict,
     dict_to_flattened_key_values = _dict_to_flattened_key_values,
+    sort_flattened_key_values = _sort_flattened_key_values,
 )
