@@ -52,6 +52,7 @@ def calculate_module_name_test_suite(name):
             label = label,
             module_name = module_name,
             expected_module_name = expected_module_name,
+            timeout = "short",
         )
 
     # Module name

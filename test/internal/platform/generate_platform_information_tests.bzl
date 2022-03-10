@@ -74,6 +74,7 @@ def generate_platform_information_test_suite(name):
             minimum_deployment_os_version = minimum_deployment_os_version,
             expected_platform_dict = expected_platform_dict,
             expected_build_settings = stringify_dict(expected_build_settings),
+            timeout = "short",
         )
 
     # Minimum OS version

@@ -72,6 +72,7 @@ def process_libraries_test_suite(name):
             required_links = required_links,
             expected_links = expected_links,
             expected_required_links = expected_required_links,
+            timeout = "short",
         )
 
     # No changes

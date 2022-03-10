@@ -46,6 +46,7 @@ def get_targeted_device_family_test_suite(name):
             name = name,
             families = families,
             expected_targeted_device_family = expected_targeted_device_family,
+            timeout = "short",
         )
 
     # macOS

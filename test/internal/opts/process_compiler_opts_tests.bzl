@@ -65,6 +65,7 @@ def process_compiler_opts_test_suite(name):
             cxxopts = cxxopts,
             swiftcopts = swiftcopts,
             expected_build_settings = stringify_dict(expected_build_settings),
+            timeout = "short",
         )
 
     # Base
