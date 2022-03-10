@@ -59,6 +59,7 @@ def _write_json_spec(*, ctx, project_name, infos):
 {{\
 "build_settings":{{\
 "ALWAYS_SEARCH_USER_PATHS":false,\
+"CLANG_ENABLE_OBJC_ARC":true,\
 "COPY_PHASE_STRIP":false,\
 "CURRENT_PROJECT_VERSION":"1",\
 "MARKETING_VERSION":"1.0",\
