@@ -14,6 +14,10 @@ InputFileAttributesInfo = provider(
         "excluded": """\
 A sequence of attribute names to not collect `File`s from.
 """,
+        "hdrs": """\
+A sequence of attribute names to collect `File`s from for the
+`InputFilesInfo.hdrs` field.
+""",
         "non_arc_srcs": """\
 A sequence of attribute names to collect `File`s from for the
 `InputFilesInfo.non_arc_srcs` field.

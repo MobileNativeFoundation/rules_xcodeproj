@@ -104,7 +104,7 @@ final class TargetMergingTests: XCTestCase {
         targets["B 2"] = Target.mock(
             product: targets["B 2"]!.product,
             inputs: targets["B 2"]!.inputs,
-            links: ["z/A.a", "a/b.a"],
+            links: ["z/A.a", "a/b.framework"],
             dependencies: targets["B 2"]!.dependencies
         )
         let potentialTargetMerges: [TargetID: Set<TargetID>] = [

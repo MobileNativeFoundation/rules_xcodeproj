@@ -19,6 +19,9 @@ A `list` of generated `File`s that are inputs to this target. These files are
 also included in the other catagories (e.g. `srcs` or `other`). They are
 included in their own field for ease of access.
 """,
+        "hdrs": """\
+A `list` of `File`s that are inputs to this target's `hdrs`-like attributes.
+""",
         "non_arc_srcs": """\
 A `list` of `File`s that are inputs to this target's `non_arc_srcs`-like
 attributes.
@@ -89,11 +92,14 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
 
     srcs = ("srcs")
     non_arc_srcs = ()
+    hdrs = ()
     if ctx.rule.kind == "cc_library":
         excluded = ("deps", "interface_deps", "win_def_file")
+        hdrs = ("hdrs", "textual_hdrs")
     elif ctx.rule.kind == "objc_library":
         excluded = ("deps", "runtime_deps")
         non_arc_srcs = ("non_arc_srcs")
+        hdrs = ("hdrs", "textual_hdrs")
     elif ctx.rule.kind == "swift_library":
         excluded = ("deps", "private_deps")
     else:
@@ -106,6 +112,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             excluded = excluded,
             non_arc_srcs = non_arc_srcs,
             srcs = srcs,
+            hdrs = hdrs,
         ),
     ]
 
@@ -122,6 +129,7 @@ def _input_files_aspect_impl(target, ctx):
     transitive_non_generated = []
     srcs = []
     non_arc_srcs = []
+    hdrs = []
     other = []
 
     # buildifier: disable=uninitialized
@@ -136,6 +144,8 @@ def _input_files_aspect_impl(target, ctx):
                 srcs.append(file)
             elif attr in attrs_info.non_arc_srcs:
                 non_arc_srcs.append(file)
+            elif attr in attrs_info.hdrs:
+                hdrs.append(file)
             else:
                 other.append(file)
 
@@ -195,6 +205,7 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
             transitive_non_generated = transitive_non_generated,
             srcs = srcs,
             non_arc_srcs = non_arc_srcs,
+            hdrs = hdrs,
             other = other,
         ),
     ]
