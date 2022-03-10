@@ -424,6 +424,7 @@ def _process_top_level_target(*, ctx, target, bundle_info):
     """
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
+    inputs_info = target[InputFilesInfo]
 
     library_dep_targets = [
         dep[XcodeProjInfo].target
@@ -431,13 +432,26 @@ def _process_top_level_target(*, ctx, target, bundle_info):
         if dep[XcodeProjInfo].target.libraries
     ]
 
-    if len(library_dep_targets) > 1:
+    libraries = depset(
+        transitive = [
+            depset(target.libraries)
+            for target in library_dep_targets
+        ],
+    ).to_list()
+
+    if len(library_dep_targets) == 1 and not inputs_info.srcs:
+        mergeable_target = library_dep_targets[0]
+        mergeable_label = mergeable_target.label
+        potential_target_merges = [
+            struct(src = mergeable_target.id, dest = id),
+        ]
+    elif bundle_info and len(library_dep_targets) > 1:
         fail("""\
 The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 """.format(ctx.rule.kind, target.label, len(library_dep_targets)))
-    merged_target = library_dep_targets[0]
-    libraries = merged_target.libraries
-    potential_target_merges = [struct(src = merged_target.id, dest = id)]
+    else:
+        potential_target_merges = []
+        mergeable_label = None
 
     build_settings = process_opts(ctx = ctx, target = target)
 
@@ -458,7 +472,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 
     test_host_target, dependencies = _process_test_host(
         getattr(ctx.rule.attr, "test_host", None),
-        dependencies = [merged_target.id],
+        dependencies = [merge.src for merge in potential_target_merges],
     )
 
     links, required_links = _process_libraries(
@@ -473,7 +487,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         required_links = [
             library.path
             for library in libraries
-            if library.owner != merged_target.label
+            if mergeable_label and library.owner != mergeable_label
         ],
     )
 
