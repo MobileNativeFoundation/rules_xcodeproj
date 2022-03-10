@@ -11,9 +11,9 @@ def _process_libraries_test_impl(ctx):
 
     links, required_links = process_libraries(
         product_type = ctx.attr.product_type,
-        test_host_libraries = depset([
+        test_host_libraries = [
             struct(path = path) for path in ctx.attr.test_host_libraries
-        ]),
+        ],
         links = ctx.attr.links,
         required_links = ctx.attr.required_links,
     )
