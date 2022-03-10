@@ -154,13 +154,15 @@ def _process_product(
     """
     if bundle_path:
         path = bundle_path
+    elif target[DefaultInfo].files_to_run.executable:
+        path = target[DefaultInfo].files_to_run.executable.path
     elif CcInfo in target or SwiftInfo in target:
         path = _get_static_library(
             label = target.label,
             cc_info = target[CcInfo],
         )
     else:
-        path = target[DefaultInfo].files_to_run.executable.path
+        path = None
 
     if not path:
         fail("Could not find product for target {}".format(target.label))
