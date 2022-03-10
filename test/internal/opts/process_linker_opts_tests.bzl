@@ -2,6 +2,8 @@
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("//test:utils.bzl", "stringify_dict")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:opts.bzl", "testable")
 
 process_linker_opts = testable.process_linker_opts
@@ -28,8 +30,8 @@ def _process_linker_opts_test_impl(ctx):
 process_linker_opts_test = unittest.make(
     impl = _process_linker_opts_test_impl,
     attrs = {
-        "linkopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
+        "linkopts": attr.string_list(mandatory = True),
     },
 )
 

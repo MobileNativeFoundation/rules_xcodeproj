@@ -1,6 +1,5 @@
 """Functions for updating test fixtures."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "//xcodeproj:xcodeproj.bzl",
     "XcodeProjOutputInfo",
@@ -8,18 +7,9 @@ load(
     "xcodeproj",
 )
 
-# Utility
-
-def _install_path(xcodeproj):
-    # "example/ios_app/p.xcodeproj" -> "test/fixtures/ios_app/project.xcodeproj"
-    return paths.join(
-        "test/fixtures",
-        xcodeproj.short_path.split("/")[1],
-        "project.xcodeproj",
-    )
-
 # Transition
 
+# buildifier: disable=unused-variable
 def _fixtures_transition_impl(settings, attr):
     """Rule transition that standardizes command-line options for fixtures."""
     return {
@@ -66,10 +56,10 @@ def _update_fixtures_impl(ctx):
         output = updater,
         is_executable = True,
         substitutions = {
-            "%specs%": "  \n".join([spec.short_path for spec in specs]),
             "%installers%": "  \n".join(
                 [installer.short_path for installer in installers],
             ),
+            "%specs%": "  \n".join([spec.short_path for spec in specs]),
         },
     )
 

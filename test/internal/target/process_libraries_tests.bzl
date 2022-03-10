@@ -1,6 +1,8 @@
 """Tests for platform processing functions."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:target.bzl", "testable")
 
 process_libraries = testable.process_libraries

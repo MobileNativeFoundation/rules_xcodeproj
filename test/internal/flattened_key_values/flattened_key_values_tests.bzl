@@ -1,4 +1,8 @@
+"""Tests for flattened_key_values module."""
+
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:flattened_key_values.bzl", "flattened_key_values")
 
 def _to_dict_test(ctx):

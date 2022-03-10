@@ -1,3 +1,5 @@
+"""Utility functions to manage flattend key-value lists."""
+
 def _to_dict(iterable):
     """Converts an iterable of flattened key-value pairs to a dictionary.
 
