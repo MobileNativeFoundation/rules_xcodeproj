@@ -1,4 +1,13 @@
 def _to_dict(iterable):
+    """Convert an iterable of flattened key-value pairs to a dictionary.
+
+    Args:
+        iterable: A `list` where the even index is the key and the next item is
+                  the value.
+
+    Returns:
+        A `dict` representing each key-value pair.
+    """
     iterable_len = len(iterable)
     if iterable_len % 2 != 0:
         fail(
@@ -18,6 +27,18 @@ Expected the iterable to have an even number of items. length: {len}\
     return key_values
 
 def _to_list(key_values_dict, sort = True):
+    """Convert a `dict` to a flattened key-value `list`.
+
+    Args:
+        key_values_dict: A `dict` whose key-values will be written to the
+                         `list`.
+        sort: Optional. Specifies whether the keys should be sorted before
+                        serializing the key-value pairs to the `list`.
+
+    Returns:
+        A `list` consisiting of the keys at even index numbers and the
+        corresponding value is the next item.
+    """
     keys = key_values_dict.keys()
     if sort:
         keys = sorted(keys)
