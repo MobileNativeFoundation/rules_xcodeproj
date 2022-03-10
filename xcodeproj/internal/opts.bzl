@@ -182,6 +182,7 @@ def _process_conlyopts(opts):
         *   A `list` of C compiler optimization levels parsed.
     """
     optimizations = []
+
     def process(opt):
         if opt.startswith("-O"):
             optimizations.append(opt)
@@ -211,6 +212,7 @@ def _process_cxxopts(*, opts, build_settings):
         *   A `list` of C++ compiler optimization levels parsed.
     """
     optimizations = []
+
     def process(opt):
         if opt.startswith("-O"):
             optimizations.append(opt)
@@ -287,12 +289,14 @@ def _process_swiftcopts(*, opts, build_settings):
     Returns:
         A `list` of unhandled Swift compiler options.
     """
+
     # Xcode needs a value for SWIFT_VERSION, so we set it to "5" by default.
     # We will have to figure out a way to detect what the default is before
     # Swift 6 (which will probably have a new language version).
     build_settings["SWIFT_VERSION"] = "5"
 
     defines = []
+
     def process(opt):
         if opt.startswith("-O"):
             build_settings["SWIFT_OPTIMIZATION_LEVEL"] = opt

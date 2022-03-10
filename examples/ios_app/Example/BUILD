@@ -15,22 +15,22 @@ ios_application(
     families = ["iphone"],
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
-    deps = [":Example.library"],
     visibility = ["//visibility:public"],
+    deps = [":Example.library"],
 )
 
 swift_library(
     name = "Example.library",
-    module_name = "Example",
+    srcs = glob(["**/*.swift"]),
     data = glob(["Assets.xcassets/**"]) + select({
         ":release_build": [],
         "//conditions:default": [":PreviewContent"],
     }),
-    srcs = glob(["**/*.swift"]),
+    module_name = "Example",
+    visibility = ["//visibility:public"],
     deps = [
         "//examples/ios_app/Utils",
     ],
-    visibility = ["//visibility:public"],
 )
 
 filegroup(

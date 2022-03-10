@@ -37,10 +37,10 @@ def calculate_configuration_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        bin_dir_path,
-        expected_configuration):
+            *,
+            name,
+            bin_dir_path,
+            expected_configuration):
         test_names.append(name)
         calculate_configuration_test(
             name = name,

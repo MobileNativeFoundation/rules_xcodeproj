@@ -12,7 +12,7 @@ def _process_linker_opts_test_impl(ctx):
     build_settings = {}
     process_linker_opts(
         linkopts = ctx.attr.linkopts,
-        build_settings = build_settings
+        build_settings = build_settings,
     )
     string_build_settings = stringify_dict(build_settings)
 
@@ -43,10 +43,10 @@ def process_linker_opts_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        linkopts,
-        expected_build_settings):
+            *,
+            name,
+            linkopts,
+            expected_build_settings):
         test_names.append(name)
         process_linker_opts_test(
             name = name,

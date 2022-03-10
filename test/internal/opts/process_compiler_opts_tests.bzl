@@ -52,12 +52,12 @@ def process_compiler_opts_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        expected_build_settings,
-        conlyopts = [],
-        cxxopts = [],
-        swiftcopts = []):
+            *,
+            name,
+            expected_build_settings,
+            conlyopts = [],
+            cxxopts = [],
+            swiftcopts = []):
         test_names.append(name)
         process_compiler_opts_test(
             name = name,
@@ -395,7 +395,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-wmo".format(name),
-        swiftcopts = ["-wmo",],
+        swiftcopts = ["-wmo"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "wholemodule",
         },

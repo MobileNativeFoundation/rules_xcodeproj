@@ -57,14 +57,14 @@ def generate_platform_information_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        platform_key,
-        arch,
-        minimum_os_version,
-        minimum_deployment_os_version,
-        expected_platform_dict,
-        expected_build_settings):
+            *,
+            name,
+            platform_key,
+            arch,
+            minimum_os_version,
+            minimum_deployment_os_version,
+            expected_platform_dict,
+            expected_build_settings):
         test_names.append(name)
         generate_platform_information_test(
             name = name,
@@ -123,7 +123,7 @@ def generate_platform_information_test_suite(name):
         arch = "arm64",
         minimum_os_version = "12.1",
         minimum_deployment_os_version = None,
-        expected_platform_dict =  {
+        expected_platform_dict = {
             "os": "macOS",
             "arch": "arm64",
             "minimum_os_version": "12.1",

@@ -68,14 +68,14 @@ process_top_level_properties_test = unittest.make(
 )
 
 def _bundle_info(
-    *,
-    archive_path,
-    archive_root,
-    bundle_id,
-    bundle_extension,
-    bundle_name,
-    minimum_deployment_os_version,
-    product_type):
+        *,
+        archive_path,
+        archive_root,
+        bundle_id,
+        bundle_extension,
+        bundle_name,
+        minimum_deployment_os_version,
+        product_type):
     return {
         "archive.path": archive_path,
         "archive_root": archive_root,
@@ -109,17 +109,17 @@ def process_top_level_properties_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        target_name,
-        files,
-        bundle_info,
-        tree_artifact_enabled,
-        expected_bundle_path,
-        expected_minimum_deployment_os_version,
-        expected_product_name,
-        expected_product_type,
-        expected_build_settings):
+            *,
+            name,
+            target_name,
+            files,
+            bundle_info,
+            tree_artifact_enabled,
+            expected_bundle_path,
+            expected_minimum_deployment_os_version,
+            expected_product_name,
+            expected_product_type,
+            expected_build_settings):
         test_names.append(name)
         process_top_level_properties_test(
             name = name,

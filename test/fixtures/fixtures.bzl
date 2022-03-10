@@ -3,9 +3,9 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "//xcodeproj:xcodeproj.bzl",
+    "XcodeProjOutputInfo",
     "make_xcodeproj_rule",
     "xcodeproj",
-    "XcodeProjOutputInfo",
 )
 
 # Utility
@@ -49,10 +49,12 @@ fixtures_transition = transition(
 def _update_fixtures_impl(ctx):
     specs = [target[XcodeProjOutputInfo].spec for target in ctx.attr.targets]
     installers = [
-        target[XcodeProjOutputInfo].installer for target in ctx.attr.targets
+        target[XcodeProjOutputInfo].installer
+        for target in ctx.attr.targets
     ]
     xcodeprojs = [
-        target[XcodeProjOutputInfo].xcodeproj for target in ctx.attr.targets
+        target[XcodeProjOutputInfo].xcodeproj
+        for target in ctx.attr.targets
     ]
 
     updater = ctx.actions.declare_file(

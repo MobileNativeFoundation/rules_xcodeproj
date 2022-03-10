@@ -9,11 +9,11 @@ xcodeproj_test_suite(name = "xcodeproj")
 test_suite(
     name = "test",
     tests = [
+        ":xcodeproj",
         "//test/internal/build_settings",
         "//test/internal/opts",
         "//test/internal/platform",
         "//test/internal/target",
-        ":xcodeproj",
     ],
 )
 
@@ -22,7 +22,7 @@ bzl_library(
     srcs = glob(["*_tests.bzl"]),
     deps = [
         "//test/internal/opts:starlark_tests_bzls",
-    ]
+    ],
 )
 
 bzl_library(

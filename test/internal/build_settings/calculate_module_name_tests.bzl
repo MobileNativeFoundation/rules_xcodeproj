@@ -41,11 +41,11 @@ def calculate_module_name_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        label,
-        module_name,
-        expected_module_name):
+            *,
+            name,
+            label,
+            module_name,
+            expected_module_name):
         test_names.append(name)
         calculate_module_name_test(
             name = name,

@@ -37,10 +37,10 @@ def get_targeted_device_family_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        families,
-        expected_targeted_device_family):
+            *,
+            name,
+            families,
+            expected_targeted_device_family):
         test_names.append(name)
         get_targeted_device_family_test(
             name = name,
@@ -92,7 +92,6 @@ def get_targeted_device_family_test_suite(name):
         families = ["watch"],
         expected_targeted_device_family = "4",
     )
-
 
     # Test suite
 
