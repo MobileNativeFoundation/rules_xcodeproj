@@ -63,35 +63,11 @@ Xcode project.
 
 # Files
 
-_EXTRA_FILE_ATTRS = (
-    "data",
-    "hdrs",
-    "structured_resources",
-    "resources",
-)
-
-def _extra_files(*, ctx):
-    """Gathers a Target's non-source files.
-
-    Args:
-        ctx: The aspect context.
-
-    Returns:
-        A `list` of all non-source `File`s gathered from `Target`.
-    """
-    extra_files = []
-    for attr in dir(ctx.rule.files):
-        if attr in _EXTRA_FILE_ATTRS:
-            extra_files.extend(getattr(ctx.rule.files, attr, []))
-
-    return extra_files
-
-def _process_inputs(*, srcs, non_arc_srcs):
+def _process_inputs(inputs_info):
     """Generates a `dict` for inputs of a target for use with `_xcode_target()`.
 
     Args:
-        srcs: A `list` of `srcs` `File`s.
-        non_arc_srcs: A `list` of `non_arc_srcs` `File`s.
+        inputs_info: An `InputFilesInfo`.
 
     Returns:
         A `dict` containing the following elements:
@@ -101,12 +77,13 @@ def _process_inputs(*, srcs, non_arc_srcs):
     """
     inputs = {}
 
-    def _process_attr(attr, value):
+    def _process_attr(attr):
+        value = getattr(inputs_info, attr)
         if value:
             inputs[attr] = [file_path(file) for file in value]
 
-    _process_attr("srcs", srcs)
-    _process_attr("non_arc_srcs", non_arc_srcs)
+    _process_attr("srcs")
+    _process_attr("non_arc_srcs")
 
     return inputs
 
@@ -516,9 +493,10 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
 
+    inputs_info = target[InputFilesInfo]
+
     return struct(
-        extra_files = _extra_files(ctx = ctx),
-        generated_inputs = [],
+        inputs_info = inputs_info,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
         target = struct(
@@ -531,7 +509,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         xcode_target = _xcode_target(
             id = id,
             name = props.product_name,
-            label = str(target.label),
+            label = target.label,
             configuration = configuration,
             platform = platform,
             product = _process_product(
@@ -544,7 +522,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             ),
             test_host = test_host_target.id if test_host_target else None,
             build_settings = build_settings,
-            inputs = _process_inputs(srcs = [], non_arc_srcs = []),
+            inputs = _process_inputs(inputs_info),
             links = links,
             dependencies = dependencies,
             outputs = _process_outputs(target),
@@ -613,33 +591,10 @@ def _process_library_target(*, ctx, target, transitive_infos):
         build_settings = build_settings,
     )
 
-    srcs = depset(transitive = [
-        dep.files
-        for dep in getattr(ctx.rule.attr, "srcs", [])
-    ]).to_list()
-    non_arc_srcs = depset(transitive = [
-        dep.files
-        for dep in getattr(ctx.rule.attr, "non_arc_srcs", [])
-    ]).to_list()
-
-    extra_files = _extra_files(ctx = ctx)
-    extra_files.extend(depset(transitive = [
-        dep[InputFilesInfo].files
-        for dep in (
-            getattr(ctx.rule.attr, "srcs", []) +
-            getattr(ctx.rule.attr, "non_arc_srcs", [])
-        )
-        if InputFilesInfo in dep
-    ]).to_list())
-
-    generated_inputs = []
-    for file in srcs:
-        if not file.is_source:
-            generated_inputs.append(file)
+    inputs_info = target[InputFilesInfo]
 
     return struct(
-        extra_files = extra_files,
-        generated_inputs = generated_inputs,
+        inputs_info = inputs_info,
         potential_target_merges = [],
         required_links = [],
         target = struct(
@@ -652,7 +607,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         xcode_target = _xcode_target(
             id = id,
             name = module_name,
-            label = str(target.label),
+            label = target.label,
             product = _process_product(
                 target = target,
                 product_name = product_name,
@@ -665,7 +620,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             platform = platform,
             build_settings = build_settings,
             test_host = None,
-            inputs = _process_inputs(srcs = srcs, non_arc_srcs = non_arc_srcs),
+            inputs = _process_inputs(inputs_info),
             links = [],
             dependencies = dependencies,
             outputs = _process_outputs(target),
@@ -827,15 +782,20 @@ def _process_target(*, ctx, target, transitive_infos):
             transitive_infos = transitive_infos,
         )
 
+    inputs_info = processed_target.inputs_info
+
     return _target_info_fields(
         extra_files = depset(
-            processed_target.extra_files,
+            depset(
+                inputs_info.other,
+                transitive = inputs_info.transitive_non_generated,
+            ).to_list(),
             transitive = [
                 info.extra_files for info in transitive_infos
             ],
         ),
         generated_inputs = depset(
-            processed_target.generated_inputs,
+            inputs_info.generated,
             transitive = [
                 info.generated_inputs for info in transitive_infos
             ],
@@ -873,10 +833,11 @@ def process_target(*, ctx, target, transitive_infos):
         `transitive_infos`.
     """
     if not _should_process_target(target):
+        inputs_info = target[InputFilesInfo]
         return XcodeProjInfo(
             potential_target_merges = depset(),
             extra_files = depset(
-                _extra_files(ctx = ctx),
+                inputs_info.other,
                 transitive = [info.extra_files for info in transitive_infos],
             ),
             generated_inputs = depset(),
