@@ -1,6 +1,10 @@
 """Implementation of the `xcodeproj` rule."""
 
 load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:flattened_key_values.bzl",
+    "flattened_key_values",
+)
+load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:target.bzl",
     "XcodeProjInfo",
 )
@@ -51,8 +55,12 @@ def _write_json_spec(*, ctx, project_name, infos):
     # `xcode_targets` is partial json dictionary strings. It and
     # `potential_target_merges` are dictionaries in alternating key and value
     # array format.
-    targets_json = "[{}]".format(",".join(xcode_targets.to_list()))
-    potential_target_merges_json = json.encode(potential_target_merges_array)
+    sorted_xcode_targets = sorted(xcode_targets.to_list())
+    sorted_potential_target_merges_array = flattened_key_values.sort(
+        potential_target_merges_array,
+    )
+    targets_json = "[{}]".format(",".join(sorted_xcode_targets))
+    potential_target_merges_json = json.encode(sorted_potential_target_merges_array)
 
     # TODO: Set CURRENT_PROJECT_VERSION and MARKETING_VERSION from `version`
     spec_json = """\
@@ -78,7 +86,7 @@ def _write_json_spec(*, ctx, project_name, infos):
         potential_target_merges = potential_target_merges_json,
         name = project_name,
         targets = targets_json,
-        required_links = json.encode(required_links.to_list()),
+        required_links = json.encode(sorted(required_links.to_list())),
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))
