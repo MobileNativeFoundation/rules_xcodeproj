@@ -76,3 +76,22 @@ swift_library(
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
+
+# Buildifier
+
+http_archive(
+    name = "buildifier_prebuilt",
+    sha256 = "54a58924e079a7f823a5aa30f37f10a7a966cf1ad87e14feb6fb07601389bdc1",
+    strip_prefix = "buildifier-prebuilt-0.3.2",
+    urls = [
+        "http://github.com/keith/buildifier-prebuilt/archive/0.3.2.tar.gz",
+    ],
+)
+
+load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
+
+buildifier_prebuilt_deps()
+
+load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
+
+buildifier_prebuilt_register_toolchains()

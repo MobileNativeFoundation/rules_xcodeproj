@@ -10,3 +10,5 @@ actions:
           - "main"
     bazel_commands:
       - "test --config=workflows //tools/... //test/..."
+      # GH126: Enable the Buildifier check once the current lint issues are addressed.
+      # - "run //:buildifier.check"
