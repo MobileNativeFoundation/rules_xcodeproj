@@ -133,6 +133,7 @@ def process_top_level_properties_test_suite(name):
             expected_product_name = expected_product_name,
             expected_product_type = expected_product_type,
             expected_build_settings = stringify_dict(expected_build_settings),
+            timeout = "short",
         )
 
     # Non-bundles

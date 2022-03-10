@@ -46,6 +46,7 @@ def calculate_configuration_test_suite(name):
             name = name,
             bin_dir = bin_dir_path,
             expected_configuration = expected_configuration,
+            timeout = "short",
         )
 
     # Valid

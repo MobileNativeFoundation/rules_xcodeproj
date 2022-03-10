@@ -52,6 +52,7 @@ def process_linker_opts_test_suite(name):
             name = name,
             linkopts = linkopts,
             expected_build_settings = stringify_dict(expected_build_settings),
+            timeout = "short",
         )
 
     # Base
