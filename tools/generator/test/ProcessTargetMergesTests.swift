@@ -53,8 +53,8 @@ final class TargetMergingTests: XCTestCase {
                 "Y": .bool(true),
                 "Z": .string("0")
             ],
-            // Inherited "A 1"'s sources
-            srcs: targets["A 1"]!.srcs,
+            // Inherited "A 1"'s inputs
+            inputs: targets["A 1"]!.inputs,
             // Removed "A 1"'s product
             links: ["a/c.a"],
             // Inherited "A 1"'s dependencies and removed "A 1"
@@ -63,7 +63,7 @@ final class TargetMergingTests: XCTestCase {
         expectedTargets["B 2"] = Target.mock(
             product: targets["B 2"]!.product,
             testHost: "A 2",
-            srcs: targets["B 1"]!.srcs,
+            inputs: targets["B 1"]!.inputs,
             // Removed "A 1"'s and "B 1"'s product
             links: [],
             // Inherited "B 1"'s dependencies and removed "A 1"
@@ -72,7 +72,7 @@ final class TargetMergingTests: XCTestCase {
         expectedTargets["B 3"] = Target.mock(
             product: targets["B 3"]!.product,
             testHost: "A 2",
-            srcs: targets["B 1"]!.srcs,
+            inputs: targets["B 1"]!.inputs,
             // Removed "B 1"'s product
             links: [],
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
@@ -103,7 +103,7 @@ final class TargetMergingTests: XCTestCase {
         // "PRODUCT_MODULE_NAME", which breaks indexing
         targets["B 2"] = Target.mock(
             product: targets["B 2"]!.product,
-            srcs: targets["B 2"]!.srcs,
+            inputs: targets["B 2"]!.inputs,
             links: ["z/A.a", "a/b.a"],
             dependencies: targets["B 2"]!.dependencies
         )
@@ -117,7 +117,7 @@ final class TargetMergingTests: XCTestCase {
         expectedTargets.removeValue(forKey: "B 1")
         expectedTargets["B 2"] = Target.mock(
             product: targets["B 2"]!.product,
-            srcs: targets["B 1"]!.srcs,
+            inputs: targets["B 1"]!.inputs,
             // Removed "B 1"'s product
             links: ["z/A.a"],
             // Inherited "B 1"'s dependencies
@@ -126,7 +126,7 @@ final class TargetMergingTests: XCTestCase {
         expectedTargets["B 3"] = Target.mock(
             product: targets["B 3"]!.product,
             testHost: "A 2",
-            srcs: targets["B 1"]!.srcs,
+            inputs: targets["B 1"]!.inputs,
             // Removed "B 1"'s product
             links: [],
             // Inherited "B 1"'s dependencies

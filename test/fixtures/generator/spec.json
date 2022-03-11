@@ -82,6 +82,7 @@
             "dependencies": [
                 "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
+            "inputs": {},
             "label": "//tools/generator:generator",
             "links": [
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
@@ -101,7 +102,6 @@
                 "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/generator",
                 "type": "com.apple.product-type.tool"
             },
-            "srcs": [],
             "test_host": null
         },
         "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -160,6 +160,35 @@
                 "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-1b9bd654f600",
                 "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
+            "inputs": {
+                "srcs": [
+                    "tools/generator/src/BuildSetting.swift",
+                    "tools/generator/src/DTO.swift",
+                    "tools/generator/src/Environment.swift",
+                    "tools/generator/src/Errors.swift",
+                    "tools/generator/src/FilePath.swift",
+                    "tools/generator/src/Generator+AddTargets.swift",
+                    "tools/generator/src/Generator+CreateFilesAndGroups.swift",
+                    "tools/generator/src/Generator+CreateProducts.swift",
+                    "tools/generator/src/Generator+CreateProject.swift",
+                    "tools/generator/src/Generator+CreateXcodeProj.swift",
+                    "tools/generator/src/Generator+DisambiguateTargets.swift",
+                    "tools/generator/src/Generator+Main.swift",
+                    "tools/generator/src/Generator+PopulateMainGroup.swift",
+                    "tools/generator/src/Generator+ProcessTargetMerges.swift",
+                    "tools/generator/src/Generator+SetTargetConfigurations.swift",
+                    "tools/generator/src/Generator+SetTargetDependencies.swift",
+                    "tools/generator/src/Generator+WriteXcodeProj.swift",
+                    "tools/generator/src/Generator.swift",
+                    "tools/generator/src/Inputs.swift",
+                    "tools/generator/src/Logger.swift",
+                    "tools/generator/src/PBXGroup+Extensions.swift",
+                    "tools/generator/src/PBXProductType+Extensions.swift",
+                    "tools/generator/src/Path+Extensions.swift",
+                    "tools/generator/src/Sorting.swift",
+                    "tools/generator/src/TargetID.swift"
+                ]
+            },
             "label": "//tools/generator:generator.library",
             "links": [],
             "name": "generator",
@@ -181,32 +210,6 @@
                 "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                "tools/generator/src/BuildSetting.swift",
-                "tools/generator/src/DTO.swift",
-                "tools/generator/src/Environment.swift",
-                "tools/generator/src/Errors.swift",
-                "tools/generator/src/FilePath.swift",
-                "tools/generator/src/Generator+AddTargets.swift",
-                "tools/generator/src/Generator+CreateFilesAndGroups.swift",
-                "tools/generator/src/Generator+CreateProducts.swift",
-                "tools/generator/src/Generator+CreateProject.swift",
-                "tools/generator/src/Generator+CreateXcodeProj.swift",
-                "tools/generator/src/Generator+DisambiguateTargets.swift",
-                "tools/generator/src/Generator+Main.swift",
-                "tools/generator/src/Generator+PopulateMainGroup.swift",
-                "tools/generator/src/Generator+ProcessTargetMerges.swift",
-                "tools/generator/src/Generator+SetTargetConfigurations.swift",
-                "tools/generator/src/Generator+SetTargetDependencies.swift",
-                "tools/generator/src/Generator+WriteXcodeProj.swift",
-                "tools/generator/src/Generator.swift",
-                "tools/generator/src/Logger.swift",
-                "tools/generator/src/PBXGroup+Extensions.swift",
-                "tools/generator/src/PBXProductType+Extensions.swift",
-                "tools/generator/src/Path+Extensions.swift",
-                "tools/generator/src/Sorting.swift",
-                "tools/generator/src/TargetID.swift"
-            ],
             "test_host": null
         },
         "//tools/generator:tests darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -262,6 +265,7 @@
             "dependencies": [
                 "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
+            "inputs": {},
             "label": "//tools/generator:tests",
             "links": [
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a",
@@ -284,7 +288,6 @@
                 "path": "tools/generator/tests.xctest",
                 "type": "com.apple.product-type.bundle.unit-test"
             },
-            "srcs": [],
             "test_host": null
         },
         "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -344,6 +347,25 @@
                 "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600",
                 "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
+            "inputs": {
+                "srcs": [
+                    "tools/generator/test/AddTargetsTests.swift",
+                    "tools/generator/test/CreateFilesAndGroupsTests.swift",
+                    "tools/generator/test/CreateProductsTest.swift",
+                    "tools/generator/test/CreateProjectTests.swift",
+                    "tools/generator/test/CreateXcodeProjTests.swift",
+                    "tools/generator/test/DisambiguateTargetsTests.swift",
+                    "tools/generator/test/Fixtures.swift",
+                    "tools/generator/test/GeneratorTests.swift",
+                    "tools/generator/test/PBXProj+Testing.swift",
+                    "tools/generator/test/PopulateMainGroupTests.swift",
+                    "tools/generator/test/ProcessTargetMergesTests.swift",
+                    "tools/generator/test/SetTargetConfigurations.swift",
+                    "tools/generator/test/SetTargetDependenciesTests.swift",
+                    "tools/generator/test/Target+Testing.swift",
+                    "tools/generator/test/XcodeProj+CustomDump.swift"
+                ]
+            },
             "label": "//tools/generator:tests.library",
             "links": [],
             "name": "tests",
@@ -365,23 +387,6 @@
                 "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                "tools/generator/test/AddTargetsTests.swift",
-                "tools/generator/test/CreateFilesAndGroupsTests.swift",
-                "tools/generator/test/CreateProductsTest.swift",
-                "tools/generator/test/CreateProjectTests.swift",
-                "tools/generator/test/CreateXcodeProjTests.swift",
-                "tools/generator/test/DisambiguateTargetsTests.swift",
-                "tools/generator/test/Fixtures.swift",
-                "tools/generator/test/GeneratorTests.swift",
-                "tools/generator/test/PBXProj+Testing.swift",
-                "tools/generator/test/PopulateMainGroupTests.swift",
-                "tools/generator/test/ProcessTargetMergesTests.swift",
-                "tools/generator/test/SetTargetConfigurations.swift",
-                "tools/generator/test/SetTargetDependenciesTests.swift",
-                "tools/generator/test/Target+Testing.swift",
-                "tools/generator/test/XcodeProj+CustomDump.swift"
-            ],
             "test_host": null
         },
         "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -437,6 +442,14 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_kylef_pathkit/Sources/PathKit.swift",
+                        "t": "e"
+                    }
+                ]
+            },
             "label": "@com_github_kylef_pathkit//:PathKit",
             "links": [],
             "name": "PathKit",
@@ -458,12 +471,6 @@
                 "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                {
-                    "_": "com_github_kylef_pathkit/Sources/PathKit.swift",
-                    "t": "e"
-                }
-            ],
             "test_host": null
         },
         "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -521,6 +528,110 @@
             "dependencies": [
                 "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreImage.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreLocation.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreMotion.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Foundation.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/GameKit.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/KeyPath.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Photos.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Speech.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/StoreKit.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Swift.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/SwiftUI.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UIKit.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UserNotifications.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UserNotificationsUI.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpReflectable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpRepresentable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpStringConvertible.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Diff.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Dump.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/AnyType.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/Box.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/CollectionDifference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/Mirror.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/String.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/XCTAssertNoDifference.swift",
+                        "t": "e"
+                    }
+                ]
+            },
             "label": "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
             "links": [],
             "name": "CustomDump",
@@ -542,108 +653,6 @@
                 "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreImage.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreLocation.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreMotion.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Foundation.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/GameKit.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/KeyPath.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Photos.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Speech.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/StoreKit.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Swift.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/SwiftUI.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UIKit.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UserNotifications.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UserNotificationsUI.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpReflectable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpRepresentable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpStringConvertible.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Diff.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Dump.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/AnyType.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/Box.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/CollectionDifference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/Mirror.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/String.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/XCTAssertNoDifference.swift",
-                    "t": "e"
-                }
-            ],
             "test_host": null
         },
         "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -699,6 +708,14 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_pointfreeco_xctest_dynamic_overlay/Sources/XCTestDynamicOverlay/XCTFail.swift",
+                        "t": "e"
+                    }
+                ]
+            },
             "label": "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay",
             "links": [],
             "name": "XCTestDynamicOverlay",
@@ -720,12 +737,6 @@
                 "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                {
-                    "_": "com_github_pointfreeco_xctest_dynamic_overlay/Sources/XCTestDynamicOverlay/XCTFail.swift",
-                    "t": "e"
-                }
-            ],
             "test_host": null
         },
         "@com_github_tadija_aexml//:AEXML darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -781,6 +792,30 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_tadija_aexml/Sources/AEXML/Document.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tadija_aexml/Sources/AEXML/Element.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tadija_aexml/Sources/AEXML/Error.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tadija_aexml/Sources/AEXML/Options.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tadija_aexml/Sources/AEXML/Parser.swift",
+                        "t": "e"
+                    }
+                ]
+            },
             "label": "@com_github_tadija_aexml//:AEXML",
             "links": [],
             "name": "AEXML",
@@ -802,28 +837,6 @@
                 "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                {
-                    "_": "com_github_tadija_aexml/Sources/AEXML/Document.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tadija_aexml/Sources/AEXML/Element.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tadija_aexml/Sources/AEXML/Error.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tadija_aexml/Sources/AEXML/Options.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tadija_aexml/Sources/AEXML/Parser.swift",
-                    "t": "e"
-                }
-            ],
             "test_host": null
         },
         "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -882,6 +895,390 @@
                 "@com_github_tadija_aexml//:AEXML darwin_x86_64-fastbuild-ST-1b9bd654f600",
                 "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Errors/Errors.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/AEXML+XcodeFormat.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Array+Extras.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Bool+Extras.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Dictionary+Enumerate.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Dictionary+Extras.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/KeyedDecodingContainer+Additions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/NSRecursiveLock+Sync.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Path+Extras.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/String+Utils.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/String+md5.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/BuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXBuildFile.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXBuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXBuildRule.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXCopyFilesBuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXFrameworksBuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXHeadersBuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXResourcesBuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXRezBuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXShellScriptBuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXSourcesBuildPhase.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Configuration/BuildSettings.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Configuration/XCBuildConfiguration.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Configuration/XCConfigurationList.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXContainerItem.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXContainerItemProxy.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXFileElement.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXFileReference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXGroup.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXSourceTree.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXVariantGroup.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/XCVersionGroup.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXObject.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXObjectParser.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXObjectReference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXObjects.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXOutputSettings.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXProj.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXProjEncoder.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXProject.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Sourcery/Equality.generated.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Sourcery/Sourcery.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/SwiftPackage/XCRemoteSwiftPackageReference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/SwiftPackage/XCSwiftPackageProductDependency.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXAggregateTarget.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXLegacyTarget.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXNativeTarget.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXProductType.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXReferenceProxy.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXTarget.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXTargetDependency.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/WorkspaceSettings.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/XCBreakpointList.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/XCSharedData.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/Xcode.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/XcodeProj.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Protocols/Writable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+AditionalOption.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+AnalyzeAction.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+ArchiveAction.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+BuildAction.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+BuildableProductRunnable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+BuildableReference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+CommandLineArguments.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+EnvironmentVariable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+ExecutionAction.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+LaunchAction.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+LocationScenarioReference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+PathRunnable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+ProfileAction.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+RemoteRunnable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+Runnable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+SerialAction.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+StoreKitConfigurationFileReference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+TestAction.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+TestItem.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+TestPlanReference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+TestableReference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCSchemeManagement.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/BuildSettingsProvider.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/CommentedString.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/Decoders.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/JSONDecoding.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/PBXBatchUpdater.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/PlistValue.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/ReferenceGenerator.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/XCConfig.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspace.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceData.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceDataElement.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceDataElementLocationType.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceDataFileRef.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceDataGroup.swift",
+                        "t": "e"
+                    }
+                ]
+            },
             "label": "@com_github_tuist_xcodeproj//:XcodeProj",
             "links": [],
             "name": "XcodeProj",
@@ -903,388 +1300,6 @@
                 "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
                 "type": "com.apple.product-type.library.static"
             },
-            "srcs": [
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Errors/Errors.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/AEXML+XcodeFormat.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Array+Extras.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Bool+Extras.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Dictionary+Enumerate.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Dictionary+Extras.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/KeyedDecodingContainer+Additions.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/NSRecursiveLock+Sync.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/Path+Extras.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/String+Utils.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Extensions/String+md5.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/BuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXBuildFile.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXBuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXBuildRule.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXCopyFilesBuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXFrameworksBuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXHeadersBuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXResourcesBuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXRezBuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXShellScriptBuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/BuildPhase/PBXSourcesBuildPhase.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Configuration/BuildSettings.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Configuration/XCBuildConfiguration.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Configuration/XCConfigurationList.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXContainerItem.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXContainerItemProxy.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXFileElement.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXFileReference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXGroup.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXSourceTree.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/PBXVariantGroup.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Files/XCVersionGroup.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXObject.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXObjectParser.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXObjectReference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXObjects.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXOutputSettings.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXProj.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXProjEncoder.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Project/PBXProject.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Sourcery/Equality.generated.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Sourcery/Sourcery.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/SwiftPackage/XCRemoteSwiftPackageReference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/SwiftPackage/XCSwiftPackageProductDependency.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXAggregateTarget.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXLegacyTarget.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXNativeTarget.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXProductType.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXReferenceProxy.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXTarget.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Objects/Targets/PBXTargetDependency.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/WorkspaceSettings.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/XCBreakpointList.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/XCSharedData.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/Xcode.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Project/XcodeProj.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Protocols/Writable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+AditionalOption.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+AnalyzeAction.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+ArchiveAction.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+BuildAction.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+BuildableProductRunnable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+BuildableReference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+CommandLineArguments.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+EnvironmentVariable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+ExecutionAction.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+LaunchAction.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+LocationScenarioReference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+PathRunnable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+ProfileAction.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+RemoteRunnable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+Runnable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+SerialAction.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+StoreKitConfigurationFileReference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+TestAction.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+TestItem.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+TestPlanReference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme+TestableReference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCScheme.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Scheme/XCSchemeManagement.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/BuildSettingsProvider.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/CommentedString.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/Decoders.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/JSONDecoding.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/PBXBatchUpdater.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/PlistValue.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/ReferenceGenerator.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Utils/XCConfig.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspace.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceData.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceDataElement.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceDataElementLocationType.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceDataFileRef.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Workspace/XCWorkspaceDataGroup.swift",
-                    "t": "e"
-                }
-            ],
             "test_host": null
         }
     ]

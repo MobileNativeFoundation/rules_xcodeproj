@@ -35,7 +35,7 @@ Product for target "\(id)" not found
 
             let sourcesBuildPhase = try createCompileSourcesPhase(
                 in: pbxProj,
-                sources: target.srcs,
+                inputs: target.inputs,
                 files: files
             )
             let frameworksBuildPhase = try createFrameworksPhase(
@@ -63,7 +63,7 @@ Product for target "\(id)" not found
             pbxTargets[id] = pbxTarget
 
             if
-                target.srcs.containsGeneratedFiles,
+                target.inputs.containsGeneratedFiles,
                 let generatedFilesTarget = generatedFilesTarget
             {
                 _ = try pbxTarget.addDependency(target: generatedFilesTarget)
@@ -137,29 +137,42 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
 
     private static func createCompileSourcesPhase(
         in pbxProj: PBXProj,
-        sources: Set<FilePath>,
+        inputs: Inputs,
         files: [FilePath: File]
     ) throws -> PBXSourcesBuildPhase {
-        func buildFile(filePath: FilePath) throws -> PBXBuildFile {
-            guard let file = files[filePath] else {
+        func buildFile(sourceFile: SourceFile) throws -> PBXBuildFile {
+            guard let file = files[sourceFile.filePath] else {
                 throw PreconditionError(message: """
-File "\(filePath)" not found
+File "\(sourceFile.filePath)" not found
 """)
             }
-            let pbxBuildFile = PBXBuildFile(file: file.reference)
+            let pbxBuildFile = PBXBuildFile(
+                file: file.reference,
+                settings: sourceFile.settings
+            )
             pbxProj.add(object: pbxBuildFile)
             return pbxBuildFile
         }
 
-        let filePaths: Set<FilePath>
+        let sources = Set(
+            inputs.srcs.map(SourceFile.init)
+            + inputs.nonArcSrcs.map { filePath in
+                return SourceFile(
+                    filePath,
+                    compilerFlags: ["-fno-objc-arc"]
+                )
+            }
+        )
+
+        let sourceFiles: Set<SourceFile>
         if sources.isEmpty {
-            filePaths = [.internal(compileStubPath)]
+            sourceFiles = [SourceFile(.internal(compileStubPath))]
         } else {
-            filePaths = sources
+            sourceFiles = sources
         }
 
         let buildPhase = PBXSourcesBuildPhase(
-            files: try filePaths.map(buildFile).sortedLocalizedStandard()
+            files: try sourceFiles.map(buildFile).sortedLocalizedStandard()
         )
         pbxProj.add(object: buildPhase)
 
@@ -190,5 +203,32 @@ Product with path "\(path)" not found
         pbxProj.add(object: buildPhase)
 
         return buildPhase
+    }
+}
+
+private struct SourceFile: Hashable {
+    let filePath: FilePath
+    let compilerFlags: [String]?
+
+    init(_ filePath: FilePath) {
+        self.init(filePath, compilerFlags: nil)
+    }
+
+    init(_ filePath: FilePath, compilerFlags: [String]?) {
+        self.filePath = filePath
+        self.compilerFlags = compilerFlags
+    }
+
+    var settings: [String: Any]? {
+        return compilerFlags.flatMap { flags in
+            return ["COMPILER_FLAGS": BuildSetting.array(flags).asAny]
+        }
+    }
+}
+
+private extension Inputs {
+    var containsGeneratedFiles: Bool {
+        return srcs.containsGeneratedFiles
+            || nonArcSrcs.containsGeneratedFiles
     }
 }

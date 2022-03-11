@@ -17,7 +17,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let targets: [TargetID: Target] = [
             "A": Target.mock(
                 product: .init(type: .staticLibrary, name: "a", path: "liba.a"),
-                srcs: ["a.swift"]
+                inputs: .init(srcs: ["a.swift"])
             ),
         ]
         let extraFiles: Set<FilePath> = []

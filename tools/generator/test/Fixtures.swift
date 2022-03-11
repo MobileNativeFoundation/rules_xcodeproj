@@ -33,7 +33,7 @@ enum Fixtures {
                 "T": .string("42"),
                 "Y": .bool(true),
             ],
-            srcs: ["x/y.swift", "b.c"]
+            inputs: .init(srcs: ["x/y.swift"], nonArcSrcs: ["b.c"])
         ),
         "A 2": Target.mock(
             product: .init(type: .application, name: "A", path: "z/A.app"),
@@ -47,7 +47,7 @@ enum Fixtures {
         ),
         "B 1": Target.mock(
             product: .init(type: .staticLibrary, name: "b", path: "a/b.a"),
-            srcs: ["z.mm"],
+            inputs: .init(srcs: ["z.mm"]),
             dependencies: ["A 1"]
         ),
         // "B 2" not having a link on "A 1" represents a bundle_loader like
@@ -66,15 +66,15 @@ enum Fixtures {
         ),
         "C 1": Target.mock(
             product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),
-            srcs: ["a/b/c.m"]
+            inputs: .init(srcs: ["a/b/c.m"])
         ),
         "E1": Target.mock(
             product: .init(type: .staticLibrary, name: "E1", path: "e1/E.a"),
-            srcs: [.external("a_repo/a.swift")]
+            inputs: .init(srcs: [.external("a_repo/a.swift")])
         ),
         "E2": Target.mock(
             product: .init(type: .staticLibrary, name: "E2", path: "e2/E.a"),
-            srcs: [.external("another_repo/b.swift")]
+            inputs: .init(srcs: [.external("another_repo/b.swift")])
         ),
     ]
 
@@ -473,7 +473,10 @@ enum Fixtures {
             "A 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: elements["b.c"]!),
+                        PBXBuildFile(
+                            file: elements["b.c"]!,
+                            settings: ["COMPILER_FLAGS": "-fno-objc-arc"]
+                        ),
                         PBXBuildFile(file: elements["x/y.swift"]!),
                     ])
                 ),

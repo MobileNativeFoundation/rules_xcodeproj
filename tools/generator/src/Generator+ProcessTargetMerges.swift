@@ -66,8 +66,8 @@ exist
                 merged.buildSettings["PRODUCT_MODULE_NAME"] = merging.buildSettings["PRODUCT_MODULE_NAME"]
                 merged.buildSettings.merge(merging.buildSettings) { l, _ in l }
 
-                // Update sources
-                merged.srcs = merging.srcs
+                // Update inputs
+                merged.inputs = merging.inputs
 
                 // Update links
                 merged.links.remove(merging.product.path)

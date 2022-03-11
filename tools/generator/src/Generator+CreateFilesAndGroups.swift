@@ -138,10 +138,9 @@ extension Generator {
         // Collect all files
         var allInputPaths = extraFiles
         for target in targets.values {
-            if target.srcs.isEmpty {
+            allInputPaths.formUnion(target.inputs.all)
+            if !target.inputs.containsSources {
                 allInputPaths.insert(.internal(compileStubPath))
-            } else {
-                allInputPaths.formUnion(target.srcs)
             }
         }
 
@@ -240,6 +239,10 @@ extension Generator {
 
         return (files, rootElements)
     }
+}
+
+private extension Inputs {
+    var containsSources: Bool { !srcs.isEmpty || !nonArcSrcs.isEmpty }
 }
 
 private extension Path {

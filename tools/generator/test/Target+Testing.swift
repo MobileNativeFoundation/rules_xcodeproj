@@ -10,7 +10,7 @@ extension Target {
         product: Product,
         testHost: TargetID? = nil,
         buildSettings: [String: BuildSetting] = [:],
-        srcs: Set<FilePath> = [],
+        inputs: Inputs = Inputs(),
         links: Set<Path> = [],
         dependencies: Set<TargetID> = []
     ) -> Self {
@@ -27,7 +27,7 @@ extension Target {
             product: product,
             testHost: testHost,
             buildSettings: buildSettings,
-            srcs: srcs,
+            inputs: inputs,
             links: links,
             dependencies: dependencies
         )
