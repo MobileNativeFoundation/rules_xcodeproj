@@ -472,7 +472,9 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         potential_target_merges = []
         mergeable_label = None
 
-    build_settings = process_opts(ctx = ctx, target = target)
+    build_settings = {}
+
+    process_opts(ctx = ctx, target = target, build_settings = build_settings)
 
     tree_artifact_enabled = (
         ctx.var.get("apple.experimental.tree_artifact_outputs", "").lower()
@@ -578,7 +580,9 @@ def _process_library_target(*, ctx, target, transitive_infos):
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
 
-    build_settings = process_opts(ctx = ctx, target = target)
+    build_settings = {}
+
+    process_opts(ctx = ctx, target = target, build_settings = build_settings)
     product_name = ctx.rule.attr.name
     module_name = get_product_module_name(ctx = ctx, target = target)
     build_settings["PRODUCT_MODULE_NAME"] = module_name
