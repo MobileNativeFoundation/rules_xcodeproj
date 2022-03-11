@@ -198,6 +198,9 @@ def _xcodeproj_impl(ctx):
         for dep in ctx.attr.targets
         if XcodeProjInfo in dep
     ]
+    generated_inputs = depset(
+        transitive = [info.generated_inputs for info in infos],
+    )
 
     spec_file = _write_json_spec(
         ctx = ctx,
@@ -222,6 +225,9 @@ def _xcodeproj_impl(ctx):
             executable = installer,
             files = depset([xcodeproj]),
             runfiles = ctx.runfiles(files = [xcodeproj]),
+        ),
+        OutputGroupInfo(
+            generated_inputs = generated_inputs,
         ),
         XcodeProjOutputInfo(
             installer = installer,
