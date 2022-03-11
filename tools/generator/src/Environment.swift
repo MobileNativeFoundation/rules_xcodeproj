@@ -22,6 +22,7 @@ struct Environment {
         _ targets: [TargetID: Target],
         _ extraFiles: Set<FilePath>,
         _ externalDirectory: Path,
+        _ generatedDirectory: Path,
         _ internalDirectoryName: String,
         _ workspaceOutputPath: Path
     ) -> (

@@ -121,6 +121,7 @@ def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
     xcodeproj(
         name = name,
         external_dir_override = "bazel-rules_xcodeproj/external",
+        generated_dir_override = "bazel-out",
         project_name = project_name,
         targets = targets,
         xcodeproj_rule = _fixture_xcodeproj,

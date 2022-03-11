@@ -37,6 +37,7 @@ class Generator {
         project: Project,
         projectRootDirectory: Path,
         externalDirectory: Path,
+        generatedDirectory: Path,
         internalDirectoryName: String,
         workspaceOutputPath: Path,
         outputPath: Path
@@ -72,6 +73,7 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             targets,
             project.extraFiles,
             externalDirectory,
+            generatedDirectory,
             internalDirectoryName,
             workspaceOutputPath
         )

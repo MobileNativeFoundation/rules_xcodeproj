@@ -14,6 +14,7 @@ def file_path(file):
         *   `t`: Maps to `FilePath.FileType`:
             *   "p" for `.project`
             *   "e" for `.external`
+            *   "g" for `.generated`
             *   "i" for `.internal`
     """
     path = file.path
@@ -23,5 +24,12 @@ def file_path(file):
             t = "e",
             # Path, removing `external/` prefix
             _ = path[9:],
+        )
+    if not file.is_source:
+        return struct(
+            # Type: "g" == `.generated`
+            t = "g",
+            # Path, removing `bazel-out/` prefix
+            _ = path[10:],
         )
     return path

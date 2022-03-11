@@ -17,6 +17,7 @@ extension Generator {
                 project: project,
                 projectRootDirectory: arguments.projectRootDirectory,
                 externalDirectory: rootDirs.externalDirectory,
+                generatedDirectory: rootDirs.generatedDirectory,
                 internalDirectoryName: "rules_xcodeproj",
                 workspaceOutputPath: arguments.workspaceOutputPath,
                 outputPath: arguments.outputPath
@@ -65,6 +66,7 @@ Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
 
     struct RootDirectories {
         let externalDirectory: Path
+        let generatedDirectory: Path
     }
 
     static func readRootDirectories(path: Path) throws -> RootDirectories {
@@ -72,15 +74,16 @@ Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
             .split(separator: "\n")
             .map(String.init)
 
-        guard rootDirs.count == 1 else {
+        guard rootDirs.count == 2 else {
             throw UsageError(message: """
-The root_dirs_file must contain one line: one for the external repositories \
-directory
+The root_dirs_file must contain two lines: one for the external repositories \
+directory, and one for the generated files directory.
 """)
         }
 
         return RootDirectories(
-            externalDirectory: Path(rootDirs[0])
+            externalDirectory: Path(rootDirs[0]),
+            generatedDirectory: Path(rootDirs[1])
         )
     }
 
