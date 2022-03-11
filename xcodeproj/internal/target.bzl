@@ -247,7 +247,39 @@ def _swift_module_output(module):
 
     return output
 
-# Xcode target
+# Processed target
+
+def _processed_target(
+    *,
+    inputs_info,
+    potential_target_merges,
+    required_links,
+    target,
+    xcode_target):
+    """Generates the return value for target processing functions.
+
+    Args:
+        inputs_info: An `InputFilesInfo` that will provide values for the
+            `XcodeProjInfo.extra_files` and `XcodeProjInfo.generated_inputs`
+            fields.
+        potential_target_merges: A `list` of `struct`s that will be in the
+            `XcodeProjInfo.potential_target_merges` `depset`.
+        required_links: A `list` of strings that will be in the
+            `XcodeProjInfo.required_links` `depset`.
+        target: The `XcodeProjInfo.target` `struct`.
+        xcode_target: A string that will be in the
+            `XcodeProjInfo.xcode_targets` `depset`.
+
+    Returns:
+        A `struct` containing fields for each argument.
+    """
+    return struct(
+        inputs_info = inputs_info,
+        potential_target_merges = potential_target_merges,
+        required_links = required_links,
+        target = target,
+        xcode_target = xcode_target,
+    )
 
 def _xcode_target(
     *,
@@ -408,19 +440,7 @@ def _process_top_level_target(*, ctx, target, bundle_info):
         bundle_info: The `AppleBundleInfo` provider for `target`, or `None`.
 
     Returns:
-        A `struct` containing the following fields:
-
-        *   `extra_files`: A `list` of `File`s that will be in the
-            `XcodeProjInfo.extra_files` `depset`.
-        *   `generated_inputs`: A `list` of `File`s that will be in the
-            `XcodeProjInfo.generated_inputs` `depset`.
-        *   `potential_target_merges`: A `list` of `struct`s that will be in the
-            `XcodeProjInfo.potential_target_merges` `depset`.
-        *   `required_links`: A `list` of strings that will be in the
-            `XcodeProjInfo.required_links` `depset`.
-        *   `target`: The `XcodeProjInfo.target` `struct`.
-        *   `xcode_target`: A string that will be in the
-            `XcodeProjInfo.xcode_targets` `depset`.
+        A `struct` as returned from `_processed_target()`.
     """
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
@@ -509,7 +529,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 
     inputs_info = target[InputFilesInfo]
 
-    return struct(
+    return _processed_target(
         inputs_info = inputs_info,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
@@ -555,19 +575,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        A `struct` containing the following fields:
-
-        *   `extra_files`: A `list` of `File`s that will be in the
-            `XcodeProjInfo.extra_files` `depset`.
-        *   `generated_inputs`: A `list` of `File`s that will be in the
-            `XcodeProjInfo.generated_inputs` `depset`.
-        *   `potential_target_merges`: A `list` of `struct`s that will be in the
-            `XcodeProjInfo.potential_target_merges` `depset`.
-        *   `required_links`: A `list` of strings that will be in the
-            `XcodeProjInfo.required_links` `depset`.
-        *   `target`: The `XcodeProjInfo.target` `struct`.
-        *   `xcode_target`: A string that will be in the
-            `XcodeProjInfo.xcode_targets` `depset`.
+        A `struct` as returned from `_processed_target()`.
     """
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
@@ -607,7 +615,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
 
     inputs_info = target[InputFilesInfo]
 
-    return struct(
+    return _processed_target(
         inputs_info = inputs_info,
         potential_target_merges = [],
         required_links = [],
