@@ -422,22 +422,20 @@ def _process_libraries(
 
     return links, required_links
 
-def _process_test_host(test_host, *, dependencies):
+def _process_test_host(test_host):
     if test_host:
-        test_host_target = test_host[XcodeProjInfo].target
-        dependencies = dependencies + [test_host_target.id]
-    else:
-        test_host_target = None
+        return test_host[XcodeProjInfo].target
+    return None
 
-    return test_host_target, dependencies
-
-def _process_top_level_target(*, ctx, target, bundle_info):
+def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     """Gathers information about a top-level target.
 
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
         bundle_info: The `AppleBundleInfo` provider for `target`, or `None`.
+        transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
+            transitive dependencies of `target`.
 
     Returns:
         A `struct` as returned from `_processed_target()`.
@@ -445,6 +443,7 @@ def _process_top_level_target(*, ctx, target, bundle_info):
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
     inputs_info = target[InputFilesInfo]
+    dependencies = [info.target.id for info in transitive_infos if info.target]
 
     library_dep_targets = [
         dep[XcodeProjInfo].target
@@ -490,9 +489,8 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
 
-    test_host_target, dependencies = _process_test_host(
+    test_host_target = _process_test_host(
         getattr(ctx.rule.attr, "test_host", None),
-        dependencies = [merge.src for merge in potential_target_merges],
     )
 
     links, required_links = _process_libraries(
@@ -790,12 +788,14 @@ def _process_target(*, ctx, target, transitive_infos):
             ctx = ctx,
             target = target,
             bundle_info = target[AppleBundleInfo],
+            transitive_infos = transitive_infos,
         )
     elif target[DefaultInfo].files_to_run.executable:
         processed_target = _process_top_level_target(
             ctx = ctx,
             target = target,
             bundle_info = None,
+            transitive_infos = transitive_infos,
         )
     else:
         processed_target = _process_library_target(
