@@ -124,19 +124,29 @@ def _get_id(*, label, configuration):
 
 # Product
 
-def _get_static_library(*, label, cc_info):
-    for input in cc_info.linking_context.linker_inputs.to_list():
-        if input.owner != label:
-            continue
-        for library in input.libraries:
-            return library.static_library.path
+def _get_static_libraries(*, cc_info):
+    return [
+        library.static_library
+        for libraries in [
+            input.libraries
+            for input in cc_info.linking_context.linker_inputs.to_list()
+        ]
+        for library in libraries
+    ]
+
+def _get_static_library(*, label, libraries):
+    for library in libraries:
+        if library.owner == label:
+            return library.path
     return None
 
 def _process_product(
+    *,
     target,
     product_name,
     product_type,
     bundle_path,
+    libraries,
     build_settings):
     """Generates information about the target's product.
 
@@ -149,6 +159,7 @@ def _process_product(
             for examples.
         bundle_path: If the product is a bundle, this is the the path to the
             bundle, otherwise `None`.
+        libraries: A `list` of static library `File`s that this product links.
         build_settings: A mutable `dict` that will be updated with Xcode build
             settings.
     """
@@ -159,7 +170,7 @@ def _process_product(
     elif CcInfo in target or SwiftInfo in target:
         path = _get_static_library(
             label = target.label,
-            cc_info = target[CcInfo],
+            libraries = libraries,
         )
     else:
         path = None
@@ -357,7 +368,7 @@ def _process_libraries(
         # test host and its dependencies should be removed from the
         # unit test's links.
         avoid_links = [
-            file.path for file in test_host_libraries.to_list()
+            file.path for file in test_host_libraries
         ]
 
         def remove_avoided(links):
@@ -437,7 +448,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         dependencies = [merged_target.id],
     )
 
-    libraries_list = libraries.to_list()
     links, required_links = _process_libraries(
         product_type = props.product_type,
         test_host_libraries = (
@@ -445,11 +455,11 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         ),
         links = [
             library.path
-            for library in libraries_list
+            for library in libraries
         ],
         required_links = [
             library.path
-            for library in libraries_list
+            for library in libraries
             if library.owner != merged_target.label
         ],
     )
@@ -488,11 +498,12 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             configuration = configuration,
             platform = platform,
             product = _process_product(
-                target,
-                props.product_name,
-                props.product_type,
-                props.bundle_path,
-                build_settings
+                target = target,
+                product_name = props.product_name,
+                product_type = props.product_type,
+                bundle_path = props.bundle_path,
+                libraries = libraries,
+                build_settings = build_settings
             ),
             test_host = test_host_target.id if test_host_target else None,
             build_settings = build_settings,
@@ -533,7 +544,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     module_name = get_product_module_name(ctx = ctx, target = target)
     build_settings["PRODUCT_MODULE_NAME"] = module_name
     dependencies = [info.target.id for info in transitive_infos if info.target]
-    libraries = target[apple_common.Objc].library
+    libraries = _get_static_libraries(cc_info = target[CcInfo])
 
     cpp = ctx.fragments.cpp
     # TODO: Get the value for device builds, even when active config is not for
@@ -587,11 +598,12 @@ def _process_library_target(*, ctx, target, transitive_infos):
             name = module_name,
             label = str(target.label),
             product = _process_product(
-                target,
-                product_name,
-                "com.apple.product-type.library.static",
-                None,
-                build_settings,
+                target = target,
+                product_name = product_name,
+                product_type = "com.apple.product-type.library.static",
+                bundle_path = None,
+                libraries = libraries,
+                build_settings = build_settings,
             ),
             configuration = configuration,
             platform = platform,
@@ -623,7 +635,7 @@ def _should_process_target(target):
         # Top level bundles
         AppleBundleInfo in target or
         # Libraries
-        apple_common.Objc in target or
+        CcInfo in target or
         # Bare executables
         target[DefaultInfo].files_to_run.executable
     )
