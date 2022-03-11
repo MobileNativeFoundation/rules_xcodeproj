@@ -1,7 +1,7 @@
 """Implementation of the `input_files_aspect` aspect."""
 
-load("@build_bazel_rules_apple//apple:providers.bzl", "AppleBundleInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@build_bazel_rules_apple//apple:providers.bzl", "AppleBundleInfo")
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:providers.bzl",
     "InputFileAttributesInfo",
@@ -124,6 +124,7 @@ def _input_files_aspect_impl(target, ctx):
     non_arc_srcs = []
     other = []
 
+    # buildifier: disable=uninitialized
     def _handle_file(file, *, attr):
         if file:
             if file.is_source:
@@ -138,6 +139,7 @@ def _input_files_aspect_impl(target, ctx):
             else:
                 other.append(file)
 
+    # buildifier: disable=uninitialized
     def _handle_dep(dep):
         if dep and InputFilesInfo in dep:
             info = dep[InputFilesInfo]
