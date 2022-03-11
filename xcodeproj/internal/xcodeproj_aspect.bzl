@@ -7,7 +7,6 @@ load(
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:target.bzl",
     "XcodeProjInfo",
-    "as_resource",
     "process_target",
 )
 
@@ -32,7 +31,7 @@ def _transitive_infos(*, ctx):
         deps = getattr(ctx.rule.attr, attr, [])
         for dep in deps:
             if XcodeProjInfo in dep:
-                transitive_infos.append(as_resource(dep[XcodeProjInfo]))
+                transitive_infos.append(dep[XcodeProjInfo])
     for attr in _ASPECT_DEP_ATTRS:
         deps = getattr(ctx.rule.attr, attr, [])
         for dep in deps:

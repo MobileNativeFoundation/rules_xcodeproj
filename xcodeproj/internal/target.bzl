@@ -902,25 +902,6 @@ def process_target(*, ctx, target, transitive_infos):
         **info_fields
     )
 
-def as_resource(info):
-    """Converts an `XcodeProjInfo` to one that provides resources.
-
-    Args:
-        info: The `XcodeProjInfo` to convert.
-
-    Returns:
-        An `XcodeProjInfo`, but with `extra_files` containing what was in
-        `unbound_srcs`.
-    """
-    return XcodeProjInfo(
-        extra_files = info.extra_files,
-        generated_inputs = info.generated_inputs,
-        potential_target_merges = info.potential_target_merges,
-        required_links = info.required_links,
-        target = info.target,
-        xcode_targets = info.xcode_targets,
-    )
-
 # These functions are exposed only for access in unit tests.
 testable = struct(
     calculate_configuration = _calculate_configuration,
