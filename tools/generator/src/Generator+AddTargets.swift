@@ -6,7 +6,7 @@ extension Generator {
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
         products: Products,
-        files: [FilePath: PBXFileElement]
+        files: [FilePath: File]
     ) throws -> [TargetID: PBXNativeTarget] {
         let pbxProject = pbxProj.rootObject!
 
@@ -63,15 +63,15 @@ Product for target "\(id)" not found
     private static func createCompileSourcesPhase(
         in pbxProj: PBXProj,
         sources: Set<FilePath>,
-        files: [FilePath: PBXFileElement]
+        files: [FilePath: File]
     ) throws -> PBXSourcesBuildPhase {
         func buildFile(filePath: FilePath) throws -> PBXBuildFile {
-            guard let fileElement = files[filePath] else {
+            guard let file = files[filePath] else {
                 throw PreconditionError(message: """
 File "\(filePath)" not found
 """)
             }
-            let pbxBuildFile = PBXBuildFile(file: fileElement)
+            let pbxBuildFile = PBXBuildFile(file: file.reference)
             pbxProj.add(object: pbxBuildFile)
             return pbxBuildFile
         }

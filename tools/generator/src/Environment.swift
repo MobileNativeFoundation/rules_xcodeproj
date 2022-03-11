@@ -26,7 +26,7 @@ struct Environment {
         _ internalDirectoryName: String,
         _ workspaceOutputPath: Path
     ) -> (
-        elements: [FilePath: PBXFileElement],
+        files: [FilePath: File],
         rootElements: [PBXFileElement]
     )
 
@@ -50,7 +50,7 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
         _ products: Products,
-        _ files: [FilePath: PBXFileElement]
+        _ files: [FilePath: File]
     ) throws -> [TargetID: PBXNativeTarget]
 
     let setTargetConfigurations: (
@@ -68,7 +68,7 @@ struct Environment {
 
     let writeXcodeProj: (
         _ xcodeProj: XcodeProj,
-        _ files: [FilePath: PBXFileElement],
+        _ files: [FilePath: File],
         _ internalDirectoryName: String,
         _ outputPath: Path
     ) throws -> Void

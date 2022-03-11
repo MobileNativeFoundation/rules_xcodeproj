@@ -1,6 +1,21 @@
 import PathKit
 import XcodeProj
 
+/// Wrapper for `PBXFileReference`, adding additional associated data.
+struct File: Equatable {
+    let reference: PBXFileReference
+
+    /// File content to be written to disk.
+    ///
+    /// This is only used by the `FilePath.PathType.internal` files.
+    let content: String
+
+    init(reference: PBXFileReference, content: String = "") {
+        self.reference = reference
+        self.content = content
+    }
+}
+
 extension Generator {
     static let compileStubPath = Path("CompileStub.swift")
 
@@ -13,7 +28,7 @@ extension Generator {
         internalDirectoryName: String,
         workspaceOutputPath: Path
     ) -> (
-        elements: [FilePath: PBXFileElement],
+        files: [FilePath: File],
         rootElements: [PBXFileElement]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
@@ -173,6 +188,15 @@ extension Generator {
             }
         }
 
+        var files: [FilePath: File] = [:]
+        for (filePath, element) in elements {
+            guard let reference = element as? PBXFileReference else {
+                continue
+            }
+
+            files[filePath] = File(reference: reference)
+        }
+
         // Handle special groups
 
         rootElements.sortGroupedLocalizedStandard()
@@ -189,7 +213,7 @@ extension Generator {
             rootElements.append(internalGroup)
         }
 
-        return (elements, rootElements)
+        return (files, rootElements)
     }
 }
 

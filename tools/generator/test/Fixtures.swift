@@ -121,7 +121,7 @@ enum Fixtures {
         generatedDirectory: Path = "/var/tmp/_bazel_U/H/execroot/W/bazel-out",
         internalDirectoryName: String = "rules_xcodeproj",
         workspaceOutputPath: Path = "some/Project.xcodeproj"
-    ) -> [FilePath: PBXFileElement] {
+    ) -> (files: [FilePath: File], elements: [FilePath: PBXFileElement]) {
         var elements: [FilePath: PBXFileElement] = [:]
 
         // bazel-out/a1b2c/bin/t.c
@@ -295,7 +295,16 @@ enum Fixtures {
             }
         }
 
-        return elements
+        var files: [FilePath: File] = [:]
+        for (filePath, element) in elements {
+            guard let reference = element as? PBXFileReference else {
+                continue
+            }
+
+            files[filePath] = File(reference: reference)
+        }
+
+        return (files, elements)
     }
 
     static func products(
@@ -412,8 +421,8 @@ enum Fixtures {
 
     static func pbxTargets(
         in pbxProj: PBXProj,
-        disambiguatedTargets: [TargetID : DisambiguatedTarget],
-        files: [FilePath : PBXFileElement],
+        disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        files: [FilePath: File],
         products: Products
     ) -> [TargetID: PBXNativeTarget] {
         // Build phases
@@ -423,12 +432,14 @@ enum Fixtures {
             return buildFiles
         }
 
+        let elements = files.mapValues(\.reference)
+
         let buildPhases: [TargetID: [PBXBuildPhase]] = [
             "A 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: files["b.c"]!),
-                        PBXBuildFile(file: files["x/y.swift"]!),
+                        PBXBuildFile(file: elements["b.c"]!),
+                        PBXBuildFile(file: elements["x/y.swift"]!),
                     ])
                 ),
                 PBXFrameworksBuildPhase(),
@@ -436,7 +447,7 @@ enum Fixtures {
             "A 2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: files[.internal("CompileStub.swift")]!
+                        file: elements[.internal("CompileStub.swift")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -449,7 +460,7 @@ enum Fixtures {
             "B 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: files["z.mm"]!),
+                        PBXBuildFile(file: elements["z.mm"]!),
                     ])
                 ),
                 PBXFrameworksBuildPhase(),
@@ -457,7 +468,7 @@ enum Fixtures {
             "B 2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: files[.internal("CompileStub.swift")]!
+                        file: elements[.internal("CompileStub.swift")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -469,7 +480,7 @@ enum Fixtures {
             "B 3": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: files[.internal("CompileStub.swift")]!
+                        file: elements[.internal("CompileStub.swift")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -481,15 +492,15 @@ enum Fixtures {
             "C 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: files["a/b/c.m"]!),
+                        PBXBuildFile(file: elements["a/b/c.m"]!),
                     ])
                 ),
                 PBXFrameworksBuildPhase(),
             ],
             "E1": [
                 PBXSourcesBuildPhase(
-                    files: buildFiles([
-                        PBXBuildFile(file: files[.external("a_repo/a.swift")]!),
+                    files: buildFiles([PBXBuildFile(
+                        file: elements[.external("a_repo/a.swift")]!),
                     ])
                 ),
                 PBXFrameworksBuildPhase(),
@@ -497,7 +508,7 @@ enum Fixtures {
             "E2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: files[.external("another_repo/b.swift")]!
+                        file: elements[.external("another_repo/b.swift")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(),
@@ -583,7 +594,7 @@ enum Fixtures {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
 
-        let files = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
+        let (files, _) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
 
         let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)
