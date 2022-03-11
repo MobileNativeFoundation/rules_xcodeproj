@@ -68,6 +68,12 @@ enum Fixtures {
             product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),
             inputs: .init(srcs: ["a/b/c.m"])
         ),
+        "C 2": Target.mock(
+            product: .init(type: .commandLineTool, name: "d", path: "d"),
+            inputs: .init(srcs: ["a/b/d.m"]),
+            links: ["a/c.a"],
+            dependencies: ["C 1"]
+        ),
         "E1": Target.mock(
             product: .init(type: .staticLibrary, name: "E1", path: "e1/E.a"),
             inputs: .init(srcs: [.external("a_repo/a.swift")])
@@ -223,8 +229,19 @@ enum Fixtures {
             lastKnownFileType: "sourcecode.c.objc",
             path: "c.m"
         )
+
+        // a/b/d.m
+
+        elements["a/b/d.m"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.objc",
+            path: "d.m"
+        )
+
+        // a/b
+
         elements["a/b"] = PBXGroup(
-            children: [elements["a/b/c.m"]!],
+            children: [elements["a/b/c.m"]!, elements["a/b/d.m"]!],
             sourceTree: .group,
             path: "b"
         )
@@ -401,6 +418,15 @@ enum Fixtures {
                 includeInIndex: false
             ),
             Products.ProductKeys(
+                target: "C 2",
+                path: "d"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.commandLineTool.fileType,
+                path: "d",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
                 target: "E1",
                 path: "e1/E.a"
             ): PBXFileReference(
@@ -442,6 +468,7 @@ enum Fixtures {
                 products.byPath["B.xctest"]!,
                 products.byPath["B3.xctest"]!,
                 products.byPath["a/c.a"]!,
+                products.byPath["d"]!,
                 products.byPath["e1/E.a"]!,
                 products.byPath["e2/E.a"]!,
             ],
@@ -535,6 +562,18 @@ enum Fixtures {
                 ),
                 PBXFrameworksBuildPhase(),
             ],
+            "C 2": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: elements["a/b/d.m"]!),
+                    ])
+                ),
+                PBXFrameworksBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: products.byTarget["C 1"]!),
+                    ])
+                ),
+            ],
             "E1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
@@ -600,6 +639,13 @@ enum Fixtures {
                 productName: "c",
                 product: products.byTarget["C 1"],
                 productType: .staticLibrary
+            ),
+            "C 2": PBXNativeTarget(
+                name: disambiguatedTargets["C 2"]!.name,
+                buildPhases: buildPhases["C 2"] ?? [],
+                productName: "d",
+                product: products.byTarget["C 2"],
+                productType: .commandLineTool
             ),
             "E1": PBXNativeTarget(
                 name: disambiguatedTargets["E1"]!.name,
@@ -716,6 +762,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "TestTargetID": pbxTargets["A 2"]!,
             ]) { $1 },
             "C 1": baseAttributes,
+            "C 2": baseAttributes,
             "E1": baseAttributes,
             "E2": baseAttributes,
         ]
@@ -747,6 +794,9 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
             ]) { $1 },
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
                 "TARGET_NAME": distinguished["C 1"]!.nameBuildSetting,
+            ]) { $1 },
+            "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
+                "TARGET_NAME": distinguished["C 2"]!.nameBuildSetting,
             ]) { $1 },
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
                 "TARGET_NAME": distinguished["E1"]!.nameBuildSetting,
@@ -785,6 +835,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
         _ = try! pbxTargets["B 2"]!.addDependency(target: pbxTargets["B 1"]!)
         _ = try! pbxTargets["B 3"]!.addDependency(target: pbxTargets["A 2"]!)
         _ = try! pbxTargets["B 3"]!.addDependency(target: pbxTargets["B 1"]!)
+        _ = try! pbxTargets["C 2"]!.addDependency(target: pbxTargets["C 1"]!)
 
         return pbxTargets
     }
