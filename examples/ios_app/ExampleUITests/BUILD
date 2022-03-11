@@ -6,15 +6,15 @@ ios_ui_test(
     bundle_id = "io.buildbuddy.example.uitests",
     minimum_os_version = "15.0",
     test_host = "//examples/ios_app/Example",
-    deps = [":ExampleUITests.library"],
     visibility = ["//visibility:public"],
+    deps = [":ExampleUITests.library"],
 )
 
 swift_library(
     name = "ExampleUITests.library",
-    module_name = "ExampleUITests",
     testonly = True,
     srcs = [":Sources"],
+    module_name = "ExampleUITests",
 )
 
 filegroup(

@@ -1,13 +1,13 @@
 """Functions for creating `XcodeProjInfo` providers."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//lib:sets.bzl", "sets")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
     "IosXcTestBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load("@bazel_skylib//lib:paths.bzl", "paths")
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:build_settings.bzl",
     "get_product_module_name",
@@ -41,13 +41,13 @@ associated with any targets.
         "generated_inputs": """\
 A `depset` of generated `File`s that are used by the Xcode project.
 """,
-        "required_links": """\
-A `depset` of all static library paths that are linked into top-level targets
-besides their primary top-level targets.
-""",
         "potential_target_merges": """\
 A `depset` of structs with 'src' and 'dest' fields. The 'src' field is the id of
 the target that can be merged into the target with the id of the 'dest' field.
+""",
+        "required_links": """\
+A `depset` of all static library files that are linked into top-level targets
+besides their primary top-level targets.
 """,
         "target": """\
 A `struct` that contains information about the current target that is
@@ -150,13 +150,13 @@ def _get_static_library(*, label, libraries):
     return None
 
 def _process_product(
-    *,
-    target,
-    product_name,
-    product_type,
-    bundle_path,
-    libraries,
-    build_settings):
+        *,
+        target,
+        product_name,
+        product_type,
+        bundle_path,
+        libraries,
+        build_settings):
     """Generates information about the target's product.
 
     Args:
@@ -191,8 +191,8 @@ def _process_product(
 
     return {
         "name": product_name,
-        "type": product_type,
         "path": path,
+        "type": product_type,
     }
 
 # Outputs
@@ -211,7 +211,8 @@ def _process_outputs(target):
     if OutputGroupInfo in target:
         if "dsyms" in target[OutputGroupInfo]:
             outputs["dsyms"] = [
-                file.path for file in target[OutputGroupInfo].dsyms.to_list()
+                file.path
+                for file in target[OutputGroupInfo].dsyms.to_list()
             ]
     if SwiftInfo in target:
         outputs["swift_module"] = _swift_module_output([
@@ -236,7 +237,7 @@ def _swift_module_output(module):
     swift = module.swift
 
     output = {
-        "name": module.name + '.swiftmodule',
+        "name": module.name + ".swiftmodule",
         "swiftdoc": swift.swiftdoc.path,
         "swiftmodule": swift.swiftmodule.path,
     }
@@ -250,12 +251,12 @@ def _swift_module_output(module):
 # Processed target
 
 def _processed_target(
-    *,
-    inputs_info,
-    potential_target_merges,
-    required_links,
-    target,
-    xcode_target):
+        *,
+        inputs_info,
+        potential_target_merges,
+        required_links,
+        target,
+        xcode_target):
     """Generates the return value for target processing functions.
 
     Args:
@@ -282,19 +283,19 @@ def _processed_target(
     )
 
 def _xcode_target(
-    *,
-    id,
-    name,
-    label,
-    configuration,
-    platform,
-    product,
-    test_host,
-    build_settings,
-    inputs,
-    links,
-    dependencies,
-    outputs):
+        *,
+        id,
+        name,
+        label,
+        configuration,
+        platform,
+        product,
+        test_host,
+        build_settings,
+        inputs,
+        links,
+        dependencies,
+        outputs):
     """Generates the partial json string representation of an Xcode target.
 
     Args:
@@ -344,12 +345,12 @@ def _xcode_target(
 # Top-level targets
 
 def _process_top_level_properties(
-    *,
-    target_name,
-    files,
-    bundle_info,
-    tree_artifact_enabled,
-    build_settings):
+        *,
+        target_name,
+        files,
+        bundle_info,
+        tree_artifact_enabled,
+        build_settings):
     if bundle_info:
         product_name = bundle_info.bundle_name
         product_type = bundle_info.product_type
@@ -362,7 +363,9 @@ def _process_top_level_properties(
             bundle = "{}{}".format(bundle_info.bundle_name, bundle_extension)
             if bundle_extension == ".app":
                 bundle_path = paths.join(
-                    bundle_info.archive_root, "Payload", bundle,
+                    bundle_info.archive_root,
+                    "Payload",
+                    bundle,
                 )
             else:
                 bundle_path = paths.join(bundle_info.archive_root, bundle)
@@ -382,6 +385,7 @@ def _process_top_level_properties(
             # This is something like `swift_test`: it creates an xctest bundle
             product_type = "com.apple.product-type.bundle.unit-test"
             build_settings["GENERATE_INFOPLIST_FILE"] = True
+
             # "some/test.xctest/binary" -> "some/test.xctest"
             bundle_path = xctest[:-(len(xctest.split(".xctest/")[1]) + 1)]
         else:
@@ -398,23 +402,24 @@ def _process_top_level_properties(
     )
 
 def _process_libraries(
-    *,
-    product_type,
-    test_host_libraries,
-    links,
-    required_links):
+        *,
+        product_type,
+        test_host_libraries,
+        links,
+        required_links):
     if (test_host_libraries and
         product_type == "com.apple.product-type.bundle.unit-test"):
         # Unit tests have their test host as a bundle loader. So the
         # test host and its dependencies should be removed from the
         # unit test's links.
         avoid_links = [
-            file.path for file in test_host_libraries
+            file.path
+            for file in test_host_libraries
         ]
 
         def remove_avoided(links):
             return sets.to_list(
-                sets.difference(sets.make(links), sets.make(avoid_links))
+                sets.difference(sets.make(links), sets.make(avoid_links)),
             )
 
         links = [file for file in remove_avoided(links)]
@@ -477,8 +482,8 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     process_opts(ctx = ctx, target = target, build_settings = build_settings)
 
     tree_artifact_enabled = (
-        ctx.var.get("apple.experimental.tree_artifact_outputs", "").lower()
-          in ("true", "yes", "1")
+        ctx.var.get("apple.experimental.tree_artifact_outputs", "").lower() in
+        ("true", "yes", "1")
     )
     props = _process_top_level_properties(
         target_name = ctx.rule.attr.name,
@@ -512,7 +517,8 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     build_settings["OTHER_LDFLAGS"] = ["-ObjC"] + build_settings.get(
-        "OTHER_LDFLAGS", [],
+        "OTHER_LDFLAGS",
+        [],
     )
 
     set_if_true(
@@ -552,7 +558,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
                 product_type = props.product_type,
                 bundle_path = props.bundle_path,
                 libraries = libraries,
-                build_settings = build_settings
+                build_settings = build_settings,
             ),
             test_host = test_host_target.id if test_host_target else None,
             build_settings = build_settings,
@@ -590,6 +596,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     libraries = _get_static_libraries(cc_info = target[CcInfo])
 
     cpp = ctx.fragments.cpp
+
     # TODO: Get the value for device builds, even when active config is not for
     # device, as Xcode only uses this value for device builds
     build_settings["ENABLE_BITCODE"] = str(cpp.apple_bitcode_mode) != "none"
@@ -665,6 +672,7 @@ def _should_process_target(target):
         only include their files in the project, but we don't create targets
         for them.
     """
+
     # Targets that don't produce files are ignored (e.g. imports)
     return target.files != depset() and (
         # Top level bundles
@@ -688,21 +696,22 @@ def _should_passthrough_target(*, ctx, target):
     Returns:
         `True` if `target` should be skipped for target generation.
     """
+
     # TODO: Find a way to detect TestEnvironment instead
     return (
-        IosXcTestBundleInfo in target
-        and len(ctx.rule.attr.deps) == 1
-        and IosXcTestBundleInfo in ctx.rule.attr.deps[0]
+        IosXcTestBundleInfo in target and
+        len(ctx.rule.attr.deps) == 1 and
+        IosXcTestBundleInfo in ctx.rule.attr.deps[0]
     )
 
 def _target_info_fields(
-    *,
-    extra_files,
-    generated_inputs,
-    potential_target_merges,
-    required_links,
-    target,
-    xcode_targets):
+        *,
+        extra_files,
+        generated_inputs,
+        potential_target_merges,
+        required_links,
+        target,
+        xcode_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
 
     This should be merged with other fields to fully create an `XcodeProjInfo`.
@@ -752,17 +761,20 @@ def _passthrough_target(*, transitive_infos):
     return _target_info_fields(
         extra_files = depset(
             transitive = [
-                info.extra_files for info in transitive_infos
+                info.extra_files
+                for info in transitive_infos
             ],
         ),
         generated_inputs = depset(
             transitive = [
-                info.generated_inputs for info in transitive_infos
+                info.generated_inputs
+                for info in transitive_infos
             ],
         ),
         potential_target_merges = depset(
             transitive = [
-                info.potential_target_merges for info in transitive_infos
+                info.potential_target_merges
+                for info in transitive_infos
             ],
         ),
         required_links = depset(
@@ -817,19 +829,22 @@ def _process_target(*, ctx, target, transitive_infos):
                 transitive = inputs_info.transitive_non_generated,
             ).to_list(),
             transitive = [
-                info.extra_files for info in transitive_infos
+                info.extra_files
+                for info in transitive_infos
             ],
         ),
         generated_inputs = depset(
             inputs_info.generated,
             transitive = [
-                info.generated_inputs for info in transitive_infos
+                info.generated_inputs
+                for info in transitive_infos
             ],
         ),
         potential_target_merges = depset(
             processed_target.potential_target_merges,
             transitive = [
-                info.potential_target_merges for info in transitive_infos
+                info.potential_target_merges
+                for info in transitive_infos
             ],
         ),
         required_links = depset(

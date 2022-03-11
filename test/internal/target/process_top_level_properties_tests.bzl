@@ -2,6 +2,8 @@
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("//test:utils.bzl", "stringify_dict")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:target.bzl", "testable")
 
 process_top_level_properties = testable.process_top_level_properties
@@ -55,32 +57,32 @@ def _process_top_level_properties_test_impl(ctx):
 process_top_level_properties_test = unittest.make(
     impl = _process_top_level_properties_test_impl,
     attrs = {
-        "target_name": attr.string(mandatory = True),
-        "files": attr.string_list(mandatory = True),
         "bundle_info": attr.string_dict(mandatory = False),
-        "tree_artifact_enabled": attr.bool(mandatory = True),
+        "expected_build_settings": attr.string_dict(mandatory = True),
         "expected_bundle_path": attr.string(mandatory = False),
         "expected_minimum_deployment_version": attr.string(mandatory = False),
         "expected_product_name": attr.string(mandatory = True),
         "expected_product_type": attr.string(mandatory = True),
-        "expected_build_settings": attr.string_dict(mandatory = True),
+        "files": attr.string_list(mandatory = True),
+        "target_name": attr.string(mandatory = True),
+        "tree_artifact_enabled": attr.bool(mandatory = True),
     },
 )
 
 def _bundle_info(
-    *,
-    archive_path,
-    archive_root,
-    bundle_id,
-    bundle_extension,
-    bundle_name,
-    minimum_deployment_os_version,
-    product_type):
+        *,
+        archive_path,
+        archive_root,
+        bundle_id,
+        bundle_extension,
+        bundle_name,
+        minimum_deployment_os_version,
+        product_type):
     return {
         "archive.path": archive_path,
         "archive_root": archive_root,
-        "bundle_id": bundle_id,
         "bundle_extension": bundle_extension,
+        "bundle_id": bundle_id,
         "bundle_name": bundle_name,
         "minimum_deployment_os_version": minimum_deployment_os_version,
         "product_type": product_type,
@@ -109,17 +111,17 @@ def process_top_level_properties_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        target_name,
-        files,
-        bundle_info,
-        tree_artifact_enabled,
-        expected_bundle_path,
-        expected_minimum_deployment_os_version,
-        expected_product_name,
-        expected_product_type,
-        expected_build_settings):
+            *,
+            name,
+            target_name,
+            files,
+            bundle_info,
+            tree_artifact_enabled,
+            expected_bundle_path,
+            expected_minimum_deployment_os_version,
+            expected_product_name,
+            expected_product_type,
+            expected_build_settings):
         test_names.append(name)
         process_top_level_properties_test(
             name = name,
@@ -164,8 +166,8 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "test",
         expected_product_type = "com.apple.product-type.bundle.unit-test",
         expected_build_settings = {
-            "PRODUCT_MODULE_NAME": "_test_",
             "GENERATE_INFOPLIST_FILE": True,
+            "PRODUCT_MODULE_NAME": "_test_",
         },
     )
 
@@ -190,9 +192,9 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "flagship",
         expected_product_type = "com.apple.product-type.application",
         expected_build_settings = {
-            "PRODUCT_MODULE_NAME": "_flagship_",
-            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
             "GENERATE_INFOPLIST_FILE": True,
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
+            "PRODUCT_MODULE_NAME": "_flagship_",
         },
     )
 
@@ -215,9 +217,9 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "flagship",
         expected_product_type = "com.apple.product-type.application",
         expected_build_settings = {
-            "PRODUCT_MODULE_NAME": "_flagship_",
-            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
             "GENERATE_INFOPLIST_FILE": True,
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
+            "PRODUCT_MODULE_NAME": "_flagship_",
         },
     )
 
@@ -240,9 +242,9 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "flagship",
         expected_product_type = "com.apple.product-type.bundle.unit-test",
         expected_build_settings = {
-            "PRODUCT_MODULE_NAME": "_flagship_",
-            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship.test",
             "GENERATE_INFOPLIST_FILE": True,
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship.test",
+            "PRODUCT_MODULE_NAME": "_flagship_",
         },
     )
 

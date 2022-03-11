@@ -12,44 +12,44 @@ load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 swift_library(
     name = "generator.library",
-    module_name = "generator",
     srcs = glob(["src/**/*.swift"]),
+    module_name = "generator",
     deps = [
-        "@com_github_tuist_xcodeproj//:XcodeProj",
         "@com_github_kylef_pathkit//:PathKit",
+        "@com_github_tuist_xcodeproj//:XcodeProj",
     ],
 )
 
 swift_binary(
     name = "generator",
+    visibility = ["//visibility:public"],
     deps = [
         ":generator.library",
     ],
-    visibility = ["//visibility:public"],
 )
 
 swift_library(
     name = "tests.library",
-    module_name = "tests",
-    srcs = glob(["test/**/*.swift"]),
     testonly = True,
+    srcs = glob(["test/**/*.swift"]),
+    module_name = "tests",
     deps = [
-        "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
         ":generator.library",
+        "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
     ],
 )
 
 swift_test(
     name = "tests",
+    visibility = ["//test:__subpackages__"],
     deps = [
         ":tests.library",
     ],
-    visibility = ["//test:__subpackages__"],
 )
 
 xcodeproj(
     name = "xcodeproj",
     project_name = "generator",
-    targets = XCODEPROJ_TARGETS,
     tags = ["manual"],
+    targets = XCODEPROJ_TARGETS,
 )

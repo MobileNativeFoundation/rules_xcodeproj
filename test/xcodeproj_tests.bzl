@@ -55,7 +55,7 @@ xcodeproj_test = rule(
         "_validator_template": attr.label(
             allow_single_file = True,
             default = ":validator.template.sh",
-        )
+        ),
     },
     test = True,
 )
@@ -70,11 +70,11 @@ def xcodeproj_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        target_under_test,
-        expected_spec,
-        expected_xcodeproj):
+            *,
+            name,
+            target_under_test,
+            expected_spec,
+            expected_xcodeproj):
         test_names.append(name)
         xcodeproj_test(
             name = name,

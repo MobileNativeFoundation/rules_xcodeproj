@@ -1,6 +1,8 @@
 """Tests for module name build setting functions."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:build_settings.bzl", "get_targeted_device_family")
 
 def _get_targeted_device_family_test_impl(ctx):
@@ -22,8 +24,8 @@ def _get_targeted_device_family_test_impl(ctx):
 get_targeted_device_family_test = unittest.make(
     impl = _get_targeted_device_family_test_impl,
     attrs = {
-        "families": attr.string_list(mandatory = True),
         "expected_targeted_device_family": attr.string(mandatory = False),
+        "families": attr.string_list(mandatory = True),
     },
 )
 
@@ -37,10 +39,10 @@ def get_targeted_device_family_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        families,
-        expected_targeted_device_family):
+            *,
+            name,
+            families,
+            expected_targeted_device_family):
         test_names.append(name)
         get_targeted_device_family_test(
             name = name,
@@ -92,7 +94,6 @@ def get_targeted_device_family_test_suite(name):
         families = ["watch"],
         expected_targeted_device_family = "4",
     )
-
 
     # Test suite
 

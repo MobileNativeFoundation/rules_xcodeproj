@@ -1,6 +1,8 @@
 """Tests for platform processing functions."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:target.bzl", "testable")
 
 calculate_configuration = testable.calculate_configuration
@@ -37,10 +39,10 @@ def calculate_configuration_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        bin_dir_path,
-        expected_configuration):
+            *,
+            name,
+            bin_dir_path,
+            expected_configuration):
         test_names.append(name)
         calculate_configuration_test(
             name = name,

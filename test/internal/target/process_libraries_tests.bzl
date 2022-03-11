@@ -1,7 +1,8 @@
 """Tests for platform processing functions."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:target.bzl", "testable")
 
 process_libraries = testable.process_libraries
@@ -12,7 +13,8 @@ def _process_libraries_test_impl(ctx):
     links, required_links = process_libraries(
         product_type = ctx.attr.product_type,
         test_host_libraries = [
-            struct(path = path) for path in ctx.attr.test_host_libraries
+            struct(path = path)
+            for path in ctx.attr.test_host_libraries
         ],
         links = ctx.attr.links,
         required_links = ctx.attr.required_links,
@@ -36,12 +38,12 @@ def _process_libraries_test_impl(ctx):
 process_libraries_test = unittest.make(
     impl = _process_libraries_test_impl,
     attrs = {
-        "product_type": attr.string(mandatory = True),
-        "test_host_libraries": attr.string_list(mandatory = True),
-        "links": attr.string_list(mandatory = True),
-        "required_links": attr.string_list(mandatory = True),
         "expected_links": attr.string_list(mandatory = True),
         "expected_required_links": attr.string_list(mandatory = True),
+        "links": attr.string_list(mandatory = True),
+        "product_type": attr.string(mandatory = True),
+        "required_links": attr.string_list(mandatory = True),
+        "test_host_libraries": attr.string_list(mandatory = True),
     },
 )
 
@@ -55,14 +57,14 @@ def process_libraries_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        product_type,
-        test_host_libraries,
-        links,
-        required_links,
-        expected_links,
-        expected_required_links):
+            *,
+            name,
+            product_type,
+            test_host_libraries,
+            links,
+            required_links,
+            expected_links,
+            expected_required_links):
         test_names.append(name)
         process_libraries_test(
             name = name,

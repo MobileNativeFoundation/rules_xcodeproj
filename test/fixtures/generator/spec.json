@@ -157,8 +157,8 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-1b9bd654f600",
-                "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600"
+                "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600",
+                "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "inputs": {
                 "srcs": [
@@ -269,12 +269,12 @@
             "label": "//tools/generator:tests",
             "links": [
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a"
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a"
             ],
             "name": "tests",
             "outputs": {},
@@ -344,8 +344,8 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600",
-                "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
+                "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
+                "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "inputs": {
                 "srcs": [

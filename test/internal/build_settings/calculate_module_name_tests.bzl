@@ -1,6 +1,8 @@
 """Tests for module name build setting functions."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:build_settings.bzl", "testable")
 
 calculate_module_name = testable.calculate_module_name
@@ -25,9 +27,9 @@ def _calculate_module_name_test_impl(ctx):
 calculate_module_name_test = unittest.make(
     impl = _calculate_module_name_test_impl,
     attrs = {
+        "expected_module_name": attr.string(mandatory = True),
         "label": attr.label(mandatory = True),
         "module_name": attr.string(mandatory = False),
-        "expected_module_name": attr.string(mandatory = True),
     },
 )
 
@@ -41,11 +43,11 @@ def calculate_module_name_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        label,
-        module_name,
-        expected_module_name):
+            *,
+            name,
+            label,
+            module_name,
+            expected_module_name):
         test_names.append(name)
         calculate_module_name_test(
             name = name,

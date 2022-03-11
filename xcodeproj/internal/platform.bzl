@@ -22,12 +22,12 @@ _SDK_ROOT = {
 }
 
 def _generate_platform_information(
-    *,
-    platform,
-    arch,
-    minimum_os_version,
-    minimum_deployment_os_version,
-    build_settings):
+        *,
+        platform,
+        arch,
+        minimum_os_version,
+        minimum_deployment_os_version,
+        build_settings):
     """Generates the platform information for a given platform.
 
     Args:
@@ -60,8 +60,7 @@ def _generate_platform_information(
 
     build_settings["SDKROOT"] = _SDK_ROOT[platform_type]
     build_settings[_DEPLOYMENT_TARGET_KEY[platform_type]] = (
-        minimum_deployment_os_version if minimum_deployment_os_version
-        else minimum_os_version
+        minimum_deployment_os_version if minimum_deployment_os_version else minimum_os_version
     )
 
     return platform_dict

@@ -2,6 +2,8 @@
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("//test:utils.bzl", "stringify_dict")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:opts.bzl", "testable")
 
 process_compiler_opts = testable.process_compiler_opts
@@ -37,8 +39,8 @@ process_compiler_opts_test = unittest.make(
     attrs = {
         "conlyopts": attr.string_list(mandatory = True),
         "cxxopts": attr.string_list(mandatory = True),
-        "swiftcopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
+        "swiftcopts": attr.string_list(mandatory = True),
     },
 )
 
@@ -52,12 +54,12 @@ def process_compiler_opts_test_suite(name):
     test_names = []
 
     def _add_test(
-        *,
-        name,
-        expected_build_settings,
-        conlyopts = [],
-        cxxopts = [],
-        swiftcopts = []):
+            *,
+            name,
+            expected_build_settings,
+            conlyopts = [],
+            cxxopts = [],
+            swiftcopts = []):
         test_names.append(name)
         process_compiler_opts_test(
             name = name,
@@ -395,7 +397,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-wmo".format(name),
-        swiftcopts = ["-wmo",],
+        swiftcopts = ["-wmo"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "wholemodule",
         },

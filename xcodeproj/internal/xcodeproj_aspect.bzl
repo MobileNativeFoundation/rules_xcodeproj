@@ -6,12 +6,12 @@ load(
 )
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:target.bzl",
+    "XcodeProjInfo",
     "as_resource",
     "process_target",
-    "XcodeProjInfo",
 )
 
-_ASPECT_DEP_ATTR= [
+_ASPECT_DEP_ATTR = [
     "test_host",
 ]
 

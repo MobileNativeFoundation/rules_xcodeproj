@@ -4,8 +4,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:logging.bzl",
     "green",
-    "yellow",
     "warn",
+    "yellow",
 )
 
 def _maybe(repo_rule, name, ignore_version_differences, **kwargs):

@@ -1,26 +1,15 @@
 """Functions for updating test fixtures."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "//xcodeproj:xcodeproj.bzl",
+    "XcodeProjOutputInfo",
     "make_xcodeproj_rule",
     "xcodeproj",
-    "XcodeProjOutputInfo",
 )
-
-# Utility
-
-def _install_path(xcodeproj):
-    # "example/ios_app/p.xcodeproj" -> "test/fixtures/ios_app/project.xcodeproj"
-    return paths.join(
-        "test/fixtures",
-        xcodeproj.short_path.split("/")[1],
-        "project.xcodeproj",
-    )
 
 # Transition
 
-def _fixtures_transition_impl(settings, attr):
+def _fixtures_transition_impl(_settings, _attr):
     """Rule transition that standardizes command-line options for fixtures."""
     return {
         "//command_line_option:cpu": "darwin_x86_64",
@@ -49,10 +38,12 @@ fixtures_transition = transition(
 def _update_fixtures_impl(ctx):
     specs = [target[XcodeProjOutputInfo].spec for target in ctx.attr.targets]
     installers = [
-        target[XcodeProjOutputInfo].installer for target in ctx.attr.targets
+        target[XcodeProjOutputInfo].installer
+        for target in ctx.attr.targets
     ]
     xcodeprojs = [
-        target[XcodeProjOutputInfo].xcodeproj for target in ctx.attr.targets
+        target[XcodeProjOutputInfo].xcodeproj
+        for target in ctx.attr.targets
     ]
 
     updater = ctx.actions.declare_file(
@@ -64,10 +55,10 @@ def _update_fixtures_impl(ctx):
         output = updater,
         is_executable = True,
         substitutions = {
-            "%specs%": "  \n".join([spec.short_path for spec in specs]),
             "%installers%": "  \n".join(
                 [installer.short_path for installer in installers],
             ),
+            "%specs%": "  \n".join([spec.short_path for spec in specs]),
         },
     )
 
