@@ -9,8 +9,7 @@ load(
 
 # Transition
 
-# buildifier: disable=unused-variable
-def _fixtures_transition_impl(settings, attr):
+def _fixtures_transition_impl(_settings, _attr):
     """Rule transition that standardizes command-line options for fixtures."""
     return {
         "//command_line_option:cpu": "darwin_x86_64",
