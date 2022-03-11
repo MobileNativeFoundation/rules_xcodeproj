@@ -15,6 +15,7 @@ class ExampleTests: XCTestCase {
 
     func testExample() throws {
         XCTAssertEqual(Utils.Foo().greeting(), TestingUtils.expectedGreeting)
+        XCTAssertEqual(Utils.Foo().answer(), TestingUtils.expectedAnswer)
     }
 
     func testPerformanceExample() throws {

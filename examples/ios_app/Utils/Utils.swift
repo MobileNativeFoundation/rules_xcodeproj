@@ -4,4 +4,8 @@ public struct Foo {
     public func greeting() -> String {
         return "Hello, world?"
     }
+
+    public func answer() -> Int {
+        return 42
+    }
 }
