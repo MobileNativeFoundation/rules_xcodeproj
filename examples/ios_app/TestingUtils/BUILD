@@ -4,6 +4,7 @@ swift_library(
     name = "TestingUtils",
     testonly = True,
     srcs = [":gen_TestingUtils.swift"],
+    module_name = "TestingUtils",
     visibility = ["//visibility:public"],
 )
 

@@ -46,10 +46,6 @@ A `depset` of structs with 'src' and 'dest' fields. The 'src' field is the id of
 the target that can be merged into the target with the id of the 'dest' field.
 """,
         "required_links": """\
-A `depset` of all static library paths that are linked into top-level targets
-besides their primary top-level targets.
-""",
-        "required_links": """\
 A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
 """,
