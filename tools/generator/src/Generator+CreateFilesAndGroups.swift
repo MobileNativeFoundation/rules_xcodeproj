@@ -17,30 +17,6 @@ extension Generator {
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
 
-        var externalGroup: PBXGroup?
-        func createGroup(
-            filePath: FilePath,
-            pathComponent: String
-        ) -> PBXGroup {
-            let group: PBXGroup
-            // TODO: Handle in-workspace "external/" paths
-            if filePath == .input("external") {
-                group = PBXGroup(
-                    sourceTree: externalDirectory.sourceTree,
-                    name: "Bazel External Repositories",
-                    path: externalDirectory.string
-                )
-                externalGroup = group
-            } else {
-                group = PBXGroup(sourceTree: .group, path: pathComponent)
-            }
-
-            pbxProj.add(object: group)
-            elements[filePath] = group
-
-            return group
-        }
-
         func createElement(
             in pbxProj: PBXProj,
             filePath: FilePath,
@@ -69,6 +45,35 @@ extension Generator {
                 elements[filePath] = file
                 return (file, true)
             }
+        }
+
+        func createGroup(
+            filePath: FilePath,
+            pathComponent: String
+        ) -> PBXGroup {
+            let group = PBXGroup(sourceTree: .group, path: pathComponent)
+            pbxProj.add(object: group)
+            elements[filePath] = group
+
+            return group
+        }
+
+        var externalGroup: PBXGroup?
+        func createExternalGroup() -> PBXGroup {
+            if let externalGroup = externalGroup {
+                return externalGroup
+            }
+
+            let group = PBXGroup(
+                sourceTree: externalDirectory.sourceTree,
+                name: "Bazel External Repositories",
+                path: externalDirectory.string
+            )
+            pbxProj.add(object: group)
+            elements[.external("")] = group
+            externalGroup = group
+
+            return group
         }
 
         var internalGroup: PBXGroup?
@@ -109,9 +114,12 @@ extension Generator {
             var filePath: FilePath
             var lastElement: PBXFileElement?
             switch fullFilePath.type {
-            case .input:
-                filePath = .input(Path())
+            case .project:
+                filePath = .project(Path())
                 lastElement = nil
+            case .external:
+                filePath = .external(Path())
+                lastElement = createExternalGroup()
             case .internal:
                 filePath = .internal(Path())
                 lastElement = createInternalGroup()

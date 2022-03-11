@@ -99,7 +99,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFilesAndGroups["b.c"]!,
             expectedFilesAndGroups["z.mm"]!,
             // Then Bazel External Repositories
-            expectedFilesAndGroups["external"]!,
+            expectedFilesAndGroups[.external("")]!,
             // And finally the internal (rules_xcodeproj) group
             expectedFilesAndGroups[.internal("")]!,
         ]

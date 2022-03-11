@@ -15,6 +15,10 @@ load(
     "set_if_true",
 )
 load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:files.bzl",
+    "file_path",
+)
+load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:opts.bzl",
     "process_opts",
 )
@@ -27,11 +31,11 @@ XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",
     fields = {
         "extra_files": """\
-A `depset` of files that should be added to the Xcode project, but not
+A `depset` of `File`s that should be added to the Xcode project, but not
 associated with any targets.
 """,
         "required_links": """\
-A `depset` of all static library files that are linked into top-level targets
+A `depset` of all static library paths that are linked into top-level targets
 besides their primary top-level targets.
 """,
         "potential_target_merges": """\
@@ -580,7 +584,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             getattr(ctx.rule.attr, "non_arc_srcs", [])
         )
     ]).to_list()
-    srcs = [file.path for file in src_files]
+    srcs = [file_path(file) for file in src_files]
 
     return struct(
         potential_target_merges = [],

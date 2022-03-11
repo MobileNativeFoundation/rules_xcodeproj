@@ -58,14 +58,14 @@ extension FilePath: ExpressibleByStringLiteral {
     public typealias UnicodeScalarLiteralType = StringLiteralType
 
     public init(extendedGraphemeClusterLiteral path: StringLiteralType) {
-        self = .input(Path(path))
+        self = .project(Path(path))
     }
 
     public init(unicodeScalarLiteral path: StringLiteralType) {
-        self = .input(Path(path))
+        self = .project(Path(path))
     }
 
     public init(stringLiteral value: StringLiteralType) {
-        self = .input(Path(value))
+        self = .project(Path(value))
     }
 }

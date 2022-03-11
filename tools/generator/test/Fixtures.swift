@@ -68,11 +68,11 @@ enum Fixtures {
         ),
         "E1": Target.mock(
             product: .init(type: .staticLibrary, name: "E1", path: "e1/E.a"),
-            srcs: ["external/a_repo/a.swift"]
+            srcs: [.external("a_repo/a.swift")]
         ),
         "E2": Target.mock(
             product: .init(type: .staticLibrary, name: "E2", path: "e2/E.a"),
-            srcs: ["external/another_repo/b.swift"]
+            srcs: [.external("another_repo/b.swift")]
         ),
     ]
 
@@ -123,34 +123,34 @@ enum Fixtures {
         var elements: [FilePath: PBXFileElement] = [:]
 
         // external/a_repo/a.swift
-        elements["external/a_repo/a.swift"] = PBXFileReference(
+        elements[.external("a_repo/a.swift")] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.swift",
             path: "a.swift"
         )
-        elements["external/a_repo"] = PBXGroup(
-            children: [elements["external/a_repo/a.swift"]!],
+        elements[.external("a_repo")] = PBXGroup(
+            children: [elements[.external("a_repo/a.swift")]!],
             sourceTree: .group,
             path: "a_repo"
         )
 
         // external/another_repo/b.swift
-        elements["external/another_repo/b.swift"] = PBXFileReference(
+        elements[.external("another_repo/b.swift")] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.swift",
             path: "b.swift"
         )
-        elements["external/another_repo"] = PBXGroup(
-            children: [elements["external/another_repo/b.swift"]!],
+        elements[.external("another_repo")] = PBXGroup(
+            children: [elements[.external("another_repo/b.swift")]!],
             sourceTree: .group,
             path: "another_repo"
         )
 
         // external
-        elements["external"] = PBXGroup(
+        elements[.external("")] = PBXGroup(
             children: [
-                elements["external/a_repo"]!,
-                elements["external/another_repo"]!,
+                elements[.external("a_repo")]!,
+                elements[.external("another_repo")]!,
             ],
             sourceTree: .absolute,
             name: "Bazel External Repositories",
@@ -402,8 +402,8 @@ enum Fixtures {
             "A 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: files["b.c"]),
-                        PBXBuildFile(file: files["x/y.swift"]),
+                        PBXBuildFile(file: files["b.c"]!),
+                        PBXBuildFile(file: files["x/y.swift"]!),
                     ])
                 ),
                 PBXFrameworksBuildPhase(),
@@ -411,20 +411,20 @@ enum Fixtures {
             "A 2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: files[.internal("CompileStub.swift")]
+                        file: files[.internal("CompileStub.swift")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: products.byTarget["A 1"]),
-                        PBXBuildFile(file: products.byTarget["C 1"]),
+                        PBXBuildFile(file: products.byTarget["A 1"]!),
+                        PBXBuildFile(file: products.byTarget["C 1"]!),
                     ])
                 ),
             ],
             "B 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: files["z.mm"]),
+                        PBXBuildFile(file: files["z.mm"]!),
                     ])
                 ),
                 PBXFrameworksBuildPhase(),
@@ -432,31 +432,31 @@ enum Fixtures {
             "B 2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: files[.internal("CompileStub.swift")]
+                        file: files[.internal("CompileStub.swift")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: products.byTarget["B 1"]),
+                        PBXBuildFile(file: products.byTarget["B 1"]!),
                     ])
                 ),
             ],
             "B 3": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: files[.internal("CompileStub.swift")]
+                        file: files[.internal("CompileStub.swift")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: products.byTarget["B 1"]),
+                        PBXBuildFile(file: products.byTarget["B 1"]!),
                     ])
                 ),
             ],
             "C 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: files["a/b/c.m"]),
+                        PBXBuildFile(file: files["a/b/c.m"]!),
                     ])
                 ),
                 PBXFrameworksBuildPhase(),
@@ -464,7 +464,7 @@ enum Fixtures {
             "E1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: files["external/a_repo/a.swift"]),
+                        PBXBuildFile(file: files[.external("a_repo/a.swift")]!),
                     ])
                 ),
                 PBXFrameworksBuildPhase(),
@@ -472,7 +472,7 @@ enum Fixtures {
             "E2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: files["external/another_repo/b.swift"]
+                        file: files[.external("another_repo/b.swift")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(),
