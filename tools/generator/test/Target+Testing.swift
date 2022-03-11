@@ -10,7 +10,7 @@ extension Target {
         product: Product,
         testHost: TargetID? = nil,
         buildSettings: [String: BuildSetting] = [:],
-        srcs: Set<Path> = [],
+        srcs: Set<FilePath> = [],
         links: Set<Path> = [],
         dependencies: Set<TargetID> = []
     ) -> Self {

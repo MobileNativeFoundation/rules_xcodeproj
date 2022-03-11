@@ -7,7 +7,7 @@ struct Project: Equatable, Decodable {
     var targets: [TargetID: Target]
     let potentialTargetMerges: [TargetID: Set<TargetID>]
     let requiredLinks: Set<Path>
-    let extraFiles: Set<Path>
+    let extraFiles: Set<FilePath>
 }
 
 struct Target: Equatable, Decodable {
@@ -18,7 +18,7 @@ struct Target: Equatable, Decodable {
     let product: Product
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
-    var srcs: Set<Path>
+    var srcs: Set<FilePath>
     var links: Set<Path>
     var dependencies: Set<TargetID>
 }

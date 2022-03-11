@@ -20,7 +20,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
                 srcs: ["a.swift"]
             ),
         ]
-        let extraFiles: Set<Path> = []
+        let extraFiles: Set<FilePath> = []
         let externalDirectory = Path("/ext")
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath = Path("Project.xcodeproj")

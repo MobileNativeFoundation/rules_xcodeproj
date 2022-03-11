@@ -20,7 +20,7 @@ struct Environment {
     let createFilesAndGroups: (
         _ pbxProj: PBXProj,
         _ targets: [TargetID: Target],
-        _ extraFiles: Set<Path>,
+        _ extraFiles: Set<FilePath>,
         _ externalDirectory: Path,
         _ internalDirectoryName: String,
         _ workspaceOutputPath: Path

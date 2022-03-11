@@ -62,7 +62,7 @@ Product for target "\(id)" not found
 
     private static func createCompileSourcesPhase(
         in pbxProj: PBXProj,
-        sources: Set<Path>,
+        sources: Set<FilePath>,
         files: [FilePath: PBXFileElement]
     ) throws -> PBXSourcesBuildPhase {
         func buildFile(filePath: FilePath) throws -> PBXBuildFile {
@@ -80,7 +80,7 @@ File "\(filePath)" not found
         if sources.isEmpty {
             filePaths = [.internal(compileStubPath)]
         } else {
-            filePaths = Set(sources.map(FilePath.input))
+            filePaths = sources
         }
 
         let buildPhase = PBXSourcesBuildPhase(
