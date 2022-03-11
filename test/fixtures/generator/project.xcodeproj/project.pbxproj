@@ -138,6 +138,7 @@
 		C28A39750E6C584777154815 /* PBXObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD4647C5EE25A1C4D49C081 /* PBXObject.swift */; };
 		C28BD99E17E4777DCD9DFF7D /* libCustomDump.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AB04520A58A83E77B3FDC73 /* libCustomDump.a */; };
 		C63C41EC8BE35CC3E26754D2 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36F61FCD89D5A5D6176600 /* SwiftUI.swift */; };
+		C811857CC6BF0D2613DE48C2 /* SearchPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB2DF8B6A725C450EDD5D2 /* SearchPaths.swift */; };
 		C96BF1373FE5858C9209BAA6 /* ProcessTargetMergesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE47306A55A2A1C54FF98E /* ProcessTargetMergesTests.swift */; };
 		CA573C72A60DA41ED4161734 /* libgenerator.library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F527636CB48F7FEEE90DCEC /* libgenerator.library.a */; };
 		CA6E9CECD3889BBED0C7E051 /* XCWorkspaceDataElementLocationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25E54D36493C786205DA016 /* XCWorkspaceDataElementLocationType.swift */; };
@@ -305,6 +306,7 @@
 		5763D83215FDFA5A0C0DADA6 /* Generator+WriteXcodeProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+WriteXcodeProj.swift"; sourceTree = "<group>"; };
 		5771B05C549E4B70A2C6B13F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		57AE5A3F492E9C4A81CE09FE /* PBXNativeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXNativeTarget.swift; sourceTree = "<group>"; };
+		58DB2DF8B6A725C450EDD5D2 /* SearchPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPaths.swift; sourceTree = "<group>"; };
 		5CB50E54B2BC9AE1AEE95513 /* PopulateMainGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulateMainGroupTests.swift; sourceTree = "<group>"; };
 		5CC0EED86D851236527F38E4 /* PBXProductType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXProductType+Extensions.swift"; sourceTree = "<group>"; };
 		5E008F1EF5278A359CB3B73D /* CoreMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotion.swift; sourceTree = "<group>"; };
@@ -869,6 +871,7 @@
 				6FDF0F2BD8DA0C9C64F3EC2D /* Path+Extensions.swift */,
 				8F19B18C578050514056544B /* PBXGroup+Extensions.swift */,
 				5CC0EED86D851236527F38E4 /* PBXProductType+Extensions.swift */,
+				58DB2DF8B6A725C450EDD5D2 /* SearchPaths.swift */,
 				8F977F1096269625AD5B34E8 /* Sorting.swift */,
 				CF6A6EBB69226658CE2407FD /* TargetID.swift */,
 			);
@@ -1227,6 +1230,7 @@
 				AC51F2EC61A2165B467F806A /* Path+Extensions.swift in Sources */,
 				688C039393D003303E732F1B /* PBXGroup+Extensions.swift in Sources */,
 				759030F26353AD318C78993F /* PBXProductType+Extensions.swift in Sources */,
+				C811857CC6BF0D2613DE48C2 /* SearchPaths.swift in Sources */,
 				4A504F8664313AB7A8F2C349 /* Sorting.swift in Sources */,
 				195FA199EF14567E2D2D9819 /* TargetID.swift in Sources */,
 			);
@@ -1800,6 +1804,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = YES;
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};

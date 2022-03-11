@@ -10,6 +10,7 @@ extension Target {
         product: Product,
         testHost: TargetID? = nil,
         buildSettings: [String: BuildSetting] = [:],
+        searchPaths: SearchPaths = SearchPaths(),
         inputs: Inputs = Inputs(),
         links: Set<Path> = [],
         dependencies: Set<TargetID> = []
@@ -27,6 +28,7 @@ extension Target {
             product: product,
             testHost: testHost,
             buildSettings: buildSettings,
+            searchPaths: searchPaths,
             inputs: inputs,
             links: links,
             dependencies: dependencies

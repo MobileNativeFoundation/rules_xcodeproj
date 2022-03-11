@@ -1,3 +1,4 @@
+import PathKit
 import XcodeProj
 
 extension Generator {
@@ -10,7 +11,9 @@ extension Generator {
     static func setTargetConfigurations(
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
-        pbxTargets: [TargetID: PBXNativeTarget]
+        pbxTargets: [TargetID: PBXNativeTarget],
+        externalDirectory: Path,
+        generatedDirectory: Path
     ) throws {
         for (id, disambiguatedTarget) in disambiguatedTargets {
             guard let pbxTarget = pbxTargets[id] else {
@@ -28,6 +31,15 @@ Target "\(id)" not found in `pbxTargets`.
                 "LastSwiftMigration": 1320,
             ]
             var buildSettings = target.buildSettings.asDictionary
+
+            let quoteHeaders = target.searchPaths.quoteHeaders
+            if !quoteHeaders.isEmpty {
+                buildSettings["USER_HEADER_SEARCH_PATHS"] = quoteHeaders
+                    .resolved(
+                        externalDirectory: externalDirectory,
+                        generatedDirectory: generatedDirectory
+                    )
+            }
 
             buildSettings["TARGET_NAME"] = disambiguatedTarget.nameBuildSetting
 
@@ -74,5 +86,47 @@ Test host with id "\(testHostID)" not found
             let pbxProject = pbxProj.rootObject!
             pbxProject.setTargetAttributes(attributes, target: pbxTarget)
         }
+    }
+}
+
+private extension Sequence where Element == FilePath {
+    /// Returns the source root relative paths of the files in the sequence.
+    func resolved(
+        externalDirectory: Path,
+        generatedDirectory: Path
+    ) -> [String] {
+        return map { filePath in
+            return filePath.resolved(
+                externalDirectory: externalDirectory,
+                generatedDirectory: generatedDirectory
+            )
+        }
+    }
+}
+
+private extension FilePath {
+    /// Returns the source root relative path.
+    func resolved(
+        externalDirectory: Path,
+        generatedDirectory: Path
+    ) -> String {
+        switch type {
+        case .external:
+            return (externalDirectory + path).quotedString
+        case .generated:
+            return (generatedDirectory + path).quotedString
+        default:
+            return path.quotedString
+        }
+    }
+}
+
+private extension Path {
+    /// Wraps the path in quotes if it needs it
+    var quotedString: String {
+        guard string.rangeOfCharacter(from: .whitespaces) != nil else {
+            return string
+        }
+        return #""\#(string)""#
     }
 }

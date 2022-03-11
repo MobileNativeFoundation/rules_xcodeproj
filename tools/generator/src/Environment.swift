@@ -57,7 +57,9 @@ struct Environment {
     let setTargetConfigurations: (
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
-        _ pbxTargets: [TargetID: PBXNativeTarget]
+        _ pbxTargets: [TargetID: PBXNativeTarget],
+        _ externalDirectory: Path,
+        _ generatedDirectory: Path
     ) throws -> Void
 
     let setTargetDependencies: (

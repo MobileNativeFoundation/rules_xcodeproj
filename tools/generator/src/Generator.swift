@@ -99,7 +99,9 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
         try environment.setTargetConfigurations(
             pbxProj,
             disambiguatedTargets,
-            pbxTargets
+            pbxTargets,
+            externalDirectory,
+            generatedDirectory
         )
         try environment.setTargetDependencies(
             disambiguatedTargets,
