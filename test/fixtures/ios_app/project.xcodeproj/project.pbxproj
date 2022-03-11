@@ -83,6 +83,7 @@
 		377067072DA9B93172410221 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		428758996F59592350934865 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B4FA9C70425835BED3D18FF /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTestingUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		505F53DA54CFC8144EA4054D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		62E4276A1A7B18726FD7831D /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		669138AB3BA27F5138A5F12D /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		8066E091A602A5534D269F0F /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		D073C96A1AA5433EDA476685 /* generated.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = generated.xcfilelist; sourceTree = "<group>"; };
 		D806400B7E6336F2EE14F13F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC8D483D4425917BE1F7EAC0 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F3EE8A1F985D59D79066BF9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,22 @@
 			path = "bazel-out";
 			sourceTree = "<group>";
 		};
+		288B9239A6FC5370446C5FD5 /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				F3EE8A1F985D59D79066BF9C /* DefaultTestBundle.plist */,
+			);
+			path = testing;
+			sourceTree = "<group>";
+		};
+		3695C1B089A901CABEE1141B /* apple */ = {
+			isa = PBXGroup;
+			children = (
+				288B9239A6FC5370446C5FD5 /* testing */,
+			);
+			path = apple;
+			sourceTree = "<group>";
+		};
 		41409B7D7ECCD7568B5FD50E /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +222,23 @@
 			path = ios_app;
 			sourceTree = "<group>";
 		};
+		52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				5877E1B0DA723A428072DE2A /* build_bazel_rules_apple */,
+			);
+			name = "Bazel External Repositories";
+			path = "bazel-rules_xcodeproj/external";
+			sourceTree = "<group>";
+		};
+		5877E1B0DA723A428072DE2A /* build_bazel_rules_apple */ = {
+			isa = PBXGroup;
+			children = (
+				3695C1B089A901CABEE1141B /* apple */,
+			);
+			path = build_bazel_rules_apple;
+			sourceTree = "<group>";
+		};
 		5E3A6AF7F4D54FD8AC656E4D /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				5E3A6AF7F4D54FD8AC656E4D /* examples */,
+				52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */,
 				22D63AE4A8E6D3194DC63EEA /* Bazel Generated Files */,
 				9E638292E19764EEC3974845 /* rules_xcodeproj */,
 				428D294EDDF4A41D530E1B84 /* Products */,
@@ -287,6 +323,7 @@
 				D806400B7E6336F2EE14F13F /* Assets.xcassets */,
 				428758996F59592350934865 /* ContentView.swift */,
 				9CB236421718480FDAB6C0BB /* ExampleApp.swift */,
+				505F53DA54CFC8144EA4054D /* Info.plist */,
 			);
 			path = Example;
 			sourceTree = "<group>";
