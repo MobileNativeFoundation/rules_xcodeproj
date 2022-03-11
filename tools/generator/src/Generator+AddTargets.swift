@@ -6,9 +6,16 @@ extension Generator {
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
         products: Products,
-        files: [FilePath: File]
+        files: [FilePath: File],
+        xcodeprojBazelLabel: String
     ) throws -> [TargetID: PBXNativeTarget] {
         let pbxProject = pbxProj.rootObject!
+
+        let generatedFilesTarget = try createGeneratedFilesTarget(
+            in: pbxProj,
+            files: files,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
 
         let sortedDisambiguatedTargets = disambiguatedTargets
             .sortedLocalizedStandard(\.value.name)
@@ -55,9 +62,77 @@ Product for target "\(id)" not found
             pbxProject.targets.append(pbxTarget)
             pbxTargets[id] = pbxTarget
 
+            if
+                target.srcs.containsGeneratedFiles,
+                let generatedFilesTarget = generatedFilesTarget
+            {
+                _ = try pbxTarget.addDependency(target: generatedFilesTarget)
+            }
         }
 
         return pbxTargets
+    }
+
+    private static func createGeneratedFilesTarget(
+        in pbxProj: PBXProj,
+        files: [FilePath: File],
+        xcodeprojBazelLabel: String
+    ) throws -> PBXAggregateTarget? {
+        guard files.containsGeneratedFiles else {
+            return nil
+        }
+
+        guard
+            let generatedFileList = files.first(
+                where: { $0.key == .internal(generatedFileListPath) }
+            )?.value.reference
+        else {
+            throw PreconditionError(message: "generatedFileList not in `files`")
+        }
+
+        let pbxProject = pbxProj.rootObject!
+
+        let debugConfiguration = XCBuildConfiguration(name: "Debug")
+        pbxProj.add(object: debugConfiguration)
+        let configurationList = XCConfigurationList(
+            buildConfigurations: [debugConfiguration],
+            defaultConfigurationName: debugConfiguration.name
+        )
+        pbxProj.add(object: configurationList)
+
+        let shellScript = PBXShellScriptBuildPhase(
+            outputFileListPaths: [
+                generatedFileList.projectRelativePath(in: pbxProj).string,
+            ],
+            shellScript: #"""
+PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  ${BAZEL_PATH} \
+  build \
+  --output_groups=generated_inputs \
+  \#(xcodeprojBazelLabel)
+
+"""#,
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: shellScript)
+
+        let pbxTarget = PBXAggregateTarget(
+            name: "Bazel Generated Files",
+            buildConfigurationList: configurationList,
+            buildPhases: [shellScript],
+            productName: "Bazel Generated Files"
+        )
+        pbxProj.add(object: pbxTarget)
+        pbxProject.targets.append(pbxTarget)
+
+        let attributes: [String: Any] = [
+            // TODO: Generate this value
+            "CreatedOnToolsVersion": "13.2.1",
+        ]
+        pbxProject.setTargetAttributes(attributes, target: pbxTarget)
+
+        return pbxTarget
     }
 
     private static func createCompileSourcesPhase(

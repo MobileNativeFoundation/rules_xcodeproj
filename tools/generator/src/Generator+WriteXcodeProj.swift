@@ -2,7 +2,7 @@ import PathKit
 import XcodeProj
 
 extension Generator {
-    ///
+    /// Writes the ".xcodeproj" file to disk.
     static func writeXcodeProj(
         _ xcodeProj: XcodeProj,
         files: [FilePath: File],

@@ -1,4 +1,5 @@
 import CustomDump
+import PathKit
 import XcodeProj
 import XCTest
 
@@ -13,6 +14,7 @@ final class AddTargetsTests: XCTestCase {
         let expectedPBXProj = Fixtures.pbxProj()
         let expectedMainGroup = expectedPBXProj.rootObject!.mainGroup!
 
+        let xcodeprojBazelLabel = "//:project"
         let targets = Fixtures.targets
 
         let (files, _) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
@@ -33,7 +35,8 @@ final class AddTargetsTests: XCTestCase {
             in: expectedPBXProj,
             disambiguatedTargets: disambiguatedTargets,
             files: expectedFiles,
-            products: expectedProducts
+            products: expectedProducts,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
         )
 
         // Act
@@ -42,7 +45,8 @@ final class AddTargetsTests: XCTestCase {
             in: pbxProj,
             for: disambiguatedTargets,
             products: products,
-            files: files
+            files: files,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
         )
 
         try pbxProj.fixReferences()

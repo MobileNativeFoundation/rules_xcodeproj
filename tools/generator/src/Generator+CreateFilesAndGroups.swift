@@ -17,7 +17,8 @@ struct File: Equatable {
 }
 
 extension Generator {
-    static let compileStubPath = Path("CompileStub.swift")
+    static let compileStubPath: Path = "CompileStub.swift"
+    static let generatedFileListPath: Path = "generated.xcfilelist"
 
     static func createFilesAndGroups(
         in pbxProj: PBXProj,
@@ -197,6 +198,30 @@ extension Generator {
             files[filePath] = File(reference: reference)
         }
 
+        // Write generated.xcfilelist
+
+        let generatedFiles = elements
+            .filter { filePath, element in
+                return filePath.type == .generated
+                    && element is PBXFileReference
+            }
+            .map { "\($1.projectRelativePath(in: pbxProj))\n" }
+
+        if !generatedFiles.isEmpty {
+            let reference = PBXFileReference(
+                sourceTree: .group,
+                lastKnownFileType: generatedFileListPath.lastKnownFileType,
+                path: generatedFileListPath.string
+            )
+            pbxProj.add(object: reference)
+            createInternalGroup().addChild(reference)
+
+            files[.internal(generatedFileListPath)] = File(
+                reference: reference,
+                content: generatedFiles.joined()
+            )
+        }
+
         // Handle special groups
 
         rootElements.sortGroupedLocalizedStandard()
@@ -219,4 +244,30 @@ extension Generator {
 
 private extension Path {
     var sourceTree: PBXSourceTree { isAbsolute ? .absolute : .group }
+}
+
+extension PBXFileElement {
+    func projectRelativePath(in pbxProj: PBXProj) -> Path {
+        switch sourceTree {
+        case .absolute?:
+            return Path(path!)
+        case .group?:
+            guard let group = parent else {
+                return Path(path ?? "")
+            }
+            return group.projectRelativePath(in: pbxProj) + path!
+        default:
+            preconditionFailure("""
+Unexpected sourceTree: \(sourceTree?.description ?? "nil")
+""")
+        }
+    }
+}
+
+extension Sequence where Element == FilePath {
+    var containsGeneratedFiles: Bool { contains { $0.type == .generated } }
+}
+
+extension Dictionary where Key == FilePath {
+    var containsGeneratedFiles: Bool { keys.containsGeneratedFiles }
 }

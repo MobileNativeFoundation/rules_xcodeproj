@@ -1,6 +1,7 @@
 {
     "build_settings": {
         "ALWAYS_SEARCH_USER_PATHS": false,
+        "BAZEL_PATH": "bazel",
         "CLANG_ENABLE_OBJC_ARC": true,
         "COPY_PHASE_STRIP": false,
         "CURRENT_PROJECT_VERSION": "1",
@@ -22,6 +23,7 @@
         "examples/ios_app/Example/Preview Content/Preview Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
         "examples/ios_app/Example/Preview Content/Preview Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png"
     ],
+    "label": "//test/fixtures/ios_app:xcodeproj",
     "name": "project",
     "potential_target_merges": [
         "//examples/ios_app/Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",

@@ -7,6 +7,7 @@ import XcodeProj
 enum Fixtures {
     static let project = Project(
         name: "Bazel",
+        label: "//:xcodeproj",
         buildSettings: [
             "ALWAYS_SEARCH_USER_PATHS": .bool(false),
             "COPY_PHASE_STRIP": .bool(false),
@@ -96,7 +97,7 @@ enum Fixtures {
     static func pbxProj() -> PBXProj {
         let pbxProj = PBXProj()
 
-        let mainGroup = PBXGroup()
+        let mainGroup = PBXGroup(sourceTree: .group)
         pbxProj.add(object: mainGroup)
 
         let buildConfigurationList = XCConfigurationList()
@@ -125,6 +126,7 @@ enum Fixtures {
         var elements: [FilePath: PBXFileElement] = [:]
 
         // bazel-out/a1b2c/bin/t.c
+
         elements[.generated("a1b2c/bin/t.c")] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.c.c",
@@ -148,6 +150,7 @@ enum Fixtures {
         )
 
         // external/a_repo/a.swift
+
         elements[.external("a_repo/a.swift")] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.swift",
@@ -160,6 +163,7 @@ enum Fixtures {
         )
 
         // external/another_repo/b.swift
+
         elements[.external("another_repo/b.swift")] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.swift",
@@ -172,6 +176,7 @@ enum Fixtures {
         )
 
         // external
+
         elements[.external("")] = PBXGroup(
             children: [
                 elements[.external("a_repo")]!,
@@ -183,6 +188,7 @@ enum Fixtures {
         )
 
         // a/a.h
+
         elements["a/a.h"] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.c.h",
@@ -190,6 +196,7 @@ enum Fixtures {
         )
 
         // a/c.h
+
         elements["a/c.h"] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.c.h",
@@ -197,6 +204,7 @@ enum Fixtures {
         )
 
         // a/d/a.h
+
         elements["a/d/a.h"] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.c.h",
@@ -209,6 +217,7 @@ enum Fixtures {
         )
 
         // a/b/c.m
+
         elements["a/b/c.m"] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "sourcecode.c.objc",
@@ -221,6 +230,7 @@ enum Fixtures {
         )
 
         // Parent of the 4 above
+
         elements["a"] = PBXGroup(
             children: [
                 // Folders are before files, then alphabetically
@@ -277,8 +287,22 @@ enum Fixtures {
             lastKnownFileType: "sourcecode.swift",
             path: "CompileStub.swift"
         )
+
+        // `internal`/generated.xcfilelist
+
+        elements[.internal("generated.xcfilelist")] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "text.xcfilelist",
+            path: "generated.xcfilelist"
+        )
+
+        // `internal`
+
         elements[.internal("")] = PBXGroup(
-            children: [elements[.internal("CompileStub.swift")]!],
+            children: [
+                elements[.internal("CompileStub.swift")]!,
+                elements[.internal("generated.xcfilelist")]!,
+            ],
             sourceTree: .group,
             name: internalDirectoryName,
             path: (workspaceOutputPath + internalDirectoryName).string
@@ -301,7 +325,17 @@ enum Fixtures {
                 continue
             }
 
-            files[filePath] = File(reference: reference)
+            let content: String
+            if filePath == .internal("generated.xcfilelist") {
+                content = """
+\(generatedDirectory)/a1b2c/bin/t.c
+
+"""
+            } else {
+                content = ""
+            }
+            
+            files[filePath] = File(reference: reference, content: content)
         }
 
         return (files, elements)
@@ -423,7 +457,8 @@ enum Fixtures {
         in pbxProj: PBXProj,
         disambiguatedTargets: [TargetID: DisambiguatedTarget],
         files: [FilePath: File],
-        products: Products
+        products: Products,
+        xcodeprojBazelLabel: String
     ) -> [TargetID: PBXNativeTarget] {
         // Build phases
 
@@ -578,10 +613,53 @@ enum Fixtures {
                 productType: .staticLibrary
             ),
         ]
+
+        let pbxProject = pbxProj.rootObject!
+
+        let debugConfiguration = XCBuildConfiguration(name: "Debug")
+        pbxProj.add(object: debugConfiguration)
+        let configurationList = XCConfigurationList(
+            buildConfigurations: [debugConfiguration],
+            defaultConfigurationName: debugConfiguration.name
+        )
+        pbxProj.add(object: configurationList)
+        let shellScript = PBXShellScriptBuildPhase(
+            outputFileListPaths: [
+                files[.internal("generated.xcfilelist")]!
+                    .reference
+                    .projectRelativePath(in: pbxProj)
+                    .string,
+            ],
+            shellScript: #"""
+PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  ${BAZEL_PATH} \
+  build \
+  --output_groups=generated_inputs \
+  \#(xcodeprojBazelLabel)
+
+"""#,
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: shellScript)
+        let generatedFilesTarget = PBXAggregateTarget(
+            name: "Bazel Generated Files",
+            buildConfigurationList: configurationList,
+            buildPhases: [shellScript],
+            productName: "Bazel Generated Files"
+        )
+        pbxProj.add(object: generatedFilesTarget)
+        pbxProject.targets.append(generatedFilesTarget)
+
+        let attributes: [String: Any] = [
+            "CreatedOnToolsVersion": "13.2.1",
+        ]
+        pbxProject.setTargetAttributes(attributes, target: generatedFilesTarget)
+
         // The order target are added to `PBXProject`s matter for uuid fixing.
         for pbxTarget in pbxTargets.values.sortedLocalizedStandard(\.name) {
             pbxProj.add(object: pbxTarget)
-            pbxProj.rootObject!.targets.append(pbxTarget)
+            pbxProject.targets.append(pbxTarget)
         }
 
         return pbxTargets
@@ -603,7 +681,8 @@ enum Fixtures {
             in: pbxProj,
             disambiguatedTargets: disambiguatedTargets,
             files: files,
-            products: products
+            products: products,
+            xcodeprojBazelLabel: ""
         )
 
         return (pbxTargets, disambiguatedTargets)

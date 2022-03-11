@@ -50,7 +50,8 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
         _ products: Products,
-        _ files: [FilePath: File]
+        _ files: [FilePath: File],
+        _ xcodeprojBazelLabel: String
     ) throws -> [TargetID: PBXNativeTarget]
 
     let setTargetConfigurations: (
