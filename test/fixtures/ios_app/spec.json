@@ -112,8 +112,8 @@
             "inputs": {},
             "label": "//examples/ios_app/Example:Example",
             "links": [
-                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Example/libExample.library.a",
-                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Utils/libUtils.a"
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Utils/libUtils.a",
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Example/libExample.library.a"
             ],
             "name": "Example",
             "outputs": {
@@ -278,8 +278,8 @@
             "inputs": {},
             "label": "//examples/ios_app/ExampleTests:ExampleTests.__internal__.__test_bundle",
             "links": [
-                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/ExampleTests/libExampleTests.library.a",
-                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/TestingUtils/libTestingUtils.a"
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/TestingUtils/libTestingUtils.a",
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/ExampleTests/libExampleTests.library.a"
             ],
             "name": "ExampleTests",
             "outputs": {

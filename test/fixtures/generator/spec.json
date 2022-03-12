@@ -86,10 +86,10 @@
             "inputs": {},
             "label": "//tools/generator:generator",
             "links": [
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a"
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a"
             ],
             "name": "generator",
             "outputs": {},
@@ -272,13 +272,13 @@
             "inputs": {},
             "label": "//tools/generator:tests",
             "links": [
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a"
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a"
             ],
             "name": "tests",
             "outputs": {},

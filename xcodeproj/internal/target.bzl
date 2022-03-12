@@ -43,6 +43,7 @@ associated with any targets.
         "generated_inputs": """\
 A `depset` of generated `File`s that are used by the Xcode project.
 """,
+        "linker_inputs": "A `depset` of `LinkerInput`s for this target.",
         "potential_target_merges": """\
 A `depset` of structs with 'src' and 'dest' fields. The 'src' field is the id of
 the target that can be merged into the target with the id of the 'dest' field.
@@ -142,20 +143,25 @@ def _get_id(*, label, configuration):
 
 # Product
 
-def _get_static_libraries(*, cc_info):
+def _get_linker_inputs(*, cc_info):
+    return cc_info.linking_context.linker_inputs
+
+def _get_static_libraries(*, linker_inputs):
     return [
         library.static_library
         for libraries in [
             input.libraries
-            for input in cc_info.linking_context.linker_inputs.to_list()
+            for input in linker_inputs.to_list()
         ]
         for library in libraries
     ]
 
-def _get_static_library(*, label, libraries):
-    for library in libraries:
-        if library.owner == label:
-            return library.path
+def _get_static_library(*, label, linker_inputs):
+    for input in linker_inputs.to_list():
+        for library in input.libraries:
+            static_library = library.static_library
+            if static_library.owner == label:
+                return static_library.path
     return None
 
 def _process_product(
@@ -164,7 +170,7 @@ def _process_product(
         product_name,
         product_type,
         bundle_path,
-        libraries,
+        linker_inputs,
         build_settings):
     """Generates information about the target's product.
 
@@ -177,7 +183,7 @@ def _process_product(
             for examples.
         bundle_path: If the product is a bundle, this is the the path to the
             bundle, otherwise `None`.
-        libraries: A `list` of static library `File`s that this product links.
+        linker_inputs: A `depset` of `LinkerInput`s for this target.
         build_settings: A mutable `dict` that will be updated with Xcode build
             settings.
     """
@@ -188,7 +194,7 @@ def _process_product(
     elif CcInfo in target or SwiftInfo in target:
         path = _get_static_library(
             label = target.label,
-            libraries = libraries,
+            linker_inputs = linker_inputs,
         )
     else:
         path = None
@@ -262,6 +268,7 @@ def _swift_module_output(module):
 def _processed_target(
         *,
         inputs_info,
+        linker_inputs,
         potential_target_merges,
         required_links,
         search_paths,
@@ -275,7 +282,8 @@ def _processed_target(
             fields.
         potential_target_merges: A `list` of `struct`s that will be in the
             `XcodeProjInfo.potential_target_merges` `depset`.
-        required_links: A `list` of strings that will be in the
+        linker_inputs: A `depset` of `LinkerInput`s for this target.
+        required_links: An optional `list` of strings that will be in the
             `XcodeProjInfo.required_links` `depset`.
         target: The `XcodeProjInfo.target` `struct`.
         xcode_target: A string that will be in the
@@ -288,6 +296,7 @@ def _processed_target(
     """
     return struct(
         inputs_info = inputs_info,
+        linker_inputs = linker_inputs,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
         search_paths = search_paths,
@@ -459,7 +468,7 @@ def _process_libraries(
 
 def _process_test_host(test_host):
     if test_host:
-        return test_host[XcodeProjInfo].target
+        return test_host[XcodeProjInfo]
     return None
 
 def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
@@ -483,15 +492,15 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     library_dep_targets = [
         dep[XcodeProjInfo].target
         for dep in ctx.rule.attr.deps
-        if dep[XcodeProjInfo].target.libraries
+        if dep[XcodeProjInfo].target and dep[XcodeProjInfo].linker_inputs
     ]
 
-    libraries = depset(
+    linker_inputs = depset(
         transitive = [
-            depset(target.libraries)
-            for target in library_dep_targets
+            dep[XcodeProjInfo].linker_inputs
+            for dep in ctx.rule.attr.deps
         ],
-    ).to_list()
+    )
 
     if len(library_dep_targets) == 1 and not inputs_info.srcs:
         mergeable_target = library_dep_targets[0]
@@ -526,15 +535,21 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
 
-    test_host_target = _process_test_host(
+    test_host_target_info = _process_test_host(
         getattr(ctx.rule.attr, "test_host", None),
     )
 
+    if test_host_target_info:
+        test_host_libraries = _get_static_libraries(
+            linker_inputs = test_host_target_info.linker_inputs,
+        )
+    else:
+        test_host_libraries = None
+
+    libraries = _get_static_libraries(linker_inputs = linker_inputs)
     links, required_links = _process_libraries(
         product_type = props.product_type,
-        test_host_libraries = (
-            test_host_target.libraries if test_host_target else None
-        ),
+        test_host_libraries = test_host_libraries,
         links = [
             library.path
             for library in libraries
@@ -572,6 +587,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 
     return _processed_target(
         inputs_info = inputs_info,
+        linker_inputs = linker_inputs,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
         search_paths = search_paths,
@@ -579,7 +595,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             id = id,
             label = target.label,
             build_settings = build_settings,
-            libraries = libraries,
             dependencies = dependencies,
         ),
         xcode_target = _xcode_target(
@@ -593,10 +608,10 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
                 product_name = props.product_name,
                 product_type = props.product_type,
                 bundle_path = props.bundle_path,
-                libraries = libraries,
+                linker_inputs = linker_inputs,
                 build_settings = build_settings,
             ),
-            test_host = test_host_target.id if test_host_target else None,
+            test_host = test_host_target_info.target.id if test_host_target_info else None,
             build_settings = build_settings,
             search_paths = search_paths,
             inputs_info = inputs_info,
@@ -630,7 +645,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     module_name = get_product_module_name(ctx = ctx, target = target)
     build_settings["PRODUCT_MODULE_NAME"] = module_name
     dependencies = [info.target.id for info in transitive_infos if info.target]
-    libraries = _get_static_libraries(cc_info = target[CcInfo])
+    linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
 
     cpp = ctx.fragments.cpp
 
@@ -668,6 +683,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
 
     return _processed_target(
         inputs_info = inputs_info,
+        linker_inputs = linker_inputs,
         potential_target_merges = [],
         required_links = [],
         search_paths = search_paths,
@@ -675,7 +691,6 @@ def _process_library_target(*, ctx, target, transitive_infos):
             id = id,
             label = target.label,
             build_settings = build_settings,
-            libraries = libraries,
             dependencies = dependencies,
         ),
         xcode_target = _xcode_target(
@@ -687,7 +702,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
                 product_name = product_name,
                 product_type = "com.apple.product-type.library.static",
                 bundle_path = None,
-                libraries = libraries,
+                linker_inputs = linker_inputs,
                 build_settings = build_settings,
             ),
             configuration = configuration,
@@ -752,6 +767,7 @@ def _target_info_fields(
         *,
         extra_files,
         generated_inputs,
+        linker_inputs,
         potential_target_merges,
         required_links,
         search_paths,
@@ -764,6 +780,7 @@ def _target_info_fields(
     Args:
         extra_files: Maps to the `XcodeProjInfo.extra_files` field.
         generated_inputs: Maps to the `XcodeProjInfo.generated_inputs` field.
+        linker_inputs: Maps to the `XcodeProjInfo.linker_inputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
         required_links: Maps to the `XcodeProjInfo.required_links` field.
@@ -776,6 +793,7 @@ def _target_info_fields(
 
         *   `extra_files`
         *   `generated_inputs`
+        *   `linker_inputs`
         *   `potential_target_merges`
         *   `required_links`
         *   `search_paths`
@@ -785,6 +803,7 @@ def _target_info_fields(
     return {
         "extra_files": extra_files,
         "generated_inputs": generated_inputs,
+        "linker_inputs": linker_inputs,
         "potential_target_merges": potential_target_merges,
         "required_links": required_links,
         "search_paths": search_paths,
@@ -816,6 +835,12 @@ def _passthrough_target(*, transitive_infos):
         generated_inputs = depset(
             transitive = [
                 info.generated_inputs
+                for info in transitive_infos
+            ],
+        ),
+        linker_inputs = depset(
+            transitive = [
+                info.linker_inputs
                 for info in transitive_infos
             ],
         ),
@@ -926,6 +951,7 @@ def _process_target(*, ctx, target, transitive_infos):
                 for info in transitive_infos
             ],
         ),
+        linker_inputs = processed_target.linker_inputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,
             transitive = [
@@ -961,14 +987,20 @@ def process_target(*, ctx, target, transitive_infos):
         `transitive_infos`.
     """
     if not _should_process_target(target):
+        if CcInfo in target:
+            linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
+        else:
+            linker_inputs = depset()
+
         inputs_info = target[InputFilesInfo]
         return XcodeProjInfo(
-            potential_target_merges = depset(),
             extra_files = depset(
                 inputs_info.other,
                 transitive = [info.extra_files for info in transitive_infos],
             ),
             generated_inputs = depset(),
+            linker_inputs = linker_inputs,
+            potential_target_merges = depset(),
             required_links = depset(),
             search_paths = _process_search_paths(
                 bin_dir_path = ctx.bin_dir.path,
