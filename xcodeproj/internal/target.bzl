@@ -36,6 +36,10 @@ load(
 XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",
     fields = {
+        "dependencies": """\
+A `list` of target ids (see the `target` `struct`) that this target directly
+depends on.
+""",
         "extra_files": """\
 A `depset` of `File`s that should be added to the Xcode project, but not
 associated with any targets.
@@ -267,6 +271,7 @@ def _swift_module_output(module):
 
 def _processed_target(
         *,
+        dependencies,
         inputs_info,
         linker_inputs,
         potential_target_merges,
@@ -277,6 +282,8 @@ def _processed_target(
     """Generates the return value for target processing functions.
 
     Args:
+        dependencies: A `list` of target ids of direct dependencies of this
+            target.
         inputs_info: An `InputFilesInfo` that will provide values for the
             `XcodeProjInfo.extra_files` and `XcodeProjInfo.generated_inputs`
             fields.
@@ -295,6 +302,7 @@ def _processed_target(
         A `struct` containing fields for each argument.
     """
     return struct(
+        dependencies = dependencies,
         inputs_info = inputs_info,
         linker_inputs = linker_inputs,
         potential_target_merges = potential_target_merges,
@@ -487,7 +495,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
     inputs_info = target[InputFilesInfo]
-    dependencies = [info.target.id for info in transitive_infos if info.target]
+    dependencies = _process_dependencies(transitive_infos = transitive_infos)
 
     library_dep_targets = [
         dep[XcodeProjInfo].target
@@ -586,6 +594,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     return _processed_target(
+        dependencies = dependencies,
         inputs_info = inputs_info,
         linker_inputs = linker_inputs,
         potential_target_merges = potential_target_merges,
@@ -595,7 +604,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             id = id,
             label = target.label,
             build_settings = build_settings,
-            dependencies = dependencies,
         ),
         xcode_target = _xcode_target(
             id = id,
@@ -644,7 +652,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     product_name = ctx.rule.attr.name
     module_name = get_product_module_name(ctx = ctx, target = target)
     build_settings["PRODUCT_MODULE_NAME"] = module_name
-    dependencies = [info.target.id for info in transitive_infos if info.target]
+    dependencies = _process_dependencies(transitive_infos = transitive_infos)
     linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
 
     cpp = ctx.fragments.cpp
@@ -682,6 +690,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
 
     return _processed_target(
+        dependencies = dependencies,
         inputs_info = inputs_info,
         linker_inputs = linker_inputs,
         potential_target_merges = [],
@@ -691,7 +700,6 @@ def _process_library_target(*, ctx, target, transitive_infos):
             id = id,
             label = target.label,
             build_settings = build_settings,
-            dependencies = dependencies,
         ),
         xcode_target = _xcode_target(
             id = id,
@@ -765,6 +773,7 @@ def _should_passthrough_target(*, ctx, target):
 
 def _target_info_fields(
         *,
+        dependencies,
         extra_files,
         generated_inputs,
         linker_inputs,
@@ -778,6 +787,7 @@ def _target_info_fields(
     This should be merged with other fields to fully create an `XcodeProjInfo`.
 
     Args:
+        dependencies: Maps to the `XcodeProjInfo.dependencies` field.
         extra_files: Maps to the `XcodeProjInfo.extra_files` field.
         generated_inputs: Maps to the `XcodeProjInfo.generated_inputs` field.
         linker_inputs: Maps to the `XcodeProjInfo.linker_inputs` field.
@@ -791,6 +801,7 @@ def _target_info_fields(
     Returns:
         A `dict` containing the following fields:
 
+        *   `dependencies`
         *   `extra_files`
         *   `generated_inputs`
         *   `linker_inputs`
@@ -801,6 +812,7 @@ def _target_info_fields(
         *   `xcode_targets`
     """
     return {
+        "dependencies": dependencies,
         "extra_files": extra_files,
         "generated_inputs": generated_inputs,
         "linker_inputs": linker_inputs,
@@ -826,6 +838,9 @@ def _passthrough_target(*, transitive_infos):
         `transitive_infos`.
     """
     return _target_info_fields(
+        dependencies = _process_dependencies(
+            transitive_infos = transitive_infos,
+        ),
         extra_files = depset(
             transitive = [
                 info.extra_files
@@ -863,6 +878,18 @@ def _passthrough_target(*, transitive_infos):
             transitive = [info.xcode_targets for info in transitive_infos],
         ),
     )
+
+def _process_dependencies(*, transitive_infos):
+    return [
+        dependency
+        for dependencies in [
+            # We pass on the next level of dependencies if the previous target
+            # didn't create an Xcode target.
+            [info.target.id] if info.target else info.dependencies
+            for info in transitive_infos
+        ]
+        for dependency in dependencies
+    ]
 
 def _append_if_new(existing, new):
     """Appends elements to a `list` if they are not already present in it.
@@ -934,6 +961,7 @@ def _process_target(*, ctx, target, transitive_infos):
     inputs_info = processed_target.inputs_info
 
     return _target_info_fields(
+        dependencies = processed_target.dependencies,
         extra_files = depset(
             depset(
                 inputs_info.other,
@@ -994,6 +1022,9 @@ def process_target(*, ctx, target, transitive_infos):
 
         inputs_info = target[InputFilesInfo]
         return XcodeProjInfo(
+            dependencies = _process_dependencies(
+                transitive_infos = transitive_infos,
+            ),
             extra_files = depset(
                 inputs_info.other,
                 transitive = [info.extra_files for info in transitive_infos],
