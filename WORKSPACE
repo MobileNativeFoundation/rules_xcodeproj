@@ -95,3 +95,29 @@ buildifier_prebuilt_deps()
 load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
 
 buildifier_prebuilt_register_toolchains()
+
+# Bazel Integration Test
+
+# http_archive(
+#     name = "cgrindel_rules_bazel_integration_test",
+#     sha256 = "39071d2ec8e3be74c8c4a6c395247182b987cdb78d3a3955b39e343ece624982",
+#     strip_prefix = "rules_bazel_integration_test-0.5.0",
+#     urls = [
+#         "http://github.com/cgrindel/rules_bazel_integration_test/archive/v0.5.0.tar.gz",
+#     ],
+# )
+
+# TODO: FIX ME!
+
+local_repository(
+    name = "cgrindel_rules_bazel_integration_test",
+    path = "/Users/chuckgrindel/code/cgrindel/rules_bazel_integration_test/fix_paths_with_spaces",
+)
+
+load("@cgrindel_rules_bazel_integration_test//bazel_integration_test:deps.bzl", "bazel_integration_test_rules_dependencies")
+
+bazel_integration_test_rules_dependencies()
+
+load("@cgrindel_bazel_starlib//:deps.bzl", "bazel_starlib_dependencies")
+
+bazel_starlib_dependencies()
