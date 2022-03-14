@@ -603,7 +603,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         target = struct(
             id = id,
             label = target.label,
-            build_settings = build_settings,
         ),
         xcode_target = _xcode_target(
             id = id,
@@ -699,7 +698,6 @@ def _process_library_target(*, ctx, target, transitive_infos):
         target = struct(
             id = id,
             label = target.label,
-            build_settings = build_settings,
         ),
         xcode_target = _xcode_target(
             id = id,
