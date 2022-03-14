@@ -46,8 +46,12 @@ enum Fixtures {
             dependencies: ["C 1", "A 1"]
         ),
         "B 1": Target.mock(
-            product: .init(type: .staticLibrary, name: "b", path: "a/b.a"),
-            inputs: .init(srcs: ["z.mm"]),
+            product: .init(
+                type: .staticFramework,
+                name: "b",
+                path: "a/b.framework"
+            ),
+            inputs: .init(srcs: ["z.h", "z.mm"], hdrs: ["d.h"]),
             dependencies: ["A 1"]
         ),
         // "B 2" not having a link on "A 1" represents a bundle_loader like
@@ -55,18 +59,18 @@ enum Fixtures {
         "B 2": Target.mock(
             product: .init(type: .unitTestBundle, name: "B", path: "B.xctest"),
             testHost: "A 2",
-            links: ["a/b.a"],
+            links: ["a/b.framework"],
             dependencies: ["A 2", "B 1"]
         ),
         "B 3": Target.mock(
             product: .init(type: .uiTestBundle, name: "B3", path: "B3.xctest"),
             testHost: "A 2",
-            links: ["a/b.a"],
+            links: ["a/b.framework"],
             dependencies: ["A 2", "B 1"]
         ),
         "C 1": Target.mock(
             product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),
-            inputs: .init(srcs: ["a/b/c.m"])
+            inputs: .init(srcs: ["a/b/c.m"], hdrs: ["a/b/c.h"])
         ),
         "C 2": Target.mock(
             product: .init(type: .commandLineTool, name: "d", path: "d"),
@@ -222,6 +226,14 @@ enum Fixtures {
             path: "d"
         )
 
+        // a/b/c.h
+
+        elements["a/b/c.h"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.h",
+            path: "c.h"
+        )
+
         // a/b/c.m
 
         elements["a/b/c.m"] = PBXFileReference(
@@ -241,7 +253,11 @@ enum Fixtures {
         // a/b
 
         elements["a/b"] = PBXGroup(
-            children: [elements["a/b/c.m"]!, elements["a/b/d.m"]!],
+            children: [
+                elements["a/b/c.h"]!,
+                elements["a/b/c.m"]!,
+                elements["a/b/d.m"]!,
+            ],
             sourceTree: .group,
             path: "b"
         )
@@ -268,6 +284,14 @@ enum Fixtures {
             path: "b.c"
         )
 
+        // d.h
+
+        elements["d.h"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.h",
+            path: "d.h"
+        )
+
         // x/y.swift
 
         elements["x/y.swift"] = PBXFileReference(
@@ -279,6 +303,14 @@ enum Fixtures {
             children: [elements["x/y.swift"]!],
             sourceTree: .group,
             path: "x"
+        )
+
+        // z.h
+
+        elements["z.h"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.h",
+            path: "z.h"
         )
 
         // z.mm
@@ -383,11 +415,11 @@ enum Fixtures {
             ),
             Products.ProductKeys(
                 target: "B 1",
-                path: "a/b.a"
+                path: "a/b.framework"
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
-                explicitFileType: PBXProductType.staticLibrary.fileType,
-                path: "b.a",
+                explicitFileType: PBXProductType.staticFramework.fileType,
+                path: "b.framework",
                 includeInIndex: false
             ),
             Products.ProductKeys(
@@ -464,7 +496,7 @@ enum Fixtures {
             children: [
                 products.byPath["z/A.a"]!,
                 products.byPath["z/A.app"]!,
-                products.byPath["a/b.a"]!,
+                products.byPath["a/b.framework"]!,
                 products.byPath["B.xctest"]!,
                 products.byPath["B3.xctest"]!,
                 products.byPath["a/c.a"]!,
@@ -523,8 +555,18 @@ enum Fixtures {
                 ),
             ],
             "B 1": [
+                PBXHeadersBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(
+                            file: elements["d.h"]!,
+                            settings: ["ATTRIBUTES": ["Public"]]
+                        ),
+                        PBXBuildFile(file: elements["z.h"]!),
+                    ])
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([
+                        PBXBuildFile(file: elements["z.h"]!),
                         PBXBuildFile(file: elements["z.mm"]!),
                     ])
                 ),
@@ -617,7 +659,7 @@ enum Fixtures {
                 buildPhases: buildPhases["B 1"] ?? [],
                 productName: "b",
                 product: products.byTarget["B 1"],
-                productType: .staticLibrary
+                productType: .staticFramework
             ),
             "B 2": PBXNativeTarget(
                 name: disambiguatedTargets["B 2"]!.name,

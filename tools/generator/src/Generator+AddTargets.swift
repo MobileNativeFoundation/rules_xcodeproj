@@ -24,6 +24,7 @@ extension Generator {
         )
         for (id, disambiguatedTarget) in sortedDisambiguatedTargets {
             let target = disambiguatedTarget.target
+            let inputs = target.inputs
 
             guard let product = products.byTarget[id] else {
                 throw PreconditionError(message: """
@@ -31,11 +32,15 @@ Product for target "\(id)" not found
 """)
             }
 
-            // TODO: Headers build phase
-
+            let headersPhase = try createHeadersPhase(
+                in: pbxProj,
+                productType: target.product.type,
+                inputs: inputs,
+                files: files
+            )
             let sourcesBuildPhase = try createCompileSourcesPhase(
                 in: pbxProj,
-                inputs: target.inputs,
+                inputs: inputs,
                 files: files
             )
             let frameworksBuildPhase = try createFrameworksPhase(
@@ -51,9 +56,10 @@ Product for target "\(id)" not found
             let pbxTarget = PBXNativeTarget(
                 name: disambiguatedTarget.name,
                 buildPhases: [
+                    headersPhase,
                     sourcesBuildPhase,
                     frameworksBuildPhase,
-                ],
+                ].compactMap { $0 },
                 productName: target.product.name,
                 product: product,
                 productType: target.product.type
@@ -135,6 +141,51 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
         return pbxTarget
     }
 
+    private static func createHeadersPhase(
+        in pbxProj: PBXProj,
+        productType: PBXProductType,
+        inputs: Inputs,
+        files: [FilePath: File]
+    ) throws -> PBXHeadersBuildPhase? {
+        guard productType.isFramework else {
+            return nil
+        }
+
+        let publicHeaders = inputs.hdrs
+        let projectHeaders = inputs.srcs.filter(\.path.isHeader)
+            .union(inputs.nonArcSrcs.filter(\.path.isHeader))
+            .subtracting(publicHeaders)
+
+        let publicHeaderFiles = publicHeaders.map { HeaderFile($0, .public) }
+        let projectHeaderFiles = projectHeaders.map { HeaderFile($0, .project) }
+        let headerFiles = Set(publicHeaderFiles + projectHeaderFiles)
+
+        guard !headerFiles.isEmpty else {
+            return nil
+        }
+
+        func buildFile(headerFile: HeaderFile) throws -> PBXBuildFile {
+            guard let file = files[headerFile.filePath] else {
+                throw PreconditionError(message: """
+File "\(headerFile.filePath)" not found
+""")
+            }
+            let pbxBuildFile = PBXBuildFile(
+                file: file.reference,
+                settings: headerFile.settings
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = PBXHeadersBuildPhase(
+            files: try headerFiles.map(buildFile).sortedLocalizedStandard()
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
     private static func createCompileSourcesPhase(
         in pbxProj: PBXProj,
         inputs: Inputs,
@@ -206,6 +257,33 @@ Product with path "\(path)" not found
     }
 }
 
+private struct HeaderFile: Hashable {
+    enum Visibility {
+        case `public`
+        case project
+    }
+
+    let filePath: FilePath
+    let visibility: Visibility
+
+    init(_ filePath: FilePath, _ visibility: Visibility) {
+        self.filePath = filePath
+        self.visibility = visibility
+    }
+
+    var settings: [String: Any]? {
+        switch visibility {
+        case .public:
+            // We don't use `BuildSetting.array` here, because Xcode uses an
+            // array even for a single item, while `BuildSetting.array` will
+            // turn that into a string.
+            return ["ATTRIBUTES": ["Public"]]
+        case .project:
+            return nil
+        }
+    }
+}
+
 private struct SourceFile: Hashable {
     let filePath: FilePath
     let compilerFlags: [String]?
@@ -230,5 +308,16 @@ private extension Inputs {
     var containsGeneratedFiles: Bool {
         return srcs.containsGeneratedFiles
             || nonArcSrcs.containsGeneratedFiles
+    }
+}
+
+private extension Path {
+    var isHeader: Bool {
+        switch `extension` {
+        case "h": return true
+        case "hh": return true
+        case "hpp": return true
+        default: return false
+        }
     }
 }

@@ -74,6 +74,7 @@ def _process_inputs(inputs_info):
 
         *   `srcs`: A `list` of `FilePath`s for `srcs`.
         *   `non_arc_srcs`: A `list` of `FilePath`s for `non_arc_srcs`.
+        *   `hdrs`: A `list` of `FilePath`s for `hdrs`.
     """
     inputs = {}
 
@@ -84,6 +85,7 @@ def _process_inputs(inputs_info):
 
     _process_attr("srcs")
     _process_attr("non_arc_srcs")
+    _process_attr("hdrs")
 
     return inputs
 

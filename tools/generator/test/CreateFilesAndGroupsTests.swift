@@ -101,6 +101,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             // Files are sorted below groups
             expectedElements["Assets.xcassets"]!,
             expectedElements["b.c"]!,
+            expectedElements["d.h"]!,
+            expectedElements["z.h"]!,
             expectedElements["z.mm"]!,
             // Then Bazel External Repositories
             expectedElements[.external("")]!,
