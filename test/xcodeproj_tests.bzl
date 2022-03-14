@@ -83,6 +83,15 @@ def xcodeproj_test_suite(name):
             expected_xcodeproj = expected_xcodeproj,
         )
 
+    # cc
+
+    _add_test(
+        name = "{}_cc_binary".format(name),
+        target_under_test = "//test/fixtures/cc:xcodeproj",
+        expected_spec = "//test/fixtures/cc:spec.json",
+        expected_xcodeproj = "//test/fixtures/cc:xcodeproj_output",
+    )
+
     # iOS App
 
     _add_test(

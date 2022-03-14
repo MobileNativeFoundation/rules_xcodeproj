@@ -1,0 +1,1 @@
+#define SECRET "Hello, World!"
