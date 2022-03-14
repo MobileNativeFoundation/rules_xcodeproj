@@ -287,15 +287,15 @@ def _processed_target(
         inputs_info: An `InputFilesInfo` that will provide values for the
             `XcodeProjInfo.extra_files` and `XcodeProjInfo.generated_inputs`
             fields.
-        potential_target_merges: A `list` of `struct`s that will be in the
-            `XcodeProjInfo.potential_target_merges` `depset`.
         linker_inputs: A `depset` of `LinkerInput`s for this target.
+        potential_target_merges: An optional `list` of `struct`s that will be in
+            the `XcodeProjInfo.potential_target_merges` `depset`.
         required_links: An optional `list` of strings that will be in the
             `XcodeProjInfo.required_links` `depset`.
-        target: The `XcodeProjInfo.target` `struct`.
-        xcode_target: A string that will be in the
         search_paths: A search paths `struct` as returned from
             `_process_search_paths()`.
+        target: An optional `XcodeProjInfo.target` `struct`.
+        xcode_target: An optional string that will be in the
             `XcodeProjInfo.xcode_targets` `depset`.
 
     Returns:
@@ -309,7 +309,7 @@ def _processed_target(
         required_links = required_links,
         search_paths = search_paths,
         target = target,
-        xcode_target = xcode_target,
+        xcode_targets = [xcode_target] if xcode_target else None,
     )
 
 def _needs_search_paths(*, inputs_info):
@@ -521,7 +521,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
 The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 """.format(ctx.rule.kind, target.label, len(library_dep_targets)))
     else:
-        potential_target_merges = []
+        potential_target_merges = None
         mergeable_label = None
 
     build_settings = {}
@@ -692,8 +692,8 @@ def _process_library_target(*, ctx, target, transitive_infos):
         dependencies = dependencies,
         inputs_info = inputs_info,
         linker_inputs = linker_inputs,
-        potential_target_merges = [],
-        required_links = [],
+        potential_target_merges = None,
+        required_links = None,
         search_paths = search_paths,
         target = struct(
             id = id,
@@ -723,9 +723,45 @@ def _process_library_target(*, ctx, target, transitive_infos):
         ),
     )
 
+# Non-Xcode targets
+
+def _process_non_xcode_target(*, ctx, target, transitive_infos):
+    """Gathers information about a non-Xcode target.
+
+    Args:
+        ctx: The aspect context.
+        target: The `Target` to process.
+        transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
+            transitive dependencies of `target`.
+
+    Returns:
+        A `struct` as returned from `_processed_target()`.
+    """
+    if CcInfo in target:
+        linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
+    else:
+        linker_inputs = depset()
+
+    return _processed_target(
+        dependencies = _process_dependencies(
+            transitive_infos = transitive_infos,
+        ),
+        inputs_info = target[InputFilesInfo],
+        linker_inputs = linker_inputs,
+        potential_target_merges = None,
+        required_links = None,
+        search_paths = _process_search_paths(
+            bin_dir_path = ctx.bin_dir.path,
+            target = target,
+            transitive_infos = transitive_infos,
+        ),
+        target = None,
+        xcode_target = None,
+    )
+
 # Creating `XcodeProjInfo`
 
-def _should_process_target(target):
+def _should_become_xcode_target(target):
     """Determines if the given target should be included in the Xcode project.
 
     Args:
@@ -748,7 +784,7 @@ def _should_process_target(target):
         target[DefaultInfo].files_to_run.executable
     )
 
-def _should_passthrough_target(*, ctx, target):
+def _should_skip_target(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
 
     There are some rules, like the test runners for iOS tests, that we want to
@@ -821,7 +857,7 @@ def _target_info_fields(
         "xcode_targets": xcode_targets,
     }
 
-def _passthrough_target(*, transitive_infos):
+def _skip_target(*, transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
@@ -935,7 +971,13 @@ def _process_target(*, ctx, target, transitive_infos):
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields()`.
     """
-    if AppleBundleInfo in target:
+    if not _should_become_xcode_target(target):
+        processed_target = _process_non_xcode_target(
+            ctx = ctx,
+            target = target,
+            transitive_infos = transitive_infos,
+        )
+    elif AppleBundleInfo in target:
         processed_target = _process_top_level_target(
             ctx = ctx,
             target = target,
@@ -992,7 +1034,7 @@ def _process_target(*, ctx, target, transitive_infos):
         search_paths = processed_target.search_paths,
         target = processed_target.target,
         xcode_targets = depset(
-            [processed_target.xcode_target],
+            processed_target.xcode_targets,
             transitive = [info.xcode_targets for info in transitive_infos],
         ),
     )
@@ -1012,36 +1054,8 @@ def process_target(*, ctx, target, transitive_infos):
         An `XcodeProjInfo` populated with information from `target` and
         `transitive_infos`.
     """
-    if not _should_process_target(target):
-        if CcInfo in target:
-            linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
-        else:
-            linker_inputs = depset()
-
-        inputs_info = target[InputFilesInfo]
-        return XcodeProjInfo(
-            dependencies = _process_dependencies(
-                transitive_infos = transitive_infos,
-            ),
-            extra_files = depset(
-                inputs_info.other,
-                transitive = [info.extra_files for info in transitive_infos],
-            ),
-            generated_inputs = depset(),
-            linker_inputs = linker_inputs,
-            potential_target_merges = depset(),
-            required_links = depset(),
-            search_paths = _process_search_paths(
-                bin_dir_path = ctx.bin_dir.path,
-                target = target,
-                transitive_infos = transitive_infos,
-            ),
-            target = None,
-            xcode_targets = depset(),
-        )
-
-    if _should_passthrough_target(ctx = ctx, target = target):
-        info_fields = _passthrough_target(
+    if _should_skip_target(ctx = ctx, target = target):
+        info_fields = _skip_target(
             transitive_infos = transitive_infos,
         )
     else:
