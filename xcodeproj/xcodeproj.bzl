@@ -76,7 +76,8 @@ def _write_json_spec(*, ctx, project_name, infos):
 "COPY_PHASE_STRIP":false,\
 "CURRENT_PROJECT_VERSION":"1",\
 "MARKETING_VERSION":"1.0",\
-"ONLY_ACTIVE_ARCH":true\
+"ONLY_ACTIVE_ARCH":true,\
+"USE_HEADERMAP":false\
 }},\
 "extra_files":{extra_files},\
 "label":"{label}",\

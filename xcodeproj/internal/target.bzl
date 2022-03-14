@@ -16,7 +16,9 @@ load(
 )
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:files.bzl",
+    "external_file_path",
     "file_path",
+    "generated_file_path",
 )
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:input_files_aspect.bzl",
@@ -48,6 +50,11 @@ the target that can be merged into the target with the id of the 'dest' field.
         "required_links": """\
 A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
+""",
+        "search_paths": """\
+A `struct` as returned by `_process_search_paths()` that contains the search
+paths needed by this target. These search paths should be added to the search
+paths of any target that depends on this target.
 """,
         "target": """\
 A `struct` that contains information about the current target that is
@@ -257,6 +264,7 @@ def _processed_target(
         inputs_info,
         potential_target_merges,
         required_links,
+        search_paths,
         target,
         xcode_target):
     """Generates the return value for target processing functions.
@@ -271,6 +279,8 @@ def _processed_target(
             `XcodeProjInfo.required_links` `depset`.
         target: The `XcodeProjInfo.target` `struct`.
         xcode_target: A string that will be in the
+        search_paths: A search paths `struct` as returned from
+            `_process_search_paths()`.
             `XcodeProjInfo.xcode_targets` `depset`.
 
     Returns:
@@ -280,9 +290,16 @@ def _processed_target(
         inputs_info = inputs_info,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
+        search_paths = search_paths,
         target = target,
         xcode_target = xcode_target,
     )
+
+def _needs_search_paths(*, inputs_info):
+    for src in inputs_info.srcs:
+        if not src.path.endswith(".swift"):
+            return True
+    return False
 
 def _xcode_target(
         *,
@@ -294,7 +311,8 @@ def _xcode_target(
         product,
         test_host,
         build_settings,
-        inputs,
+        search_paths,
+        inputs_info,
         links,
         dependencies,
         outputs):
@@ -314,7 +332,9 @@ def _xcode_target(
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
-        inputs: An inputs `dict` as returned from `_process_inputs()`.
+        search_paths: A search paths `struct` as returned from
+            `_process_search_paths()`.
+        inputs_info: An `InputFilesInfo` provider.
         links: A `list` of file paths for libraries that the target links
             against.
         dependencies: A `list` of `id`s of targets that this target depends on.
@@ -325,6 +345,13 @@ def _xcode_target(
         to create a json array string, possibly joining multiples of these
         strings with `","`.
     """
+
+    # We can send search paths for all targets, but not sending them for
+    # certain targets reduces the size of the spec, the time it takes to parse
+    # the spec, and the size of the produced project.
+    if not _needs_search_paths(inputs_info = inputs_info):
+        search_paths = {}
+
     target = json.encode(struct(
         name = name,
         label = str(label),
@@ -333,7 +360,8 @@ def _xcode_target(
         product = product,
         test_host = test_host,
         build_settings = build_settings,
-        inputs = inputs,
+        search_paths = search_paths,
+        inputs = _process_inputs(inputs_info),
         links = links,
         dependencies = dependencies,
         outputs = outputs,
@@ -536,11 +564,17 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     inputs_info = target[InputFilesInfo]
+    search_paths = _process_search_paths(
+        bin_dir_path = ctx.bin_dir.path,
+        target = target,
+        transitive_infos = transitive_infos,
+    )
 
     return _processed_target(
         inputs_info = inputs_info,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
+        search_paths = search_paths,
         target = struct(
             id = id,
             label = target.label,
@@ -564,7 +598,8 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             ),
             test_host = test_host_target.id if test_host_target else None,
             build_settings = build_settings,
-            inputs = _process_inputs(inputs_info),
+            search_paths = search_paths,
+            inputs_info = inputs_info,
             links = links,
             dependencies = dependencies,
             outputs = _process_outputs(target),
@@ -625,11 +660,17 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
 
     inputs_info = target[InputFilesInfo]
+    search_paths = _process_search_paths(
+        bin_dir_path = ctx.bin_dir.path,
+        target = target,
+        transitive_infos = transitive_infos,
+    )
 
     return _processed_target(
         inputs_info = inputs_info,
         potential_target_merges = [],
         required_links = [],
+        search_paths = search_paths,
         target = struct(
             id = id,
             label = target.label,
@@ -652,8 +693,9 @@ def _process_library_target(*, ctx, target, transitive_infos):
             configuration = configuration,
             platform = platform,
             build_settings = build_settings,
+            search_paths = search_paths,
             test_host = None,
-            inputs = _process_inputs(inputs_info),
+            inputs_info = inputs_info,
             links = [],
             dependencies = dependencies,
             outputs = _process_outputs(target),
@@ -712,6 +754,7 @@ def _target_info_fields(
         generated_inputs,
         potential_target_merges,
         required_links,
+        search_paths,
         target,
         xcode_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
@@ -724,6 +767,7 @@ def _target_info_fields(
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
         required_links: Maps to the `XcodeProjInfo.required_links` field.
+        search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target: Maps to the `XcodeProjInfo.target` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
 
@@ -734,6 +778,7 @@ def _target_info_fields(
         *   `generated_inputs`
         *   `potential_target_merges`
         *   `required_links`
+        *   `search_paths`
         *   `target`
         *   `xcode_targets`
     """
@@ -742,6 +787,7 @@ def _target_info_fields(
         "generated_inputs": generated_inputs,
         "potential_target_merges": potential_target_merges,
         "required_links": required_links,
+        "search_paths": search_paths,
         "target": target,
         "xcode_targets": xcode_targets,
     }
@@ -782,10 +828,48 @@ def _passthrough_target(*, transitive_infos):
         required_links = depset(
             transitive = [info.required_links for info in transitive_infos],
         ),
+        search_paths = _process_search_paths(
+            bin_dir_path = None,
+            target = None,
+            transitive_infos = transitive_infos,
+        ),
         target = None,
         xcode_targets = depset(
             transitive = [info.xcode_targets for info in transitive_infos],
         ),
+    )
+
+def _append_if_new(existing, new):
+    """Appends elements to a `list` if they are not already present in it.
+
+    Args:
+        existing: The existing `list` to append to.
+        new: The new `list` to append elements from.
+    """
+    for element in new:
+        if element not in existing:
+            existing.append(element)
+
+def _process_search_paths(*, bin_dir_path, target, transitive_infos):
+    if target and CcInfo in target:
+        # First add our search paths
+        root = target.label.workspace_root
+        quote_headers = [
+            external_file_path(root) if root else ".",
+            generated_file_path(bin_dir_path + ("/" + root if root else "")),
+        ]
+    else:
+        quote_headers = []
+
+    # Then add dependency search paths
+    for info in transitive_infos:
+        search_paths = info.search_paths
+        if not search_paths:
+            continue
+        _append_if_new(quote_headers, search_paths.quote_headers)
+
+    return struct(
+        quote_headers = quote_headers,
     )
 
 def _process_target(*, ctx, target, transitive_infos):
@@ -853,6 +937,7 @@ def _process_target(*, ctx, target, transitive_infos):
             processed_target.required_links,
             transitive = [info.required_links for info in transitive_infos],
         ),
+        search_paths = processed_target.search_paths,
         target = processed_target.target,
         xcode_targets = depset(
             [processed_target.xcode_target],
@@ -885,6 +970,11 @@ def process_target(*, ctx, target, transitive_infos):
             ),
             generated_inputs = depset(),
             required_links = depset(),
+            search_paths = _process_search_paths(
+                bin_dir_path = ctx.bin_dir.path,
+                target = target,
+                transitive_infos = transitive_infos,
+            ),
             target = None,
             xcode_targets = depset(),
         )

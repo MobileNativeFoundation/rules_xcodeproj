@@ -289,18 +289,24 @@ final class GeneratorTests: XCTestCase {
             let pbxProj: PBXProj
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
             let pbxTargets: [TargetID: PBXNativeTarget]
+            let externalDirectory: Path
+            let generatedDirectory: Path
         }
 
         var setTargetConfigurationsCalled: [SetTargetConfigurationsCalled] = []
         func setTargetConfigurations(
             in pbxProj: PBXProj,
             for disambiguatedTargets: [TargetID: DisambiguatedTarget],
-            pbxTargets: [TargetID: PBXNativeTarget]
+            pbxTargets: [TargetID: PBXNativeTarget],
+            externalDirectory: Path,
+            generatedDirectory: Path
         ) {
             setTargetConfigurationsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
-                pbxTargets: pbxTargets
+                pbxTargets: pbxTargets,
+                externalDirectory: externalDirectory,
+                generatedDirectory: generatedDirectory
             ))
         }
 
@@ -308,7 +314,9 @@ final class GeneratorTests: XCTestCase {
             SetTargetConfigurationsCalled(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
-                pbxTargets: pbxTargets
+                pbxTargets: pbxTargets,
+                externalDirectory: externalDirectory,
+                generatedDirectory: generatedDirectory
             )
         ]
 
