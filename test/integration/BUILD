@@ -8,6 +8,11 @@ load("//:bazel_versions.bzl", "SUPPORTED_BAZEL_VERSIONS")
 
 default_test_runner(
     name = "ios_app_test_runner",
+    bazel_cmds = [
+        "info",
+        "test //...",
+        "run //:xcodeproj",
+    ],
 )
 
 bazel_integration_tests(
