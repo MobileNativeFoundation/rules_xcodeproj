@@ -5,7 +5,7 @@ ios_unit_test(
     name = "ExampleTests",
     bundle_id = "io.buildbuddy.example.tests",
     minimum_os_version = "15.0",
-    test_host = "//examples/ios_app/Example",
+    test_host = "//Example",
     visibility = ["//visibility:public"],
     deps = [":ExampleTests.library"],
 )
@@ -16,8 +16,8 @@ swift_library(
     srcs = glob(["**/*.swift"]),
     module_name = "ExampleTests",
     deps = [
-        "//examples/ios_app/Example:Example.library",
-        "//examples/ios_app/TestingUtils",
-        "//examples/ios_app/Utils",
+        "//Example:Example.library",
+        "//TestingUtils",
+        "//Utils",
     ],
 )

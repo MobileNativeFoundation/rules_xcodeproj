@@ -29,7 +29,7 @@ swift_library(
     module_name = "Example",
     visibility = ["//visibility:public"],
     deps = [
-        "//examples/ios_app/Utils",
+        "//Utils",
     ],
 )
 
