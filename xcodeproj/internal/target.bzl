@@ -589,6 +589,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     inputs_info = target[InputFilesInfo]
     search_paths = _process_search_paths(
         bin_dir_path = ctx.bin_dir.path,
+        includes = getattr(ctx.rule.attr, "includes", []),
         target = target,
         transitive_infos = transitive_infos,
     )
@@ -684,6 +685,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     inputs_info = target[InputFilesInfo]
     search_paths = _process_search_paths(
         bin_dir_path = ctx.bin_dir.path,
+        includes = getattr(ctx.rule.attr, "includes", []),
         target = target,
         transitive_infos = transitive_infos,
     )
@@ -752,6 +754,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         required_links = None,
         search_paths = _process_search_paths(
             bin_dir_path = ctx.bin_dir.path,
+            includes = getattr(ctx.rule.attr, "includes", []),
             target = target,
             transitive_infos = transitive_infos,
         ),
@@ -904,6 +907,7 @@ def _skip_target(*, transitive_infos):
         ),
         search_paths = _process_search_paths(
             bin_dir_path = None,
+            includes = [],
             target = None,
             transitive_infos = transitive_infos,
         ),
@@ -936,16 +940,41 @@ def _append_if_new(existing, new):
         if element not in existing:
             existing.append(element)
 
-def _process_search_paths(*, bin_dir_path, target, transitive_infos):
+def _join_ignoring_empty(*elements):
+    return paths.join(*[
+        component
+        for component in elements
+        if component
+    ])
+
+def _process_search_paths(*, bin_dir_path, target, includes, transitive_infos):
     if target and CcInfo in target:
         # First add our search paths
         root = target.label.workspace_root
+        rooted_package = _join_ignoring_empty(root, target.label.package)
         quote_headers = [
             external_file_path(root) if root else ".",
-            generated_file_path(bin_dir_path + ("/" + root if root else "")),
+            generated_file_path(_join_ignoring_empty(bin_dir_path, root)),
         ]
+        include_paths = []
+        for include in includes:
+            include_path = _join_ignoring_empty(rooted_package, include)
+            if root:
+                include_paths.append(external_file_path(include_path))
+            else:
+                include_paths.append(include_path)
+            include_paths.append(
+                generated_file_path(
+                    _join_ignoring_empty(
+                        bin_dir_path,
+                        rooted_package,
+                        include,
+                    ),
+                ),
+            )
     else:
         quote_headers = []
+        include_paths = []
 
     # Then add dependency search paths
     for info in transitive_infos:
@@ -953,8 +982,10 @@ def _process_search_paths(*, bin_dir_path, target, transitive_infos):
         if not search_paths:
             continue
         _append_if_new(quote_headers, search_paths.quote_headers)
+        _append_if_new(include_paths, search_paths.includes)
 
     return struct(
+        includes = include_paths,
         quote_headers = quote_headers,
     )
 
