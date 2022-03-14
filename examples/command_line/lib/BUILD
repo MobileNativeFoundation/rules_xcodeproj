@@ -1,4 +1,4 @@
-cc_library(
+objc_library(
     name = "lib_impl",
     srcs = [
         "lib.c",
@@ -6,9 +6,11 @@ cc_library(
     ],
 )
 
-cc_library(
+objc_library(
     name = "lib_headers",
-    hdrs = ["lib.h"],
+    hdrs = ["dir with space/lib.h"],
+    enable_modules = True,
+    includes = ["dir with space"],
     deps = [":lib_impl"],
 )
 

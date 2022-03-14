@@ -5,7 +5,8 @@ update_fixtures(
     tags = ["manual"],
     targets = [
         "//test/fixtures/cc:xcodeproj",
-        "//test/fixtures/ios_app:xcodeproj",
+        "//test/fixtures/command_line:xcodeproj",
         "//test/fixtures/generator:xcodeproj",
+        "//test/fixtures/ios_app:xcodeproj",
     ],
 )

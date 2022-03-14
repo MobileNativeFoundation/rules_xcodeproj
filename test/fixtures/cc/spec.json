@@ -17,7 +17,7 @@
     "potential_target_merges": [],
     "required_links": [],
     "targets": [
-        "//examples/cc/lib:actual_lib darwin_x86_64-fastbuild-ST-1b9bd654f600",
+        "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -58,8 +58,8 @@
                     "-D__TIMESTAMP__=\"redacted\"",
                     "-D__TIME__=\"redacted\""
                 ],
-                "PRODUCT_MODULE_NAME": "examples_cc_lib_actual_lib",
-                "PRODUCT_NAME": "actual_lib",
+                "PRODUCT_MODULE_NAME": "examples_cc_lib_lib_impl",
+                "PRODUCT_NAME": "lib_impl",
                 "SDKROOT": "macosx",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -72,10 +72,10 @@
                     "examples/cc/lib/private.h"
                 ]
             },
-            "label": "//examples/cc/lib:actual_lib",
+            "label": "//examples/cc/lib:lib_impl",
             "links": [],
             "modulemaps": [],
-            "name": "examples_cc_lib_actual_lib",
+            "name": "examples_cc_lib_lib_impl",
             "outputs": {},
             "platform": {
                 "arch": "x86_64",
@@ -83,8 +83,8 @@
                 "os": "macOS"
             },
             "product": {
-                "name": "actual_lib",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/libactual_lib.a",
+                "name": "lib_impl",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/liblib_impl.a",
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
@@ -149,7 +149,7 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
-                "//examples/cc/lib:actual_lib darwin_x86_64-fastbuild-ST-1b9bd654f600"
+                "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "inputs": {
                 "srcs": [
@@ -158,7 +158,7 @@
             },
             "label": "//examples/cc/tool:tool",
             "links": [
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/libactual_lib.a"
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/liblib_impl.a"
             ],
             "modulemaps": [],
             "name": "tool",
