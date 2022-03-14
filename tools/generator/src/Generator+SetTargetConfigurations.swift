@@ -41,6 +41,15 @@ Target "\(id)" not found in `pbxTargets`.
                     )
             }
 
+            let includes = target.searchPaths.includes
+            if !includes.isEmpty {
+                buildSettings["HEADER_SEARCH_PATHS"] = includes
+                    .resolved(
+                        externalDirectory: externalDirectory,
+                        generatedDirectory: generatedDirectory
+                    )
+            }
+
             buildSettings["TARGET_NAME"] = disambiguatedTarget.nameBuildSetting
 
             if let testHostID = target.testHost {
