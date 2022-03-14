@@ -10,6 +10,12 @@ xcodeproj(
 
 # MARK: - Select the Xcode Version
 
+# NOTE: It appears that the BuildBuddy Xcode hosts have a pre-13.0 version of
+# Xcode available. The code in this integration test requires 13.0 or later.
+# Also, the README for rules_xcodeproj states that only Xcode versions 13.2.1
+# or later are supported. For now, will require 13.2.1 using the configuration
+# below and the --xcode_version_config flag in the .bazelrc.
+
 xcode_version(
     name = "version13_2_1_13C100",
     aliases = [
