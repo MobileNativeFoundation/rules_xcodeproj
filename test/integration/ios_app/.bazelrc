@@ -1,5 +1,5 @@
 # Import Shared settings
 import %workspace%/../../../shared.bazelrc
 
-# Show errors
-test --test_output=errors --test_summary=detailed
+# Specify the Xcode version to use
+build --xcode_version_config=//:host_xcodes
