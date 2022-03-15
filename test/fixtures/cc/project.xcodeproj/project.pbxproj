@@ -7,33 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06F13FF98A4A27EACF887AF2 /* libactual_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64DBEF26B3746D3B14010111 /* libactual_lib.a */; };
+		40446BADACC5ED6F1DAD87F4 /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = AA8B695078A953D1EA32899E /* private.h */; };
 		5B4F5A0F99FCFB768BB56235 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C91EE0C5078D0455B44BD9D /* main.c */; };
-		789EF2A651B7EE34A2346FDE /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 76BA269B4C781557323B9158 /* lib.c */; };
-		9E541E40F73A3C9480A2A538 /* liblib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC4C77D972F4566CE1D866 /* liblib.a */; };
-		FC381E466212DB82A359C7DD /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = AA8B695078A953D1EA32899E /* private.h */; };
+		EF71597597CA828107CF665E /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 76BA269B4C781557323B9158 /* lib.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DF3BD9FDE94CF5CCB29DE781 /* PBXContainerItemProxy */ = {
+		9AEE1ABA344E34DF2E5C37EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A5C9DAF5CFC4A4653CFFBB30;
-			remoteInfo = examples_cc_lib_lib;
+			remoteGlobalIDString = 19F3B1C1AC030CC84A15F675;
+			remoteInfo = examples_cc_lib_actual_lib;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0ABD91F55693E360A651C6BD /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
-		2AAC4C77D972F4566CE1D866 /* liblib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C91EE0C5078D0455B44BD9D /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		64DBEF26B3746D3B14010111 /* libactual_lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libactual_lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BA269B4C781557323B9158 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		AA8B695078A953D1EA32899E /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		E37C21ED6BACCA0E92024F54 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		197A1E4206EDFE4DD88C3A2D /* Frameworks */ = {
+		5D6C73D660815BEF4502D326 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E541E40F73A3C9480A2A538 /* liblib.a in Frameworks */,
+				06F13FF98A4A27EACF887AF2 /* libactual_lib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +54,7 @@
 		428D294EDDF4A41D530E1B84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2AAC4C77D972F4566CE1D866 /* liblib.a */,
+				64DBEF26B3746D3B14010111 /* libactual_lib.a */,
 				E37C21ED6BACCA0E92024F54 /* tool */,
 			);
 			name = Products;
@@ -114,20 +114,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A5C9DAF5CFC4A4653CFFBB30 /* examples_cc_lib_lib */ = {
+		19F3B1C1AC030CC84A15F675 /* examples_cc_lib_actual_lib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 32740BF3DB7FE6703C8EF135 /* Build configuration list for PBXNativeTarget "examples_cc_lib_lib" */;
+			buildConfigurationList = 8809C0437BA65C4BAABE2216 /* Build configuration list for PBXNativeTarget "examples_cc_lib_actual_lib" */;
 			buildPhases = (
-				F3991660A21C27BA29584425 /* Sources */,
-				197A1E4206EDFE4DD88C3A2D /* Frameworks */,
+				FB11DD8659C51F40A2DC8944 /* Sources */,
+				5D6C73D660815BEF4502D326 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = examples_cc_lib_lib;
-			productName = lib;
-			productReference = 2AAC4C77D972F4566CE1D866 /* liblib.a */;
+			name = examples_cc_lib_actual_lib;
+			productName = actual_lib;
+			productReference = 64DBEF26B3746D3B14010111 /* libactual_lib.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		FD130DFF680DDEAB3B145665 /* tool */ = {
@@ -140,7 +140,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				30BA7DD1EE97DFAFB52E421C /* PBXTargetDependency */,
+				FF3ECBA313D7F2B00128BF10 /* PBXTargetDependency */,
 			);
 			name = tool;
 			productName = tool;
@@ -157,7 +157,7 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					A5C9DAF5CFC4A4653CFFBB30 = {
+					19F3B1C1AC030CC84A15F675 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -180,7 +180,7 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
-				A5C9DAF5CFC4A4653CFFBB30 /* examples_cc_lib_lib */,
+				19F3B1C1AC030CC84A15F675 /* examples_cc_lib_actual_lib */,
 				FD130DFF680DDEAB3B145665 /* tool */,
 			);
 		};
@@ -195,27 +195,81 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F3991660A21C27BA29584425 /* Sources */ = {
+		FB11DD8659C51F40A2DC8944 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				789EF2A651B7EE34A2346FDE /* lib.c in Sources */,
-				FC381E466212DB82A359C7DD /* private.h in Sources */,
+				EF71597597CA828107CF665E /* lib.c in Sources */,
+				40446BADACC5ED6F1DAD87F4 /* private.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		30BA7DD1EE97DFAFB52E421C /* PBXTargetDependency */ = {
+		FF3ECBA313D7F2B00128BF10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = examples_cc_lib_lib;
-			target = A5C9DAF5CFC4A4653CFFBB30 /* examples_cc_lib_lib */;
-			targetProxy = DF3BD9FDE94CF5CCB29DE781 /* PBXContainerItemProxy */;
+			name = examples_cc_lib_actual_lib;
+			target = 19F3B1C1AC030CC84A15F675 /* examples_cc_lib_actual_lib */;
+			targetProxy = 9AEE1ABA344E34DF2E5C37EC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		44812A5542FB5401F9A8BD9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = (
+					"-D_FORTIFY_SOURCE=1",
+					"-fstack-protector",
+					"-fcolor-diagnostics",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-DDEBUG",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D_FORTIFY_SOURCE=1",
+					"-fstack-protector",
+					"-fcolor-diagnostics",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-DDEBUG",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
+				);
+				PRODUCT_MODULE_NAME = examples_cc_lib_actual_lib;
+				PRODUCT_NAME = actual_lib;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = "examples_cc_lib_actual_lib-90cc807acf2ec736d9f8e9fea7300ade7d3e4c69";
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+				);
+			};
+			name = Debug;
+		};
 		7C935235ACC6252AE6F5B6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -283,71 +337,9 @@
 			};
 			name = Debug;
 		};
-		F73EB523E50130973636ABFE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_CFLAGS = (
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-fcolor-diagnostics",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-DDEBUG",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-fcolor-diagnostics",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-DDEBUG",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				PRODUCT_MODULE_NAME = examples_cc_lib_lib;
-				PRODUCT_NAME = lib;
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5;
-				TARGET_NAME = "examples_cc_lib_lib-bc5c6d0d7a77d94921b6fd73fd10a70c86309dfc";
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
-				);
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		32740BF3DB7FE6703C8EF135 /* Build configuration list for PBXNativeTarget "examples_cc_lib_lib" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F73EB523E50130973636ABFE /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		80BD425FBB172AF87565539B /* Build configuration list for PBXProject "project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -360,6 +352,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B12A0CE58F3DC632DDF8D39A /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8809C0437BA65C4BAABE2216 /* Build configuration list for PBXNativeTarget "examples_cc_lib_actual_lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44812A5542FB5401F9A8BD9C /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
