@@ -1,4 +1,3 @@
-#include "lib.h"
 #include "private.h"
 
 char *greeting() {
