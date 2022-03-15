@@ -70,6 +70,7 @@ enum Fixtures {
         ),
         "C 1": Target.mock(
             product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),
+            modulemaps: ["a/b/module.modulemap"],
             inputs: .init(srcs: ["a/b/c.m"], hdrs: ["a/b/c.h"])
         ),
         "C 2": Target.mock(
@@ -378,6 +379,7 @@ enum Fixtures {
             if filePath == .internal("generated.xcfilelist") {
                 content = """
 \(generatedDirectory)/a1b2c/bin/t.c
+a/b/module.modulemap
 
 """
             } else {
@@ -835,6 +837,9 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
             ]) { $1 },
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
+                "OTHER_SWIFT_FLAGS": """
+-Xcc -fmodule-map-file=a/b/module.modulemap
+""",
                 "TARGET_NAME": distinguished["C 1"]!.nameBuildSetting,
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([

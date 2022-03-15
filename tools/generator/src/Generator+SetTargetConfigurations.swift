@@ -30,25 +30,40 @@ Target "\(id)" not found in `pbxTargets`.
                 // TODO: Only include properties that make sense for the target
                 "LastSwiftMigration": 1320,
             ]
-            var buildSettings = target.buildSettings.asDictionary
+            var targetBuildSettings = target.buildSettings
 
             let quoteHeaders = target.searchPaths.quoteHeaders
             if !quoteHeaders.isEmpty {
-                buildSettings["USER_HEADER_SEARCH_PATHS"] = quoteHeaders
-                    .resolved(
+                targetBuildSettings["USER_HEADER_SEARCH_PATHS"] = .array(
+                    quoteHeaders.resolved(
                         externalDirectory: externalDirectory,
                         generatedDirectory: generatedDirectory
                     )
+                )
             }
 
             let includes = target.searchPaths.includes
             if !includes.isEmpty {
-                buildSettings["HEADER_SEARCH_PATHS"] = includes
-                    .resolved(
+                targetBuildSettings["HEADER_SEARCH_PATHS"] = .array(
+                    includes.resolved(
                         externalDirectory: externalDirectory,
                         generatedDirectory: generatedDirectory
                     )
+                )
             }
+
+            let modulemapCopts = target.modulemaps
+                .resolved(
+                    externalDirectory: externalDirectory,
+                    generatedDirectory: generatedDirectory
+                )
+                .map { "-Xcc -fmodule-map-file=\($0)" }
+            try targetBuildSettings.prepend(
+                onKey: "OTHER_SWIFT_FLAGS",
+                modulemapCopts
+            )
+
+            var buildSettings = targetBuildSettings.asDictionary
 
             buildSettings["TARGET_NAME"] = disambiguatedTarget.nameBuildSetting
 
@@ -98,44 +113,20 @@ Test host with id "\(testHostID)" not found
     }
 }
 
-private extension Sequence where Element == FilePath {
-    /// Returns the source root relative paths of the files in the sequence.
-    func resolved(
-        externalDirectory: Path,
-        generatedDirectory: Path
-    ) -> [String] {
-        return map { filePath in
-            return filePath.resolved(
-                externalDirectory: externalDirectory,
-                generatedDirectory: generatedDirectory
-            )
-        }
-    }
-}
-
-private extension FilePath {
-    /// Returns the source root relative path.
-    func resolved(
-        externalDirectory: Path,
-        generatedDirectory: Path
-    ) -> String {
-        switch type {
-        case .external:
-            return (externalDirectory + path).quotedString
-        case .generated:
-            return (generatedDirectory + path).quotedString
+private extension Dictionary where Value == BuildSetting {
+    mutating func prepend(onKey key: Key, _ content: [String]) throws {
+        let buildSetting = self[key, default: .array([])]
+        switch buildSetting {
+        case .array(let existing):
+            let new = content + existing
+            guard !new.isEmpty else {
+                return
+            }
+            self[key] = .array(new)
         default:
-            return path.quotedString
+            throw PreconditionError(message: """
+Build setting for \(key) is not an array: \(buildSetting)
+""")
         }
-    }
-}
-
-private extension Path {
-    /// Wraps the path in quotes if it needs it
-    var quotedString: String {
-        guard string.rangeOfCharacter(from: .whitespaces) != nil else {
-            return string
-        }
-        return #""\#(string)""#
     }
 }

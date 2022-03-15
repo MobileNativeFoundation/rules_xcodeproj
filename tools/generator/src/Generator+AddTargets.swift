@@ -69,7 +69,8 @@ Product for target "\(id)" not found
             pbxTargets[id] = pbxTarget
 
             if
-                target.inputs.containsGeneratedFiles,
+                target.inputs.containsGeneratedFiles
+                    || target.modulemaps.containsGeneratedFiles,
                 let generatedFilesTarget = generatedFilesTarget
             {
                 _ = try pbxTarget.addDependency(target: generatedFilesTarget)

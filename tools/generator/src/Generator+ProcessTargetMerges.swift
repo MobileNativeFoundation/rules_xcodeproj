@@ -69,6 +69,9 @@ exist
                 // Update search paths
                 merged.searchPaths = merging.searchPaths
 
+                // Update modulemaps
+                merged.modulemaps = merging.modulemaps
+
                 // Update inputs
                 merged.inputs = merging.inputs
 

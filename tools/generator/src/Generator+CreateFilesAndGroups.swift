@@ -199,12 +199,22 @@ extension Generator {
 
         // Write generated.xcfilelist
 
-        let generatedFiles = elements
+        var generatedFiles = elements
             .filter { filePath, element in
                 return filePath.type == .generated
                     && element is PBXFileReference
             }
             .map { "\($1.projectRelativePath(in: pbxProj))\n" }
+
+        for target in targets.values {
+            let modulemaps = target.modulemaps
+                .resolved(
+                    externalDirectory: externalDirectory,
+                    generatedDirectory: generatedDirectory
+                )
+                .map { "\($0)\n" }
+            generatedFiles.append(contentsOf: modulemaps)
+        }
 
         if !generatedFiles.isEmpty {
             let reference = PBXFileReference(
@@ -217,7 +227,7 @@ extension Generator {
 
             files[.internal(generatedFileListPath)] = File(
                 reference: reference,
-                content: generatedFiles.joined()
+                content: Set(generatedFiles).sortedLocalizedStandard().joined()
             )
         }
 

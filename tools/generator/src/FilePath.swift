@@ -61,3 +61,47 @@ extension FilePath {
 func +(lhs: FilePath, rhs: String) -> FilePath {
     return FilePath(type: lhs.type, path: lhs.path + rhs)
 }
+
+// MARK: - Utility
+
+extension Sequence where Element == FilePath {
+    /// Returns the source root relative paths of the files in the sequence.
+    func resolved(
+        externalDirectory: Path,
+        generatedDirectory: Path
+    ) -> [String] {
+        return map { filePath in
+            return filePath.resolved(
+                externalDirectory: externalDirectory,
+                generatedDirectory: generatedDirectory
+            )
+        }
+    }
+}
+
+extension FilePath {
+    /// Returns the source root relative path.
+    func resolved(
+        externalDirectory: Path,
+        generatedDirectory: Path
+    ) -> String {
+        switch type {
+        case .external:
+            return (externalDirectory + path).quotedString
+        case .generated:
+            return (generatedDirectory + path).quotedString
+        default:
+            return path.quotedString
+        }
+    }
+}
+
+private extension Path {
+    /// Wraps the path in quotes if it needs it
+    var quotedString: String {
+        guard string.rangeOfCharacter(from: .whitespaces) != nil else {
+            return string
+        }
+        return #""\#(string)""#
+    }
+}
