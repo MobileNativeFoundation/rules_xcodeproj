@@ -19,6 +19,7 @@ load(
     "external_file_path",
     "file_path",
     "generated_file_path",
+    "join_paths_ignoring_empty",
 )
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:input_files_aspect.bzl",
@@ -940,32 +941,25 @@ def _append_if_new(existing, new):
         if element not in existing:
             existing.append(element)
 
-def _join_ignoring_empty(*elements):
-    return paths.join(*[
-        component
-        for component in elements
-        if component
-    ])
-
 def _process_search_paths(*, bin_dir_path, target, includes, transitive_infos):
     if target and CcInfo in target:
         # First add our search paths
         root = target.label.workspace_root
-        rooted_package = _join_ignoring_empty(root, target.label.package)
+        rooted_package = join_paths_ignoring_empty(root, target.label.package)
         quote_headers = [
             external_file_path(root) if root else ".",
-            generated_file_path(_join_ignoring_empty(bin_dir_path, root)),
+            generated_file_path(join_paths_ignoring_empty(bin_dir_path, root)),
         ]
         include_paths = []
         for include in includes:
-            include_path = _join_ignoring_empty(rooted_package, include)
+            include_path = join_paths_ignoring_empty(rooted_package, include)
             if root:
                 include_paths.append(external_file_path(include_path))
             else:
                 include_paths.append(include_path)
             include_paths.append(
                 generated_file_path(
-                    _join_ignoring_empty(
+                    join_paths_ignoring_empty(
                         bin_dir_path,
                         rooted_package,
                         include,

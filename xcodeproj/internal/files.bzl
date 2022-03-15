@@ -1,5 +1,7 @@
 """Functions for processing `File`s."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
+
 def file_path(file):
     """Converts a `File` into a `FilePath` Swift DTO value.
 
@@ -39,3 +41,13 @@ def generated_file_path(path):
         # Path, removing `bazel-out/` prefix
         _ = path[10:],
     )
+
+def join_paths_ignoring_empty(*components):
+    non_empty_components = [
+        component
+        for component in components
+        if component
+    ]
+    if not non_empty_components:
+        return ""
+    return paths.join(*non_empty_components)
