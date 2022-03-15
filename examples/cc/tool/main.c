@@ -5,5 +5,5 @@
 
 int main(int argc, char *argv[]) {
     // Print the string returned from lib's greeting() function
-    printf("%s\n", greeting());
+    printf("%s, %s\n", greeting(), SECRET_2);
 }
