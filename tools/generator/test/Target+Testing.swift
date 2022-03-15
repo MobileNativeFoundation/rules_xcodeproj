@@ -11,6 +11,7 @@ extension Target {
         testHost: TargetID? = nil,
         buildSettings: [String: BuildSetting] = [:],
         searchPaths: SearchPaths = SearchPaths(),
+        modulemaps: [FilePath] = [],
         inputs: Inputs = Inputs(),
         links: Set<Path> = [],
         dependencies: Set<TargetID> = []
@@ -29,6 +30,7 @@ extension Target {
             testHost: testHost,
             buildSettings: buildSettings,
             searchPaths: searchPaths,
+            modulemaps: modulemaps,
             inputs: inputs,
             links: links,
             dependencies: dependencies

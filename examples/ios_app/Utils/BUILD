@@ -1,8 +1,12 @@
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-
-swift_library(
+objc_library(
     name = "Utils",
-    srcs = glob(["**/*.swift"]),
+    srcs = glob(
+        ["**/*.m"],
+        # Headers included here on purpose, to test `hdrs` collection logic
+        ["**/*.h"],
+    ),
+    hdrs = glob(["**/*.h"]),
+    enable_modules = True,
     module_name = "Utils",
     visibility = ["//visibility:public"],
 )

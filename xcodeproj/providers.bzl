@@ -11,6 +11,11 @@ rules, then you will use these providers to communicate between them.
 InputFileAttributesInfo = provider(
     "Specifies how input files of a target are collected.",
     fields = {
+        "other_collector": """\
+An optional lambda that is passed the target being processed and returns a
+`list` of `File`s that will end up in `InputFilesInfo.other`. If any of the
+files are generated, they will also end up in `InputFilesInfo.generated`.
+""",
         "excluded": """\
 A sequence of attribute names to not collect `File`s from.
 """,

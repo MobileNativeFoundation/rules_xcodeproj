@@ -91,6 +91,7 @@
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a"
             ],
+            "modulemaps": [],
             "name": "generator",
             "outputs": {},
             "platform": {
@@ -194,6 +195,7 @@
             },
             "label": "//tools/generator:generator.library",
             "links": [],
+            "modulemaps": [],
             "name": "generator",
             "outputs": {
                 "swift_module": {
@@ -280,6 +282,7 @@
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a"
             ],
+            "modulemaps": [],
             "name": "tests",
             "outputs": {},
             "platform": {
@@ -373,6 +376,7 @@
             },
             "label": "//tools/generator:tests.library",
             "links": [],
+            "modulemaps": [],
             "name": "tests",
             "outputs": {
                 "swift_module": {
@@ -458,6 +462,7 @@
             },
             "label": "@com_github_kylef_pathkit//:PathKit",
             "links": [],
+            "modulemaps": [],
             "name": "PathKit",
             "outputs": {
                 "swift_module": {
@@ -641,6 +646,7 @@
             },
             "label": "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
             "links": [],
+            "modulemaps": [],
             "name": "CustomDump",
             "outputs": {
                 "swift_module": {
@@ -726,6 +732,7 @@
             },
             "label": "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay",
             "links": [],
+            "modulemaps": [],
             "name": "XCTestDynamicOverlay",
             "outputs": {
                 "swift_module": {
@@ -827,6 +834,7 @@
             },
             "label": "@com_github_tadija_aexml//:AEXML",
             "links": [],
+            "modulemaps": [],
             "name": "AEXML",
             "outputs": {
                 "swift_module": {
@@ -1291,6 +1299,7 @@
             },
             "label": "@com_github_tuist_xcodeproj//:XcodeProj",
             "links": [],
+            "modulemaps": [],
             "name": "XcodeProj",
             "outputs": {
                 "swift_module": {

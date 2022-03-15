@@ -22,18 +22,32 @@
 
 /* Begin PBXBuildFile section */
 		063ED132D9E585467130BD7C /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D483D4425917BE1F7EAC0 /* ExampleUITestsLaunchTests.swift */; };
-		0D44E3C2C8215F2853816FDE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377067072DA9B93172410221 /* Utils.swift */; };
 		1CC772C422198070E5449BC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428758996F59592350934865 /* ContentView.swift */; };
 		21399C0D290FEBBC22798CB0 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB236421718480FDAB6C0BB /* ExampleApp.swift */; };
 		37E5FD5070CF4429327F578D /* libTestingUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4FA9C70425835BED3D18FF /* libTestingUtils.a */; };
 		60D4AE432EA39303B7A459BF /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB699499FA80E901E5107C6 /* ExampleUITests.swift */; };
 		656255E546040B461DB4EAAD /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E4276A1A7B18726FD7831D /* ExampleTests.swift */; };
 		6EA3628D500556DC68B536AD /* libUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96457EE4FDB089F9B6CA30D8 /* libUtils.a */; };
+		999A199E23E2C42080E15778 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0274AF8C08ABD7FB00BACF21 /* Foo.m */; };
 		B8018509046B5F1FC4F36A39 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0062A95C088130193D87326B /* TestingUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0064B74D322CFBBFCEEEE245 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3064A34776444DE49627998E;
+			remoteInfo = "Bazel Generated Files";
+		};
 		17EEC780925E742F008C20DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3064A34776444DE49627998E;
+			remoteInfo = "Bazel Generated Files";
+		};
+		2221FA2FB6E417367EA947F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
@@ -79,8 +93,9 @@
 
 /* Begin PBXFileReference section */
 		0062A95C088130193D87326B /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
+		0274AF8C08ABD7FB00BACF21 /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
+		27D63BD2475FA7EB2B3609CF /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		332DA7D905FE78395F8B49AB /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		377067072DA9B93172410221 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		428758996F59592350934865 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B4FA9C70425835BED3D18FF /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTestingUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		505F53DA54CFC8144EA4054D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -97,6 +112,7 @@
 		D806400B7E6336F2EE14F13F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC8D483D4425917BE1F7EAC0 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F3EE8A1F985D59D79066BF9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
+		FE2DD0805EA4F55E16A9B5E6 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +167,9 @@
 		1C919F4154A0036A4F75FA4F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				377067072DA9B93172410221 /* Utils.swift */,
+				27D63BD2475FA7EB2B3609CF /* Foo.h */,
+				0274AF8C08ABD7FB00BACF21 /* Foo.m */,
+				FE2DD0805EA4F55E16A9B5E6 /* Utils.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -382,6 +400,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E847135E7CA9041E959DADEC /* PBXTargetDependency */,
 				0A09A50235AD3310A7D6DB46 /* PBXTargetDependency */,
 				1080087DA48C3AE162B8AB58 /* PBXTargetDependency */,
 				CDA94696F94A3179CAEB7DF2 /* PBXTargetDependency */,
@@ -418,6 +437,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				39159660DA50973079657E41 /* PBXTargetDependency */,
 				7E14CF57C8FA9BF9043A9A53 /* PBXTargetDependency */,
 			);
 			name = Example;
@@ -528,7 +548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D44E3C2C8215F2853816FDE /* Utils.swift in Sources */,
+				999A199E23E2C42080E15778 /* Foo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +584,12 @@
 			target = 8B1A49AD77FC1690CB9AE556 /* TestingUtils */;
 			targetProxy = F21AA922DF7B90861DFD5505 /* PBXContainerItemProxy */;
 		};
+		39159660DA50973079657E41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			targetProxy = 2221FA2FB6E417367EA947F0 /* PBXContainerItemProxy */;
+		};
 		5D140CD59B6A8EB3926D0211 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Example;
@@ -588,6 +614,12 @@
 			target = 682FCD8AED9E378997DB28CB /* Utils */;
 			targetProxy = 35EBAE4F29733D87C89E5E88 /* PBXContainerItemProxy */;
 		};
+		E847135E7CA9041E959DADEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			targetProxy = 0064B74D322CFBBFCEEEE245 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -595,9 +627,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -636,10 +668,13 @@
 				PRODUCT_MODULE_NAME = Utils;
 				PRODUCT_NAME = Utils;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = "Utils-a7957682a66fed1929b397839fabaf911da79b75";
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -689,6 +724,7 @@
 					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Utils/Utils.swift.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
@@ -819,6 +855,7 @@
 					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/examples/ios_app/Utils/Utils.swift.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;

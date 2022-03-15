@@ -275,6 +275,7 @@ def _processed_target(
         dependencies,
         inputs_info,
         linker_inputs,
+        modulemaps,
         potential_target_merges,
         required_links,
         search_paths,
@@ -285,6 +286,7 @@ def _processed_target(
     Args:
         dependencies: A `list` of target ids of direct dependencies of this
             target.
+        modulemaps: A `struct` as returned from `_process_modulemaps()`.
         inputs_info: An `InputFilesInfo` that will provide values for the
             `XcodeProjInfo.extra_files` and `XcodeProjInfo.generated_inputs`
             fields.
@@ -304,6 +306,11 @@ def _processed_target(
     """
     return struct(
         dependencies = dependencies,
+        generated = [
+            file
+            for file in modulemaps.files
+            if not file.is_source
+        ],
         inputs_info = inputs_info,
         linker_inputs = linker_inputs,
         potential_target_merges = potential_target_merges,
@@ -330,6 +337,7 @@ def _xcode_target(
         test_host,
         build_settings,
         search_paths,
+        modulemaps,
         inputs_info,
         links,
         dependencies,
@@ -352,6 +360,7 @@ def _xcode_target(
         build_settings: A `dict` of Xcode build settings for the target.
         search_paths: A search paths `struct` as returned from
             `_process_search_paths()`.
+        modulemaps: A `struct` as returned from `_process_modulemaps()`.
         inputs_info: An `InputFilesInfo` provider.
         links: A `list` of file paths for libraries that the target links
             against.
@@ -379,6 +388,7 @@ def _xcode_target(
         test_host = test_host,
         build_settings = build_settings,
         search_paths = search_paths,
+        modulemaps = modulemaps.file_paths,
         inputs = _process_inputs(inputs_info),
         links = links,
         dependencies = dependencies,
@@ -588,6 +598,9 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     inputs_info = target[InputFilesInfo]
+    modulemaps = _process_modulemaps(
+        swift_info = target[SwiftInfo] if SwiftInfo in target else None,
+    )
     search_paths = _process_search_paths(
         bin_dir_path = ctx.bin_dir.path,
         includes = getattr(ctx.rule.attr, "includes", []),
@@ -599,6 +612,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         dependencies = dependencies,
         inputs_info = inputs_info,
         linker_inputs = linker_inputs,
+        modulemaps = modulemaps,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
         search_paths = search_paths,
@@ -623,6 +637,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             test_host = test_host_target_info.target.id if test_host_target_info else None,
             build_settings = build_settings,
             search_paths = search_paths,
+            modulemaps = modulemaps,
             inputs_info = inputs_info,
             links = links,
             dependencies = dependencies,
@@ -684,6 +699,9 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
 
     inputs_info = target[InputFilesInfo]
+    modulemaps = _process_modulemaps(
+        swift_info = target[SwiftInfo] if SwiftInfo in target else None,
+    )
     search_paths = _process_search_paths(
         bin_dir_path = ctx.bin_dir.path,
         includes = getattr(ctx.rule.attr, "includes", []),
@@ -695,6 +713,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         dependencies = dependencies,
         inputs_info = inputs_info,
         linker_inputs = linker_inputs,
+        modulemaps = modulemaps,
         potential_target_merges = None,
         required_links = None,
         search_paths = search_paths,
@@ -718,6 +737,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             platform = platform,
             build_settings = build_settings,
             search_paths = search_paths,
+            modulemaps = modulemaps,
             test_host = None,
             inputs_info = inputs_info,
             links = [],
@@ -751,6 +771,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         ),
         inputs_info = target[InputFilesInfo],
         linker_inputs = linker_inputs,
+        modulemaps = _process_modulemaps(swift_info = None),
         potential_target_merges = None,
         required_links = None,
         search_paths = _process_search_paths(
@@ -983,6 +1004,35 @@ def _process_search_paths(*, bin_dir_path, target, includes, transitive_infos):
         quote_headers = quote_headers,
     )
 
+def _process_modulemaps(*, swift_info):
+    if not swift_info:
+        return struct(
+            file_paths = [],
+            files = [],
+        )
+
+    modulemap_file_paths = []
+    modulemap_files = []
+    for module in swift_info.transitive_modules.to_list():
+        module_map = module.clang.module_map
+        if not module.clang or not module_map:
+            continue
+
+        if type(module_map) == "File":
+            modulemap = file_path(module_map)
+            modulemap_files.append(module_map)
+        else:
+            modulemap = module_map
+
+        modulemap_file_paths.append(modulemap)
+
+    # Different modules might be defined in the same modulemap file, so we need
+    # to deduplicate them.
+    return struct(
+        file_paths = {x: None for x in modulemap_file_paths}.keys(),
+        files = {x: None for x in modulemap_files}.keys(),
+    )
+
 def _process_target(*, ctx, target, transitive_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
 
@@ -1038,7 +1088,7 @@ def _process_target(*, ctx, target, transitive_infos):
             ],
         ),
         generated_inputs = depset(
-            inputs_info.generated,
+            inputs_info.generated + processed_target.generated,
             transitive = [
                 info.generated_inputs
                 for info in transitive_infos
