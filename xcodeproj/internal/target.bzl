@@ -15,6 +15,10 @@ load(
     "set_if_true",
 )
 load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:collections.bzl",
+    "flatten",
+)
+load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:files.bzl",
     "external_file_path",
     "file_path",
@@ -154,11 +158,10 @@ def _get_linker_inputs(*, cc_info):
 def _get_static_libraries(*, linker_inputs):
     return [
         library.static_library
-        for libraries in [
+        for library in flatten([
             input.libraries
             for input in linker_inputs.to_list()
-        ]
-        for library in libraries
+        ])
     ]
 
 def _get_static_library(*, label, linker_inputs):
@@ -942,13 +945,12 @@ def _skip_target(*, transitive_infos):
 def _process_dependencies(*, transitive_infos):
     return [
         dependency
-        for dependencies in [
+        for dependency in flatten([
             # We pass on the next level of dependencies if the previous target
             # didn't create an Xcode target.
             [info.target.id] if info.target else info.dependencies
             for info in transitive_infos
-        ]
-        for dependency in dependencies
+        ])
     ]
 
 def _append_if_new(existing, new):
