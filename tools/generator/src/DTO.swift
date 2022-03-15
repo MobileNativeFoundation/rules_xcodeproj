@@ -19,7 +19,7 @@ struct Target: Equatable, Decodable {
     let product: Product
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
-    let searchPaths: SearchPaths
+    var searchPaths: SearchPaths
     var inputs: Inputs
     var links: Set<Path>
     var dependencies: Set<TargetID>

@@ -66,6 +66,9 @@ exist
                 merged.buildSettings["PRODUCT_MODULE_NAME"] = merging.buildSettings["PRODUCT_MODULE_NAME"]
                 merged.buildSettings.merge(merging.buildSettings) { l, _ in l }
 
+                // Update search paths
+                merged.searchPaths = merging.searchPaths
+
                 // Update inputs
                 merged.inputs = merging.inputs
 
