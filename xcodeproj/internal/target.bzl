@@ -24,6 +24,7 @@ load(
     "file_path",
     "generated_file_path",
     "join_paths_ignoring_empty",
+    "project_file_path",
 )
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:input_files_aspect.bzl",
@@ -988,7 +989,7 @@ def _process_search_paths(*, bin_dir_path, target, includes, transitive_infos):
         root = target.label.workspace_root
         rooted_package = join_paths_ignoring_empty(root, target.label.package)
         quote_headers = [
-            external_file_path(root) if root else ".",
+            external_file_path(root) if root else project_file_path("."),
             generated_file_path(join_paths_ignoring_empty(bin_dir_path, root)),
         ]
         include_paths = []
@@ -997,7 +998,8 @@ def _process_search_paths(*, bin_dir_path, target, includes, transitive_infos):
             if root:
                 include_paths.append(external_file_path(include_path))
             else:
-                include_paths.append(include_path)
+                include_paths.append(project_file_path(include_path))
+
             include_paths.append(
                 generated_file_path(
                     join_paths_ignoring_empty(

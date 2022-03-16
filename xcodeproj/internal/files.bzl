@@ -24,7 +24,7 @@ def file_path(file):
         return external_file_path(path)
     if not file.is_source:
         return generated_file_path(path)
-    return path
+    return project_file_path(path)
 
 def external_file_path(path):
     return struct(
@@ -41,6 +41,10 @@ def generated_file_path(path):
         # Path, removing `bazel-out/` prefix
         _ = path[10:],
     )
+
+def project_file_path(path):
+    # `FilePath` allows a `string` to imply a `.project` file
+    return path
 
 def join_paths_ignoring_empty(*components):
     non_empty_components = [
