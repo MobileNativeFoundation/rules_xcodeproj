@@ -337,7 +337,8 @@ def _process_swiftcopts(*, opts, build_settings):
     set_if_true(
         build_settings,
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS",
-        defines,
+        # Eliminate duplicates
+        " ".join({x: None for x in defines}.keys()),
     )
 
     return unhandled_opts
