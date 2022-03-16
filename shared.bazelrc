@@ -20,5 +20,5 @@ build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
 build:workflows --color=yes
 build:workflows --disk_cache=
 
-# Show detailed error info
+# Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed

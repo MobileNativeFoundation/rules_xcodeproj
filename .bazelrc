@@ -6,5 +6,3 @@ query --deleted_packages=test/integration/ios_app,test/integration/ios_app/Examp
 # Import Shared settings
 import %workspace%/shared.bazelrc
 
-# Show errors
-test --test_output=errors --test_summary=detailed
