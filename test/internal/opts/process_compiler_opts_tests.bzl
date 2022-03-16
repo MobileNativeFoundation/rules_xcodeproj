@@ -119,7 +119,7 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
             "OTHER_SWIFT_FLAGS": ["weird", "-unhandled"],
-            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": ["DEBUG"],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
     )
 
@@ -352,17 +352,12 @@ def process_compiler_opts_test_suite(name):
         name = "{}_defines".format(name),
         swiftcopts = [
             "-DDEBUG",
-            "-DBAZEL=1",
-            "-DDEBUG=1",
-            "-DBAZEL=1",
+            "-DBAZEL",
+            "-DDEBUG",
+            "-DBAZEL",
         ],
         expected_build_settings = {
-            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": [
-                "DEBUG",
-                "BAZEL=1",
-                "DEBUG=1",
-                "BAZEL=1",
-            ],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG BAZEL",
         },
     )
 
