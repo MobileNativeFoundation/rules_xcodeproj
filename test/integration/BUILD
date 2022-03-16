@@ -17,6 +17,7 @@ default_test_runner(
 
 bazel_integration_tests(
     name = "ios_app_test",
+    additional_env_inherit = ["DEVELOPER_DIR"],
     bazel_versions = SUPPORTED_BAZEL_VERSIONS,
     test_runner = ":ios_app_test_runner",
     workspace_files = integration_test_utils.glob_workspace_files("ios_app") + [
