@@ -5,8 +5,3 @@ query --deleted_packages=test/integration/ios_app,test/integration/ios_app/Examp
 
 # Import Shared settings
 import %workspace%/shared.bazelrc
-
-# To update these lines, execute 
-# `bazel run @cgrindel_rules_bazel_integration_test//tools:update_deleted_packages`
-build --deleted_packages=test/integration/ios_app,test/integration/ios_app/Example,test/integration/ios_app/ExampleTests,test/integration/ios_app/ExampleUITests,test/integration/ios_app/TestingUtils,test/integration/ios_app/Utils
-query --deleted_packages=test/integration/ios_app,test/integration/ios_app/Example,test/integration/ios_app/ExampleTests,test/integration/ios_app/ExampleUITests,test/integration/ios_app/TestingUtils,test/integration/ios_app/Utils
