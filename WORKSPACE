@@ -98,19 +98,13 @@ buildifier_prebuilt_register_toolchains()
 
 # Bazel Integration Test
 
-# http_archive(
-#     name = "cgrindel_rules_bazel_integration_test",
-#     sha256 = "39071d2ec8e3be74c8c4a6c395247182b987cdb78d3a3955b39e343ece624982",
-#     strip_prefix = "rules_bazel_integration_test-0.5.0",
-#     urls = [
-#         "http://github.com/cgrindel/rules_bazel_integration_test/archive/v0.5.0.tar.gz",
-#     ],
-# )
-
-# TODO: FIX ME
-local_repository(
+http_archive(
     name = "cgrindel_rules_bazel_integration_test",
-    path = "/Users/chuckgrindel/code/cgrindel/rules_bazel_integration_test/allow_custom_env_inherit_values",
+    sha256 = "993dea93d67895c25a093b55102ae9005bc74eb5546031b71820a79b3788c190",
+    strip_prefix = "rules_bazel_integration_test-0.6.0",
+    urls = [
+        "http://github.com/cgrindel/rules_bazel_integration_test/archive/0.6.0.tar.gz",
+    ],
 )
 
 load("@cgrindel_rules_bazel_integration_test//bazel_integration_test:deps.bzl", "bazel_integration_test_rules_dependencies")
