@@ -15,9 +15,20 @@ extension Generator {
         let mainGroup = PBXGroup(sourceTree: .group)
         pbxProj.add(object: mainGroup)
 
+        var buildSettings = project.buildSettings.asDictionary
+        buildSettings["CONFIGURATION_BUILD_DIR"] = """
+$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
+"""
+        buildSettings["DERIVED_FILE_DIR"] = """
+$(PROJECT_TEMP_DIR)/DerivedSources/$(BAZEL_PACKAGE_BIN_DIR)
+"""
+        buildSettings["TARGET_TEMP_DIR"] = """
+$(PROJECT_TEMP_DIR)/tmp/$(BAZEL_PACKAGE_BIN_DIR)
+"""
+
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
-            buildSettings: project.buildSettings.asDictionary
+            buildSettings: buildSettings
         )
         pbxProj.add(object: debugConfiguration)
         let buildConfigurationList = XCConfigurationList(

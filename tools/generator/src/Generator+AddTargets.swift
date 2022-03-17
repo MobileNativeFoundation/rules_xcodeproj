@@ -43,11 +43,6 @@ Product for target "\(id)" not found
                 inputs: inputs,
                 files: files
             )
-            let frameworksBuildPhase = try createFrameworksPhase(
-                in: pbxProj,
-                links: target.links,
-                products: products.byPath
-            )
 
             // TODO: Framework embeds
 
@@ -58,7 +53,6 @@ Product for target "\(id)" not found
                 buildPhases: [
                     headersPhase,
                     sourcesBuildPhase,
-                    frameworksBuildPhase,
                 ].compactMap { $0 },
                 productName: target.product.name,
                 product: product,
@@ -228,32 +222,6 @@ File "\(sourceFile.filePath)" not found
 
         let buildPhase = PBXSourcesBuildPhase(
             files: try sourceFiles.map(buildFile).sortedLocalizedStandard()
-        )
-        pbxProj.add(object: buildPhase)
-
-        return buildPhase
-    }
-
-    private static func createFrameworksPhase(
-        in pbxProj: PBXProj,
-        links: Set<Path>,
-        products: [Path: PBXFileReference]
-    ) throws -> PBXFrameworksBuildPhase {
-        func buildFile(path: Path) throws -> PBXBuildFile {
-            guard let product = products[path] else {
-                throw PreconditionError(message: """
-Product with path "\(path)" not found
-""")
-            }
-            let pbxBuildFile = PBXBuildFile(file: product)
-            pbxProj.add(object: pbxBuildFile)
-            return pbxBuildFile
-        }
-
-        let buildPhase = PBXFrameworksBuildPhase(
-            files: try links
-                .map(buildFile)
-                .sortedLocalizedStandard()
         )
         pbxProj.add(object: buildPhase)
 

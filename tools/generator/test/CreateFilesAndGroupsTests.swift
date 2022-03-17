@@ -40,10 +40,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
                 path: "a.swift"
             )),
         ]
-        expectedPBXProj.add(object: expectedFiles["a.swift"]!.reference)
+        expectedPBXProj.add(object: expectedFiles["a.swift"]!.reference!)
 
         let expectedRootElements: [PBXFileElement] = [
-            expectedFiles["a.swift"]!.reference,
+            expectedFiles["a.swift"]!.reference!,
         ]
         expectedMainGroup.addChildren(expectedRootElements)
 
@@ -52,7 +52,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements
-        ) = Generator.createFilesAndGroups(
+        ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             targets: targets,
             extraFiles: extraFiles,
@@ -129,7 +129,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements
-        ) = Generator.createFilesAndGroups(
+        ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             targets: targets,
             extraFiles: extraFiles,
