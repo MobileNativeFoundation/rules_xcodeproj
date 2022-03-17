@@ -61,6 +61,8 @@ Target "\(id)" not found in `pbxTargets`.
             )
 
             var buildSettings = targetBuildSettings.asDictionary
+            
+            buildSettings["BAZEL_PACKAGE_BIN_DIR"] = target.packageBinDir.string
 
             buildSettings["TARGET_NAME"] = disambiguatedTarget.nameBuildSetting
 
