@@ -10,7 +10,8 @@ default_test_runner(
     name = "ios_app_test_runner",
     bazel_cmds = [
         "info",
-        "test //...",
+        "build //...",
+        "test //test/...",
         "run //:xcodeproj",
     ],
 )
