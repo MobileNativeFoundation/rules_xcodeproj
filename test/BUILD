@@ -1,5 +1,5 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
-load("//xcodeproj:testing.bzl", "xcodeproj_test", "xcodeproj_test_suite")
+load("//xcodeproj:testing.bzl", "xcodeproj_test_suite")
 
 # TODO: Consider moving fixtures list to test/fixtures/fixtures.bzl and reference it.
 
@@ -12,10 +12,7 @@ _FIXTURE_BASENAMES = [
 
 xcodeproj_test_suite(
     name = "xcodeproj",
-    test_structs = [
-        xcodeproj_test("//test/fixtures/{}".format(name))
-        for name in _FIXTURE_BASENAMES
-    ],
+    test_pkgs = ["//test/fixtures/{}".format(n) for n in _FIXTURE_BASENAMES],
 )
 
 test_suite(

@@ -40,7 +40,7 @@ def _xcodeproj_test_impl(ctx):
         ),
     ]
 
-_xcodeproj_test = rule(
+xcodeproj_test = rule(
     implementation = _xcodeproj_test_impl,
     attrs = {
         "expected_spec": attr.label(mandatory = True, allow_single_file = True),
@@ -61,7 +61,7 @@ _xcodeproj_test = rule(
     test = True,
 )
 
-def xcodeproj_test(
+def _fixture_test(
         target_under_test,
         basename = None,
         expected_spec = None,
@@ -88,7 +88,7 @@ def xcodeproj_test(
         expected_xcodeproj = expected_xcodeproj,
     )
 
-def xcodeproj_test_suite(name, test_structs):
+def xcodeproj_test_suite(name, test_pkgs = []):
     """Test suite for `xcodeproj`.
 
     Args:
@@ -96,67 +96,23 @@ def xcodeproj_test_suite(name, test_structs):
             name of the test suite.
     """
     test_names = []
+    all_test_structs = []
 
-    def _add_test(
-            *,
-            name,
-            target_under_test,
-            expected_spec,
-            expected_xcodeproj):
-        test_names.append(name)
-        _xcodeproj_test(
-            name = name,
-            target_under_test = target_under_test,
-            expected_spec = expected_spec,
-            expected_xcodeproj = expected_xcodeproj,
+    for pkg in test_pkgs:
+        all_test_structs.append(_fixture_test(pkg))
+
+    for test_struct in all_test_structs:
+        test_name = "{suite_name}_{test_name}".format(
+            suite_name = name,
+            test_name = test_struct.basename,
         )
-
-    for test_struct in test_structs:
-        _add_test(
-            name = "{suite_name}_{test_name}".format(
-                suite_name = name,
-                test_name = test_struct.basename,
-            ),
+        test_names.append(test_name)
+        xcodeproj_test(
+            name = test_name,
             target_under_test = test_struct.target_under_test,
             expected_spec = test_struct.expected_spec,
             expected_xcodeproj = test_struct.expected_xcodeproj,
         )
-
-    # # cc
-
-    # _add_test(
-    #     name = "{}_cc".format(name),
-    #     target_under_test = "//test/fixtures/cc:xcodeproj",
-    #     expected_spec = "//test/fixtures/cc:spec.json",
-    #     expected_xcodeproj = "//test/fixtures/cc:xcodeproj_output",
-    # )
-
-    # # Command Line
-
-    # _add_test(
-    #     name = "{}_command_line".format(name),
-    #     target_under_test = "//test/fixtures/command_line:xcodeproj",
-    #     expected_spec = "//test/fixtures/command_line:spec.json",
-    #     expected_xcodeproj = "//test/fixtures/command_line:xcodeproj_output",
-    # )
-
-    # # generator
-
-    # _add_test(
-    #     name = "{}_generator".format(name),
-    #     target_under_test = "//test/fixtures/generator:xcodeproj",
-    #     expected_spec = "//test/fixtures/generator:spec.json",
-    #     expected_xcodeproj = "//test/fixtures/generator:xcodeproj_output",
-    # )
-
-    # # iOS App
-
-    # _add_test(
-    #     name = "{}_ios_app".format(name),
-    #     target_under_test = "//test/fixtures/ios_app:xcodeproj",
-    #     expected_spec = "//test/fixtures/ios_app:spec.json",
-    #     expected_xcodeproj = "//test/fixtures/ios_app:xcodeproj_output",
-    # )
 
     # Test suite
 
