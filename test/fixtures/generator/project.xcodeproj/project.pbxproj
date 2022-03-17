@@ -1489,6 +1489,7 @@
 		1DD575BD7A0A2C9A295F9973 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1541,6 +1542,7 @@
 		348AE1A7F4CF5A0BE5CECDBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1593,6 +1595,7 @@
 		44F128780858033AC0222ACA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1645,6 +1648,7 @@
 		44F9659ADD79F9744D89C5B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1700,6 +1704,7 @@
 		5D4EF19DFB7A8580419E6F99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -1749,6 +1754,7 @@
 		5F76F81196D7882A29429FD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1815,6 +1821,7 @@
 		D3D5F2E76FC77766F901CC43 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1867,6 +1874,7 @@
 		F654E9F2DD0C8B80D5532733 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;

@@ -233,6 +233,7 @@
 		B12A0CE58F3DC632DDF8D39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/tool";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_PREPROCESSOR_DEFINITIONS = "SECRET_2=\\\"World!\\\"";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -287,6 +288,7 @@
 		BE64D6923B7176FFE3235946 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;

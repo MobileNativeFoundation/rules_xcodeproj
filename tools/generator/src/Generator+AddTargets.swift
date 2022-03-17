@@ -99,7 +99,10 @@ Product for target "\(id)" not found
 
         let pbxProject = pbxProj.rootObject!
 
-        let debugConfiguration = XCBuildConfiguration(name: "Debug")
+        let debugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: ["BAZEL_PACKAGE_BIN_DIR": "BazelGeneratedFiles"]
+        )
         pbxProj.add(object: debugConfiguration)
         let configurationList = XCConfigurationList(
             buildConfigurations: [debugConfiguration],
