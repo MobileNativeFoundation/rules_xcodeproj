@@ -4,6 +4,45 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load("//xcodeproj:xcodeproj.bzl", "XcodeProjOutputInfo")
 load(":fixtures.bzl", "fixtures_transition")
 
+# MARK: - xcodeproj_tests
+
+def _from_fixture(
+        target_under_test,
+        basename = None,
+        expected_spec = None,
+        expected_xcodeproj = None):
+    if target_under_test == None:
+        fail("Need to specify the target under test.")
+    if target_under_test.find(":") < 0:
+        target_under_test += ":xcodeproj"
+
+    test_target_parts = target_under_test.split(":")
+    pkg = test_target_parts[0]
+
+    if basename == None:
+        basename = paths.basename(pkg)
+    if expected_spec == None:
+        expected_spec = "{pkg}:spec.json".format(pkg = pkg)
+    if expected_xcodeproj == None:
+        expected_xcodeproj = "{pkg}:xcodeproj_output".format(pkg = pkg)
+
+    return struct(
+        basename = basename,
+        target_under_test = target_under_test,
+        expected_spec = expected_spec,
+        expected_xcodeproj = expected_xcodeproj,
+    )
+
+def _from_fixtures(targets_under_test):
+    return [_from_fixture(t) for t in targets_under_test]
+
+xcodeproj_tests = struct(
+    from_fixture = _from_fixture,
+    from_fixtures = _from_fixtures,
+)
+
+# MARK: - xcodeproj_test Rule
+
 def _xcodeproj_test_impl(ctx):
     validator = ctx.actions.declare_file(
         "{}-spec-validator.sh".format(ctx.label.name),
@@ -61,47 +100,20 @@ xcodeproj_test = rule(
     test = True,
 )
 
-def _fixture_test(
-        target_under_test,
-        basename = None,
-        expected_spec = None,
-        expected_xcodeproj = None):
-    if target_under_test == None:
-        fail("Need to specify the target under test.")
-    if target_under_test.find(":") < 0:
-        target_under_test += ":xcodeproj"
+# MARK: - xcodeproj_test_suite Macro
 
-    test_target_parts = target_under_test.split(":")
-    pkg = test_target_parts[0]
-
-    if basename == None:
-        basename = paths.basename(pkg)
-    if expected_spec == None:
-        expected_spec = "{pkg}:spec.json".format(pkg = pkg)
-    if expected_xcodeproj == None:
-        expected_xcodeproj = "{pkg}:xcodeproj_output".format(pkg = pkg)
-
-    return struct(
-        basename = basename,
-        target_under_test = target_under_test,
-        expected_spec = expected_spec,
-        expected_xcodeproj = expected_xcodeproj,
-    )
-
-def xcodeproj_test_suite(name, test_pkgs = []):
+def xcodeproj_test_suite(name, fixture_tests):
     """Test suite for `xcodeproj`.
 
     Args:
         name: The base name to be used in things created by this macro. Also the
             name of the test suite.
+        fixture_tests: A `list` of structs as returned by
+                      `xcodeproj_tests.from_fixture()`.
     """
     test_names = []
-    all_test_structs = []
 
-    for pkg in test_pkgs:
-        all_test_structs.append(_fixture_test(pkg))
-
-    for test_struct in all_test_structs:
+    for test_struct in fixture_tests:
         test_name = "{suite_name}_{test_name}".format(
             suite_name = name,
             test_name = test_struct.basename,
