@@ -55,7 +55,7 @@ A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
 """,
         "search_paths": """\
-A `struct` as returned by `_process_search_paths()` that contains the search
+A value returned from `_process_search_paths()` that contains the search
 paths needed by this target. These search paths should be added to the search
 paths of any target that depends on this target.
 """,
@@ -136,7 +136,7 @@ def _get_id(*, label, configuration):
 
     Args:
         label: The `Label` of the `Target`.
-        configuration: The configuration as returned by `_get_configuration()`.
+        configuration: The value returned from `_get_configuration()`.
 
     Returns:
         An opaque string that uniquely identifies the target.
@@ -242,7 +242,7 @@ def _swift_module_output(module):
     """Generates information about the target's Swift module.
 
     Args:
-        module: A `struct` as returned from `swift_common.create_module()`. See
+        module: The value returned from `swift_common.create_module()`. See
             https://github.com/bazelbuild/rules_swift/blob/master/doc/api.md#swift_commoncreate_module.
 
     Returns:
@@ -292,13 +292,12 @@ def _processed_target(
             `XcodeProjInfo.extra_files` and `XcodeProjInfo.generated_inputs`
             fields.
         linker_inputs: A `depset` of `LinkerInput`s for this target.
-        modulemaps: A `struct` as returned from `_process_modulemaps()`.
+        modulemaps: The value returned from `_process_modulemaps()`.
         potential_target_merges: An optional `list` of `struct`s that will be in
             the `XcodeProjInfo.potential_target_merges` `depset`.
         required_links: An optional `list` of strings that will be in the
             `XcodeProjInfo.required_links` `depset`.
-        search_paths: A search paths `struct` as returned from
-            `_process_search_paths()`.
+        search_paths: The value value returned from `_process_search_paths()`.
         target: An optional `XcodeProjInfo.target` `struct`.
         xcode_target: An optional string that will be in the
             `XcodeProjInfo.xcode_targets` `depset`.
@@ -357,19 +356,18 @@ def _xcode_target(
             disambiguate them.
         label: The `Label` of the `Target`.
         configuration: The configuration of the `Target`.
-        platform: The platform `dict` as returned by `process_platform()`.
-        product: The product `dict` as returned by `_process_product()`.
+        platform: The value returned from `process_platform()`.
+        product: The value returned from `_process_product()`.
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
-        search_paths: A search paths `struct` as returned from
-            `_process_search_paths()`.
-        modulemaps: A `struct` as returned from `_process_modulemaps()`.
+        search_paths: The value returned from `_process_search_paths()`.
+        modulemaps: The value returned from `_process_modulemaps()`.
         inputs_info: An `InputFilesInfo` provider.
         links: A `list` of file paths for libraries that the target links
             against.
         dependencies: A `list` of `id`s of targets that this target depends on.
-        outputs: The outputs `dict` as returned by `_process_outputs()`.
+        outputs: The value returned from `_process_outputs()`.
 
     Returns:
         An element of a json array string. This should be wrapped with `"[{}]"`
@@ -505,7 +503,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        A `struct` as returned from `_processed_target()`.
+        The value returned from `_processed_target()`.
     """
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
@@ -670,7 +668,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        A `struct` as returned from `_processed_target()`.
+        The value returned from `_processed_target()`.
     """
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
@@ -780,7 +778,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        A `struct` as returned from `_processed_target()`.
+        The value returned from `_processed_target()`.
     """
     if CcInfo in target:
         linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
