@@ -74,8 +74,6 @@ Target "\(id)" not found in `pbxTargets`.
             
             buildSettings["BAZEL_PACKAGE_BIN_DIR"] = target.packageBinDir.string
 
-            buildSettings["TARGET_NAME"] = disambiguatedTarget.nameBuildSetting
-
             let swiftmodules = target.swiftmodules
             if !swiftmodules.isEmpty {
                 buildSettings["SWIFT_INCLUDE_PATHS"] = swiftmodules

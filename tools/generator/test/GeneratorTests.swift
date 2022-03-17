@@ -51,7 +51,6 @@ final class GeneratorTests: XCTestCase {
         let disambiguatedTargets: [TargetID: DisambiguatedTarget] = [
             "A": .init(
                 name: "A (3456a)",
-                nameBuildSetting: "A-1234567",
                 target: mergedTargets["Y"]!
             ),
         ]

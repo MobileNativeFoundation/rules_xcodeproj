@@ -592,7 +592,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
-				TARGET_NAME = "Utils-d7f562296058d6bcaf5a8f4478cf2ac93158e78a";
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
@@ -662,7 +661,6 @@
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example$(TARGET_BUILD_SUBPATH)";
-				TARGET_NAME = "ExampleTests-0221d31b52d43b9426596c9d57cb0a48033ce219";
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example/Example.app/Example";
 			};
 			name = Debug;
@@ -717,7 +715,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AWESOME";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
-				TARGET_NAME = "TestingUtils-5fa8a9d132eeb601bbc2933480902158980be025";
 			};
 			name = Debug;
 		};
@@ -803,7 +800,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = 1;
-				TARGET_NAME = "Example-f9d780ed383b7ba19bdadca75c6b25682da08404";
 			};
 			name = Debug;
 		};
@@ -861,7 +857,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_NAME = "ExampleUITests-9c70b1eca4a64387df76c21431d5d43a517851c4";
 				TEST_TARGET_NAME = Example;
 			};
 			name = Debug;
