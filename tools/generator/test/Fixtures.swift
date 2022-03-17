@@ -29,6 +29,7 @@ enum Fixtures {
     static let targets: [TargetID: Target] = [
         "A 1": Target.mock(
             product: .init(type: .staticLibrary, name: "a", path: "z/A.a"),
+            isSwift: true,
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("A"),
                 "T": .string("42"),
@@ -85,10 +86,12 @@ enum Fixtures {
         ),
         "E1": Target.mock(
             product: .init(type: .staticLibrary, name: "E1", path: "e1/E.a"),
+            isSwift: true,
             inputs: .init(srcs: [.external("a_repo/a.swift")])
         ),
         "E2": Target.mock(
             product: .init(type: .staticLibrary, name: "E2", path: "e2/E.a"),
+            isSwift: true,
             inputs: .init(srcs: [.external("another_repo/b.swift")])
         ),
     ]

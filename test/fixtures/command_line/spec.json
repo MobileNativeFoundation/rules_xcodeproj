@@ -83,6 +83,7 @@
                     "examples/command_line/lib/private.h"
                 ]
             },
+            "is_swift": false,
             "label": "//examples/command_line/lib:lib_impl",
             "links": [],
             "modulemaps": [],
@@ -168,6 +169,7 @@
                 "//examples/command_line/tool:tool.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57"
             ],
             "inputs": {},
+            "is_swift": false,
             "label": "//examples/command_line/tool:tool",
             "links": [
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/libtool.library.a",
@@ -253,6 +255,7 @@
                     "examples/command_line/tool/main.m"
                 ]
             },
+            "is_swift": false,
             "label": "//examples/command_line/tool:tool.library",
             "links": [],
             "modulemaps": [],

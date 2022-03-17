@@ -8,6 +8,7 @@ extension Target {
         configuration: String = "a1b2c",
         platform: Platform? = nil,
         product: Product,
+        isSwift: Bool = false,
         testHost: TargetID? = nil,
         buildSettings: [String: BuildSetting] = [:],
         searchPaths: SearchPaths = SearchPaths(),
@@ -28,6 +29,7 @@ extension Target {
                 environment: nil
             ),
             product: product,
+            isSwift: isSwift,
             testHost: testHost,
             buildSettings: buildSettings,
             searchPaths: searchPaths,

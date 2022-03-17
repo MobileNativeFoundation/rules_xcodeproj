@@ -62,6 +62,9 @@ exist
                 // Remove src
                 targets.removeValue(forKey: source)
 
+                // Update isSwift
+                merged.isSwift = merging.isSwift
+
                 // Merge build settings
                 merged.buildSettings["PRODUCT_MODULE_NAME"] = merging.buildSettings["PRODUCT_MODULE_NAME"]
                 merged.buildSettings.merge(merging.buildSettings) { l, _ in l }
