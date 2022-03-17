@@ -20,10 +20,10 @@ def file_path(file):
             *   "i" for `.internal`
     """
     path = file.path
-    if file.owner.workspace_name:
-        return external_file_path(path)
     if not file.is_source:
         return generated_file_path(path)
+    if file.owner.workspace_name:
+        return external_file_path(path)
     return project_file_path(path)
 
 def external_file_path(path):
