@@ -29,6 +29,7 @@ enum Fixtures {
     static let targets: [TargetID: Target] = [
         "A 1": Target.mock(
             product: .init(type: .staticLibrary, name: "a", path: "z/A.a"),
+            isSwift: true,
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("A"),
                 "T": .string("42"),

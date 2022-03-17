@@ -110,6 +110,7 @@
                 "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "inputs": {},
+            "is_swift": false,
             "label": "//Example:Example",
             "links": [
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/libUtils.a",
@@ -194,6 +195,7 @@
                     "Example/ExampleApp.swift"
                 ]
             },
+            "is_swift": true,
             "label": "//Example:Example.library",
             "links": [],
             "modulemaps": [
@@ -283,6 +285,7 @@
                 "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "inputs": {},
+            "is_swift": false,
             "label": "//ExampleTests:ExampleTests.__internal__.__test_bundle",
             "links": [
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/libTestingUtils.a",
@@ -369,6 +372,7 @@
                     "ExampleTests/ExampleTests.swift"
                 ]
             },
+            "is_swift": true,
             "label": "//ExampleTests:ExampleTests.library",
             "links": [],
             "modulemaps": [
@@ -467,6 +471,7 @@
                 "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "inputs": {},
+            "is_swift": false,
             "label": "//ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "links": [
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleUITests/libExampleUITests.library.a"
@@ -549,6 +554,7 @@
                     "ExampleUITests/ExampleUITestsLaunchTests.swift"
                 ]
             },
+            "is_swift": true,
             "label": "//ExampleUITests:ExampleUITests.library",
             "links": [],
             "modulemaps": [],
@@ -636,6 +642,7 @@
                     }
                 ]
             },
+            "is_swift": true,
             "label": "//TestingUtils:TestingUtils",
             "links": [],
             "modulemaps": [],
@@ -722,6 +729,7 @@
                     "Utils/Foo.m"
                 ]
             },
+            "is_swift": false,
             "label": "//Utils:Utils",
             "links": [],
             "modulemaps": [],
