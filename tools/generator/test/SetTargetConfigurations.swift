@@ -12,8 +12,12 @@ final class SetTargetConfigurationsTests: XCTestCase {
         let expectedPBXProj = Fixtures.pbxProj()
 
         let targets = Fixtures.targets
-        let externalDirectory: Path = "external"
-        let generatedDirectory: Path = "bazel-out"
+        let filePathResolver = FilePathResolver(
+            externalDirectory: "external",
+            generatedDirectory: "bazel-out",
+            internalDirectoryName: "rules_xcp",
+            workspaceOutputPath: "out/p.xcodeproj"
+        )
 
         let (pbxTargets, disambiguatedTargets) = Fixtures.pbxTargets(
             in: pbxProj,
@@ -30,8 +34,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             in: pbxProj,
             for: disambiguatedTargets,
             pbxTargets: pbxTargets,
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory
+            filePathResolver: filePathResolver
         )
 
         try pbxProj.fixReferences()

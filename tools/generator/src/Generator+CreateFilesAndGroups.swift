@@ -24,10 +24,7 @@ extension Generator {
         in pbxProj: PBXProj,
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
-        externalDirectory: Path,
-        generatedDirectory: Path,
-        internalDirectoryName: String,
-        workspaceOutputPath: Path
+        filePathResolver: FilePathResolver
     ) -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement]
@@ -82,9 +79,9 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: externalDirectory.sourceTree,
+                sourceTree: filePathResolver.externalDirectory.sourceTree,
                 name: "Bazel External Repositories",
-                path: externalDirectory.string
+                path: filePathResolver.externalDirectory.string
             )
             pbxProj.add(object: group)
             elements[.external("")] = group
@@ -100,9 +97,9 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: generatedDirectory.sourceTree,
+                sourceTree: filePathResolver.generatedDirectory.sourceTree,
                 name: "Bazel Generated Files",
-                path: generatedDirectory.string
+                path: filePathResolver.generatedDirectory.string
             )
             pbxProj.add(object: group)
             elements[.generated("")] = group
@@ -119,8 +116,8 @@ extension Generator {
 
             let group = PBXGroup(
                 sourceTree: .group,
-                name: internalDirectoryName,
-                path: (workspaceOutputPath + internalDirectoryName).string
+                name: filePathResolver.internalDirectoryName,
+                path: filePathResolver.internalDirectory.string
             )
             pbxProj.add(object: group)
             elements[.internal("")] = group
@@ -207,12 +204,9 @@ extension Generator {
             .map { "\($1.projectRelativePath(in: pbxProj))\n" }
 
         for target in targets.values {
-            let modulemaps = target.modulemaps
-                .resolved(
-                    externalDirectory: externalDirectory,
-                    generatedDirectory: generatedDirectory
-                )
-                .map { "\($0)\n" }
+            let modulemaps = target.modulemaps.map { filePath in
+                return "\(filePathResolver.resolve(filePath).string.quoted)\n"
+            }
             generatedFiles.append(contentsOf: modulemaps)
         }
 

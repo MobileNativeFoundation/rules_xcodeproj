@@ -15,6 +15,16 @@ extension Path {
     private var isXCAssets: Bool { self.extension == "xcassets" }
 }
 
+extension String {
+    /// Wraps the path in quotes if it needs it
+    var quoted: String {
+        guard rangeOfCharacter(from: .whitespaces) != nil else {
+            return self
+        }
+        return #""\#(self)""#
+    }
+}
+
 // MARK: Decodable
 
 extension Path: RawRepresentable, Decodable {

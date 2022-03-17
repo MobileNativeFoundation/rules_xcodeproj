@@ -95,6 +95,7 @@
 		8904E2EAD1B70FDB029E59E6 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715A6551C9994C6A35C2760E /* UIKit.swift */; };
 		8B39FE78C2EA5ADC3981AF33 /* XCConfigurationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAA46998797DEB40A14B26 /* XCConfigurationList.swift */; };
 		8B70E54C4D5BCC7F6590999C /* libAEXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D464DF302AC7DA6ADB66AF96 /* libAEXML.a */; };
+		8D9453AC423021CDE9D46A4C /* FilePathResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D6473D8C74DBCA95AF20DC /* FilePathResolver.swift */; };
 		8E685C215E585E827B84C180 /* NSRecursiveLock+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6793B6A7A5F33386C90F249D /* NSRecursiveLock+Sync.swift */; };
 		8EC6BC566C71841AEE507069 /* Array+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193B8E4B236803D4BAEAC25E /* Array+Extras.swift */; };
 		91DA24B18C54F0152A79E42B /* PBXRezBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E222D8DC2785CD3C063D45 /* PBXRezBuildPhase.swift */; };
@@ -394,6 +395,7 @@
 		D351EBF697F74A32355EC048 /* XCScheme+TestItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+TestItem.swift"; sourceTree = "<group>"; };
 		D464DF302AC7DA6ADB66AF96 /* libAEXML.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAEXML.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4795A2C616E82482A2915DA /* BuildSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildSettings.swift; sourceTree = "<group>"; };
+		D4D6473D8C74DBCA95AF20DC /* FilePathResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathResolver.swift; sourceTree = "<group>"; };
 		D576B6506A10571C3CF92102 /* PBXProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXProject.swift; sourceTree = "<group>"; };
 		D6FD2F2FB76FAF12EC3F0343 /* XCScheme+LocationScenarioReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+LocationScenarioReference.swift"; sourceTree = "<group>"; };
 		D883BE1097910712A070EC83 /* CompileStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompileStub.swift; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 				B4F0472ABB97D909352E00C6 /* Environment.swift */,
 				C85C339FAB91CEA53509EC58 /* Errors.swift */,
 				73FA37AAFE94856E13AF17D3 /* FilePath.swift */,
+				D4D6473D8C74DBCA95AF20DC /* FilePathResolver.swift */,
 				97DE705E5D1963950A8787DD /* Generator.swift */,
 				5F4938CB5948C8AEC7B07294 /* Generator+AddTargets.swift */,
 				FAA17A2F6CD794DB282973D5 /* Generator+CreateFilesAndGroups.swift */,
@@ -1212,6 +1215,7 @@
 				EC843052E421638CE0714F03 /* Environment.swift in Sources */,
 				D7FA4DB98CAD61326ECF8F63 /* Errors.swift in Sources */,
 				1ECFA5B8B919DC10F2538D28 /* FilePath.swift in Sources */,
+				8D9453AC423021CDE9D46A4C /* FilePathResolver.swift in Sources */,
 				4318EC05544CA53237842D70 /* Generator.swift in Sources */,
 				A9208A327209350C4B224371 /* Generator+AddTargets.swift in Sources */,
 				AF1CE8BA7000C9AE1C9BEB66 /* Generator+CreateFilesAndGroups.swift in Sources */,

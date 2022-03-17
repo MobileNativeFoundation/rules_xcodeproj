@@ -31,6 +31,13 @@ final class GeneratorTests: XCTestCase {
         let workspaceOutputPath: Path = "P.xcodeproj"
         let outputPath: Path = "P.xcodeproj"
 
+        let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
                 configuration: "a1b2c",
@@ -131,10 +138,7 @@ final class GeneratorTests: XCTestCase {
             let pbxProj: PBXProj
             let targets: [TargetID: Target]
             let extraFiles: Set<FilePath>
-            let externalDirectory: Path
-            let generatedDirectory: Path
-            let internalDirectoryName: String
-            let workspaceOutputPath: Path
+            let filePathResolver: FilePathResolver
         }
 
         var createFilesAndGroupsCalled: [CreateFilesAndGroupsCalled] = []
@@ -142,10 +146,7 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
-            externalDirectory: Path,
-            generatedDirectory: Path,
-            internalDirectoryName: String,
-            workspaceOutputPath: Path
+            filePathResolver: FilePathResolver
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement]
@@ -154,10 +155,7 @@ final class GeneratorTests: XCTestCase {
                 pbxProj: pbxProj,
                 targets: targets,
                 extraFiles: extraFiles,
-                externalDirectory: externalDirectory,
-                generatedDirectory: generatedDirectory,
-                internalDirectoryName: internalDirectoryName,
-                workspaceOutputPath: workspaceOutputPath
+                filePathResolver: filePathResolver
             ))
             return (files, rootElements)
         }
@@ -166,10 +164,7 @@ final class GeneratorTests: XCTestCase {
             pbxProj: pbxProj,
             targets: mergedTargets,
             extraFiles: project.extraFiles,
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory,
-            internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            filePathResolver: filePathResolver
         )]
 
         // MARK: createProducts()
@@ -289,8 +284,7 @@ final class GeneratorTests: XCTestCase {
             let pbxProj: PBXProj
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
             let pbxTargets: [TargetID: PBXNativeTarget]
-            let externalDirectory: Path
-            let generatedDirectory: Path
+            let filePathResolver: FilePathResolver
         }
 
         var setTargetConfigurationsCalled: [SetTargetConfigurationsCalled] = []
@@ -298,15 +292,13 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             for disambiguatedTargets: [TargetID: DisambiguatedTarget],
             pbxTargets: [TargetID: PBXNativeTarget],
-            externalDirectory: Path,
-            generatedDirectory: Path
+            filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
                 pbxTargets: pbxTargets,
-                externalDirectory: externalDirectory,
-                generatedDirectory: generatedDirectory
+                filePathResolver: filePathResolver
             ))
         }
 
@@ -315,8 +307,7 @@ final class GeneratorTests: XCTestCase {
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
                 pbxTargets: pbxTargets,
-                externalDirectory: externalDirectory,
-                generatedDirectory: generatedDirectory
+                filePathResolver: filePathResolver
             )
         ]
 
