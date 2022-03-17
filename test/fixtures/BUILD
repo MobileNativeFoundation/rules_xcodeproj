@@ -1,4 +1,4 @@
-load(":fixtures.bzl", "update_fixtures")
+load("//xcodeproj:testing.bzl", "update_fixtures")
 
 update_fixtures(
     name = "update",
