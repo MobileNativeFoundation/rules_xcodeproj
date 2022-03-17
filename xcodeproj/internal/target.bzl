@@ -1074,14 +1074,24 @@ def _process_search_paths(*, bin_dir_path, target, includes, transitive_infos):
     if target and CcInfo in target:
         # First add our search paths
         root = target.label.workspace_root
-        rooted_package = join_paths_ignoring_empty(root, target.label.package)
+        gen_dir = join_paths_ignoring_empty(bin_dir_path, root)
         quote_headers = [
             external_file_path(root) if root else project_file_path("."),
-            generated_file_path(join_paths_ignoring_empty(bin_dir_path, root)),
         ]
+        if SwiftInfo in target:
+            # An extra path is needed to pickup Xcode's Swift generated headers
+            quote_headers.append(project_file_path(paths.join(
+                "$(BUILD_DIR)",
+                gen_dir,
+            )))
+        quote_headers.append(generated_file_path(gen_dir))
         include_paths = []
         for include in includes:
-            include_path = join_paths_ignoring_empty(rooted_package, include)
+            include_path = join_paths_ignoring_empty(
+                root,
+                target.label.package,
+                include,
+            )
             if root:
                 include_paths.append(external_file_path(include_path))
             else:
@@ -1090,8 +1100,8 @@ def _process_search_paths(*, bin_dir_path, target, includes, transitive_infos):
             include_paths.append(
                 generated_file_path(
                     join_paths_ignoring_empty(
-                        bin_dir_path,
-                        rooted_package,
+                        gen_dir,
+                        target.label.package,
                         include,
                     ),
                 ),

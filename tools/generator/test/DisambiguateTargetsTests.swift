@@ -34,11 +34,6 @@ final class DisambiguateTargetsTests: XCTestCase {
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
         )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
-        )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
             targets
@@ -86,11 +81,6 @@ final class DisambiguateTargetsTests: XCTestCase {
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
-        )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
         )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
@@ -140,11 +130,6 @@ final class DisambiguateTargetsTests: XCTestCase {
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
         )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
-        )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
             targets
@@ -192,11 +177,6 @@ final class DisambiguateTargetsTests: XCTestCase {
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
-        )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
         )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
@@ -246,11 +226,6 @@ final class DisambiguateTargetsTests: XCTestCase {
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
         )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
-        )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
             targets
@@ -298,11 +273,6 @@ final class DisambiguateTargetsTests: XCTestCase {
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
-        )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
         )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
@@ -362,11 +332,6 @@ final class DisambiguateTargetsTests: XCTestCase {
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
         )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
-        )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
             targets
@@ -416,11 +381,6 @@ final class DisambiguateTargetsTests: XCTestCase {
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
-        )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
         )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
@@ -483,11 +443,6 @@ final class DisambiguateTargetsTests: XCTestCase {
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
         )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
-        )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),
             targets
@@ -548,11 +503,6 @@ final class DisambiguateTargetsTests: XCTestCase {
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.name),
             expectedTargetNames
-        )
-        XCTAssertEqual(
-            Set(disambiguatedTargets.values.map(\.nameBuildSetting)).count,
-            disambiguatedTargets.values.count,
-            "`nameBuildSetting`s are not unique"
         )
         XCTAssertNoDifference(
             disambiguatedTargets.mapValues(\.target),

@@ -73,7 +73,8 @@ exist
                 merged.isSwift = merging.isSwift
 
                 // Merge build settings
-                merged.buildSettings["PRODUCT_MODULE_NAME"] = merging.buildSettings["PRODUCT_MODULE_NAME"]
+                merged.buildSettings["PRODUCT_MODULE_NAME"]
+                    = merging.buildSettings["PRODUCT_MODULE_NAME"]
                 merged.buildSettings.merge(merging.buildSettings) { l, _ in l }
 
                 // Update search paths

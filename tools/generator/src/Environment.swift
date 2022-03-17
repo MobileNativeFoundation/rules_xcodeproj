@@ -22,7 +22,7 @@ struct Environment {
         _ targets: [TargetID: Target],
         _ extraFiles: Set<FilePath>,
         _ filePathResolver: FilePathResolver
-    ) -> (
+    ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement]
     )

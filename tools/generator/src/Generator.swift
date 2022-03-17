@@ -75,7 +75,7 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             workspaceOutputPath: workspaceOutputPath
         )
 
-        let (files, rootElements) = environment.createFilesAndGroups(
+        let (files, rootElements) = try environment.createFilesAndGroups(
             pbxProj,
             targets,
             project.extraFiles,
