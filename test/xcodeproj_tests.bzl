@@ -86,19 +86,19 @@ def xcodeproj_test_suite(name):
     # cc
 
     _add_test(
-        name = "{}_cc_binary".format(name),
+        name = "{}_cc".format(name),
         target_under_test = "//test/fixtures/cc:xcodeproj",
         expected_spec = "//test/fixtures/cc:spec.json",
         expected_xcodeproj = "//test/fixtures/cc:xcodeproj_output",
     )
 
-    # iOS App
+    # Command Line
 
     _add_test(
-        name = "{}_ios_app".format(name),
-        target_under_test = "//test/fixtures/ios_app:xcodeproj",
-        expected_spec = "//test/fixtures/ios_app:spec.json",
-        expected_xcodeproj = "//test/fixtures/ios_app:xcodeproj_output",
+        name = "{}_command_line".format(name),
+        target_under_test = "//test/fixtures/command_line:xcodeproj",
+        expected_spec = "//test/fixtures/command_line:spec.json",
+        expected_xcodeproj = "//test/fixtures/command_line:xcodeproj_output",
     )
 
     # generator
@@ -108,6 +108,15 @@ def xcodeproj_test_suite(name):
         target_under_test = "//test/fixtures/generator:xcodeproj",
         expected_spec = "//test/fixtures/generator:spec.json",
         expected_xcodeproj = "//test/fixtures/generator:xcodeproj_output",
+    )
+
+    # iOS App
+
+    _add_test(
+        name = "{}_ios_app".format(name),
+        target_under_test = "//test/fixtures/ios_app:xcodeproj",
+        expected_spec = "//test/fixtures/ios_app:spec.json",
+        expected_xcodeproj = "//test/fixtures/ios_app:xcodeproj_output",
     )
 
     # Test suite
