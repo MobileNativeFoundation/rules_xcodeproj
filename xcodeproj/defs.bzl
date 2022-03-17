@@ -1,3 +1,5 @@
+"""Public Definitions"""
+
 load(
     "//xcodeproj/internal:fixtures.bzl",
     _update_fixtures = "update_fixtures",
