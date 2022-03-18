@@ -1,3 +1,5 @@
+"""Public rules, macros, and libraries."""
+
 load(
     "//xcodeproj/internal:providers.bzl",
     _InputFileAttributesInfo = "InputFileAttributesInfo",
