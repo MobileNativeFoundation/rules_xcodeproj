@@ -1,7 +1,7 @@
 """Functions for updating test fixtures."""
 
 load(
-    "//xcodeproj:xcodeproj.bzl",
+    ":xcodeproj.bzl",
     "XcodeProjOutputInfo",
     "make_xcodeproj_rule",
     "xcodeproj",

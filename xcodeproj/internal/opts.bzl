@@ -2,10 +2,7 @@
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:build_settings.bzl",
-    "set_if_true",
-)
+load(":build_settings.bzl", "set_if_true")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
@@ -26,6 +23,11 @@ _CC_SKIP_OPTS = {
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _SWIFTC_SKIP_OPTS = {
+    # TODO: Make sure we should skip _all_ of these
+    "-Xcc": 2,
+    # TODO: Make sure we should skip _all_ of these
+    "-Xfrontend": 2,
+    "-Xwrapped-swift": 1,
     "-emit-module-path": 2,
     "-emit-object": 1,
     "-enable-batch-mode": 1,
@@ -37,11 +39,6 @@ _SWIFTC_SKIP_OPTS = {
     "-parse-as-library": 1,
     "-sdk": 2,
     "-target": 2,
-    # TODO: Make sure we should skip _all_ of these
-    "-Xcc": 2,
-    # TODO: Make sure we should skip _all_ of these
-    "-Xfrontend": 2,
-    "-Xwrapped-swift": 1,
 }
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values

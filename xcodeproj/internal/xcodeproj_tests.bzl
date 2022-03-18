@@ -1,8 +1,8 @@
 """Tests for the `xcodeproj` rule."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load("//xcodeproj:xcodeproj.bzl", "XcodeProjOutputInfo")
 load(":fixtures.bzl", "fixtures_transition")
+load(":xcodeproj.bzl", "XcodeProjOutputInfo")
 
 # MARK: - xcodeproj_tests
 

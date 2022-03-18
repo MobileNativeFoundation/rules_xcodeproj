@@ -9,35 +9,23 @@ load(
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:build_settings.bzl",
+    ":build_settings.bzl",
     "get_product_module_name",
     "get_targeted_device_family",
     "set_if_true",
 )
+load(":collections.bzl", "flatten")
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:collections.bzl",
-    "flatten",
-)
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:files.bzl",
+    ":files.bzl",
     "external_file_path",
     "file_path",
     "generated_file_path",
     "join_paths_ignoring_empty",
     "project_file_path",
 )
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:input_files_aspect.bzl",
-    "InputFilesInfo",
-)
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:opts.bzl",
-    "process_opts",
-)
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:platform.bzl",
-    "process_platform",
-)
+load(":input_files_aspect.bzl", "InputFilesInfo")
+load(":opts.bzl", "process_opts")
+load(":platform.bzl", "process_platform")
 
 XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",

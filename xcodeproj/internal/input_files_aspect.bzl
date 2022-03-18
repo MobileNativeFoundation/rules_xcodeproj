@@ -2,14 +2,8 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@build_bazel_rules_apple//apple:providers.bzl", "AppleBundleInfo")
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:providers.bzl",
-    "InputFileAttributesInfo",
-)
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:logging.bzl",
-    "warn",
-)
+load(":logging.bzl", "warn")
+load(":providers.bzl", "InputFileAttributesInfo")
 
 InputFilesInfo = provider(
     "Provides information about input files of a target.",
