@@ -1,13 +1,12 @@
 objc_library(
-    name = "Utils",
+    name = "CoreUtilsObjC",
     srcs = glob(
         ["**/*.m"],
         # Headers included here on purpose, to test `hdrs` collection logic
         ["**/*.h"],
     ),
     hdrs = glob(["**/*.h"]),
-    enable_modules = True,
-    module_name = "Utils",
+    includes = [""],
+    module_name = "CoreUtils",
     visibility = ["//visibility:public"],
-    deps = ["//CoreUtilsObjC"],
 )

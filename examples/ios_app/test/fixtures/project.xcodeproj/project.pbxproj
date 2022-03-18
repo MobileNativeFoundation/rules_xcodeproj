@@ -24,6 +24,7 @@
 		29796EAB3AFB4F393E120401 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5A69CC7A6E820FCB0BDF0 /* ContentView.swift */; };
 		302A692FEFBAE7F1EA170548 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE58C589847257693979C11 /* ExampleTests.swift */; };
 		5A49B1D4C59BE2C861DAB532 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = A728BC96D2EE56D3A20F5D75 /* Foo.m */; };
+		62B8102681367226781BF989 /* Answers.m in Sources */ = {isa = PBXBuildFile; fileRef = AD316B4515635DE6DE64F1C1 /* Answers.m */; };
 		874BE1DD90F654F01D46A1A2 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A7C1EE8BAE7058EFC5B0C /* ExampleUITests.swift */; };
 		AE2C4E59A2F6A848808F8249 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699DE3520D61FDC19A909EF /* ExampleApp.swift */; };
 		C46BFDEF6C0E0BB66EAD88CC /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582794DF84A93AA718FB7A0 /* ExampleUITestsLaunchTests.swift */; };
@@ -66,6 +67,13 @@
 			remoteGlobalIDString = EAB95A4512529D4CB8BE5D4E;
 			remoteInfo = Example;
 		};
+		91DC4BA6F7C3B979FE22DBAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C662B23ADBAB4107ABDAE8;
+			remoteInfo = CoreUtils;
+		};
 		CCFE8F5D4A45AFCAF6805B5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
@@ -100,8 +108,11 @@
 		3F6A7C1EE8BAE7058EFC5B0C /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4B4FA9C70425835BED3D18FF /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTestingUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7126B3B29F2941E2615E8B45 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		7458A79A895427FF2B5EF451 /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
+		772995ACCC05420BD8295F13 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCoreUtilsObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96457EE4FDB089F9B6CA30D8 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A728BC96D2EE56D3A20F5D75 /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
+		AD316B4515635DE6DE64F1C1 /* Answers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Answers.m; sourceTree = "<group>"; };
 		B582794DF84A93AA718FB7A0 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BB5454138C3DB7B7F7E1308A /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		C2288FA66726CD35CFB04516 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +174,7 @@
 				C5E39D6F9D4DAE2C1137ABB0 /* Example.app */,
 				332DA7D905FE78395F8B49AB /* ExampleTests.xctest */,
 				C2288FA66726CD35CFB04516 /* ExampleUITests.xctest */,
+				772995ACCC05420BD8295F13 /* libCoreUtilsObjC.a */,
 				4B4FA9C70425835BED3D18FF /* libTestingUtils.a */,
 				96457EE4FDB089F9B6CA30D8 /* libUtils.a */,
 			);
@@ -175,6 +187,14 @@
 				0F331B89287AC5CF95CBE242 /* PreviewAssets.xcassets */,
 			);
 			path = PreviewContent;
+			sourceTree = "<group>";
+		};
+		47E17F6EE7635213AF42FFCE /* CoreUtils */ = {
+			isa = PBXGroup;
+			children = (
+				7458A79A895427FF2B5EF451 /* Answers.h */,
+			);
+			path = CoreUtils;
 			sourceTree = "<group>";
 		};
 		52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */ = {
@@ -206,9 +226,19 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
+		8FFA43D4D9C2A095F2147970 /* CoreUtilsObjC */ = {
+			isa = PBXGroup;
+			children = (
+				47E17F6EE7635213AF42FFCE /* CoreUtils */,
+				AD316B4515635DE6DE64F1C1 /* Answers.m */,
+			);
+			path = CoreUtilsObjC;
+			sourceTree = "<group>";
+		};
 		91B19B3116ADB8C8ECC2934E = {
 			isa = PBXGroup;
 			children = (
+				8FFA43D4D9C2A095F2147970 /* CoreUtilsObjC */,
 				59299A1A4E3C2D59D7A458D9 /* Example */,
 				BAF0E3E8914C1F0BED0421C4 /* ExampleTests */,
 				BE5C020511A0C620C6F4F2A5 /* ExampleUITests */,
@@ -308,6 +338,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0C1B1ED25163DD5F62493B52 /* PBXTargetDependency */,
 			);
 			name = Utils;
 			productName = Utils;
@@ -347,6 +378,21 @@
 			name = TestingUtils;
 			productName = TestingUtils;
 			productReference = 4B4FA9C70425835BED3D18FF /* libTestingUtils.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		97C662B23ADBAB4107ABDAE8 /* CoreUtils */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462F18546F8372FF38AE6AEF /* Build configuration list for PBXNativeTarget "CoreUtils" */;
+			buildPhases = (
+				D3E1B1D4EB79EAA47122EA87 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreUtils;
+			productName = CoreUtilsObjC;
+			productReference = 772995ACCC05420BD8295F13 /* libCoreUtilsObjC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		EAB95A4512529D4CB8BE5D4E /* Example */ = {
@@ -397,6 +443,10 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
+					97C662B23ADBAB4107ABDAE8 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
 					EAB95A4512529D4CB8BE5D4E = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -417,6 +467,7 @@
 			projectRoot = "";
 			targets = (
 				3064A34776444DE49627998E /* Bazel Generated Files */,
+				97C662B23ADBAB4107ABDAE8 /* CoreUtils */,
 				EAB95A4512529D4CB8BE5D4E /* Example */,
 				7278503E9BEEE7A8C78E3CB5 /* ExampleTests */,
 				0C5146C273C8B8DA7C1DF1CB /* ExampleUITests */,
@@ -473,6 +524,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D3E1B1D4EB79EAA47122EA87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B8102681367226781BF989 /* Answers.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8772DBE661F0A21EC2C2998 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -498,6 +557,12 @@
 			name = Example;
 			target = EAB95A4512529D4CB8BE5D4E /* Example */;
 			targetProxy = 82112301926FACC7FF21FB36 /* PBXContainerItemProxy */;
+		};
+		0C1B1ED25163DD5F62493B52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CoreUtils;
+			target = 97C662B23ADBAB4107ABDAE8 /* CoreUtils */;
+			targetProxy = 91DC4BA6F7C3B979FE22DBAD /* PBXContainerItemProxy */;
 		};
 		1080087DA48C3AE162B8AB58 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -552,6 +617,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					CoreUtilsObjC,
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -600,6 +669,65 @@
 			};
 			name = Debug;
 		};
+		4F847ED4259B5C84414372C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					CoreUtilsObjC,
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_CFLAGS = (
+					"-D_FORTIFY_SOURCE=1",
+					"-fstack-protector",
+					"-fcolor-diagnostics",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-DDEBUG",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D_FORTIFY_SOURCE=1",
+					"-fstack-protector",
+					"-fcolor-diagnostics",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-DDEBUG",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
+				);
+				PRODUCT_MODULE_NAME = CoreUtils;
+				PRODUCT_NAME = CoreUtilsObjC;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = CoreUtils;
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+				);
+			};
+			name = Debug;
+		};
 		54410A927B8DA6FB279AEF77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -611,6 +739,10 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					CoreUtilsObjC,
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -651,7 +783,7 @@
 					"test/fixtures/project.xcodeproj/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/ExampleTests/ExampleTests.LinkFileList,$(BUILD_DIR)",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.modulemap";
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
@@ -664,6 +796,10 @@
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = ExampleTests;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example/Example.app/Example";
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -753,6 +889,10 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					CoreUtilsObjC,
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -793,7 +933,7 @@
 					"test/fixtures/project.xcodeproj/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/Example/Example.LinkFileList,$(BUILD_DIR)",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.modulemap";
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;
@@ -803,6 +943,10 @@
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = Example;
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -896,6 +1040,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6494BAE58154BF84E3AF60D9 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		462F18546F8372FF38AE6AEF /* Build configuration list for PBXNativeTarget "CoreUtils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F847ED4259B5C84414372C5 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
