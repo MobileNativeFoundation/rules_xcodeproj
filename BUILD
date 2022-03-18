@@ -1,4 +1,8 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
+load(
+    "@cgrindel_rules_bazel_integration_test//bazel_integration_test:defs.bzl",
+    "integration_test_utils",
+)
 
 # MARK: - Buildifier
 
@@ -25,7 +29,7 @@ buildifier(
 package_group(
     name = "integration_test_visibility",
     packages = [
-        "//test/integration/...",
+        "//examples/...",
     ],
 )
 
@@ -46,4 +50,15 @@ filegroup(
         "//xcodeproj/internal:all_files",
     ],
     visibility = [":integration_test_visibility"],
+)
+
+test_suite(
+    name = "all_integration_tests",
+    # If you don't apply the test tags to the test suite, the test suite will
+    # be found when `bazel test //...` is executed.
+    tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS,
+    tests = [
+        "//examples:all_integration_tests",
+    ],
+    visibility = ["//:__subpackages__"],
 )

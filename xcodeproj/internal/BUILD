@@ -3,6 +3,7 @@ load("@bazel_skylib//rules:common_settings.bzl", "string_setting")
 exports_files([
     "installer.template.sh",
     "validator.template.sh",
+    "updater.template.sh",
 ])
 
 string_setting(

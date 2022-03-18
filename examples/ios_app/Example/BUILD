@@ -29,11 +29,11 @@ swift_library(
     module_name = "Example",
     visibility = ["//visibility:public"],
     deps = [
-        "//examples/ios_app/Utils",
+        "//Utils",
     ],
 )
 
 filegroup(
     name = "PreviewContent",
-    srcs = glob(["Preview Content/**"]),
+    srcs = glob(["PreviewContent/**"]),
 )
