@@ -71,7 +71,21 @@ Target "\(id)" not found in `pbxTargets`.
                 )
             }
 
+            if !target.isSwift && target.product.type.isExecutable {
+                try targetBuildSettings.prepend(
+                    onKey: "OTHER_LDFLAGS",
+                    [
+                        """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
+""",
+                        "-L/usr/lib/swift",
+                    ]
+                )
+            }
+
             var buildSettings = targetBuildSettings.asDictionary
+
+            buildSettings["TARGET_NAME"] = target.name
             
             buildSettings["BAZEL_PACKAGE_BIN_DIR"] = target.packageBinDir.string
             buildSettings["SDKROOT"] = target.platform.os.sdkRoot

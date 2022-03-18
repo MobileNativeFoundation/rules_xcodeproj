@@ -20,6 +20,7 @@ def _process_compiler_opts_test_impl(ctx):
     )
     string_build_settings = stringify_dict(build_settings)
     expected_build_settings = {
+        "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         "SWIFT_VERSION": "5",
     }
@@ -403,6 +404,19 @@ def process_compiler_opts_test_suite(name):
         swiftcopts = ["-no-whole-module-optimization"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "singlefile",
+        },
+    )
+
+    ## SWIFT_OBJC_INTERFACE_HEADER_NAME
+
+    _add_test(
+        name = "{}_generated_header".format(name),
+        swiftcopts = [
+            "-emit-objc-header-path",
+            "a/b/c/TestingUtils-Custom.h",
+        ],
+        expected_build_settings = {
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "TestingUtils-Custom.h",
         },
     )
 

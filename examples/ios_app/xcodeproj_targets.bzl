@@ -3,5 +3,6 @@
 XCODEPROJ_TARGETS = [
     "//Example",
     "//ExampleTests",
+    "//ExampleObjcTests",
     "//ExampleUITests",
 ]

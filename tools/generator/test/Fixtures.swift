@@ -590,6 +590,25 @@ a/c.a
     ) -> [TargetID: PBXNativeTarget] {
         // Build phases
 
+        func createGeneratedHeaderShellScript() -> PBXShellScriptBuildPhase {
+            let shellScript = PBXShellScriptBuildPhase(
+                name: "Copy Swift Generated Header",
+                inputPaths: [
+                    "$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+                ],
+                outputPaths: [
+                    "$(BUILT_PRODUCTS_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+                ],
+                shellScript: #"""
+    cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
+
+    """#,
+                showEnvVarsInLog: false
+            )
+            pbxProj.add(object: shellScript)
+            return shellScript
+        }
+
         func buildFiles(_ buildFiles: [PBXBuildFile]) -> [PBXBuildFile] {
             buildFiles.forEach { pbxProj.add(object: $0) }
             return buildFiles
@@ -608,6 +627,7 @@ a/c.a
                         PBXBuildFile(file: elements["x/y.swift"]!),
                     ])
                 ),
+                createGeneratedHeaderShellScript(),
             ],
             "A 2": [
                 PBXSourcesBuildPhase(
@@ -667,6 +687,7 @@ a/c.a
                         file: elements[.external("a_repo/a.swift")]!),
                     ])
                 ),
+                createGeneratedHeaderShellScript(),
             ],
             "E2": [
                 PBXSourcesBuildPhase(
@@ -674,6 +695,7 @@ a/c.a
                         file: elements[.external("another_repo/b.swift")]!
                     )])
                 ),
+                createGeneratedHeaderShellScript(),
             ],
         ]
         buildPhases.values.forEach { buildPhases in
@@ -872,6 +894,10 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
                 "OTHER_LDFLAGS": [
+                    """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
+""",
+                    "-L/usr/lib/swift",
                     "-filelist",
                     #"""
 "out/p.xcodeproj/rules_xcp/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
@@ -894,6 +920,10 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "OTHER_LDFLAGS": [
+                    """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
+""",
+                    "-L/usr/lib/swift",
                     "-filelist",
                     #"""
 "out/p.xcodeproj/rules_xcp/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
@@ -909,6 +939,10 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "OTHER_LDFLAGS": [
+                    """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
+""",
+                    "-L/usr/lib/swift",
                     "-filelist",
                     #"""
 "out/p.xcodeproj/rules_xcp/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
@@ -929,6 +963,10 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
                 "OTHER_LDFLAGS": [
+                    """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
+""",
+                    "-L/usr/lib/swift",
                     "-filelist",
                     #"""
 "out/p.xcodeproj/rules_xcp/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"

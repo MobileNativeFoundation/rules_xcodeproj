@@ -43,6 +43,11 @@ Product for target "\(id)" not found
                 inputs: inputs,
                 files: files
             )
+            let copyGeneratedHeaderScript = try createCopyGeneratedHeaderScript(
+                in: pbxProj,
+                isSwift: target.isSwift,
+                buildSettings: target.buildSettings
+            )
 
             // TODO: Framework embeds
 
@@ -53,6 +58,7 @@ Product for target "\(id)" not found
                 buildPhases: [
                     headersPhase,
                     sourcesBuildPhase,
+                    copyGeneratedHeaderScript,
                 ].compactMap { $0 },
                 productName: target.product.name,
                 product: product,
@@ -226,6 +232,37 @@ File "\(sourceFile.filePath)" not found
         pbxProj.add(object: buildPhase)
 
         return buildPhase
+    }
+
+    private static func createCopyGeneratedHeaderScript(
+        in pbxProj: PBXProj,
+        isSwift: Bool,
+        buildSettings: [String: BuildSetting]
+    ) throws -> PBXShellScriptBuildPhase? {
+        guard
+            isSwift,
+            buildSettings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] != .string("")
+        else {
+            return nil
+        }
+
+        let shellScript = PBXShellScriptBuildPhase(
+            name: "Copy Swift Generated Header",
+            inputPaths: [
+                "$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+            ],
+            outputPaths: [
+                "$(BUILT_PRODUCTS_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+            ],
+            shellScript: #"""
+cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
+
+"""#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: shellScript)
+
+        return shellScript
     }
 }
 
