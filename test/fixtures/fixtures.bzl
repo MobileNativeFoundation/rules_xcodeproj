@@ -1,3 +1,5 @@
+"""Constants for Fixture Declarations."""
+
 FIXTURE_BASENAMES = [
     "cc",
     "command_line",

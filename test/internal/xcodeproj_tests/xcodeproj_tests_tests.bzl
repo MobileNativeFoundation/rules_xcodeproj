@@ -1,3 +1,5 @@
+"""Tests for xcodeproj_tests."""
+
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("//xcodeproj:testing.bzl", "xcodeproj_tests")
 
