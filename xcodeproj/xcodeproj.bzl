@@ -6,5 +6,8 @@ load(
 )
 load("//xcodeproj/internal:xcodeproj.bzl", _xcodeproj = "xcodeproj")
 
-xcodeproj = _xcodeproj
+# Re-exporting providers.
 InputFileAttributesInfo = _InputFileAttributesInfo
+
+# Re-exporting rules.
+xcodeproj = _xcodeproj
