@@ -4,10 +4,7 @@ load(
     "swift_library",
     "swift_test",
 )
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
-    "xcodeproj",
-)
+load("//xcodeproj:xcodeproj.bzl", "xcodeproj")
 load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 swift_library(
