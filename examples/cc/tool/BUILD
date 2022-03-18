@@ -5,5 +5,6 @@ cc_binary(
     deps = [
         "//examples/cc/lib",
         "//examples/cc/lib2",
+        "@examples_cc_external//:lib",
     ],
 )

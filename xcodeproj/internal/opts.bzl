@@ -170,6 +170,45 @@ def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
 
     return unhandled_opts
 
+def create_opts_search_paths(quote_includes, includes):
+    """Creates a value representing search paths of a target.
+
+    Args:
+        quote_includes: A `list` of quote include paths (i.e `-iquote` values).
+        includes: A `list` of include paths (i.e. `-I` values).
+
+    Returns:
+        A `struct` containing the `quote_includes` and `includes` fields
+        provided as arguments.
+    """
+    return struct(
+        quote_includes = quote_includes,
+        includes = includes,
+    )
+
+def merge_opts_search_paths(search_paths):
+    """Merges a `list` of search paths into a single set set of search paths.
+
+    Args:
+        search_paths: A `list` of values returned from `_create_search_paths()`.
+
+    Returns:
+        A value returned from `_create_search_paths()`, with the search paths
+        provided to it being the merged and deduplicated values from
+        `search_paths`.
+    """
+    quote_includes = []
+    includes = []
+
+    for search_path in search_paths:
+        quote_includes.extend(search_path.quote_includes)
+        includes.extend(search_path.includes)
+
+    return create_opts_search_paths(
+        quote_includes = {x: None for x in quote_includes}.keys(),
+        includes = {x: None for x in includes}.keys(),
+    )
+
 def _process_conlyopts(opts):
     """Processes C compiler options.
 
@@ -177,16 +216,34 @@ def _process_conlyopts(opts):
         opts: A `list` of C compiler options.
 
     Returns:
-        A `tuple` containing two elements:
+        A `tuple` containing four elements:
 
         *   A `list` of unhandled C compiler options.
         *   A `list` of C compiler optimization levels parsed.
+        *   A value returned by `_create_search_paths()` with the parsed search
+            paths.
     """
     optimizations = []
+    quote_includes = []
+    includes = []
 
-    def process(opt, _previous_opt):
+    def process(opt, previous_opt):
+        if previous_opt == "-iquote":
+            quote_includes.append(opt)
+            return True
+        if previous_opt == "-I":
+            includes.append(opt)
+            return True
+
         if opt.startswith("-O"):
             optimizations.append(opt)
+            return True
+        if opt == "-iquote":
+            return True
+        if opt == "-I":
+            return True
+        if opt.startswith("-I"):
+            includes.append(opt[2:])
             return True
         return False
 
@@ -196,7 +253,12 @@ def _process_conlyopts(opts):
         extra_processing = process,
     )
 
-    return unhandled_opts, optimizations
+    search_paths = create_opts_search_paths(
+        quote_includes = {x: None for x in quote_includes}.keys(),
+        includes = {x: None for x in includes}.keys(),
+    )
+
+    return unhandled_opts, optimizations, search_paths
 
 def _process_cxxopts(*, opts, build_settings):
     """Processes C++ compiler options.
@@ -207,14 +269,25 @@ def _process_cxxopts(*, opts, build_settings):
             settings that are parsed from `opts`.
 
     Returns:
-        A `tuple` containing two elements:
+        A `tuple` containing four elements:
 
         *   A `list` of unhandled C++ compiler options.
         *   A `list` of C++ compiler optimization levels parsed.
+        *   A value returned by `_create_search_paths()` with the parsed search
+            paths.
     """
     optimizations = []
+    quote_includes = []
+    includes = []
 
-    def process(opt, _previous_opt):
+    def process(opt, previous_opt):
+        if previous_opt == "-iquote":
+            quote_includes.append(opt)
+            return True
+        if previous_opt == "-I":
+            includes.append(opt)
+            return True
+
         if opt.startswith("-O"):
             optimizations.append(opt)
             return True
@@ -226,6 +299,13 @@ def _process_cxxopts(*, opts, build_settings):
         if opt.startswith("-stdlib="):
             build_settings["CLANG_CXX_LIBRARY"] = opt[8:]
             return True
+        if opt == "-iquote":
+            return True
+        if opt == "-I":
+            return True
+        if opt.startswith("-I"):
+            includes.append(opt[2:])
+            return True
         return False
 
     unhandled_opts = _process_base_compiler_opts(
@@ -234,7 +314,12 @@ def _process_cxxopts(*, opts, build_settings):
         extra_processing = process,
     )
 
-    return unhandled_opts, optimizations
+    search_paths = create_opts_search_paths(
+        quote_includes = {x: None for x in quote_includes}.keys(),
+        includes = {x: None for x in includes}.keys(),
+    )
+
+    return unhandled_opts, optimizations, search_paths
 
 def _process_copts(*, conlyopts, cxxopts, build_settings):
     """Processes C and C++ compiler options.
@@ -246,13 +331,23 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
             settings that are parsed from `conlyopts` and `cxxopts`.
 
     Returns:
-        A `tuple` containing two elements:
+        A `tuple` containing three elements:
 
         *   A `list` of unhandled C compiler options.
         *   A `list` of unhandled C++ compiler options.
+        *   A value returned by `_create_search_paths()` with the parsed search
+            paths.
     """
-    conlyopts, conly_optimizations = _process_conlyopts(conlyopts)
-    cxxopts, cxx_optimizations = _process_cxxopts(
+    (
+        conlyopts,
+        conly_optimizations,
+        conly_search_paths,
+    ) = _process_conlyopts(conlyopts)
+    (
+        cxxopts,
+        cxx_optimizations,
+        cxx_search_paths,
+    ) = _process_cxxopts(
         opts = cxxopts,
         build_settings = build_settings,
     )
@@ -277,7 +372,11 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
     if gcc_optimization != "-O0":
         build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
 
-    return conly_optimizations + conlyopts, cxx_optimizations + cxxopts
+    return (
+        conly_optimizations + conlyopts,
+        cxx_optimizations + cxxopts,
+        merge_opts_search_paths([conly_search_paths, cxx_search_paths]),
+    )
 
 def _process_swiftcopts(*, opts, build_settings):
     """Processes Swift compiler options.
@@ -366,8 +465,14 @@ def _process_compiler_opts(*, conlyopts, cxxopts, swiftcopts, build_settings):
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed the `conlyopts`, `cxxopts`, and
             `swiftcopts` lists.
+
+    Returns:
+        A `struct` containing the following fields:
+
+        *   `quotes_includes`: A `list` of quote include paths parsed.
+        *   `includes`: A `list` of include paths parsed.
     """
-    conlyopts, cxxopts = _process_copts(
+    conlyopts, cxxopts, search_paths = _process_copts(
         conlyopts = conlyopts,
         cxxopts = cxxopts,
         build_settings = build_settings,
@@ -397,6 +502,8 @@ def _process_compiler_opts(*, conlyopts, cxxopts, swiftcopts, build_settings):
         " ".join(swiftcopts),
     )
 
+    return search_paths
+
 def _process_target_compiler_opts(*, ctx, target, build_settings):
     """Processes the compiler options for a target.
 
@@ -405,12 +512,18 @@ def _process_target_compiler_opts(*, ctx, target, build_settings):
         target: The `Target` that the compiler options will be retrieved from.
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from the target's compiler options.
+
+    Returns:
+        A `struct` containing the following fields:
+
+        *   `quotes_includes`: A `list` of quote include paths parsed.
+        *   `includes`: A `list` of include paths parsed.
     """
     conlyopts, cxxopts, swiftcopts = _get_unprocessed_compiler_opts(
         ctx = ctx,
         target = target,
     )
-    _process_compiler_opts(
+    return _process_compiler_opts(
         conlyopts = conlyopts,
         cxxopts = cxxopts,
         swiftcopts = swiftcopts,
@@ -493,10 +606,12 @@ def process_opts(*, ctx, target, build_settings):
             settings that are parsed from the compiler and linker options.
 
     Returns:
-        A `dict` of Xcode build settings that correspond to the compiler and
-        linker options for the target.
+        A `struct` containing the following fields:
+
+        *   `quotes_includes`: A `list` of quote include paths parsed.
+        *   `includes`: A `list` of include paths parsed.
     """
-    _process_target_compiler_opts(
+    search_paths = _process_target_compiler_opts(
         ctx = ctx,
         target = target,
         build_settings = build_settings,
@@ -505,6 +620,7 @@ def process_opts(*, ctx, target, build_settings):
         ctx = ctx,
         build_settings = build_settings,
     )
+    return search_paths
 
 # These functions are exposed only for access in unit tests.
 testable = struct(

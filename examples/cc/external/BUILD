@@ -1,4 +1,4 @@
-load("@examples_cc_external//:local_includes.bzl", "local_includes")
+load(":local_includes.bzl", "local_includes")
 
 cc_library(
     name = "lib_impl",
@@ -8,12 +8,12 @@ cc_library(
     ],
     # Simulating a "local_includes"
     copts = local_includes("private"),
-    local_defines = ["SECRET_3=\\\"Hello\\\""],
+    local_defines = ["EXTERNAL_SECRET_3=\\\"Goodbye\\\""],
 )
 
 cc_library(
     name = "lib_defines",
-    defines = ["SECRET_2=\\\"World!\\\""],
+    defines = ["EXTERNAL_SECRET_2=\\\"World?\\\""],
     deps = [":lib_impl"],
 )
 

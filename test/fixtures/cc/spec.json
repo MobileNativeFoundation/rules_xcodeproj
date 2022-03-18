@@ -10,7 +10,11 @@
         "USE_HEADERMAP": false
     },
     "extra_files": [
-        "examples/cc/lib/lib.h"
+        "examples/cc/lib/lib.h",
+        {
+            "_": "examples_cc_external/lib.h",
+            "t": "e"
+        }
     ],
     "label": "//test/fixtures/cc:xcodeproj",
     "name": "project",
@@ -158,7 +162,7 @@
             "inputs": {
                 "srcs": [
                     "examples/cc/lib/lib.c",
-                    "examples/cc/lib/private.h"
+                    "examples/cc/lib/private/private.h"
                 ]
             },
             "is_swift": false,
@@ -179,6 +183,13 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
+                "includes": [
+                    "examples/cc/lib/private",
+                    {
+                        "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/private",
+                        "t": "g"
+                    }
+                ],
                 "quote_headers": [
                     ".",
                     {
@@ -195,7 +206,8 @@
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "SECRET_2=\\\"World!\\\""
+                    "SECRET_2=\\\"World!\\\"",
+                    "EXTERNAL_SECRET_2=\\\"World?\\\""
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
@@ -244,7 +256,8 @@
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [
                 "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600",
-                "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600"
+                "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600",
+                "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "inputs": {
                 "srcs": [
@@ -255,7 +268,8 @@
             "label": "//examples/cc/tool:tool",
             "links": [
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/liblib_impl.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib2/liblib_impl.a"
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib2/liblib_impl.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/liblib_impl.a"
             ],
             "modulemaps": [],
             "name": "tool",
@@ -276,6 +290,120 @@
                     ".",
                     {
                         "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "examples_cc_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "EXTERNAL_SECRET_3=\\\"Goodbye\\\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-D_FORTIFY_SOURCE=1",
+                    "-fstack-protector",
+                    "-fcolor-diagnostics",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-DDEBUG",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined",
+                    "-D__DATE__=\"redacted\"",
+                    "-D__TIMESTAMP__=\"redacted\"",
+                    "-D__TIME__=\"redacted\""
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-D_FORTIFY_SOURCE=1",
+                    "-fstack-protector",
+                    "-fcolor-diagnostics",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-DDEBUG",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined",
+                    "-D__DATE__=\"redacted\"",
+                    "-D__TIMESTAMP__=\"redacted\"",
+                    "-D__TIME__=\"redacted\""
+                ],
+                "PRODUCT_MODULE_NAME": "examples_cc_external__lib_impl",
+                "PRODUCT_NAME": "lib_impl",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
+            "dependencies": [],
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "examples_cc_external/lib.c",
+                        "t": "e"
+                    },
+                    {
+                        "_": "examples_cc_external/private/private.h",
+                        "t": "e"
+                    }
+                ]
+            },
+            "is_swift": false,
+            "label": "@examples_cc_external//:lib_impl",
+            "links": [],
+            "modulemaps": [],
+            "name": "examples_cc_external__lib_impl",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "lib_impl",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/liblib_impl.a",
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "includes": [
+                    {
+                        "_": "examples_cc_external/private",
+                        "t": "e"
+                    },
+                    {
+                        "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",
+                        "t": "g"
+                    }
+                ],
+                "quote_headers": [
+                    {
+                        "_": "examples_cc_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
                         "t": "g"
                     }
                 ]
