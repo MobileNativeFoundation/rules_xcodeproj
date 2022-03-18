@@ -1,21 +1,23 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("//test/fixtures:fixtures.bzl", "FIXTURE_TARGETS")
 load("//xcodeproj:testing.bzl", "xcodeproj_test_suite", "xcodeproj_tests")
 
 # TODO: Consider moving fixtures list to test/fixtures/fixtures.bzl and reference it.
 
-_FIXTURE_BASENAMES = [
-    "cc",
-    "command_line",
-    "generator",
-    "ios_app",
-]
+# _FIXTURE_BASENAMES = [
+#     "cc",
+#     "command_line",
+#     "generator",
+#     "ios_app",
+# ]
 
 xcodeproj_test_suite(
     name = "xcodeproj",
     # test_pkgs = ["//test/fixtures/{}".format(n) for n in _FIXTURE_BASENAMES],
-    fixture_tests = xcodeproj_tests.from_fixtures(
-        ["//test/fixtures/{}".format(n) for n in _FIXTURE_BASENAMES],
-    ),
+    # fixture_tests = xcodeproj_tests.from_fixtures(
+    #     ["//test/fixtures/{}".format(n) for n in _FIXTURE_BASENAMES],
+    # ),
+    fixture_tests = xcodeproj_tests.from_fixtures(FIXTURE_TARGETS),
 )
 
 test_suite(
