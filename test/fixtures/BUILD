@@ -1,12 +1,8 @@
-load(":fixtures.bzl", "update_fixtures")
+load("//xcodeproj:testing.bzl", "update_fixtures")
+load(":fixtures.bzl", "FIXTURE_TARGETS")
 
 update_fixtures(
     name = "update",
     tags = ["manual"],
-    targets = [
-        "//test/fixtures/cc:xcodeproj",
-        "//test/fixtures/command_line:xcodeproj",
-        "//test/fixtures/generator:xcodeproj",
-        "//test/fixtures/ios_app:xcodeproj",
-    ],
+    targets = FIXTURE_TARGETS,
 )
