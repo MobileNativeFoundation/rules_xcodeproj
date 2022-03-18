@@ -58,6 +58,7 @@ Target "\(id)" not found in `pbxTargets`.
                             .string.quoted
                         return "-Xcc -fmodule-map-file=\(modulemap)"
                     }
+                    .joined(separator: " ")
             )
 
             if !target.links.isEmpty {
@@ -148,6 +149,29 @@ $(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(productName)
 }
 
 private extension Dictionary where Value == BuildSetting {
+    mutating func prepend(onKey key: Key, _ content: String) throws {
+        let buildSetting = self[key, default: .string("")]
+        switch buildSetting {
+        case .string(let existing):
+            let new: String
+            if content.isEmpty {
+                new = existing
+            } else if existing.isEmpty {
+                new = content
+            } else {
+                new = "\(content) \(existing)"
+            }
+            guard !new.isEmpty else {
+                return
+            }
+            self[key] = .string(new)
+        default:
+            throw PreconditionError(message: """
+Build setting for \(key) is not a string: \(buildSetting)
+""")
+        }
+    }
+
     mutating func prepend(onKey key: Key, _ content: [String]) throws {
         let buildSetting = self[key, default: .array([])]
         switch buildSetting {

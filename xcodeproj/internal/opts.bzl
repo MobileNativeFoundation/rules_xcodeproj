@@ -378,7 +378,7 @@ def _process_compiler_opts(*, conlyopts, cxxopts, swiftcopts, build_settings):
     set_if_true(
         build_settings,
         "OTHER_SWIFT_FLAGS",
-        swiftcopts,
+        " ".join(swiftcopts),
     )
 
 def _process_target_compiler_opts(*, ctx, target, build_settings):
