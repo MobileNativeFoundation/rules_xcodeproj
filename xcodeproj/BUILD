@@ -1,1 +1,1 @@
-package(default_visibility = ["//visibility:public"])
+# Intentionally blank
