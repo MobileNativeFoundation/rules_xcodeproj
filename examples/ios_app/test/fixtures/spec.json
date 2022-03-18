@@ -245,7 +245,7 @@
             "label": "//CoreUtilsObjC:CoreUtilsObjC",
             "links": [],
             "modulemaps": [],
-            "name": "CoreUtils",
+            "name": "CoreUtilsObjC",
             "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
             "platform": {
@@ -455,7 +455,7 @@
                     "t": "g"
                 }
             ],
-            "name": "Example",
+            "name": "Example.library",
             "outputs": {
                 "swift_module": {
                     "name": "Example.swiftmodule",
@@ -567,7 +567,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/libTestingUtils.a"
             ],
             "modulemaps": [],
-            "name": "ExampleObjcTests",
+            "name": "ExampleObjcTests.__internal__.__test_bundle",
             "outputs": {
                 "dsyms": []
             },
@@ -652,7 +652,7 @@
             "label": "//ExampleObjcTests:ExampleObjcTests.library",
             "links": [],
             "modulemaps": [],
-            "name": "ExampleObjcTests",
+            "name": "ExampleObjcTests.library",
             "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleObjcTests",
             "platform": {
@@ -757,7 +757,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleTests/libExampleTests.library.a"
             ],
             "modulemaps": [],
-            "name": "ExampleTests",
+            "name": "ExampleTests.__internal__.__test_bundle",
             "outputs": {
                 "dsyms": []
             },
@@ -862,7 +862,7 @@
                     "t": "g"
                 }
             ],
-            "name": "ExampleTests",
+            "name": "ExampleTests.library",
             "outputs": {
                 "swift_module": {
                     "name": "ExampleTests.swiftmodule",
@@ -982,7 +982,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleUITests/libExampleUITests.library.a"
             ],
             "modulemaps": [],
-            "name": "ExampleUITests",
+            "name": "ExampleUITests.__internal__.__test_bundle",
             "outputs": {
                 "dsyms": []
             },
@@ -1065,7 +1065,7 @@
             "label": "//ExampleUITests:ExampleUITests.library",
             "links": [],
             "modulemaps": [],
-            "name": "ExampleUITests",
+            "name": "ExampleUITests.library",
             "outputs": {
                 "swift_module": {
                     "name": "ExampleUITests.swiftmodule",

@@ -7,35 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46272773FEE292F97F7598E0 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CE856EC2CE9B541065D14B0 /* lib.c */; };
 		5B4F5A0F99FCFB768BB56235 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C91EE0C5078D0455B44BD9D /* main.c */; };
-		8AEB5AA11AC8F08891B9F89E /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = E5DBCA6246E5D97D2680F536 /* private.h */; };
-		916FECADE509ECCBF740D4BD /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CE856EC2CE9B541065D14B0 /* lib.c */; };
-		987C05E0B2E1761C95752681 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEEF0E0359DC103EFDE1 /* lib.c */; };
-		CF2BABF79AFED843A0808F91 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 76BA269B4C781557323B9158 /* lib.c */; };
-		F6BF78DF044CFBC4A999118B /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = 8B3835D8961F2C3B473C82D3 /* private.h */; };
+		7753DB46CD64824B63A1BAA0 /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = 8B3835D8961F2C3B473C82D3 /* private.h */; };
+		7B21D883BCAE6C5B52BC7C7F /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 76BA269B4C781557323B9158 /* lib.c */; };
+		9C13FB670FACF32AE83B4C20 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0566AEEF0E0359DC103EFDE1 /* lib.c */; };
+		F4E3969ED03A06EE991313CF /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = E5DBCA6246E5D97D2680F536 /* private.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		215E7AE09929A1E475DA2024 /* PBXContainerItemProxy */ = {
+		0ADF60CADB649C1DBFF171DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3F20659810E72E298E383213;
-			remoteInfo = examples_cc_external__lib_impl;
+			remoteGlobalIDString = 5FB682B564422D3823A3C78C;
+			remoteInfo = "//examples/cc/lib2:lib_impl";
 		};
-		E06B669C284FD5910A8034B7 /* PBXContainerItemProxy */ = {
+		6A32CAF498672EF63B16DD4B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 78A0CABE2A02E3826E02881A;
-			remoteInfo = examples_cc_lib_lib_impl;
+			remoteGlobalIDString = 219A963F11BAD0FDD3F6CC45;
+			remoteInfo = "@examples_cc_external//:lib_impl";
 		};
-		F22E238C5AF1AE6A06DD8485 /* PBXContainerItemProxy */ = {
+		9EE1DCA574790AB33F7520C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D3871DD8CD2BC220515649A9;
-			remoteInfo = examples_cc_lib2_lib_impl;
+			remoteGlobalIDString = 58402704FF804AD3AC11716D;
+			remoteInfo = "//examples/cc/lib:lib_impl";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -167,47 +167,47 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F20659810E72E298E383213 /* examples_cc_external__lib_impl */ = {
+		219A963F11BAD0FDD3F6CC45 /* @examples_cc_external//:lib_impl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 569BBC65CDFCF8505A788068 /* Build configuration list for PBXNativeTarget "examples_cc_external__lib_impl" */;
+			buildConfigurationList = 584495C2DFADEE1B222A5E81 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_impl" */;
 			buildPhases = (
-				EADE88AC5AB73FDCF655F6A8 /* Sources */,
+				3886896FF296EE4041EFDFDD /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = examples_cc_external__lib_impl;
+			name = "@examples_cc_external//:lib_impl";
 			productName = lib_impl;
 			productReference = 1704EC3DF20D136B9D2B8C0D /* liblib_impl.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		78A0CABE2A02E3826E02881A /* examples_cc_lib_lib_impl */ = {
+		58402704FF804AD3AC11716D /* //examples/cc/lib:lib_impl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1D4624860972495C5DE5D69 /* Build configuration list for PBXNativeTarget "examples_cc_lib_lib_impl" */;
+			buildConfigurationList = 9070A3C31C198F6F7A2A9268 /* Build configuration list for PBXNativeTarget "//examples/cc/lib:lib_impl" */;
 			buildPhases = (
-				1CFAC5E641D9C8803E022079 /* Sources */,
+				D134B8F10CE64ACB423B0661 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = examples_cc_lib_lib_impl;
+			name = "//examples/cc/lib:lib_impl";
 			productName = lib_impl;
 			productReference = 9822ABE2DFD4A944DA5E1BEA /* liblib_impl.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		D3871DD8CD2BC220515649A9 /* examples_cc_lib2_lib_impl */ = {
+		5FB682B564422D3823A3C78C /* //examples/cc/lib2:lib_impl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F842582D2B142E7C14DEE1DE /* Build configuration list for PBXNativeTarget "examples_cc_lib2_lib_impl" */;
+			buildConfigurationList = A0A05CA1763DC4CC41DAF8A4 /* Build configuration list for PBXNativeTarget "//examples/cc/lib2:lib_impl" */;
 			buildPhases = (
-				FBA94BAF379D6EA79E480314 /* Sources */,
+				6D3D3CF8ED58C0EF6BBFD6A1 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = examples_cc_lib2_lib_impl;
+			name = "//examples/cc/lib2:lib_impl";
 			productName = lib_impl;
 			productReference = 03C1D0DCDFA14D022BA92BF2 /* liblib_impl.a */;
 			productType = "com.apple.product-type.library.static";
@@ -221,9 +221,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				286D6475FD802D80BAE309F3 /* PBXTargetDependency */,
-				0771680328008BCC189C4BBA /* PBXTargetDependency */,
-				6584C3A8A0A5C7D22430DE2C /* PBXTargetDependency */,
+				9291054CE01A8D81DA27A7DC /* PBXTargetDependency */,
+				52901E7121F038C779EDD27D /* PBXTargetDependency */,
+				65B2861201C7585D568CFC70 /* PBXTargetDependency */,
 			);
 			name = tool;
 			productName = tool;
@@ -240,15 +240,15 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					3F20659810E72E298E383213 = {
+					219A963F11BAD0FDD3F6CC45 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
-					78A0CABE2A02E3826E02881A = {
+					58402704FF804AD3AC11716D = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
-					D3871DD8CD2BC220515649A9 = {
+					5FB682B564422D3823A3C78C = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -271,21 +271,29 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
-				3F20659810E72E298E383213 /* examples_cc_external__lib_impl */,
-				78A0CABE2A02E3826E02881A /* examples_cc_lib_lib_impl */,
-				D3871DD8CD2BC220515649A9 /* examples_cc_lib2_lib_impl */,
+				219A963F11BAD0FDD3F6CC45 /* @examples_cc_external//:lib_impl */,
+				58402704FF804AD3AC11716D /* //examples/cc/lib:lib_impl */,
+				5FB682B564422D3823A3C78C /* //examples/cc/lib2:lib_impl */,
 				FD130DFF680DDEAB3B145665 /* tool */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1CFAC5E641D9C8803E022079 /* Sources */ = {
+		3886896FF296EE4041EFDFDD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF2BABF79AFED843A0808F91 /* lib.c in Sources */,
-				F6BF78DF044CFBC4A999118B /* private.h in Sources */,
+				9C13FB670FACF32AE83B4C20 /* lib.c in Sources */,
+				F4E3969ED03A06EE991313CF /* private.h in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D3D3CF8ED58C0EF6BBFD6A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46272773FEE292F97F7598E0 /* lib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,59 +305,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EADE88AC5AB73FDCF655F6A8 /* Sources */ = {
+		D134B8F10CE64ACB423B0661 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				987C05E0B2E1761C95752681 /* lib.c in Sources */,
-				8AEB5AA11AC8F08891B9F89E /* private.h in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FBA94BAF379D6EA79E480314 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				916FECADE509ECCBF740D4BD /* lib.c in Sources */,
+				7B21D883BCAE6C5B52BC7C7F /* lib.c in Sources */,
+				7753DB46CD64824B63A1BAA0 /* private.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0771680328008BCC189C4BBA /* PBXTargetDependency */ = {
+		52901E7121F038C779EDD27D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = examples_cc_lib_lib_impl;
-			target = 78A0CABE2A02E3826E02881A /* examples_cc_lib_lib_impl */;
-			targetProxy = E06B669C284FD5910A8034B7 /* PBXContainerItemProxy */;
+			name = "//examples/cc/lib:lib_impl";
+			target = 58402704FF804AD3AC11716D /* //examples/cc/lib:lib_impl */;
+			targetProxy = 9EE1DCA574790AB33F7520C7 /* PBXContainerItemProxy */;
 		};
-		286D6475FD802D80BAE309F3 /* PBXTargetDependency */ = {
+		65B2861201C7585D568CFC70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = examples_cc_external__lib_impl;
-			target = 3F20659810E72E298E383213 /* examples_cc_external__lib_impl */;
-			targetProxy = 215E7AE09929A1E475DA2024 /* PBXContainerItemProxy */;
+			name = "//examples/cc/lib2:lib_impl";
+			target = 5FB682B564422D3823A3C78C /* //examples/cc/lib2:lib_impl */;
+			targetProxy = 0ADF60CADB649C1DBFF171DA /* PBXContainerItemProxy */;
 		};
-		6584C3A8A0A5C7D22430DE2C /* PBXTargetDependency */ = {
+		9291054CE01A8D81DA27A7DC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = examples_cc_lib2_lib_impl;
-			target = D3871DD8CD2BC220515649A9 /* examples_cc_lib2_lib_impl */;
-			targetProxy = F22E238C5AF1AE6A06DD8485 /* PBXContainerItemProxy */;
+			name = "@examples_cc_external//:lib_impl";
+			target = 219A963F11BAD0FDD3F6CC45 /* @examples_cc_external//:lib_impl */;
+			targetProxy = 6A32CAF498672EF63B16DD4B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		4D24C3B5B13EB6F30A636EC4 /* Debug */ = {
+		74237F30610FC68FC69D29AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib2";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "EXTERNAL_SECRET_3=\\\"Goodbye\\\"";
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external/private",
-					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -385,17 +380,17 @@
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
 				);
-				PRODUCT_MODULE_NAME = examples_cc_external__lib_impl;
+				PRODUCT_MODULE_NAME = examples_cc_lib2_lib_impl;
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
-				TARGET_NAME = examples_cc_external__lib_impl;
+				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
-					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
 				);
 			};
 			name = Debug;
@@ -489,7 +484,7 @@
 			};
 			name = Debug;
 		};
-		BE64D6923B7176FFE3235946 /* Debug */ = {
+		B8BABCE2DA5F6F1EC32CF291 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib";
@@ -542,7 +537,7 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
-				TARGET_NAME = examples_cc_lib_lib_impl;
+				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
@@ -551,13 +546,18 @@
 			};
 			name = Debug;
 		};
-		E9CDFF92325CC168DFC31A3D /* Debug */ = {
+		D59388014CAA34F648FDB911 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib2";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "EXTERNAL_SECRET_3=\\\"Goodbye\\\"";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external/private",
+					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -593,17 +593,17 @@
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
 				);
-				PRODUCT_MODULE_NAME = examples_cc_lib2_lib_impl;
+				PRODUCT_MODULE_NAME = examples_cc_external__lib_impl;
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
-				TARGET_NAME = examples_cc_lib2_lib_impl;
+				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
-					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
 				);
 			};
 			name = Debug;
@@ -611,10 +611,10 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		569BBC65CDFCF8505A788068 /* Build configuration list for PBXNativeTarget "examples_cc_external__lib_impl" */ = {
+		584495C2DFADEE1B222A5E81 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_impl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4D24C3B5B13EB6F30A636EC4 /* Debug */,
+				D59388014CAA34F648FDB911 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -635,18 +635,18 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		C1D4624860972495C5DE5D69 /* Build configuration list for PBXNativeTarget "examples_cc_lib_lib_impl" */ = {
+		9070A3C31C198F6F7A2A9268 /* Build configuration list for PBXNativeTarget "//examples/cc/lib:lib_impl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BE64D6923B7176FFE3235946 /* Debug */,
+				B8BABCE2DA5F6F1EC32CF291 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F842582D2B142E7C14DEE1DE /* Build configuration list for PBXNativeTarget "examples_cc_lib2_lib_impl" */ = {
+		A0A05CA1763DC4CC41DAF8A4 /* Build configuration list for PBXNativeTarget "//examples/cc/lib2:lib_impl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E9CDFF92325CC168DFC31A3D /* Debug */,
+				74237F30610FC68FC69D29AF /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

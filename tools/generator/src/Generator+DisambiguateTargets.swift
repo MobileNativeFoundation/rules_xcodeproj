@@ -20,9 +20,13 @@ extension Generator {
         _ targets: [TargetID: Target]
     ) -> [TargetID: DisambiguatedTarget] {
         // Gather all information needed to distinguish the targets
-        var components: [String: TargetComponents] = [:]
+        var labelsByName: [String: Set<String>] = [:]
+        var names: [String: TargetComponents] = [:]
+        var labels: [String: TargetComponents] = [:]
         for target in targets.values {
-            components[target.name, default: .init()].add(target: target)
+            labelsByName[target.name, default: []].insert(target.label)
+            names[target.name, default: .init()].add(target: target)
+            labels[target.label, default: .init()].add(target: target)
         }
 
         // And then distinguish them
@@ -30,8 +34,18 @@ extension Generator {
             minimumCapacity: targets.count
         )
         for (id, target) in targets {
+            let name: String
+            let components: [String: TargetComponents]
+            if labelsByName[target.name]!.count == 1 {
+                name = target.name
+                components = names
+            } else {
+                name = target.label
+                components = labels
+            }
+
             uniqueValues[id] = DisambiguatedTarget(
-                name: components[target.name]!.uniqueName(target: target),
+                name: components[name]!.uniqueName(for: target, baseName: name),
                 target: target
             )
         }
@@ -59,7 +73,7 @@ struct TargetComponents {
     ///
     /// - Precondition: All targets have been added with `add(target:)` before
     ///   this is called.
-    func uniqueName(target: Target) -> String {
+    func uniqueName(for target: Target, baseName: String) -> String {
         // TODO: Handle same name at different parts in the build graph?
         // This shouldn't happen for modules (though maybe with the new renaming
         // stuff in Swift it can?), but could for bundles.
@@ -70,7 +84,7 @@ struct TargetComponents {
 
         // Returns "Name (a) (b)" when `distinguishers` is `["a", "b"]`, and
         // returns "Name" when `distinguishers` is empty.
-        return ([target.name] + distinguishers.map { "(\($0))" })
+        return ([baseName] + distinguishers.map { "(\($0))" })
             .joined(separator: " ")
     }
 }

@@ -5,6 +5,7 @@ import XCTest
 
 extension Target {
     static func mock(
+        label: String? = nil,
         configuration: String = "a1b2c",
         packageBinDir: Path = "bazel-out/a1b2c/some/package",
         platform: Platform? = nil,
@@ -22,7 +23,7 @@ extension Target {
     ) -> Self {
         return Target(
             name: product.name,
-            label: "//\(product.name)",
+            label: label ?? "//some/package:\(product.name)",
             configuration: configuration,
             packageBinDir: packageBinDir,
             platform: platform ?? Platform(

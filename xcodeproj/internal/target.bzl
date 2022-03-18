@@ -571,7 +571,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         ),
         xcode_target = _xcode_target(
             id = id,
-            name = props.product_name,
+            name = ctx.rule.attr.name,
             label = target.label,
             configuration = configuration,
             bin_dir_path = ctx.bin_dir.path,
@@ -628,8 +628,10 @@ def _process_library_target(*, ctx, target, transitive_infos):
         build_settings = build_settings,
     )
     product_name = ctx.rule.attr.name
-    module_name = get_product_module_name(ctx = ctx, target = target)
-    build_settings["PRODUCT_MODULE_NAME"] = module_name
+    build_settings["PRODUCT_MODULE_NAME"] = get_product_module_name(
+        ctx = ctx,
+        target = target,
+    )
     dependencies = _process_dependencies(transitive_infos = transitive_infos)
     linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
 
@@ -694,7 +696,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         ),
         xcode_target = _xcode_target(
             id = id,
-            name = module_name,
+            name = ctx.rule.attr.name,
             label = target.label,
             configuration = configuration,
             bin_dir_path = ctx.bin_dir.path,
