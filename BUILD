@@ -1,5 +1,7 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
 
+# MARK: - Buildifier
+
 buildifier(
     name = "buildifier.check",
     exclude_patterns = [
@@ -16,4 +18,32 @@ buildifier(
     ],
     lint_mode = "fix",
     mode = "fix",
+)
+
+# MARK: - Integration Test Related Targets
+
+package_group(
+    name = "integration_test_visibility",
+    packages = [
+        "//test/integration/...",
+    ],
+)
+
+filegroup(
+    name = "all_files",
+    srcs = glob(["*"]),
+)
+
+filegroup(
+    name = "local_repository_files",
+    srcs = [
+        ":all_files",
+        "//third_party/com_github_pointfreeco_swift_custom_dump:all_files",
+        "//third_party/com_github_tuist_xcodeproj:all_files",
+        "//tools:all_files",
+        "//tools/generator:all_files",
+        "//xcodeproj:all_files",
+        "//xcodeproj/internal:all_files",
+    ],
+    visibility = [":integration_test_visibility"],
 )

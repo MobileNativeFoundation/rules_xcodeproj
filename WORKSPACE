@@ -121,3 +121,10 @@ bazel_integration_test_rules_dependencies()
 load("@cgrindel_bazel_starlib//:deps.bzl", "bazel_starlib_dependencies")
 
 bazel_starlib_dependencies()
+
+# Bazel Binaries for Bazel Integration Tests
+
+load("@cgrindel_rules_bazel_integration_test//bazel_integration_test:defs.bzl", "bazel_binaries")
+load("//:bazel_versions.bzl", "SUPPORTED_BAZEL_VERSIONS")
+
+bazel_binaries(versions = SUPPORTED_BAZEL_VERSIONS)

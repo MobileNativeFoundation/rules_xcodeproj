@@ -50,3 +50,11 @@ xcodeproj(
     tags = ["manual"],
     targets = XCODEPROJ_TARGETS,
 )
+
+# MARK: - Integration Test Related Targets
+
+filegroup(
+    name = "all_files",
+    srcs = glob(["**/*"]),
+    visibility = ["//:__subpackages__"],
+)
