@@ -1,4 +1,4 @@
-"""Constants for Fixture Declarations."""
+"""Constants for fixture declarations."""
 
 FIXTURE_BASENAMES = [
     "cc",
@@ -7,6 +7,6 @@ FIXTURE_BASENAMES = [
     "ios_app",
 ]
 
-FIXTURE_PACKAGES = ["//test/fixtures/{}".format(b) for b in FIXTURE_BASENAMES]
+_FIXTURE_PACKAGES = ["//test/fixtures/{}".format(b) for b in FIXTURE_BASENAMES]
 
-FIXTURE_TARGETS = ["{}:xcodeproj".format(p) for p in FIXTURE_PACKAGES]
+FIXTURE_TARGETS = ["{}:xcodeproj".format(p) for p in _FIXTURE_PACKAGES]

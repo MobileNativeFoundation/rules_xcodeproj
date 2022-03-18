@@ -13,11 +13,15 @@ def _from_fixture(
         expected_xcodeproj = None):
     if target_under_test == None:
         fail("Need to specify the target under test.")
-    if target_under_test.find(":") < 0:
-        target_under_test += ":xcodeproj"
 
-    test_target_parts = target_under_test.split(":")
-    pkg = test_target_parts[0]
+    target_under_test_label = Label(target_under_test)
+    target_prefix = ""
+    if target_under_test_label.workspace_name != "":
+        target_prefix = "@{}".format(target_under_test_label.workspace_name)
+    pkg = "{target_prefix}//{package}".format(
+        package = target_under_test_label.package,
+        target_prefix = target_prefix,
+    )
 
     if basename == None:
         basename = paths.basename(pkg)

@@ -6,16 +6,6 @@ load("//xcodeproj:testing.bzl", "xcodeproj_tests")
 def _from_fixture_test(ctx):
     env = unittest.begin(ctx)
 
-    # Specify package
-    actual = xcodeproj_tests.from_fixture("//path/to/pkg")
-    expected = struct(
-        basename = "pkg",
-        target_under_test = "//path/to/pkg:xcodeproj",
-        expected_spec = "//path/to/pkg:spec.json",
-        expected_xcodeproj = "//path/to/pkg:xcodeproj_output",
-    )
-    asserts.equals(env, expected, actual, "Specify fixture package.")
-
     # Specify target
     actual = xcodeproj_tests.from_fixture("//path/to/pkg:custom_xcodeproj")
     expected = struct(
@@ -60,9 +50,9 @@ def _from_fixtures_test(ctx):
 
 from_fixtures_test = unittest.make(_from_fixtures_test)
 
-def xcodeproj_tests_test_suite():
+def xcodeproj_tests_test_suite(name):
     return unittest.suite(
-        "xcodeproj_tests_tests",
+        name,
         from_fixture_test,
         from_fixtures_test,
     )

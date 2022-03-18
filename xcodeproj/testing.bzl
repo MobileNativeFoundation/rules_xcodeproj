@@ -1,4 +1,4 @@
-"""Testing Related Rules and Macros"""
+"""Testing related rules and macros."""
 
 load(
     "//xcodeproj/internal:fixtures.bzl",
