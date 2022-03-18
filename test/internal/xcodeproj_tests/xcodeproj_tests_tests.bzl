@@ -14,7 +14,7 @@ def _from_fixture_test(ctx):
         expected_spec = "//path/to/pkg:spec.json",
         expected_xcodeproj = "//path/to/pkg:xcodeproj_output",
     )
-    asserts.equals(env, expected, actual, "Specify fixture target.")
+    asserts.equals(env, expected, actual, "Specifying fixture target")
 
     # Specify everything
     actual = xcodeproj_tests.from_fixture(
@@ -29,7 +29,7 @@ def _from_fixture_test(ctx):
         expected_spec = "//path/to/pkg:custom_spec.json",
         expected_xcodeproj = "//path/to/pkg:custom_xcodeproj_output",
     )
-    asserts.equals(env, expected, actual, "Specify everything.")
+    asserts.equals(env, expected, actual, "Specifying everything")
 
     return unittest.end(env)
 
@@ -44,7 +44,7 @@ def _from_fixtures_test(ctx):
         xcodeproj_tests.from_fixture("//foo"),
         xcodeproj_tests.from_fixture("//bar"),
     ]
-    asserts.equals(env, expected, actual, "Multiple fixture packages.")
+    asserts.equals(env, expected, actual, "Multiple fixture packages")
 
     return unittest.end(env)
 
