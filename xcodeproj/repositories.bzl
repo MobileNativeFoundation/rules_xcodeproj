@@ -1,12 +1,7 @@
 """Definitions for handling Bazel repositories used by rules_xcodeproj."""
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:logging.bzl",
-    "green",
-    "warn",
-    "yellow",
-)
+load("//xcodeproj/internal:logging.bzl", "green", "warn", "yellow")
 
 def _maybe(repo_rule, name, ignore_version_differences, **kwargs):
     """Executes the given repository rule if it hasn't been executed already.

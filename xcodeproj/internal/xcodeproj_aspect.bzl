@@ -1,14 +1,7 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:input_files_aspect.bzl",
-    "input_files_aspect",
-)
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:target.bzl",
-    "XcodeProjInfo",
-    "process_target",
-)
+load(":input_files_aspect.bzl", "input_files_aspect")
+load(":target.bzl", "XcodeProjInfo", "process_target")
 
 _ASPECT_DEP_ATTR = [
     "test_host",
@@ -61,15 +54,15 @@ xcodeproj_aspect = aspect(
         _ASPECT_DEP_ATTR + _ASPECT_DEP_ATTRS + _ASPECT_RESOURCES_ATTRS
     ),
     attrs = {
+        "_cc_toolchain": attr.label(default = Label(
+            "@bazel_tools//tools/cpp:current_cc_toolchain",
+        )),
         "_xcode_config": attr.label(
             default = configuration_field(
                 name = "xcode_config_label",
                 fragment = "apple",
             ),
         ),
-        "_cc_toolchain": attr.label(default = Label(
-            "@bazel_tools//tools/cpp:current_cc_toolchain",
-        )),
     },
     fragments = ["apple", "cpp"],
     requires = [input_files_aspect],
