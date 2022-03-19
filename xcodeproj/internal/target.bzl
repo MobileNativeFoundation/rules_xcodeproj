@@ -17,11 +17,9 @@ load(
 load(":collections.bzl", "flatten", "uniq")
 load(
     ":files.bzl",
-    "external_file_path",
     "file_path",
-    "generated_file_path",
     "join_paths_ignoring_empty",
-    "project_file_path",
+    "parsed_file_path",
 )
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
 load(":platform.bzl", "process_platform")
@@ -279,17 +277,6 @@ def _processed_target(
         xcode_targets = [xcode_target] if xcode_target else None,
     )
 
-def _add_to_dict_from_attr_if_true(dict, source, attr):
-    value = getattr(source, attr, None)
-    if value:
-        dict[attr] = value
-
-def _search_paths_dict(search_paths):
-    dict = {}
-    _add_to_dict_from_attr_if_true(dict, search_paths, "includes")
-    _add_to_dict_from_attr_if_true(dict, search_paths, "quote_headers")
-    return dict
-
 def _xcode_target(
         *,
         id,
@@ -355,7 +342,7 @@ def _xcode_target(
         is_swift = is_swift,
         test_host = test_host,
         build_settings = build_settings,
-        search_paths = _search_paths_dict(search_paths),
+        search_paths = search_paths,
         modulemaps = modulemaps.file_paths,
         swiftmodules = swiftmodules,
         inputs = _process_inputs(inputs_info),
@@ -578,13 +565,8 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = _process_modulemaps(swift_info = swift_info)
     search_paths = _process_search_paths(
-        bin_dir_path = ctx.bin_dir.path,
+        cc_info = target[CcInfo] if CcInfo in target else None,
         opts_search_paths = opts_search_paths,
-        includes = getattr(ctx.rule.attr, "includes", []),
-        generates_header = getattr(ctx.rule.attr, "generates_header", False),
-        target = target,
-        inputs_info = inputs_info,
-        transitive_infos = transitive_infos,
     )
 
     return _processed_target(
@@ -700,13 +682,8 @@ def _process_library_target(*, ctx, target, transitive_infos):
     swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = _process_modulemaps(swift_info = swift_info)
     search_paths = _process_search_paths(
-        bin_dir_path = ctx.bin_dir.path,
+        cc_info = target[CcInfo] if CcInfo in target else None,
         opts_search_paths = opts_search_paths,
-        includes = getattr(ctx.rule.attr, "includes", []),
-        generates_header = getattr(ctx.rule.attr, "generates_header", False),
-        target = target,
-        inputs_info = inputs_info,
-        transitive_infos = transitive_infos,
     )
 
     return _processed_target(
@@ -803,20 +780,11 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         potential_target_merges = None,
         required_links = None,
         search_paths = _process_search_paths(
-            bin_dir_path = ctx.bin_dir.path,
+            cc_info = target[CcInfo] if CcInfo in target else None,
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],
                 includes = [],
             ),
-            includes = getattr(ctx.rule.attr, "includes", []),
-            generates_header = getattr(
-                ctx.rule.attr,
-                "generates_header",
-                False,
-            ),
-            target = target,
-            inputs_info = inputs_info,
-            transitive_infos = transitive_infos,
         ),
         target = None,
         xcode_target = None,
@@ -977,16 +945,11 @@ def _skip_target(*, transitive_infos):
             transitive = [info.required_links for info in transitive_infos],
         ),
         search_paths = _process_search_paths(
-            bin_dir_path = None,
+            cc_info = None,
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],
                 includes = [],
             ),
-            includes = [],
-            generates_header = False,
-            target = None,
-            inputs_info = None,
-            transitive_infos = transitive_infos,
         ),
         target = None,
         xcode_targets = depset(
@@ -1043,127 +1006,31 @@ def _process_defines(
         cc_defines = transitive_cc_defines,
     )
 
-def _produces_headers(*, inputs_info):
-    if inputs_info.hdrs:
-        return True, True
-
-    for src in inputs_info.srcs:
-        if not src.path.endswith(".swift"):
-            return True, False
-    for src in inputs_info.non_arc_srcs:
-        if not src.path.endswith(".swift"):
-            return True, False
-    return False, False
-
-def _append_if_new(existing, new):
-    """Appends elements to a `list` if they are not already present in it.
-
-    Args:
-        existing: The existing `list` to append to.
-        new: The new `list` to append elements from.
-    """
-    for element in new:
-        if element not in existing:
-            existing.append(element)
-
-def _append_parsed_paths(existing, parsed_paths):
-    file_paths = []
-    for path in parsed_paths:
-        # These checks are less than ideal, but since it's a string we can't
-        # tell if they meant something else
-        if path.startswith("bazel-out/"):
-            file_paths.append(generated_file_path(path))
-        elif path.startswith("external/"):
-            file_paths.append(external_file_path(path))
-        else:
-            file_paths.append(project_file_path(path))
-    _append_if_new(existing, file_paths)
-
 def _process_search_paths(
         *,
-        bin_dir_path,
-        target,
-        opts_search_paths,
-        includes,
-        generates_header,
-        inputs_info,
-        transitive_infos):
-    if target and CcInfo in target:
-        # First add our search paths
-        root = target.label.workspace_root
-        gen_dir = join_paths_ignoring_empty(bin_dir_path, root)
-        has_local_headers, produces_headers = _produces_headers(
-            inputs_info = inputs_info,
+        cc_info,
+        opts_search_paths):
+    search_paths = {}
+    if cc_info:
+        compilation_context = cc_info.compilation_context
+        set_if_true(
+            search_paths,
+            "quote_includes",
+            [
+                parsed_file_path(path)
+                for path in compilation_context.quote_includes.to_list() +
+                            opts_search_paths.quote_includes
+            ],
         )
-
-        quote_headers = []
-        local_quote_headers = []
-        if has_local_headers:
-            path = external_file_path(root) if root else project_file_path(".")
-            local_quote_headers.append(path)
-            if produces_headers:
-                quote_headers.append(path)
-        if SwiftInfo in target and generates_header:
-            # An extra path is needed to pickup Xcode's Swift generated headers
-            path = project_file_path(paths.join("$(BUILD_DIR)", gen_dir))
-            local_quote_headers.append(path)
-            quote_headers.append(path)
-        if has_local_headers:
-            path = generated_file_path(gen_dir)
-            local_quote_headers.append(path)
-            if produces_headers:
-                quote_headers.append(path)
-
-        include_paths = []
-        for include in includes:
-            include_path = join_paths_ignoring_empty(
-                root,
-                target.label.package,
-                include,
-            )
-            if root:
-                include_paths.append(external_file_path(include_path))
-            else:
-                include_paths.append(project_file_path(include_path))
-
-            include_paths.append(
-                generated_file_path(
-                    join_paths_ignoring_empty(
-                        gen_dir,
-                        target.label.package,
-                        include,
-                    ),
-                ),
-            )
-    else:
-        local_quote_headers = []
-        quote_headers = []
-        include_paths = []
-
-    # Then add dependency search paths
-    for info in transitive_infos:
-        search_paths = info.search_paths
-        if not search_paths:
-            continue
-        _append_if_new(
-            local_quote_headers,
-            search_paths.transitive_quote_headers,
+        set_if_true(
+            search_paths,
+            "includes",
+            [
+                parsed_file_path(path)
+                for path in compilation_context.includes.to_list() + opts_search_paths.includes
+            ],
         )
-        _append_if_new(quote_headers, search_paths.transitive_quote_headers)
-        _append_if_new(include_paths, search_paths.transitive_includes)
-
-    # Handle local search paths
-    _append_parsed_paths(local_quote_headers, opts_search_paths.quote_includes)
-
-    local_includes = list(include_paths)
-    _append_parsed_paths(local_includes, opts_search_paths.includes)
-
-    return struct(
-        includes = local_includes,
-        quote_headers = local_quote_headers,
-        transitive_includes = include_paths,
-        transitive_quote_headers = quote_headers,
-    )
+    return search_paths
 
 def _process_modulemaps(*, swift_info):
     if not swift_info:

@@ -96,7 +96,7 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "quote_headers": [
+                "quote_includes": [
                     ".",
                     {
                         "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
@@ -190,7 +190,7 @@
                         "t": "g"
                     }
                 ],
-                "quote_headers": [
+                "quote_includes": [
                     ".",
                     {
                         "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
@@ -286,7 +286,7 @@
                 "type": "com.apple.product-type.tool"
             },
             "search_paths": {
-                "quote_headers": [
+                "quote_includes": [
                     ".",
                     {
                         "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
@@ -298,6 +298,14 @@
                     },
                     {
                         "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+                        "t": "g"
+                    },
+                    {
+                        "_": "bazel_tools",
+                        "t": "e"
+                    },
+                    {
+                        "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/bazel_tools",
                         "t": "g"
                     }
                 ]
@@ -397,7 +405,7 @@
                         "t": "g"
                     }
                 ],
-                "quote_headers": [
+                "quote_includes": [
                     {
                         "_": "examples_cc_external",
                         "t": "e"

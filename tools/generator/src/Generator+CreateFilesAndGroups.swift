@@ -206,7 +206,10 @@ extension Generator {
         for target in targets.values {
             let modulemaps = target.modulemaps
                 .filter { $0.type == .generated }
-                .map { "\(filePathResolver.resolve($0).string.quoted)\n" }
+                .map { """
+\(filePathResolver.resolve($0, useProjectDir: false).string.quoted)
+
+""" }
             generatedFiles.append(contentsOf: modulemaps)
         }
 
