@@ -39,7 +39,6 @@ def _from_fixture(
     if expected_spec == None:
         expected_spec = "{pkg}:spec.json".format(pkg = pkg)
     if expected_xcodeproj == None:
-        # expected_xcodeproj = "{pkg}:xcodeproj_output".format(pkg = pkg)
         expected_xcodeproj = "{pkg}:{name}".format(
             pkg = pkg,
             name = fixture_output_name(target_under_test_label.name),
@@ -74,7 +73,6 @@ def _xcodeproj_test_impl(ctx):
     expected_xcodeproj = ctx.files.expected_xcodeproj
 
     expected_xcodeproj_path = expected_xcodeproj[0].short_path
-
     suffix_len = len(expected_xcodeproj_path.split(".xcodeproj/")[1]) + 1
     expected_xcodeproj_path = expected_xcodeproj_path[:-suffix_len]
 
