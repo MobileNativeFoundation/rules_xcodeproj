@@ -1,10 +1,13 @@
 load(
     "@cgrindel_rules_bazel_integration_test//bazel_integration_test:defs.bzl",
-    "bazel_integration_tests",
+    "bazel_integration_test",
     "default_test_runner",
     "integration_test_utils",
 )
-load("//:bazel_versions.bzl", "SUPPORTED_BAZEL_VERSIONS")
+load("//:bazel_versions.bzl", "CURRENT_BAZEL_VERSION")
+
+# GH174: Enable integration tests for other (i.e., not the current) Bazel
+# versions.
 
 default_test_runner(
     name = "ios_app_test_runner",
@@ -21,10 +24,10 @@ default_test_runner(
     ],
 )
 
-bazel_integration_tests(
+bazel_integration_test(
     name = "ios_app_test",
     additional_env_inherit = ["DEVELOPER_DIR"],
-    bazel_versions = SUPPORTED_BAZEL_VERSIONS,
+    bazel_version = CURRENT_BAZEL_VERSION,
     test_runner = ":ios_app_test_runner",
     workspace_files = integration_test_utils.glob_workspace_files("ios_app") + [
         "//:local_repository_files",
@@ -41,9 +44,8 @@ test_suite(
     # If you don't apply the test tags to the test suite, the test suite will
     # be found when `bazel test //...` is executed.
     tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS,
-    tests = integration_test_utils.bazel_integration_test_names(
+    tests = [
         "ios_app_test",
-        SUPPORTED_BAZEL_VERSIONS,
-    ),
+    ],
     visibility = ["//:__subpackages__"],
 )
