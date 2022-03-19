@@ -11,7 +11,12 @@ default_test_runner(
     bazel_cmds = [
         "info",
         "build //...",
+        # Make sure that whatever is checked in matches
         "test //test/...",
+        # Run update fixtures and make sure all is still well
+        "run //test/fixtures:update",
+        "test //test/...",
+        # Make sure that xcodeproj executes successfully
         "run //:xcodeproj",
     ],
 )
