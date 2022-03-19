@@ -204,9 +204,9 @@ extension Generator {
             .map { "\($1.projectRelativePath(in: pbxProj))\n" }
 
         for target in targets.values {
-            let modulemaps = target.modulemaps.map { filePath in
-                return "\(filePathResolver.resolve(filePath).string.quoted)\n"
-            }
+            let modulemaps = target.modulemaps
+                .filter { $0.type == .generated }
+                .map { "\(filePathResolver.resolve($0).string.quoted)\n" }
             generatedFiles.append(contentsOf: modulemaps)
         }
 

@@ -21,6 +21,7 @@ enum Fixtures {
             "a/a.h",
             "a/c.h",
             "a/d/a.h",
+            "a/module.modulemap",
             "Assets.xcassets/Contents.json",
         ]
     )
@@ -51,6 +52,7 @@ enum Fixtures {
                 name: "b",
                 path: "a/b.framework"
             ),
+            modulemaps: ["a/module.modulemap"],
             inputs: .init(srcs: ["z.h", "z.mm"], hdrs: ["d.h"]),
             dependencies: ["A 1"]
         ),
@@ -70,7 +72,7 @@ enum Fixtures {
         ),
         "C 1": Target.mock(
             product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),
-            modulemaps: ["a/b/module.modulemap"],
+            modulemaps: [.generated("a/b/module.modulemap")],
             inputs: .init(srcs: ["a/b/c.m"], hdrs: ["a/b/c.h"])
         ),
         "C 2": Target.mock(
@@ -263,7 +265,15 @@ enum Fixtures {
             path: "b"
         )
 
-        // Parent of the 4 above
+        // a/module.modulemap
+
+        elements["a/module.modulemap"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.module-map",
+            path: "module.modulemap"
+        )
+
+        // Parent of the 5 above
 
         elements["a"] = PBXGroup(
             children: [
@@ -272,6 +282,7 @@ enum Fixtures {
                 elements["a/d"]!,
                 elements["a/a.h"]!,
                 elements["a/c.h"]!,
+                elements["a/module.modulemap"]!,
             ],
             sourceTree: .group,
             path: "a"
@@ -378,8 +389,8 @@ enum Fixtures {
             let content: String
             if filePath == .internal("generated.xcfilelist") {
                 content = """
+\(generatedDirectory)/a/b/module.modulemap
 \(generatedDirectory)/a1b2c/bin/t.c
-a/b/module.modulemap
 
 """
             } else {
@@ -749,6 +760,8 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
         ]
         pbxProject.setTargetAttributes(attributes, target: generatedFilesTarget)
 
+        _ = try! pbxTargets["C 1"]!.addDependency(target: generatedFilesTarget)
+
         // The order target are added to `PBXProject`s matter for uuid fixing.
         for pbxTarget in pbxTargets.values.sortedLocalizedStandard(\.name) {
             pbxProj.add(object: pbxTarget)
@@ -825,6 +838,9 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "TARGET_NAME": distinguished["A 2"]!.nameBuildSetting,
             ]) { $1 },
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
+                "OTHER_SWIFT_FLAGS": """
+-Xcc -fmodule-map-file=a/module.modulemap
+""",
                 "TARGET_NAME": distinguished["B 1"]!.nameBuildSetting,
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
@@ -838,7 +854,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
             ]) { $1 },
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
                 "OTHER_SWIFT_FLAGS": """
--Xcc -fmodule-map-file=a/b/module.modulemap
+-Xcc -fmodule-map-file=bazel-out/a/b/module.modulemap
 """,
                 "TARGET_NAME": distinguished["C 1"]!.nameBuildSetting,
             ]) { $1 },
