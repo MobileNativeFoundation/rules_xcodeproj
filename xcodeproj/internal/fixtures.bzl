@@ -123,7 +123,6 @@ def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
     )
 
     native.filegroup(
-        # name = "{}_output".format(name),
         name = fixture_output_name(name),
         srcs = native.glob(
             ["{}.xcodeproj/**/*".format(project_name)],
