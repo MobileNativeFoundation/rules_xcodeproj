@@ -10,6 +10,9 @@ buildifier(
     name = "buildifier.check",
     exclude_patterns = [
         "./.git/*",
+        # Buildifier wants to add a rules_cc load statement for objc_library.
+        # We do not want to add a dependency on this ruleset, at this time.
+        "examples/ios_app/Utils/BUILD",
     ],
     lint_mode = "warn",
     mode = "diff",
