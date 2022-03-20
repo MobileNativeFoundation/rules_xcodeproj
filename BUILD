@@ -6,24 +6,31 @@ load(
 
 # Buildifier
 
+_BUILDIFIER_EXCLUDE_PATTERNS = [
+    "./.git/*",
+    # Buildifier wants to add a rules_cc load statement for objc_library.
+    # We do not want to add a dependency on this ruleset, at this time.
+    "examples/ios_app/Utils/BUILD",
+]
+
+_BUILDIFIER_WARNINGS = [
+    # GH176: Enable all Buildifier warnings.
+    # "all",
+]
+
 buildifier(
     name = "buildifier.check",
-    exclude_patterns = [
-        "./.git/*",
-        # Buildifier wants to add a rules_cc load statement for objc_library.
-        # We do not want to add a dependency on this ruleset, at this time.
-        "examples/ios_app/Utils/BUILD",
-    ],
+    exclude_patterns = _BUILDIFIER_EXCLUDE_PATTERNS,
     lint_mode = "warn",
+    lint_warnings = _BUILDIFIER_WARNINGS,
     mode = "diff",
 )
 
 buildifier(
     name = "buildifier.fix",
-    exclude_patterns = [
-        "./.git/*",
-    ],
+    exclude_patterns = _BUILDIFIER_EXCLUDE_PATTERNS,
     lint_mode = "fix",
+    lint_warnings = _BUILDIFIER_WARNINGS,
     mode = "fix",
 )
 
