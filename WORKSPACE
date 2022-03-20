@@ -79,13 +79,18 @@ bazel_skylib_workspace()
 
 # Buildifier
 
-http_archive(
+# http_archive(
+#     name = "buildifier_prebuilt",
+#     sha256 = "54a58924e079a7f823a5aa30f37f10a7a966cf1ad87e14feb6fb07601389bdc1",
+#     strip_prefix = "buildifier-prebuilt-0.3.2",
+#     urls = [
+#         "http://github.com/keith/buildifier-prebuilt/archive/0.3.2.tar.gz",
+#     ],
+# )
+
+local_repository(
     name = "buildifier_prebuilt",
-    sha256 = "54a58924e079a7f823a5aa30f37f10a7a966cf1ad87e14feb6fb07601389bdc1",
-    strip_prefix = "buildifier-prebuilt-0.3.2",
-    urls = [
-        "http://github.com/keith/buildifier-prebuilt/archive/0.3.2.tar.gz",
-    ],
+    path = "/Users/chuckgrindel/code/cgrindel/buildifier-prebuilt/support_mixing_warn_cat_and_modifiers",
 )
 
 load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
