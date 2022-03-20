@@ -104,6 +104,9 @@ _fixture_xcodeproj = make_xcodeproj_rule(
     transition = fixtures_transition,
 )
 
+def fixture_output_name(fixture_name):
+    return "{}_output".format(fixture_name)
+
 def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
     native.exports_files([
         "spec.json",
@@ -120,7 +123,7 @@ def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
     )
 
     native.filegroup(
-        name = "{}_output".format(name),
+        name = fixture_output_name(name),
         srcs = native.glob(
             ["{}.xcodeproj/**/*".format(project_name)],
             exclude = [

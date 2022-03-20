@@ -1,10 +1,10 @@
 """Tests for the `xcodeproj` rule."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load(":fixtures.bzl", "fixtures_transition")
+load(":fixtures.bzl", "fixture_output_name", "fixtures_transition")
 load(":xcodeproj.bzl", "XcodeProjOutputInfo")
 
-# MARK: - xcodeproj_tests
+# xcodeproj_tests API
 
 def _from_fixture(
         target_under_test,
@@ -14,10 +14,21 @@ def _from_fixture(
     if target_under_test == None:
         fail("Need to specify the target under test.")
 
-    target_under_test_label = Label(target_under_test)
-    target_prefix = ""
+    # The target_under_test is converted to a Label. If no workspace is
+    # provided in the target, it evaluates the target relative to the
+    # rules_xcodeproj workspace. To avoid this, we prefix the specified target
+    # to use the default workspace.
+    qualified_target_under_test = target_under_test
+    if not target_under_test.startswith("@"):
+        prefix = "@" if target_under_test.startswith("//") else "@//"
+        qualified_target_under_test = prefix + target_under_test
+    target_under_test_label = Label(qualified_target_under_test)
+
+    target_prefix_parts = ["@"]
     if target_under_test_label.workspace_name != "":
-        target_prefix = "@{}".format(target_under_test_label.workspace_name)
+        target_prefix_parts.append(target_under_test_label.workspace_name)
+    target_prefix = "".join(target_prefix_parts)
+
     pkg = "{target_prefix}//{package}".format(
         package = target_under_test_label.package,
         target_prefix = target_prefix,
@@ -28,7 +39,10 @@ def _from_fixture(
     if expected_spec == None:
         expected_spec = "{pkg}:spec.json".format(pkg = pkg)
     if expected_xcodeproj == None:
-        expected_xcodeproj = "{pkg}:xcodeproj_output".format(pkg = pkg)
+        expected_xcodeproj = "{pkg}:{name}".format(
+            pkg = pkg,
+            name = fixture_output_name(target_under_test_label.name),
+        )
 
     return struct(
         basename = basename,
@@ -45,7 +59,7 @@ xcodeproj_tests = struct(
     from_fixtures = _from_fixtures,
 )
 
-# MARK: - xcodeproj_test Rule
+# xcodeproj_test Rule
 
 def _xcodeproj_test_impl(ctx):
     validator = ctx.actions.declare_file(
@@ -104,7 +118,7 @@ xcodeproj_test = rule(
     test = True,
 )
 
-# MARK: - xcodeproj_test_suite Macro
+# xcodeproj_test_suite Macro
 
 def xcodeproj_test_suite(name, fixture_tests):
     """Test suite for `xcodeproj`.

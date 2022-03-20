@@ -95,3 +95,29 @@ buildifier_prebuilt_deps()
 load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
 
 buildifier_prebuilt_register_toolchains()
+
+# Bazel Integration Test
+
+http_archive(
+    name = "cgrindel_rules_bazel_integration_test",
+    sha256 = "993dea93d67895c25a093b55102ae9005bc74eb5546031b71820a79b3788c190",
+    strip_prefix = "rules_bazel_integration_test-0.6.0",
+    urls = [
+        "http://github.com/cgrindel/rules_bazel_integration_test/archive/0.6.0.tar.gz",
+    ],
+)
+
+load("@cgrindel_rules_bazel_integration_test//bazel_integration_test:deps.bzl", "bazel_integration_test_rules_dependencies")
+
+bazel_integration_test_rules_dependencies()
+
+load("@cgrindel_bazel_starlib//:deps.bzl", "bazel_starlib_dependencies")
+
+bazel_starlib_dependencies()
+
+# Bazel Binaries for Bazel Integration Tests
+
+load("@cgrindel_rules_bazel_integration_test//bazel_integration_test:defs.bzl", "bazel_binaries")
+load("//:bazel_versions.bzl", "SUPPORTED_BAZEL_VERSIONS")
+
+bazel_binaries(versions = SUPPORTED_BAZEL_VERSIONS)
