@@ -72,6 +72,9 @@ exist
                 // Update modulemaps
                 merged.modulemaps = merging.modulemaps
 
+                // Update swiftmodules
+                merged.swiftmodules = merging.swiftmodules
+
                 // Update inputs
                 merged.inputs = merging.inputs
 

@@ -105,6 +105,7 @@
                 "type": "com.apple.product-type.tool"
             },
             "search_paths": {},
+            "swiftmodules": [],
             "test_host": null
         },
         "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -215,6 +216,20 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {},
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "//tools/generator:tests darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -295,6 +310,7 @@
                 "type": "com.apple.product-type.bundle.unit-test"
             },
             "search_paths": {},
+            "swiftmodules": [],
             "test_host": null
         },
         "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -394,6 +410,32 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {},
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/generator.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -478,6 +520,7 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {},
+            "swiftmodules": [],
             "test_host": null
         },
         "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -660,6 +703,12 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {},
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -744,6 +793,7 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {},
+            "swiftmodules": [],
             "test_host": null
         },
         "@com_github_tadija_aexml//:AEXML darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -844,6 +894,7 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {},
+            "swiftmodules": [],
             "test_host": null
         },
         "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-1b9bd654f600",
@@ -1307,6 +1358,16 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {},
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         }
     ]
