@@ -9,8 +9,8 @@ load("//:xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 xcodeproj_fixture(
     name = "fixture",
-    workspace_name = "ios_app",
     targets = XCODEPROJ_TARGETS,
+    workspace_name = "ios_app",
 )
 
 update_fixtures(

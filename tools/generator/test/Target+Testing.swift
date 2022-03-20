@@ -12,6 +12,7 @@ extension Target {
         buildSettings: [String: BuildSetting] = [:],
         searchPaths: SearchPaths = SearchPaths(),
         modulemaps: [FilePath] = [],
+        swiftmodules: [FilePath] = [],
         inputs: Inputs = Inputs(),
         links: Set<Path> = [],
         dependencies: Set<TargetID> = []
@@ -31,6 +32,7 @@ extension Target {
             buildSettings: buildSettings,
             searchPaths: searchPaths,
             modulemaps: modulemaps,
+            swiftmodules: swiftmodules,
             inputs: inputs,
             links: links,
             dependencies: dependencies
