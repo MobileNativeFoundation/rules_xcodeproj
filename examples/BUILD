@@ -35,14 +35,8 @@ bazel_integration_test(
     workspace_path = "ios_app",
 )
 
-# By default, the integration test targets are tagged as `manual`. This
-# prevents the targets from being found from most target expansion (e.g.
-# `//...`, `:all`). To easily execute a group of integration tests, you may
-# want to define a test suite which includes the desired test targets.
 test_suite(
     name = "all_integration_tests",
-    # If you don't apply the test tags to the test suite, the test suite will
-    # be found when `bazel test //...` is executed.
     tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS,
     tests = [
         "ios_app_test",
