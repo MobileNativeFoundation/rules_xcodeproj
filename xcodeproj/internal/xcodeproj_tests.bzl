@@ -16,7 +16,7 @@ def _from_fixture(
 
     # The target_under_test is converted to a Label. If no workspace is
     # provided in the target, it evaluates the target relative to the
-    # rules_xcodeproj workspace.  To avoid this, we prefix the specified target
+    # rules_xcodeproj workspace. To avoid this, we prefix the specified target
     # to use the default workspace.
     qualified_target_under_test = target_under_test
     if not target_under_test.startswith("@"):
