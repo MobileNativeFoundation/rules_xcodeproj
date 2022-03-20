@@ -13,7 +13,7 @@ string_setting(
     visibility = ["//visibility:public"],
 )
 
-# MARK: - Integration Test Related Targets
+# Integration test related targets
 
 filegroup(
     name = "all_files",

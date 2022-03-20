@@ -1,4 +1,4 @@
-# MARK: - Integration Test Related Targets
+# Integration test related targets
 
 package(default_visibility = ["//visibility:public"])
 

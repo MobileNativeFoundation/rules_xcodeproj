@@ -51,7 +51,7 @@ xcodeproj(
     targets = XCODEPROJ_TARGETS,
 )
 
-# MARK: - Integration Test Related Targets
+# Integration test related targets
 
 filegroup(
     name = "all_files",

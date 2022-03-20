@@ -4,7 +4,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":fixtures.bzl", "fixture_output_name", "fixtures_transition")
 load(":xcodeproj.bzl", "XcodeProjOutputInfo")
 
-# MARK: - xcodeproj_tests
+# xcodeproj_tests API
 
 def _from_fixture(
         target_under_test,
@@ -59,7 +59,7 @@ xcodeproj_tests = struct(
     from_fixtures = _from_fixtures,
 )
 
-# MARK: - xcodeproj_test Rule
+# xcodeproj_test Rule
 
 def _xcodeproj_test_impl(ctx):
     validator = ctx.actions.declare_file(
@@ -118,7 +118,7 @@ xcodeproj_test = rule(
     test = True,
 )
 
-# MARK: - xcodeproj_test_suite Macro
+# xcodeproj_test_suite Macro
 
 def xcodeproj_test_suite(name, fixture_tests):
     """Test suite for `xcodeproj`.

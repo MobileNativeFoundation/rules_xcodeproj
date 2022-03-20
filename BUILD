@@ -4,7 +4,7 @@ load(
     "integration_test_utils",
 )
 
-# MARK: - Buildifier
+# Buildifier
 
 buildifier(
     name = "buildifier.check",
@@ -24,7 +24,7 @@ buildifier(
     mode = "fix",
 )
 
-# MARK: - Integration Test Related Targets
+# Integration test related targets
 
 package_group(
     name = "integration_test_visibility",
