@@ -21,7 +21,19 @@ actions:
         branches:
           - "main"
     bazel_commands:
-      - "test --config=workflows //tools/... //test/... //:all_integration_tests"
+      - "test --config=workflows //tools/... //test/..."
+
+  - name: Integration Test
+    os: "darwin"
+    triggers:
+      push:
+        branches:
+          - "main"
+      pull_request:
+        branches:
+          - "main"
+    bazel_commands:
+      - "test --config=workflows //:all_integration_tests"
 
   - name: Buildifier Lint
     triggers:
