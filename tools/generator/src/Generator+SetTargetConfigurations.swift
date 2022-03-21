@@ -12,8 +12,7 @@ extension Generator {
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
         pbxTargets: [TargetID: PBXNativeTarget],
-        externalDirectory: Path,
-        generatedDirectory: Path
+        filePathResolver: FilePathResolver
     ) throws {
         for (id, disambiguatedTarget) in disambiguatedTargets {
             guard let pbxTarget = pbxTargets[id] else {
@@ -35,32 +34,30 @@ Target "\(id)" not found in `pbxTargets`.
             let quoteHeaders = target.searchPaths.quoteHeaders
             if !quoteHeaders.isEmpty {
                 targetBuildSettings["USER_HEADER_SEARCH_PATHS"] = .array(
-                    quoteHeaders.resolved(
-                        externalDirectory: externalDirectory,
-                        generatedDirectory: generatedDirectory
-                    )
+                    quoteHeaders.map { filePath in
+                        return filePathResolver.resolve(filePath).string.quoted
+                    }
                 )
             }
 
             let includes = target.searchPaths.includes
             if !includes.isEmpty {
                 targetBuildSettings["HEADER_SEARCH_PATHS"] = .array(
-                    includes.resolved(
-                        externalDirectory: externalDirectory,
-                        generatedDirectory: generatedDirectory
-                    )
+                    includes.map { filePath in
+                        return filePathResolver.resolve(filePath).string.quoted
+                    }
                 )
             }
 
-            let modulemapCopts = target.modulemaps
-                .resolved(
-                    externalDirectory: externalDirectory,
-                    generatedDirectory: generatedDirectory
-                )
-                .map { "-Xcc -fmodule-map-file=\($0)" }
             try targetBuildSettings.prepend(
                 onKey: "OTHER_SWIFT_FLAGS",
-                modulemapCopts
+                target.modulemaps
+                    .map { filePath -> String in
+                        let modulemap = filePathResolver
+                            .resolve(filePath)
+                            .string.quoted
+                        return "-Xcc -fmodule-map-file=\(modulemap)"
+                    }
             )
 
             var buildSettings = targetBuildSettings.asDictionary

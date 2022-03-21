@@ -68,14 +68,18 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             }
         }
 
+        let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+
         let (files, rootElements) = environment.createFilesAndGroups(
             pbxProj,
             targets,
             project.extraFiles,
-            externalDirectory,
-            generatedDirectory,
-            internalDirectoryName,
-            workspaceOutputPath
+            filePathResolver
         )
         let (products, productsGroup) = environment.createProducts(
             pbxProj,
@@ -100,8 +104,7 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             pbxProj,
             disambiguatedTargets,
             pbxTargets,
-            externalDirectory,
-            generatedDirectory
+            filePathResolver
         )
         try environment.setTargetDependencies(
             disambiguatedTargets,

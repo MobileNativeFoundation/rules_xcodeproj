@@ -26,6 +26,13 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
+        let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+
         let expectedFiles: [FilePath: File] = [
             "a.swift": File(reference: PBXFileReference(
                 sourceTree: .group,
@@ -49,10 +56,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             in: pbxProj,
             targets: targets,
             extraFiles: extraFiles,
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory,
-            internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            filePathResolver: filePathResolver
         )
 
         // We need to add the `rootElements` to a group to allow references to
@@ -84,6 +88,13 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let generatedDirectory: Path = "/bazel-leave"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
+
+        let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
 
         let (expectedFiles, expectedElements) = Fixtures.files(
             in: expectedPBXProj,
@@ -122,10 +133,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             in: pbxProj,
             targets: targets,
             extraFiles: extraFiles,
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory,
-            internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            filePathResolver: filePathResolver
         )
 
         // We need to add the `rootElements` to a group to allow references to

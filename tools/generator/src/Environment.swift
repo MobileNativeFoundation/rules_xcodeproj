@@ -21,10 +21,7 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ targets: [TargetID: Target],
         _ extraFiles: Set<FilePath>,
-        _ externalDirectory: Path,
-        _ generatedDirectory: Path,
-        _ internalDirectoryName: String,
-        _ workspaceOutputPath: Path
+        _ filePathResolver: FilePathResolver
     ) -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement]
@@ -58,8 +55,7 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
         _ pbxTargets: [TargetID: PBXNativeTarget],
-        _ externalDirectory: Path,
-        _ generatedDirectory: Path
+        _ filePathResolver: FilePathResolver
     ) throws -> Void
 
     let setTargetDependencies: (
