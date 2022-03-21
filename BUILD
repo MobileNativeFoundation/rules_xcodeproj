@@ -8,14 +8,11 @@ load(
 
 _BUILDIFIER_EXCLUDE_PATTERNS = [
     "./.git/*",
-    # Buildifier wants to add a rules_cc load statement for objc_library.
-    # We do not want to add a dependency on this ruleset, at this time.
-    "examples/ios_app/Utils/BUILD",
 ]
 
 _BUILDIFIER_WARNINGS = [
-    # GH176: Enable all Buildifier warnings.
-    # "all",
+    "all",
+    "-native-cc",
 ]
 
 buildifier(
