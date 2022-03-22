@@ -33,6 +33,7 @@ actions:
         branches:
           - "main"
     bazel_commands:
+      - "clean"
       - "test --config=workflows //:all_integration_tests"
 
   - name: Buildifier Lint
