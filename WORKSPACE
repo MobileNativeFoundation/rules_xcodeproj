@@ -25,7 +25,14 @@ load(
 
 swift_rules_extra_dependencies()
 
-# Setup Swift Custom Dump test dependency.
+# External repos for examples
+
+local_repository(
+    name = "examples_cc_external",
+    path = "examples/cc/external",
+)
+
+# Setup Swift Custom Dump test dependency
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(

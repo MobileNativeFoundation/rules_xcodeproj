@@ -12,13 +12,15 @@ def _process_compiler_opts_test_impl(ctx):
     env = unittest.begin(ctx)
 
     build_settings = {}
-    process_compiler_opts(
+    search_paths = process_compiler_opts(
         conlyopts = ctx.attr.conlyopts,
         cxxopts = ctx.attr.cxxopts,
         swiftcopts = ctx.attr.swiftcopts,
         build_settings = build_settings,
     )
     string_build_settings = stringify_dict(build_settings)
+    json_search_paths = json.encode(search_paths)
+
     expected_build_settings = {
         "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -33,6 +35,13 @@ def _process_compiler_opts_test_impl(ctx):
         "build_settings",
     )
 
+    asserts.equals(
+        env,
+        ctx.attr.expected_search_paths,
+        json_search_paths,
+        "search_paths",
+    )
+
     return unittest.end(env)
 
 process_compiler_opts_test = unittest.make(
@@ -41,6 +50,7 @@ process_compiler_opts_test = unittest.make(
         "conlyopts": attr.string_list(mandatory = True),
         "cxxopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
+        "expected_search_paths": attr.string(mandatory = True),
         "swiftcopts": attr.string_list(mandatory = True),
     },
 )
@@ -58,6 +68,7 @@ def process_compiler_opts_test_suite(name):
             *,
             name,
             expected_build_settings,
+            expected_search_paths = {"quote_includes": [], "includes": []},
             conlyopts = [],
             cxxopts = [],
             swiftcopts = []):
@@ -68,6 +79,7 @@ def process_compiler_opts_test_suite(name):
             cxxopts = cxxopts,
             swiftcopts = swiftcopts,
             expected_build_settings = stringify_dict(expected_build_settings),
+            expected_search_paths = json.encode(expected_search_paths),
             timeout = "short",
         )
 
@@ -458,13 +470,48 @@ def process_compiler_opts_test_suite(name):
         },
     )
 
-    # SWIFT_VERSION
+    ## SWIFT_VERSION
 
     _add_test(
         name = "{}_swift_option-swift-version".format(name),
         swiftcopts = ["-swift-version=42"],
         expected_build_settings = {
             "SWIFT_VERSION": "42",
+        },
+    )
+
+    # Search Paths
+
+    _add_test(
+        name = "{}_search_paths".format(name),
+        conlyopts = [
+            "-iquote",
+            "a/b/c",
+            "-Ix/y/z",
+            "-I",
+            "1/2/3",
+            "-iquote",
+            "0/9",
+        ],
+        cxxopts = [
+            "-iquote",
+            "y/z",
+            "-Ix/y/z",
+            "-I",
+            "aa/bb",
+        ],
+        expected_build_settings = {},
+        expected_search_paths = {
+            "quote_includes": [
+                "a/b/c",
+                "0/9",
+                "y/z",
+            ],
+            "includes": [
+                "x/y/z",
+                "1/2/3",
+                "aa/bb",
+            ],
         },
     )
 

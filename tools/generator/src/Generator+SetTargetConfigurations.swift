@@ -33,7 +33,8 @@ Target "\(id)" not found in `pbxTargets`.
 
             let quoteHeaders = target.searchPaths.quoteHeaders
             if !quoteHeaders.isEmpty {
-                targetBuildSettings["USER_HEADER_SEARCH_PATHS"] = .array(
+                try targetBuildSettings.prepend(
+                    onKey: "USER_HEADER_SEARCH_PATHS",
                     quoteHeaders.map { filePath in
                         return filePathResolver.resolve(filePath).string.quoted
                     }
@@ -42,7 +43,8 @@ Target "\(id)" not found in `pbxTargets`.
 
             let includes = target.searchPaths.includes
             if !includes.isEmpty {
-                targetBuildSettings["HEADER_SEARCH_PATHS"] = .array(
+                try targetBuildSettings.prepend(
+                    onKey: "HEADER_SEARCH_PATHS",
                     includes.map { filePath in
                         return filePathResolver.resolve(filePath).string.quoted
                     }
