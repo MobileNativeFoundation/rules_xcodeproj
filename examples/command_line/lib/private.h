@@ -1,1 +1,1 @@
-#define SECRET "Hello, "
+#define SECRET SECRET_3

@@ -30,6 +30,10 @@ load(":platform.bzl", "process_platform")
 XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",
     fields = {
+        "defines": """\
+A value returned from `_process_defines()` that contains the defines set by
+this target that should be propagated to dependent targets.
+""",
         "dependencies": """\
 A `list` of target ids (see the `target` `struct`) that this target directly
 depends on.
@@ -264,6 +268,7 @@ def _swift_module_output(module):
 
 def _processed_target(
         *,
+        defines,
         dependencies,
         extra_files,
         generated,
@@ -278,6 +283,7 @@ def _processed_target(
     """Generates the return value for target processing functions.
 
     Args:
+        defines: The value returned from `_process_defines()`.
         dependencies: A `list` of target ids of direct dependencies of this
             target.
         extra_files:
@@ -301,6 +307,7 @@ def _processed_target(
         A `struct` containing fields for each argument.
     """
     return struct(
+        defines = defines,
         dependencies = dependencies,
         extra_files = extra_files,
         generated = generated + [
@@ -606,6 +613,13 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     return _processed_target(
+        defines = _process_defines(
+            is_swift = SwiftInfo in target,
+            defines = getattr(ctx.rule.attr, "defines", []),
+            local_defines = getattr(ctx.rule.attr, "local_defines", []),
+            transitive_infos = transitive_infos,
+            build_settings = build_settings,
+        ),
         dependencies = dependencies,
         extra_files = inputs_info.other,
         generated = inputs_info.generated,
@@ -709,6 +723,13 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
 
     return _processed_target(
+        defines = _process_defines(
+            is_swift = SwiftInfo in target,
+            defines = getattr(ctx.rule.attr, "defines", []),
+            local_defines = getattr(ctx.rule.attr, "local_defines", []),
+            transitive_infos = transitive_infos,
+            build_settings = build_settings,
+        ),
         dependencies = dependencies,
         extra_files = inputs_info.other,
         generated = inputs_info.generated,
@@ -769,6 +790,13 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
     inputs_info = target[InputFilesInfo]
 
     return _processed_target(
+        defines = _process_defines(
+            is_swift = SwiftInfo in target,
+            defines = getattr(ctx.rule.attr, "defines", []),
+            local_defines = getattr(ctx.rule.attr, "local_defines", []),
+            transitive_infos = transitive_infos,
+            build_settings = None,
+        ),
         dependencies = _process_dependencies(
             transitive_infos = transitive_infos,
         ),
@@ -842,6 +870,7 @@ def _should_skip_target(*, ctx, target):
 
 def _target_info_fields(
         *,
+        defines,
         dependencies,
         extra_files,
         generated_inputs,
@@ -856,6 +885,7 @@ def _target_info_fields(
     This should be merged with other fields to fully create an `XcodeProjInfo`.
 
     Args:
+        defines: Maps to `XcodeProjInfo.defines`.
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
         extra_files: Maps to the `XcodeProjInfo.extra_files` field.
         generated_inputs: Maps to the `XcodeProjInfo.generated_inputs` field.
@@ -870,6 +900,7 @@ def _target_info_fields(
     Returns:
         A `dict` containing the following fields:
 
+        *   `defines`
         *   `dependencies`
         *   `extra_files`
         *   `generated_inputs`
@@ -881,6 +912,7 @@ def _target_info_fields(
         *   `xcode_targets`
     """
     return {
+        "defines": defines,
         "dependencies": dependencies,
         "extra_files": extra_files,
         "generated_inputs": generated_inputs,
@@ -907,6 +939,13 @@ def _skip_target(*, transitive_infos):
         `transitive_infos`.
     """
     return _target_info_fields(
+        defines = _process_defines(
+            is_swift = False,
+            defines = [],
+            local_defines = [],
+            transitive_infos = transitive_infos,
+            build_settings = None,
+        ),
         dependencies = _process_dependencies(
             transitive_infos = transitive_infos,
         ),
@@ -959,6 +998,44 @@ def _process_dependencies(*, transitive_infos):
             for info in transitive_infos
         ])
     ]
+
+def _process_defines(
+        *,
+        is_swift,
+        defines,
+        local_defines,
+        transitive_infos,
+        build_settings):
+    transitive_cc_defines = []
+    for info in transitive_infos:
+        transitive_defines = info.defines
+        transitive_cc_defines.extend(transitive_defines.cc_defines)
+
+    # We only want to use this target's defines if it's a Swift target
+    if is_swift:
+        cc_defines = transitive_cc_defines
+    else:
+        transitive_cc_defines.extend(defines)
+        cc_defines = transitive_cc_defines + local_defines
+
+    if build_settings:
+        # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
+        # process Swift compile options already accounts for `defines`
+
+        # We need to prepend, in case `process_opts` has already set them
+        setting = cc_defines + build_settings.get(
+            "GCC_PREPROCESSOR_DEFINITIONS",
+            [],
+        )
+
+        # Remove duplicates
+        setting = reversed({x: None for x in reversed(setting)}.keys())
+
+        set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
+
+    return struct(
+        cc_defines = transitive_cc_defines,
+    )
 
 def _append_if_new(existing, new):
     """Appends elements to a `list` if they are not already present in it.
@@ -1086,6 +1163,7 @@ def _process_target(*, ctx, target, transitive_infos):
     inputs_info = processed_target.inputs_info
 
     return _target_info_fields(
+        defines = processed_target.defines,
         dependencies = processed_target.dependencies,
         extra_files = depset(
             depset(

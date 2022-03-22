@@ -4,12 +4,19 @@ cc_library(
         "lib.c",
         "private.h",
     ],
+    local_defines = ["SECRET_3=\\\"Hello\\\""],
+)
+
+cc_library(
+    name = "lib_defines",
+    defines = ["SECRET_2=\\\"World!\\\""],
+    deps = [":lib_impl"],
 )
 
 cc_library(
     name = "lib_headers",
     hdrs = ["lib.h"],
-    deps = [":lib_impl"],
+    deps = [":lib_defines"],
 )
 
 alias(
