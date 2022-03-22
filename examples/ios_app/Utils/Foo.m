@@ -7,7 +7,7 @@
 }
 
 - (NSInteger)answer {
-    return 42;
+    return [Answers new].answer;
 }
 
 @end

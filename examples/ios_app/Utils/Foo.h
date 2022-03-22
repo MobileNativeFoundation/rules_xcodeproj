@@ -1,4 +1,5 @@
 @import Foundation;
+#import <CoreUtils/Answers.h>
 
 @interface Foo: NSObject
 

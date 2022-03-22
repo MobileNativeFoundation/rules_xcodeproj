@@ -101,7 +101,6 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "includes": [],
                 "quote_headers": [
                     ".",
                     {
@@ -192,7 +191,22 @@
                 "path": "bazel-out/applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/tool",
                 "type": "com.apple.product-type.tool"
             },
-            "search_paths": {},
+            "search_paths": {
+                "includes": [
+                    "examples/command_line/lib/dir with space",
+                    {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/dir with space",
+                        "t": "g"
+                    }
+                ],
+                "quote_headers": [
+                    ".",
+                    {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null
         },

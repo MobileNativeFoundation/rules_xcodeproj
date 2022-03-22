@@ -323,11 +323,16 @@ def _processed_target(
         xcode_targets = [xcode_target] if xcode_target else None,
     )
 
-def _needs_search_paths(*, inputs_info):
-    for src in inputs_info.srcs:
-        if not src.path.endswith(".swift"):
-            return True
-    return False
+def _add_to_dict_from_attr_if_true(dict, source, attr):
+    value = getattr(source, attr, None)
+    if value:
+        dict[attr] = value
+
+def _search_paths_dict(search_paths):
+    dict = {}
+    _add_to_dict_from_attr_if_true(dict, search_paths, "includes")
+    _add_to_dict_from_attr_if_true(dict, search_paths, "quote_headers")
+    return dict
 
 def _xcode_target(
         *,
@@ -380,13 +385,6 @@ def _xcode_target(
         to create a json array string, possibly joining multiples of these
         strings with `","`.
     """
-
-    # We can send search paths for all targets, but not sending them for
-    # certain targets reduces the size of the spec, the time it takes to parse
-    # the spec, and the size of the produced project.
-    if not _needs_search_paths(inputs_info = inputs_info):
-        search_paths = {}
-
     target = json.encode(struct(
         name = name,
         label = str(label),
@@ -401,7 +399,7 @@ def _xcode_target(
         is_swift = is_swift,
         test_host = test_host,
         build_settings = build_settings,
-        search_paths = search_paths,
+        search_paths = _search_paths_dict(search_paths),
         modulemaps = modulemaps.file_paths,
         swiftmodules = swiftmodules,
         inputs = _process_inputs(inputs_info),
@@ -622,7 +620,9 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     search_paths = _process_search_paths(
         bin_dir_path = ctx.bin_dir.path,
         includes = getattr(ctx.rule.attr, "includes", []),
+        generates_header = getattr(ctx.rule.attr, "generates_header", False),
         target = target,
+        inputs_info = inputs_info,
         transitive_infos = transitive_infos,
     )
 
@@ -737,7 +737,9 @@ def _process_library_target(*, ctx, target, transitive_infos):
     search_paths = _process_search_paths(
         bin_dir_path = ctx.bin_dir.path,
         includes = getattr(ctx.rule.attr, "includes", []),
+        generates_header = getattr(ctx.rule.attr, "generates_header", False),
         target = target,
+        inputs_info = inputs_info,
         transitive_infos = transitive_infos,
     )
 
@@ -837,7 +839,13 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         search_paths = _process_search_paths(
             bin_dir_path = ctx.bin_dir.path,
             includes = getattr(ctx.rule.attr, "includes", []),
+            generates_header = getattr(
+                ctx.rule.attr,
+                "generates_header",
+                False,
+            ),
             target = target,
+            inputs_info = inputs_info,
             transitive_infos = transitive_infos,
         ),
         target = None,
@@ -1001,7 +1009,9 @@ def _skip_target(*, transitive_infos):
         search_paths = _process_search_paths(
             bin_dir_path = None,
             includes = [],
+            generates_header = False,
             target = None,
+            inputs_info = None,
             transitive_infos = transitive_infos,
         ),
         target = None,
@@ -1059,6 +1069,19 @@ def _process_defines(
         cc_defines = transitive_cc_defines,
     )
 
+def _produces_headers(*, inputs_info):
+    if inputs_info.hdrs:
+        return True
+
+    # TODO: Only include these paths for the single target?
+    for src in inputs_info.srcs:
+        if not src.path.endswith(".swift"):
+            return True
+    for src in inputs_info.non_arc_srcs:
+        if not src.path.endswith(".swift"):
+            return True
+    return False
+
 def _append_if_new(existing, new):
     """Appends elements to a `list` if they are not already present in it.
 
@@ -1070,21 +1093,32 @@ def _append_if_new(existing, new):
         if element not in existing:
             existing.append(element)
 
-def _process_search_paths(*, bin_dir_path, target, includes, transitive_infos):
+def _process_search_paths(
+        *,
+        bin_dir_path,
+        target,
+        includes,
+        generates_header,
+        inputs_info,
+        transitive_infos):
     if target and CcInfo in target:
         # First add our search paths
         root = target.label.workspace_root
         gen_dir = join_paths_ignoring_empty(bin_dir_path, root)
-        quote_headers = [
-            external_file_path(root) if root else project_file_path("."),
-        ]
-        if SwiftInfo in target:
+        produces_headers = _produces_headers(inputs_info = inputs_info)
+        quote_headers = []
+        if produces_headers:
+            quote_headers.append(
+                external_file_path(root) if root else project_file_path("."),
+            )
+        if SwiftInfo in target and generates_header:
             # An extra path is needed to pickup Xcode's Swift generated headers
             quote_headers.append(project_file_path(paths.join(
                 "$(BUILD_DIR)",
                 gen_dir,
             )))
-        quote_headers.append(generated_file_path(gen_dir))
+        if produces_headers:
+            quote_headers.append(generated_file_path(gen_dir))
         include_paths = []
         for include in includes:
             include_path = join_paths_ignoring_empty(
