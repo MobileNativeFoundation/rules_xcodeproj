@@ -33,7 +33,7 @@ bazel_integration_test(
         ["ios_app/**/*"],
         exclude = [
             "ios_app/bazel-*",
-            # Ignore any Xcode projects that may have been manually generated.
+            # Ignore any Xcode projects that may have been manually generated
             "ios_app/*.xcodeproj/**",
         ],
     ) + [
