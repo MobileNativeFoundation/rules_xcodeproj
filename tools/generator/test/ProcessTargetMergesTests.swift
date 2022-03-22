@@ -54,6 +54,7 @@ final class TargetMergingTests: XCTestCase {
                 "Z": .string("0")
             ],
             modulemaps: targets["A 1"]!.modulemaps,
+            swiftmodules: targets["A 1"]!.swiftmodules,
             inputs: targets["A 1"]!.inputs,
             // Removed "A 1"'s product
             links: ["a/c.a"],
@@ -64,6 +65,7 @@ final class TargetMergingTests: XCTestCase {
             product: targets["B 2"]!.product,
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
+            swiftmodules: targets["B 1"]!.swiftmodules,
             inputs: targets["B 1"]!.inputs,
             // Removed "A 1"'s and "B 1"'s product
             links: [],
@@ -74,6 +76,7 @@ final class TargetMergingTests: XCTestCase {
             product: targets["B 3"]!.product,
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
+            swiftmodules: targets["B 1"]!.swiftmodules,
             inputs: targets["B 1"]!.inputs,
             // Removed "B 1"'s product
             links: [],
@@ -121,6 +124,7 @@ final class TargetMergingTests: XCTestCase {
         expectedTargets["B 2"] = Target.mock(
             product: targets["B 2"]!.product,
             modulemaps: targets["B 1"]!.modulemaps,
+            swiftmodules: targets["B 1"]!.swiftmodules,
             inputs: targets["B 1"]!.inputs,
             // Removed "B 1"'s product
             links: ["z/A.a"],
@@ -131,6 +135,7 @@ final class TargetMergingTests: XCTestCase {
             product: targets["B 3"]!.product,
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
+            swiftmodules: targets["B 1"]!.swiftmodules,
             inputs: targets["B 1"]!.inputs,
             // Removed "B 1"'s product
             links: [],
