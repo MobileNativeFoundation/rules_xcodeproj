@@ -29,7 +29,14 @@ bazel_integration_test(
     additional_env_inherit = ["DEVELOPER_DIR"],
     bazel_version = CURRENT_BAZEL_VERSION,
     test_runner = ":ios_app_test_runner",
-    workspace_files = integration_test_utils.glob_workspace_files("ios_app") + [
+    workspace_files = glob(
+        ["ios_app/**/*"],
+        exclude = [
+            "ios_app/bazel-*",
+            # Ignore any Xcode projects that may have been manually generated
+            "ios_app/*.xcodeproj/**",
+        ],
+    ) + [
         "//:local_repository_files",
     ],
     workspace_path = "ios_app",
