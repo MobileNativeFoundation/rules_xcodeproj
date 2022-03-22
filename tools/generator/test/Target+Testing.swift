@@ -6,6 +6,7 @@ import XCTest
 extension Target {
     static func mock(
         configuration: String = "a1b2c",
+        packageBinDir: Path = "bazel-out/a1b2c/some/package",
         platform: Platform? = nil,
         product: Product,
         isSwift: Bool = false,
@@ -22,6 +23,7 @@ extension Target {
             name: product.name,
             label: "//\(product.name)",
             configuration: configuration,
+            packageBinDir: packageBinDir,
             platform: platform ?? Platform(
                 os: "macOS",
                 arch: "arm64",

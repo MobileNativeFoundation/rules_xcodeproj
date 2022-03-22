@@ -43,6 +43,7 @@ final class TargetMergingTests: XCTestCase {
         expectedTargets.removeValue(forKey: "A 1")
         expectedTargets.removeValue(forKey: "B 1")
         expectedTargets["A 2"] = Target.mock(
+            packageBinDir: targets["A 1"]!.packageBinDir,
             product: targets["A 2"]!.product,
             isSwift: targets["A 1"]!.isSwift,
             buildSettings: [
@@ -63,6 +64,7 @@ final class TargetMergingTests: XCTestCase {
             dependencies: ["C 1"]
         )
         expectedTargets["B 2"] = Target.mock(
+            packageBinDir: targets["B 1"]!.packageBinDir,
             product: targets["B 2"]!.product,
             isSwift: targets["A 2"]!.isSwift,
             testHost: "A 2",
@@ -75,6 +77,7 @@ final class TargetMergingTests: XCTestCase {
             dependencies: ["A 2"]
         )
         expectedTargets["B 3"] = Target.mock(
+            packageBinDir: targets["B 1"]!.packageBinDir,
             product: targets["B 3"]!.product,
             isSwift: targets["B 1"]!.isSwift,
             testHost: "A 2",
@@ -110,6 +113,7 @@ final class TargetMergingTests: XCTestCase {
         // "A 1" and a merged "A 2" would have to exist, and have the same
         // "PRODUCT_MODULE_NAME", which breaks indexing
         targets["B 2"] = Target.mock(
+            packageBinDir: targets["B 2"]!.packageBinDir,
             product: targets["B 2"]!.product,
             isSwift: targets["B 2"]!.isSwift,
             modulemaps: targets["B 2"]!.modulemaps,
@@ -126,6 +130,7 @@ final class TargetMergingTests: XCTestCase {
         var expectedTargets = targets
         expectedTargets.removeValue(forKey: "B 1")
         expectedTargets["B 2"] = Target.mock(
+            packageBinDir: targets["B 1"]!.packageBinDir,
             product: targets["B 2"]!.product,
             isSwift: targets["B 1"]!.isSwift,
             modulemaps: targets["B 1"]!.modulemaps,
@@ -137,6 +142,7 @@ final class TargetMergingTests: XCTestCase {
             dependencies: ["A 1", "A 2"]
         )
         expectedTargets["B 3"] = Target.mock(
+            packageBinDir: targets["B 1"]!.packageBinDir,
             product: targets["B 3"]!.product,
             isSwift: targets["B 1"]!.isSwift,
             testHost: "A 2",

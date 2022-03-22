@@ -28,6 +28,7 @@ enum Fixtures {
 
     static let targets: [TargetID: Target] = [
         "A 1": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/A 1",
             product: .init(type: .staticLibrary, name: "a", path: "z/A.a"),
             isSwift: true,
             buildSettings: [
@@ -38,6 +39,7 @@ enum Fixtures {
             inputs: .init(srcs: ["x/y.swift"], nonArcSrcs: ["b.c"])
         ),
         "A 2": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/A 2",
             product: .init(type: .application, name: "A", path: "z/A.app"),
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_A"),
@@ -49,6 +51,7 @@ enum Fixtures {
             dependencies: ["C 1", "A 1"]
         ),
         "B 1": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/B 1",
             product: .init(
                 type: .staticFramework,
                 name: "b",
@@ -62,34 +65,40 @@ enum Fixtures {
         // "B 2" not having a link on "A 1" represents a bundle_loader like
         // relationship. This allows "A 1" to merge into "A 2".
         "B 2": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/B 2",
             product: .init(type: .unitTestBundle, name: "B", path: "B.xctest"),
             testHost: "A 2",
             links: ["a/b.framework"],
             dependencies: ["A 2", "B 1"]
         ),
         "B 3": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/B 3",
             product: .init(type: .uiTestBundle, name: "B3", path: "B3.xctest"),
             testHost: "A 2",
             links: ["a/b.framework"],
             dependencies: ["A 2", "B 1"]
         ),
         "C 1": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/C 1",
             product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),
             modulemaps: [.generated("a/b/module.modulemap")],
             inputs: .init(srcs: ["a/b/c.m"], hdrs: ["a/b/c.h"])
         ),
         "C 2": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/C 2",
             product: .init(type: .commandLineTool, name: "d", path: "d"),
             inputs: .init(srcs: ["a/b/d.m"]),
             links: ["a/c.a"],
             dependencies: ["C 1"]
         ),
         "E1": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/E1",
             product: .init(type: .staticLibrary, name: "E1", path: "e1/E.a"),
             isSwift: true,
             inputs: .init(srcs: [.external("a_repo/a.swift")])
         ),
         "E2": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/E2",
             product: .init(type: .staticLibrary, name: "E2", path: "e2/E.a"),
             isSwift: true,
             inputs: .init(srcs: [.external("another_repo/b.swift")])
@@ -725,7 +734,10 @@ enum Fixtures {
 
         let pbxProject = pbxProj.rootObject!
 
-        let debugConfiguration = XCBuildConfiguration(name: "Debug")
+        let debugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: ["BAZEL_PACKAGE_BIN_DIR": "BazelGeneratedFiles"]
+        )
         pbxProj.add(object: debugConfiguration)
         let configurationList = XCConfigurationList(
             buildConfigurations: [debugConfiguration],
@@ -837,39 +849,48 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
 
         let buildSettings: [TargetID: [String: Any]] = [
             "A 1": targets["A 1"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "TARGET_NAME": distinguished["A 1"]!.nameBuildSetting,
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
                 "TARGET_NAME": distinguished["A 2"]!.nameBuildSetting,
             ]) { $1 },
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=a/module.modulemap
 """,
                 "TARGET_NAME": distinguished["B 1"]!.nameBuildSetting,
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
-                "TARGET_NAME": distinguished["B 2"]!.nameBuildSetting,
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
+                "TARGET_NAME": distinguished["B 2"]!.nameBuildSetting,
                 "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/A.app/A",
             ]) { $1 },
             "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "TARGET_NAME": distinguished["B 3"]!.nameBuildSetting,
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
             ]) { $1 },
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=bazel-out/a/b/module.modulemap
 """,
                 "TARGET_NAME": distinguished["C 1"]!.nameBuildSetting,
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
                 "TARGET_NAME": distinguished["C 2"]!.nameBuildSetting,
             ]) { $1 },
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
                 "TARGET_NAME": distinguished["E1"]!.nameBuildSetting,
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
                 "TARGET_NAME": distinguished["E2"]!.nameBuildSetting,
             ]) { $1 },
         ]

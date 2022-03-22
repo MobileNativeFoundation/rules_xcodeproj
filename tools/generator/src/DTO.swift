@@ -15,6 +15,7 @@ struct Target: Equatable, Decodable {
     let name: String
     let label: String
     let configuration: String
+    var packageBinDir: Path
     let platform: Platform
     let product: Product
     var isSwift: Bool
