@@ -5,13 +5,12 @@ import XcodeProj
 /// of Xcode, as well as the target itself.
 ///
 /// Xcode requires that certain properties of targets are unique, such as name,
-/// the `TARGET_NAME` and `PRODUCT_MODULE_NAME` build settings, etc. This class
-/// collects information on all of the targets and calculates unique values for
-/// each one. If the values are user facing (i.e. the target name), then they
-/// are formatted in a readable way.
+/// the `PRODUCT_MODULE_NAME` build setting, etc. This class collects
+/// information on all of the targets and calculates unique values for each one.
+/// If the values are user facing (i.e. the target name), then they are
+/// formatted in a readable way.
 struct DisambiguatedTarget: Equatable {
     let name: String
-    let nameBuildSetting: String
     let target: Target
 }
 
@@ -22,12 +21,8 @@ extension Generator {
     ) -> [TargetID: DisambiguatedTarget] {
         // Gather all information needed to distinguish the targets
         var components: [String: TargetComponents] = [:]
-        var targetHashes = Dictionary<TargetID, String>(
-            minimumCapacity: targets.count
-        )
-        for (id, target) in targets {
+        for target in targets.values {
             components[target.name, default: .init()].add(target: target)
-            targetHashes[id] = id.rawValue.sha1Hash()
         }
 
         // And then distinguish them
@@ -37,7 +32,6 @@ extension Generator {
         for (id, target) in targets {
             uniqueValues[id] = DisambiguatedTarget(
                 name: components[target.name]!.uniqueName(target: target),
-                nameBuildSetting: "\(target.name)-\(targetHashes[id]!)",
                 target: target
             )
         }

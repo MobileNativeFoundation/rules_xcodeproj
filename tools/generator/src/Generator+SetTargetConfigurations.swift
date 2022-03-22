@@ -60,37 +60,72 @@ Target "\(id)" not found in `pbxTargets`.
                     }
             )
 
+            if !target.links.isEmpty {
+                let linkFileList = filePathResolver
+                    .resolve(try target.linkFileListFilePath())
+                    .string
+                try targetBuildSettings.prepend(
+                    onKey: "OTHER_LDFLAGS",
+                    ["-filelist", "\(linkFileList),$(BUILD_DIR)".quoted]
+                )
+            }
+
             var buildSettings = targetBuildSettings.asDictionary
             
             buildSettings["BAZEL_PACKAGE_BIN_DIR"] = target.packageBinDir.string
 
-            buildSettings["TARGET_NAME"] = disambiguatedTarget.nameBuildSetting
+            buildSettings["TARGET_NAME"] = target.name
+
+            let swiftmodules = target.swiftmodules
+            if !swiftmodules.isEmpty {
+                buildSettings["SWIFT_INCLUDE_PATHS"] = swiftmodules
+                    .map { filePath -> String in
+                        var dir = filePath
+                        dir.path = dir.path.parent().normalize()
+                        return filePathResolver
+                            .resolve(dir, useBuildDir: true)
+                            .string.quoted
+                    }
+                    .joined(separator: " ")
+            }
 
             if let testHostID = target.testHost {
-                guard let testHost = pbxTargets[testHostID] else {
+                guard
+                    let testHost = disambiguatedTargets[testHostID]?.target
+                else {
                     throw PreconditionError(message: """
-Test host with id "\(testHostID)" not found
+Test host target with id "\(testHostID)" not found
+""")
+                }
+                guard let pbxTestHost = pbxTargets[testHostID] else {
+                    throw PreconditionError(message: """
+Test host pbxTarget with id "\(testHostID)" not found
 """)
                 }
 
-                attributes["TestTargetID"] = testHost
+                attributes["TestTargetID"] = pbxTestHost
 
                 if target.product.type == .uiTestBundle {
-                    buildSettings["TEST_TARGET_NAME"] = testHost.name
+                    buildSettings["TEST_TARGET_NAME"] = pbxTestHost.name
                 } else {
-                    guard let productPath = testHost.product?.path else {
+                    guard let productPath = pbxTestHost.product?.path else {
                         throw PreconditionError(message: """
-`product.path` not set on test host "\(testHost.name)"
+`product.path` not set on test host "\(pbxTestHost.name)"
 """)
                     }
-                    guard let productName = testHost.productName else {
+                    guard let productName = pbxTestHost.productName else {
                         throw PreconditionError(message: """
-`productName` not set on test host "\(testHost.name)"
+`productName` not set on test host "\(pbxTestHost.name)"
 """)
                     }
+
+                    buildSettings["TARGET_BUILD_DIR"] = """
+$(BUILD_DIR)/\(testHost.packageBinDir)$(TARGET_BUILD_SUBPATH)
+"""
+                    buildSettings["TEST_HOST"] = """
+$(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(productName)
+"""
                     buildSettings["BUNDLE_LOADER"] = "$(TEST_HOST)"
-                    buildSettings["TEST_HOST"] =
-                        "$(BUILT_PRODUCTS_DIR)/\(productPath)/\(productName)"
                 }
             }
 
@@ -127,5 +162,37 @@ private extension Dictionary where Value == BuildSetting {
 Build setting for \(key) is not an array: \(buildSetting)
 """)
         }
+    }
+}
+
+extension Target {
+    func linkFileListFilePath() throws -> FilePath {
+        var components = packageBinDir.components
+        guard
+            components.count >= 3,
+            components[0] == "bazel-out",
+            components[2] == "bin"
+        else {
+            throw PreconditionError(message: """
+packageBinDir is in unexpected format: \(packageBinDir)
+""")
+        }
+        // Remove "bin/"
+        components.remove(at: 2)
+        // Remove "bazel-out/"
+        components.remove(at: 0)
+        // Add our components
+        components = ["targets"] + components + ["\(name).LinkFileList"]
+
+        return .internal(Path(components: components))
+    }
+}
+
+private extension String {
+    func removingPrefix(_ prefix: String) -> String {
+        guard hasPrefix(prefix) else {
+            return self
+        }
+        return String(self.prefix(prefix.count))
     }
 }

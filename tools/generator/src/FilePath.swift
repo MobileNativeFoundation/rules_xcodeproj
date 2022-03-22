@@ -9,7 +9,7 @@ struct FilePath: Hashable, Decodable {
     }
 
     let type: PathType
-    let path: Path
+    var path: Path
 
     fileprivate init(type: PathType, path: Path) {
         self.type = type

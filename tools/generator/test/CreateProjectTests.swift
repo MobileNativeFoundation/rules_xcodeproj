@@ -19,7 +19,14 @@ final class CreateProjectTests: XCTestCase {
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
-            buildSettings: project.buildSettings.asDictionary
+            buildSettings: project.buildSettings.asDictionary.merging([
+                "CONFIGURATION_BUILD_DIR": """
+$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
+""",
+                "TARGET_TEMP_DIR": """
+$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
+""",
+            ]) { $1 }
         )
         expectedPBXProj.add(object: debugConfiguration)
         let expectedBuildConfigurationList = XCConfigurationList(

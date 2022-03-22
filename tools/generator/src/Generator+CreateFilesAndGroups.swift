@@ -3,14 +3,14 @@ import XcodeProj
 
 /// Wrapper for `PBXFileReference`, adding additional associated data.
 struct File: Equatable {
-    let reference: PBXFileReference
+    let reference: PBXFileReference?
 
     /// File content to be written to disk.
     ///
     /// This is only used by the `FilePath.PathType.internal` files.
     let content: String
 
-    init(reference: PBXFileReference, content: String = "") {
+    init(reference: PBXFileReference?, content: String = "") {
         self.reference = reference
         self.content = content
     }
@@ -25,7 +25,7 @@ extension Generator {
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
         filePathResolver: FilePathResolver
-    ) -> (
+    ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement]
     ) {
@@ -223,6 +223,18 @@ extension Generator {
                 reference: reference,
                 content: Set(generatedFiles).sortedLocalizedStandard().joined()
             )
+        }
+
+        // Write LinkFileLists
+        
+        for target in targets.values {
+            let linkFiles = target.links.map { "\($0)\n" }
+            if !linkFiles.isEmpty {
+                files[try target.linkFileListFilePath()] = File(
+                    reference: nil,
+                    content: Set(linkFiles).sortedLocalizedStandard().joined()
+                )
+            }
         }
 
         // Handle special groups
