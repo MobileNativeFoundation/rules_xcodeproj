@@ -74,7 +74,7 @@ Target "\(id)" not found in `pbxTargets`.
             var buildSettings = targetBuildSettings.asDictionary
             
             buildSettings["BAZEL_PACKAGE_BIN_DIR"] = target.packageBinDir.string
-
+            buildSettings["SDKROOT"] = target.platform.os.sdkRoot
             buildSettings["TARGET_NAME"] = target.name
 
             let swiftmodules = target.swiftmodules
@@ -209,6 +209,18 @@ packageBinDir is in unexpected format: \(packageBinDir)
         components = ["targets"] + components + ["\(name).LinkFileList"]
 
         return .internal(Path(components: components))
+    }
+}
+
+
+private extension Platform.OS {
+    var sdkRoot: String {
+        switch self {
+        case .macOS: return "macosx"
+        case .iOS: return "iphoneos"
+        case .watchOS: return "watchos"
+        case .tvOS: return "appletvos"
+        }
     }
 }
 

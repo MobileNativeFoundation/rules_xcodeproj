@@ -85,7 +85,7 @@ struct ProductTypeComponents {
     /// `add(target:)`, there will be an entry in `oses`.
     /// `OperatingSystemComponents.add(target)` will have been called for each
     /// `Target`.
-    var oses: [String: OperatingSystemComponents] = [:]
+    var oses: [Platform.OS: OperatingSystemComponents] = [:]
 
     /// Adds another `Target` into consideration for `distinguishers()`.
     mutating func add(target: Target) {
@@ -181,7 +181,7 @@ struct OperatingSystemComponents {
             var components: [String] = []
 
             if forceDistinguisher {
-                components.append(platform.os)
+                components.append(platform.os.prettyName)
             }
 
             components.append(Target.prettyConfiguration(target.configuration))
@@ -194,7 +194,7 @@ struct OperatingSystemComponents {
                 components.append(platform.arch)
             }
             if forceDistinguisher || minimumVersions.count > 1 {
-                components.append(platform.os)
+                components.append(platform.os.prettyName)
             }
             if minimumVersions.count > 1 {
                 components.append(platform.minimumOsVersion)
@@ -237,6 +237,17 @@ private extension Target {
             platform.minimumOsVersion,
             platform.environment ?? "Device"
         ].joined(separator: "-")
+    }
+}
+
+private extension Platform.OS {
+    var prettyName: String {
+        switch self {
+        case .macOS: return "macOS"
+        case .iOS: return "iOS"
+        case .watchOS: return "watchOS"
+        case .tvOS: return "tvOS"
+        }
     }
 }
 

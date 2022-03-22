@@ -36,7 +36,14 @@ struct Product: Equatable, Decodable {
 }
 
 struct Platform: Equatable, Decodable {
-    let os: String
+    enum OS: String, Decodable {
+        case macOS = "macos"
+        case iOS = "ios"
+        case tvOS = "tvos"
+        case watchOS = "watchos"
+    }
+
+    let os: OS
     let arch: String
     let minimumOsVersion: String
     let environment: String?

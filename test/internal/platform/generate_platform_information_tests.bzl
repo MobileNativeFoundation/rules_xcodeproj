@@ -91,10 +91,9 @@ def generate_platform_information_test_suite(name):
             "arch": "wild",
             "environment": "Simulator",
             "minimum_os_version": "12.0",
-            "os": "tvOS",
+            "os": "tvos",
         },
         expected_build_settings = {
-            "SDKROOT": "appletvos",
             "TVOS_DEPLOYMENT_TARGET": "12.0",
         },
     )
@@ -109,11 +108,10 @@ def generate_platform_information_test_suite(name):
             "arch": "x86_64",
             "environment": "Simulator",
             "minimum_os_version": "11.0",
-            "os": "iOS",
+            "os": "ios",
         },
         expected_build_settings = {
             "IPHONEOS_DEPLOYMENT_TARGET": "13.0",
-            "SDKROOT": "iphoneos",
         },
     )
 
@@ -128,11 +126,10 @@ def generate_platform_information_test_suite(name):
         expected_platform_dict = {
             "arch": "arm64",
             "minimum_os_version": "12.1",
-            "os": "macOS",
+            "os": "macos",
         },
         expected_build_settings = {
             "MACOSX_DEPLOYMENT_TARGET": "12.1",
-            "SDKROOT": "macosx",
         },
     )
 
