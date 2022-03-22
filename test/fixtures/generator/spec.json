@@ -84,6 +84,7 @@
                 "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "inputs": {},
+            "is_swift": false,
             "label": "//tools/generator:generator",
             "links": [
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
@@ -193,6 +194,7 @@
                     "tools/generator/src/TargetID.swift"
                 ]
             },
+            "is_swift": true,
             "label": "//tools/generator:generator.library",
             "links": [],
             "modulemaps": [],
@@ -286,6 +288,7 @@
                 "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "inputs": {},
+            "is_swift": false,
             "label": "//tools/generator:tests",
             "links": [
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
@@ -387,6 +390,7 @@
                     "tools/generator/test/XcodeProj+CustomDump.swift"
                 ]
             },
+            "is_swift": true,
             "label": "//tools/generator:tests.library",
             "links": [],
             "modulemaps": [],
@@ -497,6 +501,7 @@
                     }
                 ]
             },
+            "is_swift": true,
             "label": "@com_github_kylef_pathkit//:PathKit",
             "links": [],
             "modulemaps": [],
@@ -680,6 +685,7 @@
                     }
                 ]
             },
+            "is_swift": true,
             "label": "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
             "links": [],
             "modulemaps": [],
@@ -770,6 +776,7 @@
                     }
                 ]
             },
+            "is_swift": true,
             "label": "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay",
             "links": [],
             "modulemaps": [],
@@ -871,6 +878,7 @@
                     }
                 ]
             },
+            "is_swift": true,
             "label": "@com_github_tadija_aexml//:AEXML",
             "links": [],
             "modulemaps": [],
@@ -1335,6 +1343,7 @@
                     }
                 ]
             },
+            "is_swift": true,
             "label": "@com_github_tuist_xcodeproj//:XcodeProj",
             "links": [],
             "modulemaps": [],

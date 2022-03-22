@@ -75,6 +75,7 @@
                     "examples/cc/lib/private.h"
                 ]
             },
+            "is_swift": false,
             "label": "//examples/cc/lib:lib_impl",
             "links": [],
             "modulemaps": [],
@@ -163,6 +164,7 @@
                     "examples/cc/tool/main.c"
                 ]
             },
+            "is_swift": false,
             "label": "//examples/cc/tool:tool",
             "links": [
                 "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/liblib_impl.a"

@@ -17,6 +17,7 @@ struct Target: Equatable, Decodable {
     let configuration: String
     let platform: Platform
     let product: Product
+    var isSwift: Bool
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
     var searchPaths: SearchPaths
