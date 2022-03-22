@@ -118,7 +118,7 @@ def process_compiler_opts_test_suite(name):
         ],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
-            "OTHER_SWIFT_FLAGS": ["weird", "-unhandled"],
+            "OTHER_SWIFT_FLAGS": "weird -unhandled",
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
     )
@@ -247,16 +247,16 @@ def process_compiler_opts_test_suite(name):
                 "-passthrough",
                 "-passthrough",
             ],
-            "OTHER_SWIFT_FLAGS": [
-                "-passthrough",
-                "-passthrough",
-                "-passthrough",
-                "-passthrough",
-                "-passthrough",
-                "-passthrough",
-                "-keep-me=something.swift",
-                "-passthrough",
-            ],
+            "OTHER_SWIFT_FLAGS": """\
+-passthrough \
+-passthrough \
+-passthrough \
+-passthrough \
+-passthrough \
+-passthrough \
+-keep-me=something.swift \
+-passthrough\
+""",
         },
     )
 
