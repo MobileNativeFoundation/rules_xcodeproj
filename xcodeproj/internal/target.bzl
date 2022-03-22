@@ -849,7 +849,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         search_paths = _process_search_paths(
             bin_dir_path = ctx.bin_dir.path,
             opts_search_paths = create_opts_search_paths(
-                quote_includes= [],
+                quote_includes = [],
                 includes = [],
             ),
             includes = getattr(ctx.rule.attr, "includes", []),
