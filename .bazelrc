@@ -5,3 +5,6 @@ query --deleted_packages=examples/cc/external,examples/command_line/external,exa
 
 # Import Shared settings
 import %workspace%/shared.bazelrc
+
+# Use a local.bazelrc if it exists.
+try-import %workspace%/local.bazelrc
