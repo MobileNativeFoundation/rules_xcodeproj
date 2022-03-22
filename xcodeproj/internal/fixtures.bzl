@@ -107,14 +107,19 @@ _fixture_xcodeproj = make_xcodeproj_rule(
 def fixture_output_name(fixture_name):
     return "{}_output".format(fixture_name)
 
-def xcodeproj_fixture(*, name = "xcodeproj", project_name = "project", targets):
+def xcodeproj_fixture(
+        *,
+        name = "xcodeproj",
+        project_name = "project",
+        workspace_name = "rules_xcodeproj",
+        targets):
     native.exports_files([
         "spec.json",
     ])
 
     xcodeproj(
         name = name,
-        external_dir_override = "bazel-rules_xcodeproj/external",
+        external_dir_override = "bazel-{}/external".format(workspace_name),
         generated_dir_override = "bazel-out",
         project_name = project_name,
         targets = targets,
