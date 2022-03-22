@@ -93,12 +93,24 @@ enum Fixtures {
         ),
         "E1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/E1",
+            platform: .init(
+                os: .watchOS,
+                arch: "x86_64",
+                minimumOsVersion: "9.1",
+                environment: nil
+            ),
             product: .init(type: .staticLibrary, name: "E1", path: "e1/E.a"),
             isSwift: true,
             inputs: .init(srcs: [.external("a_repo/a.swift")])
         ),
         "E2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/E2",
+            platform: .init(
+                os: .tvOS,
+                arch: "arm64",
+                minimumOsVersion: "9.1",
+                environment: nil
+            ),
             product: .init(type: .staticLibrary, name: "E2", path: "e2/E.a"),
             isSwift: true,
             inputs: .init(srcs: [.external("another_repo/b.swift")])
@@ -854,6 +866,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
         let buildSettings: [TargetID: [String: Any]] = [
             "A 1": targets["A 1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
+                "SDKROOT": "macosx",
                 "TARGET_NAME": targets["A 1"]!.name,
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
@@ -864,6 +877,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
 "out/p.xcodeproj/rules_xcp/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
+                "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["A 2"]!.name,
             ]) { $1 },
@@ -872,6 +886,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=a/module.modulemap
 """,
+                "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["B 1"]!.name,
             ]) { $1 },
@@ -884,6 +899,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
 "out/p.xcodeproj/rules_xcp/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
+                "SDKROOT": "macosx",
                 "TARGET_BUILD_DIR": """
 $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 """,
@@ -898,6 +914,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 "out/p.xcodeproj/rules_xcp/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
+                "SDKROOT": "macosx",
                 "TARGET_NAME": targets["B 3"]!.name,
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
             ]) { $1 },
@@ -906,6 +923,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=bazel-out/a/b/module.modulemap
 """,
+                "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 1"]!.name,
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
@@ -916,14 +934,17 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 "out/p.xcodeproj/rules_xcp/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
+                "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 2"]!.name,
             ]) { $1 },
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
+                "SDKROOT": "watchos",
                 "TARGET_NAME": targets["E1"]!.name,
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
+                "SDKROOT": "appletvos",
                 "TARGET_NAME": targets["E2"]!.name,
             ]) { $1 },
         ]
