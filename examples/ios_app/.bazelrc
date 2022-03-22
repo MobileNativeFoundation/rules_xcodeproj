@@ -1,2 +1,5 @@
 # Import Shared settings
 import %workspace%/../../shared.bazelrc
+
+# Remove convenience symlinks 
+build --experimental_convenience_symlinks=clean
