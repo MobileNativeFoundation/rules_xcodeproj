@@ -119,6 +119,10 @@ Target "\(id)" not found in `pbxTargets`.
                     .joined(separator: " ")
             }
 
+            if let ldRunpathSearchPaths = target.ldRunpathSearchPaths {
+                buildSettings["LD_RUNPATH_SEARCH_PATHS"] = ldRunpathSearchPaths
+            }
+
             if let testHostID = target.testHost {
                 guard
                     let testHost = disambiguatedTargets[testHostID]?.target
@@ -219,6 +223,63 @@ Build setting for \(key) is not an array: \(buildSetting)
 }
 
 extension Target {
+    fileprivate var ldRunpathSearchPaths: [String]? {
+        switch (platform.os, product.type) {
+        // Applications
+        case (.macOS, .application):
+            return [
+                "$(inherited)",
+                "@executable_path/../Frameworks",
+            ]
+        case (_, .application), (_, .onDemandInstallCapableApplication):
+            return [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+            ]
+
+        // Frameworks
+        case (.macOS, .framework):
+            return [
+                "$(inherited)",
+                "@executable_path/../Frameworks",
+                "@loader_path/Frameworks",
+            ]
+        case (_, .framework):
+            return [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@loader_path/Frameworks",
+            ]
+
+        // App Extensions
+        case (.macOS, let type) where type.isAppExtension:
+            return [
+                "$(inherited)",
+                "@executable_path/../Frameworks",
+                "@executable_path/../../../../Frameworks",
+            ]
+        case (.watchOS, .appExtension):
+            // This needs to be before the below `type.isAppExtension` check
+            // as `.appExtension` is covered in that
+            return [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+                "@executable_path/../../../../Frameworks",
+            ]
+        case (_, let type) where type.isAppExtension:
+            return [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+            ]
+
+        default:
+            // Tests don't need a special setting, they are handled by Xcode
+            return nil
+        }
+    }
+
     func linkFileListFilePath() throws -> FilePath {
         var components = packageBinDir.components
         guard

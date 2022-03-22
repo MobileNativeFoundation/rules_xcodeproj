@@ -1,6 +1,41 @@
 import XcodeProj
 
 extension PBXProductType {
+    var isAppExtension: Bool {
+        switch self {
+        case .application: return false
+        case .framework: return false
+        case .staticFramework: return false
+        case .xcFramework: return false
+        case .dynamicLibrary: return false
+        case .staticLibrary: return false
+        case .bundle: return false
+        case .unitTestBundle: return false
+        case .uiTestBundle: return false
+        case .appExtension: return true
+        case .commandLineTool: return false
+        case .watchApp: return false
+        case .watch2App: return false
+        case .watch2AppContainer: return false
+        case .watchExtension: return true
+        case .watch2Extension: return true
+        case .tvExtension: return true
+        case .messagesApplication: return false
+        case .messagesExtension: return true
+        case .stickerPack: return false
+        case .xpcService: return false
+        case .ocUnitTestBundle: return false
+        case .xcodeExtension: return true
+        case .instrumentsPackage: return false
+        case .intentsServiceExtension: return true
+        case .onDemandInstallCapableApplication: return false
+        case .metalLibrary: return false
+        case .driverExtension: return false
+        case .systemExtension: return false
+        case .none: return false
+        }
+    }
+
     var isFramework: Bool {
         switch self {
         case .application: return false

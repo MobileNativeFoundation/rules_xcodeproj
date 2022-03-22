@@ -74,7 +74,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }
 
-    func test_full() throws {
+    func test_integration() throws {
         // Arrange
 
         let pbxProj = Fixtures.pbxProj()
