@@ -5,6 +5,7 @@ swift_library(
     testonly = True,
     srcs = [":gen_TestingUtils.swift"],
     defines = ["AWESOME"],
+    generates_header = True,
     module_name = "TestingUtils",
     visibility = ["//visibility:public"],
 )
@@ -30,5 +31,8 @@ genrule(
         ":gen_Answer.swift",
     ],
     outs = ["TestingUtils.swift"],
-    cmd = """cat $(SRCS) > $@""",
+    cmd = """\
+echo "import Foundation" > $@
+cat $(SRCS) >> $@
+""",
 )

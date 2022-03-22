@@ -1,5 +1,6 @@
 """Functions for processing compiler and linker options."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":build_settings.bzl", "set_if_true")
@@ -148,6 +149,7 @@ def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
     """
     unhandled_opts = []
     skip_next = 0
+    previous_opt = None
     for opt in opts:
         if skip_next:
             skip_next -= 1
@@ -160,7 +162,9 @@ def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
         if skip_next:
             skip_next -= 1
             continue
-        if extra_processing and extra_processing(opt):
+        handled = extra_processing and extra_processing(opt, previous_opt)
+        previous_opt = opt
+        if handled:
             continue
         unhandled_opts.append(opt)
 
@@ -180,7 +184,7 @@ def _process_conlyopts(opts):
     """
     optimizations = []
 
-    def process(opt):
+    def process(opt, _previous_opt):
         if opt.startswith("-O"):
             optimizations.append(opt)
             return True
@@ -210,7 +214,7 @@ def _process_cxxopts(*, opts, build_settings):
     """
     optimizations = []
 
-    def process(opt):
+    def process(opt, _previous_opt):
         if opt.startswith("-O"):
             optimizations.append(opt)
             return True
@@ -292,9 +296,18 @@ def _process_swiftcopts(*, opts, build_settings):
     # Swift 6 (which will probably have a new language version).
     build_settings["SWIFT_VERSION"] = "5"
 
+    # Default to not creating the Swift generated header.
+    build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
+
     defines = []
 
-    def process(opt):
+    def process(opt, previous_opt):
+        if previous_opt == "-emit-objc-header-path":
+            build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = paths.basename(
+                opt,
+            )
+            return True
+
         if opt.startswith("-O"):
             build_settings["SWIFT_OPTIMIZATION_LEVEL"] = opt
             return True
@@ -309,6 +322,9 @@ def _process_swiftcopts(*, opts, build_settings):
             return True
         if opt.startswith("-swift-version="):
             build_settings["SWIFT_VERSION"] = opt[15:]
+            return True
+        if opt == "-emit-objc-header-path":
+            # Handled in `previous_opt` check above
             return True
         if opt.startswith("-D"):
             defines.append(opt[2:])

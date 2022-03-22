@@ -1,1 +1,4 @@
-public let expectedGreeting = "{{ greeting }}"
+@objcMembers
+public class SwiftGreetings: NSObject {
+    public static let expectedGreeting = "{{ greeting }}"
+}
