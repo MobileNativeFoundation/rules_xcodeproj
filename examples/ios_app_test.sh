@@ -19,6 +19,14 @@ assertions_sh="$(rlocation "${assertions_sh_location}")" || \
 source "${assertions_sh}"
 
 
+# MARK - Functions
+
+header() {
+  local msg="${1}"
+  echo $'=====================\n'"${msg}"$'\n====================='
+}
+
+
 # MARK - Process Arguments
 
 bazel="${BIT_BAZEL_BINARY:-}"
@@ -50,13 +58,27 @@ fi
 
 # MARK - Test
 
+cd "${workspace_dir}"
+
 exec_bazel_cmd() {
   local cmd="${1}"
   shift 1
-  local bazel_cmd=( "${cmd}" )
+  local bazel_cmd=( "${bazel}" "${cmd}" )
   [[ ${#bazel_cmd_opts[@]} -gt 0 ]] && bazel_cmd+=( "${bazel_cmd_opts[@]}" )
   [[ ${#} -gt 0 ]] && bazel_cmd+=( "${@}" )
+  echo >&2 "Bazel Command:" "${bazel_cmd[@]}"
   "${bazel_cmd[@]}"
 }
 
-fail "IMPLEMENT ME!"
+
+header "Bazel Info"
+exec_bazel_cmd info
+
+header "Build the Workspace"
+exec_bazel_cmd build //...
+
+header "Execute Tests"
+exec_bazel_cmd test //test/...
+
+header "Execute xcodeproj"
+exec_bazel_cmd run //:xcodeproj
