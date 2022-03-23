@@ -38,8 +38,7 @@ sh_binary(
     testonly = True,
     srcs = ["ios_app_test_runner.sh"],
     data = [
-        # ":chuck_debug",
-        "//config:integration_test_config_values",
+        "//config:integration_test_config",
     ],
     # args = select({
     #     ":cache": [
