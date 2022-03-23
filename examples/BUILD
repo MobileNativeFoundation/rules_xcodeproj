@@ -27,7 +27,7 @@ load("//:bazel_versions.bzl", "CURRENT_BAZEL_VERSION")
 sh_binary(
     name = "ios_app_test_runner",
     testonly = True,
-    srcs = ["ios_app_test.sh"],
+    srcs = ["ios_app_test_runner.sh"],
     data = [
         "//config:integration_test_config",
     ],
