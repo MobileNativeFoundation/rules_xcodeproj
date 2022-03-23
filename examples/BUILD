@@ -11,17 +11,26 @@ load("//:bazel_versions.bzl", "CURRENT_BAZEL_VERSION")
 # config_setting(
 #     name = "cache",
 #     flag_values = {
-#         # "//config:integration_test_config": "cache",
-#         "//config:integration_test_config": ["cache"],
+#         "//config:integration_test_config": "cache",
 #     },
 # )
 
 # config_setting(
 #     name = "workflows",
 #     flag_values = {
-#         # "//config:integration_test_config": "cache",
-#         "//config:integration_test_config": ["cache"],
+#         "//config:integration_test_config": "workflows",
 #     },
+# )
+
+# genrule(
+#     name = "chuck_debug",
+#     srcs = [
+#         "//config:integration_test_config",
+#     ],
+#     outs = ["chuck_debug.txt"],
+#     cmd = """\
+# cat $(location //config:integration_test_config) > $@
+# """,
 # )
 
 sh_binary(
@@ -29,8 +38,20 @@ sh_binary(
     testonly = True,
     srcs = ["ios_app_test_runner.sh"],
     data = [
-        "//config:integration_test_config",
+        # ":chuck_debug",
+        "//config:integration_test_config_values",
     ],
+    # args = select({
+    #     ":cache": [
+    #         "--config",
+    #         "cache",
+    #     ],
+    #     ":workflows": [
+    #         "--config",
+    #         "workflows",
+    #     ],
+    #     "//conditions:default": [],
+    # }),
     deps = [
         "@cgrindel_bazel_starlib//shlib/lib:assertions",
     ],

@@ -18,9 +18,22 @@ assertions_sh="$(rlocation "${assertions_sh_location}")" || \
   (echo >&2 "Failed to locate ${assertions_sh_location}" && exit 1)
 source "${assertions_sh}"
 
-integration_test_config_values_location=com_github_buildbuddy_io_rules_xcodeproj/config/integration_test_config_values
-integration_test_config_values="$(rlocation "${integration_test_config_values_location}")" || \
-  (echo >&2 "Failed to locate ${integration_test_config_values_location}" && exit 1)
+# # DEBUG BEGIN
+# chuck_debug_txt_location=com_github_buildbuddy_io_rules_xcodeproj/examples/chuck_debug.txt
+# chuck_debug_txt="$(rlocation "${chuck_debug_txt_location}")" || \
+#   (echo >&2 "Failed to locate ${chuck_debug_txt_location}" && exit 1)
+# echo >&2 "*** CHUCK $(basename "${BASH_SOURCE[0]}") chuck_debug_txt"
+# cat >&2 "${chuck_debug_txt}"
+# # DEBUG END
+
+integration_test_config_values_txt_location=com_github_buildbuddy_io_rules_xcodeproj/config/integration_test_config_values.txt
+integration_test_config_values_txt="$(rlocation "${integration_test_config_values_txt_location}")" || \
+  (echo >&2 "Failed to locate ${integration_test_config_values_txt_location}" && exit 1)
+cat >&2 "${integration_test_config_values_txt}"
+
+# DEBUG BEGIN
+fail "STOP"
+# DEBUG END
 
 # MARK - Functions
 
@@ -34,6 +47,7 @@ header() {
 
 bazel="${BIT_BAZEL_BINARY:-}"
 workspace_dir="${BIT_WORKSPACE_DIR:-}"
+bazel_configs=()
 
 while (("$#")); do
   case "${1}" in
@@ -50,8 +64,8 @@ done
 [[ -n "${bazel:-}" ]] || fail "Must specify the location of the Bazel binary."
 [[ -n "${workspace_dir:-}" ]] || fail "Must specify the location of the workspace directory."
 
-# Read the config values into an array called bazel_configs
-IFS=$'\n' read -d '' -r -a bazel_configs < "${integration_test_config_values}"
+# # Read the config values into an array called bazel_configs
+# IFS=$'\n' read -d '' -r -a bazel_configs < "${integration_test_config_values}"
 
 # DEBUG BEGIN
 echo >&2 "*** CHUCK  bazel_configs:"
