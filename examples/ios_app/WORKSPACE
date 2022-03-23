@@ -37,3 +37,10 @@ load(
 )
 
 apple_support_dependencies()
+
+# External repos for examples
+
+local_repository(
+    name = "examples_ios_app_external",
+    path = "external",
+)

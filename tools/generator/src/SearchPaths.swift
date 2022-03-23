@@ -1,11 +1,14 @@
 struct SearchPaths: Equatable {
+    let frameworkIncludes: [FilePath]
     let quoteIncludes: [FilePath]
     let includes: [FilePath]
 
     init(
+        frameworkIncludes: [FilePath] = [],
         quoteIncludes: [FilePath] = [],
         includes: [FilePath] = []
     ) {
+        self.frameworkIncludes = frameworkIncludes
         self.quoteIncludes = quoteIncludes
         self.includes = includes
     }
@@ -15,6 +18,7 @@ struct SearchPaths: Equatable {
 
 extension SearchPaths: Decodable {
     enum CodingKeys: String, CodingKey {
+        case frameworkIncludes
         case quoteIncludes
         case includes
     }
@@ -22,6 +26,7 @@ extension SearchPaths: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        frameworkIncludes = try container.decodeFilePaths(.frameworkIncludes)
         quoteIncludes = try container.decodeFilePaths(.quoteIncludes)
         includes = try container.decodeFilePaths(.includes)
     }

@@ -15,6 +15,7 @@ objc_library(
     srcs = glob(["**/*.m"]),
     enable_modules = True,
     module_name = "ExampleObjcTests",
+    tags = ["manual"],
     deps = [
         "//Example:Example.library",
         "//TestingUtils",

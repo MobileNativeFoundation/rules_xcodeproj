@@ -2,11 +2,12 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 
-def file_path(file):
+def file_path(file, path = None):
     """Converts a `File` into a `FilePath` Swift DTO value.
 
     Args:
         file: A `File`.
+        path: A path string to use instead of `file.path`.
 
     Returns:
         A `FilePath` Swift DTO value, which is either a string or a `struct`
@@ -19,7 +20,8 @@ def file_path(file):
             *   "g" for `.generated`
             *   "i" for `.internal`
     """
-    path = file.path
+    if not path:
+        path = file.path
     if not file.is_source:
         return generated_file_path(path)
     if file.owner.workspace_name:

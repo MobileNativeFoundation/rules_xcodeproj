@@ -6,8 +6,8 @@ objc_library(
         ["**/*.h"],
     ),
     hdrs = glob(["**/*.h"]),
-    enable_modules = True,
     module_name = "Utils",
+    tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = ["//CoreUtilsObjC"],
 )

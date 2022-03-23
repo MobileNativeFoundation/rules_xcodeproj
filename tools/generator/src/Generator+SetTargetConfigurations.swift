@@ -31,6 +31,16 @@ Target "\(id)" not found in `pbxTargets`.
             ]
             var targetBuildSettings = target.buildSettings
 
+            let frameworkIncludes = target.searchPaths.frameworkIncludes
+            if !frameworkIncludes.isEmpty {
+                try targetBuildSettings.prepend(
+                    onKey: "FRAMEWORK_SEARCH_PATHS",
+                    frameworkIncludes.map { filePath in
+                        return filePathResolver.resolve(filePath).string.quoted
+                    }
+                )
+            }
+
             let quoteIncludes = target.searchPaths.quoteIncludes
             if !quoteIncludes.isEmpty {
                 try targetBuildSettings.prepend(

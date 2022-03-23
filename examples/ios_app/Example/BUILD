@@ -27,9 +27,12 @@ swift_library(
         "//conditions:default": [":PreviewContent"],
     }),
     module_name = "Example",
+    tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = [
         "//Utils",
+        "//third_party:ExampleFramework",
+        "@examples_ios_app_external//:ExternalFramework",
     ],
 )
 

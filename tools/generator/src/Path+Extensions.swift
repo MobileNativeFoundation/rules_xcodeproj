@@ -3,7 +3,11 @@ import XcodeProj
 
 extension Path {
     var isFolderTypeFileSource: Bool {
-        return isXCAssets || isDocCArchive || isSceneKitAssets
+        return isXCAssets
+            || isFramework
+            || isBundle
+            || isDocCArchive
+            || isSceneKitAssets
     }
 
     var lastKnownFileType: String? {
@@ -11,6 +15,11 @@ extension Path {
     }
 
     private var isDocCArchive: Bool { self.extension == "docc" }
+    private var isBundle: Bool { self.extension == "bundle" }
+    private var isFramework: Bool {
+        return self.extension == "framework"
+            || self.extension == "xcframework"
+    }
     private var isSceneKitAssets: Bool { self.extension == "scnassets" }
     private var isXCAssets: Bool { self.extension == "xcassets" }
 }

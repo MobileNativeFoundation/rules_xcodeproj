@@ -5,6 +5,7 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
+    "AppleFrameworkImportInfo",
     "IosXcTestBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
@@ -247,6 +248,7 @@ def _xcode_target(
         test_host,
         build_settings,
         search_paths,
+        frameworks,
         modulemaps,
         swiftmodules,
         inputs,
@@ -272,6 +274,7 @@ def _xcode_target(
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
         search_paths: The value returned from `_process_search_paths()`.
+        frameworks: The value returned from `_process_frameworks().
         modulemaps: The value returned from `_process_modulemaps()`.
         swiftmodules: The value returned from `_process_swiftmodules()`.
         inputs: The value returned from `input_files.collect()`.
@@ -300,6 +303,7 @@ def _xcode_target(
         test_host = test_host,
         build_settings = build_settings,
         search_paths = search_paths,
+        frameworks = frameworks,
         modulemaps = modulemaps.file_paths,
         swiftmodules = swiftmodules,
         inputs = input_files.to_dto(inputs),
@@ -424,8 +428,20 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         transitive_infos = transitive_infos,
     )
     dependencies = _process_dependencies(transitive_infos = transitive_infos)
+    test_host = getattr(ctx.rule.attr, "test_host", None)
 
     deps = getattr(ctx.rule.attr, "deps", [])
+
+    framework_import_infos = [
+        dep[AppleFrameworkImportInfo]
+        for dep in deps
+        if AppleFrameworkImportInfo in dep
+    ]
+    avoid_framework_import_infos = [
+        dep[AppleFrameworkImportInfo]
+        for dep in ([test_host] if test_host else [])
+        if AppleFrameworkImportInfo in dep
+    ]
 
     library_dep_targets = [
         dep[XcodeProjInfo].target
@@ -477,9 +493,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
 
-    test_host_target_info = _process_test_host(
-        getattr(ctx.rule.attr, "test_host", None),
-    )
+    test_host_target_info = _process_test_host(test_host)
 
     if test_host_target_info:
         test_host_libraries = _get_static_libraries(
@@ -576,6 +590,10 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             ),
             build_settings = build_settings,
             search_paths = search_paths,
+            frameworks = _process_frameworks(
+                framework_import_infos = framework_import_infos,
+                avoid_framework_import_infos = avoid_framework_import_infos,
+            ),
             modulemaps = modulemaps,
             swiftmodules = _process_swiftmodules(swift_info = swift_info),
             inputs = inputs,
@@ -693,6 +711,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             test_host = None,
             build_settings = build_settings,
             search_paths = search_paths,
+            frameworks = _process_frameworks(framework_import_infos = []),
             modulemaps = modulemaps,
             swiftmodules = _process_swiftmodules(swift_info = swift_info),
             inputs = inputs,
@@ -973,6 +992,14 @@ def _process_search_paths(
         compilation_context = cc_info.compilation_context
         set_if_true(
             search_paths,
+            "framework_includes",
+            [
+                parsed_file_path(path)
+                for path in compilation_context.framework_includes.to_list()
+            ],
+        )
+        set_if_true(
+            search_paths,
             "quote_includes",
             [
                 parsed_file_path(path)
@@ -990,6 +1017,52 @@ def _process_search_paths(
             ],
         )
     return search_paths
+
+def _farthest_parent_file_path(file, extension):
+    """Returns the part of a file path with the given extension closest to the root.
+
+    For example, if `file` is `"foo/bar.bundle/baz.bundle"`, passing `".bundle"`
+    as the extension will return `"foo/bar.bundle"`.
+
+    Args:
+        file: The `File`.
+        extension: The extension of the directory to find.
+
+    Returns:
+        A `FilePath` with the portion of the path that ends in the given
+        extension that is closest to the root of the path.
+    """
+    prefix, ext, _ = file.path.partition("." + extension)
+    if ext:
+        return file_path(file, prefix + ext)
+
+    fail("Expected file.path %r to contain %r, but it did not" % (
+        file,
+        "." + extension,
+    ))
+
+def _process_frameworks(
+        *,
+        framework_import_infos,
+        avoid_framework_import_infos = []):
+    framework_imports = depset(transitive = [
+        info.framework_imports
+        for info in framework_import_infos
+        if hasattr(info, "framework_imports")
+    ])
+    avoid_framework_imports = depset(transitive = [
+        info.framework_imports
+        for info in avoid_framework_import_infos
+        if hasattr(info, "framework_imports")
+    ])
+    avoid_files = avoid_framework_imports.to_list()
+    framework_paths = uniq([
+        _farthest_parent_file_path(file, "framework")
+        for file in framework_imports.to_list()
+        if file not in avoid_files
+    ])
+
+    return framework_paths
 
 def _process_modulemaps(*, swift_info):
     if not swift_info:

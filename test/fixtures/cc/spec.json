@@ -3,6 +3,7 @@
         "ALWAYS_SEARCH_USER_PATHS": false,
         "BAZEL_PATH": "bazel",
         "CLANG_ENABLE_OBJC_ARC": true,
+        "CLANG_MODULES_AUTOLINK": false,
         "COPY_PHASE_STRIP": false,
         "CURRENT_PROJECT_VERSION": "1",
         "MARKETING_VERSION": "1.0",
@@ -70,6 +71,7 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
+            "frameworks": [],
             "inputs": {
                 "hdrs": [
                     "examples/cc/lib2/lib.h"
@@ -159,6 +161,7 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
+            "frameworks": [],
             "inputs": {
                 "srcs": [
                     "examples/cc/lib/lib.c",
@@ -259,6 +262,7 @@
                 "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600",
                 "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
+            "frameworks": [],
             "inputs": {
                 "srcs": [
                     "examples/cc/tool/main.c"
@@ -365,6 +369,7 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
+            "frameworks": [],
             "inputs": {
                 "srcs": [
                     {
