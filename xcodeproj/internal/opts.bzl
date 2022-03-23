@@ -4,6 +4,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":build_settings.bzl", "set_if_true")
+load(":collections.bzl", "uniq")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
@@ -205,8 +206,8 @@ def merge_opts_search_paths(search_paths):
         includes.extend(search_path.includes)
 
     return create_opts_search_paths(
-        quote_includes = {x: None for x in quote_includes}.keys(),
-        includes = {x: None for x in includes}.keys(),
+        quote_includes = uniq(quote_includes),
+        includes = uniq(includes),
     )
 
 def _process_conlyopts(opts):
@@ -254,8 +255,8 @@ def _process_conlyopts(opts):
     )
 
     search_paths = create_opts_search_paths(
-        quote_includes = {x: None for x in quote_includes}.keys(),
-        includes = {x: None for x in includes}.keys(),
+        quote_includes = uniq(quote_includes),
+        includes = uniq(includes),
     )
 
     return unhandled_opts, optimizations, search_paths
@@ -315,8 +316,8 @@ def _process_cxxopts(*, opts, build_settings):
     )
 
     search_paths = create_opts_search_paths(
-        quote_includes = {x: None for x in quote_includes}.keys(),
-        includes = {x: None for x in includes}.keys(),
+        quote_includes = uniq(quote_includes),
+        includes = uniq(includes),
     )
 
     return unhandled_opts, optimizations, search_paths
@@ -450,7 +451,7 @@ def _process_swiftcopts(*, opts, build_settings):
         build_settings,
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS",
         # Eliminate duplicates
-        " ".join({x: None for x in defines}.keys()),
+        " ".join(uniq(defines)),
     )
 
     return unhandled_opts
