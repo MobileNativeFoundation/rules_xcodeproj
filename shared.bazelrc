@@ -3,6 +3,7 @@ build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
 build:cache --jobs=100
 build:cache --remote_cache=grpcs://remote.buildbuddy.io
+build:cache --//config:integration_test_config=cache
 
 # Build with --config=remote to use BuildBuddy RBE
 build:remote --bes_results_url=https://app.buildbuddy.io/invocation/
@@ -19,6 +20,7 @@ build:workflows --build_metadata=VISIBILITY=PUBLIC
 build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
 build:workflows --color=yes
 build:workflows --disk_cache=
+build:workflows --//config:integration_test_config=workflows
 
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed

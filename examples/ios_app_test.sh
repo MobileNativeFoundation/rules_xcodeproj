@@ -18,6 +18,9 @@ assertions_sh="$(rlocation "${assertions_sh_location}")" || \
   (echo >&2 "Failed to locate ${assertions_sh_location}" && exit 1)
 source "${assertions_sh}"
 
+integration_test_config_values_location=com_github_buildbuddy_io_rules_xcodeproj/config/integration_test_config_values
+integration_test_config_values="$(rlocation "${integration_test_config_values_location}")" || \
+  (echo >&2 "Failed to locate ${integration_test_config_values_location}" && exit 1)
 
 # MARK - Functions
 
@@ -31,14 +34,13 @@ header() {
 
 bazel="${BIT_BAZEL_BINARY:-}"
 workspace_dir="${BIT_WORKSPACE_DIR:-}"
-bazel_configs=()
 
 while (("$#")); do
   case "${1}" in
-    "--config")
-      bazel_configs+=( "${2}" )
-      shift 2
-      ;;
+    # "--config")
+    #   bazel_configs+=( "${2}" )
+    #   shift 2
+    #   ;;
     *)
       fail "Unrecognized argument. ${1}"
       ;;
@@ -47,6 +49,16 @@ done
 
 [[ -n "${bazel:-}" ]] || fail "Must specify the location of the Bazel binary."
 [[ -n "${workspace_dir:-}" ]] || fail "Must specify the location of the workspace directory."
+
+# Read the config values into an array called bazel_configs
+IFS=$'\n' read -d '' -r -a bazel_configs < "${integration_test_config_values}"
+
+# DEBUG BEGIN
+echo >&2 "*** CHUCK  bazel_configs:"
+for (( i = 0; i < ${#bazel_configs[@]}; i++ )); do
+  echo >&2 "*** CHUCK   ${i}: ${bazel_configs[${i}]}"
+done
+# DEBUG END
 
 bazel_cmd_opts=()
 if [[ ${#bazel_configs[@]} -gt 0 ]]; then
@@ -70,7 +82,6 @@ exec_bazel_cmd() {
   "${bazel_cmd[@]}"
 }
 
-
 header "Bazel Info"
 exec_bazel_cmd info
 
@@ -82,3 +93,7 @@ exec_bazel_cmd test //test/...
 
 header "Execute xcodeproj"
 exec_bazel_cmd run //:xcodeproj
+
+# DEBUG BEGIN
+fail "STOP"
+# DEBUG END

@@ -8,10 +8,29 @@ load("//:bazel_versions.bzl", "CURRENT_BAZEL_VERSION")
 # GH174: Enable integration tests for other (i.e., not the current) Bazel
 # versions.
 
+# config_setting(
+#     name = "cache",
+#     flag_values = {
+#         # "//config:integration_test_config": "cache",
+#         "//config:integration_test_config": ["cache"],
+#     },
+# )
+
+# config_setting(
+#     name = "workflows",
+#     flag_values = {
+#         # "//config:integration_test_config": "cache",
+#         "//config:integration_test_config": ["cache"],
+#     },
+# )
+
 sh_binary(
     name = "ios_app_test_runner",
     testonly = True,
     srcs = ["ios_app_test.sh"],
+    data = [
+        "//config:integration_test_config",
+    ],
     deps = [
         "@cgrindel_bazel_starlib//shlib/lib:assertions",
     ],
@@ -21,20 +40,6 @@ sh_binary(
 #     name = "no_config",
 #     flag_values = {
 #         "//config:integration_test_config": "",
-#     },
-# )
-
-# config_setting(
-#     name = "cache",
-#     flag_values = {
-#         "//config:integration_test_config": "cache",
-#     },
-# )
-
-# config_setting(
-#     name = "workflows",
-#     flag_values = {
-#         "//config:integration_test_config": "cache",
 #     },
 # )
 
