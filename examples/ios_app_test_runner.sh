@@ -35,14 +35,9 @@ header() {
 
 bazel="${BIT_BAZEL_BINARY:-}"
 workspace_dir="${BIT_WORKSPACE_DIR:-}"
-# bazel_configs=()
 
 while (("$#")); do
   case "${1}" in
-    # "--config")
-    #   bazel_configs+=( "${2}" )
-    #   shift 2
-    #   ;;
     *)
       fail "Unrecognized argument. ${1}"
       ;;
@@ -55,13 +50,7 @@ done
 # Read the config values into an array called bazel_configs
 bazel_configs=( $(< "${integration_test_config_values_txt}") )
 
-# DEBUG BEGIN
-echo >&2 "*** CHUCK  bazel_configs:"
-for (( i = 0; i < ${#bazel_configs[@]}; i++ )); do
-  echo >&2 "*** CHUCK   ${i}: ${bazel_configs[${i}]}"
-done
-# DEBUG END
-
+# Construct the options that will be passed to Bazel
 bazel_cmd_opts=()
 if [[ ${#bazel_configs[@]} -gt 0 ]]; then
   for config in "${bazel_configs[@]}" ; do
@@ -90,13 +79,8 @@ exec_bazel_cmd info
 header "Build the Workspace"
 exec_bazel_cmd build //...
 
-# DEBUG BEGIN
-fail "STOP"
-# DEBUG END
-
 header "Execute Tests"
 exec_bazel_cmd test //test/...
 
 header "Execute xcodeproj"
 exec_bazel_cmd run //:xcodeproj
-

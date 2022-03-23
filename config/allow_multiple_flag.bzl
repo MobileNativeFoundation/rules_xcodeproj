@@ -1,4 +1,4 @@
-# _allow_multiple_flag Rule
+"""allow_multiple_flag Rule"""
 
 AllowMultipleProvider = provider(
     doc = "Information about an allow_multiple flag.",
@@ -39,38 +39,3 @@ allow_multiple_flag = rule(
     build_setting = config.string(flag = True, allow_multiple = True),
     doc = "Defines a string flag that can be set multiple times.",
 )
-
-# # _write_allow_multiple_flag_values Rule
-
-# def _write_allow_multiple_flag_values_impl(ctx):
-#     values = ctx.attr.flag[AllowMultipleProvider].values
-#     values_out = ctx.actions.declare_file(ctx.label.name + ".txt")
-#     ctx.actions.write(values_out, content = "\n".join(values))
-#     return [DefaultInfo(
-#         files = depset([values_out]),
-#         runfiles = ctx.runfiles([values_out]),
-#     )]
-
-# _write_allow_multiple_flag_values = rule(
-#     implementation = _write_allow_multiple_flag_values_impl,
-#     attrs = {
-#         "flag": attr.label(
-#             doc = "The _allow_multiple_flag whose values should be serialized.",
-#             providers = [AllowMultipleProvider],
-#             mandatory = True,
-#         ),
-#     },
-#     doc = "Defines a string flag that can be set multiple times.",
-# )
-
-# def allow_multiple_flag(name, build_setting_default, visibility = None):
-#     _allow_multiple_flag(
-#         name = name,
-#         build_setting_default = build_setting_default,
-#         visibility = visibility,
-#     )
-#     _write_allow_multiple_flag_values(
-#         name = name + "_values",
-#         flag = name,
-#         visibility = visibility,
-#     )
