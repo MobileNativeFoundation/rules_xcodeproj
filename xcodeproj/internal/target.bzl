@@ -14,7 +14,7 @@ load(
     "get_targeted_device_family",
     "set_if_true",
 )
-load(":collections.bzl", "flatten")
+load(":collections.bzl", "flatten", "uniq")
 load(
     ":files.bzl",
     "external_file_path",
@@ -1079,7 +1079,7 @@ def _process_defines(
         )
 
         # Remove duplicates
-        setting = reversed({x: None for x in reversed(setting)}.keys())
+        setting = reversed(uniq(reversed(setting)))
 
         set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
 
@@ -1237,8 +1237,8 @@ def _process_modulemaps(*, swift_info):
     # Different modules might be defined in the same modulemap file, so we need
     # to deduplicate them.
     return struct(
-        file_paths = {x: None for x in modulemap_file_paths}.keys(),
-        files = {x: None for x in modulemap_files}.keys(),
+        file_paths = uniq(modulemap_file_paths),
+        files = uniq(modulemap_files),
     )
 
 def _process_swiftmodules(*, swift_info):
