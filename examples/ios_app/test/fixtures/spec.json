@@ -10,9 +10,6 @@
         "USE_HEADERMAP": false
     },
     "extra_files": [
-        "Example/PreviewContent/PreviewAssets.xcassets/Contents.json",
-        "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/Contents.json",
-        "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
         "Example/Assets.xcassets/AccentColor.colorset/Contents.json",
         "Example/Assets.xcassets/AppIcon.appiconset/Contents.json",
         "Example/Assets.xcassets/AppIcon.appiconset/ios_2x_icon-1.png",
@@ -23,15 +20,36 @@
         "Example/Assets.xcassets/AppIcon.appiconset/ipad_2x_icon.png",
         "Example/Assets.xcassets/AppIcon.appiconset/ipadpro_2x_icon.png",
         "Example/Assets.xcassets/Contents.json",
+        "Example/PreviewContent/PreviewAssets.xcassets/Contents.json",
+        "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/Contents.json",
+        "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.modulemap",
+            "t": "g"
+        },
         "Example/Info.plist",
         "TestingUtils/Greeting.swift.stencil",
         "TestingUtils/Answer.swift.stencil",
         {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/Greeting.swift",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/Answer.swift",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/TestingUtils.swift.modulemap",
+            "t": "g"
+        },
+        {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
-        },
-        "ExampleUITests/ExampleUITests.swift",
-        "ExampleUITests/ExampleUITestsLaunchTests.swift"
+        }
     ],
     "label": "//test/fixtures:fixture",
     "name": "project",

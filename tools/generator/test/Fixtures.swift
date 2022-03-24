@@ -18,6 +18,7 @@ enum Fixtures {
         requiredLinks: [],
         extraFiles: [
             .generated("a1b2c/bin/t.c"),
+            .generated("a/b/module.modulemap"),
             "a/a.h",
             "a/c.h",
             "a/d/a.h",
@@ -180,8 +181,32 @@ enum Fixtures {
             sourceTree: .group,
             path: "a1b2c"
         )
+
+        // bazel-out/a/b/module.modulemap
+
+        elements[.generated("a/b/module.modulemap")] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.module-map",
+            path: "module.modulemap"
+        )
+        elements[.generated("a/b")] = PBXGroup(
+            children: [elements[.generated("a/b/module.modulemap")]!],
+            sourceTree: .group,
+            path: "b"
+        )
+        elements[.generated("a")] = PBXGroup(
+            children: [elements[.generated("a/b")]!],
+            sourceTree: .group,
+            path: "a"
+        )
+
+        // bazel-out
+
         elements[.generated("")] = PBXGroup(
-            children: [elements[.generated("a1b2c")]!],
+            children: [
+                elements[.generated("a")]!,
+                elements[.generated("a1b2c")]!,
+            ],
             sourceTree: .absolute,
             name: "Bazel Generated Files",
             path: generatedDirectory.string
@@ -399,7 +424,7 @@ enum Fixtures {
         if let group = group {
             // The order files are added to a group matters for uuid fixing
             elements.values.sortedLocalizedStandard().forEach { file in
-                if file is PBXGroup || file.parent == nil {
+                if file.parent == nil {
                     group.addChild(file)
                 }
             }

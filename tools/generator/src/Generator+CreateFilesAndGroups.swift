@@ -196,22 +196,12 @@ extension Generator {
 
         // Write generated.xcfilelist
 
-        var generatedFiles = elements
+        let generatedFiles = elements
             .filter { filePath, element in
                 return filePath.type == .generated
                     && element is PBXFileReference
             }
             .map { "\($1.projectRelativePath(in: pbxProj))\n" }
-
-        for target in targets.values {
-            let modulemaps = target.modulemaps
-                .filter { $0.type == .generated }
-                .map { """
-\(filePathResolver.resolve($0, useProjectDir: false).string.quoted)
-
-""" }
-            generatedFiles.append(contentsOf: modulemaps)
-        }
 
         if !generatedFiles.isEmpty {
             let reference = PBXFileReference(

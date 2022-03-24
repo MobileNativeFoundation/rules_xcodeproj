@@ -34,38 +34,6 @@ A sequence of attribute names to collect `File`s from for the
     },
 )
 
-InputFilesInfo = provider(
-    "Provides information about input files of a target.",
-    fields = {
-        "generated": """\
-A `list` of generated `File`s that are inputs to this target. These files are
-also included in the other catagories (e.g. `srcs` or `other`). They are
-included in their own field for ease of access.
-""",
-        "hdrs": """\
-A `list` of `File`s that are inputs to this target's `hdrs`-like attributes.
-""",
-        "non_arc_srcs": """\
-A `list` of `File`s that are inputs to this target's `non_arc_srcs`-like
-attributes.
-""",
-        "non_generated": """\
-A list of non-generated `File`s that are inputs to this target.
-""",
-        "other": """\
-A `list` of `File`s that are inputs to this target that didn't fall into one of
-the more specific (e.g. `srcs`) catagories.
-""",
-        "srcs": """\
-A `list` of `File`s that are inputs to this target's `srcs`-like attributes.
-""",
-        "transitive_non_generated": """\
-A list of `depset`s of non-generated `File`s that are inputs to this target's
-transitive dependencies.
-""",
-    },
-)
-
 XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",
     fields = {
@@ -77,12 +45,11 @@ this target that should be propagated to dependent targets.
 A `list` of target ids (see the `target` `struct`) that this target directly
 depends on.
 """,
-        "extra_files": """\
-A `depset` of `File`s that should be added to the Xcode project, but not
-associated with any targets.
-""",
-        "generated_inputs": """\
-A `depset` of generated `File`s that are used by the Xcode project.
+        "inputs": """\
+A value returned from `input_files.collect()`, that contains the input files
+for this target. It also includes the two extra fields that collect all of the
+generated `Files` and all of the `Files` that should be added to the Xcode
+project, but are not associated with any targets.
 """,
         "linker_inputs": "A `depset` of `LinkerInput`s for this target.",
         "potential_target_merges": """\
@@ -94,7 +61,7 @@ A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
 """,
         "search_paths": """\
-A value returned from `_process_search_paths()` that contains the search
+A value returned from `_process_search_paths()`, that contains the search
 paths needed by this target. These search paths should be added to the search
 paths of any target that depends on this target.
 """,
