@@ -1,11 +1,7 @@
 """Functions for updating test fixtures."""
 
-load(
-    ":xcodeproj.bzl",
-    "XcodeProjOutputInfo",
-    "make_xcodeproj_rule",
-    "xcodeproj",
-)
+load(":providers.bzl", "XcodeProjOutputInfo")
+load(":xcodeproj.bzl", "make_xcodeproj_rule", "xcodeproj")
 
 # Transition
 

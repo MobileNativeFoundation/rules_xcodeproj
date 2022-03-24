@@ -2,7 +2,7 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":fixtures.bzl", "fixture_output_name", "fixtures_transition")
-load(":xcodeproj.bzl", "XcodeProjOutputInfo")
+load(":providers.bzl", "XcodeProjOutputInfo")
 
 # xcodeproj_tests API
 

@@ -3,39 +3,7 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@build_bazel_rules_apple//apple:providers.bzl", "AppleBundleInfo")
 load(":logging.bzl", "warn")
-load(":providers.bzl", "InputFileAttributesInfo")
-
-InputFilesInfo = provider(
-    "Provides information about input files of a target.",
-    fields = {
-        "generated": """\
-A `list` of generated `File`s that are inputs to this target. These files are
-also included in the other catagories (e.g. `srcs` or `other`). They are
-included in their own field for ease of access.
-""",
-        "hdrs": """\
-A `list` of `File`s that are inputs to this target's `hdrs`-like attributes.
-""",
-        "non_arc_srcs": """\
-A `list` of `File`s that are inputs to this target's `non_arc_srcs`-like
-attributes.
-""",
-        "non_generated": """\
-A list of non-generated `File`s that are inputs to this target.
-""",
-        "other": """\
-A `list` of `File`s that are inputs to this target that didn't fall into one of
-the more specific (e.g. `srcs`) catagories.
-""",
-        "srcs": """\
-A `list` of `File`s that are inputs to this target's `srcs`-like attributes.
-""",
-        "transitive_non_generated": """\
-A list of `depset`s of non-generated `File`s that are inputs to this target's
-transitive dependencies.
-""",
-    },
-)
+load(":providers.bzl", "InputFileAttributesInfo", "InputFilesInfo")
 
 # Utility
 

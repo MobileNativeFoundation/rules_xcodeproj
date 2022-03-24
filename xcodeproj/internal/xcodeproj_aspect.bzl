@@ -1,7 +1,8 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
 load(":input_files_aspect.bzl", "input_files_aspect")
-load(":target.bzl", "XcodeProjInfo", "process_target")
+load(":providers.bzl", "XcodeProjInfo")
+load(":target.bzl", "process_target")
 
 _ASPECT_DEP_ATTR = [
     "test_host",
