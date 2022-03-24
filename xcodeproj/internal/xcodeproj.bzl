@@ -4,18 +4,8 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":files.bzl", "file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
-load(":target.bzl", "XcodeProjInfo")
+load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
-
-XcodeProjOutputInfo = provider(
-    "Provides information about the outputs of the `xcodeproj` rule.",
-    fields = {
-        "installer": "The xcodeproj installer",
-        "root_dirs": "The root directories file",
-        "spec": "The json spec",
-        "xcodeproj": "The xcodeproj file",
-    },
-)
 
 # Actions
 

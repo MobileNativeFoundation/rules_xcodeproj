@@ -23,53 +23,9 @@ load(
     "join_paths_ignoring_empty",
     "project_file_path",
 )
-load(":input_files_aspect.bzl", "InputFilesInfo")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
 load(":platform.bzl", "process_platform")
-
-XcodeProjInfo = provider(
-    "Provides information needed to generate an Xcode project.",
-    fields = {
-        "defines": """\
-A value returned from `_process_defines()` that contains the defines set by
-this target that should be propagated to dependent targets.
-""",
-        "dependencies": """\
-A `list` of target ids (see the `target` `struct`) that this target directly
-depends on.
-""",
-        "extra_files": """\
-A `depset` of `File`s that should be added to the Xcode project, but not
-associated with any targets.
-""",
-        "generated_inputs": """\
-A `depset` of generated `File`s that are used by the Xcode project.
-""",
-        "linker_inputs": "A `depset` of `LinkerInput`s for this target.",
-        "potential_target_merges": """\
-A `depset` of structs with 'src' and 'dest' fields. The 'src' field is the id of
-the target that can be merged into the target with the id of the 'dest' field.
-""",
-        "required_links": """\
-A `depset` of all static library files that are linked into top-level targets
-besides their primary top-level targets.
-""",
-        "search_paths": """\
-A value returned from `_process_search_paths()` that contains the search
-paths needed by this target. These search paths should be added to the search
-paths of any target that depends on this target.
-""",
-        "target": """\
-A `struct` that contains information about the current target that is
-potentially needed by the dependent targets.
-""",
-        "xcode_targets": """\
-A `depset` of partial json `dict` strings (e.g. a single '"Key": "Value"'
-without the enclosing braces), which potentially will become targets in the
-Xcode project.
-""",
-    },
-)
+load(":providers.bzl", "InputFilesInfo", "XcodeProjInfo")
 
 # Files
 
