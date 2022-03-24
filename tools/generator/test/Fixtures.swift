@@ -900,7 +900,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                     "-L/usr/lib/swift",
                     "-filelist",
                     #"""
-"out/p.xcodeproj/rules_xcp/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
+"$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -910,7 +910,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "OTHER_SWIFT_FLAGS": """
--Xcc -fmodule-map-file=a/module.modulemap
+-Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
 """,
                 "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
@@ -926,7 +926,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                     "-L/usr/lib/swift",
                     "-filelist",
                     #"""
-"out/p.xcodeproj/rules_xcp/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
+"$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -945,7 +945,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                     "-L/usr/lib/swift",
                     "-filelist",
                     #"""
-"out/p.xcodeproj/rules_xcp/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
+"$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -955,7 +955,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "OTHER_SWIFT_FLAGS": """
--Xcc -fmodule-map-file=bazel-out/a/b/module.modulemap
+-Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/a/b/module.modulemap
 """,
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 1"]!.name,
@@ -969,7 +969,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                     "-L/usr/lib/swift",
                     "-filelist",
                     #"""
-"out/p.xcodeproj/rules_xcp/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"
+"$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",

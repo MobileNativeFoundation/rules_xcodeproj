@@ -26,6 +26,25 @@ def file_path(file):
         return external_file_path(path)
     return project_file_path(path)
 
+def parsed_file_path(path):
+    """Coverts a file path string into a `FilePath` Swift DTO value.
+
+    Args:
+        path: A file path string.
+
+    Returns:
+        A value as returned from `file_path().
+    """
+
+    # These checks are less than ideal, but since it's a string we can't tell if
+    # they meant something else
+    if path.startswith("bazel-out/"):
+        return generated_file_path(path)
+    elif path.startswith("external/"):
+        return external_file_path(path)
+    else:
+        return project_file_path(path)
+
 def external_file_path(path):
     return struct(
         # Type: "e" == `.external`

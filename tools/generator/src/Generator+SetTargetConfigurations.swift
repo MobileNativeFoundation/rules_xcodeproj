@@ -31,12 +31,25 @@ Target "\(id)" not found in `pbxTargets`.
             ]
             var targetBuildSettings = target.buildSettings
 
-            let quoteHeaders = target.searchPaths.quoteHeaders
-            if !quoteHeaders.isEmpty {
+            let quoteIncludes = target.searchPaths.quoteIncludes
+            if !quoteIncludes.isEmpty {
                 try targetBuildSettings.prepend(
                     onKey: "USER_HEADER_SEARCH_PATHS",
-                    quoteHeaders.map { filePath in
-                        return filePathResolver.resolve(filePath).string.quoted
+                    quoteIncludes.flatMap { filePath -> [String] in
+                        var paths: [String] = []
+                        // The Swift generated header is in DerivedData, not
+                        // bazel-out, so we need to add it's search path.
+                        // We also need to add it before bazel-out, so it's
+                        // picked up instead of a potentially stale version.
+                        if !target.isSwift && filePath.type == .generated {
+                            let swiftHeaderPath = "$(BUILD_DIR)/bazel-out" +
+                                filePath.path
+                            paths.append(swiftHeaderPath.string.quoted)
+                        }
+                        paths.append(
+                            filePathResolver.resolve(filePath).string.quoted
+                        )
+                        return paths
                     }
                 )
             }

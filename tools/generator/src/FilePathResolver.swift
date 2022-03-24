@@ -22,20 +22,35 @@ struct FilePathResolver: Equatable {
         return workspaceOutputPath + internalDirectoryName
     }
 
-    func resolve(_ filePath: FilePath, useBuildDir: Bool = false) -> Path {
+    func resolve(_ filePath: FilePath, useBuildDir: Bool = false, useProjectDir: Bool = true) -> Path {
         switch filePath.type {
         case .project:
-            return filePath.path
+            return "$(PROJECT_DIR)" + filePath.path
         case .external:
-            return externalDirectory + filePath.path
+            let path = externalDirectory + filePath.path
+            if useProjectDir && path.isRelative {
+                return "$(PROJECT_DIR)" + path
+            } else {
+                return path
+            }
         case .generated:
             if useBuildDir {
                 return "$(BUILD_DIR)/bazel-out" + filePath.path
             } else {
-                return generatedDirectory + filePath.path
+                let path = generatedDirectory + filePath.path
+                if useProjectDir && path.isRelative {
+                    return "$(PROJECT_DIR)" + path
+                } else {
+                    return path
+                }
             }
         case .internal:
-            return internalDirectory + filePath.path
+            let path = internalDirectory + filePath.path
+            if useProjectDir {
+                return "$(PROJECT_DIR)" + path
+            } else {
+                return path
+            }
         }
     }
 }
