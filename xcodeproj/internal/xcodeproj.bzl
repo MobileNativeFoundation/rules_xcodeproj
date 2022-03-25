@@ -4,15 +4,14 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":files.bzl", "file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
+load(":input_files.bzl", "input_files")
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
 # Actions
 
-def _write_json_spec(*, ctx, project_name, infos):
-    extra_files = depset(
-        transitive = [info.extra_files for info in infos],
-    )
+def _write_json_spec(*, ctx, project_name, inputs, infos):
+    extra_files = inputs.extra_files
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
     )
@@ -182,13 +181,12 @@ def _xcodeproj_impl(ctx):
         for dep in ctx.attr.targets
         if XcodeProjInfo in dep
     ]
-    generated_inputs = depset(
-        transitive = [info.generated_inputs for info in infos],
-    )
+    inputs = input_files.merge(transitive_infos = infos)
 
     spec_file = _write_json_spec(
         ctx = ctx,
         project_name = project_name,
+        inputs = inputs,
         infos = infos,
     )
     root_dirs_file = _write_root_dirs(ctx = ctx)
@@ -211,7 +209,7 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
-            generated_inputs = generated_inputs,
+            generated_inputs = inputs.generated,
         ),
         XcodeProjOutputInfo(
             installer = installer,

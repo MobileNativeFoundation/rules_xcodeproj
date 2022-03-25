@@ -1,39 +1,34 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
-load(":input_files_aspect.bzl", "input_files_aspect")
+load(
+    ":default_input_file_attributes_aspect.bzl",
+    "default_input_file_attributes_aspect",
+)
 load(":providers.bzl", "XcodeProjInfo")
 load(":target.bzl", "process_target")
 
-_ASPECT_DEP_ATTR = [
-    "test_host",
-]
-
-_ASPECT_DEP_ATTRS = [
-    "deps",
-]
-
-_ASPECT_RESOURCES_ATTRS = [
-    "data",
-    "resources",
-]
-
 # Utility
+
+def _should_ignore_attr(attr):
+    return (
+        # We don't want to include implicit dependencies
+        attr.startswith("_") or
+        # These are actually Starklark methods, so ignore them
+        attr in ("to_json", "to_proto")
+    )
 
 def _transitive_infos(*, ctx):
     transitive_infos = []
-    for attr in _ASPECT_RESOURCES_ATTRS:
-        deps = getattr(ctx.rule.attr, attr, [])
-        for dep in deps:
-            if XcodeProjInfo in dep:
-                transitive_infos.append(dep[XcodeProjInfo])
-    for attr in _ASPECT_DEP_ATTRS:
-        deps = getattr(ctx.rule.attr, attr, [])
-        for dep in deps:
-            if XcodeProjInfo in dep:
-                transitive_infos.append(dep[XcodeProjInfo])
-    for attr in _ASPECT_DEP_ATTR:
-        dep = getattr(ctx.rule.attr, attr, None)
-        if dep:
+    for attr in dir(ctx.rule.attr):
+        if _should_ignore_attr(attr):
+            continue
+
+        dep = getattr(ctx.rule.attr, attr)
+        if type(dep) == "list":
+            for dep in dep:
+                if type(dep) == "Target" and XcodeProjInfo in dep:
+                    transitive_infos.append(dep[XcodeProjInfo])
+        elif type(dep) == "Target" and XcodeProjInfo in dep:
             transitive_infos.append(dep[XcodeProjInfo])
 
     return transitive_infos
@@ -51,9 +46,7 @@ def _xcodeproj_aspect_impl(target, ctx):
 
 xcodeproj_aspect = aspect(
     implementation = _xcodeproj_aspect_impl,
-    attr_aspects = (
-        _ASPECT_DEP_ATTR + _ASPECT_DEP_ATTRS + _ASPECT_RESOURCES_ATTRS
-    ),
+    attr_aspects = ["*"],
     attrs = {
         "_cc_toolchain": attr.label(default = Label(
             "@bazel_tools//tools/cpp:current_cc_toolchain",
@@ -66,5 +59,5 @@ xcodeproj_aspect = aspect(
         ),
     },
     fragments = ["apple", "cpp"],
-    requires = [input_files_aspect],
+    requires = [default_input_file_attributes_aspect],
 )

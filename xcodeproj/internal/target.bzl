@@ -21,37 +21,10 @@ load(
     "join_paths_ignoring_empty",
     "parsed_file_path",
 )
+load(":input_files.bzl", "input_files")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
 load(":platform.bzl", "process_platform")
-load(":providers.bzl", "InputFilesInfo", "XcodeProjInfo")
-
-# Files
-
-def _process_inputs(inputs_info):
-    """Generates a `dict` for inputs of a target for use with `_xcode_target()`.
-
-    Args:
-        inputs_info: An `InputFilesInfo`.
-
-    Returns:
-        A `dict` containing the following elements:
-
-        *   `srcs`: A `list` of `FilePath`s for `srcs`.
-        *   `non_arc_srcs`: A `list` of `FilePath`s for `non_arc_srcs`.
-        *   `hdrs`: A `list` of `FilePath`s for `hdrs`.
-    """
-    inputs = {}
-
-    def _process_attr(attr):
-        value = getattr(inputs_info, attr)
-        if value:
-            inputs[attr] = [file_path(file) for file in value]
-
-    _process_attr("srcs")
-    _process_attr("non_arc_srcs")
-    _process_attr("hdrs")
-
-    return inputs
+load(":providers.bzl", "XcodeProjInfo")
 
 # Configuration
 
@@ -111,12 +84,12 @@ def _get_static_libraries(*, linker_inputs):
         ])
     ]
 
-def _get_static_library(*, label, linker_inputs):
+def _get_static_library(*, linker_inputs):
     for input in linker_inputs.to_list():
-        for library in input.libraries:
-            static_library = library.static_library
-            if static_library.owner == label:
-                return static_library.path
+        # Ideally we would only return the static library that is owned by this
+        # target, but sometimes another rule creates the output and this rule
+        # outputs it. So far the first library has always been the correct one.
+        return input.libraries[0].static_library.path
     return None
 
 def _process_product(
@@ -147,10 +120,7 @@ def _process_product(
     elif target[DefaultInfo].files_to_run.executable:
         path = target[DefaultInfo].files_to_run.executable.path
     elif CcInfo in target or SwiftInfo in target:
-        path = _get_static_library(
-            label = target.label,
-            linker_inputs = linker_inputs,
-        )
+        path = _get_static_library(linker_inputs = linker_inputs)
     else:
         path = None
 
@@ -224,11 +194,8 @@ def _processed_target(
         *,
         defines,
         dependencies,
-        extra_files,
-        generated,
-        inputs_info,
+        inputs,
         linker_inputs,
-        modulemaps,
         potential_target_merges,
         required_links,
         search_paths,
@@ -240,13 +207,9 @@ def _processed_target(
         defines: The value returned from `_process_defines()`.
         dependencies: A `list` of target ids of direct dependencies of this
             target.
-        extra_files:
-        generated: A `list` of generated `File`s that are inputs to this target.
-        inputs_info: An `InputFilesInfo` that will provide values for the
-            `XcodeProjInfo.extra_files` and `XcodeProjInfo.generated_inputs`
-            fields.
+        inputs: A value as returned from `input_files.collect()` that will
+            provide values for the `XcodeProjInfo.inputs` field.
         linker_inputs: A `depset` of `LinkerInput`s for this target.
-        modulemaps: The value returned from `_process_modulemaps()`.
         potential_target_merges: An optional `list` of `struct`s that will be in
             the `XcodeProjInfo.potential_target_merges` `depset`.
         required_links: An optional `list` of strings that will be in the
@@ -262,13 +225,7 @@ def _processed_target(
     return struct(
         defines = defines,
         dependencies = dependencies,
-        extra_files = extra_files,
-        generated = generated + [
-            file
-            for file in modulemaps.files
-            if not file.is_source
-        ],
-        inputs_info = inputs_info,
+        inputs = inputs,
         linker_inputs = linker_inputs,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
@@ -292,7 +249,7 @@ def _xcode_target(
         search_paths,
         modulemaps,
         swiftmodules,
-        inputs_info,
+        inputs,
         links,
         dependencies,
         outputs):
@@ -317,7 +274,7 @@ def _xcode_target(
         search_paths: The value returned from `_process_search_paths()`.
         modulemaps: The value returned from `_process_modulemaps()`.
         swiftmodules: The value returned from `_process_swiftmodules()`.
-        inputs_info: An `InputFilesInfo` provider.
+        inputs: The value returned from `input_files.collect()`.
         links: A `list` of file paths for libraries that the target links
             against.
         dependencies: A `list` of `id`s of targets that this target depends on.
@@ -345,7 +302,7 @@ def _xcode_target(
         search_paths = search_paths,
         modulemaps = modulemaps.file_paths,
         swiftmodules = swiftmodules,
-        inputs = _process_inputs(inputs_info),
+        inputs = input_files.to_dto(inputs),
         links = links,
         dependencies = dependencies,
         outputs = outputs,
@@ -461,23 +418,29 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     """
     configuration = _get_configuration(ctx)
     id = _get_id(label = target.label, configuration = configuration)
-    inputs_info = target[InputFilesInfo]
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        transitive_infos = transitive_infos,
+    )
     dependencies = _process_dependencies(transitive_infos = transitive_infos)
+
+    deps = getattr(ctx.rule.attr, "deps", [])
 
     library_dep_targets = [
         dep[XcodeProjInfo].target
-        for dep in ctx.rule.attr.deps
+        for dep in deps
         if dep[XcodeProjInfo].target and dep[XcodeProjInfo].linker_inputs
     ]
 
     linker_inputs = depset(
         transitive = [
             dep[XcodeProjInfo].linker_inputs
-            for dep in ctx.rule.attr.deps
+            for dep in deps
         ],
     )
 
-    if len(library_dep_targets) == 1 and not inputs_info.srcs:
+    if len(library_dep_targets) == 1 and not inputs.srcs:
         mergeable_target = library_dep_targets[0]
         mergeable_label = mergeable_target.label
         potential_target_merges = [
@@ -557,9 +520,14 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
 
-    inputs_info = target[InputFilesInfo]
     modulemaps = _process_modulemaps(
         swift_info = target[SwiftInfo] if SwiftInfo in target else None,
+    )
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        additional_files = modulemaps.files,
+        transitive_infos = transitive_infos,
     )
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
@@ -578,11 +546,8 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             build_settings = build_settings,
         ),
         dependencies = dependencies,
-        extra_files = inputs_info.other,
-        generated = inputs_info.generated,
-        inputs_info = inputs_info,
+        inputs = inputs,
         linker_inputs = linker_inputs,
-        modulemaps = modulemaps,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
         search_paths = search_paths,
@@ -613,7 +578,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             search_paths = search_paths,
             modulemaps = modulemaps,
             swiftmodules = _process_swiftmodules(swift_info = swift_info),
-            inputs_info = inputs_info,
+            inputs = inputs,
             links = links,
             dependencies = dependencies,
             outputs = _process_outputs(target),
@@ -677,10 +642,15 @@ def _process_library_target(*, ctx, target, transitive_infos):
         build_settings = build_settings,
     )
 
-    inputs_info = target[InputFilesInfo]
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = _process_modulemaps(swift_info = swift_info)
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        additional_files = modulemaps.files,
+        transitive_infos = transitive_infos,
+    )
     search_paths = _process_search_paths(
         cc_info = target[CcInfo] if CcInfo in target else None,
         opts_search_paths = opts_search_paths,
@@ -695,11 +665,8 @@ def _process_library_target(*, ctx, target, transitive_infos):
             build_settings = build_settings,
         ),
         dependencies = dependencies,
-        extra_files = inputs_info.other,
-        generated = inputs_info.generated,
-        inputs_info = inputs_info,
+        inputs = inputs,
         linker_inputs = linker_inputs,
-        modulemaps = modulemaps,
         potential_target_merges = None,
         required_links = None,
         search_paths = search_paths,
@@ -728,7 +695,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             search_paths = search_paths,
             modulemaps = modulemaps,
             swiftmodules = _process_swiftmodules(swift_info = swift_info),
-            inputs_info = inputs_info,
+            inputs = inputs,
             links = [],
             dependencies = dependencies,
             outputs = _process_outputs(target),
@@ -754,7 +721,11 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
     else:
         linker_inputs = depset()
 
-    inputs_info = target[InputFilesInfo]
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        transitive_infos = transitive_infos,
+    )
 
     return _processed_target(
         defines = _process_defines(
@@ -767,16 +738,8 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         dependencies = _process_dependencies(
             transitive_infos = transitive_infos,
         ),
-        extra_files = (
-            inputs_info.srcs +
-            inputs_info.non_arc_srcs +
-            inputs_info.hdrs +
-            inputs_info.other
-        ),
-        generated = inputs_info.generated,
-        inputs_info = inputs_info,
+        inputs = inputs,
         linker_inputs = linker_inputs,
-        modulemaps = _process_modulemaps(swift_info = None),
         potential_target_merges = None,
         required_links = None,
         search_paths = _process_search_paths(
@@ -805,15 +768,21 @@ def _should_become_xcode_target(target):
         for them.
     """
 
+    # Top-level bundles
+    if AppleBundleInfo in target:
+        return True
+
+    # Libraries
     # Targets that don't produce files are ignored (e.g. imports)
-    return target.files != depset() and (
-        # Top level bundles
-        AppleBundleInfo in target or
-        # Libraries
-        CcInfo in target or
-        # Bare executables
-        target[DefaultInfo].files_to_run.executable
-    )
+    if CcInfo in target and target.files != depset():
+        return True
+
+    # Command-line tools
+    executable = target[DefaultInfo].files_to_run.executable
+    if executable and not executable.is_source:
+        return True
+
+    return False
 
 def _should_skip_target(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
@@ -840,8 +809,7 @@ def _target_info_fields(
         *,
         defines,
         dependencies,
-        extra_files,
-        generated_inputs,
+        inputs,
         linker_inputs,
         potential_target_merges,
         required_links,
@@ -855,8 +823,7 @@ def _target_info_fields(
     Args:
         defines: Maps to `XcodeProjInfo.defines`.
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
-        extra_files: Maps to the `XcodeProjInfo.extra_files` field.
-        generated_inputs: Maps to the `XcodeProjInfo.generated_inputs` field.
+        inputs: Maps to the `XcodeProjInfo.inputs` field.
         linker_inputs: Maps to the `XcodeProjInfo.linker_inputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
@@ -872,6 +839,7 @@ def _target_info_fields(
         *   `dependencies`
         *   `extra_files`
         *   `generated_inputs`
+        *   `inputs`
         *   `linker_inputs`
         *   `potential_target_merges`
         *   `required_links`
@@ -882,8 +850,7 @@ def _target_info_fields(
     return {
         "defines": defines,
         "dependencies": dependencies,
-        "extra_files": extra_files,
-        "generated_inputs": generated_inputs,
+        "inputs": inputs,
         "linker_inputs": linker_inputs,
         "potential_target_merges": potential_target_merges,
         "required_links": required_links,
@@ -917,17 +884,8 @@ def _skip_target(*, transitive_infos):
         dependencies = _process_dependencies(
             transitive_infos = transitive_infos,
         ),
-        extra_files = depset(
-            transitive = [
-                info.extra_files
-                for info in transitive_infos
-            ],
-        ),
-        generated_inputs = depset(
-            transitive = [
-                info.generated_inputs
-                for info in transitive_infos
-            ],
+        inputs = input_files.merge(
+            transitive_infos = transitive_infos,
         ),
         linker_inputs = depset(
             transitive = [
@@ -1027,7 +985,8 @@ def _process_search_paths(
             "includes",
             [
                 parsed_file_path(path)
-                for path in compilation_context.includes.to_list() + opts_search_paths.includes
+                for path in (compilation_context.includes.to_list() +
+                             opts_search_paths.includes)
             ],
         )
     return search_paths
@@ -1121,27 +1080,12 @@ def _process_target(*, ctx, target, transitive_infos):
             transitive_infos = transitive_infos,
         )
 
-    inputs_info = processed_target.inputs_info
-
     return _target_info_fields(
         defines = processed_target.defines,
         dependencies = processed_target.dependencies,
-        extra_files = depset(
-            depset(
-                processed_target.extra_files,
-                transitive = inputs_info.transitive_non_generated,
-            ).to_list(),
-            transitive = [
-                info.extra_files
-                for info in transitive_infos
-            ],
-        ),
-        generated_inputs = depset(
-            processed_target.generated,
-            transitive = [
-                info.generated_inputs
-                for info in transitive_infos
-            ],
+        inputs = input_files.merge(
+            processed_target.inputs,
+            transitive_infos = transitive_infos,
         ),
         linker_inputs = processed_target.linker_inputs,
         potential_target_merges = depset(
