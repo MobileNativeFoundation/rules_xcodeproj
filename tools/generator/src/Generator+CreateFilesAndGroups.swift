@@ -178,10 +178,17 @@ extension Generator {
                     }
                 }
 
+                lastElement = element
+
                 // End early if we get back a file element. This can happen if
                 // a folder-like file is added.
                 if element is PBXFileReference { break }
-                lastElement = element
+            }
+
+            if fullFilePath != filePath {
+                // We need to add extra entries for file-like folders, to allow
+                // easy copying of resources
+                elements[fullFilePath] = lastElement
             }
         }
 
