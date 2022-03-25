@@ -50,6 +50,7 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 "ALWAYS_SEARCH_USER_PATHS":false,\
 "BAZEL_PATH":"{bazel_path}",\
 "CLANG_ENABLE_OBJC_ARC":true,\
+"CLANG_MODULES_AUTOLINK":false,\
 "COPY_PHASE_STRIP":false,\
 "CURRENT_PROJECT_VERSION":"1",\
 "MARKETING_VERSION":"1.0",\

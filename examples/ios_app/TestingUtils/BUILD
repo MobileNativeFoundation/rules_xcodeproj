@@ -7,6 +7,7 @@ swift_library(
     defines = ["AWESOME"],
     generates_header = True,
     module_name = "TestingUtils",
+    tags = ["manual"],
     visibility = ["//visibility:public"],
 )
 

@@ -48,8 +48,16 @@ Product for target "\(id)" not found
                 isSwift: target.isSwift,
                 buildSettings: target.buildSettings
             )
-
-            // TODO: Framework embeds
+            let frameworksPhase = try createFrameworksPhase(
+                in: pbxProj,
+                frameworks: target.frameworks,
+                files: files
+            )
+            let embedFrameworksPhase = try createEmbedFrameworksPhase(
+                in: pbxProj,
+                frameworks: target.frameworks,
+                files: files
+            )
 
             // TODO: Copy resources
 
@@ -59,6 +67,8 @@ Product for target "\(id)" not found
                     headersPhase,
                     sourcesBuildPhase,
                     copyGeneratedHeaderScript,
+                    frameworksPhase,
+                    embedFrameworksPhase,
                 ].compactMap { $0 },
                 productName: target.product.name,
                 product: product,
@@ -263,6 +273,80 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         pbxProj.add(object: shellScript)
 
         return shellScript
+    }
+
+    private static func createFrameworksPhase(
+        in pbxProj: PBXProj,
+        frameworks: [FilePath],
+        files: [FilePath: File]
+    ) throws -> PBXFrameworksBuildPhase? {
+        guard !frameworks.isEmpty else {
+            return nil
+        }
+
+        func buildFile(filePath: FilePath) throws -> PBXBuildFile {
+            guard let framework = files[filePath] else {
+                throw PreconditionError(message: """
+Framework with file path "\(filePath)" not found
+""")
+            }
+            guard let reference = framework.reference else {
+                throw PreconditionError(message: """
+Framework with file path "\(filePath)" had nil PBXFileReference
+""")
+            }
+            let pbxBuildFile = PBXBuildFile(file: reference)
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = PBXFrameworksBuildPhase(
+            files: try frameworks.map(buildFile)
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
+    private static func createEmbedFrameworksPhase(
+        in pbxProj: PBXProj,
+        frameworks: [FilePath],
+        files: [FilePath: File]
+    ) throws -> PBXCopyFilesBuildPhase? {
+        guard !frameworks.isEmpty else {
+            return nil
+        }
+
+        func buildFile(filePath: FilePath) throws -> PBXBuildFile {
+            guard let framework = files[filePath] else {
+                throw PreconditionError(message: """
+Framework with file path "\(filePath)" not found
+""")
+            }
+            guard let reference = framework.reference else {
+                throw PreconditionError(message: """
+Framework with file path "\(filePath)" had nil PBXFileReference
+""")
+            }
+            let pbxBuildFile = PBXBuildFile(
+                file: reference,
+                settings: [
+                    "ATTRIBUTES": ["CodeSignOnCopy", "RemoveHeadersOnCopy"],
+                ]
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = PBXCopyFilesBuildPhase(
+            dstPath: "",
+            dstSubfolderSpec: .frameworks,
+            name: "Embed Frameworks",
+            files: try frameworks.map(buildFile)
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
     }
 }
 

@@ -11,5 +11,9 @@ objc_library(
     name = "tool.library",
     srcs = ["main.m"],
     enable_modules = True,
-    deps = ["//examples/command_line/lib"],
+    tags = ["manual"],
+    deps = [
+        "//examples/command_line/lib",
+        "@examples_command_line_external//:ExternalFramework",
+    ],
 )

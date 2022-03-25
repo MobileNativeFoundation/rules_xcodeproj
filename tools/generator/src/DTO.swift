@@ -22,6 +22,7 @@ struct Target: Equatable, Decodable {
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
     var searchPaths: SearchPaths
+    var frameworks: [FilePath]
     var modulemaps: [FilePath]
     var swiftmodules: [FilePath]
     var inputs: Inputs

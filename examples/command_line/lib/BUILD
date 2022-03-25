@@ -9,16 +9,19 @@ objc_library(
 objc_library(
     name = "lib_impl",
     srcs = [
-        "lib.c",
+        "lib.m",
         "private.h",
     ],
-    deps = [":lib_defines"],
+    tags = ["manual"],
+    deps = [
+        ":lib_defines",
+        "//examples/command_line/third_party:ExampleFramework",
+    ],
 )
 
 objc_library(
     name = "lib_headers",
     hdrs = ["dir with space/lib.h"],
-    enable_modules = True,
     includes = ["dir with space"],
     deps = [":lib_impl"],
 )

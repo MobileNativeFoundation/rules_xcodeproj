@@ -15,6 +15,7 @@ swift_library(
     testonly = True,
     srcs = [":Sources"],
     module_name = "ExampleUITests",
+    tags = ["manual"],
 )
 
 filegroup(

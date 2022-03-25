@@ -3,6 +3,7 @@
         "ALWAYS_SEARCH_USER_PATHS": false,
         "BAZEL_PATH": "bazel",
         "CLANG_ENABLE_OBJC_ARC": true,
+        "CLANG_MODULES_AUTOLINK": false,
         "COPY_PHASE_STRIP": false,
         "CURRENT_PROJECT_VERSION": "1",
         "MARKETING_VERSION": "1.0",
@@ -10,6 +11,111 @@
         "USE_HEADERMAP": false
     },
     "extra_files": [
+        "third_party/ExampleFramework.framework/ExampleFramework",
+        "third_party/ExampleFramework.framework/Headers/ExampleFramework-Swift.h",
+        "third_party/ExampleFramework.framework/Info.plist",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/Project/arm64.swiftsourceinfo",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/Project/x86_64.swiftsourceinfo",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/arm64-apple-ios-simulator.swiftdoc",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/arm64-apple-ios-simulator.swiftinterface",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/arm64-apple-ios-simulator.swiftmodule",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/arm64.swiftdoc",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/arm64.swiftinterface",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/arm64.swiftmodule",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/x86_64-apple-ios-simulator.swiftdoc",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/x86_64-apple-ios-simulator.swiftinterface",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/x86_64.swiftdoc",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/x86_64.swiftinterface",
+        "third_party/ExampleFramework.framework/Modules/ExampleFramework.swiftmodule/x86_64.swiftmodule",
+        "third_party/ExampleFramework.framework/Modules/module.modulemap",
+        "third_party/ExampleFramework.framework/_CodeSignature/CodeResources",
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/ExternalFramework",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Headers/ExternalFramework-Swift.h",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Info.plist",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/Project/arm64.swiftsourceinfo",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/Project/x86_64.swiftsourceinfo",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/arm64-apple-ios-simulator.swiftdoc",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/arm64-apple-ios-simulator.swiftinterface",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/arm64-apple-ios-simulator.swiftmodule",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/arm64.swiftdoc",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/arm64.swiftinterface",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/arm64.swiftmodule",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64-apple-ios-simulator.swiftdoc",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64-apple-ios-simulator.swiftinterface",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64.swiftdoc",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64.swiftinterface",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64.swiftmodule",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/ExternalFramework.framework/_CodeSignature/CodeResources",
+            "t": "e"
+        },
         "Example/Assets.xcassets/AccentColor.colorset/Contents.json",
         "Example/Assets.xcassets/AppIcon.appiconset/Contents.json",
         "Example/Assets.xcassets/AppIcon.appiconset/ios_2x_icon-1.png",
@@ -126,6 +232,7 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
+            "frameworks": [],
             "inputs": {
                 "hdrs": [
                     "CoreUtilsObjC/CoreUtils/Answers.h"
@@ -153,6 +260,13 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
+                "framework_includes": [
+                    "third_party",
+                    {
+                        "_": "examples_ios_app_external",
+                        "t": "e"
+                    }
+                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -226,6 +340,13 @@
             "dependencies": [
                 "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "frameworks": [
+                "third_party/ExampleFramework.framework",
+                {
+                    "_": "examples_ios_app_external/ExternalFramework.framework",
+                    "t": "e"
+                }
+            ],
             "inputs": {},
             "is_swift": false,
             "label": "//Example:Example",
@@ -297,6 +418,7 @@
                     "-D__TIMESTAMP__=\"redacted\"",
                     "-D__TIME__=\"redacted\""
                 ],
+                "OTHER_SWIFT_FLAGS": "-Fthird_party -Fexternal/examples_ios_app_external",
                 "PRODUCT_MODULE_NAME": "Example",
                 "PRODUCT_NAME": "Example.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -308,6 +430,7 @@
             "dependencies": [
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "frameworks": [],
             "inputs": {
                 "srcs": [
                     "Example/ContentView.swift",
@@ -318,6 +441,11 @@
             "label": "//Example:Example.library",
             "links": [],
             "modulemaps": [
+                "third_party/ExampleFramework.framework/Modules/module.modulemap",
+                {
+                    "_": "examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap",
+                    "t": "e"
+                },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
                     "t": "g"
@@ -349,6 +477,13 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
+                "framework_includes": [
+                    "third_party",
+                    {
+                        "_": "examples_ios_app_external",
+                        "t": "e"
+                    }
+                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -423,6 +558,7 @@
                 "//ExampleObjcTests:ExampleObjcTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
                 "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "frameworks": [],
             "inputs": {},
             "is_swift": false,
             "label": "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle",
@@ -506,6 +642,7 @@
                 "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "frameworks": [],
             "inputs": {
                 "srcs": [
                     "ExampleObjcTests/ExampleObjcTests.m"
@@ -530,6 +667,13 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
+                "framework_includes": [
+                    "third_party",
+                    {
+                        "_": "examples_ios_app_external",
+                        "t": "e"
+                    }
+                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -604,6 +748,7 @@
                 "//ExampleTests:ExampleTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
                 "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "frameworks": [],
             "inputs": {},
             "is_swift": false,
             "label": "//ExampleTests:ExampleTests.__internal__.__test_bundle",
@@ -675,6 +820,7 @@
                     "-D__TIMESTAMP__=\"redacted\"",
                     "-D__TIME__=\"redacted\""
                 ],
+                "OTHER_SWIFT_FLAGS": "-Fthird_party -Fexternal/examples_ios_app_external",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "PRODUCT_NAME": "ExampleTests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
@@ -688,6 +834,7 @@
                 "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "frameworks": [],
             "inputs": {
                 "srcs": [
                     "ExampleTests/ExampleTests.swift"
@@ -697,6 +844,11 @@
             "label": "//ExampleTests:ExampleTests.library",
             "links": [],
             "modulemaps": [
+                "third_party/ExampleFramework.framework/Modules/module.modulemap",
+                {
+                    "_": "examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap",
+                    "t": "e"
+                },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
                     "t": "g"
@@ -732,6 +884,13 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
+                "framework_includes": [
+                    "third_party",
+                    {
+                        "_": "examples_ios_app_external",
+                        "t": "e"
+                    }
+                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -815,6 +974,7 @@
                 "//ExampleUITests:ExampleUITests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
                 "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "frameworks": [],
             "inputs": {},
             "is_swift": false,
             "label": "//ExampleUITests:ExampleUITests.__internal__.__test_bundle",
@@ -894,6 +1054,7 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
+            "frameworks": [],
             "inputs": {
                 "srcs": [
                     "ExampleUITests/ExampleUITests.swift",
@@ -981,6 +1142,7 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
+            "frameworks": [],
             "inputs": {
                 "srcs": [
                     {
@@ -1035,7 +1197,6 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "CLANG_ENABLE_MODULES": true,
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
@@ -1083,6 +1244,7 @@
             "dependencies": [
                 "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
+            "frameworks": [],
             "inputs": {
                 "hdrs": [
                     "Utils/Foo.h",
@@ -1111,6 +1273,13 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
+                "framework_includes": [
+                    "third_party",
+                    {
+                        "_": "examples_ios_app_external",
+                        "t": "e"
+                    }
+                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {

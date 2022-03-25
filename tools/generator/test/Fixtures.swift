@@ -24,6 +24,8 @@ enum Fixtures {
             "a/d/a.h",
             "a/module.modulemap",
             "Assets.xcassets/Contents.json",
+            "a/Fram.framework/Fram",
+            "a/Fram.framework/Headers/Fram.h",
         ]
     )
 
@@ -47,6 +49,7 @@ enum Fixtures {
                 "T": .string("43"),
                 "Z": .string("0")
             ],
+            frameworks: ["a/Fram.framework"],
             swiftmodules: [.generated("x/y.swiftmodule")],
             links: ["a/c.a", "z/A.a"],
             dependencies: ["C 1", "A 1"]
@@ -315,6 +318,14 @@ enum Fixtures {
             path: "b"
         )
 
+        // a/Frame.framework
+
+        elements["a/Fram.framework"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "wrapper.framework",
+            path: "Fram.framework"
+        )
+
         // a/module.modulemap
 
         elements["a/module.modulemap"] = PBXFileReference(
@@ -323,7 +334,7 @@ enum Fixtures {
             path: "module.modulemap"
         )
 
-        // Parent of the 5 above
+        // Parent of the 6 above
 
         elements["a"] = PBXGroup(
             children: [
@@ -332,6 +343,7 @@ enum Fixtures {
                 elements["a/d"]!,
                 elements["a/a.h"]!,
                 elements["a/c.h"]!,
+                elements["a/Fram.framework"]!,
                 elements["a/module.modulemap"]!,
             ],
             sourceTree: .group,
@@ -658,6 +670,23 @@ a/c.a
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.internal("CompileStub.swift")]!
+                    )])
+                ),
+                PBXFrameworksBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: elements["a/Fram.framework"]!
+                    )])
+                ),
+                PBXCopyFilesBuildPhase(
+                    dstPath: "",
+                    dstSubfolderSpec: .frameworks,
+                    name: "Embed Frameworks",
+                    files: buildFiles([PBXBuildFile(
+                        file: elements["a/Fram.framework"]!,
+                        settings: ["ATTRIBUTES": [
+                            "CodeSignOnCopy",
+                            "RemoveHeadersOnCopy",
+                        ]]
                     )])
                 ),
             ],

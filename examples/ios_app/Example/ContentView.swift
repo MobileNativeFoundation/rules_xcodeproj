@@ -1,9 +1,11 @@
+import ExampleFramework
+import ExternalFramework
 import SwiftUI
 import Utils
 
 struct ContentView: View {
     var body: some View {
-        Text(Utils.Foo().greeting())
+        Text("\(Foo().greeting())\n\(Bar.baz)\n\(Baz.bar)")
             .padding()
     }
 }
