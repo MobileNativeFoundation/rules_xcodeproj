@@ -4,6 +4,49 @@ import XCTest
 @testable import generator
 
 final class DisambiguateTargetsTests: XCTestCase {
+    func test_label() throws {
+        // Arrange
+        let targets: [TargetID: Target] = [
+            "A 1": Target.mock(
+                label: "//a:A",
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A 2": Target.mock(
+                label: "//b:A",
+                product: .init(type: .application, name: "A", path: "")
+            ),
+            "A 3": Target.mock(
+                label: "//b:A",
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "B": Target.mock(
+                label: "//a:B",
+                product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+        ]
+        let expectedTargetNames: [TargetID: String] = [
+            "A 1": "//a:A",
+            "A 2": "//b:A (App)",
+            "A 3": "//b:A (Library)",
+            "B": "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(targets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.mapValues(\.name),
+            expectedTargetNames
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.mapValues(\.target),
+            targets
+        )
+    }
+
     func test_productType() throws {
         // Arrange
 

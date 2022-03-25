@@ -84,7 +84,7 @@
             "label": "//examples/cc/lib2:lib_impl",
             "links": [],
             "modulemaps": [],
-            "name": "examples_cc_lib2_lib_impl",
+            "name": "lib_impl",
             "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib2",
             "platform": {
@@ -172,7 +172,7 @@
             "label": "//examples/cc/lib:lib_impl",
             "links": [],
             "modulemaps": [],
-            "name": "examples_cc_lib_lib_impl",
+            "name": "lib_impl",
             "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib",
             "platform": {
@@ -386,7 +386,7 @@
             "label": "@examples_cc_external//:lib_impl",
             "links": [],
             "modulemaps": [],
-            "name": "examples_cc_external__lib_impl",
+            "name": "lib_impl",
             "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
             "platform": {

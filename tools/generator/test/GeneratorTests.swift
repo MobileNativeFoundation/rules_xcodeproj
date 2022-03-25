@@ -40,10 +40,12 @@ final class GeneratorTests: XCTestCase {
 
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
+                label: "//:Y",
                 configuration: "a1b2c",
                 product: .init(type: .staticLibrary, name: "Y", path: "")
             ),
             "Z":  Target.mock(
+                label: "//:Z",
                 configuration: "1a2b3",
                 product: .init(type: .application, name: "Z", path: "")
             ),
@@ -128,7 +130,7 @@ final class GeneratorTests: XCTestCase {
             requiredLinks: project.requiredLinks
         )]
         expectedMessagesLogged.append(StubLogger.MessageLogged(.warning, """
- Was unable to merge "//Y (a1b2c)" into "//Z (1a2b3)"
+ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
  """))
 
         // MARK: createFilesAndGroups()
