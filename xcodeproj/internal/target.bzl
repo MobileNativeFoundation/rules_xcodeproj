@@ -13,9 +13,8 @@ load(
     ":build_settings.bzl",
     "get_product_module_name",
     "get_targeted_device_family",
-    "set_if_true",
 )
-load(":collections.bzl", "flatten", "uniq")
+load(":collections.bzl", "flatten", "set_if_true", "uniq")
 load(
     ":files.bzl",
     "file_path",
