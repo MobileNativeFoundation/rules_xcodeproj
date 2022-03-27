@@ -1,4 +1,7 @@
-# rules_xcodeproj
+<h1>
+  <img src="https://user-images.githubusercontent.com/8640/160290842-c65f9d61-72bd-4ea0-931a-39fcc9fbd69c.png" height="255"><br>
+  rules_xcodeproj
+</h1>
 
 This repository contains rules for [Bazel](https://bazel.build) that can be
 used to generate Xcode projects.
