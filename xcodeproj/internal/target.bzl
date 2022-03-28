@@ -910,17 +910,17 @@ def _skip_target(*, transitive_infos):
         linker_inputs = depset(
             transitive = [
                 info.linker_inputs
-                for info in transitive_infos
+                for _, info in transitive_infos
             ],
         ),
         potential_target_merges = depset(
             transitive = [
                 info.potential_target_merges
-                for info in transitive_infos
+                for _, info in transitive_infos
             ],
         ),
         required_links = depset(
-            transitive = [info.required_links for info in transitive_infos],
+            transitive = [info.required_links for _, info in transitive_infos],
         ),
         search_paths = _process_search_paths(
             cc_info = None,
@@ -931,7 +931,7 @@ def _skip_target(*, transitive_infos):
         ),
         target = None,
         xcode_targets = depset(
-            transitive = [info.xcode_targets for info in transitive_infos],
+            transitive = [info.xcode_targets for _, info in transitive_infos],
         ),
     )
 
@@ -942,7 +942,7 @@ def _process_dependencies(*, transitive_infos):
             # We pass on the next level of dependencies if the previous target
             # didn't create an Xcode target.
             [info.target.id] if info.target else info.dependencies
-            for info in transitive_infos
+            for _, info in transitive_infos
         ])
     ]
 
@@ -954,7 +954,7 @@ def _process_defines(
         transitive_infos,
         build_settings):
     transitive_cc_defines = []
-    for info in transitive_infos:
+    for _, info in transitive_infos:
         transitive_defines = info.defines
         transitive_cc_defines.extend(transitive_defines.cc_defines)
 
@@ -1166,18 +1166,18 @@ def _process_target(*, ctx, target, transitive_infos):
             processed_target.potential_target_merges,
             transitive = [
                 info.potential_target_merges
-                for info in transitive_infos
+                for _, info in transitive_infos
             ],
         ),
         required_links = depset(
             processed_target.required_links,
-            transitive = [info.required_links for info in transitive_infos],
+            transitive = [info.required_links for _, info in transitive_infos],
         ),
         search_paths = processed_target.search_paths,
         target = processed_target.target,
         xcode_targets = depset(
             processed_target.xcode_targets,
-            transitive = [info.xcode_targets for info in transitive_infos],
+            transitive = [info.xcode_targets for _, info in transitive_infos],
         ),
     )
 

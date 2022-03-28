@@ -27,9 +27,9 @@ def _transitive_infos(*, ctx):
         if type(dep) == "list":
             for dep in dep:
                 if type(dep) == "Target" and XcodeProjInfo in dep:
-                    transitive_infos.append(dep[XcodeProjInfo])
+                    transitive_infos.append((attr, dep[XcodeProjInfo]))
         elif type(dep) == "Target" and XcodeProjInfo in dep:
-            transitive_infos.append(dep[XcodeProjInfo])
+            transitive_infos.append((attr, dep[XcodeProjInfo]))
 
     return transitive_infos
 

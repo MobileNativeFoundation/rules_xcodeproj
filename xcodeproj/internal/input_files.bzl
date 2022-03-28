@@ -146,13 +146,16 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
         hdrs = depset(hdrs),
         generated = depset(
             generated,
-            transitive = [info.inputs.generated for info in transitive_infos],
+            transitive = [
+                info.inputs.generated
+                for _, info in transitive_infos
+            ],
         ),
         extra_files = depset(
             extra_files,
             transitive = flatten([
                 _collect_transitive_extra_files(info)
-                for info in transitive_infos
+                for _, info in transitive_infos
             ]),
         ),
     )
@@ -179,13 +182,13 @@ def _merge(inputs = None, *, transitive_infos):
         generated = depset(
             transitive = ([inputs.generated] if inputs else []) + [
                 info.inputs.generated
-                for info in transitive_infos
+                for _, info in transitive_infos
             ],
         ),
         extra_files = depset(
             transitive = ([inputs.extra_files] if inputs else []) + [
                 info.inputs.extra_files
-                for info in transitive_infos
+                for _, info in transitive_infos
             ],
         ),
     )
