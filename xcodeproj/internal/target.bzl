@@ -240,7 +240,7 @@ def _xcode_target(
         name,
         label,
         configuration,
-        bin_dir_path,
+        package_bin_dir,
         platform,
         product,
         is_swift,
@@ -265,7 +265,8 @@ def _xcode_target(
             disambiguate them.
         label: The `Label` of the `Target`.
         configuration: The configuration of the `Target`.
-        bin_dir_path: `ctx.bin_dir.path`.
+        package_bin_dir: The package directory for the `Target` within
+            `ctx.bin_dir`.
         platform: The value returned from `process_platform()`.
         product: The value returned from `_process_product()`.
         is_swift: Whether the target compiles Swift code.
@@ -291,11 +292,7 @@ def _xcode_target(
         name = name,
         label = str(label),
         configuration = configuration,
-        package_bin_dir = join_paths_ignoring_empty(
-            bin_dir_path,
-            label.workspace_root,
-            label.package,
-        ),
+        package_bin_dir = package_bin_dir,
         platform = platform,
         product = product,
         is_swift = is_swift,
@@ -420,7 +417,8 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         The value returned from `_processed_target()`.
     """
     configuration = _get_configuration(ctx)
-    id = _get_id(label = target.label, configuration = configuration)
+    label = target.label
+    id = _get_id(label = label, configuration = configuration)
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
@@ -464,16 +462,22 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     elif bundle_info and len(library_dep_targets) > 1:
         fail("""\
 The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
-""".format(ctx.rule.kind, target.label, len(library_dep_targets)))
+""".format(ctx.rule.kind, label, len(library_dep_targets)))
     else:
         potential_target_merges = None
         mergeable_label = None
 
     build_settings = {}
 
+    package_bin_dir = join_paths_ignoring_empty(
+        ctx.bin_dir.path,
+        label.workspace_root,
+        label.package,
+    )
     opts_search_paths = process_opts(
         ctx = ctx,
         target = target,
+        package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
 
@@ -566,14 +570,14 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         search_paths = search_paths,
         target = struct(
             id = id,
-            label = target.label,
+            label = label,
         ),
         xcode_target = _xcode_target(
             id = id,
             name = ctx.rule.attr.name,
-            label = target.label,
+            label = label,
             configuration = configuration,
-            bin_dir_path = ctx.bin_dir.path,
+            package_bin_dir = package_bin_dir,
             platform = platform,
             product = _process_product(
                 target = target,
@@ -617,13 +621,20 @@ def _process_library_target(*, ctx, target, transitive_infos):
         The value returned from `_processed_target()`.
     """
     configuration = _get_configuration(ctx)
-    id = _get_id(label = target.label, configuration = configuration)
+    label = target.label
+    id = _get_id(label = label, configuration = configuration)
 
     build_settings = {}
 
+    package_bin_dir = join_paths_ignoring_empty(
+        ctx.bin_dir.path,
+        label.workspace_root,
+        label.package,
+    )
     opts_search_paths = process_opts(
         ctx = ctx,
         target = target,
+        package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
     product_name = ctx.rule.attr.name
@@ -691,14 +702,14 @@ def _process_library_target(*, ctx, target, transitive_infos):
         search_paths = search_paths,
         target = struct(
             id = id,
-            label = target.label,
+            label = label,
         ),
         xcode_target = _xcode_target(
             id = id,
             name = ctx.rule.attr.name,
-            label = target.label,
+            label = label,
             configuration = configuration,
-            bin_dir_path = ctx.bin_dir.path,
+            package_bin_dir = package_bin_dir,
             platform = platform,
             product = _process_product(
                 target = target,
