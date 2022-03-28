@@ -23,7 +23,6 @@ enum Fixtures {
             "a/c.h",
             "a/d/a.h",
             "a/module.modulemap",
-            "Assets.xcassets/Contents.json",
             "a/Fram.framework/Fram",
             "a/Fram.framework/Headers/Fram.h",
         ]
@@ -39,7 +38,15 @@ enum Fixtures {
                 "T": .string("42"),
                 "Y": .bool(true),
             ],
-            inputs: .init(srcs: ["x/y.swift"], nonArcSrcs: ["b.c"])
+            inputs: .init(
+                srcs: ["x/y.swift"],
+                nonArcSrcs: ["b.c"],
+                resources: [
+                    "Assets.xcassets/Contents.json",
+                    "Assets.xcassets/some_image/Contents.json",
+                    "Assets.xcassets/some_image/some_image.png",
+                ]
+            )
         ),
         "A 2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/A 2",
@@ -51,8 +58,9 @@ enum Fixtures {
             ],
             frameworks: ["a/Fram.framework"],
             swiftmodules: [.generated("x/y.swiftmodule")],
+            resourceBundles: ["r1/R1.bundle"],
             links: ["a/c.a", "z/A.a"],
-            dependencies: ["C 1", "A 1"]
+            dependencies: ["C 1", "A 1", "R 1"]
         ),
         "B 1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/B 1",
@@ -118,6 +126,20 @@ enum Fixtures {
             product: .init(type: .staticLibrary, name: "E2", path: "e2/E.a"),
             isSwift: true,
             inputs: .init(srcs: [.external("another_repo/b.swift")])
+        ),
+        "R 1": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/R 1",
+            product: .init(type: .bundle, name: "R 1", path: "r1/R1.bundle"),
+            inputs: .init(
+                resources: [
+                    "r1/X.txt",
+                    "r1/Assets.xcassets/Contents.json",
+                    "r1/Assets.xcassets/image/Contents.json",
+                    "r1/Assets.xcassets/image/image.png",
+                    .project("r1/nested", isFolder: true),
+                    .project("r1/dir", isFolder: true),
+                ]
+            )
         ),
     ]
 
@@ -406,6 +428,61 @@ enum Fixtures {
             path: "Assets.xcassets"
         )
         elements["Assets.xcassets/Contents.json"] = elements["Assets.xcassets"]!
+        elements["Assets.xcassets/some_image/Contents.json"] =
+            elements["Assets.xcassets"]!
+        elements["Assets.xcassets/some_image/some_image.png"] =
+            elements["Assets.xcassets"]!
+
+        // r1/X.txt
+
+        elements["r1/X.txt"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "text",
+            path: "X.txt"
+        )
+
+        // r1/Assets.xcassets
+
+        elements["r1/Assets.xcassets"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "folder.assetcatalog",
+            path: "Assets.xcassets"
+        )
+        elements["r1/Assets.xcassets/Contents.json"] =
+            elements["r1/Assets.xcassets"]!
+        elements["r1/Assets.xcassets/image/Contents.json"] =
+            elements["r1/Assets.xcassets"]!
+        elements["r1/Assets.xcassets/image/image.png"] =
+            elements["r1/Assets.xcassets"]!
+
+        // r1/nested
+
+        elements[.project("r1/nested", isFolder: true)] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "folder",
+            path: "nested"
+        )
+
+        // r1/dir
+
+        elements[.project("r1/dir", isFolder: true)] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "folder",
+            path: "dir"
+        )
+
+        // r1
+
+        elements["r1"] = PBXGroup(
+            children: [
+                elements[.project("r1/dir", isFolder: true)]!,
+                elements[.project("r1/nested", isFolder: true)]!,
+                elements["r1/Assets.xcassets"]!,
+                elements["r1/X.txt"]!,
+            ],
+            sourceTree: .group,
+            path: "r1"
+        )
 
         // `internal`/CompileStub.swift
 
@@ -586,6 +663,15 @@ a/c.a
                 path: "E.a",
                 includeInIndex: false
             ),
+            Products.ProductKeys(
+                target: "R 1",
+                path: "r1/R1.bundle"
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.bundle.fileType,
+                path: "R1.bundle",
+                includeInIndex: false
+            ),
         ])
         products.byTarget.values.forEach { pbxProj.add(object: $0) }
 
@@ -613,6 +699,7 @@ a/c.a
                 products.byPath["d"]!,
                 products.byPath["e1/E.a"]!,
                 products.byPath["e2/E.a"]!,
+                products.byPath["r1/R1.bundle"]!,
             ],
             sourceTree: .group,
             name: "Products"
@@ -680,6 +767,13 @@ a/c.a
                     files: buildFiles([PBXBuildFile(
                         file: elements["a/Fram.framework"]!
                     )])
+                ),
+                PBXResourcesBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(
+                            file: products.byPath["r1/R1.bundle"]!
+                        ),
+                    ])
                 ),
                 PBXCopyFilesBuildPhase(
                     dstPath: "",
@@ -755,6 +849,26 @@ a/c.a
                 ),
                 createGeneratedHeaderShellScript(),
             ],
+            "R 1": [
+                PBXResourcesBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(
+                            file: elements["r1/Assets.xcassets"]!
+                        ),
+                        PBXBuildFile(
+                            file: elements[.project("r1/dir", isFolder: true)]!
+                        ),
+                        PBXBuildFile(
+                            file: elements[
+                                .project("r1/nested", isFolder: true)
+                            ]!
+                        ),
+                        PBXBuildFile(
+                            file: elements["r1/X.txt"]!
+                        ),
+                    ])
+                ),
+            ],
         ]
         buildPhases.values.forEach { buildPhases in
             buildPhases.forEach { pbxProj.add(object: $0) }
@@ -825,6 +939,13 @@ a/c.a
                 productName: "E2",
                 product: products.byTarget["E2"],
                 productType: .staticLibrary
+            ),
+            "R 1": PBXNativeTarget(
+                name: disambiguatedTargets["R 1"]!.name,
+                buildPhases: buildPhases["R 1"] ?? [],
+                productName: "R 1",
+                product: products.byTarget["R 1"],
+                productType: .bundle
             ),
         ]
 
@@ -935,6 +1056,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
             "C 2": baseAttributes,
             "E1": baseAttributes,
             "E2": baseAttributes,
+            "R 1": baseAttributes,
         ]
 
         let pbxProject = pbxProj.rootObject!
@@ -946,21 +1068,18 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
         let buildSettings: [TargetID: [String: Any]] = [
             "A 1": targets["A 1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
+                "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["A 1"]!.name,
-                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
+                "GENERATE_INFOPLIST_FILE": true,
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/../Frameworks",
                 ],
                 "OTHER_LDFLAGS": [
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
                     "-filelist",
                     #"""
 "$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
@@ -969,26 +1088,22 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["A 2"]!.name,
-                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
+                "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
 """,
                 "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["B 1"]!.name,
-                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
+                "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
                     "-filelist",
                     #"""
 "$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
@@ -1000,15 +1115,11 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 """,
                 "TARGET_NAME": targets["B 2"]!.name,
                 "TEST_HOST": "$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A",
-                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
+                "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
                     "-filelist",
                     #"""
 "$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
@@ -1017,19 +1128,19 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["B 3"]!.name,
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
-                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
+                "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/a/b/module.modulemap
 """,
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 1"]!.name,
-                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
+                "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
                     """
 -L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
@@ -1042,19 +1153,24 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 ],
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 2"]!.name,
-                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
+                "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "watchos",
                 "TARGET_NAME": targets["E1"]!.name,
-                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
+                "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "appletvos",
                 "TARGET_NAME": targets["E2"]!.name,
+            ]) { $1 },
+            "R 1": targets["R 1"]!.buildSettings.asDictionary.merging([
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "GENERATE_INFOPLIST_FILE": true,
+                "SDKROOT": "macosx",
+                "TARGET_NAME": targets["R 1"]!.name,
             ]) { $1 },
         ]
         for (id, buildSettings) in buildSettings {
@@ -1082,6 +1198,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 
         _ = try! pbxTargets["A 2"]!.addDependency(target: pbxTargets["A 1"]!)
         _ = try! pbxTargets["A 2"]!.addDependency(target: pbxTargets["C 1"]!)
+        _ = try! pbxTargets["A 2"]!.addDependency(target: pbxTargets["R 1"]!)
         _ = try! pbxTargets["B 1"]!.addDependency(target: pbxTargets["A 1"]!)
         _ = try! pbxTargets["B 2"]!.addDependency(target: pbxTargets["A 2"]!)
         _ = try! pbxTargets["B 2"]!.addDependency(target: pbxTargets["B 1"]!)

@@ -6,6 +6,8 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
     "AppleFrameworkImportInfo",
+    "AppleResourceBundleInfo",
+    "AppleResourceInfo",
     "IosXcTestBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
@@ -26,6 +28,7 @@ load(":input_files.bzl", "input_files")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
 load(":platform.bzl", "process_platform")
 load(":providers.bzl", "XcodeProjInfo")
+load(":resource_bundle_products.bzl", "resource_bundle_products")
 
 # Configuration
 
@@ -199,6 +202,7 @@ def _processed_target(
         linker_inputs,
         potential_target_merges,
         required_links,
+        resource_bundles,
         search_paths,
         target,
         xcode_target):
@@ -215,6 +219,8 @@ def _processed_target(
             the `XcodeProjInfo.potential_target_merges` `depset`.
         required_links: An optional `list` of strings that will be in the
             `XcodeProjInfo.required_links` `depset`.
+        resource_bundles: The value returned from
+            `resource_bundle_products.collect()`.
         search_paths: The value value returned from `_process_search_paths()`.
         target: An optional `XcodeProjInfo.target` `struct`.
         xcode_target: An optional string that will be in the
@@ -230,6 +236,7 @@ def _processed_target(
         linker_inputs = linker_inputs,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
+        resource_bundles = resource_bundles,
         search_paths = search_paths,
         target = target,
         xcode_targets = [xcode_target] if xcode_target else None,
@@ -244,13 +251,16 @@ def _xcode_target(
         package_bin_dir,
         platform,
         product,
+        is_bundle,
         is_swift,
         test_host,
+        avoid_infos = [],
         build_settings,
         search_paths,
         frameworks,
         modulemaps,
         swiftmodules,
+        resource_bundles,
         inputs,
         links,
         info_plist,
@@ -271,14 +281,19 @@ def _xcode_target(
             `ctx.bin_dir`.
         platform: The value returned from `process_platform()`.
         product: The value returned from `_process_product()`.
+        is_bundle: Whether the target is a bundle.
         is_swift: Whether the target compiles Swift code.
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
+        avoid_infos: A list of `XcodeProjInfo`s for the targets that have
+            already consumed resources, or linked to libraries.
         build_settings: A `dict` of Xcode build settings for the target.
         search_paths: The value returned from `_process_search_paths()`.
         frameworks: The value returned from `_process_frameworks().
         modulemaps: The value returned from `_process_modulemaps()`.
         swiftmodules: The value returned from `_process_swiftmodules()`.
+        resource_bundles: The value returned from
+            `resource_bundle_products.collect()`.
         inputs: The value returned from `input_files.collect()`.
         links: A `list` of file paths for libraries that the target links
             against.
@@ -305,7 +320,15 @@ def _xcode_target(
         frameworks = [file_path_to_dto(fp) for fp in frameworks],
         modulemaps = [file_path_to_dto(fp) for fp in modulemaps.file_paths],
         swiftmodules = [file_path_to_dto(fp) for fp in swiftmodules],
-        inputs = input_files.to_dto(inputs),
+        resource_bundles = resource_bundle_products.to_dto(
+            resource_bundles,
+            avoid_infos = avoid_infos,
+        ),
+        inputs = input_files.to_dto(
+            inputs,
+            is_bundle = is_bundle,
+            avoid_infos = avoid_infos,
+        ),
         links = links,
         info_plist = file_path_to_dto(info_plist),
         dependencies = dependencies,
@@ -421,15 +444,11 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     configuration = _get_configuration(ctx)
     label = target.label
     id = _get_id(label = label, configuration = configuration)
-    inputs = input_files.collect(
-        ctx = ctx,
-        target = target,
-        transitive_infos = transitive_infos,
-    )
     dependencies = _process_dependencies(transitive_infos = transitive_infos)
     test_host = getattr(ctx.rule.attr, "test_host", None)
 
     deps = getattr(ctx.rule.attr, "deps", [])
+    avoid_deps = [test_host] if test_host else []
 
     framework_import_infos = [
         dep[AppleFrameworkImportInfo]
@@ -438,7 +457,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     ]
     avoid_framework_import_infos = [
         dep[AppleFrameworkImportInfo]
-        for dep in ([test_host] if test_host else [])
+        for dep in avoid_deps
         if AppleFrameworkImportInfo in dep
     ]
 
@@ -453,6 +472,27 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
             dep[XcodeProjInfo].linker_inputs
             for dep in deps
         ],
+    )
+
+    additional_files = []
+    is_bundle = bundle_info != None
+    is_swift = SwiftInfo in target
+    swift_info = target[SwiftInfo] if is_swift else None
+    modulemaps = _process_modulemaps(swift_info = swift_info)
+    additional_files.extend(modulemaps.files)
+
+    info_plist = None
+    if bundle_info:
+        info_plist = file_path(bundle_info.infoplist)
+        additional_files.append(bundle_info.infoplist)
+
+    resource_owner = str(target.label)
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        owner = resource_owner,
+        additional_files = additional_files,
+        transitive_infos = transitive_infos,
     )
 
     if len(library_dep_targets) == 1 and not inputs.srcs:
@@ -539,22 +579,9 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
 
-    additional_files = []
-
-    is_swift = SwiftInfo in target
-    swift_info = target[SwiftInfo] if is_swift else None
-    modulemaps = _process_modulemaps(swift_info = swift_info)
-    additional_files.extend(modulemaps.files)
-
-    info_plist = None
-    if bundle_info:
-        info_plist = file_path(bundle_info.infoplist)
-        additional_files.append(bundle_info.infoplist)
-
-    inputs = input_files.collect(
-        ctx = ctx,
-        target = target,
-        additional_files = additional_files,
+    resource_bundles = resource_bundle_products.collect(
+        owner = resource_owner,
+        is_consuming_bundle = is_bundle,
         transitive_infos = transitive_infos,
     )
     search_paths = _process_search_paths(
@@ -575,10 +602,12 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         linker_inputs = linker_inputs,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
+        resource_bundles = resource_bundles,
         search_paths = search_paths,
         target = struct(
             id = id,
             label = label,
+            is_bundle = is_bundle,
         ),
         xcode_target = _xcode_target(
             id = id,
@@ -595,10 +624,15 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
                 linker_inputs = linker_inputs,
                 build_settings = build_settings,
             ),
+            is_bundle = is_bundle,
             is_swift = is_swift,
             test_host = (
                 test_host_target_info.target.id if test_host_target_info else None
             ),
+            avoid_infos = [
+                ("test_host", dep[XcodeProjInfo])
+                for dep in avoid_deps
+            ],
             build_settings = build_settings,
             search_paths = search_paths,
             frameworks = _process_frameworks(
@@ -607,11 +641,12 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             ),
             modulemaps = modulemaps,
             swiftmodules = _process_swiftmodules(swift_info = swift_info),
+            resource_bundles = resource_bundles,
             inputs = inputs,
             links = links,
+            info_plist = info_plist,
             dependencies = dependencies,
             outputs = _process_outputs(target),
-            info_plist = info_plist,
         ),
     )
 
@@ -684,10 +719,17 @@ def _process_library_target(*, ctx, target, transitive_infos):
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = _process_modulemaps(swift_info = swift_info)
+    resource_owner = str(target.label)
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        owner = resource_owner,
         additional_files = modulemaps.files,
+        transitive_infos = transitive_infos,
+    )
+    resource_bundles = resource_bundle_products.collect(
+        owner = resource_owner,
+        is_consuming_bundle = False,
         transitive_infos = transitive_infos,
     )
     search_paths = _process_search_paths(
@@ -708,10 +750,12 @@ def _process_library_target(*, ctx, target, transitive_infos):
         linker_inputs = linker_inputs,
         potential_target_merges = None,
         required_links = None,
+        resource_bundles = resource_bundles,
         search_paths = search_paths,
         target = struct(
             id = id,
             label = label,
+            is_bundle = False,
         ),
         xcode_target = _xcode_target(
             id = id,
@@ -728,6 +772,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
                 linker_inputs = linker_inputs,
                 build_settings = build_settings,
             ),
+            is_bundle = False,
             is_swift = is_swift,
             test_host = None,
             build_settings = build_settings,
@@ -735,11 +780,134 @@ def _process_library_target(*, ctx, target, transitive_infos):
             frameworks = _process_frameworks(framework_import_infos = []),
             modulemaps = modulemaps,
             swiftmodules = _process_swiftmodules(swift_info = swift_info),
+            resource_bundles = resource_bundles,
             inputs = inputs,
             links = [],
+            info_plist = None,
             dependencies = dependencies,
             outputs = _process_outputs(target),
+        ),
+    )
+
+# Resource targets
+
+def _process_resource_target(*, ctx, target, transitive_infos):
+    """Gathers information about a resource target.
+
+    Args:
+        ctx: The aspect context.
+        target: The `Target` to process.
+        transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
+            transitive dependencies of `target`.
+
+    Returns:
+        The value returned from `_processed_target()`.
+    """
+    configuration = _get_configuration(ctx)
+    label = target.label
+    id = _get_id(label = label, configuration = configuration)
+
+    build_settings = {}
+
+    set_if_true(
+        build_settings,
+        "PRODUCT_BUNDLE_IDENTIFIER",
+        ctx.rule.attr.bundle_id,
+    )
+
+    # TODO: Set Info.plist if one is set
+    build_settings["GENERATE_INFOPLIST_FILE"] = True
+
+    bundle_name = ctx.rule.attr.bundle_name or ctx.rule.attr.name
+    product_name = bundle_name
+    dependencies = _process_dependencies(transitive_infos = transitive_infos)
+
+    platform = process_platform(
+        ctx = ctx,
+        minimum_deployment_os_version = None,
+        build_settings = build_settings,
+    )
+
+    package_bin_dir = join_paths_ignoring_empty(
+        ctx.bin_dir.path,
+        label.workspace_root,
+        label.package,
+    )
+    bundle_path = paths.join(
+        package_bin_dir,
+        "{}.bundle".format(bundle_name),
+    )
+    resource_owner = str(label)
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        owner = resource_owner,
+        transitive_infos = transitive_infos,
+    )
+    linker_inputs = depset()
+    resource_bundles = resource_bundle_products.collect(
+        bundle_path = bundle_path,
+        owner = resource_owner,
+        is_consuming_bundle = False,
+        transitive_infos = transitive_infos,
+    )
+    search_paths = _process_search_paths(
+        cc_info = None,
+        opts_search_paths = create_opts_search_paths(
+            quote_includes = [],
+            includes = [],
+        ),
+    )
+
+    return _processed_target(
+        defines = _process_defines(
+            is_swift = False,
+            defines = [],
+            local_defines = [],
+            transitive_infos = transitive_infos,
+            build_settings = build_settings,
+        ),
+        dependencies = dependencies,
+        inputs = inputs,
+        linker_inputs = linker_inputs,
+        potential_target_merges = None,
+        required_links = None,
+        resource_bundles = resource_bundles,
+        search_paths = search_paths,
+        target = struct(
+            id = id,
+            label = label,
+            is_bundle = True,
+        ),
+        xcode_target = _xcode_target(
+            id = id,
+            name = ctx.rule.attr.name,
+            label = label,
+            configuration = configuration,
+            package_bin_dir = package_bin_dir,
+            platform = platform,
+            product = _process_product(
+                target = target,
+                product_name = product_name,
+                product_type = "com.apple.product-type.bundle",
+                bundle_path = bundle_path,
+                linker_inputs = linker_inputs,
+                build_settings = build_settings,
+            ),
+            is_bundle = True,
+            is_swift = False,
+            test_host = None,
+            build_settings = build_settings,
+            search_paths = search_paths,
+            frameworks = _process_frameworks(framework_import_infos = []),
+            modulemaps = _process_modulemaps(swift_info = None),
+            swiftmodules = _process_swiftmodules(swift_info = None),
+            resource_bundles = resource_bundles,
+            inputs = inputs,
+            links = [],
             info_plist = None,
+            dependencies = dependencies,
+            outputs = _process_outputs(target),
         ),
     )
 
@@ -762,9 +930,11 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
     else:
         linker_inputs = depset()
 
+    resource_owner = None
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        owner = resource_owner,
         transitive_infos = transitive_infos,
     )
 
@@ -783,6 +953,11 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         linker_inputs = linker_inputs,
         potential_target_merges = None,
         required_links = None,
+        resource_bundles = resource_bundle_products.collect(
+            owner = resource_owner,
+            is_consuming_bundle = False,
+            transitive_infos = transitive_infos,
+        ),
         search_paths = _process_search_paths(
             cc_info = target[CcInfo] if CcInfo in target else None,
             opts_search_paths = create_opts_search_paths(
@@ -811,6 +986,12 @@ def _should_become_xcode_target(target):
 
     # Top-level bundles
     if AppleBundleInfo in target:
+        return True
+
+    # Resource bundles
+    if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
+        # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
+        # a `AppleResourceInfo`, so we use that to exclude it
         return True
 
     # Libraries
@@ -854,6 +1035,7 @@ def _target_info_fields(
         linker_inputs,
         potential_target_merges,
         required_links,
+        resource_bundles,
         search_paths,
         target,
         xcode_targets):
@@ -869,6 +1051,7 @@ def _target_info_fields(
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
         required_links: Maps to the `XcodeProjInfo.required_links` field.
+        resource_bundles: Maps to the `XcodeProjInfo.resource_bundles` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target: Maps to the `XcodeProjInfo.target` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
@@ -878,12 +1061,12 @@ def _target_info_fields(
 
         *   `defines`
         *   `dependencies`
-        *   `extra_files`
         *   `generated_inputs`
         *   `inputs`
         *   `linker_inputs`
         *   `potential_target_merges`
         *   `required_links`
+        *   `resource_bundles`
         *   `search_paths`
         *   `target`
         *   `xcode_targets`
@@ -895,6 +1078,7 @@ def _target_info_fields(
         "linker_inputs": linker_inputs,
         "potential_target_merges": potential_target_merges,
         "required_links": required_links,
+        "resource_bundles": resource_bundles,
         "search_paths": search_paths,
         "target": target,
         "xcode_targets": xcode_targets,
@@ -942,6 +1126,11 @@ def _skip_target(*, transitive_infos):
         ),
         required_links = depset(
             transitive = [info.required_links for _, info in transitive_infos],
+        ),
+        resource_bundles = resource_bundle_products.collect(
+            owner = None,
+            is_consuming_bundle = False,
+            transitive_infos = transitive_infos,
         ),
         search_paths = _process_search_paths(
             cc_info = None,
@@ -1005,6 +1194,7 @@ def _process_defines(
         cc_defines = transitive_cc_defines,
     )
 
+# TODO: Refactor this into a search_paths module
 def _process_search_paths(
         *,
         cc_info,
@@ -1055,13 +1245,13 @@ def _farthest_parent_file_path(file, extension):
         extension that is closest to the root of the path.
     """
     prefix, ext, _ = file.path.partition("." + extension)
-    if ext:
-        return file_path(file, prefix + ext)
+    if not ext:
+        fail("Expected file.path %r to contain %r, but it did not" % (
+            file,
+            "." + extension,
+        ))
 
-    fail("Expected file.path %r to contain %r, but it did not" % (
-        file,
-        "." + extension,
-    ))
+    return file_path(file, prefix + ext)
 
 def _process_frameworks(
         *,
@@ -1168,6 +1358,12 @@ def _process_target(*, ctx, target, transitive_infos):
             bundle_info = None,
             transitive_infos = transitive_infos,
         )
+    elif AppleResourceBundleInfo in target:
+        processed_target = _process_resource_target(
+            ctx = ctx,
+            target = target,
+            transitive_infos = transitive_infos,
+        )
     else:
         processed_target = _process_library_target(
             ctx = ctx,
@@ -1178,10 +1374,7 @@ def _process_target(*, ctx, target, transitive_infos):
     return _target_info_fields(
         defines = processed_target.defines,
         dependencies = processed_target.dependencies,
-        inputs = input_files.merge(
-            processed_target.inputs,
-            transitive_infos = transitive_infos,
-        ),
+        inputs = processed_target.inputs,
         linker_inputs = processed_target.linker_inputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,
@@ -1194,6 +1387,7 @@ def _process_target(*, ctx, target, transitive_infos):
             processed_target.required_links,
             transitive = [info.required_links for _, info in transitive_infos],
         ),
+        resource_bundles = processed_target.resource_bundles,
         search_paths = processed_target.search_paths,
         target = processed_target.target,
         xcode_targets = depset(

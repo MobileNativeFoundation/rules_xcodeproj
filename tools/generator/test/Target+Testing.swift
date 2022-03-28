@@ -17,6 +17,7 @@ extension Target {
         frameworks: [FilePath] = [],
         modulemaps: [FilePath] = [],
         swiftmodules: [FilePath] = [],
+        resourceBundles: Set<Path> = [],
         inputs: Inputs = Inputs(),
         links: Set<Path> = [],
         dependencies: Set<TargetID> = []
@@ -40,6 +41,7 @@ extension Target {
             frameworks: frameworks,
             modulemaps: modulemaps,
             swiftmodules: swiftmodules,
+            resourceBundles: resourceBundles,
             inputs: inputs,
             links: links,
             dependencies: dependencies

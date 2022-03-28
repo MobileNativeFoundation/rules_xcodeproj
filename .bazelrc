@@ -1,7 +1,7 @@
 # To update these lines, execute 
 # `bazel run @cgrindel_rules_bazel_integration_test//tools:update_deleted_packages`
-build --deleted_packages=examples/cc/external,examples/command_line/external,examples/ios_app,examples/ios_app/CoreUtilsObjC,examples/ios_app/Example,examples/ios_app/ExampleObjcTests,examples/ios_app/ExampleTests,examples/ios_app/ExampleUITests,examples/ios_app/TestingUtils,examples/ios_app/Utils,examples/ios_app/external,examples/ios_app/test/fixtures,examples/ios_app/third_party
-query --deleted_packages=examples/cc/external,examples/command_line/external,examples/ios_app,examples/ios_app/CoreUtilsObjC,examples/ios_app/Example,examples/ios_app/ExampleObjcTests,examples/ios_app/ExampleTests,examples/ios_app/ExampleUITests,examples/ios_app/TestingUtils,examples/ios_app/Utils,examples/ios_app/external,examples/ios_app/test/fixtures,examples/ios_app/third_party
+build --deleted_packages=examples/cc/external,examples/command_line/external,examples/ios_app,examples/ios_app/CoreUtilsObjC,examples/ios_app/Example,examples/ios_app/ExampleObjcTests,examples/ios_app/ExampleResources,examples/ios_app/ExampleTests,examples/ios_app/ExampleUITests,examples/ios_app/TestingUtils,examples/ios_app/Utils,examples/ios_app/external,examples/ios_app/test/fixtures,examples/ios_app/third_party
+query --deleted_packages=examples/cc/external,examples/command_line/external,examples/ios_app,examples/ios_app/CoreUtilsObjC,examples/ios_app/Example,examples/ios_app/ExampleObjcTests,examples/ios_app/ExampleResources,examples/ios_app/ExampleTests,examples/ios_app/ExampleUITests,examples/ios_app/TestingUtils,examples/ios_app/Utils,examples/ios_app/external,examples/ios_app/test/fixtures,examples/ios_app/third_party
 
 # Import Shared settings
 import %workspace%/shared.bazelrc

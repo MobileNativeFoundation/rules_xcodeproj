@@ -14,6 +14,7 @@ swift_library(
     name = "ExampleUITests.library",
     testonly = True,
     srcs = [":Sources"],
+    data = ["@examples_ios_app_external//:ExternalResources"],
     module_name = "ExampleUITests",
     tags = ["manual"],
 )

@@ -1,4 +1,5 @@
 load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
+load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_group")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 config_setting(
@@ -10,19 +11,30 @@ config_setting(
 
 ios_application(
     name = "Example",
+    app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = "io.buildbuddy.example",
     bundle_name = "Example",
     families = ["iphone"],
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
+    resources = [":ExampleResourceGroup"],
     visibility = ["//visibility:public"],
     deps = [":Example.library"],
+)
+
+apple_resource_group(
+    name = "ExampleResourceGroup",
+    resources = glob(
+        ["Assets.xcassets/**"],
+        exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
+    ),
+    structured_resources = ["nested/answer.txt"],
 )
 
 swift_library(
     name = "Example.library",
     srcs = glob(["**/*.swift"]),
-    data = glob(["Assets.xcassets/**"]) + select({
+    data = ["//ExampleResources"] + select({
         ":release_build": [],
         "//conditions:default": [":PreviewContent"],
     }),

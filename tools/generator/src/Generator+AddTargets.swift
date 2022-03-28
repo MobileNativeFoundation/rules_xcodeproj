@@ -25,6 +25,7 @@ extension Generator {
         for (id, disambiguatedTarget) in sortedDisambiguatedTargets {
             let target = disambiguatedTarget.target
             let inputs = target.inputs
+            let productType = target.product.type
 
             guard let product = products.byTarget[id] else {
                 throw PreconditionError(message: """
@@ -32,44 +33,48 @@ Product for target "\(id)" not found
 """)
             }
 
-            let headersPhase = try createHeadersPhase(
-                in: pbxProj,
-                productType: target.product.type,
-                inputs: inputs,
-                files: files
-            )
-            let sourcesBuildPhase = try createCompileSourcesPhase(
-                in: pbxProj,
-                inputs: inputs,
-                files: files
-            )
-            let copyGeneratedHeaderScript = try createCopyGeneratedHeaderScript(
-                in: pbxProj,
-                isSwift: target.isSwift,
-                buildSettings: target.buildSettings
-            )
-            let frameworksPhase = try createFrameworksPhase(
-                in: pbxProj,
-                frameworks: target.frameworks,
-                files: files
-            )
-            let embedFrameworksPhase = try createEmbedFrameworksPhase(
-                in: pbxProj,
-                frameworks: target.frameworks,
-                files: files
-            )
-
-            // TODO: Copy resources
+            let buildPhases = [
+                try createHeadersPhase(
+                    in: pbxProj,
+                    productType: productType,
+                    inputs: inputs,
+                    files: files
+                ),
+                try createCompileSourcesPhase(
+                    in: pbxProj,
+                    productType: productType,
+                    inputs: inputs,
+                    files: files
+                ),
+                try createCopyGeneratedHeaderScript(
+                    in: pbxProj,
+                    isSwift: target.isSwift,
+                    buildSettings: target.buildSettings
+                ),
+                try createFrameworksPhase(
+                    in: pbxProj,
+                    frameworks: target.frameworks,
+                    files: files
+                ),
+                try createResourcesPhase(
+                    in: pbxProj,
+                    productType: productType,
+                    resourceBundles: target.resourceBundles,
+                    inputs: target.inputs,
+                    products: products,
+                    files: files
+                ),
+                try createEmbedFrameworksPhase(
+                    in: pbxProj,
+                    productType: productType,
+                    frameworks: target.frameworks,
+                    files: files
+                ),
+            ]
 
             let pbxTarget = PBXNativeTarget(
                 name: disambiguatedTarget.name,
-                buildPhases: [
-                    headersPhase,
-                    sourcesBuildPhase,
-                    copyGeneratedHeaderScript,
-                    frameworksPhase,
-                    embedFrameworksPhase,
-                ].compactMap { $0 },
+                buildPhases: buildPhases.compactMap { $0 },
                 productName: target.product.name,
                 product: product,
                 productType: target.product.type
@@ -202,9 +207,24 @@ File "\(headerFile.filePath)" not found
 
     private static func createCompileSourcesPhase(
         in pbxProj: PBXProj,
+        productType: PBXProductType,
         inputs: Inputs,
         files: [FilePath: File]
-    ) throws -> PBXSourcesBuildPhase {
+    ) throws -> PBXSourcesBuildPhase? {
+        let sources = Set(
+            inputs.srcs.map(SourceFile.init)
+            + inputs.nonArcSrcs.map { filePath in
+                return SourceFile(
+                    filePath,
+                    compilerFlags: ["-fno-objc-arc"]
+                )
+            }
+        )
+
+        guard !sources.isEmpty || productType != .bundle else {
+            return nil
+        }
+
         func buildFile(sourceFile: SourceFile) throws -> PBXBuildFile {
             guard let file = files[sourceFile.filePath] else {
                 throw PreconditionError(message: """
@@ -218,16 +238,6 @@ File "\(sourceFile.filePath)" not found
             pbxProj.add(object: pbxBuildFile)
             return pbxBuildFile
         }
-
-        let sources = Set(
-            inputs.srcs.map(SourceFile.init)
-            + inputs.nonArcSrcs.map { filePath in
-                return SourceFile(
-                    filePath,
-                    compilerFlags: ["-fno-objc-arc"]
-                )
-            }
-        )
 
         let sourceFiles: Set<SourceFile>
         if sources.isEmpty {
@@ -308,12 +318,68 @@ Framework with file path "\(filePath)" had nil PBXFileReference
         return buildPhase
     }
 
+    private static func createResourcesPhase(
+        in pbxProj: PBXProj,
+        productType: PBXProductType,
+        resourceBundles: Set<Path>,
+        inputs: Inputs,
+        products: Products,
+        files: [FilePath: File]
+    ) throws -> PBXResourcesBuildPhase? {
+        guard productType.isBundle
+                && !(inputs.resources.isEmpty && resourceBundles.isEmpty)
+        else {
+            return nil
+        }
+
+        func fileReference(filePath: FilePath) throws -> PBXFileReference {
+            guard let resource = files[filePath] else {
+                throw PreconditionError(message: """
+Resource with file path "\(filePath)" not found
+""")
+            }
+            guard let reference = resource.reference else {
+                throw PreconditionError(message: """
+Resource with file path "\(filePath)" had nil PBXFileReference
+""")
+            }
+            return reference
+        }
+
+        func productReference(path: Path) throws -> PBXFileReference {
+            guard let reference = products.byPath[path] else {
+                throw PreconditionError(message: """
+Resource bundle product reference with path "\(path)" not found
+""")
+            }
+            return reference
+        }
+
+        func buildFile(reference: PBXFileReference) -> PBXBuildFile {
+            let pbxBuildFile = PBXBuildFile(file: reference)
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let nonProductResources = try inputs.resources.map(fileReference)
+        let produceResources = try resourceBundles.map(productReference)
+        let references = Set(nonProductResources + produceResources)
+
+        let buildPhase = PBXResourcesBuildPhase(
+            files: references.map(buildFile).sortedLocalizedStandard()
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
     private static func createEmbedFrameworksPhase(
         in pbxProj: PBXProj,
+        productType: PBXProductType,
         frameworks: [FilePath],
         files: [FilePath: File]
     ) throws -> PBXCopyFilesBuildPhase? {
-        guard !frameworks.isEmpty else {
+        guard productType.isBundle && !frameworks.isEmpty else {
             return nil
         }
 
@@ -397,10 +463,14 @@ private struct SourceFile: Hashable {
     }
 }
 
-private extension Inputs {
+extension Inputs {
     var containsGeneratedFiles: Bool {
         return srcs.containsGeneratedFiles
             || nonArcSrcs.containsGeneratedFiles
+    }
+
+    var containsSourceFiles: Bool {
+        return !(srcs.isEmpty && nonArcSrcs.isEmpty)
     }
 }
 
