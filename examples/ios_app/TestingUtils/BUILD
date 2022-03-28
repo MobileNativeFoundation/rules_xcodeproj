@@ -5,6 +5,7 @@ swift_library(
     testonly = True,
     srcs = [":gen_TestingUtils.swift"],
     defines = ["AWESOME"],
+    generated_header_name = "SwiftAPI/TestingUtils-Swift.h",
     generates_header = True,
     module_name = "TestingUtils",
     tags = ["manual"],

@@ -16,6 +16,7 @@ def _process_compiler_opts_test_impl(ctx):
         conlyopts = ctx.attr.conlyopts,
         cxxopts = ctx.attr.cxxopts,
         swiftcopts = ctx.attr.swiftcopts,
+        package_bin_dir = ctx.attr.package_bin_dir,
         build_settings = build_settings,
     )
     string_build_settings = stringify_dict(build_settings)
@@ -51,6 +52,7 @@ process_compiler_opts_test = unittest.make(
         "cxxopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
         "expected_search_paths": attr.string(mandatory = True),
+        "package_bin_dir": attr.string(mandatory = True),
         "swiftcopts": attr.string_list(mandatory = True),
     },
 )
@@ -71,13 +73,15 @@ def process_compiler_opts_test_suite(name):
             expected_search_paths = {"quote_includes": [], "includes": []},
             conlyopts = [],
             cxxopts = [],
-            swiftcopts = []):
+            swiftcopts = [],
+            package_bin_dir = ""):
         test_names.append(name)
         process_compiler_opts_test(
             name = name,
             conlyopts = conlyopts,
             cxxopts = cxxopts,
             swiftcopts = swiftcopts,
+            package_bin_dir = package_bin_dir,
             expected_build_settings = stringify_dict(expected_build_settings),
             expected_search_paths = json.encode(expected_search_paths),
             timeout = "short",
@@ -427,8 +431,9 @@ def process_compiler_opts_test_suite(name):
             "-emit-objc-header-path",
             "a/b/c/TestingUtils-Custom.h",
         ],
+        package_bin_dir = "a/b",
         expected_build_settings = {
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "TestingUtils-Custom.h",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "c/TestingUtils-Custom.h",
         },
     )
 

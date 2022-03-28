@@ -1,6 +1,5 @@
 """Functions for processing compiler and linker options."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":collections.bzl", "set_if_true", "uniq")
@@ -260,7 +259,7 @@ def _process_conlyopts(opts):
 
     return unhandled_opts, optimizations, search_paths
 
-def _process_cxxopts(*, opts, build_settings):
+def _process_cxxopts(opts, *, build_settings):
     """Processes C++ compiler options.
 
     Args:
@@ -348,7 +347,7 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         cxx_optimizations,
         cxx_search_paths,
     ) = _process_cxxopts(
-        opts = cxxopts,
+        cxxopts,
         build_settings = build_settings,
     )
 
@@ -378,11 +377,13 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         merge_opts_search_paths([conly_search_paths, cxx_search_paths]),
     )
 
-def _process_swiftcopts(*, opts, build_settings):
+def _process_swiftcopts(opts, *, package_bin_dir, build_settings):
     """Processes Swift compiler options.
 
     Args:
         opts: A `list` of Swift compiler options.
+        package_bin_dir: The package directory for the target within
+            `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from `opts`.
 
@@ -402,9 +403,12 @@ def _process_swiftcopts(*, opts, build_settings):
 
     def process(opt, previous_opt):
         if previous_opt == "-emit-objc-header-path":
-            build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = paths.basename(
-                opt,
-            )
+            if not opt.startswith(package_bin_dir):
+                fail("""\
+-emit-objc-header-path must be in bin dir of the target. {} is not \
+under {}""".format(opt, package_bin_dir))
+            header_name = opt[len(package_bin_dir) + 1:]
+            build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = header_name
             return True
 
         if opt.startswith("-O"):
@@ -455,13 +459,21 @@ def _process_swiftcopts(*, opts, build_settings):
 
     return unhandled_opts
 
-def _process_compiler_opts(*, conlyopts, cxxopts, swiftcopts, build_settings):
+def _process_compiler_opts(
+        *,
+        conlyopts,
+        cxxopts,
+        swiftcopts,
+        package_bin_dir,
+        build_settings):
     """Processes compiler options.
 
     Args:
         conlyopts: A `list` of C compiler options.
         cxxopts: A `list` of C++ compiler options.
         swiftcopts: A `list` of Swift compiler options.
+        package_bin_dir: The package directory for the target within
+            `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed the `conlyopts`, `cxxopts`, and
             `swiftcopts` lists.
@@ -478,7 +490,8 @@ def _process_compiler_opts(*, conlyopts, cxxopts, swiftcopts, build_settings):
         build_settings = build_settings,
     )
     swiftcopts = _process_swiftcopts(
-        opts = swiftcopts,
+        swiftcopts,
+        package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
 
@@ -504,12 +517,19 @@ def _process_compiler_opts(*, conlyopts, cxxopts, swiftcopts, build_settings):
 
     return search_paths
 
-def _process_target_compiler_opts(*, ctx, target, build_settings):
+def _process_target_compiler_opts(
+        *,
+        ctx,
+        target,
+        package_bin_dir,
+        build_settings):
     """Processes the compiler options for a target.
 
     Args:
         ctx: The aspect context.
         target: The `Target` that the compiler options will be retrieved from.
+        package_bin_dir: The package directory for `target` within
+            `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from the target's compiler options.
 
@@ -527,6 +547,7 @@ def _process_target_compiler_opts(*, ctx, target, build_settings):
         conlyopts = conlyopts,
         cxxopts = cxxopts,
         swiftcopts = swiftcopts,
+        package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
 
@@ -595,13 +616,15 @@ def _xcode_std_value(std):
 
 # API
 
-def process_opts(*, ctx, target, build_settings):
+def process_opts(*, ctx, target, package_bin_dir, build_settings):
     """Processes the compiler and linker options for a target.
 
     Args:
         ctx: The aspect context.
         target: The `Target` that the compiler and linker options will be
             retrieved from.
+        package_bin_dir: The package directory for `target` within
+            `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from the compiler and linker options.
 
@@ -614,6 +637,7 @@ def process_opts(*, ctx, target, build_settings):
     search_paths = _process_target_compiler_opts(
         ctx = ctx,
         target = target,
+        package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
     _process_target_linker_opts(
