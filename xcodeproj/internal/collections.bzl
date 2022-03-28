@@ -8,6 +8,15 @@ def flatten(seq):
         for item in sub_seq
     ]
 
+def set_if_true(dictionary, key, value):
+    """Sets `dictionary[key]` to `value` if it doesn't evaluate to `False`.
+
+    This is useful for setting build settings that are lists, but only when we
+    have a value to set.
+    """
+    if value:
+        dictionary[key] = value
+
 def uniq(seq):
     """Returns a list of unique elements in `seq`.
 

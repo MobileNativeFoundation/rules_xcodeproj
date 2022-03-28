@@ -3,8 +3,7 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load(":build_settings.bzl", "set_if_true")
-load(":collections.bzl", "uniq")
+load(":collections.bzl", "set_if_true", "uniq")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
