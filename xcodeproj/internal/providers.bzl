@@ -11,13 +11,10 @@ rules, then you will use these providers to communicate between them.
 InputFileAttributesInfo = provider(
     "Specifies how input files of a target are collected.",
     fields = {
-        "other_collector": """\
-An optional lambda that is passed the target being processed and returns a
-`list` of `File`s that will end up in `InputFilesInfo.other`. If any of the
-files are generated, they will also end up in `InputFilesInfo.generated`.
-""",
         "excluded": """\
-A sequence of attribute names to not collect `File`s from.
+A sequence of attribute names to not collect `File`s from. This should generally
+be `deps` and `deps`-like attributes. The goal is to exclude attributes that
+have generated products (e.g. ".swiftmodule" or ".a" files) as outputs.
 """,
         "hdrs": """\
 A sequence of attribute names to collect `File`s from for the `hdrs`-like
@@ -42,6 +39,11 @@ A sequence of attribute names to collect `File`s from for
         "bundle_imports": """\
 A sequence of attribute names to collect `File`s from for `bundle_imports`-like
 attributes.
+""",
+        "xcode_targets": """\
+A sequence of attribute names to allow Xcode targets to propagate from. This
+will share a lot with the `excluded` sequence, but it will also include some
+additional attributes (e.g. `resources`).
 """,
     },
 )
