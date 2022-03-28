@@ -325,6 +325,9 @@ enum Fixtures {
             lastKnownFileType: "wrapper.framework",
             path: "Fram.framework"
         )
+        elements["a/Fram.framework/Fram"] = elements["a/Fram.framework"]!
+        elements["a/Fram.framework/Headers/Fram.h"] =
+            elements["a/Fram.framework"]!
 
         // a/module.modulemap
 
@@ -395,13 +398,14 @@ enum Fixtures {
             path: "z.mm"
         )
 
-        // Assets.xcassets/Contents.json
+        // Assets.xcassets
 
         elements["Assets.xcassets"] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "folder.assetcatalog",
             path: "Assets.xcassets"
         )
+        elements["Assets.xcassets/Contents.json"] = elements["Assets.xcassets"]!
 
         // `internal`/CompileStub.swift
 
