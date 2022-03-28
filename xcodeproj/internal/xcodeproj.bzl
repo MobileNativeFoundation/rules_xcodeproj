@@ -182,7 +182,9 @@ def _xcodeproj_impl(ctx):
         for dep in ctx.attr.targets
         if XcodeProjInfo in dep
     ]
-    inputs = input_files.merge(transitive_infos = infos)
+    inputs = input_files.merge(
+        transitive_infos = [(None, info) for info in infos],
+    )
 
     spec_file = _write_json_spec(
         ctx = ctx,
