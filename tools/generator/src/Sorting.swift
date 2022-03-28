@@ -6,7 +6,12 @@ private extension PBXFileElement {
         case is PBXGroup:
             return -1
         default:
-            return 0
+            if let reference = self as? PBXFileReference {
+                // Folders should be treated as groups
+                return reference.lastKnownFileType == "folder" ? -1 : 0
+            } else {
+                return 0
+            }
         }
     }
 
@@ -61,7 +66,7 @@ extension Array where Element: PBXFileElement {
             let lhsSortOrder = lhs.sortOrder
             let rhsSortOrder = rhs.sortOrder
             if lhsSortOrder != rhsSortOrder {
-                // Groups before files
+                // Groups and folders before files
                 return lhsSortOrder < rhsSortOrder
             } else {
                 // Files alphabetically
