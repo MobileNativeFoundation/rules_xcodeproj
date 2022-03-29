@@ -18,9 +18,9 @@ assertions_sh="$(rlocation "${assertions_sh_location}")" || \
   (echo >&2 "Failed to locate ${assertions_sh_location}" && exit 1)
 source "${assertions_sh}"
 
-integration_test_config_values_txt_location=com_github_buildbuddy_io_rules_xcodeproj/config/integration_test_config_values.txt
-integration_test_config_values_txt="$(rlocation "${integration_test_config_values_txt_location}")" || \
-  (echo >&2 "Failed to locate ${integration_test_config_values_txt_location}" && exit 1)
+integration_test_config_value_txt_location=com_github_buildbuddy_io_rules_xcodeproj/config/integration_test_config_value.txt
+integration_test_config_value_txt="$(rlocation "${integration_test_config_value_txt_location}")" || \
+  (echo >&2 "Failed to locate ${integration_test_config_value_txt_location}" && exit 1)
 
 
 # MARK - Functions
@@ -48,7 +48,7 @@ done
 [[ -n "${workspace_dir:-}" ]] || fail "Must specify the location of the workspace directory."
 
 # Read the config values into an array called bazel_configs
-bazel_configs=( $(< "${integration_test_config_values_txt}") )
+bazel_configs=( $(< "${integration_test_config_value_txt}") )
 
 # Construct the options that will be passed to Bazel
 bazel_cmd_opts=()
@@ -57,7 +57,6 @@ if [[ ${#bazel_configs[@]} -gt 0 ]]; then
     bazel_cmd_opts+=( "--config=${config}" )
   done
 fi
-
 
 # MARK - Test
 

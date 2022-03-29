@@ -1,4 +1,5 @@
-load(":allow_multiple_flag.bzl", "allow_multiple_flag")
+# load(":allow_multiple_flag.bzl", "allow_multiple_flag")
+load(":string_flag.bzl", "string_flag")
 
 # load("@bazel_skylib//rules:common_settings.bzl", "string_list_flag")
 # load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
@@ -19,7 +20,13 @@ load(":allow_multiple_flag.bzl", "allow_multiple_flag")
 #     visibility = ["//:__subpackages__"],
 # )
 
-allow_multiple_flag(
+# allow_multiple_flag(
+#     name = "integration_test_config",
+#     build_setting_default = "",
+#     visibility = ["//:__subpackages__"],
+# )
+
+string_flag(
     name = "integration_test_config",
     build_setting_default = "",
     visibility = ["//:__subpackages__"],
