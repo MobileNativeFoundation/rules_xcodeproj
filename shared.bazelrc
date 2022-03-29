@@ -17,8 +17,7 @@ build:workflows --config=cache
 build:workflows --build_metadata=ROLE=CI
 build:workflows --build_metadata=VISIBILITY=PUBLIC
 build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
-# TODO: UNCOMMENT ME!
-# build:workflows --color=yes
+build:workflows --color=yes
 build:workflows --disk_cache=
 
 # Show detailed errors for test failures
