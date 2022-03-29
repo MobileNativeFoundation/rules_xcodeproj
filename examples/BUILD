@@ -9,9 +9,9 @@ load("//:bazel_versions.bzl", "CURRENT_BAZEL_VERSION")
 # versions.
 
 sh_binary(
-    name = "ios_app_test_runner",
+    name = "integration_test_runner",
     testonly = True,
-    srcs = ["ios_app_test_runner.sh"],
+    srcs = ["integration_test_runner.sh"],
     data = [
         "//config:integration_test_config",
     ],
@@ -24,7 +24,7 @@ bazel_integration_test(
     name = "ios_app_test",
     additional_env_inherit = ["DEVELOPER_DIR"],
     bazel_version = CURRENT_BAZEL_VERSION,
-    test_runner = ":ios_app_test_runner",
+    test_runner = ":integration_test_runner",
     workspace_files = glob(
         ["ios_app/**/*"],
         exclude = [
