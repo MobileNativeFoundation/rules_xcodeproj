@@ -18,6 +18,7 @@ struct ContentView: View {
             Image("rules_xcodeproj", bundle: Self.exampleResourcesBundle)
                 .resizable()
                 .frame(width: 100, height: 100)
+            Text("rules_xcodeproj_key")
         }
     }
 }

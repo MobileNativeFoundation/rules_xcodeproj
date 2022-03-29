@@ -10,6 +10,8 @@ extension Path {
             || isSceneKitAssets
     }
 
+    var isLocalizedContainer: Bool { self.extension == "lproj" }
+
     var lastKnownFileType: String? {
         return self.extension.flatMap { Xcode.filetype(extension: $0) }
     }

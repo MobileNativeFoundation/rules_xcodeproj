@@ -59,6 +59,15 @@ enum Fixtures {
             frameworks: ["a/Fram.framework"],
             swiftmodules: [.generated("x/y.swiftmodule")],
             resourceBundles: ["r1/R1.bundle"],
+            inputs: .init(
+                resources: [
+                    "es.lproj/Localized.strings",
+                    "es.lproj/Example.strings",
+                    "Base.lproj/Example.xib",
+                    "en.lproj/Localized.strings",
+                    "en.lproj/Example.strings",
+                ]
+            ),
             links: ["a/c.a", "z/A.a"],
             dependencies: ["C 1", "A 1", "R 1"]
         ),
@@ -433,6 +442,62 @@ enum Fixtures {
         elements["Assets.xcassets/some_image/some_image.png"] =
             elements["Assets.xcassets"]!
 
+        // Localized files
+
+        let en_lproj_example_strings = PBXFileReference(
+            sourceTree: .group,
+            name: "en",
+            lastKnownFileType: "text.plist.strings",
+            path: "en.lproj/Example.strings"
+        )
+        let es_lproj_example_strings = PBXFileReference(
+            sourceTree: .group,
+            name: "es",
+            lastKnownFileType: "text.plist.strings",
+            path: "es.lproj/Example.strings"
+        )
+        let base_lproj_example_xib = PBXFileReference(
+            sourceTree: .group,
+            name: "Base",
+            lastKnownFileType: "file.xib",
+            path: "Base.lproj/Example.xib"
+        )
+        elements["Example.xib"] = PBXVariantGroup(
+            children: [
+                base_lproj_example_xib,
+                en_lproj_example_strings,
+                es_lproj_example_strings,
+            ],
+            sourceTree: .group,
+            name: "Example.xib"
+        )
+        elements["Base.lproj/Example.xib"] = elements["Example.xib"]!
+        elements["en.lproj/Example.strings"] = elements["Example.xib"]!
+        elements["es.lproj/Example.strings"] = elements["Example.xib"]!
+
+        let en_lproj_localized_strings = PBXFileReference(
+            sourceTree: .group,
+            name: "en",
+            lastKnownFileType: "text.plist.strings",
+            path: "en.lproj/Localized.strings"
+        )
+        let es_lproj_localized_strings = PBXFileReference(
+            sourceTree: .group,
+            name: "es",
+            lastKnownFileType: "text.plist.strings",
+            path: "es.lproj/Localized.strings"
+        )
+        elements["Localized.strings"] = PBXVariantGroup(
+            children: [
+                en_lproj_localized_strings,
+                es_lproj_localized_strings,
+            ],
+            sourceTree: .group,
+            name: "Localized.strings"
+        )
+        elements["en.lproj/Localized.strings"] = elements["Localized.strings"]!
+        elements["es.lproj/Localized.strings"] = elements["Localized.strings"]!
+
         // r1/X.txt
 
         elements["r1/X.txt"] = PBXFileReference(
@@ -512,7 +577,12 @@ enum Fixtures {
             path: (workspaceOutputPath + internalDirectoryName).string
         )
 
-        elements.values.forEach { pbxProj.add(object: $0) }
+        elements.values.forEach { element in
+            pbxProj.add(object: element)
+            if let variantGroup = element as? PBXVariantGroup {
+                variantGroup.children.forEach { pbxProj.add(object: $0) }
+            }
+        }
 
         if let group = group {
             // The order files are added to a group matters for uuid fixing
@@ -525,22 +595,22 @@ enum Fixtures {
 
         var files: [FilePath: File] = [:]
         for (filePath, element) in elements {
-            guard let reference = element as? PBXFileReference else {
-                continue
-            }
+            if let reference = element as? PBXFileReference {
+                let content: String
+                if filePath == .internal("generated.xcfilelist") {
+                    content = """
+    \(generatedDirectory)/a/b/module.modulemap
+    \(generatedDirectory)/a1b2c/bin/t.c
 
-            let content: String
-            if filePath == .internal("generated.xcfilelist") {
-                content = """
-\(generatedDirectory)/a/b/module.modulemap
-\(generatedDirectory)/a1b2c/bin/t.c
+    """
+                } else {
+                    content = ""
+                }
 
-"""
-            } else {
-                content = ""
+                files[filePath] = .reference(reference, content: content)
+            } else if let variantGroup = element as? PBXVariantGroup {
+                files[filePath] = .variantGroup(variantGroup)
             }
-            
-            files[filePath] = .reference(reference, content: content)
         }
 
         // LinkFileLists
@@ -766,6 +836,8 @@ a/c.a
                 ),
                 PBXResourcesBuildPhase(
                     files: buildFiles([
+                        PBXBuildFile(file: elements["Example.xib"]!),
+                        PBXBuildFile(file: elements["Localized.strings"]!),
                         PBXBuildFile(
                             file: products.byPath["r1/R1.bundle"]!
                         ),

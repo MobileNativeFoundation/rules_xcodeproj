@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		03CDFE00832A6AB6DBC242FE /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0D71BEB41FFFA97C5AAF35CE /* Utils.bundle */; };
+		0F959A1FFBE84ABD123A3308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 145CCA829262D9783A1B847F /* Localizable.strings */; };
 		29796EAB3AFB4F393E120401 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5A69CC7A6E820FCB0BDF0 /* ContentView.swift */; };
 		31A46C94AAC7DB9BE3E89E4B /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 999DBB36F96D952774C90966 /* nested */; };
 		32DE63399B62963DEEAD7C1B /* nested in Resources */ = {isa = PBXBuildFile; fileRef = C941463D9750CBCE73E0FA81 /* nested */; };
@@ -183,6 +184,7 @@
 		37E1ED3F12607BB25B281B60 /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
 		3ACA8C2DDE68CE9047B965F6 /* ExampleResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6A7C1EE8BAE7058EFC5B0C /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
+		3FC1732AF7F1647C2CCBBCB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B4FA9C70425835BED3D18FF /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTestingUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		581AF7D39E2B147BB97B9BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5CF0936F52DDFE5E40C40C4E /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		DDD5A69CC7A6E820FCB0BDF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E3E108E23CCBE7C70549E7AF /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		EFF54836943E040ACDFCB9FD /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
+		F3BF0391D88320751FD37784 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F3EE8A1F985D59D79066BF9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		FD3813B38A8014A06893473D /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -359,6 +362,7 @@
 				DDD5A69CC7A6E820FCB0BDF0 /* ContentView.swift */,
 				D699DE3520D61FDC19A909EF /* ExampleApp.swift */,
 				D1F93F75DA88677B3EB84499 /* Info.plist */,
+				145CCA829262D9783A1B847F /* Localizable.strings */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -794,6 +798,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 				Base,
 			);
 			mainGroup = 91B19B3116ADB8C8ECC2934E;
@@ -864,6 +869,7 @@
 			files = (
 				C6CB5A5FD193CCABCF030A1E /* Assets.xcassets in Resources */,
 				EC88DC4B02D420A9A1624A7D /* ExampleResources.bundle in Resources */,
+				0F959A1FFBE84ABD123A3308 /* Localizable.strings in Resources */,
 				31A46C94AAC7DB9BE3E89E4B /* nested in Resources */,
 				7DAED6E1B30628461B9AC852 /* PreviewAssets.xcassets in Resources */,
 				03CDFE00832A6AB6DBC242FE /* Utils.bundle in Resources */,
@@ -1063,6 +1069,18 @@
 			targetProxy = 078E6A97773B9731CAA6A183 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		145CCA829262D9783A1B847F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FC1732AF7F1647C2CCBBCB8 /* en */,
+				F3BF0391D88320751FD37784 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1267D9ED64CBBD206F5562F5 /* Debug */ = {

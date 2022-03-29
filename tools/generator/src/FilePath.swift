@@ -62,6 +62,11 @@ extension FilePath {
     }
 }
 
+extension FilePath {
+    func parent() -> FilePath {
+        return FilePath(type: type, path: path.parent(), isFolder: false)
+    }
+}
 
 // MARK: Comparable
 
