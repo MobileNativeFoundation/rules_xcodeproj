@@ -1,11 +1,6 @@
 """String Flag That Serializes Value"""
 
-StringValueInfo = provider(
-    doc = "Information about a string value flag.",
-    fields = {
-        "value": "The value that was set for the flag.",
-    },
-)
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
 def _string_flag_impl(ctx):
     # Get the provided value
@@ -25,7 +20,7 @@ def _string_flag_impl(ctx):
             #  https://github.com/bazelbuild/bazel/issues/12348
             runfiles = ctx.runfiles([value_out]),
         ),
-        StringValueInfo(value = value),
+        BuildSettingInfo(value = value),
     ]
 
 string_flag = rule(
