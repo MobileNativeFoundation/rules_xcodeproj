@@ -105,9 +105,9 @@ Product for target "\(id)" not found
         }
 
         guard
-            let generatedFileList = files.first(
-                where: { $0.key == .internal(generatedFileListPath) }
-            )?.value.reference
+            let generatedFileList = files
+                .first(where: { $0.key == .internal(generatedFileListPath) })?
+                .value.fileElement
         else {
             throw PreconditionError(message: "generatedFileList not in `files`")
         }
@@ -190,7 +190,7 @@ File "\(headerFile.filePath)" not found
 """)
             }
             let pbxBuildFile = PBXBuildFile(
-                file: file.reference,
+                file: file.fileElement,
                 settings: headerFile.settings
             )
             pbxProj.add(object: pbxBuildFile)
@@ -232,7 +232,7 @@ File "\(sourceFile.filePath)" not found
 """)
             }
             let pbxBuildFile = PBXBuildFile(
-                file: file.reference,
+                file: file.fileElement,
                 settings: sourceFile.settings
             )
             pbxProj.add(object: pbxBuildFile)
@@ -300,12 +300,12 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 Framework with file path "\(filePath)" not found
 """)
             }
-            guard let reference = framework.reference else {
+            guard let fileElement = framework.fileElement else {
                 throw PreconditionError(message: """
-Framework with file path "\(filePath)" had nil PBXFileReference
+Framework with file path "\(filePath)" had nil PBXFileElement
 """)
             }
-            let pbxBuildFile = PBXBuildFile(file: reference)
+            let pbxBuildFile = PBXBuildFile(file: fileElement)
             pbxProj.add(object: pbxBuildFile)
             return pbxBuildFile
         }
@@ -332,18 +332,18 @@ Framework with file path "\(filePath)" had nil PBXFileReference
             return nil
         }
 
-        func fileReference(filePath: FilePath) throws -> PBXFileReference {
+        func fileElement(filePath: FilePath) throws -> PBXFileElement {
             guard let resource = files[filePath] else {
                 throw PreconditionError(message: """
 Resource with file path "\(filePath)" not found
 """)
             }
-            guard let reference = resource.reference else {
+            guard let fileElement = resource.fileElement else {
                 throw PreconditionError(message: """
-Resource with file path "\(filePath)" had nil PBXFileReference
+Resource with file path "\(filePath)" had nil PBXFileElement
 """)
             }
-            return reference
+            return fileElement
         }
 
         func productReference(path: Path) throws -> PBXFileReference {
@@ -355,18 +355,18 @@ Resource bundle product reference with path "\(path)" not found
             return reference
         }
 
-        func buildFile(reference: PBXFileReference) -> PBXBuildFile {
-            let pbxBuildFile = PBXBuildFile(file: reference)
+        func buildFile(fileElement: PBXFileElement) -> PBXBuildFile {
+            let pbxBuildFile = PBXBuildFile(file: fileElement)
             pbxProj.add(object: pbxBuildFile)
             return pbxBuildFile
         }
 
-        let nonProductResources = try inputs.resources.map(fileReference)
+        let nonProductResources = try inputs.resources.map(fileElement)
         let produceResources = try resourceBundles.map(productReference)
-        let references = Set(nonProductResources + produceResources)
+        let fileElements = Set(nonProductResources + produceResources)
 
         let buildPhase = PBXResourcesBuildPhase(
-            files: references.map(buildFile).sortedLocalizedStandard()
+            files: fileElements.map(buildFile).sortedLocalizedStandard()
         )
         pbxProj.add(object: buildPhase)
 
@@ -389,13 +389,13 @@ Resource bundle product reference with path "\(path)" not found
 Framework with file path "\(filePath)" not found
 """)
             }
-            guard let reference = framework.reference else {
+            guard let fileElement = framework.fileElement else {
                 throw PreconditionError(message: """
-Framework with file path "\(filePath)" had nil PBXFileReference
+Framework with file path "\(filePath)" had nil PBXFileElement
 """)
             }
             let pbxBuildFile = PBXBuildFile(
-                file: reference,
+                file: fileElement,
                 settings: [
                     "ATTRIBUTES": ["CodeSignOnCopy", "RemoveHeadersOnCopy"],
                 ]

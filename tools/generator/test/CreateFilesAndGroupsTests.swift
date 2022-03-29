@@ -34,16 +34,16 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         )
 
         let expectedFiles: [FilePath: File] = [
-            "a.swift": File(reference: PBXFileReference(
+            "a.swift": .reference(PBXFileReference(
                 sourceTree: .group,
                 lastKnownFileType: "sourcecode.swift",
                 path: "a.swift"
             )),
         ]
-        expectedPBXProj.add(object: expectedFiles["a.swift"]!.reference!)
+        expectedPBXProj.add(object: expectedFiles["a.swift"]!.fileElement!)
 
         let expectedRootElements: [PBXFileElement] = [
-            expectedFiles["a.swift"]!.reference!,
+            expectedFiles["a.swift"]!.fileElement!,
         ]
         expectedMainGroup.addChildren(expectedRootElements)
 
