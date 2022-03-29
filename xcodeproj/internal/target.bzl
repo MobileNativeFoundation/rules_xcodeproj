@@ -28,7 +28,12 @@ load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
 load(":platform.bzl", "process_platform")
-load(":providers.bzl", "InputFileAttributesInfo", "XcodeProjInfo")
+load(
+    ":providers.bzl",
+    "InputFileAttributesInfo",
+    "XcodeProjInfo",
+    "target_type",
+)
 load(":resource_bundle_products.bzl", "resource_bundle_products")
 
 # Configuration
@@ -243,6 +248,7 @@ def _processed_target(
         resource_bundles = resource_bundles,
         search_paths = search_paths,
         target = target,
+        target_type = target_type,
         xcode_targets = [xcode_target] if xcode_target else None,
     )
 
@@ -593,6 +599,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     resource_bundles = resource_bundle_products.collect(
         owner = resource_owner,
         is_consuming_bundle = is_bundle,
+        attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
 
@@ -750,6 +757,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     resource_bundles = resource_bundle_products.collect(
         owner = resource_owner,
         is_consuming_bundle = False,
+        attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
     search_paths = _process_search_paths(
@@ -877,6 +885,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         bundle_path = bundle_path,
         owner = resource_owner,
         is_consuming_bundle = False,
+        attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
     search_paths = _process_search_paths(
@@ -991,6 +1000,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         resource_bundles = resource_bundle_products.collect(
             owner = resource_owner,
             is_consuming_bundle = False,
+            attrs_info = attrs_info,
             transitive_infos = transitive_infos,
         ),
         search_paths = _process_search_paths(
@@ -1073,6 +1083,7 @@ def _target_info_fields(
         resource_bundles,
         search_paths,
         target,
+        target_type,
         xcode_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
 
@@ -1089,6 +1100,7 @@ def _target_info_fields(
         resource_bundles: Maps to the `XcodeProjInfo.resource_bundles` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target: Maps to the `XcodeProjInfo.target` field.
+        target_type: Maps to the `XcodeProjInfo.target_type` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
 
     Returns:
@@ -1104,6 +1116,7 @@ def _target_info_fields(
         *   `resource_bundles`
         *   `search_paths`
         *   `target`
+        *   `target_type`
         *   `xcode_targets`
     """
     return {
@@ -1116,16 +1129,18 @@ def _target_info_fields(
         "resource_bundles": resource_bundles,
         "search_paths": search_paths,
         "target": target,
+        "target_type": target_type,
         "xcode_targets": xcode_targets,
     }
 
-def _skip_target(*, transitive_infos):
+def _skip_target(*, target, transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
     forwards them on, not collecting any information for the current target.
 
     Args:
+        target: The `Target` to skip.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
@@ -1147,6 +1162,7 @@ def _skip_target(*, transitive_infos):
             transitive_infos = transitive_infos,
         ),
         inputs = input_files.merge(
+            attrs_info = target[InputFileAttributesInfo],
             transitive_infos = transitive_infos,
         ),
         linker_inputs = depset(
@@ -1167,6 +1183,7 @@ def _skip_target(*, transitive_infos):
         resource_bundles = resource_bundle_products.collect(
             owner = None,
             is_consuming_bundle = False,
+            attrs_info = None,
             transitive_infos = transitive_infos,
         ),
         search_paths = _process_search_paths(
@@ -1177,6 +1194,7 @@ def _skip_target(*, transitive_infos):
             ),
         ),
         target = None,
+        target_type = target_type.compile,
         xcode_targets = depset(
             transitive = [info.xcode_targets for _, info in transitive_infos],
         ),
@@ -1190,7 +1208,8 @@ def _process_dependencies(*, attrs_info, transitive_infos):
             # didn't create an Xcode target.
             [info.target.id] if info.target else info.dependencies
             for attr, info in transitive_infos
-            if not attrs_info or attr in attrs_info.xcode_targets
+            if (not attrs_info or
+                attrs_info.xcode_targets.get(attr) == info.target_type)
         ])
     ]
 
@@ -1204,7 +1223,8 @@ def _process_defines(
         build_settings):
     transitive_cc_defines = []
     for attr, info in transitive_infos:
-        if attrs_info and attr not in attrs_info.xcode_targets:
+        if (attrs_info and
+            attrs_info.xcode_targets.get(attr) != info.target_type):
             continue
         transitive_defines = info.defines
         transitive_cc_defines.extend(transitive_defines.cc_defines)
@@ -1426,7 +1446,8 @@ def _process_target(*, ctx, target, transitive_infos):
             transitive = [
                 info.potential_target_merges
                 for attr, info in transitive_infos
-                if attr in processed_target.attrs_info.xcode_targets
+                if (processed_target.attrs_info.xcode_targets.get(attr) ==
+                    info.target_type)
             ],
         ),
         required_links = depset(
@@ -1434,18 +1455,21 @@ def _process_target(*, ctx, target, transitive_infos):
             transitive = [
                 info.required_links
                 for attr, info in transitive_infos
-                if attr in processed_target.attrs_info.xcode_targets
+                if (processed_target.attrs_info.xcode_targets.get(attr) ==
+                    info.target_type)
             ],
         ),
         resource_bundles = processed_target.resource_bundles,
         search_paths = processed_target.search_paths,
         target = processed_target.target,
+        target_type = processed_target.attrs_info.target_type,
         xcode_targets = depset(
             processed_target.xcode_targets,
             transitive = [
                 info.xcode_targets
                 for attr, info in transitive_infos
-                if attr in processed_target.attrs_info.xcode_targets
+                if (processed_target.attrs_info.xcode_targets.get(attr) ==
+                    info.target_type)
             ],
         ),
     )
@@ -1467,6 +1491,7 @@ def process_target(*, ctx, target, transitive_infos):
     """
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(
+            target = target,
             transitive_infos = transitive_infos,
         )
     else:
