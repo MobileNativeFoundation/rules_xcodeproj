@@ -1,6 +1,6 @@
 """String Flag That Serializes Value"""
 
-StringValueProvider = provider(
+StringValueInfo = provider(
     doc = "Information about a string value flag.",
     fields = {
         "value": "The value that was set for the flag.",
@@ -25,7 +25,7 @@ def _string_flag_impl(ctx):
             #  https://github.com/bazelbuild/bazel/issues/12348
             runfiles = ctx.runfiles([value_out]),
         ),
-        StringValueProvider(value = value),
+        StringValueInfo(value = value),
     ]
 
 string_flag = rule(
