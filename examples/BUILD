@@ -1,7 +1,6 @@
 load(
     "@cgrindel_rules_bazel_integration_test//bazel_integration_test:defs.bzl",
     "bazel_integration_test",
-    "default_test_runner",
     "integration_test_utils",
 )
 load("//:bazel_versions.bzl", "CURRENT_BAZEL_VERSION")
@@ -9,18 +8,15 @@ load("//:bazel_versions.bzl", "CURRENT_BAZEL_VERSION")
 # GH174: Enable integration tests for other (i.e., not the current) Bazel
 # versions.
 
-default_test_runner(
-    name = "ios_app_test_runner",
-    bazel_cmds = [
-        "info",
-        "build //...",
-        # Make sure that whatever is checked in matches
-        "test //test/...",
-        # Run update fixtures and make sure all is still well
-        "run //test/fixtures:update",
-        "test //test/...",
-        # Make sure that xcodeproj executes successfully
-        "run //:xcodeproj",
+sh_binary(
+    name = "integration_test_runner",
+    testonly = True,
+    srcs = ["integration_test_runner.sh"],
+    data = [
+        "//config:integration_test_config",
+    ],
+    deps = [
+        "@cgrindel_bazel_starlib//shlib/lib:assertions",
     ],
 )
 
@@ -28,7 +24,7 @@ bazel_integration_test(
     name = "ios_app_test",
     additional_env_inherit = ["DEVELOPER_DIR"],
     bazel_version = CURRENT_BAZEL_VERSION,
-    test_runner = ":ios_app_test_runner",
+    test_runner = ":integration_test_runner",
     workspace_files = glob(
         ["ios_app/**/*"],
         exclude = [

@@ -5,3 +5,10 @@ query --deleted_packages=examples/cc/external,examples/command_line/external,exa
 
 # Import Shared settings
 import %workspace%/shared.bazelrc
+
+# Use a local.bazelrc if it exists.
+try-import %workspace%/user.bazelrc
+
+# These values are only relevant for the parent workspace
+build:cache --//config:integration_test_config=cache
+build:workflows --//config:integration_test_config=workflows
