@@ -497,6 +497,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/private",
 					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -560,6 +561,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",
 					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;

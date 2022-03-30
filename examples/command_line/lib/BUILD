@@ -1,3 +1,5 @@
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
 objc_library(
     name = "lib_defines",
     defines = [
@@ -18,11 +20,25 @@ objc_library(
     ],
 )
 
+swift_library(
+    name = "lib_swift",
+    srcs = ["lib.swift"],
+    generated_header_name = "private/LibSwift-Swift.h",
+    generates_header = True,
+    module_name = "LibSwift",
+)
+
 objc_library(
     name = "lib_headers",
     hdrs = ["dir with space/lib.h"],
-    includes = ["dir with space"],
-    deps = [":lib_impl"],
+    includes = [
+        "dir with space",
+        "private",
+    ],
+    deps = [
+        ":lib_impl",
+        ":lib_swift",
+    ],
 )
 
 alias(
