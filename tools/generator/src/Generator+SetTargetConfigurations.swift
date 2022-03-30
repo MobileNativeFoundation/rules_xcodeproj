@@ -108,6 +108,11 @@ Target "\(id)" not found in `pbxTargets`.
                 )
             }
 
+            if let infoPlist = target.infoPlist {
+              let infoPlistPath = filePathResolver.resolve(infoPlist).string.quoted
+              try targetBuildSettings.prepend(onKey: "INFOPLIST_FILE", infoPlistPath)
+            }
+
             var buildSettings = targetBuildSettings.asDictionary
 
             buildSettings["TARGET_NAME"] = target.name
