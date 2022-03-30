@@ -341,7 +341,10 @@ def _process_top_level_properties(
             else:
                 bundle_path = paths.join(bundle_info.archive_root, bundle)
 
-        build_settings["GENERATE_INFOPLIST_FILE"] = True
+        # Use the infoplist from the AppleBundleInfo
+        build_settings["GENERATE_INFOPLIST_FILE"] = False
+        build_settings["INFOPLIST_FILE"] = bundle_info.infoplist.short_path
+
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
         product_name = target_name
