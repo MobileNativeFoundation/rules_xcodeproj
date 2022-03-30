@@ -10,10 +10,6 @@
 		1476C3F44387C9739C0A9774 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FEC277C4E8ADC5127B637A /* lib.m */; };
 		336E0B2719F93F60A3D4F740 /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = B5511E6B7C59A1600AEF50FA /* private.h */; };
 		7C3CD0E0D0A59C7B68CC261C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97093D4A77C09BF21048172D /* main.m */; };
-		B2874FFD92695F0764CC4BC1 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB5DCB76604D935AA813EEED /* ExternalFramework.framework */; };
-		C568755D4B2F420C240E3AA7 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2C561FCEC62C6BDAAE72AB /* ExampleFramework.framework */; };
-		C9D028103FEED371BD7467F3 /* ExampleFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE2C561FCEC62C6BDAAE72AB /* ExampleFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F2C649E1C0D0D50F97A5BC2B /* ExternalFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FB5DCB76604D935AA813EEED /* ExternalFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,43 +22,14 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		AA2C1B20314D2A6E12F4686C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C9D028103FEED371BD7467F3 /* ExampleFramework.framework in Embed Frameworks */,
-				F2C649E1C0D0D50F97A5BC2B /* ExternalFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		1704EC3DF20D136B9D2B8C0D /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		57486259156D32B2F964EF4E /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		97093D4A77C09BF21048172D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A7FEC277C4E8ADC5127B637A /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		B5511E6B7C59A1600AEF50FA /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
-		DE2C561FCEC62C6BDAAE72AB /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		E37C21ED6BACCA0E92024F54 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB5DCB76604D935AA813EEED /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		A6EC893DB5C33B52A57824D8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C568755D4B2F420C240E3AA7 /* ExampleFramework.framework in Frameworks */,
-				B2874FFD92695F0764CC4BC1 /* ExternalFramework.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0CDF69186E00FC09E69A79AB /* tool */ = {
@@ -90,23 +57,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4A2F2FC53EA526EEEB29DACD /* examples_command_line_external */ = {
-			isa = PBXGroup;
-			children = (
-				FB5DCB76604D935AA813EEED /* ExternalFramework.framework */,
-			);
-			path = examples_command_line_external;
-			sourceTree = "<group>";
-		};
-		52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				4A2F2FC53EA526EEEB29DACD /* examples_command_line_external */,
-			);
-			name = "Bazel External Repositories";
-			path = "bazel-rules_xcodeproj/external";
-			sourceTree = "<group>";
-		};
 		5E3A6AF7F4D54FD8AC656E4D /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				5E3A6AF7F4D54FD8AC656E4D /* examples */,
-				52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */,
 				428D294EDDF4A41D530E1B84 /* Products */,
 				C66B8C06B79203E1B66DFCCF /* Frameworks */,
 			);
@@ -139,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				8F28BA089D91183D4038207C /* lib */,
-				ECDFE258D07DB14FF2BE541F /* third_party */,
 				0CDF69186E00FC09E69A79AB /* tool */,
 			);
 			path = command_line;
@@ -150,14 +98,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		ECDFE258D07DB14FF2BE541F /* third_party */ = {
-			isa = PBXGroup;
-			children = (
-				DE2C561FCEC62C6BDAAE72AB /* ExampleFramework.framework */,
-			);
-			path = third_party;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,8 +123,6 @@
 			buildConfigurationList = 867643D0A3B038E40F01DB27 /* Build configuration list for PBXNativeTarget "tool" */;
 			buildPhases = (
 				71A19865030B483AA44F971E /* Sources */,
-				A6EC893DB5C33B52A57824D8 /* Frameworks */,
-				AA2C1B20314D2A6E12F4686C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -290,10 +228,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/examples/command_line/third_party",
-					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_command_line_external",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"SECRET_3=\\\"Hello\\\"",
 					"SECRET_2=\\\"World!\\\"",
@@ -366,7 +300,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/examples/command_line/third_party";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"SECRET_3=\\\"Hello\\\"",
 					"SECRET_2=\\\"World!\\\"",

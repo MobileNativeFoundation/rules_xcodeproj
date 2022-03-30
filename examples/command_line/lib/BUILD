@@ -15,7 +15,6 @@ objc_library(
     tags = ["manual"],
     deps = [
         ":lib_defines",
-        "//examples/command_line/third_party:ExampleFramework",
     ],
 )
 
