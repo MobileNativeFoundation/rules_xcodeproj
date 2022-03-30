@@ -253,7 +253,8 @@ def _xcode_target(
         inputs,
         links,
         dependencies,
-        outputs):
+        outputs,
+        info_plist):
     """Generates the partial json string representation of an Xcode target.
 
     Args:
@@ -282,6 +283,7 @@ def _xcode_target(
             against.
         dependencies: A `list` of `id`s of targets that this target depends on.
         outputs: The value returned from `_process_outputs()`.
+        info_plist: TODO(chuck): FIX ME!
 
     Returns:
         An element of a json array string. This should be wrapped with `"[{}]"`
@@ -306,6 +308,7 @@ def _xcode_target(
         links = links,
         dependencies = dependencies,
         outputs = outputs,
+        info_plist = info_plist,
     ))
 
     # Since we use a custom dictionary key type in
@@ -340,10 +343,6 @@ def _process_top_level_properties(
                 )
             else:
                 bundle_path = paths.join(bundle_info.archive_root, bundle)
-
-        # Use the infoplist from the AppleBundleInfo
-        build_settings["GENERATE_INFOPLIST_FILE"] = False
-        build_settings["INFOPLIST_FILE"] = bundle_info.infoplist.short_path
 
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
@@ -557,6 +556,11 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         opts_search_paths = opts_search_paths,
     )
 
+    info_plist = None
+    if bundle_info:
+        info_plist = file_path(bundle_info.infoplist)
+    build_settings["GENERATE_INFOPLIST_FILE"] = (bundle_info == None)
+
     return _processed_target(
         defines = _process_defines(
             is_swift = is_swift,
@@ -606,6 +610,8 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             links = links,
             dependencies = dependencies,
             outputs = _process_outputs(target),
+            # TODO(chuck): FIX ME!
+            info_plist = info_plist,
         ),
     )
 
@@ -733,6 +739,8 @@ def _process_library_target(*, ctx, target, transitive_infos):
             links = [],
             dependencies = dependencies,
             outputs = _process_outputs(target),
+            # TODO(chuck): FIX ME!
+            info_plist = None,
         ),
     )
 
