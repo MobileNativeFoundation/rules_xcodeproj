@@ -283,7 +283,7 @@ def _xcode_target(
             against.
         dependencies: A `list` of `id`s of targets that this target depends on.
         outputs: The value returned from `_process_outputs()`.
-        info_plist: TODO(chuck): FIX ME!
+        info_plist: A value as returned by `files.file_path()` or `None`.
 
     Returns:
         An element of a json array string. This should be wrapped with `"[{}]"`
@@ -612,7 +612,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             links = links,
             dependencies = dependencies,
             outputs = _process_outputs(target),
-            # TODO(chuck): FIX ME!
             info_plist = info_plist,
         ),
     )
@@ -741,7 +740,6 @@ def _process_library_target(*, ctx, target, transitive_infos):
             links = [],
             dependencies = dependencies,
             outputs = _process_outputs(target),
-            # TODO(chuck): FIX ME!
             info_plist = None,
         ),
     )

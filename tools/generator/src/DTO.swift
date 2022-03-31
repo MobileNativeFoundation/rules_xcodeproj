@@ -28,7 +28,6 @@ struct Target: Equatable, Decodable {
     var inputs: Inputs
     var links: Set<Path>
     var dependencies: Set<TargetID>
-    // TODO(chuck): Should this be required?
     var infoPlist: FilePath?
 }
 
