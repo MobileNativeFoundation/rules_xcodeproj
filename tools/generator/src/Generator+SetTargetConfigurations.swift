@@ -117,6 +117,8 @@ Target "\(id)" not found in `pbxTargets`.
             if let infoPlist = target.infoPlist {
               let infoPlistPath = filePathResolver.resolve(infoPlist).string.quoted
               buildSettings["INFOPLIST_FILE"] = infoPlistPath
+            } else {
+              buildSettings["GENERATE_INFOPLIST_FILE"] = true
             }
 
             let swiftmodules = target.swiftmodules

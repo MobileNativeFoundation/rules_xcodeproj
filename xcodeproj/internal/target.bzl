@@ -357,7 +357,6 @@ def _process_top_level_properties(
         if xctest:
             # This is something like `swift_test`: it creates an xctest bundle
             product_type = "com.apple.product-type.bundle.unit-test"
-            build_settings["GENERATE_INFOPLIST_FILE"] = True
 
             # "some/test.xctest/binary" -> "some/test.xctest"
             bundle_path = xctest[:-(len(xctest.split(".xctest/")[1]) + 1)]
@@ -550,7 +549,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     if bundle_info:
         info_plist = file_path(bundle_info.infoplist)
         additional_files.append(bundle_info.infoplist)
-    build_settings["GENERATE_INFOPLIST_FILE"] = (info_plist == None)
 
     inputs = input_files.collect(
         ctx = ctx,

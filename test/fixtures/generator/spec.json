@@ -36,7 +36,6 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "GENERATE_INFOPLIST_FILE": true,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
@@ -246,7 +245,6 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "GENERATE_INFOPLIST_FILE": true,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",

@@ -166,7 +166,6 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "test",
         expected_product_type = "com.apple.product-type.bundle.unit-test",
         expected_build_settings = {
-            "GENERATE_INFOPLIST_FILE": True,
             "PRODUCT_MODULE_NAME": "_test_",
         },
     )
