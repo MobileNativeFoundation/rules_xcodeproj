@@ -889,6 +889,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
@@ -952,7 +953,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "$(PROJECT_DIR)/bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -1018,7 +1018,6 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
-				GENERATE_INFOPLIST_FILE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
@@ -1094,6 +1093,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -1173,6 +1173,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
@@ -1246,7 +1247,6 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
-				GENERATE_INFOPLIST_FILE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
@@ -1328,7 +1328,6 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
-				GENERATE_INFOPLIST_FILE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
