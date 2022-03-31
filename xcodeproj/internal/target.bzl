@@ -1283,9 +1283,13 @@ def _process_modulemaps(*, swift_info):
             files = [],
         )
 
+    direct_modules = swift_info.direct_modules
+
     modulemap_file_paths = []
     modulemap_files = []
     for module in swift_info.transitive_modules.to_list():
+        if module in direct_modules:
+            continue
         clang_module = module.clang
         if not clang_module:
             continue
