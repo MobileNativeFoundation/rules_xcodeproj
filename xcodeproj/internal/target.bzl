@@ -539,27 +539,29 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
 
-    modulemaps = _process_modulemaps(
-        swift_info = target[SwiftInfo] if SwiftInfo in target else None,
-    )
-    inputs = input_files.collect(
-        ctx = ctx,
-        target = target,
-        additional_files = modulemaps.files,
-        transitive_infos = transitive_infos,
-    )
+    additional_files = []
+
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = _process_modulemaps(swift_info = swift_info)
-    search_paths = _process_search_paths(
-        cc_info = target[CcInfo] if CcInfo in target else None,
-        opts_search_paths = opts_search_paths,
-    )
+    additional_files.extend(modulemaps.files)
 
     info_plist = None
     if bundle_info:
         info_plist = file_path(bundle_info.infoplist)
-    build_settings["GENERATE_INFOPLIST_FILE"] = (bundle_info == None)
+        additional_files.append(bundle_info.infoplist)
+    build_settings["GENERATE_INFOPLIST_FILE"] = (info_plist == None)
+
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        additional_files = additional_files,
+        transitive_infos = transitive_infos,
+    )
+    search_paths = _process_search_paths(
+        cc_info = target[CcInfo] if CcInfo in target else None,
+        opts_search_paths = opts_search_paths,
+    )
 
     return _processed_target(
         defines = _process_defines(
