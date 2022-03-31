@@ -138,6 +138,10 @@
             "t": "g"
         },
         "Example/Info.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example/Example-intermediates/Info.plist",
+            "t": "g"
+        },
         "TestingUtils/Greeting.swift.stencil",
         "TestingUtils/Answer.swift.stencil",
         {
@@ -155,6 +159,18 @@
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
+        },
+        {
+            "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
+            "t": "g"
         }
     ],
     "label": "//test/fixtures:fixture",
@@ -233,6 +249,7 @@
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "hdrs": [
                     "CoreUtilsObjC/CoreUtils/Answers.h"
@@ -289,7 +306,6 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "GENERATE_INFOPLIST_FILE": true,
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
@@ -347,6 +363,10 @@
                     "t": "e"
                 }
             ],
+            "info_plist": {
+                "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example/Example-intermediates/Info.plist",
+                "t": "g"
+            },
             "inputs": {},
             "is_swift": false,
             "label": "//Example:Example",
@@ -431,6 +451,7 @@
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "Example/ContentView.swift",
@@ -506,7 +527,6 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "GENERATE_INFOPLIST_FILE": true,
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
@@ -559,6 +579,10 @@
                 "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "frameworks": [],
+            "info_plist": {
+                "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.plist",
+                "t": "g"
+            },
             "inputs": {},
             "is_swift": false,
             "label": "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle",
@@ -643,6 +667,7 @@
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "ExampleObjcTests/ExampleObjcTests.m"
@@ -696,7 +721,6 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "GENERATE_INFOPLIST_FILE": true,
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
@@ -749,6 +773,10 @@
                 "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "frameworks": [],
+            "info_plist": {
+                "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
+                "t": "g"
+            },
             "inputs": {},
             "is_swift": false,
             "label": "//ExampleTests:ExampleTests.__internal__.__test_bundle",
@@ -835,6 +863,7 @@
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "ExampleTests/ExampleTests.swift"
@@ -922,7 +951,6 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "GENERATE_INFOPLIST_FILE": true,
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
@@ -975,6 +1003,10 @@
                 "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "frameworks": [],
+            "info_plist": {
+                "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
+                "t": "g"
+            },
             "inputs": {},
             "is_swift": false,
             "label": "//ExampleUITests:ExampleUITests.__internal__.__test_bundle",
@@ -1055,6 +1087,7 @@
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "ExampleUITests/ExampleUITests.swift",
@@ -1143,6 +1176,7 @@
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
             "dependencies": [],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -1245,6 +1279,7 @@
                 "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "hdrs": [
                     "Utils/Foo.h",

@@ -345,6 +345,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -421,6 +422,7 @@
 					"SECRET_2=\\\"World!\\\"",
 					"EXTERNAL_SECRET_2=\\\"World?\\\"",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -492,6 +494,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "SECRET_3=\\\"Hello\\\"";
+				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib/private",
 					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/private",
@@ -554,6 +557,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "EXTERNAL_SECRET_3=\\\"Goodbye\\\"";
+				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external/private",
 					"$(PROJECT_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",

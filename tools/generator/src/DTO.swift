@@ -27,6 +27,7 @@ struct Target: Equatable, Decodable {
     var swiftmodules: [FilePath]
     var inputs: Inputs
     var links: Set<Path>
+    var infoPlist: FilePath?
     var dependencies: Set<TargetID>
 }
 

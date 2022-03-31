@@ -145,6 +145,7 @@
 		0F331B89287AC5CF95CBE242 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
 		163F2C8DEF5CD811826145FD /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1971CA49644537C181D152F9 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
+		1F24BE1ED66E73DF86D94C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2668B72F031658C7424A69C7 /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
 		332DA7D905FE78395F8B49AB /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E1ED3F12607BB25B281B60 /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
@@ -158,11 +159,14 @@
 		96457EE4FDB089F9B6CA30D8 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B3DE95D17EDB4EEF586E35 /* ExampleObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleObjcTests.m; sourceTree = "<group>"; };
 		A728BC96D2EE56D3A20F5D75 /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
+		A7D8A6960177B199D5AD09D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AD316B4515635DE6DE64F1C1 /* Answers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Answers.m; sourceTree = "<group>"; };
 		B582794DF84A93AA718FB7A0 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BB2D592A0A604F4F6E9AC20E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BB5454138C3DB7B7F7E1308A /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		BB838B5673B2D4DA9E2E52F0 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
 		C2288FA66726CD35CFB04516 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5B489A602C7DCE105059033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C5E39D6F9D4DAE2C1137ABB0 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D073C96A1AA5433EDA476685 /* generated.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = generated.xcfilelist; sourceTree = "<group>"; };
 		D1F93F75DA88677B3EB84499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 		22D63AE4A8E6D3194DC63EEA /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
+				5FCC911B3FE1D9EE5C3AC44F /* applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd */,
 				A25FAC8271C12219F8B2EE7D /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd */,
 			);
 			name = "Bazel Generated Files";
@@ -270,6 +275,14 @@
 			path = CoreUtils;
 			sourceTree = "<group>";
 		};
+		483909672859E5F323DA6432 /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				C5B489A602C7DCE105059033 /* Info.plist */,
+			);
+			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
 		52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +291,14 @@
 			);
 			name = "Bazel External Repositories";
 			path = "bazel-ios_app/external";
+			sourceTree = "<group>";
+		};
+		55A2F06B7C0A1CC48B18F1AB /* ExampleTests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				A7D8A6960177B199D5AD09D1 /* Info.plist */,
+			);
+			path = "ExampleTests.__internal__.__test_bundle-intermediates";
 			sourceTree = "<group>";
 		};
 		5877E1B0DA723A428072DE2A /* build_bazel_rules_apple */ = {
@@ -300,6 +321,22 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
+		5FCC911B3FE1D9EE5C3AC44F /* applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd */ = {
+			isa = PBXGroup;
+			children = (
+				8BC189194840932A6425AAA7 /* bin */,
+			);
+			path = "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd";
+			sourceTree = "<group>";
+		};
+		60A3B8713741BB11EE6B426C /* Example-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				BB2D592A0A604F4F6E9AC20E /* Info.plist */,
+			);
+			path = "Example-intermediates";
+			sourceTree = "<group>";
+		};
 		678F44D4B388004D92502ECB /* CoreUtilsObjC */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,12 +345,31 @@
 			path = CoreUtilsObjC;
 			sourceTree = "<group>";
 		};
+		6DBCFF1374C9F6F06CBC4AC9 /* ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				55A2F06B7C0A1CC48B18F1AB /* ExampleTests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleTests;
+			sourceTree = "<group>";
+		};
 		79318B470B9CC13B30516691 /* ExampleObjcTests */ = {
 			isa = PBXGroup;
 			children = (
 				A0B3DE95D17EDB4EEF586E35 /* ExampleObjcTests.m */,
 			);
 			path = ExampleObjcTests;
+			sourceTree = "<group>";
+		};
+		8BC189194840932A6425AAA7 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				C3565038F13C750C35140DAA /* Example */,
+				F219C9A0E89F7B8AD4B18599 /* ExampleObjcTests */,
+				6DBCFF1374C9F6F06CBC4AC9 /* ExampleTests */,
+				EA3428B8559927DF546E6A0A /* ExampleUITests */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		8FFA43D4D9C2A095F2147970 /* CoreUtilsObjC */ = {
@@ -361,6 +417,14 @@
 			path = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd";
 			sourceTree = "<group>";
 		};
+		A3ADEB677906F6B4737128FC /* ExampleObjcTests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				1F24BE1ED66E73DF86D94C30 /* Info.plist */,
+			);
+			path = "ExampleObjcTests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
 		BAF0E3E8914C1F0BED0421C4 /* ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +440,14 @@
 				B582794DF84A93AA718FB7A0 /* ExampleUITestsLaunchTests.swift */,
 			);
 			path = ExampleUITests;
+			sourceTree = "<group>";
+		};
+		C3565038F13C750C35140DAA /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				60A3B8713741BB11EE6B426C /* Example-intermediates */,
+			);
+			path = Example;
 			sourceTree = "<group>";
 		};
 		C66B8C06B79203E1B66DFCCF /* Frameworks */ = {
@@ -400,6 +472,22 @@
 				2668B72F031658C7424A69C7 /* Greeting.swift.stencil */,
 			);
 			path = TestingUtils;
+			sourceTree = "<group>";
+		};
+		EA3428B8559927DF546E6A0A /* ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				483909672859E5F323DA6432 /* ExampleUITests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleUITests;
+			sourceTree = "<group>";
+		};
+		F219C9A0E89F7B8AD4B18599 /* ExampleObjcTests */ = {
+			isa = PBXGroup;
+			children = (
+				A3ADEB677906F6B4737128FC /* ExampleObjcTests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleObjcTests;
 			sourceTree = "<group>";
 		};
 		F5E9439A38A4A949779A6A4D /* examples_ios_app_external */ = {
@@ -801,6 +889,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
@@ -864,7 +953,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -929,11 +1018,11 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 				);
+				INFOPLIST_FILE = "$(PROJECT_DIR)/bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -1004,6 +1093,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
@@ -1083,6 +1173,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
@@ -1156,11 +1247,11 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 				);
+				INFOPLIST_FILE = "$(PROJECT_DIR)/bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example/Example-intermediates/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1237,11 +1328,11 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 				);
+				INFOPLIST_FILE = "$(PROJECT_DIR)/bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",

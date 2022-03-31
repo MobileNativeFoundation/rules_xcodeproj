@@ -948,6 +948,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["A 1"]!.name,
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
@@ -968,6 +969,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["A 2"]!.name,
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
@@ -977,6 +979,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
                 "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["B 1"]!.name,
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
@@ -997,6 +1000,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 """,
                 "TARGET_NAME": targets["B 2"]!.name,
                 "TEST_HOST": "$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A",
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
@@ -1013,6 +1017,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["B 3"]!.name,
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
@@ -1021,6 +1026,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 """,
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 1"]!.name,
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
@@ -1036,16 +1042,19 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 ],
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 2"]!.name,
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
                 "SDKROOT": "watchos",
                 "TARGET_NAME": targets["E1"]!.name,
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
                 "SDKROOT": "appletvos",
                 "TARGET_NAME": targets["E2"]!.name,
+                "GENERATE_INFOPLIST_FILE": true,
             ]) { $1 },
         ]
         for (id, buildSettings) in buildSettings {

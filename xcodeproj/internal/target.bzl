@@ -252,6 +252,7 @@ def _xcode_target(
         swiftmodules,
         inputs,
         links,
+        info_plist,
         dependencies,
         outputs):
     """Generates the partial json string representation of an Xcode target.
@@ -280,6 +281,7 @@ def _xcode_target(
         inputs: The value returned from `input_files.collect()`.
         links: A `list` of file paths for libraries that the target links
             against.
+        info_plist: A value as returned by `files.file_path()` or `None`.
         dependencies: A `list` of `id`s of targets that this target depends on.
         outputs: The value returned from `_process_outputs()`.
 
@@ -304,6 +306,7 @@ def _xcode_target(
         swiftmodules = swiftmodules,
         inputs = input_files.to_dto(inputs),
         links = links,
+        info_plist = info_plist,
         dependencies = dependencies,
         outputs = outputs,
     ))
@@ -341,7 +344,6 @@ def _process_top_level_properties(
             else:
                 bundle_path = paths.join(bundle_info.archive_root, bundle)
 
-        build_settings["GENERATE_INFOPLIST_FILE"] = True
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
         product_name = target_name
@@ -355,7 +357,6 @@ def _process_top_level_properties(
         if xctest:
             # This is something like `swift_test`: it creates an xctest bundle
             product_type = "com.apple.product-type.bundle.unit-test"
-            build_settings["GENERATE_INFOPLIST_FILE"] = True
 
             # "some/test.xctest/binary" -> "some/test.xctest"
             bundle_path = xctest[:-(len(xctest.split(".xctest/")[1]) + 1)]
@@ -537,18 +538,24 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
 
-    modulemaps = _process_modulemaps(
-        swift_info = target[SwiftInfo] if SwiftInfo in target else None,
-    )
-    inputs = input_files.collect(
-        ctx = ctx,
-        target = target,
-        additional_files = modulemaps.files,
-        transitive_infos = transitive_infos,
-    )
+    additional_files = []
+
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = _process_modulemaps(swift_info = swift_info)
+    additional_files.extend(modulemaps.files)
+
+    info_plist = None
+    if bundle_info:
+        info_plist = file_path(bundle_info.infoplist)
+        additional_files.append(bundle_info.infoplist)
+
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        additional_files = additional_files,
+        transitive_infos = transitive_infos,
+    )
     search_paths = _process_search_paths(
         cc_info = target[CcInfo] if CcInfo in target else None,
         opts_search_paths = opts_search_paths,
@@ -603,6 +610,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             links = links,
             dependencies = dependencies,
             outputs = _process_outputs(target),
+            info_plist = info_plist,
         ),
     )
 
@@ -730,6 +738,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             links = [],
             dependencies = dependencies,
             outputs = _process_outputs(target),
+            info_plist = None,
         ),
     )
 
