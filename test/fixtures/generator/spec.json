@@ -36,6 +36,7 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "GENERATE_INFOPLIST_FILE": true,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
@@ -85,6 +86,7 @@
                 "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {},
             "is_swift": false,
             "label": "//tools/generator:generator",
@@ -167,6 +169,7 @@
                 "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "tools/generator/src/BuildSetting.swift",
@@ -293,6 +296,7 @@
                 "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {},
             "is_swift": false,
             "label": "//tools/generator:tests",
@@ -379,6 +383,7 @@
                 "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "tools/generator/test/AddTargetsTests.swift",
@@ -503,6 +508,7 @@
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -593,6 +599,7 @@
                 "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -782,6 +789,7 @@
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -870,6 +878,7 @@
             "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
             "dependencies": [],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -977,6 +986,7 @@
                 "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-1b9bd654f600"
             ],
             "frameworks": [],
+            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {

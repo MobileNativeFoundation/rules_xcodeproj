@@ -1629,6 +1629,7 @@
 			buildSettings = {
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-D_FORTIFY_SOURCE=1",
