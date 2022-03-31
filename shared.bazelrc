@@ -18,6 +18,7 @@ build:workflows --build_metadata=ROLE=CI
 build:workflows --build_metadata=VISIBILITY=PUBLIC
 build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
 build:workflows --color=yes
+build:workflows --terminal_columns=120
 build:workflows --disk_cache=
 
 # Show detailed errors for test failures
