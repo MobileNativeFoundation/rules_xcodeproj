@@ -252,9 +252,9 @@ def _xcode_target(
         swiftmodules,
         inputs,
         links,
+        info_plist,
         dependencies,
-        outputs,
-        info_plist):
+        outputs):
     """Generates the partial json string representation of an Xcode target.
 
     Args:
@@ -281,9 +281,9 @@ def _xcode_target(
         inputs: The value returned from `input_files.collect()`.
         links: A `list` of file paths for libraries that the target links
             against.
+        info_plist: A value as returned by `files.file_path()` or `None`.
         dependencies: A `list` of `id`s of targets that this target depends on.
         outputs: The value returned from `_process_outputs()`.
-        info_plist: A value as returned by `files.file_path()` or `None`.
 
     Returns:
         An element of a json array string. This should be wrapped with `"[{}]"`
@@ -306,9 +306,9 @@ def _xcode_target(
         swiftmodules = swiftmodules,
         inputs = input_files.to_dto(inputs),
         links = links,
+        info_plist = info_plist,
         dependencies = dependencies,
         outputs = outputs,
-        info_plist = info_plist,
     ))
 
     # Since we use a custom dictionary key type in
