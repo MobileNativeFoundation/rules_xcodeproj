@@ -1,4 +1,6 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:link_opts.bzl", "link_opts")
 
 def _get_section_segment_does_not_exist_test(ctx):
