@@ -1,18 +1,31 @@
 import PathKit
 import XcodeProj
 
-/// Wrapper for `PBXFileReference`, adding additional associated data.
-struct File: Equatable {
-    let reference: PBXFileReference?
+/// Wrapper for files (`PBXFileReference` and `PBXVariantGroup`), adding
+/// additional associated data.
+enum File: Equatable {
+    case reference(PBXFileReference?, content: String)
+    case variantGroup(PBXVariantGroup)
+}
 
-    /// File content to be written to disk.
-    ///
-    /// This is only used by the `FilePath.PathType.internal` files.
-    let content: String
+extension File {
+    static func reference(_ reference: PBXFileReference) -> File {
+        return .reference(reference, content: "")
+    }
 
-    init(reference: PBXFileReference?, content: String = "") {
-        self.reference = reference
-        self.content = content
+    static func nonReferencedContent(_ content: String) -> File {
+        return .reference(nil, content: content)
+    }
+}
+
+extension File {
+    var fileElement: PBXFileElement? {
+        switch self {
+        case .reference(let reference, _):
+            return reference
+        case .variantGroup(let group):
+            return group
+        }
     }
 }
 
@@ -206,11 +219,11 @@ extension Generator {
 
         var files: [FilePath: File] = [:]
         for (filePath, element) in elements {
-            guard let reference = element as? PBXFileReference else {
-                continue
+            if let reference = element as? PBXFileReference {
+                files[filePath] = .reference(reference)
+            } else if let variantGroup = element as? PBXVariantGroup {
+                files[filePath] = .variantGroup(variantGroup)
             }
-
-            files[filePath] = File(reference: reference)
         }
 
         // Write generated.xcfilelist
@@ -231,8 +244,8 @@ extension Generator {
             pbxProj.add(object: reference)
             createInternalGroup().addChild(reference)
 
-            files[.internal(generatedFileListPath)] = File(
-                reference: reference,
+            files[.internal(generatedFileListPath)] = .reference(
+                reference,
                 content: Set(generatedFiles).sortedLocalizedStandard().joined()
             )
         }
@@ -242,10 +255,10 @@ extension Generator {
         for target in targets.values {
             let linkFiles = target.links.map { "\($0)\n" }
             if !linkFiles.isEmpty {
-                files[try target.linkFileListFilePath()] = File(
-                    reference: nil,
-                    content: Set(linkFiles).sortedLocalizedStandard().joined()
-                )
+                files[try target.linkFileListFilePath()] =
+                    .nonReferencedContent(
+                        Set(linkFiles).sortedLocalizedStandard().joined()
+                    )
             }
         }
 

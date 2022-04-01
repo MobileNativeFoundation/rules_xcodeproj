@@ -14,9 +14,13 @@ extension Generator {
         let internalOutputPath = outputPath + internalDirectoryName
 
         for (filePath, file) in files.filter(\.key.isInternal) {
+            guard case let .reference(_, content) = file else {
+                continue
+            }
+            
             let path = internalOutputPath + filePath.path
             try path.parent().mkpath()
-            try path.write(file.content)
+            try path.write(content)
         }
     }
 }

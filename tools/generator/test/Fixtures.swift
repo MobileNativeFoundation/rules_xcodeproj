@@ -540,36 +540,32 @@ enum Fixtures {
                 content = ""
             }
             
-            files[filePath] = File(reference: reference, content: content)
+            files[filePath] = .reference(reference, content: content)
         }
 
         // LinkFileLists
 
-        files[.internal("targets/a1b2c/A 2/A.LinkFileList")] = File(
-            reference: nil,
-            content: """
+        files[.internal("targets/a1b2c/A 2/A.LinkFileList")] =
+            .nonReferencedContent("""
 a/c.a
 z/A.a
 
 """)
 
-        files[.internal("targets/a1b2c/B 2/B.LinkFileList")] = File(
-            reference: nil,
-            content: """
+        files[.internal("targets/a1b2c/B 2/B.LinkFileList")] =
+            .nonReferencedContent("""
 a/b.framework
 
 """)
 
-        files[.internal("targets/a1b2c/B 3/B3.LinkFileList")] = File(
-            reference: nil,
-            content: """
+        files[.internal("targets/a1b2c/B 3/B3.LinkFileList")] =
+            .nonReferencedContent("""
 a/b.framework
 
 """)
 
-        files[.internal("targets/a1b2c/C 2/d.LinkFileList")] = File(
-            reference: nil,
-            content: """
+        files[.internal("targets/a1b2c/C 2/d.LinkFileList")] =
+            .nonReferencedContent("""
 a/c.a
 
 """)
@@ -742,7 +738,7 @@ a/c.a
             return buildFiles
         }
 
-        let elements = files.mapValues(\.reference)
+        let elements = files.mapValues(\.fileElement)
 
         let buildPhases: [TargetID: [PBXBuildPhase]] = [
             "A 1": [
@@ -964,7 +960,7 @@ a/c.a
         let shellScript = PBXShellScriptBuildPhase(
             outputFileListPaths: [
                 files[.internal("generated.xcfilelist")]!
-                    .reference!
+                    .fileElement!
                     .projectRelativePath(in: pbxProj)
                     .string,
             ],

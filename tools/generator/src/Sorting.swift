@@ -3,6 +3,9 @@ import XcodeProj
 private extension PBXFileElement {
     var sortOrder: Int {
         switch self {
+        case is PBXVariantGroup:
+            // Localized containers should be treated as files
+            return 0
         case is PBXGroup:
             return -1
         default:
