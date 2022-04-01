@@ -58,11 +58,12 @@ final class TargetMergingTests: XCTestCase {
             frameworks: targets["A 2"]!.frameworks,
             modulemaps: targets["A 1"]!.modulemaps,
             swiftmodules: targets["A 1"]!.swiftmodules,
-            inputs: targets["A 1"]!.inputs,
+            resourceBundles: targets["A 2"]!.resourceBundles,
+            inputs: targets["A 1"]!.inputs.union(targets["A 2"]!.inputs),
             // Removed "A 1"'s product
             links: ["a/c.a"],
             // Inherited "A 1"'s dependencies and removed "A 1"
-            dependencies: ["C 1"]
+            dependencies: ["C 1", "R 1"]
         )
         expectedTargets["B 2"] = Target.mock(
             packageBinDir: targets["B 1"]!.packageBinDir,
@@ -72,7 +73,8 @@ final class TargetMergingTests: XCTestCase {
             frameworks: targets["B 2"]!.frameworks,
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
-            inputs: targets["B 1"]!.inputs,
+            resourceBundles: targets["B 2"]!.resourceBundles,
+            inputs: targets["B 1"]!.inputs.union(targets["B 2"]!.inputs),
             // Removed "A 1"'s and "B 1"'s product
             links: [],
             // Inherited "B 1"'s dependencies and removed "A 1"
@@ -86,7 +88,8 @@ final class TargetMergingTests: XCTestCase {
             frameworks: targets["B 3"]!.frameworks,
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
-            inputs: targets["B 1"]!.inputs,
+            resourceBundles: targets["B 3"]!.resourceBundles,
+            inputs: targets["B 1"]!.inputs.union(targets["B 3"]!.inputs),
             // Removed "B 1"'s product
             links: [],
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
@@ -121,6 +124,8 @@ final class TargetMergingTests: XCTestCase {
             isSwift: targets["B 2"]!.isSwift,
             frameworks: targets["B 2"]!.frameworks,
             modulemaps: targets["B 2"]!.modulemaps,
+            swiftmodules: targets["B 2"]!.swiftmodules,
+            resourceBundles: targets["B 2"]!.resourceBundles,
             inputs: targets["B 2"]!.inputs,
             links: ["z/A.a", "a/b.framework"],
             dependencies: targets["B 2"]!.dependencies
@@ -140,7 +145,8 @@ final class TargetMergingTests: XCTestCase {
             frameworks: targets["B 2"]!.frameworks,
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
-            inputs: targets["B 1"]!.inputs,
+            resourceBundles: targets["B 2"]!.resourceBundles,
+            inputs: targets["B 1"]!.inputs.union(targets["B 2"]!.inputs),
             // Removed "B 1"'s product
             links: ["z/A.a"],
             // Inherited "B 1"'s dependencies
@@ -154,7 +160,8 @@ final class TargetMergingTests: XCTestCase {
             frameworks: targets["B 3"]!.frameworks,
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
-            inputs: targets["B 1"]!.inputs,
+            resourceBundles: targets["B 3"]!.resourceBundles,
+            inputs: targets["B 1"]!.inputs.union(targets["B 3"]!.inputs),
             // Removed "B 1"'s product
             links: [],
             // Inherited "B 1"'s dependencies

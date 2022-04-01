@@ -20,16 +20,28 @@ files are generated, they will also end up in `InputFilesInfo.generated`.
 A sequence of attribute names to not collect `File`s from.
 """,
         "hdrs": """\
-A sequence of attribute names to collect `File`s from for the
-`InputFilesInfo.hdrs` field.
+A sequence of attribute names to collect `File`s from for the `hdrs`-like
+attributes.
 """,
         "non_arc_srcs": """\
-A sequence of attribute names to collect `File`s from for the
-`InputFilesInfo.non_arc_srcs` field.
+A sequence of attribute names to collect `File`s from for `non_arc_srcs`-like
+attributes.
+""",
+        "resources": """\
+A sequence of attribute names to collect `File`s from for the `resources`-like
+attributes.
 """,
         "srcs": """\
-A sequence of attribute names to collect `File`s from for the
-`InputFilesInfo.srcs` field.
+A sequence of attribute names to collect `File`s from for `srcs`-like
+attributes.
+""",
+        "structured_resources": """\
+A sequence of attribute names to collect `File`s from for
+`structured_resources`-like attributes.
+""",
+        "bundle_imports": """\
+A sequence of attribute names to collect `File`s from for `bundle_imports`-like
+attributes.
 """,
     },
 )
@@ -59,6 +71,10 @@ the target that can be merged into the target with the id of the 'dest' field.
         "required_links": """\
 A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
+""",
+        "resource_bundles": """\
+A `depset` of all resource bundle product paths (these are made up, but a key
+that the generator uses) that haven't been added to an Xcode target yet.
 """,
         "search_paths": """\
 A value returned from `_process_search_paths()`, that contains the search

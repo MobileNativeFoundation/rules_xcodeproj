@@ -1669,8 +1669,6 @@
 					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_LDFLAGS = (
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)",
-					"-L/usr/lib/swift",
 					"-filelist",
 					"$(PROJECT_DIR)/test/fixtures/generator/project.xcodeproj/rules_xcodeproj/targets/darwin_x86_64-fastbuild-ST-1b9bd654f600/tools/generator/generator.LinkFileList,$(BUILD_DIR)",
 					"-ObjC",

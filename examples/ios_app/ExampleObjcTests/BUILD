@@ -13,6 +13,7 @@ objc_library(
     name = "ExampleObjcTests.library",
     testonly = True,
     srcs = glob(["**/*.m"]),
+    data = ["@examples_ios_app_external//:ExternalImportedBundle"],
     enable_modules = True,
     module_name = "ExampleObjcTests",
     tags = ["manual"],

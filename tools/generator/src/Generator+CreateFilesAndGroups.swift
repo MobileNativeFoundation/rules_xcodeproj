@@ -35,7 +35,6 @@ extension Generator {
             in pbxProj: PBXProj,
             filePath: FilePath,
             pathComponent: String,
-            isFolder: Bool,
             isLeaf: Bool
         ) -> (PBXFileElement, isNew: Bool) {
             if let element = elements[filePath] {
@@ -52,7 +51,7 @@ extension Generator {
                 return (group, true)
             } else {
                 let lastKnownFileType: String?
-                if isFolder {
+                if filePath.isFolder {
                     lastKnownFileType = "folder"
                 } else {
                     lastKnownFileType = Path(pathComponent).lastKnownFileType
@@ -64,9 +63,7 @@ extension Generator {
                 )
                 pbxProj.add(object: file)
 
-                var actualFilePath = filePath
-                actualFilePath.isFolder = isFolder
-                elements[actualFilePath] = file
+                elements[filePath] = file
 
                 return (file, true)
             }
@@ -147,7 +144,9 @@ extension Generator {
         var allInputPaths = extraFiles
         for target in targets.values {
             allInputPaths.formUnion(target.inputs.all)
-            if !target.inputs.containsSources {
+            if !target.inputs.containsSources
+                && target.product.type != .bundle
+            {
                 allInputPaths.insert(.internal(compileStubPath))
             }
         }
@@ -175,12 +174,11 @@ extension Generator {
             for (offset, component) in components.enumerated() {
                 filePath = filePath + component
                 let isLeaf = offset == components.count - 1
-                let isFolder = isLeaf && fullFilePath.isFolder
+                filePath.isFolder = isLeaf && fullFilePath.isFolder
                 let (element, isNew) = createElement(
                     in: pbxProj,
                     filePath: filePath,
                     pathComponent: component,
-                    isFolder: isFolder,
                     isLeaf: isLeaf
                 )
                 if isNew {

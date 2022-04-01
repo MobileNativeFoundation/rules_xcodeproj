@@ -25,6 +25,7 @@ struct Target: Equatable, Decodable {
     var frameworks: [FilePath]
     var modulemaps: [FilePath]
     var swiftmodules: [FilePath]
+    let resourceBundles: Set<Path>
     var inputs: Inputs
     var links: Set<Path>
     var infoPlist: FilePath?

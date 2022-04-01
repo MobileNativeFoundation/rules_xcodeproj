@@ -96,7 +96,10 @@ Target "\(id)" not found in `pbxTargets`.
                 )
             }
 
-            if !target.isSwift && target.product.type.isExecutable {
+            if !target.isSwift
+                && target.product.type.isExecutable
+                && target.inputs.containsSourceFiles
+            {
                 try targetBuildSettings.prepend(
                     onKey: "OTHER_LDFLAGS",
                     [

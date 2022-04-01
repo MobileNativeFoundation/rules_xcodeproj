@@ -6,6 +6,7 @@ objc_library(
         ["**/*.h"],
     ),
     hdrs = glob(["**/*.h"]),
+    data = ["@examples_ios_app_external//:ExternalImportedBundle"],
     module_name = "Utils",
     tags = ["manual"],
     visibility = ["//visibility:public"],

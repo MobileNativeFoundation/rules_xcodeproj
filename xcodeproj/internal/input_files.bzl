@@ -1,8 +1,8 @@
 """Functions to deal with target input files."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load(":collections.bzl", "flatten")
-load(":files.bzl", "file_path", "file_path_to_dto")
+load(":collections.bzl", "flatten", "set_if_true")
+load(":files.bzl", "file_path", "file_path_to_dto", "join_paths_ignoring_empty")
 load(":logging.bzl", "warn")
 load(":providers.bzl", "InputFileAttributesInfo")
 
@@ -38,6 +38,9 @@ def _collect_transitive_extra_files(info):
         transitive.append(inputs.hdrs)
     return transitive
 
+def _should_include_transitive_resources(*, info):
+    return not info.target or not info.target.is_bundle
+
 def _should_ignore_attr(attr, *, excluded_attrs):
     return (
         attr in excluded_attrs or
@@ -47,12 +50,61 @@ def _should_ignore_attr(attr, *, excluded_attrs):
         attr in ("to_json", "to_proto")
     )
 
+def _folder_resource_file_path(*, target, file):
+    package_dir = join_paths_ignoring_empty(
+        target.label.workspace_root,
+        target.label.package,
+    )
+    path = file.path
+
+    if not path.startswith(package_dir):
+        fail("""\
+Structured resources must come from the same package as the target. {} is not \
+in {}""".format(file, target.label))
+
+    relative_path = path[len(package_dir) + 1:]
+    relative_folder, _, _ = relative_path.partition("/")
+
+    return file_path(
+        file,
+        path = join_paths_ignoring_empty(package_dir, relative_folder),
+        is_folder = True,
+    )
+
+def _bundle_import_file_path(*, target, file):
+    package_dir = join_paths_ignoring_empty(
+        target.label.workspace_root,
+        target.label.package,
+    )
+    path = file.path
+
+    if not path.startswith(package_dir):
+        fail("""\
+Bundle import paths must come from the same package as the target. {} is not \
+in {}""".format(file, target.label))
+
+    relative_path = path[len(package_dir) + 1:]
+    prefix, ext, _ = relative_path.rpartition(".bundle")
+    if not ext:
+        fail("Expected file.path %r to contain .bundle, but it did not" % (
+            file,
+        ))
+
+    relative_bundle = prefix + ext
+
+    return file_path(
+        file,
+        path = join_paths_ignoring_empty(package_dir, relative_bundle),
+        is_folder = True,
+    )
+
 # API
 
 def _collect(
         *,
         ctx,
         target,
+        owner,
         additional_files = [],
         transitive_infos):
     """Collects all of the inputs of a target.
@@ -60,6 +112,9 @@ def _collect(
     Args:
         ctx: The aspect context.
         target: The `Target` to collect inputs from.
+        owner: An optional string that has a unique identifier for `target`, if
+            it owns the resources. Only targets that become Xcode targets should
+            own resources.
         additional_files: A `list` of `File`s to add to the inputs. This can
             be used to add files to the `generated` and `extra_files` fields
             (e.g. modulemaps or BUILD files).
@@ -75,6 +130,8 @@ def _collect(
             `hdrs`-like attributes.
         *   `non_arc_srcs`: A `depset` of `File`s that are inputs to
             `target`'s `non_arc_srcs`-like attributes.
+        *   `resources`: A `depset` of `FilePath`s that are inputs to `target`'s
+            `resources`-like and `structured_resources`-like attributes.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
         *   `extra_files`: A `depset` of `File`s that are inputs to `target`
@@ -88,6 +145,8 @@ def _collect(
     srcs = []
     non_arc_srcs = []
     hdrs = []
+    resources = []
+    unowned_resources = []
     generated = []
     extra_files = []
 
@@ -103,6 +162,30 @@ def _collect(
                 non_arc_srcs.append(file)
             elif attr in attrs_info.hdrs:
                 hdrs.append(file)
+            elif attr in attrs_info.resources:
+                fp = file_path(file)
+                if owner:
+                    resources.append((owner, fp))
+                else:
+                    unowned_resources.append(fp)
+            elif attr in attrs_info.structured_resources:
+                fp = _folder_resource_file_path(
+                    target = target,
+                    file = file,
+                )
+                if owner:
+                    resources.append((owner, fp))
+                else:
+                    unowned_resources.append(fp)
+            elif attr in attrs_info.bundle_imports:
+                fp = _bundle_import_file_path(
+                    target = target,
+                    file = file,
+                )
+                if owner:
+                    resources.append((owner, fp))
+                else:
+                    unowned_resources.append(fp)
             elif file not in output_files:
                 extra_files.append(file)
 
@@ -140,10 +223,40 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
     generated.extend([file for file in additional_files if not file.is_source])
     extra_files.extend(additional_files)
 
+    unowned_resources_depset = depset(
+        None if owner else unowned_resources,
+        transitive = [
+            info.inputs._unowned_resources
+            for _, info in transitive_infos
+        ],
+    )
+    if owner:
+        resources.extend([
+            (owner, fp)
+            for fp in unowned_resources_depset.to_list()
+        ])
+        unowned_resources_depset = depset()
+
     return struct(
+        _unowned_resources = unowned_resources_depset,
+        _resource_owners = depset(
+            [owner] if owner else None,
+            transitive = [
+                info.inputs._resource_owners
+                for _, info in transitive_infos
+            ],
+        ),
         srcs = depset(srcs),
         non_arc_srcs = depset(non_arc_srcs),
         hdrs = depset(hdrs),
+        resources = depset(
+            resources,
+            transitive = [
+                info.inputs.resources
+                for _, info in transitive_infos
+                if _should_include_transitive_resources(info = info)
+            ],
+        ),
         generated = depset(
             generated,
             transitive = [
@@ -160,12 +273,10 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
         ),
     )
 
-def _merge(inputs = None, *, transitive_infos):
+def _merge(*, transitive_infos):
     """Creates merged inputs.
 
     Args:
-        inputs: The inputs, as returned by `input_files.collect()`, of the
-            current target, or `None`.
         transitive_infos: A list of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
 
@@ -176,28 +287,51 @@ def _merge(inputs = None, *, transitive_infos):
         `transitive_infos` (e.g. `generated` and `extra_files`)
     """
     return struct(
-        srcs = inputs.srcs if inputs else depset(),
-        non_arc_srcs = inputs.non_arc_srcs if inputs else depset(),
-        hdrs = inputs.hdrs if inputs else depset(),
+        _unowned_resources = depset(
+            transitive = [
+                info.inputs._unowned_resources
+                for _, info in transitive_infos
+            ],
+        ),
+        _resource_owners = depset(
+            transitive = [
+                info.inputs._resource_owners
+                for _, info in transitive_infos
+            ],
+        ),
+        srcs = depset(),
+        non_arc_srcs = depset(),
+        hdrs = depset(),
+        resources = depset(
+            transitive = [
+                info.inputs.resources
+                for _, info in transitive_infos
+                if _should_include_transitive_resources(info = info)
+            ],
+        ),
         generated = depset(
-            transitive = ([inputs.generated] if inputs else []) + [
+            transitive = [
                 info.inputs.generated
                 for _, info in transitive_infos
             ],
         ),
         extra_files = depset(
-            transitive = ([inputs.extra_files] if inputs else []) + [
+            transitive = [
                 info.inputs.extra_files
                 for _, info in transitive_infos
             ],
         ),
     )
 
-def _to_dto(inputs):
+def _to_dto(inputs, *, is_bundle, avoid_infos):
     """Generates a target DTO value for inputs.
 
     Args:
         inputs: A value returned from `input_files.collect()`.
+        is_bundle: Whether the target is a bundle.
+        avoid_infos: A list of `XcodeProjInfo`s for the targets that already
+            consumed resources, and their resources shouldn't be included in
+            the DTO.
 
     Returns:
         A `dict` containing the following elements:
@@ -205,6 +339,7 @@ def _to_dto(inputs):
         *   `srcs`: A `list` of `FilePath`s for `srcs`.
         *   `non_arc_srcs`: A `list` of `FilePath`s for `non_arc_srcs`.
         *   `hdrs`: A `list` of `FilePath`s for `hdrs`.
+        *   `resources`: A `list` of `FilePath`s for `resources`.
     """
     ret = {}
 
@@ -219,6 +354,24 @@ def _to_dto(inputs):
     _process_attr("srcs")
     _process_attr("non_arc_srcs")
     _process_attr("hdrs")
+
+    if is_bundle and inputs.resources:
+        avoid_owners = depset(
+            transitive = [
+                info.inputs._resource_owners
+                for _, info in avoid_infos
+            ],
+        ).to_list()
+
+        set_if_true(
+            ret,
+            "resources",
+            [
+                file_path_to_dto(fp)
+                for owner, fp in inputs.resources.to_list()
+                if owner not in avoid_owners
+            ],
+        )
 
     return ret
 

@@ -107,6 +107,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let expectedRootElements: [PBXFileElement] = [
             // Root group that holds "a/b/c.m" and "a/a.h"
             expectedElements["a"]!,
+            // Root group that holds "r1/X.txt" and others
+            expectedElements["r1"]!,
             // Root group that holds "x/y.swift"
             expectedElements["x"]!,
             // Files are sorted below groups

@@ -14,6 +14,7 @@ swift_library(
     name = "ExampleTests.library",
     testonly = True,
     srcs = glob(["**/*.swift"]),
+    data = ["//ExampleResources"],
     module_name = "ExampleTests",
     tags = ["manual"],
     deps = [

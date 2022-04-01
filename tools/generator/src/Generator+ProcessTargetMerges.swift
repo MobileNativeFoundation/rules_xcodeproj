@@ -87,7 +87,7 @@ exist
                 merged.swiftmodules = merging.swiftmodules
 
                 // Update inputs
-                merged.inputs = merging.inputs
+                merged.inputs.formUnion(merging.inputs)
 
                 // Update links
                 merged.links.remove(merging.product.path)

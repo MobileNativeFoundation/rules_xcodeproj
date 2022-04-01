@@ -36,6 +36,41 @@ extension PBXProductType {
         }
     }
 
+    var isBundle: Bool {
+        switch self {
+        case .application: return true
+        case .framework: return true
+        case .staticFramework: return true
+        case .xcFramework: return true
+        case .dynamicLibrary: return false
+        case .staticLibrary: return false
+        case .bundle: return true
+        case .unitTestBundle: return true
+        case .uiTestBundle: return true
+        case .appExtension: return true
+        case .commandLineTool: return false
+        case .watchApp: return true
+        case .watch2App: return true
+        case .watch2AppContainer: return true
+        case .watchExtension: return true
+        case .watch2Extension: return true
+        case .tvExtension: return true
+        case .messagesApplication: return true
+        case .messagesExtension: return true
+        case .stickerPack: return true
+        case .xpcService: return true
+        case .ocUnitTestBundle: return true
+        case .xcodeExtension: return true
+        case .instrumentsPackage: return true
+        case .intentsServiceExtension: return true
+        case .onDemandInstallCapableApplication: return true
+        case .metalLibrary: return false
+        case .driverExtension: return false
+        case .systemExtension: return false
+        case .none: return false
+        }
+    }
+
     var isFramework: Bool {
         switch self {
         case .application: return false
