@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1476C3F44387C9739C0A9774 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FEC277C4E8ADC5127B637A /* lib.m */; };
 		336E0B2719F93F60A3D4F740 /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = B5511E6B7C59A1600AEF50FA /* private.h */; };
+		6A09B827489154EF7283249D /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600865D85986BF1EAC59E70F /* lib.swift */; };
 		7C3CD0E0D0A59C7B68CC261C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97093D4A77C09BF21048172D /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -20,11 +21,20 @@
 			remoteGlobalIDString = 4135F6971396668DE392B2E0;
 			remoteInfo = lib_impl;
 		};
+		F61703BD3CF37BD67AA71A40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 829CC86FED0979E9DABDD389;
+			remoteInfo = lib_swift;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1704EC3DF20D136B9D2B8C0D /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EADE140455A0D9F51FEA180 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_swift.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		57486259156D32B2F964EF4E /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		600865D85986BF1EAC59E70F /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
 		97093D4A77C09BF21048172D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A7FEC277C4E8ADC5127B637A /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		B5511E6B7C59A1600AEF50FA /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
@@ -52,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				1704EC3DF20D136B9D2B8C0D /* liblib_impl.a */,
+				4EADE140455A0D9F51FEA180 /* liblib_swift.a */,
 				E37C21ED6BACCA0E92024F54 /* tool */,
 			);
 			name = Products;
@@ -70,6 +81,7 @@
 			children = (
 				21603E9396A799CBC290553D /* dir with space */,
 				A7FEC277C4E8ADC5127B637A /* lib.m */,
+				600865D85986BF1EAC59E70F /* lib.swift */,
 				B5511E6B7C59A1600AEF50FA /* private.h */,
 			);
 			path = lib;
@@ -118,6 +130,22 @@
 			productReference = 1704EC3DF20D136B9D2B8C0D /* liblib_impl.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		829CC86FED0979E9DABDD389 /* lib_swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B83D8CB10792DFAF3232036 /* Build configuration list for PBXNativeTarget "lib_swift" */;
+			buildPhases = (
+				6FA969CAD689DDA9D796773C /* Sources */,
+				7946490D36B37800A25F0454 /* Copy Swift Generated Header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib_swift;
+			productName = lib_swift;
+			productReference = 4EADE140455A0D9F51FEA180 /* liblib_swift.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		FD130DFF680DDEAB3B145665 /* tool */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 867643D0A3B038E40F01DB27 /* Build configuration list for PBXNativeTarget "tool" */;
@@ -128,6 +156,7 @@
 			);
 			dependencies = (
 				F564132625DD0D24B12A9CCD /* PBXTargetDependency */,
+				0459E26F2853B3A5AABC4F0D /* PBXTargetDependency */,
 			);
 			name = tool;
 			productName = tool;
@@ -145,6 +174,10 @@
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					4135F6971396668DE392B2E0 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					829CC86FED0979E9DABDD389 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -168,10 +201,31 @@
 			projectRoot = "";
 			targets = (
 				4135F6971396668DE392B2E0 /* lib_impl */,
+				829CC86FED0979E9DABDD389 /* lib_swift */,
 				FD130DFF680DDEAB3B145665 /* tool */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7946490D36B37800A25F0454 /* Copy Swift Generated Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+			);
+			name = "Copy Swift Generated Header";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		40C8E383D3AA38485305B1FC /* Sources */ = {
@@ -180,6 +234,14 @@
 			files = (
 				1476C3F44387C9739C0A9774 /* lib.m in Sources */,
 				336E0B2719F93F60A3D4F740 /* private.h in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FA969CAD689DDA9D796773C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A09B827489154EF7283249D /* lib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +256,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0459E26F2853B3A5AABC4F0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = lib_swift;
+			target = 829CC86FED0979E9DABDD389 /* lib_swift */;
+			targetProxy = F61703BD3CF37BD67AA71A40 /* PBXContainerItemProxy */;
+		};
 		F564132625DD0D24B12A9CCD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = lib_impl;
@@ -203,6 +271,66 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2BD75A1E63599BEC1CA8A0BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = (
+					"-D_FORTIFY_SOURCE=1",
+					"-fstack-protector",
+					"-fcolor-diagnostics",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-DDEBUG",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D_FORTIFY_SOURCE=1",
+					"-fstack-protector",
+					"-fcolor-diagnostics",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-DDEBUG",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
+				);
+				PRODUCT_MODULE_NAME = LibSwift;
+				PRODUCT_NAME = lib_swift;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = lib_swift;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin",
+					"$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin",
+				);
+			};
+			name = Debug;
+		};
 		7C935235ACC6252AE6F5B6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -235,7 +363,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(PROJECT_DIR)/examples/command_line/lib/dir with space\"",
+					"\"$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/dir with space\"",
 					"\"$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/dir with space\"",
+					"$(PROJECT_DIR)/examples/command_line/lib/private",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/private",
+					"$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
@@ -359,6 +491,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5B83D8CB10792DFAF3232036 /* Build configuration list for PBXNativeTarget "lib_swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BD75A1E63599BEC1CA8A0BA /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		7F2E477BA43C35775A2C91A4 /* Build configuration list for PBXNativeTarget "lib_impl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

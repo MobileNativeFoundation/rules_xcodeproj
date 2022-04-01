@@ -1097,6 +1097,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1238,6 +1239,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(PROJECT_DIR)/bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist";
@@ -1297,6 +1299,7 @@
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example/Example.app/Example";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
 				);
 			};
@@ -1370,6 +1373,7 @@
 				TARGET_NAME = TestingUtils;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
 				);
 			};
@@ -1406,6 +1410,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1479,6 +1484,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(PROJECT_DIR)/bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example/Example-intermediates/Info.plist";
@@ -1539,6 +1545,7 @@
 				TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
 				);
 			};
@@ -1560,6 +1567,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 					"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(PROJECT_DIR)/bazel-out/applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.plist";
