@@ -28,7 +28,7 @@ def _get_file_from_objc(objcProvider):
     # info_plist_path = _get_path_from_linkopts(objcProvider.linkopts)
     # info_plist_path = link_opts.get_value_after(objcProvider.linkopts, "__info_plist")
     info_plist_section = link_opts.get_section(
-        objcProvider.linkopts,
+        objcProvider.linkopts.to_list(),
         "__TEXT",
         "__info_plist",
     )

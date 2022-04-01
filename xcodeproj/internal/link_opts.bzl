@@ -44,7 +44,7 @@ def _get_segments(linker_opts):
         segment[section_name] = _create_section(section_name, file)
     return segments
 
-def _get_section(depset_or_segments, segment_name, section_name):
+def _get_section(linker_opts_or_segments, segment_name, section_name):
     # TODO(chuck): FIX ME!
     pass
 
