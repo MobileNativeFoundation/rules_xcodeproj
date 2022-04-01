@@ -31,8 +31,8 @@ def _get_file_from_objc_provider_test(ctx):
 
 get_file_from_objc_provider_test = unittest.make(_get_file_from_objc_provider_test)
 
-def get_file_from_objc_provider_test_suite():
+def get_file_from_objc_provider_test_suite(name):
     return unittest.suite(
-        "get_file_from_objc_provider_tests",
+        name,
         get_file_from_objc_provider_test,
     )

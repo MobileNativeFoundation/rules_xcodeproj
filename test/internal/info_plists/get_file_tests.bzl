@@ -31,8 +31,8 @@ def _get_file_from_bundle_info_test(ctx):
 
 get_file_from_bundle_info_test = unittest.make(_get_file_from_bundle_info_test)
 
-def get_file_test_suite():
+def get_file_test_suite(name):
     return unittest.suite(
-        "get_file_tests",
+        name,
         get_file_from_bundle_info_test,
     )

@@ -63,9 +63,9 @@ def _get_section_section_exists_test(ctx):
 
 get_section_section_exists_test = unittest.make(_get_section_section_exists_test)
 
-def get_section_test_suite():
+def get_section_test_suite(name):
     return unittest.suite(
-        "get_section_tests",
+        name,
         get_section_segment_does_not_exist_test,
         get_section_section_does_not_exist_test,
         get_section_section_exists_test,

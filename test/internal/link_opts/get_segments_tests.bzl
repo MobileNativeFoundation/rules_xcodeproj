@@ -62,9 +62,9 @@ def _get_segments_passing_dict_test(ctx):
 
 get_segments_passing_dict_test = unittest.make(_get_segments_passing_dict_test)
 
-def get_segments_test_suite():
+def get_segments_test_suite(name):
     return unittest.suite(
-        "get_segments_tests",
+        name,
         get_segments_no_segments_test,
         get_segments_with_segments_test,
         get_segments_passing_dict_test,
