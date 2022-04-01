@@ -21,19 +21,27 @@ def _create_section(name, file = None):
         file = file,
     )
 
-def _get_segments(linker_opts):
+def _get_segments(linker_opts_or_segments):
     """Returns a `dict` that contains all of the segments defined by the \
     specified linker options.
 
+    If `linker_opts_or_segments` is a `dict`, it is assumged to be a segments
+    `dict` and is returned. Otherwise, the options are processed and a segments
+    `dict` is created.
+
     Args:
-        linker_flags: A `list` of flags passed to the linker.
+        linker_opts_or_segments: A `list` of flags passed to the linker or a
+                                 segments `dict`.
 
     Returns:
         A `dict` that contains all of the segments defined by the specified
         linker options.
     """
+    if type(linker_opts_or_segments) == "dict":
+        return linker_opts_or_segments
+
     segments = {}
-    for opt in linker_opts:
+    for opt in linker_opts_or_segments:
         if not opt.startswith("-Wl,-sectcreate,"):
             continue
         parts = opt.split(",")
@@ -45,8 +53,11 @@ def _get_segments(linker_opts):
     return segments
 
 def _get_section(linker_opts_or_segments, segment_name, section_name):
-    # TODO(chuck): FIX ME!
-    pass
+    segments = _get_segments(linker_opts_or_segments)
+    segment = segments.get(segment_name)
+    if segment == None:
+        return None
+    return segment.get(section_name)
 
 link_opts = struct(
     get_segments = _get_segments,

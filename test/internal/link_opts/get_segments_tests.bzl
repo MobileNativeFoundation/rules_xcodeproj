@@ -39,9 +39,29 @@ def _get_segments_with_segments_test(ctx):
 
 get_segments_with_segments_test = unittest.make(_get_segments_with_segments_test)
 
+def _get_segments_passing_dict_test(ctx):
+    env = unittest.begin(ctx)
+
+    segments = {
+        "__TEXT": {
+            "__foo": link_opts.create_section(
+                name = "__foo",
+                file = "path/to/foo",
+            ),
+        },
+    }
+    expected = segments
+    actual = link_opts.get_segments(segments)
+    asserts.equals(env, expected, actual)
+
+    return unittest.end(env)
+
+get_segments_passing_dict_test = unittest.make(_get_segments_passing_dict_test)
+
 def get_segments_test_suite():
     return unittest.suite(
         "get_segments_tests",
         get_segments_no_segments_test,
         get_segments_with_segments_test,
+        get_segments_passing_dict_test,
     )
