@@ -1,3 +1,5 @@
+"""Tests for `get_file_from_objc_provider`"""
+
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility

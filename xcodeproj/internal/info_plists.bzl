@@ -1,3 +1,5 @@
+"""API to Retrieve an `Info.plist` from a Target"""
+
 load("@build_bazel_rules_apple//apple:providers.bzl", "AppleBundleInfo")
 load(":link_opts.bzl", "link_opts")
 
