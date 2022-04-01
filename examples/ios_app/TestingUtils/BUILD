@@ -33,8 +33,11 @@ genrule(
         ":gen_Answer.swift",
     ],
     outs = ["TestingUtils.swift"],
-    cmd = """\
-echo "import Foundation" > $@
-cat $(SRCS) >> $@
-""",
+    cmd = "./$(location merger) $@ $(SRCS)",
+    tools = [":merger"],
+)
+
+sh_binary(
+    name = "merger",
+    srcs = ["merge.sh"],
 )

@@ -27,7 +27,7 @@ load(
 load(":input_files.bzl", "input_files")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
 load(":platform.bzl", "process_platform")
-load(":providers.bzl", "XcodeProjInfo")
+load(":providers.bzl", "InputFileAttributesInfo", "XcodeProjInfo")
 load(":resource_bundle_products.bzl", "resource_bundle_products")
 
 # Configuration
@@ -196,6 +196,7 @@ def _swift_module_output(module):
 
 def _processed_target(
         *,
+        attrs_info,
         defines,
         dependencies,
         inputs,
@@ -209,6 +210,7 @@ def _processed_target(
     """Generates the return value for target processing functions.
 
     Args:
+        attrs_info: The `InputFileAttributesInfo` for the target.
         defines: The value returned from `_process_defines()`.
         dependencies: A `list` of target ids of direct dependencies of this
             target.
@@ -230,6 +232,7 @@ def _processed_target(
         A `struct` containing fields for each argument.
     """
     return struct(
+        attrs_info = attrs_info,
         defines = defines,
         dependencies = dependencies,
         inputs = inputs,
@@ -441,10 +444,15 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     Returns:
         The value returned from `_processed_target()`.
     """
+    attrs_info = target[InputFileAttributesInfo]
+
     configuration = _get_configuration(ctx)
     label = target.label
     id = _get_id(label = label, configuration = configuration)
-    dependencies = _process_dependencies(transitive_infos = transitive_infos)
+    dependencies = _process_dependencies(
+        attrs_info = attrs_info,
+        transitive_infos = transitive_infos,
+    )
     test_host = getattr(ctx.rule.attr, "test_host", None)
 
     deps = getattr(ctx.rule.attr, "deps", [])
@@ -490,6 +498,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        attrs_info = attrs_info,
         owner = resource_owner,
         additional_files = additional_files,
         transitive_infos = transitive_infos,
@@ -590,7 +599,9 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     return _processed_target(
+        attrs_info = attrs_info,
         defines = _process_defines(
+            attrs_info = attrs_info,
             is_swift = is_swift,
             defines = getattr(ctx.rule.attr, "defines", []),
             local_defines = getattr(ctx.rule.attr, "local_defines", []),
@@ -664,6 +675,8 @@ def _process_library_target(*, ctx, target, transitive_infos):
     Returns:
         The value returned from `_processed_target()`.
     """
+    attrs_info = target[InputFileAttributesInfo]
+
     configuration = _get_configuration(ctx)
     label = target.label
     id = _get_id(label = label, configuration = configuration)
@@ -686,7 +699,10 @@ def _process_library_target(*, ctx, target, transitive_infos):
         ctx = ctx,
         target = target,
     )
-    dependencies = _process_dependencies(transitive_infos = transitive_infos)
+    dependencies = _process_dependencies(
+        attrs_info = attrs_info,
+        transitive_infos = transitive_infos,
+    )
     linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
 
     cpp = ctx.fragments.cpp
@@ -723,6 +739,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        attrs_info = attrs_info,
         owner = resource_owner,
         additional_files = modulemaps.files,
         transitive_infos = transitive_infos,
@@ -738,7 +755,9 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
 
     return _processed_target(
+        attrs_info = attrs_info,
         defines = _process_defines(
+            attrs_info = attrs_info,
             is_swift = SwiftInfo in target,
             defines = getattr(ctx.rule.attr, "defines", []),
             local_defines = getattr(ctx.rule.attr, "local_defines", []),
@@ -803,6 +822,8 @@ def _process_resource_target(*, ctx, target, transitive_infos):
     Returns:
         The value returned from `_processed_target()`.
     """
+    attrs_info = target[InputFileAttributesInfo]
+
     configuration = _get_configuration(ctx)
     label = target.label
     id = _get_id(label = label, configuration = configuration)
@@ -820,7 +841,10 @@ def _process_resource_target(*, ctx, target, transitive_infos):
 
     bundle_name = ctx.rule.attr.bundle_name or ctx.rule.attr.name
     product_name = bundle_name
-    dependencies = _process_dependencies(transitive_infos = transitive_infos)
+    dependencies = _process_dependencies(
+        attrs_info = attrs_info,
+        transitive_infos = transitive_infos,
+    )
 
     platform = process_platform(
         ctx = ctx,
@@ -841,6 +865,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        attrs_info = attrs_info,
         owner = resource_owner,
         transitive_infos = transitive_infos,
     )
@@ -860,7 +885,9 @@ def _process_resource_target(*, ctx, target, transitive_infos):
     )
 
     return _processed_target(
+        attrs_info = attrs_info,
         defines = _process_defines(
+            attrs_info = attrs_info,
             is_swift = False,
             defines = [],
             local_defines = [],
@@ -930,16 +957,20 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
     else:
         linker_inputs = depset()
 
+    attrs_info = target[InputFileAttributesInfo]
     resource_owner = None
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        attrs_info = attrs_info,
         owner = resource_owner,
         transitive_infos = transitive_infos,
     )
 
     return _processed_target(
+        attrs_info = attrs_info,
         defines = _process_defines(
+            attrs_info = attrs_info,
             is_swift = SwiftInfo in target,
             defines = getattr(ctx.rule.attr, "defines", []),
             local_defines = getattr(ctx.rule.attr, "local_defines", []),
@@ -947,6 +978,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
             build_settings = None,
         ),
         dependencies = _process_dependencies(
+            attrs_info = attrs_info,
             transitive_infos = transitive_infos,
         ),
         inputs = inputs,
@@ -1100,6 +1132,7 @@ def _skip_target(*, transitive_infos):
     """
     return _target_info_fields(
         defines = _process_defines(
+            attrs_info = None,
             is_swift = False,
             defines = [],
             local_defines = [],
@@ -1107,6 +1140,7 @@ def _skip_target(*, transitive_infos):
             build_settings = None,
         ),
         dependencies = _process_dependencies(
+            attrs_info = None,
             transitive_infos = transitive_infos,
         ),
         inputs = input_files.merge(
@@ -1145,26 +1179,30 @@ def _skip_target(*, transitive_infos):
         ),
     )
 
-def _process_dependencies(*, transitive_infos):
+def _process_dependencies(*, attrs_info, transitive_infos):
     return [
         dependency
         for dependency in flatten([
             # We pass on the next level of dependencies if the previous target
             # didn't create an Xcode target.
             [info.target.id] if info.target else info.dependencies
-            for _, info in transitive_infos
+            for attr, info in transitive_infos
+            if not attrs_info or attr in attrs_info.xcode_targets
         ])
     ]
 
 def _process_defines(
         *,
+        attrs_info,
         is_swift,
         defines,
         local_defines,
         transitive_infos,
         build_settings):
     transitive_cc_defines = []
-    for _, info in transitive_infos:
+    for attr, info in transitive_infos:
+        if attrs_info and attr not in attrs_info.xcode_targets:
+            continue
         transitive_defines = info.defines
         transitive_cc_defines.extend(transitive_defines.cc_defines)
 
@@ -1384,19 +1422,28 @@ def _process_target(*, ctx, target, transitive_infos):
             processed_target.potential_target_merges,
             transitive = [
                 info.potential_target_merges
-                for _, info in transitive_infos
+                for attr, info in transitive_infos
+                if attr in processed_target.attrs_info.xcode_targets
             ],
         ),
         required_links = depset(
             processed_target.required_links,
-            transitive = [info.required_links for _, info in transitive_infos],
+            transitive = [
+                info.required_links
+                for attr, info in transitive_infos
+                if attr in processed_target.attrs_info.xcode_targets
+            ],
         ),
         resource_bundles = processed_target.resource_bundles,
         search_paths = processed_target.search_paths,
         target = processed_target.target,
         xcode_targets = depset(
             processed_target.xcode_targets,
-            transitive = [info.xcode_targets for _, info in transitive_infos],
+            transitive = [
+                info.xcode_targets
+                for attr, info in transitive_infos
+                if attr in processed_target.attrs_info.xcode_targets
+            ],
         ),
     )
 
