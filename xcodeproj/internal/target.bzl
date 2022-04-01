@@ -1383,22 +1383,6 @@ def _process_target(*, ctx, target, transitive_infos):
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields()`.
     """
-
-    # DEBUG BEGIN
-    if apple_common.Objc in target:
-        objcProvider = target[apple_common.Objc]
-        linkopt_list = objcProvider.linkopt.to_list()
-        if len(linkopt_list) > 0:
-            print("*** CHUCK target.label: ", target.label)
-            print("*** CHUCK linkopt_list: ")
-            for idx, item in enumerate(linkopt_list):
-                print("*** CHUCK", idx, ":", item)
-            print("*** CHUCK objcProvider.link_inputs.to_list(): ")
-            for idx, item in enumerate(objcProvider.link_inputs.to_list()):
-                print("*** CHUCK", idx, ":", item.path)
-
-    # DEBUG END
-
     if not _should_become_xcode_target(target):
         processed_target = _process_non_xcode_target(
             ctx = ctx,
