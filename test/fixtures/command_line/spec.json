@@ -22,7 +22,8 @@
         ]
     ],
     "required_links": [
-        "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a"
+        "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
+        "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a"
     ],
     "targets": [
         "//examples/command_line/lib:lib_impl macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
@@ -116,6 +117,101 @@
             "swiftmodules": [],
             "test_host": null
         },
+        "//examples/command_line/lib:lib_swift macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "MACOSX_DEPLOYMENT_TARGET": "12.0",
+                "OTHER_CFLAGS": [
+                    "-D_FORTIFY_SOURCE=1",
+                    "-fstack-protector",
+                    "-fcolor-diagnostics",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-DDEBUG",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined",
+                    "-D__DATE__=\"redacted\"",
+                    "-D__TIMESTAMP__=\"redacted\"",
+                    "-D__TIME__=\"redacted\""
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-D_FORTIFY_SOURCE=1",
+                    "-fstack-protector",
+                    "-fcolor-diagnostics",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-DDEBUG",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined",
+                    "-D__DATE__=\"redacted\"",
+                    "-D__TIMESTAMP__=\"redacted\"",
+                    "-D__TIME__=\"redacted\""
+                ],
+                "PRODUCT_MODULE_NAME": "LibSwift",
+                "PRODUCT_NAME": "lib_swift",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
+            "dependencies": [],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/command_line/lib/lib.swift"
+                ]
+            },
+            "is_swift": true,
+            "label": "//examples/command_line/lib:lib_swift",
+            "links": [],
+            "modulemaps": [],
+            "name": "lib_swift",
+            "outputs": {
+                "swift_module": {
+                    "name": "LibSwift.swiftmodule",
+                    "swiftdoc": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/LibSwift.swiftdoc",
+                    "swiftmodule": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/LibSwift.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/LibSwift.swiftsourceinfo"
+                }
+            },
+            "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "12.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "lib_swift",
+                "path": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a",
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        },
         "//examples/command_line/tool:tool applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
         {
             "build_settings": {
@@ -179,7 +275,8 @@
             "label": "//examples/command_line/tool:tool",
             "links": [
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/libtool.library.a",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a"
+                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
+                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a"
             ],
             "modulemaps": [],
             "name": "tool",
@@ -256,7 +353,8 @@
             },
             "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
             "dependencies": [
-                "//examples/command_line/lib:lib_impl macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57"
+                "//examples/command_line/lib:lib_impl macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
+                "//examples/command_line/lib:lib_swift macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57"
             ],
             "frameworks": [],
             "info_plist": null,
@@ -288,6 +386,11 @@
                     "examples/command_line/lib/dir with space",
                     {
                         "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/dir with space",
+                        "t": "g"
+                    },
+                    "examples/command_line/lib/private",
+                    {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/private",
                         "t": "g"
                     }
                 ],

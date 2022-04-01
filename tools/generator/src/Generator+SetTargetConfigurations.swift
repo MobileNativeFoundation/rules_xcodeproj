@@ -41,26 +41,27 @@ Target "\(id)" not found in `pbxTargets`.
                 )
             }
 
+            func processInclude(_ include: FilePath) -> [String] {
+                var paths: [String] = []
+                // The Swift generated header is in DerivedData, not
+                // bazel-out, so we need to add it's search path.
+                // We also need to add it before bazel-out, so it's
+                // picked up instead of a potentially stale version.
+                if include.type == .generated {
+                    let swiftHeader = "$(BUILD_DIR)/bazel-out" + include.path
+                    paths.append(swiftHeader.string.quoted)
+                }
+                paths.append(
+                    filePathResolver.resolve(include).string.quoted
+                )
+                return paths
+            }
+
             let quoteIncludes = target.searchPaths.quoteIncludes
             if !quoteIncludes.isEmpty {
                 try targetBuildSettings.prepend(
                     onKey: "USER_HEADER_SEARCH_PATHS",
-                    quoteIncludes.flatMap { filePath -> [String] in
-                        var paths: [String] = []
-                        // The Swift generated header is in DerivedData, not
-                        // bazel-out, so we need to add it's search path.
-                        // We also need to add it before bazel-out, so it's
-                        // picked up instead of a potentially stale version.
-                        if !target.isSwift && filePath.type == .generated {
-                            let swiftHeaderPath = "$(BUILD_DIR)/bazel-out" +
-                                filePath.path
-                            paths.append(swiftHeaderPath.string.quoted)
-                        }
-                        paths.append(
-                            filePathResolver.resolve(filePath).string.quoted
-                        )
-                        return paths
-                    }
+                    quoteIncludes.flatMap(processInclude)
                 )
             }
 
@@ -68,9 +69,7 @@ Target "\(id)" not found in `pbxTargets`.
             if !includes.isEmpty {
                 try targetBuildSettings.prepend(
                     onKey: "HEADER_SEARCH_PATHS",
-                    includes.map { filePath in
-                        return filePathResolver.resolve(filePath).string.quoted
-                    }
+                    includes.flatMap(processInclude)
                 )
             }
 
