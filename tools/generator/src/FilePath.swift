@@ -10,17 +10,20 @@ struct FilePath: Hashable, Decodable {
 
     let type: PathType
     var path: Path
+    var isFolder: Bool
 
-    fileprivate init(type: PathType, path: Path) {
+    fileprivate init(type: PathType, path: Path, isFolder: Bool) {
         self.type = type
         self.path = path
+        self.isFolder = isFolder
     }
 
     // MARK: Decodable
 
     enum CodingKeys: String, CodingKey {
-        case type = "t"
         case path = "_"
+        case type = "t"
+        case isFolder = "f"
     }
 
     init(from decoder: Decoder) throws {
@@ -28,6 +31,7 @@ struct FilePath: Hashable, Decodable {
         if let path = try? decoder.singleValueContainer().decode(Path.self) {
             type = .project
             self.path = path
+            isFolder = false
             return
         }
 
@@ -35,29 +39,31 @@ struct FilePath: Hashable, Decodable {
         path = try container.decode(Path.self, forKey: .path)
         type = try container.decodeIfPresent(PathType.self, forKey: .type)
             ?? .project
+        isFolder = try container.decodeIfPresent(Bool.self, forKey: .isFolder)
+            ?? false
     }
 }
 
 extension FilePath {
-    static func project(_ path: Path) -> FilePath {
-        return FilePath(type: .project, path: path)
+    static func project(_ path: Path, isFolder: Bool = false) -> FilePath {
+        return FilePath(type: .project, path: path, isFolder: isFolder)
     }
 
-    static func external(_ path: Path) -> FilePath {
-        return FilePath(type: .external, path: path)
+    static func external(_ path: Path, isFolder: Bool = false) -> FilePath {
+        return FilePath(type: .external, path: path, isFolder: isFolder)
     }
 
-    static func generated(_ path: Path) -> FilePath {
-        return FilePath(type: .generated, path: path)
+    static func generated(_ path: Path, isFolder: Bool = false) -> FilePath {
+        return FilePath(type: .generated, path: path, isFolder: isFolder)
     }
 
-    static func `internal`(_ path: Path) -> FilePath {
-        return FilePath(type: .internal, path: path)
+    static func `internal`(_ path: Path, isFolder: Bool = false) -> FilePath {
+        return FilePath(type: .internal, path: path, isFolder: isFolder)
     }
 }
 
 // MARK: Operators
 
 func +(lhs: FilePath, rhs: String) -> FilePath {
-    return FilePath(type: lhs.type, path: lhs.path + rhs)
+    return FilePath(type: lhs.type, path: lhs.path + rhs, isFolder: false)
 }

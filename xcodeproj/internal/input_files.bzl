@@ -2,7 +2,7 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "flatten")
-load(":files.bzl", "file_path")
+load(":files.bzl", "file_path", "file_path_to_dto")
 load(":logging.bzl", "warn")
 load(":providers.bzl", "InputFileAttributesInfo")
 
@@ -211,7 +211,10 @@ def _to_dto(inputs):
     def _process_attr(attr):
         value = getattr(inputs, attr)
         if value:
-            ret[attr] = [file_path(file) for file in value.to_list()]
+            ret[attr] = [
+                file_path_to_dto(file_path(file))
+                for file in value.to_list()
+            ]
 
     _process_attr("srcs")
     _process_attr("non_arc_srcs")
