@@ -3,7 +3,7 @@
 @implementation Answers
 
 - (NSInteger)answer {
-    NSLog(@"%@", Bar.baz);
+    NSLog(@"%@", [Bar new].baz);
     return 42;
 }
 
