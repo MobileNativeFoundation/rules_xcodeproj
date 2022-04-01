@@ -62,6 +62,36 @@ extension FilePath {
     }
 }
 
+
+// MARK: Comparable
+
+extension FilePath: Comparable {
+    static func < (lhs: FilePath, rhs: FilePath) -> Bool {
+        guard lhs.path == rhs.path else {
+            return lhs.path < rhs.path
+        }
+        guard lhs.type == rhs.type else {
+            return lhs.type < rhs.type
+        }
+        return lhs.isFolder
+    }
+}
+
+extension FilePath.PathType: Comparable {
+    static func < (lhs: FilePath.PathType, rhs: FilePath.PathType) -> Bool {
+        return lhs.sortKey < rhs.sortKey
+    }
+
+    private var sortKey: Int {
+        switch self {
+        case .project: return 0
+        case .external: return 1
+        case .generated: return 2
+        case .internal: return 3
+        }
+    }
+}
+
 // MARK: Operators
 
 func +(lhs: FilePath, rhs: String) -> FilePath {

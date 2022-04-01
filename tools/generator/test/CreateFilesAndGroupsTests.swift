@@ -148,8 +148,29 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(createdRootElements, expectedRootElements)
-        XCTAssertNoDifference(createdFiles, expectedFiles)
+        XCTAssertNoDifference(
+            createdFiles.map(KeyAndValue.init).sorted(),
+            expectedFiles.map(KeyAndValue.init).sorted()
+        )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
+    }
+}
+
+struct KeyAndValue<Key, Value> {
+    let key: Key
+    let value: Value
+
+    init(key: Key, value: Value) {
+        self.key = key
+        self.value = value
+    }
+}
+
+extension KeyAndValue: Equatable where Key: Equatable, Value: Equatable {}
+extension KeyAndValue: Hashable where Key: Hashable, Value: Hashable {}
+extension KeyAndValue: Comparable where Key: Comparable, Value: Equatable {
+    static func < (lhs: KeyAndValue, rhs: KeyAndValue) -> Bool {
+        return lhs.key < rhs.key
     }
 }
