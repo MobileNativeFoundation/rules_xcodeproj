@@ -8,9 +8,7 @@ def _get_file_from_bundle_info_test(ctx):
     env = unittest.begin(ctx)
 
     info_plist_file = struct(_id = "info_plist")
-
-    # TODO(chuck): Replace with real AppleBundleInfo?
-    bundle_info = struct(infoplist = info_plist_file)
+    bundle_info = AppleBundleInfo(infoplist = info_plist_file)
     target = {AppleBundleInfo: bundle_info}
 
     actual = info_plists.get_file(target)
