@@ -1,5 +1,4 @@
-#     # Example
-#     # -Wl,-sectcreate,__TEXT,__info_plist,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-72fe7e1ef217/bin/examples/command_line/tool/tool.merged_infoplist-intermediates/Info.plist
+"""API for Parsing and Retrieving Linker Options Data"""
 
 # Documentation on linker flags:
 #   https://www.objc.io/issues/6-build-tools/mach-o-executables/
@@ -40,6 +39,9 @@ def _get_segments(linker_opts_or_segments):
     if type(linker_opts_or_segments) == "dict":
         return linker_opts_or_segments
 
+    # Example of a linker option that creates a section named __info_plist in the __TEXT segment:
+    # -Wl,-sectcreate,__TEXT,__info_plist,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-72fe7e1ef217/bin/examples/command_line/tool/tool.merged_infoplist-intermediates/Info.plist
+
     segments = {}
     for opt in linker_opts_or_segments:
         if not opt.startswith("-Wl,-sectcreate,"):
@@ -53,6 +55,18 @@ def _get_segments(linker_opts_or_segments):
     return segments
 
 def _get_section(linker_opts_or_segments, segment_name, section_name):
+    """Retrieve the section from the specified segment.
+
+    Args:
+        linker_opts_or_segments: A `list` of flags passed to the linker or a
+                                 segments `dict`.
+        segment_name: The name of the segment as a `string`.
+        section_name: The name of the section as a `string`.
+
+    Returns:
+        Returns the section struct (`link_opts.create_section()`) if it exists.
+        Otherwise, it returns `None`.
+    """
     segments = _get_segments(linker_opts_or_segments)
     segment = segments.get(segment_name)
     if segment == None:
