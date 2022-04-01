@@ -13,7 +13,7 @@ extension Generator {
         for (id, disambiguatedTarget) in disambiguatedTargets {
             guard let pbxTarget = pbxTargets[id] else {
                 throw PreconditionError(message: """
-Target "\(id)" not found in `pbxTargets`.
+Target "\(id)" not found in `pbxTargets`
 """)
             }
 
@@ -22,7 +22,7 @@ Target "\(id)" not found in `pbxTargets`.
                 .map { dependency -> PBXNativeTarget in
                     guard let nativeDependency = pbxTargets[dependency] else {
                         throw PreconditionError(message: """
-Target "\(id)"'s dependency on "\(dependency)" not found in `pbxTargets`.
+Target "\(id)"'s dependency on "\(dependency)" not found in `pbxTargets`
 """)
                     }
                     return nativeDependency

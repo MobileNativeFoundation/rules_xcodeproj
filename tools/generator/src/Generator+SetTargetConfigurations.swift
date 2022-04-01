@@ -17,7 +17,7 @@ extension Generator {
         for (id, disambiguatedTarget) in disambiguatedTargets {
             guard let pbxTarget = pbxTargets[id] else {
                 throw PreconditionError(message: """
-Target "\(id)" not found in `pbxTargets`.
+Target "\(id)" not found in `pbxTargets`
 """)
             }
 
@@ -146,12 +146,12 @@ Target "\(id)" not found in `pbxTargets`.
                     let testHost = disambiguatedTargets[testHostID]?.target
                 else {
                     throw PreconditionError(message: """
-Test host target with id "\(testHostID)" not found
+Test host target with id "\(testHostID)" not found in `disambiguatedTargets`
 """)
                 }
                 guard let pbxTestHost = pbxTargets[testHostID] else {
                     throw PreconditionError(message: """
-Test host pbxTarget with id "\(testHostID)" not found
+Test host pbxTarget with id "\(testHostID)" not found in `pbxTargets`
 """)
                 }
 
@@ -306,7 +306,7 @@ extension Target {
             components[2] == "bin"
         else {
             throw PreconditionError(message: """
-packageBinDir is in unexpected format: \(packageBinDir)
+`packageBinDir` is in unexpected format: \(packageBinDir)
 """)
         }
         // Remove "bin/"

@@ -29,7 +29,7 @@ extension Generator {
 
             guard let product = products.byTarget[id] else {
                 throw PreconditionError(message: """
-Product for target "\(id)" not found
+Product for target "\(id)" not found in `products`
 """)
             }
 
@@ -186,7 +186,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
         func buildFile(headerFile: HeaderFile) throws -> PBXBuildFile {
             guard let file = files[headerFile.filePath] else {
                 throw PreconditionError(message: """
-File "\(headerFile.filePath)" not found
+File "\(headerFile.filePath)" not found in `files`
 """)
             }
             let pbxBuildFile = PBXBuildFile(
@@ -228,7 +228,7 @@ File "\(headerFile.filePath)" not found
         func buildFile(sourceFile: SourceFile) throws -> PBXBuildFile {
             guard let file = files[sourceFile.filePath] else {
                 throw PreconditionError(message: """
-File "\(sourceFile.filePath)" not found
+File "\(sourceFile.filePath)" not found in `files`
 """)
             }
             let pbxBuildFile = PBXBuildFile(
@@ -297,12 +297,12 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         func buildFile(filePath: FilePath) throws -> PBXBuildFile {
             guard let framework = files[filePath] else {
                 throw PreconditionError(message: """
-Framework with file path "\(filePath)" not found
+Framework with file path "\(filePath)" not found in `files`
 """)
             }
             guard let fileElement = framework.fileElement else {
                 throw PreconditionError(message: """
-Framework with file path "\(filePath)" had nil PBXFileElement
+Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
 """)
             }
             let pbxBuildFile = PBXBuildFile(file: fileElement)
@@ -335,12 +335,12 @@ Framework with file path "\(filePath)" had nil PBXFileElement
         func fileElement(filePath: FilePath) throws -> PBXFileElement {
             guard let resource = files[filePath] else {
                 throw PreconditionError(message: """
-Resource with file path "\(filePath)" not found
+Resource with file path "\(filePath)" not found in `files`
 """)
             }
             guard let fileElement = resource.fileElement else {
                 throw PreconditionError(message: """
-Resource with file path "\(filePath)" had nil PBXFileElement
+Resource with file path "\(filePath)" had nil `PBXFileElement` in `files`
 """)
             }
             return fileElement
@@ -349,7 +349,7 @@ Resource with file path "\(filePath)" had nil PBXFileElement
         func productReference(path: Path) throws -> PBXFileReference {
             guard let reference = products.byPath[path] else {
                 throw PreconditionError(message: """
-Resource bundle product reference with path "\(path)" not found
+Resource bundle product reference with path "\(path)" not found in `products`
 """)
             }
             return reference
@@ -386,12 +386,12 @@ Resource bundle product reference with path "\(path)" not found
         func buildFile(filePath: FilePath) throws -> PBXBuildFile {
             guard let framework = files[filePath] else {
                 throw PreconditionError(message: """
-Framework with file path "\(filePath)" not found
+Framework with file path "\(filePath)" not found in `files`
 """)
             }
             guard let fileElement = framework.fileElement else {
                 throw PreconditionError(message: """
-Framework with file path "\(filePath)" had nil PBXFileElement
+Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
 """)
             }
             let pbxBuildFile = PBXBuildFile(
