@@ -24,6 +24,7 @@ load(
     "join_paths_ignoring_empty",
     "parsed_file_path",
 )
+load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
 load(":platform.bzl", "process_platform")
@@ -490,9 +491,10 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     additional_files.extend(modulemaps.files)
 
     info_plist = None
-    if bundle_info:
-        info_plist = file_path(bundle_info.infoplist)
-        additional_files.append(bundle_info.infoplist)
+    info_plist_file = info_plists.get_file(target)
+    if info_plist_file:
+        info_plist = file_path(info_plist_file)
+        additional_files.append(info_plist_file)
 
     resource_owner = str(target.label)
     inputs = input_files.collect(
@@ -593,6 +595,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         is_consuming_bundle = is_bundle,
         transitive_infos = transitive_infos,
     )
+
     search_paths = _process_search_paths(
         cc_info = target[CcInfo] if CcInfo in target else None,
         opts_search_paths = opts_search_paths,

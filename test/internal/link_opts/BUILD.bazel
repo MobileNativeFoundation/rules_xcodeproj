@@ -1,0 +1,3 @@
+load(":get_segments_tests.bzl", "get_segments_test_suite")
+
+get_segments_test_suite()
