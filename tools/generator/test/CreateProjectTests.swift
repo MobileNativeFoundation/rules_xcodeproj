@@ -47,7 +47,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
             compatibilityVersion: "Xcode 13.0",
             mainGroup: expectedMainGroup,
             developmentRegion: "en",
-            knownRegions: ["en", "Base"],
             projectDirPath: projectRootDirectory.normalize().string,
             attributes: attributes
         )

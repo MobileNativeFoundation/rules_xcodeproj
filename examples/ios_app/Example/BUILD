@@ -25,7 +25,10 @@ ios_application(
 apple_resource_group(
     name = "ExampleResourceGroup",
     resources = glob(
-        ["Assets.xcassets/**"],
+        [
+            "Assets.xcassets/**",
+            "*.lproj/**",
+        ],
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
     ),
     structured_resources = ["nested/answer.txt"],

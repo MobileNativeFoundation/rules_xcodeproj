@@ -47,9 +47,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
             // TODO: Calculate `compatibilityVersion`
             compatibilityVersion: "Xcode 13.0",
             mainGroup: mainGroup,
-            // TODO: Make regions configurable?
+            // TODO: Make developmentRegion configurable?
             developmentRegion: "en",
-            knownRegions: ["en", "Base"],
             // TODO: Make this configurable?
             // Normal Xcode projects set this to `""` when at the workspace
             // level. Maybe we should as well?

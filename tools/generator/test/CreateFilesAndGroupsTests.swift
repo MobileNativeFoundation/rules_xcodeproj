@@ -47,6 +47,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ]
         expectedMainGroup.addChildren(expectedRootElements)
 
+        expectedPBXProj.rootObject!.knownRegions = ["en", "Base"]
+
         // Act
 
         let (
@@ -115,6 +117,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedElements["Assets.xcassets"]!,
             expectedElements["b.c"]!,
             expectedElements["d.h"]!,
+            expectedElements["Example.xib"]!,
+            expectedElements["Localized.strings"]!,
             expectedElements["z.h"]!,
             expectedElements["z.mm"]!,
             // Then Bazel External Repositories
@@ -125,6 +129,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedElements[.internal("")]!,
         ]
         expectedMainGroup.addChildren(expectedRootElements)
+
+        expectedPBXProj.rootObject!.knownRegions = ["en", "es", "Base"]
 
         // Act
 
