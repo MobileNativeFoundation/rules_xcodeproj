@@ -35,6 +35,7 @@
 		4EADE140455A0D9F51FEA180 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_swift.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		57486259156D32B2F964EF4E /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		600865D85986BF1EAC59E70F /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
+		8A31C23069C201151EDADE24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		97093D4A77C09BF21048172D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A7FEC277C4E8ADC5127B637A /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		B5511E6B7C59A1600AEF50FA /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		0CDF69186E00FC09E69A79AB /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				8A31C23069C201151EDADE24 /* Info.plist */,
 				97093D4A77C09BF21048172D /* main.m */,
 			);
 			path = tool;
