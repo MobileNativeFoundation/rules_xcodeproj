@@ -1,4 +1,4 @@
-"""Tests for `get_file_from_objc_provider`"""
+"""Tests for `info_plists.get_file_from_objc_provider()`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
@@ -29,7 +29,9 @@ def _get_file_from_objc_provider_test(ctx):
 
     return unittest.end(env)
 
-get_file_from_objc_provider_test = unittest.make(_get_file_from_objc_provider_test)
+get_file_from_objc_provider_test = unittest.make(
+    _get_file_from_objc_provider_test,
+)
 
 def get_file_from_objc_provider_test_suite(name):
     return unittest.suite(

@@ -1,4 +1,4 @@
-"""Tests for `get_section`"""
+"""Tests for `link_opts.get_section()`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
@@ -17,12 +17,18 @@ def _get_section_segment_does_not_exist_test(ctx):
         },
     }
     expected = None
-    actual = link_opts.get_section(segments, "__DOES_NOT_EXIST", "__section_name")
+    actual = link_opts.get_section(
+        segments,
+        "__DOES_NOT_EXIST",
+        "__section_name",
+    )
     asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 
-get_section_segment_does_not_exist_test = unittest.make(_get_section_segment_does_not_exist_test)
+get_section_segment_does_not_exist_test = unittest.make(
+    _get_section_segment_does_not_exist_test,
+)
 
 def _get_section_section_does_not_exist_test(ctx):
     env = unittest.begin(ctx)
@@ -41,7 +47,9 @@ def _get_section_section_does_not_exist_test(ctx):
 
     return unittest.end(env)
 
-get_section_section_does_not_exist_test = unittest.make(_get_section_section_does_not_exist_test)
+get_section_section_does_not_exist_test = unittest.make(
+    _get_section_section_does_not_exist_test,
+)
 
 def _get_section_section_exists_test(ctx):
     env = unittest.begin(ctx)
@@ -61,7 +69,9 @@ def _get_section_section_exists_test(ctx):
 
     return unittest.end(env)
 
-get_section_section_exists_test = unittest.make(_get_section_section_exists_test)
+get_section_section_exists_test = unittest.make(
+    _get_section_section_exists_test,
+)
 
 def get_section_test_suite(name):
     return unittest.suite(

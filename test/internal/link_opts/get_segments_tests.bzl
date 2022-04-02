@@ -1,4 +1,4 @@
-"""Tests for `get_segments`"""
+"""Tests for `link_opts.get_segments()`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
@@ -41,7 +41,9 @@ def _get_segments_with_segments_test(ctx):
 
     return unittest.end(env)
 
-get_segments_with_segments_test = unittest.make(_get_segments_with_segments_test)
+get_segments_with_segments_test = unittest.make(
+    _get_segments_with_segments_test,
+)
 
 def _get_segments_passing_dict_test(ctx):
     env = unittest.begin(ctx)
