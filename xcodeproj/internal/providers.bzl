@@ -11,6 +11,10 @@ rules, then you will use these providers to communicate between them.
 InputFileAttributesInfo = provider(
     "Specifies how input files of a target are collected.",
     fields = {
+        "bundle_imports": """\
+A sequence of attribute names to collect `File`s from for `bundle_imports`-like
+attributes.
+""",
         "excluded": """\
 A sequence of attribute names to not collect `File`s from. This should generally
 be `deps` and `deps`-like attributes. The goal is to exclude attributes that
@@ -36,16 +40,18 @@ attributes.
 A sequence of attribute names to collect `File`s from for
 `structured_resources`-like attributes.
 """,
-        "bundle_imports": """\
-A sequence of attribute names to collect `File`s from for `bundle_imports`-like
-attributes.
-""",
+        "target_type": "See `XcodeProjInfo.target_type`.",
         "xcode_targets": """\
-A sequence of attribute names to allow Xcode targets to propagate from. This
-will share a lot with the `excluded` sequence, but it will also include some
-additional attributes (e.g. `resources`).
+A `dict` mapping attribute names to target type strings (i.e. "resource" or
+"compile"). Only Xcode targets from the specified attributes with the specified
+target type are allowed to propagate.
 """,
     },
+)
+
+target_type = struct(
+    compile = "compile",
+    resources = "resources",
 )
 
 XcodeProjInfo = provider(
@@ -86,6 +92,11 @@ paths of any target that depends on this target.
         "target": """\
 A `struct` that contains information about the current target that is
 potentially needed by the dependent targets.
+""",
+        "target_type": """\
+A string that categorizes the type of the current target. This will be one of
+"compile", "resources", or `None`. Even if this target doesn't produce an Xcode
+target, it can still have a non-`None` value for this field.
 """,
         "xcode_targets": """\
 A `depset` of partial json `dict` strings (e.g. a single '"Key": "Value"'

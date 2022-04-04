@@ -5,12 +5,15 @@ def _collect(
         bundle_path = None,
         owner,
         is_consuming_bundle,
+        attrs_info,
         transitive_infos):
     if owner:
         transitive_unowned_products = depset(
             transitive = [
                 info.resource_bundles._unowned_products
-                for _, info in transitive_infos
+                for attr, info in transitive_infos
+                if (not attrs_info or
+                    attrs_info.xcode_targets.get(attr) == info.target_type)
             ],
         )
         owned_products = [
@@ -24,7 +27,9 @@ def _collect(
             [bundle_path] if bundle_path else None,
             transitive = [
                 info.resource_bundles._unowned_products
-                for _, info in transitive_infos
+                for attr, info in transitive_infos
+                if (not attrs_info or
+                    attrs_info.xcode_targets.get(attr) == info.target_type)
             ],
         )
 

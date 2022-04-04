@@ -11,7 +11,6 @@
         "USE_HEADERMAP": false
     },
     "extra_files": [
-        "ExampleResources/Info.plist",
         "third_party/ExampleFramework.framework/ExampleFramework",
         "third_party/ExampleFramework.framework/Headers/Bar.h",
         "third_party/ExampleFramework.framework/Headers/ExampleFramework.h",
@@ -106,6 +105,7 @@
             "_": "examples_ios_app_external/ExternalFramework.framework/_CodeSignature/CodeResources",
             "t": "e"
         },
+        "ExampleResources/Info.plist",
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
             "t": "g"

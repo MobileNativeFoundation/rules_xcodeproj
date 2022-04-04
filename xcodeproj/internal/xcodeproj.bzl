@@ -183,6 +183,7 @@ def _xcodeproj_impl(ctx):
         if XcodeProjInfo in dep
     ]
     inputs = input_files.merge(
+        attrs_info = None,
         transitive_infos = [(None, info) for info in infos],
     )
 

@@ -37,7 +37,7 @@ apple_resource_group(
 swift_library(
     name = "Example.library",
     srcs = glob(["**/*.swift"]),
-    data = ["//ExampleResources"] + select({
+    data = [":ExampleLibraryResourceGroup"] + select({
         ":release_build": [],
         "//conditions:default": [":PreviewContent"],
     }),
@@ -49,6 +49,11 @@ swift_library(
         "//third_party:ExampleFramework",
         "@examples_ios_app_external//:ExternalFramework",
     ],
+)
+
+apple_resource_group(
+    name = "ExampleLibraryResourceGroup",
+    resources = ["//ExampleResources"],
 )
 
 filegroup(
