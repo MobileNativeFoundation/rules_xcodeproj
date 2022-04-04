@@ -20,7 +20,6 @@ extension Path {
     private var isBundle: Bool { self.extension == "bundle" }
     private var isFramework: Bool {
         return self.extension == "framework"
-            || self.extension == "xcframework"
     }
     private var isSceneKitAssets: Bool { self.extension == "scnassets" }
     private var isXCAssets: Bool { self.extension == "xcassets" }
