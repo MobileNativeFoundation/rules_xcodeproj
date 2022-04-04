@@ -41,27 +41,13 @@ Target "\(id)" not found in `pbxTargets`
                 )
             }
 
-            func processInclude(_ include: FilePath) -> [String] {
-                var paths: [String] = []
-                // The Swift generated header is in DerivedData, not
-                // bazel-out, so we need to add it's search path.
-                // We also need to add it before bazel-out, so it's
-                // picked up instead of a potentially stale version.
-                if include.type == .generated {
-                    let swiftHeader = "$(BUILD_DIR)/bazel-out" + include.path
-                    paths.append(swiftHeader.string.quoted)
-                }
-                paths.append(
-                    filePathResolver.resolve(include).string.quoted
-                )
-                return paths
-            }
-
             let quoteIncludes = target.searchPaths.quoteIncludes
             if !quoteIncludes.isEmpty {
                 try targetBuildSettings.prepend(
                     onKey: "USER_HEADER_SEARCH_PATHS",
-                    quoteIncludes.flatMap(processInclude)
+                    quoteIncludes.map { filePath in
+                        return filePathResolver.resolve(filePath).string.quoted
+                    }
                 )
             }
 
@@ -69,7 +55,9 @@ Target "\(id)" not found in `pbxTargets`
             if !includes.isEmpty {
                 try targetBuildSettings.prepend(
                     onKey: "HEADER_SEARCH_PATHS",
-                    includes.flatMap(processInclude)
+                    includes.map { filePath in
+                        return filePathResolver.resolve(filePath).string.quoted
+                    }
                 )
             }
 
@@ -77,10 +65,16 @@ Target "\(id)" not found in `pbxTargets`
                 onKey: "OTHER_SWIFT_FLAGS",
                 target.modulemaps
                     .map { filePath -> String in
-                        let modulemap = filePathResolver
+                        var modulemap = filePathResolver
                             .resolve(filePath)
-                            .string.quoted
-                        return "-Xcc -fmodule-map-file=\(modulemap)"
+
+                        if modulemap.components.first == "$(BUILD_DIR)" {
+                            modulemap.replaceExtension("xcode.modulemap")
+                        }
+
+                        return """
+-Xcc -fmodule-map-file=\(modulemap.string.quoted)
+"""
                     }
                     .joined(separator: " ")
             )
@@ -129,9 +123,7 @@ Target "\(id)" not found in `pbxTargets`
                     .map { filePath -> String in
                         var dir = filePath
                         dir.path = dir.path.parent().normalize()
-                        return filePathResolver
-                            .resolve(dir, useBuildDir: true)
-                            .string.quoted
+                        return filePathResolver.resolve(dir).string.quoted
                     }
                     .uniqued()
                     .joined(separator: " ")

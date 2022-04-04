@@ -26,6 +26,20 @@ extension Path {
     private var isXCAssets: Bool { self.extension == "xcassets" }
 }
 
+extension Path {
+    mutating func replaceExtension(_ newExtension: String) {
+        self = replacingExtension(newExtension)
+    }
+
+    func replacingExtension(_ newExtension: String) -> Path {
+        if let `extension` = `extension` {
+            return Path(string.dropLast(`extension`.count) + newExtension)
+        } else {
+            return Path("\(string).\(newExtension)")
+        }
+    }
+}
+
 extension String {
     /// Wraps the path in quotes if it needs it
     var quoted: String {

@@ -250,6 +250,7 @@ final class GeneratorTests: XCTestCase {
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
             let products: Products
             let files: [FilePath: File]
+            let filePathResolver: FilePathResolver
             let xcodeprojBazelLabel: String
         }
 
@@ -259,6 +260,7 @@ final class GeneratorTests: XCTestCase {
             for disambiguatedTargets: [TargetID: DisambiguatedTarget],
             products: Products,
             files: [FilePath: File],
+            filePathResolver: FilePathResolver,
             xcodeprojBazelLabel: String
         ) throws -> [TargetID: PBXNativeTarget] {
             addTargetsCalled.append(.init(
@@ -266,6 +268,7 @@ final class GeneratorTests: XCTestCase {
                 disambiguatedTargets: disambiguatedTargets,
                 products: products,
                 files: files,
+                filePathResolver: filePathResolver,
                 xcodeprojBazelLabel: xcodeprojBazelLabel
             ))
             return pbxTargets
@@ -276,6 +279,7 @@ final class GeneratorTests: XCTestCase {
             disambiguatedTargets: disambiguatedTargets,
             products: products,
             files: files,
+            filePathResolver: filePathResolver,
             xcodeprojBazelLabel: project.label
         )]
         

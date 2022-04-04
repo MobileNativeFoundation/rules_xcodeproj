@@ -22,7 +22,11 @@ struct FilePathResolver: Equatable {
         return workspaceOutputPath + internalDirectoryName
     }
 
-    func resolve(_ filePath: FilePath, useBuildDir: Bool = false, useProjectDir: Bool = true) -> Path {
+    func resolve(
+        _ filePath: FilePath,
+        useBuildDir: Bool = true,
+        useProjectDir: Bool = true
+    ) -> Path {
         switch filePath.type {
         case .project:
             return "$(PROJECT_DIR)" + filePath.path

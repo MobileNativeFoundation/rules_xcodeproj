@@ -11,6 +11,10 @@
         "USE_HEADERMAP": false
     },
     "extra_files": [
+        {
+            "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/lib_impl.swift.modulemap",
+            "t": "g"
+        },
         "examples/command_line/lib/dir with space/lib.h",
         "examples/command_line/tool/Info.plist"
     ],
@@ -125,6 +129,10 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "SECRET_3=\\\"Hello\\\"",
+                    "SECRET_2=\\\"World!\\\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "12.0",
                 "OTHER_CFLAGS": [
                     "-D_FORTIFY_SOURCE=1",
@@ -168,7 +176,9 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
-            "dependencies": [],
+            "dependencies": [
+                "//examples/command_line/lib:lib_impl macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57"
+            ],
             "frameworks": [],
             "info_plist": null,
             "inputs": {
@@ -179,7 +189,12 @@
             "is_swift": true,
             "label": "//examples/command_line/lib:lib_swift",
             "links": [],
-            "modulemaps": [],
+            "modulemaps": [
+                {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/lib_impl.swift.modulemap",
+                    "t": "g"
+                }
+            ],
             "name": "lib_swift",
             "outputs": {
                 "swift_module": {
@@ -276,8 +291,8 @@
             "label": "//examples/command_line/tool:tool",
             "links": [
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/libtool.library.a",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a"
+                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a",
+                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a"
             ],
             "modulemaps": [],
             "name": "tool",
@@ -354,7 +369,6 @@
             },
             "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
             "dependencies": [
-                "//examples/command_line/lib:lib_impl macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
                 "//examples/command_line/lib:lib_swift macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57"
             ],
             "frameworks": [],
