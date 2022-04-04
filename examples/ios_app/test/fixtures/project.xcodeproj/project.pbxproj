@@ -57,6 +57,13 @@
 			remoteGlobalIDString = EAB95A4512529D4CB8BE5D4E;
 			remoteInfo = Example;
 		};
+		05F71069DEEAD35A2A289575 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3064A34776444DE49627998E;
+			remoteInfo = "Bazel Generated Files";
+		};
 		078E6A97773B9731CAA6A183 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
@@ -147,6 +154,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8B1A49AD77FC1690CB9AE556;
 			remoteInfo = TestingUtils;
+		};
+		9EA5AB932A9708D1A7667DFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3064A34776444DE49627998E;
+			remoteInfo = "Bazel Generated Files";
 		};
 		E58F4A1E1F92E1E2F5570ED4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -598,6 +612,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2C3EF0A78A1C6D3ED61F8B20 /* PBXTargetDependency */,
 				8090BAEEB7C7D714E55D865C /* PBXTargetDependency */,
 				B9E875CC0E0CE82EAE0D68E4 /* PBXTargetDependency */,
 			);
@@ -648,6 +663,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BA07896B61B9027F0533AC69 /* PBXTargetDependency */,
 				21627D3581B6ADD9906D176D /* PBXTargetDependency */,
 				B83AE2FC96D66AE4CB710137 /* PBXTargetDependency */,
 				545A036FD772496B7255F60D /* PBXTargetDependency */,
@@ -1024,6 +1040,12 @@
 			target = EAB95A4512529D4CB8BE5D4E /* Example */;
 			targetProxy = 3846663A93CA92FEEE314085 /* PBXContainerItemProxy */;
 		};
+		2C3EF0A78A1C6D3ED61F8B20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			targetProxy = 9EA5AB932A9708D1A7667DFA /* PBXContainerItemProxy */;
+		};
 		39159660DA50973079657E41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Generated Files";
@@ -1083,6 +1105,12 @@
 			name = ExternalResources;
 			target = A92585AB652F9F937D1D19A2 /* ExternalResources */;
 			targetProxy = 6CCFBB6244E6F79BBAE14283 /* PBXContainerItemProxy */;
+		};
+		BA07896B61B9027F0533AC69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			targetProxy = 05F71069DEEAD35A2A289575 /* PBXContainerItemProxy */;
 		};
 		C418EED9BCE57CCDB9B6CA97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

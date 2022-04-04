@@ -103,7 +103,11 @@ enum Fixtures {
             packageBinDir: "bazel-out/a1b2c/bin/C 1",
             product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),
             modulemaps: [.generated("a/b/module.modulemap")],
-            inputs: .init(srcs: ["a/b/c.m"], hdrs: ["a/b/c.h"])
+            inputs: .init(
+                srcs: ["a/b/c.m"],
+                hdrs: ["a/b/c.h"],
+                containsGeneratedFiles: true
+            )
         ),
         "C 2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/C 2",
