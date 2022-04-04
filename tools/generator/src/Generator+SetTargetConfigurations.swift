@@ -66,9 +66,13 @@ Target "\(id)" not found in `pbxTargets`
                 target.modulemaps
                     .map { filePath -> String in
                         var modulemap = filePathResolver
-                            .resolve(filePath)
+                            // Header resolution is based on this path, so we
+                            // need to have it rooted in `$(BUILD_DIR)` instead
+                            // of `gen_dir`, otherwise it can't find the
+                            // `SRCROOT` symlink
+                            .resolve(filePath, useBuildDir: true)
 
-                        if modulemap.components.first == "$(BUILD_DIR)" {
+                        if filePath.type == .generated {
                             modulemap.replaceExtension("xcode.modulemap")
                         }
 

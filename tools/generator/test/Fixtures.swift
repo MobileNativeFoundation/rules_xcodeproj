@@ -240,8 +240,6 @@ enum Fixtures {
 
         // bazel-out
 
-        let genDir = workspaceOutputPath + internalDirectoryName + "gen_dir"
-
         elements[.generated("")] = PBXGroup(
             children: [
                 elements[.generated("a")]!,
@@ -249,7 +247,8 @@ enum Fixtures {
             ],
             sourceTree: .group,
             name: "Bazel Generated Files",
-            path: genDir.string
+            path: (workspaceOutputPath + internalDirectoryName + "gen_dir")
+                .string
         )
 
         // external/a_repo/a.swift
@@ -600,6 +599,8 @@ enum Fixtures {
         }
 
         // xcfilelists
+
+        let genDir = "$(PROJECT_FILE_PATH)/\(internalDirectoryName)/gen_dir"
 
         files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
 \(generatedDirectory)/a/b/module.modulemap
@@ -1115,7 +1116,9 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 
 cd "$BUILD_DIR"
 ln -sfn "$PROJECT_DIR" SRCROOT
-ln -sfn "\#(filePathResolver.resolve(.external("")))" external
+ln -sfn "\#(
+    filePathResolver.resolve(.external(""), useScriptVariables: true)
+)" external
 
 """#,
             showEnvVarsInLog: false
@@ -1245,7 +1248,9 @@ ln -sfn "\#(filePathResolver.resolve(.external("")))" external
 """#,
                 ],
                 "SDKROOT": "macosx",
-                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
+                "SWIFT_INCLUDE_PATHS": """
+$(PROJECT_FILE_PATH)/rules_xcp/gen_dir/x
+""",
                 "TARGET_NAME": targets["A 2"]!.name,
             ]) { $1 },
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
@@ -1255,7 +1260,9 @@ ln -sfn "\#(filePathResolver.resolve(.external("")))" external
 -Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
 """,
                 "SDKROOT": "macosx",
-                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
+                "SWIFT_INCLUDE_PATHS": """
+$(PROJECT_FILE_PATH)/rules_xcp/gen_dir/x
+""",
                 "TARGET_NAME": targets["B 1"]!.name,
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
