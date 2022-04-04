@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/8640/160290842-c65f9d61-72bd-4ea0-931a-39fcc9fbd69c.png" height="255">
+  <img src="https://user-images.githubusercontent.com/158658/161647598-223361dc-030d-431a-b4fe-d92592ed5530.png" height="255">
 </p>
 
 # rules_xcodeproj
