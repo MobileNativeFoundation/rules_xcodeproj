@@ -65,12 +65,7 @@ Target "\(id)" not found in `pbxTargets`
                 onKey: "OTHER_SWIFT_FLAGS",
                 target.modulemaps
                     .map { filePath -> String in
-                        var modulemap = filePathResolver
-                            // Header resolution is based on this path, so we
-                            // need to have it rooted in `$(BUILD_DIR)` instead
-                            // of `gen_dir`, otherwise it can't find the
-                            // `SRCROOT` symlink
-                            .resolve(filePath, useBuildDir: true)
+                        var modulemap = filePathResolver.resolve(filePath)
 
                         if filePath.type == .generated {
                             modulemap.replaceExtension("xcode.modulemap")
@@ -115,7 +110,11 @@ Target "\(id)" not found in `pbxTargets`
             buildSettings["TARGET_NAME"] = target.name
 
             if let infoPlist = target.infoPlist {
-              let infoPlistPath = filePathResolver.resolve(infoPlist).string.quoted
+              let infoPlistPath = filePathResolver
+                    // We need to use `gen_dir` instead of `$(BUILD_DIR)` here
+                    // to match the project navigator
+                    .resolve(infoPlist, useBuildDir: false)
+                    .string.quoted
               buildSettings["INFOPLIST_FILE"] = infoPlistPath
             } else {
               buildSettings["GENERATE_INFOPLIST_FILE"] = true

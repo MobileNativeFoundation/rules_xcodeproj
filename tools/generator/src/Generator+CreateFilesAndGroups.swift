@@ -368,7 +368,9 @@ extension Generator {
         }
         let rsyncPaths = generatedFiles.map { filePath, _ in filePath.path }
         let copiedGeneratedPaths = generatedFiles.map { filePath, _ in
-            return filePathResolver.resolve(filePath)
+            // We need to use `gen_dir` instead of `$(BUILD_DIR)` here to match
+            // the project navigator
+            return filePathResolver.resolve(filePath, useBuildDir: false)
         }
         let modulemapPaths = generatedFiles
             .filter { filePath, _ in filePath.path.extension == "modulemap" }
@@ -438,66 +440,6 @@ private extension Inputs {
 
 private extension Path {
     var sourceTree: PBXSourceTree { isAbsolute ? .absolute : .group }
-}
-
-extension PBXFileElement {
-    func projectRelativePath(
-        in pbxProj: PBXProj,
-        customRoot: Path? = nil
-    ) -> Path {
-        let parentPath: Path
-        switch sourceTree {
-        case .absolute?:
-            parentPath = ""
-        case .group?:
-            if let parent = parent {
-                parentPath = parent.projectRelativePath(
-                    in: pbxProj,
-                    customRoot: customRoot
-                )
-            } else {
-                parentPath = ""
-            }
-        case .buildProductsDir?:
-            if let customRoot = customRoot {
-                parentPath = customRoot
-            } else {
-                parentPath = "$(BUILT_PRODUCTS_DIR)"
-            }
-        case .sourceRoot?:
-            if let customRoot = customRoot {
-                parentPath = customRoot
-            } else {
-                parentPath = "$(SOURCE_ROOT)"
-            }
-        case .sdkRoot?:
-            if let customRoot = customRoot {
-                parentPath = customRoot
-            } else {
-                parentPath = "$(SDKROOT)"
-            }
-        case .developerDir?:
-            if let customRoot = customRoot {
-                parentPath = customRoot
-            } else {
-                parentPath = "$(DEVELOPER_DIR)"
-            }
-        case .custom(let variable)?:
-            if let customRoot = customRoot {
-                parentPath = customRoot
-            } else {
-                parentPath = Path("$(\(variable))")
-            }
-        case .none?, nil:
-            if let customRoot = customRoot {
-                parentPath = customRoot
-            } else {
-                parentPath = ""
-            }
-        }
-
-        return parentPath + (path ?? "")
-    }
 }
 
 extension Sequence where Element == FilePath {
