@@ -361,15 +361,18 @@ extension Generator {
             }
 
         let generatedPaths = generatedFiles.map { filePath, _ in
-            return filePathResolver.resolve(filePath, useBuildDir: false)
+            return filePathResolver.resolve(
+                filePath,
+                useOriginalGeneratedFiles: true
+            )
         }
         let rsyncPaths = generatedFiles.map { filePath, _ in filePath.path }
-        let copiedGeneratedPaths = generatedFiles.map { _, element in
-            return element.projectRelativePath(in: pbxProj)
+        let copiedGeneratedPaths = generatedFiles.map { filePath, _ in
+            return filePathResolver.resolve(filePath)
         }
         let modulemapPaths = generatedFiles
             .filter { filePath, _ in filePath.path.extension == "modulemap" }
-            .map { _, element in element.projectRelativePath(in: pbxProj) }
+            .map { filePath, _ in filePathResolver.resolve(filePath) }
         let fixedModulemapPaths = modulemapPaths.map { path in
             return path.replacingExtension("xcode.modulemap")
         }

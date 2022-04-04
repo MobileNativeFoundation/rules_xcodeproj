@@ -159,9 +159,9 @@ set -eu
 cd "\#(filePathResolver.generatedDirectory)"
 
 rsync \
-  --files-from "$PROJECT_DIR/\#(
+  --files-from "\#(
     filePathResolver
-        .resolve(.internal(rsyncFileListPath), useProjectDir: false)
+        .resolve(.internal(rsyncFileListPath), useScriptVariables: true)
         .string
 )" \
   -L \
@@ -205,7 +205,9 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 
 cd "$BUILD_DIR"
 ln -sfn "$PROJECT_DIR" SRCROOT
-ln -sfn "\#(filePathResolver.resolve(.external("")))" external
+ln -sfn "\#(
+    filePathResolver.resolve(.external(""), useScriptVariables: true)
+)" external
 
 """#,
             showEnvVarsInLog: false
