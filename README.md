@@ -5,7 +5,7 @@
 # rules_xcodeproj
 
 This repository contains rules for [Bazel](https://bazel.build) that can be
-used to generate Xcode projects.
+used to generate Xcode projects from targets in your workspace.
 
 If you run into any problems with these rules, please
 [file an issue](https://github.com/buildbuddy-io/rules_xcodeproj/issues/new/choose)!
@@ -16,6 +16,8 @@ If you run into any problems with these rules, please
   - [x] Indexing (i.e. autocomplete, syntax highlighting, jump to
     definition)
   - [x] Debugging
+  - [x] Inline warnings and errors
+  - [x] Fix-its
   - [x] Tests (Unit and UI)
   - [x] SwiftUI Previews
 
