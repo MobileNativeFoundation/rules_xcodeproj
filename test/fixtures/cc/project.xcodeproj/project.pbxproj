@@ -390,7 +390,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
 				);
 			};
 			name = Debug;
@@ -473,11 +473,11 @@
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external",
-					"$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/bazel_tools",
-					"$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/bazel_tools",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/bazel_tools",
 				);
 			};
 			name = Debug;
@@ -493,7 +493,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib/private",
-					"$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -539,7 +539,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
 				);
 			};
 			name = Debug;
@@ -555,7 +555,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external/private",
-					"$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -601,7 +601,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external",
-					"$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
 				);
 			};
 			name = Debug;

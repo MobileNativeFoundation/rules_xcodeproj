@@ -600,7 +600,7 @@ enum Fixtures {
 
         // xcfilelists
 
-        let genDir = "$(PROJECT_FILE_PATH)/\(internalDirectoryName)/gen_dir"
+        let genDir = "$(BUILD_DIR)/bazel-out"
 
         files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
 \(generatedDirectory)/a/b/module.modulemap
@@ -610,8 +610,8 @@ enum Fixtures {
 
         files[.internal("generated.copied.xcfilelist")] = .nonReferencedContent(
 """
-\(genDir)/a/b/module.modulemap
-\(genDir)/a1b2c/bin/t.c
+$(PROJECT_FILE_PATH)/\(internalDirectoryName)/gen_dir/a/b/module.modulemap
+$(PROJECT_FILE_PATH)/\(internalDirectoryName)/gen_dir/a1b2c/bin/t.c
 
 """)
 
@@ -1248,9 +1248,7 @@ ln -sfn "\#(
 """#,
                 ],
                 "SDKROOT": "macosx",
-                "SWIFT_INCLUDE_PATHS": """
-$(PROJECT_FILE_PATH)/rules_xcp/gen_dir/x
-""",
+                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["A 2"]!.name,
             ]) { $1 },
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
@@ -1260,9 +1258,7 @@ $(PROJECT_FILE_PATH)/rules_xcp/gen_dir/x
 -Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
 """,
                 "SDKROOT": "macosx",
-                "SWIFT_INCLUDE_PATHS": """
-$(PROJECT_FILE_PATH)/rules_xcp/gen_dir/x
-""",
+                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["B 1"]!.name,
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([

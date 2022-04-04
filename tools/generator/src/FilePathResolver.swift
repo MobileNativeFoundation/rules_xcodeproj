@@ -24,7 +24,7 @@ struct FilePathResolver: Equatable {
 
     func resolve(
         _ filePath: FilePath,
-        useBuildDir: Bool = false,
+        useBuildDir: Bool = true,
         useOriginalGeneratedFiles: Bool = false,
         useScriptVariables: Bool = false
     ) -> Path {
