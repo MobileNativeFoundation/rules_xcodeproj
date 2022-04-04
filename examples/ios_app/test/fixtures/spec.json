@@ -357,6 +357,7 @@
                 "t": "g"
             },
             "inputs": {
+                "contains_generated_files": true,
                 "resources": [
                     {
                         "_": "examples_ios_app_external/bundles/Utils.bundle",
@@ -464,6 +465,7 @@
             "frameworks": [],
             "info_plist": null,
             "inputs": {
+                "contains_generated_files": true,
                 "srcs": [
                     "Example/ContentView.swift",
                     "Example/ExampleApp.swift"
@@ -596,6 +598,7 @@
                 "t": "g"
             },
             "inputs": {
+                "contains_generated_files": true,
                 "resources": [
                     {
                         "_": "examples_ios_app_external/bundles/Utils.bundle",
@@ -845,7 +848,9 @@
                 "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
+            "inputs": {
+                "contains_generated_files": true
+            },
             "is_swift": false,
             "label": "//ExampleTests:ExampleTests.__internal__.__test_bundle",
             "links": [
@@ -937,6 +942,7 @@
             "frameworks": [],
             "info_plist": null,
             "inputs": {
+                "contains_generated_files": true,
                 "srcs": [
                     "ExampleTests/ExampleTests.swift"
                 ]
@@ -1080,7 +1086,9 @@
                 "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
+            "inputs": {
+                "contains_generated_files": true
+            },
             "is_swift": false,
             "label": "//ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "links": [
@@ -1257,6 +1265,7 @@
             "frameworks": [],
             "info_plist": null,
             "inputs": {
+                "contains_generated_files": true,
                 "srcs": [
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/TestingUtils.swift",

@@ -86,8 +86,7 @@ Product for target "\(id)" not found in `products`
             pbxTargets[id] = pbxTarget
 
             if
-                target.inputs.containsGeneratedFiles
-                    || target.modulemaps.containsGeneratedFiles,
+                target.inputs.containsGeneratedFiles,
                 let generatedFilesTarget = generatedFilesTarget
             {
                 _ = try pbxTarget.addDependency(target: generatedFilesTarget)
@@ -539,11 +538,6 @@ private struct SourceFile: Hashable {
 }
 
 extension Inputs {
-    var containsGeneratedFiles: Bool {
-        return srcs.containsGeneratedFiles
-            || nonArcSrcs.containsGeneratedFiles
-    }
-
     var containsSourceFiles: Bool {
         return !(srcs.isEmpty && nonArcSrcs.isEmpty)
     }
