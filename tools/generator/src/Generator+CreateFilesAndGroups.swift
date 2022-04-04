@@ -32,6 +32,10 @@ extension File {
 extension Generator {
     static let compileStubPath: Path = "CompileStub.swift"
     static let generatedFileListPath: Path = "generated.xcfilelist"
+    static let rsyncFileListPath: Path = "generated.rsynclist"
+    static let copiedGeneratedFileListPath: Path = "generated.copied.xcfilelist"
+    static let modulemapsFileListPath: Path = "modulemaps.xcfilelist"
+    static let fixedModulemapsFileListPath: Path = "modulemaps.fixed.xcfilelist"
 
     private static let localizedGroupExtensions: Set<String> = [
         "intentdefinition",
@@ -237,9 +241,9 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: filePathResolver.generatedDirectory.sourceTree,
+                sourceTree: .group,
                 name: "Bazel Generated Files",
-                path: filePathResolver.generatedDirectory.string
+                path: (filePathResolver.internalDirectory + "gen_dir").string
             )
             pbxProj.add(object: group)
             elements[.generated("")] = group
@@ -348,29 +352,43 @@ extension Generator {
             }
         }
 
-        // Write generated.xcfilelist
+        // Write xcfilelists
 
         let generatedFiles = elements
             .filter { filePath, element in
                 return filePath.type == .generated
                     && element is PBXFileReference
             }
-            .map { "\($1.projectRelativePath(in: pbxProj))\n" }
 
-        if !generatedFiles.isEmpty {
-            let reference = PBXFileReference(
-                sourceTree: .group,
-                lastKnownFileType: generatedFileListPath.lastKnownFileType,
-                path: generatedFileListPath.string
-            )
-            pbxProj.add(object: reference)
-            createInternalGroup().addChild(reference)
+        let generatedPaths = generatedFiles.map { filePath, _ in
+            return filePathResolver.resolve(filePath, useBuildDir: false)
+        }
+        let rsyncPaths = generatedFiles.map { filePath, _ in filePath.path }
+        let copiedGeneratedPaths = generatedFiles.map { _, element in
+            return element.projectRelativePath(in: pbxProj)
+        }
+        let modulemapPaths = generatedFiles
+            .filter { filePath, _ in filePath.path.extension == "modulemap" }
+            .map { _, element in element.projectRelativePath(in: pbxProj) }
+        let fixedModulemapPaths = modulemapPaths.map { path in
+            return path.replacingExtension("xcode.modulemap")
+        }
 
-            files[.internal(generatedFileListPath)] = .reference(
-                reference,
-                content: Set(generatedFiles).sortedLocalizedStandard().joined()
+        func addXCFileList(_ path: Path, paths: [Path]) {
+            guard !paths.isEmpty else {
+                return
+            }
+
+            files[.internal(path)] = .nonReferencedContent(
+                Set(paths.map { "\($0)\n" }).sortedLocalizedStandard().joined()
             )
         }
+
+        addXCFileList(generatedFileListPath, paths: generatedPaths)
+        addXCFileList(rsyncFileListPath, paths: rsyncPaths)
+        addXCFileList(copiedGeneratedFileListPath, paths: copiedGeneratedPaths)
+        addXCFileList(modulemapsFileListPath, paths: modulemapPaths)
+        addXCFileList(fixedModulemapsFileListPath, paths: fixedModulemapPaths)
 
         // Write LinkFileLists
         
@@ -420,20 +438,62 @@ private extension Path {
 }
 
 extension PBXFileElement {
-    func projectRelativePath(in pbxProj: PBXProj) -> Path {
+    func projectRelativePath(
+        in pbxProj: PBXProj,
+        customRoot: Path? = nil
+    ) -> Path {
+        let parentPath: Path
         switch sourceTree {
         case .absolute?:
-            return Path(path!)
+            parentPath = ""
         case .group?:
-            guard let group = parent else {
-                return Path(path ?? "")
+            if let parent = parent {
+                parentPath = parent.projectRelativePath(
+                    in: pbxProj,
+                    customRoot: customRoot
+                )
+            } else {
+                parentPath = ""
             }
-            return group.projectRelativePath(in: pbxProj) + path!
-        default:
-            preconditionFailure("""
-Unexpected sourceTree: \(sourceTree?.description ?? "nil")
-""")
+        case .buildProductsDir?:
+            if let customRoot = customRoot {
+                parentPath = customRoot
+            } else {
+                parentPath = "$(BUILT_PRODUCTS_DIR)"
+            }
+        case .sourceRoot?:
+            if let customRoot = customRoot {
+                parentPath = customRoot
+            } else {
+                parentPath = "$(SOURCE_ROOT)"
+            }
+        case .sdkRoot?:
+            if let customRoot = customRoot {
+                parentPath = customRoot
+            } else {
+                parentPath = "$(SDKROOT)"
+            }
+        case .developerDir?:
+            if let customRoot = customRoot {
+                parentPath = customRoot
+            } else {
+                parentPath = "$(DEVELOPER_DIR)"
+            }
+        case .custom(let variable)?:
+            if let customRoot = customRoot {
+                parentPath = customRoot
+            } else {
+                parentPath = Path("$(\(variable))")
+            }
+        case .none?, nil:
+            if let customRoot = customRoot {
+                parentPath = customRoot
+            } else {
+                parentPath = ""
+            }
         }
+
+        return parentPath + (path ?? "")
     }
 }
 

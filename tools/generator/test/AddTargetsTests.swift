@@ -16,6 +16,17 @@ final class AddTargetsTests: XCTestCase {
 
         let xcodeprojBazelLabel = "//:project"
         let targets = Fixtures.targets
+        let externalDirectory: Path = "/ext"
+        let generatedDirectory: Path = "/bazel-leave"
+        let internalDirectoryName = "rules_xcp"
+        let workspaceOutputPath: Path = "Project.xcodeproj"
+
+        let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
 
         let (files, _) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
         let (expectedFiles, _) = Fixtures.files(
@@ -36,6 +47,7 @@ final class AddTargetsTests: XCTestCase {
             disambiguatedTargets: disambiguatedTargets,
             files: expectedFiles,
             products: expectedProducts,
+            filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
         )
 
@@ -46,6 +58,7 @@ final class AddTargetsTests: XCTestCase {
             for: disambiguatedTargets,
             products: products,
             files: files,
+            filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
         )
 

@@ -26,6 +26,9 @@ swift_library(
     generated_header_name = "private/LibSwift-Swift.h",
     generates_header = True,
     module_name = "LibSwift",
+    deps = [
+        ":lib_impl",
+    ],
 )
 
 objc_library(
@@ -36,7 +39,6 @@ objc_library(
         "private",
     ],
     deps = [
-        ":lib_impl",
         ":lib_swift",
     ],
 )

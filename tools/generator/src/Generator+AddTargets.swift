@@ -7,6 +7,7 @@ extension Generator {
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
         products: Products,
         files: [FilePath: File],
+        filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
     ) throws -> [TargetID: PBXNativeTarget] {
         let pbxProject = pbxProj.rootObject!
@@ -14,6 +15,7 @@ extension Generator {
         let generatedFilesTarget = try createGeneratedFilesTarget(
             in: pbxProj,
             files: files,
+            filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
         )
 
@@ -98,18 +100,11 @@ Product for target "\(id)" not found in `products`
     private static func createGeneratedFilesTarget(
         in pbxProj: PBXProj,
         files: [FilePath: File],
+        filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
     ) throws -> PBXAggregateTarget? {
         guard files.containsGeneratedFiles else {
             return nil
-        }
-
-        guard
-            let generatedFileList = files
-                .first(where: { $0.key == .internal(generatedFileListPath) })?
-                .value.fileElement
-        else {
-            throw PreconditionError(message: "generatedFileList not in `files`")
         }
 
         let pbxProject = pbxProj.rootObject!
@@ -125,11 +120,16 @@ Product for target "\(id)" not found in `products`
         )
         pbxProj.add(object: configurationList)
 
-        let shellScript = PBXShellScriptBuildPhase(
+        let generateFilesScript = PBXShellScriptBuildPhase(
+            name: "Generate Files",
             outputFileListPaths: [
-                generatedFileList.projectRelativePath(in: pbxProj).string,
+                filePathResolver
+                    .resolve(.internal(generatedFileListPath))
+                    .string,
             ],
             shellScript: #"""
+set -eu
+
 PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
   ${BAZEL_PATH} \
   build \
@@ -140,12 +140,87 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
         )
-        pbxProj.add(object: shellScript)
+        pbxProj.add(object: generateFilesScript)
+
+        let copyFilesScript = PBXShellScriptBuildPhase(
+            name: "Copy Files",
+            inputFileListPaths: [
+                filePathResolver
+                    .resolve(.internal(generatedFileListPath))
+                    .string,
+            ],
+            outputFileListPaths: [
+                filePathResolver
+                    .resolve(.internal(copiedGeneratedFileListPath))
+                    .string,
+            ],
+            shellScript: #"""
+set -eu
+
+cd "\#(filePathResolver.generatedDirectory)"
+
+rsync \
+  --files-from "$PROJECT_DIR/\#(
+    filePathResolver
+        .resolve(.internal(rsyncFileListPath), useProjectDir: false)
+        .string
+)" \
+  -L \
+  . \
+  "$BUILD_DIR/bazel-out"
+
+cd "$PROJECT_FILE_PATH/rules_xcodeproj"
+
+# Need to remove the directory that Xcode creates as part of output prep
+rm -rf gen_dir
+
+ln -sf "$BUILD_DIR/bazel-out" gen_dir
+
+"""#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: copyFilesScript)
+
+        let fixModuleMapsScript = PBXShellScriptBuildPhase(
+            name: "Fix Modulemaps",
+            inputFileListPaths: [
+                filePathResolver
+                    .resolve(.internal(modulemapsFileListPath))
+                    .string,
+            ],
+            outputFileListPaths: [
+                filePathResolver
+                    .resolve(.internal(fixedModulemapsFileListPath))
+                    .string,
+            ],
+            shellScript: #"""
+set -eu
+
+while IFS= read -r input; do
+  output="${input%.modulemap}.xcode.modulemap"
+  perl -p -e \
+    's%^(    *(\w )*header "(\.\.\/)*)(((?!(bazel-out|external)).)*")%\1SRCROOT/\4%' \
+    < "$input" \
+    > "$output"
+done < "$SCRIPT_INPUT_FILE_LIST_0"
+
+cd "$BUILD_DIR"
+ln -sfn "$PROJECT_DIR" SRCROOT
+ln -sfn "\#(filePathResolver.resolve(.external("")))" external
+
+"""#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: fixModuleMapsScript)
 
         let pbxTarget = PBXAggregateTarget(
             name: "Bazel Generated Files",
             buildConfigurationList: configurationList,
-            buildPhases: [shellScript],
+            buildPhases: [
+                generateFilesScript,
+                copyFilesScript,
+                fixModuleMapsScript,
+            ],
             productName: "Bazel Generated Files"
         )
         pbxProj.add(object: pbxTarget)
@@ -272,7 +347,7 @@ File "\(sourceFile.filePath)" not found in `files`
                 "$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
             ],
             outputPaths: [
-                "$(BUILT_PRODUCTS_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+                "$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
             ],
             shellScript: #"""
 cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"

@@ -236,14 +236,16 @@ enum Fixtures {
 
         // bazel-out
 
+        let genDir = workspaceOutputPath + internalDirectoryName + "gen_dir"
+
         elements[.generated("")] = PBXGroup(
             children: [
                 elements[.generated("a")]!,
                 elements[.generated("a1b2c")]!,
             ],
-            sourceTree: .absolute,
+            sourceTree: .group,
             name: "Bazel Generated Files",
-            path: generatedDirectory.string
+            path: genDir.string
         )
 
         // external/a_repo/a.swift
@@ -557,20 +559,11 @@ enum Fixtures {
             path: "CompileStub.swift"
         )
 
-        // `internal`/generated.xcfilelist
-
-        elements[.internal("generated.xcfilelist")] = PBXFileReference(
-            sourceTree: .group,
-            lastKnownFileType: "text.xcfilelist",
-            path: "generated.xcfilelist"
-        )
-
         // `internal`
 
         elements[.internal("")] = PBXGroup(
             children: [
                 elements[.internal("CompileStub.swift")]!,
-                elements[.internal("generated.xcfilelist")]!,
             ],
             sourceTree: .group,
             name: internalDirectoryName,
@@ -596,22 +589,43 @@ enum Fixtures {
         var files: [FilePath: File] = [:]
         for (filePath, element) in elements {
             if let reference = element as? PBXFileReference {
-                let content: String
-                if filePath == .internal("generated.xcfilelist") {
-                    content = """
-    \(generatedDirectory)/a/b/module.modulemap
-    \(generatedDirectory)/a1b2c/bin/t.c
-
-    """
-                } else {
-                    content = ""
-                }
-
-                files[filePath] = .reference(reference, content: content)
+                files[filePath] = .reference(reference)
             } else if let variantGroup = element as? PBXVariantGroup {
                 files[filePath] = .variantGroup(variantGroup)
             }
         }
+
+        // xcfilelists
+
+        files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
+\(generatedDirectory)/a/b/module.modulemap
+\(generatedDirectory)/a1b2c/bin/t.c
+
+""")
+
+        files[.internal("generated.copied.xcfilelist")] = .nonReferencedContent(
+"""
+\(genDir)/a/b/module.modulemap
+\(genDir)/a1b2c/bin/t.c
+
+""")
+
+        files[.internal("generated.rsynclist")] = .nonReferencedContent("""
+a/b/module.modulemap
+a1b2c/bin/t.c
+
+""")
+
+        files[.internal("modulemaps.xcfilelist")] = .nonReferencedContent("""
+\(genDir)/a/b/module.modulemap
+
+""")
+
+        files[.internal("modulemaps.fixed.xcfilelist")] = .nonReferencedContent(
+"""
+\(genDir)/a/b/module.xcode.modulemap
+
+""")
 
         // LinkFileLists
 
@@ -780,6 +794,7 @@ a/c.a
         disambiguatedTargets: [TargetID: DisambiguatedTarget],
         files: [FilePath: File],
         products: Products,
+        filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
     ) -> [TargetID: PBXNativeTarget] {
         // Build phases
@@ -791,7 +806,7 @@ a/c.a
                     "$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
                 ],
                 outputPaths: [
-                    "$(BUILT_PRODUCTS_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+                    "$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
                 ],
                 shellScript: #"""
     cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
@@ -1029,14 +1044,15 @@ a/c.a
             defaultConfigurationName: debugConfiguration.name
         )
         pbxProj.add(object: configurationList)
-        let shellScript = PBXShellScriptBuildPhase(
-            outputFileListPaths: [
-                files[.internal("generated.xcfilelist")]!
-                    .fileElement!
-                    .projectRelativePath(in: pbxProj)
-                    .string,
-            ],
+
+        let baseDir = "$(PROJECT_DIR)/\(filePathResolver.internalDirectory)"
+
+        let generateFilesScript = PBXShellScriptBuildPhase(
+            name: "Generate Files",
+            outputFileListPaths: ["\(baseDir)/generated.xcfilelist"],
             shellScript: #"""
+set -eu
+
 PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
   ${BAZEL_PATH} \
   build \
@@ -1047,11 +1063,69 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
         )
-        pbxProj.add(object: shellScript)
+        pbxProj.add(object: generateFilesScript)
+
+        let copyFilesScript = PBXShellScriptBuildPhase(
+            name: "Copy Files",
+            inputFileListPaths: ["\(baseDir)/generated.xcfilelist"],
+            outputFileListPaths: ["\(baseDir)/generated.copied.xcfilelist"],
+            shellScript: #"""
+set -eu
+
+cd "\#(filePathResolver.generatedDirectory)"
+
+rsync \
+  --files-from "$PROJECT_DIR/\#(
+    filePathResolver.internalDirectory
+)/generated.rsynclist" \
+  -L \
+  . \
+  "$BUILD_DIR/bazel-out"
+
+cd "$PROJECT_FILE_PATH/rules_xcodeproj"
+
+# Need to remove the directory that Xcode creates as part of output prep
+rm -rf gen_dir
+
+ln -sf "$BUILD_DIR/bazel-out" gen_dir
+
+"""#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: copyFilesScript)
+
+        let fixModulemapsScript = PBXShellScriptBuildPhase(
+            name: "Fix Modulemaps",
+            inputFileListPaths: ["\(baseDir)/modulemaps.xcfilelist"],
+            outputFileListPaths: ["\(baseDir)/modulemaps.fixed.xcfilelist"],
+            shellScript: #"""
+set -eu
+
+while IFS= read -r input; do
+  output="${input%.modulemap}.xcode.modulemap"
+  perl -p -e \
+    's%^(    *(\w )*header "(\.\.\/)*)(((?!(bazel-out|external)).)*")%\1SRCROOT/\4%' \
+    < "$input" \
+    > "$output"
+done < "$SCRIPT_INPUT_FILE_LIST_0"
+
+cd "$BUILD_DIR"
+ln -sfn "$PROJECT_DIR" SRCROOT
+ln -sfn "\#(filePathResolver.resolve(.external("")))" external
+
+"""#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: fixModulemapsScript)
+
         let generatedFilesTarget = PBXAggregateTarget(
             name: "Bazel Generated Files",
             buildConfigurationList: configurationList,
-            buildPhases: [shellScript],
+            buildPhases: [
+                generateFilesScript,
+                copyFilesScript,
+                fixModulemapsScript,
+            ],
             productName: "Bazel Generated Files"
         )
         pbxProj.add(object: generatedFilesTarget)
@@ -1083,6 +1157,18 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
         let (files, _) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
 
+        let externalDirectory: Path = "/ext"
+        let generatedDirectory: Path = "/bazel-leave"
+        let internalDirectoryName = "rules_xcp"
+        let workspaceOutputPath: Path = "Project.xcodeproj"
+
+        let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            generatedDirectory: generatedDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+
         let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)
 
         let pbxTargets = Fixtures.pbxTargets(
@@ -1090,6 +1176,7 @@ PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
             disambiguatedTargets: disambiguatedTargets,
             files: files,
             products: products,
+            filePathResolver: filePathResolver,
             xcodeprojBazelLabel: ""
         )
 
@@ -1201,7 +1288,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_SWIFT_FLAGS": """
--Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/a/b/module.modulemap
+-Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
 """,
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 1"]!.name,

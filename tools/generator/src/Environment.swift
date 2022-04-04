@@ -48,6 +48,7 @@ struct Environment {
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
         _ products: Products,
         _ files: [FilePath: File],
+        _ filePathResolver: FilePathResolver,
         _ xcodeprojBazelLabel: String
     ) throws -> [TargetID: PBXNativeTarget]
 

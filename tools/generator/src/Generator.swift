@@ -98,6 +98,7 @@ Was unable to merge "\(targets[invalidMerge.source]!.label) \
             disambiguatedTargets,
             products,
             files,
+            filePathResolver,
             project.label
         )
         try environment.setTargetConfigurations(
