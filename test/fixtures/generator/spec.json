@@ -14,13 +14,13 @@
     "label": "//test/fixtures/generator:xcodeproj",
     "name": "project",
     "potential_target_merges": [
+        "//tools/generator/test:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
+        [
+            "//tools/generator/test:tests darwin_x86_64-fastbuild-ST-1b9bd654f600"
+        ],
         "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
         [
             "//tools/generator:generator darwin_x86_64-fastbuild-ST-1b9bd654f600"
-        ],
-        "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
-        [
-            "//tools/generator:tests darwin_x86_64-fastbuild-ST-1b9bd654f600"
         ]
     ],
     "required_links": [
@@ -32,6 +32,221 @@
         "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a"
     ],
     "targets": [
+        "//tools/generator/test:tests darwin_x86_64-fastbuild-ST-1b9bd654f600",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-D_FORTIFY_SOURCE=1",
+                    "-fstack-protector",
+                    "-fcolor-diagnostics",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-DDEBUG",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined",
+                    "-D__DATE__=\"redacted\"",
+                    "-D__TIMESTAMP__=\"redacted\"",
+                    "-D__TIME__=\"redacted\""
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-D_FORTIFY_SOURCE=1",
+                    "-fstack-protector",
+                    "-fcolor-diagnostics",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-DDEBUG",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined",
+                    "-D__DATE__=\"redacted\"",
+                    "-D__TIMESTAMP__=\"redacted\"",
+                    "-D__TIME__=\"redacted\""
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_MODULE_NAME": "_tests_",
+                "PRODUCT_NAME": "tests",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
+            "dependencies": [
+                "//tools/generator/test:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
+            ],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {},
+            "is_swift": false,
+            "label": "//tools/generator/test:tests",
+            "links": [
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
+                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/test/libtests.library.a"
+            ],
+            "modulemaps": [],
+            "name": "tests",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/test",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "tests",
+                "path": "tools/generator/test/tests.xctest",
+                "type": "com.apple.product-type.bundle.unit-test"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "//tools/generator/test:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "ENABLE_TESTING_SEARCH_PATHS": true,
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-D_FORTIFY_SOURCE=1",
+                    "-fstack-protector",
+                    "-fcolor-diagnostics",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-DDEBUG",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined",
+                    "-D__DATE__=\"redacted\"",
+                    "-D__TIMESTAMP__=\"redacted\"",
+                    "-D__TIME__=\"redacted\""
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-D_FORTIFY_SOURCE=1",
+                    "-fstack-protector",
+                    "-fcolor-diagnostics",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-DDEBUG",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined",
+                    "-D__DATE__=\"redacted\"",
+                    "-D__TIMESTAMP__=\"redacted\"",
+                    "-D__TIME__=\"redacted\""
+                ],
+                "PRODUCT_MODULE_NAME": "tests",
+                "PRODUCT_NAME": "tests.library",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
+            "dependencies": [
+                "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
+                "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600"
+            ],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "tools/generator/test/AddTargetsTests.swift",
+                    "tools/generator/test/CreateFilesAndGroupsTests.swift",
+                    "tools/generator/test/CreateProductsTest.swift",
+                    "tools/generator/test/CreateProjectTests.swift",
+                    "tools/generator/test/CreateXcodeProjTests.swift",
+                    "tools/generator/test/DisambiguateTargetsTests.swift",
+                    "tools/generator/test/Fixtures.swift",
+                    "tools/generator/test/GeneratorTests.swift",
+                    "tools/generator/test/PBXProj+Testing.swift",
+                    "tools/generator/test/PopulateMainGroupTests.swift",
+                    "tools/generator/test/ProcessTargetMergesTests.swift",
+                    "tools/generator/test/SetTargetConfigurations.swift",
+                    "tools/generator/test/SetTargetDependenciesTests.swift",
+                    "tools/generator/test/Target+Testing.swift",
+                    "tools/generator/test/XcodeProj+CustomDump.swift"
+                ]
+            },
+            "is_swift": true,
+            "label": "//tools/generator/test:tests.library",
+            "links": [],
+            "modulemaps": [],
+            "name": "tests.library",
+            "outputs": {
+                "swift_module": {
+                    "name": "tests.swiftmodule",
+                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/test/tests.swiftdoc",
+                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/test/tests.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/test/tests.swiftsourceinfo"
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/test",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "tests.library",
+                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/test/libtests.library.a",
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/generator.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
+                    "t": "g"
+                }
+            ],
+            "test_host": null
+        },
         "//tools/generator:generator darwin_x86_64-fastbuild-ST-1b9bd654f600",
         {
             "build_settings": {
@@ -238,221 +453,6 @@
                 },
                 {
                     "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
-                    "t": "g"
-                }
-            ],
-            "test_host": null
-        },
-        "//tools/generator:tests darwin_x86_64-fastbuild-ST-1b9bd654f600",
-        {
-            "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
-                    "-fstack-protector",
-                    "-fcolor-diagnostics",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-DDEBUG",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
-                    "-fstack-protector",
-                    "-fcolor-diagnostics",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-DDEBUG",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
-                ],
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
-                "PRODUCT_MODULE_NAME": "_tests_",
-                "PRODUCT_NAME": "tests",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5"
-            },
-            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
-            "dependencies": [
-                "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600"
-            ],
-            "frameworks": [],
-            "info_plist": null,
-            "inputs": {},
-            "is_swift": false,
-            "label": "//tools/generator:tests",
-            "links": [
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/libPathKit.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/libAEXML.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libgenerator.library.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a"
-            ],
-            "modulemaps": [],
-            "name": "tests",
-            "outputs": {},
-            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator",
-            "platform": {
-                "arch": "x86_64",
-                "minimum_os_version": "11.0",
-                "os": "macos"
-            },
-            "product": {
-                "name": "tests",
-                "path": "tools/generator/tests.xctest",
-                "type": "com.apple.product-type.bundle.unit-test"
-            },
-            "resource_bundles": [],
-            "search_paths": {},
-            "swiftmodules": [],
-            "test_host": null
-        },
-        "//tools/generator:tests.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
-        {
-            "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "ENABLE_TESTABILITY": true,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
-                "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
-                    "-fstack-protector",
-                    "-fcolor-diagnostics",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-DDEBUG",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
-                    "-fstack-protector",
-                    "-fcolor-diagnostics",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-DDEBUG",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
-                ],
-                "PRODUCT_MODULE_NAME": "tests",
-                "PRODUCT_NAME": "tests.library",
-                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5"
-            },
-            "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
-            "dependencies": [
-                "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-1b9bd654f600",
-                "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-1b9bd654f600"
-            ],
-            "frameworks": [],
-            "info_plist": null,
-            "inputs": {
-                "srcs": [
-                    "tools/generator/test/AddTargetsTests.swift",
-                    "tools/generator/test/CreateFilesAndGroupsTests.swift",
-                    "tools/generator/test/CreateProductsTest.swift",
-                    "tools/generator/test/CreateProjectTests.swift",
-                    "tools/generator/test/CreateXcodeProjTests.swift",
-                    "tools/generator/test/DisambiguateTargetsTests.swift",
-                    "tools/generator/test/Fixtures.swift",
-                    "tools/generator/test/GeneratorTests.swift",
-                    "tools/generator/test/PBXProj+Testing.swift",
-                    "tools/generator/test/PopulateMainGroupTests.swift",
-                    "tools/generator/test/ProcessTargetMergesTests.swift",
-                    "tools/generator/test/SetTargetConfigurations.swift",
-                    "tools/generator/test/SetTargetDependenciesTests.swift",
-                    "tools/generator/test/Target+Testing.swift",
-                    "tools/generator/test/XcodeProj+CustomDump.swift"
-                ]
-            },
-            "is_swift": true,
-            "label": "//tools/generator:tests.library",
-            "links": [],
-            "modulemaps": [],
-            "name": "tests.library",
-            "outputs": {
-                "swift_module": {
-                    "name": "tests.swiftmodule",
-                    "swiftdoc": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/tests.swiftdoc",
-                    "swiftmodule": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/tests.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/tests.swiftsourceinfo"
-                }
-            },
-            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator",
-            "platform": {
-                "arch": "x86_64",
-                "minimum_os_version": "11.0",
-                "os": "macos"
-            },
-            "product": {
-                "name": "tests.library",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/libtests.library.a",
-                "type": "com.apple.product-type.library.static"
-            },
-            "resource_bundles": [],
-            "search_paths": {},
-            "swiftmodules": [
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/generator.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
                     "t": "g"
                 }
             ],

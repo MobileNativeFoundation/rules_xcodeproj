@@ -1513,7 +1513,7 @@
 		44F9659ADD79F9744D89C5B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/tools/generator/test";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1557,7 +1557,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(PROJECT_DIR)/test/fixtures/generator/project.xcodeproj/rules_xcodeproj/targets/darwin_x86_64-fastbuild-ST-1b9bd654f600/tools/generator/tests.LinkFileList,$(BUILD_DIR)",
+					"$(PROJECT_DIR)/test/fixtures/generator/project.xcodeproj/rules_xcodeproj/targets/darwin_x86_64-fastbuild-ST-1b9bd654f600/tools/generator/test/tests.LinkFileList,$(BUILD_DIR)",
 					"-ObjC",
 				);
 				PRODUCT_MODULE_NAME = tests;

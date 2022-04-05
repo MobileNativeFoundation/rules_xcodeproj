@@ -2,5 +2,5 @@
 
 XCODEPROJ_TARGETS = [
     "//tools/generator:generator",
-    "//tools/generator:tests",
+    "//tools/generator/test:tests",
 ]
