@@ -341,7 +341,7 @@
 		74237F30610FC68FC69D29AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib2";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -390,7 +390,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin",
 				);
 			};
 			name = Debug;
@@ -415,7 +415,7 @@
 		B12A0CE58F3DC632DDF8D39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/tool";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/tool";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"SECRET_2=\\\"World!\\\"",
@@ -461,7 +461,7 @@
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)",
 					"-L/usr/lib/swift",
 					"-filelist",
-					"$(PROJECT_DIR)/test/fixtures/cc/project.xcodeproj/rules_xcodeproj/targets/darwin_x86_64-fastbuild-ST-1b9bd654f600/examples/cc/tool/tool.LinkFileList,$(BUILD_DIR)",
+					"$(PROJECT_DIR)/test/fixtures/cc/project.xcodeproj/rules_xcodeproj/targets/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/examples/cc/tool/tool.LinkFileList,$(BUILD_DIR)",
 					"-ObjC",
 				);
 				PRODUCT_MODULE_NAME = _tool_;
@@ -473,11 +473,11 @@
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin",
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external",
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/bazel_tools",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/bazel_tools",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/bazel_tools",
 				);
 			};
 			name = Debug;
@@ -485,7 +485,7 @@
 		B8BABCE2DA5F6F1EC32CF291 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -493,7 +493,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib/private",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/examples/cc/lib/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -539,7 +539,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin",
 				);
 			};
 			name = Debug;
@@ -547,7 +547,7 @@
 		D59388014CAA34F648FDB911 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -555,7 +555,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external/private",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -601,7 +601,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/bazel-rules_xcodeproj/external/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external",
 				);
 			};
 			name = Debug;

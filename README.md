@@ -7,8 +7,12 @@
 This repository contains rules for [Bazel](https://bazel.build) that can be
 used to generate Xcode projects from targets in your workspace.
 
-If you run into any problems with these rules, please
-[file an issue](https://github.com/buildbuddy-io/rules_xcodeproj/issues/new/choose)!
+If you run into any problems with these rules, please check if
+[another issue already exists][issues] and comment on it, and if not,
+[file an issue][file-an-issue]!
+
+[issues]: https://github.com/buildbuddy-io/rules_xcodeproj/issues
+[file-an-issue]: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new/choose
 
 ## Features
 
@@ -33,10 +37,14 @@ high level features:
 
 ## Compatibility
 
-- Xcode 13.2.1
-- Bazel 5.0.0 and above
-- rules_swift 0.26.0 and above
-- rules_apple 0.33.0 and above
+- macOS 12.0-12.3
+- Xcode 13.0-13.3
+- Bazel 5.1.0
+- rules_swift 0.27.0
+- rules_apple 0.34.0
+
+More versions of these tools and rulesets might be supported, but these are the
+ones we've officially tested with.
 
 Please refer to the
 [release notes](https://github.com/buildbuddy-io/rules_xcodeproj/releases) for a
