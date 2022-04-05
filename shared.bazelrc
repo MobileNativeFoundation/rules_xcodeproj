@@ -23,3 +23,7 @@ build:workflows --disk_cache=
 
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed
+
+# Fix Xcode 13.3 runtime failures on macOS 12.2 and lower
+build --macos_minimum_os=11.0
+build --host_macos_minimum_os=11.0

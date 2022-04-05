@@ -1,6 +1,6 @@
 """Specifies the supported Bazel versions."""
 
-CURRENT_BAZEL_VERSION = "5.0.0"
+CURRENT_BAZEL_VERSION = "5.1.0"
 
 OTHER_BAZEL_VERSIONS = [
     "6.0.0-pre.20220223.1",
