@@ -48,7 +48,9 @@ pass `ignore_version_differences = True` to `rules_xcodeproj_dependencies()`.
 
     repo_rule(name = name, **kwargs)
 
-def xcodeproj_rules_dependencies(ignore_version_differences = False):
+def xcodeproj_rules_dependencies(
+        ignore_version_differences = False,
+        use_dev_patches = False):
     """Fetches repositories that are dependencies of `rules_xcodeproj`.
 
     Users should call this macro in their `WORKSPACE` to ensure that all of the
@@ -58,6 +60,8 @@ def xcodeproj_rules_dependencies(ignore_version_differences = False):
     Args:
         ignore_version_differences: If `True`, warnings about potentially
             incompatible versions of dependency repositories will be silenced.
+        use_dev_patches: If `True`, use patches that are intended to be
+            applied to the development version of the repository.
     """
     _maybe(
         http_archive,
@@ -122,6 +126,14 @@ swift_library(
         ignore_version_differences = ignore_version_differences,
     )
 
+    if use_dev_patches:
+        xcodeproj_patches = [
+            # Custom for our tests
+            "@com_github_buildbuddy_io_rules_xcodeproj//third_party/com_github_tuist_xcodeproj:parent_equatable.patch",
+        ]
+    else:
+        xcodeproj_patches = []
+
     _maybe(
         http_archive,
         name = "com_github_tuist_xcodeproj",
@@ -139,10 +151,7 @@ swift_library(
     ],
 )
 """,
-        patches = [
-            # Custom for our tests
-            "@com_github_buildbuddy_io_rules_xcodeproj//third_party/com_github_tuist_xcodeproj:parent_equatable.patch",
-        ],
+        patches = xcodeproj_patches,
         sha256 = "d0a3d00f43f4f96a729542b67e76c259a871a230b31548cff528bbd1bc6f37d5",
         strip_prefix = "XcodeProj-b030c965498b9e7d76044049b22844910fee23eb",
         url = "https://github.com/tuist/XcodeProj/archive/b030c965498b9e7d76044049b22844910fee23eb.tar.gz",
