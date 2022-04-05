@@ -53,6 +53,7 @@ filegroup(
         "//third_party/com_github_tuist_xcodeproj:all_files",
         "//tools:all_files",
         "//tools/generator:all_files",
+        "//tools/generator/test:all_files",
         "//xcodeproj:all_files",
         "//xcodeproj/internal:all_files",
     ],
