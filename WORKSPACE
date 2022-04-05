@@ -2,7 +2,7 @@ workspace(name = "com_github_buildbuddy_io_rules_xcodeproj")
 
 load("//xcodeproj:repositories.bzl", "xcodeproj_rules_dependencies")
 
-xcodeproj_rules_dependencies()
+xcodeproj_rules_dependencies(use_dev_patches = True)
 
 load(
     "@build_bazel_rules_apple//apple:repositories.bzl",
