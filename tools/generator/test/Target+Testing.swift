@@ -17,9 +17,9 @@ extension Target {
         frameworks: [FilePath] = [],
         modulemaps: [FilePath] = [],
         swiftmodules: [FilePath] = [],
-        resourceBundles: Set<Path> = [],
+        resourceBundles: Set<FilePath> = [],
         inputs: Inputs = Inputs(),
-        links: Set<Path> = [],
+        links: Set<FilePath> = [],
         dependencies: Set<TargetID> = []
     ) -> Self {
         return Target(

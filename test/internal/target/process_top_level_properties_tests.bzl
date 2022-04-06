@@ -23,7 +23,11 @@ def _process_top_level_properties_test_impl(ctx):
 
     asserts.equals(
         env,
-        ctx.attr.expected_bundle_path or None,
+        struct(
+            path = ctx.attr.expected_bundle_path,
+            type = "p",
+            is_folder = False,
+        ) if ctx.attr.expected_bundle_path else None,
         properties.bundle_path,
         "bundle_path",
     )

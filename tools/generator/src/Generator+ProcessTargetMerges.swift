@@ -31,7 +31,7 @@ extension Generator {
     static func processTargetMerges(
         targets: inout [TargetID: Target],
         potentialTargetMerges: [TargetID: Set<TargetID>],
-        requiredLinks: Set<Path>
+        requiredLinks: Set<FilePath>
     ) throws -> [InvalidMerge] {
         var validTargetMerges = potentialTargetMerges
         var invalidMerges: [InvalidMerge] = []

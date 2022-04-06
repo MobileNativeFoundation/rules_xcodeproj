@@ -89,6 +89,9 @@ A value returned from `_process_search_paths()`, that contains the search
 paths needed by this target. These search paths should be added to the search
 paths of any target that depends on this target.
 """,
+        "static_framework_files": """\
+A `depset` of all static framework files that are linked into this target.
+""",
         "target": """\
 A `struct` that contains information about the current target that is
 potentially needed by the dependent targets.

@@ -76,7 +76,10 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
         potential_target_merges = potential_target_merges_json,
         name = project_name,
         targets = targets_json,
-        required_links = json.encode(sorted(required_links.to_list())),
+        required_links = json.encode([
+            file_path_to_dto(file_path(file))
+            for file in required_links.to_list()
+        ]),
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))

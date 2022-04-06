@@ -14,7 +14,7 @@ struct Environment {
     let processTargetMerges: (
         _ targets: inout [TargetID: Target],
         _ potentialTargetMerges: [TargetID: Set<TargetID>],
-        _ requiredLinks: Set<Path>
+        _ requiredLinks: Set<FilePath>
     ) throws -> [InvalidMerge]
 
     let createFilesAndGroups: (

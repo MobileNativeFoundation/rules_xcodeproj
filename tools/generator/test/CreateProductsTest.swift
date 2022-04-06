@@ -41,8 +41,8 @@ final class CreateProductsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            createdProducts.byPath,
-            expectedProducts.byPath
+            createdProducts.byFilePath,
+            expectedProducts.byFilePath
         )
         XCTAssertNoDifference(
             createdProducts.byTarget,

@@ -25,13 +25,19 @@ enum Fixtures {
             "a/module.modulemap",
             "a/Fram.framework/Fram",
             "a/Fram.framework/Headers/Fram.h",
+            "a/StaticFram.framework/StaticFram",
+            "a/StaticFram.framework/Headers/StaticFram.h",
         ]
     )
 
     static let targets: [TargetID: Target] = [
         "A 1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/A 1",
-            product: .init(type: .staticLibrary, name: "a", path: "z/A.a"),
+            product: .init(
+                type: .staticLibrary,
+                name: "a",
+                path: .generated("z/A.a")
+            ),
             isSwift: true,
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("A"),
@@ -50,7 +56,11 @@ enum Fixtures {
         ),
         "A 2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/A 2",
-            product: .init(type: .application, name: "A", path: "z/A.app"),
+            product: .init(
+                type: .application,
+                name: "A",
+                path: .generated("z/A.app")
+            ),
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_A"),
                 "T": .string("43"),
@@ -58,7 +68,7 @@ enum Fixtures {
             ],
             frameworks: ["a/Fram.framework"],
             swiftmodules: [.generated("x/y.swiftmodule")],
-            resourceBundles: ["r1/R1.bundle"],
+            resourceBundles: [.generated("r1/R1.bundle")],
             inputs: .init(
                 resources: [
                     "es.lproj/Localized.strings",
@@ -68,7 +78,10 @@ enum Fixtures {
                     "en.lproj/Example.strings",
                 ]
             ),
-            links: ["a/c.a", "z/A.a"],
+            links: [
+                .generated("a/c.a"),
+                .generated("z/A.a"),
+            ],
             dependencies: ["C 1", "A 1", "R 1"]
         ),
         "B 1": Target.mock(
@@ -76,7 +89,7 @@ enum Fixtures {
             product: .init(
                 type: .staticFramework,
                 name: "b",
-                path: "a/b.framework"
+                path: .generated("a/b.framework")
             ),
             modulemaps: ["a/module.modulemap"],
             swiftmodules: [.generated("x/y.swiftmodule")],
@@ -87,21 +100,33 @@ enum Fixtures {
         // relationship. This allows "A 1" to merge into "A 2".
         "B 2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/B 2",
-            product: .init(type: .unitTestBundle, name: "B", path: "B.xctest"),
+            product: .init(
+                type: .unitTestBundle,
+                name: "B",
+                path: .generated("B.xctest")
+            ),
             testHost: "A 2",
-            links: ["a/b.framework"],
+            links: ["a/StaticFram.framework/StaticFram"],
             dependencies: ["A 2", "B 1"]
         ),
         "B 3": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/B 3",
-            product: .init(type: .uiTestBundle, name: "B3", path: "B3.xctest"),
+            product: .init(
+                type: .uiTestBundle,
+                name: "B3",
+                path: .generated("B3.xctest")
+            ),
             testHost: "A 2",
-            links: ["a/b.framework"],
+            links: ["a/StaticFram.framework/StaticFram"],
             dependencies: ["A 2", "B 1"]
         ),
         "C 1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/C 1",
-            product: .init(type: .staticLibrary, name: "c", path: "a/c.a"),
+            product: .init(
+                type: .staticLibrary,
+                name: "c",
+                path: .generated("a/c.a")
+            ),
             modulemaps: [.generated("a/b/module.modulemap")],
             inputs: .init(
                 srcs: ["a/b/c.m"],
@@ -111,9 +136,15 @@ enum Fixtures {
         ),
         "C 2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/C 2",
-            product: .init(type: .commandLineTool, name: "d", path: "d"),
+            product: .init(
+                type: .commandLineTool,
+                name: "d",
+                path: .generated("d")
+            ),
             inputs: .init(srcs: ["a/b/d.m"]),
-            links: ["a/c.a"],
+            links: [
+                .generated("a/c.a"),
+            ],
             dependencies: ["C 1"]
         ),
         "E1": Target.mock(
@@ -124,7 +155,11 @@ enum Fixtures {
                 minimumOsVersion: "9.1",
                 environment: nil
             ),
-            product: .init(type: .staticLibrary, name: "E1", path: "e1/E.a"),
+            product: .init(
+                type: .staticLibrary,
+                name: "E1",
+                path: .generated("e1/E.a")
+            ),
             isSwift: true,
             inputs: .init(srcs: [.external("a_repo/a.swift")])
         ),
@@ -136,13 +171,21 @@ enum Fixtures {
                 minimumOsVersion: "9.1",
                 environment: nil
             ),
-            product: .init(type: .staticLibrary, name: "E2", path: "e2/E.a"),
+            product: .init(
+                type: .staticLibrary,
+                name: "E2",
+                path: .generated("e2/E.a")
+            ),
             isSwift: true,
             inputs: .init(srcs: [.external("another_repo/b.swift")])
         ),
         "R 1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/R 1",
-            product: .init(type: .bundle, name: "R 1", path: "r1/R1.bundle"),
+            product: .init(
+                type: .bundle,
+                name: "R 1",
+                path: .generated("r1/R1.bundle")
+            ),
             inputs: .init(
                 resources: [
                     "r1/X.txt",
@@ -354,7 +397,7 @@ enum Fixtures {
             path: "b"
         )
 
-        // a/Frame.framework
+        // a/Fram.framework
 
         elements["a/Fram.framework"] = PBXFileReference(
             sourceTree: .group,
@@ -364,6 +407,18 @@ enum Fixtures {
         elements["a/Fram.framework/Fram"] = elements["a/Fram.framework"]!
         elements["a/Fram.framework/Headers/Fram.h"] =
             elements["a/Fram.framework"]!
+
+        // a/StaticFram.framework
+
+        elements["a/StaticFram.framework"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "wrapper.framework",
+            path: "StaticFram.framework"
+        )
+        elements["a/StaticFram.framework/StaticFram"] =
+            elements["a/StaticFram.framework"]!
+        elements["a/StaticFram.framework/Headers/StaticFram.h"] =
+            elements["a/StaticFram.framework"]!
 
         // a/module.modulemap
 
@@ -384,6 +439,7 @@ enum Fixtures {
                 elements["a/c.h"]!,
                 elements["a/Fram.framework"]!,
                 elements["a/module.modulemap"]!,
+                elements["a/StaticFram.framework"]!,
             ],
             sourceTree: .group,
             path: "a"
@@ -636,26 +692,14 @@ a1b2c/bin/t.c
 
         files[.internal("targets/a1b2c/A 2/A.LinkFileList")] =
             .nonReferencedContent("""
-a/c.a
-z/A.a
-
-""")
-
-        files[.internal("targets/a1b2c/B 2/B.LinkFileList")] =
-            .nonReferencedContent("""
-a/b.framework
-
-""")
-
-        files[.internal("targets/a1b2c/B 3/B3.LinkFileList")] =
-            .nonReferencedContent("""
-a/b.framework
+bazel-out/a/c.a
+bazel-out/z/A.a
 
 """)
 
         files[.internal("targets/a1b2c/C 2/d.LinkFileList")] =
             .nonReferencedContent("""
-a/c.a
+bazel-out/a/c.a
 
 """)
 
@@ -669,7 +713,7 @@ a/c.a
         let products = Products([
             Products.ProductKeys(
                 target: "A 1",
-                path: "z/A.a"
+                filePath: .generated("z/A.a")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.staticLibrary.fileType,
@@ -678,7 +722,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "A 2",
-                path: "z/A.app"
+                filePath: .generated("z/A.app")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.application.fileType,
@@ -687,7 +731,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "B 1",
-                path: "a/b.framework"
+                filePath: .generated("a/b.framework")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.staticFramework.fileType,
@@ -696,7 +740,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "B 2",
-                path: "B.xctest"
+                filePath: .generated("B.xctest")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.unitTestBundle.fileType,
@@ -705,7 +749,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "B 3",
-                path: "B3.xctest"
+                filePath: .generated("B3.xctest")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.uiTestBundle.fileType,
@@ -714,7 +758,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "C 1",
-                path: "a/c.a"
+                filePath: .generated("a/c.a")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.staticLibrary.fileType,
@@ -723,7 +767,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "C 2",
-                path: "d"
+                filePath: .generated("d")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.commandLineTool.fileType,
@@ -732,7 +776,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "E1",
-                path: "e1/E.a"
+                filePath: .generated("e1/E.a")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.staticLibrary.fileType,
@@ -741,7 +785,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "E2",
-                path: "e2/E.a"
+                filePath: .generated("e2/E.a")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.staticLibrary.fileType,
@@ -750,7 +794,7 @@ a/c.a
             ),
             Products.ProductKeys(
                 target: "R 1",
-                path: "r1/R1.bundle"
+                filePath: .generated("r1/R1.bundle")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.bundle.fileType,
@@ -775,16 +819,16 @@ a/c.a
     ) -> PBXGroup {
         let group = PBXGroup(
             children: [
-                products.byPath["z/A.a"]!,
-                products.byPath["z/A.app"]!,
-                products.byPath["a/b.framework"]!,
-                products.byPath["B.xctest"]!,
-                products.byPath["B3.xctest"]!,
-                products.byPath["a/c.a"]!,
-                products.byPath["d"]!,
-                products.byPath["e1/E.a"]!,
-                products.byPath["e2/E.a"]!,
-                products.byPath["r1/R1.bundle"]!,
+                products.byFilePath[.generated("z/A.a")]!,
+                products.byFilePath[.generated("z/A.app")]!,
+                products.byFilePath[.generated("a/b.framework")]!,
+                products.byFilePath[.generated("B.xctest")]!,
+                products.byFilePath[.generated("B3.xctest")]!,
+                products.byFilePath[.generated("a/c.a")]!,
+                products.byFilePath[.generated("d")]!,
+                products.byFilePath[.generated("e1/E.a")]!,
+                products.byFilePath[.generated("e2/E.a")]!,
+                products.byFilePath[.generated("r1/R1.bundle")]!,
             ],
             sourceTree: .group,
             name: "Products"
@@ -858,8 +902,8 @@ a/c.a
                     files: buildFiles([
                         PBXBuildFile(file: elements["Example.xib"]!),
                         PBXBuildFile(file: elements["Localized.strings"]!),
-                        PBXBuildFile(
-                            file: products.byPath["r1/R1.bundle"]!
+                        PBXBuildFile(file: products
+                            .byFilePath[.generated("r1/R1.bundle")]!
                         ),
                     ])
                 ),
@@ -899,11 +943,21 @@ a/c.a
                         file: elements[.internal("CompileStub.swift")]!
                     )])
                 ),
+                PBXFrameworksBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: elements["a/StaticFram.framework"]!
+                    )])
+                ),
             ],
             "B 3": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.internal("CompileStub.swift")]!
+                    )])
+                ),
+                PBXFrameworksBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: elements["a/StaticFram.framework"]!
                     )])
                 ),
             ],

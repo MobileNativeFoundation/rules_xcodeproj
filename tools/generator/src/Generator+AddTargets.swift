@@ -35,6 +35,9 @@ Product for target "\(id)" not found in `products`
 """)
             }
 
+            let frameworkLinks = target.links.filter { $0.type != .generated }
+                + target.frameworks
+
             let buildPhases = [
                 try createHeadersPhase(
                     in: pbxProj,
@@ -55,7 +58,7 @@ Product for target "\(id)" not found in `products`
                 ),
                 try createFrameworksPhase(
                     in: pbxProj,
-                    frameworks: target.frameworks,
+                    frameworks: frameworkLinks,
                     files: files
                 ),
                 try createResourcesPhase(
@@ -460,7 +463,7 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
     private static func createResourcesPhase(
         in pbxProj: PBXProj,
         productType: PBXProductType,
-        resourceBundles: Set<Path>,
+        resourceBundles: Set<FilePath>,
         inputs: Inputs,
         products: Products,
         files: [FilePath: File]
@@ -485,10 +488,11 @@ Resource with file path "\(filePath)" had nil `PBXFileElement` in `files`
             return fileElement
         }
 
-        func productReference(path: Path) throws -> PBXFileReference {
-            guard let reference = products.byPath[path] else {
+        func productReference(filePath: FilePath) throws -> PBXFileReference {
+            guard let reference = products.byFilePath[filePath] else {
                 throw PreconditionError(message: """
-Resource bundle product reference with path "\(path)" not found in `products`
+Resource bundle product reference with file path "\(filePath)" not found in \
+`products`
 """)
             }
             return reference
