@@ -15,7 +15,7 @@ for spec in "${specs[@]}"; do
   dest="$dir/spec.json"
 
   mkdir -p "$dir"
-  python -m json.tool "$spec" > "$dest"
+  python3 -m json.tool "$spec" > "$dest"
 done
 
 for installer in "${installers[@]}"; do
