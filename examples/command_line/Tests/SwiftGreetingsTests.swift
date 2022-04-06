@@ -5,6 +5,6 @@ import XCTest
 class SwiftGreetingsTests: XCTestCase {
 
   func test_greeting() throws {
-    XCTFail("IMPLEMENT ME!")
+    XCTAssertEqual("Swifty", SwiftGreetings.greeting)
   }
 }
