@@ -1083,6 +1083,7 @@ rsync \
   --files-from "$PROJECT_DIR/\#(
     filePathResolver.internalDirectory
 )/generated.rsynclist" \
+  --chmod=u+w \
   -L \
   . \
   "$BUILD_DIR/bazel-out"

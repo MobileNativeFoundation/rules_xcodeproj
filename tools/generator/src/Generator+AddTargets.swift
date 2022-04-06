@@ -164,6 +164,7 @@ rsync \
         .resolve(.internal(rsyncFileListPath), useScriptVariables: true)
         .string
 )" \
+  --chmod=u+w \
   -L \
   . \
   "$BUILD_DIR/bazel-out"
