@@ -3,20 +3,18 @@ build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
 build:cache --jobs=100
 build:cache --remote_cache=grpcs://remote.buildbuddy.io
+build:cache --remote_default_exec_properties=OSFamily=darwin
+build:cache --remote_instance_name=buildbuddy-io/rules_xcodeproj/macOS_11.0
 
 # Build with --config=remote to use BuildBuddy RBE
-build:remote --bes_results_url=https://app.buildbuddy.io/invocation/
-build:remote --bes_backend=grpcs://remote.buildbuddy.io
-build:remote --jobs=100
-build:remote --remote_cache=grpcs://remote.buildbuddy.io
-build:remote --remote_default_exec_properties=OSFamily=darwin
+build:remote --config=cache
 build:remote --remote_executor=grpcs://remote.buildbuddy.io
 
 # Configuration used for BuildBuddy workflows
 build:workflows --config=cache
 build:workflows --build_metadata=ROLE=CI
 build:workflows --build_metadata=VISIBILITY=PUBLIC
-build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
+build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/macOS_11.0/workflows
 build:workflows --color=yes
 build:workflows --terminal_columns=120
 build:workflows --disk_cache=
@@ -25,5 +23,7 @@ build:workflows --disk_cache=
 test --test_output=errors --test_summary=detailed
 
 # Fix Xcode 13.3 runtime failures on macOS 12.2 and lower
+# Until https://github.com/bazelbuild/rules_swift/issues/794 is fixed, if this
+# changes we need to bump our --remote_instance_name's
 build --macos_minimum_os=11.0
 build --host_macos_minimum_os=11.0
