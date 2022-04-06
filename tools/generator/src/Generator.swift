@@ -61,14 +61,14 @@ class Generator {
             guard let srcTarget = targets[invalidMerge.source] else {
                 throw PreconditionError(
                     message: """
-                    Expected the invalid merge source to exist.  \(String(reflecting: invalidMerge))
-                    """)
+Source target "\(invalidMerge.source)" not found in `targets`
+""")
             }
             for destination in invalidMerge.destinations {
                 guard let desTarget = targets[destination] else {
                     throw PreconditionError(message: """
-                    Expected the destination target to exist. \(String(reflecting: destination))
-                    """)
+Destination target "\(destination)" not found in `targets`
+""")
                 }
                 logger.logWarning("""
 Was unable to merge "\(srcTarget.label) \
