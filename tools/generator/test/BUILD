@@ -13,7 +13,10 @@ swift_library(
 
 swift_test(
     name = "tests",
-    visibility = ["//test:__subpackages__"],
+    visibility = [
+        "//test:__subpackages__",
+        "//tools/generator:__subpackages__",
+    ],
     deps = [
         ":tests.library",
     ],
