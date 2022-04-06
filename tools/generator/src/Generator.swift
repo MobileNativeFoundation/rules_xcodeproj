@@ -58,12 +58,23 @@ class Generator {
         )
 
         for invalidMerge in invalidMerges {
+            guard let srcTarget = targets[invalidMerge.source] else {
+                throw PreconditionError(
+                    message: """
+Source target "\(invalidMerge.source)" not found in `targets`
+""")
+            }
             for destination in invalidMerge.destinations {
+                guard let desTarget = targets[destination] else {
+                    throw PreconditionError(message: """
+Destination target "\(destination)" not found in `targets`
+""")
+                }
                 logger.logWarning("""
-Was unable to merge "\(targets[invalidMerge.source]!.label) \
-(\(targets[invalidMerge.source]!.configuration))" into \
-"\(targets[destination]!.label) \
-(\(targets[destination]!.configuration))"
+Was unable to merge "\(srcTarget.label) \
+(\(srcTarget.configuration))" into \
+"\(desTarget.label) \
+(\(desTarget.configuration))"
 """)
             }
         }
