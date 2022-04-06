@@ -398,7 +398,7 @@ def _process_top_level_properties(
             product_type = "com.apple.product-type.tool"
             bundle_path = None
 
-    build_settings["PRODUCT_MODULE_NAME"] = "_{}_".format(product_name)
+    build_settings["PRODUCT_MODULE_NAME"] = "_{}_Stub".format(product_name)
 
     return struct(
         bundle_path = bundle_path,
@@ -705,9 +705,10 @@ def _process_library_target(*, ctx, target, transitive_infos):
         build_settings = build_settings,
     )
     product_name = ctx.rule.attr.name
-    build_settings["PRODUCT_MODULE_NAME"] = get_product_module_name(
-        ctx = ctx,
-        target = target,
+    set_if_true(
+        build_settings,
+        "PRODUCT_MODULE_NAME",
+        get_product_module_name(ctx = ctx, target = target),
     )
     dependencies = _process_dependencies(
         attrs_info = attrs_info,
