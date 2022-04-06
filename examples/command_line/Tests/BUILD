@@ -13,7 +13,10 @@ swift_library(
 macos_unit_test(
     name = "LibSwiftTests",
     minimum_os_version = "11.0",
-    visibility = ["//examples/command_line:__subpackages__"],
+    visibility = [
+        "//examples/command_line:__subpackages__",
+        "//test/fixtures/command_line:__subpackages__",
+    ],
     deps = [
         ":LibSwiftTestsLib",
     ],
