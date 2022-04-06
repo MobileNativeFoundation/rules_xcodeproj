@@ -36,6 +36,8 @@ extension Generator {
     static let copiedGeneratedFileListPath: Path = "generated.copied.xcfilelist"
     static let modulemapsFileListPath: Path = "modulemaps.xcfilelist"
     static let fixedModulemapsFileListPath: Path = "modulemaps.fixed.xcfilelist"
+    static let infoPlistsFileListPath: Path = "infoplists.xcfilelist"
+    static let fixedInfoPlistsFileListPath: Path = "infoplists.fixed.xcfilelist"
 
     private static let localizedGroupExtensions: Set<String> = [
         "intentdefinition",
@@ -378,6 +380,16 @@ extension Generator {
         let fixedModulemapPaths = modulemapPaths.map { path in
             return path.replacingExtension("xcode.modulemap")
         }
+        let infoPlistPaths = generatedFiles
+            .filter { filePath, _ in filePath.path.lastComponent == "Info.plist" }
+            .map { filePath, _ in
+            // We need to use `gen_dir` instead of `$(BUILD_DIR)` here to match
+            // the project navigator
+            return filePathResolver.resolve(filePath, useBuildDir: false)
+        }
+        let fixedInfoPlistPaths = infoPlistPaths.map { path in
+            return path.replacingExtension("xcode.plist")
+        }
 
         func addXCFileList(_ path: Path, paths: [Path]) {
             guard !paths.isEmpty else {
@@ -394,6 +406,8 @@ extension Generator {
         addXCFileList(copiedGeneratedFileListPath, paths: copiedGeneratedPaths)
         addXCFileList(modulemapsFileListPath, paths: modulemapPaths)
         addXCFileList(fixedModulemapsFileListPath, paths: fixedModulemapPaths)
+        addXCFileList(infoPlistsFileListPath, paths: infoPlistPaths)
+        addXCFileList(fixedInfoPlistsFileListPath, paths: fixedInfoPlistPaths)
 
         // Write LinkFileLists
         

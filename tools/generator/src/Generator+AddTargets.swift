@@ -187,6 +187,12 @@ ln -sf "$BUILD_DIR/bazel-out" gen_dir
             filePathResolver: filePathResolver
         )
 
+        let fixInfoPlistsScript = createFixInfoPlistsScript(
+            in: pbxProj,
+            files: files,
+            filePathResolver: filePathResolver
+        )
+
         let pbxTarget = PBXAggregateTarget(
             name: "Bazel Generated Files",
             buildConfigurationList: configurationList,
@@ -194,6 +200,7 @@ ln -sf "$BUILD_DIR/bazel-out" gen_dir
                 generateFilesScript,
                 copyFilesScript,
                 fixModuleMapsScript,
+                fixInfoPlistsScript,
             ].compactMap { $0 },
             productName: "Bazel Generated Files"
         )
@@ -247,6 +254,43 @@ ln -sfn "\#(
     filePathResolver.resolve(.external(""), useScriptVariables: true)
 )" external
 
+"""#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
+    private static func createFixInfoPlistsScript(
+        in pbxProj: PBXProj,
+        files: [FilePath: File],
+        filePathResolver: FilePathResolver
+    ) -> PBXShellScriptBuildPhase? {
+        guard files.containsInfoPlists else {
+            return nil
+        }
+
+        let script = PBXShellScriptBuildPhase(
+            name: "Fix Info.plists",
+            inputFileListPaths: [
+                filePathResolver
+                    .resolve(.internal(infoPlistsFileListPath))
+                    .string,
+            ],
+            outputFileListPaths: [
+                filePathResolver
+                    .resolve(.internal(fixedInfoPlistsFileListPath))
+                    .string,
+            ],
+            shellScript: #"""
+set -eu
+
+while IFS= read -r input; do
+  output="${input%.plist}.xcode.plist"
+  cp "$input" "$output"
+  plutil -remove UIDeviceFamily "$output" || true
+done < "$SCRIPT_INPUT_FILE_LIST_0"
 """#,
             showEnvVarsInLog: false
         )
@@ -569,6 +613,13 @@ extension Dictionary where Key == FilePath {
         contains(where: { filePath, _ in
             return filePath.type == .generated
                 && filePath.path.extension == "modulemap"
+        })
+    }
+
+    var containsInfoPlists: Bool {
+        contains(where: { filePath, _ in
+            return filePath.type == .generated
+                && filePath.path.lastComponent == "Info.plist"
         })
     }
 }

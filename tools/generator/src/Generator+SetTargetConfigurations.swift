@@ -111,12 +111,18 @@ Target "\(id)" not found in `pbxTargets`
             buildSettings["TARGET_NAME"] = target.name
 
             if let infoPlist = target.infoPlist {
-              let infoPlistPath = filePathResolver
+                var infoPlistPath = filePathResolver
                     // We need to use `gen_dir` instead of `$(BUILD_DIR)` here
                     // to match the project navigator
                     .resolve(infoPlist, useBuildDir: false)
-                    .string.quoted
-              buildSettings["INFOPLIST_FILE"] = infoPlistPath
+                
+                // If the plist is generated, use the patched version that
+                // removes a specific key that causes a warning when building
+                // with Xcode
+                if infoPlist.type == .generated {
+                    infoPlistPath.replaceExtension("xcode.plist")
+                }
+                buildSettings["INFOPLIST_FILE"] = infoPlistPath.string.quoted
             } else {
               buildSettings["GENERATE_INFOPLIST_FILE"] = true
             }
