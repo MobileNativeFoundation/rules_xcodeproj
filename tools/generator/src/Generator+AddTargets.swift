@@ -180,7 +180,44 @@ ln -sf "$BUILD_DIR/bazel-out" gen_dir
         )
         pbxProj.add(object: copyFilesScript)
 
-        let fixModuleMapsScript = PBXShellScriptBuildPhase(
+        let fixModuleMapsScript = createFixModulemapsScript(
+            in: pbxProj,
+            files: files,
+            filePathResolver: filePathResolver
+        )
+
+        let pbxTarget = PBXAggregateTarget(
+            name: "Bazel Generated Files",
+            buildConfigurationList: configurationList,
+            buildPhases: [
+                generateFilesScript,
+                copyFilesScript,
+                fixModuleMapsScript,
+            ].compactMap { $0 },
+            productName: "Bazel Generated Files"
+        )
+        pbxProj.add(object: pbxTarget)
+        pbxProject.targets.append(pbxTarget)
+
+        let attributes: [String: Any] = [
+            // TODO: Generate this value
+            "CreatedOnToolsVersion": "13.2.1",
+        ]
+        pbxProject.setTargetAttributes(attributes, target: pbxTarget)
+
+        return pbxTarget
+    }
+
+    private static func createFixModulemapsScript(
+        in pbxProj: PBXProj,
+        files: [FilePath: File],
+        filePathResolver: FilePathResolver
+    ) -> PBXShellScriptBuildPhase? {
+        guard files.containsModulemaps else {
+            return nil
+        }
+
+        let script = PBXShellScriptBuildPhase(
             name: "Fix Modulemaps",
             inputFileListPaths: [
                 filePathResolver
@@ -212,28 +249,9 @@ ln -sfn "\#(
 """#,
             showEnvVarsInLog: false
         )
-        pbxProj.add(object: fixModuleMapsScript)
+        pbxProj.add(object: script)
 
-        let pbxTarget = PBXAggregateTarget(
-            name: "Bazel Generated Files",
-            buildConfigurationList: configurationList,
-            buildPhases: [
-                generateFilesScript,
-                copyFilesScript,
-                fixModuleMapsScript,
-            ],
-            productName: "Bazel Generated Files"
-        )
-        pbxProj.add(object: pbxTarget)
-        pbxProject.targets.append(pbxTarget)
-
-        let attributes: [String: Any] = [
-            // TODO: Generate this value
-            "CreatedOnToolsVersion": "13.2.1",
-        ]
-        pbxProject.setTargetAttributes(attributes, target: pbxTarget)
-
-        return pbxTarget
+        return script
     }
 
     private static func createHeadersPhase(
@@ -542,6 +560,15 @@ private struct SourceFile: Hashable {
 extension Inputs {
     var containsSourceFiles: Bool {
         return !(srcs.isEmpty && nonArcSrcs.isEmpty)
+    }
+}
+
+extension Dictionary where Key == FilePath {
+    var containsModulemaps: Bool {
+        contains(where: { filePath, _ in
+            return filePath.type == .generated
+                && filePath.path.extension == "modulemap"
+        })
     }
 }
 
