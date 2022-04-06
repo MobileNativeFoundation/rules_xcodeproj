@@ -1,4 +1,5 @@
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+load("@rules_cc//cc:defs.bzl", "objc_library")
 
 objc_library(
     name = "lib_defines",
@@ -26,6 +27,7 @@ swift_library(
     generated_header_name = "private/LibSwift-Swift.h",
     generates_header = True,
     module_name = "LibSwift",
+    visibility = ["//examples/command_line/Tests:__subpackages__"],
     deps = [
         ":lib_impl",
     ],
