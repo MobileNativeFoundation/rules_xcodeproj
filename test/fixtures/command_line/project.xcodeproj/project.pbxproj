@@ -570,7 +570,6 @@
 					"$(PROJECT_DIR)/test/fixtures/command_line/project.xcodeproj/rules_xcodeproj/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/examples/command_line/tool/tool.LinkFileList,$(BUILD_DIR)",
 					"-ObjC",
 				);
-				PRODUCT_MODULE_NAME = examples_command_line_tool_tool_library;
 				PRODUCT_NAME = tool;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -632,7 +631,6 @@
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
 				);
-				PRODUCT_MODULE_NAME = examples_command_line_lib_lib_impl;
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";

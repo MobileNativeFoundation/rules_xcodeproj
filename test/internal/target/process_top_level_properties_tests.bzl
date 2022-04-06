@@ -151,7 +151,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "binary",
         expected_product_type = "com.apple.product-type.tool",
         expected_build_settings = {
-            "PRODUCT_MODULE_NAME": "_binary_",
+            "PRODUCT_MODULE_NAME": "_binary_Stub",
         },
     )
 
@@ -166,7 +166,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "test",
         expected_product_type = "com.apple.product-type.bundle.unit-test",
         expected_build_settings = {
-            "PRODUCT_MODULE_NAME": "_test_",
+            "PRODUCT_MODULE_NAME": "_test_Stub",
         },
     )
 
@@ -192,7 +192,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_type = "com.apple.product-type.application",
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
-            "PRODUCT_MODULE_NAME": "_flagship_",
+            "PRODUCT_MODULE_NAME": "_flagship_Stub",
         },
     )
 
@@ -216,7 +216,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_type = "com.apple.product-type.application",
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
-            "PRODUCT_MODULE_NAME": "_flagship_",
+            "PRODUCT_MODULE_NAME": "_flagship_Stub",
         },
     )
 
@@ -240,7 +240,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_type = "com.apple.product-type.bundle.unit-test",
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship.test",
-            "PRODUCT_MODULE_NAME": "_flagship_",
+            "PRODUCT_MODULE_NAME": "_flagship_Stub",
         },
     )
 

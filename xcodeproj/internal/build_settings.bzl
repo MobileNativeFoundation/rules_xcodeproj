@@ -1,5 +1,7 @@
 """Functions for handling Xcode build settings."""
 
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "swift_common")
+
 # Maps the strings passed in to the `families` attribute to the numerical
 # representation in the "TARGETED_DEVICE_FAMILY" build setting.
 # @unsorted-dict-items
@@ -14,36 +16,6 @@ _DEVICE_FAMILY_VALUES = {
     "mac": None,
 }
 
-def _calculate_module_name(*, label, module_name):
-    """Calculates a module name.
-
-    Args:
-        label: The `Label` of the `Target`.
-        module_name: The value of the `module_name` attribute of the target.
-            Can be `None`.
-
-    Returns:
-        `module_name` if not `None`, otherwise it transforms `label` into a
-        valid module name (e.g. "//some/pkg:target" becomes "some_pkg_target").
-    """
-    if module_name:
-        return module_name
-
-    label_string = str(label)
-
-    if label_string.startswith("//"):
-        label_string = label_string[2:]
-
-    return (label_string
-        .replace("@", "")
-        .replace("//", "_")
-        .replace("-", "_")
-        .replace("/", "_")
-        .replace(":", "_")
-        .replace(".", "_"))
-
-# API
-
 def get_product_module_name(*, ctx, target):
     """Generates a module name for the given target.
 
@@ -56,10 +28,14 @@ def get_product_module_name(*, ctx, target):
         the target's `Label` into a valid module name (e.g. "//some/pkg:target"
         becomes "some_pkg_target").
     """
-    return _calculate_module_name(
-        label = target.label,
-        module_name = getattr(ctx.rule.attr, "module_name", None),
-    )
+    module_name = getattr(ctx.rule.attr, "module_name", None)
+    if module_name:
+        return module_name
+
+    if SwiftInfo in target:
+        return swift_common.derive_module_name(target.label)
+
+    return None
 
 def get_targeted_device_family(families):
     """Generates a TARGETED_DEVICE_FAMILY based string.
@@ -81,8 +57,3 @@ def get_targeted_device_family(families):
     if family_ids:
         return ",".join(family_ids)
     return None
-
-# These functions are exposed only for access in unit tests.
-testable = struct(
-    calculate_module_name = _calculate_module_name,
-)

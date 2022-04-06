@@ -382,7 +382,6 @@
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
 				);
-				PRODUCT_MODULE_NAME = examples_cc_lib2_lib_impl;
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -466,7 +465,7 @@
 					"$(PROJECT_DIR)/test/fixtures/cc/project.xcodeproj/rules_xcodeproj/targets/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/examples/cc/tool/tool.LinkFileList,$(BUILD_DIR)",
 					"-ObjC",
 				);
-				PRODUCT_MODULE_NAME = _tool_;
+				PRODUCT_MODULE_NAME = _tool_Stub;
 				PRODUCT_NAME = tool;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -533,7 +532,6 @@
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
 				);
-				PRODUCT_MODULE_NAME = examples_cc_lib_lib_impl;
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -596,7 +594,6 @@
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
 				);
-				PRODUCT_MODULE_NAME = examples_cc_external__lib_impl;
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
