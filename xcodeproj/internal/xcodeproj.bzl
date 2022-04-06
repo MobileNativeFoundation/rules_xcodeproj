@@ -44,6 +44,7 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
     potential_target_merges_json = json.encode(sorted_potential_target_merges_array)
 
     # TODO: Set CURRENT_PROJECT_VERSION and MARKETING_VERSION from `version`
+    # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     spec_json = """\
 {{\
 "build_settings":{{\
@@ -55,7 +56,8 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 "CURRENT_PROJECT_VERSION":"1",\
 "MARKETING_VERSION":"1.0",\
 "ONLY_ACTIVE_ARCH":true,\
-"USE_HEADERMAP":false\
+"USE_HEADERMAP":false,\
+"VALIDATE_WORKSPACE":false\
 }},\
 "extra_files":{extra_files},\
 "label":"{label}",\
