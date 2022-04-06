@@ -16,6 +16,7 @@ rsync \
   --exclude=project.xcworkspace \
   --exclude=xcuserdata \
   --exclude=xcshareddata/xcschemes \
+  --exclude=rules_xcodeproj/gen_dir \
   --delete \
   "$src/" "$dest/"
 
