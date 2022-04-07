@@ -1,5 +1,7 @@
 """Functions to deal with resource bundle products."""
 
+load(":files.bzl", "file_path_to_dto")
+
 def _collect(
         *,
         bundle_path = None,
@@ -82,7 +84,7 @@ def _to_dto(resource_bundles, *, avoid_infos):
     ).to_list()
 
     return [
-        bundle_path
+        file_path_to_dto(bundle_path)
         for owner, bundle_path in resource_bundles._products.to_list()
         if owner not in avoid_bundle_product_owners
     ]

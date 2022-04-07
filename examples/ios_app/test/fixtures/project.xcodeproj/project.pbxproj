@@ -42,6 +42,7 @@
 		A3ADDDD00B8798D8C12477BC /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0D71BEB41FFFA97C5AAF35CE /* Utils.bundle */; };
 		AE2C4E59A2F6A848808F8249 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699DE3520D61FDC19A909EF /* ExampleApp.swift */; };
 		C6CB5A5FD193CCABCF030A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E848F62EC3EA16CB8AADB58 /* Assets.xcassets */; };
+		D318A1B20B60B1F886937BD6 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF54836943E040ACDFCB9FD /* ExampleFramework.framework */; };
 		D33E63DEA2F545E4238A1DF8 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A7C1EE8BAE7058EFC5B0C /* ExampleUITests.swift */; };
 		D3550C907CF55CBD2B3B2EDC /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1971CA49644537C181D152F9 /* TestingUtils.swift */; };
 		DB28C4EBC63A24E7071390F7 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB838B5673B2D4DA9E2E52F0 /* ExternalFramework.framework */; };
@@ -242,6 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D318A1B20B60B1F886937BD6 /* ExampleFramework.framework in Frameworks */,
 				DB28C4EBC63A24E7071390F7 /* ExternalFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

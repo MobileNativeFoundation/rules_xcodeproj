@@ -7,7 +7,7 @@ struct Project: Equatable, Decodable {
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
     let potentialTargetMerges: [TargetID: Set<TargetID>]
-    let requiredLinks: Set<Path>
+    let requiredLinks: Set<FilePath>
     let extraFiles: Set<FilePath>
 }
 
@@ -25,9 +25,9 @@ struct Target: Equatable, Decodable {
     var frameworks: [FilePath]
     var modulemaps: [FilePath]
     var swiftmodules: [FilePath]
-    let resourceBundles: Set<Path>
+    let resourceBundles: Set<FilePath>
     var inputs: Inputs
-    var links: Set<Path>
+    var links: Set<FilePath>
     var infoPlist: FilePath?
     var dependencies: Set<TargetID>
 }
@@ -35,7 +35,7 @@ struct Target: Equatable, Decodable {
 struct Product: Equatable, Decodable {
     let type: PBXProductType
     let name: String
-    let path: Path
+    let path: FilePath
 }
 
 struct Platform: Equatable, Decodable {

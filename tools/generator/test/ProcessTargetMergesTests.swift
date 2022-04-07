@@ -10,7 +10,7 @@ final class TargetMergingTests: XCTestCase {
 
         var targets = Fixtures.targets
         let potentialTargetMerges: [TargetID: Set<TargetID>] = [:]
-        let requiredLinks = Set<Path>()
+        let requiredLinks = Set<FilePath>()
 
         let expectedTargets = Fixtures.targets
         let expectedInvalidMerges: [InvalidMerge] = []
@@ -37,7 +37,7 @@ final class TargetMergingTests: XCTestCase {
             "A 1": ["A 2"],
             "B 1": ["B 2", "B 3"],
         ]
-        let requiredLinks = Set<Path>()
+        let requiredLinks = Set<FilePath>()
 
         var expectedTargets = targets
         expectedTargets.removeValue(forKey: "A 1")
@@ -61,7 +61,7 @@ final class TargetMergingTests: XCTestCase {
             resourceBundles: targets["A 2"]!.resourceBundles,
             inputs: targets["A 1"]!.inputs.union(targets["A 2"]!.inputs),
             // Removed "A 1"'s product
-            links: ["a/c.a"],
+            links: [.generated("a/c.a")],
             // Inherited "A 1"'s dependencies and removed "A 1"
             dependencies: ["C 1", "R 1"]
         )
@@ -76,7 +76,7 @@ final class TargetMergingTests: XCTestCase {
             resourceBundles: targets["B 2"]!.resourceBundles,
             inputs: targets["B 1"]!.inputs.union(targets["B 2"]!.inputs),
             // Removed "A 1"'s and "B 1"'s product
-            links: [],
+            links: ["a/StaticFram.framework/StaticFram"],
             // Inherited "B 1"'s dependencies and removed "A 1"
             dependencies: ["A 2"]
         )
@@ -91,7 +91,7 @@ final class TargetMergingTests: XCTestCase {
             resourceBundles: targets["B 3"]!.resourceBundles,
             inputs: targets["B 1"]!.inputs.union(targets["B 3"]!.inputs),
             // Removed "B 1"'s product
-            links: [],
+            links: ["a/StaticFram.framework/StaticFram"],
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
             dependencies: ["A 2"]
         )
@@ -127,14 +127,17 @@ final class TargetMergingTests: XCTestCase {
             swiftmodules: targets["B 2"]!.swiftmodules,
             resourceBundles: targets["B 2"]!.resourceBundles,
             inputs: targets["B 2"]!.inputs,
-            links: ["z/A.a", "a/b.framework"],
+            links: [
+                .generated("z/A.a"),
+                .generated("a/b.framework"),
+            ],
             dependencies: targets["B 2"]!.dependencies
         )
         let potentialTargetMerges: [TargetID: Set<TargetID>] = [
             "A 1": ["A 2"],
             "B 1": ["B 2", "B 3"],
         ]
-        let requiredLinks: Set<Path> = ["z/A.a"]
+        let requiredLinks: Set<FilePath> = [.generated("z/A.a")]
 
         var expectedTargets = targets
         expectedTargets.removeValue(forKey: "B 1")
@@ -148,7 +151,7 @@ final class TargetMergingTests: XCTestCase {
             resourceBundles: targets["B 2"]!.resourceBundles,
             inputs: targets["B 1"]!.inputs.union(targets["B 2"]!.inputs),
             // Removed "B 1"'s product
-            links: ["z/A.a"],
+            links: [.generated("z/A.a")],
             // Inherited "B 1"'s dependencies
             dependencies: ["A 1", "A 2"]
         )
@@ -163,7 +166,7 @@ final class TargetMergingTests: XCTestCase {
             resourceBundles: targets["B 3"]!.resourceBundles,
             inputs: targets["B 1"]!.inputs.union(targets["B 3"]!.inputs),
             // Removed "B 1"'s product
-            links: [],
+            links: ["a/StaticFram.framework/StaticFram"],
             // Inherited "B 1"'s dependencies
             dependencies: ["A 1", "A 2"]
         )

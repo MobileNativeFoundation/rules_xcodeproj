@@ -11,13 +11,13 @@ extension Generator {
             let product = PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: target.product.type.fileType,
-                path: target.product.path.lastComponent,
+                path: target.product.path.path.lastComponent,
                 includeInIndex: false
             )
             pbxProj.add(object: product)
             products.add(
                 product: product,
-                for: .init(target: id, path: target.product.path)
+                for: .init(target: id, filePath: target.product.path)
             )
         }
 
@@ -36,18 +36,18 @@ extension Generator {
 struct Products: Equatable {
     struct ProductKeys: Equatable, Hashable {
         let target: TargetID
-        let path: Path
+        let filePath: FilePath
     }
 
     private(set) var byTarget: [TargetID: PBXFileReference] = [:]
-    private(set) var byPath: [Path: PBXFileReference] = [:]
+    private(set) var byFilePath: [FilePath: PBXFileReference] = [:]
 
     mutating func add(
         product: PBXFileReference,
         for keys: ProductKeys
     ) {
         byTarget[keys.target] = product
-        byPath[keys.path] = product
+        byFilePath[keys.filePath] = product
     }
 }
 
@@ -55,7 +55,7 @@ extension Products {
     init(_ products: [ProductKeys: PBXFileReference]) {
         for (keys, product) in products {
             byTarget[keys.target] = product
-            byPath[keys.path] = product
+            byFilePath[keys.filePath] = product
         }
     }
 }

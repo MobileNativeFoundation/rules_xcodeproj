@@ -85,21 +85,27 @@ def _get_id(*, label, configuration):
 def _get_linker_inputs(*, cc_info):
     return cc_info.linking_context.linker_inputs
 
-def _get_static_libraries(*, linker_inputs):
-    return [
+def _get_static_framework_files(*, objc):
+    if not objc:
+        return depset()
+    return objc.static_framework_file
+
+def _get_static_libraries(*, linker_inputs, static_framework_files):
+    static_libraries = [
         library.static_library
         for library in flatten([
             input.libraries
             for input in linker_inputs.to_list()
         ])
     ]
+    return static_libraries + static_framework_files.to_list()
 
 def _get_static_library(*, linker_inputs):
     for input in linker_inputs.to_list():
         # Ideally we would only return the static library that is owned by this
         # target, but sometimes another rule creates the output and this rule
         # outputs it. So far the first library has always been the correct one.
-        return input.libraries[0].static_library.path
+        return file_path(input.libraries[0].static_library)
     return None
 
 def _process_product(
@@ -126,22 +132,22 @@ def _process_product(
             settings.
     """
     if bundle_path:
-        path = bundle_path
+        fp = bundle_path
     elif target[DefaultInfo].files_to_run.executable:
-        path = target[DefaultInfo].files_to_run.executable.path
+        fp = file_path(target[DefaultInfo].files_to_run.executable)
     elif CcInfo in target or SwiftInfo in target:
-        path = _get_static_library(linker_inputs = linker_inputs)
+        fp = _get_static_library(linker_inputs = linker_inputs)
     else:
-        path = None
+        fp = None
 
-    if not path:
+    if not fp:
         fail("Could not find product for target {}".format(target.label))
 
     build_settings["PRODUCT_NAME"] = product_name
 
     return {
         "name": product_name,
-        "path": path,
+        "path": file_path_to_dto(fp) if fp else None,
         "type": product_type,
     }
 
@@ -211,6 +217,7 @@ def _processed_target(
         required_links,
         resource_bundles,
         search_paths,
+        static_framework_files,
         target,
         xcode_target):
     """Generates the return value for target processing functions.
@@ -229,7 +236,9 @@ def _processed_target(
             `XcodeProjInfo.required_links` `depset`.
         resource_bundles: The value returned from
             `resource_bundle_products.collect()`.
-        search_paths: The value value returned from `_process_search_paths()`.
+        search_paths: The value returned from `_process_search_paths()`.
+        static_framework_files: The value returned from
+            `_get_static_framework_files()`.
         target: An optional `XcodeProjInfo.target` `struct`.
         xcode_target: An optional string that will be in the
             `XcodeProjInfo.xcode_targets` `depset`.
@@ -247,6 +256,7 @@ def _processed_target(
         required_links = required_links,
         resource_bundles = resource_bundles,
         search_paths = search_paths,
+        static_framework_files = static_framework_files,
         target = target,
         target_type = target_type,
         xcode_targets = [xcode_target] if xcode_target else None,
@@ -339,7 +349,7 @@ def _xcode_target(
             is_bundle = is_bundle,
             avoid_infos = avoid_infos,
         ),
-        links = links,
+        links = [file_path_to_dto(fp) for fp in links],
         info_plist = file_path_to_dto(info_plist),
         dependencies = dependencies,
         outputs = outputs,
@@ -365,18 +375,22 @@ def _process_top_level_properties(
         minimum_deployment_version = bundle_info.minimum_deployment_os_version
 
         if tree_artifact_enabled:
-            bundle_path = bundle_info.archive.path
+            bundle_path = parsed_file_path(bundle_info.archive.path)
         else:
             bundle_extension = bundle_info.bundle_extension
             bundle = "{}{}".format(bundle_info.bundle_name, bundle_extension)
             if bundle_extension == ".app":
-                bundle_path = paths.join(
-                    bundle_info.archive_root,
-                    "Payload",
-                    bundle,
+                bundle_path = parsed_file_path(
+                    paths.join(
+                        bundle_info.archive_root,
+                        "Payload",
+                        bundle,
+                    ),
                 )
             else:
-                bundle_path = paths.join(bundle_info.archive_root, bundle)
+                bundle_path = parsed_file_path(
+                    paths.join(bundle_info.archive_root, bundle),
+                )
 
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
@@ -393,7 +407,9 @@ def _process_top_level_properties(
             product_type = "com.apple.product-type.bundle.unit-test"
 
             # "some/test.xctest/binary" -> "some/test.xctest"
-            bundle_path = xctest[:-(len(xctest.split(".xctest/")[1]) + 1)]
+            bundle_path = parsed_file_path(
+                xctest[:-(len(xctest.split(".xctest/")[1]) + 1)],
+            )
         else:
             product_type = "com.apple.product-type.tool"
             bundle_path = None
@@ -419,7 +435,7 @@ def _process_libraries(
         # test host and its dependencies should be removed from the
         # unit test's links.
         avoid_links = [
-            file.path
+            file
             for file in test_host_libraries
         ]
 
@@ -430,6 +446,8 @@ def _process_libraries(
 
         links = [file for file in remove_avoided(links)]
         required_links = [file for file in remove_avoided(required_links)]
+
+    links = [file_path(file) for file in links]
 
     return links, required_links
 
@@ -485,6 +503,12 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     linker_inputs = depset(
         transitive = [
             dep[XcodeProjInfo].linker_inputs
+            for dep in deps
+        ],
+    )
+    static_framework_files = depset(
+        transitive = [
+            dep[XcodeProjInfo].static_framework_files
             for dep in deps
         ],
     )
@@ -560,20 +584,23 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     if test_host_target_info:
         test_host_libraries = _get_static_libraries(
             linker_inputs = test_host_target_info.linker_inputs,
+            static_framework_files = (
+                test_host_target_info.static_framework_files
+            ),
         )
     else:
         test_host_libraries = None
 
-    libraries = _get_static_libraries(linker_inputs = linker_inputs)
+    libraries = _get_static_libraries(
+        linker_inputs = linker_inputs,
+        static_framework_files = static_framework_files,
+    )
     links, required_links = _process_libraries(
         product_type = props.product_type,
         test_host_libraries = test_host_libraries,
-        links = [
-            library.path
-            for library in libraries
-        ],
+        links = libraries,
         required_links = [
-            library.path
+            library
             for library in libraries
             if mergeable_label and library.owner != mergeable_label
         ],
@@ -625,6 +652,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         required_links = required_links,
         resource_bundles = resource_bundles,
         search_paths = search_paths,
+        static_framework_files = static_framework_files,
         target = struct(
             id = id,
             label = label,
@@ -715,6 +743,9 @@ def _process_library_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
     linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
+    static_framework_files = _get_static_framework_files(objc = (
+        target[apple_common.Objc] if apple_common.Objc in target else None
+    ))
 
     cpp = ctx.fragments.cpp
 
@@ -783,6 +814,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         required_links = None,
         resource_bundles = resource_bundles,
         search_paths = search_paths,
+        static_framework_files = static_framework_files,
         target = struct(
             id = id,
             label = label,
@@ -869,10 +901,10 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         label.workspace_root,
         label.package,
     )
-    bundle_path = paths.join(
+    bundle_path = parsed_file_path(paths.join(
         package_bin_dir,
         "{}.bundle".format(bundle_name),
-    )
+    ))
     resource_owner = str(label)
     inputs = input_files.collect(
         ctx = ctx,
@@ -896,6 +928,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             includes = [],
         ),
     )
+    static_framework_files = depset()
 
     return _processed_target(
         attrs_info = attrs_info,
@@ -914,6 +947,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         required_links = None,
         resource_bundles = resource_bundles,
         search_paths = search_paths,
+        static_framework_files = static_framework_files,
         target = struct(
             id = id,
             label = label,
@@ -970,6 +1004,10 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
     else:
         linker_inputs = depset()
 
+    static_framework_files = _get_static_framework_files(objc = (
+        target[apple_common.Objc] if apple_common.Objc in target else None
+    ))
+
     attrs_info = target[InputFileAttributesInfo]
     resource_owner = None
     inputs = input_files.collect(
@@ -1011,6 +1049,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
                 includes = [],
             ),
         ),
+        static_framework_files = static_framework_files,
         target = None,
         xcode_target = None,
     )
@@ -1083,6 +1122,7 @@ def _target_info_fields(
         required_links,
         resource_bundles,
         search_paths,
+        static_framework_files,
         target,
         target_type,
         xcode_targets):
@@ -1100,6 +1140,8 @@ def _target_info_fields(
         required_links: Maps to the `XcodeProjInfo.required_links` field.
         resource_bundles: Maps to the `XcodeProjInfo.resource_bundles` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
+        static_framework_files: Maps to the
+            `XcodeProjInfo.static_framework_files` field.
         target: Maps to the `XcodeProjInfo.target` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
@@ -1116,6 +1158,7 @@ def _target_info_fields(
         *   `required_links`
         *   `resource_bundles`
         *   `search_paths`
+        *   `static_framework_files`
         *   `target`
         *   `target_type`
         *   `xcode_targets`
@@ -1129,6 +1172,7 @@ def _target_info_fields(
         "required_links": required_links,
         "resource_bundles": resource_bundles,
         "search_paths": search_paths,
+        "static_framework_files": static_framework_files,
         "target": target,
         "target_type": target_type,
         "xcode_targets": xcode_targets,
@@ -1193,6 +1237,12 @@ def _skip_target(*, target, transitive_infos):
                 quote_includes = [],
                 includes = [],
             ),
+        ),
+        static_framework_files = depset(
+            transitive = [
+                info.static_framework_files
+                for _, info in transitive_infos
+            ],
         ),
         target = None,
         target_type = target_type.compile,
@@ -1462,6 +1512,7 @@ def _process_target(*, ctx, target, transitive_infos):
         ),
         resource_bundles = processed_target.resource_bundles,
         search_paths = processed_target.search_paths,
+        static_framework_files = processed_target.static_framework_files,
         target = processed_target.target,
         target_type = processed_target.attrs_info.target_type,
         xcode_targets = depset(

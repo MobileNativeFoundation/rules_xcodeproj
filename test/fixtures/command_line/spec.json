@@ -28,8 +28,14 @@
         ]
     ],
     "required_links": [
-        "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
-        "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a"
+        {
+            "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a",
+            "t": "g"
+        },
+        {
+            "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
+            "t": "g"
+        }
     ],
     "targets": [
         "//examples/command_line/lib:lib_impl macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
@@ -106,7 +112,10 @@
             },
             "product": {
                 "name": "lib_impl",
-                "path": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
+                "path": {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundles": [],
@@ -213,7 +222,10 @@
             },
             "product": {
                 "name": "lib_swift",
-                "path": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a",
+                "path": {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundles": [],
@@ -291,9 +303,18 @@
             "is_swift": false,
             "label": "//examples/command_line/tool:tool",
             "links": [
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/libtool.library.a",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a"
+                {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/libtool.library.a",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
+                    "t": "g"
+                }
             ],
             "modulemaps": [],
             "name": "tool",
@@ -308,7 +329,10 @@
             },
             "product": {
                 "name": "tool",
-                "path": "bazel-out/applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/tool",
+                "path": {
+                    "_": "applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/tool",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.tool"
             },
             "resource_bundles": [],
@@ -392,7 +416,10 @@
             },
             "product": {
                 "name": "tool.library",
-                "path": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/libtool.library.a",
+                "path": {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/tool/libtool.library.a",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundles": [],

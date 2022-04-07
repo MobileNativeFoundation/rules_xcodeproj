@@ -412,7 +412,9 @@ extension Generator {
         // Write LinkFileLists
         
         for target in targets.values {
-            let linkFiles = target.links.map { "\($0)\n" }
+            let linkFiles = target.links
+                .filter{ $0.type == .generated }
+                .map { "bazel-out/\($0.path)\n" }
             if !linkFiles.isEmpty {
                 files[try target.linkFileListFilePath()] =
                     .nonReferencedContent(

@@ -95,7 +95,10 @@
             },
             "product": {
                 "name": "lib_impl",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/liblib_impl.a",
+                "path": {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/liblib_impl.a",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundles": [],
@@ -184,7 +187,10 @@
             },
             "product": {
                 "name": "lib_impl",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/liblib_impl.a",
+                "path": {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/liblib_impl.a",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundles": [],
@@ -275,9 +281,18 @@
             "is_swift": false,
             "label": "//examples/cc/tool:tool",
             "links": [
-                "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/liblib_impl.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/liblib_impl.a",
-                "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/liblib_impl.a"
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/liblib_impl.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/liblib_impl.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/liblib_impl.a",
+                    "t": "g"
+                }
             ],
             "modulemaps": [],
             "name": "tool",
@@ -290,7 +305,10 @@
             },
             "product": {
                 "name": "tool",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/tool/tool",
+                "path": {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/tool/tool",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.tool"
             },
             "resource_bundles": [],
@@ -401,7 +419,10 @@
             },
             "product": {
                 "name": "lib_impl",
-                "path": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/liblib_impl.a",
+                "path": {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/liblib_impl.a",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundles": [],
