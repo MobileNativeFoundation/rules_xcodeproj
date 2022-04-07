@@ -878,11 +878,11 @@ bazel-out/a/c.a
             "A 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
+                        PBXBuildFile(file: elements["x/y.swift"]!),
                         PBXBuildFile(
                             file: elements["b.c"]!,
                             settings: ["COMPILER_FLAGS": "-fno-objc-arc"]
                         ),
-                        PBXBuildFile(file: elements["x/y.swift"]!),
                     ])
                 ),
                 createGeneratedHeaderShellScript(),
