@@ -13,9 +13,8 @@ struct Environment {
 
     let processTargetMerges: (
         _ targets: inout [TargetID: Target],
-        _ potentialTargetMerges: [TargetID: Set<TargetID>],
-        _ requiredLinks: Set<FilePath>
-    ) throws -> [InvalidMerge]
+        _ targetMerges: [TargetID: Set<TargetID>]
+    ) throws -> Void
 
     let createFilesAndGroups: (
         _ pbxProj: PBXProj,

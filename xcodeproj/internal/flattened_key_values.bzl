@@ -28,7 +28,7 @@ Expected the iterable to have an even number of items. length: {len}\
 
     return key_values
 
-def _to_list(key_values_dict, sort = True):
+def _to_list(key_values_dict, *, sort = True):
     """Converts a `dict` to a flattened key-value `list`.
 
     Args:
@@ -47,7 +47,8 @@ def _to_list(key_values_dict, sort = True):
 
     iterable = []
     for key in keys:
-        iterable.extend([key, key_values_dict[key]])
+        iterable.append(key)
+        iterable.append(key_values_dict[key])
     return iterable
 
 def _sort(iterable):

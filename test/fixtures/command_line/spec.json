@@ -19,23 +19,14 @@
         "examples/command_line/lib/dir with space/lib.h",
         "examples/command_line/tool/Info.plist"
     ],
+    "invalid_target_merges": [],
     "label": "//test/fixtures/command_line:xcodeproj",
     "name": "project",
-    "potential_target_merges": [
+    "target_merges": [
         "//examples/command_line/tool:tool.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",
         [
             "//examples/command_line/tool:tool applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57"
         ]
-    ],
-    "required_links": [
-        {
-            "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_swift.a",
-            "t": "g"
-        },
-        {
-            "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/liblib_impl.a",
-            "t": "g"
-        }
     ],
     "targets": [
         "//examples/command_line/lib:lib_impl macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57",

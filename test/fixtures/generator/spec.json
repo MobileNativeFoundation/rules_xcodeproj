@@ -12,43 +12,19 @@
         "VALIDATE_WORKSPACE": false
     },
     "extra_files": [],
-    "label": "//test/fixtures/generator:xcodeproj",
-    "name": "project",
-    "potential_target_merges": [
-        "//tools/generator/test:tests.library darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
-        [
-            "//tools/generator/test:tests darwin_x86_64-fastbuild-ST-d53d69b6b8c1"
-        ],
+    "invalid_target_merges": [
         "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
         [
             "//tools/generator:generator darwin_x86_64-fastbuild-ST-d53d69b6b8c1"
         ]
     ],
-    "required_links": [
-        {
-            "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/libPathKit.a",
-            "t": "g"
-        },
-        {
-            "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tadija_aexml/libAEXML.a",
-            "t": "g"
-        },
-        {
-            "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
-            "t": "g"
-        },
-        {
-            "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
-            "t": "g"
-        },
-        {
-            "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
-            "t": "g"
-        },
-        {
-            "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/libgenerator.library.a",
-            "t": "g"
-        }
+    "label": "//test/fixtures/generator:xcodeproj",
+    "name": "project",
+    "target_merges": [
+        "//tools/generator/test:tests.library darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+        [
+            "//tools/generator/test:tests darwin_x86_64-fastbuild-ST-d53d69b6b8c1"
+        ]
     ],
     "targets": [
         "//tools/generator/test:tests darwin_x86_64-fastbuild-ST-d53d69b6b8c1",

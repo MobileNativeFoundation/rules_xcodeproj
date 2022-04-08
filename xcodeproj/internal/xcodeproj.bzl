@@ -1,5 +1,6 @@
 """Implementation of the `xcodeproj` rule."""
 
+load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":files.bzl", "file_path", "file_path_to_dto")
@@ -22,26 +23,34 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
         transitive = [info.xcode_targets for info in infos],
     )
 
-    # `potential_target_merges` needs to be converted into a `dict` of sets
-    potential_target_merges_dict = {}
+    required_links_set = sets.make([
+        file_path(file)
+        for file in required_links.to_list()
+    ])
+
+    target_merges = {}
+    invalid_target_merges = {}
     for merge in potential_target_merges.to_list():
-        destinations = potential_target_merges_dict.get(merge.src, [])
-        destinations.append(merge.dest)
-        potential_target_merges_dict[merge.src] = destinations
-    potential_target_merges_array = []
-    for key, value in potential_target_merges_dict.items():
-        potential_target_merges_array.append(key)
-        potential_target_merges_array.append(value)
+        if sets.contains(required_links_set, merge.src.product_path):
+            destinations = invalid_target_merges.get(merge.src.id, [])
+            destinations.append(merge.dest)
+            invalid_target_merges[merge.src.id] = destinations
+        else:
+            destinations = target_merges.get(merge.src.id, [])
+            destinations.append(merge.dest)
+            target_merges[merge.src.id] = destinations
 
     # `xcode_targets` is partial json dictionary strings. It and
     # `potential_target_merges` are dictionaries in alternating key and value
     # array format.
     sorted_xcode_targets = sorted(xcode_targets.to_list())
-    sorted_potential_target_merges_array = flattened_key_values.sort(
-        potential_target_merges_array,
-    )
     targets_json = "[{}]".format(",".join(sorted_xcode_targets))
-    potential_target_merges_json = json.encode(sorted_potential_target_merges_array)
+    target_merges_json = json.encode(
+        flattened_key_values.to_list(target_merges),
+    )
+    invalid_target_merges_json = json.encode(
+        flattened_key_values.to_list(invalid_target_merges),
+    )
 
     # TODO: Set CURRENT_PROJECT_VERSION and MARKETING_VERSION from `version`
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
@@ -60,10 +69,10 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 "VALIDATE_WORKSPACE":false\
 }},\
 "extra_files":{extra_files},\
+"invalid_target_merges":{invalid_target_merges},\
 "label":"{label}",\
 "name":"{name}",\
-"potential_target_merges":{potential_target_merges},\
-"required_links":{required_links},\
+"target_merges":{target_merges},\
 "targets":{targets}\
 }}
 """.format(
@@ -72,14 +81,11 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
             file_path_to_dto(file_path(file))
             for file in extra_files.to_list()
         ]),
+        invalid_target_merges = invalid_target_merges_json,
         label = ctx.label,
-        potential_target_merges = potential_target_merges_json,
+        target_merges = target_merges_json,
         name = project_name,
         targets = targets_json,
-        required_links = json.encode([
-            file_path_to_dto(file_path(file))
-            for file in required_links.to_list()
-        ]),
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))

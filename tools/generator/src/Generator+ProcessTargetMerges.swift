@@ -19,36 +19,18 @@ extension Generator {
     ///
     /// - Parameters:
     ///   - targets: The universe of targets. These will be edited in place.
-    ///   - potentialTargetMerges: A dictionary mapping target ids of targets
+    ///   - targetMerges: A dictionary mapping target ids of targets
     ///     that should be merged to the target ids of the target they should
     ///     be merged into.
-    ///   - requiredLinks: A set of paths that are linked into top level
-    ///     targets. If any of the targets to be merged produce one of these
-    ///     paths, then that merge won't happen and will be returned as invalid.
-    ///
-    /// - Returns: An array of `InvalidMerge` structs for any merges that
-    ///   couldn't be performed.
     static func processTargetMerges(
         targets: inout [TargetID: Target],
-        potentialTargetMerges: [TargetID: Set<TargetID>],
-        requiredLinks: Set<FilePath>
-    ) throws -> [InvalidMerge] {
-        var validTargetMerges = potentialTargetMerges
-        var invalidMerges: [InvalidMerge] = []
-        for (source, destinations) in potentialTargetMerges {
+        targetMerges: [TargetID: Set<TargetID>]
+    ) throws {
+        for (source, destinations) in targetMerges {
             guard let merging = targets[source] else {
                 throw PreconditionError(message: """
-`potentialTargetMerges.key` (\(source)) references target that doesn't exist
+`targetMerges.key` (\(source)) references target that doesn't exist
 """)
-            }
-
-            guard !requiredLinks.contains(merging.product.path) else {
-                validTargetMerges.removeValue(forKey: source)
-                invalidMerges.append(.init(
-                    source: source,
-                    destinations: destinations
-                ))
-                continue
             }
 
             for destination in destinations {
@@ -104,12 +86,10 @@ exist
         for (id, target) in targets {
             // Dependencies
             for dependency in target.dependencies {
-                if validTargetMerges[dependency] != nil {
+                if targetMerges[dependency] != nil {
                     targets[id]!.dependencies.remove(dependency)
                 }
             }
         }
-
-        return invalidMerges
     }
 }
