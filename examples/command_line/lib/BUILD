@@ -26,6 +26,7 @@ swift_library(
     generated_header_name = "private/LibSwift-Swift.h",
     generates_header = True,
     module_name = "LibSwift",
+    visibility = ["//examples/command_line/Tests:__subpackages__"],
     deps = [
         ":lib_impl",
     ],

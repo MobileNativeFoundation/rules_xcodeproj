@@ -2,4 +2,5 @@
 
 XCODEPROJ_TARGETS = [
     "//examples/command_line/tool",
+    "//examples/command_line/Tests:LibSwiftTests",
 ]

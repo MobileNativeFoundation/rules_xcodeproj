@@ -9,6 +9,7 @@ load(
     "AppleResourceBundleInfo",
     "AppleResourceInfo",
     "IosXcTestBundleInfo",
+    "MacosXcTestBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
@@ -1135,9 +1136,15 @@ def _should_skip_target(*, ctx, target):
 
     # TODO: Find a way to detect TestEnvironment instead
     return (
-        IosXcTestBundleInfo in target and
-        len(ctx.rule.attr.deps) == 1 and
-        IosXcTestBundleInfo in ctx.rule.attr.deps[0]
+        (
+            IosXcTestBundleInfo in target and
+            len(ctx.rule.attr.deps) == 1 and
+            IosXcTestBundleInfo in ctx.rule.attr.deps[0]
+        ) or (
+            MacosXcTestBundleInfo in target and
+            len(ctx.rule.attr.deps) == 1 and
+            MacosXcTestBundleInfo in ctx.rule.attr.deps[0]
+        )
     )
 
 def _target_info_fields(
