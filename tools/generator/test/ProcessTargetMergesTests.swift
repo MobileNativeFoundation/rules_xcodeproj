@@ -59,7 +59,7 @@ final class TargetMergingTests: XCTestCase {
             modulemaps: targets["A 1"]!.modulemaps,
             swiftmodules: targets["A 1"]!.swiftmodules,
             resourceBundles: targets["A 2"]!.resourceBundles,
-            inputs: targets["A 1"]!.inputs.union(targets["A 2"]!.inputs),
+            inputs: targets["A 2"]!.inputs.merging(targets["A 1"]!.inputs),
             // Removed "A 1"'s product
             links: [.generated("a/c.a")],
             // Inherited "A 1"'s dependencies and removed "A 1"
@@ -74,7 +74,7 @@ final class TargetMergingTests: XCTestCase {
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
             resourceBundles: targets["B 2"]!.resourceBundles,
-            inputs: targets["B 1"]!.inputs.union(targets["B 2"]!.inputs),
+            inputs: targets["B 2"]!.inputs.merging(targets["B 1"]!.inputs),
             // Removed "A 1"'s and "B 1"'s product
             links: ["a/StaticFram.framework/StaticFram"],
             // Inherited "B 1"'s dependencies and removed "A 1"
@@ -89,7 +89,7 @@ final class TargetMergingTests: XCTestCase {
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
             resourceBundles: targets["B 3"]!.resourceBundles,
-            inputs: targets["B 1"]!.inputs.union(targets["B 3"]!.inputs),
+            inputs: targets["B 3"]!.inputs.merging(targets["B 1"]!.inputs),
             // Removed "B 1"'s product
             links: ["a/StaticFram.framework/StaticFram"],
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
@@ -149,7 +149,7 @@ final class TargetMergingTests: XCTestCase {
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
             resourceBundles: targets["B 2"]!.resourceBundles,
-            inputs: targets["B 1"]!.inputs.union(targets["B 2"]!.inputs),
+            inputs: targets["B 2"]!.inputs.merging(targets["B 1"]!.inputs),
             // Removed "B 1"'s product
             links: [.generated("z/A.a")],
             // Inherited "B 1"'s dependencies
@@ -164,7 +164,7 @@ final class TargetMergingTests: XCTestCase {
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
             resourceBundles: targets["B 3"]!.resourceBundles,
-            inputs: targets["B 1"]!.inputs.union(targets["B 3"]!.inputs),
+            inputs: targets["B 3"]!.inputs.merging(targets["B 1"]!.inputs),
             // Removed "B 1"'s product
             links: ["a/StaticFram.framework/StaticFram"],
             // Inherited "B 1"'s dependencies

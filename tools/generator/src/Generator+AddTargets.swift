@@ -313,8 +313,8 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         }
 
         let publicHeaders = inputs.hdrs
-        let projectHeaders = inputs.srcs.filter(\.path.isHeader)
-            .union(inputs.nonArcSrcs.filter(\.path.isHeader))
+        let projectHeaders = Set(inputs.srcs).filter(\.path.isHeader)
+            .union(Set(inputs.nonArcSrcs).filter(\.path.isHeader))
             .subtracting(publicHeaders)
 
         let publicHeaderFiles = publicHeaders.map { HeaderFile($0, .public) }
@@ -353,15 +353,13 @@ File "\(headerFile.filePath)" not found in `files`
         inputs: Inputs,
         files: [FilePath: File]
     ) throws -> PBXSourcesBuildPhase? {
-        let sources = Set(
-            inputs.srcs.map(SourceFile.init)
-            + inputs.nonArcSrcs.map { filePath in
+        let sources = inputs.srcs.map(SourceFile.init) +
+            inputs.nonArcSrcs.map { filePath in
                 return SourceFile(
                     filePath,
                     compilerFlags: ["-fno-objc-arc"]
                 )
             }
-        )
 
         guard !sources.isEmpty || productType != .bundle else {
             return nil
@@ -381,7 +379,7 @@ File "\(sourceFile.filePath)" not found in `files`
             return pbxBuildFile
         }
 
-        let sourceFiles: Set<SourceFile>
+        let sourceFiles: [SourceFile]
         if sources.isEmpty {
             sourceFiles = [SourceFile(.internal(compileStubPath))]
         } else {
@@ -389,7 +387,7 @@ File "\(sourceFile.filePath)" not found in `files`
         }
 
         let buildPhase = PBXSourcesBuildPhase(
-            files: try sourceFiles.map(buildFile).sortedLocalizedStandard()
+            files: try sourceFiles.map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 
