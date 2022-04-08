@@ -1,9 +1,13 @@
+"""Tests for targets.is_test_bundle"""
+
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "IosXcTestBundleInfo",
     "MacosXcTestBundleInfo",
 )
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:targets.bzl", "targets")
 
 def _is_test_bundle_for_ios_test_bundle_test(ctx):
