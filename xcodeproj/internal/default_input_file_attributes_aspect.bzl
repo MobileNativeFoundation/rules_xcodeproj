@@ -63,47 +63,47 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     bundle_imports = ()
     if ctx.rule.kind == "cc_library":
         xcode_targets = {
-            "deps": target_type.compile,
-            "interface_deps": target_type.compile,
+            "deps": [target_type.compile, target_type.resources],
+            "interface_deps": [target_type.compile],
         }
         excluded = ("deps", "interface_deps", "win_def_file")
         hdrs = ("hdrs", "textual_hdrs")
         resources = {
-            "deps": target_type.compile,
-            "interface_deps": target_type.compile,
+            "deps": [target_type.compile, target_type.resources],
+            "interface_deps": [target_type.compile],
         }
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
-            "deps": target_type.compile,
-            "runtime_deps": target_type.compile,
-            "data": target_type.resources,
+            "deps": [target_type.compile, target_type.resources],
+            "runtime_deps": [target_type.compile],
+            "data": [target_type.resources],
         }
         excluded = ("deps", "runtime_deps")
         non_arc_srcs = ("non_arc_srcs")
         hdrs = ("hdrs", "textual_hdrs")
         pch = "pch"
         resources = {
-            "deps": target_type.compile,
-            "runtime_deps": target_type.compile,
-            "data": target_type.resources,
+            "deps": [target_type.compile, target_type.resources],
+            "runtime_deps": [target_type.compile],
+            "data": [target_type.resources],
         }
     elif ctx.rule.kind == "swift_library":
         xcode_targets = {
-            "deps": target_type.compile,
-            "private_deps": target_type.compile,
-            "data": target_type.resources,
+            "deps": [target_type.compile, target_type.resources],
+            "private_deps": [target_type.compile],
+            "data": [target_type.resources],
         }
         excluded = ("deps", "private_deps")
         resources = {
-            "deps": target_type.compile,
-            "private_deps": target_type.compile,
-            "data": target_type.resources,
+            "deps": [target_type.compile, target_type.resources],
+            "private_deps": [target_type.compile],
+            "data": [target_type.resources],
         }
     elif (ctx.rule.kind == "apple_resource_group" or
           ctx.rule.kind == "apple_resource_bundle"):
-        xcode_targets = {"resources": target_type.resources}
+        xcode_targets = {"resources": [target_type.resources]}
         excluded = ()
-        resources = {"resources": target_type.resources}
+        resources = {"resources": [target_type.resources]}
         structured_resources = ("structured_resources")
     elif ctx.rule.kind == "apple_bundle_import":
         xcode_targets = {}
@@ -114,21 +114,21 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         excluded = ("tools")
     elif AppleBundleInfo in target:
         xcode_targets = {
-            "deps": target_type.compile,
-            "resources": target_type.resources,
+            "deps": [target_type.compile, target_type.resources],
+            "resources": [target_type.resources],
         }
         excluded = ["deps", "extensions", "frameworks"]
         if _is_test_target(target):
-            xcode_targets["test_host"] = target_type.compile
+            xcode_targets["test_host"] = [target_type.compile]
             excluded.append("test_host")
         resources = {
-            "deps": target_type.compile,
-            "resources": target_type.resources,
+            "deps": [target_type.compile, target_type.resources],
+            "resources": [target_type.resources],
         }
     else:
-        xcode_targets = {"deps": this_target_type}
+        xcode_targets = {"deps": [this_target_type, target_type.resources]}
         excluded = ("deps")
-        resources = {"deps": this_target_type}
+        resources = {"deps": [this_target_type, target_type.resources]}
 
     return [
         InputFileAttributesInfo(

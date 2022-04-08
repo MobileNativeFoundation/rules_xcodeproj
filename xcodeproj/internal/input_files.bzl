@@ -40,7 +40,7 @@ def _collect_transitive_extra_files(info):
 def _should_include_transitive_resources(*, attrs_info, attr, info):
     return ((not info.target or not info.target.is_bundle) and
             (not attrs_info or
-             attrs_info.resources.get(attr) == info.target_type))
+             info.target_type in attrs_info.resources.get(attr, [None])))
 
 def _should_ignore_attr(attr, *, excluded_attrs):
     return (
