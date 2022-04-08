@@ -1134,7 +1134,10 @@ def _should_skip_target(*, ctx, target):
     """
 
     # TODO: Find a way to detect TestEnvironment instead
-    return targets.is_test_bundle(ctx, target)
+    return targets.is_test_bundle(
+        target = target,
+        deps = getattr(ctx.rule.attr, "deps", None),
+    )
 
 def _target_info_fields(
         *,

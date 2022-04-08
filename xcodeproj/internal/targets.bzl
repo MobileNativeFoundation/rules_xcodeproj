@@ -4,19 +4,19 @@ load(
     "MacosXcTestBundleInfo",
 )
 
-# TODO(chuck): Try to remove ctx.
-
-def _is_test_bundle_with_provider(ctx, target, bundle_provider):
+def _is_test_bundle_with_provider(target, deps, bundle_provider):
     return (
         bundle_provider in target and
-        len(ctx.rule.attr.deps) == 1 and
-        bundle_provider in ctx.rule.attr.deps[0]
+        len(deps) == 1 and
+        bundle_provider in deps[0]
     )
 
-def _is_test_bundle(ctx, target):
+def _is_test_bundle(target, deps):
+    if deps == None:
+        return False
     return (
-        _is_test_bundle_with_provider(ctx, target, IosXcTestBundleInfo) or
-        _is_test_bundle_with_provider(ctx, target, MacosXcTestBundleInfo)
+        _is_test_bundle_with_provider(target, deps, IosXcTestBundleInfo) or
+        _is_test_bundle_with_provider(target, deps, MacosXcTestBundleInfo)
     )
 
 targets = struct(
