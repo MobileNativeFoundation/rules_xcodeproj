@@ -306,6 +306,7 @@ while IFS= read -r input; do
   cp "$input" "$output"
   plutil -remove UIDeviceFamily "$output" || true
 done < "$SCRIPT_INPUT_FILE_LIST_0"
+
 """#,
             showEnvVarsInLog: false
         )
