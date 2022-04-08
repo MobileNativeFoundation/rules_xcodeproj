@@ -43,7 +43,6 @@ exist
 
                 // Remove src
                 targets.removeValue(forKey: source)
-
                 // Update Package Bin Dir
                 // We take on the libraries bazel-out directory to prevent
                 // issues with search paths that are calculated in Starlark.

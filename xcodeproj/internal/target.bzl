@@ -548,6 +548,15 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         transitive_infos = transitive_infos,
     )
 
+    # DEBUG BEGIN
+    print("*** CHUCK ==================")
+    print("*** CHUCK target.label: ", target.label)
+    print("*** CHUCK library_dep_targets: ")
+    for idx, item in enumerate(library_dep_targets):
+        print("*** CHUCK", idx, ":", item)
+    print("*** CHUCK bundle_info: ", bundle_info)
+    # DEBUG END
+
     if len(library_dep_targets) == 1 and not inputs.srcs:
         mergeable_target = library_dep_targets[0]
         mergeable_label = mergeable_target.label
