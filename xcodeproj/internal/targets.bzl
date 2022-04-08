@@ -8,6 +8,9 @@ load(
     "IosXcTestBundleInfo",
     "MacosXcTestBundleInfo",
 )
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+
+# Target Classification
 
 def _is_test_bundle_with_provider(target, deps, bundle_provider):
     """Determines whether the target is a test bundle target that provides the specified bundle provider.
@@ -85,7 +88,61 @@ def _should_become_xcode_target(target):
 
     return False
 
+# Outputs
+
+def _swift_module_output(module):
+    """Generates information about the target's Swift module.
+
+    Args:
+        module: The value returned from `swift_common.create_module()`. See
+            https://github.com/bazelbuild/rules_swift/blob/master/doc/api.md#swift_commoncreate_module.
+
+    Returns:
+        A `dict` containing the Swift module's output information. See
+        `Output.SwiftModule` in `//tools/generator/src:DTO.swift` for what it
+        transforms into.
+    """
+    swift = module.swift
+
+    output = {
+        "name": module.name + ".swiftmodule",
+        "swiftdoc": swift.swiftdoc.path,
+        "swiftmodule": swift.swiftmodule.path,
+    }
+    if swift.swiftsourceinfo:
+        output["swiftsourceinfo"] = swift.swiftsourceinfo.path
+    if swift.swiftinterface:
+        output["swiftinterface"] = swift.swiftinterface.path
+
+    return output
+
+def _get_outputs(target):
+    """Generates information about the target's outputs.
+
+    Args:
+        target: The `Target` the output information is gathered from.
+
+    Returns:
+        A `dict` containing the targets output information. See `Output` in
+        `//tools/generator/src:DTO.swift` for what it transforms into.
+    """
+    outputs = {}
+    if OutputGroupInfo in target:
+        if "dsyms" in target[OutputGroupInfo]:
+            outputs["dsyms"] = [
+                file.path
+                for file in target[OutputGroupInfo].dsyms.to_list()
+            ]
+    if SwiftInfo in target:
+        outputs["swift_module"] = _swift_module_output([
+            module
+            for module in target[SwiftInfo].direct_modules
+            if module.swift
+        ][0])
+    return outputs
+
 targets = struct(
     is_test_bundle = _is_test_bundle,
     should_become_xcode_target = _should_become_xcode_target,
+    get_outputs = _get_outputs,
 )

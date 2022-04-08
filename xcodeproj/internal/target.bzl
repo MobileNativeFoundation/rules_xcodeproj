@@ -158,59 +158,6 @@ def _product_to_dto(product):
         "type": product.type,
     }
 
-# Outputs
-
-def _process_outputs(target):
-    """Generates information about the target's outputs.
-
-    Args:
-        target: The `Target` the output information is gathered from.
-
-    Returns:
-        A `dict` containing the targets output information. See `Output` in
-        `//tools/generator/src:DTO.swift` for what it transforms into.
-    """
-    outputs = {}
-    if OutputGroupInfo in target:
-        if "dsyms" in target[OutputGroupInfo]:
-            outputs["dsyms"] = [
-                file.path
-                for file in target[OutputGroupInfo].dsyms.to_list()
-            ]
-    if SwiftInfo in target:
-        outputs["swift_module"] = _swift_module_output([
-            module
-            for module in target[SwiftInfo].direct_modules
-            if module.swift
-        ][0])
-    return outputs
-
-def _swift_module_output(module):
-    """Generates information about the target's Swift module.
-
-    Args:
-        module: The value returned from `swift_common.create_module()`. See
-            https://github.com/bazelbuild/rules_swift/blob/master/doc/api.md#swift_commoncreate_module.
-
-    Returns:
-        A `dict` containing the Swift module's output information. See
-        `Output.SwiftModule` in `//tools/generator/src:DTO.swift` for what it
-        transforms into.
-    """
-    swift = module.swift
-
-    output = {
-        "name": module.name + ".swiftmodule",
-        "swiftdoc": swift.swiftdoc.path,
-        "swiftmodule": swift.swiftmodule.path,
-    }
-    if swift.swiftsourceinfo:
-        output["swiftsourceinfo"] = swift.swiftsourceinfo.path
-    if swift.swiftinterface:
-        output["swiftinterface"] = swift.swiftinterface.path
-
-    return output
-
 # Processed target
 
 def _processed_target(
@@ -326,7 +273,7 @@ def _xcode_target(
             against.
         info_plist: A value as returned by `files.file_path()` or `None`.
         dependencies: A `list` of `id`s of targets that this target depends on.
-        outputs: The value returned from `_process_outputs()`.
+        outputs: The value returned from `targets.get_outputs()`.
 
     Returns:
         An element of a json array string. This should be wrapped with `"[{}]"`
@@ -712,7 +659,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             links = links,
             info_plist = info_plist,
             dependencies = dependencies,
-            outputs = _process_outputs(target),
+            outputs = targets.get_outputs(target),
         ),
     )
 
@@ -869,7 +816,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             links = [],
             info_plist = None,
             dependencies = dependencies,
-            outputs = _process_outputs(target),
+            outputs = targets.get_outputs(target),
         ),
     )
 
@@ -1008,7 +955,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             links = [],
             info_plist = None,
             dependencies = dependencies,
-            outputs = _process_outputs(target),
+            outputs = targets.get_outputs(target),
         ),
     )
 
