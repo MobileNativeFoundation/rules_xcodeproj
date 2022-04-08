@@ -9,6 +9,7 @@ load(
     "AppleResourceBundleInfo",
     "AppleResourceInfo",
     "IosXcTestBundleInfo",
+    "MacosXcTestBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
@@ -547,15 +548,6 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         additional_files = additional_files,
         transitive_infos = transitive_infos,
     )
-
-    # DEBUG BEGIN
-    print("*** CHUCK ==================")
-    print("*** CHUCK target.label: ", target.label)
-    print("*** CHUCK library_dep_targets: ")
-    for idx, item in enumerate(library_dep_targets):
-        print("*** CHUCK", idx, ":", item)
-    print("*** CHUCK bundle_info: ", bundle_info)
-    # DEBUG END
 
     if len(library_dep_targets) == 1 and not inputs.srcs:
         mergeable_target = library_dep_targets[0]
@@ -1141,6 +1133,16 @@ def _should_skip_target(*, ctx, target):
     Returns:
         `True` if `target` should be skipped for target generation.
     """
+
+    # DEBUG BEGIN
+    if MacosXcTestBundleInfo in target:
+        print("*** CHUCK _should_skip_target target.label: ", target.label)
+        print("*** CHUCK _should_skip_target MacosXcTestBundleInfo in target: ", MacosXcTestBundleInfo in target)
+        print("*** CHUCK ctx.rule.attr.deps: ")
+        for idx, item in enumerate(ctx.rule.attr.deps):
+            print("*** CHUCK", idx, ":", item.label)
+
+    # DEBUG END
 
     # TODO: Find a way to detect TestEnvironment instead
     return (

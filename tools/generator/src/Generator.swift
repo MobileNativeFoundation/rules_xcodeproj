@@ -1,10 +1,6 @@
 import PathKit
 import XcodeProj
 
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
-
 /// A class that generates and writes to disk an Xcode project.
 ///
 /// The `Generator` class is stateless. It can be used to generate multiple
@@ -29,7 +25,7 @@ class Generator {
     let logger: Logger
 
     init(
-        environment: Environment = Generator.defaultEnvironment,
+        environment: Environment = Generator.defaultEnvironment, 
         logger: Logger
     ) {
         self.logger = logger
@@ -49,8 +45,8 @@ class Generator {
         let pbxProj = environment.createProject(project, projectRootDirectory)
         guard let pbxProject = pbxProj.rootObject else {
             throw PreconditionError(message: """
-            `rootObject` not set on `pbxProj`
-            """)
+`rootObject` not set on `pbxProj`
+""")
         }
         let mainGroup: PBXGroup = pbxProject.mainGroup
 
@@ -123,13 +119,13 @@ Was unable to merge "\(srcTarget.label) \
             pbxTargets
         )
 
-        let xcodeProj = environment.createXcodeProj(pbxProj)
-        try environment.writeXcodeProj(
+         let xcodeProj = environment.createXcodeProj(pbxProj)
+         try environment.writeXcodeProj(
             xcodeProj,
             files,
             internalDirectoryName,
             outputPath
-        )
+         )
     }
 }
 
