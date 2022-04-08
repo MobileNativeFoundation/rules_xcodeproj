@@ -1,9 +1,10 @@
+build --remote_default_exec_properties=OSFamily=darwin
+
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
 build:cache --jobs=100
 build:cache --remote_cache=grpcs://remote.buildbuddy.io
-build:cache --remote_default_exec_properties=OSFamily=darwin
 build:cache --remote_instance_name=buildbuddy-io/rules_xcodeproj/macOS_11.0
 
 # Build with --config=remote to use BuildBuddy RBE
