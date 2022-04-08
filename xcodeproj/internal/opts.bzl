@@ -8,6 +8,7 @@ load(":collections.bzl", "set_if_true", "uniq")
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _CC_SKIP_OPTS = {
+    "-fcolor-diagnostics": 1,
     "-isysroot": 2,
     "-mios-simulator-version-min": 1,
     "-miphoneos-version-min": 1,
