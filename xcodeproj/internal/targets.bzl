@@ -142,7 +142,7 @@ def _get_outputs(target):
     return outputs
 
 targets = struct(
+    get_outputs = _get_outputs,
     is_test_bundle = _is_test_bundle,
     should_become_xcode_target = _should_become_xcode_target,
-    get_outputs = _get_outputs,
 )
