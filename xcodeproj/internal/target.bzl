@@ -8,8 +8,6 @@ load(
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
     "AppleResourceInfo",
-    "IosXcTestBundleInfo",
-    "MacosXcTestBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
@@ -36,6 +34,7 @@ load(
     "target_type",
 )
 load(":resource_bundle_products.bzl", "resource_bundle_products")
+load(":targets.bzl", "targets")
 
 # Configuration
 
@@ -1134,22 +1133,8 @@ def _should_skip_target(*, ctx, target):
         `True` if `target` should be skipped for target generation.
     """
 
-    # DEBUG BEGIN
-    if MacosXcTestBundleInfo in target:
-        print("*** CHUCK _should_skip_target target.label: ", target.label)
-        print("*** CHUCK _should_skip_target MacosXcTestBundleInfo in target: ", MacosXcTestBundleInfo in target)
-        print("*** CHUCK ctx.rule.attr.deps: ")
-        for idx, item in enumerate(ctx.rule.attr.deps):
-            print("*** CHUCK", idx, ":", item.label)
-
-    # DEBUG END
-
     # TODO: Find a way to detect TestEnvironment instead
-    return (
-        IosXcTestBundleInfo in target and
-        len(ctx.rule.attr.deps) == 1 and
-        IosXcTestBundleInfo in ctx.rule.attr.deps[0]
-    )
+    return targets.is_test_bundle(ctx, target)
 
 def _target_info_fields(
         *,
