@@ -6,8 +6,8 @@ struct Project: Equatable, Decodable {
     let label: String
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
-    let potentialTargetMerges: [TargetID: Set<TargetID>]
-    let requiredLinks: Set<FilePath>
+    let targetMerges: [TargetID: Set<TargetID>]
+    let invalidTargetMerges: [TargetID: Set<TargetID>]
     let extraFiles: Set<FilePath>
 }
 

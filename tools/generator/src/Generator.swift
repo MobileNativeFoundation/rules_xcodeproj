@@ -51,21 +51,17 @@ class Generator {
         let mainGroup: PBXGroup = pbxProject.mainGroup
 
         var targets = project.targets
-        let invalidMerges = try environment.processTargetMerges(
-            &targets,
-            project.potentialTargetMerges,
-            project.requiredLinks
-        )
+        try environment.processTargetMerges(&targets, project.targetMerges)
 
-        for invalidMerge in invalidMerges {
-            guard let srcTarget = targets[invalidMerge.source] else {
+        for (src, destinations) in project.invalidTargetMerges {
+            guard let srcTarget = targets[src] else {
                 throw PreconditionError(
                     message: """
-Source target "\(invalidMerge.source)" not found in `targets`
+Source target "\(src)" not found in `targets`
 """)
             }
-            for destination in invalidMerge.destinations {
-                guard let desTarget = targets[destination] else {
+            for destination in destinations {
+                guard let destTarget = targets[destination] else {
                     throw PreconditionError(message: """
 Destination target "\(destination)" not found in `targets`
 """)
@@ -73,8 +69,8 @@ Destination target "\(destination)" not found in `targets`
                 logger.logWarning("""
 Was unable to merge "\(srcTarget.label) \
 (\(srcTarget.configuration))" into \
-"\(desTarget.label) \
-(\(desTarget.configuration))"
+"\(destTarget.label) \
+(\(destTarget.configuration))"
 """)
             }
         }

@@ -14,8 +14,8 @@ final class GeneratorTests: XCTestCase {
             label: "//a/P:xcodeproj",
             buildSettings: [:],
             targets: Fixtures.targets,
-            potentialTargetMerges: [:],
-            requiredLinks: [],
+            targetMerges: [:],
+            invalidTargetMerges: ["Y": ["Z"]],
             extraFiles: []
         )
 
@@ -105,29 +105,24 @@ final class GeneratorTests: XCTestCase {
 
         struct ProcessTargetMergesCalled: Equatable {
             let targets: [TargetID: Target]
-            let potentialTargetMerges: [TargetID: Set<TargetID>]
-            let requiredLinks: Set<FilePath>
+            let targetMerges: [TargetID: Set<TargetID>]
         }
 
         var processTargetMergesCalled: [ProcessTargetMergesCalled] = []
         func processTargetMerges(
             targets: inout [TargetID: Target],
-            potentialTargetMerges: [TargetID: Set<TargetID>],
-            requiredLinks: Set<FilePath>
-        ) throws -> [InvalidMerge] {
+            targetMerges: [TargetID: Set<TargetID>]
+        ) throws -> Void {
             processTargetMergesCalled.append(.init(
                 targets: targets,
-                potentialTargetMerges: potentialTargetMerges,
-                requiredLinks: requiredLinks
+                targetMerges: targetMerges
             ))
             targets = mergedTargets
-            return [InvalidMerge(source: "Y", destinations: ["Z"])]
         }
 
         let expectedProcessTargetMergesCalled = [ProcessTargetMergesCalled(
             targets: project.targets,
-            potentialTargetMerges: project.potentialTargetMerges,
-            requiredLinks: project.requiredLinks
+            targetMerges: project.targetMerges
         )]
         expectedMessagesLogged.append(StubLogger.MessageLogged(.warning, """
  Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"

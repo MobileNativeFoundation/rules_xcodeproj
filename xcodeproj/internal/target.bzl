@@ -145,10 +145,18 @@ def _process_product(
 
     build_settings["PRODUCT_NAME"] = product_name
 
+    return struct(
+        name = product_name,
+        path = fp,
+        type = product_type,
+    )
+
+# TODO: Make this into a module
+def _product_to_dto(product):
     return {
-        "name": product_name,
-        "path": file_path_to_dto(fp) if fp else None,
-        "type": product_type,
+        "name": product.name,
+        "path": file_path_to_dto(product.path) if product.path else None,
+        "type": product.type,
     }
 
 # Outputs
@@ -332,7 +340,7 @@ def _xcode_target(
         configuration = configuration,
         package_bin_dir = package_bin_dir,
         platform = platform,
-        product = product,
+        product = _product_to_dto(product),
         is_swift = is_swift,
         test_host = test_host,
         build_settings = build_settings,
@@ -494,10 +502,14 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         if AppleFrameworkImportInfo in dep
     ]
 
-    library_dep_targets = [
-        dep[XcodeProjInfo].target
+    library_dep_infos = [
+        dep[XcodeProjInfo]
         for dep in deps
         if dep[XcodeProjInfo].target and dep[XcodeProjInfo].linker_inputs
+    ]
+    library_dep_targets = [
+        info.target
+        for info in library_dep_infos
     ]
 
     linker_inputs = depset(
@@ -539,9 +551,13 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     if len(library_dep_targets) == 1 and not inputs.srcs:
         mergeable_target = library_dep_targets[0]
         mergeable_label = mergeable_target.label
-        potential_target_merges = [
-            struct(src = mergeable_target.id, dest = id),
-        ]
+        potential_target_merges = [struct(
+            src = struct(
+                id = mergeable_target.id,
+                product_path = mergeable_target.product_path,
+            ),
+            dest = id,
+        )]
     elif bundle_info and len(library_dep_targets) > 1:
         fail("""\
 The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
@@ -622,6 +638,14 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         minimum_deployment_os_version = props.minimum_deployment_os_version,
         build_settings = build_settings,
     )
+    product = _process_product(
+        target = target,
+        product_name = props.product_name,
+        product_type = props.product_type,
+        bundle_path = props.bundle_path,
+        linker_inputs = linker_inputs,
+        build_settings = build_settings,
+    )
 
     resource_bundles = resource_bundle_products.collect(
         owner = resource_owner,
@@ -657,6 +681,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             id = id,
             label = label,
             is_bundle = is_bundle,
+            product_path = product.path,
         ),
         xcode_target = _xcode_target(
             id = id,
@@ -665,14 +690,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             configuration = configuration,
             package_bin_dir = package_bin_dir,
             platform = platform,
-            product = _process_product(
-                target = target,
-                product_name = props.product_name,
-                product_type = props.product_type,
-                bundle_path = props.bundle_path,
-                linker_inputs = linker_inputs,
-                build_settings = build_settings,
-            ),
+            product = product,
             is_bundle = is_bundle,
             is_swift = is_swift,
             test_host = (
@@ -773,6 +791,14 @@ def _process_library_target(*, ctx, target, transitive_infos):
         minimum_deployment_os_version = None,
         build_settings = build_settings,
     )
+    product = _process_product(
+        target = target,
+        product_name = product_name,
+        product_type = "com.apple.product-type.library.static",
+        bundle_path = None,
+        linker_inputs = linker_inputs,
+        build_settings = build_settings,
+    )
 
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
@@ -786,12 +812,14 @@ def _process_library_target(*, ctx, target, transitive_infos):
         additional_files = modulemaps.files,
         transitive_infos = transitive_infos,
     )
+
     resource_bundles = resource_bundle_products.collect(
         owner = resource_owner,
         is_consuming_bundle = False,
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
+
     search_paths = _process_search_paths(
         cc_info = target[CcInfo] if CcInfo in target else None,
         opts_search_paths = opts_search_paths,
@@ -819,6 +847,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             id = id,
             label = label,
             is_bundle = False,
+            product_path = product.path,
         ),
         xcode_target = _xcode_target(
             id = id,
@@ -827,14 +856,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             configuration = configuration,
             package_bin_dir = package_bin_dir,
             platform = platform,
-            product = _process_product(
-                target = target,
-                product_name = product_name,
-                product_type = "com.apple.product-type.library.static",
-                bundle_path = None,
-                linker_inputs = linker_inputs,
-                build_settings = build_settings,
-            ),
+            product = product,
             is_bundle = False,
             is_swift = is_swift,
             test_host = None,
@@ -890,12 +912,6 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
 
-    platform = process_platform(
-        ctx = ctx,
-        minimum_deployment_os_version = None,
-        build_settings = build_settings,
-    )
-
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,
         label.workspace_root,
@@ -905,6 +921,22 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         package_bin_dir,
         "{}.bundle".format(bundle_name),
     ))
+    linker_inputs = depset()
+
+    platform = process_platform(
+        ctx = ctx,
+        minimum_deployment_os_version = None,
+        build_settings = build_settings,
+    )
+    product = _process_product(
+        target = target,
+        product_name = product_name,
+        product_type = "com.apple.product-type.bundle",
+        bundle_path = bundle_path,
+        linker_inputs = linker_inputs,
+        build_settings = build_settings,
+    )
+
     resource_owner = str(label)
     inputs = input_files.collect(
         ctx = ctx,
@@ -913,7 +945,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         owner = resource_owner,
         transitive_infos = transitive_infos,
     )
-    linker_inputs = depset()
+
     resource_bundles = resource_bundle_products.collect(
         bundle_path = bundle_path,
         owner = resource_owner,
@@ -921,6 +953,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
+
     search_paths = _process_search_paths(
         cc_info = None,
         opts_search_paths = create_opts_search_paths(
@@ -928,6 +961,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             includes = [],
         ),
     )
+
     static_framework_files = depset()
 
     return _processed_target(
@@ -952,6 +986,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             id = id,
             label = label,
             is_bundle = True,
+            product_path = product.path,
         ),
         xcode_target = _xcode_target(
             id = id,
@@ -960,14 +995,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             configuration = configuration,
             package_bin_dir = package_bin_dir,
             platform = platform,
-            product = _process_product(
-                target = target,
-                product_name = product_name,
-                product_type = "com.apple.product-type.bundle",
-                bundle_path = bundle_path,
-                linker_inputs = linker_inputs,
-                build_settings = build_settings,
-            ),
+            product = product,
             is_bundle = True,
             is_swift = False,
             test_host = None,

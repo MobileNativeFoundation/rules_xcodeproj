@@ -163,9 +163,10 @@
             "t": "g"
         }
     ],
+    "invalid_target_merges": [],
     "label": "//test/fixtures:fixture",
     "name": "project",
-    "potential_target_merges": [
+    "target_merges": [
         "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
         [
             "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
@@ -182,21 +183,6 @@
         [
             "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd"
         ]
-    ],
-    "required_links": [
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/libUtils.a",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/libCoreUtilsObjC.a",
-            "t": "g"
-        },
-        "third_party/ExampleFramework.framework/ExampleFramework",
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/libTestingUtils.a",
-            "t": "g"
-        }
     ],
     "targets": [
         "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd",
