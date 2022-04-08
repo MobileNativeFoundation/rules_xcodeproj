@@ -122,6 +122,18 @@ Product for target "\(id)" not found in `products`
         )
         pbxProj.add(object: configurationList)
 
+        let removeWorkspaceBazelOut: String
+        if filePathResolver.generatedDirectory.isAbsolute {
+            removeWorkspaceBazelOut = ""
+        } else {
+            removeWorkspaceBazelOut = """
+
+# Need to remove the directory that Xcode creates as part of output prep
+rm -rf "$PROJECT_DIR/\(filePathResolver.generatedDirectory)"
+
+"""
+        }
+
         let generateFilesScript = PBXShellScriptBuildPhase(
             name: "Generate Files",
             outputFileListPaths: [
@@ -131,7 +143,7 @@ Product for target "\(id)" not found in `products`
             ],
             shellScript: #"""
 set -eu
-
+\#(removeWorkspaceBazelOut)
 PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
   ${BAZEL_PATH} \
   build \
