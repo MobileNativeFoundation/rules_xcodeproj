@@ -7,7 +7,6 @@ load(
     "AppleBundleInfo",
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
-    "AppleResourceInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
@@ -1084,41 +1083,6 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
 
 # Creating `XcodeProjInfo`
 
-def _should_become_xcode_target(target):
-    """Determines if the given target should be included in the Xcode project.
-
-    Args:
-        target: The `Target` to check.
-
-    Returns:
-        `False` if `target` shouldn't become an actual target in the generated
-        Xcode project. Resource bundles are a current example of this, as we
-        only include their files in the project, but we don't create targets
-        for them.
-    """
-
-    # Top-level bundles
-    if AppleBundleInfo in target:
-        return True
-
-    # Resource bundles
-    if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
-        # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
-        # a `AppleResourceInfo`, so we use that to exclude it
-        return True
-
-    # Libraries
-    # Targets that don't produce files are ignored (e.g. imports)
-    if CcInfo in target and target.files != depset():
-        return True
-
-    # Command-line tools
-    executable = target[DefaultInfo].files_to_run.executable
-    if executable and not executable.is_source:
-        return True
-
-    return False
-
 def _should_skip_target(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
 
@@ -1481,7 +1445,7 @@ def _process_target(*, ctx, target, transitive_infos):
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields()`.
     """
-    if not _should_become_xcode_target(target):
+    if not targets.should_become_xcode_target(target):
         processed_target = _process_non_xcode_target(
             ctx = ctx,
             target = target,
