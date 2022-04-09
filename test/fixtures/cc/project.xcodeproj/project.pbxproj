@@ -6,6 +6,20 @@
 	objectVersion = 55;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		4C83CDF1E6003ECA397737DA /* Setup */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */;
+			buildPhases = (
+				ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */,
+			);
+			dependencies = (
+			);
+			name = Setup;
+			productName = Setup;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		46272773FEE292F97F7598E0 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 7CE856EC2CE9B541065D14B0 /* lib.c */; };
 		5B4F5A0F99FCFB768BB56235 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C91EE0C5078D0455B44BD9D /* main.c */; };
@@ -23,6 +37,20 @@
 			remoteGlobalIDString = 5FB682B564422D3823A3C78C;
 			remoteInfo = "//examples/cc/lib2:lib_impl";
 		};
+		35B40FF81A9E3993FA0CD638 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
+		};
+		54242AD20E704B0C25595827 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
+		};
 		6A32CAF498672EF63B16DD4B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
@@ -30,12 +58,26 @@
 			remoteGlobalIDString = 219A963F11BAD0FDD3F6CC45;
 			remoteInfo = "@examples_cc_external//:lib_impl";
 		};
+		76EDD912384A58963236FA8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
+		};
 		9EE1DCA574790AB33F7520C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 58402704FF804AD3AC11716D;
 			remoteInfo = "//examples/cc/lib:lib_impl";
+		};
+		C370E256DAC18E3226CF8940 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -176,6 +218,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7B4C1873591B3296EBC53731 /* PBXTargetDependency */,
 			);
 			name = "@examples_cc_external//:lib_impl";
 			productName = lib_impl;
@@ -191,6 +234,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CB6EF51946C986AA8DE43DF4 /* PBXTargetDependency */,
 			);
 			name = "//examples/cc/lib:lib_impl";
 			productName = lib_impl;
@@ -206,6 +250,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				08CACBBBC829A41D1BB36D23 /* PBXTargetDependency */,
 			);
 			name = "//examples/cc/lib2:lib_impl";
 			productName = lib_impl;
@@ -221,6 +266,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				06D4406A09F773986DEF04EC /* PBXTargetDependency */,
 				9291054CE01A8D81DA27A7DC /* PBXTargetDependency */,
 				52901E7121F038C779EDD27D /* PBXTargetDependency */,
 				65B2861201C7585D568CFC70 /* PBXTargetDependency */,
@@ -243,6 +289,9 @@
 					219A963F11BAD0FDD3F6CC45 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
+					};
+					4C83CDF1E6003ECA397737DA = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 					58402704FF804AD3AC11716D = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -271,6 +320,7 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
+				4C83CDF1E6003ECA397737DA /* Setup */,
 				219A963F11BAD0FDD3F6CC45 /* @examples_cc_external//:lib_impl */,
 				58402704FF804AD3AC11716D /* //examples/cc/lib:lib_impl */,
 				5FB682B564422D3823A3C78C /* //examples/cc/lib2:lib_impl */,
@@ -278,6 +328,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create Symlinks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-rules_xcodeproj/external\" external\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3886896FF296EE4041EFDFDD /* Sources */ = {
@@ -317,6 +386,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		06D4406A09F773986DEF04EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 54242AD20E704B0C25595827 /* PBXContainerItemProxy */;
+		};
+		08CACBBBC829A41D1BB36D23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = C370E256DAC18E3226CF8940 /* PBXContainerItemProxy */;
+		};
 		52901E7121F038C779EDD27D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "//examples/cc/lib:lib_impl";
@@ -329,15 +410,35 @@
 			target = 5FB682B564422D3823A3C78C /* //examples/cc/lib2:lib_impl */;
 			targetProxy = 0ADF60CADB649C1DBFF171DA /* PBXContainerItemProxy */;
 		};
+		7B4C1873591B3296EBC53731 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 35B40FF81A9E3993FA0CD638 /* PBXContainerItemProxy */;
+		};
 		9291054CE01A8D81DA27A7DC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "@examples_cc_external//:lib_impl";
 			target = 219A963F11BAD0FDD3F6CC45 /* @examples_cc_external//:lib_impl */;
 			targetProxy = 6A32CAF498672EF63B16DD4B /* PBXContainerItemProxy */;
 		};
+		CB6EF51946C986AA8DE43DF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 76EDD912384A58963236FA8F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		70E18BE128A25A1F96CAB0FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				TARGET_NAME = Setup;
+			};
+			name = Debug;
+		};
 		74237F30610FC68FC69D29AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -596,6 +697,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D59388014CAA34F648FDB911 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70E18BE128A25A1F96CAB0FE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
