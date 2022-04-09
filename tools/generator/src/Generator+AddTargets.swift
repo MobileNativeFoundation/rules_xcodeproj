@@ -132,6 +132,13 @@ Product for target "\(id)" not found in `products`
             shellScript: #"""
 set -eu
 
+cd "$PROJECT_FILE_PATH/rules_xcodeproj"
+
+# Need to remove the directory that Xcode creates as part of output prep
+rm -rf gen_dir
+
+ln -sf "$BUILD_DIR/bazel-out" gen_dir
+
 cd "$BUILD_DIR"
 ln -sfn "$PROJECT_DIR" SRCROOT
 ln -sfn "\#(
@@ -250,13 +257,6 @@ rsync \
   -L \
   . \
   "$BUILD_DIR/bazel-out"
-
-cd "$PROJECT_FILE_PATH/rules_xcodeproj"
-
-# Need to remove the directory that Xcode creates as part of output prep
-rm -rf gen_dir
-
-ln -sf "$BUILD_DIR/bazel-out" gen_dir
 
 """#,
             showEnvVarsInLog: false
