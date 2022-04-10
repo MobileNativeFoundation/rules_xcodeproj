@@ -38,7 +38,7 @@ def _maybe(repo_rule, name, ignore_version_differences, **kwargs):
 `com_github_buildbuddy_io_rules_xcodeproj` depends on `{repo}` loaded from \
 {expected}, but we have detected it already loaded into your workspace from \
 {existing}. You may run into compatibility issues. To silence this warning, \
-pass `ignore_version_differences = True` to `rules_xcodeproj_dependencies()`.
+pass `ignore_version_differences = True` to `xcodeproj_rules_dependencies()`.
 """.format(
                     existing = yellow(existing),
                     expected = green(expected),
