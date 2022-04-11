@@ -166,6 +166,9 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
                 "PRODUCT_MODULE_NAME": "tests",
                 "PRODUCT_NAME": "tests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -385,6 +388,9 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
                 "PRODUCT_MODULE_NAME": "generator",
                 "PRODUCT_NAME": "generator.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -512,6 +518,9 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
                 "PRODUCT_MODULE_NAME": "PathKit",
                 "PRODUCT_NAME": "PathKit",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -599,6 +608,9 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "CustomDump",
                 "PRODUCT_NAME": "CustomDump",
@@ -791,6 +803,9 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
                 "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay",
                 "PRODUCT_NAME": "XCTestDynamicOverlay",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -878,6 +893,9 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "AEXML",
                 "PRODUCT_NAME": "AEXML",
@@ -982,6 +1000,9 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "XcodeProj",
                 "PRODUCT_NAME": "XcodeProj",
