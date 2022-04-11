@@ -13,11 +13,12 @@ config_setting(
 apple_bundle_version(
     name = "Version",
     build_version = "1.0",
+    visibility = ["//examples/watchos_app:__subpackages__"],
 )
 
 watchos_extension(
     name = "ExampleWatchKitExtension",
-    bundle_id = "io.buildbuddy.example.Example.watchkitapp.extension",
+    bundle_id = "io.buildbuddy.example.watch.extension",
     infoplists = [":Info.plist"],
     minimum_os_version = "7.0",
     resources = [":ResourceGroup"],
