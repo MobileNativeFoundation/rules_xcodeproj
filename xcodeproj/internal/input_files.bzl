@@ -147,6 +147,7 @@ def _collect(
     srcs = []
     non_arc_srcs = []
     hdrs = []
+    pch = []
     resources = []
     unowned_resources = []
     generated = []
@@ -164,6 +165,11 @@ def _collect(
                 non_arc_srcs.append(file)
             elif attr in attrs_info.hdrs:
                 hdrs.append(file)
+            elif attr == attrs_info.pch:
+                # We use `append` instead of setting a single value because
+                # assigning to `pch` creates a new local variable instead of
+                # assigning to the existing variable
+                pch.append(file)
             elif attrs_info.resources.get(attr):
                 fp = file_path(file)
                 if owner:
@@ -261,6 +267,7 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
         srcs = depset(srcs),
         non_arc_srcs = depset(non_arc_srcs),
         hdrs = depset(hdrs),
+        pch = pch[0] if pch else None,
         resources = depset(
             resources,
             transitive = [
@@ -330,6 +337,7 @@ def _merge(*, attrs_info, transitive_infos):
         srcs = depset(),
         non_arc_srcs = depset(),
         hdrs = depset(),
+        pch = None,
         resources = depset(
             transitive = [
                 info.inputs.resources
@@ -386,6 +394,9 @@ def _to_dto(inputs, *, is_bundle, avoid_infos):
     _process_attr("srcs")
     _process_attr("non_arc_srcs")
     _process_attr("hdrs")
+
+    if inputs.pch:
+        ret["pch"] = file_path_to_dto(file_path(inputs.pch))
 
     if is_bundle and inputs.resources:
         avoid_owners = depset(

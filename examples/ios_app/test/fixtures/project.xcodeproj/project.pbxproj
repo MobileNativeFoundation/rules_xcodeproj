@@ -231,6 +231,7 @@
 		D1F93F75DA88677B3EB84499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D699DE3520D61FDC19A909EF /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		DDD5A69CC7A6E820FCB0BDF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E105C37BE4F462559F7A205B /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
 		E3E108E23CCBE7C70549E7AF /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		EFF54836943E040ACDFCB9FD /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		F3BF0391D88320751FD37784 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -333,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				7458A79A895427FF2B5EF451 /* Answers.h */,
+				E105C37BE4F462559F7A205B /* CoreUtils.pch */,
 			);
 			path = CoreUtils;
 			sourceTree = "<group>";
@@ -1492,6 +1494,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external",
 				);
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					DEBUG,

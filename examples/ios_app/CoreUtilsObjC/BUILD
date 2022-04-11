@@ -8,6 +8,7 @@ objc_library(
     hdrs = glob(["**/*.h"]),
     includes = [""],
     module_name = "CoreUtils",
+    pch = "CoreUtils/CoreUtils.pch",
     tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = [

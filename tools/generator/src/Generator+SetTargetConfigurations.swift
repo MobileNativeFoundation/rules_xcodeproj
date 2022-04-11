@@ -145,6 +145,15 @@ Target "\(id)" not found in `pbxTargets`
               buildSettings["GENERATE_INFOPLIST_FILE"] = true
             }
 
+            if let pch = target.inputs.pch {
+                let pchPath = filePathResolver
+                    // We need to use `gen_dir` instead of `$(BUILD_DIR)` here
+                    // to match the project navigator
+                    .resolve(pch, useBuildDir: false)
+
+                buildSettings["GCC_PREFIX_HEADER"] = pchPath.string.quoted
+            }
+
             let swiftmodules = target.swiftmodules
             if !swiftmodules.isEmpty {
                 buildSettings["SWIFT_INCLUDE_PATHS"] = swiftmodules
