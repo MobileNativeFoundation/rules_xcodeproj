@@ -16,9 +16,21 @@
 				700DDA896776846733B25577 /* Fix Info.plists */,
 			);
 			dependencies = (
+				1B345DF509A5588973BB937D /* PBXTargetDependency */,
 			);
 			name = "Bazel Generated Files";
 			productName = "Bazel Generated Files";
+		};
+		4C83CDF1E6003ECA397737DA /* Setup */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */;
+			buildPhases = (
+				ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */,
+			);
+			dependencies = (
+			);
+			name = Setup;
+			productName = Setup;
 		};
 /* End PBXAggregateTarget section */
 
@@ -58,6 +70,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3064A34776444DE49627998E;
 			remoteInfo = "Bazel Generated Files";
+		};
+		3993462F5254457CDA557859 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
 		};
 		9EA5AB932A9708D1A7667DFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -348,6 +367,9 @@
 					3064A34776444DE49627998E = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
+					4C83CDF1E6003ECA397737DA = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					78E254055CF3D5252C84D79D = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -377,6 +399,7 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
+				4C83CDF1E6003ECA397737DA /* Setup */,
 				3064A34776444DE49627998E /* Bazel Generated Files */,
 				EAB95A4512529D4CB8BE5D4E /* Example */,
 				E5FC08BFA53D3AF04406D2BB /* ExampleTests.__internal__.__test_bundle */,
@@ -404,7 +427,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/test/fixtures/tvos_app/project.xcodeproj/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n";
+			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/test/fixtures/tvos_app/project.xcodeproj/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
 			showEnvVarsInLog = 0;
 		};
 		700DDA896776846733B25577 /* Fix Info.plists */ = {
@@ -447,6 +470,22 @@
 			shellScript = "set -eu\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\nPATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/tvos_app:xcodeproj\n";
 			showEnvVarsInLog = 0;
 		};
+		ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create Symlinks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-rules_xcodeproj/external\" external\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -479,6 +518,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1B345DF509A5588973BB937D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 3993462F5254457CDA557859 /* PBXContainerItemProxy */;
+		};
 		2C3EF0A78A1C6D3ED61F8B20 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Generated Files";
@@ -627,6 +672,14 @@
 			};
 			name = Debug;
 		};
+		70E18BE128A25A1F96CAB0FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				TARGET_NAME = Setup;
+			};
+			name = Debug;
+		};
 		7C935235ACC6252AE6F5B6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -648,7 +701,8 @@
 		ACE65DF71AEBC3D1DAF7EF52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_PACKAGE_BIN_DIR = BazelGeneratedFiles;
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				TARGET_NAME = GenerateBazelFiles;
 			};
 			name = Debug;
 		};
@@ -717,6 +771,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC20EA8CCDB6CBDE2D648F14 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70E18BE128A25A1F96CAB0FE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
