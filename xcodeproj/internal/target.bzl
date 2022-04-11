@@ -598,12 +598,14 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     cc_info = target[CcInfo] if CcInfo in target else None
+    objc = target[apple_common.Objc] if apple_common.Objc in target else None
     _process_defines(
         cc_info = cc_info,
         build_settings = build_settings,
     )
     search_paths = _process_search_paths(
         cc_info = cc_info,
+        objc = objc,
         opts_search_paths = opts_search_paths,
     )
 
@@ -701,9 +703,9 @@ def _process_library_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
     linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
-    static_framework_files = _get_static_framework_files(objc = (
-        target[apple_common.Objc] if apple_common.Objc in target else None
-    ))
+
+    objc = target[apple_common.Objc] if apple_common.Objc in target else None
+    static_framework_files = _get_static_framework_files(objc = objc)
 
     cpp = ctx.fragments.cpp
 
@@ -767,6 +769,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
     search_paths = _process_search_paths(
         cc_info = cc_info,
+        objc = objc,
         opts_search_paths = opts_search_paths,
     )
 
@@ -893,6 +896,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
 
     search_paths = _process_search_paths(
         cc_info = None,
+        objc = None,
         opts_search_paths = create_opts_search_paths(
             quote_includes = [],
             includes = [],
@@ -957,13 +961,14 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         The value returned from `_processed_target()`.
     """
     if CcInfo in target:
-        linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
+        cc_info = target[CcInfo]
+        linker_inputs = _get_linker_inputs(cc_info = cc_info)
     else:
+        cc_info = None
         linker_inputs = depset()
 
-    static_framework_files = _get_static_framework_files(objc = (
-        target[apple_common.Objc] if apple_common.Objc in target else None
-    ))
+    objc = target[apple_common.Objc] if apple_common.Objc in target else None
+    static_framework_files = _get_static_framework_files(objc = objc)
 
     attrs_info = target[InputFileAttributesInfo]
     resource_owner = None
@@ -992,7 +997,8 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
             transitive_infos = transitive_infos,
         ),
         search_paths = _process_search_paths(
-            cc_info = target[CcInfo] if CcInfo in target else None,
+            cc_info = cc_info,
+            objc = objc,
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],
                 includes = [],
@@ -1134,6 +1140,7 @@ def _skip_target(*, target, transitive_infos):
         ),
         search_paths = _process_search_paths(
             cc_info = None,
+            objc = None,
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],
                 includes = [],
@@ -1210,18 +1217,11 @@ def _process_defines(
 def _process_search_paths(
         *,
         cc_info,
+        objc,
         opts_search_paths):
     search_paths = {}
     if cc_info:
         compilation_context = cc_info.compilation_context
-        set_if_true(
-            search_paths,
-            "framework_includes",
-            [
-                file_path_to_dto(parsed_file_path(path))
-                for path in compilation_context.framework_includes.to_list()
-            ],
-        )
         set_if_true(
             search_paths,
             "quote_includes",
@@ -1240,6 +1240,24 @@ def _process_search_paths(
                              opts_search_paths.includes)
             ],
         )
+
+    if objc:
+        framework_paths = depset(
+            transitive = [
+                objc.static_framework_paths,
+                objc.dynamic_framework_paths,
+            ],
+        )
+
+        set_if_true(
+            search_paths,
+            "framework_includes",
+            [
+                file_path_to_dto(parsed_file_path(path))
+                for path in framework_paths.to_list()
+            ],
+        )
+
     return search_paths
 
 def _farthest_parent_file_path(file, extension):
