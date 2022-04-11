@@ -78,6 +78,24 @@ Target "\(id)" not found in `pbxTargets`
                     .joined(separator: " ")
             )
 
+            if target.isSwift {
+                guard case let .array(cFlags) =
+                        targetBuildSettings["OTHER_CFLAGS", default: .array([])]
+                else {
+                    throw PreconditionError(message: """
+"OTHER_CFLAGS" in `targetBuildSettings` was not an `.array()`. Instead found \
+\(targetBuildSettings["OTHER_CFLAGS", default: .array([])])
+""")
+                }
+
+                // `OTHER_CFLAGS` here comes from cc_toolchain. We want to pass
+                // those to clang for PCM compilation
+                try targetBuildSettings.prepend(
+                    onKey: "OTHER_SWIFT_FLAGS",
+                    cFlags.map { "-Xcc \($0)" }.joined(separator: " ")
+                )
+            }
+
             if !target.links.isEmpty {
                 let linkFileList = filePathResolver
                     .resolve(try target.linkFileListFilePath())

@@ -1229,11 +1229,22 @@ def _process_defines(
         # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
         # process Swift compile options already accounts for `defines`
 
-        # We need to prepend, in case `process_opts` has already set them
-        setting = cc_defines + build_settings.get(
+        # Order should be:
+        # - toolchain defines
+        # - defines
+        # - local defines
+        # - copt defines
+        # but since build_settings["GCC_PREPROCESSOR_DEFINITIONS"] will have
+        # "toolchain defines" and "copt defines", those will both be first
+        # before "defines" and "local defines". This will only matter if `copts`
+        # is used to override `defines` instead of `local_defines`. If that
+        # becomes an issue in practice, we can refactor `process_copts` to
+        # support this better.
+
+        setting = build_settings.get(
             "GCC_PREPROCESSOR_DEFINITIONS",
             [],
-        )
+        ) + cc_defines
 
         # Remove duplicates
         setting = reversed(uniq(reversed(setting)))
