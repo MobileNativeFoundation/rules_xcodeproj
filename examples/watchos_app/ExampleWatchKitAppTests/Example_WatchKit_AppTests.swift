@@ -1,4 +1,4 @@
-@testable import Example_WatchKit_Extension
+@testable import ExampleWatchKitExtension
 import XCTest
 
 class Example_WatchKit_AppTests: XCTestCase {

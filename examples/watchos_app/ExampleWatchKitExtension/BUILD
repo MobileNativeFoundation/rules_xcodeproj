@@ -44,7 +44,7 @@ swift_library(
     }),
     module_name = "ExampleWatchKitExtension",
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//examples/watchos_app:__subpackages__"],
 )
 
 filegroup(
