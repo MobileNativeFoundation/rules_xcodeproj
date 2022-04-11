@@ -1093,16 +1093,64 @@ bazel-out/a/c.a
 
         let pbxProject = pbxProj.rootObject!
 
-        let debugConfiguration = XCBuildConfiguration(
+        let setupDebugConfiguration = XCBuildConfiguration(
             name: "Debug",
-            buildSettings: ["BAZEL_PACKAGE_BIN_DIR": "BazelGeneratedFiles"]
+            buildSettings: [
+                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "TARGET_NAME": "Setup",
+            ]
         )
-        pbxProj.add(object: debugConfiguration)
-        let configurationList = XCConfigurationList(
-            buildConfigurations: [debugConfiguration],
-            defaultConfigurationName: debugConfiguration.name
+        pbxProj.add(object: setupDebugConfiguration)
+        let setupConfigurationList = XCConfigurationList(
+            buildConfigurations: [setupDebugConfiguration],
+            defaultConfigurationName: setupDebugConfiguration.name
         )
-        pbxProj.add(object: configurationList)
+        pbxProj.add(object: setupConfigurationList)
+
+        let createSymlinksScript = PBXShellScriptBuildPhase(
+            name: "Create Symlinks",
+            shellScript: #"""
+set -eu
+
+cd "$BUILD_DIR"
+ln -sfn "$PROJECT_DIR" SRCROOT
+ln -sfn "\#(
+    filePathResolver.resolve(.external(""), useScriptVariables: true)
+)" external
+
+"""#,
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: createSymlinksScript)
+
+        let setupTarget = PBXAggregateTarget(
+            name: "Setup",
+            buildConfigurationList: setupConfigurationList,
+            buildPhases: [createSymlinksScript],
+            productName: "Setup"
+        )
+        pbxProj.add(object: setupTarget)
+        pbxProject.targets.append(setupTarget)
+
+        let attributes: [String: Any] = [
+            "CreatedOnToolsVersion": "13.2.1",
+        ]
+        pbxProject.setTargetAttributes(attributes, target: setupTarget)
+
+        let generateFilesDebugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: [
+                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "TARGET_NAME": "GenerateBazelFiles",
+            ]
+        )
+        pbxProj.add(object: generateFilesDebugConfiguration)
+        let generateFilesConfigurationList = XCConfigurationList(
+            buildConfigurations: [generateFilesDebugConfiguration],
+            defaultConfigurationName: generateFilesDebugConfiguration.name
+        )
+        pbxProj.add(object: generateFilesConfigurationList)
 
         let baseDir = "$(PROJECT_DIR)/\(filePathResolver.internalDirectory)"
 
@@ -1169,12 +1217,6 @@ while IFS= read -r input; do
     > "$output"
 done < "$SCRIPT_INPUT_FILE_LIST_0"
 
-cd "$BUILD_DIR"
-ln -sfn "$PROJECT_DIR" SRCROOT
-ln -sfn "\#(
-    filePathResolver.resolve(.external(""), useScriptVariables: true)
-)" external
-
 """#,
             showEnvVarsInLog: false
         )
@@ -1182,7 +1224,7 @@ ln -sfn "\#(
 
         let generatedFilesTarget = PBXAggregateTarget(
             name: "Bazel Generated Files",
-            buildConfigurationList: configurationList,
+            buildConfigurationList: generateFilesConfigurationList,
             buildPhases: [
                 generateFilesScript,
                 copyFilesScript,
@@ -1193,12 +1235,22 @@ ln -sfn "\#(
         pbxProj.add(object: generatedFilesTarget)
         pbxProject.targets.append(generatedFilesTarget)
 
-        let attributes: [String: Any] = [
-            "CreatedOnToolsVersion": "13.2.1",
-        ]
         pbxProject.setTargetAttributes(attributes, target: generatedFilesTarget)
 
+        _ = try! generatedFilesTarget.addDependency(
+            target: setupTarget,
+            in: pbxProj
+        )
+        _ = try! pbxTargets["A 1"]!.addDependency(target: setupTarget)
+        _ = try! pbxTargets["A 2"]!.addDependency(target: setupTarget)
+        _ = try! pbxTargets["B 1"]!.addDependency(target: setupTarget)
+        _ = try! pbxTargets["B 2"]!.addDependency(target: setupTarget)
+        _ = try! pbxTargets["B 3"]!.addDependency(target: setupTarget)
         _ = try! pbxTargets["C 1"]!.addDependency(target: generatedFilesTarget)
+        _ = try! pbxTargets["C 2"]!.addDependency(target: setupTarget)
+        _ = try! pbxTargets["E1"]!.addDependency(target: setupTarget)
+        _ = try! pbxTargets["E2"]!.addDependency(target: setupTarget)
+        _ = try! pbxTargets["R 1"]!.addDependency(target: setupTarget)
 
         // The order target are added to `PBXProject`s matter for uuid fixing.
         for pbxTarget in pbxTargets.values.sortedLocalizedStandard(\.name) {

@@ -12,11 +12,17 @@ extension Generator {
     ) throws -> [TargetID: PBXNativeTarget] {
         let pbxProject = pbxProj.rootObject!
 
+        let setupTarget = try createSetupTarget(
+            in: pbxProj,
+            filePathResolver: filePathResolver
+        )
+
         let generatedFilesTarget = try createGeneratedFilesTarget(
             in: pbxProj,
             files: files,
             filePathResolver: filePathResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            xcodeprojBazelLabel: xcodeprojBazelLabel,
+            setupTarget: setupTarget
         )
 
         let sortedDisambiguatedTargets = disambiguatedTargets
@@ -93,17 +99,75 @@ Product for target "\(id)" not found in `products`
                 let generatedFilesTarget = generatedFilesTarget
             {
                 _ = try pbxTarget.addDependency(target: generatedFilesTarget)
+            } else {
+                _ = try pbxTarget.addDependency(target: setupTarget)
             }
         }
 
         return pbxTargets
     }
 
+    private static func createSetupTarget(
+        in pbxProj: PBXProj,
+        filePathResolver: FilePathResolver
+    ) throws -> PBXAggregateTarget {
+        let pbxProject = pbxProj.rootObject!
+
+        let debugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: [
+                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "TARGET_NAME": "Setup",
+            ]
+        )
+        pbxProj.add(object: debugConfiguration)
+        let configurationList = XCConfigurationList(
+            buildConfigurations: [debugConfiguration],
+            defaultConfigurationName: debugConfiguration.name
+        )
+        pbxProj.add(object: configurationList)
+
+        let script = PBXShellScriptBuildPhase(
+            name: "Create Symlinks",
+            shellScript: #"""
+set -eu
+
+cd "$BUILD_DIR"
+ln -sfn "$PROJECT_DIR" SRCROOT
+ln -sfn "\#(
+    filePathResolver.resolve(.external(""), useScriptVariables: true)
+)" external
+
+"""#,
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: script)
+
+        let pbxTarget = PBXAggregateTarget(
+            name: "Setup",
+            buildConfigurationList: configurationList,
+            buildPhases: [script],
+            productName: "Setup"
+        )
+        pbxProj.add(object: pbxTarget)
+        pbxProject.targets.append(pbxTarget)
+
+        let attributes: [String: Any] = [
+            // TODO: Generate this value
+            "CreatedOnToolsVersion": "13.2.1",
+        ]
+        pbxProject.setTargetAttributes(attributes, target: pbxTarget)
+
+        return pbxTarget
+    }
+
     private static func createGeneratedFilesTarget(
         in pbxProj: PBXProj,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String
+        xcodeprojBazelLabel: String,
+        setupTarget: PBXAggregateTarget
     ) throws -> PBXAggregateTarget? {
         guard files.containsGeneratedFiles else {
             return nil
@@ -113,7 +177,10 @@ Product for target "\(id)" not found in `products`
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
-            buildSettings: ["BAZEL_PACKAGE_BIN_DIR": "BazelGeneratedFiles"]
+            buildSettings: [
+                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "TARGET_NAME": "GenerateBazelFiles",
+            ]
         )
         pbxProj.add(object: debugConfiguration)
         let configurationList = XCConfigurationList(
@@ -228,6 +295,8 @@ ln -sf "$BUILD_DIR/bazel-out" gen_dir
         ]
         pbxProject.setTargetAttributes(attributes, target: pbxTarget)
 
+        _ = try pbxTarget.addDependency(target: setupTarget, in: pbxProj)
+
         return pbxTarget
     }
 
@@ -262,12 +331,6 @@ while IFS= read -r input; do
     < "$input" \
     > "$output"
 done < "$SCRIPT_INPUT_FILE_LIST_0"
-
-cd "$BUILD_DIR"
-ln -sfn "$PROJECT_DIR" SRCROOT
-ln -sfn "\#(
-    filePathResolver.resolve(.external(""), useScriptVariables: true)
-)" external
 
 """#,
             showEnvVarsInLog: false
@@ -647,5 +710,29 @@ private extension Path {
         case "hpp": return true
         default: return false
         }
+    }
+}
+
+// Re-implementation of helper on `PBXNativeTarget` until our patch lands:
+// https://github.com/tuist/XcodeProj/pull/677
+extension PBXAggregateTarget {
+    /// Adds a local target dependency to the target.
+    ///
+    /// - Parameter target: dependency target.
+    /// - Returns: target dependency reference.
+    /// - Throws: an error if the dependency cannot be created.
+    func addDependency(target: PBXTarget, in pbxProj: PBXProj) throws -> PBXTargetDependency? {
+        let pbxProject = pbxProj.rootObject!
+        let proxy = PBXContainerItemProxy(containerPortal: .project(pbxProject),
+                                          remoteGlobalID: .object(target),
+                                          proxyType: .nativeTarget,
+                                          remoteInfo: target.name)
+        pbxProj.add(object: proxy)
+        let targetDependency = PBXTargetDependency(name: target.name,
+                                                   target: target,
+                                                   targetProxy: proxy)
+        pbxProj.add(object: targetDependency)
+        dependencies.append(targetDependency)
+        return targetDependency
     }
 }

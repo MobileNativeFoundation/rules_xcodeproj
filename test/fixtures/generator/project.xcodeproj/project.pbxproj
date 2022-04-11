@@ -6,6 +6,20 @@
 	objectVersion = 55;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		4C83CDF1E6003ECA397737DA /* Setup */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */;
+			buildPhases = (
+				ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */,
+			);
+			dependencies = (
+			);
+			name = Setup;
+			productName = Setup;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		02182EDE6FDB241C2434DF8A /* XCScheme+TestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351EBF697F74A32355EC048 /* XCScheme+TestItem.swift */; };
 		073D09171A88A0A4D802AA1E /* XcodeProj+CustomDump.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD628C1B10FBFD1555866 /* XcodeProj+CustomDump.swift */; };
@@ -187,6 +201,20 @@
 			remoteGlobalIDString = 70659DDDA9D45D295FB4BEC1;
 			remoteInfo = generator.library;
 		};
+		176719C09A438C7A8A72BC44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
+		};
+		220CCD2F23DEDC12BE450798 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
+		};
 		2F1610D67BFD419CE8F4FC2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
@@ -200,6 +228,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3CA32B55F719FFAD80B057A6;
 			remoteInfo = PathKit;
+		};
+		385DBF1C49F252CBFB6E9E31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
+		};
+		4C698D8446701FD1B0847AD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
 		};
 		63844F62E0929050BA34F3B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -215,12 +257,26 @@
 			remoteGlobalIDString = 3CA32B55F719FFAD80B057A6;
 			remoteInfo = PathKit;
 		};
+		8A4D0B10425F4055033DE9AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
+		};
 		B08F87FF3DD343994245C253 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D05B05A5C01B711C89655AF9;
 			remoteInfo = CustomDump;
+		};
+		BB56B08A06A234129717CD2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
 		};
 		BCB7F7B87E3481A51E1E0AC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -235,6 +291,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6418E36295EA4236B83448C1;
 			remoteInfo = XCTestDynamicOverlay;
+		};
+		E1C737EE7089FC55CA8DC891 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
+		};
+		FA45368B58DC163DBAD0FCF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
+			remoteInfo = Setup;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -930,6 +1000,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A6E0C27691962907ECCFDEFB /* PBXTargetDependency */,
 				953C6A279C85A182679C2745 /* PBXTargetDependency */,
 				E4686BB163EAA7CE10107566 /* PBXTargetDependency */,
 			);
@@ -947,6 +1018,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B72EB52FA546697DBDB3B8C9 /* PBXTargetDependency */,
 			);
 			name = PathKit;
 			productName = PathKit;
@@ -962,6 +1034,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B04CB994B956D43EC072CC4F /* PBXTargetDependency */,
 				A2F934863BF8FD0FC8435C49 /* PBXTargetDependency */,
 				23B8BE7B798704FE6E934116 /* PBXTargetDependency */,
 			);
@@ -979,6 +1052,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9F0476E7A640C3B4F701C41B /* PBXTargetDependency */,
 			);
 			name = XCTestDynamicOverlay;
 			productName = XCTestDynamicOverlay;
@@ -994,6 +1068,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CCD21E2C1B8DEFA0EA8A0F33 /* PBXTargetDependency */,
 				1031E46C8AB82E81D3627092 /* PBXTargetDependency */,
 				88759EF1E37EB5DF0D7CA0A0 /* PBXTargetDependency */,
 			);
@@ -1011,6 +1086,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				09655CCD3B832A0870752739 /* PBXTargetDependency */,
 			);
 			name = AEXML;
 			productName = AEXML;
@@ -1026,6 +1102,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CA37C2726719A9D7D44C3F94 /* PBXTargetDependency */,
 				CD3D8B1B2E46932B246E26C5 /* PBXTargetDependency */,
 			);
 			name = generator;
@@ -1042,6 +1119,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8DFF568BC582C27C90BAEB98 /* PBXTargetDependency */,
 				7D1203C9CD3F5D3A0DB504E8 /* PBXTargetDependency */,
 			);
 			name = CustomDump;
@@ -1070,6 +1148,9 @@
 					478B039DAAF0CD2DBD2D7226 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
+					};
+					4C83CDF1E6003ECA397737DA = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 					6418E36295EA4236B83448C1 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -1106,6 +1187,7 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
+				4C83CDF1E6003ECA397737DA /* Setup */,
 				7ED2FBB8D0DD634C2391CB9E /* AEXML */,
 				D05B05A5C01B711C89655AF9 /* CustomDump */,
 				B3E25219A26AE795DACA89CA /* generator */,
@@ -1117,6 +1199,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create Symlinks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-rules_xcodeproj/external\" external\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		12070C4B3C9001FDA7B695DE /* Sources */ = {
@@ -1348,6 +1449,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		09655CCD3B832A0870752739 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = BB56B08A06A234129717CD2A /* PBXContainerItemProxy */;
+		};
 		1031E46C8AB82E81D3627092 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PathKit;
@@ -1372,17 +1479,59 @@
 			target = 478B039DAAF0CD2DBD2D7226 /* XcodeProj */;
 			targetProxy = 2F1610D67BFD419CE8F4FC2D /* PBXContainerItemProxy */;
 		};
+		8DFF568BC582C27C90BAEB98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 385DBF1C49F252CBFB6E9E31 /* PBXContainerItemProxy */;
+		};
 		953C6A279C85A182679C2745 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CustomDump;
 			target = D05B05A5C01B711C89655AF9 /* CustomDump */;
 			targetProxy = B08F87FF3DD343994245C253 /* PBXContainerItemProxy */;
 		};
+		9F0476E7A640C3B4F701C41B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 4C698D8446701FD1B0847AD7 /* PBXContainerItemProxy */;
+		};
 		A2F934863BF8FD0FC8435C49 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AEXML;
 			target = 7ED2FBB8D0DD634C2391CB9E /* AEXML */;
 			targetProxy = 63844F62E0929050BA34F3B5 /* PBXContainerItemProxy */;
+		};
+		A6E0C27691962907ECCFDEFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 176719C09A438C7A8A72BC44 /* PBXContainerItemProxy */;
+		};
+		B04CB994B956D43EC072CC4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = E1C737EE7089FC55CA8DC891 /* PBXContainerItemProxy */;
+		};
+		B72EB52FA546697DBDB3B8C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 220CCD2F23DEDC12BE450798 /* PBXContainerItemProxy */;
+		};
+		CA37C2726719A9D7D44C3F94 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = 8A4D0B10425F4055033DE9AA /* PBXContainerItemProxy */;
+		};
+		CCD21E2C1B8DEFA0EA8A0F33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = 4C83CDF1E6003ECA397737DA /* Setup */;
+			targetProxy = FA45368B58DC163DBAD0FCF9 /* PBXContainerItemProxy */;
 		};
 		CD3D8B1B2E46932B246E26C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1670,6 +1819,14 @@
 			};
 			name = Debug;
 		};
+		70E18BE128A25A1F96CAB0FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				TARGET_NAME = Setup;
+			};
+			name = Debug;
+		};
 		7C935235ACC6252AE6F5B6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1880,6 +2037,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F76F81196D7882A29429FD9 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70E18BE128A25A1F96CAB0FE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
