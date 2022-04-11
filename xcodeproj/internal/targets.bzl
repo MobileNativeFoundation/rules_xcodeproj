@@ -7,6 +7,7 @@ load(
     "AppleResourceInfo",
     "IosXcTestBundleInfo",
     "MacosXcTestBundleInfo",
+    "TvosXcTestBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 
@@ -50,7 +51,8 @@ def _is_test_bundle(target, deps):
         return False
     return (
         _is_test_bundle_with_provider(target, deps, IosXcTestBundleInfo) or
-        _is_test_bundle_with_provider(target, deps, MacosXcTestBundleInfo)
+        _is_test_bundle_with_provider(target, deps, MacosXcTestBundleInfo) or
+        _is_test_bundle_with_provider(target, deps, TvosXcTestBundleInfo)
     )
 
 def _should_become_xcode_target(target):
