@@ -8,6 +8,7 @@ watchos_application(
     infoplists = [":Info.plist"],
     minimum_os_version = "7.0",
     version = "//examples/watchos_app/ExampleWatchKitExtension:Version",
+    visibility = ["//examples/watchos_app:__subpackages__"],
 )
 
 filegroup(

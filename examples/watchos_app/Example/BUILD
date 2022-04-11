@@ -19,8 +19,7 @@ ios_application(
     minimum_os_version = "15.0",
     resources = [":ExampleResourceGroup"],
     visibility = ["//visibility:public"],
-    # TODO(chuck): FIX ME!
-    # watch_application = "//examples/watchos_app/ExampleWatchKitApp",
+    watch_application = "//examples/watchos_app/ExampleWatchKitApp",
     deps = [":Example.library"],
 )
 
