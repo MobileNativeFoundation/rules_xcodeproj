@@ -3,7 +3,7 @@ load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 xcodeproj(
     name = "xcodeproj",
-    project_name = "Command Line",
+    project_name = "TvOS App",
     tags = ["manual"],
     targets = XCODEPROJ_TARGETS,
 )
