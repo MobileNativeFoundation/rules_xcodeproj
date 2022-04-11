@@ -1,14 +1,6 @@
-//
-//  ExampleUITestsLaunchTests.swift
-//  ExampleUITests
-//
-//  Created by Chuck Grindel on 4/8/22.
-//
-
 import XCTest
 
 class ExampleUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
