@@ -57,6 +57,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
 
     non_arc_srcs = ()
     hdrs = ()
+    pch = None
     resources = {}
     structured_resources = ()
     bundle_imports = ()
@@ -80,6 +81,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         excluded = ("deps", "runtime_deps")
         non_arc_srcs = ("non_arc_srcs")
         hdrs = ("hdrs", "textual_hdrs")
+        pch = "pch"
         resources = {
             "deps": target_type.compile,
             "runtime_deps": target_type.compile,
@@ -136,6 +138,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             non_arc_srcs = non_arc_srcs,
             srcs = srcs,
             hdrs = hdrs,
+            pch = pch,
             resources = resources,
             structured_resources = structured_resources,
             bundle_imports = bundle_imports,

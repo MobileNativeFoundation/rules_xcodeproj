@@ -2,6 +2,7 @@ struct Inputs: Equatable {
     var srcs: [FilePath]
     var nonArcSrcs: [FilePath]
     var hdrs: Set<FilePath>
+    var pch: FilePath?
     var resources: Set<FilePath>
     var containsGeneratedFiles: Bool
 
@@ -9,12 +10,14 @@ struct Inputs: Equatable {
         srcs: [FilePath] = [],
         nonArcSrcs: [FilePath] = [],
         hdrs: Set<FilePath> = [],
+        pch: FilePath? = nil,
         resources: Set<FilePath> = [],
         containsGeneratedFiles: Bool = false
     ) {
         self.srcs = srcs
         self.nonArcSrcs = nonArcSrcs
         self.hdrs = hdrs
+        self.pch = pch
         self.resources = resources
         self.containsGeneratedFiles = containsGeneratedFiles
     }
@@ -25,6 +28,7 @@ extension Inputs {
         srcs = other.srcs
         nonArcSrcs = other.nonArcSrcs
         hdrs = other.hdrs
+        pch = other.pch
         resources.formUnion(other.resources)
         containsGeneratedFiles = containsGeneratedFiles
             || other.containsGeneratedFiles
@@ -42,7 +46,15 @@ extension Inputs {
         return Set(srcs)
             .union(Set(nonArcSrcs))
             .union(Set(hdrs))
+            .union(pchSet)
             .union(resources)
+    }
+
+    private var pchSet: Set<FilePath> {
+        guard let pch = pch else {
+            return []
+        }
+        return [pch]
     }
 }
 
@@ -54,6 +66,7 @@ extension Inputs: Decodable {
         case nonArcSrcs
         case hdrs
         case resources
+        case pch
         case containsGeneratedFiles
     }
 
@@ -63,6 +76,7 @@ extension Inputs: Decodable {
         srcs = try container.decodeFilePaths(.srcs)
         nonArcSrcs = try container.decodeFilePaths(.nonArcSrcs)
         hdrs = try container.decodeFilePaths(.hdrs)
+        pch = try container.decodeIfPresent(FilePath.self, forKey: .pch)
         resources = try container.decodeFilePaths(.resources)
         containsGeneratedFiles = try container.decodeIfPresent(
             Bool.self,

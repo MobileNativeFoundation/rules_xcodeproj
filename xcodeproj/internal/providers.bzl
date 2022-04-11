@@ -28,6 +28,10 @@ attributes.
 A sequence of attribute names to collect `File`s from for `non_arc_srcs`-like
 attributes.
 """,
+        "pch": """\
+An attribute name (or `None`) to collect `File`s from for the `pch`-like
+attribute.
+""",
         "resources": """\
 A sequence of attribute names to collect `File`s from for the `resources`-like
 attributes.
