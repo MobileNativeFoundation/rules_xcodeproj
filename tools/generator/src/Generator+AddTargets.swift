@@ -258,7 +258,7 @@ set -eu
 while IFS= read -r input; do
   output="${input%.modulemap}.xcode.modulemap"
   perl -p -e \
-    's%^(    *(\w )*header "(\.\.\/)*)(((?!(bazel-out|external)).)*")%\1SRCROOT/\4%' \
+    's%^(    *(\w+ )?header "(\.\.\/)*)(((?!(bazel-out|external)).)*")%\1SRCROOT/\4%' \
     < "$input" \
     > "$output"
 done < "$SCRIPT_INPUT_FILE_LIST_0"
