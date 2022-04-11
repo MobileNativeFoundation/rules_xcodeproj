@@ -44,9 +44,8 @@ final class TargetMergingTests: XCTestCase {
             buildSettings: [
                 // Inherited "A 1"s `PRODUCT_MODULE_NAME`
                 "PRODUCT_MODULE_NAME": .string("A"),
-                // Keep "A 2"'s version of `T`
-                "T": .string("43"),
-                // Inherited "A 1"'s `Y`
+                // Inherited "A 1"'s `T`, `Y`, `Z`
+                "T": .string("42"),
                 "Y": .bool(true),
                 "Z": .string("0")
             ],

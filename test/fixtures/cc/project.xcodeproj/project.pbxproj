@@ -377,6 +377,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -516,6 +517,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -573,6 +575,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";

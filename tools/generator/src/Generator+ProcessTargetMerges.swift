@@ -57,11 +57,10 @@ exist
                 // Merge build settings
                 merged.buildSettings["PRODUCT_MODULE_NAME"] =
                     merging.buildSettings["PRODUCT_MODULE_NAME"]
-                merged.buildSettings["GCC_PREPROCESSOR_DEFINITIONS"] =
-                    merging.buildSettings["GCC_PREPROCESSOR_DEFINITIONS"]
-                merged.buildSettings["SWIFT_ACTIVE_COMPILATION_CONDITIONS"] =
-                    merging.buildSettings["SWIFT_ACTIVE_COMPILATION_CONDITIONS"]
-                merged.buildSettings.merge(merging.buildSettings) { l, _ in l }
+                
+                let productName = merged.buildSettings["PRODUCT_NAME"]
+                merged.buildSettings.merge(merging.buildSettings) { _, r in r }
+                merged.buildSettings["PRODUCT_NAME"] = productName
 
                 // Update search paths
                 merged.searchPaths = merging.searchPaths

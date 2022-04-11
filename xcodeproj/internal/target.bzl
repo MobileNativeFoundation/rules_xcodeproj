@@ -1,5 +1,6 @@
 """Functions for creating `XcodeProjInfo` providers."""
 
+load("@bazel_skylib//lib:collections.bzl", "collections")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(
@@ -603,6 +604,10 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         cc_info = cc_info,
         build_settings = build_settings,
     )
+    _process_sdk_frameworks(
+        objc = objc,
+        build_settings = build_settings,
+    )
     search_paths = _process_search_paths(
         cc_info = cc_info,
         objc = objc,
@@ -728,6 +733,11 @@ def _process_library_target(*, ctx, target, transitive_infos):
         getattr(ctx.rule.attr, "testonly", False),
     )
 
+    build_settings["OTHER_LDFLAGS"] = ["-ObjC"] + build_settings.get(
+        "OTHER_LDFLAGS",
+        [],
+    )
+
     platform = process_platform(
         ctx = ctx,
         minimum_deployment_os_version = None,
@@ -765,6 +775,10 @@ def _process_library_target(*, ctx, target, transitive_infos):
     cc_info = target[CcInfo] if CcInfo in target else None
     _process_defines(
         cc_info = cc_info,
+        build_settings = build_settings,
+    )
+    _process_sdk_frameworks(
+        objc = objc,
         build_settings = build_settings,
     )
     search_paths = _process_search_paths(
@@ -1172,10 +1186,7 @@ def _process_dependencies(*, attrs_info, transitive_infos):
         ])
     ]
 
-def _process_defines(
-        *,
-        cc_info,
-        build_settings):
+def _process_defines(*, cc_info, build_settings):
     if cc_info and build_settings != None:
         # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
         # process Swift compile options already accounts for `defines`
@@ -1213,12 +1224,29 @@ def _process_defines(
 
         set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
 
+def _process_sdk_frameworks(*, objc, build_settings):
+    if not objc or build_settings == None:
+        return
+
+    sdk_framework_flags = collections.before_each(
+        "-framework",
+        objc.sdk_framework.to_list(),
+    )
+    weak_sdk_framework_flags = collections.before_each(
+        "-weak_framework",
+        objc.weak_sdk_framework.to_list(),
+    )
+
+    set_if_true(
+        build_settings,
+        "OTHER_LDFLAGS",
+        (sdk_framework_flags +
+         weak_sdk_framework_flags +
+         build_settings.get("OTHER_LDFLAGS", [])),
+    )
+
 # TODO: Refactor this into a search_paths module
-def _process_search_paths(
-        *,
-        cc_info,
-        objc,
-        opts_search_paths):
+def _process_search_paths(*, cc_info, objc, opts_search_paths):
     search_paths = {}
     if cc_info:
         compilation_context = cc_info.compilation_context

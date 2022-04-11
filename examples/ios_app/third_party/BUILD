@@ -9,5 +9,7 @@ apple_static_framework_import(
         ["ExampleFramework.framework/**"],
         exclude = ["**/.*"],
     ),
+    sdk_frameworks = ["Foundation"],
     visibility = ["//visibility:public"],
+    weak_sdk_frameworks = ["SwiftUI"],
 )

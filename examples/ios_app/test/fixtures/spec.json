@@ -221,6 +221,13 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
+                "OTHER_LDFLAGS": [
+                    "-framework",
+                    "Foundation",
+                    "-weak_framework",
+                    "SwiftUI",
+                    "-ObjC"
+                ],
                 "PRODUCT_MODULE_NAME": "CoreUtils",
                 "PRODUCT_NAME": "CoreUtilsObjC",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -449,6 +456,13 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-framework",
+                    "Foundation",
+                    "-weak_framework",
+                    "SwiftUI",
+                    "-ObjC"
                 ],
                 "OTHER_SWIFT_FLAGS": "-Fthird_party -Fexternal/examples_ios_app_external",
                 "PRODUCT_MODULE_NAME": "Example",
@@ -681,6 +695,13 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-framework",
+                    "Foundation",
+                    "-weak_framework",
+                    "SwiftUI",
+                    "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "ExampleObjcTests",
                 "PRODUCT_NAME": "ExampleObjcTests.library",
@@ -937,6 +958,13 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
+                "OTHER_LDFLAGS": [
+                    "-framework",
+                    "Foundation",
+                    "-weak_framework",
+                    "SwiftUI",
+                    "-ObjC"
+                ],
                 "OTHER_SWIFT_FLAGS": "-Fthird_party -Fexternal/examples_ios_app_external",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "PRODUCT_NAME": "ExampleTests.library",
@@ -1176,6 +1204,9 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
                 "PRODUCT_NAME": "ExampleUITests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1266,6 +1297,9 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "TestingUtils",
                 "PRODUCT_NAME": "TestingUtils",
@@ -1363,6 +1397,13 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-framework",
+                    "Foundation",
+                    "-weak_framework",
+                    "SwiftUI",
+                    "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "Utils",
                 "PRODUCT_NAME": "Utils",

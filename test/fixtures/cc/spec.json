@@ -59,6 +59,9 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -145,6 +148,9 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
                 ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -357,6 +363,9 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
                 ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",

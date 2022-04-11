@@ -1216,6 +1216,13 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-weak_framework",
+					SwiftUI,
+					"-ObjC",
+				);
 				PRODUCT_MODULE_NAME = Utils;
 				PRODUCT_NAME = Utils;
 				SDKROOT = iphoneos;
@@ -1355,6 +1362,10 @@
 				OTHER_LDFLAGS = (
 					"-filelist",
 					"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/ExampleTests/ExampleTests.__internal__.__test_bundle.LinkFileList,$(BUILD_DIR)",
+					"-framework",
+					Foundation,
+					"-weak_framework",
+					SwiftUI,
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(PROJECT_DIR)/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -Fthird_party -Fexternal/examples_ios_app_external";
@@ -1434,6 +1445,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
 				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
@@ -1515,6 +1527,13 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-weak_framework",
+					SwiftUI,
+					"-ObjC",
+				);
 				PRODUCT_MODULE_NAME = CoreUtils;
 				PRODUCT_NAME = CoreUtilsObjC;
 				SDKROOT = iphoneos;
@@ -1591,6 +1610,10 @@
 				OTHER_LDFLAGS = (
 					"-filelist",
 					"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/Example/Example.LinkFileList,$(BUILD_DIR)",
+					"-framework",
+					Foundation,
+					"-weak_framework",
+					SwiftUI,
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(PROJECT_DIR)/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-ios_app/external/examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.xcode.modulemap -Fthird_party -Fexternal/examples_ios_app_external";
@@ -1667,6 +1690,10 @@
 					"-L/usr/lib/swift",
 					"-filelist",
 					"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList,$(BUILD_DIR)",
+					"-framework",
+					Foundation,
+					"-weak_framework",
+					SwiftUI,
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.objctests;
