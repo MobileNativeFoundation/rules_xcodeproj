@@ -163,7 +163,6 @@ def _product_to_dto(product):
 def _processed_target(
         *,
         attrs_info,
-        defines,
         dependencies,
         inputs,
         linker_inputs,
@@ -178,7 +177,6 @@ def _processed_target(
 
     Args:
         attrs_info: The `InputFileAttributesInfo` for the target.
-        defines: The value returned from `_process_defines()`.
         dependencies: A `list` of target ids of direct dependencies of this
             target.
         inputs: A value as returned from `input_files.collect()` that will
@@ -202,7 +200,6 @@ def _processed_target(
     """
     return struct(
         attrs_info = attrs_info,
-        defines = defines,
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,
@@ -600,21 +597,18 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         transitive_infos = transitive_infos,
     )
 
+    cc_info = target[CcInfo] if CcInfo in target else None
+    _process_defines(
+        cc_info = cc_info,
+        build_settings = build_settings,
+    )
     search_paths = _process_search_paths(
-        cc_info = target[CcInfo] if CcInfo in target else None,
+        cc_info = cc_info,
         opts_search_paths = opts_search_paths,
     )
 
     return _processed_target(
         attrs_info = attrs_info,
-        defines = _process_defines(
-            attrs_info = attrs_info,
-            is_swift = is_swift,
-            defines = getattr(ctx.rule.attr, "defines", []),
-            local_defines = getattr(ctx.rule.attr, "local_defines", []),
-            transitive_infos = transitive_infos,
-            build_settings = build_settings,
-        ),
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,
@@ -766,21 +760,18 @@ def _process_library_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
 
+    cc_info = target[CcInfo] if CcInfo in target else None
+    _process_defines(
+        cc_info = cc_info,
+        build_settings = build_settings,
+    )
     search_paths = _process_search_paths(
-        cc_info = target[CcInfo] if CcInfo in target else None,
+        cc_info = cc_info,
         opts_search_paths = opts_search_paths,
     )
 
     return _processed_target(
         attrs_info = attrs_info,
-        defines = _process_defines(
-            attrs_info = attrs_info,
-            is_swift = SwiftInfo in target,
-            defines = getattr(ctx.rule.attr, "defines", []),
-            local_defines = getattr(ctx.rule.attr, "local_defines", []),
-            transitive_infos = transitive_infos,
-            build_settings = build_settings,
-        ),
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,
@@ -912,14 +903,6 @@ def _process_resource_target(*, ctx, target, transitive_infos):
 
     return _processed_target(
         attrs_info = attrs_info,
-        defines = _process_defines(
-            attrs_info = attrs_info,
-            is_swift = False,
-            defines = [],
-            local_defines = [],
-            transitive_infos = transitive_infos,
-            build_settings = build_settings,
-        ),
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,
@@ -994,14 +977,6 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
 
     return _processed_target(
         attrs_info = attrs_info,
-        defines = _process_defines(
-            attrs_info = attrs_info,
-            is_swift = SwiftInfo in target,
-            defines = getattr(ctx.rule.attr, "defines", []),
-            local_defines = getattr(ctx.rule.attr, "local_defines", []),
-            transitive_infos = transitive_infos,
-            build_settings = None,
-        ),
         dependencies = _process_dependencies(
             attrs_info = attrs_info,
             transitive_infos = transitive_infos,
@@ -1052,7 +1027,6 @@ def _should_skip_target(*, ctx, target):
 
 def _target_info_fields(
         *,
-        defines,
         dependencies,
         inputs,
         linker_inputs,
@@ -1069,7 +1043,6 @@ def _target_info_fields(
     This should be merged with other fields to fully create an `XcodeProjInfo`.
 
     Args:
-        defines: Maps to `XcodeProjInfo.defines`.
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
         inputs: Maps to the `XcodeProjInfo.inputs` field.
         linker_inputs: Maps to the `XcodeProjInfo.linker_inputs` field.
@@ -1087,7 +1060,6 @@ def _target_info_fields(
     Returns:
         A `dict` containing the following fields:
 
-        *   `defines`
         *   `dependencies`
         *   `generated_inputs`
         *   `inputs`
@@ -1102,7 +1074,6 @@ def _target_info_fields(
         *   `xcode_targets`
     """
     return {
-        "defines": defines,
         "dependencies": dependencies,
         "inputs": inputs,
         "linker_inputs": linker_inputs,
@@ -1132,14 +1103,6 @@ def _skip_target(*, target, transitive_infos):
         `transitive_infos`.
     """
     return _target_info_fields(
-        defines = _process_defines(
-            attrs_info = None,
-            is_swift = False,
-            defines = [],
-            local_defines = [],
-            transitive_infos = transitive_infos,
-            build_settings = None,
-        ),
         dependencies = _process_dependencies(
             attrs_info = None,
             transitive_infos = transitive_infos,
@@ -1204,28 +1167,9 @@ def _process_dependencies(*, attrs_info, transitive_infos):
 
 def _process_defines(
         *,
-        attrs_info,
-        is_swift,
-        defines,
-        local_defines,
-        transitive_infos,
+        cc_info,
         build_settings):
-    transitive_cc_defines = []
-    for attr, info in transitive_infos:
-        if (attrs_info and
-            attrs_info.xcode_targets.get(attr) != info.target_type):
-            continue
-        transitive_defines = info.defines
-        transitive_cc_defines.extend(transitive_defines.cc_defines)
-
-    # We only want to use this target's defines if it's a Swift target
-    if is_swift:
-        cc_defines = transitive_cc_defines
-    else:
-        transitive_cc_defines.extend(defines)
-        cc_defines = transitive_cc_defines + local_defines
-
-    if build_settings:
+    if cc_info and build_settings != None:
         # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
         # process Swift compile options already accounts for `defines`
 
@@ -1241,19 +1185,26 @@ def _process_defines(
         # becomes an issue in practice, we can refactor `process_copts` to
         # support this better.
 
+        defines = depset(
+            transitive = [
+                cc_info.compilation_context.defines,
+                cc_info.compilation_context.local_defines,
+            ],
+        )
+        escaped_defines = [
+            define.replace("\\", "\\\\").replace('"', '\\"')
+            for define in defines.to_list()
+        ]
+
         setting = build_settings.get(
             "GCC_PREPROCESSOR_DEFINITIONS",
             [],
-        ) + cc_defines
+        ) + escaped_defines
 
         # Remove duplicates
         setting = reversed(uniq(reversed(setting)))
 
         set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
-
-    return struct(
-        cc_defines = transitive_cc_defines,
-    )
 
 # TODO: Refactor this into a search_paths module
 def _process_search_paths(
@@ -1437,7 +1388,6 @@ def _process_target(*, ctx, target, transitive_infos):
         )
 
     return _target_info_fields(
-        defines = processed_target.defines,
         dependencies = processed_target.dependencies,
         inputs = processed_target.inputs,
         linker_inputs = processed_target.linker_inputs,

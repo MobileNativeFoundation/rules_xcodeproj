@@ -57,10 +57,6 @@ target_type = struct(
 XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",
     fields = {
-        "defines": """\
-A value returned from `_process_defines()` that contains the defines set by
-this target that should be propagated to dependent targets.
-""",
         "dependencies": """\
 A `list` of target ids (see the `target` `struct`) that this target directly
 depends on.
