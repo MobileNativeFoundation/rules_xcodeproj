@@ -29,38 +29,35 @@
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -119,40 +116,35 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\"",
                     "SECRET_3=\\\"Hello\\\""
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -214,41 +206,36 @@
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\"",
                     "SECRET_2=\\\"World!\\\"",
                     "EXTERNAL_SECRET_2=\\\"World?\\\""
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
@@ -341,40 +328,35 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\"",
                     "EXTERNAL_SECRET_3=\\\"Goodbye\\\""
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",

@@ -363,6 +363,19 @@ def process_compiler_opts_test_suite(name):
         },
     )
 
+    ## GCC_PREPROCESSOR_DEFINITIONS
+
+    _add_test(
+        name = "{}_gcc_optimization_preprocessor_definitions".format(name),
+        conlyopts = ["-DDEBUG", "-DDEBUG", "-DA=1", "-DZ=1", "-DB", "-DE"],
+        cxxopts = ["-DDEBUG", "-DDEBUG", "-DA=1", "-DZ=2", "-DC", "-DE"],
+        expected_build_settings = {
+            "GCC_PREPROCESSOR_DEFINITIONS": ["DEBUG", "A=1"],
+            "OTHER_CFLAGS": ["-DZ=1", "-DB", "-DE"],
+            "OTHER_CPLUSPLUSFLAGS": ["-DZ=2", "-DC", "-DE"],
+        },
+    )
+
     ## SWIFT_ACTIVE_COMPILATION_CONDITIONS
 
     _add_test(

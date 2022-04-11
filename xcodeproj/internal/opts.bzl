@@ -219,10 +219,12 @@ def _process_conlyopts(opts):
         A `tuple` containing four elements:
 
         *   A `list` of unhandled C compiler options.
+        *   A `list` of defines parsed.
         *   A `list` of C compiler optimization levels parsed.
         *   A value returned by `_create_search_paths()` with the parsed search
             paths.
     """
+    defines = []
     optimizations = []
     quote_includes = []
     includes = []
@@ -245,6 +247,9 @@ def _process_conlyopts(opts):
         if opt.startswith("-I"):
             includes.append(opt[2:])
             return True
+        if opt.startswith("-D"):
+            defines.append(opt[2:])
+            return True
         return False
 
     unhandled_opts = _process_base_compiler_opts(
@@ -253,12 +258,14 @@ def _process_conlyopts(opts):
         extra_processing = process,
     )
 
+    defines = uniq(defines)
+
     search_paths = create_opts_search_paths(
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
     )
 
-    return unhandled_opts, optimizations, search_paths
+    return unhandled_opts, defines, optimizations, search_paths
 
 def _process_cxxopts(opts, *, build_settings):
     """Processes C++ compiler options.
@@ -272,10 +279,12 @@ def _process_cxxopts(opts, *, build_settings):
         A `tuple` containing four elements:
 
         *   A `list` of unhandled C++ compiler options.
+        *   A `list` of defines parsed.
         *   A `list` of C++ compiler optimization levels parsed.
         *   A value returned by `_create_search_paths()` with the parsed search
             paths.
     """
+    defines = []
     optimizations = []
     quote_includes = []
     includes = []
@@ -306,6 +315,9 @@ def _process_cxxopts(opts, *, build_settings):
         if opt.startswith("-I"):
             includes.append(opt[2:])
             return True
+        if opt.startswith("-D"):
+            defines.append(opt[2:])
+            return True
         return False
 
     unhandled_opts = _process_base_compiler_opts(
@@ -314,12 +326,14 @@ def _process_cxxopts(opts, *, build_settings):
         extra_processing = process,
     )
 
+    defines = uniq(defines)
+
     search_paths = create_opts_search_paths(
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
     )
 
-    return unhandled_opts, optimizations, search_paths
+    return unhandled_opts, defines, optimizations, search_paths
 
 def _process_copts(*, conlyopts, cxxopts, build_settings):
     """Processes C and C++ compiler options.
@@ -340,11 +354,13 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
     """
     (
         conlyopts,
+        conly_defines,
         conly_optimizations,
         conly_search_paths,
     ) = _process_conlyopts(conlyopts)
     (
         cxxopts,
+        cxx_defines,
         cxx_optimizations,
         cxx_search_paths,
     ) = _process_cxxopts(
@@ -372,9 +388,31 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
     if gcc_optimization != "-O0":
         build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
 
+    # Calculate GCC_PREPROCESSOR_DEFINITIONS, from common conly and cxx defines
+    defines = []
+    for conly_define, cxx_define in zip(conly_defines, cxx_defines):
+        if conly_define != cxx_define:
+            break
+        defines.append(conly_define)
+
+    set_if_true(
+        build_settings,
+        "GCC_PREPROCESSOR_DEFINITIONS",
+        defines,
+    )
+
+    conly_defines = [
+        "-D{}".format(define)
+        for define in conly_defines[len(defines):]
+    ]
+    cxx_defines = [
+        "-D{}".format(define)
+        for define in cxx_defines[len(defines):]
+    ]
+
     return (
-        conly_optimizations + conlyopts,
-        cxx_optimizations + cxxopts,
+        conly_optimizations + conly_defines + conlyopts,
+        cxx_optimizations + cxx_defines + cxxopts,
         merge_opts_search_paths([conly_search_paths, cxx_search_paths]),
     )
 
@@ -497,7 +535,6 @@ def _process_compiler_opts(
     )
 
     # TODO: Split out `WARNING_CFLAGS`? (Must maintain order, and only ones that apply to both c and cxx)
-    # TODO: Split out `GCC_PREPROCESSOR_DEFINITIONS`? (Must maintain order, and only ones that apply to both c and cxx)
     # TODO: Handle `defines` and `local_defines` as well
 
     set_if_true(

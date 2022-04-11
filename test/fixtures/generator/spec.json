@@ -31,38 +31,35 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
@@ -139,38 +136,35 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_MODULE_NAME": "tests",
                 "PRODUCT_NAME": "tests.library",
@@ -266,38 +260,35 @@
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
@@ -364,38 +355,35 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_MODULE_NAME": "generator",
                 "PRODUCT_NAME": "generator.library",
@@ -494,38 +482,35 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_MODULE_NAME": "PathKit",
                 "PRODUCT_NAME": "PathKit",
@@ -585,38 +570,35 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_MODULE_NAME": "CustomDump",
                 "PRODUCT_NAME": "CustomDump",
@@ -779,38 +761,35 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay",
                 "PRODUCT_NAME": "XCTestDynamicOverlay",
@@ -870,38 +849,35 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_MODULE_NAME": "AEXML",
                 "PRODUCT_NAME": "AEXML",
@@ -977,38 +953,35 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
-                    "-D_FORTIFY_SOURCE=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-DDEBUG",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined",
-                    "-D__DATE__=\"redacted\"",
-                    "-D__TIMESTAMP__=\"redacted\"",
-                    "-D__TIME__=\"redacted\""
+                    "-Wno-builtin-macro-redefined"
                 ],
                 "PRODUCT_MODULE_NAME": "XcodeProj",
                 "PRODUCT_NAME": "XcodeProj",
