@@ -26,9 +26,18 @@
 		3A2E1ED31DDF3DFE54C3CBC0 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5DD2BA71710A6E5D778D04 /* ExampleApp.swift */; };
 		7262F7CBE2364086A650E1ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B211B2D3B051C1CA3AC779 /* ContentView.swift */; };
 		9E4EA3D3C8C7E14B0E337CD9 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A398F7939B7B7C9EFFFFA4E /* ExampleTests.swift */; };
+		E970C3DAB32DDFB392AE4290 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D9616425B5B2F0F529FC4F /* ExampleUITestsLaunchTests.swift */; };
+		EA303565E85D06AE6E04AABB /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F4D595EBEEE256B7E8078D /* ExampleUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		03CF1F99C3E116A66D39DB7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAB95A4512529D4CB8BE5D4E;
+			remoteInfo = Example;
+		};
 		078E6A97773B9731CAA6A183 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
@@ -50,14 +59,25 @@
 			remoteGlobalIDString = 3064A34776444DE49627998E;
 			remoteInfo = "Bazel Generated Files";
 		};
+		9EA5AB932A9708D1A7667DFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3064A34776444DE49627998E;
+			remoteInfo = "Bazel Generated Files";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17D9616425B5B2F0F529FC4F /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		332DA7D905FE78395F8B49AB /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F93BE1FCDA4A6A551947845 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7164B79B755C61D70222D1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		87E7ADC81C6FF328FCC38BB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8F5DD2BA71710A6E5D778D04 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		9A398F7939B7B7C9EFFFFA4E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
+		A4F4D595EBEEE256B7E8078D /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
+		C2288FA66726CD35CFB04516 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E39D6F9D4DAE2C1137ABB0 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6747EB9856511FCC8FC1432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D1B211B2D3B051C1CA3AC779 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,8 +123,26 @@
 			children = (
 				C5E39D6F9D4DAE2C1137ABB0 /* Example.app */,
 				332DA7D905FE78395F8B49AB /* ExampleTests.xctest */,
+				C2288FA66726CD35CFB04516 /* ExampleUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		479E7EE8B154DD2392A481A3 /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				87E7ADC81C6FF328FCC38BB2 /* Info.plist */,
+			);
+			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
+		50AF604D6694C0AFE78B5F0C /* ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A4F4D595EBEEE256B7E8078D /* ExampleUITests.swift */,
+				17D9616425B5B2F0F529FC4F /* ExampleUITestsLaunchTests.swift */,
+			);
+			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
 		52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */ = {
@@ -121,6 +159,7 @@
 			children = (
 				C0DD6E10EF80391E5371DC8E /* Example */,
 				793FD6800571A5AD39D04A67 /* ExampleTests */,
+				50AF604D6694C0AFE78B5F0C /* ExampleUITests */,
 			);
 			path = tvos_app;
 			sourceTree = "<group>";
@@ -178,6 +217,7 @@
 			children = (
 				21185BF85FB3B73E9670C5EA /* Example */,
 				BE0736B2CB46DD6BD109459D /* ExampleTests */,
+				AEE8ED8D6BE2590281D08DE5 /* ExampleUITests */,
 			);
 			path = tvos_app;
 			sourceTree = "<group>";
@@ -199,6 +239,14 @@
 				C6747EB9856511FCC8FC1432 /* Info.plist */,
 			);
 			path = "Example-intermediates";
+			sourceTree = "<group>";
+		};
+		AEE8ED8D6BE2590281D08DE5 /* ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				479E7EE8B154DD2392A481A3 /* ExampleUITests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
 		B99507E1F907E7A7CB415BE5 /* bin */ = {
@@ -237,6 +285,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		78E254055CF3D5252C84D79D /* ExampleUITests.__internal__.__test_bundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E5F721E3B8848F625065067 /* Build configuration list for PBXNativeTarget "ExampleUITests.__internal__.__test_bundle" */;
+			buildPhases = (
+				AB298EF0B6EC715E492E0A39 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C3EF0A78A1C6D3ED61F8B20 /* PBXTargetDependency */,
+				8090BAEEB7C7D714E55D865C /* PBXTargetDependency */,
+			);
+			name = ExampleUITests.__internal__.__test_bundle;
+			productName = ExampleUITests;
+			productReference = C2288FA66726CD35CFB04516 /* ExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E5FC08BFA53D3AF04406D2BB /* ExampleTests.__internal__.__test_bundle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC225E2F7B139CBF04D43ED2 /* Build configuration list for PBXNativeTarget "ExampleTests.__internal__.__test_bundle" */;
@@ -283,6 +348,11 @@
 					3064A34776444DE49627998E = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
+					78E254055CF3D5252C84D79D = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+						TestTargetID = EAB95A4512529D4CB8BE5D4E;
+					};
 					E5FC08BFA53D3AF04406D2BB = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -310,6 +380,7 @@
 				3064A34776444DE49627998E /* Bazel Generated Files */,
 				EAB95A4512529D4CB8BE5D4E /* Example */,
 				E5FC08BFA53D3AF04406D2BB /* ExampleTests.__internal__.__test_bundle */,
+				78E254055CF3D5252C84D79D /* ExampleUITests.__internal__.__test_bundle */,
 			);
 		};
 /* End PBXProject section */
@@ -396,14 +467,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AB298EF0B6EC715E492E0A39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA303565E85D06AE6E04AABB /* ExampleUITests.swift in Sources */,
+				E970C3DAB32DDFB392AE4290 /* ExampleUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C3EF0A78A1C6D3ED61F8B20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			targetProxy = 9EA5AB932A9708D1A7667DFA /* PBXContainerItemProxy */;
+		};
 		39159660DA50973079657E41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Generated Files";
 			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
 			targetProxy = 2221FA2FB6E417367EA947F0 /* PBXContainerItemProxy */;
+		};
+		8090BAEEB7C7D714E55D865C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Example;
+			target = EAB95A4512529D4CB8BE5D4E /* Example */;
+			targetProxy = 03CF1F99C3E116A66D39DB7B /* PBXContainerItemProxy */;
 		};
 		C418EED9BCE57CCDB9B6CA97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -420,6 +512,62 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		1CFA568E03BB2DF51CD2716A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					DEBUG,
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+				);
+				INFOPLIST_FILE = "$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				OTHER_CFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
+				PRODUCT_MODULE_NAME = ExampleUITests;
+				PRODUCT_NAME = ExampleUITests;
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = ExampleUITests.__internal__.__test_bundle;
+				TEST_TARGET_NAME = Example;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Debug;
+		};
 		235020F26966A0B7CA3238B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -577,6 +725,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C935235ACC6252AE6F5B6FF /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8E5F721E3B8848F625065067 /* Build configuration list for PBXNativeTarget "ExampleUITests.__internal__.__test_bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CFA568E03BB2DF51CD2716A /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
