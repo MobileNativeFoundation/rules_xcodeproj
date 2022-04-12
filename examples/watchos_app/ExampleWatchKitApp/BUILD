@@ -7,7 +7,7 @@ watchos_application(
     extension = "//examples/watchos_app/ExampleWatchKitExtension",
     infoplists = [":Info.plist"],
     minimum_os_version = "7.0",
-    version = "//examples/watchos_app/ExampleWatchKitExtension:Version",
+    version = "//examples/watchos_app/Example:Version",
     visibility = ["//examples/watchos_app:__subpackages__"],
 )
 
