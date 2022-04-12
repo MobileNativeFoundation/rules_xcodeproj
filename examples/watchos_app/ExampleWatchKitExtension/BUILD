@@ -29,10 +29,7 @@ watchos_extension(
 
 apple_resource_group(
     name = "ResourceGroup",
-    resources = glob(
-        ["Assets.xcassets/**"],
-        exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
-    ),
+    resources = glob(["Assets.xcassets/**"]),
 )
 
 swift_library(
