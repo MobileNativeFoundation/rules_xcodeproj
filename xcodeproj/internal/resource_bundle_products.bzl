@@ -15,7 +15,7 @@ def _collect(
                 info.resource_bundles._unowned_products
                 for attr, info in transitive_infos
                 if (not attrs_info or
-                    attrs_info.xcode_targets.get(attr) == info.target_type)
+                    info.target_type in attrs_info.xcode_targets.get(attr, [None]))
             ],
         )
         owned_products = [
@@ -31,7 +31,7 @@ def _collect(
                 info.resource_bundles._unowned_products
                 for attr, info in transitive_infos
                 if (not attrs_info or
-                    attrs_info.xcode_targets.get(attr) == info.target_type)
+                    info.target_type in attrs_info.xcode_targets.get(attr, [None]))
             ],
         )
 
