@@ -1329,6 +1329,7 @@
 				PRODUCT_MODULE_NAME = Utils;
 				PRODUCT_NAME = Utils;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1350,6 +1351,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources;
 				PRODUCT_NAME = ExampleResources;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				TARGET_NAME = ExampleResources;
 			};
 			name = Debug;
@@ -1401,6 +1403,7 @@
 				PRODUCT_MODULE_NAME = ExampleUITests;
 				PRODUCT_NAME = ExampleUITests;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1476,6 +1479,7 @@
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AWESOME";
 				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -1502,6 +1506,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources.external;
 				PRODUCT_NAME = ExternalResources;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				TARGET_NAME = ExternalResources;
 			};
 			name = Debug;
@@ -1553,6 +1558,7 @@
 				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AWESOME";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "SwiftAPI/TestingUtils-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1649,6 +1655,7 @@
 				PRODUCT_MODULE_NAME = CoreUtils;
 				PRODUCT_NAME = CoreUtilsObjC;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1734,6 +1741,7 @@
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1813,6 +1821,7 @@
 				PRODUCT_MODULE_NAME = ExampleObjcTests;
 				PRODUCT_NAME = ExampleObjcTests;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
