@@ -28,6 +28,7 @@ apple_resource_group(
     resources = glob(
         [
             "Assets.xcassets/**",
+            "Model.xcdatamodeld/**",
             "*.lproj/**",
         ],
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],

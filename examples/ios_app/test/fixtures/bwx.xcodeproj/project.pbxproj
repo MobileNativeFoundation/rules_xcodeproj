@@ -32,6 +32,7 @@
 		60456255EE960BBA7DA9C36C /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 4EFD481E747FFE235872FEBE /* nested */; };
 		6D552130FB4BD68BEB76B354 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45CBAB497FEF8A6E097D4E3 /* ExampleUITestsLaunchTests.swift */; };
 		6E7797C8420DCE5BC3DB6ECD /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF687E5CFDD353365469C4A0 /* ExampleUITests.swift */; };
+		7625634D7DE6E7761F56878E /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 404E7E43544B7F938886B554 /* Model.xcdatamodeld */; };
 		7A40FF433BC4CEE541C00FCD /* nested in Resources */ = {isa = PBXBuildFile; fileRef = D71EB598E6B4BE7F35063F30 /* nested */; };
 		7AC14A78D362577B1F4842C3 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CABDA09B231335D1A65F54 /* ExampleApp.swift */; };
 		882767D9CDB805AD8C7F1E0C /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
@@ -222,6 +223,7 @@
 		06BDDEC171A6A3D012B30EF8 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		082E81D1A4883526CA3B52D8 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		087B3E45AA9A7430D1BEC9B8 /* ExampleResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D4BE40B12E61F0EBADF1EF0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		104ECD97B1C1B9C4DF3F9949 /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1114222EF47A93F0F39BC416 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		147E33BBAF4F6DCF2F01C37A /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 		DF687E5CFDD353365469C4A0 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		E788B1C7B112FB6941BD4C12 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FA397CF373D551969DCA9F /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
+		EC7CDEE9BB4DCF113F3A632C /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		F0C6F70E20391113754D1FA5 /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTestingUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD0A412F6FD34BAD4615ACB5 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCoreUtilsObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -598,6 +601,7 @@
 				56CABDA09B231335D1A65F54 /* ExampleApp.swift */,
 				DE4E55DA7325F65B7598D64D /* Info.plist */,
 				3D76639B60E2E2CA3019CBCA /* Localizable.strings */,
+				404E7E43544B7F938886B554 /* Model.xcdatamodeld */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -958,6 +962,7 @@
 				8EE3D89704A81FD3D0298097 /* Assets.xcassets in Resources */,
 				DF1BBABB29DD1C62C6874B78 /* ExampleResources.bundle in Resources */,
 				E42FEF40785F7445F33C1307 /* Localizable.strings in Resources */,
+				7625634D7DE6E7761F56878E /* Model.xcdatamodeld in Resources */,
 				7A40FF433BC4CEE541C00FCD /* nested in Resources */,
 				CC407FC2C841E184B259D530 /* PreviewAssets.xcassets in Resources */,
 				5521A83EE8FAF745FA267A58 /* Utils.bundle in Resources */,
@@ -1973,6 +1978,20 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		404E7E43544B7F938886B554 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0D4BE40B12E61F0EBADF1EF0 /* Model.xcdatamodel */,
+				EC7CDEE9BB4DCF113F3A632C /* Model2.xcdatamodel */,
+			);
+			currentVersion = EC7CDEE9BB4DCF113F3A632C /* Model2.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 36B5F79C7ED8B081842AF69D /* Project object */;
 }

@@ -11,10 +11,14 @@ extension Generator {
         do {
             let arguments = try parseArguments(CommandLine.arguments)
             let project = try readProject(path: arguments.specPath)
+            let xccurrentversions = try readXCCurrentVersions(
+                path: arguments.xccurrentversionsPath
+            )
 
             try Generator(logger: logger).generate(
                 buildMode: arguments.buildMode,
                 project: project,
+                xccurrentversions: xccurrentversions,
                 projectRootDirectory: arguments.projectRootDirectory,
                 internalDirectoryName: "rules_xcodeproj",
                 workspaceOutputPath: arguments.workspaceOutputPath,
@@ -28,6 +32,7 @@ extension Generator {
 
     struct Arguments {
         let specPath: Path
+        let xccurrentversionsPath: Path
         let outputPath: Path
         let workspaceOutputPath: Path
         let projectRootDirectory: Path
@@ -35,15 +40,15 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard CommandLine.arguments.count == 5 else {
+        guard CommandLine.arguments.count == 6 else {
             throw UsageError(message: """
 Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
-<path/to/output/project.xcodeproj> <workspace/relative/output/path> \
+<path/to/xccurrentversions.json> <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
 (xcode|bazel)
 """)
         }
 
-        let workspaceOutput = CommandLine.arguments[3]
+        let workspaceOutput = CommandLine.arguments[4]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
@@ -54,7 +59,7 @@ Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
             .joined(separator: "/")
 
         guard
-            let buildMode = BuildMode(rawValue: CommandLine.arguments[4])
+            let buildMode = BuildMode(rawValue: CommandLine.arguments[5])
         else {
             throw UsageError(message: """
 ERROR: build_mode wasn't one of the supported values: xcode, bazel
@@ -63,7 +68,8 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
 
         return Arguments(
             specPath: Path(CommandLine.arguments[1]),
-            outputPath: Path(CommandLine.arguments[2]),
+            xccurrentversionsPath: Path(CommandLine.arguments[2]),
+            outputPath: Path(CommandLine.arguments[3]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode
@@ -76,6 +82,21 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
 
         do {
             return try decoder.decode(Project.self, from: try path.read())
+        } catch let error as DecodingError {
+            // Return a more detailed error message
+            throw PreconditionError(message: error.message)
+        }
+    }
+
+    static func readXCCurrentVersions(path: Path) throws -> [XCCurrentVersion] {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        do {
+            return try decoder.decode(
+                [XCCurrentVersion].self,
+                from: try path.read()
+            )
         } catch let error as DecodingError {
             // Return a more detailed error message
             throw PreconditionError(message: error.message)

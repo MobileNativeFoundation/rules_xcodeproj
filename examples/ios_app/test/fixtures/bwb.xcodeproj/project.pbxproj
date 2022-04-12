@@ -181,6 +181,7 @@
 		2C844E9CCF398860A8F858D5 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		2DE79B7A21FFAD5EE7C3BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2E9AA98CF71EC1A8ADA8FC12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2EA929BD072628145C22AE36 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		3044751746014D22D03BB28E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		328731FD80DB31CAF28DA35F /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		41E087EFF7DB4B31F84CEF5F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 		936C89D0AECF460936BF9489 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		9BF5CE4ADD5163F5308F8626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D61CBAFE2C78BDC7960D5A4 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		9E2AD3FF7B70CC8C730B7A22 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A619B11AC2106BAC08FA7DB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA8B40F3394AF193E0043C9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		B236D472E2B01203C379DE61 /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				DC51A4085F05FC61686E7785 /* ExampleApp.swift */,
 				A619B11AC2106BAC08FA7DB0 /* Info.plist */,
 				ECC63D78B0A2D399B5E493C5 /* Localizable.strings */,
+				76E7868858212743220B114A /* Model.xcdatamodeld */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -1737,6 +1740,20 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		76E7868858212743220B114A /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9E2AD3FF7B70CC8C730B7A22 /* Model.xcdatamodel */,
+				2EA929BD072628145C22AE36 /* Model2.xcdatamodel */,
+			);
+			currentVersion = 2EA929BD072628145C22AE36 /* Model2.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0805833D09730531AD081697 /* Project object */;
 }

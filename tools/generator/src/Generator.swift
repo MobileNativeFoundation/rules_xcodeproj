@@ -39,6 +39,7 @@ class Generator {
     func generate(
         buildMode: BuildMode,
         project: Project,
+        xccurrentversions: [XCCurrentVersion],
         projectRootDirectory: Path,
         internalDirectoryName: String,
         workspaceOutputPath: Path,
@@ -91,7 +92,9 @@ Was unable to merge "\(srcTarget.label) \
             pbxProj,
             targets,
             project.extraFiles,
-            filePathResolver
+            xccurrentversions,
+            filePathResolver,
+            logger
         )
         let (products, productsGroup) = environment.createProducts(
             pbxProj,
