@@ -111,6 +111,7 @@ def process_compiler_opts_test_suite(name):
             "-Xfrontend",
             "-serialize-debugging-options",
             "-enable-testing",
+            "-application-extension",
             "weird",
             "-gline-tables-only",
             "-Xwrapped-swift=-debug-prefix-pwd-is-dot",
@@ -135,6 +136,7 @@ def process_compiler_opts_test_suite(name):
         ],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
+            "APPLICATION_EXTENSION_API_ONLY": "True",
             "OTHER_SWIFT_FLAGS": "weird -unhandled",
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
@@ -318,6 +320,16 @@ def process_compiler_opts_test_suite(name):
         swiftcopts = ["-enable-testing"],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
+        },
+    )
+
+    ## APPLICATION_EXTENSION_API_ONLY
+
+    _add_test(
+        name = "{}_swift_option-application-extension".format(name),
+        swiftcopts = ["-application-extension"],
+        expected_build_settings = {
+            "APPLICATION_EXTENSION_API_ONLY": "True",
         },
     )
 
