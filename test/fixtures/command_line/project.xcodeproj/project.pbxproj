@@ -880,6 +880,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -935,6 +936,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1019,6 +1021,7 @@
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1096,6 +1099,7 @@
 				);
 				PRODUCT_NAME = tool;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1154,6 +1158,7 @@
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1218,6 +1223,7 @@
 				PRODUCT_MODULE_NAME = LibSwiftTestsLib;
 				PRODUCT_NAME = LibSwiftTests;
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";

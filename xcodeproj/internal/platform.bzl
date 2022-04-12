@@ -7,6 +7,16 @@ _DEPLOYMENT_TARGET_KEY = {
     apple_common.platform_type.tvos: "TVOS_DEPLOYMENT_TARGET",
 }
 
+_PLATFORM_NAME = {
+    apple_common.platform.ios_device: "iphoneos",
+    apple_common.platform.ios_simulator: "iphonesimulator",
+    apple_common.platform.macos: "macosx",
+    apple_common.platform.tvos_device: "appletvos",
+    apple_common.platform.tvos_simulator: "appletvsimulator",
+    apple_common.platform.watchos_device: "watchos",
+    apple_common.platform.watchos_simulator: "watchsimulator",
+}
+
 def _generate_platform_information(
         *,
         platform,
@@ -33,8 +43,6 @@ def _generate_platform_information(
     """
     platform_type = platform.platform_type
     is_device = platform.is_device
-    if is_device and platform_type != apple_common.platform_type.macos:
-        fail("Currently you must build for simulator when generating a project")
 
     platform_dict = {
         "os": str(platform_type),
@@ -47,6 +55,7 @@ def _generate_platform_information(
     build_settings[_DEPLOYMENT_TARGET_KEY[platform_type]] = (
         minimum_deployment_os_version if minimum_deployment_os_version else minimum_os_version
     )
+    build_settings["SUPPORTED_PLATFORMS"] = _PLATFORM_NAME[platform]
 
     return platform_dict
 

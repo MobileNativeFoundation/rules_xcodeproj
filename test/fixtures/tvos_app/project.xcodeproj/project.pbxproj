@@ -603,6 +603,7 @@
 				PRODUCT_MODULE_NAME = ExampleUITests;
 				PRODUCT_NAME = ExampleUITests;
 				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = appletvsimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -660,6 +661,7 @@
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
 				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = appletvsimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -755,6 +757,7 @@
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;
 				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = appletvsimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

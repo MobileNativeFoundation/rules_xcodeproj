@@ -83,18 +83,18 @@ def generate_platform_information_test_suite(name):
 
     _add_test(
         name = "{}_minimum_os_version".format(name),
-        platform_key = "tvos_simulator",
+        platform_key = "tvos_device",
         arch = "wild",
         minimum_os_version = "12.0",
         minimum_deployment_os_version = None,
         expected_platform_dict = {
             "arch": "wild",
-            "environment": "Simulator",
             "minimum_os_version": "12.0",
             "os": "tvos",
         },
         expected_build_settings = {
             "TVOS_DEPLOYMENT_TARGET": "12.0",
+            "SUPPORTED_PLATFORMS": "appletvos",
         },
     )
 
@@ -112,6 +112,7 @@ def generate_platform_information_test_suite(name):
         },
         expected_build_settings = {
             "IPHONEOS_DEPLOYMENT_TARGET": "13.0",
+            "SUPPORTED_PLATFORMS": "iphonesimulator",
         },
     )
 
@@ -130,6 +131,7 @@ def generate_platform_information_test_suite(name):
         },
         expected_build_settings = {
             "MACOSX_DEPLOYMENT_TARGET": "12.1",
+            "SUPPORTED_PLATFORMS": "macosx",
         },
     )
 
