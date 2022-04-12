@@ -18,6 +18,7 @@ ios_application(
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
     resources = [":ExampleResourceGroup"],
+    version = "//examples/watchos_app/ExampleWatchKitExtension:Version",
     visibility = ["//visibility:public"],
     watch_application = "//examples/watchos_app/ExampleWatchKitApp",
     deps = [":Example.library"],

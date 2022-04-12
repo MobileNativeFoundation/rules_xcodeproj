@@ -12,7 +12,8 @@ config_setting(
 
 apple_bundle_version(
     name = "Version",
-    build_version = "1.0",
+    build_version = "123.4.5",
+    short_version_string = "123.4",
     visibility = ["//examples/watchos_app:__subpackages__"],
 )
 
