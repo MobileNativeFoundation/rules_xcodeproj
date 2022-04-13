@@ -106,7 +106,7 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
 
     # TODO: Handle perfileopts somehow?
 
-    rule_copts = []
+    user_copts = []
     user_swiftcopts = []
     if SwiftInfo in target:
         # Rule level swiftcopts are included in action.argv below
@@ -117,10 +117,10 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
             attribute_name = "copts",
         )
     elif CcInfo in target:
-        rule_copts = getattr(ctx.rule.attr, "copts", [])
-        rule_copts = _expand_make_variables(
+        user_copts = getattr(ctx.rule.attr, "copts", [])
+        user_copts = _expand_make_variables(
             ctx = ctx,
-            values = rule_copts,
+            values = user_copts,
             attribute_name = "copts",
         )
         
@@ -134,8 +134,8 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
     cpp = ctx.fragments.cpp
 
     return (
-        base_copts + cpp.copts + cpp.conlyopts + rule_copts,
-        base_cxxopts + cpp.copts + cpp.cxxopts + rule_copts,
+        base_copts + cpp.copts + cpp.conlyopts + user_copts,
+        base_cxxopts + cpp.copts + cpp.cxxopts + user_copts,
         raw_swiftcopts,
         user_swiftcopts,
     )
@@ -420,7 +420,8 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
     return (
         conly_optimizations + conly_defines + conlyopts,
         cxx_optimizations + cxx_defines + cxxopts,
-        merge_opts_search_paths([conly_search_paths, cxx_search_paths]),
+        conly_search_paths,
+        cxx_search_paths,
     )
 
 def _process_full_swiftcopts(opts, *, package_bin_dir, build_settings):
@@ -522,17 +523,18 @@ def _process_user_swiftcopts(opts):
     includes = []
 
     def process(opt, previous_opt):
-        # TODO: how to we handle `-Xcc -I -Xcc path`?
-        if opt.startswith("-iquote"):
+        if opt.startswith("-iquote") and previous_opt == "-Xcc":
             includes.append(opt[7:])
             return True
-        if opt.startswith("-I"):
+        if opt.startswith("-I") and previous_opt == "-Xcc":
             includes.append(opt[2:])
             return True
+        if opt == "-Xcc":
+            return True
 
-    unhandled_opts = _process_base_compiler_opts(
+    _ = _process_base_compiler_opts(
         opts = opts,
-        skip_opts = {},
+        skip_opts = {}, # Empty in order to process all user opts.
         extra_processing = process,
     )
 
@@ -541,7 +543,7 @@ def _process_user_swiftcopts(opts):
         includes = uniq(includes),
     )
 
-    return search_paths # TODO: how do we handle unhandled_opts here?
+    return search_paths
 
 def _process_compiler_opts(
         *,
@@ -556,7 +558,8 @@ def _process_compiler_opts(
     Args:
         conlyopts: A `list` of C compiler options.
         cxxopts: A `list` of C++ compiler options.
-        swiftcopts: A `list` of Swift compiler options.
+        full_swiftcopts: A `list` of Swift compiler options.
+        user_swiftcopts: A `list` of user-provided Swift compiler options.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -569,13 +572,13 @@ def _process_compiler_opts(
         *   `quotes_includes`: A `list` of quote include paths parsed.
         *   `includes`: A `list` of include paths parsed.
     """
-    conlyopts, cxxopts, c_search_paths = _process_copts(
+    conlyopts, cxxopts, conly_search_paths, cxx_search_paths = _process_copts(
         conlyopts = conlyopts,
         cxxopts = cxxopts,
         build_settings = build_settings,
     )
-    swiftcopts = _process_full_swiftcopts(
-        swiftcopts,
+    full_swiftcopts = _process_full_swiftcopts(
+        full_swiftcopts,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
@@ -599,10 +602,10 @@ def _process_compiler_opts(
     set_if_true(
         build_settings,
         "OTHER_SWIFT_FLAGS",
-        " ".join(swiftcopts),
+        " ".join(full_swiftcopts),
     )
 
-    return merge_opts_search_paths([c_search_paths, swift_search_paths])
+    return merge_opts_search_paths([conly_search_paths, cxx_search_paths, swift_search_paths])
 
 def _process_target_compiler_opts(
         *,
