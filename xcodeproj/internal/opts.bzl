@@ -522,12 +522,13 @@ def _process_user_swiftcopts(opts):
     includes = []
 
     def process(opt, previous_opt):
-        if opt.startswith("-iquote") and previous_opt == "-Xcc":
+        if previous_opt == "-Xcc" and opt.startswith("-iquote"):
             quote_includes.append(opt[7:])
             return True
-        if opt.startswith("-I") and previous_opt == "-Xcc":
+        if previous_opt == "-Xcc" and opt.startswith("-I"):
             includes.append(opt[2:])
             return True
+
         if opt == "-Xcc":
             return True
         return False
@@ -577,7 +578,7 @@ def _process_compiler_opts(
         cxxopts = cxxopts,
         build_settings = build_settings,
     )
-    full_swiftcopts = _process_full_swiftcopts(
+    swiftcopts = _process_full_swiftcopts(
         full_swiftcopts,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
@@ -602,7 +603,7 @@ def _process_compiler_opts(
     set_if_true(
         build_settings,
         "OTHER_SWIFT_FLAGS",
-        " ".join(full_swiftcopts),
+        " ".join(swiftcopts),
     )
 
     return merge_opts_search_paths([conly_search_paths, cxx_search_paths, swift_search_paths])
