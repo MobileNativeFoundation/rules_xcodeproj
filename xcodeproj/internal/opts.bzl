@@ -524,7 +524,7 @@ def _process_user_swiftcopts(opts):
 
     def process(opt, previous_opt):
         if opt.startswith("-iquote") and previous_opt == "-Xcc":
-            includes.append(opt[7:])
+            quote_includes.append(opt[7:])
             return True
         if opt.startswith("-I") and previous_opt == "-Xcc":
             includes.append(opt[2:])
