@@ -423,8 +423,37 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         cxx_search_paths,
     )
 
-def _process_full_swiftcopts(opts, *, package_bin_dir, build_settings):
+def _process_swiftopts(full_swiftcopts, user_swiftcopts, *, package_bin_dir, build_settings):
     """Processes Swift compiler options.
+
+    Args:
+        full_swiftcopts: A `list` of Swift compiler options.
+        user_swiftcopts: A `list` of user-provided Swift compiler options.
+        package_bin_dir: The package directory for the target within
+            `ctx.bin_dir`.
+        build_settings: A mutable `dict` that will be updated with build
+            settings that are parsed from `opts`.
+
+    Returns:
+        A `tuple` containing two elements:
+
+        *   A `list` of unhandled Swift compiler options.
+        *   A value returned by `_create_search_paths()` with the parsed search
+            paths.
+    """
+    swiftcopts = _process_full_swiftcopts(
+        full_swiftcopts,
+        package_bin_dir = package_bin_dir,
+        build_settings = build_settings,
+    )
+
+    swift_search_paths = _process_user_swiftcopts(
+        user_swiftcopts,
+    )
+    return swiftcopts, swift_search_paths
+
+def _process_full_swiftcopts(opts, *, package_bin_dir, build_settings):
+    """Processes the full Swift compiler options (including Bazel ones).
 
     Args:
         opts: A `list` of Swift compiler options.
@@ -578,13 +607,11 @@ def _process_compiler_opts(
         cxxopts = cxxopts,
         build_settings = build_settings,
     )
-    swiftcopts = _process_full_swiftcopts(
+    swiftcopts, swift_search_paths = _process_swiftopts(
         full_swiftcopts,
+        user_swiftcopts,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
-    )
-    swift_search_paths = _process_user_swiftcopts(
-        user_swiftcopts,
     )
 
     # TODO: Split out `WARNING_CFLAGS`? (Must maintain order, and only ones that apply to both c and cxx)
