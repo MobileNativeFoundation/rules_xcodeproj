@@ -130,6 +130,7 @@ Product for target "\(id)" not found in `products`
             buildSettings: [
                 "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "SUPPORTED_PLATFORMS": allPlatforms,
                 "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "Setup",
@@ -202,6 +203,7 @@ ln -sfn "\#(
             buildSettings: [
                 "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "SUPPORTED_PLATFORMS": allPlatforms,
                 "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "GenerateBazelFiles",
