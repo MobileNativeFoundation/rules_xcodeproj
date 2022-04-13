@@ -536,17 +536,20 @@ def process_compiler_opts_test_suite(name):
             "-I",
             "aa/bb",
         ],
+        user_swiftcopts = ["-Xcc", "-Ic/d/e", "-Xcc", "-iquote4/5"],
         expected_build_settings = {},
         expected_search_paths = {
             "quote_includes": [
                 "a/b/c",
                 "0/9",
                 "y/z",
+                "4/5",
             ],
             "includes": [
                 "x/y/z",
                 "1/2/3",
                 "aa/bb",
+                "c/d/e",
             ],
         },
     )
