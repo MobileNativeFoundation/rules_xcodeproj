@@ -2,6 +2,18 @@ import PathKit
 import XcodeProj
 
 extension Generator {
+    // Xcode likes this list as a string, and apparently in reverse
+    static let allPlatforms = """
+watchsimulator \
+watchos \
+macosx \
+iphonesimulator \
+iphoneos \
+driverkit \
+appletvsimulator \
+appletvos
+"""
+
     static func addTargets(
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
@@ -116,7 +128,10 @@ Product for target "\(id)" not found in `products`
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "SUPPORTED_PLATFORMS": allPlatforms,
+                "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "Setup",
             ]
         )
@@ -185,7 +200,10 @@ ln -sfn "\#(
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "SUPPORTED_PLATFORMS": allPlatforms,
+                "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "GenerateBazelFiles",
             ]
         )
@@ -218,7 +236,11 @@ rm -rf "$PROJECT_DIR/\(filePathResolver.generatedDirectory)"
             shellScript: #"""
 set -eu
 \#(removeWorkspaceBazelOut)
-PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+env -i \
+  DEVELOPER_DIR="$DEVELOPER_DIR" \
+  HOME="$HOME" \
+  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  USER="$USER" \
   ${BAZEL_PATH} \
   build \
   --output_groups=generated_inputs \

@@ -467,7 +467,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\nPATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/tvos_app:xcodeproj\n";
+			shellScript = "set -eu\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/tvos_app:xcodeproj\n";
 			showEnvVarsInLog = 0;
 		};
 		ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */ = {
@@ -677,7 +677,10 @@
 		70E18BE128A25A1F96CAB0FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = Setup;
 			};
 			name = Debug;
@@ -703,7 +706,10 @@
 		ACE65DF71AEBC3D1DAF7EF52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = GenerateBazelFiles;
 			};
 			name = Debug;

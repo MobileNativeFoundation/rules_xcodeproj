@@ -1093,10 +1093,24 @@ bazel-out/a/c.a
 
         let pbxProject = pbxProj.rootObject!
 
+        let allPlatforms = """
+watchsimulator \
+watchos \
+macosx \
+iphonesimulator \
+iphoneos \
+driverkit \
+appletvsimulator \
+appletvos
+"""
+
         let setupDebugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "SUPPORTED_PLATFORMS": allPlatforms,
+                "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "Setup",
             ]
         )
@@ -1148,7 +1162,10 @@ ln -sfn "\#(
         let generateFilesDebugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "SUPPORTED_PLATFORMS": allPlatforms,
+                "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "GenerateBazelFiles",
             ]
         )
@@ -1167,7 +1184,11 @@ ln -sfn "\#(
             shellScript: #"""
 set -eu
 
-PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+env -i \
+  DEVELOPER_DIR="$DEVELOPER_DIR" \
+  HOME="$HOME" \
+  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  USER="$USER" \
   ${BAZEL_PATH} \
   build \
   --output_groups=generated_inputs \

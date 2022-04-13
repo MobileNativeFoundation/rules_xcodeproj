@@ -1827,7 +1827,10 @@
 		70E18BE128A25A1F96CAB0FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = Setup;
 			};
 			name = Debug;
