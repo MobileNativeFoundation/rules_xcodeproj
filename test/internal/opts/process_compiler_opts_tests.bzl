@@ -15,7 +15,8 @@ def _process_compiler_opts_test_impl(ctx):
     search_paths = process_compiler_opts(
         conlyopts = ctx.attr.conlyopts,
         cxxopts = ctx.attr.cxxopts,
-        swiftcopts = ctx.attr.swiftcopts,
+        full_swiftcopts = ctx.attr.full_swiftcopts,
+        user_swiftcopts = ctx.attr.user_swiftcopts,
         package_bin_dir = ctx.attr.package_bin_dir,
         build_settings = build_settings,
     )
@@ -53,7 +54,8 @@ process_compiler_opts_test = unittest.make(
         "expected_build_settings": attr.string_dict(mandatory = True),
         "expected_search_paths": attr.string(mandatory = True),
         "package_bin_dir": attr.string(mandatory = True),
-        "swiftcopts": attr.string_list(mandatory = True),
+        "full_swiftcopts": attr.string_list(mandatory = True),
+        "user_swiftcopts": attr.string_list(mandatory = True),
     },
 )
 
@@ -73,14 +75,16 @@ def process_compiler_opts_test_suite(name):
             expected_search_paths = {"quote_includes": [], "includes": []},
             conlyopts = [],
             cxxopts = [],
-            swiftcopts = [],
+            full_swiftcopts = [],
+            user_swiftcopts = [],
             package_bin_dir = ""):
         test_names.append(name)
         process_compiler_opts_test(
             name = name,
             conlyopts = conlyopts,
             cxxopts = cxxopts,
-            swiftcopts = swiftcopts,
+            full_swiftcopts = full_swiftcopts,
+            user_swiftcopts = user_swiftcopts,
             package_bin_dir = package_bin_dir,
             expected_build_settings = stringify_dict(expected_build_settings),
             expected_search_paths = json.encode(expected_search_paths),
@@ -91,7 +95,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_integration".format(name),
-        swiftcopts = [
+        full_swiftcopts = [
             "-target",
             "arm64-apple-ios15.0-simulator",
             "-sdk",
@@ -134,6 +138,7 @@ def process_compiler_opts_test_suite(name):
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
+        user_swiftcopts = [],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
             "APPLICATION_EXTENSION_API_ONLY": "True",
@@ -146,7 +151,8 @@ def process_compiler_opts_test_suite(name):
         name = "{}_empty".format(name),
         conlyopts = [],
         cxxopts = [],
-        swiftcopts = [],
+        full_swiftcopts = [],
+        user_swiftcopts = [],
         expected_build_settings = {},
     )
 
@@ -219,7 +225,7 @@ def process_compiler_opts_test_suite(name):
             "-passthrough",
             "-mios-simulator-version-min=14.0",
         ],
-        swiftcopts = [
+        full_swiftcopts = [
             "-output-file-map",
             "path",
             "-passthrough",
@@ -317,7 +323,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-enable-testing".format(name),
-        swiftcopts = ["-enable-testing"],
+        full_swiftcopts = ["-enable-testing"],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
         },
@@ -327,7 +333,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-application-extension".format(name),
-        swiftcopts = ["-application-extension"],
+        full_swiftcopts = ["-application-extension"],
         expected_build_settings = {
             "APPLICATION_EXTENSION_API_ONLY": "True",
         },
@@ -392,7 +398,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_defines".format(name),
-        swiftcopts = [
+        full_swiftcopts = [
             "-DDEBUG",
             "-DBAZEL",
             "-DDEBUG",
@@ -407,7 +413,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_multiple_swift_compilation_modes".format(name),
-        swiftcopts = [
+        full_swiftcopts = [
             "-wmo",
             "-no-whole-module-optimization",
         ],
@@ -418,7 +424,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-incremental".format(name),
-        swiftcopts = ["-incremental"],
+        full_swiftcopts = ["-incremental"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "singlefile",
         },
@@ -426,7 +432,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-whole-module-optimization".format(name),
-        swiftcopts = ["-whole-module-optimization"],
+        full_swiftcopts = ["-whole-module-optimization"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "wholemodule",
         },
@@ -434,7 +440,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-wmo".format(name),
-        swiftcopts = ["-wmo"],
+        full_swiftcopts = ["-wmo"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "wholemodule",
         },
@@ -442,7 +448,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-no-whole-module-optimization".format(name),
-        swiftcopts = ["-no-whole-module-optimization"],
+        full_swiftcopts = ["-no-whole-module-optimization"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "singlefile",
         },
@@ -452,7 +458,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_generated_header".format(name),
-        swiftcopts = [
+        full_swiftcopts = [
             "-emit-objc-header-path",
             "a/b/c/TestingUtils-Custom.h",
         ],
@@ -466,7 +472,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_multiple_swift_optimization_levels".format(name),
-        swiftcopts = [
+        full_swiftcopts = [
             "-Osize",
             "-Onone",
             "-O",
@@ -478,7 +484,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-Onone".format(name),
-        swiftcopts = ["-Onone"],
+        full_swiftcopts = ["-Onone"],
         expected_build_settings = {
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         },
@@ -486,7 +492,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-O".format(name),
-        swiftcopts = ["-O"],
+        full_swiftcopts = ["-O"],
         expected_build_settings = {
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
         },
@@ -494,7 +500,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-Osize".format(name),
-        swiftcopts = ["-Osize"],
+        full_swiftcopts = ["-Osize"],
         expected_build_settings = {
             "SWIFT_OPTIMIZATION_LEVEL": "-Osize",
         },
@@ -504,7 +510,7 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_option-swift-version".format(name),
-        swiftcopts = ["-swift-version=42"],
+        full_swiftcopts = ["-swift-version=42"],
         expected_build_settings = {
             "SWIFT_VERSION": "42",
         },
@@ -530,17 +536,20 @@ def process_compiler_opts_test_suite(name):
             "-I",
             "aa/bb",
         ],
+        user_swiftcopts = ["-Xcc", "-Ic/d/e", "-Xcc", "-iquote4/5"],
         expected_build_settings = {},
         expected_search_paths = {
             "quote_includes": [
                 "a/b/c",
                 "0/9",
                 "y/z",
+                "4/5",
             ],
             "includes": [
                 "x/y/z",
                 "1/2/3",
                 "aa/bb",
+                "c/d/e",
             ],
         },
     )
