@@ -543,6 +543,9 @@ def _process_user_swiftcopts(opts):
     Args:
         opts: A `list` of Swift compiler options.
 
+    Note: any flag processed here needs to be filtered from
+        processing in `_process_full_swiftcopts()`.
+
     Returns:
         A `list` of search paths.
     """
@@ -551,6 +554,7 @@ def _process_user_swiftcopts(opts):
     includes = []
 
     def process(opt, previous_opt):
+        # TODO: handle the format "-Xcc -iquote -Xcc path"
         if previous_opt == "-Xcc" and opt.startswith("-iquote"):
             quote_includes.append(opt[7:])
             return True
