@@ -423,7 +423,7 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         merge_opts_search_paths([conly_search_paths, cxx_search_paths]),
     )
 
-def _process_full_swiftcopts(opts, package_bin_dir, build_settings):
+def _process_full_swiftcopts(opts, *, package_bin_dir, build_settings):
     """Processes Swift compiler options.
 
     Args:
@@ -547,7 +547,7 @@ def _process_compiler_opts(
         *,
         conlyopts,
         cxxopts,
-        swiftcopts,
+        full_swiftcopts,
         user_swiftcopts,
         package_bin_dir,
         build_settings):
@@ -626,14 +626,14 @@ def _process_target_compiler_opts(
         *   `quotes_includes`: A `list` of quote include paths parsed.
         *   `includes`: A `list` of include paths parsed.
     """
-    conlyopts, cxxopts, swiftcopts, user_swiftcopts = _get_unprocessed_compiler_opts(
+    conlyopts, cxxopts, full_swiftcopts, user_swiftcopts = _get_unprocessed_compiler_opts(
         ctx = ctx,
         target = target,
     )
     return _process_compiler_opts(
         conlyopts = conlyopts,
         cxxopts = cxxopts,
-        swiftcopts = swiftcopts,
+        full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
