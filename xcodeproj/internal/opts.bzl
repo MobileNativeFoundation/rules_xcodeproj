@@ -123,7 +123,6 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
             values = user_copts,
             attribute_name = "copts",
         )
-        
 
     raw_swiftcopts = []
     for action in target.actions:
@@ -531,10 +530,11 @@ def _process_user_swiftcopts(opts):
             return True
         if opt == "-Xcc":
             return True
+        return False
 
-    _ = _process_base_compiler_opts(
+    _process_base_compiler_opts(
         opts = opts,
-        skip_opts = {}, # Empty in order to process all user opts.
+        skip_opts = {},  # Empty in order to process all user opts.
         extra_processing = process,
     )
 
