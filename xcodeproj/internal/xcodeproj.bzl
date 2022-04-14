@@ -1,7 +1,7 @@
 """Implementation of the `xcodeproj` rule."""
 
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":files.bzl", "file_path", "file_path_to_dto")
 load(":flattened_key_values.bzl", "flattened_key_values")
@@ -52,7 +52,6 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
         flattened_key_values.to_list(invalid_target_merges),
     )
 
-    # TODO: Set CURRENT_PROJECT_VERSION and MARKETING_VERSION from `version`
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     spec_json = """\
 {{\
@@ -62,8 +61,6 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 "CLANG_ENABLE_OBJC_ARC":true,\
 "CLANG_MODULES_AUTOLINK":false,\
 "COPY_PHASE_STRIP":false,\
-"CURRENT_PROJECT_VERSION":"1",\
-"MARKETING_VERSION":"1.0",\
 "ONLY_ACTIVE_ARCH":true,\
 "USE_HEADERMAP":false,\
 "VALIDATE_WORKSPACE":false\
