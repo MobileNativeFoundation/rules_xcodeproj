@@ -1,5 +1,4 @@
 load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_group")
-load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
 load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_extension")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
@@ -10,19 +9,13 @@ config_setting(
     },
 )
 
-apple_bundle_version(
-    name = "Version",
-    build_version = "1.0",
-    visibility = ["//examples/watchos_app:__subpackages__"],
-)
-
 watchos_extension(
     name = "ExampleWatchKitExtension",
     bundle_id = "io.buildbuddy.example.watch.extension",
     infoplists = [":Info.plist"],
     minimum_os_version = "7.0",
     resources = [":ResourceGroup"],
-    version = ":Version",
+    version = "//examples/watchos_app/Example:Version",
     visibility = ["//visibility:public"],
     deps = [":ExampleWatchKitExtension.library"],
 )

@@ -1,5 +1,6 @@
 load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
 load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_group")
+load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 config_setting(
@@ -7,6 +8,13 @@ config_setting(
     values = {
         "compilation_mode": "opt",
     },
+)
+
+apple_bundle_version(
+    name = "Version",
+    build_version = "123.4.5",
+    short_version_string = "123.4",
+    visibility = ["//examples/watchos_app:__subpackages__"],
 )
 
 ios_application(
@@ -18,6 +26,7 @@ ios_application(
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
     resources = [":ExampleResourceGroup"],
+    version = ":Version",
     visibility = ["//visibility:public"],
     watch_application = "//examples/watchos_app/ExampleWatchKitApp",
     deps = [":Example.library"],
