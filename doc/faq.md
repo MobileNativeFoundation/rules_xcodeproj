@@ -19,7 +19,7 @@ The generated Xcode project includes scripts to synchronize select Bazel
 generated files (e.g. `Info.plist`) with Xcode. Perform the following steps to
 synchronize these file:
 
-1. Open the Xcode project: `open path/to/MyApp.xcodeproj`
+1. Open the Xcode project: `xed path/to/MyApp.xcodeproj`.
 2. Select the `Bazel Generated Files` scheme (Menu: `Product` > `Scheme` > `Bazel Generated Files`).
 3. Execute the build for the the `Bazel Generated Files` scheme (Menu: `Product` > `Build`).
 4. Close Xcode.
