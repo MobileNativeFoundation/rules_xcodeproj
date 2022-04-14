@@ -23,7 +23,7 @@ synchronize these file:
 2. Select the `Bazel Generated Files` scheme (Menu: `Product` > `Scheme` > `Bazel Generated Files`).
 3. Execute the build for the the `Bazel Generated Files` scheme (Menu: `Product` > `Build`).
 4. Close Xcode.
-5. Open the Xcode project: `open path/to/MyApp.xcodeproj`.
+5. Open the Xcode project: `xed path/to/MyApp.xcodeproj`.
 
 ## When I open my Xcode project, the `Bazel Generated Files` folder in the project navigator is red. How do I fix this?
 
