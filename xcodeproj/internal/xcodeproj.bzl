@@ -75,7 +75,7 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 """.format(
         bazel_path = ctx.attr.bazel_path,
         extra_files = json.encode([
-            file_path_to_dto(file_path(file))
+            file_path_to_dto(file)
             for file in extra_files.to_list()
         ]),
         invalid_target_merges = invalid_target_merges_json,

@@ -131,8 +131,10 @@
 		096DFCF3F9FB0E6FB2D0076E /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_swift.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1704EC3DF20D136B9D2B8C0D /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF6661F10745F2CD844AB81 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
+		41C8C3646245DAD8013AC406 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		420640E047E255BBD38D0F92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4EADE140455A0D9F51FEA180 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_swift.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		51E088432CCE22825219AC44 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5505DE78F452D084BAFFE1FF /* LibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57486259156D32B2F964EF4E /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		600865D85986BF1EAC59E70F /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
@@ -142,15 +144,27 @@
 		9822ABE2DFD4A944DA5E1BEA /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FEC277C4E8ADC5127B637A /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		B5511E6B7C59A1600AEF50FA /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
+		C5FB992B643EADCB3741DB97 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E37C21ED6BACCA0E92024F54 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0A9BD13984AFD5D318D7D24 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F3EE8A1F985D59D79066BF9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		F6C0CEC245D91B7D529B8CD6 /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
+		FEDE535BE4701C20C0BCB8B7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0CCF6C426D01CD63C48CF7B2 /* apple */ = {
+			isa = PBXGroup;
+			children = (
+				9D79EF1EA8606953C784EDCB /* testing */,
+			);
+			path = apple;
+			sourceTree = "<group>";
+		};
 		0CDF69186E00FC09E69A79AB /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				41C8C3646245DAD8013AC406 /* BUILD */,
 				8A31C23069C201151EDADE24 /* Info.plist */,
 				97093D4A77C09BF21048172D /* main.m */,
 			);
@@ -168,6 +182,7 @@
 		116B66A585EB9224AC1E5B50 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C5FB992B643EADCB3741DB97 /* BUILD */,
 				2AF6661F10745F2CD844AB81 /* SwiftGreetingsTests.swift */,
 			);
 			path = Tests;
@@ -339,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				21603E9396A799CBC290553D /* dir with space */,
+				F0A9BD13984AFD5D318D7D24 /* BUILD */,
 				A7FEC277C4E8ADC5127B637A /* lib.m */,
 				600865D85986BF1EAC59E70F /* lib.swift */,
 				B5511E6B7C59A1600AEF50FA /* private.h */,
@@ -349,12 +365,22 @@
 		91B19B3116ADB8C8ECC2934E = {
 			isa = PBXGroup;
 			children = (
+				0CCF6C426D01CD63C48CF7B2 /* apple */,
 				5E3A6AF7F4D54FD8AC656E4D /* examples */,
 				52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */,
 				22D63AE4A8E6D3194DC63EEA /* Bazel Generated Files */,
 				428D294EDDF4A41D530E1B84 /* Products */,
 				C66B8C06B79203E1B66DFCCF /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		9D79EF1EA8606953C784EDCB /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				F7C7949D6A4AB6D0F2654689 /* default_runner */,
+				FEDE535BE4701C20C0BCB8B7 /* BUILD */,
+			);
+			path = testing;
 			sourceTree = "<group>";
 		};
 		AF4829BFC55DC070FE6002B9 /* command_line */ = {
@@ -404,6 +430,14 @@
 				14AD94A5294D54C954D64FCC /* bin */,
 			);
 			path = "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57";
+			sourceTree = "<group>";
+		};
+		F7C7949D6A4AB6D0F2654689 /* default_runner */ = {
+			isa = PBXGroup;
+			children = (
+				51E088432CCE22825219AC44 /* BUILD */,
+			);
+			path = default_runner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

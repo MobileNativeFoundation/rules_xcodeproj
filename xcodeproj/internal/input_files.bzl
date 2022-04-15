@@ -2,7 +2,7 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "flatten", "set_if_true")
-load(":files.bzl", "file_path", "file_path_to_dto", "join_paths_ignoring_empty")
+load(":files.bzl", "file_path", "file_path_to_dto", "join_paths_ignoring_empty", "parsed_file_path")
 load(":logging.bzl", "warn")
 
 # Utility
@@ -32,9 +32,24 @@ def _collect_transitive_extra_files(info):
     inputs = info.inputs
     transitive = [inputs.extra_files]
     if not info.target:
-        transitive.append(inputs.srcs)
-        transitive.append(inputs.non_arc_srcs)
-        transitive.append(inputs.hdrs)
+        new_srcs = []
+        for src in inputs.srcs.to_list():
+            new_srcs.append(file_path(src))
+
+        transitive.append(depset(new_srcs))
+
+        new_non_arc_srcs = []
+        for src in inputs.non_arc_srcs.to_list():
+            new_non_arc_srcs.append(file_path(src))
+
+        transitive.append(depset(new_non_arc_srcs))
+
+        new_hdrs = []
+        for hdr in inputs.hdrs.to_list():
+            new_hdrs.append(file_path(hdr))
+
+        transitive.append(depset(new_hdrs))
+
     return transitive
 
 def _should_include_transitive_resources(*, attrs_info, attr, info):
@@ -151,7 +166,7 @@ def _collect(
     resources = []
     unowned_resources = []
     generated = []
-    extra_files = []
+    extra_files = [parsed_file_path(ctx.build_file_path)]
 
     # buildifier: disable=uninitialized
     def _handle_file(file, *, attr):
@@ -195,7 +210,7 @@ def _collect(
                 else:
                     unowned_resources.append(fp)
             elif file not in output_files:
-                extra_files.append(file)
+                extra_files.append(file_path(file))
 
     excluded_attrs = attrs_info.excluded
 
@@ -229,7 +244,8 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
 """.format(target = target.label, files = suspect_files))
 
     generated.extend([file for file in additional_files if not file.is_source])
-    extra_files.extend(additional_files)
+    for file in additional_files:
+        extra_files.append(file_path(file))
 
     unowned_resources_depset = depset(
         None if owner else unowned_resources,

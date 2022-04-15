@@ -95,6 +95,7 @@ extension Generator {
                 }
                 let file = PBXFileReference(
                     sourceTree: .group,
+                    explicitFileType: filePath.path.explicitFileType,
                     lastKnownFileType: lastKnownFileType,
                     path: pathComponent
                 )
