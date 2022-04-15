@@ -1,4 +1,4 @@
-"""Functions to deal with target input files."""
+"""Module containing functions dealing with target input files."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "flatten", "set_if_true")
@@ -127,7 +127,7 @@ def _collect(
         owner: An optional string that has a unique identifier for `target`, if
             it owns the resources. Only targets that become Xcode targets should
             own resources.
-        attrs_info: The `InputFileAttributesInfo` for the target.
+        attrs_info: The `InputFileAttributesInfo` for `target`.
         additional_files: A `list` of `File`s to add to the inputs. This can
             be used to add files to the `generated` and `extra_files` fields
             (e.g. modulemaps or BUILD files).
@@ -321,10 +321,9 @@ def _merge(*, attrs_info, transitive_infos):
             dependencies of the current target.
 
     Returns:
-        A value similar to one returned from `input_files.collect()`. The values
-        include the ones from `inputs` if it wasn't `None`, and in some cases
-        the inputs from the inputs of the transitive dependencies, via
-        `transitive_infos` (e.g. `generated` and `extra_files`)
+        A value similar to the one returned from `input_files.collect()`. The
+        values potentially include the inputs of the transitive dependencies,
+        via `transitive_infos` (e.g. `generated` and `extra_files`).
     """
     return struct(
         _unowned_resources = depset(
