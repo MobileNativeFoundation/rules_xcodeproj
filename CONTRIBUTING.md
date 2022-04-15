@@ -4,7 +4,7 @@ All changes, no matter how trivial, must be done via pull request. Commits
 should never be made directly on the `main` branch. Prefer rebasing over
 merging `main` into your PR branch to update it and resolve conflicts.
 
-### Building And Running Locally
+## Building And Running Locally
 
 1. `git clone https://github.com/buildbuddy-io/rules_xcodeproj.git`
 1. `cd rules_xcodeproj`
@@ -18,7 +18,7 @@ editor.
     1. `bazel build //tools/generator` to compile the executable.
     1. `bazel test //test/...` to run the tests.
 
-### Developing
+## Developing
 
 Feel free to volunteer by picking up any bug from the list of
 [GitHub issues](https://github.com/buildbuddy-io/rules_xcodeproj/issues).
