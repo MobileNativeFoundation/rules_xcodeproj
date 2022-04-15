@@ -114,7 +114,7 @@ http_archive(
     ],
 )
 
-load("@bazel_contrib_rules_bazel_integration_test//bazel_integration_test:deps.bzl", "bazel_integration_test_rules_dependencies")
+load("@contrib_rules_bazel_integration_test//bazel_integration_test:deps.bzl", "bazel_integration_test_rules_dependencies")
 
 bazel_integration_test_rules_dependencies()
 
@@ -124,7 +124,7 @@ bazel_starlib_dependencies()
 
 # Bazel Binaries for Bazel Integration Tests
 
-load("@bazel_contrib_rules_bazel_integration_test//bazel_integration_test:defs.bzl", "bazel_binaries")
+load("@contrib_rules_bazel_integration_test//bazel_integration_test:defs.bzl", "bazel_binaries")
 load("//:bazel_versions.bzl", "SUPPORTED_BAZEL_VERSIONS")
 
 bazel_binaries(versions = SUPPORTED_BAZEL_VERSIONS)
