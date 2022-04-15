@@ -10,7 +10,6 @@
         "VALIDATE_WORKSPACE": false
     },
     "extra_files": [
-        "BUILD",
         "third_party/BUILD",
         "third_party/ExampleFramework.framework/ExampleFramework",
         "third_party/ExampleFramework.framework/Headers/Bar.h",
@@ -148,7 +147,6 @@
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/TestingUtils.swift.modulemap",
             "t": "g"
         },
-        "apple/testing/BUILD",
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
@@ -157,7 +155,6 @@
             "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"
         },
-        "apple/testing/default_runner/BUILD",
         "ExampleObjcTests/BUILD",
         {
             "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.plist",

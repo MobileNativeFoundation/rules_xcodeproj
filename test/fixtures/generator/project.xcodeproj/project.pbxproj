@@ -326,7 +326,6 @@
 		137DC83AD6137D62D1DF2B58 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		13F6783A87179EACC6ABF2D4 /* PBXAggregateTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXAggregateTarget.swift; sourceTree = "<group>"; };
 		148EC563D25832F8776E6A85 /* XCRemoteSwiftPackageReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCRemoteSwiftPackageReference.swift; sourceTree = "<group>"; };
-		168C0124F1A2A5FB97AC9578 /* BUILD.bazel */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD.bazel; sourceTree = "<group>"; };
 		193B8E4B236803D4BAEAC25E /* Array+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extras.swift"; sourceTree = "<group>"; };
 		1FB0D448D296D4D72D1588D4 /* XCWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspace.swift; sourceTree = "<group>"; };
 		2079E71FB3410326ADA1B3A9 /* PBXHeadersBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXHeadersBuildPhase.swift; sourceTree = "<group>"; };
@@ -404,7 +403,6 @@
 		84C181B75463E73E9C829C02 /* StoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKit.swift; sourceTree = "<group>"; };
 		86A7A176F9192DBE89A1E3D2 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		88C80C3562B5FC34F2C57EB4 /* Dictionary+Enumerate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Enumerate.swift"; sourceTree = "<group>"; };
-		89A13DFAA2EE84DCA831347A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		8C36F61FCD89D5A5D6176600 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
 		8F19B18C578050514056544B /* PBXGroup+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXGroup+Extensions.swift"; sourceTree = "<group>"; };
 		8F977F1096269625AD5B34E8 /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
@@ -550,7 +548,6 @@
 		40E3D9FDD589EB4A5ACAEFC1 /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				A072C27B2301A15DAF4503E0 /* cpp */,
 				5D958A124D61CA72A62178B0 /* generator */,
 			);
 			path = tools;
@@ -747,7 +744,6 @@
 			isa = PBXGroup;
 			children = (
 				40E3D9FDD589EB4A5ACAEFC1 /* tools */,
-				168C0124F1A2A5FB97AC9578 /* BUILD.bazel */,
 				52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */,
 				9E638292E19764EEC3974845 /* rules_xcodeproj */,
 				428D294EDDF4A41D530E1B84 /* Products */,
@@ -778,14 +774,6 @@
 			);
 			name = rules_xcodeproj;
 			path = test/fixtures/generator/project.xcodeproj/rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		A072C27B2301A15DAF4503E0 /* cpp */ = {
-			isa = PBXGroup;
-			children = (
-				89A13DFAA2EE84DCA831347A /* BUILD */,
-			);
-			path = cpp;
 			sourceTree = "<group>";
 		};
 		A17EC0A7EDCC359B1E16F9AC /* Targets */ = {

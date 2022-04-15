@@ -27,7 +27,6 @@
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_swift.swift.modulemap",
             "t": "g"
         },
-        "apple/testing/BUILD",
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
@@ -35,8 +34,7 @@
         {
             "_": "applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"
-        },
-        "apple/testing/default_runner/BUILD"
+        }
     ],
     "invalid_target_merges": [],
     "label": "//test/fixtures/command_line:xcodeproj",

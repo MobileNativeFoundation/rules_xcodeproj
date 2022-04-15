@@ -17,7 +17,6 @@
             "t": "g"
         },
         "examples/tvos_app/ExampleTests/BUILD",
-        "apple/testing/BUILD",
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
@@ -26,7 +25,6 @@
             "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"
         },
-        "apple/testing/default_runner/BUILD",
         "examples/tvos_app/ExampleUITests/BUILD",
         {
             "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",

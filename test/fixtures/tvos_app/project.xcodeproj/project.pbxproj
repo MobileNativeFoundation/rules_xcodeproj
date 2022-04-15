@@ -92,7 +92,6 @@
 		17D9616425B5B2F0F529FC4F /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		19C11D053847DF7DACBD2DB2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		332DA7D905FE78395F8B49AB /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		51E088432CCE22825219AC44 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5F93BE1FCDA4A6A551947845 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7164B79B755C61D70222D1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		87E7ADC81C6FF328FCC38BB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -105,18 +104,9 @@
 		D1B211B2D3B051C1CA3AC779 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F3EE8A1F985D59D79066BF9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		FA203EAF71E9F9A50D037F8C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		FEDE535BE4701C20C0BCB8B7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		0CCF6C426D01CD63C48CF7B2 /* apple */ = {
-			isa = PBXGroup;
-			children = (
-				9D79EF1EA8606953C784EDCB /* testing */,
-			);
-			path = apple;
-			sourceTree = "<group>";
-		};
 		21185BF85FB3B73E9670C5EA /* Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,22 +249,12 @@
 		91B19B3116ADB8C8ECC2934E = {
 			isa = PBXGroup;
 			children = (
-				0CCF6C426D01CD63C48CF7B2 /* apple */,
 				5E3A6AF7F4D54FD8AC656E4D /* examples */,
 				52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */,
 				22D63AE4A8E6D3194DC63EEA /* Bazel Generated Files */,
 				428D294EDDF4A41D530E1B84 /* Products */,
 				C66B8C06B79203E1B66DFCCF /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		9D79EF1EA8606953C784EDCB /* testing */ = {
-			isa = PBXGroup;
-			children = (
-				F7C7949D6A4AB6D0F2654689 /* default_runner */,
-				FEDE535BE4701C20C0BCB8B7 /* BUILD */,
-			);
-			path = testing;
 			sourceTree = "<group>";
 		};
 		A5089B5D7C89E56A64758135 /* Example-intermediates */ = {
@@ -325,14 +305,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F7C7949D6A4AB6D0F2654689 /* default_runner */ = {
-			isa = PBXGroup;
-			children = (
-				51E088432CCE22825219AC44 /* BUILD */,
-			);
-			path = default_runner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

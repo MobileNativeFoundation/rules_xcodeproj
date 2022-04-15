@@ -91,10 +91,8 @@
 		400DE358C1FF40F47EEFAAB4 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		76BA269B4C781557323B9158 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		7CE856EC2CE9B541065D14B0 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		89A13DFAA2EE84DCA831347A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		8B3835D8961F2C3B473C82D3 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		9822ABE2DFD4A944DA5E1BEA /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B25235661E94291C50E595E9 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		CFF7BA3A459E8DCA60639ACB /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E37C21ED6BACCA0E92024F54 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5DBCA6246E5D97D2680F536 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
@@ -109,14 +107,6 @@
 				8B3835D8961F2C3B473C82D3 /* private.h */,
 			);
 			path = private;
-			sourceTree = "<group>";
-		};
-		40E3D9FDD589EB4A5ACAEFC1 /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				A072C27B2301A15DAF4503E0 /* cpp */,
-			);
-			path = tools;
 			sourceTree = "<group>";
 		};
 		428D294EDDF4A41D530E1B84 /* Products */ = {
@@ -189,20 +179,10 @@
 			isa = PBXGroup;
 			children = (
 				5E3A6AF7F4D54FD8AC656E4D /* examples */,
-				40E3D9FDD589EB4A5ACAEFC1 /* tools */,
-				B25235661E94291C50E595E9 /* BUILD */,
 				52922DC1C268A3FE9B5C3C38 /* Bazel External Repositories */,
 				428D294EDDF4A41D530E1B84 /* Products */,
 				C66B8C06B79203E1B66DFCCF /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		A072C27B2301A15DAF4503E0 /* cpp */ = {
-			isa = PBXGroup;
-			children = (
-				89A13DFAA2EE84DCA831347A /* BUILD */,
-			);
-			path = cpp;
 			sourceTree = "<group>";
 		};
 		C66B8C06B79203E1B66DFCCF /* Frameworks */ = {

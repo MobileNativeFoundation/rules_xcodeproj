@@ -166,7 +166,11 @@ def _collect(
     resources = []
     unowned_resources = []
     generated = []
-    extra_files = [parsed_file_path(ctx.build_file_path)]
+    extra_files = []
+
+    # Include BUILD files for the project but not for external repos
+    if not target.label.workspace_root:
+        extra_files.append(parsed_file_path(ctx.build_file_path))
 
     # buildifier: disable=uninitialized
     def _handle_file(file, *, attr):
