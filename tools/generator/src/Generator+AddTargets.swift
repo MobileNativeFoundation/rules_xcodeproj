@@ -144,7 +144,6 @@ Product for target "\(id)" not found in `products`
         pbxProj.add(object: configurationList)
 
         let script = PBXShellScriptBuildPhase(
-            name: "Create Symlinks",
             shellScript: #"""
 set -eu
 
@@ -160,6 +159,24 @@ ln -sfn "$PROJECT_DIR" SRCROOT
 ln -sfn "\#(
     filePathResolver.resolve(.external(""), useScriptVariables: true)
 )" external
+
+# Create parent directories of generated files, so the project navigator works
+# better faster
+
+mkdir -p bazel-out
+cd bazel-out
+
+sed 's|\/[^\/]*$||' \
+  "\#(
+  filePathResolver
+      .resolve(.internal(rsyncFileListPath), useScriptVariables: true)
+      .string
+)" \
+  | uniq \
+  | while IFS= read -r dir
+do
+  mkdir -p "$dir"
+done
 
 """#,
             showEnvVarsInLog: false,

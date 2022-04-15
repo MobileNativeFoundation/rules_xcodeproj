@@ -26,7 +26,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */;
 			buildPhases = (
-				ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */,
+				AC0029B6E74C676CF1887304 /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -969,19 +969,19 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/generated.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "Copy Files";
 			outputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/generated.copied.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.copied.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/test/fixtures/project.xcodeproj/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_FILE_PATH/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
 			showEnvVarsInLog = 0;
 		};
 		700DDA896776846733B25577 /* Fix Info.plists */ = {
@@ -990,13 +990,13 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/infoplists.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "Fix Info.plists";
 			outputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/infoplists.fixed.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.fixed.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -1015,7 +1015,7 @@
 			);
 			name = "Generate Files";
 			outputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/generated.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -1024,28 +1024,7 @@
 			shellScript = "set -eu\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures:fixture\n";
 			showEnvVarsInLog = 0;
 		};
-		C977250D6EB972BF2FF38593 /* Fix Modulemaps */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/modulemaps.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Fix Modulemaps";
-			outputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/modulemaps.fixed.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -eu\n\nwhile IFS= read -r input; do\n  output=\"${input%.modulemap}.xcode.modulemap\"\n  perl -p -e \\\n    's%^(\\s*(\\w+ )?header )(?!(\"\\.\\.(\\/\\.\\.)*\\/|\")(bazel-out|external)\\/)(\"(\\.\\.\\/)*)(.*\")%\\1\\6SRCROOT/\\8%' \\\n    < \"$input\" \\\n    > \"$output\"\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */ = {
+		AC0029B6E74C676CF1887304 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1053,12 +1032,32 @@
 			);
 			inputPaths = (
 			);
-			name = "Create Symlinks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-ios_app/external\" external\n";
+			shellScript = "set -eu\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-ios_app/external\" external\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|\\/[^\\/]*$||' \\\n  \"$PROJECT_FILE_PATH/rules_xcodeproj/generated.rsynclist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n";
+			showEnvVarsInLog = 0;
+		};
+		C977250D6EB972BF2FF38593 /* Fix Modulemaps */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/modulemaps.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Fix Modulemaps";
+			outputFileListPaths = (
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/modulemaps.fixed.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\nwhile IFS= read -r input; do\n  output=\"${input%.modulemap}.xcode.modulemap\"\n  perl -p -e \\\n    's%^(\\s*(\\w+ )?header )(?!(\"\\.\\.(\\/\\.\\.)*\\/|\")(bazel-out|external)\\/)(\"(\\.\\.\\/)*)(.*\")%\\1\\6SRCROOT/\\8%' \\\n    < \"$input\" \\\n    > \"$output\"\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1467,7 +1466,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/ExampleTests/ExampleTests.__internal__.__test_bundle.LinkFileList,$(BUILD_DIR)",
+					"$(PROJECT_FILE_PATH)/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/ExampleTests/ExampleTests.__internal__.__test_bundle.LinkFileList,$(BUILD_DIR)",
 					"-framework",
 					Foundation,
 					"-weak_framework",
@@ -1735,7 +1734,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/Example/Example.LinkFileList,$(BUILD_DIR)",
+					"$(PROJECT_FILE_PATH)/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/Example/Example.LinkFileList,$(BUILD_DIR)",
 					"-framework",
 					Foundation,
 					"-weak_framework",
@@ -1816,7 +1815,7 @@
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)",
 					"-L/usr/lib/swift",
 					"-filelist",
-					"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList,$(BUILD_DIR)",
+					"$(PROJECT_FILE_PATH)/rules_xcodeproj/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList,$(BUILD_DIR)",
 					"-framework",
 					Foundation,
 					"-weak_framework",
