@@ -10,11 +10,13 @@
         "VALIDATE_WORKSPACE": false
     },
     "extra_files": [
+        "examples/tvos_app/Example/BUILD",
         "examples/tvos_app/Example/Info.plist",
         {
             "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
             "t": "g"
         },
+        "examples/tvos_app/ExampleTests/BUILD",
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
@@ -23,6 +25,7 @@
             "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"
         },
+        "examples/tvos_app/ExampleUITests/BUILD",
         {
             "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"

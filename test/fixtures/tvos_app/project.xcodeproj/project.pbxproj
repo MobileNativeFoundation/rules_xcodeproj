@@ -88,7 +88,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1797DA2D4A37CC33CF5ABB32 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		17D9616425B5B2F0F529FC4F /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		19C11D053847DF7DACBD2DB2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		332DA7D905FE78395F8B49AB /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F93BE1FCDA4A6A551947845 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7164B79B755C61D70222D1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		C6747EB9856511FCC8FC1432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D1B211B2D3B051C1CA3AC779 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F3EE8A1F985D59D79066BF9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
+		FA203EAF71E9F9A50D037F8C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -158,6 +161,7 @@
 		50AF604D6694C0AFE78B5F0C /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
+				1797DA2D4A37CC33CF5ABB32 /* BUILD */,
 				A4F4D595EBEEE256B7E8078D /* ExampleUITests.swift */,
 				17D9616425B5B2F0F529FC4F /* ExampleUITestsLaunchTests.swift */,
 			);
@@ -226,6 +230,7 @@
 		793FD6800571A5AD39D04A67 /* ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				19C11D053847DF7DACBD2DB2 /* BUILD */,
 				9A398F7939B7B7C9EFFFFA4E /* ExampleTests.swift */,
 			);
 			path = ExampleTests;
@@ -287,6 +292,7 @@
 		C0DD6E10EF80391E5371DC8E /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				FA203EAF71E9F9A50D037F8C /* BUILD */,
 				D1B211B2D3B051C1CA3AC779 /* ContentView.swift */,
 				8F5DD2BA71710A6E5D778D04 /* ExampleApp.swift */,
 				5F93BE1FCDA4A6A551947845 /* Info.plist */,

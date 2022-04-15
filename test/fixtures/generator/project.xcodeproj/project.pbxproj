@@ -48,6 +48,7 @@
 		23BDC98AB11F6873A35D549D /* Generator+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06B2B4E4CDD2C52EEACA216 /* Generator+Main.swift */; };
 		2626BC51F67FB9591AB96A74 /* XcodeProj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397208F6DA2E3314DFD005C /* XcodeProj.swift */; };
 		26AC6E29993BF72302BBD980 /* ReferenceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D17D55C5F82B81D39A9D1 /* ReferenceGenerator.swift */; };
+		27AF46AE7EB71C052F7A9741 /* PathExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717D24F5BBAC5A050567FB2A /* PathExtensionsTests.swift */; };
 		2A02E14BB2625683FEBB6723 /* PBXProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576B6506A10571C3CF92102 /* PBXProject.swift */; };
 		2AB22008DBAE7CEFF599F5C5 /* PBXObjectReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC48CB2E4A243B14EFE14F /* PBXObjectReference.swift */; };
 		2C3DDCDA40EF4238F6353F0F /* XCScheme+CommandLineArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58FA21E0843B3D9140EE37B /* XCScheme+CommandLineArguments.swift */; };
@@ -385,7 +386,9 @@
 		6C6D13675A201EF3DC4178F4 /* PBXContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXContainerItem.swift; sourceTree = "<group>"; };
 		6EA2FF6B5A81C93318B9921C /* PBXContainerItemProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXContainerItemProxy.swift; sourceTree = "<group>"; };
 		6FDF0F2BD8DA0C9C64F3EC2D /* Path+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+Extensions.swift"; sourceTree = "<group>"; };
+		70EF62E8D6EA9211A758F254 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		715A6551C9994C6A35C2760E /* UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKit.swift; sourceTree = "<group>"; };
+		717D24F5BBAC5A050567FB2A /* PathExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtensionsTests.swift; sourceTree = "<group>"; };
 		71BDC7E12D4D474B0F7A36F9 /* WorkspaceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSettings.swift; sourceTree = "<group>"; };
 		731649630DE508B0F7DB9208 /* XCScheme+EnvironmentVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+EnvironmentVariable.swift"; sourceTree = "<group>"; };
 		73FA37AAFE94856E13AF17D3 /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
@@ -472,6 +475,7 @@
 		E369CCD4F76F665B3E26EACB /* Target+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Target+Testing.swift"; sourceTree = "<group>"; };
 		E7F256B4187C736CDCC8245E /* XCTAssertNoDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTAssertNoDifference.swift; sourceTree = "<group>"; };
 		EA4170E9DBFFB82AEF9EA82A /* CustomDumpRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDumpRepresentable.swift; sourceTree = "<group>"; };
+		EE9A3A58C4F3BFC77CFC723A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		EEEAE7BF1D7A815801CB23DD /* XCScheme+Runnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+Runnable.swift"; sourceTree = "<group>"; };
 		F05FB79CFFD95F370AD48F3B /* SetTargetConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetConfigurations.swift; sourceTree = "<group>"; };
 		F12C0FEA042B55FFE7CEFB20 /* PBXOutputSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXOutputSettings.swift; sourceTree = "<group>"; };
@@ -635,6 +639,7 @@
 			children = (
 				C79087D5D55BFFF6EFD2AB59 /* src */,
 				E828B9DC56F06145ECC80FE6 /* test */,
+				70EF62E8D6EA9211A758F254 /* BUILD */,
 			);
 			path = generator;
 			sourceTree = "<group>";
@@ -914,6 +919,7 @@
 			isa = PBXGroup;
 			children = (
 				FD5C4F0AE5C705B836C79DC0 /* AddTargetsTests.swift */,
+				EE9A3A58C4F3BFC77CFC723A /* BUILD */,
 				DBE718DED105ECB828959C4E /* CreateFilesAndGroupsTests.swift */,
 				0EE884A28D268FE700FF1589 /* CreateProductsTest.swift */,
 				641AA8DF9AFC22023C7F1B12 /* CreateProjectTests.swift */,
@@ -921,6 +927,7 @@
 				00239A0AE87CEFEC6EF18326 /* DisambiguateTargetsTests.swift */,
 				DD2345F5F1767DF29FD2E9F4 /* Fixtures.swift */,
 				C3EB7777A1B1F6EBE1AAD2FF /* GeneratorTests.swift */,
+				717D24F5BBAC5A050567FB2A /* PathExtensionsTests.swift */,
 				3643A4143F10B009DB995DB0 /* PBXProj+Testing.swift */,
 				5CB50E54B2BC9AE1AEE95513 /* PopulateMainGroupTests.swift */,
 				ABCE47306A55A2A1C54FF98E /* ProcessTargetMergesTests.swift */,
@@ -1420,6 +1427,7 @@
 				18A1795A049A5732176F0E5C /* Fixtures.swift in Sources */,
 				B4DBF50081379246961365D6 /* GeneratorTests.swift in Sources */,
 				70E706497CBF9BE5653A1ACD /* PBXProj+Testing.swift in Sources */,
+				27AF46AE7EB71C052F7A9741 /* PathExtensionsTests.swift in Sources */,
 				85BB7250872200809B586B75 /* PopulateMainGroupTests.swift in Sources */,
 				C96BF1373FE5858C9209BAA6 /* ProcessTargetMergesTests.swift in Sources */,
 				E1F1D312192BFDDF87D51BF6 /* SetTargetConfigurations.swift in Sources */,

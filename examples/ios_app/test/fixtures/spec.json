@@ -10,6 +10,7 @@
         "VALIDATE_WORKSPACE": false
     },
     "extra_files": [
+        "third_party/BUILD",
         "third_party/ExampleFramework.framework/ExampleFramework",
         "third_party/ExampleFramework.framework/Headers/Bar.h",
         "third_party/ExampleFramework.framework/Headers/ExampleFramework.h",
@@ -104,7 +105,11 @@
             "_": "examples_ios_app_external/ExternalFramework.framework/_CodeSignature/CodeResources",
             "t": "e"
         },
+        "CoreUtilsObjC/BUILD",
+        "Utils/BUILD",
+        "ExampleResources/BUILD",
         "ExampleResources/Info.plist",
+        "Example/BUILD",
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
             "t": "g"
@@ -126,6 +131,7 @@
             "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Example/Example-intermediates/Info.plist",
             "t": "g"
         },
+        "TestingUtils/BUILD",
         "TestingUtils/Greeting.swift.stencil",
         "TestingUtils/Answer.swift.stencil",
         {
@@ -136,6 +142,7 @@
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/Answer.swift",
             "t": "g"
         },
+        "ExampleTests/BUILD",
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/TestingUtils.swift.modulemap",
             "t": "g"
@@ -148,6 +155,7 @@
             "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"
         },
+        "ExampleObjcTests/BUILD",
         {
             "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"
@@ -156,6 +164,7 @@
             "_": "examples_ios_app_external/Info.plist",
             "t": "e"
         },
+        "ExampleUITests/BUILD",
         {
             "_": "applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"

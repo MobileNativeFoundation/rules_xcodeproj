@@ -244,6 +244,7 @@
 		163F2C8DEF5CD811826145FD /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1971CA49644537C181D152F9 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		1F24BE1ED66E73DF86D94C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2089F161F005F94A7715179F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		2668B72F031658C7424A69C7 /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
 		332DA7D905FE78395F8B49AB /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E1ED3F12607BB25B281B60 /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
@@ -252,13 +253,20 @@
 		3FC1732AF7F1647C2CCBBCB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B4FA9C70425835BED3D18FF /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTestingUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		581AF7D39E2B147BB97B9BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		59857C336D9E5B6105B95850 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		5C2EF0755376A4732F5170B8 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5CF0936F52DDFE5E40C40C4E /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		5FC699D9C0C4FE223AAEA1E5 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		60D06A659C114CE403EAD6BF /* ExternalResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExternalResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		64179CB2BEC1B454E719159D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		68EB39D379DB575C1992811C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7126B3B29F2941E2615E8B45 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		7336BDEC622733D8911931FB /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7458A79A895427FF2B5EF451 /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
 		772995ACCC05420BD8295F13 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCoreUtilsObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA93898F56266968477DD1C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7EC6E4D4A0027B9BAE7E7354 /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
+		8379A4DB9A74BF3CB5DAB4DB /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		89CDB7756652C04CE3307460 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96457EE4FDB089F9B6CA30D8 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		999DBB36F96D952774C90966 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
@@ -280,6 +288,7 @@
 		DDD5A69CC7A6E820FCB0BDF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E105C37BE4F462559F7A205B /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
 		E3E108E23CCBE7C70549E7AF /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
+		EF0BD64E901EB1FBD2F0F10E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		EFF54836943E040ACDFCB9FD /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		F3BF0391D88320751FD37784 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F3EE8A1F985D59D79066BF9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
@@ -338,6 +347,7 @@
 		2EDB795AE7B85C2164303DA7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				64179CB2BEC1B454E719159D /* BUILD */,
 				0A3D8CEF43CF91B1E874B99B /* Foo.h */,
 				A728BC96D2EE56D3A20F5D75 /* Foo.m */,
 				7126B3B29F2941E2615E8B45 /* Utils.h */,
@@ -426,6 +436,7 @@
 				999DBB36F96D952774C90966 /* nested */,
 				47598B7A84CFE12125B70720 /* PreviewContent */,
 				0E848F62EC3EA16CB8AADB58 /* Assets.xcassets */,
+				5C2EF0755376A4732F5170B8 /* BUILD */,
 				DDD5A69CC7A6E820FCB0BDF0 /* ContentView.swift */,
 				D699DE3520D61FDC19A909EF /* ExampleApp.swift */,
 				D1F93F75DA88677B3EB84499 /* Info.plist */,
@@ -469,6 +480,7 @@
 		79318B470B9CC13B30516691 /* ExampleObjcTests */ = {
 			isa = PBXGroup;
 			children = (
+				7336BDEC622733D8911931FB /* BUILD */,
 				A0B3DE95D17EDB4EEF586E35 /* ExampleObjcTests.m */,
 			);
 			path = ExampleObjcTests;
@@ -479,6 +491,7 @@
 			children = (
 				0D405A0225F82F8E821A1A89 /* nested */,
 				C3C4594509740C3A3C0835CC /* Assets.xcassets */,
+				7EA93898F56266968477DD1C /* BUILD */,
 				68EB39D379DB575C1992811C /* Info.plist */,
 			);
 			path = ExampleResources;
@@ -500,6 +513,7 @@
 			children = (
 				47E17F6EE7635213AF42FFCE /* CoreUtils */,
 				AD316B4515635DE6DE64F1C1 /* Answers.m */,
+				8379A4DB9A74BF3CB5DAB4DB /* BUILD */,
 			);
 			path = CoreUtilsObjC;
 			sourceTree = "<group>";
@@ -542,6 +556,7 @@
 		BAF0E3E8914C1F0BED0421C4 /* ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				EF0BD64E901EB1FBD2F0F10E /* BUILD */,
 				0BE58C589847257693979C11 /* ExampleTests.swift */,
 			);
 			path = ExampleTests;
@@ -550,6 +565,7 @@
 		BE5C020511A0C620C6F4F2A5 /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
+				59857C336D9E5B6105B95850 /* BUILD */,
 				3F6A7C1EE8BAE7058EFC5B0C /* ExampleUITests.swift */,
 				B582794DF84A93AA718FB7A0 /* ExampleUITestsLaunchTests.swift */,
 			);
@@ -574,6 +590,7 @@
 		C87AC5A69C9451F5FFF4EBB9 /* third_party */ = {
 			isa = PBXGroup;
 			children = (
+				5FC699D9C0C4FE223AAEA1E5 /* BUILD */,
 				EFF54836943E040ACDFCB9FD /* ExampleFramework.framework */,
 			);
 			path = third_party;
@@ -591,6 +608,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5454138C3DB7B7F7E1308A /* Answer.swift.stencil */,
+				2089F161F005F94A7715179F /* BUILD */,
 				2668B72F031658C7424A69C7 /* Greeting.swift.stencil */,
 			);
 			path = TestingUtils;

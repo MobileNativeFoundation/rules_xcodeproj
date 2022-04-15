@@ -12,6 +12,14 @@ extension Path {
 
     var isLocalizedContainer: Bool { self.extension == "lproj" }
 
+    var isBazelBuildFile: Bool {
+        self.lastComponent == "BUILD" || self.lastComponent == "BUILD.bazel"
+    }
+
+    var explicitFileType: String? {
+        self.isBazelBuildFile ? Xcode.filetype(extension: "py") : nil
+    }
+
     var lastKnownFileType: String? {
         return self.extension.flatMap { Xcode.filetype(extension: $0) }
     }

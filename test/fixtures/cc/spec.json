@@ -10,11 +10,14 @@
         "VALIDATE_WORKSPACE": false
     },
     "extra_files": [
+        "examples/cc/lib/BUILD",
         "examples/cc/lib/lib.h",
+        "examples/cc/lib2/BUILD",
         {
             "_": "examples_cc_external/lib.h",
             "t": "e"
-        }
+        },
+        "examples/cc/tool/BUILD"
     ],
     "invalid_target_merges": [],
     "label": "//test/fixtures/cc:xcodeproj",

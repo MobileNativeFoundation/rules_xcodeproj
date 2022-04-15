@@ -2,7 +2,7 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "flatten", "set_if_true")
-load(":files.bzl", "file_path", "file_path_to_dto", "join_paths_ignoring_empty")
+load(":files.bzl", "file_path", "file_path_to_dto", "join_paths_ignoring_empty", "parsed_file_path")
 load(":logging.bzl", "warn")
 
 # Utility
@@ -32,9 +32,19 @@ def _collect_transitive_extra_files(info):
     inputs = info.inputs
     transitive = [inputs.extra_files]
     if not info.target:
-        transitive.append(inputs.srcs)
-        transitive.append(inputs.non_arc_srcs)
-        transitive.append(inputs.hdrs)
+        transitive.append(depset([
+            file_path(file)
+            for file in inputs.srcs.to_list()
+        ]))
+        transitive.append(depset([
+            file_path(file)
+            for file in inputs.non_arc_srcs.to_list()
+        ]))
+        transitive.append(depset([
+            file_path(file)
+            for file in inputs.hdrs.to_list()
+        ]))
+
     return transitive
 
 def _should_include_transitive_resources(*, attrs_info, attr, info):
@@ -137,7 +147,7 @@ def _collect(
             `resources`-like and `structured_resources`-like attributes.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
-        *   `extra_files`: A `depset` of `File`s that are inputs to `target`
+        *   `extra_files`: A `depset` of `FilePath`s that are inputs to `target`
             that didn't fall into one of the more specific (e.g. `srcs`)
             catagories. This also includes files of transitive dependencies
             that didn't create an Xcode target.
@@ -152,6 +162,10 @@ def _collect(
     unowned_resources = []
     generated = []
     extra_files = []
+
+    # Include BUILD files for the project but not for external repos
+    if not target.label.workspace_root:
+        extra_files.append(parsed_file_path(ctx.build_file_path))
 
     # buildifier: disable=uninitialized
     def _handle_file(file, *, attr):
@@ -195,7 +209,7 @@ def _collect(
                 else:
                     unowned_resources.append(fp)
             elif file not in output_files:
-                extra_files.append(file)
+                extra_files.append(file_path(file))
 
     excluded_attrs = attrs_info.excluded
 
@@ -229,7 +243,8 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
 """.format(target = target.label, files = suspect_files))
 
     generated.extend([file for file in additional_files if not file.is_source])
-    extra_files.extend(additional_files)
+    for file in additional_files:
+        extra_files.append(file_path(file))
 
     unowned_resources_depset = depset(
         None if owner else unowned_resources,

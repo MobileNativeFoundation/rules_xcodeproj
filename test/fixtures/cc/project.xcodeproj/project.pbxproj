@@ -87,13 +87,16 @@
 		0ABD91F55693E360A651C6BD /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		1704EC3DF20D136B9D2B8C0D /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C91EE0C5078D0455B44BD9D /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		331339B572FFA72C8183613F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		400DE358C1FF40F47EEFAAB4 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		76BA269B4C781557323B9158 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		7CE856EC2CE9B541065D14B0 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		8B3835D8961F2C3B473C82D3 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		9822ABE2DFD4A944DA5E1BEA /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFF7BA3A459E8DCA60639ACB /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E37C21ED6BACCA0E92024F54 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5DBCA6246E5D97D2680F536 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
+		E72BA59E290214B27C7883B7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		FF560C97B07466CBFC0F584D /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +158,7 @@
 		8BD2691875952E20FF5B093C /* lib2 */ = {
 			isa = PBXGroup;
 			children = (
+				CFF7BA3A459E8DCA60639ACB /* BUILD */,
 				7CE856EC2CE9B541065D14B0 /* lib.c */,
 				400DE358C1FF40F47EEFAAB4 /* lib.h */,
 			);
@@ -192,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				02BE1CA8C2ED161B5A7D3776 /* private */,
+				E72BA59E290214B27C7883B7 /* BUILD */,
 				76BA269B4C781557323B9158 /* lib.c */,
 				0ABD91F55693E360A651C6BD /* lib.h */,
 			);
@@ -201,6 +206,7 @@
 		EB49D51CC78041C661754D39 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				331339B572FFA72C8183613F /* BUILD */,
 				2C91EE0C5078D0455B44BD9D /* main.c */,
 			);
 			path = tool;

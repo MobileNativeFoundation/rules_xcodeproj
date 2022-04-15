@@ -10,16 +10,19 @@
         "VALIDATE_WORKSPACE": false
     },
     "extra_files": [
+        "examples/command_line/lib/BUILD",
         {
             "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-fastbuild-ST-f2aadcfcab57/bin/examples/command_line/lib/lib_impl.swift.modulemap",
             "t": "g"
         },
         "examples/command_line/lib/dir with space/lib.h",
+        "examples/command_line/tool/BUILD",
         "examples/command_line/tool/Info.plist",
         {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_impl.swift.modulemap",
             "t": "g"
         },
+        "examples/command_line/Tests/BUILD",
         {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_swift.swift.modulemap",
             "t": "g"

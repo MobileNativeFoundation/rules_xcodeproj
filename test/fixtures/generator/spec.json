@@ -9,7 +9,10 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "extra_files": [],
+    "extra_files": [
+        "tools/generator/BUILD",
+        "tools/generator/test/BUILD"
+    ],
     "invalid_target_merges": [
         "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
         [
@@ -194,6 +197,7 @@
                     "tools/generator/test/Fixtures.swift",
                     "tools/generator/test/GeneratorTests.swift",
                     "tools/generator/test/PBXProj+Testing.swift",
+                    "tools/generator/test/PathExtensionsTests.swift",
                     "tools/generator/test/PopulateMainGroupTests.swift",
                     "tools/generator/test/ProcessTargetMergesTests.swift",
                     "tools/generator/test/SetTargetConfigurations.swift",
