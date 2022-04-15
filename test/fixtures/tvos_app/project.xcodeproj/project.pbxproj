@@ -25,7 +25,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */;
 			buildPhases = (
-				ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */,
+				AC0029B6E74C676CF1887304 /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -415,19 +415,19 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/tvos_app/project.xcodeproj/rules_xcodeproj/generated.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "Copy Files";
 			outputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/tvos_app/project.xcodeproj/rules_xcodeproj/generated.copied.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.copied.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/test/fixtures/tvos_app/project.xcodeproj/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_FILE_PATH/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
 			showEnvVarsInLog = 0;
 		};
 		700DDA896776846733B25577 /* Fix Info.plists */ = {
@@ -436,13 +436,13 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/tvos_app/project.xcodeproj/rules_xcodeproj/infoplists.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "Fix Info.plists";
 			outputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/tvos_app/project.xcodeproj/rules_xcodeproj/infoplists.fixed.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.fixed.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -461,7 +461,7 @@
 			);
 			name = "Generate Files";
 			outputFileListPaths = (
-				"$(PROJECT_DIR)/test/fixtures/tvos_app/project.xcodeproj/rules_xcodeproj/generated.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -470,7 +470,7 @@
 			shellScript = "set -eu\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/tvos_app:xcodeproj\n";
 			showEnvVarsInLog = 0;
 		};
-		ECDF8E3FB28F2FB706B4D395 /* Create Symlinks */ = {
+		AC0029B6E74C676CF1887304 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -478,12 +478,11 @@
 			);
 			inputPaths = (
 			);
-			name = "Create Symlinks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-rules_xcodeproj/external\" external\n";
+			shellScript = "set -eu\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-rules_xcodeproj/external\" external\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|\\/[^\\/]*$||' \\\n  \"$PROJECT_FILE_PATH/rules_xcodeproj/generated.rsynclist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

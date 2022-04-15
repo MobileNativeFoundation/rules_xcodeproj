@@ -1123,7 +1123,6 @@ appletvos
         pbxProj.add(object: setupConfigurationList)
 
         let createSymlinksScript = PBXShellScriptBuildPhase(
-            name: "Create Symlinks",
             shellScript: #"""
 set -eu
 
@@ -1139,6 +1138,22 @@ ln -sfn "$PROJECT_DIR" SRCROOT
 ln -sfn "\#(
     filePathResolver.resolve(.external(""), useScriptVariables: true)
 )" external
+
+# Create parent directories of generated files, so the project navigator works
+# better faster
+
+mkdir -p bazel-out
+cd bazel-out
+
+sed 's|\/[^\/]*$||' \
+  "$PROJECT_FILE_PATH/\#(
+  filePathResolver.internalDirectoryName
+)/generated.rsynclist" \
+  | uniq \
+  | while IFS= read -r dir
+do
+  mkdir -p "$dir"
+done
 
 """#,
             showEnvVarsInLog: false,
@@ -1178,7 +1193,9 @@ ln -sfn "\#(
         )
         pbxProj.add(object: generateFilesConfigurationList)
 
-        let baseDir = "$(PROJECT_DIR)/\(filePathResolver.internalDirectory)"
+        let baseDir = """
+$(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
+"""
 
         let generateFilesScript = PBXShellScriptBuildPhase(
             name: "Generate Files",
@@ -1212,8 +1229,8 @@ set -eu
 cd "\#(filePathResolver.generatedDirectory)"
 
 rsync \
-  --files-from "$PROJECT_DIR/\#(
-    filePathResolver.internalDirectory
+  --files-from "$PROJECT_FILE_PATH/\#(
+  filePathResolver.internalDirectoryName
 )/generated.rsynclist" \
   --chmod=u+w \
   -L \
@@ -1376,7 +1393,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #"""
-"$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
+"$(PROJECT_FILE_PATH)/rules_xcp/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -1402,7 +1419,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #"""
-"$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
+"$(PROJECT_FILE_PATH)/rules_xcp/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -1419,7 +1436,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #"""
-"$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
+"$(PROJECT_FILE_PATH)/rules_xcp/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -1447,7 +1464,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                     "-L/usr/lib/swift",
                     "-filelist",
                     #"""
-"$(PROJECT_DIR)/out/p.xcodeproj/rules_xcp/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"
+"$(PROJECT_FILE_PATH)/rules_xcp/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",

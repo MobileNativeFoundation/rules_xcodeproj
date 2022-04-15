@@ -72,7 +72,13 @@ struct FilePathResolver: Equatable {
                     filePath.path
             }
         case .internal:
-            return projectDir + internalDirectory + filePath.path
+            let projectFilePath: Path
+            if useScriptVariables {
+                projectFilePath = "$PROJECT_FILE_PATH"
+            } else {
+                projectFilePath = "$(PROJECT_FILE_PATH)"
+            }
+            return projectFilePath + internalDirectoryName + filePath.path
         }
     }
 }
