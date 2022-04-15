@@ -15,7 +15,7 @@ editor.
     1. Select the `generator` scheme to compile the executable.
     1. Select the `tests` scheme to run the tests.
 1. Build with Bazel: 
-    1. `bazel build //tools/generator` to compile the executabke.
+    1. `bazel build //tools/generator` to compile the executable.
     1. `bazel test //test/...` to run the tests.
 
 ### Developing
