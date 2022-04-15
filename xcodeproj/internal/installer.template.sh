@@ -3,7 +3,7 @@
 set -euo pipefail
 
 readonly src="$PWD/%source_path%"
-readonly dest="${BUILD_WORKSPACE_DIRECTORY}/%output_path%"
+readonly dest="$BUILD_WORKSPACE_DIRECTORY/%output_path%"
 
 # Sync over the project, changing the permissions to be writable
 
@@ -62,3 +62,30 @@ plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 # plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
 
 echo 'Updated project at "%output_path%"'
+
+if [ ! -d "$dest/rules_xcodeproj/gen_dir" ]; then
+  # If "gen_dir" doesn't exist, this is most likely a fresh project. In that
+  # case, we should create generated files to have the initial experience be
+  # better.
+  echo "Running one time setup..."
+
+  if %pre_generate_files%; then
+    echo "Creating generated files..."
+    scheme="Bazel Generated Files"
+    msg="generate files"
+  else
+    scheme="Setup"
+    msg="setup"
+  fi
+
+  cd "$BUILD_WORKSPACE_DIRECTORY"
+  error_log=$(mktemp)
+  exit_status=0
+  xcodebuild -project "$dest" -scheme "$scheme" \
+    > "$error_log" 2>&1 \
+    || exit_status=$?
+  if [ $exit_status -ne 0 ]; then
+    echo "WARNING: Failed to $msg:"
+    cat "$error_log" >&2
+  fi
+fi

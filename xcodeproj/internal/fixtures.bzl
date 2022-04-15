@@ -76,11 +76,6 @@ _update_fixtures = rule(
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
-        "_installer_template": attr.label(
-            allow_single_file = True,
-            executable = False,
-            default = Label("//xcodeproj/internal:installer.template.sh"),
-        ),
         "_updater_template": attr.label(
             allow_single_file = True,
             default = ":updater.template.sh",

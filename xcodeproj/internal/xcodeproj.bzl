@@ -164,7 +164,13 @@ def _write_xcodeproj(*, ctx, project_name, root_dirs_file, spec_file):
 
     return xcodeproj, install_path
 
-def _write_installer(*, ctx, name = None, install_path, xcodeproj):
+def _write_installer(
+        *,
+        ctx,
+        name = None,
+        install_path,
+        xcodeproj,
+        pre_generate_files):
     installer = ctx.actions.declare_file(
         "{}-installer.sh".format(name or ctx.attr.name),
     )
@@ -175,6 +181,7 @@ def _write_installer(*, ctx, name = None, install_path, xcodeproj):
         is_executable = True,
         substitutions = {
             "%output_path%": install_path,
+            "%pre_generate_files%": "true" if pre_generate_files else "false",
             "%source_path%": xcodeproj.short_path,
         },
     )
@@ -194,6 +201,8 @@ def _xcodeproj_impl(ctx):
         attrs_info = None,
         transitive_infos = [(None, info) for info in infos],
     )
+    pre_generate_files = (ctx.attr.pre_generate_files and
+                          inputs.generated.to_list())
 
     spec_file = _write_json_spec(
         ctx = ctx,
@@ -212,6 +221,7 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         install_path = install_path,
         xcodeproj = xcodeproj,
+        pre_generate_files = pre_generate_files,
     )
 
     return [
@@ -241,6 +251,9 @@ def make_xcodeproj_rule(*, transition = None):
         ),
         "generated_dir_override": attr.string(
             default = "",
+        ),
+        "pre_generate_files": attr.bool(
+            default = True,
         ),
         "project_name": attr.string(),
         "targets": attr.label_list(
