@@ -5,7 +5,7 @@ macos_command_line_application(
     name = "tool",
     bundle_id = "io.buildbuddy.example",
     infoplists = ["Info.plist"],
-    minimum_os_version = "12.0",
+    minimum_os_version = "11.0",
     visibility = ["//visibility:public"],
     deps = [":tool.library"],
 )
