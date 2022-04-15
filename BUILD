@@ -1,8 +1,8 @@
-load("@buildifier_prebuilt//:rules.bzl", "buildifier")
 load(
-    "@cgrindel_rules_bazel_integration_test//bazel_integration_test:defs.bzl",
+    "@bazel_contrib_rules_bazel_integration_test//bazel_integration_test:defs.bzl",
     "integration_test_utils",
 )
+load("@buildifier_prebuilt//:rules.bzl", "buildifier")
 
 # Buildifier
 
