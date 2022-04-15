@@ -32,23 +32,18 @@ def _collect_transitive_extra_files(info):
     inputs = info.inputs
     transitive = [inputs.extra_files]
     if not info.target:
-        new_srcs = []
-        for src in inputs.srcs.to_list():
-            new_srcs.append(file_path(src))
-
-        transitive.append(depset(new_srcs))
-
-        new_non_arc_srcs = []
-        for src in inputs.non_arc_srcs.to_list():
-            new_non_arc_srcs.append(file_path(src))
-
-        transitive.append(depset(new_non_arc_srcs))
-
-        new_hdrs = []
-        for hdr in inputs.hdrs.to_list():
-            new_hdrs.append(file_path(hdr))
-
-        transitive.append(depset(new_hdrs))
+        transitive.append(depset([
+            file_path(file)
+            for file in inputs.srcs.to_list()
+        ]))
+        transitive.append(depset([
+            file_path(file)
+            for file in inputs.non_arc_srcs.to_list()
+        ]))
+        transitive.append(depset([
+            file_path(file)
+            for file in inputs.hdrs.to_list()
+        ]))
 
     return transitive
 
