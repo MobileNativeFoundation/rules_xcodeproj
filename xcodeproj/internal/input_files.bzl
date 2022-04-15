@@ -152,7 +152,7 @@ def _collect(
             `resources`-like and `structured_resources`-like attributes.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
-        *   `extra_files`: A `depset` of `File`s that are inputs to `target`
+        *   `extra_files`: A `depset` of `FilePath`s that are inputs to `target`
             that didn't fall into one of the more specific (e.g. `srcs`)
             catagories. This also includes files of transitive dependencies
             that didn't create an Xcode target.
