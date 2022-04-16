@@ -710,6 +710,18 @@ def _process_target_linker_opts(*, ctx, build_settings):
         build_settings = build_settings,
     )
 
+def _process_target_includes(*, ctx, build_settings):
+    """Processes the includes for a target.
+
+    Args:
+        ctx: The aspect context.
+        build_settings: A mutable `dict` that will be updated with build
+            settings that are parsed from the target's includes.
+    """
+    includes = getattr(ctx.rule.attr, "includes", [])
+    if includes:
+        build_settings["HEADER_SEARCH_PATHS"] = includes
+
 # Utility
 
 def _expand_make_variables(*, ctx, values, attribute_name):
@@ -764,6 +776,10 @@ def process_opts(*, ctx, target, package_bin_dir, build_settings):
         build_settings = build_settings,
     )
     _process_target_linker_opts(
+        ctx = ctx,
+        build_settings = build_settings,
+    )
+    _process_target_includes(
         ctx = ctx,
         build_settings = build_settings,
     )
