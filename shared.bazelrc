@@ -1,4 +1,5 @@
 build --remote_default_exec_properties=OSFamily=darwin
+build --remote_default_exec_properties=cache_bust=1
 
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
