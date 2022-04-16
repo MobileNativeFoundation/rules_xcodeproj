@@ -270,7 +270,8 @@ def _xcode_target(
         links: A `list` of file paths for libraries that the target links
             against.
         info_plist: A value as returned by `files.file_path()` or `None`.
-        dependencies: A `list` of `id`s of targets that this target depends on.
+        dependencies: A `depset` of `id`s of targets that this target depends
+            on.
         outputs: The value returned from `targets.get_outputs()`.
 
     Returns:
@@ -303,7 +304,7 @@ def _xcode_target(
         ),
         links = [file_path_to_dto(fp) for fp in links],
         info_plist = file_path_to_dto(info_plist),
-        dependencies = dependencies,
+        dependencies = dependencies.to_list(),
         outputs = outputs,
     ))
 
@@ -1174,17 +1175,23 @@ def _skip_target(*, target, transitive_infos):
     )
 
 def _process_dependencies(*, attrs_info, transitive_infos):
-    return [
-        dependency
-        for dependency in flatten([
+    direct_dependencies = []
+    transitive_dependencies = []
+    for attr, info in transitive_infos:
+        if not (not attrs_info or
+                info.target_type in attrs_info.xcode_targets.get(attr, [None])):
+            continue
+        if info.target:
+            direct_dependencies.append(info.target.id)
+        else:
             # We pass on the next level of dependencies if the previous target
             # didn't create an Xcode target.
-            [info.target.id] if info.target else info.dependencies
-            for attr, info in transitive_infos
-            if (not attrs_info or
-                info.target_type in attrs_info.xcode_targets.get(attr, [None]))
-        ])
-    ]
+            transitive_dependencies.append(info.dependencies)
+
+    return depset(
+        direct_dependencies,
+        transitive = transitive_dependencies,
+    )
 
 def _process_defines(*, cc_info, build_settings):
     if cc_info and build_settings != None:
