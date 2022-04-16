@@ -112,6 +112,7 @@ The `xcodeproj_external_swift_packages` and `xcodeproj` declarations would look 
 xcodeproj_external_swift_packages(
     name = "external_packages",
     packages = [
+        # This example demonstrates downloading a Swift package at a particular commit.
         xcodeproj_swift_package(
             url = "https://github.com/apple/swift-log",
             revision = "acbd69711395f5697b12beb4cf089929c9dbf3b4",
@@ -119,6 +120,7 @@ xcodeproj_external_swift_packages(
                 "Logging": "@apple_swift_log//:Logging",
             }
         ),
+        # This example demonstrates downloading a Swift package at a particular version tag.
         xcodeproj_swift_package(
             url = "https://github.com/apple/swift-nio",
             exact_version = "2.38.0",
@@ -148,4 +150,44 @@ The `packages` attribute for `xcodeproj_external_swift_packages` accepts one or 
 and the mapping of the Swift package product to Bazel target. The `packages` attribute is defined as
 an `attr.string_list`.  The`xcodeproj_swift_package` function returns a JSON string with the
 attributes serialized as JSON keys.
+
+
+#### External Dependencies Downloaded using `spm_repositories` from `rules_spm`
+
+If the Bazel project is using `rules_spm` to download their external Swift dependencies, the
+`WORKSPACE` will look something like the following:
+
+```python
+spm_repositories(
+    name = "swift_pkgs",
+    dependencies = [
+        spm_pkg(
+            "https://github.com/apple/swift-log.git",
+            revision = "acbd69711395f5697b12beb4cf089929c9dbf3b4",
+            products = ["Logging"],
+        ),
+        spm_pkg(
+            "https://github.com/apple/swift-nio.git",
+            exact_version = "2.38.0",
+            products = ["NIO", "NIOHTTP1"],
+        ),
+    ],
+)
+```
+
+The `spm_repositories` rule from `rules_spm` will be updated to write a
+`xcodeproj_external_swift_packages` declaration. So, the `xcodeproj` declaration will look like the
+following:
+
+```python
+xcodeproj(
+    name = "xcodeproj",
+    project_name = "My App",
+    tags = ["manual"],
+    targets = XCODEPROJ_TARGETS,
+    external_deps = [
+        "@swift_pkgs//:external_packages",
+    ],
+)
+```
 
