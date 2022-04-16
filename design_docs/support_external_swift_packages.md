@@ -4,9 +4,9 @@
 
 External Swift packages are, typically, represented in Bazel projects in one of two ways:
 
-1. As an external repository using `spm_repositories` and `spm_pkg` from
+1. As an external repositry using `http_archive` providing a custom build file.
+2. As an external repository using `spm_repositories` and `spm_pkg` from
    [cgrindel/rules_spm](https://github.com/cgrindel/rules_spm/). 
-2. As an external repositry using `http_archive` providing a custom build file.
 
 If an Xcode project is generated to build with Bazel (BWB), no additional support is required in the
 Xcode project for the project to build properly. Whatever is defined in the Bazel project will
@@ -17,7 +17,7 @@ how to incorporate the external dependency.
 
 ## Possible Solutions
 
-### Treat the External Dependency as Another Target
+### Solution 1: Treat the External Dependency as Another Target
 
 In essence, the external dependencies are imported as Xcode targets. 
 
@@ -37,7 +37,7 @@ The cons for this approach are:
   the user interface.
 - This approach will not handle external dependencies defined using `rules_spm`.
 
-### Import the External Swift Packages as Swift Packages in the Xcode Project
+### Solution 2: Import the External Swift Packages as Swift Packages in the Xcode Project
 
 [Xcode natively supports importing external Swift Packages to a
 project.](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app)
@@ -58,7 +58,7 @@ The cons for this approach are:
 ## Recommendation
 
 This proposal recommends that external Swift packages be added to the project using Xcode's native
-Swift package support. The remaineder of this document defines a design by which this can be done.
+Swift package support. The remainder of this document describes a design by which this can be done.
 
 ## Design
 
@@ -75,15 +75,15 @@ The TL;DR for the design is:
 
 ### `xcodeproj_external_swift_packages` Rule and `ExternalSwiftPackagesInfo` Provider
 
-The mapping of external Bazel target to Swift package dependency will occur in the
+The mapping of an external Bazel target to Swift package dependency will occur in the
 `xcodeproj_external_swift_packages` rule. This rule provides an `ExternalSwiftPackagesInfo` instance
 that maps dependent package information to Bazel targets.
 
 
-#### External Dependencies Downloaded using `http_archive`
+#### Example: External Dependencies Downloaded using `http_archive`
 
 Let's assume that two external packages, `apple/swift-log` and `apple/swift-nio`, are used by a
-project. The `WORKSPACE` might look something like the following:
+project. The `WORKSPACE` will contain declarations like the following:
 
 ```python
 http_archive(
@@ -152,7 +152,7 @@ an `attr.string_list`.  The`xcodeproj_swift_package` function returns a JSON str
 attributes serialized as JSON keys.
 
 
-#### External Dependencies Downloaded using `spm_repositories` from `rules_spm`
+#### Example: External Dependencies Downloaded using `spm_repositories` from `rules_spm`
 
 If the Bazel project is using `rules_spm` to download their external Swift dependencies, the
 `WORKSPACE` will look something like the following:
