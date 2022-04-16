@@ -191,3 +191,14 @@ xcodeproj(
 )
 ```
 
+### Updates to Xcode Project Generation Logic
+
+An `XCRemoteSwiftPackageReference` will be added to the `project.pbxproj` for each external Swift
+package. The UUIDs for these references will be added to the `packageReferences` attribute of the
+`PBXProject`.
+
+When the Xcode project generation logic encounters a Bazel dependency that matches one of the
+external Swift packages from the `xcodeproj_swift_package` mappings, it will add an
+`XCSwiftPackageProductDependency` entry in the `project.pbxproj`, if one does not already exist. It
+will then add the UUID for the `XCSwiftPackageProductDependency` to the `packageProductDependencies`
+attribute for the related `PBXNativeTarget`.
