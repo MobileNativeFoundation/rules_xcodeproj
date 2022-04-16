@@ -259,8 +259,8 @@
             "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
             "dependencies": [
                 "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
-                "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
-                "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1"
+                "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+                "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1"
             ],
             "frameworks": [],
             "info_plist": null,
