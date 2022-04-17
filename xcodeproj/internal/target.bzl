@@ -915,6 +915,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         opts_search_paths = create_opts_search_paths(
             quote_includes = [],
             includes = [],
+            system_includes = [],
         ),
     )
 
@@ -1017,6 +1018,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],
                 includes = [],
+                system_includes = [],
             ),
         ),
         static_framework_files = static_framework_files,
@@ -1159,6 +1161,7 @@ def _skip_target(*, target, transitive_infos):
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],
                 includes = [],
+                system_includes = [],
             ),
         ),
         static_framework_files = depset(
@@ -1273,6 +1276,15 @@ def _process_search_paths(*, cc_info, objc, opts_search_paths):
                 file_path_to_dto(parsed_file_path(path))
                 for path in (compilation_context.includes.to_list() +
                              opts_search_paths.includes)
+            ],
+        )
+        set_if_true(
+            search_paths,
+            "system_includes",
+            [
+                file_path_to_dto(parsed_file_path(path))
+                for path in (compilation_context.system_includes.to_list() +
+                             opts_search_paths.system_includes)
             ],
         )
 

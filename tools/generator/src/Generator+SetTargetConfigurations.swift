@@ -61,6 +61,16 @@ Target "\(id)" not found in `pbxTargets`
                 )
             }
 
+            let systemIncludes = target.searchPaths.systemIncludes
+            if !systemIncludes.isEmpty {
+                try targetBuildSettings.prepend(
+                    onKey: "SYSTEM_HEADER_SEARCH_PATHS",
+                    systemIncludes.map { filePath in
+                        return filePathResolver.resolve(filePath).string.quoted
+                    }
+                )
+            }
+
             try targetBuildSettings.prepend(
                 onKey: "OTHER_SWIFT_FLAGS",
                 target.modulemaps
