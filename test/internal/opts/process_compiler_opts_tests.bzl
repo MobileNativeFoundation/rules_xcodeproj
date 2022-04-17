@@ -72,7 +72,7 @@ def process_compiler_opts_test_suite(name):
             *,
             name,
             expected_build_settings,
-            expected_search_paths = {"quote_includes": [], "includes": []},
+            expected_search_paths = {"quote_includes": [], "includes": [], "system_includes": []},
             conlyopts = [],
             cxxopts = [],
             full_swiftcopts = [],
@@ -528,6 +528,8 @@ def process_compiler_opts_test_suite(name):
             "1/2/3",
             "-iquote",
             "0/9",
+            "-isystem",
+            "s1/s2",
         ],
         cxxopts = [
             "-iquote",
@@ -535,8 +537,10 @@ def process_compiler_opts_test_suite(name):
             "-Ix/y/z",
             "-I",
             "aa/bb",
+            "-isystem",
+            "s3/s4",
         ],
-        user_swiftcopts = ["-Xcc", "-Ic/d/e", "-Xcc", "-iquote4/5"],
+        user_swiftcopts = ["-Xcc", "-Ic/d/e", "-Xcc", "-iquote4/5", "-Xcc", "-isystems5/s6"],
         expected_build_settings = {},
         expected_search_paths = {
             "quote_includes": [
@@ -550,6 +554,11 @@ def process_compiler_opts_test_suite(name):
                 "1/2/3",
                 "aa/bb",
                 "c/d/e",
+            ],
+            "system_includes": [
+                "s1/s2",
+                "s3/s4",
+                "s5/s6",
             ],
         },
     )

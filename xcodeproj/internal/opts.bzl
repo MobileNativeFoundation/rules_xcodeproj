@@ -176,12 +176,13 @@ def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
 
     return unhandled_opts
 
-def create_opts_search_paths(quote_includes, includes):
+def create_opts_search_paths(quote_includes, includes, system_includes):
     """Creates a value representing search paths of a target.
 
     Args:
         quote_includes: A `list` of quote include paths (i.e `-iquote` values).
         includes: A `list` of include paths (i.e. `-I` values).
+        system_includes: A `list` of system include paths (i.e. `-isystem` values).
 
     Returns:
         A `struct` containing the `quote_includes` and `includes` fields
@@ -190,6 +191,7 @@ def create_opts_search_paths(quote_includes, includes):
     return struct(
         quote_includes = quote_includes,
         includes = includes,
+        system_includes = system_includes,
     )
 
 def merge_opts_search_paths(search_paths):
@@ -205,14 +207,17 @@ def merge_opts_search_paths(search_paths):
     """
     quote_includes = []
     includes = []
+    system_includes = []
 
     for search_path in search_paths:
         quote_includes.extend(search_path.quote_includes)
         includes.extend(search_path.includes)
+        system_includes.extend(search_path.system_includes)
 
     return create_opts_search_paths(
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
+        system_includes = uniq(system_includes),
     )
 
 def _process_conlyopts(opts):
@@ -234,8 +239,12 @@ def _process_conlyopts(opts):
     optimizations = []
     quote_includes = []
     includes = []
+    system_includes = []
 
     def process(opt, previous_opt):
+        if previous_opt == "-isystem":
+            system_includes.append(opt)
+            return True
         if previous_opt == "-iquote":
             quote_includes.append(opt)
             return True
@@ -245,6 +254,8 @@ def _process_conlyopts(opts):
 
         if opt.startswith("-O"):
             optimizations.append(opt)
+            return True
+        if opt == "-isystem":
             return True
         if opt == "-iquote":
             return True
@@ -269,6 +280,7 @@ def _process_conlyopts(opts):
     search_paths = create_opts_search_paths(
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
+        system_includes = uniq(system_includes),
     )
 
     return unhandled_opts, defines, optimizations, search_paths
@@ -294,8 +306,12 @@ def _process_cxxopts(opts, *, build_settings):
     optimizations = []
     quote_includes = []
     includes = []
+    system_includes = []
 
     def process(opt, previous_opt):
+        if previous_opt == "-isystem":
+            system_includes.append(opt)
+            return True
         if previous_opt == "-iquote":
             quote_includes.append(opt)
             return True
@@ -313,6 +329,8 @@ def _process_cxxopts(opts, *, build_settings):
             return True
         if opt.startswith("-stdlib="):
             build_settings["CLANG_CXX_LIBRARY"] = opt[8:]
+            return True
+        if opt == "-isystem":
             return True
         if opt == "-iquote":
             return True
@@ -337,6 +355,7 @@ def _process_cxxopts(opts, *, build_settings):
     search_paths = create_opts_search_paths(
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
+        system_includes = uniq(system_includes),
     )
 
     return unhandled_opts, defines, optimizations, search_paths
@@ -552,9 +571,13 @@ def _process_user_swiftcopts(opts):
 
     quote_includes = []
     includes = []
+    system_includes = []
 
     def process(opt, previous_opt):
         # TODO: handle the format "-Xcc -iquote -Xcc path"
+        if previous_opt == "-Xcc" and opt.startswith("-isystem"):
+            system_includes.append(opt[8:])
+            return True
         if previous_opt == "-Xcc" and opt.startswith("-iquote"):
             quote_includes.append(opt[7:])
             return True
@@ -575,6 +598,7 @@ def _process_user_swiftcopts(opts):
     search_paths = create_opts_search_paths(
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
+        system_includes = uniq(system_includes),
     )
 
     return search_paths
