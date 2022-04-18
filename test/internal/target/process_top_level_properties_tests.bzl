@@ -15,7 +15,7 @@ def _process_top_level_properties_test_impl(ctx):
     properties = process_top_level_properties(
         target_name = ctx.attr.target_name,
         files = [struct(short_path = p) for p in ctx.attr.files],
-        bundle_info = _bundle_info_struct(ctx.attr.bundle_info),
+        bundle_info = _bundle_info_stub(ctx.attr.bundle_info),
         tree_artifact_enabled = ctx.attr.tree_artifact_enabled,
         build_settings = build_settings,
     )
@@ -92,11 +92,15 @@ def _bundle_info(
         "product_type": product_type,
     }
 
-def _bundle_info_struct(dict):
+def _bundle_info_stub(dict):
     if not dict:
         return None
     return struct(
-        archive = struct(path = dict["archive.path"]),
+        archive = struct(
+            is_source = True,
+            owner = struct(workspace_name = None),
+            path = dict["archive.path"],
+        ),
         archive_root = dict["archive_root"],
         bundle_id = dict["bundle_id"],
         bundle_extension = dict["bundle_extension"],
