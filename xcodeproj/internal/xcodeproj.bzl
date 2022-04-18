@@ -136,7 +136,13 @@ fi
 
     return output
 
-def _write_xcodeproj(*, ctx, project_name, root_dirs_file, spec_file):
+def _write_xcodeproj(
+        *,
+        ctx,
+        project_name,
+        root_dirs_file,
+        spec_file,
+        build_mode):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
     )
@@ -153,6 +159,7 @@ def _write_xcodeproj(*, ctx, project_name, root_dirs_file, spec_file):
     args.add(spec_file.path)
     args.add(xcodeproj.path)
     args.add(install_path)
+    args.add(build_mode)
 
     ctx.actions.run(
         executable = ctx.executable._generator,
@@ -239,6 +246,7 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         root_dirs_file = root_dirs_file,
         spec_file = spec_file,
+        build_mode = ctx.attr.build_mode,
     )
     installer = _write_installer(
         ctx = ctx,
