@@ -34,14 +34,15 @@ extension Generator {
         let outputPath: Path
         let workspaceOutputPath: Path
         let projectRootDirectory: Path
+        let buildMode: BuildMode
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard CommandLine.arguments.count == 5 else {
+        guard CommandLine.arguments.count == 6 else {
             throw UsageError(message: """
 Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
 <path/to/project.json> <path/to/output/project.xcodeproj> \
-<workspace/relative/output/path>
+<workspace/relative/output/path> (xcode|bazel)
 """)
         }
 
@@ -55,12 +56,21 @@ Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
             .map { _ in ".." }
             .joined(separator: "/")
 
+        guard
+            let buildMode = BuildMode(rawValue: CommandLine.arguments[5])
+        else {
+            throw UsageError(message: """
+ERROR: build_mode wasn't one of the supported values: xcode, bazel
+""")
+        }
+
         return Arguments(
             rootDirsPath: Path(CommandLine.arguments[1]),
             specPath: Path(CommandLine.arguments[2]),
             outputPath: Path(CommandLine.arguments[3]),
             workspaceOutputPath: Path(workspaceOutput),
-            projectRootDirectory: Path(projectRoot)
+            projectRootDirectory: Path(projectRoot),
+            buildMode: buildMode
         )
     }
 
