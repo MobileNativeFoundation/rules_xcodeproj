@@ -7,8 +7,6 @@ import XCTest
 
 final class SetTargetConfigurationsTests: XCTestCase {
     private static let filePathResolverFixture = FilePathResolver(
-        externalDirectory: "external",
-        generatedDirectory: "bazel-out",
         internalDirectoryName: "rules_xcp",
         workspaceOutputPath: "out/p.xcodeproj"
     )

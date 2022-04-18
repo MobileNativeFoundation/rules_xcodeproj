@@ -1,19 +1,10 @@
 import PathKit
 
 struct FilePathResolver: Equatable {
-    let externalDirectory: Path
-    let generatedDirectory: Path
     let internalDirectoryName: String
     private let workspaceOutputPath: Path
 
-    init(
-        externalDirectory: Path,
-        generatedDirectory: Path,
-        internalDirectoryName: String,
-        workspaceOutputPath: Path
-    ) {
-        self.externalDirectory = externalDirectory
-        self.generatedDirectory = generatedDirectory
+    init(internalDirectoryName: String, workspaceOutputPath: Path) {
         self.internalDirectoryName = internalDirectoryName
         self.workspaceOutputPath = workspaceOutputPath
     }
@@ -28,31 +19,32 @@ struct FilePathResolver: Equatable {
         useOriginalGeneratedFiles: Bool = false,
         useScriptVariables: Bool = false
     ) -> Path {
-        let projectDir: Path
-        if useScriptVariables {
-            projectDir = "$PROJECT_DIR"
-        } else {
-            projectDir = "$(PROJECT_DIR)"
-        }
-
         switch filePath.type {
         case .project:
+            let projectDir: Path
+            if useScriptVariables {
+                projectDir = "$PROJECT_DIR"
+            } else {
+                projectDir = "$(PROJECT_DIR)"
+            }
             return projectDir + filePath.path
         case .external:
-            let path = externalDirectory + filePath.path
-            if path.isRelative {
-                return projectDir + path
+            let externalPath: Path
+            if useScriptVariables {
+                externalPath = "$BAZEL_EXTERNAL"
             } else {
-                return path
+                externalPath = "$(BAZEL_EXTERNAL)"
             }
+            return externalPath + filePath.path
         case .generated:
             if useOriginalGeneratedFiles {
-                let path = generatedDirectory + filePath.path
-                if path.isRelative {
-                    return projectDir + path
+                let bazelOutPath: Path
+                if useScriptVariables {
+                    bazelOutPath = "$BAZEL_OUT"
                 } else {
-                    return path
+                    bazelOutPath = "$(BAZEL_OUT)"
                 }
+                return bazelOutPath + filePath.path
             } else if useBuildDir {
                 let buildDir: Path
                 if useScriptVariables {
@@ -62,23 +54,22 @@ struct FilePathResolver: Equatable {
                 }
                 return buildDir + "bazel-out" + filePath.path
             } else {
-                let projectFilePath: Path
+                let copiedBazelOutPath: Path
                 if useScriptVariables {
-                    projectFilePath = "$PROJECT_FILE_PATH"
+                    copiedBazelOutPath = "$GEN_DIR"
                 } else {
-                    projectFilePath = "$(PROJECT_FILE_PATH)"
+                    copiedBazelOutPath = "$(GEN_DIR)"
                 }
-                return projectFilePath + internalDirectoryName + "gen_dir" +
-                    filePath.path
+                return copiedBazelOutPath + filePath.path
             }
         case .internal:
-            let projectFilePath: Path
+            let internalPath: Path
             if useScriptVariables {
-                projectFilePath = "$PROJECT_FILE_PATH"
+                internalPath = "$INTERNAL_DIR"
             } else {
-                projectFilePath = "$(PROJECT_FILE_PATH)"
+                internalPath = "$(INTERNAL_DIR)"
             }
-            return projectFilePath + internalDirectoryName + filePath.path
+            return internalPath + filePath.path
         }
     }
 }

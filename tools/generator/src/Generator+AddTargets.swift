@@ -14,6 +14,15 @@ appletvsimulator \
 appletvos
 """
 
+    static let bazelExec = #"""
+env -i \
+  DEVELOPER_DIR="$DEVELOPER_DIR" \
+  HOME="$HOME" \
+  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  USER="$USER" \
+  "$BAZEL_PATH"
+"""#
+
     static func addTargets(
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
@@ -147,18 +156,28 @@ Product for target "\(id)" not found in `products`
             shellScript: #"""
 set -eu
 
-cd "$PROJECT_FILE_PATH/rules_xcodeproj"
+output_path=$(\#(bazelExec) \
+  info \
+  output_path)
+external="${output_path%/*/*/*}/external"
+
+mkdir -p "$LINKS_DIR"
+cd "$LINKS_DIR"
+
+# Add BUILD file to the internal links directory to prevent Bazel from recursing
+# into it, and thus following the `external` and `bazel-out` symlinks
+touch "BUILD"
 
 # Need to remove the directory that Xcode creates as part of output prep
 rm -rf gen_dir
 
-ln -sf "$BUILD_DIR/bazel-out" gen_dir
+ln -sfn "$output_path" bazel-out
+ln -sfn "$external" external
+ln -sfn "$BUILD_DIR/bazel-out" gen_dir
 
 cd "$BUILD_DIR"
 ln -sfn "$PROJECT_DIR" SRCROOT
-ln -sfn "\#(
-    filePathResolver.resolve(.external(""), useScriptVariables: true)
-)" external
+ln -sfn "$external" external
 
 # Create parent directories of generated files, so the project navigator works
 # better faster
@@ -233,18 +252,6 @@ done
         )
         pbxProj.add(object: configurationList)
 
-        let removeWorkspaceBazelOut: String
-        if filePathResolver.generatedDirectory.isAbsolute {
-            removeWorkspaceBazelOut = ""
-        } else {
-            removeWorkspaceBazelOut = """
-
-# Need to remove the directory that Xcode creates as part of output prep
-rm -rf "$PROJECT_DIR/\(filePathResolver.generatedDirectory)"
-
-"""
-        }
-
         let generateFilesScript = PBXShellScriptBuildPhase(
             name: "Generate Files",
             outputFileListPaths: [
@@ -254,13 +261,8 @@ rm -rf "$PROJECT_DIR/\(filePathResolver.generatedDirectory)"
             ],
             shellScript: #"""
 set -eu
-\#(removeWorkspaceBazelOut)
-env -i \
-  DEVELOPER_DIR="$DEVELOPER_DIR" \
-  HOME="$HOME" \
-  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-  USER="$USER" \
-  ${BAZEL_PATH} \
+
+\#(bazelExec) \
   build \
   --output_groups=generated_inputs \
   \#(xcodeprojBazelLabel)
@@ -286,7 +288,7 @@ env -i \
             shellScript: #"""
 set -eu
 
-cd "\#(filePathResolver.generatedDirectory)"
+cd "$BAZEL_OUT"
 
 rsync \
   --files-from "\#(
@@ -297,7 +299,7 @@ rsync \
   --chmod=u+w \
   -L \
   . \
-  "$BUILD_DIR/bazel-out"
+  "$GEN_DIR"
 
 """#,
             showEnvVarsInLog: false

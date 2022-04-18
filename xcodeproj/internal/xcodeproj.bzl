@@ -90,59 +90,7 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 
     return output
 
-def _write_root_dirs(*, ctx):
-    an_external_input = ctx.file._external_file_marker
-
-    output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
-    ctx.actions.run_shell(
-        inputs = [an_external_input],
-        outputs = [output],
-        command = """\
-if [ -n "{external_dir_override}" ]; then
-  echo "{external_dir_override}" >> "{out_full}"
-else
-  # `readlink -f` doesn't exist on macOS, so use perl instead
-  external_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{external_full}";)"
-  # Strip `/private` prefix from paths (as it breaks breakpoints)
-  external_full_path="${{external_full_path#/private}}"
-  # Trim the suffix from the paths
-  echo "${{external_full_path%/{external_full}}}/external" >> "{out_full}"
-fi
-if [ -n "{generated_dir_override}" ]; then
-  echo "{generated_dir_override}" >> "{out_full}"
-else
-  # `readlink -f` doesn't exist on macOS, so use perl instead
-  generated_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{generated_full}";)"
-  # Strip `/private` prefix from paths (as it breaks breakpoints)
-  generated_full_path="${{generated_full_path#/private}}"
-  # Trim the suffix from the paths
-  echo "${{generated_full_path%/{generated_full}}}/bazel-out" >> "{out_full}"
-fi
-""".format(
-            external_full = an_external_input.path,
-            external_dir_override = ctx.attr.external_dir_override,
-            generated_full = ctx.bin_dir.path,
-            generated_dir_override = ctx.attr.generated_dir_override,
-            out_full = output.path,
-        ),
-        mnemonic = "CalculateXcodeProjRootDirs",
-        # This has to run locally
-        execution_requirements = {
-            "local": "1",
-            "no-remote": "1",
-            "no-sandbox": "1",
-        },
-    )
-
-    return output
-
-def _write_xcodeproj(
-        *,
-        ctx,
-        project_name,
-        root_dirs_file,
-        spec_file,
-        build_mode):
+def _write_xcodeproj(*, ctx, project_name, spec_file, build_mode):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
     )
@@ -155,7 +103,6 @@ def _write_xcodeproj(
         )
 
     args = ctx.actions.args()
-    args.add(root_dirs_file.path)
     args.add(spec_file.path)
     args.add(xcodeproj.path)
     args.add(install_path)
@@ -165,7 +112,7 @@ def _write_xcodeproj(
         executable = ctx.executable._generator,
         mnemonic = "GenerateXcodeProj",
         arguments = [args],
-        inputs = [root_dirs_file, spec_file],
+        inputs = [spec_file],
         outputs = [xcodeproj],
     )
 
@@ -240,11 +187,9 @@ def _xcodeproj_impl(ctx):
         inputs = inputs,
         infos = infos,
     )
-    root_dirs_file = _write_root_dirs(ctx = ctx)
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
         project_name = project_name,
-        root_dirs_file = root_dirs_file,
         spec_file = spec_file,
         build_mode = ctx.attr.build_mode,
     )
@@ -267,7 +212,6 @@ def _xcodeproj_impl(ctx):
         XcodeProjOutputInfo(
             installer = installer,
             project_name = project_name,
-            root_dirs = root_dirs_file,
             spec = spec_file,
             xcodeproj = xcodeproj,
         ),
@@ -281,12 +225,6 @@ def make_xcodeproj_rule(*, transition = None):
         "build_mode": attr.string(
             default = "xcode",
             values = ["xcode", "bazel"],
-        ),
-        "external_dir_override": attr.string(
-            default = "",
-        ),
-        "generated_dir_override": attr.string(
-            default = "",
         ),
         "pre_generate_files": attr.bool(
             default = True,

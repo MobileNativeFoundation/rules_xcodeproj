@@ -8,7 +8,8 @@ import XcodeProj
 struct Environment {
     let createProject: (
         _ project: Project,
-        _ projectRootDirectory: Path
+        _ projectRootDirectory: Path,
+        _ filePathResolver: FilePathResolver
     ) -> PBXProj
 
     let processTargetMerges: (

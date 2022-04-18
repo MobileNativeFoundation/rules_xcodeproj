@@ -8,7 +8,8 @@ extension Generator {
     /// `rootObject`.
     static func createProject(
         project: Project,
-        projectRootDirectory: Path
+        projectRootDirectory: Path,
+        filePathResolver: FilePathResolver
     ) -> PBXProj {
         let pbxProj = PBXProj()
 
@@ -16,12 +17,19 @@ extension Generator {
         pbxProj.add(object: mainGroup)
 
         var buildSettings = project.buildSettings.asDictionary
-        buildSettings["CONFIGURATION_BUILD_DIR"] = """
-$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
-"""
-        buildSettings["TARGET_TEMP_DIR"] = """
+        buildSettings.merge([
+            "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
+            "BAZEL_OUT": "$(LINKS_DIR)/bazel-out",
+            "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)",
+            "GEN_DIR": "$(LINKS_DIR)/gen_dir",
+            "LINKS_DIR": "$(INTERNAL_DIR)/links",
+            "INTERNAL_DIR": """
+$(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
+""",
+            "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
-"""
+""",
+        ], uniquingKeysWith: { _, r in r })
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",

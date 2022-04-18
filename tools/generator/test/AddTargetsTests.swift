@@ -16,14 +16,10 @@ final class AddTargetsTests: XCTestCase {
 
         let xcodeprojBazelLabel = "//:project"
         let targets = Fixtures.targets
-        let externalDirectory: Path = "/ext"
-        let generatedDirectory: Path = "/bazel-leave"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let filePathResolver = FilePathResolver(
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )

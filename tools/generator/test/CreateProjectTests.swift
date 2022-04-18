@@ -12,6 +12,11 @@ final class CreateProjectTests: XCTestCase {
         let project = Fixtures.project
         let projectRootDirectory: Path = "~/Developer/project"
 
+        let filePathResolver = FilePathResolver(
+            internalDirectoryName: "r_xcp",
+            workspaceOutputPath: "X.xcodeproj"
+        )
+
         let expectedPBXProj = PBXProj()
 
         let expectedMainGroup = PBXGroup(sourceTree: .group)
@@ -20,9 +25,14 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
+                "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
+                "BAZEL_OUT": "$(LINKS_DIR)/bazel-out",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
+                "GEN_DIR": "$(LINKS_DIR)/gen_dir",
+                "LINKS_DIR": "$(INTERNAL_DIR)/links",
+                "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 """,
@@ -57,7 +67,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 
         let createdPBXProj = Generator.createProject(
             project: project,
-            projectRootDirectory: projectRootDirectory
+            projectRootDirectory: projectRootDirectory,
+            filePathResolver: filePathResolver
         )
 
         try createdPBXProj.fixReferences()

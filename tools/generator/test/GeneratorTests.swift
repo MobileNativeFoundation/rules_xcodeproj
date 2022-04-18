@@ -25,15 +25,11 @@ final class GeneratorTests: XCTestCase {
         pbxProject.mainGroup = mainGroup
         
         let projectRootDirectory: Path = "~/project"
-        let externalDirectory: Path = "/var/tmp/_bazel_BB/HASH/external"
-        let generatedDirectory: Path = "/var/tmp/_bazel/H/execroot/W/bazel-out"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
         let outputPath: Path = "P.xcodeproj"
 
         let filePathResolver = FilePathResolver(
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -58,7 +54,6 @@ final class GeneratorTests: XCTestCase {
         ]
         let (files, filesAndGroups) = Fixtures.files(
             in: pbxProj,
-            externalDirectory: externalDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -82,23 +77,27 @@ final class GeneratorTests: XCTestCase {
         struct CreateProjectCalled: Equatable {
             let project: Project
             let projectRootDirectory: Path
+            let filePathResolver: FilePathResolver
         }
 
         var createProjectCalled: [CreateProjectCalled] = []
         func createProject(
             project: Project,
-            projectRootDirectory: Path
+            projectRootDirectory: Path,
+            filePathResolver: FilePathResolver
         ) -> PBXProj {
             createProjectCalled.append(.init(
                 project: project,
-                projectRootDirectory: projectRootDirectory
+                projectRootDirectory: projectRootDirectory,
+                filePathResolver: filePathResolver
             ))
             return pbxProj
         }
 
         let expectedCreateProjectCalled = [CreateProjectCalled(
             project: project,
-            projectRootDirectory: projectRootDirectory
+            projectRootDirectory: projectRootDirectory,
+            filePathResolver: filePathResolver
         )]
 
         // MARK: processTargetMerges()
@@ -411,8 +410,6 @@ final class GeneratorTests: XCTestCase {
         try generator.generate(
             project: project,
             projectRootDirectory: projectRootDirectory,
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath,
             outputPath: outputPath
