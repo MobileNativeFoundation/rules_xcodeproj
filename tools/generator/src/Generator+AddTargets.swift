@@ -292,6 +292,11 @@ set -eu
 
 cd "$BAZEL_OUT"
 
+# Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
+# builds, but is different for Index Builds. `PBXBuildFile`s will use the
+# "$GEN_DIR" version, so indexing might get messed up until they are normally
+# generated. It's the best we can do though as we need to use the `gen_dir`
+# symlink.
 rsync \
   --files-from "\#(
     filePathResolver
@@ -301,7 +306,7 @@ rsync \
   --chmod=u+w \
   -L \
   . \
-  "$GEN_DIR"
+  "$BUILD_DIR/bazel-out"
 
 """#,
             showEnvVarsInLog: false
