@@ -238,12 +238,12 @@ enum Fixtures {
     static func files(
         in pbxProj: PBXProj,
         parentGroup group: PBXGroup? = nil,
-        externalDirectory: Path = "/var/tmp/_bazel_U/HASH/external",
-        generatedDirectory: Path = "/var/tmp/_bazel_U/H/execroot/W/bazel-out",
         internalDirectoryName: String = "rules_xcodeproj",
         workspaceOutputPath: Path = "some/Project.xcodeproj"
     ) -> (files: [FilePath: File], elements: [FilePath: PBXFileElement]) {
         var elements: [FilePath: PBXFileElement] = [:]
+
+        let linksDir = workspaceOutputPath + internalDirectoryName + "links"
 
         // bazel-out/a1b2c/bin/t.c
 
@@ -290,8 +290,7 @@ enum Fixtures {
             ],
             sourceTree: .group,
             name: "Bazel Generated Files",
-            path: (workspaceOutputPath + internalDirectoryName + "gen_dir")
-                .string
+            path: (linksDir + "gen_dir").string
         )
 
         // external/a_repo/a.swift
@@ -327,9 +326,9 @@ enum Fixtures {
                 elements[.external("a_repo")]!,
                 elements[.external("another_repo")]!,
             ],
-            sourceTree: .absolute,
+            sourceTree: .group,
             name: "Bazel External Repositories",
-            path: externalDirectory.string
+            path: (linksDir + "external").string
         )
 
         // a/a.h
@@ -659,15 +658,15 @@ enum Fixtures {
         let genDir = "$(BUILD_DIR)/bazel-out"
 
         files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
-\(generatedDirectory)/a/b/module.modulemap
-\(generatedDirectory)/a1b2c/bin/t.c
+$(BAZEL_OUT)/a/b/module.modulemap
+$(BAZEL_OUT)/a1b2c/bin/t.c
 
 """)
 
         files[.internal("generated.copied.xcfilelist")] = .nonReferencedContent(
 """
-$(PROJECT_FILE_PATH)/\(internalDirectoryName)/gen_dir/a/b/module.modulemap
-$(PROJECT_FILE_PATH)/\(internalDirectoryName)/gen_dir/a1b2c/bin/t.c
+$(GEN_DIR)/a/b/module.modulemap
+$(GEN_DIR)/a1b2c/bin/t.c
 
 """)
 
@@ -1126,18 +1125,33 @@ appletvos
             shellScript: #"""
 set -eu
 
-cd "$PROJECT_FILE_PATH/rules_xcodeproj"
+output_path=$(env -i \
+  DEVELOPER_DIR="$DEVELOPER_DIR" \
+  HOME="$HOME" \
+  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  USER="$USER" \
+  "$BAZEL_PATH" \
+  info \
+  output_path)
+external="${output_path%/*/*/*}/external"
+
+mkdir -p "$LINKS_DIR"
+cd "$LINKS_DIR"
+
+# Add BUILD file to the internal links directory to prevent Bazel from recursing
+# into it, and thus following the `external` and `bazel-out` symlinks
+touch "BUILD"
 
 # Need to remove the directory that Xcode creates as part of output prep
 rm -rf gen_dir
 
-ln -sf "$BUILD_DIR/bazel-out" gen_dir
+ln -sfn "$output_path" bazel-out
+ln -sfn "$external" external
+ln -sfn "$BUILD_DIR/bazel-out" gen_dir
 
 cd "$BUILD_DIR"
 ln -sfn "$PROJECT_DIR" SRCROOT
-ln -sfn "\#(
-    filePathResolver.resolve(.external(""), useScriptVariables: true)
-)" external
+ln -sfn "$external" external
 
 # Create parent directories of generated files, so the project navigator works
 # better faster
@@ -1146,9 +1160,7 @@ mkdir -p bazel-out
 cd bazel-out
 
 sed 's|\/[^\/]*$||' \
-  "$PROJECT_FILE_PATH/\#(
-  filePathResolver.internalDirectoryName
-)/generated.rsynclist" \
+  "$INTERNAL_DIR/generated.rsynclist" \
   | uniq \
   | while IFS= read -r dir
 do
@@ -1193,13 +1205,9 @@ done
         )
         pbxProj.add(object: generateFilesConfigurationList)
 
-        let baseDir = """
-$(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
-"""
-
         let generateFilesScript = PBXShellScriptBuildPhase(
             name: "Generate Files",
-            outputFileListPaths: ["\(baseDir)/generated.xcfilelist"],
+            outputFileListPaths: ["$(INTERNAL_DIR)/generated.xcfilelist"],
             shellScript: #"""
 set -eu
 
@@ -1208,7 +1216,7 @@ env -i \
   HOME="$HOME" \
   PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
   USER="$USER" \
-  ${BAZEL_PATH} \
+  "$BAZEL_PATH" \
   build \
   --output_groups=generated_inputs \
   \#(xcodeprojBazelLabel)
@@ -1221,21 +1229,19 @@ env -i \
 
         let copyFilesScript = PBXShellScriptBuildPhase(
             name: "Copy Files",
-            inputFileListPaths: ["\(baseDir)/generated.xcfilelist"],
-            outputFileListPaths: ["\(baseDir)/generated.copied.xcfilelist"],
+            inputFileListPaths: ["$(INTERNAL_DIR)/generated.xcfilelist"],
+            outputFileListPaths: ["$(INTERNAL_DIR)/generated.copied.xcfilelist"],
             shellScript: #"""
 set -eu
 
-cd "\#(filePathResolver.generatedDirectory)"
+cd "$BAZEL_OUT"
 
 rsync \
-  --files-from "$PROJECT_FILE_PATH/\#(
-  filePathResolver.internalDirectoryName
-)/generated.rsynclist" \
+  --files-from "$INTERNAL_DIR/generated.rsynclist" \
   --chmod=u+w \
   -L \
   . \
-  "$BUILD_DIR/bazel-out"
+  "$GEN_DIR"
 
 """#,
             showEnvVarsInLog: false
@@ -1244,8 +1250,8 @@ rsync \
 
         let fixModulemapsScript = PBXShellScriptBuildPhase(
             name: "Fix Modulemaps",
-            inputFileListPaths: ["\(baseDir)/modulemaps.xcfilelist"],
-            outputFileListPaths: ["\(baseDir)/modulemaps.fixed.xcfilelist"],
+            inputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.xcfilelist"],
+            outputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist"],
             shellScript: #"""
 set -eu
 
@@ -1311,14 +1317,10 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         let (files, _) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
 
-        let externalDirectory: Path = "/ext"
-        let generatedDirectory: Path = "/bazel-leave"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let filePathResolver = FilePathResolver(
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -1393,7 +1395,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #"""
-"$(PROJECT_FILE_PATH)/rules_xcp/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
+"$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -1419,7 +1421,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #"""
-"$(PROJECT_FILE_PATH)/rules_xcp/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
+"$(INTERNAL_DIR)/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -1436,7 +1438,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #"""
-"$(PROJECT_FILE_PATH)/rules_xcp/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
+"$(INTERNAL_DIR)/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",
@@ -1464,7 +1466,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                     "-L/usr/lib/swift",
                     "-filelist",
                     #"""
-"$(PROJECT_FILE_PATH)/rules_xcp/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"
+"$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"
 """#,
                 ],
                 "SDKROOT": "macosx",

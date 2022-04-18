@@ -226,9 +226,10 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: filePathResolver.externalDirectory.sourceTree,
+                sourceTree: .group,
                 name: "Bazel External Repositories",
-                path: filePathResolver.externalDirectory.string
+                path: (filePathResolver.internalDirectory + "links/external")
+                    .string
             )
             pbxProj.add(object: group)
             elements[.external("")] = group
@@ -246,7 +247,8 @@ extension Generator {
             let group = PBXGroup(
                 sourceTree: .group,
                 name: "Bazel Generated Files",
-                path: (filePathResolver.internalDirectory + "gen_dir").string
+                path: (filePathResolver.internalDirectory + "links/gen_dir")
+                    .string
             )
             pbxProj.add(object: group)
             elements[.generated("")] = group

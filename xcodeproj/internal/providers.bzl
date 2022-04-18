@@ -114,7 +114,6 @@ XcodeProjOutputInfo = provider(
     fields = {
         "installer": "The xcodeproj installer",
         "project_name": "The installed project name",
-        "root_dirs": "The root directories file",
         "spec": "The json spec",
         "xcodeproj": "The xcodeproj file",
     },

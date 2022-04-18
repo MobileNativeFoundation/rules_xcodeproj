@@ -36,13 +36,20 @@ class Generator {
     func generate(
         project: Project,
         projectRootDirectory: Path,
-        externalDirectory: Path,
-        generatedDirectory: Path,
         internalDirectoryName: String,
         workspaceOutputPath: Path,
         outputPath: Path
     ) throws {
-        let pbxProj = environment.createProject(project, projectRootDirectory)
+        let filePathResolver = FilePathResolver(
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+
+        let pbxProj = environment.createProject(
+            project,
+            projectRootDirectory,
+            filePathResolver
+        )
         guard let pbxProject = pbxProj.rootObject else {
             throw PreconditionError(message: """
 `rootObject` not set on `pbxProj`
@@ -74,13 +81,6 @@ Was unable to merge "\(srcTarget.label) \
 """)
             }
         }
-
-        let filePathResolver = FilePathResolver(
-            externalDirectory: externalDirectory,
-            generatedDirectory: generatedDirectory,
-            internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
-        )
 
         let (files, rootElements) = try environment.createFilesAndGroups(
             pbxProj,

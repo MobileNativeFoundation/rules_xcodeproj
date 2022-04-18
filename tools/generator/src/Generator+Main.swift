@@ -10,14 +10,11 @@ extension Generator {
 
         do {
             let arguments = try parseArguments(CommandLine.arguments)
-            let rootDirs = try readRootDirectories(path: arguments.rootDirsPath)
             let project = try readProject(path: arguments.specPath)
 
             try Generator(logger: logger).generate(
                 project: project,
                 projectRootDirectory: arguments.projectRootDirectory,
-                externalDirectory: rootDirs.externalDirectory,
-                generatedDirectory: rootDirs.generatedDirectory,
                 internalDirectoryName: "rules_xcodeproj",
                 workspaceOutputPath: arguments.workspaceOutputPath,
                 outputPath: arguments.outputPath
@@ -29,7 +26,6 @@ extension Generator {
     }
 
     struct Arguments {
-        let rootDirsPath: Path
         let specPath: Path
         let outputPath: Path
         let workspaceOutputPath: Path
@@ -38,15 +34,15 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard CommandLine.arguments.count == 6 else {
+        guard CommandLine.arguments.count == 5 else {
             throw UsageError(message: """
-Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
-<path/to/project.json> <path/to/output/project.xcodeproj> \
-<workspace/relative/output/path> (xcode|bazel)
+Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
+<path/to/output/project.xcodeproj> <workspace/relative/output/path> \
+(xcode|bazel)
 """)
         }
 
-        let workspaceOutput = CommandLine.arguments[4]
+        let workspaceOutput = CommandLine.arguments[3]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
@@ -57,7 +53,7 @@ Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
             .joined(separator: "/")
 
         guard
-            let buildMode = BuildMode(rawValue: CommandLine.arguments[5])
+            let buildMode = BuildMode(rawValue: CommandLine.arguments[4])
         else {
             throw UsageError(message: """
 ERROR: build_mode wasn't one of the supported values: xcode, bazel
@@ -65,35 +61,11 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         }
 
         return Arguments(
-            rootDirsPath: Path(CommandLine.arguments[1]),
-            specPath: Path(CommandLine.arguments[2]),
-            outputPath: Path(CommandLine.arguments[3]),
+            specPath: Path(CommandLine.arguments[1]),
+            outputPath: Path(CommandLine.arguments[2]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode
-        )
-    }
-
-    struct RootDirectories {
-        let externalDirectory: Path
-        let generatedDirectory: Path
-    }
-
-    static func readRootDirectories(path: Path) throws -> RootDirectories {
-        let rootDirs = try path.read(.utf8)
-            .split(separator: "\n")
-            .map(String.init)
-
-        guard rootDirs.count == 2 else {
-            throw UsageError(message: """
-The root_dirs_file must contain two lines: one for the external repositories \
-directory, and one for the generated files directory.
-""")
-        }
-
-        return RootDirectories(
-            externalDirectory: Path(rootDirs[0]),
-            generatedDirectory: Path(rootDirs[1])
         )
     }
 
