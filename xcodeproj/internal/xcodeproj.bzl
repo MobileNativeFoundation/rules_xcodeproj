@@ -235,6 +235,7 @@ def _xcodeproj_impl(ctx):
         ),
         XcodeProjOutputInfo(
             installer = installer,
+            project_name = project_name,
             root_dirs = root_dirs_file,
             spec = spec_file,
             xcodeproj = xcodeproj,
@@ -245,6 +246,10 @@ def make_xcodeproj_rule(*, transition = None):
     attrs = {
         "bazel_path": attr.string(
             default = "bazel",
+        ),
+        "build_mode": attr.string(
+            default = "xcode",
+            values = ["xcode"],
         ),
         "external_dir_override": attr.string(
             default = "",

@@ -1,7 +1,12 @@
 """Tests for the `xcodeproj` rule."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load(":fixtures.bzl", "fixture_output_name", "fixtures_transition")
+load(
+    ":fixtures.bzl",
+    "fixture_output_name",
+    "fixture_spec_name",
+    "fixtures_transition",
+)
 load(":providers.bzl", "XcodeProjOutputInfo")
 
 # xcodeproj_tests API
@@ -37,7 +42,10 @@ def _from_fixture(
     if basename == None:
         basename = paths.basename(pkg)
     if expected_spec == None:
-        expected_spec = "{pkg}:spec.json".format(pkg = pkg)
+        expected_spec = "{pkg}:{name}".format(
+            pkg = pkg,
+            name = fixture_spec_name(target_under_test_label.name),
+        )
     if expected_xcodeproj == None:
         expected_xcodeproj = "{pkg}:{name}".format(
             pkg = pkg,
@@ -127,7 +135,7 @@ def xcodeproj_test_suite(name, fixture_tests):
         name: The base name to be used in things created by this macro. Also the
             name of the test suite.
         fixture_tests: A `list` of structs as returned by
-                      `xcodeproj_tests.from_fixture()`.
+            `xcodeproj_tests.from_fixture()`.
     """
     test_names = []
 

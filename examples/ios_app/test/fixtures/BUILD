@@ -17,13 +17,13 @@ update_fixtures(
     name = "update",
     tags = ["manual"],
     targets = [
-        ":fixture",
+        ":fixture_bwx",
     ],
 )
 
 xcodeproj_test_suite(
     name = "xcodeproj",
     fixture_tests = [
-        xcodeproj_tests.from_fixture("//test/fixtures:fixture"),
+        xcodeproj_tests.from_fixture("//test/fixtures:fixture_bwx"),
     ],
 )

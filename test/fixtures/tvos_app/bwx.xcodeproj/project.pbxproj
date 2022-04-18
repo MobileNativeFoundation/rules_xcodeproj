@@ -1,0 +1,835 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		259BD17350ABF44CECE076AA /* Bazel Generated Files */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2EE6FA675E0D16D8070B0477 /* Build configuration list for PBXAggregateTarget "Bazel Generated Files" */;
+			buildPhases = (
+				107DDC90FF1C27D140777338 /* Generate Files */,
+				588A3D0F8C7F3BC89386E0B0 /* Copy Files */,
+				83B35A792C311A4BA4FDD64C /* Fix Info.plists */,
+			);
+			dependencies = (
+				F8C60BA7FF48BAF712148980 /* PBXTargetDependency */,
+			);
+			name = "Bazel Generated Files";
+			productName = "Bazel Generated Files";
+		};
+		D5818B90A725A9C678DAB333 /* Setup */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7786D074CB72C5247C39ED2F /* Build configuration list for PBXAggregateTarget "Setup" */;
+			buildPhases = (
+				ACC8D5FD5A8A2BBA4C7F6853 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Setup;
+			productName = Setup;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		5098BCCB1868B198F4419656 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B15598E2A225AF0402DDCF /* ExampleApp.swift */; };
+		76271681871DA5585583391E /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A6CF9C9CD7BEED9F65CA3 /* ExampleUITestsLaunchTests.swift */; };
+		931C2ECF6AA4E6846D19871F /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9EDA6F321B496D89ECD94 /* ExampleUITests.swift */; };
+		CE43F065AC3E7BA68AE0E2F5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDCF5497AF5CB6FD82EB9AB /* ExampleTests.swift */; };
+		EB6A255551CEB04337D41DCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BDA7F5F96E7A0A135F45B2 /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3A4D7E67AD5036ADB20D69E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 259BD17350ABF44CECE076AA;
+			remoteInfo = "Bazel Generated Files";
+		};
+		513084DA66939A090497A2BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 259BD17350ABF44CECE076AA;
+			remoteInfo = "Bazel Generated Files";
+		};
+		61A3CFD71A717D7DC4F3C542 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5818B90A725A9C678DAB333;
+			remoteInfo = Setup;
+		};
+		8499CD2F34D395AA377AFF38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E46111B59CD5CC4865299C2;
+			remoteInfo = Example;
+		};
+		D90D54A5E4C7708475358BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 259BD17350ABF44CECE076AA;
+			remoteInfo = "Bazel Generated Files";
+		};
+		ED9670CE9ACD8301A0DA97C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E46111B59CD5CC4865299C2;
+			remoteInfo = Example;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		075CBE79402054D4E0D7FD2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		106E67CAB3D33E9EDE899089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		122A98FA505350325F6740CA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		1452248E39E2C6D3CB3559F0 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		1D174B1D4C25E9FD21719679 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		61BDA7F5F96E7A0A135F45B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6D716145772914014B1460C6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		6FB9EDA6F321B496D89ECD94 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
+		7D93AE929FC4703B992B9F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7E6A6CF9C9CD7BEED9F65CA3 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7F19CF48F63AFA6D8D07E876 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		99B15598E2A225AF0402DDCF /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
+		AE960EFF7013DD45F88383CC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B69AF786B804E6CD15F61528 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
+		CCDCF5497AF5CB6FD82EB9AB /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1064E5B9DD0CD4D72A92A1E4 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				1452248E39E2C6D3CB3559F0 /* BUILD */,
+				61BDA7F5F96E7A0A135F45B2 /* ContentView.swift */,
+				99B15598E2A225AF0402DDCF /* ExampleApp.swift */,
+				075CBE79402054D4E0D7FD2F /* Info.plist */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		273036962EC5C64F59C2ADF3 /* tvos_app */ = {
+			isa = PBXGroup;
+			children = (
+				1064E5B9DD0CD4D72A92A1E4 /* Example */,
+				BE32A3F8BF60AFC36D9ED0E7 /* ExampleTests */,
+				914F2AA1FC7CFD2BD3276037 /* ExampleUITests */,
+			);
+			path = tvos_app;
+			sourceTree = "<group>";
+		};
+		28A6E6644CB34296F8198F71 /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				7F19CF48F63AFA6D8D07E876 /* Info.plist */,
+			);
+			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
+		32A0DCD1B6BEF60270CB967D /* tvos_app */ = {
+			isa = PBXGroup;
+			children = (
+				4A5A02AB04D171DD9D160E43 /* Example */,
+				4C7D746BD60CEE7591AD5E21 /* ExampleTests */,
+				BD7B989FD2E65F9EA131679E /* ExampleUITests */,
+			);
+			path = tvos_app;
+			sourceTree = "<group>";
+		};
+		38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */ = {
+			isa = PBXGroup;
+			children = (
+				768C0B6FBEA15B86DF2C38DC /* apple */,
+			);
+			path = build_bazel_rules_apple;
+			sourceTree = "<group>";
+		};
+		39F4042FB42D4E462D0F86A7 /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */,
+			);
+			path = testing;
+			sourceTree = "<group>";
+		};
+		3A7D6E4AC4234810F98F36E3 /* applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6 */ = {
+			isa = PBXGroup;
+			children = (
+				96034D934A22E7014A347033 /* bin */,
+			);
+			path = "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6";
+			sourceTree = "<group>";
+		};
+		462C3519CA354BE1B04D4855 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE960EFF7013DD45F88383CC /* Example.app */,
+				B69AF786B804E6CD15F61528 /* ExampleTests.xctest */,
+				1D174B1D4C25E9FD21719679 /* ExampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4A5A02AB04D171DD9D160E43 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				CF50F1124F87E06FEE0DD95F /* Example-intermediates */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		4C7D746BD60CEE7591AD5E21 /* ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE606FD14408E47977BB3BC3 /* ExampleTests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleTests;
+			sourceTree = "<group>";
+		};
+		768C0B6FBEA15B86DF2C38DC /* apple */ = {
+			isa = PBXGroup;
+			children = (
+				39F4042FB42D4E462D0F86A7 /* testing */,
+			);
+			path = apple;
+			sourceTree = "<group>";
+		};
+		77E0714FDD425211EBA209DF = {
+			isa = PBXGroup;
+			children = (
+				86E3AA094AC3498BEDC1D673 /* examples */,
+				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
+				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
+				462C3519CA354BE1B04D4855 /* Products */,
+				D9AAB93A5135F69103554470 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		85F708DD1F5484A0D5558108 /* Bazel External Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */,
+			);
+			name = "Bazel External Repositories";
+			path = "bazel-rules_xcodeproj/external";
+			sourceTree = "<group>";
+		};
+		86E3AA094AC3498BEDC1D673 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				273036962EC5C64F59C2ADF3 /* tvos_app */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		914F2AA1FC7CFD2BD3276037 /* ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6D716145772914014B1460C6 /* BUILD */,
+				6FB9EDA6F321B496D89ECD94 /* ExampleUITests.swift */,
+				7E6A6CF9C9CD7BEED9F65CA3 /* ExampleUITestsLaunchTests.swift */,
+			);
+			path = ExampleUITests;
+			sourceTree = "<group>";
+		};
+		96034D934A22E7014A347033 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				EC0211BD4DF7113522CD2459 /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A7D6E4AC4234810F98F36E3 /* applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6 */,
+			);
+			name = "Bazel Generated Files";
+			path = test/fixtures/tvos_app/bwx.xcodeproj/rules_xcodeproj/gen_dir;
+			sourceTree = "<group>";
+		};
+		BD7B989FD2E65F9EA131679E /* ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				28A6E6644CB34296F8198F71 /* ExampleUITests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleUITests;
+			sourceTree = "<group>";
+		};
+		BE32A3F8BF60AFC36D9ED0E7 /* ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				122A98FA505350325F6740CA /* BUILD */,
+				CCDCF5497AF5CB6FD82EB9AB /* ExampleTests.swift */,
+			);
+			path = ExampleTests;
+			sourceTree = "<group>";
+		};
+		BE606FD14408E47977BB3BC3 /* ExampleTests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				106E67CAB3D33E9EDE899089 /* Info.plist */,
+			);
+			path = "ExampleTests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
+		CF50F1124F87E06FEE0DD95F /* Example-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				7D93AE929FC4703B992B9F20 /* Info.plist */,
+			);
+			path = "Example-intermediates";
+			sourceTree = "<group>";
+		};
+		D9AAB93A5135F69103554470 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC0211BD4DF7113522CD2459 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				32A0DCD1B6BEF60270CB967D /* tvos_app */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5742A33EA302007E9758E24B /* ExampleTests.__internal__.__test_bundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E81F0BC3C859DAC10F012BE /* Build configuration list for PBXNativeTarget "ExampleTests.__internal__.__test_bundle" */;
+			buildPhases = (
+				61B8EBE5F244F523287E4ADE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07B95CCC17640C4AAA7EAB52 /* PBXTargetDependency */,
+				EA5A8DB030DD28F2F1A365FE /* PBXTargetDependency */,
+			);
+			name = ExampleTests.__internal__.__test_bundle;
+			productName = ExampleTests;
+			productReference = B69AF786B804E6CD15F61528 /* ExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9E46111B59CD5CC4865299C2 /* Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6A9520E4E640351CDDD995F /* Build configuration list for PBXNativeTarget "Example" */;
+			buildPhases = (
+				158225A69996B833609C215D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2716FF92D4EEBF8A703870A9 /* PBXTargetDependency */,
+			);
+			name = Example;
+			productName = Example;
+			productReference = AE960EFF7013DD45F88383CC /* Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BDC5BB543739DEC8809249F9 /* ExampleUITests.__internal__.__test_bundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15769C3B117D2DB921015141 /* Build configuration list for PBXNativeTarget "ExampleUITests.__internal__.__test_bundle" */;
+			buildPhases = (
+				1B2202CD9344223E1FA82AC5 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D101CD69962413EF33FD887F /* PBXTargetDependency */,
+				2D8ED23480A44C6BB910460C /* PBXTargetDependency */,
+			);
+			name = ExampleUITests.__internal__.__test_bundle;
+			productName = ExampleUITests;
+			productReference = 1D174B1D4C25E9FD21719679 /* ExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36B5F79C7ED8B081842AF69D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					259BD17350ABF44CECE076AA = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					5742A33EA302007E9758E24B = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+						TestTargetID = 9E46111B59CD5CC4865299C2;
+					};
+					9E46111B59CD5CC4865299C2 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					BDC5BB543739DEC8809249F9 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+						TestTargetID = 9E46111B59CD5CC4865299C2;
+					};
+					D5818B90A725A9C678DAB333 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 77E0714FDD425211EBA209DF;
+			productRefGroup = 462C3519CA354BE1B04D4855 /* Products */;
+			projectDirPath = ../../..;
+			projectRoot = "";
+			targets = (
+				D5818B90A725A9C678DAB333 /* Setup */,
+				259BD17350ABF44CECE076AA /* Bazel Generated Files */,
+				9E46111B59CD5CC4865299C2 /* Example */,
+				5742A33EA302007E9758E24B /* ExampleTests.__internal__.__test_bundle */,
+				BDC5BB543739DEC8809249F9 /* ExampleUITests.__internal__.__test_bundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		107DDC90FF1C27D140777338 /* Generate Files */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Files";
+			outputFileListPaths = (
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/tvos_app:xcodeproj_bwx\n";
+			showEnvVarsInLog = 0;
+		};
+		588A3D0F8C7F3BC89386E0B0 /* Copy Files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Copy Files";
+			outputFileListPaths = (
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.copied.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_FILE_PATH/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83B35A792C311A4BA4FDD64C /* Fix Info.plists */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Fix Info.plists";
+			outputFileListPaths = (
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.fixed.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACC8D5FD5A8A2BBA4C7F6853 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-rules_xcodeproj/external\" external\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|\\/[^\\/]*$||' \\\n  \"$PROJECT_FILE_PATH/rules_xcodeproj/generated.rsynclist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		158225A69996B833609C215D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB6A255551CEB04337D41DCB /* ContentView.swift in Sources */,
+				5098BCCB1868B198F4419656 /* ExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B2202CD9344223E1FA82AC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				931C2ECF6AA4E6846D19871F /* ExampleUITests.swift in Sources */,
+				76271681871DA5585583391E /* ExampleUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61B8EBE5F244F523287E4ADE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43F065AC3E7BA68AE0E2F5 /* ExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		07B95CCC17640C4AAA7EAB52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 259BD17350ABF44CECE076AA /* Bazel Generated Files */;
+			targetProxy = 3A4D7E67AD5036ADB20D69E4 /* PBXContainerItemProxy */;
+		};
+		2716FF92D4EEBF8A703870A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 259BD17350ABF44CECE076AA /* Bazel Generated Files */;
+			targetProxy = 513084DA66939A090497A2BC /* PBXContainerItemProxy */;
+		};
+		2D8ED23480A44C6BB910460C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Example;
+			target = 9E46111B59CD5CC4865299C2 /* Example */;
+			targetProxy = ED9670CE9ACD8301A0DA97C3 /* PBXContainerItemProxy */;
+		};
+		D101CD69962413EF33FD887F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 259BD17350ABF44CECE076AA /* Bazel Generated Files */;
+			targetProxy = D90D54A5E4C7708475358BFD /* PBXContainerItemProxy */;
+		};
+		EA5A8DB030DD28F2F1A365FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Example;
+			target = 9E46111B59CD5CC4865299C2 /* Example */;
+			targetProxy = 8499CD2F34D395AA377AFF38 /* PBXContainerItemProxy */;
+		};
+		F8C60BA7FF48BAF712148980 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = D5818B90A725A9C678DAB333 /* Setup */;
+			targetProxy = 61A3CFD71A717D7DC4F3C542 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2C569E004988FA25354A5F9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					DEBUG,
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+				);
+				INFOPLIST_FILE = "$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				OTHER_CFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
+				PRODUCT_MODULE_NAME = ExampleUITests;
+				PRODUCT_NAME = ExampleUITests;
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = appletvsimulator;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = ExampleUITests.__internal__.__test_bundle;
+				TEST_TARGET_NAME = Example;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Debug;
+		};
+		3622C4F3E1128EBBC1184E8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				TARGET_NAME = Setup;
+			};
+			name = Debug;
+		};
+		69CBD9D87F696E661A4DF9B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				TARGET_NAME = GenerateBazelFiles;
+			};
+			name = Debug;
+		};
+		A0DA4321BC5CEDE7AEC20E53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleTests";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					DEBUG,
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+				);
+				INFOPLIST_FILE = "$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				OTHER_CFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
+				PRODUCT_MODULE_NAME = ExampleTests;
+				PRODUCT_NAME = ExampleTests;
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = appletvsimulator;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = ExampleTests.__internal__.__test_bundle;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example.app/Example";
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Debug;
+		};
+		BE2CA0A20BAEAC56C4898C1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					DEBUG,
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+				);
+				INFOPLIST_FILE = "$(PROJECT_FILE_PATH)/rules_xcodeproj/gen_dir/applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example-intermediates/Info.xcode.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_CFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
+				PRODUCT_MODULE_NAME = Example;
+				PRODUCT_NAME = Example;
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = appletvsimulator;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = Example;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Debug;
+		};
+		C221D886D6D02D33114D3473 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BAZEL_PATH = bazel;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_MODULES_AUTOLINK = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
+				COPY_PHASE_STRIP = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)";
+				USE_HEADERMAP = NO;
+				VALIDATE_WORKSPACE = NO;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15769C3B117D2DB921015141 /* Build configuration list for PBXNativeTarget "ExampleUITests.__internal__.__test_bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C569E004988FA25354A5F9D /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2E81F0BC3C859DAC10F012BE /* Build configuration list for PBXNativeTarget "ExampleTests.__internal__.__test_bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0DA4321BC5CEDE7AEC20E53 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2EE6FA675E0D16D8070B0477 /* Build configuration list for PBXAggregateTarget "Bazel Generated Files" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69CBD9D87F696E661A4DF9B7 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7786D074CB72C5247C39ED2F /* Build configuration list for PBXAggregateTarget "Setup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3622C4F3E1128EBBC1184E8E /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C221D886D6D02D33114D3473 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E6A9520E4E640351CDDD995F /* Build configuration list for PBXNativeTarget "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE2CA0A20BAEAC56C4898C1A /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 36B5F79C7ED8B081842AF69D /* Project object */;
+}
