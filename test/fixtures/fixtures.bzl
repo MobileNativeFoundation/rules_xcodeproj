@@ -7,7 +7,7 @@ _FIXTURE_BASENAMES = [
     "tvos_app",
 ]
 
-_FIXTURE_SUFFIXES = ["bwx"]
+_FIXTURE_SUFFIXES = ["bwx", "bwb"]
 
 _FIXTURE_PACKAGES = ["//test/fixtures/{}".format(b) for b in _FIXTURE_BASENAMES]
 

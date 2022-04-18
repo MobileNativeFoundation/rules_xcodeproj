@@ -1,0 +1,615 @@
+{
+    "build_settings": {
+        "ALWAYS_SEARCH_USER_PATHS": false,
+        "BAZEL_PATH": "bazel",
+        "CLANG_ENABLE_OBJC_ARC": true,
+        "CLANG_MODULES_AUTOLINK": false,
+        "COPY_PHASE_STRIP": false,
+        "ONLY_ACTIVE_ARCH": true,
+        "USE_HEADERMAP": false,
+        "VALIDATE_WORKSPACE": false
+    },
+    "extra_files": [
+        "examples/tvos_app/Example/BUILD",
+        "examples/tvos_app/Example/Info.plist",
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
+            "t": "g"
+        },
+        "examples/tvos_app/ExampleTests/BUILD",
+        {
+            "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
+            "t": "e"
+        },
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
+            "t": "g"
+        },
+        "examples/tvos_app/ExampleUITests/BUILD",
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
+            "t": "g"
+        }
+    ],
+    "invalid_target_merges": [],
+    "label": "//test/fixtures/tvos_app:xcodeproj_bwb",
+    "name": "bwb",
+    "target_merges": [
+        "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        [
+            "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+        ],
+        "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        [
+            "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+        ],
+        "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        [
+            "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+        ]
+    ],
+    "targets": [
+        "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
+                "PRODUCT_MODULE_NAME": "_Example_Stub",
+                "PRODUCT_NAME": "Example",
+                "SUPPORTED_PLATFORMS": "appletvsimulator",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5",
+                "TVOS_DEPLOYMENT_TARGET": "15.0"
+            },
+            "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+            "dependencies": [
+                "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+            ],
+            "frameworks": [],
+            "info_plist": {
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "contains_generated_files": true
+            },
+            "is_swift": false,
+            "label": "//examples/tvos_app/Example:Example",
+            "links": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/libExample.library.a",
+                    "t": "g"
+                }
+            ],
+            "modulemaps": [],
+            "name": "Example",
+            "outputs": {
+                "dsyms": []
+            },
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "os": "tvos"
+            },
+            "product": {
+                "name": "Example",
+                "path": {
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example_archive-root/Payload/Example.app",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.application"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "OTHER_SWIFT_FLAGS": "-g",
+                "PRODUCT_MODULE_NAME": "Example",
+                "PRODUCT_NAME": "Example.library",
+                "SUPPORTED_PLATFORMS": "appletvsimulator",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5",
+                "TVOS_DEPLOYMENT_TARGET": "15.0"
+            },
+            "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+            "dependencies": [],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/tvos_app/Example/ContentView.swift",
+                    "examples/tvos_app/Example/ExampleApp.swift"
+                ]
+            },
+            "is_swift": true,
+            "label": "//examples/tvos_app/Example:Example.library",
+            "links": [],
+            "modulemaps": [],
+            "name": "Example.library",
+            "outputs": {
+                "swift_module": {
+                    "name": "Example.swiftmodule",
+                    "swiftdoc": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example.swiftdoc",
+                    "swiftmodule": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example.swiftsourceinfo"
+                }
+            },
+            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "os": "tvos"
+            },
+            "product": {
+                "name": "Example.library",
+                "path": {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/libExample.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
+                "PRODUCT_MODULE_NAME": "_ExampleTests_Stub",
+                "PRODUCT_NAME": "ExampleTests",
+                "SUPPORTED_PLATFORMS": "appletvsimulator",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5",
+                "TVOS_DEPLOYMENT_TARGET": "15.0"
+            },
+            "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+            "dependencies": [
+                "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+                "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+            ],
+            "frameworks": [],
+            "info_plist": {
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "contains_generated_files": true
+            },
+            "is_swift": false,
+            "label": "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle",
+            "links": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/libExampleTests.library.a",
+                    "t": "g"
+                }
+            ],
+            "modulemaps": [],
+            "name": "ExampleTests.__internal__.__test_bundle",
+            "outputs": {
+                "dsyms": []
+            },
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "os": "tvos"
+            },
+            "product": {
+                "name": "ExampleTests",
+                "path": {
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle_archive-root/ExampleTests.xctest",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.bundle.unit-test"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [],
+            "test_host": "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+        },
+        "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "ENABLE_TESTING_SEARCH_PATHS": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "OTHER_SWIFT_FLAGS": "-g",
+                "PRODUCT_MODULE_NAME": "ExampleTests",
+                "PRODUCT_NAME": "ExampleTests.library",
+                "SUPPORTED_PLATFORMS": "appletvsimulator",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5",
+                "TVOS_DEPLOYMENT_TARGET": "15.0"
+            },
+            "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+            "dependencies": [
+                "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+            ],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/tvos_app/ExampleTests/ExampleTests.swift"
+                ]
+            },
+            "is_swift": true,
+            "label": "//examples/tvos_app/ExampleTests:ExampleTests.library",
+            "links": [],
+            "modulemaps": [],
+            "name": "ExampleTests.library",
+            "outputs": {
+                "swift_module": {
+                    "name": "ExampleTests.swiftmodule",
+                    "swiftdoc": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftdoc",
+                    "swiftmodule": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftsourceinfo"
+                }
+            },
+            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "os": "tvos"
+            },
+            "product": {
+                "name": "ExampleTests.library",
+                "path": {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/libExampleTests.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example.swiftmodule",
+                    "t": "g"
+                }
+            ],
+            "test_host": null
+        },
+        "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
+                "PRODUCT_MODULE_NAME": "_ExampleUITests_Stub",
+                "PRODUCT_NAME": "ExampleUITests",
+                "SUPPORTED_PLATFORMS": "appletvsimulator",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5",
+                "TVOS_DEPLOYMENT_TARGET": "15.0"
+            },
+            "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+            "dependencies": [
+                "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+                "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+            ],
+            "frameworks": [],
+            "info_plist": {
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "contains_generated_files": true
+            },
+            "is_swift": false,
+            "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle",
+            "links": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/libExampleUITests.library.a",
+                    "t": "g"
+                }
+            ],
+            "modulemaps": [],
+            "name": "ExampleUITests.__internal__.__test_bundle",
+            "outputs": {
+                "dsyms": []
+            },
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "os": "tvos"
+            },
+            "product": {
+                "name": "ExampleUITests",
+                "path": {
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle_archive-root/ExampleUITests.xctest",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.bundle.ui-testing"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [],
+            "test_host": "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
+        },
+        "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "ENABLE_TESTING_SEARCH_PATHS": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "OTHER_SWIFT_FLAGS": "-g",
+                "PRODUCT_MODULE_NAME": "ExampleUITests",
+                "PRODUCT_NAME": "ExampleUITests.library",
+                "SUPPORTED_PLATFORMS": "appletvsimulator",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5",
+                "TVOS_DEPLOYMENT_TARGET": "15.0"
+            },
+            "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
+            "dependencies": [],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/tvos_app/ExampleUITests/ExampleUITests.swift",
+                    "examples/tvos_app/ExampleUITests/ExampleUITestsLaunchTests.swift"
+                ]
+            },
+            "is_swift": true,
+            "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.library",
+            "links": [],
+            "modulemaps": [],
+            "name": "ExampleUITests.library",
+            "outputs": {
+                "swift_module": {
+                    "name": "ExampleUITests.swiftmodule",
+                    "swiftdoc": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftdoc",
+                    "swiftmodule": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftsourceinfo"
+                }
+            },
+            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "os": "tvos"
+            },
+            "product": {
+                "name": "ExampleUITests.library",
+                "path": {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/libExampleUITests.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [],
+            "test_host": null
+        }
+    ]
+}

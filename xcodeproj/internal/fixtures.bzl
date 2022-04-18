@@ -110,7 +110,7 @@ def xcodeproj_fixture(
         *,
         name = "xcodeproj",
         workspace_name = "rules_xcodeproj",
-        modes_and_suffixes = [("xcode", "bwx")],
+        modes_and_suffixes = [("xcode", "bwx"), ("bazel", "bwb")],
         targets):
     """Creates the fixture for an existing `xcodeproj` target.
 
