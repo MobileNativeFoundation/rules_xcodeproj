@@ -373,8 +373,9 @@ extension Generator {
         }
         let rsyncPaths = generatedFiles.map { filePath, _ in filePath.path }
         let copiedGeneratedPaths = generatedFiles.map { filePath, _ in
-            // We need to use `gen_dir` instead of `$(BUILD_DIR)` here to match
-            // the project navigator
+            // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
+            // match the project navigator. This is only needed for files
+            // referenced by `PBXBuildFile`.
             return filePathResolver.resolve(filePath, useBuildDir: false)
         }
         let modulemapPaths = generatedFiles
@@ -386,9 +387,7 @@ extension Generator {
         let infoPlistPaths = generatedFiles
             .filter { filePath, _ in filePath.path.lastComponent == "Info.plist" }
             .map { filePath, _ in
-            // We need to use `gen_dir` instead of `$(BUILD_DIR)` here to match
-            // the project navigator
-            return filePathResolver.resolve(filePath, useBuildDir: false)
+            return filePathResolver.resolve(filePath)
         }
         let fixedInfoPlistPaths = infoPlistPaths.map { path in
             return path.replacingExtension("xcode.plist")

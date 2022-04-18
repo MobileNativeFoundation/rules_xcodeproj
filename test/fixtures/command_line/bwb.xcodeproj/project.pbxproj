@@ -892,7 +892,7 @@
 					"SECRET_3=\\\"Hello\\\"",
 					"SECRET_2=\\\"World!\\\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-fstack-protector",
