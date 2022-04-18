@@ -1,12 +1,18 @@
 """Constants for fixture declarations."""
 
-FIXTURE_BASENAMES = [
+_FIXTURE_BASENAMES = [
     "cc",
     "command_line",
     "generator",
     "tvos_app",
 ]
 
-_FIXTURE_PACKAGES = ["//test/fixtures/{}".format(b) for b in FIXTURE_BASENAMES]
+_FIXTURE_SUFFIXES = ["bwx"]
 
-FIXTURE_TARGETS = ["{}:xcodeproj".format(p) for p in _FIXTURE_PACKAGES]
+_FIXTURE_PACKAGES = ["//test/fixtures/{}".format(b) for b in _FIXTURE_BASENAMES]
+
+FIXTURE_TARGETS = [
+    "{}:xcodeproj_{}".format(package, suffix)
+    for package in _FIXTURE_PACKAGES
+    for suffix in _FIXTURE_SUFFIXES
+]

@@ -11,7 +11,7 @@ def _from_fixture_test(ctx):
     expected = struct(
         basename = "pkg",
         target_under_test = "//path/to/pkg:custom_xcodeproj",
-        expected_spec = "@//path/to/pkg:spec.json",
+        expected_spec = "@//path/to/pkg:custom_xcodeproj_spec",
         expected_xcodeproj = "@//path/to/pkg:custom_xcodeproj_output",
     )
     asserts.equals(env, expected, actual, "Specifying fixture target")
@@ -20,13 +20,13 @@ def _from_fixture_test(ctx):
     actual = xcodeproj_tests.from_fixture(
         "//path/to/pkg:custom_xcodeproj",
         basename = "custom_basename",
-        expected_spec = "//path/to/pkg:custom_spec.json",
+        expected_spec = "//path/to/pkg:custom_spec",
         expected_xcodeproj = "//path/to/pkg:custom_xcodeproj_output",
     )
     expected = struct(
         basename = "custom_basename",
         target_under_test = "//path/to/pkg:custom_xcodeproj",
-        expected_spec = "//path/to/pkg:custom_spec.json",
+        expected_spec = "//path/to/pkg:custom_spec",
         expected_xcodeproj = "//path/to/pkg:custom_xcodeproj_output",
     )
     asserts.equals(env, expected, actual, "Specifying everything")

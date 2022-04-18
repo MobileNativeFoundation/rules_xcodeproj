@@ -41,6 +41,10 @@ def _update_fixtures_impl(ctx):
         target[XcodeProjOutputInfo].xcodeproj
         for target in ctx.attr.targets
     ]
+    project_names = [
+        target[XcodeProjOutputInfo].project_name
+        for target in ctx.attr.targets
+    ]
 
     updater = ctx.actions.declare_file(
         "{}-updater.sh".format(ctx.label.name),
@@ -54,6 +58,7 @@ def _update_fixtures_impl(ctx):
             "%installers%": "  \n".join(
                 [installer.short_path for installer in installers],
             ),
+            "%project_names%": "  \n".join(project_names),
             "%specs%": "  \n".join([spec.short_path for spec in specs]),
         },
     )
@@ -98,35 +103,60 @@ _fixture_xcodeproj = make_xcodeproj_rule(
 def fixture_output_name(fixture_name):
     return "{}_output".format(fixture_name)
 
+def fixture_spec_name(fixture_name):
+    return "{}_spec".format(fixture_name)
+
 def xcodeproj_fixture(
         *,
         name = "xcodeproj",
-        project_name = "project",
         workspace_name = "rules_xcodeproj",
+        modes_and_suffixes = [("xcode", "bwx")],
         targets):
-    native.exports_files([
-        "spec.json",
-    ])
+    """Creates the fixture for an existing `xcodeproj` target.
 
-    xcodeproj(
-        name = name,
-        external_dir_override = "bazel-{}/external".format(workspace_name),
-        generated_dir_override = "bazel-out",
-        project_name = project_name,
-        targets = targets,
-        xcodeproj_rule = _fixture_xcodeproj,
-        visibility = ["//test:__subpackages__"],
-    )
+    This will create an `xcodeproj` target for each `build_mode` option.
 
-    native.filegroup(
-        name = fixture_output_name(name),
-        srcs = native.glob(
-            ["{}.xcodeproj/**/*".format(project_name)],
-            exclude = [
-                "{}.xcodeproj/xcshareddata/**/*".format(project_name),
-                "{}.xcodeproj/**/xcuserdata/**/*".format(project_name),
-                "{}.xcodeproj/*.xcuserdatad/**/*".format(project_name),
-            ],
-        ),
-        visibility = ["//test:__subpackages__"],
-    )
+    Args:
+        name: The name of the fixture. This will be the prefix of the .xcodeproj
+            and spec files.
+        workspace_name: The name of the workspace.
+        modes_and_suffixes: A `list` of `tuple`s of `build_mode` and `suffix`.
+            The `build_mode` will be pass to `xcodeproj.build_mode` and the
+            `suffix` will be used as the suffix of the project and spec files.
+        targets: Maps to `xcodeproj.targets`.
+    """
+    for mode, suffix in modes_and_suffixes:
+        fixture_name = "{}_{}".format(name, suffix)
+        spec_name = "{}_spec.json".format(suffix)
+
+        native.exports_files([spec_name])
+
+        native.alias(
+            name = fixture_spec_name(fixture_name),
+            actual = spec_name,
+            visibility = ["//test:__subpackages__"],
+        )
+
+        xcodeproj(
+            name = fixture_name,
+            build_mode = mode,
+            external_dir_override = "bazel-{}/external".format(workspace_name),
+            generated_dir_override = "bazel-out",
+            project_name = suffix,
+            targets = targets,
+            xcodeproj_rule = _fixture_xcodeproj,
+            visibility = ["//test:__subpackages__"],
+        )
+
+        native.filegroup(
+            name = fixture_output_name(fixture_name),
+            srcs = native.glob(
+                ["{}.xcodeproj/**/*".format(suffix)],
+                exclude = [
+                    "{}.xcodeproj/xcshareddata/**/*".format(suffix),
+                    "{}.xcodeproj/**/xcuserdata/**/*".format(suffix),
+                    "{}.xcodeproj/*.xcuserdatad/**/*".format(suffix),
+                ],
+            ),
+            visibility = ["//test:__subpackages__"],
+        )

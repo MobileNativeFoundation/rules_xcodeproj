@@ -15,6 +15,7 @@ test_suite(
         "//test/internal/opts",
         "//test/internal/platform",
         "//test/internal/target",
+        "//test/internal/xcodeproj_tests",
     ],
 )
 
