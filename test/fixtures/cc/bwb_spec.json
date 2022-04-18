@@ -1,0 +1,447 @@
+{
+    "build_settings": {
+        "ALWAYS_SEARCH_USER_PATHS": false,
+        "BAZEL_PATH": "bazel",
+        "CLANG_ENABLE_OBJC_ARC": true,
+        "CLANG_MODULES_AUTOLINK": false,
+        "COPY_PHASE_STRIP": false,
+        "ONLY_ACTIVE_ARCH": true,
+        "USE_HEADERMAP": false,
+        "VALIDATE_WORKSPACE": false
+    },
+    "extra_files": [
+        "examples/cc/lib/BUILD",
+        "examples/cc/lib/lib.h",
+        "examples/cc/lib2/BUILD",
+        {
+            "_": "examples_cc_external/lib.h",
+            "t": "e"
+        },
+        "examples/cc/tool/BUILD"
+    ],
+    "invalid_target_merges": [],
+    "label": "//test/fixtures/cc:xcodeproj_bwb",
+    "name": "bwb",
+    "target_merges": [],
+    "targets": [
+        "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-1c975e2849a6",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_NAME": "lib_impl",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-1c975e2849a6",
+            "dependencies": [],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "hdrs": [
+                    "examples/cc/lib2/lib.h"
+                ],
+                "srcs": [
+                    "examples/cc/lib2/lib.c"
+                ]
+            },
+            "is_swift": false,
+            "label": "//examples/cc/lib2:lib_impl",
+            "links": [],
+            "modulemaps": [],
+            "name": "lib_impl",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "lib_impl",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2/liblib_impl.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "//examples/cc/lib:lib_impl darwin_x86_64-dbg-ST-1c975e2849a6",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\"",
+                    "SECRET_3=\\\"Hello\\\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_NAME": "lib_impl",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-1c975e2849a6",
+            "dependencies": [],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/cc/lib/lib.c",
+                    "examples/cc/lib/private/private.h"
+                ]
+            },
+            "is_swift": false,
+            "label": "//examples/cc/lib:lib_impl",
+            "links": [],
+            "modulemaps": [],
+            "name": "lib_impl",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "lib_impl",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib/liblib_impl.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {
+                "includes": [
+                    "examples/cc/lib/private",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib/private",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "//examples/cc/tool:tool darwin_x86_64-dbg-ST-1c975e2849a6",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\"",
+                    "SECRET_2=\\\"World!\\\"",
+                    "EXTERNAL_SECRET_2=\\\"World?\\\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_MODULE_NAME": "_tool_Stub",
+                "PRODUCT_NAME": "tool",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-1c975e2849a6",
+            "dependencies": [
+                "//examples/cc/lib:lib_impl darwin_x86_64-dbg-ST-1c975e2849a6",
+                "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-1c975e2849a6",
+                "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-1c975e2849a6"
+            ],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/cc/tool/main.c"
+                ]
+            },
+            "is_swift": false,
+            "label": "//examples/cc/tool:tool",
+            "links": [
+                {
+                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib/liblib_impl.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2/liblib_impl.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external/liblib_impl.a",
+                    "t": "g"
+                }
+            ],
+            "modulemaps": [],
+            "name": "tool",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/tool",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "tool",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/tool/tool",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.tool"
+            },
+            "resource_bundles": [],
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "examples_cc_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external",
+                        "t": "g"
+                    },
+                    {
+                        "_": "bazel_tools",
+                        "t": "e"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/bazel_tools",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-1c975e2849a6",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\"",
+                    "EXTERNAL_SECRET_3=\\\"Goodbye\\\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_NAME": "lib_impl",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-1c975e2849a6",
+            "dependencies": [],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "examples_cc_external/lib.c",
+                        "t": "e"
+                    },
+                    {
+                        "_": "examples_cc_external/private/private.h",
+                        "t": "e"
+                    }
+                ]
+            },
+            "is_swift": false,
+            "label": "@examples_cc_external//:lib_impl",
+            "links": [],
+            "modulemaps": [],
+            "name": "lib_impl",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "lib_impl",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external/liblib_impl.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {
+                "includes": [
+                    {
+                        "_": "examples_cc_external/private",
+                        "t": "e"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external/private",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "examples_cc_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        }
+    ]
+}

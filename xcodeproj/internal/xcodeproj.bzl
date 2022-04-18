@@ -188,6 +188,29 @@ def _write_installer(
 
     return installer
 
+# Transition
+
+def _xcodeproj_transition_impl(settings, attr):
+    """Transition that applies command-line settings for the xcodeproj rule."""
+    if attr.build_mode == "bazel":
+        compilation_mode = "dbg"
+    else:
+        compilation_mode = settings["//command_line_option:compilation_mode"]
+
+    return {
+        "//command_line_option:compilation_mode": compilation_mode,
+    }
+
+_xcodeproj_transition = transition(
+    implementation = _xcodeproj_transition_impl,
+    inputs = [
+        "//command_line_option:compilation_mode",
+    ],
+    outputs = [
+        "//command_line_option:compilation_mode",
+    ],
+)
+
 # Rule
 
 def _xcodeproj_impl(ctx):
@@ -249,7 +272,7 @@ def make_xcodeproj_rule(*, transition = None):
         ),
         "build_mode": attr.string(
             default = "xcode",
-            values = ["xcode"],
+            values = ["xcode", "bazel"],
         ),
         "external_dir_override": attr.string(
             default = "",
@@ -266,6 +289,9 @@ def make_xcodeproj_rule(*, transition = None):
             mandatory = True,
             allow_empty = False,
             aspects = [xcodeproj_aspect],
+        ),
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
         "_external_file_marker": attr.label(
             allow_single_file = True,
@@ -299,6 +325,7 @@ def make_xcodeproj_rule(*, transition = None):
     return rule(
         implementation = _xcodeproj_impl,
         attrs = attrs,
+        cfg = _xcodeproj_transition,
         executable = True,
     )
 

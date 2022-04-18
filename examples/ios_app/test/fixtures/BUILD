@@ -17,6 +17,7 @@ update_fixtures(
     name = "update",
     tags = ["manual"],
     targets = [
+        ":fixture_bwb",
         ":fixture_bwx",
     ],
 )
@@ -24,6 +25,7 @@ update_fixtures(
 xcodeproj_test_suite(
     name = "xcodeproj",
     fixture_tests = [
+        xcodeproj_tests.from_fixture("//test/fixtures:fixture_bwb"),
         xcodeproj_tests.from_fixture("//test/fixtures:fixture_bwx"),
     ],
 )
