@@ -40,7 +40,10 @@ def _from_fixture(
     )
 
     if basename == None:
-        basename = paths.basename(pkg)
+        basename = "{basename}_{name}".format(
+            basename = paths.basename(pkg),
+            name = target_under_test_label.name,
+        )
     if expected_spec == None:
         expected_spec = "{pkg}:{name}".format(
             pkg = pkg,

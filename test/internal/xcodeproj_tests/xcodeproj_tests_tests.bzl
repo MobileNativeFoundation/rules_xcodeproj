@@ -9,7 +9,7 @@ def _from_fixture_test(ctx):
     # Specify target
     actual = xcodeproj_tests.from_fixture("//path/to/pkg:custom_xcodeproj")
     expected = struct(
-        basename = "pkg",
+        basename = "pkg_custom_xcodeproj",
         target_under_test = "//path/to/pkg:custom_xcodeproj",
         expected_spec = "@//path/to/pkg:custom_xcodeproj_spec",
         expected_xcodeproj = "@//path/to/pkg:custom_xcodeproj_output",
