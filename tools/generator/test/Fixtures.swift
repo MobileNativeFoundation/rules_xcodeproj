@@ -1125,31 +1125,43 @@ appletvos
             shellScript: #"""
 set -eu
 
+if [ "$ACTION" == "indexbuild" ]; then
+  # We use a different output base for Index Build to prevent normal builds and
+  # indexing waiting on bazel locks from the other
+  output_base="$OBJROOT/bazel_output_base"
+fi
+
 output_path=$(env -i \
   DEVELOPER_DIR="$DEVELOPER_DIR" \
   HOME="$HOME" \
   PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
   USER="$USER" \
   "$BAZEL_PATH" \
+  ${output_base:+--output_base "$output_base"} \
   info \
+  --experimental_convenience_symlinks=ignore \
   output_path)
 external="${output_path%/*/*/*}/external"
 
-mkdir -p "$LINKS_DIR"
-cd "$LINKS_DIR"
+# We only want to modify `$LINKS_DIR` during normal builds since Indexing can
+# run concurrent to normal builds
+if [ "$ACTION" != "indexbuild" ]; then
+  mkdir -p "$LINKS_DIR"
+  cd "$LINKS_DIR"
 
-# Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-# files to the internal links directory to prevent Bazel from recursing into it,
-# and thus following the `external` symlink
+  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+  # files to the internal links directory to prevent Bazel from recursing into
+  # it, and thus following the `external` symlink
 touch BUILD
 touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
 
-# Need to remove the directories that Xcode creates as part of output prep
-rm -rf gen_dir
-rm -rf external
+  # Need to remove the directories that Xcode creates as part of output prep
+  rm -rf gen_dir
+  rm -rf external
 
-ln -sf "$external" external
-ln -sf "$BUILD_DIR/bazel-out" gen_dir
+  ln -sf "$external" external
+  ln -sf "$BUILD_DIR/bazel-out" gen_dir
+fi
 
 cd "$BUILD_DIR"
 
@@ -1218,13 +1230,21 @@ done
             shellScript: #"""
 set -eu
 
+if [ "$ACTION" == "indexbuild" ]; then
+  # We use a different output base for Index Build to prevent normal builds and
+  # indexing waiting on bazel locks from the other
+  output_base="$OBJROOT/bazel_output_base"
+fi
+
 env -i \
   DEVELOPER_DIR="$DEVELOPER_DIR" \
   HOME="$HOME" \
   PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
   USER="$USER" \
   "$BAZEL_PATH" \
+  ${output_base:+--output_base "$output_base"} \
   build \
+  --experimental_convenience_symlinks=ignore \
   --output_groups=generated_inputs \
   \#(xcodeprojBazelLabel)
 
