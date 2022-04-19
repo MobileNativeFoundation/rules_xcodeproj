@@ -843,13 +843,212 @@ bazel-out/a/c.a
         return group
     }
 
+    static func bazelDependenciesTarget(
+        in pbxProj: PBXProj,
+        xcodeprojBazelLabel: String
+    ) -> PBXAggregateTarget {
+        let allPlatforms = """
+watchsimulator \
+watchos \
+macosx \
+iphonesimulator \
+iphoneos \
+driverkit \
+appletvsimulator \
+appletvos
+"""
+
+        let debugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: [
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
+                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "INDEX_FORCE_SCRIPT_EXECUTION": true,
+                "SUPPORTED_PLATFORMS": allPlatforms,
+                "SUPPORTS_MACCATALYST": true,
+                "TARGET_NAME": "BazelDependencies",
+            ]
+        )
+        pbxProj.add(object: debugConfiguration)
+        let configurationList = XCConfigurationList(
+            buildConfigurations: [debugConfiguration],
+            defaultConfigurationName: debugConfiguration.name
+        )
+        pbxProj.add(object: configurationList)
+
+        let generateFilesScript = PBXShellScriptBuildPhase(
+            name: "Generate Files",
+            outputFileListPaths: [
+                "$(INTERNAL_DIR)/external.xcfilelist",
+                "$(INTERNAL_DIR)/generated.xcfilelist",
+            ],
+            shellScript: #"""
+set -eu
+
+if [ "$ACTION" == "indexbuild" ]; then
+  # We use a different output base for Index Build to prevent normal builds and
+  # indexing waiting on bazel locks from the other
+  output_base="$OBJROOT/bazel_output_base"
+fi
+
+output_path=$(env -i \
+  DEVELOPER_DIR="$DEVELOPER_DIR" \
+  HOME="$HOME" \
+  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  USER="$USER" \
+  "$BAZEL_PATH" \
+  ${output_base:+--output_base "$output_base"} \
+  info \
+  --experimental_convenience_symlinks=ignore \
+  output_path)
+external="${output_path%/*/*/*}/external"
+
+# We only want to modify `$LINKS_DIR` during normal builds since Indexing can
+# run concurrent to normal builds
+if [ "$ACTION" != "indexbuild" ]; then
+  mkdir -p "$LINKS_DIR"
+  cd "$LINKS_DIR"
+
+  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+  # files to the internal links directory to prevent Bazel from recursing into
+  # it, and thus following the `external` symlink
+  touch BUILD
+  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+
+  # Need to remove the directories that Xcode creates as part of output prep
+  rm -rf external
+  rm -rf gen_dir
+
+  ln -sf "$external" external
+  ln -sf "$BUILD_DIR/bazel-out" gen_dir
+fi
+
+cd "$BUILD_DIR"
+
+rm -rf external
+rm -rf real-bazel-out
+
+ln -sf "$external" external
+ln -sf "$output_path" real-bazel-out
+ln -sfn "$PROJECT_DIR" SRCROOT
+
+# Create parent directories of generated files, so the project navigator works
+# better faster
+
+mkdir -p bazel-out
+cd bazel-out
+
+sed 's|\/[^\/]*$||' \
+  "$INTERNAL_DIR/generated.rsynclist" \
+  | uniq \
+  | while IFS= read -r dir
+do
+  mkdir -p "$dir"
+done
+
+cd "$SRCROOT"
+
+date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
+
+env -i \
+  DEVELOPER_DIR="$DEVELOPER_DIR" \
+  HOME="$HOME" \
+  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  USER="$USER" \
+  "$BAZEL_PATH" \
+  ${output_base:+--output_base "$output_base"} \
+  build \
+  --experimental_convenience_symlinks=ignore \
+  --output_groups=generated_inputs \
+  \#(xcodeprojBazelLabel)
+
+"""#,
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: generateFilesScript)
+
+        let copyFilesScript = PBXShellScriptBuildPhase(
+            name: "Copy Files",
+            inputFileListPaths: ["$(INTERNAL_DIR)/generated.xcfilelist"],
+            outputFileListPaths: [
+                "$(INTERNAL_DIR)/generated.copied.xcfilelist",
+            ],
+            shellScript: #"""
+set -eu
+
+cd "$BAZEL_OUT"
+
+# Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
+# builds, but is different for Index Builds. `PBXBuildFile`s will use the
+# "$GEN_DIR" version, so indexing might get messed up until they are normally
+# generated. It's the best we can do though as we need to use the `gen_dir`
+# symlink.
+rsync \
+  --files-from "$INTERNAL_DIR/generated.rsynclist" \
+  --chmod=u+w \
+  -L \
+  . \
+  "$BUILD_DIR/bazel-out"
+
+"""#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: copyFilesScript)
+
+        let fixModulemapsScript = PBXShellScriptBuildPhase(
+            name: "Fix Modulemaps",
+            inputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.xcfilelist"],
+            outputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist"],
+            shellScript: #"""
+set -eu
+
+while IFS= read -r input; do
+  output="${input%.modulemap}.xcode.modulemap"
+  perl -p -e \
+    's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
+    < "$input" \
+    > "$output"
+done < "$SCRIPT_INPUT_FILE_LIST_0"
+
+"""#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: fixModulemapsScript)
+
+        let pbxProject = pbxProj.rootObject!
+
+        let target = PBXAggregateTarget(
+            name: "Bazel Dependencies",
+            buildConfigurationList: configurationList,
+            buildPhases: [
+                generateFilesScript,
+                copyFilesScript,
+                fixModulemapsScript,
+            ],
+            productName: "Bazel Dependencies"
+        )
+        pbxProj.add(object: target)
+        pbxProject.targets.append(target)
+
+        let attributes: [String: Any] = [
+            "CreatedOnToolsVersion": "13.2.1",
+        ]
+        pbxProject.setTargetAttributes(
+            attributes,
+            target: target
+        )
+
+        return target
+    }
+
     static func pbxTargets(
         in pbxProj: PBXProj,
         disambiguatedTargets: [TargetID: DisambiguatedTarget],
         files: [FilePath: File],
         products: Products,
         filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String
+        bazelDependenciesTarget: PBXAggregateTarget
     ) -> [TargetID: PBXNativeTarget] {
         // Build phases
 
@@ -1096,198 +1295,6 @@ bazel-out/a/c.a
             ),
         ]
 
-        let pbxProject = pbxProj.rootObject!
-
-        let allPlatforms = """
-watchsimulator \
-watchos \
-macosx \
-iphonesimulator \
-iphoneos \
-driverkit \
-appletvsimulator \
-appletvos
-"""
-
-        let bazelDependenciesDebugConfiguration = XCBuildConfiguration(
-            name: "Debug",
-            buildSettings: [
-                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
-                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
-                "INDEX_FORCE_SCRIPT_EXECUTION": true,
-                "SUPPORTED_PLATFORMS": allPlatforms,
-                "SUPPORTS_MACCATALYST": true,
-                "TARGET_NAME": "BazelDependencies",
-            ]
-        )
-        pbxProj.add(object: bazelDependenciesDebugConfiguration)
-        let bazelDependenciesConfigurationList = XCConfigurationList(
-            buildConfigurations: [bazelDependenciesDebugConfiguration],
-            defaultConfigurationName: bazelDependenciesDebugConfiguration.name
-        )
-        pbxProj.add(object: bazelDependenciesConfigurationList)
-
-        let generateFilesScript = PBXShellScriptBuildPhase(
-            name: "Generate Files",
-            outputFileListPaths: [
-                "$(INTERNAL_DIR)/external.xcfilelist",
-                "$(INTERNAL_DIR)/generated.xcfilelist",
-            ],
-            shellScript: #"""
-set -eu
-
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other
-  output_base="$OBJROOT/bazel_output_base"
-fi
-
-output_path=$(env -i \
-  DEVELOPER_DIR="$DEVELOPER_DIR" \
-  HOME="$HOME" \
-  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-  USER="$USER" \
-  "$BAZEL_PATH" \
-  ${output_base:+--output_base "$output_base"} \
-  info \
-  --experimental_convenience_symlinks=ignore \
-  output_path)
-external="${output_path%/*/*/*}/external"
-
-# We only want to modify `$LINKS_DIR` during normal builds since Indexing can
-# run concurrent to normal builds
-if [ "$ACTION" != "indexbuild" ]; then
-  mkdir -p "$LINKS_DIR"
-  cd "$LINKS_DIR"
-
-  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-  # files to the internal links directory to prevent Bazel from recursing into
-  # it, and thus following the `external` symlink
-  touch BUILD
-  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-
-  # Need to remove the directories that Xcode creates as part of output prep
-  rm -rf external
-  rm -rf gen_dir
-
-  ln -sf "$external" external
-  ln -sf "$BUILD_DIR/bazel-out" gen_dir
-fi
-
-cd "$BUILD_DIR"
-
-rm -rf external
-rm -rf real-bazel-out
-
-ln -sf "$external" external
-ln -sf "$output_path" real-bazel-out
-ln -sfn "$PROJECT_DIR" SRCROOT
-
-# Create parent directories of generated files, so the project navigator works
-# better faster
-
-mkdir -p bazel-out
-cd bazel-out
-
-sed 's|\/[^\/]*$||' \
-  "$INTERNAL_DIR/generated.rsynclist" \
-  | uniq \
-  | while IFS= read -r dir
-do
-  mkdir -p "$dir"
-done
-
-cd "$SRCROOT"
-
-date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
-
-env -i \
-  DEVELOPER_DIR="$DEVELOPER_DIR" \
-  HOME="$HOME" \
-  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-  USER="$USER" \
-  "$BAZEL_PATH" \
-  ${output_base:+--output_base "$output_base"} \
-  build \
-  --experimental_convenience_symlinks=ignore \
-  --output_groups=generated_inputs \
-  \#(xcodeprojBazelLabel)
-
-"""#,
-            showEnvVarsInLog: false,
-            alwaysOutOfDate: true
-        )
-        pbxProj.add(object: generateFilesScript)
-
-        let copyFilesScript = PBXShellScriptBuildPhase(
-            name: "Copy Files",
-            inputFileListPaths: ["$(INTERNAL_DIR)/generated.xcfilelist"],
-            outputFileListPaths: [
-                "$(INTERNAL_DIR)/generated.copied.xcfilelist",
-            ],
-            shellScript: #"""
-set -eu
-
-cd "$BAZEL_OUT"
-
-# Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
-# builds, but is different for Index Builds. `PBXBuildFile`s will use the
-# "$GEN_DIR" version, so indexing might get messed up until they are normally
-# generated. It's the best we can do though as we need to use the `gen_dir`
-# symlink.
-rsync \
-  --files-from "$INTERNAL_DIR/generated.rsynclist" \
-  --chmod=u+w \
-  -L \
-  . \
-  "$BUILD_DIR/bazel-out"
-
-"""#,
-            showEnvVarsInLog: false
-        )
-        pbxProj.add(object: copyFilesScript)
-
-        let fixModulemapsScript = PBXShellScriptBuildPhase(
-            name: "Fix Modulemaps",
-            inputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.xcfilelist"],
-            outputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist"],
-            shellScript: #"""
-set -eu
-
-while IFS= read -r input; do
-  output="${input%.modulemap}.xcode.modulemap"
-  perl -p -e \
-    's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
-    < "$input" \
-    > "$output"
-done < "$SCRIPT_INPUT_FILE_LIST_0"
-
-"""#,
-            showEnvVarsInLog: false
-        )
-        pbxProj.add(object: fixModulemapsScript)
-
-        let bazelDependenciesTarget = PBXAggregateTarget(
-            name: "Bazel Dependencies",
-            buildConfigurationList: bazelDependenciesConfigurationList,
-            buildPhases: [
-                generateFilesScript,
-                copyFilesScript,
-                fixModulemapsScript,
-            ],
-            productName: "Bazel Dependencies"
-        )
-        pbxProj.add(object: bazelDependenciesTarget)
-        pbxProject.targets.append(bazelDependenciesTarget)
-
-        let attributes: [String: Any] = [
-            "CreatedOnToolsVersion": "13.2.1",
-        ]
-        pbxProject.setTargetAttributes(
-            attributes,
-            target: bazelDependenciesTarget
-        )
-
         _ = try! pbxTargets["A 1"]!.addDependency(
             target: bazelDependenciesTarget
         )
@@ -1322,7 +1329,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         // The order target are added to `PBXProject`s matter for uuid fixing.
         for pbxTarget in pbxTargets.values.sortedLocalizedStandard(\.name) {
             pbxProj.add(object: pbxTarget)
-            pbxProject.targets.append(pbxTarget)
+            pbxProj.rootObject!.targets.append(pbxTarget)
         }
 
         return pbxTargets
@@ -1346,15 +1353,19 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             workspaceOutputPath: workspaceOutputPath
         )
 
-        let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)
+        let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
+            in: pbxProj,
+            xcodeprojBazelLabel: ""
+        )
 
+        let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)
         let pbxTargets = Fixtures.pbxTargets(
             in: pbxProj,
             disambiguatedTargets: disambiguatedTargets,
             files: files,
             products: products,
             filePathResolver: filePathResolver,
-            xcodeprojBazelLabel: ""
+            bazelDependenciesTarget: bazelDependenciesTarget
         )
 
         return (pbxTargets, disambiguatedTargets)

@@ -61,6 +61,7 @@ final class GeneratorTests: XCTestCase {
         let products = Fixtures.products(in: pbxProj)
         
         let productsGroup = PBXGroup(name: "42")
+        let bazelDependenciesTarget = PBXAggregateTarget(name: "BD")
         let pbxTargets: [TargetID: PBXNativeTarget] = [
             "A": PBXNativeTarget(name: "A (3456a)"),
         ]
@@ -237,6 +238,41 @@ final class GeneratorTests: XCTestCase {
             targets: mergedTargets
         )]
 
+        // MARK: addBazelDependenciesTarget()
+
+        struct AddBazelDependenciesTargetCalled: Equatable {
+            let pbxProj: PBXProj
+            let files: [FilePath: File]
+            let filePathResolver: FilePathResolver
+            let xcodeprojBazelLabel: String
+        }
+
+        var addBazelDependenciesTargetCalled: [AddBazelDependenciesTargetCalled]
+            = []
+        func addBazelDependenciesTarget(
+            in pbxProj: PBXProj,
+            files: [FilePath: File],
+            filePathResolver: FilePathResolver,
+            xcodeprojBazelLabel: String
+        ) throws -> PBXAggregateTarget {
+            addBazelDependenciesTargetCalled.append(.init(
+                pbxProj: pbxProj,
+                files: files,
+                filePathResolver: filePathResolver,
+                xcodeprojBazelLabel: xcodeprojBazelLabel
+            ))
+            return bazelDependenciesTarget
+        }
+
+        let expectedAddBazelDependenciesTargetCalled = [
+            AddBazelDependenciesTargetCalled(
+                pbxProj: pbxProj,
+                files: files,
+                filePathResolver: filePathResolver,
+                xcodeprojBazelLabel: project.label
+            ),
+        ]
+
         // MARK: addTargets()
 
         struct AddTargetsCalled: Equatable {
@@ -245,7 +281,7 @@ final class GeneratorTests: XCTestCase {
             let products: Products
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
-            let xcodeprojBazelLabel: String
+            let bazelDependenciesTarget: PBXAggregateTarget
         }
 
         var addTargetsCalled: [AddTargetsCalled] = []
@@ -255,7 +291,7 @@ final class GeneratorTests: XCTestCase {
             products: Products,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
-            xcodeprojBazelLabel: String
+            bazelDependenciesTarget: PBXAggregateTarget
         ) throws -> [TargetID: PBXNativeTarget] {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
@@ -263,7 +299,7 @@ final class GeneratorTests: XCTestCase {
                 products: products,
                 files: files,
                 filePathResolver: filePathResolver,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                bazelDependenciesTarget: bazelDependenciesTarget
             ))
             return pbxTargets
         }
@@ -274,7 +310,7 @@ final class GeneratorTests: XCTestCase {
             products: products,
             files: files,
             filePathResolver: filePathResolver,
-            xcodeprojBazelLabel: project.label
+            bazelDependenciesTarget: bazelDependenciesTarget
         )]
         
         // MARK: setTargetConfigurations()
@@ -394,6 +430,7 @@ final class GeneratorTests: XCTestCase {
             createProducts: createProducts,
             populateMainGroup: populateMainGroup,
             disambiguateTargets: disambiguateTargets,
+            addBazelDependenciesTarget: addBazelDependenciesTarget,
             addTargets: addTargets,
             setTargetConfigurations: setTargetConfigurations,
             setTargetDependencies: setTargetDependencies,
@@ -442,6 +479,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             disambiguateTargetsCalled,
             expectedDisambiguateTargetsCalled
+        )
+        XCTAssertNoDifference(
+            addBazelDependenciesTargetCalled,
+            expectedAddBazelDependenciesTargetCalled
         )
         XCTAssertNoDifference(addTargetsCalled, expectedAddTargetsCalled)
         XCTAssertNoDifference(
