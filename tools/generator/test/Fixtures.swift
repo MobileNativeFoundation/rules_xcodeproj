@@ -655,6 +655,12 @@ enum Fixtures {
 
         // xcfilelists
 
+        files[.internal("external.xcfilelist")] = .nonReferencedContent("""
+$(BAZEL_EXTERNAL)/a_repo/a.swift
+$(BAZEL_EXTERNAL)/another_repo/b.swift
+
+""")
+
         let genDir = "$(BUILD_DIR)/bazel-out"
 
         files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
@@ -1226,7 +1232,10 @@ done
 
         let generateFilesScript = PBXShellScriptBuildPhase(
             name: "Generate Files",
-            outputFileListPaths: ["$(INTERNAL_DIR)/generated.xcfilelist"],
+            outputFileListPaths: [
+                "$(INTERNAL_DIR)/external.xcfilelist",
+                "$(INTERNAL_DIR)/generated.xcfilelist",
+            ],
             shellScript: #"""
 set -eu
 
@@ -1257,7 +1266,9 @@ env -i \
         let copyFilesScript = PBXShellScriptBuildPhase(
             name: "Copy Files",
             inputFileListPaths: ["$(INTERNAL_DIR)/generated.xcfilelist"],
-            outputFileListPaths: ["$(INTERNAL_DIR)/generated.copied.xcfilelist"],
+            outputFileListPaths: [
+                "$(INTERNAL_DIR)/generated.copied.xcfilelist",
+            ],
             shellScript: #"""
 set -eu
 
