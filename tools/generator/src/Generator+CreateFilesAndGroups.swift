@@ -31,6 +31,7 @@ extension File {
 
 extension Generator {
     static let compileStubPath: Path = "CompileStub.swift"
+    static let externalFileListPath: Path = "external.xcfilelist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
     static let rsyncFileListPath: Path = "generated.rsynclist"
     static let copiedGeneratedFileListPath: Path = "generated.copied.xcfilelist"
@@ -359,6 +360,13 @@ extension Generator {
 
         // Write xcfilelists
 
+        let externalPaths = elements
+            .filter { filePath, element in
+                return filePath.type == .external
+                    && element is PBXFileReference
+            }
+            .map { filePath, _ in filePathResolver.resolve(filePath) }
+
         let generatedFiles = elements
             .filter { filePath, element in
                 return filePath.type == .generated
@@ -385,7 +393,9 @@ extension Generator {
             return path.replacingExtension("xcode.modulemap")
         }
         let infoPlistPaths = generatedFiles
-            .filter { filePath, _ in filePath.path.lastComponent == "Info.plist" }
+            .filter { filePath, _ in
+                return filePath.path.lastComponent == "Info.plist"
+            }
             .map { filePath, _ in
             return filePathResolver.resolve(filePath)
         }
@@ -403,6 +413,7 @@ extension Generator {
             )
         }
 
+        addXCFileList(externalFileListPath, paths: externalPaths)
         addXCFileList(generatedFileListPath, paths: generatedPaths)
         addXCFileList(rsyncFileListPath, paths: rsyncPaths)
         addXCFileList(copiedGeneratedFileListPath, paths: copiedGeneratedPaths)

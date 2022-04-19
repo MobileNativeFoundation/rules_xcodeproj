@@ -275,6 +275,9 @@ done
             name: "Generate Files",
             outputFileListPaths: [
                 filePathResolver
+                    .resolve(.internal(externalFileListPath))
+                    .string,
+                filePathResolver
                     .resolve(.internal(generatedFileListPath))
                     .string,
             ],
