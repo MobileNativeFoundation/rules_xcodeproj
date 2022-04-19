@@ -69,23 +69,14 @@ if [ ! -d "$dest/rules_xcodeproj/links/gen_dir" ]; then
   # better.
   echo "Running one time setup..."
 
-  if %pre_generate_files%; then
-    echo "Creating generated files..."
-    scheme="Bazel Generated Files"
-    msg="generate files"
-  else
-    scheme="Setup"
-    msg="setup"
-  fi
-
   cd "$BUILD_WORKSPACE_DIRECTORY"
   error_log=$(mktemp)
   exit_status=0
-  xcodebuild -project "$dest" -scheme "$scheme" \
+  xcodebuild -project "$dest" -scheme "Bazel Dependencies" \
     > "$error_log" 2>&1 \
     || exit_status=$?
   if [ $exit_status -ne 0 ]; then
-    echo "WARNING: Failed to $msg:"
+    echo "WARNING: Failed to build \"Bazel Dependencies\" scheme:"
     cat "$error_log" >&2
   fi
 fi

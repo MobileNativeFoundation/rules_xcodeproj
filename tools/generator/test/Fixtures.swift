@@ -1109,7 +1109,7 @@ appletvsimulator \
 appletvos
 """
 
-        let setupDebugConfiguration = XCBuildConfiguration(
+        let bazelDependenciesDebugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
                 "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
@@ -1117,17 +1117,22 @@ appletvos
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "SUPPORTED_PLATFORMS": allPlatforms,
                 "SUPPORTS_MACCATALYST": true,
-                "TARGET_NAME": "Setup",
+                "TARGET_NAME": "BazelDependencies",
             ]
         )
-        pbxProj.add(object: setupDebugConfiguration)
-        let setupConfigurationList = XCConfigurationList(
-            buildConfigurations: [setupDebugConfiguration],
-            defaultConfigurationName: setupDebugConfiguration.name
+        pbxProj.add(object: bazelDependenciesDebugConfiguration)
+        let bazelDependenciesConfigurationList = XCConfigurationList(
+            buildConfigurations: [bazelDependenciesDebugConfiguration],
+            defaultConfigurationName: bazelDependenciesDebugConfiguration.name
         )
-        pbxProj.add(object: setupConfigurationList)
+        pbxProj.add(object: bazelDependenciesConfigurationList)
 
-        let createSymlinksScript = PBXShellScriptBuildPhase(
+        let generateFilesScript = PBXShellScriptBuildPhase(
+            name: "Generate Files",
+            outputFileListPaths: [
+                "$(INTERNAL_DIR)/external.xcfilelist",
+                "$(INTERNAL_DIR)/generated.xcfilelist",
+            ],
             shellScript: #"""
 set -eu
 
@@ -1158,12 +1163,12 @@ if [ "$ACTION" != "indexbuild" ]; then
   # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
   # files to the internal links directory to prevent Bazel from recursing into
   # it, and thus following the `external` symlink
-touch BUILD
-touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+  touch BUILD
+  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
 
   # Need to remove the directories that Xcode creates as part of output prep
-  rm -rf gen_dir
   rm -rf external
+  rm -rf gen_dir
 
   ln -sf "$external" external
   ln -sf "$BUILD_DIR/bazel-out" gen_dir
@@ -1192,58 +1197,7 @@ do
   mkdir -p "$dir"
 done
 
-"""#,
-            showEnvVarsInLog: false,
-            alwaysOutOfDate: true
-        )
-        pbxProj.add(object: createSymlinksScript)
-
-        let setupTarget = PBXAggregateTarget(
-            name: "Setup",
-            buildConfigurationList: setupConfigurationList,
-            buildPhases: [createSymlinksScript],
-            productName: "Setup"
-        )
-        pbxProj.add(object: setupTarget)
-        pbxProject.targets.append(setupTarget)
-
-        let attributes: [String: Any] = [
-            "CreatedOnToolsVersion": "13.2.1",
-        ]
-        pbxProject.setTargetAttributes(attributes, target: setupTarget)
-
-        let generateFilesDebugConfiguration = XCBuildConfiguration(
-            name: "Debug",
-            buildSettings: [
-                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
-                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
-                "INDEX_FORCE_SCRIPT_EXECUTION": true,
-                "SUPPORTED_PLATFORMS": allPlatforms,
-                "SUPPORTS_MACCATALYST": true,
-                "TARGET_NAME": "GenerateBazelFiles",
-            ]
-        )
-        pbxProj.add(object: generateFilesDebugConfiguration)
-        let generateFilesConfigurationList = XCConfigurationList(
-            buildConfigurations: [generateFilesDebugConfiguration],
-            defaultConfigurationName: generateFilesDebugConfiguration.name
-        )
-        pbxProj.add(object: generateFilesConfigurationList)
-
-        let generateFilesScript = PBXShellScriptBuildPhase(
-            name: "Generate Files",
-            outputFileListPaths: [
-                "$(INTERNAL_DIR)/external.xcfilelist",
-                "$(INTERNAL_DIR)/generated.xcfilelist",
-            ],
-            shellScript: #"""
-set -eu
-
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other
-  output_base="$OBJROOT/bazel_output_base"
-fi
+cd "$SRCROOT"
 
 env -i \
   DEVELOPER_DIR="$DEVELOPER_DIR" \
@@ -1311,35 +1265,57 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         )
         pbxProj.add(object: fixModulemapsScript)
 
-        let generatedFilesTarget = PBXAggregateTarget(
-            name: "Bazel Generated Files",
-            buildConfigurationList: generateFilesConfigurationList,
+        let bazelDependenciesTarget = PBXAggregateTarget(
+            name: "Bazel Dependencies",
+            buildConfigurationList: bazelDependenciesConfigurationList,
             buildPhases: [
                 generateFilesScript,
                 copyFilesScript,
                 fixModulemapsScript,
             ],
-            productName: "Bazel Generated Files"
+            productName: "Bazel Dependencies"
         )
-        pbxProj.add(object: generatedFilesTarget)
-        pbxProject.targets.append(generatedFilesTarget)
+        pbxProj.add(object: bazelDependenciesTarget)
+        pbxProject.targets.append(bazelDependenciesTarget)
 
-        pbxProject.setTargetAttributes(attributes, target: generatedFilesTarget)
-
-        _ = try! generatedFilesTarget.addDependency(
-            target: setupTarget,
-            in: pbxProj
+        let attributes: [String: Any] = [
+            "CreatedOnToolsVersion": "13.2.1",
+        ]
+        pbxProject.setTargetAttributes(
+            attributes,
+            target: bazelDependenciesTarget
         )
-        _ = try! pbxTargets["A 1"]!.addDependency(target: setupTarget)
-        _ = try! pbxTargets["A 2"]!.addDependency(target: setupTarget)
-        _ = try! pbxTargets["B 1"]!.addDependency(target: setupTarget)
-        _ = try! pbxTargets["B 2"]!.addDependency(target: setupTarget)
-        _ = try! pbxTargets["B 3"]!.addDependency(target: setupTarget)
-        _ = try! pbxTargets["C 1"]!.addDependency(target: generatedFilesTarget)
-        _ = try! pbxTargets["C 2"]!.addDependency(target: setupTarget)
-        _ = try! pbxTargets["E1"]!.addDependency(target: setupTarget)
-        _ = try! pbxTargets["E2"]!.addDependency(target: setupTarget)
-        _ = try! pbxTargets["R 1"]!.addDependency(target: setupTarget)
+
+        _ = try! pbxTargets["A 1"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["A 2"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["B 1"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["B 2"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["B 3"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["C 1"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["C 2"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["E1"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["E2"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxTargets["R 1"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
 
         // The order target are added to `PBXProject`s matter for uuid fixing.
         for pbxTarget in pbxTargets.values.sortedLocalizedStandard(\.name) {
