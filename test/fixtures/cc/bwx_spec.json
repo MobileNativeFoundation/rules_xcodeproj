@@ -75,7 +75,7 @@
             "info_plist": null,
             "inputs": {
                 "hdrs": [
-                    "examples/cc/lib2/lib.h"
+                    "examples/cc/lib2/includes/lib.h"
                 ],
                 "srcs": [
                     "examples/cc/lib2/lib.c"
@@ -107,6 +107,13 @@
                     ".",
                     {
                         "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin",
+                        "t": "g"
+                    }
+                ],
+                "system_includes": [
+                    "examples/cc/lib2/includes",
+                    {
+                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/includes",
                         "t": "g"
                     }
                 ]
@@ -324,6 +331,13 @@
                     },
                     {
                         "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/bazel_tools",
+                        "t": "g"
+                    }
+                ],
+                "system_includes": [
+                    "examples/cc/lib2/includes",
+                    {
+                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/includes",
                         "t": "g"
                     }
                 ]

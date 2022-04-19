@@ -4,8 +4,9 @@ cc_library(
         "lib.c",
     ],
     hdrs = [
-        "lib.h",
+        "includes/lib.h",
     ],
+    includes = ["includes"],
 )
 
 alias(
