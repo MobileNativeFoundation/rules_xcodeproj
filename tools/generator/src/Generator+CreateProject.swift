@@ -19,7 +19,7 @@ extension Generator {
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
             "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
-            "BAZEL_OUT": "$(LINKS_DIR)/bazel-out",
+            "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
             "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)",
             "GEN_DIR": "$(LINKS_DIR)/gen_dir",
             "LINKS_DIR": "$(INTERNAL_DIR)/links",

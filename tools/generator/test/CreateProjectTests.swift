@@ -26,7 +26,7 @@ final class CreateProjectTests: XCTestCase {
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
-                "BAZEL_OUT": "$(LINKS_DIR)/bazel-out",
+                "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
