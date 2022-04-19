@@ -16,7 +16,7 @@ rsync \
   --exclude=project.xcworkspace \
   --exclude=xcuserdata \
   --exclude=xcshareddata/xcschemes \
-  --exclude=rules_xcodeproj/gen_dir \
+  --exclude=rules_xcodeproj/links \
   --delete \
   "$src/" "$dest/"
 
@@ -63,7 +63,7 @@ plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 
 echo 'Updated project at "%output_path%"'
 
-if [ ! -d "$dest/rules_xcodeproj/gen_dir" ]; then
+if [ ! -d "$dest/rules_xcodeproj/links/gen_dir" ]; then
   # If "gen_dir" doesn't exist, this is most likely a fresh project. In that
   # case, we should create generated files to have the initial experience be
   # better.
