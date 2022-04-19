@@ -1140,20 +1140,25 @@ cd "$LINKS_DIR"
 
 # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
 # files to the internal links directory to prevent Bazel from recursing into it,
-# and thus following the `external` and `bazel-out` symlinks
+# and thus following the `external` symlink
 touch BUILD
 touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
 
-# Need to remove the directory that Xcode creates as part of output prep
+# Need to remove the directories that Xcode creates as part of output prep
 rm -rf gen_dir
+rm -rf external
 
-ln -sfn "$output_path" bazel-out
-ln -sfn "$external" external
-ln -sfn "$BUILD_DIR/bazel-out" gen_dir
+ln -sf "$external" external
+ln -sf "$BUILD_DIR/bazel-out" gen_dir
 
 cd "$BUILD_DIR"
+
+rm -rf external
+rm -rf real-bazel-out
+
+ln -sf "$external" external
+ln -sf "$output_path" real-bazel-out
 ln -sfn "$PROJECT_DIR" SRCROOT
-ln -sfn "$external" external
 
 # Create parent directories of generated files, so the project navigator works
 # better faster
