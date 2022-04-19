@@ -164,9 +164,11 @@ external="${output_path%/*/*/*}/external"
 mkdir -p "$LINKS_DIR"
 cd "$LINKS_DIR"
 
-# Add BUILD file to the internal links directory to prevent Bazel from recursing
-# into it, and thus following the `external` and `bazel-out` symlinks
-touch "BUILD"
+# Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+# files to the internal links directory to prevent Bazel from recursing into it,
+# and thus following the `external` and `bazel-out` symlinks
+touch BUILD
+touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
 
 # Need to remove the directory that Xcode creates as part of output prep
 rm -rf gen_dir
