@@ -139,10 +139,7 @@ Target "\(id)" not found in `pbxTargets`
             buildSettings["TARGET_NAME"] = target.name
 
             if let infoPlist = target.infoPlist {
-                var infoPlistPath = filePathResolver
-                    // We need to use `gen_dir` instead of `$(BUILD_DIR)` here
-                    // to match the project navigator
-                    .resolve(infoPlist, useBuildDir: false)
+                var infoPlistPath = filePathResolver.resolve(infoPlist)
                 
                 // If the plist is generated, use the patched version that
                 // removes a specific key that causes a warning when building
@@ -156,10 +153,7 @@ Target "\(id)" not found in `pbxTargets`
             }
 
             if let pch = target.inputs.pch {
-                let pchPath = filePathResolver
-                    // We need to use `gen_dir` instead of `$(BUILD_DIR)` here
-                    // to match the project navigator
-                    .resolve(pch, useBuildDir: false)
+                let pchPath = filePathResolver.resolve(pch)
 
                 buildSettings["GCC_PREFIX_HEADER"] = pchPath.string.quoted
             }
