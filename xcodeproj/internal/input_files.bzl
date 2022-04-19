@@ -4,6 +4,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "flatten", "set_if_true")
 load(":files.bzl", "file_path", "file_path_to_dto", "join_paths_ignoring_empty", "parsed_file_path")
 load(":logging.bzl", "warn")
+load(":output_group_map.bzl", "output_group_map")
 
 # Utility
 
@@ -438,8 +439,33 @@ def _to_dto(inputs, *, is_bundle, avoid_infos):
 
     return ret
 
+def _to_output_groups_fields(*, ctx, inputs, toplevel_cache_buster):
+    """Generates a dictionary to be splatted into `OutputGroupInfo`.
+
+    Args:
+        ctx: The rule context.
+        inputs: A value returned from `input_files.collect()`.
+        toplevel_cache_buster: A `list` of `File`s that change with each build,
+            and are used as inputs to the output map generation, to ensure that
+            the files references by the output map are always downloaded from
+            the remote cache, even when using `--remote_download_toplevel`.
+
+    Returns:
+        A `dict` where the keys are output group names and the values are
+        `depset` of `File`s.
+    """
+    return {
+        "generated_inputs": depset([output_group_map.write_map(
+            ctx = ctx,
+            name = "generated_inputs",
+            files = inputs.generated,
+            toplevel_cache_buster = toplevel_cache_buster,
+        )]),
+    }
+
 input_files = struct(
     collect = _collect,
     merge = _merge,
     to_dto = _to_dto,
+    to_output_groups_fields = _to_output_groups_fields,
 )

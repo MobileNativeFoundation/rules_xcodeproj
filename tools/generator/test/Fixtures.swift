@@ -1199,6 +1199,8 @@ done
 
 cd "$SRCROOT"
 
+date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
+
 env -i \
   DEVELOPER_DIR="$DEVELOPER_DIR" \
   HOME="$HOME" \

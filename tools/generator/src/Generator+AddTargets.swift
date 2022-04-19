@@ -326,6 +326,8 @@ done
 
 cd "$SRCROOT"
 
+date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
+
 \#(bazelExec) \
   ${output_base:+--output_base "$output_base"} \
   build \
