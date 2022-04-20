@@ -5,4 +5,6 @@
 int main(int argc, char *argv[]) {
     NSLog(@"%s, %s", greeting(), SECRET_2);
     NSLog(@"%@", SwiftGreetings.greeting);
+    /* NSLog(@"%@", SwiftParserExample.execute()); */
+    NSLog(@"%@", SwiftParserExample.result);
 }

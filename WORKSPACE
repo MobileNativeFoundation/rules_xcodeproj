@@ -74,6 +74,17 @@ swift_library(
     url = "https://github.com/pointfreeco/swift-custom-dump/archive/15fae98653ab3573b458bdb416cbba06e95348a4.tar.gz",
 )
 
+http_archive(
+    name = "com_github_keith_swift_syntax_bazel",
+    sha256 = "f83b8449f84e29d263d2b0ceb9d2ae7f88c9f2a81f4b10035e94073664507507",
+    strip_prefix = "swift-syntax-bazel-13.3.13E113",
+    url = "https://github.com/keith/swift-syntax-bazel/archive/refs/tags/13.3.13E113.tar.gz",
+)
+
+load("@com_github_keith_swift_syntax_bazel//:deps.bzl", "swift_syntax_deps")
+
+swift_syntax_deps()
+
 # Setup the Skylib dependency, this is required to use the Starlark unittest
 # framework. Since this is only used for rules_xcodeproj's tests, we configure
 # it here in the WORKSPACE file. This also can't be added to
