@@ -6,7 +6,7 @@ import XCTest
 @testable import generator
 
 final class AddTargetsTests: XCTestCase {
-    func test_basic() throws {
+    func test_integration() throws {
         // Arrange
 
         let pbxProj = Fixtures.pbxProj()
