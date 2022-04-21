@@ -554,12 +554,12 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 
 # Library targets
 
-def _process_library_target(*, ctx, target, transitive_infos):
-    """Gathers information about a library target.
+def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
+    """Gathers information about a library target that provides `CcInfo`.
 
     Args:
         ctx: The aspect context.
-        target: The `Target` to process.
+        target: A `Target` to process. It must provide a `CcInfo`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
@@ -1332,12 +1332,14 @@ def _process_target(*, ctx, target, transitive_infos):
             target = target,
             transitive_infos = transitive_infos,
         )
-    else:
-        processed_target = _process_library_target(
+    elif CcInfo in target:
+        processed_target = _process_ccinfo_library_target(
             ctx = ctx,
             target = target,
             transitive_infos = transitive_infos,
         )
+    else:
+        fail("Don't know how to process target. {}".format(target.label))
 
     return _target_info_fields(
         dependencies = processed_target.dependencies,
