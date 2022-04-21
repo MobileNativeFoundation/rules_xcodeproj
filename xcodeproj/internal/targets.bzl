@@ -138,34 +138,13 @@ def _get_outputs(target):
                 for file in target[OutputGroupInfo].dsyms.to_list()
             ]
     if SwiftInfo in target:
-        swift_info = target[SwiftInfo]
-        # TODO(chuck): If a swift module comes from a cc_library, the
-        # module.swift will be None, but the swift.clang will not be None.
-        # Decide how to handle this. It looks like we don't even use these
-        # outputs in the generator. I wonder if we can remove this.
         swift_modules = [
             module
-            for module in swift_info.direct_modules
+            for module in target[SwiftInfo].direct_modules
             if module.swift
         ]
-        clang_modules = [
-            module
-            for module in swift_info.direct_modules
-            if module.clang
-        ]
         if len(swift_modules) > 0:
-            # # DEBUG BEGIN
-            # print("*** CHUCK swift_modules target.label: ", target.label)
-            # print("*** CHUCK swift_modules swift_modules[0]: ", swift_modules[0])
-            # # DEBUG END
             outputs["swift_module"] = _swift_module_output(swift_modules[0])
-        elif len(clang_modules) > 0:
-            # # DEBUG BEGIN
-            # print("*** CHUCK clang_modules target.label: ", target.label)
-            # print("*** CHUCK clang_modules clang_modules[0]: ", clang_modules[0])
-            # # DEBUG END
-            pass
-
     return outputs
 
 targets = struct(
