@@ -6,6 +6,7 @@ load(
 )
 load(":providers.bzl", "XcodeProjInfo")
 load(":target.bzl", "process_target")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_clang_module_aspect")
 
 # Utility
 
@@ -59,5 +60,5 @@ xcodeproj_aspect = aspect(
         ),
     },
     fragments = ["apple", "cpp"],
-    requires = [default_input_file_attributes_aspect],
+    requires = [default_input_file_attributes_aspect, swift_clang_module_aspect],
 )

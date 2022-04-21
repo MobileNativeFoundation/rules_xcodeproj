@@ -138,11 +138,16 @@ def _get_outputs(target):
                 for file in target[OutputGroupInfo].dsyms.to_list()
             ]
     if SwiftInfo in target:
-        outputs["swift_module"] = _swift_module_output([
+        # TODO(chuck): If a swift module comes from a cc_library, the
+        # module.swift will be None, but the swift.clang will not be None.
+        # Decide how to handle this.
+        swift_modules = [
             module
             for module in target[SwiftInfo].direct_modules
             if module.swift
-        ][0])
+        ]
+        if len(swift_modules) > 0:
+            outputs["swift_module"] = _swift_module_output(swift_modules[0])
     return outputs
 
 targets = struct(
