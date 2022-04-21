@@ -35,6 +35,9 @@ high level features:
 - [ ] [Build Bazel targets with Bazel, in Xcode](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/2)
 - [ ] [Easier target discovery and focused projects](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/3)
 
+We've also documented the [high level design](/doc/design/high-level.md) of the
+rules.
+
 ## Compatibility
 
 - macOS 12.0-12.3
