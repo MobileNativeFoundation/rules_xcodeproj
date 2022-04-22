@@ -8,7 +8,7 @@ extension Generator {
         products: Products,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        bazelDependenciesTarget: PBXAggregateTarget
+        bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> [TargetID: PBXNativeTarget] {
         let pbxProject = pbxProj.rootObject!
 
@@ -81,7 +81,9 @@ Product for target "\(id)" not found in `products`
             pbxProject.targets.append(pbxTarget)
             pbxTargets[id] = pbxTarget
 
-            _ = try pbxTarget.addDependency(target: bazelDependenciesTarget)
+            if let bazelDependenciesTarget = bazelDependenciesTarget {
+                _ = try pbxTarget.addDependency(target: bazelDependenciesTarget)
+            }
         }
 
         return pbxTargets
