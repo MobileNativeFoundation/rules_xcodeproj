@@ -1,4 +1,4 @@
-""" Product handling logic """
+"""Functions for calculating a target's product."""
 
 load(":collections.bzl", "flatten")
 load(
