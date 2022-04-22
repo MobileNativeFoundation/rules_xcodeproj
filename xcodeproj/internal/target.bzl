@@ -364,11 +364,6 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
 
-    # DEBUG BEGIN
-    print("*** CHUCK ========================")
-    print("*** CHUCK _process_top_level_target target.label: ", target.label)
-
-    # DEBUG END
     modulemaps = _process_modulemaps(swift_info = swift_info)
     additional_files.extend(modulemaps.files)
 
@@ -574,11 +569,6 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
     Returns:
         The value returned from `_processed_target()`.
     """ attrs_info = target[InputFileAttributesInfo]
-
-    # DEBUG BEGIN
-    print("*** CHUCK ========================")
-    print("*** CHUCK _process_ccinfo_library_target target.label: ", target.label)
-    # DEBUG END
 
     configuration = _get_configuration(ctx)
     label = target.label
@@ -1293,19 +1283,11 @@ def _process_modulemaps(*, swift_info):
 
     direct_modules = swift_info.direct_modules
 
-    # DEBUG BEGIN
-    print("*** CHUCK _process_modulemaps transitive_modules count: ", len(swift_info.transitive_modules.to_list()))
-    # DEBUG END
-
     modulemap_file_paths = []
     modulemap_files = []
     for module in swift_info.transitive_modules.to_list():
         # TODO(chuck): Removed this check as it was preventing the _CSwiftSyntax modulemap from being recorded.
         # Brentley believes that we need to do this for Swift provided modules. I need to allow it for the tagged cc_library case.
-
-        # DEBUG BEGIN
-        print("*** CHUCK transitive_module: ", module.name)
-        # DEBUG END
 
         if module in direct_modules:
             continue
