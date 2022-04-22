@@ -15,7 +15,8 @@ load(
     "get_product_module_name",
     "get_targeted_device_family",
 )
-load(":collections.bzl", "flatten", "set_if_true", "uniq")
+load(":collections.bzl", "set_if_true", "uniq")
+load("configuration.bzl", "calculate_configuration", "get_configuration")
 load(
     ":files.bzl",
     "file_path",
@@ -33,131 +34,17 @@ load(
     "XcodeProjInfo",
     "target_type",
 )
+load(
+    ":product.bzl",
+    "get_linker_inputs",
+    "get_static_framework_files",
+    "get_static_libraries",
+    "process_product",
+    "product_to_dto",
+)
 load(":resource_bundle_products.bzl", "resource_bundle_products")
+load(":target_id.bzl", "get_id")
 load(":targets.bzl", "targets")
-
-# Configuration
-
-def _calculate_configuration(*, bin_dir_path):
-    """Calculates a configuration string from `ctx.bin_dir`.
-
-    Args:
-        bin_dir_path: `ctx.bin_dir.path`.
-
-    Returns:
-        A string that represents a configuration.
-    """
-    path_components = bin_dir_path.split("/")
-    if len(path_components) > 2:
-        return path_components[1]
-    return ""
-
-def _get_configuration(ctx):
-    """Generates a configuration identifier for a target.
-
-    `ConfiguredTarget.getConfigurationKey()` isn't exposed to Starlark, so we
-    are using the output directory as a proxy.
-
-    Args:
-        ctx: The aspect context.
-
-    Returns:
-        A string that uniquely identifies the configuration of a target.
-    """
-    return _calculate_configuration(bin_dir_path = ctx.bin_dir.path)
-
-# Target ID
-
-def _get_id(*, label, configuration):
-    """Generates a unique identifier for a target.
-
-    Args:
-        label: The `Label` of the `Target`.
-        configuration: The value returned from `_get_configuration()`.
-
-    Returns:
-        An opaque string that uniquely identifies the target.
-    """
-    return "{} {}".format(label, configuration)
-
-# Product
-
-def _get_linker_inputs(*, cc_info):
-    return cc_info.linking_context.linker_inputs
-
-def _get_static_framework_files(*, objc):
-    if not objc:
-        return depset()
-    return objc.static_framework_file
-
-def _get_static_libraries(*, linker_inputs, static_framework_files):
-    static_libraries = [
-        library.static_library
-        for library in flatten([
-            input.libraries
-            for input in linker_inputs.to_list()
-        ])
-    ]
-    return static_libraries + static_framework_files.to_list()
-
-def _get_static_library(*, linker_inputs):
-    for input in linker_inputs.to_list():
-        # Ideally we would only return the static library that is owned by this
-        # target, but sometimes another rule creates the output and this rule
-        # outputs it. So far the first library has always been the correct one.
-        return file_path(input.libraries[0].static_library)
-    return None
-
-def _process_product(
-        *,
-        target,
-        product_name,
-        product_type,
-        bundle_path,
-        linker_inputs,
-        build_settings):
-    """Generates information about the target's product.
-
-    Args:
-        target: The `Target` the product information is gathered from.
-        product_name: The name of the product (i.e. the "PRODUCT_NAME" build
-            setting).
-        product_type: A PBXProductType string. See
-            https://github.com/tuist/XcodeProj/blob/main/Sources/XcodeProj/Objects/Targets/PBXProductType.swift
-            for examples.
-        bundle_path: If the product is a bundle, this is the the path to the
-            bundle, otherwise `None`.
-        linker_inputs: A `depset` of `LinkerInput`s for this target.
-        build_settings: A mutable `dict` that will be updated with Xcode build
-            settings.
-    """
-    if bundle_path:
-        fp = bundle_path
-    elif target[DefaultInfo].files_to_run.executable:
-        fp = file_path(target[DefaultInfo].files_to_run.executable)
-    elif CcInfo in target or SwiftInfo in target:
-        fp = _get_static_library(linker_inputs = linker_inputs)
-    else:
-        fp = None
-
-    if not fp:
-        fail("Could not find product for target {}".format(target.label))
-
-    build_settings["PRODUCT_NAME"] = product_name
-
-    return struct(
-        name = product_name,
-        path = fp,
-        type = product_type,
-    )
-
-# TODO: Make this into a module
-def _product_to_dto(product):
-    return {
-        "name": product.name,
-        "path": file_path_to_dto(product.path) if product.path else None,
-        "type": product.type,
-    }
 
 # Processed target
 
@@ -191,7 +78,7 @@ def _processed_target(
             `resource_bundle_products.collect()`.
         search_paths: The value returned from `_process_search_paths()`.
         static_framework_files: The value returned from
-            `_get_static_framework_files()`.
+            `get_static_framework_files()`.
         target: An optional `XcodeProjInfo.target` `struct`.
         xcode_target: An optional string that will be in the
             `XcodeProjInfo.xcode_targets` `depset`.
@@ -252,7 +139,7 @@ def _xcode_target(
         package_bin_dir: The package directory for the `Target` within
             `ctx.bin_dir`.
         platform: The value returned from `process_platform()`.
-        product: The value returned from `_process_product()`.
+        product: The value returned from `process_product()`.
         is_bundle: Whether the target is a bundle.
         is_swift: Whether the target compiles Swift code.
         test_host: The `id` of the target that is the test host for this
@@ -285,7 +172,7 @@ def _xcode_target(
         configuration = configuration,
         package_bin_dir = package_bin_dir,
         platform = platform,
-        product = _product_to_dto(product),
+        product = product_to_dto(product),
         is_swift = is_swift,
         test_host = test_host,
         build_settings = build_settings,
@@ -424,9 +311,9 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     """
     attrs_info = target[InputFileAttributesInfo]
 
-    configuration = _get_configuration(ctx)
+    configuration = get_configuration(ctx)
     label = target.label
-    id = _get_id(label = label, configuration = configuration)
+    id = get_id(label = label, configuration = configuration)
     dependencies = _process_dependencies(
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
@@ -543,7 +430,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     test_host_target_info = _process_test_host(test_host)
 
     if test_host_target_info:
-        test_host_libraries = _get_static_libraries(
+        test_host_libraries = get_static_libraries(
             linker_inputs = test_host_target_info.linker_inputs,
             static_framework_files = (
                 test_host_target_info.static_framework_files
@@ -552,7 +439,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     else:
         test_host_libraries = None
 
-    libraries = _get_static_libraries(
+    libraries = get_static_libraries(
         linker_inputs = linker_inputs,
         static_framework_files = static_framework_files,
     )
@@ -583,7 +470,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         minimum_deployment_os_version = props.minimum_deployment_os_version,
         build_settings = build_settings,
     )
-    product = _process_product(
+    product = process_product(
         target = target,
         product_name = props.product_name,
         product_type = props.product_type,
@@ -681,9 +568,9 @@ def _process_library_target(*, ctx, target, transitive_infos):
     """
     attrs_info = target[InputFileAttributesInfo]
 
-    configuration = _get_configuration(ctx)
+    configuration = get_configuration(ctx)
     label = target.label
-    id = _get_id(label = label, configuration = configuration)
+    id = get_id(label = label, configuration = configuration)
 
     build_settings = {}
 
@@ -708,10 +595,10 @@ def _process_library_target(*, ctx, target, transitive_infos):
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
-    linker_inputs = _get_linker_inputs(cc_info = target[CcInfo])
+    linker_inputs = get_linker_inputs(cc_info = target[CcInfo])
 
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
-    static_framework_files = _get_static_framework_files(objc = objc)
+    static_framework_files = get_static_framework_files(objc = objc)
 
     cpp = ctx.fragments.cpp
 
@@ -744,7 +631,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         minimum_deployment_os_version = None,
         build_settings = build_settings,
     )
-    product = _process_product(
+    product = process_product(
         target = target,
         product_name = product_name,
         product_type = "com.apple.product-type.library.static",
@@ -845,9 +732,9 @@ def _process_resource_target(*, ctx, target, transitive_infos):
     """
     attrs_info = target[InputFileAttributesInfo]
 
-    configuration = _get_configuration(ctx)
+    configuration = get_configuration(ctx)
     label = target.label
-    id = _get_id(label = label, configuration = configuration)
+    id = get_id(label = label, configuration = configuration)
 
     build_settings = {}
 
@@ -883,7 +770,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         minimum_deployment_os_version = None,
         build_settings = build_settings,
     )
-    product = _process_product(
+    product = process_product(
         target = target,
         product_name = product_name,
         product_type = "com.apple.product-type.bundle",
@@ -978,13 +865,13 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
     """
     if CcInfo in target:
         cc_info = target[CcInfo]
-        linker_inputs = _get_linker_inputs(cc_info = cc_info)
+        linker_inputs = get_linker_inputs(cc_info = cc_info)
     else:
         cc_info = None
         linker_inputs = depset()
 
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
-    static_framework_files = _get_static_framework_files(objc = objc)
+    static_framework_files = get_static_framework_files(objc = objc)
 
     attrs_info = target[InputFileAttributesInfo]
     resource_owner = None
@@ -1523,7 +1410,7 @@ def process_target(*, ctx, target, transitive_infos):
 
 # These functions are exposed only for access in unit tests.
 testable = struct(
-    calculate_configuration = _calculate_configuration,
+    calculate_configuration = calculate_configuration,
     process_libraries = _process_libraries,
     process_top_level_properties = _process_top_level_properties,
 )
