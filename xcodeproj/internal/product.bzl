@@ -8,7 +8,6 @@ load(
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 
-
 def get_linker_inputs(*, cc_info):
     return cc_info.linking_context.linker_inputs
 

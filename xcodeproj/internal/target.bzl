@@ -40,7 +40,7 @@ load(
     "get_static_framework_files",
     "get_static_libraries",
     "process_product",
-    "product_to_dto"
+    "product_to_dto",
 )
 load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":target_id.bzl", "get_id")
