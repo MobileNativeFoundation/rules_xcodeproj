@@ -1,4 +1,4 @@
-""" Calculate and fetch configuration """
+""" Functions for calculating configuration."""
 
 def calculate_configuration(*, bin_dir_path):
     """Calculates a configuration string from `ctx.bin_dir`.
