@@ -1,4 +1,4 @@
-""" Target ID Handling """
+"""Functions dealing with Target IDs."""
 
 def get_id(*, label, configuration):
     """Generates a unique identifier for a target.
