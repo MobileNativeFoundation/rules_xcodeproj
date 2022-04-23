@@ -320,7 +320,9 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     )
     test_host = getattr(ctx.rule.attr, "test_host", None)
 
-    deps = getattr(ctx.rule.attr, "deps", [])
+    deps = []
+    deps.extend(getattr(ctx.rule.attr, "deps", []))
+
     avoid_deps = [test_host] if test_host else []
 
     framework_import_infos = [
@@ -361,6 +363,12 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     is_bundle = bundle_info != None
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
+
+    # DEBUG BEGIN
+    print("*** CHUCK ========================")
+    print("*** CHUCK _process_top_level_target target.label: ", target.label)
+
+    # DEBUG END
     modulemaps = _process_modulemaps(swift_info = swift_info)
     additional_files.extend(modulemaps.files)
 
@@ -565,10 +573,10 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
 
     Returns:
         The value returned from `_processed_target()`.
-    """
-    attrs_info = target[InputFileAttributesInfo]
+    """ attrs_info = target[InputFileAttributesInfo]
 
     # DEBUG BEGIN
+    print("*** CHUCK ========================")
     print("*** CHUCK _process_ccinfo_library_target target.label: ", target.label)
     # DEBUG END
 
@@ -1286,7 +1294,7 @@ def _process_modulemaps(*, swift_info):
     direct_modules = swift_info.direct_modules
 
     # DEBUG BEGIN
-    print("*** CHUCK _process_modulemaps swift_info: ", swift_info)
+    print("*** CHUCK _process_modulemaps transitive_modules count: ", len(swift_info.transitive_modules.to_list()))
     # DEBUG END
 
     modulemap_file_paths = []
@@ -1294,8 +1302,13 @@ def _process_modulemaps(*, swift_info):
     for module in swift_info.transitive_modules.to_list():
         # TODO(chuck): Removed this check as it was preventing the _CSwiftSyntax modulemap from being recorded.
         # Brentley believes that we need to do this for Swift provided modules. I need to allow it for the tagged cc_library case.
-        # if module in direct_modules:
-        #     continue
+
+        # DEBUG BEGIN
+        print("*** CHUCK transitive_module: ", module.name)
+        # DEBUG END
+
+        if module in direct_modules:
+            continue
         clang_module = module.clang
         if not clang_module:
             continue
@@ -1333,12 +1346,23 @@ def _process_swiftmodules(*, swift_info):
 
     file_paths = []
     for module in swift_info.transitive_modules.to_list():
+        # TODO(chuck): FIX ME! Same as _process_modulemaps
+
         if module in direct_modules:
             continue
         swift_module = module.swift
         if not swift_module:
             continue
         file_paths.append(file_path(swift_module.swiftmodule))
+
+        # swiftmodule_file = None
+        # if module.swift:
+        #     swiftmodule_file = module.swift.swiftmodule
+        # elif module.clang:
+        #     swiftmodule_file = module.clang.module_map
+        # else:
+        #     continue
+        # file_paths.append(file_path(swiftmodule_file))
 
     return file_paths
 

@@ -1,12 +1,12 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_clang_module_aspect")
 load(
     ":default_input_file_attributes_aspect.bzl",
     "default_input_file_attributes_aspect",
 )
 load(":providers.bzl", "XcodeProjInfo")
 load(":target.bzl", "process_target")
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_clang_module_aspect")
 
 # Utility
 
@@ -32,6 +32,12 @@ def _transitive_infos(*, ctx):
         elif type(dep) == "Target" and XcodeProjInfo in dep:
             transitive_infos.append((attr, dep[XcodeProjInfo]))
 
+    # DEBUG BEGIN
+    print("*** CHUCK _transitive_infos for", ctx.rule.attr.name, "transitive_infos count:", len(transitive_infos))
+    for idx, item in enumerate(transitive_infos):
+        print("*** CHUCK", idx, ":", item)
+
+    # DEBUG END
     return transitive_infos
 
 # Aspect
