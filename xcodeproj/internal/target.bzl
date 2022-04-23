@@ -319,9 +319,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     )
     test_host = getattr(ctx.rule.attr, "test_host", None)
 
-    deps = []
-    deps.extend(getattr(ctx.rule.attr, "deps", []))
-
+    deps = getattr(ctx.rule.attr, "deps", [])
     avoid_deps = [test_host] if test_host else []
 
     framework_import_infos = [
@@ -644,7 +642,6 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos, swift_info_
     )
 
     swift_info, is_swift = targets.get_swift_info(target)
-    cc_info = target[CcInfo] if CcInfo in target else None
 
     modulemaps = _process_modulemaps(
         swift_info = swift_info,
@@ -668,6 +665,7 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos, swift_info_
         transitive_infos = transitive_infos,
     )
 
+    cc_info = target[CcInfo] if CcInfo in target else None
     _process_defines(
         cc_info = cc_info,
         build_settings = build_settings,
