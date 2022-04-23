@@ -24,14 +24,79 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		029312BA890DC427697DA90F /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476CF913D7C7633C604977FF /* Misc.swift */; };
+		0751BF90B0AB143872FABF28 /* SyntaxVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33E7EA9AC7FBAA346E9075 /* SyntaxVerifier.swift */; };
+		0897928495AA7EE6029EA3CF /* SyntaxNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13B994364C0D9014EEBEBDD /* SyntaxNodes.swift */; };
+		0B97BB18221867E3A85C59B4 /* lib_InternalSwiftSyntaxParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C71EC78C4B2F5DF71E25EA9 /* lib_InternalSwiftSyntaxParser.framework */; };
+		1511819F6144741BCEBB5329 /* SyntaxBaseNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB7C2CDDA4C1EE52EE486E0 /* SyntaxBaseNodes.swift */; };
+		1FC74F58D5E2684FAD312BA2 /* SourceLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B43F0C73FCC6DD4EA0A8BB /* SourceLength.swift */; };
+		27C82EC861CA47C74181030B /* SyntaxTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812B4B19D655B1EF9D4AB55E /* SyntaxTraits.swift */; };
+		2967A80287967F9550487482 /* SyntaxExprNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B93CB4702FE7ED31279308F /* SyntaxExprNodes.swift */; };
+		33B6E3BF16540464501F75B5 /* SyntaxEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DC4882A31634476EDCCC9F /* SyntaxEnum.swift */; };
+		3D93898AE5D34D1997995B38 /* lib_InternalSwiftSyntaxParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C71EC78C4B2F5DF71E25EA9 /* lib_InternalSwiftSyntaxParser.framework */; };
+		3DE8A571A7B40D9CAC6D0278 /* atomic-counter.c in Sources */ = {isa = PBXBuildFile; fileRef = 340F5E1031B031A125C3CBB7 /* atomic-counter.c */; };
+		3EB15D62085E53EB8D5AF1F9 /* AbsolutePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3CB5999DC5BE5E6E6C316D /* AbsolutePosition.swift */; };
+		425E1C7EFFDCCA41556E6898 /* SwiftParserExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A941B2F5111E43916B4ED /* SwiftParserExample.swift */; };
+		43B83182C9811B115C6FC80F /* SyntaxClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFBC9100AF950ADB8B38621 /* SyntaxClassifier.swift */; };
+		460FA728A84260CADED41FF7 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62087ABE1FFB40A64AC24589 /* SourceLocation.swift */; };
+		48273F6A6EED63581236BD53 /* SyntaxKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2949F10CFCC2DA390A35AA /* SyntaxKind.swift */; };
+		4DF9850E78324859F52508AE /* SyntaxAnyVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3568A50FEA840FC9EEE5BC /* SyntaxAnyVisitor.swift */; };
+		586857651D5B1D2E9D30AF0D /* CNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93AA900A7A26A0AA0E2F2A5 /* CNodes.swift */; };
+		6AA4E9AB611BF63779BFC27B /* SyntaxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DB585D34A99DCE37B15C6 /* SyntaxParser.swift */; };
+		6F24F936F93C9E3B51D53C6F /* SyntaxBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7126B77F5BC1FD0322AD0BFF /* SyntaxBuilders.swift */; };
+		73930086B5B87F9E6F3B18DF /* SyntaxRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0557A97B83664BA093F1F /* SyntaxRewriter.swift */; };
+		73ECFBF66C32688E7D5FA068 /* SyntaxTypeNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6372D591B6FD5FD5ABC86C /* SyntaxTypeNodes.swift */; };
+		766B2EFFAA12BAEADC35F1A1 /* RawSyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E4DEFD5519D14FBC896A8 /* RawSyntax.swift */; };
 		7BC8A776D2D1C760F9C38A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B86F4542BE9E526167481 /* main.m */; };
+		7E1F30F3E4C5DCB3DD7C4BCC /* Trivia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F137F748CB4D0C88AAA53A4 /* Trivia.swift */; };
 		8061E3DE63D96635F98C9B3A /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5E4ABAACB85A529597A95E /* lib.swift */; };
+		8649FC24D67D9E7EDB90F119 /* SyntaxPatternNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDD29215FE45FF7832EF81 /* SyntaxPatternNodes.swift */; };
+		8B701D07C77FA291DF293F4F /* CNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58F97BDEE38FBA8718C1474 /* CNodes.swift */; };
+		8C6D3464DF320FF5773A2157 /* SyntaxOtherNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F37193B1DFDB5D76CC6757 /* SyntaxOtherNodes.swift */; };
+		8E634CE5EBD460D1ACAA1D39 /* SyntaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18296755CBD81C2AE0618DA5 /* SyntaxData.swift */; };
+		9A4838D4F27727B98F122F4B /* AtomicCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CE88A73F30CFD8190CDEB /* AtomicCounter.swift */; };
+		9D0B89ECC000BE037ABE6525 /* SyntaxStmtNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E0DFAF74C38BBFC0125F4 /* SyntaxStmtNodes.swift */; };
 		9D33767266FC4D21B0BF2358 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = B45E624D6CB9A25AD05AA3EB /* lib.m */; };
+		A123324165958A67C2D664FD /* _SyntaxParserInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D7FBD98550944EF0A47AC6 /* _SyntaxParserInterop.swift */; };
+		A3A29D6F2ABFEB91A15EE6EF /* SyntaxChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C5234A78B9698EFB3884A /* SyntaxChildren.swift */; };
+		A5BFCCA680A0902F21321D23 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375DE0EB02D43A99E6C697F /* Utils.swift */; };
+		AD0A7DF53E51A7E49F904D0F /* SyntaxClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69F92152704538575732B80 /* SyntaxClassification.swift */; };
+		B06276968A2E8E495B26ADF9 /* SyntaxFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4831CD76E8A33FBBFA22A6 /* SyntaxFactory.swift */; };
+		B11B5AF932B0D31AAB597623 /* SyntaxCollections.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF04C1C519ABADB98DB348A /* SyntaxCollections.swift */; };
 		BB13B22EC1C20144E655F4AB /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = 7703BC6D5949A71AA4B20322 /* private.h */; };
+		C41384942A2BE7569B2B9A8A /* TokenKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DBCC97CEF3DFE7B87E1A87 /* TokenKind.swift */; };
+		CB9CC834A35B8CBB825A3C86 /* SourcePresence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619A1A09D36300F9A7A0727 /* SourcePresence.swift */; };
 		DCEAC0456D3DB4A3DE4A12A2 /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D945EBC9B2F4A830BCCF4F4 /* SwiftGreetingsTests.swift */; };
+		E5C8D06ADCDBB0224CEA3E9F /* IncrementalParseTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF916B4BB51292AAE7DC8D02 /* IncrementalParseTransition.swift */; };
+		E83FA7AE1F77D9D0FB2CB4B5 /* SyntaxVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A8211E6C51E1F0F89FF26 /* SyntaxVisitor.swift */; };
+		E928863D0C94A2DCC9CE98B5 /* NodeDeclarationHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16C86E206501D18DC75CDFC /* NodeDeclarationHash.swift */; };
+		F2BBE153B7580DACF92EED29 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16986AA4F884305D551C5C1 /* Syntax.swift */; };
+		F7307EE4A2FBB8D69352DF5D /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B889780311218FF57C2B45 /* Diagnostic.swift */; };
+		FC8F9145BCD514763EC9173B /* SyntaxDeclNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99494FD654E6E3C6B6514AD9 /* SyntaxDeclNodes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1169E4ADA22A022A19CA499E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5818B90A725A9C678DAB333;
+			remoteInfo = Setup;
+		};
+		13A6E845C4612B353D4AF7D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63C45E4DCC98E837380F09EA;
+			remoteInfo = SwiftSyntaxParser;
+		};
+		163941101B117AB11908E307 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5818B90A725A9C678DAB333;
+			remoteInfo = Setup;
+		};
 		26C09AD07CD4B30E1307D115 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -39,7 +104,14 @@
 			remoteGlobalIDString = 195FCD65F4EB377830E3E996;
 			remoteInfo = lib_swift;
 		};
-		8BBBD18AF62B7FB2BA7B2553 /* PBXContainerItemProxy */ = {
+		3D971FBBEF58BF1E99F09824 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F14807FCB0E7641139898EC2;
+			remoteInfo = SwiftSyntax;
+		};
+		42C9BA6F5963F54AC64770E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -59,6 +131,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
 			remoteInfo = "Bazel Dependencies";
+		};
+		93BB6AA3261F217722B6CDC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F14807FCB0E7641139898EC2;
+			remoteInfo = SwiftSyntax;
+		};
+		9A7D62228A57850BF0F77E8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 54A74BCB26884F7F60423FCF;
+			remoteInfo = _CSwiftSyntax;
 		};
 		CA9CDA938E8AE3259FBC42DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -81,36 +167,135 @@
 			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
 			remoteInfo = "Bazel Dependencies";
 		};
+		EFF41562D55BA67009A4509B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5818B90A725A9C678DAB333;
+			remoteInfo = Setup;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		005E0DFAF74C38BBFC0125F4 /* SyntaxStmtNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxStmtNodes.swift; sourceTree = "<group>"; };
+		0375DE0EB02D43A99E6C697F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0C0B86F4542BE9E526167481 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0C71EC78C4B2F5DF71E25EA9 /* lib_InternalSwiftSyntaxParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lib_InternalSwiftSyntaxParser.framework; sourceTree = "<group>"; };
+		0D2949F10CFCC2DA390A35AA /* SyntaxKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxKind.swift; sourceTree = "<group>"; };
+		18296755CBD81C2AE0618DA5 /* SyntaxData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxData.swift; sourceTree = "<group>"; };
 		1BA9C0D148D2F511913315F2 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		1C639AFF7C06F18BCBEC19AF /* libSwiftSyntax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSwiftSyntax.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E24825205C7C82ED0184DEA /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F137F748CB4D0C88AAA53A4 /* Trivia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trivia.swift; sourceTree = "<group>"; };
+		220DB585D34A99DCE37B15C6 /* SyntaxParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxParser.swift; sourceTree = "<group>"; };
+		2A6372D591B6FD5FD5ABC86C /* SyntaxTypeNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTypeNodes.swift; sourceTree = "<group>"; };
 		2E8FDF5B64B5BB961DFACC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		30C0557A97B83664BA093F1F /* SyntaxRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxRewriter.swift; sourceTree = "<group>"; };
+		340F5E1031B031A125C3CBB7 /* atomic-counter.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "atomic-counter.c"; sourceTree = "<group>"; };
+		39DC4882A31634476EDCCC9F /* SyntaxEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxEnum.swift; sourceTree = "<group>"; };
+		3B93CB4702FE7ED31279308F /* SyntaxExprNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxExprNodes.swift; sourceTree = "<group>"; };
+		40B6605C0B131A56347C16F0 /* c-syntax-nodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "c-syntax-nodes.h"; sourceTree = "<group>"; };
+		476CF913D7C7633C604977FF /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
+		4C4831CD76E8A33FBBFA22A6 /* SyntaxFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxFactory.swift; sourceTree = "<group>"; };
+		5619A1A09D36300F9A7A0727 /* SourcePresence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePresence.swift; sourceTree = "<group>"; };
 		61D4E93D586B426B1BE67C73 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		62087ABE1FFB40A64AC24589 /* SourceLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
+		66DD479D06FCCD013E208DF8 /* lib_CSwiftSyntax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib_CSwiftSyntax.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D3A8211E6C51E1F0F89FF26 /* SyntaxVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxVisitor.swift; sourceTree = "<group>"; };
 		70C5E43F5F81562B9428709C /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_swift.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7126B77F5BC1FD0322AD0BFF /* SyntaxBuilders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxBuilders.swift; sourceTree = "<group>"; };
+		72DBCC97CEF3DFE7B87E1A87 /* TokenKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenKind.swift; sourceTree = "<group>"; };
 		7703BC6D5949A71AA4B20322 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		7D945EBC9B2F4A830BCCF4F4 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
 		7EA31D6C8ED425D3BB693543 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		7EFBC9100AF950ADB8B38621 /* SyntaxClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxClassifier.swift; sourceTree = "<group>"; };
 		7F5E4ABAACB85A529597A95E /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
+		812B4B19D655B1EF9D4AB55E /* SyntaxTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTraits.swift; sourceTree = "<group>"; };
+		82B43F0C73FCC6DD4EA0A8BB /* SourceLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceLength.swift; sourceTree = "<group>"; };
+		86B889780311218FF57C2B45 /* Diagnostic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostic.swift; sourceTree = "<group>"; };
+		8C3CB5999DC5BE5E6E6C316D /* AbsolutePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsolutePosition.swift; sourceTree = "<group>"; };
+		99494FD654E6E3C6B6514AD9 /* SyntaxDeclNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxDeclNodes.swift; sourceTree = "<group>"; };
+		A0D7FBD98550944EF0A47AC6 /* _SyntaxParserInterop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _SyntaxParserInterop.swift; sourceTree = "<group>"; };
+		A58F97BDEE38FBA8718C1474 /* CNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNodes.swift; sourceTree = "<group>"; };
+		A968151FA01FD5B2DD95C2C4 /* atomic-counter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "atomic-counter.h"; sourceTree = "<group>"; };
+		AAFDD29215FE45FF7832EF81 /* SyntaxPatternNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxPatternNodes.swift; sourceTree = "<group>"; };
+		ABF04C1C519ABADB98DB348A /* SyntaxCollections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxCollections.swift; sourceTree = "<group>"; };
+		AD3568A50FEA840FC9EEE5BC /* SyntaxAnyVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxAnyVisitor.swift; sourceTree = "<group>"; };
+		B13B994364C0D9014EEBEBDD /* SyntaxNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxNodes.swift; sourceTree = "<group>"; };
 		B1A979C58E9B6F22D33D8C8D /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		B45E624D6CB9A25AD05AA3EB /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
+		B6F37193B1DFDB5D76CC6757 /* SyntaxOtherNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxOtherNodes.swift; sourceTree = "<group>"; };
 		BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
+		C03C5234A78B9698EFB3884A /* SyntaxChildren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxChildren.swift; sourceTree = "<group>"; };
 		C1602C71819BF474A07F04FA /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
+		C16C86E206501D18DC75CDFC /* NodeDeclarationHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDeclarationHash.swift; sourceTree = "<group>"; };
+		D20A941B2F5111E43916B4ED /* SwiftParserExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftParserExample.swift; sourceTree = "<group>"; };
 		D4E23788130BC4E7FCB9DB99 /* LibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D51E4DEFD5519D14FBC896A8 /* RawSyntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawSyntax.swift; sourceTree = "<group>"; };
+		D69F92152704538575732B80 /* SyntaxClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxClassification.swift; sourceTree = "<group>"; };
+		DD8CE88A73F30CFD8190CDEB /* AtomicCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicCounter.swift; sourceTree = "<group>"; };
+		E93AA900A7A26A0AA0E2F2A5 /* CNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNodes.swift; sourceTree = "<group>"; };
+		EB178784A0AB834FDB807F3D /* libSwiftSyntaxParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSwiftSyntaxParser.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECB7C2CDDA4C1EE52EE486E0 /* SyntaxBaseNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxBaseNodes.swift; sourceTree = "<group>"; };
+		EF916B4BB51292AAE7DC8D02 /* IncrementalParseTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalParseTransition.swift; sourceTree = "<group>"; };
 		F079AF4E09A6C7D7089DE38F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		F16986AA4F884305D551C5C1 /* Syntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syntax.swift; sourceTree = "<group>"; };
 		F7195ED6E5A6C3B8F36B42A6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F9D76F5B0753D363A58EF3CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FC33E7EA9AC7FBAA346E9075 /* SyntaxVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxVerifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		7165B44A589EFBFBB82CDA17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B97BB18221867E3A85C59B4 /* lib_InternalSwiftSyntaxParser.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3E3E3024ED208A4FF669280 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D93898AE5D34D1997995B38 /* lib_InternalSwiftSyntaxParser.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
+		1C1A469030B831DC6D99E648 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A968151FA01FD5B2DD95C2C4 /* atomic-counter.h */,
+				40B6605C0B131A56347C16F0 /* c-syntax-nodes.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		1CAECB989BCC5DF10A3F64F0 /* applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059 */ = {
 			isa = PBXGroup;
 			children = (
 				ACD16A93B2E21703614A2353 /* bin */,
 			);
 			path = "applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059";
+			sourceTree = "<group>";
+		};
+		1F42E35876D53944E6A6D4CC /* macos-arm64_x86_64 */ = {
+			isa = PBXGroup;
+			children = (
+				0C71EC78C4B2F5DF71E25EA9 /* lib_InternalSwiftSyntaxParser.framework */,
+			);
+			path = "macos-arm64_x86_64";
+			sourceTree = "<group>";
+		};
+		1F915FB20911681AF915106D /* lib_InternalSwiftSyntaxParser.xcframework */ = {
+			isa = PBXGroup;
+			children = (
+				1F42E35876D53944E6A6D4CC /* macos-arm64_x86_64 */,
+			);
+			path = lib_InternalSwiftSyntaxParser.xcframework;
 			sourceTree = "<group>";
 		};
 		38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */ = {
@@ -127,6 +312,19 @@
 				BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */,
 			);
 			path = testing;
+			sourceTree = "<group>";
+		};
+		3B2391EACCEBB451E0E152AD /* syntax_nodes */ = {
+			isa = PBXGroup;
+			children = (
+				99494FD654E6E3C6B6514AD9 /* SyntaxDeclNodes.swift */,
+				3B93CB4702FE7ED31279308F /* SyntaxExprNodes.swift */,
+				B13B994364C0D9014EEBEBDD /* SyntaxNodes.swift */,
+				AAFDD29215FE45FF7832EF81 /* SyntaxPatternNodes.swift */,
+				005E0DFAF74C38BBFC0125F4 /* SyntaxStmtNodes.swift */,
+				2A6372D591B6FD5FD5ABC86C /* SyntaxTypeNodes.swift */,
+			);
+			path = syntax_nodes;
 			sourceTree = "<group>";
 		};
 		3F58F3B1F1FA1B948D1268E3 /* lib */ = {
@@ -149,8 +347,11 @@
 		462C3519CA354BE1B04D4855 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				66DD479D06FCCD013E208DF8 /* lib_CSwiftSyntax.a */,
 				61D4E93D586B426B1BE67C73 /* liblib_impl.a */,
 				70C5E43F5F81562B9428709C /* liblib_swift.a */,
+				1C639AFF7C06F18BCBEC19AF /* libSwiftSyntax.a */,
+				EB178784A0AB834FDB807F3D /* libSwiftSyntaxParser.a */,
 				D4E23788130BC4E7FCB9DB99 /* LibSwiftTests.xctest */,
 				1E24825205C7C82ED0184DEA /* tool */,
 			);
@@ -173,6 +374,17 @@
 			path = command_line;
 			sourceTree = "<group>";
 		};
+		572B9D33DBC5221C611CD0AA /* SwiftSyntaxParser */ = {
+			isa = PBXGroup;
+			children = (
+				D8EFEE620C27252FC5D3A559 /* gyb_generated */,
+				A58F97BDEE38FBA8718C1474 /* CNodes.swift */,
+				86B889780311218FF57C2B45 /* Diagnostic.swift */,
+				220DB585D34A99DCE37B15C6 /* SyntaxParser.swift */,
+			);
+			path = SwiftSyntaxParser;
+			sourceTree = "<group>";
+		};
 		6CC12958153FA5717213D4F6 /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +399,14 @@
 				FD30E4E9CEBA74E2906F5BE5 /* LibSwiftTests.__internal__.__test_bundle-intermediates */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		74DC0A3FA00B79519A6B53FA /* StaticInternalSwiftSyntaxParser */ = {
+			isa = PBXGroup;
+			children = (
+				1F915FB20911681AF915106D /* lib_InternalSwiftSyntaxParser.xcframework */,
+			);
+			path = StaticInternalSwiftSyntaxParser;
 			sourceTree = "<group>";
 		};
 		768C0B6FBEA15B86DF2C38DC /* apple */ = {
@@ -216,10 +436,20 @@
 			path = command_line;
 			sourceTree = "<group>";
 		};
+		816D2A226BB2A5463C4FD64A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				340F5E1031B031A125C3CBB7 /* atomic-counter.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		85F708DD1F5484A0D5558108 /* Bazel External Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */,
+				FCCCAF9FFD5B3F4477DEDCB2 /* com_github_keith_swift_syntax */,
+				74DC0A3FA00B79519A6B53FA /* StaticInternalSwiftSyntaxParser */,
 			);
 			name = "Bazel External Repositories";
 			path = test/fixtures/command_line/bwx.xcodeproj/rules_xcodeproj/links/external;
@@ -286,11 +516,53 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		D8EFEE620C27252FC5D3A559 /* gyb_generated */ = {
+			isa = PBXGroup;
+			children = (
+				C16C86E206501D18DC75CDFC /* NodeDeclarationHash.swift */,
+			);
+			path = gyb_generated;
+			sourceTree = "<group>";
+		};
+		D97A3651F64660DD812C9FE0 /* SwiftSyntax */ = {
+			isa = PBXGroup;
+			children = (
+				E85D7CFB7A46FC0D52B05DEE /* gyb_generated */,
+				A0D7FBD98550944EF0A47AC6 /* _SyntaxParserInterop.swift */,
+				8C3CB5999DC5BE5E6E6C316D /* AbsolutePosition.swift */,
+				DD8CE88A73F30CFD8190CDEB /* AtomicCounter.swift */,
+				E93AA900A7A26A0AA0E2F2A5 /* CNodes.swift */,
+				EF916B4BB51292AAE7DC8D02 /* IncrementalParseTransition.swift */,
+				D51E4DEFD5519D14FBC896A8 /* RawSyntax.swift */,
+				82B43F0C73FCC6DD4EA0A8BB /* SourceLength.swift */,
+				62087ABE1FFB40A64AC24589 /* SourceLocation.swift */,
+				5619A1A09D36300F9A7A0727 /* SourcePresence.swift */,
+				F16986AA4F884305D551C5C1 /* Syntax.swift */,
+				C03C5234A78B9698EFB3884A /* SyntaxChildren.swift */,
+				7EFBC9100AF950ADB8B38621 /* SyntaxClassifier.swift */,
+				18296755CBD81C2AE0618DA5 /* SyntaxData.swift */,
+				B6F37193B1DFDB5D76CC6757 /* SyntaxOtherNodes.swift */,
+				FC33E7EA9AC7FBAA346E9075 /* SyntaxVerifier.swift */,
+				0375DE0EB02D43A99E6C697F /* Utils.swift */,
+			);
+			path = SwiftSyntax;
+			sourceTree = "<group>";
+		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB562AF5A631B603B2965DBB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				EC3E3FE19DF61FF74171D383 /* _CSwiftSyntax */,
+				D97A3651F64660DD812C9FE0 /* SwiftSyntax */,
+				572B9D33DBC5221C611CD0AA /* SwiftSyntaxParser */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		E0DF9FDD420D7C34C5522A8F /* lib */ = {
@@ -301,8 +573,48 @@
 				B45E624D6CB9A25AD05AA3EB /* lib.m */,
 				7F5E4ABAACB85A529597A95E /* lib.swift */,
 				7703BC6D5949A71AA4B20322 /* private.h */,
+				D20A941B2F5111E43916B4ED /* SwiftParserExample.swift */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		E85D7CFB7A46FC0D52B05DEE /* gyb_generated */ = {
+			isa = PBXGroup;
+			children = (
+				3B2391EACCEBB451E0E152AD /* syntax_nodes */,
+				476CF913D7C7633C604977FF /* Misc.swift */,
+				AD3568A50FEA840FC9EEE5BC /* SyntaxAnyVisitor.swift */,
+				ECB7C2CDDA4C1EE52EE486E0 /* SyntaxBaseNodes.swift */,
+				7126B77F5BC1FD0322AD0BFF /* SyntaxBuilders.swift */,
+				D69F92152704538575732B80 /* SyntaxClassification.swift */,
+				ABF04C1C519ABADB98DB348A /* SyntaxCollections.swift */,
+				39DC4882A31634476EDCCC9F /* SyntaxEnum.swift */,
+				4C4831CD76E8A33FBBFA22A6 /* SyntaxFactory.swift */,
+				0D2949F10CFCC2DA390A35AA /* SyntaxKind.swift */,
+				30C0557A97B83664BA093F1F /* SyntaxRewriter.swift */,
+				812B4B19D655B1EF9D4AB55E /* SyntaxTraits.swift */,
+				6D3A8211E6C51E1F0F89FF26 /* SyntaxVisitor.swift */,
+				72DBCC97CEF3DFE7B87E1A87 /* TokenKind.swift */,
+				1F137F748CB4D0C88AAA53A4 /* Trivia.swift */,
+			);
+			path = gyb_generated;
+			sourceTree = "<group>";
+		};
+		EC3E3FE19DF61FF74171D383 /* _CSwiftSyntax */ = {
+			isa = PBXGroup;
+			children = (
+				1C1A469030B831DC6D99E648 /* include */,
+				816D2A226BB2A5463C4FD64A /* src */,
+			);
+			path = _CSwiftSyntax;
+			sourceTree = "<group>";
+		};
+		FCCCAF9FFD5B3F4477DEDCB2 /* com_github_keith_swift_syntax */ = {
+			isa = PBXGroup;
+			children = (
+				DB562AF5A631B603B2965DBB /* Sources */,
+			);
+			path = com_github_keith_swift_syntax;
 			sourceTree = "<group>";
 		};
 		FD30E4E9CEBA74E2906F5BE5 /* LibSwiftTests.__internal__.__test_bundle-intermediates */ = {
@@ -331,6 +643,7 @@
 			buildConfigurationList = F22B54D0A6F2A9289C654CE0 /* Build configuration list for PBXNativeTarget "LibSwiftTests.__internal__.__test_bundle" */;
 			buildPhases = (
 				44F011F3CE3C58E01B37B898 /* Sources */,
+				B3E3E3024ED208A4FF669280 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -355,10 +668,45 @@
 			dependencies = (
 				085D63D0B3A87638171583ED /* PBXTargetDependency */,
 				5788E50D72472F75EFAA6061 /* PBXTargetDependency */,
+				D837A1F9FAE76E17149BB182 /* PBXTargetDependency */,
+				A1D5F19C0C9CB3CD2F78905E /* PBXTargetDependency */,
 			);
 			name = lib_swift;
 			productName = lib_swift;
 			productReference = 70C5E43F5F81562B9428709C /* liblib_swift.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		54A74BCB26884F7F60423FCF /* _CSwiftSyntax */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48F78D1CA3B46E4394F7A9AB /* Build configuration list for PBXNativeTarget "_CSwiftSyntax" */;
+			buildPhases = (
+				FD4F5E544F8302F9794E8EFF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96369EA286DD4E2D34561D4E /* PBXTargetDependency */,
+			);
+			name = _CSwiftSyntax;
+			productName = _CSwiftSyntax;
+			productReference = 66DD479D06FCCD013E208DF8 /* lib_CSwiftSyntax.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		63C45E4DCC98E837380F09EA /* SwiftSyntaxParser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F63B7783DD6D52C031FB320F /* Build configuration list for PBXNativeTarget "SwiftSyntaxParser" */;
+			buildPhases = (
+				EB9724CC523DB19D4DB396ED /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8BF9AC9D52D76B1C7063C43C /* PBXTargetDependency */,
+				51A2BDB4E548989B7083B441 /* PBXTargetDependency */,
+			);
+			name = SwiftSyntaxParser;
+			productName = SwiftSyntaxParser;
+			productReference = EB178784A0AB834FDB807F3D /* libSwiftSyntaxParser.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		8329F08BE01D4CC32B819CE9 /* lib_impl */ = {
@@ -382,6 +730,7 @@
 			buildConfigurationList = 85DAE5AD4B16C63749019BBB /* Build configuration list for PBXNativeTarget "tool" */;
 			buildPhases = (
 				5070903440E6C33AE9B061E6 /* Sources */,
+				7165B44A589EFBFBB82CDA17 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -393,6 +742,23 @@
 			productName = tool;
 			productReference = 1E24825205C7C82ED0184DEA /* tool */;
 			productType = "com.apple.product-type.tool";
+		};
+		F14807FCB0E7641139898EC2 /* SwiftSyntax */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4FEBB6BF37C8A4E339B87A2 /* Build configuration list for PBXNativeTarget "SwiftSyntax" */;
+			buildPhases = (
+				C6FECD0DEC926DA531772D76 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9993DDA5D0134DCDF9422D1A /* PBXTargetDependency */,
+				E99A829D412162793C54AA5E /* PBXTargetDependency */,
+			);
+			name = SwiftSyntax;
+			productName = SwiftSyntax;
+			productReference = 1C639AFF7C06F18BCBEC19AF /* libSwiftSyntax.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -415,11 +781,23 @@
 					657E5F38D9811E4DFA49DA75 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
+					54A74BCB26884F7F60423FCF = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					63C45E4DCC98E837380F09EA = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
 					8329F08BE01D4CC32B819CE9 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
 					EC6A68AC956C60AA25485960 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					F14807FCB0E7641139898EC2 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -438,10 +816,14 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
-				657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */,
+				D5818B90A725A9C678DAB333 /* Setup */,
+				259BD17350ABF44CECE076AA /* Bazel Generated Files */,
+				54A74BCB26884F7F60423FCF /* _CSwiftSyntax */,
 				8329F08BE01D4CC32B819CE9 /* lib_impl */,
 				195FCD65F4EB377830E3E996 /* lib_swift */,
 				0290E727C546D76C651A3B2D /* LibSwiftTests.__internal__.__test_bundle */,
+				F14807FCB0E7641139898EC2 /* SwiftSyntax */,
+				63C45E4DCC98E837380F09EA /* SwiftSyntaxParser */,
 				EC6A68AC956C60AA25485960 /* tool */,
 			);
 		};
@@ -580,7 +962,70 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				425E1C7EFFDCCA41556E6898 /* SwiftParserExample.swift in Sources */,
 				8061E3DE63D96635F98C9B3A /* lib.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6FECD0DEC926DA531772D76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EB15D62085E53EB8D5AF1F9 /* AbsolutePosition.swift in Sources */,
+				9A4838D4F27727B98F122F4B /* AtomicCounter.swift in Sources */,
+				586857651D5B1D2E9D30AF0D /* CNodes.swift in Sources */,
+				E5C8D06ADCDBB0224CEA3E9F /* IncrementalParseTransition.swift in Sources */,
+				766B2EFFAA12BAEADC35F1A1 /* RawSyntax.swift in Sources */,
+				1FC74F58D5E2684FAD312BA2 /* SourceLength.swift in Sources */,
+				460FA728A84260CADED41FF7 /* SourceLocation.swift in Sources */,
+				CB9CC834A35B8CBB825A3C86 /* SourcePresence.swift in Sources */,
+				F2BBE153B7580DACF92EED29 /* Syntax.swift in Sources */,
+				A3A29D6F2ABFEB91A15EE6EF /* SyntaxChildren.swift in Sources */,
+				43B83182C9811B115C6FC80F /* SyntaxClassifier.swift in Sources */,
+				8E634CE5EBD460D1ACAA1D39 /* SyntaxData.swift in Sources */,
+				8C6D3464DF320FF5773A2157 /* SyntaxOtherNodes.swift in Sources */,
+				0751BF90B0AB143872FABF28 /* SyntaxVerifier.swift in Sources */,
+				A5BFCCA680A0902F21321D23 /* Utils.swift in Sources */,
+				A123324165958A67C2D664FD /* _SyntaxParserInterop.swift in Sources */,
+				029312BA890DC427697DA90F /* Misc.swift in Sources */,
+				4DF9850E78324859F52508AE /* SyntaxAnyVisitor.swift in Sources */,
+				1511819F6144741BCEBB5329 /* SyntaxBaseNodes.swift in Sources */,
+				6F24F936F93C9E3B51D53C6F /* SyntaxBuilders.swift in Sources */,
+				AD0A7DF53E51A7E49F904D0F /* SyntaxClassification.swift in Sources */,
+				B11B5AF932B0D31AAB597623 /* SyntaxCollections.swift in Sources */,
+				33B6E3BF16540464501F75B5 /* SyntaxEnum.swift in Sources */,
+				B06276968A2E8E495B26ADF9 /* SyntaxFactory.swift in Sources */,
+				48273F6A6EED63581236BD53 /* SyntaxKind.swift in Sources */,
+				73930086B5B87F9E6F3B18DF /* SyntaxRewriter.swift in Sources */,
+				27C82EC861CA47C74181030B /* SyntaxTraits.swift in Sources */,
+				E83FA7AE1F77D9D0FB2CB4B5 /* SyntaxVisitor.swift in Sources */,
+				C41384942A2BE7569B2B9A8A /* TokenKind.swift in Sources */,
+				7E1F30F3E4C5DCB3DD7C4BCC /* Trivia.swift in Sources */,
+				FC8F9145BCD514763EC9173B /* SyntaxDeclNodes.swift in Sources */,
+				2967A80287967F9550487482 /* SyntaxExprNodes.swift in Sources */,
+				0897928495AA7EE6029EA3CF /* SyntaxNodes.swift in Sources */,
+				8649FC24D67D9E7EDB90F119 /* SyntaxPatternNodes.swift in Sources */,
+				9D0B89ECC000BE037ABE6525 /* SyntaxStmtNodes.swift in Sources */,
+				73ECFBF66C32688E7D5FA068 /* SyntaxTypeNodes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB9724CC523DB19D4DB396ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B701D07C77FA291DF293F4F /* CNodes.swift in Sources */,
+				F7307EE4A2FBB8D69352DF5D /* Diagnostic.swift in Sources */,
+				6AA4E9AB611BF63779BFC27B /* SyntaxParser.swift in Sources */,
+				E928863D0C94A2DCC9CE98B5 /* NodeDeclarationHash.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD4F5E544F8302F9794E8EFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DE8A571A7B40D9CAC6D0278 /* atomic-counter.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,13 +1062,73 @@
 			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
 			targetProxy = EE89CCA5CCF1C26DAA0505EA /* PBXContainerItemProxy */;
 		};
+		51A2BDB4E548989B7083B441 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftSyntax;
+			target = F14807FCB0E7641139898EC2 /* SwiftSyntax */;
+			targetProxy = 3D971FBBEF58BF1E99F09824 /* PBXContainerItemProxy */;
+		};
 		5788E50D72472F75EFAA6061 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = lib_impl;
 			target = 8329F08BE01D4CC32B819CE9 /* lib_impl */;
 			targetProxy = CA9CDA938E8AE3259FBC42DC /* PBXContainerItemProxy */;
 		};
-		D83476C7D73E68CF9961DDAE /* PBXTargetDependency */ = {
+		7E8A508DF9AEE5FBD0CE79F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = D5818B90A725A9C678DAB333 /* Setup */;
+			targetProxy = 85A47486FDE528D6536C89EA /* PBXContainerItemProxy */;
+		};
+		80FD4401A5D29D1B01030F3A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = D5818B90A725A9C678DAB333 /* Setup */;
+			targetProxy = CF0950AA4708A1DEE0605B93 /* PBXContainerItemProxy */;
+		};
+		8BF9AC9D52D76B1C7063C43C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = D5818B90A725A9C678DAB333 /* Setup */;
+			targetProxy = EFF41562D55BA67009A4509B /* PBXContainerItemProxy */;
+		};
+		96369EA286DD4E2D34561D4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = D5818B90A725A9C678DAB333 /* Setup */;
+			targetProxy = 1169E4ADA22A022A19CA499E /* PBXContainerItemProxy */;
+		};
+		9993DDA5D0134DCDF9422D1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Setup;
+			target = D5818B90A725A9C678DAB333 /* Setup */;
+			targetProxy = 163941101B117AB11908E307 /* PBXContainerItemProxy */;
+		};
+		A1D5F19C0C9CB3CD2F78905E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftSyntaxParser;
+			target = 63C45E4DCC98E837380F09EA /* SwiftSyntaxParser */;
+			targetProxy = 13A6E845C4612B353D4AF7D3 /* PBXContainerItemProxy */;
+		};
+		CCFC862EC3FE8F463FAB59AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Bazel Generated Files";
+			target = 259BD17350ABF44CECE076AA /* Bazel Generated Files */;
+			targetProxy = 42C9BA6F5963F54AC64770E3 /* PBXContainerItemProxy */;
+		};
+		D837A1F9FAE76E17149BB182 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftSyntax;
+			target = F14807FCB0E7641139898EC2 /* SwiftSyntax */;
+			targetProxy = 93BB6AA3261F217722B6CDC0 /* PBXContainerItemProxy */;
+		};
+		E99A829D412162793C54AA5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = _CSwiftSyntax;
+			target = 54A74BCB26884F7F60423FCF /* _CSwiftSyntax */;
+			targetProxy = 9A7D62228A57850BF0F77E8E /* PBXContainerItemProxy */;
+		};
+		F8C60BA7FF48BAF712148980 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Dependencies";
 			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
@@ -632,7 +1137,130 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3120F32C41840B1165104AAF /* Debug */ = {
+		0D67CD526BD59EB4D1F47D8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					DEBUG,
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				PRODUCT_MODULE_NAME = SwiftSyntaxParser;
+				PRODUCT_NAME = SwiftSyntaxParser;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = SwiftSyntaxParser;
+			};
+			name = Debug;
+		};
+		3622C4F3E1128EBBC1184E8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				TARGET_NAME = Setup;
+			};
+			name = Debug;
+		};
+		4C07B18E3610F111A9088D15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					DEBUG,
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/com_github_keith_swift_syntax/Sources/_CSwiftSyntax/include";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = _CSwiftSyntax;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = _CSwiftSyntax;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_keith_swift_syntax",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax",
+				);
+			};
+			name = Debug;
+		};
+		69CBD9D87F696E661A4DF9B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
@@ -653,6 +1281,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					DEBUG,
@@ -693,6 +1322,7 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -701,6 +1331,61 @@
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin",
 				);
+			};
+			name = Debug;
+		};
+		A6FBB4CBE761BC3C385DC656 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					DEBUG,
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				PRODUCT_MODULE_NAME = SwiftSyntax;
+				PRODUCT_NAME = SwiftSyntax;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = SwiftSyntax;
 			};
 			name = Debug;
 		};
@@ -713,6 +1398,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					DEBUG,
@@ -758,7 +1444,7 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax $(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -800,6 +1486,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					DEBUG,
@@ -935,6 +1622,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		48F78D1CA3B46E4394F7A9AB /* Build configuration list for PBXNativeTarget "_CSwiftSyntax" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C07B18E3610F111A9088D15 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7786D074CB72C5247C39ED2F /* Build configuration list for PBXAggregateTarget "Setup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3622C4F3E1128EBBC1184E8E /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		85DAE5AD4B16C63749019BBB /* Build configuration list for PBXNativeTarget "tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -951,6 +1654,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		E4FEBB6BF37C8A4E339B87A2 /* Build configuration list for PBXNativeTarget "SwiftSyntax" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6FBB4CBE761BC3C385DC656 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		E6E0D091E6E3BCB59D6F75D5 /* Build configuration list for PBXNativeTarget "lib_swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -963,6 +1674,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1499E80C1D9FC1A30AF3397 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F63B7783DD6D52C031FB320F /* Build configuration list for PBXNativeTarget "SwiftSyntaxParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D67CD526BD59EB4D1F47D8F /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

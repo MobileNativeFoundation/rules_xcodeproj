@@ -12,6 +12,10 @@
     "extra_files": [
         "examples/command_line/lib/BUILD",
         {
+            "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64/lib_InternalSwiftSyntaxParser.framework/lib_InternalSwiftSyntaxParser",
+            "t": "e"
+        },
+        {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_impl.swift.modulemap",
             "t": "g"
         },
@@ -107,6 +111,18 @@
             "label": "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle",
             "links": [
                 {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/lib_CSwiftSyntax.a",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/libSwiftSyntax.a",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/libSwiftSyntaxParser.a",
+                    "t": "g"
+                },
+                {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/liblib_impl.a",
                     "t": "g"
                 },
@@ -117,6 +133,10 @@
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/Tests/libLibSwiftTestsLib.a",
                     "t": "g"
+                },
+                {
+                    "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64/lib_InternalSwiftSyntaxParser.framework/lib_InternalSwiftSyntaxParser",
+                    "t": "e"
                 }
             ],
             "modulemaps": [],
@@ -243,6 +263,12 @@
             },
             "resource_bundles": [],
             "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64",
+                        "t": "e"
+                    }
+                ],
                 "quote_includes": [
                     ".",
                     {
@@ -252,6 +278,14 @@
                 ]
             },
             "swiftmodules": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
+                    "t": "g"
+                },
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/LibSwift.swiftmodule",
                     "t": "g"
@@ -401,13 +435,16 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
             "dependencies": [
-                "//examples/command_line/lib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059"
+                "//examples/command_line/lib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
+                "@com_github_keith_swift_syntax//:SwiftSyntax macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
+                "@com_github_keith_swift_syntax//:SwiftSyntaxParser macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059"
             ],
             "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "contains_generated_files": true,
                 "srcs": [
+                    "examples/command_line/lib/SwiftParserExample.swift",
                     "examples/command_line/lib/lib.swift"
                 ]
             },
@@ -445,6 +482,12 @@
             },
             "resource_bundles": [],
             "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64",
+                        "t": "e"
+                    }
+                ],
                 "quote_includes": [
                     ".",
                     {
@@ -453,7 +496,16 @@
                     }
                 ]
             },
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "//examples/command_line/tool:tool applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
@@ -521,6 +573,22 @@
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/liblib_impl.a",
                     "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/libSwiftSyntaxParser.a",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/libSwiftSyntax.a",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/lib_CSwiftSyntax.a",
+                    "t": "g"
+                },
+                {
+                    "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64/lib_InternalSwiftSyntaxParser.framework/lib_InternalSwiftSyntaxParser",
+                    "t": "e"
                 }
             ],
             "modulemaps": [],
@@ -628,6 +696,12 @@
             },
             "resource_bundles": [],
             "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64",
+                        "t": "e"
+                    }
+                ],
                 "includes": [
                     "examples/command_line/lib/dir with space",
                     {
@@ -644,6 +718,474 @@
                     ".",
                     {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "@com_github_keith_swift_syntax//:SwiftSyntax macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_MODULE_NAME": "SwiftSyntax",
+                "PRODUCT_NAME": "SwiftSyntax",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
+            "dependencies": [
+                "@com_github_keith_swift_syntax//:_CSwiftSyntax macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059"
+            ],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/AbsolutePosition.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/AtomicCounter.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/CNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/IncrementalParseTransition.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/RawSyntax.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/SourceLength.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/SourceLocation.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/SourcePresence.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/Syntax.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/SyntaxChildren.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/SyntaxClassifier.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/SyntaxData.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/SyntaxOtherNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/SyntaxVerifier.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/Utils.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/_SyntaxParserInterop.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/Misc.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxAnyVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxBaseNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxBuilders.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxClassification.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxCollections.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxEnum.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxFactory.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxKind.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxRewriter.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxTraits.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/SyntaxVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/TokenKind.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/Trivia.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/syntax_nodes/SyntaxDeclNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/syntax_nodes/SyntaxExprNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/syntax_nodes/SyntaxNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/syntax_nodes/SyntaxPatternNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/syntax_nodes/SyntaxStmtNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/gyb_generated/syntax_nodes/SyntaxTypeNodes.swift",
+                        "t": "e"
+                    }
+                ]
+            },
+            "is_swift": true,
+            "label": "@com_github_keith_swift_syntax//:SwiftSyntax",
+            "links": [],
+            "modulemaps": [],
+            "name": "SwiftSyntax",
+            "outputs": {
+                "swift_module": {
+                    "name": "SwiftSyntax.swiftmodule",
+                    "swiftdoc": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftdoc",
+                    "swiftmodule": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftsourceinfo"
+                }
+            },
+            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "SwiftSyntax",
+                "path": {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/libSwiftSyntax.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64",
+                        "t": "e"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "@com_github_keith_swift_syntax//:SwiftSyntaxParser macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_MODULE_NAME": "SwiftSyntaxParser",
+                "PRODUCT_NAME": "SwiftSyntaxParser",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
+            "dependencies": [
+                "@com_github_keith_swift_syntax//:SwiftSyntax macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059"
+            ],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntaxParser/CNodes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntaxParser/Diagnostic.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntaxParser/SyntaxParser.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/SwiftSyntaxParser/gyb_generated/NodeDeclarationHash.swift",
+                        "t": "e"
+                    }
+                ]
+            },
+            "is_swift": true,
+            "label": "@com_github_keith_swift_syntax//:SwiftSyntaxParser",
+            "links": [],
+            "modulemaps": [],
+            "name": "SwiftSyntaxParser",
+            "outputs": {
+                "swift_module": {
+                    "name": "SwiftSyntaxParser.swiftmodule",
+                    "swiftdoc": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftdoc",
+                    "swiftmodule": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftsourceinfo"
+                }
+            },
+            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "SwiftSyntaxParser",
+                "path": {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/libSwiftSyntaxParser.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64",
+                        "t": "e"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
+                    "t": "g"
+                }
+            ],
+            "test_host": null
+        },
+        "@com_github_keith_swift_syntax//:_CSwiftSyntax macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_NAME": "_CSwiftSyntax",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
+            "dependencies": [],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "hdrs": [
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/_CSwiftSyntax/include/atomic-counter.h",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/_CSwiftSyntax/include/c-syntax-nodes.h",
+                        "t": "e"
+                    }
+                ],
+                "srcs": [
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/_CSwiftSyntax/src/atomic-counter.c",
+                        "t": "e"
+                    }
+                ]
+            },
+            "is_swift": false,
+            "label": "@com_github_keith_swift_syntax//:_CSwiftSyntax",
+            "links": [],
+            "modulemaps": [],
+            "name": "_CSwiftSyntax",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "_CSwiftSyntax",
+                "path": {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/lib_CSwiftSyntax.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {
+                "includes": [
+                    {
+                        "_": "com_github_keith_swift_syntax/Sources/_CSwiftSyntax/include",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_keith_swift_syntax",
+                        "t": "e"
+                    },
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax",
                         "t": "g"
                     }
                 ]
