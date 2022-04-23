@@ -353,6 +353,11 @@ extension Target {
     }
 }
 
+private extension Inputs {
+    var containsSourceFiles: Bool {
+        return !(srcs.isEmpty && nonArcSrcs.isEmpty)
+    }
+}
 
 private extension Platform.OS {
     var sdkRoot: String {
