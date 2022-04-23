@@ -136,7 +136,12 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6",
@@ -318,7 +323,16 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6"
         },
         "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6",
@@ -507,7 +521,12 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6"
         },
         "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6",

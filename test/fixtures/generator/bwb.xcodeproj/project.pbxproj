@@ -1985,6 +1985,7 @@
 				PRODUCT_NAME = generator;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/com_github_kylef_pathkit $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/com_github_tuist_xcodeproj $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/tools/generator";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;

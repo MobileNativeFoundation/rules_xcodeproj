@@ -16,17 +16,25 @@
             "t": "e"
         },
         {
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/_CSwiftSyntax.swift.modulemap",
+            "t": "g"
+        },
+        {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_impl.swift.modulemap",
             "t": "g"
         },
         "examples/command_line/lib/dir with space/lib.h",
         "examples/command_line/tool/BUILD",
-        "examples/command_line/tool/Info.plist",
-        "examples/command_line/Tests/BUILD",
         {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_swift.swift.modulemap",
             "t": "g"
         },
+        {
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_headers.swift.modulemap",
+            "t": "g"
+        },
+        "examples/command_line/tool/Info.plist",
+        "examples/command_line/Tests/BUILD",
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
@@ -139,7 +147,16 @@
                     "t": "e"
                 }
             ],
-            "modulemaps": [],
+            "modulemaps": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_impl.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_swift.swift.modulemap",
+                    "t": "g"
+                }
+            ],
             "name": "LibSwiftTests.__internal__.__test_bundle",
             "outputs": {
                 "dsyms": []
@@ -160,7 +177,24 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/LibSwift.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/Tests/LibSwiftTestsLib.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "//examples/command_line/Tests:LibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
@@ -269,6 +303,13 @@
                         "t": "e"
                     }
                 ],
+                "includes": [
+                    "examples/command_line/lib",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/private",
+                        "t": "g"
+                    }
+                ],
                 "quote_includes": [
                     ".",
                     {
@@ -334,6 +375,7 @@
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
+                "PRODUCT_MODULE_NAME": "examples_command_line_lib_lib_impl",
                 "PRODUCT_NAME": "lib_impl",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -350,7 +392,7 @@
                     "examples/command_line/lib/private.h"
                 ]
             },
-            "is_swift": false,
+            "is_swift": true,
             "label": "//examples/command_line/lib:lib_impl",
             "links": [],
             "modulemaps": [],
@@ -372,6 +414,9 @@
             },
             "resource_bundles": [],
             "search_paths": {
+                "includes": [
+                    "examples/command_line/lib"
+                ],
                 "quote_includes": [
                     ".",
                     {
@@ -488,6 +533,13 @@
                         "t": "e"
                     }
                 ],
+                "includes": [
+                    "examples/command_line/lib",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/private",
+                        "t": "g"
+                    }
+                ],
                 "quote_includes": [
                     ".",
                     {
@@ -558,7 +610,9 @@
             ],
             "frameworks": [],
             "info_plist": null,
-            "inputs": {},
+            "inputs": {
+                "contains_generated_files": true
+            },
             "is_swift": false,
             "label": "//examples/command_line/tool:tool",
             "links": [
@@ -591,7 +645,20 @@
                     "t": "e"
                 }
             ],
-            "modulemaps": [],
+            "modulemaps": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_impl.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_swift.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_headers.swift.modulemap",
+                    "t": "g"
+                }
+            ],
             "name": "tool",
             "outputs": {
                 "dsyms": []
@@ -612,7 +679,20 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/LibSwift.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "//examples/command_line/tool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
@@ -657,6 +737,7 @@
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
+                "PRODUCT_MODULE_NAME": "examples_command_line_tool_tool_library",
                 "PRODUCT_NAME": "tool.library",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -670,6 +751,7 @@
             "frameworks": [],
             "info_plist": null,
             "inputs": {
+                "contains_generated_files": true,
                 "srcs": [
                     "examples/command_line/tool/main.m"
                 ]
@@ -677,7 +759,20 @@
             "is_swift": false,
             "label": "//examples/command_line/tool:tool.library",
             "links": [],
-            "modulemaps": [],
+            "modulemaps": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_impl.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_swift.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/lib_headers.swift.modulemap",
+                    "t": "g"
+                }
+            ],
             "name": "tool.library",
             "outputs": {},
             "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/tool",
@@ -712,7 +807,13 @@
                     {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/private",
                         "t": "g"
-                    }
+                    },
+                    "examples/command_line/lib",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/private",
+                        "t": "g"
+                    },
+                    "examples/command_line/lib/dir with space"
                 ],
                 "quote_includes": [
                     ".",
@@ -722,7 +823,20 @@
                     }
                 ]
             },
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/examples/command_line/lib/LibSwift.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "@com_github_keith_swift_syntax//:SwiftSyntax macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059",
@@ -780,6 +894,7 @@
             "frameworks": [],
             "info_plist": null,
             "inputs": {
+                "contains_generated_files": true,
                 "srcs": [
                     {
                         "_": "com_github_keith_swift_syntax/Sources/SwiftSyntax/AbsolutePosition.swift",
@@ -930,7 +1045,12 @@
             "is_swift": true,
             "label": "@com_github_keith_swift_syntax//:SwiftSyntax",
             "links": [],
-            "modulemaps": [],
+            "modulemaps": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-fastbuild-ST-8946c8252059/bin/external/com_github_keith_swift_syntax/_CSwiftSyntax.swift.modulemap",
+                    "t": "g"
+                }
+            ],
             "name": "SwiftSyntax",
             "outputs": {
                 "swift_module": {
@@ -1123,6 +1243,7 @@
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
+                "PRODUCT_MODULE_NAME": "_CSwiftSyntax",
                 "PRODUCT_NAME": "_CSwiftSyntax",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -1151,7 +1272,7 @@
                     }
                 ]
             },
-            "is_swift": false,
+            "is_swift": true,
             "label": "@com_github_keith_swift_syntax//:_CSwiftSyntax",
             "links": [],
             "modulemaps": [],

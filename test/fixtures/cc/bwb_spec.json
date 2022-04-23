@@ -104,6 +104,9 @@
             },
             "resource_bundles": [],
             "search_paths": {
+                "includes": [
+                    "examples/cc/lib2/includes"
+                ],
                 "quote_includes": [
                     ".",
                     {
@@ -206,7 +209,8 @@
                     {
                         "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib/private",
                         "t": "g"
-                    }
+                    },
+                    "examples/cc/lib/private"
                 ],
                 "quote_includes": [
                     ".",
@@ -314,6 +318,19 @@
             },
             "resource_bundles": [],
             "search_paths": {
+                "includes": [
+                    "examples/cc/lib/private",
+                    "examples/cc/lib",
+                    "examples/cc/lib2/includes",
+                    {
+                        "_": "examples_cc_external/private",
+                        "t": "e"
+                    },
+                    {
+                        "_": "examples_cc_external",
+                        "t": "e"
+                    }
+                ],
                 "quote_includes": [
                     ".",
                     {
@@ -441,6 +458,10 @@
                     {
                         "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external/private",
                         "t": "g"
+                    },
+                    {
+                        "_": "examples_cc_external/private",
+                        "t": "e"
                     }
                 ],
                 "quote_includes": [

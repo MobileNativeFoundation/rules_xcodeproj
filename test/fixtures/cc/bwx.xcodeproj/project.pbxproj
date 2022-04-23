@@ -480,6 +480,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib/private",
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/private",
+					"$(PROJECT_DIR)/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -556,6 +557,7 @@
 					"__TIME__=\"redacted\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/examples/cc/lib2/includes";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-fstack-protector",
@@ -614,6 +616,13 @@
 					"EXTERNAL_SECRET_2=\\\"World?\\\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/examples/cc/lib/private",
+					"$(PROJECT_DIR)/examples/cc/lib",
+					"$(PROJECT_DIR)/examples/cc/lib2/includes",
+					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
+					"$(BAZEL_EXTERNAL)/examples_cc_external",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-fstack-protector",
@@ -687,6 +696,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/private",
+					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (

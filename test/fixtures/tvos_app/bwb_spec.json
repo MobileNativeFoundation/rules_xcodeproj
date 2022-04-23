@@ -137,7 +137,12 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
@@ -322,7 +327,16 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
         },
         "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
@@ -514,7 +528,12 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
         },
         "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",

@@ -127,7 +127,36 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/generator.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/test/tests.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "//tools/generator/test:tests.library darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
@@ -353,7 +382,24 @@
             },
             "resource_bundles": [],
             "search_paths": {},
-            "swiftmodules": [],
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/generator.swiftmodule",
+                    "t": "g"
+                }
+            ],
             "test_host": null
         },
         "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
