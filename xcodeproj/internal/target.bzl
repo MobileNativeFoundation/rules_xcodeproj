@@ -46,7 +46,6 @@ load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":target_id.bzl", "get_id")
 load(":targets.bzl", "targets")
 
-
 def _get_swift_info(target):
     """Retrieves a `SwiftInfo` provider from a target and determines whether it directly provides a Swift module.
 
@@ -65,6 +64,7 @@ def _get_swift_info(target):
     if swift_info == None:
         return None, False
     return swift_info, len(swift_info.direct_modules) > 0
+
 # Processed target
 
 def _processed_target(
@@ -588,9 +588,10 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos, swift_info_
 
     Returns:
         The value returned from `_processed_target()`.
-    """ attrs_info = target[InputFileAttributesInfo]
+    """
+    attrs_info = target[InputFileAttributesInfo]
 
-    configuration = _get_configuration(ctx)
+    configuration = get_configuration(ctx)
     label = target.label
     id = get_id(label = label, configuration = configuration)
 
@@ -696,10 +697,6 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos, swift_info_
         build_settings = build_settings,
     )
 
-    # DEBUG BEGIN
-    print("*** CHUCK calling _process_search_paths for target.label: ", target.label)
-
-    # DEBUG END
     search_paths = _process_search_paths(
         cc_info = cc_info,
         objc = objc,
@@ -1183,23 +1180,6 @@ def _process_search_paths(*, cc_info, objc, opts_search_paths):
             for header in compilation_context.headers.to_list()
         ]))
 
-        # DEBUG BEGIN
-        print("*** CHUCK _process_search_paths cc_info: ", cc_info)
-        print("*** CHUCK compilation_context.includes.to_list(): ")
-        for idx, item in enumerate(compilation_context.includes.to_list()):
-            print("*** CHUCK", idx, ":", item)
-        print("*** CHUCK compilation_context.quote_includes.to_list(): ")
-        for idx, item in enumerate(compilation_context.quote_includes.to_list()):
-            print("*** CHUCK", idx, ":", item)
-
-        # print("*** CHUCK compilation_context.headers.to_list(): ")
-        # for idx, item in enumerate(compilation_context.headers.to_list()):
-        #     print("*** CHUCK", idx, ":", item)
-        print("*** CHUCK header_paths: ")
-        for idx, item in enumerate(header_paths):
-            print("*** CHUCK", idx, ":", item)
-
-        # DEBUG END
         set_if_true(
             search_paths,
             "quote_includes",
@@ -1328,58 +1308,12 @@ def _process_modulemaps(*, swift_info, dep_swift_infos = []):
 
         modulemap_file_paths.append(modulemap)
 
-    # DEBUG BEGIN
-    print("*** CHUCK modulemap_file_paths: ")
-    for idx, item in enumerate(modulemap_file_paths):
-        print("*** CHUCK", idx, ":", item)
-
-    # DEBUG END
-
     # Different modules might be defined in the same modulemap file, so we need
     # to deduplicate them.
     return struct(
         file_paths = uniq(modulemap_file_paths),
         files = uniq(modulemap_files),
     )
-
-# def _process_modulemaps(*, swift_info):
-#     if not swift_info:
-#         return struct(
-#             file_paths = [],
-#             files = [],
-#         )
-
-#     direct_modules = swift_info.direct_modules
-
-#     modulemap_file_paths = []
-#     modulemap_files = []
-#     for module in swift_info.transitive_modules.to_list():
-#         # TODO(chuck): Removed this check as it was preventing the _CSwiftSyntax modulemap from being recorded.
-#         # Brentley believes that we need to do this for Swift provided modules. I need to allow it for the tagged cc_library case.
-
-#         if module in direct_modules:
-#             continue
-#         clang_module = module.clang
-#         if not clang_module:
-#             continue
-#         module_map = clang_module.module_map
-#         if not module_map:
-#             continue
-
-#         if type(module_map) == "File":
-#             modulemap = file_path(module_map)
-#             modulemap_files.append(module_map)
-#         else:
-#             modulemap = module_map
-
-#         modulemap_file_paths.append(modulemap)
-
-#     # Different modules might be defined in the same modulemap file, so we need
-#     # to deduplicate them.
-#     return struct(
-#         file_paths = uniq(modulemap_file_paths),
-#         files = uniq(modulemap_files),
-#     )
 
 def _process_swiftmodules(*, swift_info):
     if not swift_info:
