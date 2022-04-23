@@ -10,7 +10,6 @@
         "VALIDATE_WORKSPACE": false
     },
     "extra_files": [
-        "examples/command_line/lib/BUILD",
         {
             "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64/lib_InternalSwiftSyntaxParser.framework/lib_InternalSwiftSyntaxParser",
             "t": "e"
@@ -19,12 +18,17 @@
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/_CSwiftSyntax.swift.modulemap",
             "t": "g"
         },
+        "examples/command_line/lib/BUILD",
         {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/lib_impl.swift.modulemap",
             "t": "g"
         },
         "examples/command_line/lib/dir with space/lib.h",
         "examples/command_line/tool/BUILD",
+        {
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/SwiftParserExample.swift.modulemap",
+            "t": "g"
+        },
         {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/lib_swift.swift.modulemap",
             "t": "g"
@@ -120,18 +124,6 @@
             "label": "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle",
             "links": [
                 {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/lib_CSwiftSyntax.a",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/libSwiftSyntax.a",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/libSwiftSyntaxParser.a",
-                    "t": "g"
-                },
-                {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_impl.a",
                     "t": "g"
                 },
@@ -142,10 +134,6 @@
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/Tests/libLibSwiftTestsLib.a",
                     "t": "g"
-                },
-                {
-                    "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64/lib_InternalSwiftSyntaxParser.framework/lib_InternalSwiftSyntaxParser",
-                    "t": "e"
                 }
             ],
             "modulemaps": [
@@ -179,14 +167,6 @@
             "resource_bundles": [],
             "search_paths": {},
             "swiftmodules": [
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
-                    "t": "g"
-                },
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/LibSwift.swiftmodule",
                     "t": "g"
@@ -300,6 +280,120 @@
             },
             "resource_bundles": [],
             "search_paths": {
+                "includes": [
+                    "examples/command_line/lib",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/private",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/LibSwift.swiftmodule",
+                    "t": "g"
+                }
+            ],
+            "test_host": null
+        },
+        "//examples/command_line/lib:SwiftParserExample macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-g",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "OTHER_SWIFT_FLAGS": "-g",
+                "PRODUCT_MODULE_NAME": "SwiftParserExample",
+                "PRODUCT_NAME": "SwiftParserExample",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/SwiftParserExample-Swift.h",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
+            "dependencies": [
+                "@com_github_keith_swift_syntax//:SwiftSyntax macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
+                "@com_github_keith_swift_syntax//:SwiftSyntaxParser macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
+            ],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/command_line/lib/SwiftParserExample.swift"
+                ]
+            },
+            "is_swift": true,
+            "label": "//examples/command_line/lib:SwiftParserExample",
+            "links": [],
+            "modulemaps": [],
+            "name": "SwiftParserExample",
+            "outputs": {
+                "swift_module": {
+                    "name": "SwiftParserExample.swiftmodule",
+                    "swiftdoc": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/SwiftParserExample.swiftdoc",
+                    "swiftmodule": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/SwiftParserExample.swiftmodule",
+                    "swiftsourceinfo": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/SwiftParserExample.swiftsourceinfo"
+                }
+            },
+            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "SwiftParserExample",
+                "path": {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/libSwiftParserExample.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {
                 "framework_includes": [
                     {
                         "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64",
@@ -307,7 +401,6 @@
                     }
                 ],
                 "includes": [
-                    "examples/command_line/lib",
                     {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/private",
                         "t": "g"
@@ -328,10 +421,6 @@
                 },
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/LibSwift.swiftmodule",
                     "t": "g"
                 }
             ],
@@ -486,16 +575,13 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
             "dependencies": [
-                "//examples/command_line/lib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
-                "@com_github_keith_swift_syntax//:SwiftSyntax macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
-                "@com_github_keith_swift_syntax//:SwiftSyntaxParser macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
+                "//examples/command_line/lib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
             "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "contains_generated_files": true,
                 "srcs": [
-                    "examples/command_line/lib/SwiftParserExample.swift",
                     "examples/command_line/lib/lib.swift"
                 ]
             },
@@ -533,12 +619,6 @@
             },
             "resource_bundles": [],
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64",
-                        "t": "e"
-                    }
-                ],
                 "includes": [
                     "examples/command_line/lib",
                     {
@@ -554,16 +634,7 @@
                     }
                 ]
             },
-            "swiftmodules": [
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/SwiftSyntax.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
-                    "t": "g"
-                }
-            ],
+            "swiftmodules": [],
             "test_host": null
         },
         "//examples/command_line/tool:tool applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
@@ -628,11 +699,7 @@
                     "t": "g"
                 },
                 {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_swift.a",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_impl.a",
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/libSwiftParserExample.a",
                     "t": "g"
                 },
                 {
@@ -648,11 +715,23 @@
                     "t": "g"
                 },
                 {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_swift.a",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_impl.a",
+                    "t": "g"
+                },
+                {
                     "_": "StaticInternalSwiftSyntaxParser/lib_InternalSwiftSyntaxParser.xcframework/macos-arm64_x86_64/lib_InternalSwiftSyntaxParser.framework/lib_InternalSwiftSyntaxParser",
                     "t": "e"
                 }
             ],
             "modulemaps": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/SwiftParserExample.swift.modulemap",
+                    "t": "g"
+                },
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/lib_impl.swift.modulemap",
                     "t": "g"
@@ -693,6 +772,10 @@
                 },
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/SwiftParserExample.swiftmodule",
                     "t": "g"
                 },
                 {
@@ -754,6 +837,7 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
             "dependencies": [
+                "//examples/command_line/lib:SwiftParserExample macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
                 "//examples/command_line/lib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
             "frameworks": [],
@@ -768,6 +852,10 @@
             "label": "//examples/command_line/tool:tool.library",
             "links": [],
             "modulemaps": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/SwiftParserExample.swift.modulemap",
+                    "t": "g"
+                },
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/lib_impl.swift.modulemap",
                     "t": "g"
@@ -816,11 +904,11 @@
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/private",
                         "t": "g"
                     },
-                    "examples/command_line/lib",
                     {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/private",
                         "t": "g"
                     },
+                    "examples/command_line/lib",
                     "examples/command_line/lib/dir with space"
                 ],
                 "quote_includes": [
@@ -838,6 +926,10 @@
                 },
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/external/com_github_keith_swift_syntax/SwiftSyntaxParser.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/SwiftParserExample.swiftmodule",
                     "t": "g"
                 },
                 {

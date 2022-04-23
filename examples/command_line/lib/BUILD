@@ -23,45 +23,28 @@ objc_library(
 
 swift_library(
     name = "lib_swift",
-    srcs = [
-        "SwiftParserExample.swift",
-        "lib.swift",
-    ],
+    srcs = ["lib.swift"],
     generated_header_name = "private/LibSwift-Swift.h",
     generates_header = True,
     module_name = "LibSwift",
     visibility = ["//examples/command_line/Tests:__subpackages__"],
     deps = [
         ":lib_impl",
+    ],
+)
+
+swift_library(
+    name = "SwiftParserExample",
+    srcs = ["SwiftParserExample.swift"],
+    generated_header_name = "private/SwiftParserExample-Swift.h",
+    generates_header = True,
+    module_name = "SwiftParserExample",
+    visibility = ["//examples/command_line/Tests:__subpackages__"],
+    deps = [
         "@com_github_keith_swift_syntax//:SwiftSyntax",
         "@com_github_keith_swift_syntax//:SwiftSyntaxParser",
     ],
 )
-
-# swift_library(
-#     name = "lib_swift",
-#     srcs = ["lib.swift"],
-#     generated_header_name = "private/LibSwift-Swift.h",
-#     generates_header = True,
-#     module_name = "LibSwift",
-#     visibility = ["//examples/command_line/Tests:__subpackages__"],
-#     deps = [
-#         ":lib_impl",
-#     ],
-# )
-
-# swift_library(
-#     name = "SwiftParserExample",
-#     srcs = ["SwiftParserExample.swift"],
-#     generated_header_name = "private/SwiftParserExample-Swift.h",
-#     generates_header = True,
-#     module_name = "SwiftParserExample",
-#     visibility = ["//examples/command_line/Tests:__subpackages__"],
-#     deps = [
-#         "@com_github_keith_swift_syntax//:SwiftSyntax",
-#         "@com_github_keith_swift_syntax//:SwiftSyntaxParser",
-#     ],
-# )
 
 objc_library(
     name = "lib_headers",
@@ -71,7 +54,7 @@ objc_library(
         "private",
     ],
     deps = [
-        # ":SwiftParserExample",
+        ":SwiftParserExample",
         ":lib_swift",
     ],
 )
