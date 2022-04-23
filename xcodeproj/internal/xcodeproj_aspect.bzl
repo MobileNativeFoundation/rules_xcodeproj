@@ -53,19 +53,6 @@ def _transitive_infos(*, ctx):
         else:
             _process_dep(attr, dep)
 
-    # DEBUG BEGIN
-    if ctx.rule.attr.name.endswith("SwiftSyntax"):
-        print("*** CHUCK =====================")
-        print("*** CHUCK _transitive_infos ctx.rule.attr.name: ", ctx.rule.attr.name)
-        print("*** CHUCK xcodeproj_infos for", ctx.rule.attr.name, "count:", len(xcodeproj_infos))
-        for idx, item in enumerate(xcodeproj_infos):
-            print("*** CHUCK", idx, ":", item)
-        print("*** CHUCK swift_info_dep_prov_infos for", ctx.rule.attr.name, "count:", len(swift_info_dep_prov_infos))
-        for idx, item in enumerate(swift_info_dep_prov_infos):
-            print("*** CHUCK", idx, ":", item)
-        print("*** CHUCK =====================")
-
-    # DEBUG END
     return xcodeproj_infos, swift_info_dep_prov_infos
 
 # Aspect

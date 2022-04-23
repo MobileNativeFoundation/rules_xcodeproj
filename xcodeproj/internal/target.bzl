@@ -46,6 +46,25 @@ load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":target_id.bzl", "get_id")
 load(":targets.bzl", "targets")
 
+
+def _get_swift_info(target):
+    """Retrieves a `SwiftInfo` provider from a target and determines whether it directly provides a Swift module.
+
+    A target may provide a `SwiftInfo` even if it does not directly provide a
+    Swift module. If the target does directly provide a Swift module, it is
+    considered to be a "Swift" target.
+
+    Args:
+        target: A `Target`.
+
+    Returns:
+        True if the target provides `SwiftInfo` and it has one ore more direct
+        modules. Otherwise, False.
+    """
+    swift_info = target[SwiftInfo] if SwiftInfo in target else None
+    if swift_info == None:
+        return None, False
+    return swift_info, len(swift_info.direct_modules) > 0
 # Processed target
 
 def _processed_target(
@@ -361,8 +380,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
 
     additional_files = []
     is_bundle = bundle_info != None
-    is_swift = SwiftInfo in target
-    swift_info = target[SwiftInfo] if is_swift else None
+    swift_info, is_swift = _get_swift_info(target)
 
     modulemaps = _process_modulemaps(swift_info = swift_info)
     additional_files.extend(modulemaps.files)
@@ -644,29 +662,8 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos, swift_info_
         build_settings = build_settings,
     )
 
-    is_swift = SwiftInfo in target
-    swift_info = target[SwiftInfo] if is_swift else None
+    swift_info, is_swift = _get_swift_info(target)
     cc_info = target[CcInfo] if CcInfo in target else None
-
-    # DEBUG BEGIN
-    # dep_transitive_infos = [ti for _, ti in transitive_infos]
-    if target.label.name.endswith("SwiftSyntax"):
-        print("*** CHUCK target.label: ", target.label)
-        print("*** CHUCK swift_info_dep_prov_infos: ")
-        for idx, item in enumerate(swift_info_dep_prov_infos):
-            print("*** CHUCK", idx, ":", item)
-
-        # print("*** CHUCK swift_info: ", swift_info)
-        # print("*** CHUCK swift_info.transitive_modules.to_list(): ")
-        # for idx, item in enumerate(swift_info.transitive_modules.to_list()):
-        #     print("*** CHUCK", idx, ":", item)
-
-        # print("*** CHUCK cc_info: ", cc_info)
-        # print("*** CHUCK swift_info.transitive_modules.to_list(): ")
-        # for idx, item in enumerate(swift_info.transitive_modules.to_list()):
-        #     print("*** CHUCK", idx, ":", item)
-
-    # DEBUG END
 
     modulemaps = _process_modulemaps(
         swift_info = swift_info,
