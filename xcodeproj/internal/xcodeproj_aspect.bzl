@@ -33,6 +33,7 @@ def _transitive_infos(*, ctx):
     xcodeproj_infos = []
     swift_info_dep_prov_infos = []
 
+    # buildifier: disable=uninitialized
     def _process_dep(attr, dep):
         if type(dep) != "Target":
             return
