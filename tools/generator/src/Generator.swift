@@ -14,6 +14,7 @@ class Generator {
         createProducts: Generator.createProducts,
         populateMainGroup: populateMainGroup,
         disambiguateTargets: Generator.disambiguateTargets,
+        addBazelDependenciesTarget: Generator.addBazelDependenciesTarget,
         addTargets: Generator.addTargets,
         setTargetConfigurations: Generator.setTargetConfigurations,
         setTargetDependencies: Generator.setTargetDependencies,
@@ -100,13 +101,19 @@ Was unable to merge "\(srcTarget.label) \
         )
 
         let disambiguatedTargets = environment.disambiguateTargets(targets)
+        let bazelDependencies = try environment.addBazelDependenciesTarget(
+            pbxProj,
+            files,
+            filePathResolver,
+            project.label
+        )
         let pbxTargets = try environment.addTargets(
             pbxProj,
             disambiguatedTargets,
             products,
             files,
             filePathResolver,
-            project.label
+            bazelDependencies
         )
         try environment.setTargetConfigurations(
             pbxProj,
