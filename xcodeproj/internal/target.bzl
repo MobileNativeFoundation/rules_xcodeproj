@@ -557,7 +557,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 
 # Library targets
 
-def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
+def _process_ccinfo_library_target(*, ctx, target, transitive_infos, swift_info_dep_prov_infos):
     """Gathers information about a library target that provides `CcInfo`.
 
     Args:
@@ -565,6 +565,8 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
         target: A `Target` to process. It must provide a `CcInfo`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
+        swift_info_dep_prov_infos: A `list` of `SwiftInfo` that are provided by the
+            transitive dependencies.
 
     Returns:
         The value returned from `_processed_target()`.
@@ -644,12 +646,33 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
 
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
+    cc_info = target[CcInfo] if CcInfo in target else None
 
-    # # DEBUG BEGIN
-    # if target.label.name == "_CSwiftSyntax":
-    #     print("*** CHUCK _CSwiftSyntax swift_info: ", swift_info)
-    # # DEBUG END
-    modulemaps = _process_modulemaps(swift_info = swift_info)
+    # DEBUG BEGIN
+    # dep_transitive_infos = [ti for _, ti in transitive_infos]
+    if target.label.name.endswith("SwiftSyntax"):
+        print("*** CHUCK target.label: ", target.label)
+        print("*** CHUCK swift_info_dep_prov_infos: ")
+        for idx, item in enumerate(swift_info_dep_prov_infos):
+            print("*** CHUCK", idx, ":", item)
+
+        # print("*** CHUCK swift_info: ", swift_info)
+        # print("*** CHUCK swift_info.transitive_modules.to_list(): ")
+        # for idx, item in enumerate(swift_info.transitive_modules.to_list()):
+        #     print("*** CHUCK", idx, ":", item)
+
+        # print("*** CHUCK cc_info: ", cc_info)
+        # print("*** CHUCK swift_info.transitive_modules.to_list(): ")
+        # for idx, item in enumerate(swift_info.transitive_modules.to_list()):
+        #     print("*** CHUCK", idx, ":", item)
+
+    # DEBUG END
+
+    modulemaps = _process_modulemaps(
+        swift_info = swift_info,
+        dep_swift_infos = [dpi.provider for dpi in swift_info_dep_prov_infos],
+    )
+
     resource_owner = str(target.label)
     inputs = input_files.collect(
         ctx = ctx,
@@ -667,7 +690,6 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
 
-    cc_info = target[CcInfo] if CcInfo in target else None
     _process_defines(
         cc_info = cc_info,
         build_settings = build_settings,
@@ -1274,7 +1296,7 @@ def _process_frameworks(
 
     return framework_paths
 
-def _process_modulemaps(*, swift_info):
+def _process_modulemaps(*, swift_info, dep_swift_infos = []):
     if not swift_info:
         return struct(
             file_paths = [],
@@ -1283,12 +1305,15 @@ def _process_modulemaps(*, swift_info):
 
     direct_modules = swift_info.direct_modules
 
+    all_swift_infos = [swift_info] + dep_swift_infos
+    all_transitive_modules = depset(transitive = [
+        si.transitive_modules
+        for si in all_swift_infos
+    ])
+
     modulemap_file_paths = []
     modulemap_files = []
-    for module in swift_info.transitive_modules.to_list():
-        # TODO(chuck): Removed this check as it was preventing the _CSwiftSyntax modulemap from being recorded.
-        # Brentley believes that we need to do this for Swift provided modules. I need to allow it for the tagged cc_library case.
-
+    for module in all_transitive_modules.to_list():
         if module in direct_modules:
             continue
         clang_module = module.clang
@@ -1320,6 +1345,45 @@ def _process_modulemaps(*, swift_info):
         files = uniq(modulemap_files),
     )
 
+# def _process_modulemaps(*, swift_info):
+#     if not swift_info:
+#         return struct(
+#             file_paths = [],
+#             files = [],
+#         )
+
+#     direct_modules = swift_info.direct_modules
+
+#     modulemap_file_paths = []
+#     modulemap_files = []
+#     for module in swift_info.transitive_modules.to_list():
+#         # TODO(chuck): Removed this check as it was preventing the _CSwiftSyntax modulemap from being recorded.
+#         # Brentley believes that we need to do this for Swift provided modules. I need to allow it for the tagged cc_library case.
+
+#         if module in direct_modules:
+#             continue
+#         clang_module = module.clang
+#         if not clang_module:
+#             continue
+#         module_map = clang_module.module_map
+#         if not module_map:
+#             continue
+
+#         if type(module_map) == "File":
+#             modulemap = file_path(module_map)
+#             modulemap_files.append(module_map)
+#         else:
+#             modulemap = module_map
+
+#         modulemap_file_paths.append(modulemap)
+
+#     # Different modules might be defined in the same modulemap file, so we need
+#     # to deduplicate them.
+#     return struct(
+#         file_paths = uniq(modulemap_file_paths),
+#         files = uniq(modulemap_files),
+#     )
+
 def _process_swiftmodules(*, swift_info):
     if not swift_info:
         return []
@@ -1328,8 +1392,6 @@ def _process_swiftmodules(*, swift_info):
 
     file_paths = []
     for module in swift_info.transitive_modules.to_list():
-        # TODO(chuck): FIX ME! Same as _process_modulemaps
-
         if module in direct_modules:
             continue
         swift_module = module.swift
@@ -1337,18 +1399,9 @@ def _process_swiftmodules(*, swift_info):
             continue
         file_paths.append(file_path(swift_module.swiftmodule))
 
-        # swiftmodule_file = None
-        # if module.swift:
-        #     swiftmodule_file = module.swift.swiftmodule
-        # elif module.clang:
-        #     swiftmodule_file = module.clang.module_map
-        # else:
-        #     continue
-        # file_paths.append(file_path(swiftmodule_file))
-
     return file_paths
 
-def _process_target(*, ctx, target, transitive_infos):
+def _process_target(*, ctx, target, transitive_infos, swift_info_dep_prov_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
 
     Args:
@@ -1356,6 +1409,8 @@ def _process_target(*, ctx, target, transitive_infos):
         target: The `Target` to process.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
+        swift_info_dep_prov_infos: A `list` of `SwiftInfo` that are provided by the
+            transitive dependencies.
 
     Returns:
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
@@ -1392,6 +1447,7 @@ def _process_target(*, ctx, target, transitive_infos):
             ctx = ctx,
             target = target,
             transitive_infos = transitive_infos,
+            swift_info_dep_prov_infos = swift_info_dep_prov_infos,
         )
     else:
         fail("Don't know how to process target. {}".format(target.label))
@@ -1436,7 +1492,7 @@ def _process_target(*, ctx, target, transitive_infos):
 
 # API
 
-def process_target(*, ctx, target, transitive_infos):
+def process_target(*, ctx, target, transitive_infos, swift_info_dep_prov_infos):
     """Creates an `XcodeProjInfo` for the given target.
 
     Args:
@@ -1444,6 +1500,8 @@ def process_target(*, ctx, target, transitive_infos):
         target: The `Target` to process.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
+        swift_info_dep_prov_infos: A `list` of `SwiftInfo` that are provided by the
+            transitive dependencies.
 
     Returns:
         An `XcodeProjInfo` populated with information from `target` and
@@ -1459,6 +1517,7 @@ def process_target(*, ctx, target, transitive_infos):
             ctx = ctx,
             target = target,
             transitive_infos = transitive_infos,
+            swift_info_dep_prov_infos = swift_info_dep_prov_infos,
         )
 
     return XcodeProjInfo(
