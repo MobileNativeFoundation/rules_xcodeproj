@@ -29,18 +29,18 @@ load(":input_files.bzl", "input_files")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
 load(":platform.bzl", "process_platform")
 load(
-    ":providers.bzl",
-    "InputFileAttributesInfo",
-    "XcodeProjInfo",
-    "target_type",
-)
-load(
     ":product.bzl",
     "get_linker_inputs",
     "get_static_framework_files",
     "get_static_libraries",
     "process_product",
     "product_to_dto",
+)
+load(
+    ":providers.bzl",
+    "InputFileAttributesInfo",
+    "XcodeProjInfo",
+    "target_type",
 )
 load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":target_id.bzl", "get_id")
@@ -568,7 +568,11 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
     """
     attrs_info = target[InputFileAttributesInfo]
 
-    configuration = get_configuration(ctx)
+    # DEBUG BEGIN
+    print("*** CHUCK _process_ccinfo_library_target target.label: ", target.label)
+    # DEBUG END
+
+    configuration = _get_configuration(ctx)
     label = target.label
     id = get_id(label = label, configuration = configuration)
 
@@ -642,6 +646,11 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
 
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
+
+    # # DEBUG BEGIN
+    # if target.label.name == "_CSwiftSyntax":
+    #     print("*** CHUCK _CSwiftSyntax swift_info: ", swift_info)
+    # # DEBUG END
     modulemaps = _process_modulemaps(swift_info = swift_info)
     resource_owner = str(target.label)
     inputs = input_files.collect(
@@ -669,6 +678,11 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos):
         objc = objc,
         build_settings = build_settings,
     )
+
+    # DEBUG BEGIN
+    print("*** CHUCK calling _process_search_paths for target.label: ", target.label)
+
+    # DEBUG END
     search_paths = _process_search_paths(
         cc_info = cc_info,
         objc = objc,
@@ -1147,6 +1161,28 @@ def _process_search_paths(*, cc_info, objc, opts_search_paths):
     search_paths = {}
     if cc_info:
         compilation_context = cc_info.compilation_context
+        header_paths = sets.to_list(sets.make([
+            header.dirname
+            for header in compilation_context.headers.to_list()
+        ]))
+
+        # DEBUG BEGIN
+        print("*** CHUCK _process_search_paths cc_info: ", cc_info)
+        print("*** CHUCK compilation_context.includes.to_list(): ")
+        for idx, item in enumerate(compilation_context.includes.to_list()):
+            print("*** CHUCK", idx, ":", item)
+        print("*** CHUCK compilation_context.quote_includes.to_list(): ")
+        for idx, item in enumerate(compilation_context.quote_includes.to_list()):
+            print("*** CHUCK", idx, ":", item)
+
+        # print("*** CHUCK compilation_context.headers.to_list(): ")
+        # for idx, item in enumerate(compilation_context.headers.to_list()):
+        #     print("*** CHUCK", idx, ":", item)
+        print("*** CHUCK header_paths: ")
+        for idx, item in enumerate(header_paths):
+            print("*** CHUCK", idx, ":", item)
+
+        # DEBUG END
         set_if_true(
             search_paths,
             "quote_includes",
@@ -1162,7 +1198,7 @@ def _process_search_paths(*, cc_info, objc, opts_search_paths):
             [
                 file_path_to_dto(parsed_file_path(path))
                 for path in (compilation_context.includes.to_list() +
-                             opts_search_paths.includes)
+                             opts_search_paths.includes + header_paths)
             ],
         )
         set_if_true(
@@ -1249,11 +1285,17 @@ def _process_modulemaps(*, swift_info):
 
     direct_modules = swift_info.direct_modules
 
+    # DEBUG BEGIN
+    print("*** CHUCK _process_modulemaps swift_info: ", swift_info)
+    # DEBUG END
+
     modulemap_file_paths = []
     modulemap_files = []
     for module in swift_info.transitive_modules.to_list():
-        if module in direct_modules:
-            continue
+        # TODO(chuck): Removed this check as it was preventing the _CSwiftSyntax modulemap from being recorded.
+        # Brentley believes that we need to do this for Swift provided modules. I need to allow it for the tagged cc_library case.
+        # if module in direct_modules:
+        #     continue
         clang_module = module.clang
         if not clang_module:
             continue
@@ -1268,6 +1310,13 @@ def _process_modulemaps(*, swift_info):
             modulemap = module_map
 
         modulemap_file_paths.append(modulemap)
+
+    # DEBUG BEGIN
+    print("*** CHUCK modulemap_file_paths: ")
+    for idx, item in enumerate(modulemap_file_paths):
+        print("*** CHUCK", idx, ":", item)
+
+    # DEBUG END
 
     # Different modules might be defined in the same modulemap file, so we need
     # to deduplicate them.
