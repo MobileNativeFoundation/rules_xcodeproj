@@ -147,8 +147,28 @@ def _get_outputs(target):
             outputs["swift_module"] = _swift_module_output(swift_modules[0])
     return outputs
 
+def _get_swift_info(target):
+    """Retrieves a `SwiftInfo` provider from a target and determines whether it directly provides a Swift module.
+
+    A target may provide a `SwiftInfo` even if it does not directly provide a
+    Swift module. If the target does directly provide a Swift module, it is
+    considered to be a "Swift" target.
+
+    Args:
+        target: A `Target`.
+
+    Returns:
+        True if the target provides `SwiftInfo` and it has one ore more direct
+        modules. Otherwise, False.
+    """
+    swift_info = target[SwiftInfo] if SwiftInfo in target else None
+    if swift_info == None:
+        return None, False
+    return swift_info, len(swift_info.direct_modules) > 0
+
 targets = struct(
     get_outputs = _get_outputs,
+    get_swift_info = _get_swift_info,
     is_test_bundle = _is_test_bundle,
     should_become_xcode_target = _should_become_xcode_target,
 )
