@@ -72,7 +72,13 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
-    ) throws -> PBXAggregateTarget {
+    ) throws -> PBXAggregateTarget? {
+        guard
+            files.containsExternalFiles || files.containsGeneratedFiles
+        else {
+            return nil
+        }
+
         let pbxProject = pbxProj.rootObject!
 
         let debugConfiguration = XCBuildConfiguration(
@@ -199,16 +205,25 @@ cd "$SRCROOT"
             return nil
         }
 
-        let script = PBXShellScriptBuildPhase(
-            name: "Generate Files",
-            outputFileListPaths: [
+        let generatedFileList = filePathResolver
+            .resolve(.internal(generatedFileListPath))
+            .string
+
+        let outputFileListPaths: [String]
+        if files.containsExternalFiles {
+            outputFileListPaths = [
                 filePathResolver
                     .resolve(.internal(externalFileListPath))
                     .string,
-                filePathResolver
-                    .resolve(.internal(generatedFileListPath))
-                    .string,
-            ],
+                generatedFileList,
+            ]
+        } else {
+            outputFileListPaths = [generatedFileList]
+        }
+
+        let script = PBXShellScriptBuildPhase(
+            name: "Generate Files",
+            outputFileListPaths: outputFileListPaths,
             shellScript: #"""
 set -eu
 

@@ -254,7 +254,7 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             xcodeprojBazelLabel: String
-        ) throws -> PBXAggregateTarget {
+        ) throws -> PBXAggregateTarget? {
             addBazelDependenciesTargetCalled.append(.init(
                 pbxProj: pbxProj,
                 files: files,
@@ -281,7 +281,7 @@ final class GeneratorTests: XCTestCase {
             let products: Products
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
-            let bazelDependenciesTarget: PBXAggregateTarget
+            let bazelDependenciesTarget: PBXAggregateTarget?
         }
 
         var addTargetsCalled: [AddTargetsCalled] = []
@@ -291,7 +291,7 @@ final class GeneratorTests: XCTestCase {
             products: Products,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
-            bazelDependenciesTarget: PBXAggregateTarget
+            bazelDependenciesTarget: PBXAggregateTarget?
         ) throws -> [TargetID: PBXNativeTarget] {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
