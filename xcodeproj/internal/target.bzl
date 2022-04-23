@@ -674,7 +674,6 @@ def _process_ccinfo_library_target(*, ctx, target, transitive_infos, swift_info_
         objc = objc,
         build_settings = build_settings,
     )
-
     search_paths = _process_search_paths(
         cc_info = cc_info,
         objc = objc,
