@@ -123,8 +123,7 @@ def _xcode_target(
         inputs,
         links,
         info_plist,
-        dependencies,
-        outputs):
+        dependencies):
     """Generates the partial json string representation of an Xcode target.
 
     Args:
@@ -159,7 +158,6 @@ def _xcode_target(
         info_plist: A value as returned by `files.file_path()` or `None`.
         dependencies: A `depset` of `id`s of targets that this target depends
             on.
-        outputs: The value returned from `targets.get_outputs()`.
 
     Returns:
         An element of a json array string. This should be wrapped with `"[{}]"`
@@ -192,7 +190,6 @@ def _xcode_target(
         links = [file_path_to_dto(fp) for fp in links],
         info_plist = file_path_to_dto(info_plist),
         dependencies = dependencies.to_list(),
-        outputs = outputs,
     ))
 
     # Since we use a custom dictionary key type in
@@ -548,7 +545,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             links = links,
             info_plist = info_plist,
             dependencies = dependencies,
-            outputs = targets.get_outputs(target),
         ),
     )
 
@@ -712,7 +708,6 @@ def _process_library_target(*, ctx, target, transitive_infos):
             links = [],
             info_plist = None,
             dependencies = dependencies,
-            outputs = targets.get_outputs(target),
         ),
     )
 
@@ -845,7 +840,6 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             links = [],
             info_plist = None,
             dependencies = dependencies,
-            outputs = targets.get_outputs(target),
         ),
     )
 

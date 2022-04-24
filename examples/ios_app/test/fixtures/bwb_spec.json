@@ -261,7 +261,6 @@
             "links": [],
             "modulemaps": [],
             "name": "CoreUtilsObjC",
-            "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/CoreUtilsObjC",
             "platform": {
                 "arch": "x86_64",
@@ -404,9 +403,6 @@
             ],
             "modulemaps": [],
             "name": "Example",
-            "outputs": {
-                "dsyms": []
-            },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/Example",
             "platform": {
                 "arch": "x86_64",
@@ -519,14 +515,6 @@
                 }
             ],
             "name": "Example.library",
-            "outputs": {
-                "swift_module": {
-                    "name": "Example.swiftmodule",
-                    "swiftdoc": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/Example/Example.swiftdoc",
-                    "swiftmodule": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/Example/Example.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/Example/Example.swiftsourceinfo"
-                }
-            },
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/Example",
             "platform": {
                 "arch": "x86_64",
@@ -650,9 +638,6 @@
             ],
             "modulemaps": [],
             "name": "ExampleObjcTests.__internal__.__test_bundle",
-            "outputs": {
-                "dsyms": []
-            },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleObjcTests",
             "platform": {
                 "arch": "x86_64",
@@ -745,7 +730,6 @@
             "links": [],
             "modulemaps": [],
             "name": "ExampleObjcTests.library",
-            "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleObjcTests",
             "platform": {
                 "arch": "x86_64",
@@ -817,7 +801,6 @@
             "links": [],
             "modulemaps": [],
             "name": "ExampleResources",
-            "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleResources",
             "platform": {
                 "arch": "x86_64",
@@ -912,9 +895,6 @@
             ],
             "modulemaps": [],
             "name": "ExampleTests.__internal__.__test_bundle",
-            "outputs": {
-                "dsyms": []
-            },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleTests",
             "platform": {
                 "arch": "x86_64",
@@ -1034,14 +1014,6 @@
                 }
             ],
             "name": "ExampleTests.library",
-            "outputs": {
-                "swift_module": {
-                    "name": "ExampleTests.swiftmodule",
-                    "swiftdoc": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleTests/ExampleTests.swiftdoc",
-                    "swiftmodule": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleTests/ExampleTests.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleTests/ExampleTests.swiftsourceinfo"
-                }
-            },
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleTests",
             "platform": {
                 "arch": "x86_64",
@@ -1163,9 +1135,6 @@
             ],
             "modulemaps": [],
             "name": "ExampleUITests.__internal__.__test_bundle",
-            "outputs": {
-                "dsyms": []
-            },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleUITests",
             "platform": {
                 "arch": "x86_64",
@@ -1259,14 +1228,6 @@
             "links": [],
             "modulemaps": [],
             "name": "ExampleUITests.library",
-            "outputs": {
-                "swift_module": {
-                    "name": "ExampleUITests.swiftmodule",
-                    "swiftdoc": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleUITests/ExampleUITests.swiftdoc",
-                    "swiftmodule": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleUITests/ExampleUITests.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleUITests/ExampleUITests.swiftsourceinfo"
-                }
-            },
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleUITests",
             "platform": {
                 "arch": "x86_64",
@@ -1357,14 +1318,6 @@
             "links": [],
             "modulemaps": [],
             "name": "TestingUtils",
-            "outputs": {
-                "swift_module": {
-                    "name": "TestingUtils.swiftmodule",
-                    "swiftdoc": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/TestingUtils/TestingUtils.swiftdoc",
-                    "swiftmodule": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/TestingUtils/TestingUtils.swiftmodule",
-                    "swiftsourceinfo": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/TestingUtils/TestingUtils.swiftsourceinfo"
-                }
-            },
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/TestingUtils",
             "platform": {
                 "arch": "x86_64",
@@ -1464,7 +1417,6 @@
             "links": [],
             "modulemaps": [],
             "name": "Utils",
-            "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/Utils",
             "platform": {
                 "arch": "x86_64",
@@ -1546,7 +1498,6 @@
             "links": [],
             "modulemaps": [],
             "name": "ExternalResources",
-            "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/external/examples_ios_app_external",
             "platform": {
                 "arch": "x86_64",
