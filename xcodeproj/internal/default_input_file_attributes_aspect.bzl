@@ -3,6 +3,7 @@
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
+    "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
     "AppleResourceInfo",
 )
@@ -72,6 +73,9 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "deps": [target_type.compile, target_type.resources],
             "interface_deps": [target_type.compile],
         }
+    elif ctx.rule.kind == "cc_import":
+        xcode_targets = {}
+        excluded = ("shared_library", "static_library")
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
             "deps": [target_type.compile, target_type.resources],
@@ -87,6 +91,9 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "runtime_deps": [target_type.compile],
             "data": [target_type.resources],
         }
+    elif ctx.rule.kind == "objc_import":
+        xcode_targets = {}
+        excluded = ("archives")
     elif ctx.rule.kind == "swift_library":
         xcode_targets = {
             "deps": [target_type.compile, target_type.resources],
@@ -125,6 +132,9 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "deps": [target_type.compile, target_type.resources],
             "resources": [target_type.resources],
         }
+    elif AppleFrameworkImportInfo in target:
+        xcode_targets = {}
+        excluded = ("framework_imports")
     else:
         xcode_targets = {"deps": [this_target_type, target_type.resources]}
         excluded = ("deps")

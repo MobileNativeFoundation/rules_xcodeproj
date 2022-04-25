@@ -4,17 +4,11 @@ load(
     "calculate_configuration_test_suite",
 )
 load(
-    ":process_libraries_tests.bzl",
-    "process_libraries_test_suite",
-)
-load(
     ":process_top_level_properties_tests.bzl",
     "process_top_level_properties_test_suite",
 )
 
 calculate_configuration_test_suite(name = "calculate_configuration")
-
-process_libraries_test_suite(name = "process_libraries")
 
 process_top_level_properties_test_suite(name = "process_top_level_properties")
 

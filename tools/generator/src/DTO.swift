@@ -1,4 +1,3 @@
-import OrderedCollections
 import PathKit
 import XcodeProj
 
@@ -23,12 +22,11 @@ struct Target: Equatable, Decodable {
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
     var searchPaths: SearchPaths
-    var frameworks: [FilePath]
     var modulemaps: [FilePath]
     var swiftmodules: [FilePath]
     let resourceBundles: Set<FilePath>
     var inputs: Inputs
-    var links: OrderedSet<FilePath>
+    var linkerInputs: LinkerInputs
     var infoPlist: FilePath?
     var dependencies: Set<TargetID>
 }

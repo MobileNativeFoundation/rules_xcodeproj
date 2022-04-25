@@ -73,6 +73,7 @@
 		390F0EA150BF1F34944B6ADA /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C30E65D6E9C205B83B73E /* Sourcery.swift */; };
 		3A4A00E9748F9B2BE18264A6 /* XCScheme+AditionalOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A1E648AD1793142280604D /* XCScheme+AditionalOption.swift */; };
 		3A7349AFC0C6CBFFC6DEE039 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323B626241F566F3B8A2CB7 /* SwiftUI.swift */; };
+		3AC9943AE88D14565835BE55 /* LinkerInputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE08CE72D2F869D943DAC4 /* LinkerInputs.swift */; };
 		3D313135393850D8995F026E /* XCScheme+TestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF69A69C5C9048DCF61E301 /* XCScheme+TestAction.swift */; };
 		3D4F39BFCA1C6A8C56DFDCF1 /* OrderedSet+Diffing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478EF665AE33D9CE9CDBA26F /* OrderedSet+Diffing.swift */; };
 		3D717FFC9EA036D0DF025E6E /* OrderedDictionary+ExpressibleByDictionaryLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B1BBF60EFF9DE0F3873504 /* OrderedDictionary+ExpressibleByDictionaryLiteral.swift */; };
@@ -602,6 +603,7 @@
 		F37821F06B32120001F7E12D /* PBXLegacyTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXLegacyTarget.swift; sourceTree = "<group>"; };
 		F4ABCD1903D2A2F3FAE064BC /* WorkspaceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSettings.swift; sourceTree = "<group>"; };
 		F4D918C1EA31CECDFC8FF2F6 /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
+		F4FE08CE72D2F869D943DAC4 /* LinkerInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkerInputs.swift; sourceTree = "<group>"; };
 		F8C59EAFFB7EF2605BF76058 /* XCVersionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCVersionGroup.swift; sourceTree = "<group>"; };
 		F972F9B12146B979CA3E0318 /* PBXProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXProject.swift; sourceTree = "<group>"; };
 		FCEBA76F789E9D71187DFF61 /* PopulateMainGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulateMainGroupTests.swift; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 				FF368C9DB075CBC4E63E0BCA /* Generator+SetTargetDependencies.swift */,
 				05B56CD9E6641A10324B096B /* Generator+WriteXcodeProj.swift */,
 				63E2669DF0B74F219B31D9AB /* Inputs.swift */,
+				F4FE08CE72D2F869D943DAC4 /* LinkerInputs.swift */,
 				1E3D4E7C841C2C89DF095466 /* Logger.swift */,
 				C5B0A0B7C1D6A4838956E41C /* Path+Extensions.swift */,
 				2BCF03A21336243CA3242059 /* PBXGroup+Extensions.swift */,
@@ -1659,6 +1662,7 @@
 				7B3AD502D81DAD7185608351 /* Generator+WriteXcodeProj.swift in Sources */,
 				A66786EB13D7E2639036F3BF /* Generator.swift in Sources */,
 				1D234043EBCEEF3EFC870923 /* Inputs.swift in Sources */,
+				3AC9943AE88D14565835BE55 /* LinkerInputs.swift in Sources */,
 				209E823873EA39D5C6A8EF66 /* Logger.swift in Sources */,
 				D2BCCC871F46C8F9DAD03627 /* PBXGroup+Extensions.swift in Sources */,
 				4174F4CF85B88F38A10506D6 /* PBXProductType+Extensions.swift in Sources */,
@@ -2222,7 +2226,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-1c975e2849a6/tools/generator/test/tests.LinkFileList,$(BUILD_DIR)",
+					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-1c975e2849a6/tools/generator/test/tests.LinkFileList",
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
@@ -2346,7 +2350,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-1c975e2849a6/tools/generator/generator.LinkFileList,$(BUILD_DIR)",
+					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-1c975e2849a6/tools/generator/generator.LinkFileList",
 					"-ObjC",
 				);
 				PRODUCT_MODULE_NAME = _generator_Stub;

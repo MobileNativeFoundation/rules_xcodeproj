@@ -96,7 +96,6 @@
             "dependencies": [
                 "//examples/command_line/Tests:LibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
-            "frameworks": [],
             "info_plist": {
                 "_": "applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -106,20 +105,22 @@
             },
             "is_swift": false,
             "label": "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle",
-            "links": [
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/Tests/libLibSwiftTestsLib.a",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_swift.a",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_impl.a",
-                    "t": "g"
-                }
-            ],
+            "linker_inputs": {
+                "static_libraries": [
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/Tests/libLibSwiftTestsLib.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_impl.a",
+                        "t": "g"
+                    }
+                ]
+            },
             "modulemaps": [],
             "name": "LibSwiftTests.__internal__.__test_bundle",
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/Tests",
@@ -197,7 +198,6 @@
             "dependencies": [
                 "//examples/command_line/lib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "contains_generated_files": true,
@@ -207,7 +207,7 @@
             },
             "is_swift": true,
             "label": "//examples/command_line/Tests:LibSwiftTestsLib",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/lib_impl.swift.modulemap",
@@ -301,7 +301,6 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
             "dependencies": [],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -311,7 +310,7 @@
             },
             "is_swift": false,
             "label": "//examples/command_line/lib:lib_impl",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [],
             "name": "lib_impl",
             "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib",
@@ -397,7 +396,6 @@
             "dependencies": [
                 "//examples/command_line/lib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "contains_generated_files": true,
@@ -407,7 +405,7 @@
             },
             "is_swift": true,
             "label": "//examples/command_line/lib:lib_swift",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/lib_impl.swift.modulemap",
@@ -491,25 +489,26 @@
             "dependencies": [
                 "//examples/command_line/tool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {},
             "is_swift": false,
             "label": "//examples/command_line/tool:tool",
-            "links": [
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/tool/libtool.library.a",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_swift.a",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_impl.a",
-                    "t": "g"
-                }
-            ],
+            "linker_inputs": {
+                "static_libraries": [
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/tool/libtool.library.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/liblib_impl.a",
+                        "t": "g"
+                    }
+                ]
+            },
             "modulemaps": [],
             "name": "tool",
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/tool",
@@ -584,7 +583,6 @@
             "dependencies": [
                 "//examples/command_line/lib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -593,7 +591,7 @@
             },
             "is_swift": false,
             "label": "//examples/command_line/tool:tool.library",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [],
             "name": "tool.library",
             "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/tool",

@@ -1303,7 +1303,7 @@
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList,$(BUILD_DIR)",
+					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList",
 					"-framework",
 					Foundation,
 					"-weak_framework",
@@ -1708,7 +1708,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/Example/Example.LinkFileList,$(BUILD_DIR)",
+					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/Example/Example.LinkFileList",
 					"-framework",
 					Foundation,
 					"-weak_framework",
@@ -1788,7 +1788,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/ExampleTests/ExampleTests.__internal__.__test_bundle.LinkFileList,$(BUILD_DIR)",
+					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/ExampleTests/ExampleTests.__internal__.__test_bundle.LinkFileList",
 					"-framework",
 					Foundation,
 					"-weak_framework",
