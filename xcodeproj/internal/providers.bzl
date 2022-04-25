@@ -71,7 +71,9 @@ for this target. It also includes the two extra fields that collect all of the
 generated `Files` and all of the `Files` that should be added to the Xcode
 project, but are not associated with any targets.
 """,
-        "linker_inputs": "A `depset` of `LinkerInput`s for this target.",
+        "linker_inputs": """\
+A value returned from `linker_input_files.collect`.
+""",
         "potential_target_merges": """\
 A `depset` of structs with 'src' and 'dest' fields. The 'src' field is the id of
 the target that can be merged into the target with the id of the 'dest' field.
@@ -88,9 +90,6 @@ that the generator uses) that haven't been added to an Xcode target yet.
 A value returned from `_process_search_paths`, that contains the search paths
 needed by this target. These search paths should be added to the search paths of
 any target that depends on this target.
-""",
-        "static_framework_files": """\
-A `depset` of all static framework files that are linked into this target.
 """,
         "target": """\
 A `struct` that contains information about the current target that is
