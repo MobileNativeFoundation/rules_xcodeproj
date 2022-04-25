@@ -64,8 +64,8 @@ plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 echo 'Updated project at "%output_path%"'
 
 if [[ \
-  -f "$dest/rules_xcodeproj/external.xcfilelist" || \
-  -f "$dest/rules_xcodeproj/generated.xcfilelist" && \
+  (-f "$dest/rules_xcodeproj/external.xcfilelist" || \
+   -f "$dest/rules_xcodeproj/generated.xcfilelist") && \
   ! -d "$dest/rules_xcodeproj/links/gen_dir" \
 ]]; then
   # If "gen_dir" doesn't exist, this is most likely a fresh project. In that
