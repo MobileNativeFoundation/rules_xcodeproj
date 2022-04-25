@@ -1,38 +1,11 @@
 """Functions for calculating a target's product."""
 
-load(":collections.bzl", "flatten")
 load(
     ":files.bzl",
     "file_path",
     "file_path_to_dto",
 )
-load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-
-def get_linker_inputs(*, cc_info):
-    return cc_info.linking_context.linker_inputs
-
-def get_static_framework_files(*, objc):
-    if not objc:
-        return depset()
-    return objc.static_framework_file
-
-def get_static_libraries(*, linker_inputs, static_framework_files):
-    static_libraries = [
-        library.static_library
-        for library in flatten([
-            input.libraries
-            for input in linker_inputs.to_list()
-        ])
-    ]
-    return static_libraries + static_framework_files.to_list()
-
-def _get_static_library(*, linker_inputs):
-    for input in linker_inputs.to_list():
-        # Ideally we would only return the static library that is owned by this
-        # target, but sometimes another rule creates the output and this rule
-        # outputs it. So far the first library has always been the correct one.
-        return file_path(input.libraries[0].static_library)
-    return None
+load(":linker_input_files.bzl", "linker_input_files")
 
 def process_product(
         *,
@@ -53,19 +26,19 @@ def process_product(
             for examples.
         bundle_path: If the product is a bundle, this is the the path to the
             bundle, otherwise `None`.
-        linker_inputs: A `depset` of `LinkerInput`s for this target.
+        linker_inputs: A value returned by `linker_input_files.collect`.
         build_settings: A mutable `dict` that will be updated with Xcode build
             settings.
 
     Returns:
-        A struct containing the name, the path to the product and the product type.
+        A `struct` containing the name, the path to the product and the product type.
     """
     if bundle_path:
         fp = bundle_path
     elif target[DefaultInfo].files_to_run.executable:
         fp = file_path(target[DefaultInfo].files_to_run.executable)
-    elif CcInfo in target or SwiftInfo in target:
-        fp = _get_static_library(linker_inputs = linker_inputs)
+    elif CcInfo in target:
+        fp = linker_input_files.get_primary_static_library(linker_inputs)
     else:
         fp = None
 
