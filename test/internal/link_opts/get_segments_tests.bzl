@@ -1,4 +1,4 @@
-"""Tests for `link_opts.get_segments()`."""
+"""Tests for `link_opts.get_segments`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 

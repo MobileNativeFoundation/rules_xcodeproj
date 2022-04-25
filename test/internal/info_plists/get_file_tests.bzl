@@ -1,4 +1,4 @@
-"""Tests for `info_plists.get_file()`."""
+"""Tests for `info_plists.get_file`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("@build_bazel_rules_apple//apple:providers.bzl", "AppleBundleInfo")

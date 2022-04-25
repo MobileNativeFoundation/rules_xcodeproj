@@ -66,7 +66,7 @@ A `list` of target ids (see the `target` `struct`) that this target directly
 depends on.
 """,
         "inputs": """\
-A value returned from `input_files.collect()`, that contains the input files
+A value returned from `input_files.collect`, that contains the input files
 for this target. It also includes the two extra fields that collect all of the
 generated `Files` and all of the `Files` that should be added to the Xcode
 project, but are not associated with any targets.
@@ -85,9 +85,9 @@ A `depset` of all resource bundle product paths (these are made up, but a key
 that the generator uses) that haven't been added to an Xcode target yet.
 """,
         "search_paths": """\
-A value returned from `_process_search_paths()`, that contains the search
-paths needed by this target. These search paths should be added to the search
-paths of any target that depends on this target.
+A value returned from `_process_search_paths`, that contains the search paths
+needed by this target. These search paths should be added to the search paths of
+any target that depends on this target.
 """,
         "static_framework_files": """\
 A `depset` of all static framework files that are linked into this target.

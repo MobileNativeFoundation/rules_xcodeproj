@@ -322,7 +322,7 @@ def _merge(*, attrs_info, transitive_infos):
             dependencies of the current target.
 
     Returns:
-        A value similar to the one returned from `input_files.collect()`. The
+        A value similar to the one returned from `input_files.collect`. The
         values potentially include the inputs of the transitive dependencies,
         via `transitive_infos` (e.g. `generated` and `extra_files`).
     """
@@ -382,7 +382,7 @@ def _to_dto(inputs, *, is_bundle, avoid_infos):
     """Generates a target DTO value for inputs.
 
     Args:
-        inputs: A value returned from `input_files.collect()`.
+        inputs: A value returned from `input_files.collect`.
         is_bundle: Whether the target is a bundle.
         avoid_infos: A list of `XcodeProjInfo`s for the targets that already
             consumed resources, and their resources shouldn't be included in
@@ -444,7 +444,7 @@ def _to_output_groups_fields(*, ctx, inputs, toplevel_cache_buster):
 
     Args:
         ctx: The rule context.
-        inputs: A value returned from `input_files.collect()`.
+        inputs: A value returned from `input_files.collect`.
         toplevel_cache_buster: A `list` of `File`s that change with each build,
             and are used as inputs to the output map generation, to ensure that
             the files references by the output map are always downloaded from
