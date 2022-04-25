@@ -198,10 +198,11 @@ def merge_opts_search_paths(search_paths):
     """Merges a `list` of search paths into a single set set of search paths.
 
     Args:
-        search_paths: A `list` of values returned from `create_opts_search_paths()`.
+        search_paths: A `list` of values returned from
+            `create_opts_search_paths`.
 
     Returns:
-        A value returned from `create_opts_search_paths()`, with the search paths
+        A value returned from `create_opts_search_paths`, with the search paths
         provided to it being the merged and deduplicated values from
         `search_paths`.
     """
@@ -232,8 +233,8 @@ def _process_conlyopts(opts):
         *   A `list` of unhandled C compiler options.
         *   A `list` of defines parsed.
         *   A `list` of C compiler optimization levels parsed.
-        *   A value returned by `create_opts_search_paths()` with the parsed search
-            paths.
+        *   A value returned by `create_opts_search_paths` with the parsed
+            search paths.
     """
     defines = []
     optimizations = []
@@ -299,7 +300,7 @@ def _process_cxxopts(opts, *, build_settings):
         *   A `list` of unhandled C++ compiler options.
         *   A `list` of defines parsed.
         *   A `list` of C++ compiler optimization levels parsed.
-        *   A value returned by `_create_search_paths()` with the parsed search
+        *   A value returned by `_create_search_paths` with the parsed search
             paths.
     """
     defines = []
@@ -374,7 +375,7 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
 
         *   A `list` of unhandled C compiler options.
         *   A `list` of unhandled C++ compiler options.
-        *   A value returned by `_create_search_paths()` with the parsed search
+        *   A value returned by `_create_search_paths` with the parsed search
             paths.
     """
     (
@@ -457,7 +458,7 @@ def _process_swiftopts(full_swiftcopts, user_swiftcopts, *, package_bin_dir, bui
         A `tuple` containing two elements:
 
         *   A `list` of unhandled Swift compiler options.
-        *   A value returned by `_create_search_paths()` with the parsed search
+        *   A value returned by `_create_search_paths` with the parsed search
             paths.
     """
     swiftcopts = _process_full_swiftcopts(
@@ -562,8 +563,8 @@ def _process_user_swiftcopts(opts):
     Args:
         opts: A `list` of Swift compiler options.
 
-    Note: any flag processed here needs to be filtered from
-        processing in `_process_full_swiftcopts()`.
+    Note: any flag processed here needs to be filtered from processing in
+    `_process_full_swiftcopts`.
 
     Returns:
         A `list` of search paths.

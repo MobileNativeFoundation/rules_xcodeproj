@@ -67,7 +67,7 @@ def _get_section(linker_opts_or_segments, segment_name, section_name):
         section_name: The name of the section as a `string`.
 
     Returns:
-        A value as returned from `link_opts.create_section()` if the section
+        A value as returned from `link_opts.create_section` if the section
         exists exists, otherwise `None`.
     """
     segments = _get_segments(linker_opts_or_segments)

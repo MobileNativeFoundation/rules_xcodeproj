@@ -68,7 +68,7 @@ def _to_dto(resource_bundles, *, avoid_infos):
 
     Args:
         resource_bundles: A value returned from
-            `resource_bundle_products.collect()`.
+            `resource_bundle_products.collect`.
         avoid_infos: A list of `XcodeProjInfo`s for the targets that already
             consumed resource bundle products, and their resource bundle
             products shouldn't be included in the DTO.

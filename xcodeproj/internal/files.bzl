@@ -83,10 +83,10 @@ def project_file_path(path, is_folder = False):
 
 # TODO: Refactor all of file_path stuff to a module
 def file_path_to_dto(file_path):
-    """Converts a `file_path()` return value to a `FilePath` Swift DTO value.
+    """Converts a `file_path` return value to a `FilePath` Swift DTO value.
 
     Args:
-        file_path: A value returned from `file_path()`.
+        file_path: A value returned from `file_path`.
 
     Returns:
         A `FilePath` Swift DTO value, which is either a string or a `struct`

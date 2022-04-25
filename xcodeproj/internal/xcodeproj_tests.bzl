@@ -138,7 +138,7 @@ def xcodeproj_test_suite(name, fixture_tests):
         name: The base name to be used in things created by this macro. Also the
             name of the test suite.
         fixture_tests: A `list` of structs as returned by
-            `xcodeproj_tests.from_fixture()`.
+            `xcodeproj_tests.from_fixture`.
     """
     test_names = []
 

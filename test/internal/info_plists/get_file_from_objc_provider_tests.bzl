@@ -1,4 +1,4 @@
-"""Tests for `info_plists.get_file_from_objc_provider()`."""
+"""Tests for `info_plists.get_file_from_objc_provider`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 

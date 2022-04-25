@@ -67,7 +67,7 @@ def _processed_target(
         attrs_info: The `InputFileAttributesInfo` for the target.
         dependencies: A `list` of target ids of direct dependencies of this
             target.
-        inputs: A value as returned from `input_files.collect()` that will
+        inputs: A value as returned from `input_files.collect` that will
             provide values for the `XcodeProjInfo.inputs` field.
         linker_inputs: A `depset` of `LinkerInput`s for this target.
         potential_target_merges: An optional `list` of `struct`s that will be in
@@ -75,10 +75,10 @@ def _processed_target(
         required_links: An optional `list` of strings that will be in the
             `XcodeProjInfo.required_links` `depset`.
         resource_bundles: The value returned from
-            `resource_bundle_products.collect()`.
-        search_paths: The value returned from `_process_search_paths()`.
+            `resource_bundle_products.collect`.
+        search_paths: The value returned from `_process_search_paths`.
         static_framework_files: The value returned from
-            `get_static_framework_files()`.
+            `get_static_framework_files`.
         target: An optional `XcodeProjInfo.target` `struct`.
         xcode_target: An optional string that will be in the
             `XcodeProjInfo.xcode_targets` `depset`.
@@ -137,8 +137,8 @@ def _xcode_target(
         configuration: The configuration of the `Target`.
         package_bin_dir: The package directory for the `Target` within
             `ctx.bin_dir`.
-        platform: The value returned from `process_platform()`.
-        product: The value returned from `process_product()`.
+        platform: The value returned from `process_platform`.
+        product: The value returned from `process_product`.
         is_bundle: Whether the target is a bundle.
         is_swift: Whether the target compiles Swift code.
         test_host: The `id` of the target that is the test host for this
@@ -146,16 +146,16 @@ def _xcode_target(
         avoid_infos: A list of `XcodeProjInfo`s for the targets that have
             already consumed resources, or linked to libraries.
         build_settings: A `dict` of Xcode build settings for the target.
-        search_paths: The value returned from `_process_search_paths()`.
-        frameworks: The value returned from `_process_frameworks().
-        modulemaps: The value returned from `_process_modulemaps()`.
-        swiftmodules: The value returned from `_process_swiftmodules()`.
+        search_paths: The value returned from `_process_search_paths`.
+        frameworks: The value returned from `_process_frameworks.
+        modulemaps: The value returned from `_process_modulemaps`.
+        swiftmodules: The value returned from `_process_swiftmodules`.
         resource_bundles: The value returned from
-            `resource_bundle_products.collect()`.
-        inputs: The value returned from `input_files.collect()`.
+            `resource_bundle_products.collect`.
+        inputs: The value returned from `input_files.collect`.
         links: A `list` of file paths for libraries that the target links
             against.
-        info_plist: A value as returned by `files.file_path()` or `None`.
+        info_plist: A value as returned by `files.file_path` or `None`.
         dependencies: A `depset` of `id`s of targets that this target depends
             on.
 
@@ -304,7 +304,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        The value returned from `_processed_target()`.
+        The value returned from `_processed_target`.
     """
     attrs_info = target[InputFileAttributesInfo]
 
@@ -417,7 +417,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         target_name = ctx.rule.attr.name,
         # The common case is to have a `bundle_info`, so this check prevents
         # expanding the `depset` unless needed. Yes, this uses knowledge of what
-        # `_process_top_level_properties()` does internally.
+        # `_process_top_level_properties` does internally.
         files = [] if bundle_info else target.files.to_list(),
         bundle_info = bundle_info,
         tree_artifact_enabled = tree_artifact_enabled,
@@ -560,7 +560,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        The value returned from `_processed_target()`.
+        The value returned from `_processed_target`.
     """
     attrs_info = target[InputFileAttributesInfo]
 
@@ -723,7 +723,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        The value returned from `_processed_target()`.
+        The value returned from `_processed_target`.
     """
     attrs_info = target[InputFileAttributesInfo]
 
@@ -855,7 +855,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        The value returned from `_processed_target()`.
+        The value returned from `_processed_target`.
     """
     if CcInfo in target:
         cc_info = target[CcInfo]
@@ -1003,7 +1003,7 @@ def _skip_target(*, target, transitive_infos):
             transitive dependencies of `target`.
 
     Returns:
-        The return value of `_target_info_fields()`, with values merged from
+        The return value of `_target_info_fields`, with values merged from
         `transitive_infos`.
     """
     return _target_info_fields(
@@ -1298,7 +1298,7 @@ def _process_target(*, ctx, target, transitive_infos):
 
     Returns:
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
-        `_target_info_fields()`.
+        `_target_info_fields`.
     """
     if not targets.should_become_xcode_target(target):
         processed_target = _process_non_xcode_target(
