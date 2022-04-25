@@ -12,6 +12,7 @@ swift_library(
     module_name = "generator",
     visibility = ["//tools/generator/test:__pkg__"],
     deps = [
+        "@com_github_apple_swift_collections//:OrderedCollections",
         "@com_github_kylef_pathkit//:PathKit",
         "@com_github_tuist_xcodeproj//:XcodeProj",
     ],

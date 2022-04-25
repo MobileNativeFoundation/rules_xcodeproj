@@ -83,23 +83,7 @@
             "label": "//tools/generator/test:tests",
             "links": [
                 {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/libPathKit.a",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tadija_aexml/libAEXML.a",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/test/libtests.library.a",
                     "t": "g"
                 },
                 {
@@ -107,7 +91,27 @@
                     "t": "g"
                 },
                 {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/test/libtests.library.a",
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_apple_swift_collections/libOrderedCollections.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tadija_aexml/libAEXML.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
                     "t": "g"
                 }
             ],
@@ -228,6 +232,10 @@
             "search_paths": {},
             "swiftmodules": [
                 {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
+                    "t": "g"
+                },
+                {
                     "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
                     "t": "g"
                 },
@@ -309,11 +317,11 @@
             "label": "//tools/generator:generator",
             "links": [
                 {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/libgenerator.library.a",
                     "t": "g"
                 },
                 {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tadija_aexml/libAEXML.a",
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_apple_swift_collections/libOrderedCollections.a",
                     "t": "g"
                 },
                 {
@@ -321,7 +329,11 @@
                     "t": "g"
                 },
                 {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/libgenerator.library.a",
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_tadija_aexml/libAEXML.a",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/libPathKit.a",
                     "t": "g"
                 }
             ],
@@ -396,6 +408,7 @@
             },
             "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
             "dependencies": [
+                "@com_github_apple_swift_collections//:OrderedCollections darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
                 "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
                 "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-d53d69b6b8c1"
             ],
@@ -457,6 +470,10 @@
             "search_paths": {},
             "swiftmodules": [
                 {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
+                    "t": "g"
+                },
+                {
                     "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
                     "t": "g"
                 },
@@ -469,6 +486,286 @@
                     "t": "g"
                 }
             ],
+            "test_host": null
+        },
+        "@com_github_apple_swift_collections//:OrderedCollections darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "DEBUG",
+                    "__DATE__=\"redacted\"",
+                    "__TIMESTAMP__=\"redacted\"",
+                    "__TIME__=\"redacted\""
+                ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-no-canonical-prefixes",
+                    "-pthread",
+                    "-no-canonical-prefixes",
+                    "-Wno-builtin-macro-redefined"
+                ],
+                "OTHER_LDFLAGS": [
+                    "-ObjC"
+                ],
+                "PRODUCT_MODULE_NAME": "OrderedCollections",
+                "PRODUCT_NAME": "OrderedCollections",
+                "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+            "dependencies": [],
+            "frameworks": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_HashTable+Bucket.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_HashTable+BucketIterator.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_HashTable+Constants.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_HashTable+CustomStringConvertible.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_HashTable+Testing.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_HashTable+UnsafeHandle.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_HashTable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_Hashtable+Header.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Codable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+CustomDebugStringConvertible.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+CustomReflectable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+CustomStringConvertible.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Deprecations.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Elements+SubSequence.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Elements.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Equatable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+ExpressibleByDictionaryLiteral.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Hashable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Initializers.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Invariants.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Partial MutableCollection.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Partial RangeReplaceableCollection.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Sequence.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary+Values.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedDictionary/OrderedDictionary.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Codable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+CustomDebugStringConvertible.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+CustomReflectable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+CustomStringConvertible.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Diffing.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Equatable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+ExpressibleByArrayLiteral.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Hashable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Initializers.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Insertions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Invariants.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial MutableCollection.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial RangeReplaceableCollection.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra+Basics.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra+Operations.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Partial SetAlgebra+Predicates.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+RandomAccessCollection.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+ReserveCapacity.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+SubSequence.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+Testing.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+UnorderedView.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet+UnstableInternals.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/OrderedSet/OrderedSet.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/Utilities/RandomAccessCollection+Offsets.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_collections/Sources/OrderedCollections/Utilities/_UnsafeBitset.swift",
+                        "t": "e"
+                    }
+                ]
+            },
+            "is_swift": true,
+            "label": "@com_github_apple_swift_collections//:OrderedCollections",
+            "links": [],
+            "modulemaps": [],
+            "name": "OrderedCollections",
+            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_apple_swift_collections",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "os": "macos"
+            },
+            "product": {
+                "name": "OrderedCollections",
+                "path": {
+                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/com_github_apple_swift_collections/libOrderedCollections.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
+            "swiftmodules": [],
             "test_host": null
         },
         "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-d53d69b6b8c1",

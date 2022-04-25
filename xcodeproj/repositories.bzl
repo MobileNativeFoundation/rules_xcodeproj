@@ -154,3 +154,39 @@ swift_library(
         url = "https://github.com/tuist/XcodeProj/archive/b030c965498b9e7d76044049b22844910fee23eb.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
+
+    _maybe(
+        http_archive,
+        name = "com_github_apple_swift_collections",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "Collections",
+    srcs = glob(["Sources/Collections/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "DequeModule",
+    srcs = glob(["Sources/DequeModule/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "OrderedCollections",
+    srcs = glob(["Sources/OrderedCollections/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "PriorityQueueModule",
+    srcs = glob(["Sources/PriorityQueueModule/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+""",
+        sha256 = "b18c522aff4241160f60bcd0695702657c7862512c994c260a7d63f15a8450d8",
+        strip_prefix = "swift-collections-1.0.2",
+        url = "https://github.com/apple/swift-collections/archive/refs/tags/1.0.2.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )

@@ -54,6 +54,7 @@ def _merge(*, deps):
     ]
 
     cc_linker_inputs = depset(
+        order = "topological",
         transitive = [
             linker_inputs._cc_linker_inputs
             for _, linker_inputs in transitive_linker_inputs
@@ -61,6 +62,7 @@ def _merge(*, deps):
     )
 
     static_framework_files = depset(
+        order = "topological",
         transitive = [
             linker_inputs._static_framework_files
             for _, linker_inputs in transitive_linker_inputs
@@ -96,7 +98,7 @@ def _get_files_to_link(linker_inputs):
             for input in linker_inputs._cc_linker_inputs.to_list()
         ])
     ]
-    return static_libraries + linker_inputs._static_framework_files.to_list()
+    return linker_inputs._static_framework_files.to_list() + static_libraries
 
 def _get_primary_static_library(linker_inputs):
     """Returns the "primary" static library for this target.

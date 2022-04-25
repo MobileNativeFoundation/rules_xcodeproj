@@ -1,3 +1,4 @@
+import OrderedCollections
 import PathKit
 import XCTest
 
@@ -19,7 +20,7 @@ extension Target {
         swiftmodules: [FilePath] = [],
         resourceBundles: Set<FilePath> = [],
         inputs: Inputs = Inputs(),
-        links: Set<FilePath> = [],
+        links: OrderedSet<FilePath> = [],
         dependencies: Set<TargetID> = []
     ) -> Self {
         return Target(
