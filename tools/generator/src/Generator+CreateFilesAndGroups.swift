@@ -430,9 +430,7 @@ extension Generator {
                 .map { "bazel-out/\($0.path)\n" }
             if !linkFiles.isEmpty {
                 files[try target.linkFileListFilePath()] =
-                    .nonReferencedContent(
-                        Set(linkFiles).sortedLocalizedStandard().joined()
-                    )
+                    .nonReferencedContent(linkFiles.joined())
             }
         }
 
