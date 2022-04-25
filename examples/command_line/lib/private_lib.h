@@ -1,0 +1,1 @@
+char *cc_greeting();
