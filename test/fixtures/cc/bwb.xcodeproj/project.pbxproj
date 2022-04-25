@@ -609,7 +609,8 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = (
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-1c975e2849a6/examples/cc/tool/tool.LinkFileList,$(BUILD_DIR)",

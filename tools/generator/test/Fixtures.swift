@@ -1492,8 +1492,9 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
+                    "-Wl,-rpath,/usr/lib/swift",
                     """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(TARGET_DEVICE_PLATFORM_NAME)
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
 """,
                     "-L/usr/lib/swift",
                     "-filelist",
