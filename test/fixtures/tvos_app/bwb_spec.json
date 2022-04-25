@@ -99,7 +99,6 @@
             "dependencies": [
                 "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
             ],
-            "frameworks": [],
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
                 "t": "g"
@@ -109,12 +108,14 @@
             },
             "is_swift": false,
             "label": "//examples/tvos_app/Example:Example",
-            "links": [
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/libExample.library.a",
-                    "t": "g"
-                }
-            ],
+            "linker_inputs": {
+                "static_libraries": [
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/libExample.library.a",
+                        "t": "g"
+                    }
+                ]
+            },
             "modulemaps": [],
             "name": "Example",
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example",
@@ -189,7 +190,6 @@
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
             "dependencies": [],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -199,7 +199,7 @@
             },
             "is_swift": true,
             "label": "//examples/tvos_app/Example:Example.library",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [],
             "name": "Example.library",
             "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example",
@@ -273,7 +273,6 @@
                 "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
                 "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
             ],
-            "frameworks": [],
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -283,12 +282,14 @@
             },
             "is_swift": false,
             "label": "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle",
-            "links": [
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/libExampleTests.library.a",
-                    "t": "g"
-                }
-            ],
+            "linker_inputs": {
+                "static_libraries": [
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/libExampleTests.library.a",
+                        "t": "g"
+                    }
+                ]
+            },
             "modulemaps": [],
             "name": "ExampleTests.__internal__.__test_bundle",
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests",
@@ -366,7 +367,6 @@
             "dependencies": [
                 "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
             ],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -375,7 +375,7 @@
             },
             "is_swift": true,
             "label": "//examples/tvos_app/ExampleTests:ExampleTests.library",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [],
             "name": "ExampleTests.library",
             "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests",
@@ -454,7 +454,6 @@
                 "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
                 "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3"
             ],
-            "frameworks": [],
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -464,12 +463,14 @@
             },
             "is_swift": false,
             "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle",
-            "links": [
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/libExampleUITests.library.a",
-                    "t": "g"
-                }
-            ],
+            "linker_inputs": {
+                "static_libraries": [
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/libExampleUITests.library.a",
+                        "t": "g"
+                    }
+                ]
+            },
             "modulemaps": [],
             "name": "ExampleUITests.__internal__.__test_bundle",
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests",
@@ -545,7 +546,6 @@
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3",
             "dependencies": [],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -555,7 +555,7 @@
             },
             "is_swift": true,
             "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.library",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [],
             "name": "ExampleUITests.library",
             "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests",

@@ -15,12 +15,11 @@ extension Target {
         testHost: TargetID? = nil,
         buildSettings: [String: BuildSetting] = [:],
         searchPaths: SearchPaths = SearchPaths(),
-        frameworks: [FilePath] = [],
         modulemaps: [FilePath] = [],
         swiftmodules: [FilePath] = [],
         resourceBundles: Set<FilePath> = [],
         inputs: Inputs = Inputs(),
-        links: OrderedSet<FilePath> = [],
+        linkerInputs: LinkerInputs = LinkerInputs(),
         dependencies: Set<TargetID> = []
     ) -> Self {
         return Target(
@@ -39,12 +38,11 @@ extension Target {
             testHost: testHost,
             buildSettings: buildSettings,
             searchPaths: searchPaths,
-            frameworks: frameworks,
             modulemaps: modulemaps,
             swiftmodules: swiftmodules,
             resourceBundles: resourceBundles,
             inputs: inputs,
-            links: links,
+            linkerInputs: linkerInputs,
             dependencies: dependencies
         )
     }

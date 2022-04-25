@@ -99,33 +99,33 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         )
         pbxProj.add(object: configurationList)
 
-        let fetchExternalReposScript = createFetchExternalReposScript(
+        let fetchExternalReposScript = try createFetchExternalReposScript(
             in: pbxProj,
             files: files,
             filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
         )
 
-        let generateFilesScript = createGenerateFilesScript(
+        let generateFilesScript = try createGenerateFilesScript(
             in: pbxProj,
             files: files,
             filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
         )
 
-        let copyFilesScript = createCopyFilesScript(
+        let copyFilesScript = try createCopyFilesScript(
             in: pbxProj,
             files: files,
             filePathResolver: filePathResolver
         )
 
-        let fixModuleMapsScript = createFixModulemapsScript(
+        let fixModuleMapsScript = try createFixModulemapsScript(
             in: pbxProj,
             files: files,
             filePathResolver: filePathResolver
         )
 
-        let fixInfoPlistsScript = createFixInfoPlistsScript(
+        let fixInfoPlistsScript = try createFixInfoPlistsScript(
             in: pbxProj,
             files: files,
             filePathResolver: filePathResolver
@@ -160,7 +160,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
-    ) -> PBXShellScriptBuildPhase? {
+    ) throws -> PBXShellScriptBuildPhase? {
         guard !files.containsGeneratedFiles else {
             return nil
         }
@@ -168,7 +168,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         let script = PBXShellScriptBuildPhase(
             name: "Fetch External Repositories",
             outputFileListPaths: [
-                filePathResolver
+                try filePathResolver
                     .resolve(.internal(externalFileListPath))
                     .string,
             ],
@@ -200,19 +200,19 @@ cd "$SRCROOT"
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
-    ) -> PBXShellScriptBuildPhase? {
+    ) throws -> PBXShellScriptBuildPhase? {
         guard files.containsGeneratedFiles else {
             return nil
         }
 
-        let generatedFileList = filePathResolver
+        let generatedFileList = try filePathResolver
             .resolve(.internal(generatedFileListPath))
             .string
 
         let outputFileListPaths: [String]
         if files.containsExternalFiles {
             outputFileListPaths = [
-                filePathResolver
+                try filePathResolver
                     .resolve(.internal(externalFileListPath))
                     .string,
                 generatedFileList,
@@ -237,8 +237,8 @@ cd bazel-out
 
 sed 's|\/[^\/]*$||' \
   "\#(
-  filePathResolver
-      .resolve(.internal(rsyncFileListPath), useScriptVariables: true)
+  try filePathResolver
+      .resolve(.internal(rsyncFileListPath), mode: .script)
       .string
 )" \
   | uniq \
@@ -271,7 +271,7 @@ date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
         in pbxProj: PBXProj,
         files: [FilePath: File],
         filePathResolver: FilePathResolver
-    ) -> PBXShellScriptBuildPhase? {
+    ) throws -> PBXShellScriptBuildPhase? {
         guard files.containsGeneratedFiles else {
             return nil
         }
@@ -279,12 +279,12 @@ date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
         let script = PBXShellScriptBuildPhase(
             name: "Copy Files",
             inputFileListPaths: [
-                filePathResolver
+                try filePathResolver
                     .resolve(.internal(generatedFileListPath))
                     .string,
             ],
             outputFileListPaths: [
-                filePathResolver
+                try filePathResolver
                     .resolve(.internal(copiedGeneratedFileListPath))
                     .string,
             ],
@@ -300,8 +300,8 @@ cd "$BAZEL_OUT"
 # symlink.
 rsync \
   --files-from "\#(
-    filePathResolver
-        .resolve(.internal(rsyncFileListPath), useScriptVariables: true)
+    try filePathResolver
+        .resolve(.internal(rsyncFileListPath), mode: .script)
         .string
 )" \
   --chmod=u+w \
@@ -321,7 +321,7 @@ rsync \
         in pbxProj: PBXProj,
         files: [FilePath: File],
         filePathResolver: FilePathResolver
-    ) -> PBXShellScriptBuildPhase? {
+    ) throws -> PBXShellScriptBuildPhase? {
         guard files.containsModulemaps else {
             return nil
         }
@@ -329,12 +329,12 @@ rsync \
         let script = PBXShellScriptBuildPhase(
             name: "Fix Modulemaps",
             inputFileListPaths: [
-                filePathResolver
+                try filePathResolver
                     .resolve(.internal(modulemapsFileListPath))
                     .string,
             ],
             outputFileListPaths: [
-                filePathResolver
+                try filePathResolver
                     .resolve(.internal(fixedModulemapsFileListPath))
                     .string,
             ],
@@ -361,7 +361,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         in pbxProj: PBXProj,
         files: [FilePath: File],
         filePathResolver: FilePathResolver
-    ) -> PBXShellScriptBuildPhase? {
+    ) throws -> PBXShellScriptBuildPhase? {
         guard files.containsInfoPlists else {
             return nil
         }
@@ -369,12 +369,12 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         let script = PBXShellScriptBuildPhase(
             name: "Fix Info.plists",
             inputFileListPaths: [
-                filePathResolver
+                try filePathResolver
                     .resolve(.internal(infoPlistsFileListPath))
                     .string,
             ],
             outputFileListPaths: [
-                filePathResolver
+                try filePathResolver
                     .resolve(.internal(fixedInfoPlistsFileListPath))
                     .string,
             ],

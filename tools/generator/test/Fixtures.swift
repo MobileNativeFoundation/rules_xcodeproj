@@ -23,10 +23,6 @@ enum Fixtures {
             "a/c.h",
             "a/d/a.h",
             "a/module.modulemap",
-            "a/Fram.framework/Fram",
-            "a/Fram.framework/Headers/Fram.h",
-            "a/StaticFram.framework/StaticFram",
-            "a/StaticFram.framework/Headers/StaticFram.h",
         ]
     )
 
@@ -66,7 +62,6 @@ enum Fixtures {
                 "T": .string("43"),
                 "Z": .string("0")
             ],
-            frameworks: ["a/Fram.framework"],
             swiftmodules: [.generated("x/y.swiftmodule")],
             resourceBundles: [.generated("r1/R1.bundle")],
             inputs: .init(
@@ -78,10 +73,14 @@ enum Fixtures {
                     "en.lproj/Example.strings",
                 ]
             ),
-            links: [
-                .generated("a/c.a"),
-                .generated("z/A.a"),
-            ],
+            linkerInputs: .init(
+                dynamicFrameworks: ["a/Fram.framework"],
+                staticLibraries: [
+                    .generated("a/c.a"),
+                    .generated("z/A.a"),
+                    .project("a/imported.a"),
+                ]
+            ),
             dependencies: ["C 1", "A 1", "R 1"]
         ),
         "B 1": Target.mock(
@@ -106,7 +105,9 @@ enum Fixtures {
                 path: .generated("B.xctest")
             ),
             testHost: "A 2",
-            links: ["a/StaticFram.framework/StaticFram"],
+            linkerInputs: .init(
+                staticFrameworks: ["a/StaticFram.framework"]
+            ),
             dependencies: ["A 2", "B 1"]
         ),
         "B 3": Target.mock(
@@ -117,7 +118,9 @@ enum Fixtures {
                 path: .generated("B3.xctest")
             ),
             testHost: "A 2",
-            links: ["a/StaticFram.framework/StaticFram"],
+            linkerInputs: .init(
+                staticFrameworks: ["a/StaticFram.framework"]
+            ),
             dependencies: ["A 2", "B 1"]
         ),
         "C 1": Target.mock(
@@ -142,9 +145,11 @@ enum Fixtures {
                 path: .generated("d")
             ),
             inputs: .init(srcs: ["a/b/d.m"]),
-            links: [
-                .generated("a/c.a"),
-            ],
+            linkerInputs: .init(
+                staticLibraries: [
+                    .generated("a/c.a"),
+                ]
+            ),
             dependencies: ["C 1"]
         ),
         "E1": Target.mock(
@@ -396,6 +401,14 @@ enum Fixtures {
             path: "b"
         )
 
+        // a/imported.a
+
+        elements["a/imported.a"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "archive.ar",
+            path: "imported.a"
+        )
+
         // a/Fram.framework
 
         elements["a/Fram.framework"] = PBXFileReference(
@@ -403,9 +416,6 @@ enum Fixtures {
             lastKnownFileType: "wrapper.framework",
             path: "Fram.framework"
         )
-        elements["a/Fram.framework/Fram"] = elements["a/Fram.framework"]!
-        elements["a/Fram.framework/Headers/Fram.h"] =
-            elements["a/Fram.framework"]!
 
         // a/StaticFram.framework
 
@@ -414,10 +424,6 @@ enum Fixtures {
             lastKnownFileType: "wrapper.framework",
             path: "StaticFram.framework"
         )
-        elements["a/StaticFram.framework/StaticFram"] =
-            elements["a/StaticFram.framework"]!
-        elements["a/StaticFram.framework/Headers/StaticFram.h"] =
-            elements["a/StaticFram.framework"]!
 
         // a/module.modulemap
 
@@ -427,7 +433,7 @@ enum Fixtures {
             path: "module.modulemap"
         )
 
-        // Parent of the 6 above
+        // Parent of the 8 above
 
         elements["a"] = PBXGroup(
             children: [
@@ -437,6 +443,7 @@ enum Fixtures {
                 elements["a/a.h"]!,
                 elements["a/c.h"]!,
                 elements["a/Fram.framework"]!,
+                elements["a/imported.a"]!,
                 elements["a/module.modulemap"]!,
                 elements["a/StaticFram.framework"]!,
             ],
@@ -662,6 +669,7 @@ $(BAZEL_EXTERNAL)/another_repo/b.swift
 """)
 
         let genDir = "$(BUILD_DIR)/bazel-out"
+        let srcRootGenDir = "\(linksDir)/gen_dir"
 
         files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
 $(BAZEL_OUT)/a/b/module.modulemap
@@ -697,14 +705,15 @@ a1b2c/bin/t.c
 
         files[.internal("targets/a1b2c/A 2/A.LinkFileList")] =
             .nonReferencedContent("""
-bazel-out/a/c.a
-bazel-out/z/A.a
+\(srcRootGenDir)/a/c.a
+\(srcRootGenDir)/z/A.a
+a/imported.a
 
 """)
 
         files[.internal("targets/a1b2c/C 2/d.LinkFileList")] =
             .nonReferencedContent("""
-bazel-out/a/c.a
+\(srcRootGenDir)/a/c.a
 
 """)
 
@@ -1426,9 +1435,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 ],
                 "OTHER_LDFLAGS": [
                     "-filelist",
-                    #"""
-"$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList,$(BUILD_DIR)"
-"""#,
+                    #""$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList""#,
                 ],
                 "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
@@ -1450,12 +1457,6 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "GENERATE_INFOPLIST_FILE": true,
-                "OTHER_LDFLAGS": [
-                    "-filelist",
-                    #"""
-"$(INTERNAL_DIR)/targets/a1b2c/B 2/B.LinkFileList,$(BUILD_DIR)"
-"""#,
-                ],
                 "SDKROOT": "macosx",
                 "TARGET_BUILD_DIR": """
 $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
@@ -1467,12 +1468,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "GENERATE_INFOPLIST_FILE": true,
-                "OTHER_LDFLAGS": [
-                    "-filelist",
-                    #"""
-"$(INTERNAL_DIR)/targets/a1b2c/B 3/B3.LinkFileList,$(BUILD_DIR)"
-"""#,
-                ],
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["B 3"]!.name,
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
@@ -1498,9 +1493,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 """,
                     "-L/usr/lib/swift",
                     "-filelist",
-                    #"""
-"$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList,$(BUILD_DIR)"
-"""#,
+                    #""$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList""#,
                 ],
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 2"]!.name,

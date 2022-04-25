@@ -72,7 +72,6 @@
             },
             "configuration": "darwin_x86_64-dbg-ST-1c975e2849a6",
             "dependencies": [],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "hdrs": [
@@ -84,7 +83,7 @@
             },
             "is_swift": false,
             "label": "//examples/cc/lib2:lib_impl",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [],
             "name": "lib_impl",
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2",
@@ -170,7 +169,6 @@
             },
             "configuration": "darwin_x86_64-dbg-ST-1c975e2849a6",
             "dependencies": [],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -180,7 +178,7 @@
             },
             "is_swift": false,
             "label": "//examples/cc/lib:lib_impl",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [],
             "name": "lib_impl",
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib",
@@ -270,7 +268,6 @@
                 "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-1c975e2849a6",
                 "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-1c975e2849a6"
             ],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -279,20 +276,22 @@
             },
             "is_swift": false,
             "label": "//examples/cc/tool:tool",
-            "links": [
-                {
-                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib/liblib_impl.a",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2/liblib_impl.a",
-                    "t": "g"
-                },
-                {
-                    "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external/liblib_impl.a",
-                    "t": "g"
-                }
-            ],
+            "linker_inputs": {
+                "static_libraries": [
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib/liblib_impl.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2/liblib_impl.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external/liblib_impl.a",
+                        "t": "g"
+                    }
+                ]
+            },
             "modulemaps": [],
             "name": "tool",
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/tool",
@@ -394,7 +393,6 @@
             },
             "configuration": "darwin_x86_64-dbg-ST-1c975e2849a6",
             "dependencies": [],
-            "frameworks": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -410,7 +408,7 @@
             },
             "is_swift": false,
             "label": "@examples_cc_external//:lib_impl",
-            "links": [],
+            "linker_inputs": {},
             "modulemaps": [],
             "name": "lib_impl",
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external",

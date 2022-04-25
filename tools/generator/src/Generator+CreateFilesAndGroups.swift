@@ -286,6 +286,9 @@ extension Generator {
         var allInputPaths = extraFiles
         for target in targets.values {
             allInputPaths.formUnion(target.inputs.all)
+            // We use .nonGenerated instead of .all because generated files will 
+            // be collected via product outputs, or `extraFiles`
+            allInputPaths.formUnion(target.linkerInputs.nonGenerated)
             if !target.inputs.containsSources
                 && target.product.type != .bundle
             {
@@ -360,12 +363,12 @@ extension Generator {
 
         // Write xcfilelists
 
-        let externalPaths = elements
+        let externalPaths = try elements
             .filter { filePath, element in
                 return filePath.type == .external
                     && element is PBXFileReference
             }
-            .map { filePath, _ in filePathResolver.resolve(filePath) }
+            .map { filePath, _ in try filePathResolver.resolve(filePath) }
 
         let generatedFiles = elements
             .filter { filePath, element in
@@ -373,32 +376,32 @@ extension Generator {
                     && element is PBXFileReference
             }
 
-        let generatedPaths = generatedFiles.map { filePath, _ in
-            return filePathResolver.resolve(
+        let generatedPaths = try generatedFiles.map { filePath, _ in
+            return try filePathResolver.resolve(
                 filePath,
                 useOriginalGeneratedFiles: true
             )
         }
         let rsyncPaths = generatedFiles.map { filePath, _ in filePath.path }
-        let copiedGeneratedPaths = generatedFiles.map { filePath, _ in
+        let copiedGeneratedPaths = try generatedFiles.map { filePath, _ in
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
             // match the project navigator. This is only needed for files
             // referenced by `PBXBuildFile`.
-            return filePathResolver.resolve(filePath, useBuildDir: false)
+            return try filePathResolver.resolve(filePath, useBuildDir: false)
         }
-        let modulemapPaths = generatedFiles
+        let modulemapPaths = try generatedFiles
             .filter { filePath, _ in filePath.path.extension == "modulemap" }
-            .map { filePath, _ in filePathResolver.resolve(filePath) }
+            .map { filePath, _ in try filePathResolver.resolve(filePath) }
         let fixedModulemapPaths = modulemapPaths.map { path in
             return path.replacingExtension("xcode.modulemap")
         }
-        let infoPlistPaths = generatedFiles
+        let infoPlistPaths = try generatedFiles
             .filter { filePath, _ in
                 return filePath.path.lastComponent == "Info.plist"
             }
             .map { filePath, _ in
-            return filePathResolver.resolve(filePath)
-        }
+                return try filePathResolver.resolve(filePath)
+            }
         let fixedInfoPlistPaths = infoPlistPaths.map { path in
             return path.replacingExtension("xcode.plist")
         }
@@ -425,9 +428,13 @@ extension Generator {
         // Write LinkFileLists
         
         for target in targets.values {
-            let linkFiles = target.links
-                .filter{ $0.type == .generated }
-                .map { "bazel-out/\($0.path)\n" }
+            let linkFiles = try target.linkerInputs.staticLibraries
+                .map { filePath in
+                    return """
+\(try filePathResolver.resolve(filePath, useBuildDir: false, mode: .srcRoot))
+
+"""
+                }
             if !linkFiles.isEmpty {
                 files[try target.linkFileListFilePath()] =
                     .nonReferencedContent(linkFiles.joined())

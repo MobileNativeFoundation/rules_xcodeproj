@@ -49,13 +49,20 @@ final class TargetMergingTests: XCTestCase {
                 "Y": .bool(true),
                 "Z": .string("0")
             ],
-            frameworks: targets["A 2"]!.frameworks,
             modulemaps: targets["A 1"]!.modulemaps,
             swiftmodules: targets["A 1"]!.swiftmodules,
             resourceBundles: targets["A 2"]!.resourceBundles,
             inputs: targets["A 2"]!.inputs.merging(targets["A 1"]!.inputs),
-            // Removed "A 1"'s product
-            links: [.generated("a/c.a")],
+            linkerInputs: .init(
+                staticFrameworks: targets["A 2"]!.linkerInputs.staticFrameworks,
+                dynamicFrameworks: targets["A 2"]!
+                    .linkerInputs.dynamicFrameworks,
+                // Removed "A 1"'s product
+                staticLibraries: [
+                    .generated("a/c.a"),
+                    .project("a/imported.a"),
+                ]
+            ),
             // Inherited "A 1"'s dependencies and removed "A 1"
             dependencies: ["C 1", "R 1"]
         )
@@ -64,13 +71,17 @@ final class TargetMergingTests: XCTestCase {
             product: targets["B 2"]!.product,
             isSwift: targets["A 2"]!.isSwift,
             testHost: "A 2",
-            frameworks: targets["B 2"]!.frameworks,
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
             resourceBundles: targets["B 2"]!.resourceBundles,
             inputs: targets["B 2"]!.inputs.merging(targets["B 1"]!.inputs),
-            // Removed "A 1"'s and "B 1"'s product
-            links: ["a/StaticFram.framework/StaticFram"],
+            linkerInputs: .init(
+                staticFrameworks: targets["B 2"]!.linkerInputs.staticFrameworks,
+                dynamicFrameworks: targets["B 2"]!
+                    .linkerInputs.dynamicFrameworks,
+                // Removed "A 1"'s and "B 1"'s product
+                staticLibraries: []
+            ),
             // Inherited "B 1"'s dependencies and removed "A 1"
             dependencies: ["A 2"]
         )
@@ -79,13 +90,17 @@ final class TargetMergingTests: XCTestCase {
             product: targets["B 3"]!.product,
             isSwift: targets["B 1"]!.isSwift,
             testHost: "A 2",
-            frameworks: targets["B 3"]!.frameworks,
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
             resourceBundles: targets["B 3"]!.resourceBundles,
             inputs: targets["B 3"]!.inputs.merging(targets["B 1"]!.inputs),
-            // Removed "B 1"'s product
-            links: ["a/StaticFram.framework/StaticFram"],
+            linkerInputs: .init(
+                staticFrameworks: targets["B 3"]!.linkerInputs.staticFrameworks,
+                dynamicFrameworks: targets["B 3"]!
+                    .linkerInputs.dynamicFrameworks,
+                // Removed "B 1"'s product
+                staticLibraries: []
+            ),
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
             dependencies: ["A 2"]
         )

@@ -29,6 +29,7 @@
 		03543A759A0331A5A2E4F71B /* SetTargetConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E516638B5C9A3B2B3E2AB46 /* SetTargetConfigurations.swift */; };
 		03C06C472EA5126C439849F2 /* OrderedDictionary+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83272F166637CFAFC4C79C /* OrderedDictionary+Hashable.swift */; };
 		06DBC257CCBC0358FA28EB69 /* XCVersionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F1E8A6B15665DC88FDE6F0 /* XCVersionGroup.swift */; };
+		095D7847040114A505D314D4 /* LinkerInputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF412834424270C2378B9C0E /* LinkerInputs.swift */; };
 		09A8A87A1E98CA31ABDF94DA /* XCRemoteSwiftPackageReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736DF0EDF5D152163A2C7AE /* XCRemoteSwiftPackageReference.swift */; };
 		0B06F16B6814BDD36D863BDF /* CreateProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200ED9999C2E4E55C7EC34E /* CreateProjectTests.swift */; };
 		0C9998F93EE859EDA61355AF /* PBXNativeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D740A39A7753D2B8D21F375 /* PBXNativeTarget.swift */; };
@@ -584,6 +585,7 @@
 		DC7E223798EECD44147286FC /* OrderedDictionary+Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Sequence.swift"; sourceTree = "<group>"; };
 		DD1823B73B5FA76655C55208 /* PBXSourceTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXSourceTree.swift; sourceTree = "<group>"; };
 		DEF08408AA24ED19A83FA6BD /* BuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildPhase.swift; sourceTree = "<group>"; };
+		DF412834424270C2378B9C0E /* LinkerInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkerInputs.swift; sourceTree = "<group>"; };
 		DF90B3C2D109FB81429CDF63 /* GameKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKit.swift; sourceTree = "<group>"; };
 		E1495BEC2B30A0F9420D60D9 /* libXcodeProj.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXcodeProj.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16B6BF78C679DF554D56E1B /* XCWorkspaceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspaceData.swift; sourceTree = "<group>"; };
@@ -1128,6 +1130,7 @@
 				2D2716A1F7631D05765640EE /* Generator+SetTargetDependencies.swift */,
 				BE66E7C6767A2929A5D0F4C5 /* Generator+WriteXcodeProj.swift */,
 				5DD49F943DE17E5CE2A9D45D /* Inputs.swift */,
+				DF412834424270C2378B9C0E /* LinkerInputs.swift */,
 				590304FBC3E994BEFC9D3688 /* Logger.swift */,
 				B7ACE63006801F706FF3344A /* Path+Extensions.swift */,
 				449EA625E3DCBAA1CD781318 /* PBXGroup+Extensions.swift */,
@@ -1614,6 +1617,7 @@
 				45BB2DA945C22F87CAA4CB31 /* Generator+WriteXcodeProj.swift in Sources */,
 				5D9D9A876397501E294EE0DB /* Generator.swift in Sources */,
 				48718512F32CC7A6322A297D /* Inputs.swift in Sources */,
+				095D7847040114A505D314D4 /* LinkerInputs.swift in Sources */,
 				452AFB8B33D4382FE60F809E /* Logger.swift in Sources */,
 				824577B6ECB4B6EB07CD7F31 /* PBXGroup+Extensions.swift in Sources */,
 				33B7CF1072ED2BECDE1093EE /* PBXProductType+Extensions.swift in Sources */,
@@ -2096,7 +2100,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/tools/generator/generator.LinkFileList,$(BUILD_DIR)",
+					"$(INTERNAL_DIR)/targets/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/tools/generator/generator.LinkFileList",
 					"-ObjC",
 				);
 				PRODUCT_MODULE_NAME = _generator_Stub;
@@ -2207,7 +2211,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/tools/generator/test/tests.LinkFileList,$(BUILD_DIR)",
+					"$(INTERNAL_DIR)/targets/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/tools/generator/test/tests.LinkFileList",
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";

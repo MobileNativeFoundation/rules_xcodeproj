@@ -28,9 +28,6 @@ Product for target "\(id)" not found in `products`
 """)
             }
 
-            let frameworkLinks = target.links.filter { $0.type != .generated }
-                + target.frameworks
-
             let buildPhases = [
                 try createHeadersPhase(
                     in: pbxProj,
@@ -51,7 +48,7 @@ Product for target "\(id)" not found in `products`
                 ),
                 try createFrameworksPhase(
                     in: pbxProj,
-                    frameworks: frameworkLinks,
+                    frameworks: target.linkerInputs.frameworks,
                     files: files
                 ),
                 try createResourcesPhase(
@@ -65,7 +62,7 @@ Product for target "\(id)" not found in `products`
                 try createEmbedFrameworksPhase(
                     in: pbxProj,
                     productType: productType,
-                    frameworks: target.frameworks,
+                    frameworks: target.linkerInputs.embeddable,
                     files: files
                 ),
             ]

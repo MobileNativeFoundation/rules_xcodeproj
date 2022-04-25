@@ -36,7 +36,8 @@ Target "\(id)" not found in `pbxTargets`
                 try targetBuildSettings.prepend(
                     onKey: "FRAMEWORK_SEARCH_PATHS",
                     frameworkIncludes.map { filePath in
-                        return filePathResolver.resolve(filePath).string.quoted
+                        return try filePathResolver.resolve(filePath)
+                            .string.quoted
                     }
                 )
             }
@@ -46,7 +47,8 @@ Target "\(id)" not found in `pbxTargets`
                 try targetBuildSettings.prepend(
                     onKey: "USER_HEADER_SEARCH_PATHS",
                     quoteIncludes.map { filePath in
-                        return filePathResolver.resolve(filePath).string.quoted
+                        return try filePathResolver.resolve(filePath)
+                            .string.quoted
                     }
                 )
             }
@@ -56,7 +58,8 @@ Target "\(id)" not found in `pbxTargets`
                 try targetBuildSettings.prepend(
                     onKey: "HEADER_SEARCH_PATHS",
                     includes.map { filePath in
-                        return filePathResolver.resolve(filePath).string.quoted
+                        return try filePathResolver.resolve(filePath)
+                            .string.quoted
                     }
                 )
             }
@@ -66,7 +69,8 @@ Target "\(id)" not found in `pbxTargets`
                 try targetBuildSettings.prepend(
                     onKey: "SYSTEM_HEADER_SEARCH_PATHS",
                     systemIncludes.map { filePath in
-                        return filePathResolver.resolve(filePath).string.quoted
+                        return try filePathResolver.resolve(filePath)
+                            .string.quoted
                     }
                 )
             }
@@ -75,7 +79,7 @@ Target "\(id)" not found in `pbxTargets`
                 onKey: "OTHER_SWIFT_FLAGS",
                 target.modulemaps
                     .map { filePath -> String in
-                        var modulemap = filePathResolver.resolve(filePath)
+                        var modulemap = try filePathResolver.resolve(filePath)
 
                         if filePath.type == .generated {
                             modulemap.replaceExtension("xcode.modulemap")
@@ -106,13 +110,13 @@ Target "\(id)" not found in `pbxTargets`
                 )
             }
 
-            if !target.links.isEmpty {
-                let linkFileList = filePathResolver
+            if !target.linkerInputs.staticLibraries.isEmpty {
+                let linkFileList = try filePathResolver
                     .resolve(try target.linkFileListFilePath())
                     .string
                 try targetBuildSettings.prepend(
                     onKey: "OTHER_LDFLAGS",
-                    ["-filelist", "\(linkFileList),$(BUILD_DIR)".quoted]
+                    ["-filelist", linkFileList.quoted]
                 )
             }
 
@@ -140,7 +144,7 @@ Target "\(id)" not found in `pbxTargets`
             buildSettings["TARGET_NAME"] = target.name
 
             if let infoPlist = target.infoPlist {
-                var infoPlistPath = filePathResolver.resolve(infoPlist)
+                var infoPlistPath = try filePathResolver.resolve(infoPlist)
                 
                 // If the plist is generated, use the patched version that
                 // removes a specific key that causes a warning when building
@@ -154,18 +158,18 @@ Target "\(id)" not found in `pbxTargets`
             }
 
             if let pch = target.inputs.pch {
-                let pchPath = filePathResolver.resolve(pch)
+                let pchPath = try filePathResolver.resolve(pch)
 
                 buildSettings["GCC_PREFIX_HEADER"] = pchPath.string.quoted
             }
 
             let swiftmodules = target.swiftmodules
             if !swiftmodules.isEmpty {
-                buildSettings["SWIFT_INCLUDE_PATHS"] = swiftmodules
+                buildSettings["SWIFT_INCLUDE_PATHS"] = try swiftmodules
                     .map { filePath -> String in
                         var dir = filePath
                         dir.path = dir.path.parent().normalize()
-                        return filePathResolver.resolve(dir).string.quoted
+                        return try filePathResolver.resolve(dir).string.quoted
                     }
                     .uniqued()
                     .joined(separator: " ")
