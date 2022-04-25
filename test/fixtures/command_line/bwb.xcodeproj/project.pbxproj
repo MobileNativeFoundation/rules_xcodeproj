@@ -120,6 +120,7 @@
 		CBE528880485D0994B3CC1FC /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E3938AB43AEB959A432DB9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F93835BAA75A671D6D3361A9 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_swift.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC9136AFFBC31DF879AF9986 /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -168,6 +169,7 @@
 			children = (
 				BD61574B80FFFB3513CACD09 /* lib_impl.swift.modulemap */,
 				A8BBECFF22A4D078C50CABF3 /* lib_swift.swift.modulemap */,
+				FC9136AFFBC31DF879AF9986 /* private_lib.swift.modulemap */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -739,7 +741,7 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -g";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/lib/private_lib.swift.xcode.modulemap -g";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
