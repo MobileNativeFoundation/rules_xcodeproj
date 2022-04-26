@@ -52,4 +52,5 @@ objc_library(
     ],
     hdrs = ["ImportableLibrary/Library.h"],
     includes = ["ImportableLibrary"],
+    tags = ["manual"],
 )
