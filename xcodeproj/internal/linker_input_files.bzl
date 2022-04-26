@@ -29,15 +29,18 @@ def _collect_for_non_top_level(*, cc_info, objc, is_xcode_target):
 
     if objc:
         dynamic_framework_files = objc.dynamic_framework_file
+        imported_libraries = objc.imported_library
         static_framework_files = objc.static_framework_file
     else:
         dynamic_framework_files = depset()
+        imported_libraries = depset()
         static_framework_files = depset()
 
     return struct(
         _avoid_linker_inputs = None,
         _cc_linker_inputs = cc_linker_inputs,
         _dynamic_framework_files = dynamic_framework_files,
+        _imported_libraries = imported_libraries,
         _static_framework_files = static_framework_files,
         _is_xcode_library_target = cc_info and is_xcode_target,
         xcode_library_targets = [],
@@ -89,6 +92,14 @@ def _merge(*, deps, avoid_linker_inputs = None):
         ],
     )
 
+    imported_libraries = depset(
+        order = "topological",
+        transitive = [
+            dep[XcodeProjInfo].linker_inputs._imported_libraries
+            for dep in deps
+        ],
+    )
+
     static_framework_files = depset(
         order = "topological",
         transitive = [
@@ -107,6 +118,7 @@ def _merge(*, deps, avoid_linker_inputs = None):
         _avoid_linker_inputs = avoid_linker_inputs,
         _cc_linker_inputs = cc_linker_inputs,
         _dynamic_framework_files = dynamic_framework_files,
+        _imported_libraries = imported_libraries,
         _static_framework_files = static_framework_files,
         _is_xcode_library_target = False,
         xcode_library_targets = xcode_library_targets,
@@ -167,6 +179,9 @@ def _to_dto(linker_inputs):
         avoid_dynamc_framework_files = sets.make(
             avoid_linker_inputs._dynamic_framework_files.to_list(),
         )
+        avoid_imported_libraries = sets.make(
+            avoid_linker_inputs._imported_libraries.to_list(),
+        )
         avoid_static_framework_files = sets.make(
             avoid_linker_inputs._static_framework_files.to_list(),
         )
@@ -176,6 +191,7 @@ def _to_dto(linker_inputs):
         ]))
     else:
         avoid_dynamc_framework_files = sets.make()
+        avoid_imported_libraries = sets.make()
         avoid_static_framework_files = sets.make()
         avoid_libraries = sets.make()
 
@@ -183,6 +199,12 @@ def _to_dto(linker_inputs):
         file_path_to_dto(file_path(file, path = file.dirname))
         for file in linker_inputs._dynamic_framework_files.to_list()
         if not sets.contains(avoid_dynamc_framework_files, file)
+    ]
+
+    imported_libraries = [
+        file_path_to_dto(file_path(file))
+        for file in linker_inputs._imported_libraries.to_list()
+        if not sets.contains(avoid_imported_libraries, file)
     ]
 
     static_frameworks = [
@@ -202,7 +224,7 @@ def _to_dto(linker_inputs):
 
     set_if_true(ret, "dynamic_frameworks", dynamic_frameworks)
     set_if_true(ret, "static_frameworks", static_frameworks)
-    set_if_true(ret, "static_libraries", static_libraries)
+    set_if_true(ret, "static_libraries", static_libraries + imported_libraries)
 
     return ret
 
