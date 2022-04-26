@@ -7,6 +7,7 @@ extension Generator {
     /// The `PBXProject` is also created and assigned as the `PBXProj`'s
     /// `rootObject`.
     static func createProject(
+        buildMode: BuildMode,
         project: Project,
         projectRootDirectory: Path,
         filePathResolver: FilePathResolver
@@ -30,6 +31,10 @@ $(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 """,
         ], uniquingKeysWith: { _, r in r })
+
+        if buildMode.requiresLLDBInit {
+            buildSettings["BAZEL_LLDB_INIT"] = "$(INTERNAL_DIR)/.lldbinit"
+        }
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",

@@ -35,6 +35,7 @@ class Generator {
 
     /// Generates an Xcode project for a given `Project`.
     func generate(
+        buildMode: BuildMode,
         project: Project,
         projectRootDirectory: Path,
         internalDirectoryName: String,
@@ -47,6 +48,7 @@ class Generator {
         )
 
         let pbxProj = environment.createProject(
+            buildMode,
             project,
             projectRootDirectory,
             filePathResolver
@@ -103,6 +105,7 @@ Was unable to merge "\(srcTarget.label) \
         let disambiguatedTargets = environment.disambiguateTargets(targets)
         let bazelDependencies = try environment.addBazelDependenciesTarget(
             pbxProj,
+            buildMode,
             files,
             filePathResolver,
             project.label

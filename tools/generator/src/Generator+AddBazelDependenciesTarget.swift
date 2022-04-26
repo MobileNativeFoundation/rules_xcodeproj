@@ -23,7 +23,35 @@ env -i \
   "$BAZEL_PATH"
 """#
 
-    private static let setup = #"""
+    private static func setup(buildMode: BuildMode) -> String {
+        let lldbInit: String
+        if buildMode.requiresLLDBInit {
+            lldbInit = #"""
+
+if [[ -f "$HOME/.lldbinit" ]]; then
+  home_init="command source ~/.lldbinit
+
+"
+else
+  home_init=""
+fi
+
+cat <<EOF > "$BAZEL_LLDB_INIT"
+$home_init\
+# Set \`CWD\` to \`\$SRCROOT\` so relative paths in binaries work
+platform settings -w "$SRCROOT"
+
+# "Undo" `-debug-prefix-map`
+settings set target.source-map ./external/ "$external"
+settings append target.source-map ./ "$SRCROOT"
+EOF
+
+"""#
+        } else {
+            lldbInit = ""
+        }
+
+        return #"""
 if [ "$ACTION" == "indexbuild" ]; then
   # We use a different output base for Index Build to prevent normal builds and
   # indexing waiting on bazel locks from the other
@@ -36,7 +64,7 @@ output_path=$(\#(bazelExec) \
   --experimental_convenience_symlinks=ignore \
   output_path)
 external="${output_path%/*/*/*}/external"
-
+\#(lldbInit)
 # We only want to modify `$LINKS_DIR` during normal builds since Indexing can
 # run concurrent to normal builds
 if [ "$ACTION" != "indexbuild" ]; then
@@ -66,9 +94,11 @@ ln -sf "$external" external
 ln -sf "$output_path" real-bazel-out
 ln -sfn "$PROJECT_DIR" SRCROOT
 """#
+    }
 
     static func addBazelDependenciesTarget(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
@@ -101,6 +131,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
 
         let fetchExternalReposScript = try createFetchExternalReposScript(
             in: pbxProj,
+            buildMode: buildMode,
             files: files,
             filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
@@ -108,6 +139,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
 
         let generateFilesScript = try createGenerateFilesScript(
             in: pbxProj,
+            buildMode: buildMode,
             files: files,
             filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
@@ -157,6 +189,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
 
     private static func createFetchExternalReposScript(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
@@ -175,7 +208,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
             shellScript: #"""
 set -eu
 
-\#(setup)
+\#(setup(buildMode: buildMode))
 
 cd "$SRCROOT"
 
@@ -197,6 +230,7 @@ cd "$SRCROOT"
 
     private static func createGenerateFilesScript(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
@@ -227,7 +261,7 @@ cd "$SRCROOT"
             shellScript: #"""
 set -eu
 
-\#(setup)
+\#(setup(buildMode: buildMode))
 
 # Create parent directories of generated files, so the project navigator works
 # better faster

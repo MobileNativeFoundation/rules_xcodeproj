@@ -13,6 +13,7 @@ extension Generator {
             let project = try readProject(path: arguments.specPath)
 
             try Generator(logger: logger).generate(
+                buildMode: arguments.buildMode,
                 project: project,
                 projectRootDirectory: arguments.projectRootDirectory,
                 internalDirectoryName: "rules_xcodeproj",
