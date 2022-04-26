@@ -20,12 +20,20 @@ objc_library(
     ],
 )
 
+cc_library(
+    name = "private_lib",
+    srcs = ["private_lib.c"],
+    hdrs = ["private_lib.h"],
+    tags = ["swift_module=_Lib"],
+)
+
 swift_library(
     name = "lib_swift",
     srcs = ["lib.swift"],
     generated_header_name = "private/LibSwift-Swift.h",
     generates_header = True,
     module_name = "LibSwift",
+    private_deps = [":private_lib"],
     visibility = ["//examples/command_line/Tests:__subpackages__"],
     deps = [
         ":lib_impl",

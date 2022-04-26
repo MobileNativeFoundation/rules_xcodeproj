@@ -1094,27 +1094,17 @@ def _process_modulemaps(*, swift_info):
             files = [],
         )
 
-    direct_modules = swift_info.direct_modules
-
     modulemap_file_paths = []
     modulemap_files = []
-    for module in swift_info.transitive_modules.to_list():
-        if module in direct_modules:
-            continue
-        clang_module = module.clang
-        if not clang_module:
-            continue
-        module_map = clang_module.module_map
-        if not module_map:
-            continue
+    for module in swift_info.direct_modules:
+        for module_map in module.compilation_context.module_maps:
+            if type(module_map) == "File":
+                modulemap = file_path(module_map)
+                modulemap_files.append(module_map)
+            else:
+                modulemap = module_map
 
-        if type(module_map) == "File":
-            modulemap = file_path(module_map)
-            modulemap_files.append(module_map)
-        else:
-            modulemap = module_map
-
-        modulemap_file_paths.append(modulemap)
+            modulemap_file_paths.append(modulemap)
 
     # Different modules might be defined in the same modulemap file, so we need
     # to deduplicate them.
@@ -1127,18 +1117,12 @@ def _process_swiftmodules(*, swift_info):
     if not swift_info:
         return []
 
-    direct_modules = swift_info.direct_modules
+    swiftmodules = []
+    for module in swift_info.direct_modules:
+        for swiftmodule in module.compilation_context.swiftmodules:
+            swiftmodules.append(file_path(swiftmodule))
 
-    file_paths = []
-    for module in swift_info.transitive_modules.to_list():
-        if module in direct_modules:
-            continue
-        swift_module = module.swift
-        if not swift_module:
-            continue
-        file_paths.append(file_path(swift_module.swiftmodule))
-
-    return file_paths
+    return swiftmodules
 
 def _process_target(*, ctx, target, transitive_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
