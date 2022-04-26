@@ -16,6 +16,10 @@
         "ExampleResources/BUILD",
         "ExampleResources/Info.plist",
         "Example/BUILD",
+        {
+            "_": "examples_ios_app_external/ImportableLibrary/Library.h",
+            "t": "e"
+        },
         "third_party/ExampleFramework.framework/Modules/module.modulemap",
         {
             "_": "examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap",
@@ -27,6 +31,10 @@
         },
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external/Library.swift.modulemap",
             "t": "g"
         },
         "Example/Assets.xcassets/AppIcon.appiconset/Contents.json",
@@ -310,6 +318,10 @@
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/libCoreUtilsObjC.a",
                         "t": "g"
+                    },
+                    {
+                        "_": "examples_ios_app_external/ImportableLibrary/libImportableLibrary.a",
+                        "t": "e"
                     }
                 ]
             },
@@ -422,6 +434,10 @@
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.modulemap",
                     "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external/Library.swift.modulemap",
+                    "t": "g"
                 }
             ],
             "name": "Example.library",
@@ -460,6 +476,14 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "examples_ios_app_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external",
                         "t": "g"
                     }
                 ]
@@ -673,6 +697,14 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "examples_ios_app_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external",
                         "t": "g"
                     }
                 ]
@@ -914,6 +946,10 @@
                     "t": "g"
                 },
                 {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external/Library.swift.modulemap",
+                    "t": "g"
+                },
+                {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/TestingUtils.swift.modulemap",
                     "t": "g"
                 }
@@ -954,6 +990,14 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "examples_ios_app_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external",
                         "t": "g"
                     }
                 ]
