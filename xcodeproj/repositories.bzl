@@ -76,9 +76,9 @@ def xcodeproj_rules_dependencies(
         http_archive,
         name = "build_bazel_rules_swift",
         # TODO: Bump to post-0.27.0 release when it's available
-        url = "https://github.com/bazelbuild/rules_swift/archive/42036b5212fedcd0e1377100d34d7a83e79e7ed6.tar.gz",
-        strip_prefix = "rules_swift-42036b5212fedcd0e1377100d34d7a83e79e7ed6",
-        sha256 = "5f5605aeb59f0558ccebd14e1a817c276a19d9fb48c0adc798c16f5fb6ca0bb7",
+        url = "https://github.com/bazelbuild/rules_swift/archive/8d4b096b90e47095755e47c27e749ae9b9f83e81.tar.gz",
+        strip_prefix = "rules_swift-8d4b096b90e47095755e47c27e749ae9b9f83e81",
+        sha256 = "b5966b422113866398035cd970feffb4ab6c081fa1c96c02d942b17e5b8429c4",
         ignore_version_differences = ignore_version_differences,
     )
 
