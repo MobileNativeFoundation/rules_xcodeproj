@@ -237,9 +237,11 @@
 		31723EF5E0284C55FFB08C40 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38BD32BE9785D3F743FCDE9E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		397892D81DF3E9D15E18C094 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
+		4253B889027F7DEB8821B2E7 /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
 		44BB25020D8FACC865B72D37 /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		4DEFC8878FA5EC9C1FE5CAD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4EFD481E747FFE235872FEBE /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
+		52D5C019D7FE1B131E3E26FC /* Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
 		56019D124B91E38AF4906E11 /* ExternalResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExternalResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CABDA09B231335D1A65F54 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		5C2D4A62829A12CF82C8CAFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		DE4E55DA7325F65B7598D64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DF687E5CFDD353365469C4A0 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		E788B1C7B112FB6941BD4C12 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9FA397CF373D551969DCA9F /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		EA1E668B84FFE8810A317B4A /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		F0C6F70E20391113754D1FA5 /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTestingUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD0A412F6FD34BAD4615ACB5 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCoreUtilsObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -425,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				4FEAD0F887AEB1BB707A8054 /* bundles */,
+				ADC042F0633E8C32FDBCD609 /* ImportableLibrary */,
 				79AFD512EEA35F6B5E384B71 /* nested */,
 				181A626E7874B82CF2F6E536 /* Assets.xcassets */,
 				711E9FC3B7C0052C8DDBA1C9 /* ExternalFramework.framework */,
@@ -445,10 +449,19 @@
 			isa = PBXGroup;
 			children = (
 				33A3C3D51835DB7C04E30DF0 /* CoreUtilsObjC */,
+				84E4344390A13162325E7B03 /* external */,
 				33F4EE063F31904282CADCFC /* TestingUtils */,
 				E9FCE0BE132297F76373E081 /* Utils */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		74235E738BC237179AF25352 /* examples_ios_app_external */ = {
+			isa = PBXGroup;
+			children = (
+				4253B889027F7DEB8821B2E7 /* Library.swift.modulemap */,
+			);
+			path = examples_ios_app_external;
 			sourceTree = "<group>";
 		};
 		768C0B6FBEA15B86DF2C38DC /* apple */ = {
@@ -484,6 +497,14 @@
 				268E30B50FE19BC259C759C7 /* Info.plist */,
 			);
 			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
+		84E4344390A13162325E7B03 /* external */ = {
+			isa = PBXGroup;
+			children = (
+				74235E738BC237179AF25352 /* examples_ios_app_external */,
+			);
+			path = external;
 			sourceTree = "<group>";
 		};
 		8517B1369CD5FF9F1914AB78 /* third_party */ = {
@@ -547,6 +568,15 @@
 			);
 			name = "Bazel Generated Files";
 			path = test/fixtures/bwx.xcodeproj/rules_xcodeproj/links/gen_dir;
+			sourceTree = "<group>";
+		};
+		ADC042F0633E8C32FDBCD609 /* ImportableLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				E9FA397CF373D551969DCA9F /* libImportableLibrary.a */,
+				52D5C019D7FE1B131E3E26FC /* Library.h */,
+			);
+			path = ImportableLibrary;
 			sourceTree = "<group>";
 		};
 		B213C913052591DD93B17599 /* Utils */ = {
@@ -1536,7 +1566,7 @@
 					SwiftUI,
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(PROJECT_DIR)/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -Fthird_party -Fexternal/examples_ios_app_external";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(PROJECT_DIR)/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external/Library.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -Fthird_party -Fexternal/examples_ios_app_external";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
@@ -1554,6 +1584,8 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external",
 				);
 			};
 			name = Debug;
@@ -1636,6 +1668,8 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external",
 				);
 			};
 			name = Debug;
@@ -1701,7 +1735,7 @@
 					SwiftUI,
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(PROJECT_DIR)/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.xcode.modulemap -Fthird_party -Fexternal/examples_ios_app_external";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(PROJECT_DIR)/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external/Library.swift.xcode.modulemap -Fthird_party -Fexternal/examples_ios_app_external";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;
@@ -1716,6 +1750,8 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin",
+					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external",
 				);
 			};
 			name = Debug;
