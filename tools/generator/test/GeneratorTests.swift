@@ -382,20 +382,24 @@ final class GeneratorTests: XCTestCase {
 
         struct CreateXcodeProjCalled: Equatable {
             let pbxProj: PBXProj
+            let sharedData: XCSharedData?
         }
 
         var createXcodeProjCalled: [CreateXcodeProjCalled] = []
         func createXcodeProj(
-            for pbxProj: PBXProj
+            for pbxProj: PBXProj,
+            sharedData: XCSharedData?
         ) -> XcodeProj {
             createXcodeProjCalled.append(.init(
-                pbxProj: pbxProj
+                pbxProj: pbxProj,
+                sharedData: sharedData
             ))
             return xcodeProj
         }
 
         let expectedCreateXcodeProjCalled = [CreateXcodeProjCalled(
-            pbxProj: pbxProj
+            pbxProj: pbxProj,
+            sharedData: nil
         )]
 
         // MARK: writeXcodeProj()

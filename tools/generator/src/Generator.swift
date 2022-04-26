@@ -129,7 +129,7 @@ Was unable to merge "\(srcTarget.label) \
             pbxTargets
         )
 
-         let xcodeProj = environment.createXcodeProj(pbxProj)
+         let xcodeProj = environment.createXcodeProj(pbxProj, nil)
          try environment.writeXcodeProj(
             xcodeProj,
             files,
