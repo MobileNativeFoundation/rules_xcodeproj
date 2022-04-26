@@ -23,7 +23,8 @@ final class GeneratorTests: XCTestCase {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = PBXGroup(name: "Main")
         pbxProject.mainGroup = mainGroup
-        
+
+        let buildMode: BuildMode = .bazel
         let projectRootDirectory: Path = "~/project"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
@@ -76,6 +77,7 @@ final class GeneratorTests: XCTestCase {
         // MARK: createProject()
 
         struct CreateProjectCalled: Equatable {
+            let buildMode: BuildMode
             let project: Project
             let projectRootDirectory: Path
             let filePathResolver: FilePathResolver
@@ -83,11 +85,13 @@ final class GeneratorTests: XCTestCase {
 
         var createProjectCalled: [CreateProjectCalled] = []
         func createProject(
+            buildMode: BuildMode,
             project: Project,
             projectRootDirectory: Path,
             filePathResolver: FilePathResolver
         ) -> PBXProj {
             createProjectCalled.append(.init(
+                buildMode: buildMode,
                 project: project,
                 projectRootDirectory: projectRootDirectory,
                 filePathResolver: filePathResolver
@@ -96,6 +100,7 @@ final class GeneratorTests: XCTestCase {
         }
 
         let expectedCreateProjectCalled = [CreateProjectCalled(
+            buildMode: buildMode,
             project: project,
             projectRootDirectory: projectRootDirectory,
             filePathResolver: filePathResolver
@@ -242,6 +247,7 @@ final class GeneratorTests: XCTestCase {
 
         struct AddBazelDependenciesTargetCalled: Equatable {
             let pbxProj: PBXProj
+            let buildMode: BuildMode
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
             let xcodeprojBazelLabel: String
@@ -251,12 +257,14 @@ final class GeneratorTests: XCTestCase {
             = []
         func addBazelDependenciesTarget(
             in pbxProj: PBXProj,
+            buildMode: BuildMode,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             xcodeprojBazelLabel: String
         ) throws -> PBXAggregateTarget? {
             addBazelDependenciesTargetCalled.append(.init(
                 pbxProj: pbxProj,
+                buildMode: buildMode,
                 files: files,
                 filePathResolver: filePathResolver,
                 xcodeprojBazelLabel: xcodeprojBazelLabel
@@ -267,6 +275,7 @@ final class GeneratorTests: XCTestCase {
         let expectedAddBazelDependenciesTargetCalled = [
             AddBazelDependenciesTargetCalled(
                 pbxProj: pbxProj,
+                buildMode: buildMode,
                 files: files,
                 filePathResolver: filePathResolver,
                 xcodeprojBazelLabel: project.label
@@ -445,6 +454,7 @@ final class GeneratorTests: XCTestCase {
         // Act
 
         try generator.generate(
+            buildMode: buildMode,
             project: project,
             projectRootDirectory: projectRootDirectory,
             internalDirectoryName: internalDirectoryName,

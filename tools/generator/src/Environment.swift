@@ -7,6 +7,7 @@ import XcodeProj
 /// allowing for different implementations to be used in tests.
 struct Environment {
     let createProject: (
+        _ buildMode: BuildMode,
         _ project: Project,
         _ projectRootDirectory: Path,
         _ filePathResolver: FilePathResolver
@@ -45,6 +46,7 @@ struct Environment {
 
     let addBazelDependenciesTarget: (
         _ pbxProj: PBXProj,
+        _ buildMode: BuildMode,
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
         _ xcodeprojBazelLabel: String
