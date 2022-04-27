@@ -176,7 +176,7 @@ $home_init\
 # Set \`CWD\` to \`\$SRCROOT\` so relative paths in binaries work
 platform settings -w "$SRCROOT"
 
-# "Undo" `-debug-prefix-map`
+# "Undo" \`-debug-prefix-map\`
 settings set target.source-map ./external/ "$external"
 settings append target.source-map ./ "$SRCROOT"
 EOF
