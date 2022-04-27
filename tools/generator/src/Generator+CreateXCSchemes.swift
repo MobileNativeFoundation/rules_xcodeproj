@@ -5,7 +5,7 @@ extension Generator {
     static func createXCSchemes(
         disambiguatedTargets _: [TargetID: DisambiguatedTarget]
     ) -> [XCScheme] {
-        // TODO(cgrindel: IMPLEMENT ME!
+        // GH101: Implement logic to create schemes from targets.
         return []
     }
 }
