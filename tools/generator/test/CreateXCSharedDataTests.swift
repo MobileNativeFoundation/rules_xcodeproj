@@ -6,27 +6,18 @@ import XCTest
 
 final class CreateXCSharedDataTests: XCTestCase {
     func test_basic() throws {
-        // // Arrange
+        // Arrange
 
-        // let pbxProj = Fixtures.pbxProj()
-        // let expectedPBXProj = Fixtures.pbxProj()
+        let schemes = Fixtures.xcSchemes()
 
-        // // TODO: Schemes
-        // let expectedXcodeProj = XcodeProj(
-        //     workspace: XCWorkspace(),
-        //     pbxproj: expectedPBXProj
-        // )
+        let expectedSharedData = XCSharedData(schemes: schemes)
 
-        // // Act
+        // Act
 
-        // let xcodeProj = Generator.createXcodeProj(for: pbxProj)
+        let sharedData = Generator.createXCSharedData(schemes: schemes)
 
-        // try pbxProj.fixReferences()
-        // try expectedPBXProj.fixReferences()
+        // Assert
 
-        // // Assert
-
-        // XCTAssertNoDifference(xcodeProj, expectedXcodeProj)
-        XCTFail("IMPLEMENT ME!")
+        XCTAssertNoDifference(sharedData, expectedSharedData)
     }
 }
