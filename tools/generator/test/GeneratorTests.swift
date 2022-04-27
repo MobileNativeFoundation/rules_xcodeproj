@@ -387,7 +387,9 @@ final class GeneratorTests: XCTestCase {
         }
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
-        func createXCSchemes(disambiguatedTargets: [TargetID: DisambiguatedTarget]) -> [XCScheme] {
+        func createXCSchemes(
+            disambiguatedTargets: [TargetID: DisambiguatedTarget]
+        ) -> [XCScheme] {
             createXCSchemesCalled.append(.init(disambiguatedTargets: disambiguatedTargets))
             return schemes
         }

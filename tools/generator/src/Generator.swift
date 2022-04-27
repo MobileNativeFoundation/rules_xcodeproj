@@ -134,13 +134,13 @@ Was unable to merge "\(srcTarget.label) \
         let schemes = environment.createXCSchemes(disambiguatedTargets)
         let sharedData = environment.createXCSharedData(schemes)
 
-         let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)
-         try environment.writeXcodeProj(
+        let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)
+        try environment.writeXcodeProj(
             xcodeProj,
             files,
             internalDirectoryName,
             outputPath
-         )
+        )
     }
 }
 
