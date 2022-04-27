@@ -135,21 +135,18 @@ Was unable to merge "\(srcTarget.label) \
             pbxTargets
         )
 
-        // DEBUG BEGIN
-        fputs("*** CHUCK pbxTargets:\n", stderr)
-        for (idx, item) in pbxTargets.enumerated() {
-            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-        }
-        fputs("*** CHUCK disambiguatedTargets:\n", stderr)
-        for (idx, item) in disambiguatedTargets.enumerated() {
-            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-        }
-        // DEBUG END
+        // // DEBUG BEGIN
+        // fputs("*** CHUCK pbxTargets:\n", stderr)
+        // for (idx, item) in pbxTargets.enumerated() {
+        //     fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        // }
+        // fputs("*** CHUCK disambiguatedTargets:\n", stderr)
+        // for (idx, item) in disambiguatedTargets.enumerated() {
+        //     fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        // }
+        // // DEBUG END
 
-        // TODO(chuck): FIX ME!
         let schemes = environment.createXCSchemes(disambiguatedTargets)
-        // let schemes = [XCScheme]()
-
         let sharedData = environment.createXCSharedData(schemes)
 
          let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)
