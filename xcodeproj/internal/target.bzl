@@ -900,17 +900,16 @@ def _target_info_fields(
         "xcode_targets": xcode_targets,
     }
 
-def _skip_target(*, target, deps, transitive_infos):
+def _skip_target(*, deps, transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
     forwards them on, not collecting any information for the current target.
 
     Args:
-        target: The `Target` to skip.
-        deps: `ctx.attr.deps` for `target`.
+        deps: `ctx.attr.deps` for the target.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
-            transitive dependencies of `target`.
+            transitive dependencies of the target.
 
     Returns:
         The return value of `_target_info_fields`, with values merged from
@@ -922,7 +921,7 @@ def _skip_target(*, target, deps, transitive_infos):
             transitive_infos = transitive_infos,
         ),
         inputs = input_files.merge(
-            attrs_info = target[InputFileAttributesInfo],
+            attrs_info = None,
             transitive_infos = transitive_infos,
         ),
         linker_inputs = linker_input_files.merge(deps = deps),
@@ -1224,7 +1223,6 @@ def process_target(*, ctx, target, transitive_infos):
     """
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(
-            target = target,
             deps = getattr(ctx.rule.attr, "deps", []),
             transitive_infos = transitive_infos,
         )
