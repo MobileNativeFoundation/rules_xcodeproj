@@ -124,6 +124,7 @@
 		78D160559CB33620BE055D67 /* PBXTargetDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0D9481DEB5CB89790C09F /* PBXTargetDependency.swift */; };
 		7B3AD502D81DAD7185608351 /* Generator+WriteXcodeProj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B56CD9E6641A10324B096B /* Generator+WriteXcodeProj.swift */; };
 		7D2E840E973AA9E5F5898CF0 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0725D1FE9D931F37B2F6AA3 /* DTO.swift */; };
+		7F2927EE0191B937929E8EA9 /* Generator+CreateXCSchemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04307C3D13AF08A10830B41 /* Generator+CreateXCSchemes.swift */; };
 		7F476F3EA1860204A2BC970E /* ReferenceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0D02295BBDD7113D940406 /* ReferenceGenerator.swift */; };
 		7F58A80D6FBF4CAAB6A6B59C /* PBXProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A42BDD634CA3FA35830AE1 /* PBXProductType.swift */; };
 		804848AF97DCD0402E5B8587 /* BuildSettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD828AC8336C5A1F0C951071 /* BuildSettingsProvider.swift */; };
@@ -597,6 +598,7 @@
 		ED0F122B168D474ADA615A76 /* OrderedDictionary+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
 		EDE03F64CA13C3461D45773E /* DisambiguateTargetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisambiguateTargetsTests.swift; sourceTree = "<group>"; };
 		EE677C0FD789C4A0ADDC1901 /* BuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildPhase.swift; sourceTree = "<group>"; };
+		F04307C3D13AF08A10830B41 /* Generator+CreateXCSchemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+CreateXCSchemes.swift"; sourceTree = "<group>"; };
 		F0725D1FE9D931F37B2F6AA3 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		F0AD1D57FD4037EC5BB72645 /* XCSharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCSharedData.swift; sourceTree = "<group>"; };
 		F238F3E44302DBE53FF70525 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 				C9558541CFD5066169CA9773 /* Generator+CreateProducts.swift */,
 				9522A589868D9D2C515C4822 /* Generator+CreateProject.swift */,
 				703888D148E8FEB96A8F9716 /* Generator+CreateXcodeProj.swift */,
+				F04307C3D13AF08A10830B41 /* Generator+CreateXCSchemes.swift */,
 				FDFD9E80A2C5CD8C7FD9857D /* Generator+CreateXCSharedData.swift */,
 				9495B72CA99FFB15C026408A /* Generator+DisambiguateTargets.swift */,
 				8BE9C68C0607CFD069F19187 /* Generator+Main.swift */,
@@ -1655,6 +1658,7 @@
 				6BEA8E1A797CD3E05D0BAE40 /* Generator+CreateFilesAndGroups.swift in Sources */,
 				E573DCC118186C0FAB27ECD3 /* Generator+CreateProducts.swift in Sources */,
 				51F268CB997C75D3FFBE5DA7 /* Generator+CreateProject.swift in Sources */,
+				7F2927EE0191B937929E8EA9 /* Generator+CreateXCSchemes.swift in Sources */,
 				4A2573A7CE96E1ECA318EBA8 /* Generator+CreateXCSharedData.swift in Sources */,
 				4974B9AC4C2E129CC6088A1A /* Generator+CreateXcodeProj.swift in Sources */,
 				DFEB422950EB6556FF81427F /* Generator+DisambiguateTargets.swift in Sources */,

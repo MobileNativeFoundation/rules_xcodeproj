@@ -66,9 +66,7 @@ final class GeneratorTests: XCTestCase {
         let pbxTargets: [TargetID: PBXNativeTarget] = [
             "A": PBXNativeTarget(name: "A (3456a)"),
         ]
-        // TODO(chuck): Update to pass along a scheme.
-        // let schemes = [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
-        let schemes = [XCScheme]()
+        let schemes = [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
         let sharedData = XCSharedData(schemes: schemes)
         let xcodeProj = XcodeProj(
             workspace: XCWorkspace(),
@@ -382,6 +380,22 @@ final class GeneratorTests: XCTestCase {
             pbxTargets: pbxTargets
         )]
 
+        // MARK: createXCSchemes()
+
+        struct CreateXCSchemesCalled: Equatable {
+            let disambiguatedTargets: [TargetID: DisambiguatedTarget]
+        }
+
+        var createXCSchemesCalled: [CreateXCSchemesCalled] = []
+        func createXCSchemes(disambiguatedTargets: [TargetID: DisambiguatedTarget]) -> [XCScheme] {
+            createXCSchemesCalled.append(.init(disambiguatedTargets: disambiguatedTargets))
+            return schemes
+        }
+
+        let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
+            disambiguatedTargets: disambiguatedTargets
+        )]
+
         // MARK: createXCSharedData()
 
         struct CreateXCSharedDataCalled: Equatable {
@@ -467,6 +481,7 @@ final class GeneratorTests: XCTestCase {
             addTargets: addTargets,
             setTargetConfigurations: setTargetConfigurations,
             setTargetDependencies: setTargetDependencies,
+            createXCSchemes: createXCSchemes,
             createXCSharedData: createXCSharedData,
             createXcodeProj: createXcodeProj,
             writeXcodeProj: writeXcodeProj
@@ -527,6 +542,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             setTargetDependenciesCalled,
             expectedSetTargetDependenciesCalled
+        )
+        XCTAssertNoDifference(
+            createXCSchemesCalled,
+            expectedCreateXCSchemesCalled
         )
         XCTAssertNoDifference(
             createXCSharedDataCalled,

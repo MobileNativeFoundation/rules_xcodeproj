@@ -1,6 +1,10 @@
 import PathKit
 import XcodeProj
 
+// DEBUG BEGIN
+import Darwin
+// DEBUG END
+
 /// A class that generates and writes to disk an Xcode project.
 ///
 /// The `Generator` class is stateless. It can be used to generate multiple
@@ -18,6 +22,7 @@ class Generator {
         addTargets: Generator.addTargets,
         setTargetConfigurations: Generator.setTargetConfigurations,
         setTargetDependencies: Generator.setTargetDependencies,
+        createXCSchemes: Generator.createXCSchemes,
         createXCSharedData: Generator.createXCSharedData,
         createXcodeProj: Generator.createXcodeProj,
         writeXcodeProj: Generator.writeXcodeProj
@@ -130,8 +135,22 @@ Was unable to merge "\(srcTarget.label) \
             pbxTargets
         )
 
-        // TODO(chuck): Pass in the schemes
-        let sharedData = environment.createXCSharedData([])
+        // DEBUG BEGIN
+        fputs("*** CHUCK pbxTargets:\n", stderr)
+        for (idx, item) in pbxTargets.enumerated() {
+            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        }
+        fputs("*** CHUCK disambiguatedTargets:\n", stderr)
+        for (idx, item) in disambiguatedTargets.enumerated() {
+            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        }
+        // DEBUG END
+
+        // TODO(chuck): FIX ME!
+        let schemes = environment.createXCSchemes(disambiguatedTargets)
+        // let schemes = [XCScheme]()
+
+        let sharedData = environment.createXCSharedData(schemes)
 
          let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)
          try environment.writeXcodeProj(
