@@ -66,10 +66,12 @@ final class GeneratorTests: XCTestCase {
         let pbxTargets: [TargetID: PBXNativeTarget] = [
             "A": PBXNativeTarget(name: "A (3456a)"),
         ]
+        let schemes = [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
+        let sharedData = XCSharedData(schemes: schemes)
         let xcodeProj = XcodeProj(
             workspace: XCWorkspace(),
             pbxproj: pbxProj,
-            sharedData: nil
+            sharedData: sharedData
         )
 
         var expectedMessagesLogged: [StubLogger.MessageLogged] = []
@@ -378,24 +380,62 @@ final class GeneratorTests: XCTestCase {
             pbxTargets: pbxTargets
         )]
 
+        // MARK: createXCSchemes()
+
+        struct CreateXCSchemesCalled: Equatable {
+            let disambiguatedTargets: [TargetID: DisambiguatedTarget]
+        }
+
+        var createXCSchemesCalled: [CreateXCSchemesCalled] = []
+        func createXCSchemes(
+            disambiguatedTargets: [TargetID: DisambiguatedTarget]
+        ) -> [XCScheme] {
+            createXCSchemesCalled.append(.init(disambiguatedTargets: disambiguatedTargets))
+            return schemes
+        }
+
+        let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
+            disambiguatedTargets: disambiguatedTargets
+        )]
+
+        // MARK: createXCSharedData()
+
+        struct CreateXCSharedDataCalled: Equatable {
+            let schemes: [XCScheme]
+        }
+
+        var createXCSharedDataCalled: [CreateXCSharedDataCalled] = []
+        func createXCSharedData(schemes: [XCScheme]) -> XCSharedData {
+            createXCSharedDataCalled.append(.init(schemes: schemes))
+            return sharedData
+        }
+
+        let expectedCreateXCSharedDataCalled = [CreateXCSharedDataCalled(
+            schemes: schemes
+        )]
+
         // MARK: createXcodeProj()
 
         struct CreateXcodeProjCalled: Equatable {
             let pbxProj: PBXProj
+            let sharedData: XCSharedData?
         }
 
         var createXcodeProjCalled: [CreateXcodeProjCalled] = []
         func createXcodeProj(
-            for pbxProj: PBXProj
+            for pbxProj: PBXProj,
+            sharedData: XCSharedData?
         ) -> XcodeProj {
             createXcodeProjCalled.append(.init(
-                pbxProj: pbxProj
+                pbxProj: pbxProj,
+                sharedData: sharedData
             ))
             return xcodeProj
         }
 
         let expectedCreateXcodeProjCalled = [CreateXcodeProjCalled(
-            pbxProj: pbxProj
+            pbxProj: pbxProj,
+            sharedData: sharedData
         )]
 
         // MARK: writeXcodeProj()
@@ -443,6 +483,8 @@ final class GeneratorTests: XCTestCase {
             addTargets: addTargets,
             setTargetConfigurations: setTargetConfigurations,
             setTargetDependencies: setTargetDependencies,
+            createXCSchemes: createXCSchemes,
+            createXCSharedData: createXCSharedData,
             createXcodeProj: createXcodeProj,
             writeXcodeProj: writeXcodeProj
         )
@@ -502,6 +544,14 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             setTargetDependenciesCalled,
             expectedSetTargetDependenciesCalled
+        )
+        XCTAssertNoDifference(
+            createXCSchemesCalled,
+            expectedCreateXCSchemesCalled
+        )
+        XCTAssertNoDifference(
+            createXCSharedDataCalled,
+            expectedCreateXCSharedDataCalled
         )
         XCTAssertNoDifference(
             createXcodeProjCalled,

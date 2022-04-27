@@ -1555,4 +1555,13 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 
         return pbxTargets
     }
+
+    static func xcSchemes() -> [XCScheme] {
+        return [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
+    }
+
+    static func xcSharedData() -> XCSharedData {
+        let schemes = xcSchemes()
+        return XCSharedData(schemes: schemes)
+    }
 }
