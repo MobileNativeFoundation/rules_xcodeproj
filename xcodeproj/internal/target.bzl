@@ -645,7 +645,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
 
 # Non-Xcode targets
 
-def _process_nonxcode_target(*, ctx, target, transitive_infos):
+def _process_non_xcode_target(*, ctx, target, transitive_infos):
     """Gathers information about a non-Xcode target.
 
     Args:
@@ -1029,8 +1029,8 @@ def _process_target(*, ctx, target, transitive_infos):
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields`.
     """
-    if not targets.should_becomexcode_target(target):
-        processed_target = _process_nonxcode_target(
+    if not targets.should_become_xcode_target(target):
+        processed_target = _process_non_xcode_target(
             ctx = ctx,
             target = target,
             transitive_infos = transitive_infos,
