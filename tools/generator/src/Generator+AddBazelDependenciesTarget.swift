@@ -129,15 +129,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         )
         pbxProj.add(object: configurationList)
 
-        let fetchExternalReposScript = try createFetchExternalReposScript(
-            in: pbxProj,
-            buildMode: buildMode,
-            files: files,
-            filePathResolver: filePathResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
-        )
-
-        let generateFilesScript = try createGenerateFilesScript(
+        let bazelBuildScript = try createBazelBuildScript(
             in: pbxProj,
             buildMode: buildMode,
             files: files,
@@ -167,8 +159,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
             name: "Bazel Dependencies",
             buildConfigurationList: configurationList,
             buildPhases: [
-                fetchExternalReposScript,
-                generateFilesScript,
+                bazelBuildScript,
                 copyFilesScript,
                 fixModuleMapsScript,
                 fixInfoPlistsScript,
@@ -228,40 +219,34 @@ cd "$SRCROOT"
         return script
     }
 
-    private static func createGenerateFilesScript(
+    private static func createBazelBuildScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
-    ) throws -> PBXShellScriptBuildPhase? {
-        guard files.containsGeneratedFiles else {
-            return nil
-        }
+    ) throws -> PBXShellScriptBuildPhase {
+        let hasGeneratedFiles = files.containsGeneratedFiles
 
-        let generatedFileList = try filePathResolver
-            .resolve(.internal(generatedFileListPath))
-            .string
-
-        let outputFileListPaths: [String]
+        var outputFileListPaths: [String] = []
         if files.containsExternalFiles {
-            outputFileListPaths = [
-                try filePathResolver
-                    .resolve(.internal(externalFileListPath))
-                    .string,
-                generatedFileList,
-            ]
-        } else {
-            outputFileListPaths = [generatedFileList]
+            let externalFilesList = try filePathResolver
+                .resolve(.internal(externalFileListPath))
+                .string
+            outputFileListPaths.append(externalFilesList)
+        }
+        if hasGeneratedFiles {
+            let generatedFileList = try filePathResolver
+                .resolve(.internal(generatedFileListPath))
+                .string
+            outputFileListPaths.append(generatedFileList)
         }
 
-        let script = PBXShellScriptBuildPhase(
-            name: "Generate Files",
-            outputFileListPaths: outputFileListPaths,
-            shellScript: #"""
-set -euo pipefail
-
-\#(setup(buildMode: buildMode))
+        let name: String
+        let createGeneratedFileDirectories: String
+        if hasGeneratedFiles {
+            name = "Generate Files"
+            createGeneratedFileDirectories = #"""
 
 # Create parent directories of generated files, so the project navigator works
 # better faster
@@ -281,6 +266,20 @@ do
   mkdir -p "$dir"
 done
 
+"""#
+        } else {
+            name = "Fetch External Repositories"
+            createGeneratedFileDirectories = ""
+        }
+
+        let script = PBXShellScriptBuildPhase(
+            name: name,
+            outputFileListPaths: outputFileListPaths,
+            shellScript: #"""
+set -euo pipefail
+
+\#(setup(buildMode: buildMode))
+\#(createGeneratedFileDirectories)
 cd "$SRCROOT"
 
 date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
