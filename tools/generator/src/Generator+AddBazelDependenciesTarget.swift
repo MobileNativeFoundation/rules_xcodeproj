@@ -206,7 +206,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
                     .string,
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 \#(setup(buildMode: buildMode))
 
@@ -259,7 +259,7 @@ cd "$SRCROOT"
             name: "Generate Files",
             outputFileListPaths: outputFileListPaths,
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 \#(setup(buildMode: buildMode))
 
@@ -323,7 +323,7 @@ date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
                     .string,
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 cd "$BAZEL_OUT"
 
@@ -373,7 +373,7 @@ rsync \
                     .string,
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 while IFS= read -r input; do
   output="${input%.modulemap}.xcode.modulemap"
@@ -413,7 +413,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                     .string,
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 while IFS= read -r input; do
   output="${input%.plist}.xcode.plist"
