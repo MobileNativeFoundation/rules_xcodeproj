@@ -1,4 +1,4 @@
-""" Functions for processing Xcode Targets."""
+"""Functions for creating data structures related to processed bazel targets."""
 
 load(
     ":product.bzl",
