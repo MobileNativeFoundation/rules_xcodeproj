@@ -32,6 +32,14 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 """,
         ], uniquingKeysWith: { _, r in r })
 
+        if buildMode.usesBazelModeBuildScripts {
+            buildSettings.merge([
+                "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
+$(BUILD_DIR)/bazel_build_output_groups
+""",
+            ], uniquingKeysWith: { _, r in r })
+        }
+
         if buildMode.requiresLLDBInit {
             buildSettings["BAZEL_LLDB_INIT"] = "$(INTERNAL_DIR)/.lldbinit"
         }

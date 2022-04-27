@@ -129,7 +129,9 @@ env -i \
         }
 
         let name: String
-        if hasGeneratedFiles {
+        if buildMode.usesBazelModeBuildScripts {
+            name = "Bazel Build"
+        } else if hasGeneratedFiles {
             name = "Generate Files"
         } else {
             name = "Fetch External Repositories"
@@ -141,7 +143,10 @@ env -i \
                 hasGeneratedFiles: hasGeneratedFiles,
                 filePathResolver: filePathResolver
             ),
-            bazelBuildCommand(xcodeprojBazelLabel: xcodeprojBazelLabel),
+            bazelBuildCommand(
+                buildMode: buildMode,
+                xcodeprojBazelLabel: xcodeprojBazelLabel
+            ),
         ].compactMap { $0 }.joined(separator: "\n\n")
 
         let script = PBXShellScriptBuildPhase(
@@ -234,11 +239,35 @@ ln -sfn "$PROJECT_DIR" SRCROOT
     }
 
     private static func bazelBuildCommand(
+        buildMode: BuildMode,
         xcodeprojBazelLabel: String
     ) -> String {
+        let createAdditionalOutputGroups: String
+        let useAdditionalOutputGroups: String
+        switch buildMode {
+        case .bazel:
+            createAdditionalOutputGroups = #"""
+
+output_groups=()
+if [ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]; then
+  while IFS= read -r output_group; do
+    output_groups+=("--output_groups=+$output_group")
+  done < "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+fi
+
+"""#
+            useAdditionalOutputGroups = #"""
+  ${output_groups[@]+"${output_groups[@]}"} \
+
+"""#
+        case .xcode:
+            createAdditionalOutputGroups = ""
+            useAdditionalOutputGroups = ""
+        }
+
         return #"""
 cd "$SRCROOT"
-
+\#(createAdditionalOutputGroups)
 date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
 
 \#(bazelExec) \
@@ -246,6 +275,7 @@ date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
   build \
   --experimental_convenience_symlinks=ignore \
   --output_groups=generated_inputs \
+\#(useAdditionalOutputGroups)\#
   \#(xcodeprojBazelLabel)
 
 """#
