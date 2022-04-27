@@ -132,7 +132,7 @@ def _collect(
         additional_files: A `list` of `File`s to add to the inputs. This can
             be used to add files to the `generated` and `extra_files` fields
             (e.g. modulemaps or BUILD files).
-        transitive_infos: A list of `XcodeProjInfo`s for the transitive
+        transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of `target`.
 
     Returns:
@@ -318,7 +318,7 @@ def _merge(*, attrs_info, transitive_infos):
 
     Args:
         attrs_info: The `InputFileAttributesInfo` for the target.
-        transitive_infos: A list of `XcodeProjInfo`s for the transitive
+        transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
 
     Returns:

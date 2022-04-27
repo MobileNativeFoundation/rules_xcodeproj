@@ -78,6 +78,10 @@ A value returned from `linker_input_files.collect`.
 A `depset` of structs with 'src' and 'dest' fields. The 'src' field is the id of
 the target that can be merged into the target with the id of the 'dest' field.
 """,
+        "outputs": """\
+A value returned from `output_files.collect`, that contains information about
+the output files for this target and its transitive dependencies.
+""",
         "required_links": """\
 A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.

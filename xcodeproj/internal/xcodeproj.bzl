@@ -1,11 +1,13 @@
 """Implementation of the `xcodeproj` rule."""
 
+load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":files.bzl", "file_path", "file_path_to_dto")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
+load(":output_files.bzl", "output_files")
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
@@ -176,6 +178,10 @@ def _xcodeproj_impl(ctx):
         attrs_info = None,
         transitive_infos = [(None, info) for info in infos],
     )
+    outputs = output_files.merge(
+        attrs_info = None,
+        transitive_infos = [(None, info) for info in infos],
+    )
 
     spec_file = _write_json_spec(
         ctx = ctx,
@@ -202,10 +208,17 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
-            **input_files.to_output_groups_fields(
-                ctx = ctx,
-                inputs = inputs,
-                toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+            **dicts.add(
+                input_files.to_output_groups_fields(
+                    ctx = ctx,
+                    inputs = inputs,
+                    toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+                ),
+                output_files.to_output_groups_fields(
+                    ctx = ctx,
+                    outputs = outputs,
+                    toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+                ),
             )
         ),
         XcodeProjOutputInfo(
