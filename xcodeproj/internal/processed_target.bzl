@@ -1,9 +1,6 @@
 """Functions for creating data structures related to processed bazel targets."""
 
-load(
-    ":product.bzl",
-    "product_to_dto",
-)
+load(":product.bzl", "product_to_dto")
 
 def processed_target(
         *,
