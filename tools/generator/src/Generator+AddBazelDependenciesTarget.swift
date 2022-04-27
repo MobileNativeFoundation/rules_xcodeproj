@@ -23,79 +23,6 @@ env -i \
   "$BAZEL_PATH"
 """#
 
-    private static func setup(buildMode: BuildMode) -> String {
-        let lldbInit: String
-        if buildMode.requiresLLDBInit {
-            lldbInit = #"""
-
-if [[ -f "$HOME/.lldbinit" ]]; then
-  home_init="command source ~/.lldbinit
-
-"
-else
-  home_init=""
-fi
-
-cat <<EOF > "$BAZEL_LLDB_INIT"
-$home_init\
-# Set \`CWD\` to \`\$SRCROOT\` so relative paths in binaries work
-platform settings -w "$SRCROOT"
-
-# "Undo" `-debug-prefix-map`
-settings set target.source-map ./external/ "$external"
-settings append target.source-map ./ "$SRCROOT"
-EOF
-
-"""#
-        } else {
-            lldbInit = ""
-        }
-
-        return #"""
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other
-  output_base="$OBJROOT/bazel_output_base"
-fi
-
-output_path=$(\#(bazelExec) \
-  ${output_base:+--output_base "$output_base"} \
-  info \
-  --experimental_convenience_symlinks=ignore \
-  output_path)
-external="${output_path%/*/*/*}/external"
-\#(lldbInit)
-# We only want to modify `$LINKS_DIR` during normal builds since Indexing can
-# run concurrent to normal builds
-if [ "$ACTION" != "indexbuild" ]; then
-  mkdir -p "$LINKS_DIR"
-  cd "$LINKS_DIR"
-
-  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-  # files to the internal links directory to prevent Bazel from recursing into
-  # it, and thus following the `external` symlink
-  touch BUILD
-  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-
-  # Need to remove the directories that Xcode creates as part of output prep
-  rm -rf external
-  rm -rf gen_dir
-
-  ln -sf "$external" external
-  ln -sf "$BUILD_DIR/bazel-out" gen_dir
-fi
-
-cd "$BUILD_DIR"
-
-rm -rf external
-rm -rf real-bazel-out
-
-ln -sf "$external" external
-ln -sf "$output_path" real-bazel-out
-ln -sfn "$PROJECT_DIR" SRCROOT
-"""#
-    }
-
     static func addBazelDependenciesTarget(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
@@ -178,47 +105,6 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         return pbxTarget
     }
 
-    private static func createFetchExternalReposScript(
-        in pbxProj: PBXProj,
-        buildMode: BuildMode,
-        files: [FilePath: File],
-        filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String
-    ) throws -> PBXShellScriptBuildPhase? {
-        guard !files.containsGeneratedFiles else {
-            return nil
-        }
-
-        let script = PBXShellScriptBuildPhase(
-            name: "Fetch External Repositories",
-            outputFileListPaths: [
-                try filePathResolver
-                    .resolve(.internal(externalFileListPath))
-                    .string,
-            ],
-            shellScript: #"""
-set -euo pipefail
-
-\#(setup(buildMode: buildMode))
-
-cd "$SRCROOT"
-
-\#(bazelExec) \
-  ${output_base:+--output_base "$output_base"} \
-  build \
-  --nobuild \
-  --experimental_convenience_symlinks=ignore \
-  \#(xcodeprojBazelLabel)
-
-"""#,
-            showEnvVarsInLog: false,
-            alwaysOutOfDate: true
-        )
-        pbxProj.add(object: script)
-
-        return script
-    }
-
     private static func createBazelBuildScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
@@ -243,11 +129,137 @@ cd "$SRCROOT"
         }
 
         let name: String
-        let createGeneratedFileDirectories: String
         if hasGeneratedFiles {
             name = "Generate Files"
-            createGeneratedFileDirectories = #"""
+        } else {
+            name = "Fetch External Repositories"
+        }
 
+        let shellScript = [
+            bazelSetupCommand(buildMode: buildMode),
+            try createGeneratedFileDirectoriesCommand(
+                hasGeneratedFiles: hasGeneratedFiles,
+                filePathResolver: filePathResolver
+            ),
+            bazelBuildCommand(xcodeprojBazelLabel: xcodeprojBazelLabel),
+        ].compactMap { $0 }.joined(separator: "\n\n")
+
+        let script = PBXShellScriptBuildPhase(
+            name: name,
+            outputFileListPaths: outputFileListPaths,
+            shellScript: shellScript,
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
+    private static func bazelSetupCommand(
+        buildMode: BuildMode
+    ) -> String {
+        let lldbInit: String
+        if buildMode.requiresLLDBInit {
+            lldbInit = #"""
+
+if [[ -f "$HOME/.lldbinit" ]]; then
+  home_init="command source ~/.lldbinit
+
+"
+else
+  home_init=""
+fi
+
+cat <<EOF > "$BAZEL_LLDB_INIT"
+$home_init\
+# Set \`CWD\` to \`\$SRCROOT\` so relative paths in binaries work
+platform settings -w "$SRCROOT"
+
+# "Undo" `-debug-prefix-map`
+settings set target.source-map ./external/ "$external"
+settings append target.source-map ./ "$SRCROOT"
+EOF
+
+"""#
+        } else {
+            lldbInit = ""
+        }
+
+        return #"""
+set -euo pipefail
+
+if [ "$ACTION" == "indexbuild" ]; then
+  # We use a different output base for Index Build to prevent normal builds and
+  # indexing waiting on bazel locks from the other
+  output_base="$OBJROOT/bazel_output_base"
+fi
+
+output_path=$(\#(bazelExec) \
+  ${output_base:+--output_base "$output_base"} \
+  info \
+  --experimental_convenience_symlinks=ignore \
+  output_path)
+external="${output_path%/*/*/*}/external"
+\#(lldbInit)
+# We only want to modify `$LINKS_DIR` during normal builds since Indexing can
+# run concurrent to normal builds
+if [ "$ACTION" != "indexbuild" ]; then
+  mkdir -p "$LINKS_DIR"
+  cd "$LINKS_DIR"
+
+  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+  # files to the internal links directory to prevent Bazel from recursing into
+  # it, and thus following the `external` symlink
+  touch BUILD
+  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+
+  # Need to remove the directories that Xcode creates as part of output prep
+  rm -rf external
+  rm -rf gen_dir
+
+  ln -sf "$external" external
+  ln -sf "$BUILD_DIR/bazel-out" gen_dir
+fi
+
+cd "$BUILD_DIR"
+
+rm -rf external
+rm -rf real-bazel-out
+
+ln -sf "$external" external
+ln -sf "$output_path" real-bazel-out
+ln -sfn "$PROJECT_DIR" SRCROOT
+"""#
+    }
+
+    private static func bazelBuildCommand(
+        xcodeprojBazelLabel: String
+    ) -> String {
+        return #"""
+cd "$SRCROOT"
+
+date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
+
+\#(bazelExec) \
+  ${output_base:+--output_base "$output_base"} \
+  build \
+  --experimental_convenience_symlinks=ignore \
+  --output_groups=generated_inputs \
+  \#(xcodeprojBazelLabel)
+
+"""#
+    }
+
+    private static func createGeneratedFileDirectoriesCommand(
+        hasGeneratedFiles: Bool,
+        filePathResolver: FilePathResolver
+    ) throws -> String? {
+        guard hasGeneratedFiles else {
+            return nil
+        }
+
+        return #"""
 # Create parent directories of generated files, so the project navigator works
 # better faster
 
@@ -265,39 +277,7 @@ sed 's|\/[^\/]*$||' \
 do
   mkdir -p "$dir"
 done
-
 """#
-        } else {
-            name = "Fetch External Repositories"
-            createGeneratedFileDirectories = ""
-        }
-
-        let script = PBXShellScriptBuildPhase(
-            name: name,
-            outputFileListPaths: outputFileListPaths,
-            shellScript: #"""
-set -euo pipefail
-
-\#(setup(buildMode: buildMode))
-\#(createGeneratedFileDirectories)
-cd "$SRCROOT"
-
-date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
-
-\#(bazelExec) \
-  ${output_base:+--output_base "$output_base"} \
-  build \
-  --experimental_convenience_symlinks=ignore \
-  --output_groups=generated_inputs \
-  \#(xcodeprojBazelLabel)
-
-"""#,
-            showEnvVarsInLog: false,
-            alwaysOutOfDate: true
-        )
-        pbxProj.add(object: script)
-
-        return script
     }
 
     private static func createCopyFilesScript(
