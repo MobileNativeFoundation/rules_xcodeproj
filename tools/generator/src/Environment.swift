@@ -73,6 +73,8 @@ struct Environment {
         _ pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> Void
 
+    let createXCSharedData: (_ schemes: [XCScheme]) -> XCSharedData
+
     let createXcodeProj: (
         _ pbxProj: PBXProj,
         _ sharedData: XCSharedData?

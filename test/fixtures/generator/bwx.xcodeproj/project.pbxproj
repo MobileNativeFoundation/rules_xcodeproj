@@ -59,6 +59,7 @@
 		2B291E95CCB447383EB7AE87 /* XCScheme+EnvironmentVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FB6646E89CD0F8B7C2C39 /* XCScheme+EnvironmentVariable.swift */; };
 		2B5CE87F591A88AE69E2EA93 /* CustomDumpRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88789669F25DD7E154C15036 /* CustomDumpRepresentable.swift */; };
 		2F23E98B7032105D6B0D28C8 /* OrderedSet+UnstableInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415E01540549AB7D9DC7775 /* OrderedSet+UnstableInternals.swift */; };
+		30D5B9A89D41795BE4359B14 /* Generator+CreateXCSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A3046CDCECF5B1135A1D0E /* Generator+CreateXCSharedData.swift */; };
 		33B7CF1072ED2BECDE1093EE /* PBXProductType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0926F34E2099B433D5550DCD /* PBXProductType+Extensions.swift */; };
 		3468B9267DEA583FB703DC62 /* KeyedDecodingContainer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB78F15F8AFA4FD268CBC7BD /* KeyedDecodingContainer+Additions.swift */; };
 		34AA2315505226D74BC238A6 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1140300C723A6A3D0EC452A4 /* Element.swift */; };
@@ -407,6 +408,7 @@
 		1267D8B9A2E0172402C0AD0C /* XCScheme+Runnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+Runnable.swift"; sourceTree = "<group>"; };
 		159077487BA2582632AE5FCB /* CustomDumpReflectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDumpReflectable.swift; sourceTree = "<group>"; };
 		15B947E1837B5A93F9780BD6 /* OrderedDictionary+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Values.swift"; sourceTree = "<group>"; };
+		18A3046CDCECF5B1135A1D0E /* Generator+CreateXCSharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+CreateXCSharedData.swift"; sourceTree = "<group>"; };
 		198C3110BC4D1378F886FABB /* XCWorkspaceDataElementLocationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspaceDataElementLocationType.swift; sourceTree = "<group>"; };
 		1B1F611F9FE1838B9E8CC41C /* OrderedSet+Partial RangeReplaceableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial RangeReplaceableCollection.swift"; sourceTree = "<group>"; };
 		1CA2DC08D1A87C12C91B467D /* OrderedSet+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Codable.swift"; sourceTree = "<group>"; };
@@ -1122,6 +1124,7 @@
 				CB3A0C56E6309EC169805A89 /* Generator+CreateProducts.swift */,
 				4B0489BBEB7C17EFEB6AE185 /* Generator+CreateProject.swift */,
 				46FAB1B8F9AB1BD009B78FA6 /* Generator+CreateXcodeProj.swift */,
+				18A3046CDCECF5B1135A1D0E /* Generator+CreateXCSharedData.swift */,
 				6BA7E31A29E125E3633EC7C6 /* Generator+DisambiguateTargets.swift */,
 				ADF88F06ADD246BEF6FBE6F3 /* Generator+Main.swift */,
 				C82BFDAFBA290861DF5C9ACD /* Generator+PopulateMainGroup.swift */,
@@ -1607,6 +1610,7 @@
 				BF3A961C3C9160CDB03BBAD5 /* Generator+CreateFilesAndGroups.swift in Sources */,
 				ED5F0F0FA5A045D7F75F3815 /* Generator+CreateProducts.swift in Sources */,
 				7EFB7F70225BBBE18BD502FD /* Generator+CreateProject.swift in Sources */,
+				30D5B9A89D41795BE4359B14 /* Generator+CreateXCSharedData.swift in Sources */,
 				494319462485B704527D1BA7 /* Generator+CreateXcodeProj.swift in Sources */,
 				ED347450B34C5682C31794E4 /* Generator+DisambiguateTargets.swift in Sources */,
 				E00618A325EF5833C59AC724 /* Generator+Main.swift in Sources */,

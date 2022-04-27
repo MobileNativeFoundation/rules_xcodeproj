@@ -66,10 +66,14 @@ final class GeneratorTests: XCTestCase {
         let pbxTargets: [TargetID: PBXNativeTarget] = [
             "A": PBXNativeTarget(name: "A (3456a)"),
         ]
+        // TODO(chuck): Update to pass along a scheme.
+        // let schemes = [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
+        let schemes = [XCScheme]()
+        let sharedData = XCSharedData(schemes: schemes)
         let xcodeProj = XcodeProj(
             workspace: XCWorkspace(),
             pbxproj: pbxProj,
-            sharedData: nil
+            sharedData: sharedData
         )
 
         var expectedMessagesLogged: [StubLogger.MessageLogged] = []
@@ -378,6 +382,22 @@ final class GeneratorTests: XCTestCase {
             pbxTargets: pbxTargets
         )]
 
+        // MARK: createXCSharedData()
+
+        struct CreateXCSharedDataCalled: Equatable {
+            let schemes: [XCScheme]
+        }
+
+        var createXCSharedDataCalled: [CreateXCSharedDataCalled] = []
+        func createXCSharedData(schemes: [XCScheme]) -> XCSharedData {
+            createXCSharedDataCalled.append(.init(schemes: schemes))
+            return sharedData
+        }
+
+        let expectedCreateXCSharedDataCalled = [CreateXCSharedDataCalled(
+            schemes: schemes
+        )]
+
         // MARK: createXcodeProj()
 
         struct CreateXcodeProjCalled: Equatable {
@@ -399,7 +419,7 @@ final class GeneratorTests: XCTestCase {
 
         let expectedCreateXcodeProjCalled = [CreateXcodeProjCalled(
             pbxProj: pbxProj,
-            sharedData: nil
+            sharedData: sharedData
         )]
 
         // MARK: writeXcodeProj()
@@ -447,6 +467,7 @@ final class GeneratorTests: XCTestCase {
             addTargets: addTargets,
             setTargetConfigurations: setTargetConfigurations,
             setTargetDependencies: setTargetDependencies,
+            createXCSharedData: createXCSharedData,
             createXcodeProj: createXcodeProj,
             writeXcodeProj: writeXcodeProj
         )
@@ -506,6 +527,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             setTargetDependenciesCalled,
             expectedSetTargetDependenciesCalled
+        )
+        XCTAssertNoDifference(
+            createXCSharedDataCalled,
+            expectedCreateXCSharedDataCalled
         )
         XCTAssertNoDifference(
             createXcodeProjCalled,

@@ -18,6 +18,7 @@ class Generator {
         addTargets: Generator.addTargets,
         setTargetConfigurations: Generator.setTargetConfigurations,
         setTargetDependencies: Generator.setTargetDependencies,
+        createXCSharedData: Generator.createXCSharedData,
         createXcodeProj: Generator.createXcodeProj,
         writeXcodeProj: Generator.writeXcodeProj
     )
@@ -129,7 +130,10 @@ Was unable to merge "\(srcTarget.label) \
             pbxTargets
         )
 
-         let xcodeProj = environment.createXcodeProj(pbxProj, nil)
+        // TODO(chuck): Pass in the schemes
+        let sharedData = environment.createXCSharedData([])
+
+         let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)
          try environment.writeXcodeProj(
             xcodeProj,
             files,
