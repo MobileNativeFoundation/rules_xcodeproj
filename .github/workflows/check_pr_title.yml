@@ -8,6 +8,9 @@ on:
       - edited
       - synchronize
 
+permissions:
+  pull-requests: read
+
 jobs:
   check_pr_title:
     runs-on: ubuntu-latest
@@ -20,5 +23,3 @@ jobs:
           preset: conventional-changelog-angular@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        permissions:
-          pull-requests: read
