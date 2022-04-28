@@ -23,15 +23,136 @@ extension Generator {
         }
         // DEBUG END
 
-        // Need to group unit test target with its associated library for combo scheme
-        // The rest of the targets will get their own scheme
-
         // Scheme actions: Build, Test, Run, Profile
-        for _, disambiguatedTarget in disambiguatedTargets {
-            // If
+        var schemes = [XCScheme]()
+        for (_, disambiguatedTarget) in disambiguatedTargets {
+            let target = disambiguatedTarget.target
+
+            let buildAction = target.isBuildable ?
+                XCScheme.BuildAction(target: target) : nil
+            let testAction = target.isTestable ?
+                XCScheme.TestAction(target: target) : nil
+
+            let launchAction: XCScheme.LaunchAction?
+            let profileAction: XCScheme.ProfileAction?
+            if target.isLaunchable {
+                launchAction = XCScheme.LaunchAction(target: target)
+                profileAction = XCScheme.ProfileAction(target: target)
+            } else {
+                launchAction = nil
+                profileAction = nil
+            }
+
+            if buildAction == nil, testAction == nil, launchAction == nil,
+               profileAction == nil
+            {
+                continue
+            }
+            let scheme = XCScheme(
+                name: target.name,
+                lastUpgradeVersion: nil,
+                version: nil,
+                buildAction: buildAction,
+                testAction: testAction,
+                launchAction: launchAction,
+                profileAction: profileAction,
+                analyzeAction: nil,
+                archiveAction: nil,
+                wasCreatedForAppExtension: nil
+            )
+            schemes.append(scheme)
         }
 
-        // GH101: Implement logic to create schemes from targets.
-        return []
+        return schemes
+    }
+}
+
+// MARK: Target Extension
+
+extension Target {
+    var isBuildable: Bool {
+        return true
+    }
+
+    var isTestable: Bool {
+        return product.type.isTestBundle
+    }
+
+    var isLaunchable: Bool {
+        return product.type.isExecutable
+    }
+}
+
+// MARK: BuildAction Extension
+
+extension XCScheme.BuildAction {
+    convenience init(target _: Target) {
+        // self.init(
+        //     buildableReference: .init(
+        //         // TODO(chuck): populate
+        //         referencedContainer: "container:Project.xcodeproj",
+        //         blueprint: nil,
+        //         buildableName: "iOS.app",
+        //         blueprintName: "iOS"
+        //     ),
+        //     buildFor: .default
+        // )
+        self.init(
+            buildActionEntries: [],
+            preActions: [],
+            postActions: [],
+            parallelizeBuild: false,
+            buildImplicitDependencies: false,
+            runPostActionsOnFailure: nil
+        )
+    }
+}
+
+internal extension XCScheme.TestAction {
+    convenience init(target _: Target) {
+        // TODO: IMPLEMENT ME!
+        self.init(
+            buildConfiguration: "", // String,
+            macroExpansion: nil, // BuildableReference?
+            testables: [], // [TestableReference] = [],
+            testPlans: nil, // [TestPlanReference]? = nil,
+            preActions: [], // [ExecutionAction] = [],
+            postActions: [] // [ExecutionAction] = [],
+        )
+    }
+}
+
+internal extension XCScheme.LaunchAction {
+    convenience init(target _: Target) {
+        // TODO: IMPLEMENT ME!
+        self.init(
+            runnable: nil, // Runnable?,
+            buildConfiguration: "", // String,
+            preActions: [], // [ExecutionAction] = [],
+            postActions: [], // [ExecutionAction] = [],
+            macroExpansion: nil // BuildableReference? = nil
+        )
+    }
+}
+
+internal extension XCScheme.ProfileAction {
+    convenience init(target _: Target) {
+        // TODO: IMPLEMENT ME!
+        self.init(
+            buildableProductRunnable: nil, // BuildableProductRunnable?,
+            buildConfiguration: "" // String
+            // preActions: [ExecutionAction] = [],
+            // postActions: [ExecutionAction] = [],
+            // macroExpansion: BuildableReference? = nil,
+            // shouldUseLaunchSchemeArgsEnv: Bool = true,
+            // savedToolIdentifier: String = "",
+            // ignoresPersistentStateOnLaunch: Bool = false,
+            // useCustomWorkingDirectory: Bool = false,
+            // debugDocumentVersioning: Bool = true,
+            // askForAppToLaunch: Bool? = nil,
+            // commandlineArguments: CommandLineArguments? = nil,
+            // environmentVariables: [EnvironmentVariable]? = nil,
+            // enableTestabilityWhenProfilingTests: Bool = true
+        )
     }
 }

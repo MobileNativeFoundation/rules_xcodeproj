@@ -6,18 +6,18 @@ import XCTest
 
 class CreateXCSchemesTests: XCTestCase {
     func test_NoTargets() throws {
-        fail("IMPLEMENT ME!")
+        XCTFail("IMPLEMENT ME!")
     }
 
     func test_LibTarget() throws {
-        fail("IMPLEMENT ME!")
+        XCTFail("IMPLEMENT ME!")
     }
 
     func test_LibAndTestTarget() throws {
-        fail("IMPLEMENT ME!")
+        XCTFail("IMPLEMENT ME!")
     }
 
     func test_AppTarget() throws {
-        fail("IMPLEMENT ME!")
+        XCTFail("IMPLEMENT ME!")
     }
 }
