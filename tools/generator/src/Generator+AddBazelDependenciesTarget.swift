@@ -23,7 +23,147 @@ env -i \
   "$BAZEL_PATH"
 """#
 
-    private static func setup(buildMode: BuildMode) -> String {
+    static func addBazelDependenciesTarget(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        files: [FilePath: File],
+        filePathResolver: FilePathResolver,
+        xcodeprojBazelLabel: String
+    ) throws -> PBXAggregateTarget? {
+        guard
+            files.containsExternalFiles || files.containsGeneratedFiles
+        else {
+            return nil
+        }
+
+        let pbxProject = pbxProj.rootObject!
+
+        let debugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: [
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
+                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "INDEX_FORCE_SCRIPT_EXECUTION": true,
+                "SUPPORTED_PLATFORMS": allPlatforms,
+                "SUPPORTS_MACCATALYST": true,
+                "TARGET_NAME": "BazelDependencies",
+            ]
+        )
+        pbxProj.add(object: debugConfiguration)
+        let configurationList = XCConfigurationList(
+            buildConfigurations: [debugConfiguration],
+            defaultConfigurationName: debugConfiguration.name
+        )
+        pbxProj.add(object: configurationList)
+
+        let bazelBuildScript = try createBazelBuildScript(
+            in: pbxProj,
+            buildMode: buildMode,
+            files: files,
+            filePathResolver: filePathResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
+
+        let copyFilesScript = try createCopyFilesScript(
+            in: pbxProj,
+            files: files,
+            filePathResolver: filePathResolver
+        )
+
+        let fixModuleMapsScript = try createFixModulemapsScript(
+            in: pbxProj,
+            files: files,
+            filePathResolver: filePathResolver
+        )
+
+        let fixInfoPlistsScript = try createFixInfoPlistsScript(
+            in: pbxProj,
+            files: files,
+            filePathResolver: filePathResolver
+        )
+
+        let pbxTarget = PBXAggregateTarget(
+            name: "Bazel Dependencies",
+            buildConfigurationList: configurationList,
+            buildPhases: [
+                bazelBuildScript,
+                copyFilesScript,
+                fixModuleMapsScript,
+                fixInfoPlistsScript,
+            ].compactMap { $0 },
+            productName: "Bazel Dependencies"
+        )
+        pbxProj.add(object: pbxTarget)
+        pbxProject.targets.append(pbxTarget)
+
+        let attributes: [String: Any] = [
+            // TODO: Generate this value
+            "CreatedOnToolsVersion": "13.2.1",
+        ]
+        pbxProject.setTargetAttributes(attributes, target: pbxTarget)
+
+        return pbxTarget
+    }
+
+    private static func createBazelBuildScript(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        files: [FilePath: File],
+        filePathResolver: FilePathResolver,
+        xcodeprojBazelLabel: String
+    ) throws -> PBXShellScriptBuildPhase {
+        let hasGeneratedFiles = files.containsGeneratedFiles
+
+        var outputFileListPaths: [String] = []
+        if files.containsExternalFiles {
+            let externalFilesList = try filePathResolver
+                .resolve(.internal(externalFileListPath))
+                .string
+            outputFileListPaths.append(externalFilesList)
+        }
+        if hasGeneratedFiles {
+            let generatedFileList = try filePathResolver
+                .resolve(.internal(generatedFileListPath))
+                .string
+            outputFileListPaths.append(generatedFileList)
+        }
+
+        let name: String
+        if buildMode.usesBazelModeBuildScripts {
+            name = "Bazel Build"
+        } else if hasGeneratedFiles {
+            name = "Generate Files"
+        } else {
+            name = "Fetch External Repositories"
+        }
+
+        let shellScript = [
+            bazelSetupCommand(buildMode: buildMode),
+            try createGeneratedFileDirectoriesCommand(
+                hasGeneratedFiles: hasGeneratedFiles,
+                filePathResolver: filePathResolver
+            ),
+            bazelBuildCommand(
+                buildMode: buildMode,
+                xcodeprojBazelLabel: xcodeprojBazelLabel
+            ),
+        ].compactMap { $0 }.joined(separator: "\n\n")
+
+        let script = PBXShellScriptBuildPhase(
+            name: name,
+            outputFileListPaths: outputFileListPaths,
+            shellScript: shellScript,
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
+    private static func bazelSetupCommand(
+        buildMode: BuildMode
+    ) -> String {
         let lldbInit: String
         if buildMode.requiresLLDBInit {
             lldbInit = #"""
@@ -41,7 +181,7 @@ $home_init\
 # Set \`CWD\` to \`\$SRCROOT\` so relative paths in binaries work
 platform settings -w "$SRCROOT"
 
-# "Undo" `-debug-prefix-map`
+# "Undo" \`-debug-prefix-map\`
 settings set target.source-map ./external/ "$external"
 settings append target.source-map ./ "$SRCROOT"
 EOF
@@ -52,6 +192,8 @@ EOF
         }
 
         return #"""
+set -euo pipefail
+
 if [ "$ACTION" == "indexbuild" ]; then
   # We use a different output base for Index Build to prevent normal builds and
   # indexing waiting on bazel locks from the other
@@ -96,173 +238,58 @@ ln -sfn "$PROJECT_DIR" SRCROOT
 """#
     }
 
-    static func addBazelDependenciesTarget(
-        in pbxProj: PBXProj,
+    private static func bazelBuildCommand(
         buildMode: BuildMode,
-        files: [FilePath: File],
-        filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String
-    ) throws -> PBXAggregateTarget? {
-        guard
-            files.containsExternalFiles || files.containsGeneratedFiles
-        else {
-            return nil
+    ) -> String {
+        let createAdditionalOutputGroups: String
+        let useAdditionalOutputGroups: String
+        switch buildMode {
+        case .bazel:
+            createAdditionalOutputGroups = #"""
+
+output_groups=()
+if [ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]; then
+  while IFS= read -r output_group; do
+    output_groups+=("--output_groups=+$output_group")
+  done < "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+fi
+
+"""#
+            useAdditionalOutputGroups = #"""
+  ${output_groups[@]+"${output_groups[@]}"} \
+
+"""#
+        case .xcode:
+            createAdditionalOutputGroups = ""
+            useAdditionalOutputGroups = ""
         }
 
-        let pbxProject = pbxProj.rootObject!
-
-        let debugConfiguration = XCBuildConfiguration(
-            name: "Debug",
-            buildSettings: [
-                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
-                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
-                "INDEX_FORCE_SCRIPT_EXECUTION": true,
-                "SUPPORTED_PLATFORMS": allPlatforms,
-                "SUPPORTS_MACCATALYST": true,
-                "TARGET_NAME": "BazelDependencies",
-            ]
-        )
-        pbxProj.add(object: debugConfiguration)
-        let configurationList = XCConfigurationList(
-            buildConfigurations: [debugConfiguration],
-            defaultConfigurationName: debugConfiguration.name
-        )
-        pbxProj.add(object: configurationList)
-
-        let fetchExternalReposScript = try createFetchExternalReposScript(
-            in: pbxProj,
-            buildMode: buildMode,
-            files: files,
-            filePathResolver: filePathResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
-        )
-
-        let generateFilesScript = try createGenerateFilesScript(
-            in: pbxProj,
-            buildMode: buildMode,
-            files: files,
-            filePathResolver: filePathResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
-        )
-
-        let copyFilesScript = try createCopyFilesScript(
-            in: pbxProj,
-            files: files,
-            filePathResolver: filePathResolver
-        )
-
-        let fixModuleMapsScript = try createFixModulemapsScript(
-            in: pbxProj,
-            files: files,
-            filePathResolver: filePathResolver
-        )
-
-        let fixInfoPlistsScript = try createFixInfoPlistsScript(
-            in: pbxProj,
-            files: files,
-            filePathResolver: filePathResolver
-        )
-
-        let pbxTarget = PBXAggregateTarget(
-            name: "Bazel Dependencies",
-            buildConfigurationList: configurationList,
-            buildPhases: [
-                fetchExternalReposScript,
-                generateFilesScript,
-                copyFilesScript,
-                fixModuleMapsScript,
-                fixInfoPlistsScript,
-            ].compactMap { $0 },
-            productName: "Bazel Dependencies"
-        )
-        pbxProj.add(object: pbxTarget)
-        pbxProject.targets.append(pbxTarget)
-
-        let attributes: [String: Any] = [
-            // TODO: Generate this value
-            "CreatedOnToolsVersion": "13.2.1",
-        ]
-        pbxProject.setTargetAttributes(attributes, target: pbxTarget)
-
-        return pbxTarget
-    }
-
-    private static func createFetchExternalReposScript(
-        in pbxProj: PBXProj,
-        buildMode: BuildMode,
-        files: [FilePath: File],
-        filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String
-    ) throws -> PBXShellScriptBuildPhase? {
-        guard !files.containsGeneratedFiles else {
-            return nil
-        }
-
-        let script = PBXShellScriptBuildPhase(
-            name: "Fetch External Repositories",
-            outputFileListPaths: [
-                try filePathResolver
-                    .resolve(.internal(externalFileListPath))
-                    .string,
-            ],
-            shellScript: #"""
-set -eu
-
-\#(setup(buildMode: buildMode))
-
+        return #"""
 cd "$SRCROOT"
+\#(createAdditionalOutputGroups)
+date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
 
 \#(bazelExec) \
   ${output_base:+--output_base "$output_base"} \
   build \
-  --nobuild \
   --experimental_convenience_symlinks=ignore \
+  --output_groups=generated_inputs \
+\#(useAdditionalOutputGroups)\#
   \#(xcodeprojBazelLabel)
 
-"""#,
-            showEnvVarsInLog: false,
-            alwaysOutOfDate: true
-        )
-        pbxProj.add(object: script)
-
-        return script
+"""#
     }
 
-    private static func createGenerateFilesScript(
-        in pbxProj: PBXProj,
-        buildMode: BuildMode,
-        files: [FilePath: File],
-        filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String
-    ) throws -> PBXShellScriptBuildPhase? {
-        guard files.containsGeneratedFiles else {
+    private static func createGeneratedFileDirectoriesCommand(
+        hasGeneratedFiles: Bool,
+        filePathResolver: FilePathResolver
+    ) throws -> String? {
+        guard hasGeneratedFiles else {
             return nil
         }
 
-        let generatedFileList = try filePathResolver
-            .resolve(.internal(generatedFileListPath))
-            .string
-
-        let outputFileListPaths: [String]
-        if files.containsExternalFiles {
-            outputFileListPaths = [
-                try filePathResolver
-                    .resolve(.internal(externalFileListPath))
-                    .string,
-                generatedFileList,
-            ]
-        } else {
-            outputFileListPaths = [generatedFileList]
-        }
-
-        let script = PBXShellScriptBuildPhase(
-            name: "Generate Files",
-            outputFileListPaths: outputFileListPaths,
-            shellScript: #"""
-set -eu
-
-\#(setup(buildMode: buildMode))
-
+        return #"""
 # Create parent directories of generated files, so the project navigator works
 # better faster
 
@@ -280,25 +307,7 @@ sed 's|\/[^\/]*$||' \
 do
   mkdir -p "$dir"
 done
-
-cd "$SRCROOT"
-
-date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
-
-\#(bazelExec) \
-  ${output_base:+--output_base "$output_base"} \
-  build \
-  --experimental_convenience_symlinks=ignore \
-  --output_groups=generated_inputs \
-  \#(xcodeprojBazelLabel)
-
-"""#,
-            showEnvVarsInLog: false,
-            alwaysOutOfDate: true
-        )
-        pbxProj.add(object: script)
-
-        return script
+"""#
     }
 
     private static func createCopyFilesScript(
@@ -323,7 +332,7 @@ date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
                     .string,
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 cd "$BAZEL_OUT"
 
@@ -373,7 +382,7 @@ rsync \
                     .string,
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 while IFS= read -r input; do
   output="${input%.modulemap}.xcode.modulemap"
@@ -413,7 +422,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                     .string,
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 while IFS= read -r input; do
   output="${input%.plist}.xcode.plist"

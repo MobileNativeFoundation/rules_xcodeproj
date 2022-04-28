@@ -892,7 +892,7 @@ appletvos
                 "$(INTERNAL_DIR)/generated.xcfilelist",
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 if [ "$ACTION" == "indexbuild" ]; then
   # We use a different output base for Index Build to prevent normal builds and
@@ -984,7 +984,7 @@ env -i \
                 "$(INTERNAL_DIR)/generated.copied.xcfilelist",
             ],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 cd "$BAZEL_OUT"
 
@@ -1010,7 +1010,7 @@ rsync \
             inputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.xcfilelist"],
             outputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist"],
             shellScript: #"""
-set -eu
+set -euo pipefail
 
 while IFS= read -r input; do
   output="${input%.modulemap}.xcode.modulemap"
@@ -1554,5 +1554,14 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
         _ = try! pbxTargets["C 2"]!.addDependency(target: pbxTargets["C 1"]!)
 
         return pbxTargets
+    }
+
+    static func xcSchemes() -> [XCScheme] {
+        return [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
+    }
+
+    static func xcSharedData() -> XCSharedData {
+        let schemes = xcSchemes()
+        return XCSharedData(schemes: schemes)
     }
 }

@@ -124,7 +124,7 @@ def _write_map(*, ctx, name, files, toplevel_cache_buster):
     args.add_all(files)
 
     output = ctx.actions.declare_file(
-        "{}.filelist".format(ctx.attr.name, name),
+        "{}.filelist".format(name),
     )
 
     ctx.actions.run_shell(
