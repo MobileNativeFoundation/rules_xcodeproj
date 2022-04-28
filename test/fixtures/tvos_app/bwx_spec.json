@@ -16,6 +16,10 @@
             "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
             "t": "g"
         },
+        {
+            "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example_entitlements.entitlements",
+            "t": "g"
+        },
         "examples/tvos_app/ExampleTests/BUILD",
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
@@ -98,6 +102,10 @@
             "dependencies": [
                 "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6"
             ],
+            "entitlements": {
+                "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example_entitlements.entitlements",
+                "t": "g"
+            },
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
                 "t": "g"
@@ -187,6 +195,7 @@
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6",
             "dependencies": [],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -269,6 +278,7 @@
                 "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6",
                 "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6"
             ],
+            "entitlements": null,
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -361,6 +371,7 @@
             "dependencies": [
                 "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6"
             ],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -447,6 +458,7 @@
                 "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6",
                 "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6"
             ],
+            "entitlements": null,
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -537,6 +549,7 @@
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6",
             "dependencies": [],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
