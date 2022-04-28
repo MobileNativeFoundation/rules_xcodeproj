@@ -1,6 +1,11 @@
 """Functions for creating data structures related to processed bazel targets."""
 
+load(":files.bzl", "file_path_to_dto")
+load(":input_files.bzl", "input_files")
+load(":linker_input_files.bzl", "linker_input_files")
 load(":product.bzl", "product_to_dto")
+load(":providers.bzl", "target_type")
+load(":resource_bundle_products.bzl", "resource_bundle_products")
 
 def processed_target(
         *,
