@@ -83,6 +83,7 @@ def xcode_target(
         inputs,
         linker_inputs,
         info_plist,
+        entitlements,
         dependencies):
     """Generates the partial json string representation of an Xcode target.
 
@@ -114,6 +115,7 @@ def xcode_target(
         inputs: The value returned from `input_files.collect`.
         linker_inputs: A value returned from `linker_input_files.collect`.
         info_plist: A value as returned by `files.file_path` or `None`.
+        entitlements: A value as returned by `files.file_path()` or `None`.
         dependencies: A `depset` of `id`s of targets that this target depends
             on.
 
@@ -146,6 +148,7 @@ def xcode_target(
         ),
         linker_inputs = linker_input_files.to_dto(linker_inputs),
         info_plist = file_path_to_dto(info_plist),
+        entitlements = file_path_to_dto(entitlements),
         dependencies = dependencies.to_list(),
     ))
 

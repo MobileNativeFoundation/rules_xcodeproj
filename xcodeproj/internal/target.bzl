@@ -23,6 +23,7 @@ load(
     "parsed_file_path",
 )
 load(":info_plists.bzl", "info_plists")
+load(":entitlements.bzl", "entitlements")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
@@ -155,6 +156,12 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     if info_plist_file:
         info_plist = file_path(info_plist_file)
         additional_files.append(info_plist_file)
+
+    entitlements_file_path = None
+    entitlements_file = entitlements.get_file(target)
+    if entitlements_file:
+        entitlements_file_path = file_path(entitlements_file)
+        additional_files.append(entitlements_file)
 
     resource_owner = str(target.label)
     inputs = input_files.collect(
@@ -327,6 +334,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             inputs = inputs,
             linker_inputs = linker_inputs,
             info_plist = info_plist,
+            entitlements = entitlements_file_path,
             dependencies = dependencies,
         ),
     )
@@ -499,6 +507,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             inputs = inputs,
             linker_inputs = linker_inputs,
             info_plist = None,
+            entitlements = None,
             dependencies = dependencies,
         ),
     )
@@ -639,6 +648,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             inputs = inputs,
             linker_inputs = linker_inputs,
             info_plist = None,
+            entitlements = None,
             dependencies = dependencies,
         ),
     )

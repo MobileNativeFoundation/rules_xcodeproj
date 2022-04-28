@@ -28,6 +28,7 @@ struct Target: Equatable, Decodable {
     var inputs: Inputs
     var linkerInputs: LinkerInputs
     var infoPlist: FilePath?
+    var entitlements: FilePath?
     var dependencies: Set<TargetID>
 }
 

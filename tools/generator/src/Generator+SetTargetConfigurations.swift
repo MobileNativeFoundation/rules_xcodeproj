@@ -157,6 +157,14 @@ Target "\(id)" not found in `pbxTargets`
               buildSettings["GENERATE_INFOPLIST_FILE"] = true
             }
 
+            if let entitlements = target.entitlements {
+                let entitlementsPath = try filePathResolver.resolve(entitlements)
+                buildSettings["CODE_SIGN_ENTITLEMENTS"] = entitlementsPath.string.quoted
+                // This is required because otherwise Xcode fails the build due 
+                // the entitlements file being modified by the Bazel build script.
+                buildSettings["CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION"] = true
+            }
+
             if let pch = target.inputs.pch {
                 let pchPath = try filePathResolver.resolve(pch)
 
