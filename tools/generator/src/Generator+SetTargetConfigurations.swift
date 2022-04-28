@@ -110,16 +110,6 @@ Target "\(id)" not found in `pbxTargets`
                 )
             }
 
-            if !target.linkerInputs.staticLibraries.isEmpty {
-                let linkFileList = try filePathResolver
-                    .resolve(try target.linkFileListFilePath())
-                    .string
-                try targetBuildSettings.prepend(
-                    onKey: "OTHER_LDFLAGS",
-                    ["-filelist", linkFileList.quoted]
-                )
-            }
-
             if !target.isSwift
                 && target.product.type.isExecutable
                 && target.inputs.containsSourceFiles
@@ -133,6 +123,16 @@ Target "\(id)" not found in `pbxTargets`
 """,
                         "-L/usr/lib/swift",
                     ]
+                )
+            }
+
+            if !target.linkerInputs.staticLibraries.isEmpty {
+                let linkFileList = try filePathResolver
+                    .resolve(try target.linkFileListFilePath())
+                    .string
+                try targetBuildSettings.prepend(
+                    onKey: "OTHER_LDFLAGS",
+                    ["-filelist", linkFileList.quoted]
                 )
             }
 
