@@ -80,36 +80,33 @@ extension PBXProductType {
 
     var isExecutable: Bool {
         switch self {
-        case .application: return true
-        case .framework: return true
-        case .staticFramework: return false
-        case .xcFramework: return true // Could be
-        case .dynamicLibrary: return true
-        case .staticLibrary: return false
-        case .bundle: return true // Could be
-        case .unitTestBundle: return true
-        case .uiTestBundle: return true
-        case .appExtension: return true
-        case .commandLineTool: return true
-        case .watchApp: return true
-        case .watch2App: return true
-        case .watch2AppContainer: return true
-        case .watchExtension: return true
-        case .watch2Extension: return true
-        case .tvExtension: return true
-        case .messagesApplication: return true
-        case .messagesExtension: return true
-        case .stickerPack: return false
-        case .xpcService: return true
-        case .ocUnitTestBundle: return true
-        case .xcodeExtension: return true
-        case .instrumentsPackage: return false
-        case .intentsServiceExtension: return true
-        case .onDemandInstallCapableApplication: return true
-        case .metalLibrary: return false
-        case .driverExtension: return true
-        case .systemExtension: return true
-        case .none: return false
+        case .application,
+             .framework,
+             .xcFramework, // Could be
+             .dynamicLibrary,
+             .bundle, // Could be
+             .unitTestBundle,
+             .uiTestBundle,
+             .appExtension,
+             .commandLineTool,
+             .watchApp,
+             .watch2App,
+             .watch2AppContainer,
+             .watchExtension,
+             .watch2Extension,
+             .tvExtension,
+             .messagesApplication,
+             .messagesExtension,
+             .xpcService,
+             .ocUnitTestBundle,
+             .xcodeExtension,
+             .intentsServiceExtension,
+             .onDemandInstallCapableApplication,
+             .driverExtension,
+             .systemExtension:
+            return true
+        default:
+            return false
         }
     }
 
