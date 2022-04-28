@@ -41,7 +41,7 @@ $(BUILD_DIR)/bazel_build_output_groups
         }
 
         if buildMode.requiresLLDBInit {
-            buildSettings["BAZEL_LLDB_INIT"] = "$(INTERNAL_DIR)/.lldbinit"
+            buildSettings["BAZEL_LLDB_INIT"] = "$(BUILD_DIR)/bazel.lldbinit"
         }
 
         let debugConfiguration = XCBuildConfiguration(

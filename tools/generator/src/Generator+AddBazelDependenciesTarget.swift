@@ -168,15 +168,16 @@ env -i \
         if buildMode.requiresLLDBInit {
             lldbInit = #"""
 
-if [[ -f "$HOME/.lldbinit" ]]; then
-  home_init="command source ~/.lldbinit
+if [ "$ACTION" != "indexbuild" ]; then
+  if [[ -f "$HOME/.lldbinit" ]]; then
+    home_init="command source ~/.lldbinit
 
-"
-else
-  home_init=""
-fi
+  "
+  else
+    home_init=""
+  fi
 
-cat <<EOF > "$BAZEL_LLDB_INIT"
+  cat <<EOF > "$BAZEL_LLDB_INIT"
 $home_init\
 # Set \`CWD\` to \`\$SRCROOT\` so relative paths in binaries work
 platform settings -w "$SRCROOT"
@@ -185,6 +186,7 @@ platform settings -w "$SRCROOT"
 settings set target.source-map ./external/ "$external"
 settings append target.source-map ./ "$SRCROOT"
 EOF
+fi
 
 """#
         } else {

@@ -103,7 +103,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 $(BUILD_DIR)/bazel_build_output_groups
 """,
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
-                "BAZEL_LLDB_INIT": "$(INTERNAL_DIR)/.lldbinit",
+                "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
                 "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
