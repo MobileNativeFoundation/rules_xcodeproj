@@ -8,8 +8,7 @@ on:
       - edited
       - synchronize
 
-permissions:
-  pull-requests: read
+permissions: read-all
 
 jobs:
   check_pr_title:
