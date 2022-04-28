@@ -9,10 +9,6 @@ on:
       - synchronize
 
 jobs:
-  pr_checks:
-    runs-on: ubuntu-20.04
-
-jobs:
   check_pr_title:
     runs-on: ubuntu-latest
     steps:
