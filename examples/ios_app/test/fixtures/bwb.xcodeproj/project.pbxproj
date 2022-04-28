@@ -1329,11 +1329,11 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = (
+					"-filelist",
+					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList",
 					"-Wl,-rpath,/usr/lib/swift",
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
-					"-filelist",
-					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList",
 					"-framework",
 					Foundation,
 					"-weak_framework",
