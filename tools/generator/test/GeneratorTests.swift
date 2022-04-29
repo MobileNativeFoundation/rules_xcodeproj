@@ -397,6 +397,7 @@ final class GeneratorTests: XCTestCase {
 
         struct CreateXCSchemesCalled: Equatable {
             let project: Project
+            let workspaceOutputPath: Path
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
             let pbxTargets: [TargetID: PBXNativeTarget]
         }
@@ -404,11 +405,13 @@ final class GeneratorTests: XCTestCase {
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
             project: Project,
+            workspaceOutputPath: Path,
             disambiguatedTargets: [TargetID: DisambiguatedTarget],
             pbxTargets: [TargetID: PBXNativeTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
                 project: project,
+                workspaceOutputPath: workspaceOutputPath,
                 disambiguatedTargets: disambiguatedTargets, 
                 pbxTargets: pbxTargets
             ))
@@ -417,6 +420,7 @@ final class GeneratorTests: XCTestCase {
 
         let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
             project: project,
+            workspaceOutputPath: workspaceOutputPath,
             disambiguatedTargets: disambiguatedTargets,
             pbxTargets: pbxTargets
         )]

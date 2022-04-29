@@ -78,6 +78,7 @@ struct Environment {
 
     let createXCSchemes: (
         _ project: Project,
+        _ workspaceOutputPath: Path,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
         _ pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme]

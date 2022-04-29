@@ -140,14 +140,12 @@ Was unable to merge "\(srcTarget.label) \
         )
 
         // DEBUG BEGIN
-        fputs("*** CHUCK ===============\n", stderr)
-        fputs("*** CHUCK project: \(String(reflecting: project))\n", stderr)
-        fputs("*** CHUCK outputPath: \(String(reflecting: outputPath))\n", stderr)
         fputs("*** CHUCK workspaceOutputPath: \(String(reflecting: workspaceOutputPath))\n", stderr)
         // DEBUG END
 
         let schemes = try environment.createXCSchemes(
             project,
+            workspaceOutputPath,
             disambiguatedTargets, 
             pbxTargets
         )

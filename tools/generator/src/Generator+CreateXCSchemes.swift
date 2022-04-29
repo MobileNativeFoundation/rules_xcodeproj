@@ -1,3 +1,4 @@
+import PathKit
 import XcodeProj
 
 // DEBUG BEGIN
@@ -7,7 +8,9 @@ import Darwin
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
-        project: Project,
+        // TODO(chuck): Should I remove project?
+        project _: Project,
+        workspaceOutputPath: Path,
         disambiguatedTargets: [TargetID: DisambiguatedTarget],
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
@@ -22,8 +25,10 @@ extension Generator {
             let target = disambiguatedTarget.target
 
             let buildAction = target.isBuildable ?
-                XCScheme.BuildAction(project: project, pbxTarget: pbxTarget) :
-                nil
+                XCScheme.BuildAction(
+                    workspaceOutputPath: workspaceOutputPath,
+                    pbxTargets: [pbxTarget]
+                ) : nil
             let testAction = target.isTestable ?
                 XCScheme.TestAction(target: target) : nil
 
@@ -82,50 +87,27 @@ extension Target {
 // MARK: BuildAction Extension
 
 extension XCScheme.BuildAction {
-    convenience init(project: Project, pbxTarget: PBXTarget) {
-        // DEBUG BEGIN
-        fputs("*** CHUCK ----------------\n", stderr)
-        fputs("*** CHUCK project: \(String(reflecting: project))\n", stderr)
-        fputs("*** CHUCK pbxTarget.name: \(String(reflecting: pbxTarget.name))\n", stderr)
-        fputs("*** CHUCK pbxTarget.productName: \(String(reflecting: pbxTarget.productName))\n", stderr)
-        // DEBUG END
-        let entry = XCScheme.BuildAction.Entry(
-            buildableReference: .init(
-                referencedContainer: project.xcodeprojContainerReference,
-                blueprint: nil,
-                buildableName: pbxTarget.productName ?? pbxTarget.name,
-                blueprintName: project.name
-            ),
-            buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+    convenience init(workspaceOutputPath: Path, pbxTargets: [PBXTarget]) {
+        let referencedContainer = "container:\(workspaceOutputPath)"
+        let entries = pbxTargets.map { pbxTarget in
+            XCScheme.BuildAction.Entry(
+                buildableReference: .init(
+                    referencedContainer: referencedContainer,
+                    blueprint: pbxTarget,
+                    // TODO(chuck): buildableName should be the filename of the output (e.g.
+                    // liblib_impl.a, MyApp.app
+                    buildableName: pbxTarget.name,
+                    blueprintName: pbxTarget.name
+                ),
+                buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+            )
+        }
+        self.init(
+            buildActionEntries: entries,
+            parallelizeBuild: true,
+            buildImplicitDependencies: true
         )
-        self.init(buildActionEntries: [entry])
     }
-
-    // convenience init(target: Target) {
-    //     // DEBUG BEGIN
-    //     fputs("*** CHUCK ----------------\n", stderr)
-    //     fputs("*** CHUCK target.name: \(String(reflecting: target.name))\n", stderr)
-    //     fputs("*** CHUCK target.product: \(String(reflecting: target.product))\n", stderr)
-    //     // DEBUG END
-    //     let entry = XCScheme.BuildAction.Entry(
-    //         buildableReference: .init(
-    //             // TODO(chuck): populate
-    //             referencedContainer: "container:Project.xcodeproj",
-    //             blueprint: nil,
-    //             buildableName: "iOS.app",
-    //             blueprintName: "iOS"
-    //         ),
-    //         buildFor: XCScheme.BuildAction.Entry.BuildFor.default
-    //     )
-    //     self.init(
-    //         buildActionEntries: [entry],
-    //         preActions: [],
-    //         postActions: [],
-    //         parallelizeBuild: false,
-    //         buildImplicitDependencies: false,
-    //         runPostActionsOnFailure: nil
-    //     )
-    // }
 }
 
 internal extension XCScheme.TestAction {
@@ -177,14 +159,14 @@ internal extension XCScheme.ProfileAction {
     }
 }
 
-// MARK: Project Extension
+// // MARK: Project Extension
 
-internal extension Project {
-    var xcodeprojFilename: String {
-        return "\(name).xcodeproj"
-    }
+// internal extension Project {
+//     var xcodeprojFilename: String {
+//         return "\(name).xcodeproj"
+//     }
 
-    var xcodeprojContainerReference: String {
-        return "container:\(xcodeprojFilename)"
-    }
-}
+//     var xcodeprojContainerReference: String {
+//         return "container:\(xcodeprojFilename)"
+//     }
+// }
