@@ -139,10 +139,6 @@ Was unable to merge "\(srcTarget.label) \
             pbxTargets
         )
 
-        // DEBUG BEGIN
-        fputs("*** CHUCK workspaceOutputPath: \(String(reflecting: workspaceOutputPath))\n", stderr)
-        // DEBUG END
-
         let schemes = try environment.createXCSchemes(
             project,
             workspaceOutputPath,
