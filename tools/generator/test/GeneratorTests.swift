@@ -396,19 +396,29 @@ final class GeneratorTests: XCTestCase {
         // MARK: createXCSchemes()
 
         struct CreateXCSchemesCalled: Equatable {
+            let project: Project
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
+            let pbxTargets: [TargetID: PBXNativeTarget]
         }
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
-            disambiguatedTargets: [TargetID: DisambiguatedTarget]
-        ) -> [XCScheme] {
-            createXCSchemesCalled.append(.init(disambiguatedTargets: disambiguatedTargets))
+            project: Project,
+            disambiguatedTargets: [TargetID: DisambiguatedTarget],
+            pbxTargets: [TargetID: PBXNativeTarget]
+        ) throws -> [XCScheme] {
+            createXCSchemesCalled.append(.init(
+                project: project,
+                disambiguatedTargets: disambiguatedTargets, 
+                pbxTargets: pbxTargets
+            ))
             return schemes
         }
 
         let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
-            disambiguatedTargets: disambiguatedTargets
+            project: project,
+            disambiguatedTargets: disambiguatedTargets,
+            pbxTargets: pbxTargets
         )]
 
         // MARK: createXCSharedData()

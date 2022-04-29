@@ -142,14 +142,19 @@ Was unable to merge "\(srcTarget.label) \
         // DEBUG BEGIN
         fputs("*** CHUCK ===============\n", stderr)
         fputs("*** CHUCK internalDirectoryName: \(String(reflecting: internalDirectoryName))\n", stderr)
-        fputs("*** CHUCK outputPath: \(String(reflecting: outputPath))\n", stderr)
+        fputs("*** CHUCK project: \(String(reflecting: project))\n", stderr)
+        // fputs("*** CHUCK outputPath: \(String(reflecting: outputPath))\n", stderr)
         fputs("*** CHUCK pbxTargets:\n", stderr)
         for (idx, item) in pbxTargets.enumerated() {
             fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
         }
         // DEBUG END
 
-        let schemes = environment.createXCSchemes(disambiguatedTargets)
+        let schemes = try environment.createXCSchemes(
+            project,
+            disambiguatedTargets, 
+            pbxTargets
+        )
         let sharedData = environment.createXCSharedData(schemes)
 
         let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)

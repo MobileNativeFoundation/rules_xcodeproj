@@ -7,29 +7,23 @@ import Darwin
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
-        disambiguatedTargets: [TargetID: DisambiguatedTarget]
-    ) -> [XCScheme] {
-        // // DEBUG BEGIN
-        // fputs("*** CHUCK disambiguatedTargets:\n", stderr)
-        // for (idx, item) in disambiguatedTargets.enumerated() {
-        //     let disambiguatedTarget = item.1
-        //     let target = disambiguatedTarget.target
-        //     // fputs("*** CHUCK   \(idx) : \(String(reflecting: item.1))\n", stderr)
-        //     fputs("*** CHUCK   \(idx) : \(String(reflecting: item.0))\n", stderr)
-        //     fputs("*** CHUCK      disambiguatedTarget.name: \(String(reflecting: disambiguatedTarget.name))\n", stderr)
-        //     fputs("*** CHUCK      target.name: \(String(reflecting: target.name))\n", stderr)
-        //     fputs("*** CHUCK      target.product.type: \(String(reflecting: target.product.type))\n", stderr)
-        //     fputs("*** CHUCK      dependencies: \(String(reflecting: target.dependencies))\n", stderr)
-        // }
-        // // DEBUG END
-
+        project: Project,
+        disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        pbxTargets: [TargetID: PBXNativeTarget]
+    ) throws -> [XCScheme] {
         // Scheme actions: Build, Test, Run, Profile
         var schemes = [XCScheme]()
-        for (_, disambiguatedTarget) in disambiguatedTargets {
+        for (targetID, pbxTarget) in pbxTargets {
+            guard let disambiguatedTarget = disambiguatedTargets[targetID] else {
+                throw PreconditionError(message: """
+                did not find \(targetID) in `disambiguatedTargets`
+                """)
+            }
             let target = disambiguatedTarget.target
 
             let buildAction = target.isBuildable ?
-                XCScheme.BuildAction(target: target) : nil
+                XCScheme.BuildAction(project: project, pbxTarget: pbxTarget) :
+                nil
             let testAction = target.isTestable ?
                 XCScheme.TestAction(target: target) : nil
 
@@ -63,6 +57,41 @@ extension Generator {
             schemes.append(scheme)
         }
 
+        // for (_, disambiguatedTarget) in disambiguatedTargets {
+        //     let target = disambiguatedTarget.target
+        //     let buildAction = target.isBuildable ?
+        //         XCScheme.BuildAction(target: target) : nil
+        //     let testAction = target.isTestable ?
+        //         XCScheme.TestAction(target: target) : nil
+        //     let launchAction: XCScheme.LaunchAction?
+        //     let profileAction: XCScheme.ProfileAction?
+        //     if target.isLaunchable {
+        //         launchAction = XCScheme.LaunchAction(target: target)
+        //         profileAction = XCScheme.ProfileAction(target: target)
+        //     } else {
+        //         launchAction = nil
+        //         profileAction = nil
+        //     }
+        //     if buildAction == nil, testAction == nil, launchAction == nil,
+        //        profileAction == nil
+        //     {
+        //         continue
+        //     }
+        //     let scheme = XCScheme(
+        //         name: target.name,
+        //         lastUpgradeVersion: nil,
+        //         version: nil,
+        //         buildAction: buildAction,
+        //         testAction: testAction,
+        //         launchAction: launchAction,
+        //         profileAction: profileAction,
+        //         analyzeAction: nil,
+        //         archiveAction: nil,
+        //         wasCreatedForAppExtension: nil
+        //     )
+        //     schemes.append(scheme)
+        // }
+
         return schemes
     }
 }
@@ -86,11 +115,12 @@ extension Target {
 // MARK: BuildAction Extension
 
 extension XCScheme.BuildAction {
-    convenience init(target: Target) {
+    convenience init(project: Project, pbxTarget: PBXTarget) {
         // DEBUG BEGIN
         fputs("*** CHUCK ----------------\n", stderr)
-        fputs("*** CHUCK target.name: \(String(reflecting: target.name))\n", stderr)
-        fputs("*** CHUCK target.product: \(String(reflecting: target.product))\n", stderr)
+        fputs("*** CHUCK project: \(String(reflecting: project))\n", stderr)
+        fputs("*** CHUCK pbxTarget.name: \(String(reflecting: pbxTarget.name))\n", stderr)
+        fputs("*** CHUCK pbxTarget.productName: \(String(reflecting: pbxTarget.productName))\n", stderr)
         // DEBUG END
         let entry = XCScheme.BuildAction.Entry(
             buildableReference: .init(
@@ -111,6 +141,32 @@ extension XCScheme.BuildAction {
             runPostActionsOnFailure: nil
         )
     }
+
+    // convenience init(target: Target) {
+    //     // DEBUG BEGIN
+    //     fputs("*** CHUCK ----------------\n", stderr)
+    //     fputs("*** CHUCK target.name: \(String(reflecting: target.name))\n", stderr)
+    //     fputs("*** CHUCK target.product: \(String(reflecting: target.product))\n", stderr)
+    //     // DEBUG END
+    //     let entry = XCScheme.BuildAction.Entry(
+    //         buildableReference: .init(
+    //             // TODO(chuck): populate
+    //             referencedContainer: "container:Project.xcodeproj",
+    //             blueprint: nil,
+    //             buildableName: "iOS.app",
+    //             blueprintName: "iOS"
+    //         ),
+    //         buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+    //     )
+    //     self.init(
+    //         buildActionEntries: [entry],
+    //         preActions: [],
+    //         postActions: [],
+    //         parallelizeBuild: false,
+    //         buildImplicitDependencies: false,
+    //         runPostActionsOnFailure: nil
+    //     )
+    // }
 }
 
 internal extension XCScheme.TestAction {
