@@ -616,19 +616,19 @@ enum Fixtures {
             path: "r1"
         )
 
-        // `internal`/CompileStub.swift
+        // `internal`/CompileStub.m
 
-        elements[.internal("CompileStub.swift")] = PBXFileReference(
+        elements[.internal("CompileStub.m")] = PBXFileReference(
             sourceTree: .group,
-            lastKnownFileType: "sourcecode.swift",
-            path: "CompileStub.swift"
+            lastKnownFileType: "sourcecode.c.objc",
+            path: "CompileStub.m"
         )
 
         // `internal`
 
         elements[.internal("")] = PBXGroup(
             children: [
-                elements[.internal("CompileStub.swift")]!,
+                elements[.internal("CompileStub.m")]!,
             ],
             sourceTree: .group,
             name: internalDirectoryName,
@@ -1103,7 +1103,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             "A 2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.swift")]!
+                        file: elements[.internal("CompileStub.m")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -1153,7 +1153,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             "B 2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.swift")]!
+                        file: elements[.internal("CompileStub.m")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -1165,7 +1165,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             "B 3": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.swift")]!
+                        file: elements[.internal("CompileStub.m")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -1436,6 +1436,11 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #""$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList""#,
+                    "-Wl,-rpath,/usr/lib/swift",
+                    """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+""",
+                    "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
@@ -1457,6 +1462,13 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "GENERATE_INFOPLIST_FILE": true,
+                "OTHER_LDFLAGS": [
+                    "-Wl,-rpath,/usr/lib/swift",
+                    """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+""",
+                    "-L/usr/lib/swift",
+                ],
                 "SDKROOT": "macosx",
                 "TARGET_BUILD_DIR": """
 $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
@@ -1468,6 +1480,13 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "GENERATE_INFOPLIST_FILE": true,
+                "OTHER_LDFLAGS": [
+                    "-Wl,-rpath,/usr/lib/swift",
+                    """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+""",
+                    "-L/usr/lib/swift",
+                ],
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["B 3"]!.name,
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
@@ -1516,6 +1535,13 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "GENERATE_INFOPLIST_FILE": true,
+                "OTHER_LDFLAGS": [
+                    "-Wl,-rpath,/usr/lib/swift",
+                    """
+-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+""",
+                    "-L/usr/lib/swift",
+                ],
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["R 1"]!.name,
             ]) { $1 },

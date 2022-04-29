@@ -1347,6 +1347,11 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/external/examples_ios_app_external";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = (
+					"-Wl,-rpath,/usr/lib/swift",
+					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"-L/usr/lib/swift",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources.external;
 				PRODUCT_NAME = ExternalResources;
 				SDKROOT = iphoneos;
@@ -1432,6 +1437,11 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-d3e756bfe7fd/bin/ExampleResources";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = (
+					"-Wl,-rpath,/usr/lib/swift",
+					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"-L/usr/lib/swift",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources;
 				PRODUCT_NAME = ExampleResources;
 				SDKROOT = iphoneos;
