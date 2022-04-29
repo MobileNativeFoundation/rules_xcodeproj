@@ -36,6 +36,8 @@ extension Generator {
             let testAction: XCScheme.TestAction?
             let launchAction: XCScheme.LaunchAction?
             let profileAction: XCScheme.ProfileAction?
+            let analyzeAction: XCScheme.AnalyzeAction?
+            let archiveAction: XCScheme.ArchiveAction?
             if target.isTestable {
                 testAction = .init(
                     buildConfiguration: buildConfigurationName,
@@ -49,18 +51,36 @@ extension Generator {
                 buildAction = nil
                 launchAction = nil
                 profileAction = nil
+                analyzeAction = nil
+                archiveAction = nil
             } else {
                 buildAction = .init(
                     buildActionEntries: [.init(
                         buildableReference: buildableReference,
-                        buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+                        // buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+                        buildFor: [.running, .testing, .profiling, .archiving, .analyzing]
                     )],
                     parallelizeBuild: true,
                     buildImplicitDependencies: true
                 )
-                launchAction = nil
-                profileAction = nil
-                testAction = nil
+                let runnable = XCScheme.BuildableProductRunnable(buildableReference: buildableReference)
+                launchAction = .init(
+                    runnable: runnable,
+                    buildConfiguration: buildConfigurationName
+                )
+                profileAction = .init(
+                    buildableProductRunnable: runnable,
+                    buildConfiguration: buildConfigurationName
+                )
+                testAction = .init(
+                    buildConfiguration: buildConfigurationName,
+                    macroExpansion: nil
+                )
+                analyzeAction = .init(buildConfiguration: buildConfigurationName)
+                archiveAction = .init(
+                    buildConfiguration: buildConfigurationName,
+                    revealArchiveInOrganizer: true
+                )
             }
 
             // let buildAction = XCScheme.BuildAction(
@@ -95,8 +115,8 @@ extension Generator {
                 testAction: testAction,
                 launchAction: launchAction,
                 profileAction: profileAction,
-                analyzeAction: nil,
-                archiveAction: nil,
+                analyzeAction: analyzeAction,
+                archiveAction: archiveAction,
                 wasCreatedForAppExtension: nil
             )
             schemes.append(scheme)
@@ -188,40 +208,40 @@ public extension PBXTarget {
 //     }
 // }
 
-internal extension XCScheme.LaunchAction {
-    convenience init(target _: Target) {
-        // TODO: IMPLEMENT ME!
-        self.init(
-            runnable: nil, // Runnable?,
-            buildConfiguration: "", // String,
-            preActions: [], // [ExecutionAction] = [],
-            postActions: [], // [ExecutionAction] = [],
-            macroExpansion: nil // BuildableReference? = nil
-        )
-    }
-}
+// internal extension XCScheme.LaunchAction {
+//     convenience init(target _: Target) {
+//         // TODO: IMPLEMENT ME!
+//         self.init(
+//             runnable: nil, // Runnable?,
+//             buildConfiguration: "", // String,
+//             preActions: [], // [ExecutionAction] = [],
+//             postActions: [], // [ExecutionAction] = [],
+//             macroExpansion: nil // BuildableReference? = nil
+//         )
+//     }
+// }
 
-internal extension XCScheme.ProfileAction {
-    convenience init(target _: Target) {
-        // TODO: IMPLEMENT ME!
-        self.init(
-            buildableProductRunnable: nil, // BuildableProductRunnable?,
-            buildConfiguration: "" // String
-            // preActions: [ExecutionAction] = [],
-            // postActions: [ExecutionAction] = [],
-            // macroExpansion: BuildableReference? = nil,
-            // shouldUseLaunchSchemeArgsEnv: Bool = true,
-            // savedToolIdentifier: String = "",
-            // ignoresPersistentStateOnLaunch: Bool = false,
-            // useCustomWorkingDirectory: Bool = false,
-            // debugDocumentVersioning: Bool = true,
-            // askForAppToLaunch: Bool? = nil,
-            // commandlineArguments: CommandLineArguments? = nil,
-            // environmentVariables: [EnvironmentVariable]? = nil,
-            // enableTestabilityWhenProfilingTests: Bool = true
-        )
-    }
-}
+// internal extension XCScheme.ProfileAction {
+//     convenience init(target _: Target) {
+//         // TODO: IMPLEMENT ME!
+//         self.init(
+//             buildableProductRunnable: nil, // BuildableProductRunnable?,
+//             buildConfiguration: "" // String
+//             // preActions: [ExecutionAction] = [],
+//             // postActions: [ExecutionAction] = [],
+//             // macroExpansion: BuildableReference? = nil,
+//             // shouldUseLaunchSchemeArgsEnv: Bool = true,
+//             // savedToolIdentifier: String = "",
+//             // ignoresPersistentStateOnLaunch: Bool = false,
+//             // useCustomWorkingDirectory: Bool = false,
+//             // debugDocumentVersioning: Bool = true,
+//             // askForAppToLaunch: Bool? = nil,
+//             // commandlineArguments: CommandLineArguments? = nil,
+//             // environmentVariables: [EnvironmentVariable]? = nil,
+//             // enableTestabilityWhenProfilingTests: Bool = true
+//         )
+//     }
+// }
 
 // // MARK: Project Extension
 
