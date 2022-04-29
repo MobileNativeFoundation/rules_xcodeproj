@@ -100,6 +100,7 @@
             "dependencies": [
                 "//examples/command_line/Tests:LibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
+            "entitlements": null,
             "info_plist": {
                 "_": "applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -206,6 +207,7 @@
             "dependencies": [
                 "//examples/command_line/lib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "contains_generated_files": true,
@@ -309,6 +311,7 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
             "dependencies": [],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -405,6 +408,7 @@
                 "//examples/command_line/lib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
                 "//examples/command_line/lib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "contains_generated_files": true,
@@ -501,6 +505,7 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067",
             "dependencies": [],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "hdrs": [
@@ -591,6 +596,7 @@
             "dependencies": [
                 "//examples/command_line/tool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {},
             "is_swift": false,
@@ -689,6 +695,7 @@
             "dependencies": [
                 "//examples/command_line/lib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4fb8349bf067"
             ],
+            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
