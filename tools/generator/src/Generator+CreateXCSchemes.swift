@@ -124,22 +124,14 @@ extension XCScheme.BuildAction {
         // DEBUG END
         let entry = XCScheme.BuildAction.Entry(
             buildableReference: .init(
-                // TODO(chuck): populate
-                referencedContainer: "container:Project.xcodeproj",
+                referencedContainer: project.xcodeprojContainerReference,
                 blueprint: nil,
-                buildableName: "iOS.app",
-                blueprintName: "iOS"
+                buildableName: pbxTarget.productName ?? pbxTarget.name,
+                blueprintName: project.name
             ),
             buildFor: XCScheme.BuildAction.Entry.BuildFor.default
         )
-        self.init(
-            buildActionEntries: [entry],
-            preActions: [],
-            postActions: [],
-            parallelizeBuild: false,
-            buildImplicitDependencies: false,
-            runPostActionsOnFailure: nil
-        )
+        self.init(buildActionEntries: [entry])
     }
 
     // convenience init(target: Target) {
@@ -215,5 +207,17 @@ internal extension XCScheme.ProfileAction {
             // environmentVariables: [EnvironmentVariable]? = nil,
             // enableTestabilityWhenProfilingTests: Bool = true
         )
+    }
+}
+
+// MARK: Project Extension
+
+internal extension Project {
+    var xcodeprojFilename: String {
+        return "\(name).xcodeproj"
+    }
+
+    var xcodeprojContainerReference: String {
+        return "container:\(xcodeprojFilename)"
     }
 }
