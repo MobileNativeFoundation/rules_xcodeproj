@@ -59,41 +59,6 @@ extension Generator {
             schemes.append(scheme)
         }
 
-        // for (_, disambiguatedTarget) in disambiguatedTargets {
-        //     let target = disambiguatedTarget.target
-        //     let buildAction = target.isBuildable ?
-        //         XCScheme.BuildAction(target: target) : nil
-        //     let testAction = target.isTestable ?
-        //         XCScheme.TestAction(target: target) : nil
-        //     let launchAction: XCScheme.LaunchAction?
-        //     let profileAction: XCScheme.ProfileAction?
-        //     if target.isLaunchable {
-        //         launchAction = XCScheme.LaunchAction(target: target)
-        //         profileAction = XCScheme.ProfileAction(target: target)
-        //     } else {
-        //         launchAction = nil
-        //         profileAction = nil
-        //     }
-        //     if buildAction == nil, testAction == nil, launchAction == nil,
-        //        profileAction == nil
-        //     {
-        //         continue
-        //     }
-        //     let scheme = XCScheme(
-        //         name: target.name,
-        //         lastUpgradeVersion: nil,
-        //         version: nil,
-        //         buildAction: buildAction,
-        //         testAction: testAction,
-        //         launchAction: launchAction,
-        //         profileAction: profileAction,
-        //         analyzeAction: nil,
-        //         archiveAction: nil,
-        //         wasCreatedForAppExtension: nil
-        //     )
-        //     schemes.append(scheme)
-        // }
-
         return schemes
     }
 }
