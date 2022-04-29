@@ -85,8 +85,10 @@ def xcodeproj_rules_dependencies(
     _maybe(
         http_archive,
         name = "build_bazel_rules_apple",
-        sha256 = "4161b2283f80f33b93579627c3bd846169b2d58848b0ffb29b5d4db35263156a",
-        url = "https://github.com/bazelbuild/rules_apple/releases/download/0.34.0/rules_apple.0.34.0.tar.gz",
+        # TODO: Bump to post-0.34.0 release when it's available
+        url = "https://github.com/bazelbuild/rules_apple/archive/d4943e5e165069b42d44a432a0cc29ff6eb3efed.tar.gz",
+        strip_prefix = "rules_apple-d4943e5e165069b42d44a432a0cc29ff6eb3efed",
+        sha256 = "1e555188174f0b2a3913836e22536bcbd9a90053d657e8f1ad4e1b68d6698195",
         ignore_version_differences = ignore_version_differences,
     )
 
