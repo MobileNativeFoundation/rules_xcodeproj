@@ -43,7 +43,9 @@ extension Generator {
                 continue
             }
             let scheme = XCScheme(
-                name: target.name,
+                // TODO(chuck): FIX ME!
+                // name: target.name,
+                name: "CHUCK \(target.name)",
                 lastUpgradeVersion: nil,
                 version: nil,
                 buildAction: buildAction,
