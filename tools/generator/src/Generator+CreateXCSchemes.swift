@@ -16,6 +16,8 @@ extension Generator {
     ) throws -> [XCScheme] {
         // Scheme actions: Build, Test, Run, Profile
         var schemes = [XCScheme]()
+
+        let referencedContainer = "container:\(workspaceOutputPath)"
         for (targetID, pbxTarget) in pbxTargets {
             guard let disambiguatedTarget = disambiguatedTargets[targetID] else {
                 throw PreconditionError(message: """
@@ -24,29 +26,65 @@ extension Generator {
             }
             let target = disambiguatedTarget.target
 
-            let buildAction = target.isBuildable ?
-                XCScheme.BuildAction(
-                    workspaceOutputPath: workspaceOutputPath,
-                    pbxTargets: [pbxTarget]
-                ) : nil
-            let testAction = target.isTestable ?
-                XCScheme.TestAction(target: target) : nil
+            let buildableReference = pbxTarget.createBuildableReference(
+                referencedContainer: referencedContainer
+            )
+            let buildConfigurationName = pbxTarget
+                .buildConfigurationList?.buildConfigurations.first?.name ?? ""
 
+            let buildAction: XCScheme.BuildAction?
+            let testAction: XCScheme.TestAction?
             let launchAction: XCScheme.LaunchAction?
             let profileAction: XCScheme.ProfileAction?
-            if target.isLaunchable {
-                launchAction = XCScheme.LaunchAction(target: target)
-                profileAction = XCScheme.ProfileAction(target: target)
-            } else {
+            if target.isTestable {
+                testAction = .init(
+                    buildConfiguration: buildConfigurationName,
+                    macroExpansion: nil,
+                    testables: [.init(
+                        skipped: false,
+                        parallelizable: true,
+                        buildableReference: buildableReference
+                    )]
+                )
+                buildAction = nil
                 launchAction = nil
                 profileAction = nil
+            } else {
+                buildAction = .init(
+                    buildActionEntries: [.init(
+                        buildableReference: buildableReference,
+                        buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+                    )],
+                    parallelizeBuild: true,
+                    buildImplicitDependencies: true
+                )
+                launchAction = nil
+                profileAction = nil
+                testAction = nil
             }
 
-            if buildAction == nil, testAction == nil, launchAction == nil,
-               profileAction == nil
-            {
-                continue
-            }
+            // let buildAction = XCScheme.BuildAction(
+            //     buildActionEntries: [.init(
+            //         buildableReference: buildableReference,
+            //         buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+            //     )],
+            //     parallelizeBuild: true,
+            //     buildImplicitDependencies: true
+            // )
+
+            // let testAction = target.isTestable ?
+            //     XCScheme.TestAction(pbxTargets: [pbxTarget]) : nil
+
+            // let launchAction: XCScheme.LaunchAction?
+            // let profileAction: XCScheme.ProfileAction?
+            // if target.isLaunchable {
+            //     launchAction = XCScheme.LaunchAction(target: target)
+            //     profileAction = XCScheme.ProfileAction(target: target)
+            // } else {
+            //     launchAction = nil
+            //     profileAction = nil
+            // }
+
             let scheme = XCScheme(
                 // TODO(chuck): FIX ME!
                 // name: target.name,
@@ -71,9 +109,9 @@ extension Generator {
 // MARK: Target Extension
 
 extension Target {
-    var isBuildable: Bool {
-        return true
-    }
+    // var isBuildable: Bool {
+    //     return true
+    // }
 
     var isTestable: Bool {
         return product.type.isTestBundle
@@ -84,45 +122,71 @@ extension Target {
     }
 }
 
+public extension PBXTarget {
+    func createBuildableReference(referencedContainer: String) -> XCScheme.BuildableReference {
+        return .init(
+            referencedContainer: referencedContainer,
+            blueprint: self,
+            // TODO(chuck): buildableName should be the filename of the output (e.g.
+            // liblib_impl.a, MyApp.app
+            buildableName: name,
+            blueprintName: name
+        )
+    }
+}
+
 // MARK: BuildAction Extension
 
-extension XCScheme.BuildAction {
-    convenience init(workspaceOutputPath: Path, pbxTargets: [PBXTarget]) {
-        let referencedContainer = "container:\(workspaceOutputPath)"
-        let entries = pbxTargets.map { pbxTarget in
-            XCScheme.BuildAction.Entry(
-                buildableReference: .init(
-                    referencedContainer: referencedContainer,
-                    blueprint: pbxTarget,
-                    // TODO(chuck): buildableName should be the filename of the output (e.g.
-                    // liblib_impl.a, MyApp.app
-                    buildableName: pbxTarget.name,
-                    blueprintName: pbxTarget.name
-                ),
-                buildFor: XCScheme.BuildAction.Entry.BuildFor.default
-            )
-        }
-        self.init(
-            buildActionEntries: entries,
-            parallelizeBuild: true,
-            buildImplicitDependencies: true
-        )
-    }
-}
+// TODO(chuck): Switch array arguments to Sequence.
 
-internal extension XCScheme.TestAction {
-    convenience init(target _: Target) {
-        // TODO: IMPLEMENT ME!
-        self.init(
-            buildConfiguration: "", // String,
-            macroExpansion: nil, // BuildableReference?
-            testables: [], // [TestableReference] = [],
-            testPlans: nil, // [TestPlanReference]? = nil,
-            preActions: [], // [ExecutionAction] = [],
-            postActions: [] // [ExecutionAction] = [],
-        )
-    }
-}
+// extension XCScheme.BuildAction {
+//     convenience init(workspaceOutputPath: Path, pbxTargets: [PBXTarget]) {
+//         let referencedContainer = "container:\(workspaceOutputPath)"
+//         let entries = pbxTargets.map { pbxTarget in
+//             XCScheme.BuildAction.Entry(
+//                 buildableReference: .init(
+//                     referencedContainer: referencedContainer,
+//                     blueprint: pbxTarget,
+//                     // TODO(chuck): buildableName should be the filename of the output (e.g.
+//                     // liblib_impl.a, MyApp.app
+//                     buildableName: pbxTarget.name,
+//                     blueprintName: pbxTarget.name
+//                 ),
+//                 buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+//             )
+//         }
+//         self.init(
+//             buildActionEntries: entries,
+//             parallelizeBuild: true,
+//             buildImplicitDependencies: true
+//         )
+//     }
+// }
+
+// internal extension XCScheme.TestAction {
+//     convenience init(pbxTargets: [PBXTarget], buildConfiguration: XCBuildConfiguration) {
+//         // DEBUG BEGIN
+//         fputs("*** CHUCK TestAction\n", stderr)
+//         for pbxTarget in pbxTargets {
+//             fputs("*** CHUCK pbxTarget.buildConfigurationList?.buildConfigurations.first?.name: \(String(reflecting: pbxTarget.buildConfigurationList?.buildConfigurations.first?.name))\n", stderr)
+//         }
+//         // ldRunpathSearchPaths[id] = pbxTarget
+//         //     .buildConfigurationList?
+//         //     .buildConfigurations
+//         //     .first?
+//         // DEBUG END
+
+//         // TODO: IMPLEMENT ME!
+//         self.init(
+//             buildConfiguration: buildConfiguration.name, // String,
+//             macroExpansion: nil, // BuildableReference?
+//             testables: [], // [TestableReference] = [],
+//             testPlans: nil, // [TestPlanReference]? = nil,
+//             preActions: [], // [ExecutionAction] = [],
+//             postActions: [] // [ExecutionAction] = [],
+//         )
+//     }
+// }
 
 internal extension XCScheme.LaunchAction {
     convenience init(target _: Target) {
