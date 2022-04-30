@@ -64,9 +64,7 @@ extension Generator {
             )
 
             let scheme = XCScheme(
-                // TODO(chuck): FIX ME!
-                // name: pbxTarget.schemeName,
-                name: "CHUCK \(pbxTarget.schemeName)",
+                name: pbxTarget.schemeName,
                 lastUpgradeVersion: nil,
                 version: nil,
                 buildAction: buildAction,

@@ -152,7 +152,6 @@ def xcodeproj_fixture(
             srcs = native.glob(
                 ["{}.xcodeproj/**/*".format(suffix)],
                 exclude = [
-                    "{}.xcodeproj/xcshareddata/**/*".format(suffix),
                     "{}.xcodeproj/**/xcuserdata/**/*".format(suffix),
                     "{}.xcodeproj/*.xcuserdatad/**/*".format(suffix),
                 ],
