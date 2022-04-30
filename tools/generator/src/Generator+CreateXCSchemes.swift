@@ -7,9 +7,8 @@ extension Generator {
         workspaceOutputPath: Path,
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
-        let referencedContainer = "container:\(workspaceOutputPath)"
         return try createXCSchemes(
-            referencedContainer: referencedContainer,
+            referencedContainer: "container:\(workspaceOutputPath)",
             pbxTargets: pbxTargets
         )
     }
@@ -18,15 +17,13 @@ extension Generator {
         referencedContainer: String,
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
-        var schemes = [XCScheme]()
-        for (_, pbxTarget) in pbxTargets {
-            let scheme = try createXCScheme(
-                referencedContainer: referencedContainer,
-                pbxTarget: pbxTarget
-            )
-            schemes.append(scheme)
-        }
-        return schemes
+        return try pbxTargets.map { $0.1 }
+            .map {
+                try createXCScheme(
+                    referencedContainer: referencedContainer,
+                    pbxTarget: $0
+                )
+            }
     }
 
     static func createXCScheme(
