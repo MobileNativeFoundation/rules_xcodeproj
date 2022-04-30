@@ -47,11 +47,13 @@ extension Generator {
                 testables: testables
             )
             let launchAction = XCScheme.LaunchAction(
-                runnable: buildableProductRunnable,
+                runnable: pbxTarget.isLaunchable ?
+                    buildableProductRunnable : nil,
                 buildConfiguration: buildConfigurationName
             )
             let profileAction = XCScheme.ProfileAction(
-                buildableProductRunnable: buildableProductRunnable,
+                buildableProductRunnable: pbxTarget.isLaunchable ?
+                    buildableProductRunnable : nil,
                 buildConfiguration: buildConfigurationName
             )
             let analyzeAction = XCScheme.AnalyzeAction(
