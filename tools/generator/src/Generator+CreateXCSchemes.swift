@@ -32,78 +32,50 @@ extension Generator {
             let buildConfigurationName = pbxTarget
                 .buildConfigurationList?.buildConfigurations.first?.name ?? ""
 
-            let buildAction: XCScheme.BuildAction?
-            let testAction: XCScheme.TestAction?
-            let launchAction: XCScheme.LaunchAction?
-            let profileAction: XCScheme.ProfileAction?
-            let analyzeAction: XCScheme.AnalyzeAction?
-            let archiveAction: XCScheme.ArchiveAction?
+            let buildableProductRunnable: XCScheme.BuildableProductRunnable?
+            let buildEntries: [XCScheme.BuildAction.Entry]
+            let testables: [XCScheme.TestableReference]
             if target.isTestable {
-                testAction = .init(
-                    buildConfiguration: buildConfigurationName,
-                    macroExpansion: nil,
-                    testables: [.init(
-                        skipped: false,
-                        parallelizable: true,
-                        buildableReference: buildableReference
-                    )]
-                )
-                buildAction = nil
-                launchAction = nil
-                profileAction = nil
-                analyzeAction = nil
-                archiveAction = nil
+                buildEntries = []
+                testables = [.init(
+                    skipped: false,
+                    parallelizable: true,
+                    buildableReference: buildableReference
+                )]
+                buildableProductRunnable = nil
             } else {
-                buildAction = .init(
-                    buildActionEntries: [.init(
-                        buildableReference: buildableReference,
-                        // buildFor: XCScheme.BuildAction.Entry.BuildFor.default
-                        buildFor: [.running, .testing, .profiling, .archiving, .analyzing]
-                    )],
-                    parallelizeBuild: true,
-                    buildImplicitDependencies: true
-                )
-                let runnable = XCScheme.BuildableProductRunnable(buildableReference: buildableReference)
-                launchAction = .init(
-                    runnable: runnable,
-                    buildConfiguration: buildConfigurationName
-                )
-                profileAction = .init(
-                    buildableProductRunnable: runnable,
-                    buildConfiguration: buildConfigurationName
-                )
-                testAction = .init(
-                    buildConfiguration: buildConfigurationName,
-                    macroExpansion: nil
-                )
-                analyzeAction = .init(buildConfiguration: buildConfigurationName)
-                archiveAction = .init(
-                    buildConfiguration: buildConfigurationName,
-                    revealArchiveInOrganizer: true
-                )
+                buildEntries = [.init(
+                    buildableReference: buildableReference,
+                    // buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+                    buildFor: [.running, .testing, .profiling, .archiving, .analyzing]
+                )]
+                testables = []
+                buildableProductRunnable = XCScheme.BuildableProductRunnable(buildableReference: buildableReference)
             }
 
-            // let buildAction = XCScheme.BuildAction(
-            //     buildActionEntries: [.init(
-            //         buildableReference: buildableReference,
-            //         buildFor: XCScheme.BuildAction.Entry.BuildFor.default
-            //     )],
-            //     parallelizeBuild: true,
-            //     buildImplicitDependencies: true
-            // )
-
-            // let testAction = target.isTestable ?
-            //     XCScheme.TestAction(pbxTargets: [pbxTarget]) : nil
-
-            // let launchAction: XCScheme.LaunchAction?
-            // let profileAction: XCScheme.ProfileAction?
-            // if target.isLaunchable {
-            //     launchAction = XCScheme.LaunchAction(target: target)
-            //     profileAction = XCScheme.ProfileAction(target: target)
-            // } else {
-            //     launchAction = nil
-            //     profileAction = nil
-            // }
+            let buildAction = XCScheme.BuildAction(
+                buildActionEntries: buildEntries,
+                parallelizeBuild: true,
+                buildImplicitDependencies: true
+            )
+            let testAction = XCScheme.TestAction(
+                buildConfiguration: buildConfigurationName,
+                macroExpansion: nil,
+                testables: testables
+            )
+            let launchAction = XCScheme.LaunchAction(
+                runnable: buildableProductRunnable,
+                buildConfiguration: buildConfigurationName
+            )
+            let profileAction = XCScheme.ProfileAction(
+                buildableProductRunnable: buildableProductRunnable,
+                buildConfiguration: buildConfigurationName
+            )
+            let analyzeAction = XCScheme.AnalyzeAction(buildConfiguration: buildConfigurationName)
+            let archiveAction = XCScheme.ArchiveAction(
+                buildConfiguration: buildConfigurationName,
+                revealArchiveInOrganizer: true
+            )
 
             let scheme = XCScheme(
                 // TODO(chuck): FIX ME!
