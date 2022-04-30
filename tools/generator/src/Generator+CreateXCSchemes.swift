@@ -35,18 +35,17 @@ extension Generator {
             let buildableProductRunnable: XCScheme.BuildableProductRunnable?
             let buildEntries: [XCScheme.BuildAction.Entry]
             let testables: [XCScheme.TestableReference]
-            if target.isTestable {
+            if pbxTarget.isTestable {
                 buildEntries = []
                 testables = [.init(
                     skipped: false,
-                    parallelizable: true,
+                    // parallelizable: true,
                     buildableReference: buildableReference
                 )]
                 buildableProductRunnable = nil
             } else {
                 buildEntries = [.init(
                     buildableReference: buildableReference,
-                    // buildFor: XCScheme.BuildAction.Entry.BuildFor.default
                     buildFor: [.running, .testing, .profiling, .archiving, .analyzing]
                 )]
                 testables = []
@@ -100,19 +99,19 @@ extension Generator {
 
 // MARK: Target Extension
 
-extension Target {
-    // var isBuildable: Bool {
-    //     return true
-    // }
+// extension Target {
+//     // var isBuildable: Bool {
+//     //     return true
+//     // }
 
-    var isTestable: Bool {
-        return product.type.isTestBundle
-    }
+//     var isTestable: Bool {
+//         return product.type.isTestBundle
+//     }
 
-    var isLaunchable: Bool {
-        return product.type.isExecutable
-    }
-}
+//     var isLaunchable: Bool {
+//         return product.type.isExecutable
+//     }
+// }
 
 public extension PBXTarget {
     func createBuildableReference(referencedContainer: String) -> XCScheme.BuildableReference {
@@ -124,6 +123,14 @@ public extension PBXTarget {
             buildableName: name,
             blueprintName: name
         )
+    }
+
+    var isTestable: Bool {
+        return productType?.isTestBundle ?? false
+    }
+
+    var isLaunchable: Bool {
+        return productType?.isExecutable ?? false
     }
 }
 
