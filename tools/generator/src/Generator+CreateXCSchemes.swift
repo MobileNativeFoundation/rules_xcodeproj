@@ -55,7 +55,9 @@ extension Generator {
                 buildableProductRunnable: buildableProductRunnable,
                 buildConfiguration: buildConfigurationName
             )
-            let analyzeAction = XCScheme.AnalyzeAction(buildConfiguration: buildConfigurationName)
+            let analyzeAction = XCScheme.AnalyzeAction(
+                buildConfiguration: buildConfigurationName
+            )
             let archiveAction = XCScheme.ArchiveAction(
                 buildConfiguration: buildConfigurationName,
                 revealArchiveInOrganizer: true
@@ -92,7 +94,9 @@ public extension PBXTarget {
         return productName ?? name
     }
 
-    func createBuildableReference(referencedContainer: String) -> XCScheme.BuildableReference {
+    func createBuildableReference(
+        referencedContainer: String
+    ) -> XCScheme.BuildableReference {
         return .init(
             referencedContainer: referencedContainer,
             blueprint: self,
@@ -102,8 +106,8 @@ public extension PBXTarget {
     }
 
     var schemeName: String {
-        // The XcodeProj write logic does not like slashes (/) in the scheme name.
-        // It fails to write with a missing folder error.
+        // The XcodeProj write logic does not like slashes (/) in the scheme
+        // name. It fails to write with a missing folder error.
         return buildableName.replacingOccurrences(
             of: #"[/]"#,
             with: "_",
