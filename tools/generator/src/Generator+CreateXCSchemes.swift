@@ -76,10 +76,16 @@ extension Generator {
                 revealArchiveInOrganizer: true
             )
 
+            // DEBUG BEGIN
+            fputs("*** CHUCK pbxTarget.name: \(String(reflecting: pbxTarget.name))\n", stderr)
+            fputs("*** CHUCK pbxTarget.productName: \(String(reflecting: pbxTarget.productName))\n", stderr)
+            fputs("*** CHUCK pbxTarget.product?.name: \(String(reflecting: pbxTarget.product?.name))\n", stderr)
+            // DEBUG END
+
             let scheme = XCScheme(
                 // TODO(chuck): FIX ME!
-                // name: target.name,
-                name: "CHUCK \(target.name)",
+                // name: pbxTarget.name,
+                name: "CHUCK \(pbxTarget.name)",
                 lastUpgradeVersion: nil,
                 version: nil,
                 buildAction: buildAction,
@@ -118,9 +124,7 @@ public extension PBXTarget {
         return .init(
             referencedContainer: referencedContainer,
             blueprint: self,
-            // TODO(chuck): buildableName should be the filename of the output (e.g.
-            // liblib_impl.a, MyApp.app
-            buildableName: name,
+            buildableName: productName ?? name,
             blueprintName: name
         )
     }
