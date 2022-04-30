@@ -8,17 +8,14 @@ import Darwin
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
-        // TODO(chuck): Should I remove project?
-        project _: Project,
         workspaceOutputPath: Path,
-        disambiguatedTargets _: [TargetID: DisambiguatedTarget],
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
         // Scheme actions: Build, Test, Run, Profile
         var schemes = [XCScheme]()
 
         let referencedContainer = "container:\(workspaceOutputPath)"
-        for (targetID, pbxTarget) in pbxTargets {
+        for (_, pbxTarget) in pbxTargets {
             let buildableReference = pbxTarget.createBuildableReference(
                 referencedContainer: referencedContainer
             )

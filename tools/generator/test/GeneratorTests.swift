@@ -45,7 +45,7 @@ final class GeneratorTests: XCTestCase {
                 configuration: "a1b2c",
                 product: .init(type: .staticLibrary, name: "Y", path: "")
             ),
-            "Z":  Target.mock(
+            "Z": Target.mock(
                 label: "//:Z",
                 configuration: "1a2b3",
                 product: .init(type: .application, name: "Z", path: "")
@@ -64,7 +64,7 @@ final class GeneratorTests: XCTestCase {
         )
         let rootElements = [filesAndGroups["a"]!, filesAndGroups["x"]!]
         let products = Fixtures.products(in: pbxProj)
-        
+
         let productsGroup = PBXGroup(name: "42")
         let bazelDependenciesTarget = PBXAggregateTarget(name: "BD")
         let pbxTargets: [TargetID: PBXTarget] = [
@@ -123,7 +123,7 @@ final class GeneratorTests: XCTestCase {
         func processTargetMerges(
             targets: inout [TargetID: Target],
             targetMerges: [TargetID: Set<TargetID>]
-        ) throws -> Void {
+        ) throws {
             processTargetMergesCalled.append(.init(
                 targets: targets,
                 targetMerges: targetMerges
@@ -136,8 +136,8 @@ final class GeneratorTests: XCTestCase {
             targetMerges: project.targetMerges
         )]
         expectedMessagesLogged.append(StubLogger.MessageLogged(.warning, """
- Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
- """))
+        Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
+        """))
 
         // MARK: createFilesAndGroups()
 
@@ -336,7 +336,7 @@ final class GeneratorTests: XCTestCase {
             filePathResolver: filePathResolver,
             bazelDependenciesTarget: bazelDependenciesTarget
         )]
-        
+
         // MARK: setTargetConfigurations()
 
         struct SetTargetConfigurationsCalled: Equatable {
@@ -367,7 +367,7 @@ final class GeneratorTests: XCTestCase {
                 disambiguatedTargets: disambiguatedTargets,
                 pbxTargets: pbxTargets,
                 filePathResolver: filePathResolver
-            )
+            ),
         ]
 
         // MARK: setTargetDependencies()
@@ -396,32 +396,24 @@ final class GeneratorTests: XCTestCase {
         // MARK: createXCSchemes()
 
         struct CreateXCSchemesCalled: Equatable {
-            let project: Project
             let workspaceOutputPath: Path
-            let disambiguatedTargets: [TargetID: DisambiguatedTarget]
             let pbxTargets: [TargetID: PBXNativeTarget]
         }
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
-            project: Project,
             workspaceOutputPath: Path,
-            disambiguatedTargets: [TargetID: DisambiguatedTarget],
             pbxTargets: [TargetID: PBXNativeTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
-                project: project,
                 workspaceOutputPath: workspaceOutputPath,
-                disambiguatedTargets: disambiguatedTargets, 
                 pbxTargets: pbxTargets
             ))
             return schemes
         }
 
         let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
-            project: project,
             workspaceOutputPath: workspaceOutputPath,
-            disambiguatedTargets: disambiguatedTargets,
             pbxTargets: pbxTargets
         )]
 
@@ -602,6 +594,7 @@ class StubLogger: Logger {
         case warning
         case error
     }
+
     struct MessageLogged: Equatable {
         let type: MessageType
         let message: String
@@ -611,6 +604,7 @@ class StubLogger: Logger {
             self.message = message
         }
     }
+
     var messagesLogged: [MessageLogged] = []
 
     func logDebug(_ message: @autoclosure () -> String) {
