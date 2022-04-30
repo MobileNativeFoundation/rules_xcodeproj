@@ -1,10 +1,6 @@
 import PathKit
 import XcodeProj
 
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
-
 /// A class that generates and writes to disk an Xcode project.
 ///
 /// The `Generator` class is stateless. It can be used to generate multiple

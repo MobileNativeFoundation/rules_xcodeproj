@@ -1,9 +1,6 @@
+import Foundation
 import PathKit
 import XcodeProj
-
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
 
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
@@ -11,7 +8,6 @@ extension Generator {
         workspaceOutputPath: Path,
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
-        // Scheme actions: Build, Test, Run, Profile
         var schemes = [XCScheme]()
 
         let referencedContainer = "container:\(workspaceOutputPath)"
@@ -29,7 +25,6 @@ extension Generator {
                 buildEntries = []
                 testables = [.init(
                     skipped: false,
-                    // parallelizable: true,
                     buildableReference: buildableReference
                 )]
                 buildableProductRunnable = nil
@@ -39,7 +34,7 @@ extension Generator {
                     buildFor: [.running, .testing, .profiling, .archiving, .analyzing]
                 )]
                 testables = []
-                buildableProductRunnable = XCScheme.BuildableProductRunnable(buildableReference: buildableReference)
+                buildableProductRunnable = .init(buildableReference: buildableReference)
             }
 
             let buildAction = XCScheme.BuildAction(
@@ -68,8 +63,8 @@ extension Generator {
 
             let scheme = XCScheme(
                 // TODO(chuck): FIX ME!
-                // name: pbxTarget.name,
-                name: "CHUCK \(pbxTarget.name)",
+                // name: pbxTarget.schemeName,
+                name: "CHUCK \(pbxTarget.schemeName)",
                 lastUpgradeVersion: nil,
                 version: nil,
                 buildAction: buildAction,
@@ -89,13 +84,30 @@ extension Generator {
 
 // MARK: PBXTarget Extension
 
+// TODO(chuck): Add unit tests.
+// TODO(chuck): Move to its own file.
+
 public extension PBXTarget {
+    var buildableName: String {
+        return productName ?? name
+    }
+
     func createBuildableReference(referencedContainer: String) -> XCScheme.BuildableReference {
         return .init(
             referencedContainer: referencedContainer,
             blueprint: self,
-            buildableName: productName ?? name,
+            buildableName: buildableName,
             blueprintName: name
+        )
+    }
+
+    var schemeName: String {
+        // The XcodeProj write logic does not like slashes (/) in the scheme name.
+        // It fails to write with a missing folder error.
+        return buildableName.replacingOccurrences(
+            of: #"[/]"#,
+            with: "_",
+            options: .regularExpression
         )
     }
 
