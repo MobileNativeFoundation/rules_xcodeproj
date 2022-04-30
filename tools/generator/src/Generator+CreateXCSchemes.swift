@@ -11,7 +11,7 @@ extension Generator {
         // TODO(chuck): Should I remove project?
         project _: Project,
         workspaceOutputPath: Path,
-        disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        disambiguatedTargets _: [TargetID: DisambiguatedTarget],
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
         // Scheme actions: Build, Test, Run, Profile
@@ -19,13 +19,6 @@ extension Generator {
 
         let referencedContainer = "container:\(workspaceOutputPath)"
         for (targetID, pbxTarget) in pbxTargets {
-            guard let disambiguatedTarget = disambiguatedTargets[targetID] else {
-                throw PreconditionError(message: """
-                did not find \(targetID) in `disambiguatedTargets`
-                """)
-            }
-            let target = disambiguatedTarget.target
-
             let buildableReference = pbxTarget.createBuildableReference(
                 referencedContainer: referencedContainer
             )
@@ -75,12 +68,6 @@ extension Generator {
                 buildConfiguration: buildConfigurationName,
                 revealArchiveInOrganizer: true
             )
-
-            // DEBUG BEGIN
-            fputs("*** CHUCK pbxTarget.name: \(String(reflecting: pbxTarget.name))\n", stderr)
-            fputs("*** CHUCK pbxTarget.productName: \(String(reflecting: pbxTarget.productName))\n", stderr)
-            fputs("*** CHUCK pbxTarget.product?.name: \(String(reflecting: pbxTarget.product?.name))\n", stderr)
-            // DEBUG END
 
             let scheme = XCScheme(
                 // TODO(chuck): FIX ME!
