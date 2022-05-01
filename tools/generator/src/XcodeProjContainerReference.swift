@@ -18,7 +18,7 @@ extension XcodeProjContainerReference: CustomStringConvertible {
 extension XcodeProjContainerReference: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
         guard value.hasPrefix(Self.prefix) else {
-            fatalError("Container references must begin with 'container:'.")
+            fatalError("Container references must begin with '\(Self.prefix)'.")
         }
         let startIndex = value.index(value.startIndex, offsetBy: Self.prefix.count)
         let range = startIndex...

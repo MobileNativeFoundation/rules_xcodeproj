@@ -14,6 +14,11 @@ class XcodeProjContainerReferenceTests: XCTestCase {
     }
 
     func test_ExpressibleByStringLiteral() throws {
-        XCTFail("IMPLEMENT ME!")
+        let containerReference: XcodeProjContainerReference =
+            "container:path/to/Foo.xcodeproj"
+        let expected = XcodeProjContainerReference(
+            xcodeprojPath: "path/to/Foo.xcodeproj"
+        )
+        XCTAssertEqual(containerReference, expected)
     }
 }
