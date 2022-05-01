@@ -67,4 +67,18 @@ class PBXTargetExtensionsTests: XCTestCase {
         pbxTarget.productType = .staticLibrary
         XCTAssertFalse(pbxTarget.isLaunchable)
     }
+
+    func test_defaultBuildConfigurationName_WithBuildConfigurationList() throws {
+        let configurationName = "Foo"
+        let xcBuildConfig = XCBuildConfiguration(name: configurationName)
+        let xcConfigList = XCConfigurationList(
+            buildConfigurations: [xcBuildConfig]
+        )
+        pbxTarget.buildConfigurationList = xcConfigList
+        XCTAssertEqual(pbxTarget.defaultBuildConfigurationName, configurationName)
+    }
+
+    func test_defaultBuildConfigurationName_WithoutBuildConfigurationList() throws {
+        XCTAssertEqual(pbxTarget.defaultBuildConfigurationName, "Debug")
+    }
 }

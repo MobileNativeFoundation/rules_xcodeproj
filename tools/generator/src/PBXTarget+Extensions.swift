@@ -31,4 +31,9 @@ public extension PBXTarget {
     var isLaunchable: Bool {
         return productType?.isExecutable ?? false
     }
+
+    var defaultBuildConfigurationName: String {
+        return buildConfigurationList?.buildConfigurations.first?.name ??
+            "Debug"
+    }
 }
