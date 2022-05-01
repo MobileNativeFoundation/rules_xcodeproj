@@ -17,13 +17,12 @@ extension Generator {
         referencedContainer: String,
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
-        return try pbxTargets.map { $0.1 }
-            .map {
-                try createXCScheme(
-                    referencedContainer: referencedContainer,
-                    pbxTarget: $0
-                )
-            }
+        return try pbxTargets.map { $0.1 }.map { pbxTarget in
+            try createXCScheme(
+                referencedContainer: referencedContainer,
+                pbxTarget: pbxTarget
+            )
+        }
     }
 
     static func createXCScheme(
