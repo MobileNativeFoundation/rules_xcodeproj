@@ -131,11 +131,22 @@ class CreateXCSchemesTests: XCTestCase {
         // for (key, item) in pbxTargetsDict {
         //     fputs("*** CHUCK   \(key) : \(String(reflecting: item.name))\n", stderr)
         //     fputs("*** CHUCK      item.productName: \(String(reflecting: item.productName))\n", stderr)
+        //     fputs("*** CHUCK      item.schemeName: \(String(reflecting: item.schemeName))\n", stderr)
         //     fputs("*** CHUCK      item.isTestable: \(String(reflecting: item.isTestable))\n", stderr)
         //     fputs("*** CHUCK      item.isLaunchable: \(String(reflecting: item.isLaunchable))\n", stderr)
         // }
         // // DEBUG END
 
+        // Library
+        assertScheme(
+            schemesDict: schemesDict,
+            targetName: "A 1",
+            shouldExpectBuildActionEntries: true,
+            shouldExpectTestables: false,
+            shouldExpectBuildableProductRunnable: false
+        )
+
+        // Testable and launchable
         assertScheme(
             schemesDict: schemesDict,
             targetName: "B 2",
@@ -144,16 +155,13 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectBuildableProductRunnable: true
         )
 
-        // DEBUG BEGIN
-        XCTFail("STOP")
-        // DEBUG END
-    }
-
-    func test_createXCScheme_LibTarget() throws {
-        XCTFail("IMPLEMENT ME!")
-    }
-
-    func test_createXCScheme_AppTarget() throws {
-        XCTFail("IMPLEMENT ME!")
+        // Launchable, not testable
+        assertScheme(
+            schemesDict: schemesDict,
+            targetName: "A 2",
+            shouldExpectBuildActionEntries: true,
+            shouldExpectTestables: false,
+            shouldExpectBuildableProductRunnable: true
+        )
     }
 }
