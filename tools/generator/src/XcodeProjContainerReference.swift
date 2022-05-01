@@ -6,12 +6,12 @@ import PathKit
 public struct XcodeProjContainerReference: Equatable {
     public static let prefix = "container:"
 
-    let workspaceOutputPath: Path
+    let xcodeprojPath: Path
 }
 
 extension XcodeProjContainerReference: CustomStringConvertible {
     public var description: String {
-        return "\(Self.prefix)\(workspaceOutputPath)"
+        return "\(Self.prefix)\(xcodeprojPath)"
     }
 }
 
@@ -23,7 +23,7 @@ extension XcodeProjContainerReference: ExpressibleByStringLiteral {
         let startIndex = value.index(value.startIndex, offsetBy: Self.prefix.count)
         let range = startIndex...
         self = XcodeProjContainerReference(
-            workspaceOutputPath: Path(String(value[range]))
+            xcodeprojPath: Path(String(value[range]))
         )
     }
 }

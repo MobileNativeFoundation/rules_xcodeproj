@@ -8,7 +8,7 @@ extension Generator {
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
         return try createXCSchemes(
-            referencedContainer: .init(workspaceOutputPath: workspaceOutputPath),
+            referencedContainer: .init(xcodeprojPath: workspaceOutputPath),
             pbxTargets: pbxTargets
         )
     }
