@@ -287,6 +287,10 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         objc = objc,
         build_settings = build_settings,
     )
+    _process_sdk_dylibs(
+        objc = objc,
+        build_settings = build_settings,
+    )
     search_paths = _process_search_paths(
         cc_info = cc_info,
         objc = objc,
@@ -463,6 +467,10 @@ def _process_library_target(*, ctx, target, transitive_infos):
         build_settings = build_settings,
     )
     _process_sdk_frameworks(
+        objc = objc,
+        build_settings = build_settings,
+    )
+    _process_sdk_dylibs(
         objc = objc,
         build_settings = build_settings,
     )
@@ -935,6 +943,21 @@ def _process_sdk_frameworks(*, objc, build_settings):
         (sdk_framework_flags +
          weak_sdk_framework_flags +
          build_settings.get("OTHER_LDFLAGS", [])),
+    )
+
+def _process_sdk_dylibs(*, objc, build_settings):
+    if not objc or build_settings == None:
+        return
+
+    sdk_dylib_flags = [
+        "-l" + dylib
+        for dylib in objc.sdk_dylib.to_list()
+    ]
+
+    set_if_true(
+        build_settings,
+        "OTHER_LDFLAGS",
+        sdk_dylib_flags + build_settings.get("OTHER_LDFLAGS", []),
     )
 
 # TODO: Refactor this into a search_paths module
