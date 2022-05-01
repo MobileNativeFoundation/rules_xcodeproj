@@ -18,6 +18,7 @@ public extension PBXTarget {
     }
 
     var schemeName: String {
+        // GH371: Update XcodeProj to support slashes in the scheme name.
         // The XcodeProj write logic does not like slashes (/) in the scheme
         // name. It fails to write with a missing folder error.
         return buildableName.replacingOccurrences(of: "/", with: "_")
