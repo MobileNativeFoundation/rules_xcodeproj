@@ -1,6 +1,10 @@
 import PathKit
 import XcodeProj
 
+// DEBUG BEGIN
+import Darwin
+// DEBUG END
+
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
@@ -32,10 +36,15 @@ extension Generator {
         let buildableReference = pbxTarget.createBuildableReference(
             referencedContainer: referencedContainer
         )
-        let buildConfigurationName = pbxTarget
-            .buildConfigurationList?.buildConfigurations.first?.name ?? ""
+        let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
 
-        let buildableProductRunnable: XCScheme.BuildableProductRunnable?
+        // // DEBUG BEGIN
+        // fputs("*** CHUCK pbxTarget.name: \(String(reflecting: pbxTarget.name))\n", stderr)
+        // fputs("*** CHUCK pbxTarget.schemeName: \(String(reflecting: pbxTarget.schemeName))\n", stderr)
+        // fputs("*** CHUCK pbxTarget.isTestable: \(String(reflecting: pbxTarget.isTestable))\n", stderr)
+        // fputs("*** CHUCK pbxTarget.isLaunchable: \(String(reflecting: pbxTarget.isLaunchable))\n", stderr)
+        // // DEBUG END
+
         let buildEntries: [XCScheme.BuildAction.Entry]
         let testables: [XCScheme.TestableReference]
         if pbxTarget.isTestable {
@@ -44,15 +53,16 @@ extension Generator {
                 skipped: false,
                 buildableReference: buildableReference
             )]
-            buildableProductRunnable = nil
         } else {
             buildEntries = [.init(
                 buildableReference: buildableReference,
                 buildFor: [.running, .testing, .profiling, .archiving, .analyzing]
             )]
             testables = []
-            buildableProductRunnable = .init(buildableReference: buildableReference)
         }
+        let buildableProductRunnable: XCScheme.BuildableProductRunnable? =
+            pbxTarget.isLaunchable ?
+            .init(buildableReference: buildableReference) : nil
 
         let buildAction = XCScheme.BuildAction(
             buildActionEntries: buildEntries,
@@ -65,13 +75,11 @@ extension Generator {
             testables: testables
         )
         let launchAction = XCScheme.LaunchAction(
-            runnable: pbxTarget.isLaunchable ?
-                buildableProductRunnable : nil,
+            runnable: buildableProductRunnable,
             buildConfiguration: buildConfigurationName
         )
         let profileAction = XCScheme.ProfileAction(
-            buildableProductRunnable: pbxTarget.isLaunchable ?
-                buildableProductRunnable : nil,
+            buildableProductRunnable: buildableProductRunnable,
             buildConfiguration: buildConfigurationName
         )
         let analyzeAction = XCScheme.AnalyzeAction(
