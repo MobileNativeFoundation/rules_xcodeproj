@@ -16,15 +16,6 @@ class CreateXCSchemesTests: XCTestCase {
         targets: Fixtures.targets
     )
 
-    func test_createXCSchemes_WithNoTargets() throws {
-        let schemes = try Generator.createXCSchemes(
-            workspaceOutputPath: workspaceOutputPath,
-            pbxTargets: [:]
-        )
-        let expected = [XCScheme]()
-        XCTAssertEqual(schemes, expected)
-    }
-
     func assertScheme(
         schemesDict: [String: XCScheme],
         targetName: String,
@@ -72,20 +63,38 @@ class CreateXCSchemesTests: XCTestCase {
             XCTFail("Expected a build action for \(scheme.name)")
             return
         }
-        XCTAssertEqual(buildAction.buildActionEntries, expectedBuildActionEntries)
-        XCTAssertTrue(buildAction.parallelizeBuild)
-        XCTAssertTrue(buildAction.buildImplicitDependencies)
+        XCTAssertEqual(
+            buildAction.buildActionEntries,
+            expectedBuildActionEntries,
+            "buildActionEntries did not match for \(scheme.name)"
+        )
+        XCTAssertTrue(
+            buildAction.parallelizeBuild,
+            "parallelizeBuild was not true for \(scheme.name)"
+        )
+        XCTAssertTrue(
+            buildAction.buildImplicitDependencies,
+            "buildImplicitDependencies was not true for \(scheme.name)"
+        )
 
         guard let testAction = scheme.testAction else {
             XCTFail("Expected a test action for \(scheme.name)")
             return
         }
-        XCTAssertNil(testAction.macroExpansion)
+        XCTAssertNil(
+            testAction.macroExpansion,
+            "macroExpansion was not nil for \(scheme.name)"
+        )
         XCTAssertEqual(
             testAction.buildConfiguration,
-            expectedBuildConfigurationName
+            expectedBuildConfigurationName,
+            "the test action buildConfiguration did not match for \(scheme.name)"
         )
-        XCTAssertEqual(testAction.testables, expectedTestables)
+        XCTAssertEqual(
+            testAction.testables,
+            expectedTestables,
+            "testables did not match for \(scheme.name)"
+        )
 
         guard let launchAction = scheme.launchAction else {
             XCTFail("Expected a launch action for \(scheme.name)")
@@ -93,9 +102,14 @@ class CreateXCSchemesTests: XCTestCase {
         }
         XCTAssertEqual(
             launchAction.buildConfiguration,
-            expectedBuildConfigurationName
+            expectedBuildConfigurationName,
+            "the launch action buildConfiguration did not match for \(scheme.name)"
         )
-        XCTAssertEqual(launchAction.runnable, expectedBuildableProductRunnable)
+        XCTAssertEqual(
+            launchAction.runnable,
+            expectedBuildableProductRunnable,
+            "runnable did not match for \(scheme.name)"
+        )
 
         guard let analyzeAction = scheme.analyzeAction else {
             XCTFail("Expected an analyze action for \(scheme.name)")
@@ -103,7 +117,8 @@ class CreateXCSchemesTests: XCTestCase {
         }
         XCTAssertEqual(
             analyzeAction.buildConfiguration,
-            expectedBuildConfigurationName
+            expectedBuildConfigurationName,
+            "the analyze action buildConfiguration did not match for \(scheme.name)"
         )
 
         guard let archiveAction = scheme.archiveAction else {
@@ -112,9 +127,22 @@ class CreateXCSchemesTests: XCTestCase {
         }
         XCTAssertEqual(
             archiveAction.buildConfiguration,
-            expectedBuildConfigurationName
+            expectedBuildConfigurationName,
+            "the archive action buildConfiguration did not match for \(scheme.name)"
         )
-        XCTAssertTrue(archiveAction.revealArchiveInOrganizer)
+        XCTAssertTrue(
+            archiveAction.revealArchiveInOrganizer,
+            "revealArchiveInOrganizer did not match for \(scheme.name)"
+        )
+    }
+
+    func test_createXCSchemes_WithNoTargets() throws {
+        let schemes = try Generator.createXCSchemes(
+            workspaceOutputPath: workspaceOutputPath,
+            pbxTargets: [:]
+        )
+        let expected = [XCScheme]()
+        XCTAssertEqual(schemes, expected)
     }
 
     func test_createXCSchemes_WithTargets() throws {
