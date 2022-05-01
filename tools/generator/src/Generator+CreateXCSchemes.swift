@@ -1,10 +1,6 @@
 import PathKit
 import XcodeProj
 
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
-
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
@@ -37,13 +33,6 @@ extension Generator {
             referencedContainer: referencedContainer
         )
         let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
-
-        // // DEBUG BEGIN
-        // fputs("*** CHUCK pbxTarget.name: \(String(reflecting: pbxTarget.name))\n", stderr)
-        // fputs("*** CHUCK pbxTarget.schemeName: \(String(reflecting: pbxTarget.schemeName))\n", stderr)
-        // fputs("*** CHUCK pbxTarget.isTestable: \(String(reflecting: pbxTarget.isTestable))\n", stderr)
-        // fputs("*** CHUCK pbxTarget.isLaunchable: \(String(reflecting: pbxTarget.isLaunchable))\n", stderr)
-        // // DEBUG END
 
         let buildEntries: [XCScheme.BuildAction.Entry]
         let testables: [XCScheme.TestableReference]

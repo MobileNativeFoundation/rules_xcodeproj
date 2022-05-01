@@ -9,12 +9,11 @@ class CreateXCSchemesTests: XCTestCase {
     lazy var referencedContainer = XcodeProjContainerReference(
         xcodeprojPath: workspaceOutputPath
     )
-
-    // TODO(chuck): Fix wrap when done.
-    let pbxTargetsDict: [TargetID: PBXNativeTarget] = Fixtures.pbxTargetsWithDependencies(
-        in: Fixtures.pbxProj(),
-        targets: Fixtures.targets
-    )
+    let pbxTargetsDict: [TargetID: PBXNativeTarget] =
+        Fixtures.pbxTargetsWithDependencies(
+            in: Fixtures.pbxProj(),
+            targets: Fixtures.targets
+        )
 
     func assertScheme(
         schemesDict: [String: XCScheme],
@@ -153,17 +152,6 @@ class CreateXCSchemesTests: XCTestCase {
         XCTAssertEqual(schemes.count, pbxTargetsDict.count)
 
         let schemesDict = Dictionary(uniqueKeysWithValues: schemes.map { ($0.name, $0) })
-
-        // // DEBUG BEGIN
-        // fputs("*** CHUCK pbxTargetsDict:\n", stderr)
-        // for (key, item) in pbxTargetsDict {
-        //     fputs("*** CHUCK   \(key) : \(String(reflecting: item.name))\n", stderr)
-        //     fputs("*** CHUCK      item.productName: \(String(reflecting: item.productName))\n", stderr)
-        //     fputs("*** CHUCK      item.schemeName: \(String(reflecting: item.schemeName))\n", stderr)
-        //     fputs("*** CHUCK      item.isTestable: \(String(reflecting: item.isTestable))\n", stderr)
-        //     fputs("*** CHUCK      item.isLaunchable: \(String(reflecting: item.isLaunchable))\n", stderr)
-        // }
-        // // DEBUG END
 
         // Library
         assertScheme(
