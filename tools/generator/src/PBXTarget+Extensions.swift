@@ -43,7 +43,6 @@ public extension PBXTarget {
             "Debug"
     }
 
-    // TODO(chuck): Add test
     var defaultBuildConfigurationName: String {
         return buildConfigurationList?.buildConfigurations.first?.name ??
             "Debug"
