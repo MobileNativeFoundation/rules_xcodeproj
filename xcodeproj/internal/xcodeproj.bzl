@@ -311,9 +311,14 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, **kwargs):
     # without having them be declared as the exact top level outputs. This makes
     # the BEP a lot smaller and the UI output cleaner.
     # See `//xcodeproj/internal:output_files.bzl` for more details.
-    toplevel_cache_buster = native.glob([
-        "{}.xcodeproj/rules_xcodeproj/toplevel_cache_buster".format(project),
-    ])
+    toplevel_cache_buster = native.glob(
+        [
+            "{}.xcodeproj/rules_xcodeproj/toplevel_cache_buster".format(
+                project,
+            ),
+        ],
+        allow_empty = True,
+    )
 
     xcodeproj_rule(
         name = name,

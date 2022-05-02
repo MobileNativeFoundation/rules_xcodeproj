@@ -387,7 +387,7 @@ extension Generator {
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
             // match the project navigator. This is only needed for files
             // referenced by `PBXBuildFile`.
-            return try filePathResolver.resolve(filePath, useBuildDir: false)
+            return try filePathResolver.resolve(filePath, useGenDir: true)
         }
         let modulemapPaths = try generatedFiles
             .filter { filePath, _ in filePath.path.extension == "modulemap" }
@@ -431,7 +431,7 @@ extension Generator {
             let linkFiles = try target.linkerInputs.staticLibraries
                 .map { filePath in
                     return """
-\(try filePathResolver.resolve(filePath, useBuildDir: false, mode: .srcRoot))
+\(try filePathResolver.resolve(filePath, useGenDir: true, mode: .srcRoot))
 
 """
                 }

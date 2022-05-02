@@ -141,7 +141,10 @@ Target "\(id)" not found in `pbxTargets`
             buildSettings["TARGET_NAME"] = target.name
 
             if let infoPlist = target.infoPlist {
-                var infoPlistPath = try filePathResolver.resolve(infoPlist)
+                var infoPlistPath = try filePathResolver.resolve(
+                    infoPlist,
+                    useGenDir: true
+                )
                 
                 // If the plist is generated, use the patched version that
                 // removes a specific key that causes a warning when building
@@ -155,15 +158,22 @@ Target "\(id)" not found in `pbxTargets`
             }
 
             if let entitlements = target.entitlements {
-                let entitlementsPath = try filePathResolver.resolve(entitlements)
-                buildSettings["CODE_SIGN_ENTITLEMENTS"] = entitlementsPath.string.quoted
+                let entitlementsPath = try filePathResolver.resolve(
+                    entitlements,
+                    // Path needs to use `$(GEN_DIR)` to ensure XCBuild picks it
+                    // up on first generation
+                    useGenDir: true
+                )
+                buildSettings["CODE_SIGN_ENTITLEMENTS"] = entitlementsPath
+                    .string.quoted
+
                 // This is required because otherwise Xcode fails the build due 
                 // the entitlements file being modified by the Bazel build script.
                 buildSettings["CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION"] = true
             }
 
             if let pch = target.inputs.pch {
-                let pchPath = try filePathResolver.resolve(pch)
+                let pchPath = try filePathResolver.resolve(pch, useGenDir: true)
 
                 buildSettings["GCC_PREFIX_HEADER"] = pchPath.string.quoted
             }
