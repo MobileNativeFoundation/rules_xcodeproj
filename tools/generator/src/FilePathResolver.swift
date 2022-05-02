@@ -106,5 +106,4 @@ struct FilePathResolver: Equatable {
             return internalDir + filePath.path
         }
     }
-
 }
