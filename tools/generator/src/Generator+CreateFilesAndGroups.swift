@@ -30,7 +30,7 @@ extension File {
 }
 
 extension Generator {
-    static let compileStubPath: Path = "CompileStub.swift"
+    static let compileStubPath: Path = "CompileStub.m"
     static let externalFileListPath: Path = "external.xcfilelist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
     static let rsyncFileListPath: Path = "generated.rsynclist"
