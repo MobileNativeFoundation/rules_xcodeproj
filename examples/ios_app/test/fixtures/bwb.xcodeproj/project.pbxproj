@@ -1285,6 +1285,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleObjcTests";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_MODULES = YES;
@@ -1432,6 +1433,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleUITests";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1658,11 +1660,15 @@
 				BAZEL_LLDB_INIT = "$(BUILD_DIR)/bazel.lldbinit";
 				BAZEL_OUT = "$(BUILD_DIR)/real-bazel-out";
 				BAZEL_PATH = bazel;
+				BUILT_PRODUCTS_DIR = "$(BUILD_DIR)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				GEN_DIR = "$(LINKS_DIR)/gen_dir";
+				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LINKS_DIR = "$(INTERNAL_DIR)/links";
 				ONLY_ACTIVE_ARCH = YES;
@@ -1709,6 +1715,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/Example";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/Example/Example_entitlements.entitlements";
@@ -1795,6 +1802,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d8c59b644fe5/bin/ExampleTests";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;

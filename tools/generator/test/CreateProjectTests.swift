@@ -27,11 +27,15 @@ final class CreateProjectTests: XCTestCase {
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
+                "BUILT_PRODUCTS_DIR": "$(BUILD_DIR)",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
+                "DEPLOYMENT_LOCATION": true,
+                "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
+                "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
@@ -105,11 +109,15 @@ $(BUILD_DIR)/bazel_build_output_groups
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
                 "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
+                "BUILT_PRODUCTS_DIR": "$(BUILD_DIR)",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
+                "DEPLOYMENT_LOCATION": true,
+                "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
+                "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)

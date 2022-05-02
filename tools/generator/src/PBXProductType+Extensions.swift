@@ -47,6 +47,38 @@ extension PBXProductType {
         }
     }
 
+    var isExecutable: Bool {
+        switch self {
+        case .application,
+             .framework,
+             .xcFramework, // Could be
+             .dynamicLibrary,
+             .bundle, // Could be
+             .unitTestBundle,
+             .uiTestBundle,
+             .appExtension,
+             .commandLineTool,
+             .watchApp,
+             .watch2App,
+             .watch2AppContainer,
+             .watchExtension,
+             .watch2Extension,
+             .tvExtension,
+             .messagesApplication,
+             .messagesExtension,
+             .xpcService,
+             .ocUnitTestBundle,
+             .xcodeExtension,
+             .intentsServiceExtension,
+             .onDemandInstallCapableApplication,
+             .driverExtension,
+             .systemExtension:
+            return true
+        default:
+            return false
+        }
+    }
+
     var isFramework: Bool {
         switch self {
         case .framework,
@@ -58,13 +90,9 @@ extension PBXProductType {
         }
     }
 
-    var isExecutable: Bool {
+    var isLaunchable: Bool {
         switch self {
         case .application,
-             .framework,
-             .xcFramework, // Could be
-             .dynamicLibrary,
-             .bundle, // Could be
              .unitTestBundle,
              .uiTestBundle,
              .appExtension,

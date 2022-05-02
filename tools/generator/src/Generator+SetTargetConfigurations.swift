@@ -140,6 +140,14 @@ Target "\(id)" not found in `pbxTargets`
             buildSettings["SDKROOT"] = target.platform.os.sdkRoot
             buildSettings["TARGET_NAME"] = target.name
 
+            if target.product.type.isLaunchable {
+                // We need `BUILT_PRODUCTS_DIR` to point to where the
+                // binary/bundle is actually at, for running from scheme to work
+                buildSettings["BUILT_PRODUCTS_DIR"] = """
+$(CONFIGURATION_BUILD_DIR)
+"""
+            }
+
             if let infoPlist = target.infoPlist {
                 var infoPlistPath = try filePathResolver.resolve(
                     infoPlist,

@@ -2078,6 +2078,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -2188,6 +2189,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/tools/generator/test";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -2358,11 +2360,15 @@
 				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";
 				BAZEL_OUT = "$(BUILD_DIR)/real-bazel-out";
 				BAZEL_PATH = bazel;
+				BUILT_PRODUCTS_DIR = "$(BUILD_DIR)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				GEN_DIR = "$(LINKS_DIR)/gen_dir";
+				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LINKS_DIR = "$(INTERNAL_DIR)/links";
 				ONLY_ACTIVE_ARCH = YES;
