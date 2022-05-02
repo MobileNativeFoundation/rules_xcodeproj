@@ -1,3 +1,5 @@
+build --incompatible_disallow_empty_glob
+
 build --remote_default_exec_properties=OSFamily=darwin
 build --remote_default_exec_properties=cache_bust=macOS_11.0/1
 
