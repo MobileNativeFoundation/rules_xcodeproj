@@ -7,8 +7,17 @@ def _collect(
         bundle_path = None,
         owner,
         is_consuming_bundle,
+        bundle_resources,
         attrs_info,
         transitive_infos):
+    if not bundle_resources:
+        return struct(
+            _unowned_products = depset(),
+            _owners = depset(),
+            _owned_products = depset(),
+            _products = depset(),
+        )
+
     if owner:
         transitive_unowned_products = depset(
             transitive = [

@@ -116,6 +116,7 @@ def _collect(
         *,
         ctx,
         target,
+        bundle_resources,
         attrs_info,
         owner,
         additional_files = [],
@@ -125,6 +126,9 @@ def _collect(
     Args:
         ctx: The aspect context.
         target: The `Target` to collect inputs from.
+        bundle_resources: Whether resources will be bundled in the generated
+            project. If this is `False` then all resources will get added to
+            `extra_files` instead of `resources`.
         owner: An optional string that has a unique identifier for `target`, if
             it owns the resources. Only targets that become Xcode targets should
             own resources.
@@ -187,28 +191,37 @@ def _collect(
                 pch.append(file)
             elif attrs_info.resources.get(attr):
                 fp = file_path(file)
-                if owner:
-                    resources.append((owner, fp))
+                if bundle_resources:
+                    if owner:
+                        resources.append((owner, fp))
+                    else:
+                        unowned_resources.append(fp)
                 else:
-                    unowned_resources.append(fp)
+                    extra_files.append(fp)
             elif attr in attrs_info.structured_resources:
                 fp = _folder_resource_file_path(
                     target = target,
                     file = file,
                 )
-                if owner:
-                    resources.append((owner, fp))
+                if bundle_resources:
+                    if owner:
+                        resources.append((owner, fp))
+                    else:
+                        unowned_resources.append(fp)
                 else:
-                    unowned_resources.append(fp)
+                    extra_files.append(fp)
             elif attr in attrs_info.bundle_imports:
                 fp = _bundle_import_file_path(
                     target = target,
                     file = file,
                 )
-                if owner:
-                    resources.append((owner, fp))
+                if bundle_resources:
+                    if owner:
+                        resources.append((owner, fp))
+                    else:
+                        unowned_resources.append(fp)
                 else:
-                    unowned_resources.append(fp)
+                    extra_files.append(fp)
             elif file not in output_files:
                 extra_files.append(file_path(file))
 
