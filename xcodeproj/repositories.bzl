@@ -182,12 +182,6 @@ swift_library(
     srcs = glob(["Sources/OrderedCollections/**/*.swift"]),
     visibility = ["//visibility:public"],
 )
-
-swift_library(
-    name = "PriorityQueueModule",
-    srcs = glob(["Sources/PriorityQueueModule/**/*.swift"]),
-    visibility = ["//visibility:public"],
-)
 """,
         sha256 = "b18c522aff4241160f60bcd0695702657c7862512c994c260a7d63f15a8450d8",
         strip_prefix = "swift-collections-1.0.2",
