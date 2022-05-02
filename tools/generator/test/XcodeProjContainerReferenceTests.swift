@@ -4,7 +4,7 @@ import XCTest
 @testable import generator
 
 class XcodeProjContainerReferenceTests: XCTestCase {
-    func test_CustomStringConvertible() throws {
+    func test_customStringConvertible() throws {
         let path = Path("path/to/Foo.xcodeproj")
         let containerReference = XcodeProjContainerReference(
             xcodeprojPath: path
@@ -13,7 +13,7 @@ class XcodeProjContainerReferenceTests: XCTestCase {
         XCTAssertEqual("\(containerReference)", expected)
     }
 
-    func test_ExpressibleByStringLiteral() throws {
+    func test_expressibleByStringLiteral() throws {
         let containerReference: XcodeProjContainerReference =
             "container:path/to/Foo.xcodeproj"
         let expected = XcodeProjContainerReference(
