@@ -7,10 +7,10 @@ public extension PBXTarget {
     }
 
     func createBuildableReference(
-        referencedContainer: XcodeProjContainerReference
+        referencedContainer: String
     ) -> XCScheme.BuildableReference {
         return .init(
-            referencedContainer: "\(referencedContainer)",
+            referencedContainer: referencedContainer,
             blueprint: self,
             buildableName: buildableName,
             blueprintName: name

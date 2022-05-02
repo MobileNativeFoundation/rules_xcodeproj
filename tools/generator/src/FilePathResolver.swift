@@ -13,6 +13,8 @@ struct FilePathResolver: Equatable {
     let internalDirectory: Path
     private let linksDirectory: Path
 
+    lazy var containerReference = "container:\(workspaceOutputPath)"
+
     init(internalDirectoryName: String, workspaceOutputPath: Path) {
         self.internalDirectoryName = internalDirectoryName
         self.workspaceOutputPath = workspaceOutputPath
@@ -101,4 +103,5 @@ struct FilePathResolver: Equatable {
             return internalDir + filePath.path
         }
     }
+
 }

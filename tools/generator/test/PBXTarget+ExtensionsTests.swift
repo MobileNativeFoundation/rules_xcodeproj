@@ -16,8 +16,7 @@ class PBXTargetExtensionsTests: XCTestCase {
     }
 
     func test_createBuildableReference() throws {
-        let referencedContainer: XcodeProjContainerReference =
-            "container:Foo.xcodeproj"
+        let referencedContainer = "container:Foo.xcodeproj"
         let buildableReference = pbxTarget.createBuildableReference(
             referencedContainer: referencedContainer
         )
