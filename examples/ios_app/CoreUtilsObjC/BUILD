@@ -4,9 +4,9 @@ objc_library(
         [
             "**/*.m",
             "**/*.mm",
+            # Headers included here on purpose, to test `hdrs` collection logic
+            "**/*.h",
         ],
-        # Headers included here on purpose, to test `hdrs` collection logic
-        ["**/*.h"],
     ),
     hdrs = glob(["**/*.h"]),
     includes = [""],
