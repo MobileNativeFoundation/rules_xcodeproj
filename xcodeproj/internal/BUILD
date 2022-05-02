@@ -13,6 +13,13 @@ string_setting(
     visibility = ["//visibility:public"],
 )
 
+string_setting(
+    name = "build_mode",
+    build_setting_default = "xcode",
+    # This is made public for internal use only. Do not depend on this setting.
+    visibility = ["//visibility:public"],
+)
+
 # Integration test related targets
 
 filegroup(
