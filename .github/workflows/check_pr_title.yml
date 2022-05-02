@@ -20,5 +20,6 @@ jobs:
         uses: mristin/opinionated-commit-message@v3.0.0
         with:
           allow-one-liners: 'true'
+          additional-verbs: 'expose'
           max-subject-line-length: '80'
           skip-body-check: 'true'
