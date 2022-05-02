@@ -6,37 +6,54 @@ import XCTest
 class PBXTargetExtensionsTests: XCTestCase {
     let pbxTarget = PBXTarget(name: "chicken", productName: "MyChicken")
 
-    func test_buildableName_withProductName() throws {
-        XCTAssertEqual(pbxTarget.buildableName, "MyChicken")
+    func test_getBuildableName_withProductName() throws {
+        let buildableName = try pbxTarget.getBuildableName()
+        XCTAssertEqual(buildableName, "MyChicken")
     }
 
-    func test_buildableName_withoutProductName() throws {
+    func test_getBuildableName_withoutProductName() throws {
         pbxTarget.productName = nil
-        XCTAssertEqual(pbxTarget.buildableName, "chicken")
+        XCTAssertThrowsError(try pbxTarget.getBuildableName()) { error in
+            guard let preconditionError = error as? PreconditionError else {
+                XCTFail(
+                    "The thrown error was not a `PreconditionError`. \(error)"
+                )
+                return
+            }
+            XCTAssertEqual(
+                preconditionError.message,
+                "`productName` not set on target"
+            )
+        }
     }
 
     func test_createBuildableReference() throws {
         let referencedContainer = "container:Foo.xcodeproj"
-        let buildableReference = pbxTarget.createBuildableReference(
+        let buildableReference = try pbxTarget.createBuildableReference(
             referencedContainer: referencedContainer
         )
         let expected = XCScheme.BuildableReference(
             referencedContainer: "\(referencedContainer)",
             blueprint: pbxTarget,
-            buildableName: pbxTarget.buildableName,
+            buildableName: try pbxTarget.getBuildableName(),
             blueprintName: pbxTarget.name
         )
         XCTAssertEqual(buildableReference, expected)
     }
 
-    func test_schemeName_withSlashesInBuildableName() throws {
-        pbxTarget.name = "//examples/chicken:smidgen"
-        pbxTarget.productName = nil
-        XCTAssertEqual(pbxTarget.schemeName, "__examples_chicken:smidgen")
+    func test_getSchemeName_withSlashesInBuildableName() throws {
+        pbxTarget.productName = "//examples/chicken:smidgen"
+        XCTAssertEqual(
+            try pbxTarget.getSchemeName(),
+            "__examples_chicken:smidgen"
+        )
     }
 
     func test_schemeName_withoutSlashesInBuildableName() throws {
-        XCTAssertEqual(pbxTarget.schemeName, "MyChicken")
+        XCTAssertEqual(
+            try pbxTarget.getSchemeName(),
+            "MyChicken"
+        )
     }
 
     func test_isTestable_withoutProductType() throws {

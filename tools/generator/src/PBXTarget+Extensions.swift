@@ -2,26 +2,32 @@ import Foundation
 import XcodeProj
 
 public extension PBXTarget {
-    var buildableName: String {
-        return productName ?? name
+    func getBuildableName() throws -> String {
+        guard let buildableName = productName else {
+            throw PreconditionError(message: """
+`productName` not set on target
+""")
+        }
+        return buildableName
     }
 
     func createBuildableReference(
         referencedContainer: String
-    ) -> XCScheme.BuildableReference {
+    ) throws -> XCScheme.BuildableReference {
         return .init(
             referencedContainer: referencedContainer,
             blueprint: self,
-            buildableName: buildableName,
+            buildableName: try getBuildableName(),
             blueprintName: name
         )
     }
 
-    var schemeName: String {
+    func getSchemeName() throws -> String {
         // GH371: Update XcodeProj to support slashes in the scheme name.
         // The XcodeProj write logic does not like slashes (/) in the scheme
         // name. It fails to write with a missing folder error.
-        return buildableName.replacingOccurrences(of: "/", with: "_")
+        return try getBuildableName()
+        .replacingOccurrences(of: "/", with: "_")
     }
 
     var isTestable: Bool {
