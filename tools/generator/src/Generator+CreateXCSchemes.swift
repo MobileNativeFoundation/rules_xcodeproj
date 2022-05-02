@@ -82,8 +82,3 @@ extension Generator {
         return schemes
     }
 }
-
-// MARK: PBXTarget Extension
-
-// TODO(chuck): Add unit tests.
-// TODO(chuck): Move to its own file.
