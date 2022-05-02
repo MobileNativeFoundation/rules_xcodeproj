@@ -5,8 +5,8 @@ public extension PBXTarget {
     func getBuildableName() throws -> String {
         guard let buildableName = productName else {
             throw PreconditionError(message: """
-            `productName` not set on target
-            """)
+`productName` not set on target
+""")
         }
         return buildableName
     }
@@ -15,7 +15,7 @@ public extension PBXTarget {
         referencedContainer: String
     ) throws -> XCScheme.BuildableReference {
         return .init(
-            referencedContainer: "\(referencedContainer)",
+            referencedContainer: referencedContainer,
             blueprint: self,
             buildableName: try getBuildableName(),
             blueprintName: name
