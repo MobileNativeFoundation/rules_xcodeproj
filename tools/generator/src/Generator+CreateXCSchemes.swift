@@ -1,4 +1,3 @@
-import Foundation
 import PathKit
 import XcodeProj
 
@@ -86,38 +85,3 @@ extension Generator {
 
 // TODO(chuck): Add unit tests.
 // TODO(chuck): Move to its own file.
-
-public extension PBXTarget {
-    var buildableName: String {
-        return productName ?? name
-    }
-
-    func createBuildableReference(
-        referencedContainer: String
-    ) -> XCScheme.BuildableReference {
-        return .init(
-            referencedContainer: referencedContainer,
-            blueprint: self,
-            buildableName: buildableName,
-            blueprintName: name
-        )
-    }
-
-    var schemeName: String {
-        // The XcodeProj write logic does not like slashes (/) in the scheme
-        // name. It fails to write with a missing folder error.
-        return buildableName.replacingOccurrences(
-            of: #"[/]"#,
-            with: "_",
-            options: .regularExpression
-        )
-    }
-
-    var isTestable: Bool {
-        return productType?.isTestBundle ?? false
-    }
-
-    var isLaunchable: Bool {
-        return productType?.isExecutable ?? false
-    }
-}

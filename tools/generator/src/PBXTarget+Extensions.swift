@@ -5,8 +5,8 @@ public extension PBXTarget {
     func getBuildableName() throws -> String {
         guard let buildableName = productName else {
             throw PreconditionError(message: """
-`productName` not set on target
-""")
+            `productName` not set on target
+            """)
         }
         return buildableName
     }
