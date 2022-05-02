@@ -621,7 +621,7 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example_entitlements.entitlements";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
