@@ -22,7 +22,7 @@ struct FilePathResolver: Equatable {
 
     func resolve(
         _ filePath: FilePath,
-        useBuildDir: Bool = true,
+        useGenDir: Bool = false,
         useOriginalGeneratedFiles: Bool = false,
         mode: Mode = .buildSetting
     ) throws -> Path {
@@ -63,7 +63,18 @@ struct FilePathResolver: Equatable {
 """)
                 }
                 return bazelOutDir + filePath.path
-            } else if useBuildDir {
+            } else if useGenDir {
+                let copiedBazelOutDir: Path
+                switch mode {
+                case .buildSetting:
+                    copiedBazelOutDir = "$(GEN_DIR)"
+                case .script:
+                    copiedBazelOutDir = "$GEN_DIR"
+                case .srcRoot:
+                    copiedBazelOutDir = linksDirectory + "gen_dir"
+                }
+                return copiedBazelOutDir + filePath.path
+            } else {
                 let buildDir: Path
                 switch mode {
                 case .buildSetting:
@@ -76,17 +87,6 @@ struct FilePathResolver: Equatable {
 """)
                 }
                 return buildDir + "bazel-out" + filePath.path
-            } else {
-                let copiedBazelOutDir: Path
-                switch mode {
-                case .buildSetting:
-                    copiedBazelOutDir = "$(GEN_DIR)"
-                case .script:
-                    copiedBazelOutDir = "$GEN_DIR"
-                case .srcRoot:
-                    copiedBazelOutDir = linksDirectory + "gen_dir"
-                }
-                return copiedBazelOutDir + filePath.path
             }
         case .internal:
             let internalDir: Path
