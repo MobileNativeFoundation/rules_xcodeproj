@@ -7,6 +7,7 @@ objc_library(
             # Headers included here on purpose, to test `hdrs` collection logic
             "**/*.h",
         ],
+        allow_empty = True,
     ),
     hdrs = glob(["**/*.h"]),
     includes = [""],

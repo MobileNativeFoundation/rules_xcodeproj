@@ -21,7 +21,6 @@ test_suite(
 
 bzl_library(
     name = "starlark_tests_bzls",
-    srcs = glob(["*_tests.bzl"]),
     deps = [
         "//test/internal/opts:starlark_tests_bzls",
     ],
