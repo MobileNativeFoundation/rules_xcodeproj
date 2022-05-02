@@ -155,8 +155,15 @@ Target "\(id)" not found in `pbxTargets`
             }
 
             if let entitlements = target.entitlements {
-                let entitlementsPath = try filePathResolver.resolve(entitlements)
-                buildSettings["CODE_SIGN_ENTITLEMENTS"] = entitlementsPath.string.quoted
+                let entitlementsPath = try filePathResolver.resolve(
+                    entitlements,
+                    // Path needs to use `$(GEN_DIR)` to ensure XCBuild picks it
+                    // up on first generation
+                    useBuildDir: false
+                )
+                buildSettings["CODE_SIGN_ENTITLEMENTS"] = entitlementsPath
+                    .string.quoted
+
                 // This is required because otherwise Xcode fails the build due 
                 // the entitlements file being modified by the Bazel build script.
                 buildSettings["CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION"] = true
