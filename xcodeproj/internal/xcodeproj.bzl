@@ -153,6 +153,7 @@ def _xcodeproj_transition_impl(settings, attr):
 
     return {
         "//command_line_option:compilation_mode": compilation_mode,
+        "//xcodeproj/internal:build_mode": attr.build_mode,
     }
 
 _xcodeproj_transition = transition(
@@ -162,6 +163,7 @@ _xcodeproj_transition = transition(
     ],
     outputs = [
         "//command_line_option:compilation_mode",
+        "//xcodeproj/internal:build_mode",
     ],
 )
 

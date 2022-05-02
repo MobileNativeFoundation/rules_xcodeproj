@@ -452,7 +452,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/external/examples_cc_external";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -466,7 +466,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/external/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -503,7 +503,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/external/examples_cc_external",
 				);
 			};
 			name = Debug;
@@ -512,7 +512,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/examples/cc/lib";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -526,7 +526,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib/private",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -563,7 +563,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin",
 				);
 			};
 			name = Debug;
@@ -572,7 +572,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/tool";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/examples/cc/tool";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -611,7 +611,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-1c975e2849a6/examples/cc/tool/tool.LinkFileList",
+					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-d98d8f686a75/examples/cc/tool/tool.LinkFileList",
 					"-Wl,-rpath,/usr/lib/swift",
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
@@ -626,16 +626,16 @@
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib2/includes",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2/includes",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/external/examples_cc_external",
 					"$(BAZEL_EXTERNAL)/bazel_tools",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/external/bazel_tools",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/external/bazel_tools",
 				);
 			};
 			name = Debug;
@@ -644,7 +644,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/examples/cc/lib2";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -689,12 +689,12 @@
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib2/includes",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin/examples/cc/lib2/includes",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-1c975e2849a6/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-d98d8f686a75/bin",
 				);
 			};
 			name = Debug;

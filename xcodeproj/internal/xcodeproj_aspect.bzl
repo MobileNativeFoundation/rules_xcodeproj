@@ -1,5 +1,6 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
     ":default_input_file_attributes_aspect.bzl",
     "default_input_file_attributes_aspect",
@@ -48,6 +49,10 @@ xcodeproj_aspect = aspect(
     implementation = _xcodeproj_aspect_impl,
     attr_aspects = ["*"],
     attrs = {
+        "_build_mode": attr.label(
+            default = Label("//xcodeproj/internal:build_mode"),
+            providers = [BuildSettingInfo],
+        ),
         "_cc_toolchain": attr.label(default = Label(
             "@bazel_tools//tools/cpp:current_cc_toolchain",
         )),
