@@ -21,9 +21,16 @@ extension Generator {
         buildSettings.merge([
             "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
             "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
+            // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
+            // `DEPLOYMENT_LOCATION` is set. It does prevent `DYLD_LIBRARY_PATH`
+            // from being modified though.
+            "BUILT_PRODUCTS_DIR": "$(BUILD_DIR)",
             "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)",
+            "DEPLOYMENT_LOCATION": true,
+            "DSTROOT": "$(PROJECT_TEMP_DIR)",
             "GEN_DIR": "$(LINKS_DIR)/gen_dir",
             "LINKS_DIR": "$(INTERNAL_DIR)/links",
+            "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)",
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
 """,

@@ -526,6 +526,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleUITests";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -595,6 +596,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/ExampleTests";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -655,6 +657,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-fastbuild-ST-4e14a11cd4e6/bin/examples/tvos_app/Example/Example_entitlements.entitlements";
@@ -718,11 +721,15 @@
 				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";
 				BAZEL_OUT = "$(BUILD_DIR)/real-bazel-out";
 				BAZEL_PATH = bazel;
+				BUILT_PRODUCTS_DIR = "$(BUILD_DIR)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				GEN_DIR = "$(LINKS_DIR)/gen_dir";
+				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LINKS_DIR = "$(INTERNAL_DIR)/links";
 				ONLY_ACTIVE_ARCH = YES;

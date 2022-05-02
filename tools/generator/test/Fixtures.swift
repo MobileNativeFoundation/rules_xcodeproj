@@ -1428,6 +1428,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
+                "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "GENERATE_INFOPLIST_FILE": true,
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
@@ -1460,6 +1461,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
+                "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
@@ -1479,6 +1481,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
+                "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
@@ -1504,6 +1507,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
+                "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
                     "-filelist",
