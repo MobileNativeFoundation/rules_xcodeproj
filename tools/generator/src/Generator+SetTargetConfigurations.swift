@@ -141,7 +141,10 @@ Target "\(id)" not found in `pbxTargets`
             buildSettings["TARGET_NAME"] = target.name
 
             if let infoPlist = target.infoPlist {
-                var infoPlistPath = try filePathResolver.resolve(infoPlist)
+                var infoPlistPath = try filePathResolver.resolve(
+                    infoPlist,
+                    useGenDir: true
+                )
                 
                 // If the plist is generated, use the patched version that
                 // removes a specific key that causes a warning when building
@@ -159,7 +162,7 @@ Target "\(id)" not found in `pbxTargets`
                     entitlements,
                     // Path needs to use `$(GEN_DIR)` to ensure XCBuild picks it
                     // up on first generation
-                    useBuildDir: false
+                    useGenDir: true
                 )
                 buildSettings["CODE_SIGN_ENTITLEMENTS"] = entitlementsPath
                     .string.quoted
@@ -170,7 +173,7 @@ Target "\(id)" not found in `pbxTargets`
             }
 
             if let pch = target.inputs.pch {
-                let pchPath = try filePathResolver.resolve(pch)
+                let pchPath = try filePathResolver.resolve(pch, useGenDir: true)
 
                 buildSettings["GCC_PREFIX_HEADER"] = pchPath.string.quoted
             }
