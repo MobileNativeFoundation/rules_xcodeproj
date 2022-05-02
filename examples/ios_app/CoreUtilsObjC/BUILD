@@ -1,7 +1,10 @@
 objc_library(
     name = "CoreUtilsObjC",
     srcs = glob(
-        ["**/*.m"],
+        [
+            "**/*.m",
+            "**/*.mm",
+        ],
         # Headers included here on purpose, to test `hdrs` collection logic
         ["**/*.h"],
     ),
@@ -9,6 +12,7 @@ objc_library(
     includes = [""],
     module_name = "CoreUtils",
     pch = "CoreUtils/CoreUtils.pch",
+    sdk_dylibs = ["c++"],
     tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = [

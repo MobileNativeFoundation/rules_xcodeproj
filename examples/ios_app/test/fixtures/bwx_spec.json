@@ -157,6 +157,7 @@
                     "Foundation",
                     "-weak_framework",
                     "SwiftUI",
+                    "-lc++",
                     "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "CoreUtils",
@@ -176,7 +177,7 @@
                 ],
                 "pch": "CoreUtilsObjC/CoreUtils/CoreUtils.pch",
                 "srcs": [
-                    "CoreUtilsObjC/Answers.m"
+                    "CoreUtilsObjC/Answers.mm"
                 ]
             },
             "is_swift": false,
@@ -404,6 +405,7 @@
                     "Foundation",
                     "-weak_framework",
                     "SwiftUI",
+                    "-lc++",
                     "-ObjC"
                 ],
                 "OTHER_SWIFT_FLAGS": "-Fthird_party -Fexternal/examples_ios_app_external",
@@ -648,6 +650,7 @@
                     "Foundation",
                     "-weak_framework",
                     "SwiftUI",
+                    "-lc++",
                     "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "ExampleObjcTests",
@@ -918,6 +921,7 @@
                     "Foundation",
                     "-weak_framework",
                     "SwiftUI",
+                    "-lc++",
                     "-ObjC"
                 ],
                 "OTHER_SWIFT_FLAGS": "-Fthird_party -Fexternal/examples_ios_app_external",
@@ -1349,6 +1353,7 @@
                     "Foundation",
                     "-weak_framework",
                     "SwiftUI",
+                    "-lc++",
                     "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "Utils",
