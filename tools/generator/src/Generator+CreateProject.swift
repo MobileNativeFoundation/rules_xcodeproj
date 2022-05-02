@@ -30,7 +30,7 @@ extension Generator {
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
             "GEN_DIR": "$(LINKS_DIR)/gen_dir",
             "LINKS_DIR": "$(INTERNAL_DIR)/links",
-            "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)",
+            "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
 """,
