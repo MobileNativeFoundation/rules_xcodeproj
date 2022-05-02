@@ -27,7 +27,7 @@ public extension PBXTarget {
         // The XcodeProj write logic does not like slashes (/) in the scheme
         // name. It fails to write with a missing folder error.
         return try getBuildableName()
-        .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "/", with: "_")
     }
 
     var isTestable: Bool {
