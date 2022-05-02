@@ -64,8 +64,8 @@ struct FilePathResolver: Equatable {
                     bazelOutDir = "$BAZEL_OUT"
                 case .srcRoot:
                     throw PreconditionError(message: """
-                    `useOriginalGeneratedFiles = true` and `mode` == `.srcRoot`
-                    """)
+`useOriginalGeneratedFiles = true` and `mode` == `.srcRoot`
+""")
                 }
                 return bazelOutDir + filePath.path
             } else if useGenDir {
@@ -88,8 +88,8 @@ struct FilePathResolver: Equatable {
                     buildDir = "$BUILD_DIR"
                 case .srcRoot:
                     throw PreconditionError(message: """
-                    `useBuildDir = true` and `mode` == `.srcRoot`
-                    """)
+`useBuildDir = true` and `mode` == `.srcRoot`
+""")
                 }
                 return buildDir + "bazel-out" + filePath.path
             }
