@@ -49,6 +49,7 @@
 		E24F005794DBF4FAC13BCABC /* ExternalFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 711E9FC3B7C0052C8DDBA1C9 /* ExternalFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E42FEF40785F7445F33C1307 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D76639B60E2E2CA3019CBCA /* Localizable.strings */; };
 		E622F80C56CEC483C5E577E5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF64499057F57FE175119DD /* ExampleTests.swift */; };
+		F3B0FD689CE3C0600EA95DD9 /* Answers.h in Sources */ = {isa = PBXBuildFile; fileRef = D56500D4BDA570832AE3734D /* Answers.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1109,6 +1110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD4E817DEB1ED2B9E3F6F7A8 /* Answers.mm in Sources */,
+				F3B0FD689CE3C0600EA95DD9 /* Answers.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
