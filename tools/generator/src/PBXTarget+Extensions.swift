@@ -29,7 +29,7 @@ public extension PBXTarget {
     }
 
     var isLaunchable: Bool {
-        return productType?.isExecutable ?? false
+        return productType?.isLaunchable ?? false
     }
 
     var defaultBuildConfigurationName: String {
