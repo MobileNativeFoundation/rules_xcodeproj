@@ -69,36 +69,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		046B8A4A93C2A9CFCABF22C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1AD4E21BF05EA13F3C0E032B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		2B44F67549E67DB7CD04B8A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		39004B79217BED4A67CB9A93 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		4497EE264CD72D45B78E5205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		44C19A56FE797949930D145D /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D13467AC1061414CAD92AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		52834A71B9229C1E12452456 /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
 		75AFCD0AE3F74ABC41475218 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		8A36CA287ABB5359FEC0F830 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		901D2862099E6DE7BB2D84DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA8B40F3394AF193E0043C9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		AD6FBABBE0C0A9D915CBF85B /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B08A809AF7FC433536160D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D227CE711F51FF221F83B7EA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D38C99DB8943591C81118DBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D6E8EC5800B28DC7A5B63624 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		DB017F09DAA174C86C32DE47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		DEF1BD617010A2A06F82EDD2 /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
 		E470DDDC0990D96A685DB11C /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0E59FF263E41FFE42D58A1 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		083AF4B2C93542D2E28E5918 /* tvos_app */ = {
-			isa = PBXGroup;
-			children = (
-				2ACEC1C546E9B7840BB7F382 /* Example */,
-				A5E6FCA929EA2C81FBA4D1C5 /* ExampleTests */,
-				2ED1BB9D913567D9730ABA10 /* ExampleUITests */,
-			);
-			path = tvos_app;
-			sourceTree = "<group>";
-		};
 		1F75B84D472E4F903E58A310 /* apple */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,21 +97,20 @@
 			path = apple;
 			sourceTree = "<group>";
 		};
-		2ACEC1C546E9B7840BB7F382 /* Example */ = {
+		24747FA320A4108D74ACEBB8 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				D9E0B7B0F1BFB47311DAB30F /* Example-intermediates */,
-				DEF1BD617010A2A06F82EDD2 /* Example_entitlements.entitlements */,
+				3DE64236562BCFB5B39D5CC3 /* examples */,
 			);
-			path = Example;
+			path = bin;
 			sourceTree = "<group>";
 		};
-		2ED1BB9D913567D9730ABA10 /* ExampleUITests */ = {
+		3DE64236562BCFB5B39D5CC3 /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				C608D70C5577748422711EDF /* ExampleUITests.__internal__.__test_bundle-intermediates */,
+				5E67A15228EFD4CBE650E9CA /* tvos_app */,
 			);
-			path = ExampleUITests;
+			path = examples;
 			sourceTree = "<group>";
 		};
 		593E7C82FAAD94A7E6A04318 /* Products */ = {
@@ -134,20 +123,39 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		753268662FBC8ED78F92E88E /* examples */ = {
+		5E67A15228EFD4CBE650E9CA /* tvos_app */ = {
 			isa = PBXGroup;
 			children = (
-				083AF4B2C93542D2E28E5918 /* tvos_app */,
+				839EB1485330625DC28083DD /* Example */,
+				8E97E3D2F4F74C6BA2AD1E37 /* ExampleTests */,
+				71701FBFA2361F25933E1798 /* ExampleUITests */,
 			);
-			path = examples;
+			path = tvos_app;
 			sourceTree = "<group>";
 		};
-		871C58B635798AE8B859A78F /* ExampleTests.__internal__.__test_bundle-intermediates */ = {
+		6BB7176BC29F208A15CD41A9 /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
 			isa = PBXGroup;
 			children = (
-				2B44F67549E67DB7CD04B8A1 /* Info.plist */,
+				4497EE264CD72D45B78E5205 /* Info.plist */,
 			);
-			path = "ExampleTests.__internal__.__test_bundle-intermediates";
+			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
+		71701FBFA2361F25933E1798 /* ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6BB7176BC29F208A15CD41A9 /* ExampleUITests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleUITests;
+			sourceTree = "<group>";
+		};
+		839EB1485330625DC28083DD /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				C7CFEE1AF7122043ADF4205E /* Example-intermediates */,
+				52834A71B9229C1E12452456 /* Example_entitlements.entitlements */,
+			);
+			path = Example;
 			sourceTree = "<group>";
 		};
 		8A4520AA26B6158FA29DFA58 /* Example */ = {
@@ -159,6 +167,14 @@
 				DB017F09DAA174C86C32DE47 /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		8E97E3D2F4F74C6BA2AD1E37 /* ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				CA8A93BE4E1107F77B3B0F70 /* ExampleTests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleTests;
 			sourceTree = "<group>";
 		};
 		962A94CEC4834EE66167AEEF /* ExampleTests */ = {
@@ -179,12 +195,12 @@
 			path = test/fixtures/tvos_app/bwb.xcodeproj/rules_xcodeproj/links/external;
 			sourceTree = "<group>";
 		};
-		A5E6FCA929EA2C81FBA4D1C5 /* ExampleTests */ = {
+		AB07CE921B317BA9A7FA63A1 /* applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319 */ = {
 			isa = PBXGroup;
 			children = (
-				871C58B635798AE8B859A78F /* ExampleTests.__internal__.__test_bundle-intermediates */,
+				24747FA320A4108D74ACEBB8 /* bin */,
 			);
-			path = ExampleTests;
+			path = "applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319";
 			sourceTree = "<group>";
 		};
 		B90C93321F57509ADC051F9E /* testing */ = {
@@ -213,26 +229,26 @@
 		C407A8E68D8C611448A3E699 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
-				F43528CBB1F71BB1AC5CD5FE /* applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3 */,
+				AB07CE921B317BA9A7FA63A1 /* applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319 */,
 			);
 			name = "Bazel Generated Files";
 			path = test/fixtures/tvos_app/bwb.xcodeproj/rules_xcodeproj/links/gen_dir;
 			sourceTree = "<group>";
 		};
-		C608D70C5577748422711EDF /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
+		C7CFEE1AF7122043ADF4205E /* Example-intermediates */ = {
 			isa = PBXGroup;
 			children = (
-				B08A809AF7FC433536160D00 /* Info.plist */,
-			);
-			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
-			sourceTree = "<group>";
-		};
-		D9E0B7B0F1BFB47311DAB30F /* Example-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				046B8A4A93C2A9CFCABF22C0 /* Info.plist */,
+				901D2862099E6DE7BB2D84DE /* Info.plist */,
 			);
 			path = "Example-intermediates";
+			sourceTree = "<group>";
+		};
+		CA8A93BE4E1107F77B3B0F70 /* ExampleTests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				D38C99DB8943591C81118DBB /* Info.plist */,
+			);
+			path = "ExampleTests.__internal__.__test_bundle-intermediates";
 			sourceTree = "<group>";
 		};
 		DEDBB9862662A833DD5D663E /* build_bazel_rules_apple */ = {
@@ -241,14 +257,6 @@
 				1F75B84D472E4F903E58A310 /* apple */,
 			);
 			path = build_bazel_rules_apple;
-			sourceTree = "<group>";
-		};
-		E0989A83615208C9B5CAF41C /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				753268662FBC8ED78F92E88E /* examples */,
-			);
-			path = bin;
 			sourceTree = "<group>";
 		};
 		E3A32E13D18203BECE3A34CF /* ExampleUITests */ = {
@@ -270,14 +278,6 @@
 				593E7C82FAAD94A7E6A04318 /* Products */,
 				C047AF1D451C7E165914273D /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		F43528CBB1F71BB1AC5CD5FE /* applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3 */ = {
-			isa = PBXGroup;
-			children = (
-				E0989A83615208C9B5CAF41C /* bin */,
-			);
-			path = "applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3";
 			sourceTree = "<group>";
 		};
 		FE08DC4FE2EB3C1D3FAC175F /* tvos_app */ = {
@@ -525,7 +525,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/ExampleUITests";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -538,7 +538,7 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				OTHER_CFLAGS = (
 					"-fstack-protector",
 					"-Wall",
@@ -623,11 +623,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/Example";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/Example/Example_entitlements.entitlements";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -637,7 +637,7 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/Example/Example-intermediates/Info.xcode.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -686,7 +686,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/ExampleTests";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -700,7 +700,7 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				OTHER_CFLAGS = (
 					"-fstack-protector",
 					"-Wall",
@@ -733,13 +733,13 @@
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = appletvsimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/Example";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
-				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example$(TARGET_BUILD_SUBPATH)";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/Example$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = ExampleTests.__internal__.__test_bundle;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-8c1599e2f1a3/bin/examples/tvos_app/Example/Example.app/Example";
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-483c3f289319/bin/examples/tvos_app/Example/Example.app/Example";
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Debug;

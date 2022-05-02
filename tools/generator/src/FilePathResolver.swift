@@ -13,6 +13,11 @@ struct FilePathResolver: Equatable {
     let internalDirectory: Path
     private let linksDirectory: Path
 
+    /// In XcodeProj, a `referencedContainer` in a `XCScheme.BuildableReference`
+    /// accepts a string in the format `container:<path-to-xcodeproj-dir>`. This
+    /// property provides the value.
+    lazy var containerReference = "container:\(workspaceOutputPath)"
+
     init(internalDirectoryName: String, workspaceOutputPath: Path) {
         self.internalDirectoryName = internalDirectoryName
         self.workspaceOutputPath = workspaceOutputPath
