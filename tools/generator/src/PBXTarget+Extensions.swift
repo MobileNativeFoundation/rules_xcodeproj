@@ -42,9 +42,4 @@ public extension PBXTarget {
         return buildConfigurationList?.buildConfigurations.first?.name ??
             "Debug"
     }
-
-    var defaultBuildConfigurationName: String {
-        return buildConfigurationList?.buildConfigurations.first?.name ??
-            "Debug"
-    }
 }

@@ -4,17 +4,7 @@ import XcodeProj
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
-        workspaceOutputPath: Path,
-        pbxTargets: [TargetID: PBXNativeTarget]
-    ) throws -> [XCScheme] {
-        return try createXCSchemes(
-            referencedContainer: .init(xcodeprojPath: workspaceOutputPath),
-            pbxTargets: pbxTargets
-        )
-    }
-
-    static func createXCSchemes(
-        referencedContainer: XcodeProjContainerReference,
+        referencedContainer: String,
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
         return try pbxTargets.map { $0.1 }.map { pbxTarget in
@@ -25,11 +15,12 @@ extension Generator {
         }
     }
 
+    /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCScheme(
-        referencedContainer: XcodeProjContainerReference,
+        referencedContainer: String,
         pbxTarget: PBXNativeTarget
     ) throws -> XCScheme {
-        let buildableReference = pbxTarget.createBuildableReference(
+        let buildableReference = try pbxTarget.createBuildableReference(
             referencedContainer: referencedContainer
         )
         let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
@@ -45,7 +36,10 @@ extension Generator {
         } else {
             buildEntries = [.init(
                 buildableReference: buildableReference,
-                buildFor: [.running, .testing, .profiling, .archiving, .analyzing]
+                buildFor: [
+                    .running, .testing, .profiling, .archiving,
+                    .analyzing,
+                ]
             )]
             testables = []
         }
@@ -80,7 +74,7 @@ extension Generator {
         )
 
         let scheme = XCScheme(
-            name: pbxTarget.schemeName,
+            name: try pbxTarget.getSchemeName(),
             lastUpgradeVersion: nil,
             version: nil,
             buildAction: buildAction,

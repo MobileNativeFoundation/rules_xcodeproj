@@ -5,10 +5,7 @@ import XCTest
 @testable import generator
 
 class CreateXCSchemesTests: XCTestCase {
-    let workspaceOutputPath = Path("examples/foo/Foo.xcodeproj")
-    lazy var referencedContainer = XcodeProjContainerReference(
-        xcodeprojPath: workspaceOutputPath
-    )
+    let referencedContainer = "container:examples/foo/Foo.xcodeproj"
     let pbxTargetsDict: [TargetID: PBXNativeTarget] =
         Fixtures.pbxTargetsWithDependencies(
             in: Fixtures.pbxProj(),
@@ -21,21 +18,22 @@ class CreateXCSchemesTests: XCTestCase {
         shouldExpectBuildActionEntries: Bool,
         shouldExpectTestables: Bool,
         shouldExpectBuildableProductRunnable: Bool
-    ) {
+    ) throws {
         let targetID = TargetID(targetName)
         guard let target = pbxTargetsDict[targetID] else {
             XCTFail("Did not find the target '\(targetName)'")
             return
         }
-        guard let scheme = schemesDict[target.schemeName] else {
-            XCTFail("Did not find a scheme named \(target.schemeName)")
+        let schemeName = try target.getSchemeName()
+        guard let scheme = schemesDict[schemeName] else {
+            XCTFail("Did not find a scheme named \(schemeName)")
             return
         }
 
         // Expected values
 
         let expectedBuildConfigurationName = target.defaultBuildConfigurationName
-        let expectedBuildableReference = target.createBuildableReference(
+        let expectedBuildableReference = try target.createBuildableReference(
             referencedContainer: referencedContainer
         )
         let expectedBuildActionEntries: [XCScheme.BuildAction.Entry] =
@@ -137,7 +135,7 @@ class CreateXCSchemesTests: XCTestCase {
 
     func test_createXCSchemes_WithNoTargets() throws {
         let schemes = try Generator.createXCSchemes(
-            workspaceOutputPath: workspaceOutputPath,
+            referencedContainer: referencedContainer,
             pbxTargets: [:]
         )
         let expected = [XCScheme]()
@@ -146,7 +144,7 @@ class CreateXCSchemesTests: XCTestCase {
 
     func test_createXCSchemes_WithTargets() throws {
         let schemes = try Generator.createXCSchemes(
-            workspaceOutputPath: workspaceOutputPath,
+            referencedContainer: referencedContainer,
             pbxTargets: pbxTargetsDict
         )
         XCTAssertEqual(schemes.count, pbxTargetsDict.count)
@@ -154,7 +152,7 @@ class CreateXCSchemesTests: XCTestCase {
         let schemesDict = Dictionary(uniqueKeysWithValues: schemes.map { ($0.name, $0) })
 
         // Library
-        assertScheme(
+        try assertScheme(
             schemesDict: schemesDict,
             targetName: "A 1",
             shouldExpectBuildActionEntries: true,
@@ -163,7 +161,7 @@ class CreateXCSchemesTests: XCTestCase {
         )
 
         // Testable and launchable
-        assertScheme(
+        try assertScheme(
             schemesDict: schemesDict,
             targetName: "B 2",
             shouldExpectBuildActionEntries: false,
@@ -172,7 +170,7 @@ class CreateXCSchemesTests: XCTestCase {
         )
 
         // Launchable, not testable
-        assertScheme(
+        try assertScheme(
             schemesDict: schemesDict,
             targetName: "A 2",
             shouldExpectBuildActionEntries: true,

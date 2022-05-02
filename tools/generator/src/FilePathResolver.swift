@@ -7,7 +7,6 @@ struct FilePathResolver: Equatable {
         case srcRoot
     }
 
-
     let internalDirectoryName: String
     private let workspaceOutputPath: Path
     let internalDirectory: Path
@@ -16,13 +15,14 @@ struct FilePathResolver: Equatable {
     /// In XcodeProj, a `referencedContainer` in a `XCScheme.BuildableReference`
     /// accepts a string in the format `container:<path-to-xcodeproj-dir>`. This
     /// property provides the value.
-    lazy var containerReference = "container:\(workspaceOutputPath)"
+    let containerReference: String
 
     init(internalDirectoryName: String, workspaceOutputPath: Path) {
         self.internalDirectoryName = internalDirectoryName
         self.workspaceOutputPath = workspaceOutputPath
         internalDirectory = workspaceOutputPath + internalDirectoryName
         linksDirectory = internalDirectory + "links"
+        containerReference = "container:\(workspaceOutputPath)"
     }
 
     func resolve(
@@ -64,8 +64,8 @@ struct FilePathResolver: Equatable {
                     bazelOutDir = "$BAZEL_OUT"
                 case .srcRoot:
                     throw PreconditionError(message: """
-`useOriginalGeneratedFiles = true` and `mode` == `.srcRoot`
-""")
+                    `useOriginalGeneratedFiles = true` and `mode` == `.srcRoot`
+                    """)
                 }
                 return bazelOutDir + filePath.path
             } else if useGenDir {
@@ -88,8 +88,8 @@ struct FilePathResolver: Equatable {
                     buildDir = "$BUILD_DIR"
                 case .srcRoot:
                     throw PreconditionError(message: """
-`useBuildDir = true` and `mode` == `.srcRoot`
-""")
+                    `useBuildDir = true` and `mode` == `.srcRoot`
+                    """)
                 }
                 return buildDir + "bazel-out" + filePath.path
             }

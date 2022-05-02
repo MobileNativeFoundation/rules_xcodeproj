@@ -38,6 +38,7 @@ final class GeneratorTests: XCTestCase {
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
+        let referencedContainer = filePathResolver.containerReference
 
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
@@ -396,24 +397,24 @@ final class GeneratorTests: XCTestCase {
         // MARK: createXCSchemes()
 
         struct CreateXCSchemesCalled: Equatable {
-            let workspaceOutputPath: Path
+            let referencedContainer: String
             let pbxTargets: [TargetID: PBXNativeTarget]
         }
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
-            workspaceOutputPath: Path,
+            referencedContainer: String,
             pbxTargets: [TargetID: PBXNativeTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
-                workspaceOutputPath: workspaceOutputPath,
+                referencedContainer: referencedContainer,
                 pbxTargets: pbxTargets
             ))
             return schemes
         }
 
         let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
-            workspaceOutputPath: workspaceOutputPath,
+            referencedContainer: referencedContainer,
             pbxTargets: pbxTargets
         )]
 

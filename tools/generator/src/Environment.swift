@@ -77,7 +77,7 @@ struct Environment {
     ) throws -> Void
 
     let createXCSchemes: (
-        _ workspaceOutputPath: Path,
+        _ referencedContainer: String,
         _ pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme]
 

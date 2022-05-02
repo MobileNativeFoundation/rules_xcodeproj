@@ -136,7 +136,7 @@ class Generator {
         )
 
         let schemes = try environment.createXCSchemes(
-            workspaceOutputPath,
+            filePathResolver.containerReference,
             pbxTargets
         )
         let sharedData = environment.createXCSharedData(schemes)
