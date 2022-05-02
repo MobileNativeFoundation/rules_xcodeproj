@@ -19,5 +19,6 @@ jobs:
       - name: Check
         uses: mristin/opinionated-commit-message@v3.0.0
         with:
+          allow-one-liners: 'true'
           max-subject-line-length: '80'
           skip-body-check: 'true'
