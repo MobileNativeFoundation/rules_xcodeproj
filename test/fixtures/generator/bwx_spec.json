@@ -119,6 +119,7 @@
             },
             "modulemaps": [],
             "name": "tests",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/tools/generator/test",
             "platform": {
                 "arch": "x86_64",
@@ -219,6 +220,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "tests.library",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/tools/generator/test",
             "platform": {
                 "arch": "x86_64",
@@ -346,6 +348,7 @@
             },
             "modulemaps": [],
             "name": "generator",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/tools/generator",
             "platform": {
                 "arch": "x86_64",
@@ -449,6 +452,7 @@
                     "tools/generator/src/Inputs.swift",
                     "tools/generator/src/LinkerInputs.swift",
                     "tools/generator/src/Logger.swift",
+                    "tools/generator/src/Outputs.swift",
                     "tools/generator/src/PBXGroup+Extensions.swift",
                     "tools/generator/src/PBXProductType+Extensions.swift",
                     "tools/generator/src/PBXTarget+Extensions.swift",
@@ -463,6 +467,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "generator.library",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/tools/generator",
             "platform": {
                 "arch": "x86_64",
@@ -760,6 +765,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "OrderedCollections",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_apple_swift_collections",
             "platform": {
                 "arch": "x86_64",
@@ -844,6 +850,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "PathKit",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_kylef_pathkit",
             "platform": {
                 "arch": "x86_64",
@@ -1026,6 +1033,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "CustomDump",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_pointfreeco_swift_custom_dump",
             "platform": {
                 "arch": "x86_64",
@@ -1115,6 +1123,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "XCTestDynamicOverlay",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
             "platform": {
                 "arch": "x86_64",
@@ -1215,6 +1224,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "AEXML",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tadija_aexml",
             "platform": {
                 "arch": "x86_64",
@@ -1678,6 +1688,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "XcodeProj",
+            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tuist_xcodeproj",
             "platform": {
                 "arch": "x86_64",

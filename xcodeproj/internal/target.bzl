@@ -81,6 +81,19 @@ def _should_bundle_resources(ctx):
     """
     return ctx.attr._build_mode[BuildSettingInfo].value != "bazel"
 
+def _should_include_outputs(ctx):
+    """Determines whether outputs should be included in the generated project.
+
+    Args:
+        ctx: The aspect context.
+
+    Returns:
+        `True` if outputs should be included, `False` otherwise. This will be
+        `True` for Build with Bazel projects and portions of the build that
+        need to build with Bazel (i.e. Focused Projects).
+    """
+    return ctx.attr._build_mode[BuildSettingInfo].value != "xcode"
+
 # Top-level targets
 
 def _process_top_level_properties(
@@ -213,6 +226,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         swift_info = swift_info,
         id = id,
         transitive_infos = transitive_infos,
+        should_produce_dto = _should_include_outputs(ctx = ctx),
     )
 
     build_settings = {}
@@ -373,6 +387,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             info_plist = info_plist,
             entitlements = entitlements_file_path,
             dependencies = dependencies,
+            outputs = outputs,
         ),
     )
 
@@ -488,6 +503,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         swift_info = swift_info,
         id = id,
         transitive_infos = transitive_infos,
+        should_produce_dto = _should_include_outputs(ctx = ctx),
     )
 
     resource_bundles = resource_bundle_products.collect(
@@ -550,6 +566,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             info_plist = None,
             entitlements = None,
             dependencies = dependencies,
+            outputs = outputs,
         ),
     )
 
@@ -637,6 +654,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         swift_info = None,
         id = id,
         transitive_infos = transitive_infos,
+        should_produce_dto = _should_include_outputs(ctx = ctx),
     )
 
     resource_bundles = resource_bundle_products.collect(
@@ -686,6 +704,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             info_plist = None,
             entitlements = None,
             dependencies = dependencies,
+            outputs = outputs,
         )
     else:
         target = None

@@ -64,7 +64,8 @@ final class TargetMergingTests: XCTestCase {
                 ]
             ),
             // Inherited "A 1"'s dependencies and removed "A 1"
-            dependencies: ["C 1", "R 1"]
+            dependencies: ["C 1", "R 1"],
+            outputs: targets["A 2"]!.outputs.merging(targets["A 1"]!.outputs)
         )
         expectedTargets["B 2"] = Target.mock(
             packageBinDir: targets["B 1"]!.packageBinDir,
@@ -83,7 +84,8 @@ final class TargetMergingTests: XCTestCase {
                 staticLibraries: []
             ),
             // Inherited "B 1"'s dependencies and removed "A 1"
-            dependencies: ["A 2"]
+            dependencies: ["A 2"],
+            outputs: targets["B 2"]!.outputs.merging(targets["B 1"]!.outputs)
         )
         expectedTargets["B 3"] = Target.mock(
             packageBinDir: targets["B 1"]!.packageBinDir,
@@ -102,7 +104,8 @@ final class TargetMergingTests: XCTestCase {
                 staticLibraries: []
             ),
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
-            dependencies: ["A 2"]
+            dependencies: ["A 2"],
+            outputs: targets["B 3"]!.outputs.merging(targets["B 1"]!.outputs)
         )
 
         // Act

@@ -14,13 +14,14 @@ extension Target {
         isSwift: Bool = false,
         testHost: TargetID? = nil,
         buildSettings: [String: BuildSetting] = [:],
-        searchPaths: SearchPaths = SearchPaths(),
+        searchPaths: SearchPaths = .init(),
         modulemaps: [FilePath] = [],
         swiftmodules: [FilePath] = [],
         resourceBundles: Set<FilePath> = [],
-        inputs: Inputs = Inputs(),
-        linkerInputs: LinkerInputs = LinkerInputs(),
-        dependencies: Set<TargetID> = []
+        inputs: Inputs = .init(),
+        linkerInputs: LinkerInputs = .init(),
+        dependencies: Set<TargetID> = [],
+        outputs : Outputs = .init()
     ) -> Self {
         return Target(
             name: product.name,
@@ -43,7 +44,8 @@ extension Target {
             resourceBundles: resourceBundles,
             inputs: inputs,
             linkerInputs: linkerInputs,
-            dependencies: dependencies
+            dependencies: dependencies,
+            outputs: outputs
         )
     }
 }

@@ -226,6 +226,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "CoreUtilsObjC",
+            "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/CoreUtilsObjC",
             "platform": {
                 "arch": "x86_64",
@@ -363,6 +364,12 @@
             },
             "modulemaps": [],
             "name": "Example",
+            "outputs": {
+                "b": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/Example/Example.app",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/Example",
             "platform": {
                 "arch": "x86_64",
@@ -474,6 +481,22 @@
                 }
             ],
             "name": "Example.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/Example/Example.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/Example/Example.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/Example/Example.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/Example",
             "platform": {
                 "arch": "x86_64",
@@ -600,6 +623,12 @@
             },
             "modulemaps": [],
             "name": "ExampleObjcTests.__internal__.__test_bundle",
+            "outputs": {
+                "b": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleObjcTests/ExampleObjcTests.xctest",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleObjcTests",
             "platform": {
                 "arch": "x86_64",
@@ -693,6 +722,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "ExampleObjcTests.library",
+            "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleObjcTests",
             "platform": {
                 "arch": "x86_64",
@@ -819,6 +849,12 @@
             },
             "modulemaps": [],
             "name": "ExampleTests.__internal__.__test_bundle",
+            "outputs": {
+                "b": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleTests/ExampleTests.xctest",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleTests",
             "platform": {
                 "arch": "x86_64",
@@ -937,6 +973,22 @@
                 }
             ],
             "name": "ExampleTests.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleTests/ExampleTests.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleTests/ExampleTests.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleTests/ExampleTests.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleTests",
             "platform": {
                 "arch": "x86_64",
@@ -1068,6 +1120,12 @@
             },
             "modulemaps": [],
             "name": "ExampleUITests.__internal__.__test_bundle",
+            "outputs": {
+                "b": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleUITests/ExampleUITests.xctest",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleUITests",
             "platform": {
                 "arch": "x86_64",
@@ -1154,6 +1212,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "ExampleUITests.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleUITests/ExampleUITests.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleUITests/ExampleUITests.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleUITests/ExampleUITests.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleUITests",
             "platform": {
                 "arch": "x86_64",
@@ -1244,6 +1318,26 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "TestingUtils",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/TestingUtils/TestingUtils.swiftdoc",
+                        "t": "g"
+                    },
+                    "h": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/TestingUtils/SwiftAPI/TestingUtils-Swift.h",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/TestingUtils/TestingUtils.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/TestingUtils/TestingUtils.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/TestingUtils",
             "platform": {
                 "arch": "x86_64",
@@ -1344,6 +1438,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "Utils",
+            "outputs": {},
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/Utils",
             "platform": {
                 "arch": "x86_64",
