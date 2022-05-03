@@ -110,6 +110,7 @@ $(BUILD_DIR)/bazel_build_output_groups
                 "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
                 "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
                 "BUILT_PRODUCTS_DIR": "$(BUILD_DIR)",
+                "CODE_SIGNING_ALLOWED": false,
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
