@@ -106,6 +106,15 @@ buildifier_prebuilt_register_toolchains()
 # Bazel Integration Test
 
 http_archive(
+    name = "cgrindel_bazel_starlib",
+    sha256 = "f61c83d78754ce3abe562fbac54b3a055e4c80c209f5de7938f1773312fe2cfe",
+    strip_prefix = "bazel-starlib-0.7.0",
+    urls = [
+        "http://github.com/cgrindel/bazel-starlib/archive/v0.7.0.tar.gz",
+    ],
+)
+
+http_archive(
     name = "contrib_rules_bazel_integration_test",
     sha256 = "ab9bbf776b5874f8a02f639fec2fbb3e3eefa4403cf861ae00d7c7e4d757f9ff",
     strip_prefix = "rules_bazel_integration_test-0.6.2",
