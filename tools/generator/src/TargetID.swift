@@ -31,3 +31,9 @@ extension TargetID: CustomStringConvertible {
         return self.rawValue
     }
 }
+
+// MARK: Constant TargetIDs
+
+extension TargetID {
+    static let bazelDependencies = TargetID("__bazel_dependencies")
+}
