@@ -16,7 +16,7 @@ def process_search_paths(*, cc_info, objc, opts_search_paths):
         opts_search_paths: A value returned from `create_opts_search_paths`.
 
     Returns:
-        All search paths for the provided objects
+        A DTO `dict`.
     """
     search_paths = {}
     if cc_info:
