@@ -386,7 +386,7 @@ extension Generator {
         let copiedGeneratedPaths = try generatedFiles.map { filePath, _ in
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
             // match the project navigator. This is only needed for files
-            // referenced by `PBXBuildFile`.
+            // referenced by `PBXBuildFile` or have specific build settings.
             return try filePathResolver.resolve(filePath, useGenDir: true)
         }
         let modulemapPaths = try generatedFiles
@@ -400,7 +400,10 @@ extension Generator {
                 return filePath.path.lastComponent == "Info.plist"
             }
             .map { filePath, _ in
-                return try filePathResolver.resolve(filePath)
+                // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
+                // match the project navigator. This is only needed for files
+                // referenced by `PBXBuildFile` or have specific build settings.
+                return try filePathResolver.resolve(filePath, useGenDir: true)
             }
         let fixedInfoPlistPaths = infoPlistPaths.map { path in
             return path.replacingExtension("xcode.plist")
