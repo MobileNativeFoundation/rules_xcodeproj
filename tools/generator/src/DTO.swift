@@ -30,6 +30,7 @@ struct Target: Equatable, Decodable {
     var infoPlist: FilePath?
     var entitlements: FilePath?
     var dependencies: Set<TargetID>
+    var outputs: Outputs
 }
 
 struct Product: Equatable, Decodable {

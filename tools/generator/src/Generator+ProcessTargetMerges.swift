@@ -74,11 +74,14 @@ exist
                 // Update inputs
                 merged.inputs.merge(merging.inputs)
 
-                // Update links
+                // Update linker inputs
                 merged.linkerInputs.staticLibraries.remove(merging.product.path)
 
                 // Update dependencies
                 merged.dependencies.formUnion(merging.dependencies)
+
+                // Update outputs
+                merged.outputs.merge(merging.outputs)
 
                 // Commit dest
                 targets[destination] = merged

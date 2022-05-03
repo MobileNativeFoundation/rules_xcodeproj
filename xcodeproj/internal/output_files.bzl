@@ -1,10 +1,16 @@
 """Module containing functions dealing with target output files."""
 
+load(":files.bzl", "file_path", "file_path_to_dto")
 load(":output_group_map.bzl", "output_group_map")
 
 # Utility
 
-def _create(*, direct_outputs = None, attrs_info = None, transitive_infos):
+def _create(
+        *,
+        direct_outputs = None,
+        attrs_info = None,
+        transitive_infos,
+        should_produce_dto = False):
     """Creates the internal data structure of the `output_files` module.
 
     Args:
@@ -13,24 +19,55 @@ def _create(*, direct_outputs = None, attrs_info = None, transitive_infos):
         attrs_info: The `InputFileAttributesInfo` for the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
+        should_produce_dto: If `True`, `outputs_files.to_dto` will return
+            collected values. This only be `True` if the generator can use
+            the output files (e.g. Build with Bazel, or Focused Projects).
 
     Returns:
         A `struct` representing the internal data structure of the
         `output_files` module.
     """
-    build = depset(
-        direct_outputs.build if direct_outputs else None,
+    if direct_outputs:
+        direct_build = []
+        direct_index = []
+
+        swift = direct_outputs.swift_module
+        if swift:
+            # TODO: Determine which of these are actually needed for each
+            direct_build.append(swift.swiftdoc)
+            direct_index.append(swift.swiftdoc)
+            direct_build.append(swift.swiftmodule)
+            direct_index.append(swift.swiftmodule)
+            direct_build.append(swift.swiftsourceinfo)
+            direct_index.append(swift.swiftsourceinfo)
+            if swift.swiftinterface:
+                direct_build.append(swift.swiftinterface)
+                direct_index.append(swift.swiftinterface)
+
+        if direct_outputs.swift_generated_header:
+            direct_build.append(direct_outputs.swift_generated_header)
+            direct_index.append(direct_outputs.swift_generated_header)
+
+        if direct_outputs.bundle:
+            direct_build.append(direct_outputs.bundle)
+    else:
+        direct_build = None
+        direct_index = None
+
+    transitive_build = depset(
+        direct_build,
         transitive = [
-            info.outputs._build
+            info.outputs._transitive_build
             for attr, info in transitive_infos
             if (not attrs_info or
                 info.target_type in attrs_info.xcode_targets.get(attr, [None]))
         ],
     )
-    index = depset(
-        direct_outputs.index if direct_outputs else None,
+
+    transitive_index = depset(
+        direct_index,
         transitive = [
-            info.outputs._index
+            info.outputs._transitive_index
             for attr, info in transitive_infos
             if (not attrs_info or
                 info.target_type in attrs_info.xcode_targets.get(attr, [None]))
@@ -39,8 +76,8 @@ def _create(*, direct_outputs = None, attrs_info = None, transitive_infos):
 
     if direct_outputs:
         direct_group_list = [
-            ("b {}".format(direct_outputs.id), build),
-            ("i {}".format(direct_outputs.id), index),
+            ("b {}".format(direct_outputs.id), transitive_build),
+            ("i {}".format(direct_outputs.id), transitive_index),
         ]
     else:
         direct_group_list = None
@@ -56,9 +93,10 @@ def _create(*, direct_outputs = None, attrs_info = None, transitive_infos):
     )
 
     return struct(
-        _build = build,
-        _index = index,
+        _direct_outputs = direct_outputs if should_produce_dto else None,
         _output_group_list = output_group_list,
+        _transitive_build = transitive_build,
+        _transitive_index = transitive_index,
     )
 
 def _get_outputs(*, bundle_info, id, swift_info):
@@ -77,38 +115,55 @@ def _get_outputs(*, bundle_info, id, swift_info):
     Returns:
         A `struct` containing the following fields:
 
-        *   `build`: A `list` of `File`s that are needed by Xcode to build, run,
-            or test the target.
         *   `id`: The unique identifier of the target.
-        *   `index`: A `list` of `File`s that are needed by Xcode's indexing
-            process.
+        *   `bundle`: A `File` for the target's bundle (e.g. ".app") or `None`.
+        *   `swift_generated_header`: A `File` for the generated Swift header
+            file, or `None`.
+        *   `swift_module`: A value as returned by
+            `swift_common.create_swift_module`, or `None`.
     """
-    build = []
-    index = []
-
     if bundle_info:
-        build.append(bundle_info.archive)
+        bundle = bundle_info.archive
+    else:
+        bundle = None
 
-    # TODO: Collect headers for CC targets
-
-    # TODO: Determine which of these are actually needed for build vs index
+    swift_generated_header = None
+    swift_module = None
     if swift_info:
+        # TODO: Actually handle more than one module?
         for module in swift_info.direct_modules:
-            if module.compilation_context:
-                index.extend(module.compilation_context.module_maps)
-
             swift = module.swift
             if not swift:
                 continue
-            build.append(swift.swiftdoc)
-            index.append(swift.swiftdoc)
-            build.append(swift.swiftmodule)
-            index.append(swift.swiftmodule)
-            if swift.swiftinterface:
-                build.append(swift.swiftinterface)
-                index.append(swift.swiftinterface)
+            swift_module = swift
+            clang = module.clang
+            if clang.compilation_context.direct_public_headers:
+                swift_generated_header = (
+                    clang.compilation_context.direct_public_headers[0]
+                )
+            break
 
-    return struct(build = build, id = id, index = index)
+    return struct(
+        id = id,
+        bundle = bundle,
+        swift_generated_header = swift_generated_header,
+        swift_module = swift_module,
+    )
+
+def _swift_to_dto(generated_header, module):
+    dto = {
+        "m": file_path_to_dto(file_path(module.swiftmodule)),
+        "s": file_path_to_dto(file_path(module.swiftsourceinfo)),
+        "d": file_path_to_dto(file_path(module.swiftdoc)),
+    }
+
+    if module.swiftinterface:
+        dto["i"] = file_path_to_dto(file_path(module.swiftinterface))
+
+    if generated_header:
+        dto["h"] = file_path_to_dto(file_path(generated_header))
+
+    return dto
 
 # API
 
@@ -117,7 +172,8 @@ def _collect(
         bundle_info,
         swift_info,
         id,
-        transitive_infos):
+        transitive_infos,
+        should_produce_dto):
     """Collects the outputs of a target.
 
     Args:
@@ -126,14 +182,14 @@ def _collect(
         id: A unique identifier for the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
+        should_produce_dto: If `True`, `outputs_files.to_dto` will return
+            collected values. This only be `True` if the generator can use
+            the output files (e.g. Build with Bazel, or Focused Projects).
 
     Returns:
-        An opaque `struct` that should be used with
+        An opaque `struct` that should be used with `output_files.to_dto` or
         `output_files.to_output_groups_fields`.
     """
-
-    # TODO: When building a static library, we probably only need direct
-    #       outputs, not transitive ones. We should account for that.
     outputs = _get_outputs(
         bundle_info = bundle_info,
         id = id,
@@ -142,6 +198,7 @@ def _collect(
 
     return _create(
         direct_outputs = outputs,
+        should_produce_dto = should_produce_dto,
         transitive_infos = transitive_infos,
     )
 
@@ -159,6 +216,24 @@ def _merge(*, attrs_info, transitive_infos):
         `transitive_infos` (e.g. `generated` and `extra_files`).
     """
     return _create(transitive_infos = transitive_infos, attrs_info = attrs_info)
+
+def _to_dto(outputs):
+    direct_outputs = outputs._direct_outputs
+    if not direct_outputs:
+        return {}
+
+    dto = {}
+
+    if direct_outputs.bundle:
+        dto["b"] = file_path_to_dto(file_path(direct_outputs.bundle))
+
+    if direct_outputs.swift_module:
+        dto["s"] = _swift_to_dto(
+            generated_header = direct_outputs.swift_generated_header,
+            module = direct_outputs.swift_module,
+        )
+
+    return dto
 
 def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
@@ -188,5 +263,6 @@ def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
 output_files = struct(
     collect = _collect,
     merge = _merge,
+    to_dto = _to_dto,
     to_output_groups_fields = _to_output_groups_fields,
 )

@@ -3,6 +3,7 @@
 load(":files.bzl", "file_path_to_dto")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
+load(":output_files.bzl", "output_files")
 load(":product.bzl", "product_to_dto")
 load(":providers.bzl", "target_type")
 load(":resource_bundle_products.bzl", "resource_bundle_products")
@@ -84,7 +85,8 @@ def xcode_target(
         linker_inputs,
         info_plist,
         entitlements,
-        dependencies):
+        dependencies,
+        outputs):
     """Generates the partial json string representation of an Xcode target.
 
     Args:
@@ -118,6 +120,7 @@ def xcode_target(
         entitlements: A value as returned by `files.file_path()` or `None`.
         dependencies: A `depset` of `id`s of targets that this target depends
             on.
+        outputs: A value returned from `output_files.collect`.
 
     Returns:
         An element of a json array string. This should be wrapped with `"[{}]"`
@@ -150,6 +153,7 @@ def xcode_target(
         info_plist = file_path_to_dto(info_plist),
         entitlements = file_path_to_dto(entitlements),
         dependencies = dependencies.to_list(),
+        outputs = output_files.to_dto(outputs),
     ))
 
     # Since we use a custom dictionary key type in
