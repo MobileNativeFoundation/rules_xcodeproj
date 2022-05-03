@@ -1,6 +1,5 @@
 """Functions for creating `XcodeProjInfo` providers."""
 
-load("@bazel_skylib//lib:collections.bzl", "collections")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
@@ -12,19 +11,14 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
     ":build_settings.bzl",
     "get_product_module_name",
-    "get_targeted_device_family",
 )
-load(":collections.bzl", "set_if_true", "uniq")
+load(":collections.bzl", "set_if_true")
 load("configuration.bzl", "calculate_configuration", "get_configuration")
 load(
     ":files.bzl",
-    "file_path",
-    "file_path_to_dto",
     "join_paths_ignoring_empty",
     "parsed_file_path",
 )
-load(":info_plists.bzl", "info_plists")
-load(":entitlements.bzl", "entitlements")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "create_opts_search_paths", "process_opts")
@@ -46,6 +40,7 @@ load(
     "process_product",
 )
 load(":resource_bundle_products.bzl", "resource_bundle_products")
+load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
 load(":targets.bzl", "targets")
 
@@ -430,7 +425,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         "PRODUCT_MODULE_NAME",
         get_product_module_name(ctx = ctx, target = target),
     )
-    dependencies = _process_dependencies(
+    dependencies = process_dependencies(
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
@@ -487,7 +482,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
 
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
-    modulemaps = _process_modulemaps(swift_info = swift_info)
+    modulemaps = process_modulemaps(swift_info = swift_info)
     resource_owner = str(target.label)
     inputs = input_files.collect(
         ctx = ctx,
@@ -515,15 +510,15 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
 
     cc_info = target[CcInfo] if CcInfo in target else None
-    _process_defines(
+    process_defines(
         cc_info = cc_info,
         build_settings = build_settings,
     )
-    _process_sdk_links(
+    process_sdk_links(
         objc = objc,
         build_settings = build_settings,
     )
-    search_paths = _process_search_paths(
+    search_paths = process_search_paths(
         cc_info = cc_info,
         objc = objc,
         opts_search_paths = opts_search_paths,
@@ -559,7 +554,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
             build_settings = build_settings,
             search_paths = search_paths,
             modulemaps = modulemaps,
-            swiftmodules = _process_swiftmodules(swift_info = swift_info),
+            swiftmodules = process_swiftmodules(swift_info = swift_info),
             resource_bundles = resource_bundles,
             inputs = inputs,
             linker_inputs = linker_inputs,
@@ -603,7 +598,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
 
     bundle_name = ctx.rule.attr.bundle_name or ctx.rule.attr.name
     product_name = bundle_name
-    dependencies = _process_dependencies(
+    dependencies = process_dependencies(
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
@@ -666,7 +661,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
 
-    search_paths = _process_search_paths(
+    search_paths = process_search_paths(
         cc_info = None,
         objc = None,
         opts_search_paths = create_opts_search_paths(
@@ -696,8 +691,8 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             test_host = None,
             build_settings = build_settings,
             search_paths = search_paths,
-            modulemaps = _process_modulemaps(swift_info = None),
-            swiftmodules = _process_swiftmodules(swift_info = None),
+            modulemaps = process_modulemaps(swift_info = None),
+            swiftmodules = process_swiftmodules(swift_info = None),
             resource_bundles = resource_bundles,
             inputs = inputs,
             linker_inputs = linker_inputs,
@@ -747,7 +742,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
 
     return processed_target(
         attrs_info = attrs_info,
-        dependencies = _process_dependencies(
+        dependencies = process_dependencies(
             attrs_info = attrs_info,
             transitive_infos = transitive_infos,
         ),
@@ -777,7 +772,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
             attrs_info = attrs_info,
             transitive_infos = transitive_infos,
         ),
-        search_paths = _process_search_paths(
+        search_paths = process_search_paths(
             cc_info = cc_info,
             objc = objc,
             opts_search_paths = create_opts_search_paths(
@@ -889,7 +884,7 @@ def _skip_target(*, deps, transitive_infos):
         `transitive_infos`.
     """
     return _target_info_fields(
-        dependencies = _process_dependencies(
+        dependencies = process_dependencies(
             attrs_info = None,
             transitive_infos = transitive_infos,
         ),
@@ -918,7 +913,7 @@ def _skip_target(*, deps, transitive_infos):
             attrs_info = None,
             transitive_infos = transitive_infos,
         ),
-        search_paths = _process_search_paths(
+        search_paths = process_search_paths(
             cc_info = None,
             objc = None,
             opts_search_paths = create_opts_search_paths(
@@ -933,178 +928,6 @@ def _skip_target(*, deps, transitive_infos):
             transitive = [info.xcode_targets for _, info in transitive_infos],
         ),
     )
-
-def _process_dependencies(*, attrs_info, transitive_infos):
-    direct_dependencies = []
-    transitive_dependencies = []
-    for attr, info in transitive_infos:
-        if not (not attrs_info or
-                info.target_type in attrs_info.xcode_targets.get(attr, [None])):
-            continue
-        if info.target:
-            direct_dependencies.append(info.target.id)
-        else:
-            # We pass on the next level of dependencies if the previous target
-            # didn't create an Xcode target.
-            transitive_dependencies.append(info.dependencies)
-
-    return depset(
-        direct_dependencies,
-        transitive = transitive_dependencies,
-    )
-
-def _process_defines(*, cc_info, build_settings):
-    if cc_info and build_settings != None:
-        # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
-        # process Swift compile options already accounts for `defines`
-
-        # Order should be:
-        # - toolchain defines
-        # - defines
-        # - local defines
-        # - copt defines
-        # but since build_settings["GCC_PREPROCESSOR_DEFINITIONS"] will have
-        # "toolchain defines" and "copt defines", those will both be first
-        # before "defines" and "local defines". This will only matter if `copts`
-        # is used to override `defines` instead of `local_defines`. If that
-        # becomes an issue in practice, we can refactor `process_copts` to
-        # support this better.
-
-        defines = depset(
-            transitive = [
-                cc_info.compilation_context.defines,
-                cc_info.compilation_context.local_defines,
-            ],
-        )
-        escaped_defines = [
-            define.replace("\\", "\\\\").replace('"', '\\"')
-            for define in defines.to_list()
-        ]
-
-        setting = build_settings.get(
-            "GCC_PREPROCESSOR_DEFINITIONS",
-            [],
-        ) + escaped_defines
-
-        # Remove duplicates
-        setting = reversed(uniq(reversed(setting)))
-
-        set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
-
-def _process_sdk_links(*, objc, build_settings):
-    if not objc or build_settings == None:
-        return
-
-    sdk_framework_flags = collections.before_each(
-        "-framework",
-        objc.sdk_framework.to_list(),
-    )
-    weak_sdk_framework_flags = collections.before_each(
-        "-weak_framework",
-        objc.weak_sdk_framework.to_list(),
-    )
-    sdk_dylib_flags = [
-        "-l" + dylib
-        for dylib in objc.sdk_dylib.to_list()
-    ]
-
-    set_if_true(
-        build_settings,
-        "OTHER_LDFLAGS",
-        (sdk_framework_flags +
-         weak_sdk_framework_flags +
-         sdk_dylib_flags +
-         build_settings.get("OTHER_LDFLAGS", [])),
-    )
-
-# TODO: Refactor this into a search_paths module
-def _process_search_paths(*, cc_info, objc, opts_search_paths):
-    search_paths = {}
-    if cc_info:
-        compilation_context = cc_info.compilation_context
-        set_if_true(
-            search_paths,
-            "quote_includes",
-            [
-                file_path_to_dto(parsed_file_path(path))
-                for path in compilation_context.quote_includes.to_list() +
-                            opts_search_paths.quote_includes
-            ],
-        )
-        set_if_true(
-            search_paths,
-            "includes",
-            [
-                file_path_to_dto(parsed_file_path(path))
-                for path in (compilation_context.includes.to_list() +
-                             opts_search_paths.includes)
-            ],
-        )
-        set_if_true(
-            search_paths,
-            "system_includes",
-            [
-                file_path_to_dto(parsed_file_path(path))
-                for path in (compilation_context.system_includes.to_list() +
-                             opts_search_paths.system_includes)
-            ],
-        )
-
-    if objc:
-        framework_paths = depset(
-            transitive = [
-                objc.static_framework_paths,
-                objc.dynamic_framework_paths,
-            ],
-        )
-
-        set_if_true(
-            search_paths,
-            "framework_includes",
-            [
-                file_path_to_dto(parsed_file_path(path))
-                for path in framework_paths.to_list()
-            ],
-        )
-
-    return search_paths
-
-def _process_modulemaps(*, swift_info):
-    if not swift_info:
-        return struct(
-            file_paths = [],
-            files = [],
-        )
-
-    modulemap_file_paths = []
-    modulemap_files = []
-    for module in swift_info.direct_modules:
-        for module_map in module.compilation_context.module_maps:
-            if type(module_map) == "File":
-                modulemap = file_path(module_map)
-                modulemap_files.append(module_map)
-            else:
-                modulemap = module_map
-
-            modulemap_file_paths.append(modulemap)
-
-    # Different modules might be defined in the same modulemap file, so we need
-    # to deduplicate them.
-    return struct(
-        file_paths = uniq(modulemap_file_paths),
-        files = uniq(modulemap_files),
-    )
-
-def _process_swiftmodules(*, swift_info):
-    if not swift_info:
-        return []
-
-    swiftmodules = []
-    for module in swift_info.direct_modules:
-        for swiftmodule in module.compilation_context.swiftmodules:
-            swiftmodules.append(file_path(swiftmodule))
-
-    return swiftmodules
 
 def _process_target(*, ctx, target, transitive_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
@@ -1126,14 +949,14 @@ def _process_target(*, ctx, target, transitive_infos):
             transitive_infos = transitive_infos,
         )
     elif AppleBundleInfo in target:
-        processed_target = _process_top_level_target(
+        processed_target = process_top_level_target(
             ctx = ctx,
             target = target,
             bundle_info = target[AppleBundleInfo],
             transitive_infos = transitive_infos,
         )
     elif target[DefaultInfo].files_to_run.executable:
-        processed_target = _process_top_level_target(
+        processed_target = process_top_level_target(
             ctx = ctx,
             target = target,
             bundle_info = None,
@@ -1224,5 +1047,5 @@ def process_target(*, ctx, target, transitive_infos):
 # These functions are exposed only for access in unit tests.
 testable = struct(
     calculate_configuration = calculate_configuration,
-    process_top_level_properties = _process_top_level_properties,
+    process_top_level_properties = process_top_level_properties,
 )
