@@ -46,7 +46,7 @@ class Generator {
         outputPath: Path
     ) throws {
         let filePathResolver = FilePathResolver(
-            internalDirectoryName: internalDirectoryName, 
+            internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
 
