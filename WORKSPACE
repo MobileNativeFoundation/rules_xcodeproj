@@ -107,10 +107,10 @@ buildifier_prebuilt_register_toolchains()
 
 http_archive(
     name = "contrib_rules_bazel_integration_test",
-    sha256 = "ab9bbf776b5874f8a02f639fec2fbb3e3eefa4403cf861ae00d7c7e4d757f9ff",
-    strip_prefix = "rules_bazel_integration_test-0.6.2",
+    sha256 = "24e5e8f388bec2da0975cfda6073ed0174a4f62cb874b5dc8037c98faa6acdfd",
+    strip_prefix = "rules_bazel_integration_test-0.7.0",
     urls = [
-        "http://github.com/bazel-contrib/rules_bazel_integration_test/archive/v0.6.2.tar.gz",
+        "http://github.com/bazel-contrib/rules_bazel_integration_test/archive/v0.7.0.tar.gz",
     ],
 )
 

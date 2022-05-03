@@ -9,9 +9,7 @@ actions:
         branches:
           - "main"
     bazel_commands:
-      # `--noincompatible_disallow_empty_glob` is to work around an issue in
-      # "cgrindel_bazel_starlib/bzlformat/private/bzlformat_pkg.bzl"
-      - "build --config=workflows --noincompatible_disallow_empty_glob //..."
+      - "build --config=workflows //..."
 
   - name: Test
     os: "darwin"
@@ -36,9 +34,7 @@ actions:
           - "main"
     bazel_commands:
       - "clean"
-      # `--noincompatible_disallow_empty_glob` is to work around an issue in
-      # "cgrindel_bazel_starlib/bzlformat/private/bzlformat_pkg.bzl"
-      - "test --config=workflows --noincompatible_disallow_empty_glob //:all_integration_tests"
+      - "test --config=workflows //:all_integration_tests"
 
   - name: Buildifier Lint
     triggers:
