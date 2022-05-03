@@ -8,7 +8,7 @@ load(
 )
 
 def process_search_paths(*, cc_info, objc, opts_search_paths):
-    """ Process search paths
+    """Processes search paths.
 
     Args:
         cc_info: A CcInfo provider object
