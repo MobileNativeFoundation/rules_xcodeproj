@@ -5,7 +5,10 @@ import XCTest
 @testable import generator
 
 class CreateXCSchemesTests: XCTestCase {
-    let referencedContainer = "container:examples/foo/Foo.xcodeproj"
+    let filePathResolver = FilePathResolver(
+        internalDirectoryName: "rules_xcodeproj",
+        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+    )
     let pbxTargetsDict: [TargetID: PBXNativeTarget] =
         Fixtures.pbxTargetsWithDependencies(
             in: Fixtures.pbxProj(),
@@ -34,7 +37,7 @@ class CreateXCSchemesTests: XCTestCase {
 
         let expectedBuildConfigurationName = target.defaultBuildConfigurationName
         let expectedBuildableReference = try target.createBuildableReference(
-            referencedContainer: referencedContainer
+            referencedContainer: filePathResolver.containerReference
         )
         let expectedBuildActionEntries: [XCScheme.BuildAction.Entry] =
             shouldExpectBuildActionEntries ?
@@ -135,7 +138,7 @@ class CreateXCSchemesTests: XCTestCase {
 
     func test_createXCSchemes_WithNoTargets() throws {
         let schemes = try Generator.createXCSchemes(
-            referencedContainer: referencedContainer,
+            filePathResolver: filePathResolver,
             pbxTargets: [:]
         )
         let expected = [XCScheme]()
@@ -144,7 +147,7 @@ class CreateXCSchemesTests: XCTestCase {
 
     func test_createXCSchemes_WithTargets() throws {
         let schemes = try Generator.createXCSchemes(
-            referencedContainer: referencedContainer,
+            filePathResolver: filePathResolver,
             pbxTargets: pbxTargetsDict
         )
         XCTAssertEqual(schemes.count, pbxTargetsDict.count)
