@@ -109,6 +109,7 @@ def fixture_spec_name(fixture_name):
 def xcodeproj_fixture(
         *,
         name = "xcodeproj",
+        archived_bundles_allowed = False,
         modes_and_suffixes = [("xcode", "bwx"), ("bazel", "bwb")],
         targets):
     """Creates the fixture for an existing `xcodeproj` target.
@@ -118,6 +119,7 @@ def xcodeproj_fixture(
     Args:
         name: The name of the fixture. This will be the prefix of the .xcodeproj
             and spec files.
+        archived_bundles_allowed: Passed to `xcodeproj`.
         modes_and_suffixes: A `list` of `tuple`s of `build_mode` and `suffix`.
             The `build_mode` will be pass to `xcodeproj.build_mode` and the
             `suffix` will be used as the suffix of the project and spec files.
@@ -137,6 +139,7 @@ def xcodeproj_fixture(
 
         xcodeproj(
             name = fixture_name,
+            archived_bundles_allowed = archived_bundles_allowed,
             build_mode = mode,
             project_name = suffix,
             targets = targets,

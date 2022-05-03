@@ -49,6 +49,27 @@ load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":target_id.bzl", "get_id")
 load(":targets.bzl", "targets")
 
+def _get_tree_artifact_enabled(*, ctx, bundle_info):
+    """Returns whether tree artifacts are enabled."""
+    if not bundle_info:
+        return False
+
+    tree_artifact_enabled = (
+        ctx.var.get("apple.experimental.tree_artifact_outputs", "")
+            .lower() in
+        ("true", "yes", "1")
+    )
+
+    if not ctx.attr._archived_bundles_allowed[BuildSettingInfo].value:
+        if not tree_artifact_enabled:
+            fail("""\
+Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow. If \
+you can't set that flag, you can set `archived_bundles_allowed = True` on the \
+`xcodeproj` rule to have it unarchive bundles when installing them.
+""")
+
+    return tree_artifact_enabled
+
 def _should_bundle_resources(ctx):
     """Determines whether resources should be bundled in the generated project.
 
@@ -208,9 +229,9 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         build_settings = build_settings,
     )
 
-    tree_artifact_enabled = (
-        ctx.var.get("apple.experimental.tree_artifact_outputs", "").lower() in
-        ("true", "yes", "1")
+    tree_artifact_enabled = _get_tree_artifact_enabled(
+        ctx = ctx,
+        bundle_info = bundle_info,
     )
     props = _process_top_level_properties(
         target_name = ctx.rule.attr.name,
