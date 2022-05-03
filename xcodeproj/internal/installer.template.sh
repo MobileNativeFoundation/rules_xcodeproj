@@ -12,7 +12,7 @@ readonly dest="$BUILD_WORKSPACE_DIRECTORY/%output_path%"
 rsync \
   --archive \
   --copy-links \
-  --chmod=u+w \
+  --chmod=u+w,F-x \
   --exclude=project.xcworkspace \
   --exclude=xcuserdata \
   --exclude=xcshareddata/xcschemes \
