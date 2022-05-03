@@ -11,9 +11,9 @@ def process_search_paths(*, cc_info, objc, opts_search_paths):
     """Processes search paths.
 
     Args:
-        cc_info: A CcInfo provider object
-        objc: A ObjC provider object
-        opts_search_paths: optiions for search paths
+        cc_info: The `CcInfo` provider for the target.
+        objc: The `ObjcProvider` provider for the target.
+        opts_search_paths: A value returned from `create_opts_search_paths`.
 
     Returns:
         All search paths for the provided objects
