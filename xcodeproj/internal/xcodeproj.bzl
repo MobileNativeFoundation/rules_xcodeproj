@@ -146,15 +146,22 @@ def _write_installer(
 
 def _xcodeproj_transition_impl(settings, attr):
     """Transition that applies command-line settings for the xcodeproj rule."""
+    features = settings.get("//command_line_option:features", [])
+
     if attr.build_mode == "bazel":
         archived_bundles_allowed = attr.archived_bundles_allowed
         compilation_mode = "dbg"
+        features = [
+            "oso_prefix_is_pwd",
+            "relative_ast_path",
+        ] + features
     else:
         archived_bundles_allowed = True
         compilation_mode = settings["//command_line_option:compilation_mode"]
 
     return {
         "//command_line_option:compilation_mode": compilation_mode,
+        "//command_line_option:features": features,
         "//xcodeproj/internal:archived_bundles_allowed": (
             archived_bundles_allowed
         ),
@@ -165,9 +172,11 @@ _xcodeproj_transition = transition(
     implementation = _xcodeproj_transition_impl,
     inputs = [
         "//command_line_option:compilation_mode",
+        "//command_line_option:features",
     ],
     outputs = [
         "//command_line_option:compilation_mode",
+        "//command_line_option:features",
         "//xcodeproj/internal:archived_bundles_allowed",
         "//xcodeproj/internal:build_mode",
     ],
