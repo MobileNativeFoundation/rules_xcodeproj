@@ -1,6 +1,10 @@
 import PathKit
 import XcodeProj
 
+// DEBUG BEGIN
+import Darwin
+// DEBUG END
+
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
@@ -9,7 +13,10 @@ extension Generator {
     ) throws -> [XCScheme] {
         let referencedContainer = filePathResolver.containerReference
         return try pbxTargets.map { $0.1 }.map { pbxTarget in
-            try createXCScheme(
+            // DEBUG BEGIN
+            Swift.print("*** CHUCK  pbxTarget.name: \(String(reflecting: pbxTarget.name))")
+            // DEBUG END
+            return try createXCScheme(
                 referencedContainer: referencedContainer,
                 pbxTarget: pbxTarget
             )
