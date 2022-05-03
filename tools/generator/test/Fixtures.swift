@@ -1429,6 +1429,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "DEPLOYMENT_LOCATION": false,
                 "GENERATE_INFOPLIST_FILE": true,
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
@@ -1463,6 +1464,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
+                "DEPLOYMENT_LOCATION": false,
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
@@ -1482,6 +1484,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "DEPLOYMENT_LOCATION": false,
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
@@ -1508,6 +1511,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "DEPLOYMENT_LOCATION": false,
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
                     "-filelist",
