@@ -10,16 +10,31 @@
         "VALIDATE_WORKSPACE": false
     },
     "extra_files": [
+        {
+            "_": "examples_ios_app_external/bundles/Utils.bundle",
+            "f": true,
+            "t": "e"
+        },
         "third_party/BUILD",
         "CoreUtilsObjC/BUILD",
         "Utils/BUILD",
         "ExampleResources/BUILD",
         "ExampleResources/Info.plist",
+        "ExampleResources/Assets.xcassets/Contents.json",
+        "ExampleResources/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
+        "ExampleResources/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
+        {
+            "_": "ExampleResources/nested",
+            "f": true
+        },
         "Example/BUILD",
         {
             "_": "examples_ios_app_external/ImportableLibrary/Library.h",
             "t": "e"
         },
+        "Example/PreviewContent/PreviewAssets.xcassets/Contents.json",
+        "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/Contents.json",
+        "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
         "third_party/ExampleFramework.framework/Modules/module.modulemap",
         {
             "_": "examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap",
@@ -36,6 +51,13 @@
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/external/examples_ios_app_external/Library.swift.modulemap",
             "t": "g"
+        },
+        "Example/Assets.xcassets/Contents.json",
+        "Example/en.lproj/Localizable.strings",
+        "Example/es.lproj/Localizable.strings",
+        {
+            "_": "Example/nested",
+            "f": true
         },
         "Example/Assets.xcassets/AppIcon.appiconset/Contents.json",
         "Example/Assets.xcassets/AppIcon.appiconset/ios_2x_icon-1.png",
@@ -86,6 +108,23 @@
         },
         {
             "_": "examples_ios_app_external/Info.plist",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/Assets.xcassets/Contents.json",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
+            "t": "e"
+        },
+        {
+            "_": "examples_ios_app_external/nested",
+            "f": true,
             "t": "e"
         },
         "ExampleUITests/BUILD",
@@ -289,24 +328,7 @@
                 "t": "g"
             },
             "inputs": {
-                "contains_generated_files": true,
-                "resources": [
-                    {
-                        "_": "examples_ios_app_external/bundles/Utils.bundle",
-                        "f": true,
-                        "t": "e"
-                    },
-                    "Example/PreviewContent/PreviewAssets.xcassets/Contents.json",
-                    "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/Contents.json",
-                    "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
-                    "Example/Assets.xcassets/Contents.json",
-                    "Example/en.lproj/Localizable.strings",
-                    "Example/es.lproj/Localizable.strings",
-                    {
-                        "_": "Example/nested",
-                        "f": true
-                    }
-                ]
+                "contains_generated_files": true
             },
             "is_swift": false,
             "label": "//Example:Example",
@@ -356,12 +378,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleResources/ExampleResources.bundle",
-                    "t": "g"
-                }
-            ],
+            "resource_bundles": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -423,7 +440,6 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
             "dependencies": [
-                "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f"
             ],
             "entitlements": null,
@@ -566,14 +582,7 @@
                 "t": "g"
             },
             "inputs": {
-                "contains_generated_files": true,
-                "resources": [
-                    {
-                        "_": "examples_ios_app_external/bundles/Utils.bundle",
-                        "f": true,
-                        "t": "e"
-                    }
-                ]
+                "contains_generated_files": true
             },
             "is_swift": false,
             "label": "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle",
@@ -734,55 +743,6 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
-        {
-            "build_settings": {
-                "GENERATE_INFOPLIST_FILE": true,
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources",
-                "PRODUCT_NAME": "ExampleResources",
-                "SUPPORTED_PLATFORMS": "iphonesimulator"
-            },
-            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
-            "dependencies": [],
-            "entitlements": null,
-            "info_plist": null,
-            "inputs": {
-                "resources": [
-                    "ExampleResources/Assets.xcassets/Contents.json",
-                    "ExampleResources/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
-                    "ExampleResources/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
-                    {
-                        "_": "ExampleResources/nested",
-                        "f": true
-                    }
-                ]
-            },
-            "is_swift": false,
-            "label": "//ExampleResources:ExampleResources",
-            "linker_inputs": {},
-            "modulemaps": [],
-            "name": "ExampleResources",
-            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleResources",
-            "platform": {
-                "arch": "x86_64",
-                "environment": "Simulator",
-                "minimum_os_version": "15.0",
-                "os": "ios"
-            },
-            "product": {
-                "name": "ExampleResources",
-                "path": {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleResources/ExampleResources.bundle",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.bundle"
-            },
-            "resource_bundles": [],
-            "search_paths": {},
-            "swiftmodules": [],
-            "test_host": null
-        },
         "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
         {
             "build_settings": {
@@ -874,12 +834,7 @@
                 },
                 "type": "com.apple.product-type.bundle.unit-test"
             },
-            "resource_bundles": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/ExampleResources/ExampleResources.bundle",
-                    "t": "g"
-                }
-            ],
+            "resource_bundles": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": "//Example:Example applebin_ios-ios_x86_64-dbg-ST-cabd535f549f"
@@ -944,7 +899,6 @@
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
             "dependencies": [
                 "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
-                "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
                 "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f"
             ],
@@ -1129,12 +1083,7 @@
                 },
                 "type": "com.apple.product-type.bundle.ui-testing"
             },
-            "resource_bundles": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/external/examples_ios_app_external/ExternalResources.bundle",
-                    "t": "g"
-                }
-            ],
+            "resource_bundles": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": "//Example:Example applebin_ios-ios_x86_64-dbg-ST-cabd535f549f"
@@ -1191,9 +1140,7 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
-            "dependencies": [
-                "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f"
-            ],
+            "dependencies": [],
             "entitlements": null,
             "info_plist": null,
             "inputs": {
@@ -1436,65 +1383,6 @@
                     }
                 ]
             },
-            "swiftmodules": [],
-            "test_host": null
-        },
-        "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
-        {
-            "build_settings": {
-                "GENERATE_INFOPLIST_FILE": true,
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.external",
-                "PRODUCT_NAME": "ExternalResources",
-                "SUPPORTED_PLATFORMS": "iphonesimulator"
-            },
-            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f",
-            "dependencies": [],
-            "entitlements": null,
-            "info_plist": null,
-            "inputs": {
-                "resources": [
-                    {
-                        "_": "examples_ios_app_external/Assets.xcassets/Contents.json",
-                        "t": "e"
-                    },
-                    {
-                        "_": "examples_ios_app_external/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
-                        "t": "e"
-                    },
-                    {
-                        "_": "examples_ios_app_external/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
-                        "t": "e"
-                    },
-                    {
-                        "_": "examples_ios_app_external/nested",
-                        "f": true,
-                        "t": "e"
-                    }
-                ]
-            },
-            "is_swift": false,
-            "label": "@examples_ios_app_external//:ExternalResources",
-            "linker_inputs": {},
-            "modulemaps": [],
-            "name": "ExternalResources",
-            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/external/examples_ios_app_external",
-            "platform": {
-                "arch": "x86_64",
-                "environment": "Simulator",
-                "minimum_os_version": "15.0",
-                "os": "ios"
-            },
-            "product": {
-                "name": "ExternalResources",
-                "path": {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cabd535f549f/bin/external/examples_ios_app_external/ExternalResources.bundle",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.bundle"
-            },
-            "resource_bundles": [],
-            "search_paths": {},
             "swiftmodules": [],
             "test_host": null
         }

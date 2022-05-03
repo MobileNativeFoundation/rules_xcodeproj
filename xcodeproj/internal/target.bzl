@@ -2,6 +2,7 @@
 
 load("@bazel_skylib//lib:collections.bzl", "collections")
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
@@ -47,6 +48,17 @@ load(
 load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":target_id.bzl", "get_id")
 load(":targets.bzl", "targets")
+
+def _should_bundle_resources(ctx):
+    """Determines whether resources should be bundled in the generated project.
+
+    Args:
+        ctx: The aspect context.
+
+    Returns:
+        `True` if resources should be bundled, `False` otherwise.
+    """
+    return ctx.attr._build_mode[BuildSettingInfo].value != "bazel"
 
 # Top-level targets
 
@@ -163,10 +175,13 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         entitlements_file_path = file_path(entitlements_file)
         additional_files.append(entitlements_file)
 
+    bundle_resources = _should_bundle_resources(ctx = ctx)
+
     resource_owner = str(target.label)
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        bundle_resources = bundle_resources,
         attrs_info = attrs_info,
         owner = resource_owner,
         additional_files = additional_files,
@@ -273,6 +288,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     resource_bundles = resource_bundle_products.collect(
         owner = resource_owner,
         is_consuming_bundle = is_bundle,
+        bundle_resources = bundle_resources,
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
@@ -431,6 +447,8 @@ def _process_library_target(*, ctx, target, transitive_infos):
         build_settings = build_settings,
     )
 
+    bundle_resources = _should_bundle_resources(ctx = ctx)
+
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = _process_modulemaps(swift_info = swift_info)
@@ -438,6 +456,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        bundle_resources = bundle_resources,
         attrs_info = attrs_info,
         owner = resource_owner,
         additional_files = modulemaps.files,
@@ -453,6 +472,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     resource_bundles = resource_bundle_products.collect(
         owner = resource_owner,
         is_consuming_bundle = False,
+        bundle_resources = bundle_resources,
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
@@ -580,10 +600,13 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         build_settings = build_settings,
     )
 
+    bundle_resources = _should_bundle_resources(ctx = ctx)
+
     resource_owner = str(label)
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        bundle_resources = bundle_resources,
         attrs_info = attrs_info,
         owner = resource_owner,
         transitive_infos = transitive_infos,
@@ -599,6 +622,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         bundle_path = bundle_path,
         owner = resource_owner,
         is_consuming_bundle = False,
+        bundle_resources = bundle_resources,
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
@@ -613,23 +637,14 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         ),
     )
 
-    return processed_target(
-        attrs_info = attrs_info,
-        dependencies = dependencies,
-        inputs = inputs,
-        linker_inputs = linker_inputs,
-        outputs = outputs,
-        potential_target_merges = None,
-        required_links = None,
-        resource_bundles = resource_bundles,
-        search_paths = search_paths,
+    if bundle_resources:
         target = struct(
             id = id,
             label = label,
             is_bundle = True,
             product_path = product.path,
-        ),
-        xcode_target = xcode_target(
+        )
+        xctarget = xcode_target(
             id = id,
             name = ctx.rule.attr.name,
             label = label,
@@ -650,7 +665,23 @@ def _process_resource_target(*, ctx, target, transitive_infos):
             info_plist = None,
             entitlements = None,
             dependencies = dependencies,
-        ),
+        )
+    else:
+        target = None
+        xctarget = None
+
+    return processed_target(
+        attrs_info = attrs_info,
+        dependencies = dependencies,
+        inputs = inputs,
+        linker_inputs = linker_inputs,
+        outputs = outputs,
+        potential_target_merges = None,
+        required_links = None,
+        resource_bundles = resource_bundles,
+        search_paths = search_paths,
+        target = target,
+        xcode_target = xctarget,
     )
 
 # Non-Xcode targets
@@ -671,6 +702,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
 
     attrs_info = target[InputFileAttributesInfo]
+    bundle_resources = _should_bundle_resources(ctx = ctx)
     resource_owner = None
 
     return processed_target(
@@ -682,6 +714,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         inputs = input_files.collect(
             ctx = ctx,
             target = target,
+            bundle_resources = bundle_resources,
             attrs_info = attrs_info,
             owner = resource_owner,
             transitive_infos = transitive_infos,
@@ -700,6 +733,7 @@ def _process_non_xcode_target(*, ctx, target, transitive_infos):
         resource_bundles = resource_bundle_products.collect(
             owner = resource_owner,
             is_consuming_bundle = False,
+            bundle_resources = bundle_resources,
             attrs_info = attrs_info,
             transitive_infos = transitive_infos,
         ),
@@ -840,6 +874,7 @@ def _skip_target(*, deps, transitive_infos):
         resource_bundles = resource_bundle_products.collect(
             owner = None,
             is_consuming_bundle = False,
+            bundle_resources = False,
             attrs_info = None,
             transitive_infos = transitive_infos,
         ),
