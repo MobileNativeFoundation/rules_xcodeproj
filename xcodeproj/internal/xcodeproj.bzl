@@ -92,7 +92,43 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 
     return output
 
-def _write_xcodeproj(*, ctx, project_name, spec_file, build_mode):
+def _write_xccurrentversions(*, ctx, xccurrentversion_files):
+    containers_file = ctx.actions.declare_file(
+        "{}_xccurrentversion_containers".format(ctx.attr.name),
+    )
+    ctx.actions.write(
+        containers_file,
+        "".join([
+            json.encode(file_path_to_dto(file_path(file, path = file.dirname))) + "\n"
+            for file in xccurrentversion_files
+        ]),
+    )
+
+    files_list = ctx.actions.args()
+    files_list.use_param_file("%s", use_always = True)
+    files_list.set_param_file_format("multiline")
+    files_list.add_all(xccurrentversion_files)
+
+    output = ctx.actions.declare_file(
+        "{}_xccurrentversions".format(ctx.attr.name),
+    )
+    ctx.actions.run(
+        arguments = [containers_file.path, files_list, output.path],
+        executable = ctx.executable._xccurrentversions_parser,
+        inputs = [containers_file] + xccurrentversion_files,
+        outputs = [output],
+        mnemonic = "CalculateXcodeProjXCCurrentVersions",
+    )
+
+    return output
+
+def _write_xcodeproj(
+        *,
+        ctx,
+        project_name,
+        spec_file,
+        xccurrentversions_file,
+        build_mode):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
     )
@@ -106,6 +142,7 @@ def _write_xcodeproj(*, ctx, project_name, spec_file, build_mode):
 
     args = ctx.actions.args()
     args.add(spec_file.path)
+    args.add(xccurrentversions_file.path)
     args.add(xcodeproj.path)
     args.add(install_path)
     args.add(build_mode)
@@ -114,7 +151,7 @@ def _write_xcodeproj(*, ctx, project_name, spec_file, build_mode):
         executable = ctx.executable._generator,
         mnemonic = "GenerateXcodeProj",
         arguments = [args],
-        inputs = [spec_file],
+        inputs = [spec_file, xccurrentversions_file],
         outputs = [xcodeproj],
     )
 
@@ -206,10 +243,15 @@ def _xcodeproj_impl(ctx):
         inputs = inputs,
         infos = infos,
     )
+    xccurrentversions_file = _write_xccurrentversions(
+        ctx = ctx,
+        xccurrentversion_files = inputs.xccurrentversions.to_list(),
+    )
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
         project_name = project_name,
         spec_file = spec_file,
+        xccurrentversions_file = xccurrentversions_file,
         build_mode = ctx.attr.build_mode,
     )
     installer = _write_installer(
@@ -283,7 +325,7 @@ def make_xcodeproj_rule(*, transition = None):
         "_generator": attr.label(
             cfg = "exec",
             # TODO: Use universal generator when done debugging
-            default = Label("//tools/generator:generator"),
+            default = Label("//tools/generator"),
             executable = True,
         ),
         "_install_path": attr.label(
@@ -294,6 +336,11 @@ def make_xcodeproj_rule(*, transition = None):
             allow_single_file = True,
             executable = False,
             default = Label("//xcodeproj/internal:installer.template.sh"),
+        ),
+        "_xccurrentversions_parser": attr.label(
+            cfg = "exec",
+            default = Label("//tools/xccurrentversions_parser"),
+            executable = True,
         ),
     }
 

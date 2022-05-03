@@ -8,8 +8,10 @@ extension Path {
             || isBundle
             || isDocCArchive
             || isSceneKitAssets
+            || isCoreDataModel
     }
 
+    var isCoreDataContainer: Bool { self.extension == "xcdatamodeld" }
     var isLocalizedContainer: Bool { self.extension == "lproj" }
 
     var isBazelBuildFile: Bool {
@@ -24,8 +26,20 @@ extension Path {
         return self.extension.flatMap { Xcode.filetype(extension: $0) }
     }
 
-    private var isDocCArchive: Bool { self.extension == "docc" }
+    var versionGroupType: String? {
+        switch self.extension {
+        case "xcdatamodeld":
+            return "wrapper.xcdatamodel"
+        case let fileExtension?:
+            return Xcode.filetype(extension: fileExtension)
+        default:
+            return nil
+        }
+    }
+
     private var isBundle: Bool { self.extension == "bundle" }
+    private var isCoreDataModel: Bool { self.extension == "xcdatamodel" }
+    private var isDocCArchive: Bool { self.extension == "docc" }
     private var isFramework: Bool {
         return self.extension == "framework"
     }

@@ -22,7 +22,9 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ targets: [TargetID: Target],
         _ extraFiles: Set<FilePath>,
-        _ filePathResolver: FilePathResolver
+        _ xccurrentversions: [XCCurrentVersion],
+        _ filePathResolver: FilePathResolver,
+        _ logger: Logger
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement]

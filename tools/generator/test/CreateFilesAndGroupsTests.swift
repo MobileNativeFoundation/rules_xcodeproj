@@ -21,6 +21,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             ),
         ]
         let extraFiles: Set<FilePath> = []
+        let xccurrentversions: [XCCurrentVersion] = []
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
@@ -54,7 +55,9 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             in: pbxProj,
             targets: targets,
             extraFiles: extraFiles,
-            filePathResolver: filePathResolver
+            xccurrentversions: xccurrentversions,
+            filePathResolver: filePathResolver,
+            logger: StubLogger()
         )
 
         // We need to add the `rootElements` to a group to allow references to
@@ -82,6 +85,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
 
         let targets = Fixtures.targets
         let extraFiles = Fixtures.project.extraFiles
+        let xccurrentversions = Fixtures.xccurrentversions
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
@@ -131,7 +135,9 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             in: pbxProj,
             targets: targets,
             extraFiles: extraFiles,
-            filePathResolver: filePathResolver
+            xccurrentversions: xccurrentversions,
+            filePathResolver: filePathResolver,
+            logger: StubLogger()
         )
 
         // We need to add the `rootElements` to a group to allow references to

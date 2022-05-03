@@ -150,6 +150,8 @@ def _collect(
             `target`'s `non_arc_srcs`-like attributes.
         *   `resources`: A `depset` of `FilePath`s that are inputs to `target`'s
             `resources`-like and `structured_resources`-like attributes.
+        *   `xccurrentversions`: A `depset` of `.xccurrentversion` `File`s that
+            are in `resources`.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
         *   `extra_files`: A `depset` of `FilePath`s that are inputs to `target`
@@ -165,6 +167,7 @@ def _collect(
     pch = []
     resources = []
     unowned_resources = []
+    xccurrentversions = []
     generated = []
     extra_files = []
 
@@ -191,7 +194,10 @@ def _collect(
                 pch.append(file)
             elif attrs_info.resources.get(attr):
                 fp = file_path(file)
-                if bundle_resources:
+                if (file.basename == ".xccurrentversion" and
+                    file.dirname.endswith(".xcdatamodeld")):
+                    xccurrentversions.append(file)
+                elif bundle_resources:
                     if owner:
                         resources.append((owner, fp))
                     else:
@@ -309,6 +315,13 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
                 )
             ],
         ),
+        xccurrentversions = depset(
+            xccurrentversions,
+            transitive = [
+                info.inputs.xccurrentversions
+                for _, info in transitive_infos
+            ],
+        ),
         contains_generated_files = bool(generated),
         generated = depset(
             generated,
@@ -375,6 +388,12 @@ def _merge(*, attrs_info, transitive_infos):
                     attr = attr,
                     info = info,
                 )
+            ],
+        ),
+        xccurrentversions = depset(
+            transitive = [
+                info.inputs.xccurrentversions
+                for _, info in transitive_infos
             ],
         ),
         generated = depset(

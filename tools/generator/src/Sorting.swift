@@ -6,6 +6,9 @@ private extension PBXFileElement {
         case is PBXVariantGroup:
             // Localized containers should be treated as files
             return 0
+        case is XCVersionGroup:
+            // Code Data containers should be treated as files
+            return 0
         case is PBXGroup:
             return -1
         default:
