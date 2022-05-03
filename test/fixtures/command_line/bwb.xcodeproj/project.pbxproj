@@ -99,9 +99,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02F912770B36A0167C76E610 /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
+		02C5A30086BED77944B9B2DA /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		061F2388C98C7C8A40A50744 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
-		0F150DFEED635196F9A8571D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12C3BFE593A8E590FD298519 /* LibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE87466AFFDC6606F8518F8 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
 		26385BC3A03088371FF9B69F /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libprivate_lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +109,7 @@
 		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F18976D8538975B332CAC08 /* private_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = private_lib.c; sourceTree = "<group>"; };
 		537B806ECAA55F19DAFDF318 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		81498FA51BB2409FCEFA530F /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
+		70E39C0BDE73FBB3E0447A9C /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
 		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		97949DA20D6FB752D6AD72F7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		A59B10F9022E9CC335541BDA /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
@@ -118,12 +117,21 @@
 		C06A565663AED0899589F574 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CA0EAFDED9F09448A2933165 /* private_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private_lib.h; sourceTree = "<group>"; };
 		CBE528880485D0994B3CC1FC /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		D18E5107A6F1C0850B6B2840 /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		E3938AB43AEB959A432DB9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F5B8CDF37038F1DAA6B0A624 /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
 		F93835BAA75A671D6D3361A9 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_swift.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBCE39FCE2639759A7946083 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0476B5B1CFE2912BECD8336B /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				4EED761FD2246722F245DFA0 /* command_line */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
 		063AAADAA89AC96445191502 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,36 +156,12 @@
 			path = command_line;
 			sourceTree = "<group>";
 		};
-		077CD5FCB22EBC4CBA3A92C6 /* Tests */ = {
+		1CBB95DBE8A44BC1D878A3AE /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630 */ = {
 			isa = PBXGroup;
 			children = (
-				760E67E43FAFC729A30B3E77 /* LibSwiftTests.__internal__.__test_bundle-intermediates */,
+				99E5BF86007DDB7C651C326E /* bin */,
 			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		0C56FF1923D6F744E434FC51 /* command_line */ = {
-			isa = PBXGroup;
-			children = (
-				077CD5FCB22EBC4CBA3A92C6 /* Tests */,
-			);
-			path = command_line;
-			sourceTree = "<group>";
-		};
-		111295345378B2E1D41692AF /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0 */ = {
-			isa = PBXGroup;
-			children = (
-				CDFE9BBADA70A198FED37037 /* bin */,
-			);
-			path = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0";
-			sourceTree = "<group>";
-		};
-		1984E89CBECF2AD6A6148882 /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				CB7C5EB73C129EF73B447B66 /* command_line */,
-			);
-			path = examples;
+			path = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630";
 			sourceTree = "<group>";
 		};
 		1F75B84D472E4F903E58A310 /* apple */ = {
@@ -188,12 +172,12 @@
 			path = apple;
 			sourceTree = "<group>";
 		};
-		28445299C2C46EF91A04CE33 /* bin */ = {
+		4EED761FD2246722F245DFA0 /* command_line */ = {
 			isa = PBXGroup;
 			children = (
-				77C2E33C738AD4A72287BAE6 /* examples */,
+				A26D921EF2C79FCEAD39BBD7 /* Tests */,
 			);
-			path = bin;
+			path = command_line;
 			sourceTree = "<group>";
 		};
 		593E7C82FAAD94A7E6A04318 /* Products */ = {
@@ -208,28 +192,36 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		760E67E43FAFC729A30B3E77 /* LibSwiftTests.__internal__.__test_bundle-intermediates */ = {
+		5BA196589518BE4DDC5B941D /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				0F150DFEED635196F9A8571D /* Info.plist */,
-			);
-			path = "LibSwiftTests.__internal__.__test_bundle-intermediates";
-			sourceTree = "<group>";
-		};
-		77C2E33C738AD4A72287BAE6 /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				0C56FF1923D6F744E434FC51 /* command_line */,
+				7F39486CE984F082D17A7720 /* command_line */,
 			);
 			path = examples;
 			sourceTree = "<group>";
 		};
-		89B33F3626D66F1B2E2EC04E /* lib */ = {
+		7F39486CE984F082D17A7720 /* command_line */ = {
 			isa = PBXGroup;
 			children = (
-				02F912770B36A0167C76E610 /* lib_impl.swift.modulemap */,
-				D18E5107A6F1C0850B6B2840 /* lib_swift.swift.modulemap */,
-				81498FA51BB2409FCEFA530F /* private_lib.swift.modulemap */,
+				936244BBF22D78803D3F9055 /* lib */,
+			);
+			path = command_line;
+			sourceTree = "<group>";
+		};
+		8730AFEA4D9B2B2D7AD19BF6 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				0476B5B1CFE2912BECD8336B /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		936244BBF22D78803D3F9055 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				70E39C0BDE73FBB3E0447A9C /* lib_impl.swift.modulemap */,
+				02C5A30086BED77944B9B2DA /* lib_swift.swift.modulemap */,
+				F5B8CDF37038F1DAA6B0A624 /* private_lib.swift.modulemap */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -243,6 +235,22 @@
 			path = test/fixtures/command_line/bwb.xcodeproj/rules_xcodeproj/links/external;
 			sourceTree = "<group>";
 		};
+		99E5BF86007DDB7C651C326E /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				5BA196589518BE4DDC5B941D /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		9DD9CFFE2CD76BCD5FC81487 /* applebin_macos-darwin_x86_64-dbg-ST-0139d977e630 */ = {
+			isa = PBXGroup;
+			children = (
+				8730AFEA4D9B2B2D7AD19BF6 /* bin */,
+			);
+			path = "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630";
+			sourceTree = "<group>";
+		};
 		A1A003CE7A8C4BBD4565BF3B /* tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +259,22 @@
 				C06A565663AED0899589F574 /* main.m */,
 			);
 			path = tool;
+			sourceTree = "<group>";
+		};
+		A26D921EF2C79FCEAD39BBD7 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B4B94A239D1E4F8A212F1C46 /* LibSwiftTests.__internal__.__test_bundle-intermediates */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		B4B94A239D1E4F8A212F1C46 /* LibSwiftTests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				FBCE39FCE2639759A7946083 /* Info.plist */,
+			);
+			path = "LibSwiftTests.__internal__.__test_bundle-intermediates";
 			sourceTree = "<group>";
 		};
 		B90C93321F57509ADC051F9E /* testing */ = {
@@ -279,35 +303,11 @@
 		C407A8E68D8C611448A3E699 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
-				CBBB6A70EC397E1D57FC1D54 /* applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0 */,
-				111295345378B2E1D41692AF /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0 */,
+				9DD9CFFE2CD76BCD5FC81487 /* applebin_macos-darwin_x86_64-dbg-ST-0139d977e630 */,
+				1CBB95DBE8A44BC1D878A3AE /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630 */,
 			);
 			name = "Bazel Generated Files";
 			path = test/fixtures/command_line/bwb.xcodeproj/rules_xcodeproj/links/gen_dir;
-			sourceTree = "<group>";
-		};
-		CB7C5EB73C129EF73B447B66 /* command_line */ = {
-			isa = PBXGroup;
-			children = (
-				89B33F3626D66F1B2E2EC04E /* lib */,
-			);
-			path = command_line;
-			sourceTree = "<group>";
-		};
-		CBBB6A70EC397E1D57FC1D54 /* applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0 */ = {
-			isa = PBXGroup;
-			children = (
-				28445299C2C46EF91A04CE33 /* bin */,
-			);
-			path = "applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0";
-			sourceTree = "<group>";
-		};
-		CDFE9BBADA70A198FED37037 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				1984E89CBECF2AD6A6148882 /* examples */,
-			);
-			path = bin;
 			sourceTree = "<group>";
 		};
 		DEDBB9862662A833DD5D663E /* build_bazel_rules_apple */ = {
@@ -701,7 +701,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -741,7 +741,7 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib/private_lib.swift.xcode.modulemap -g";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/private_lib.swift.xcode.modulemap -g";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -753,7 +753,7 @@
 				TARGET_NAME = lib_swift;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
 				);
 			};
 			name = Debug;
@@ -762,7 +762,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -810,7 +810,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
 				);
 			};
 			name = Debug;
@@ -819,7 +819,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/tool";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_MODULES = YES;
@@ -837,9 +837,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(PROJECT_DIR)/examples/command_line/lib/dir with space\"",
-					"\"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib/dir with space\"",
+					"\"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/dir with space\"",
 					"$(PROJECT_DIR)/examples/command_line/lib/private",
-					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib/private",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -868,7 +868,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/examples/command_line/tool/tool.LinkFileList",
+					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/examples/command_line/tool/tool.LinkFileList",
 					"-Wl,-rpath,/usr/lib/swift",
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
@@ -883,7 +883,7 @@
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
 				);
 			};
 			name = Debug;
@@ -892,7 +892,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/Tests";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -907,7 +907,7 @@
 					"SECRET_3=\\\"Hello\\\"",
 					"SECRET_2=\\\"World!\\\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-fstack-protector",
@@ -935,24 +935,24 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.LinkFileList",
+					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.LinkFileList",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib/lib_swift.swift.xcode.modulemap -g";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/lib_swift.swift.xcode.modulemap -g";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
 				PRODUCT_MODULE_NAME = LibSwiftTestsLib;
 				PRODUCT_NAME = LibSwiftTests;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = LibSwiftTests.__internal__.__test_bundle;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
 				);
 			};
 			name = Debug;
@@ -1000,7 +1000,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin/examples/command_line/lib";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1046,7 +1046,7 @@
 				TARGET_NAME = private_lib;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-9ef1b03c01c0/bin",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
 				);
 			};
 			name = Debug;
