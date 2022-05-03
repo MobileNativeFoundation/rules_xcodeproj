@@ -49,6 +49,10 @@ xcodeproj_aspect = aspect(
     implementation = _xcodeproj_aspect_impl,
     attr_aspects = ["*"],
     attrs = {
+        "_archived_bundles_allowed": attr.label(
+            default = Label("//xcodeproj/internal:archived_bundles_allowed"),
+            providers = [BuildSettingInfo],
+        ),
         "_build_mode": attr.label(
             default = Label("//xcodeproj/internal:build_mode"),
             providers = [BuildSettingInfo],

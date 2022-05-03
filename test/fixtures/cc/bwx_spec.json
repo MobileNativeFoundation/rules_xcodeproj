@@ -24,7 +24,7 @@
     "name": "bwx",
     "target_merges": [],
     "targets": [
-        "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+        "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -69,7 +69,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+            "configuration": "darwin_x86_64-fastbuild-ST-3a06c5106091",
             "dependencies": [],
             "entitlements": null,
             "info_plist": null,
@@ -86,7 +86,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "lib_impl",
-            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2",
+            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib2",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -95,7 +95,7 @@
             "product": {
                 "name": "lib_impl",
                 "path": {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/liblib_impl.a",
+                    "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib2/liblib_impl.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -105,14 +105,14 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin",
                         "t": "g"
                     }
                 ],
                 "system_includes": [
                     "examples/cc/lib2/includes",
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/includes",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib2/includes",
                         "t": "g"
                     }
                 ]
@@ -120,7 +120,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+        "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -166,7 +166,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+            "configuration": "darwin_x86_64-fastbuild-ST-3a06c5106091",
             "dependencies": [],
             "entitlements": null,
             "info_plist": null,
@@ -181,7 +181,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "lib_impl",
-            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib",
+            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -190,7 +190,7 @@
             "product": {
                 "name": "lib_impl",
                 "path": {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/liblib_impl.a",
+                    "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib/liblib_impl.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -200,14 +200,14 @@
                 "includes": [
                     "examples/cc/lib/private",
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/private",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib/private",
                         "t": "g"
                     }
                 ],
                 "quote_includes": [
                     ".",
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin",
                         "t": "g"
                     }
                 ]
@@ -215,7 +215,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/cc/tool:tool darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+        "//examples/cc/tool:tool darwin_x86_64-fastbuild-ST-3a06c5106091",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -261,11 +261,11 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+            "configuration": "darwin_x86_64-fastbuild-ST-3a06c5106091",
             "dependencies": [
-                "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
-                "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
-                "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1"
+                "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091",
+                "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091",
+                "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091"
             ],
             "entitlements": null,
             "info_plist": null,
@@ -279,22 +279,22 @@
             "linker_inputs": {
                 "static_libraries": [
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib/liblib_impl.a",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib/liblib_impl.a",
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/liblib_impl.a",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib2/liblib_impl.a",
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/liblib_impl.a",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external/liblib_impl.a",
                         "t": "g"
                     }
                 ]
             },
             "modulemaps": [],
             "name": "tool",
-            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/tool",
+            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/tool",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -303,7 +303,7 @@
             "product": {
                 "name": "tool",
                 "path": {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/tool/tool",
+                    "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/tool/tool",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.tool"
@@ -313,7 +313,7 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin",
                         "t": "g"
                     },
                     {
@@ -321,7 +321,7 @@
                         "t": "e"
                     },
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external",
                         "t": "g"
                     },
                     {
@@ -329,14 +329,14 @@
                         "t": "e"
                     },
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/bazel_tools",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/bazel_tools",
                         "t": "g"
                     }
                 ],
                 "system_includes": [
                     "examples/cc/lib2/includes",
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/examples/cc/lib2/includes",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib2/includes",
                         "t": "g"
                     }
                 ]
@@ -344,7 +344,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+        "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -390,7 +390,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+            "configuration": "darwin_x86_64-fastbuild-ST-3a06c5106091",
             "dependencies": [],
             "entitlements": null,
             "info_plist": null,
@@ -411,7 +411,7 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "lib_impl",
-            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external",
+            "package_bin_dir": "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -420,7 +420,7 @@
             "product": {
                 "name": "lib_impl",
                 "path": {
-                    "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/liblib_impl.a",
+                    "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external/liblib_impl.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -433,7 +433,7 @@
                         "t": "e"
                     },
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external/private",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external/private",
                         "t": "g"
                     }
                 ],
@@ -443,7 +443,7 @@
                         "t": "e"
                     },
                     {
-                        "_": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/external/examples_cc_external",
+                        "_": "darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external",
                         "t": "g"
                     }
                 ]
