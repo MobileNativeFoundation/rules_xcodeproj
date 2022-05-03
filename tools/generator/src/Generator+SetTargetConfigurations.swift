@@ -146,6 +146,7 @@ Target "\(id)" not found in `pbxTargets`
                 buildSettings["BUILT_PRODUCTS_DIR"] = """
 $(CONFIGURATION_BUILD_DIR)
 """
+                buildSettings["DEPLOYMENT_LOCATION"] = false
             }
 
             if let infoPlist = target.infoPlist {
