@@ -1,4 +1,4 @@
-""" Functions for processing search paths """
+"""Functions for processing search paths."""
 
 load(":collections.bzl", "set_if_true")
 load(
