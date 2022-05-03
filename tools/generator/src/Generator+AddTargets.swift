@@ -5,6 +5,7 @@ extension Generator {
     static func addTargets(
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        buildMode: BuildMode,
         products: Products,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
@@ -53,6 +54,7 @@ Product for target "\(id)" not found in `products`
                 ),
                 try createResourcesPhase(
                     in: pbxProj,
+                    buildMode: buildMode,
                     productType: productType,
                     resourceBundles: target.resourceBundles,
                     inputs: target.inputs,
@@ -61,6 +63,7 @@ Product for target "\(id)" not found in `products`
                 ),
                 try createEmbedFrameworksPhase(
                     in: pbxProj,
+                    buildMode: buildMode,
                     productType: productType,
                     frameworks: target.linkerInputs.embeddable,
                     files: files
@@ -244,14 +247,16 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
 
     private static func createResourcesPhase(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         productType: PBXProductType,
         resourceBundles: Set<FilePath>,
         inputs: Inputs,
         products: Products,
         files: [FilePath: File]
     ) throws -> PBXResourcesBuildPhase? {
-        guard productType.isBundle
-                && !(inputs.resources.isEmpty && resourceBundles.isEmpty)
+        guard !buildMode.usesBazelModeBuildScripts
+            && productType.isBundle
+            && !(inputs.resources.isEmpty && resourceBundles.isEmpty)
         else {
             return nil
         }
@@ -300,11 +305,15 @@ Resource bundle product reference with file path "\(filePath)" not found in \
 
     private static func createEmbedFrameworksPhase(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         productType: PBXProductType,
         frameworks: [FilePath],
         files: [FilePath: File]
     ) throws -> PBXCopyFilesBuildPhase? {
-        guard productType.isBundle && !frameworks.isEmpty else {
+        guard  !buildMode.usesBazelModeBuildScripts
+            && productType.isBundle
+            && !frameworks.isEmpty
+        else {
             return nil
         }
 

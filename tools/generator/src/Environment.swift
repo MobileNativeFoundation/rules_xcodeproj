@@ -57,6 +57,7 @@ struct Environment {
     let addTargets: (
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        _ buildMode: BuildMode,
         _ products: Products,
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
