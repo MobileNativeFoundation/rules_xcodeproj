@@ -44,7 +44,12 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
                 "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
 $(BUILD_DIR)/bazel_build_output_groups
 """,
+                "BAZEL_STUBS_DIR": "$(INTERNAL_DIR)/stubs",
+                "CC": "$(BAZEL_STUBS_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
+                "LD": "$(BAZEL_STUBS_DIR)/ld.sh",
+                "LIBTOOL": "$(BAZEL_STUBS_DIR)/libtool.sh",
+                "SWIFT_EXEC": "$(BAZEL_STUBS_DIR)/swiftc.py",
             ], uniquingKeysWith: { _, r in r })
         }
 

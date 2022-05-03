@@ -109,7 +109,9 @@ $(BUILD_DIR)/bazel_build_output_groups
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
                 "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
+                "BAZEL_STUBS_DIR": "$(INTERNAL_DIR)/stubs",
                 "BUILT_PRODUCTS_DIR": "$(BUILD_DIR)",
+                "CC": "$(BAZEL_STUBS_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
@@ -117,9 +119,12 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
                 "DEPLOYMENT_LOCATION": true,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
+                "LD": "$(BAZEL_STUBS_DIR)/ld.sh",
+                "LIBTOOL": "$(BAZEL_STUBS_DIR)/libtool.sh",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "SWIFT_EXEC": "$(BAZEL_STUBS_DIR)/swiftc.py",
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 """,

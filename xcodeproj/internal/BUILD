@@ -10,6 +10,13 @@ exports_files([
     "validator.template.sh",
 ])
 
+filegroup(
+    name = "stubs",
+    srcs = glob(["stubs/**/*"]),
+    # This is made public for internal use only
+    visibility = ["//visibility:public"],
+)
+
 string_setting(
     name = "install_path",
     build_setting_default = "",
@@ -35,6 +42,6 @@ string_setting(
 
 filegroup(
     name = "all_files",
-    srcs = glob(["*"]),
+    srcs = glob(["**/*"]),
     visibility = ["//:__subpackages__"],
 )

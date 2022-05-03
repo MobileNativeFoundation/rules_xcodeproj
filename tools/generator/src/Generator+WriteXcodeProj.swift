@@ -5,8 +5,10 @@ extension Generator {
     /// Writes the ".xcodeproj" file to disk.
     static func writeXcodeProj(
         _ xcodeProj: XcodeProj,
+        buildMode: BuildMode,
         files: [FilePath: File],
         internalDirectoryName: String,
+        stubsPath: Path,
         to outputPath: Path
     ) throws {
         try xcodeProj.write(path: outputPath)
@@ -24,6 +26,11 @@ extension Generator {
             let path = internalOutputPath + filePath.path
             try path.parent().mkpath()
             try path.write(content)
+        }
+
+        if buildMode.usesBazelModeBuildScripts {
+            let dest = internalOutputPath + "stubs"
+            try stubsPath.copy(dest)
         }
     }
 }

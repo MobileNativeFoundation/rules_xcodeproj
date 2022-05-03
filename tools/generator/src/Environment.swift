@@ -92,8 +92,10 @@ struct Environment {
 
     let writeXcodeProj: (
         _ xcodeProj: XcodeProj,
+        _ buildMode: BuildMode,
         _ files: [FilePath: File],
         _ internalDirectoryName: String,
+        _ stubsPath: Path,
         _ outputPath: Path
     ) throws -> Void
 }
