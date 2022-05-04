@@ -46,8 +46,10 @@ Product for target "\(id)" not found in `products`
                 ),
                 try createCompileSourcesPhase(
                     in: pbxProj,
+                    buildMode: buildMode,
                     productType: productType,
                     inputs: inputs,
+                    outputs: outputs,
                     files: files
                 ),
                 try createCopyGeneratedHeaderScript(
@@ -120,6 +122,7 @@ Product for target "\(id)" not found in `products`
 
         let script = PBXShellScriptBuildPhase(
             name: "Copy Bazel Outputs",
+            outputPaths: outputs.outputPaths,
             shellScript: copyCommand,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
@@ -176,11 +179,16 @@ File "\(headerFile.filePath)" not found in `files`
 
     private static func createCompileSourcesPhase(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         productType: PBXProductType,
         inputs: Inputs,
+        outputs: Outputs,
         files: [FilePath: File]
     ) throws -> PBXSourcesBuildPhase? {
-        let sources = inputs.srcs.map(SourceFile.init) +
+        let forcedBazelCompileFiles = outputs
+            .forcedBazelCompileFiles(buildMode: buildMode)
+        let sources = forcedBazelCompileFiles.map(SourceFile.init) +
+            inputs.srcs.map(SourceFile.init) +
             inputs.nonArcSrcs.map { filePath in
                 return SourceFile(
                     filePath,
@@ -449,6 +457,28 @@ private extension Path {
 }
 
 extension Outputs {
+    func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
+        guard buildMode.usesBazelModeBuildScripts else {
+            return []
+        }
+
+        if swift != nil {
+            return [.internal(Generator.bazelForcedSwiftCompilePath)]
+        }
+
+        return []
+    }
+
+    fileprivate var outputPaths: [String] {
+        if swift != nil {
+            return [
+                "$(DERIVED_FILE_DIR)/\(Generator.bazelForcedSwiftCompilePath)",
+            ]
+        }
+
+        return []
+    }
+
     fileprivate func scriptCopyCommand(
         product: Product,
         filePathResolver: FilePathResolver
@@ -612,6 +642,7 @@ chmod u+w "$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
         return #"""
 \#(copyGeneratedHeader)\#
 # Copy swiftmodule
+log="$(mktemp)"
 rsync \
   \#(try swift
     .paths(filePathResolver: filePathResolver)
@@ -620,7 +651,11 @@ rsync \
   --chmod=u+w \
   -L \
   --out-format="%n%L" \
-  "$OBJECT_FILE_DIR-normal/$ARCHS"
+  "$OBJECT_FILE_DIR-normal/$ARCHS" \
+  | tee "$log"
+if [[ -s "$log" ]]; then
+  touch "$DERIVED_FILE_DIR/\#(Generator.bazelForcedSwiftCompilePath)"
+fi
 
 """#
     }
