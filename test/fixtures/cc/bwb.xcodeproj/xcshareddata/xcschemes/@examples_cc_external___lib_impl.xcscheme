@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Scheme>
+<Scheme
+   LastUpgradeVersion = "1320">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -12,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "373A62571D2CA8826AD4F92C"
-               BuildableName = "lib_impl"
-               BlueprintName = "//examples/cc/lib2:lib_impl"
+               BlueprintIdentifier = "0CEAA3455274D4DE9B4B82BF"
+               BuildableName = "liblib_impl.a"
+               BlueprintName = "@examples_cc_external//:lib_impl"
                ReferencedContainer = "container:test/fixtures/cc/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
