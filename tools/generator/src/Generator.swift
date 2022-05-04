@@ -1,6 +1,10 @@
 import PathKit
 import XcodeProj
 
+// DEBUG BEGIN
+import Darwin
+// DEBUG END
+
 /// A class that generates and writes to disk an Xcode project.
 ///
 /// The `Generator` class is stateless. It can be used to generate multiple
@@ -134,6 +138,16 @@ Was unable to merge "\(srcTarget.label) \
             disambiguatedTargets,
             pbxTargets
         )
+
+        // DEBUG BEGIN
+        fputs("*** CHUCK ===============\n", stderr)
+        fputs("*** CHUCK internalDirectoryName: \(String(reflecting: internalDirectoryName))\n", stderr)
+        fputs("*** CHUCK outputPath: \(String(reflecting: outputPath))\n", stderr)
+        fputs("*** CHUCK pbxTargets:\n", stderr)
+        for (idx, item) in pbxTargets.enumerated() {
+            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        }
+        // DEBUG END
 
         let schemes = environment.createXCSchemes(disambiguatedTargets)
         let sharedData = environment.createXCSharedData(schemes)

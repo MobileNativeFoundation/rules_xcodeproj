@@ -9,19 +9,19 @@ extension Generator {
     static func createXCSchemes(
         disambiguatedTargets: [TargetID: DisambiguatedTarget]
     ) -> [XCScheme] {
-        // DEBUG BEGIN
-        fputs("*** CHUCK disambiguatedTargets:\n", stderr)
-        for (idx, item) in disambiguatedTargets.enumerated() {
-            let disambiguatedTarget = item.1
-            let target = disambiguatedTarget.target
-            // fputs("*** CHUCK   \(idx) : \(String(reflecting: item.1))\n", stderr)
-            fputs("*** CHUCK   \(idx) : \(String(reflecting: item.0))\n", stderr)
-            fputs("*** CHUCK      disambiguatedTarget.name: \(String(reflecting: disambiguatedTarget.name))\n", stderr)
-            fputs("*** CHUCK      target.name: \(String(reflecting: target.name))\n", stderr)
-            fputs("*** CHUCK      target.product.type: \(String(reflecting: target.product.type))\n", stderr)
-            fputs("*** CHUCK      dependencies: \(String(reflecting: target.dependencies))\n", stderr)
-        }
-        // DEBUG END
+        // // DEBUG BEGIN
+        // fputs("*** CHUCK disambiguatedTargets:\n", stderr)
+        // for (idx, item) in disambiguatedTargets.enumerated() {
+        //     let disambiguatedTarget = item.1
+        //     let target = disambiguatedTarget.target
+        //     // fputs("*** CHUCK   \(idx) : \(String(reflecting: item.1))\n", stderr)
+        //     fputs("*** CHUCK   \(idx) : \(String(reflecting: item.0))\n", stderr)
+        //     fputs("*** CHUCK      disambiguatedTarget.name: \(String(reflecting: disambiguatedTarget.name))\n", stderr)
+        //     fputs("*** CHUCK      target.name: \(String(reflecting: target.name))\n", stderr)
+        //     fputs("*** CHUCK      target.product.type: \(String(reflecting: target.product.type))\n", stderr)
+        //     fputs("*** CHUCK      dependencies: \(String(reflecting: target.dependencies))\n", stderr)
+        // }
+        // // DEBUG END
 
         // Scheme actions: Build, Test, Run, Profile
         var schemes = [XCScheme]()
@@ -86,19 +86,24 @@ extension Target {
 // MARK: BuildAction Extension
 
 extension XCScheme.BuildAction {
-    convenience init(target _: Target) {
-        // self.init(
-        //     buildableReference: .init(
-        //         // TODO(chuck): populate
-        //         referencedContainer: "container:Project.xcodeproj",
-        //         blueprint: nil,
-        //         buildableName: "iOS.app",
-        //         blueprintName: "iOS"
-        //     ),
-        //     buildFor: .default
-        // )
+    convenience init(target: Target) {
+        // DEBUG BEGIN
+        fputs("*** CHUCK ----------------\n", stderr)
+        fputs("*** CHUCK target.name: \(String(reflecting: target.name))\n", stderr)
+        fputs("*** CHUCK target.product: \(String(reflecting: target.product))\n", stderr)
+        // DEBUG END
+        let entry = XCScheme.BuildAction.Entry(
+            buildableReference: .init(
+                // TODO(chuck): populate
+                referencedContainer: "container:Project.xcodeproj",
+                blueprint: nil,
+                buildableName: "iOS.app",
+                blueprintName: "iOS"
+            ),
+            buildFor: XCScheme.BuildAction.Entry.BuildFor.default
+        )
         self.init(
-            buildActionEntries: [],
+            buildActionEntries: [entry],
             preActions: [],
             postActions: [],
             parallelizeBuild: false,

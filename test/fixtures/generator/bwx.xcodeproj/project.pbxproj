@@ -63,6 +63,7 @@
 		2B5CE87F591A88AE69E2EA93 /* CustomDumpRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88789669F25DD7E154C15036 /* CustomDumpRepresentable.swift */; };
 		2F23E98B7032105D6B0D28C8 /* OrderedSet+UnstableInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415E01540549AB7D9DC7775 /* OrderedSet+UnstableInternals.swift */; };
 		30D5B9A89D41795BE4359B14 /* Generator+CreateXCSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A3046CDCECF5B1135A1D0E /* Generator+CreateXCSharedData.swift */; };
+		32DAC21618A93EF8DB05A889 /* CreateXCSchemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC11619155D626635A9AB65A /* CreateXCSchemesTests.swift */; };
 		33B7CF1072ED2BECDE1093EE /* PBXProductType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0926F34E2099B433D5550DCD /* PBXProductType+Extensions.swift */; };
 		3468B9267DEA583FB703DC62 /* KeyedDecodingContainer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB78F15F8AFA4FD268CBC7BD /* KeyedDecodingContainer+Additions.swift */; };
 		34AA2315505226D74BC238A6 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1140300C723A6A3D0EC452A4 /* Element.swift */; };
@@ -631,6 +632,7 @@
 		FA83272F166637CFAFC4C79C /* OrderedDictionary+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Hashable.swift"; sourceTree = "<group>"; };
 		FAD042334686EC625458D787 /* XCWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspace.swift; sourceTree = "<group>"; };
 		FB78F15F8AFA4FD268CBC7BD /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
+		FC11619155D626635A9AB65A /* CreateXCSchemesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCSchemesTests.swift; sourceTree = "<group>"; };
 		FD68E5A7AC6AF524F6B2E4D3 /* WorkspaceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -773,6 +775,7 @@
 				798455D7A824BAB585C1E8EB /* CreateProductsTest.swift */,
 				E200ED9999C2E4E55C7EC34E /* CreateProjectTests.swift */,
 				4BC5B799900C53A6F581CF62 /* CreateXcodeProjTests.swift */,
+				FC11619155D626635A9AB65A /* CreateXCSchemesTests.swift */,
 				6160799DF1E959D7EF7F1CDB /* CreateXCSharedDataTests.swift */,
 				B85F30A6B61E80F5E31CB607 /* DisambiguateTargetsTests.swift */,
 				87C2FB94A951A108189B85C1 /* FilePathResolverTests.swift */,
@@ -1586,6 +1589,7 @@
 				250DE90578C454256F39C418 /* CreateFilesAndGroupsTests.swift in Sources */,
 				D28AD805F11C60A1A2CEBE5A /* CreateProductsTest.swift in Sources */,
 				0B06F16B6814BDD36D863BDF /* CreateProjectTests.swift in Sources */,
+				32DAC21618A93EF8DB05A889 /* CreateXCSchemesTests.swift in Sources */,
 				73AC905D0A5BCA30C4E708CE /* CreateXCSharedDataTests.swift in Sources */,
 				5F50664E006EE645FFC8B076 /* CreateXcodeProjTests.swift in Sources */,
 				3CC3CF23728FFF27C3332D92 /* DisambiguateTargetsTests.swift in Sources */,
