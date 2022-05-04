@@ -10,10 +10,7 @@ class CreateXCSchemesTests: XCTestCase {
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
     let pbxTargetsDict: [TargetID: PBXTarget] =
-        Fixtures.pbxTargetsWithDependencies(
-            in: Fixtures.pbxProj(),
-            targets: Fixtures.targets
-        )
+        Fixtures.pbxTargets(in: Fixtures.pbxProj(), targets: Fixtures.targets).0
 
     func assertScheme(
         schemesDict: [String: XCScheme],
