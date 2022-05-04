@@ -1,6 +1,20 @@
 import XcodeProj
 
 extension PBXProductType {
+    var isApplication: Bool {
+        switch self {
+        case .application,
+             .watchApp,
+             .watch2App,
+             .watch2AppContainer,
+             .messagesApplication,
+             .onDemandInstallCapableApplication:
+            return true
+        default:
+            return false
+        }
+    }
+
     var isAppExtension: Bool {
         switch self {
         case .appExtension,

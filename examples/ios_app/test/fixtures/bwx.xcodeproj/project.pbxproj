@@ -1292,6 +1292,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/TestingUtils";
+				BAZEL_TARGET_ID = "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1352,6 +1353,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/external/examples_ios_app_external";
+				BAZEL_TARGET_ID = "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = (
@@ -1372,6 +1374,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/ExampleUITests";
+				BAZEL_TARGET_ID = "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1432,6 +1435,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/ExampleResources";
+				BAZEL_TARGET_ID = "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = (
@@ -1464,6 +1468,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/CoreUtilsObjC";
+				BAZEL_TARGET_ID = "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1535,6 +1540,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/ExampleTests";
+				BAZEL_TARGET_ID = "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1622,6 +1628,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/ExampleObjcTests";
+				BAZEL_TARGET_ID = "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1709,6 +1716,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/Example";
+				BAZEL_TARGET_ID = "//Example:Example applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
@@ -1821,6 +1829,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468/bin/Utils";
+				BAZEL_TARGET_ID = "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-fastbuild-ST-8e3621d9b468";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;

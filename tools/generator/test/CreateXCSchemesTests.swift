@@ -15,9 +15,11 @@ class CreateXCSchemesTests: XCTestCase {
     func assertScheme(
         schemesDict: [String: XCScheme],
         targetID: TargetID,
+        shouldExpectBuildPreActions: Bool,
         shouldExpectBuildActionEntries: Bool,
         shouldExpectTestables: Bool,
         shouldExpectBuildableProductRunnable: Bool,
+        shouldExpectCustomLLDBInitFile: Bool,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws {
@@ -45,6 +47,17 @@ class CreateXCSchemesTests: XCTestCase {
         let expectedBuildableReference = try target.createBuildableReference(
             referencedContainer: filePathResolver.containerReference
         )
+        let expectedBuildPreActions: [XCScheme.ExecutionAction] =
+            shouldExpectBuildPreActions ?
+            [.init(
+                scriptText: #"""
+mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
+echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+
+"""#,
+                title: "Set Bazel Build Output Groups",
+                environmentBuildable: expectedBuildableReference
+            )] : []
         let expectedBuildActionEntries: [XCScheme.BuildAction.Entry] =
             shouldExpectBuildActionEntries ?
             [.init(
@@ -62,6 +75,8 @@ class CreateXCSchemesTests: XCTestCase {
             XCScheme.BuildableProductRunnable(
                 buildableReference: expectedBuildableReference
             ) : nil
+        let expectedCustomLLDBInitFile = shouldExpectCustomLLDBInitFile ?
+            "$(BAZEL_LLDB_INIT)" : nil
 
         // Assertions
 
@@ -84,6 +99,13 @@ class CreateXCSchemesTests: XCTestCase {
             )
             return
         }
+        XCTAssertEqual(
+            buildAction.preActions,
+            expectedBuildPreActions,
+            "preActions did not match for \(scheme.name)",
+            file: file,
+            line: line
+        )
         XCTAssertEqual(
             buildAction.buildActionEntries,
             expectedBuildActionEntries,
@@ -155,6 +177,13 @@ class CreateXCSchemesTests: XCTestCase {
             file: file,
             line: line
         )
+        XCTAssertEqual(
+            launchAction.customLLDBInitFile,
+            expectedCustomLLDBInitFile,
+            "customLLDBInitFile did not match for \(scheme.name)",
+            file: file,
+            line: line
+        )
 
         guard let analyzeAction = scheme.analyzeAction else {
             XCTFail(
@@ -197,6 +226,7 @@ class CreateXCSchemesTests: XCTestCase {
 
     func test_createXCSchemes_withNoTargets() throws {
         let schemes = try Generator.createXCSchemes(
+            buildMode: .xcode,
             filePathResolver: filePathResolver,
             pbxTargets: [:]
         )
@@ -204,8 +234,9 @@ class CreateXCSchemesTests: XCTestCase {
         XCTAssertEqual(schemes, expected)
     }
 
-    func test_createXCSchemes_withTargets() throws {
+    func test_createXCSchemes_withTargets_xcode() throws {
         let schemes = try Generator.createXCSchemes(
+            buildMode: .xcode,
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargetsDict
         )
@@ -213,31 +244,103 @@ class CreateXCSchemesTests: XCTestCase {
 
         let schemesDict = Dictionary(uniqueKeysWithValues: schemes.map { ($0.name, $0) })
 
+        // Non-native target
+        try assertScheme(
+            schemesDict: schemesDict,
+            targetID: .bazelDependencies,
+            shouldExpectBuildPreActions: false,
+            shouldExpectBuildActionEntries: true,
+            shouldExpectTestables: false,
+            shouldExpectBuildableProductRunnable: false,
+            shouldExpectCustomLLDBInitFile: false
+        )
+
         // Library
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "A 1",
+            shouldExpectBuildPreActions: false,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
-            shouldExpectBuildableProductRunnable: false
+            shouldExpectBuildableProductRunnable: false,
+            shouldExpectCustomLLDBInitFile: false
         )
 
         // Testable and launchable
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "B 2",
+            shouldExpectBuildPreActions: false,
             shouldExpectBuildActionEntries: false,
             shouldExpectTestables: true,
-            shouldExpectBuildableProductRunnable: true
+            shouldExpectBuildableProductRunnable: true,
+            shouldExpectCustomLLDBInitFile: false
         )
 
         // Launchable, not testable
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "A 2",
+            shouldExpectBuildPreActions: false,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
-            shouldExpectBuildableProductRunnable: true
+            shouldExpectBuildableProductRunnable: true,
+            shouldExpectCustomLLDBInitFile: false
+        )
+    }
+
+    func test_createXCSchemes_withTargets_bazel() throws {
+        let schemes = try Generator.createXCSchemes(
+            buildMode: .bazel,
+            filePathResolver: filePathResolver,
+            pbxTargets: pbxTargetsDict
+        )
+        XCTAssertEqual(schemes.count, pbxTargetsDict.count)
+
+        let schemesDict = Dictionary(uniqueKeysWithValues: schemes.map { ($0.name, $0) })
+
+        // Non-native target
+        try assertScheme(
+            schemesDict: schemesDict,
+            targetID: .bazelDependencies,
+            shouldExpectBuildPreActions: false,
+            shouldExpectBuildActionEntries: true,
+            shouldExpectTestables: false,
+            shouldExpectBuildableProductRunnable: false,
+            shouldExpectCustomLLDBInitFile: true
+        )
+
+        // Library
+        try assertScheme(
+            schemesDict: schemesDict,
+            targetID: "A 1",
+            shouldExpectBuildPreActions: true,
+            shouldExpectBuildActionEntries: true,
+            shouldExpectTestables: false,
+            shouldExpectBuildableProductRunnable: false,
+            shouldExpectCustomLLDBInitFile: true
+        )
+
+        // Testable and launchable
+        try assertScheme(
+            schemesDict: schemesDict,
+            targetID: "B 2",
+            shouldExpectBuildPreActions: true,
+            shouldExpectBuildActionEntries: false,
+            shouldExpectTestables: true,
+            shouldExpectBuildableProductRunnable: true,
+            shouldExpectCustomLLDBInitFile: true
+        )
+
+        // Launchable, not testable
+        try assertScheme(
+            schemesDict: schemesDict,
+            targetID: "A 2",
+            shouldExpectBuildPreActions: true,
+            shouldExpectBuildActionEntries: true,
+            shouldExpectTestables: false,
+            shouldExpectBuildableProductRunnable: true,
+            shouldExpectCustomLLDBInitFile: true
         )
     }
 }

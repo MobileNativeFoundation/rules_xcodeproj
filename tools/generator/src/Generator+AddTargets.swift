@@ -21,6 +21,7 @@ extension Generator {
         for (id, disambiguatedTarget) in sortedDisambiguatedTargets {
             let target = disambiguatedTarget.target
             let inputs = target.inputs
+            let outputs = target.outputs
             let productType = target.product.type
 
             guard let product = products.byTarget[id] else {
@@ -30,6 +31,13 @@ Product for target "\(id)" not found in `products`
             }
 
             let buildPhases = [
+                try createCopyBazelOutputsScript(
+                    in: pbxProj,
+                    buildMode: buildMode,
+                    product: target.product,
+                    outputs: outputs,
+                    filePathResolver: filePathResolver
+                ),
                 try createHeadersPhase(
                     in: pbxProj,
                     productType: productType,
@@ -91,6 +99,34 @@ Product for target "\(id)" not found in `products`
         }
 
         return pbxTargets
+    }
+
+    private static func createCopyBazelOutputsScript(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        product: Product,
+        outputs: Outputs,
+        filePathResolver: FilePathResolver
+    ) throws -> PBXShellScriptBuildPhase? {
+        guard
+            buildMode.usesBazelModeBuildScripts,
+            let copyCommand = try outputs.scriptCopyCommand(
+                product: product,
+                filePathResolver: filePathResolver
+            )
+        else {
+            return nil
+        }
+
+        let script = PBXShellScriptBuildPhase(
+            name: "Copy Bazel Outputs",
+            shellScript: copyCommand,
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: script)
+
+        return script
     }
 
     private static func createHeadersPhase(
@@ -409,5 +445,201 @@ private extension Path {
         case "hpp": return true
         default: return false
         }
+    }
+}
+
+extension Outputs {
+    fileprivate func scriptCopyCommand(
+        product: Product,
+        filePathResolver: FilePathResolver
+    ) throws -> String? {
+        guard bundle != nil || swift != nil else {
+            return nil
+        }
+
+        let commands = [
+            try conditionalCopyCommand(
+                product: product,
+                filePathResolver: filePathResolver
+            ),
+            try swiftCopyCommand(filePathResolver: filePathResolver),
+        ].compactMap { $0 }
+
+        return #"""
+set -euo pipefail
+
+mkdir -p "$OBJECT_FILE_DIR-normal/$ARCHS"
+
+
+"""# + commands.joined(separator: "\n")
+    }
+
+    fileprivate func conditionalCopyCommand(
+        product: Product,
+        filePathResolver: FilePathResolver
+    ) throws -> String {
+        return #"""
+if [[ "$ACTION" == indexbuild ]]; then
+  # Write to "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" to allow next index to catch up
+  echo "i $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+\#(try nonIndexCopyCommand(
+    product: product,
+    filePathResolver: filePathResolver
+))\#
+fi
+
+"""#
+    }
+
+    private static func extractBundleCommand(
+        outputPath: Path,
+        bundlePathPrefix: String,
+        bundlePath: String
+    ) -> String {
+        return #"""
+  readonly archive="\#(outputPath)"
+  readonly expanded_dest="$DERIVED_FILE_DIR/expanded_archive"
+  readonly sha_output="$DERIVED_FILE_DIR/archive.sha256"
+
+  existing_sha=$(cat "$sha_output" 2>/dev/null || true)
+  sha=$(shasum -a 256 "$archive")
+
+  if [[ "$existing_sha" != "$sha" || ! -d "$expanded_dest\#(bundlePathPrefix)/\#(bundlePath)" ]]; then
+    mkdir -p "$expanded_dest"
+    rm -rf "${expanded_dest:?}/"
+    unzip -q "$archive" -d "$expanded_dest"
+    echo "$sha" > "$sha_output"
+  fi
+
+  cd "$expanded_dest\#(bundlePathPrefix)"
+
+"""#
+    }
+
+    private func nonIndexCopyCommand(
+        product: Product,
+        filePathResolver: FilePathResolver
+    ) throws -> String {
+        guard let bundle = bundle else {
+            return ""
+        }
+
+        let outputPath = try filePathResolver
+            .resolve(bundle, useOriginalGeneratedFiles: true, mode: .script)
+        let bundlePath = product.path.path.lastComponent
+
+        let extract: String
+        switch bundle.path.extension {
+        case "ipa":
+            extract = Self.extractBundleCommand(
+                outputPath: outputPath,
+                bundlePathPrefix: "/Payload",
+                bundlePath: bundlePath
+            )
+        case "zip":
+            extract = Self.extractBundleCommand(
+                outputPath: outputPath,
+                bundlePathPrefix: "",
+                bundlePath: bundlePath
+            )
+        default:
+            extract = #"""
+  cd "\#(outputPath.parent())"
+
+"""#
+        }
+
+        let excludeList: String
+        if product.type.isApplication {
+            excludeList = #"""
+    --exclude-from="\#(
+try filePathResolver
+    .resolve(.internal(Generator.appRsyncExcludeFileListPath), mode: .script)
+    .string
+)" \
+
+"""#
+        } else {
+            excludeList = ""
+        }
+
+        return #"""
+else
+  # Copy bundle
+\#(extract)\#
+  rsync \
+    --copy-links \
+    --recursive \
+    --times \
+    --delete \
+\#(excludeList)\#
+    --chmod=u+w \
+    --out-format="%n%L" \
+    "\#(bundlePath)" \
+    "$TARGET_BUILD_DIR"
+
+"""#
+    }
+
+    private func swiftCopyCommand(
+        filePathResolver: FilePathResolver
+    ) throws -> String? {
+        guard let swift = swift else {
+            return nil
+        }
+
+        let copyGeneratedHeader: String
+        if let generatedHeader = swift.generatedHeader {
+            copyGeneratedHeader = #"""
+# Copy generated header
+mkdir -p "$OBJECT_FILE_DIR-normal/$ARCHS/${SWIFT_OBJC_INTERFACE_HEADER_NAME%/*}"
+cp \
+  "\#(try filePathResolver
+    .resolve(
+        generatedHeader,
+        useOriginalGeneratedFiles: true,
+        mode: .script
+))" \
+  "$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
+chmod u+w "$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
+
+
+"""#
+        } else {
+            copyGeneratedHeader = ""
+        }
+
+        return #"""
+\#(copyGeneratedHeader)\#
+# Copy swiftmodule
+rsync \
+  \#(try swift
+    .paths(filePathResolver: filePathResolver)
+    .joined(separator: #" \\#n  "#)) \
+  --times \
+  --chmod=u+w \
+  -L \
+  --out-format="%n%L" \
+  "$OBJECT_FILE_DIR-normal/$ARCHS"
+
+"""#
+    }
+}
+
+private extension Outputs.Swift {
+    func paths(filePathResolver: FilePathResolver) throws -> [String] {
+        return try [
+                module,
+                doc,
+                sourceInfo,
+                interface,
+            ]
+            .compactMap { $0 }
+            .map { filePath in
+                return """
+"\(try filePathResolver
+    .resolve(filePath, useOriginalGeneratedFiles: true, mode: .script))"
+"""
+            }
     }
 }

@@ -143,6 +143,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
 
         struct CreateFilesAndGroupsCalled: Equatable {
             let pbxProj: PBXProj
+            let buildMode: BuildMode
             let targets: [TargetID: Target]
             let extraFiles: Set<FilePath>
             let xccurrentversions: [XCCurrentVersion]
@@ -152,6 +153,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         var createFilesAndGroupsCalled: [CreateFilesAndGroupsCalled] = []
         func createFilesAndGroups(
             in pbxProj: PBXProj,
+            buildMode: BuildMode,
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
             xccurrentversions: [XCCurrentVersion],
@@ -163,6 +165,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         ) {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
+                buildMode: buildMode,
                 targets: targets,
                 extraFiles: extraFiles,
                 xccurrentversions: xccurrentversions,
@@ -173,6 +176,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
 
         let expectedCreateFilesAndGroupsCalled = [CreateFilesAndGroupsCalled(
             pbxProj: pbxProj,
+            buildMode: buildMode,
             targets: mergedTargets,
             extraFiles: project.extraFiles,
             xccurrentversions: xccurrentversions,
@@ -396,16 +400,19 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         // MARK: createXCSchemes()
 
         struct CreateXCSchemesCalled: Equatable {
+            let buildMode: BuildMode
             let filePathResolver: FilePathResolver
             let pbxTargets: [TargetID: PBXTarget]
         }
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
+            buildMode: BuildMode,
             filePathResolver: FilePathResolver,
             pbxTargets: [TargetID: PBXTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
+                buildMode: buildMode,
                 filePathResolver: filePathResolver,
                 pbxTargets: pbxTargets
             ))
@@ -413,6 +420,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         }
 
         let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
+            buildMode: buildMode,
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargets
         )]
