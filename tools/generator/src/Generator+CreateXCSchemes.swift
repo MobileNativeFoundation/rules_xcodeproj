@@ -8,13 +8,13 @@ extension Generator {
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
         return try createXCSchemes(
-            referencedContainer: "container:\(workspaceOutputPath)",
+            referencedContainer: .init(workspaceOutputPath: workspaceOutputPath),
             pbxTargets: pbxTargets
         )
     }
 
     static func createXCSchemes(
-        referencedContainer: String,
+        referencedContainer: XcodeProjContainerReference,
         pbxTargets: [TargetID: PBXNativeTarget]
     ) throws -> [XCScheme] {
         return try pbxTargets.map { $0.1 }.map { pbxTarget in
@@ -26,7 +26,7 @@ extension Generator {
     }
 
     static func createXCScheme(
-        referencedContainer: String,
+        referencedContainer: XcodeProjContainerReference,
         pbxTarget: PBXNativeTarget
     ) throws -> XCScheme {
         let buildableReference = pbxTarget.createBuildableReference(

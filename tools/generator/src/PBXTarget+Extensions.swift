@@ -15,7 +15,7 @@ public extension PBXTarget {
         referencedContainer: String
     ) throws -> XCScheme.BuildableReference {
         return .init(
-            referencedContainer: referencedContainer,
+            referencedContainer: "\(referencedContainer)",
             blueprint: self,
             buildableName: try getBuildableName(),
             blueprintName: name
