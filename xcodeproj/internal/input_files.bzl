@@ -175,11 +175,14 @@ def _collect(
     if not target.label.workspace_root:
         extra_files.append(parsed_file_path(ctx.build_file_path))
 
-    def _append_bundle_resource(fp):
-        if owner:
-            resources.append((owner, fp))
+    def _process_file_path(fp):
+        if bundle_resources:
+            if owner:
+                resources.append((owner, fp))
+            else:
+                unowned_resources.append(fp)
         else:
-            unowned_resources.append(fp)
+            extra_files.append(fp)
 
     # buildifier: disable=uninitialized
     def _handle_file(file, *, attr):
@@ -205,28 +208,20 @@ def _collect(
             if (file.basename == ".xccurrentversion" and
                 file.dirname.endswith(".xcdatamodeld")):
                 xccurrentversions.append(file)
-            elif bundle_resources:
-                _append_bundle_resource(fp)
             else:
-                extra_files.append(fp)
+                _process_file_path(fp)
         elif attr in attrs_info.structured_resources:
             fp = _folder_resource_file_path(
                 target = target,
                 file = file,
             )
-            if bundle_resources:
-                _append_bundle_resource(fp)
-            else:
-                extra_files.append(fp)
+            _process_file_path(fp)
         elif attr in attrs_info.bundle_imports:
             fp = _bundle_import_file_path(
                 target = target,
                 file = file,
             )
-            if bundle_resources:
-                _append_bundle_resource(fp)
-            else:
-                extra_files.append(fp)
+            _process_file_path(fp)
         elif file not in output_files:
             extra_files.append(file_path(file))
 
