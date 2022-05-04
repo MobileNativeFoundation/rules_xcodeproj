@@ -175,61 +175,55 @@ def _collect(
     if not target.label.workspace_root:
         extra_files.append(parsed_file_path(ctx.build_file_path))
 
+    def _process_resource_file_path(fp):
+        if bundle_resources:
+            if owner:
+                resources.append((owner, fp))
+            else:
+                unowned_resources.append(fp)
+        else:
+            extra_files.append(fp)
+
     # buildifier: disable=uninitialized
     def _handle_file(file, *, attr):
-        if file:
-            if not file.is_source:
-                generated.append(file)
+        if file == None:
+            return
 
-            if attr in attrs_info.srcs:
-                srcs.append(file)
-            elif attr in attrs_info.non_arc_srcs:
-                non_arc_srcs.append(file)
-            elif attr in attrs_info.hdrs:
-                hdrs.append(file)
-            elif attr == attrs_info.pch:
-                # We use `append` instead of setting a single value because
-                # assigning to `pch` creates a new local variable instead of
-                # assigning to the existing variable
-                pch.append(file)
-            elif attrs_info.resources.get(attr):
-                fp = file_path(file)
-                if (file.basename == ".xccurrentversion" and
-                    file.dirname.endswith(".xcdatamodeld")):
-                    xccurrentversions.append(file)
-                elif bundle_resources:
-                    if owner:
-                        resources.append((owner, fp))
-                    else:
-                        unowned_resources.append(fp)
-                else:
-                    extra_files.append(fp)
-            elif attr in attrs_info.structured_resources:
-                fp = _folder_resource_file_path(
-                    target = target,
-                    file = file,
-                )
-                if bundle_resources:
-                    if owner:
-                        resources.append((owner, fp))
-                    else:
-                        unowned_resources.append(fp)
-                else:
-                    extra_files.append(fp)
-            elif attr in attrs_info.bundle_imports:
-                fp = _bundle_import_file_path(
-                    target = target,
-                    file = file,
-                )
-                if bundle_resources:
-                    if owner:
-                        resources.append((owner, fp))
-                    else:
-                        unowned_resources.append(fp)
-                else:
-                    extra_files.append(fp)
-            elif file not in output_files:
-                extra_files.append(file_path(file))
+        if not file.is_source:
+            generated.append(file)
+
+        if attr in attrs_info.srcs:
+            srcs.append(file)
+        elif attr in attrs_info.non_arc_srcs:
+            non_arc_srcs.append(file)
+        elif attr in attrs_info.hdrs:
+            hdrs.append(file)
+        elif attr == attrs_info.pch:
+            # We use `append` instead of setting a single value because
+            # assigning to `pch` creates a new local variable instead of
+            # assigning to the existing variable
+            pch.append(file)
+        elif attrs_info.resources.get(attr):
+            fp = file_path(file)
+            if (file.basename == ".xccurrentversion" and
+                file.dirname.endswith(".xcdatamodeld")):
+                xccurrentversions.append(file)
+            else:
+                _process_resource_file_path(fp)
+        elif attr in attrs_info.structured_resources:
+            fp = _folder_resource_file_path(
+                target = target,
+                file = file,
+            )
+            _process_resource_file_path(fp)
+        elif attr in attrs_info.bundle_imports:
+            fp = _bundle_import_file_path(
+                target = target,
+                file = file,
+            )
+            _process_resource_file_path(fp)
+        elif file not in output_files:
+            extra_files.append(file_path(file))
 
     excluded_attrs = attrs_info.excluded
 
