@@ -70,6 +70,11 @@ class CreateXCSchemesTests: XCTestCase {
             file: file,
             line: line
         )
+        XCTAssertNotNil(
+            scheme.version,
+            file: file,
+            line: line
+        )
 
         guard let buildAction = scheme.buildAction else {
             XCTFail(
