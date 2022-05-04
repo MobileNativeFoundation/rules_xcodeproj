@@ -38,6 +38,7 @@ extension Generator {
     static let externalFileListPath: Path = "external.xcfilelist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
     static let rsyncFileListPath: Path = "generated.rsynclist"
+    static let appRsyncExcludeFileListPath: Path = "app.exclude.rsynclist"
     static let copiedGeneratedFileListPath: Path = "generated.copied.xcfilelist"
     static let modulemapsFileListPath: Path = "modulemaps.xcfilelist"
     static let fixedModulemapsFileListPath: Path = "modulemaps.fixed.xcfilelist"
@@ -55,6 +56,7 @@ extension Generator {
     // https://github.com/tuist/tuist/blob/a76be1d1df2ec912cbf5c4ba91a167fb1dfd0098/Sources/TuistGenerator/Generator/ProjectFileElements.swift
     static func createFilesAndGroups(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
         xccurrentversions: [XCCurrentVersion],
@@ -445,6 +447,23 @@ extension Generator {
             }
         let fixedInfoPlistPaths = infoPlistPaths.map { path in
             return path.replacingExtension("xcode.plist")
+        }
+
+        if buildMode.usesBazelModeBuildScripts &&
+            targets.contains(where: { $1.product.type.isApplication })
+        {
+            files[.internal(appRsyncExcludeFileListPath)] =
+                .nonReferencedContent(#"""
+/*.app/Frameworks/libXCTestBundleInject.dylib
+/*.app/Frameworks/libXCTestSwiftSupport.dylib
+/*.app/Frameworks/XCTAutomationSupport.framework
+/*.app/Frameworks/XCTest.framework
+/*.app/Frameworks/XCTestCore.framework
+/*.app/Frameworks/XCUIAutomation.framework
+/*.app/Frameworks/XCUnit.framework
+/*.app/PlugIns
+
+"""#)
         }
 
         func addXCFileList(_ path: Path, paths: [Path]) {

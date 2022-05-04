@@ -20,6 +20,7 @@ struct Environment {
 
     let createFilesAndGroups: (
         _ pbxProj: PBXProj,
+        _ buildMode: BuildMode,
         _ targets: [TargetID: Target],
         _ extraFiles: Set<FilePath>,
         _ xccurrentversions: [XCCurrentVersion],
@@ -77,6 +78,7 @@ struct Environment {
     ) throws -> Void
 
     let createXCSchemes: (
+        _ buildMode: BuildMode,
         _ filePathResolver: FilePathResolver,
         _ pbxTargets: [TargetID: PBXTarget]
     ) throws -> [XCScheme]

@@ -137,6 +137,7 @@ Target "\(id)" not found in `pbxTargets`
 
             buildSettings["ARCHS"] = target.platform.arch
             buildSettings["BAZEL_PACKAGE_BIN_DIR"] = target.packageBinDir.string
+            buildSettings["BAZEL_TARGET_ID"] = id.rawValue
             buildSettings["SDKROOT"] = target.platform.os.sdkRoot
             buildSettings["TARGET_NAME"] = target.name
 

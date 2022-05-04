@@ -1460,6 +1460,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             "A 1": targets["A 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
+                "BAZEL_TARGET_ID": "A 1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["A 1"]!.name,
@@ -1468,6 +1469,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "BAZEL_TARGET_ID": "A 2",
                 "DEPLOYMENT_LOCATION": false,
                 "GENERATE_INFOPLIST_FILE": true,
                 "LD_RUNPATH_SEARCH_PATHS": [
@@ -1490,6 +1492,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
+                "BAZEL_TARGET_ID": "B 1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
@@ -1502,6 +1505,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "BAZEL_TARGET_ID": "B 2",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "DEPLOYMENT_LOCATION": false,
                 "GENERATE_INFOPLIST_FILE": true,
@@ -1523,6 +1527,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "BAZEL_TARGET_ID": "B 3",
                 "DEPLOYMENT_LOCATION": false,
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
@@ -1539,6 +1544,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
+                "BAZEL_TARGET_ID": "C 1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
@@ -1550,6 +1556,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "BAZEL_TARGET_ID": "C 2",
                 "DEPLOYMENT_LOCATION": false,
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
@@ -1567,6 +1574,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "x86_64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
+                "BAZEL_TARGET_ID": "E1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "watchos",
                 "TARGET_NAME": targets["E1"]!.name,
@@ -1574,6 +1582,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
+                "BAZEL_TARGET_ID": "E2",
                 "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "appletvos",
                 "TARGET_NAME": targets["E2"]!.name,
@@ -1581,6 +1590,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
             "R 1": targets["R 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
+                "BAZEL_TARGET_ID": "R 1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",

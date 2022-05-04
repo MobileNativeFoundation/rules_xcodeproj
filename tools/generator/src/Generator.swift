@@ -90,6 +90,7 @@ Was unable to merge "\(srcTarget.label) \
 
         let (files, rootElements) = try environment.createFilesAndGroups(
             pbxProj,
+            buildMode,
             targets,
             project.extraFiles,
             xccurrentversions,
@@ -136,6 +137,7 @@ Was unable to merge "\(srcTarget.label) \
         )
 
         let schemes = try environment.createXCSchemes(
+            buildMode,
             filePathResolver,
             pbxTargets
         )

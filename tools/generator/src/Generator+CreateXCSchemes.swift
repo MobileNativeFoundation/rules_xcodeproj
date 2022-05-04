@@ -4,12 +4,14 @@ import XcodeProj
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
+        buildMode: BuildMode,
         filePathResolver: FilePathResolver,
         pbxTargets: [TargetID: PBXTarget]
     ) throws -> [XCScheme] {
         let referencedContainer = filePathResolver.containerReference
         return try pbxTargets.map { _, pbxTarget in
             try createXCScheme(
+                buildMode: buildMode,
                 referencedContainer: referencedContainer,
                 pbxTarget: pbxTarget
             )
@@ -22,6 +24,7 @@ extension Generator {
 
     /// Creates an `XCScheme` for the specified target.
     private static func createXCScheme(
+        buildMode: BuildMode,
         referencedContainer: String,
         pbxTarget: PBXTarget
     ) throws -> XCScheme {
@@ -57,6 +60,11 @@ extension Generator {
 
         let buildAction = XCScheme.BuildAction(
             buildActionEntries: buildEntries,
+            preActions: createBuildPreActions(
+                buildMode: buildMode,
+                pbxTarget: pbxTarget,
+                buildableReference: buildableReference
+            ),
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
@@ -67,7 +75,9 @@ extension Generator {
         )
         let launchAction = XCScheme.LaunchAction(
             runnable: buildableProductRunnable,
-            buildConfiguration: buildConfigurationName
+            buildConfiguration: buildConfigurationName,
+            customLLDBInitFile: buildMode.requiresLLDBInit ?
+                "$(BAZEL_LLDB_INIT)" : nil
         )
         let profileAction = XCScheme.ProfileAction(
             buildableProductRunnable: buildableProductRunnable,
@@ -93,5 +103,27 @@ extension Generator {
             archiveAction: archiveAction,
             wasCreatedForAppExtension: nil
         )
+    }
+
+    private static func createBuildPreActions(
+        buildMode: BuildMode,
+        pbxTarget: PBXTarget,
+        buildableReference: XCScheme.BuildableReference
+    ) -> [XCScheme.ExecutionAction] {
+        guard
+            buildMode.usesBazelModeBuildScripts && pbxTarget is PBXNativeTarget
+        else {
+            return []
+        }
+
+        return [XCScheme.ExecutionAction(
+            scriptText: #"""
+mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
+echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+
+"""#,
+            title: "Set Bazel Build Output Groups",
+            environmentBuildable: buildableReference
+        )]
     }
 }

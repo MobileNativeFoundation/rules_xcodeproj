@@ -297,6 +297,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4146445A590327AFBC6ECD1E /* Build configuration list for PBXNativeTarget "ExampleUITests.__internal__.__test_bundle" */;
 			buildPhases = (
+				8B78105B0FED0E97D2411615 /* Copy Bazel Outputs */,
 				75999A4F6D73EAE88A550D8B /* Sources */,
 			);
 			buildRules = (
@@ -314,6 +315,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D7CAA9B63F689C04C435E90 /* Build configuration list for PBXNativeTarget "ExampleTests.__internal__.__test_bundle" */;
 			buildPhases = (
+				21D8AA3BEA3F6C89F37D75A1 /* Copy Bazel Outputs */,
 				8E9A15D36D0A0B335579D589 /* Sources */,
 			);
 			buildRules = (
@@ -331,6 +333,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E80458017EA17FB5B672FEB /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
+				91A249C04A86079A36A5303D /* Copy Bazel Outputs */,
 				F94B766A6F00B6427D27F290 /* Sources */,
 			);
 			buildRules = (
@@ -394,6 +397,54 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		21D8AA3BEA3F6C89F37D75A1 /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy bundle\n  readonly archive=\"$BAZEL_OUT/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle.zip\"\n  readonly expanded_dest=\"$DERIVED_FILE_DIR/expanded_archive\"\n  readonly sha_output=\"$DERIVED_FILE_DIR/archive.sha256\"\n\n  existing_sha=$(cat \"$sha_output\" 2>/dev/null || true)\n  sha=$(shasum -a 256 \"$archive\")\n\n  if [[ \"$existing_sha\" != \"$sha\" || ! -d \"$expanded_dest/ExampleTests.xctest\" ]]; then\n    mkdir -p \"$expanded_dest\"\n    rm -rf \"${expanded_dest:?}/\"\n    unzip -q \"$archive\" -d \"$expanded_dest\"\n    echo \"$sha\" > \"$sha_output\"\n  fi\n\n  cd \"$expanded_dest\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"ExampleTests.xctest\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule\" \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftdoc\" \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B78105B0FED0E97D2411615 /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy bundle\n  readonly archive=\"$BAZEL_OUT/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle.zip\"\n  readonly expanded_dest=\"$DERIVED_FILE_DIR/expanded_archive\"\n  readonly sha_output=\"$DERIVED_FILE_DIR/archive.sha256\"\n\n  existing_sha=$(cat \"$sha_output\" 2>/dev/null || true)\n  sha=$(shasum -a 256 \"$archive\")\n\n  if [[ \"$existing_sha\" != \"$sha\" || ! -d \"$expanded_dest/ExampleUITests.xctest\" ]]; then\n    mkdir -p \"$expanded_dest\"\n    rm -rf \"${expanded_dest:?}/\"\n    unzip -q \"$archive\" -d \"$expanded_dest\"\n    echo \"$sha\" > \"$sha_output\"\n  fi\n\n  cd \"$expanded_dest\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"ExampleUITests.xctest\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule\" \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftdoc\" \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91A249C04A86079A36A5303D /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy bundle\n  readonly archive=\"$BAZEL_OUT/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example.ipa\"\n  readonly expanded_dest=\"$DERIVED_FILE_DIR/expanded_archive\"\n  readonly sha_output=\"$DERIVED_FILE_DIR/archive.sha256\"\n\n  existing_sha=$(cat \"$sha_output\" 2>/dev/null || true)\n  sha=$(shasum -a 256 \"$archive\")\n\n  if [[ \"$existing_sha\" != \"$sha\" || ! -d \"$expanded_dest/Payload/Example.app\" ]]; then\n    mkdir -p \"$expanded_dest\"\n    rm -rf \"${expanded_dest:?}/\"\n    unzip -q \"$archive\" -d \"$expanded_dest\"\n    echo \"$sha\" > \"$sha_output\"\n  fi\n\n  cd \"$expanded_dest/Payload\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --exclude-from=\"$INTERNAL_DIR/app.exclude.rsynclist\" \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"Example.app\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example.swiftmodule\" \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example.swiftdoc\" \\\n  \"$BAZEL_OUT/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -526,6 +577,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests";
+				BAZEL_TARGET_ID = "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -625,6 +677,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example";
+				BAZEL_TARGET_ID = "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
@@ -689,6 +742,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests";
+				BAZEL_TARGET_ID = "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
