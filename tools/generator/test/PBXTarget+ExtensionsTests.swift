@@ -4,6 +4,10 @@ import XCTest
 @testable import generator
 
 class PBXTargetExtensionsTests: XCTestCase {
+    // Need to create the PBXFileReference separate from the PBXTarget
+    // initializer, so that the file reference initializes properly.
+    // If you inline the construction of the file reference the
+    // product properties will not initialize properly.
     let productFileReference = PBXFileReference(
         path: "MyChicken.app"
     )
