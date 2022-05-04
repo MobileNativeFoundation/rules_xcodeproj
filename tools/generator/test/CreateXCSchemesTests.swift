@@ -17,17 +17,16 @@ class CreateXCSchemesTests: XCTestCase {
 
     func assertScheme(
         schemesDict: [String: XCScheme],
-        targetName: String,
+        targetID: TargetID,
         shouldExpectBuildActionEntries: Bool,
         shouldExpectTestables: Bool,
         shouldExpectBuildableProductRunnable: Bool,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws {
-        let targetID = TargetID(targetName)
         guard let target = pbxTargetsDict[targetID] else {
             XCTFail(
-                "Did not find the target '\(targetName)'",
+                "Did not find the target '\(targetID)'",
                 file: file,
                 line: line
             )
@@ -215,7 +214,7 @@ class CreateXCSchemesTests: XCTestCase {
         // Library
         try assertScheme(
             schemesDict: schemesDict,
-            targetName: "A 1",
+            targetID: "A 1",
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false
@@ -224,7 +223,7 @@ class CreateXCSchemesTests: XCTestCase {
         // Testable and launchable
         try assertScheme(
             schemesDict: schemesDict,
-            targetName: "B 2",
+            targetID: "B 2",
             shouldExpectBuildActionEntries: false,
             shouldExpectTestables: true,
             shouldExpectBuildableProductRunnable: true
@@ -233,7 +232,7 @@ class CreateXCSchemesTests: XCTestCase {
         // Launchable, not testable
         try assertScheme(
             schemesDict: schemesDict,
-            targetName: "A 2",
+            targetID: "A 2",
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true
