@@ -38,8 +38,11 @@ extension Generator {
             buildEntries = [.init(
                 buildableReference: buildableReference,
                 buildFor: [
-                    .running, .testing, .profiling, .archiving,
-                    .analyzing,
+                    .running,
+                    .testing,
+                    .profiling,
+                    .archiving,
+                    .analyzing
                 ]
             )]
             testables = []
