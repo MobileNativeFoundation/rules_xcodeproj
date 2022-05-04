@@ -214,8 +214,7 @@
                     "tools/generator/test/SetTargetConfigurations.swift",
                     "tools/generator/test/SetTargetDependenciesTests.swift",
                     "tools/generator/test/Target+Testing.swift",
-                    "tools/generator/test/XcodeProj+CustomDump.swift",
-                    "tools/generator/test/XcodeProjContainerReferenceTests.swift"
+                    "tools/generator/test/XcodeProj+CustomDump.swift"
                 ]
             },
             "is_swift": true,
@@ -463,8 +462,12 @@
                     "tools/generator/src/Path+Extensions.swift",
                     "tools/generator/src/SearchPaths.swift",
                     "tools/generator/src/Sorting.swift",
+<<<<<<< HEAD
                     "tools/generator/src/TargetID.swift",
                     "tools/generator/src/XCCurrentVersion.swift"
+=======
+                    "tools/generator/src/TargetID.swift"
+>>>>>>> 2412080 (Update specs)
                 ]
             },
             "is_swift": true,

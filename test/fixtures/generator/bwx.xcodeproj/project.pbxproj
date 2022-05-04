@@ -116,7 +116,6 @@
 		6B508F325A109B724C7DF650 /* PBXResourcesBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD10545E43D4098F65BF1B /* PBXResourcesBuildPhase.swift */; };
 		6C0F21DFD137550450A0509F /* BuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF08408AA24ED19A83FA6BD /* BuildPhase.swift */; };
 		6CFA2C81CE43D952A35D3574 /* XCScheme+AditionalOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFADB50BD68C503E0DF38007 /* XCScheme+AditionalOption.swift */; };
-		6D4132CF920F838315B7A398 /* XcodeProjContainerReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F7B82178088416055AE6 /* XcodeProjContainerReferenceTests.swift */; };
 		6D90EE9AA1D0A96B9089B21E /* ProcessTargetMergesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F43A51D4C138E626542CF2C /* ProcessTargetMergesTests.swift */; };
 		6EF7A6EF7F6EEB70C10F0236 /* OrderedSet+Partial SetAlgebra+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B383CA6F0E63B5353F77F /* OrderedSet+Partial SetAlgebra+Operations.swift */; };
 		7179F32217C3BEEA636F5051 /* Generator+AddTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EFC55270A7F9C95452FF71 /* Generator+AddTargets.swift */; };
@@ -241,7 +240,6 @@
 		EC37590228C9E717EEF3E3EE /* _HashTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84BD9EDF510637C6C2BB269 /* _HashTable.swift */; };
 		ED347450B34C5682C31794E4 /* Generator+DisambiguateTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7E31A29E125E3633EC7C6 /* Generator+DisambiguateTargets.swift */; };
 		ED5F0F0FA5A045D7F75F3815 /* Generator+CreateProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A0C56E6309EC169805A89 /* Generator+CreateProducts.swift */; };
-		ED9ED4E6C74F43C395CB0903 /* XcodeProjContainerReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272783F0F97C261EF6887F /* XcodeProjContainerReference.swift */; };
 		EE91685693ED53C6E4ED1A73 /* XCSchemeManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32785C5FF661E7B65362F3B /* XCSchemeManagement.swift */; };
 		F04B6A90306F6BC50799ED5D /* GameKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF90B3C2D109FB81429CDF63 /* GameKit.swift */; };
 		F326E592A70EEE8271776DB1 /* OrderedSet+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5FFDFF77A15D5835E0E62A /* OrderedSet+Hashable.swift */; };
@@ -579,7 +577,6 @@
 		B9CC2D5E3BD42DA1195EE7D9 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		BCB6D4C1A760E0F5039DCA16 /* OrderedSet+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
 		BDB74D3730A6741F0EBA95CF /* PBXGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXGroup.swift; sourceTree = "<group>"; };
-		BE272783F0F97C261EF6887F /* XcodeProjContainerReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeProjContainerReference.swift; sourceTree = "<group>"; };
 		BE66E7C6767A2929A5D0F4C5 /* Generator+WriteXcodeProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+WriteXcodeProj.swift"; sourceTree = "<group>"; };
 		BEFE87E1BA432999CAE565E4 /* Writable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writable.swift; sourceTree = "<group>"; };
 		C0277C77247B53722A111757 /* Path+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+Extras.swift"; sourceTree = "<group>"; };
@@ -631,7 +628,6 @@
 		F1E252313444698DA3574515 /* OrderedSet+RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+RandomAccessCollection.swift"; sourceTree = "<group>"; };
 		F328B736C7AF330724A15666 /* Generator+CreateFilesAndGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+CreateFilesAndGroups.swift"; sourceTree = "<group>"; };
 		F52B40BE9E5A13756AD20F88 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
-		F7E8F7B82178088416055AE6 /* XcodeProjContainerReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeProjContainerReferenceTests.swift; sourceTree = "<group>"; };
 		F989E51F5A4A6F6C61A92D70 /* _HashTable+Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Bucket.swift"; sourceTree = "<group>"; };
 		FA83272F166637CFAFC4C79C /* OrderedDictionary+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Hashable.swift"; sourceTree = "<group>"; };
 		FAD042334686EC625458D787 /* XCWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspace.swift; sourceTree = "<group>"; };
@@ -795,7 +791,6 @@
 				1E66F2DF65C11D45D520A4F3 /* SetTargetDependenciesTests.swift */,
 				EC5DDE735367F49D1F8347A4 /* Target+Testing.swift */,
 				598C59FCAC898D6EE23D2CA4 /* XcodeProj+CustomDump.swift */,
-				F7E8F7B82178088416055AE6 /* XcodeProjContainerReferenceTests.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1175,7 +1170,10 @@
 				0926CDB70BD382B84A268850 /* SearchPaths.swift */,
 				377079BB67AC44EAAF5625DF /* Sorting.swift */,
 				27680988C0FEC6FAED25B1CD /* TargetID.swift */,
+<<<<<<< HEAD
 				D124B2D4248E1F32156D1E0C /* XCCurrentVersion.swift */,
+=======
+>>>>>>> 2412080 (Update specs)
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1611,7 +1609,6 @@
 				D4F1178F5AC75B4734931E6E /* SetTargetDependenciesTests.swift in Sources */,
 				466E78ED3B31F9724409CCE3 /* Target+Testing.swift in Sources */,
 				3D9A78660D051C58D312CA3A /* XcodeProj+CustomDump.swift in Sources */,
-				6D4132CF920F838315B7A398 /* XcodeProjContainerReferenceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1674,7 +1671,10 @@
 				B1EFF055F090C4EFDABA2258 /* SearchPaths.swift in Sources */,
 				F3F1634D2DADBAB77169FB62 /* Sorting.swift in Sources */,
 				E8152FEAD8E501145227FC55 /* TargetID.swift in Sources */,
+<<<<<<< HEAD
 				9373582F32BB7A4A3F168245 /* XCCurrentVersion.swift in Sources */,
+=======
+>>>>>>> 2412080 (Update specs)
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
