@@ -60,7 +60,6 @@ struct Environment {
         _ buildMode: BuildMode,
         _ products: Products,
         _ files: [FilePath: File],
-        _ filePathResolver: FilePathResolver,
         _ bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> [TargetID: PBXTarget]
 

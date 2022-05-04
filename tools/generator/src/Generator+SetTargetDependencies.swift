@@ -20,8 +20,7 @@ Target "\(id)" not found in `pbxTargets`
             try disambiguatedTarget.target.dependencies
                 // Find the `PBXNativeTarget`s for the dependencies
                 .map { dependency -> PBXNativeTarget in
-                    guard let nativeDependency = pbxTargets[dependency]
-                        as? PBXNativeTarget else {
+                    guard let nativeDependency = pbxTargets.nativeTarget(dependency) else {
                         throw PreconditionError(message: """
 Target "\(id)"'s dependency on "\(dependency)" not found in `pbxTargets`
 """)
