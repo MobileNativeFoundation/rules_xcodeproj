@@ -42,18 +42,15 @@ class PBXTargetExtensionsTests: XCTestCase {
     }
 
     func test_getSchemeName_withSlashesInBuildableName() throws {
-        pbxTarget.productName = "//examples/chicken:smidgen"
+        pbxTarget.name = "//examples/chicken:smidgen"
         XCTAssertEqual(
-            try pbxTarget.getSchemeName(),
-            "__examples_chicken:smidgen"
+            pbxTarget.schemeName,
+            "__examples_chicken_smidgen"
         )
     }
 
     func test_schemeName_withoutSlashesInBuildableName() throws {
-        XCTAssertEqual(
-            try pbxTarget.getSchemeName(),
-            "MyChicken"
-        )
+        XCTAssertEqual(pbxTarget.schemeName, "chicken")
     }
 
     func test_isTestable_withoutProductType() throws {

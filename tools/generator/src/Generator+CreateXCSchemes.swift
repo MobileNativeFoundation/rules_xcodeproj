@@ -78,7 +78,7 @@ extension Generator {
         )
 
         return XCScheme(
-            name: try pbxTarget.getSchemeName(),
+            name: pbxTarget.schemeName,
             lastUpgradeVersion: nil,
             version: nil,
             buildAction: buildAction,

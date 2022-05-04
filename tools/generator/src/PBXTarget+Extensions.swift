@@ -22,12 +22,13 @@ public extension PBXTarget {
         )
     }
 
-    func getSchemeName() throws -> String {
+    var schemeName: String {
         // GH371: Update XcodeProj to support slashes in the scheme name.
         // The XcodeProj write logic does not like slashes (/) in the scheme
         // name. It fails to write with a missing folder error.
-        return try getBuildableName()
+        return name
             .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: ":", with: "_")
     }
 
     var isTestable: Bool {

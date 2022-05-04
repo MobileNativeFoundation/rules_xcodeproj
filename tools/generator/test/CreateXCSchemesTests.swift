@@ -27,7 +27,7 @@ class CreateXCSchemesTests: XCTestCase {
             XCTFail("Did not find the target '\(targetName)'")
             return
         }
-        let schemeName = try target.getSchemeName()
+        let schemeName = target.schemeName
         guard let scheme = schemesDict[schemeName] else {
             XCTFail("Did not find a scheme named \(schemeName)")
             return
