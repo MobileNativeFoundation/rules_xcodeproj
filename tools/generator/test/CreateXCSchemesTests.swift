@@ -138,7 +138,7 @@ class CreateXCSchemesTests: XCTestCase {
         )
     }
 
-    func test_createXCSchemes_WithNoTargets() throws {
+    func test_createXCSchemes_withNoTargets() throws {
         let schemes = try Generator.createXCSchemes(
             filePathResolver: filePathResolver,
             pbxTargets: [:]
@@ -147,7 +147,7 @@ class CreateXCSchemesTests: XCTestCase {
         XCTAssertEqual(schemes, expected)
     }
 
-    func test_createXCSchemes_WithTargets() throws {
+    func test_createXCSchemes_withTargets() throws {
         let schemes = try Generator.createXCSchemes(
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargetsDict
