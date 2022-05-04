@@ -1056,14 +1056,14 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         let pbxProject = pbxProj.rootObject!
 
         let target = PBXAggregateTarget(
-            name: "Bazel Dependencies",
+            name: "BazelDependencies",
             buildConfigurationList: configurationList,
             buildPhases: [
                 generateFilesScript,
                 copyFilesScript,
                 fixModulemapsScript,
             ],
-            productName: "Bazel Dependencies"
+            productName: "BazelDependencies"
         )
         pbxProj.add(object: target)
         pbxProject.targets.append(target)

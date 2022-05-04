@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */ = {
+		FE59281FE487F27A37DC2EE7 /* BazelDependencies */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 1CF9208AFC262BED8CB8A0A9 /* Build configuration list for PBXAggregateTarget "Bazel Dependencies" */;
+			buildConfigurationList = A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
-				A82BD2D49506D22549483203 /* Fetch External Repositories */,
+				790733B6E675C2785F8020AC /* Fetch External Repositories */,
 			);
 			dependencies = (
 			);
-			name = "Bazel Dependencies";
-			productName = "Bazel Dependencies";
+			name = BazelDependencies;
+			productName = BazelDependencies;
 		};
 /* End PBXAggregateTarget section */
 
@@ -265,12 +265,12 @@
 			remoteGlobalIDString = 3A4021D8F5FC68CD4FB8B6F1;
 			remoteInfo = generator.library;
 		};
-		080A300BE3115422936ABA80 /* PBXContainerItemProxy */ = {
+		10F8F2838624AF67BC893D33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		199D8335E402470EC00D40BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -279,12 +279,19 @@
 			remoteGlobalIDString = 19FA71657765A036575B20D8;
 			remoteInfo = XcodeProj;
 		};
-		319C30CA1810E6C4D2D31C7B /* PBXContainerItemProxy */ = {
+		316E22CAB9BB9F7860D6694E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
+		336B5CF2DDE3D0B832C12168 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		3A1A9FA674016F6D082BD8E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -293,12 +300,26 @@
 			remoteGlobalIDString = 299DA591171C10F8AF73F244;
 			remoteInfo = PathKit;
 		};
+		3D14D7C57660F3BAFA9AF781 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
 		4FA052E4857080583368FC00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AFE4D24E5783CFEA55476089;
 			remoteInfo = AEXML;
+		};
+		57526E39DC1C23E02C838E67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		5F803C1AC4A2B51D785ED2A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -307,20 +328,6 @@
 			remoteGlobalIDString = 299DA591171C10F8AF73F244;
 			remoteInfo = PathKit;
 		};
-		662BF6F9914221881A01EED3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
-		};
-		6BFF0ED595BF75D0308AF48D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
-		};
 		6DD99DE39777A6190BA3601A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -328,19 +335,19 @@
 			remoteGlobalIDString = B0128CCFCF9E56DA6D808193;
 			remoteInfo = OrderedCollections;
 		};
-		7951293FDA128320F7AB4636 /* PBXContainerItemProxy */ = {
+		94E23707CC9C8CEEF247C4DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
-		97D76F5F92DB69E680400CD8 /* PBXContainerItemProxy */ = {
+		98B7F3DF7B13B0E6ABB67592 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		9B5B6558D92A38CDB5A55353 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -348,6 +355,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = CE60FB500B781C8126957C5A;
 			remoteInfo = XCTestDynamicOverlay;
+		};
+		A1CB8044D09981571E9EE34D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		A62321D7E361A0D60CBC11C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -363,26 +377,12 @@
 			remoteGlobalIDString = CFD3DFAB502EFF52937E5E51;
 			remoteInfo = CustomDump;
 		};
-		D524A4D2429633DFDDF92CA6 /* PBXContainerItemProxy */ = {
+		DB651C00CC6C7BD07F2AAF7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
-		};
-		FB79B5625C17E28955E462B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
-		};
-		FE76E76431E4FFEDFED51D4B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1268,7 +1268,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4CFCD1BC935D0ECF7B377C05 /* PBXTargetDependency */,
+				9180B355ABFEE76581F29E80 /* PBXTargetDependency */,
 				D5F65B44A3A5B58EC00BF47B /* PBXTargetDependency */,
 				4460D0461ECFE2C5DB3906C8 /* PBXTargetDependency */,
 			);
@@ -1286,7 +1286,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C7AD4A75DA389E2877527121 /* PBXTargetDependency */,
+				FADB152A0FA21E3E5524594D /* PBXTargetDependency */,
 			);
 			name = PathKit;
 			productName = PathKit;
@@ -1302,7 +1302,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				E32B494E5BC7AB22F804B2D4 /* PBXTargetDependency */,
+				10375D5CCD79A0DFFB549B39 /* PBXTargetDependency */,
 				5F445F20107721899DF3B81D /* PBXTargetDependency */,
 			);
 			name = generator;
@@ -1319,7 +1319,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C6E0CB98C89E381C614B4F5F /* PBXTargetDependency */,
+				DEDF11936E2B6985EAD6EF3D /* PBXTargetDependency */,
 				2EA330A1F5FEA84E4DDB6B6F /* PBXTargetDependency */,
 				708CE6F5066B3FED83964946 /* PBXTargetDependency */,
 				4AA89D33E273962408747D43 /* PBXTargetDependency */,
@@ -1338,7 +1338,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				42E285C99D0B12A259C1EA41 /* PBXTargetDependency */,
+				9D4168B49068A541B3B09FA0 /* PBXTargetDependency */,
 			);
 			name = AEXML;
 			productName = AEXML;
@@ -1354,7 +1354,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				FB07AD10170F77050FD96F55 /* PBXTargetDependency */,
+				D47489D69277FEA82D6170CB /* PBXTargetDependency */,
 			);
 			name = OrderedCollections;
 			productName = OrderedCollections;
@@ -1370,7 +1370,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				636C3A6A7019D4C48B527D3F /* PBXTargetDependency */,
+				B12061704177081637FBB0E6 /* PBXTargetDependency */,
 			);
 			name = XCTestDynamicOverlay;
 			productName = XCTestDynamicOverlay;
@@ -1386,7 +1386,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				7CFFDA7F05CEC82B26D1C1B4 /* PBXTargetDependency */,
+				DA2AC3E8FD27B24B1FC6BBA1 /* PBXTargetDependency */,
 				BDA5A0BF9D7D71AD15621E90 /* PBXTargetDependency */,
 			);
 			name = CustomDump;
@@ -1403,7 +1403,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				109C26D1DB4D01D48A8E8659 /* PBXTargetDependency */,
+				E7F137FA1D1A2C8BD26C3968 /* PBXTargetDependency */,
 				4C7A6159FE1C37782DBAFBF5 /* PBXTargetDependency */,
 				6B1BD6C53E3B9BE4EF005D0C /* PBXTargetDependency */,
 			);
@@ -1438,9 +1438,6 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
-					657E5F38D9811E4DFA49DA75 = {
-						CreatedOnToolsVersion = 13.2.1;
-					};
 					AFE4D24E5783CFEA55476089 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -1461,6 +1458,9 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
+					FE59281FE487F27A37DC2EE7 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */;
@@ -1476,7 +1476,7 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
-				657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */,
+				FE59281FE487F27A37DC2EE7 /* BazelDependencies */,
 				AFE4D24E5783CFEA55476089 /* AEXML */,
 				CFD3DFAB502EFF52937E5E51 /* CustomDump */,
 				2FED647E7A6091DF616D345B /* generator */,
@@ -1491,7 +1491,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A82BD2D49506D22549483203 /* Fetch External Repositories */ = {
+		790733B6E675C2785F8020AC /* Fetch External Repositories */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1813,23 +1813,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		109C26D1DB4D01D48A8E8659 /* PBXTargetDependency */ = {
+		10375D5CCD79A0DFFB549B39 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = 7951293FDA128320F7AB4636 /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = A1CB8044D09981571E9EE34D /* PBXContainerItemProxy */;
 		};
 		2EA330A1F5FEA84E4DDB6B6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OrderedCollections;
 			target = B0128CCFCF9E56DA6D808193 /* OrderedCollections */;
 			targetProxy = 6DD99DE39777A6190BA3601A /* PBXContainerItemProxy */;
-		};
-		42E285C99D0B12A259C1EA41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = 319C30CA1810E6C4D2D31C7B /* PBXContainerItemProxy */;
 		};
 		4460D0461ECFE2C5DB3906C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1849,23 +1843,11 @@
 			target = CFD3DFAB502EFF52937E5E51 /* CustomDump */;
 			targetProxy = CFBF834907E2F47679529098 /* PBXContainerItemProxy */;
 		};
-		4CFCD1BC935D0ECF7B377C05 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = D524A4D2429633DFDDF92CA6 /* PBXContainerItemProxy */;
-		};
 		5F445F20107721899DF3B81D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = generator.library;
 			target = 3A4021D8F5FC68CD4FB8B6F1 /* generator.library */;
 			targetProxy = 052BA76161805F1B8304674C /* PBXContainerItemProxy */;
-		};
-		636C3A6A7019D4C48B527D3F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = FE76E76431E4FFEDFED51D4B /* PBXContainerItemProxy */;
 		};
 		6B1BD6C53E3B9BE4EF005D0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1879,11 +1861,23 @@
 			target = 299DA591171C10F8AF73F244 /* PathKit */;
 			targetProxy = 5F803C1AC4A2B51D785ED2A9 /* PBXContainerItemProxy */;
 		};
-		7CFFDA7F05CEC82B26D1C1B4 /* PBXTargetDependency */ = {
+		9180B355ABFEE76581F29E80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = 662BF6F9914221881A01EED3 /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = DB651C00CC6C7BD07F2AAF7E /* PBXContainerItemProxy */;
+		};
+		9D4168B49068A541B3B09FA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 336B5CF2DDE3D0B832C12168 /* PBXContainerItemProxy */;
+		};
+		B12061704177081637FBB0E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 57526E39DC1C23E02C838E67 /* PBXContainerItemProxy */;
 		};
 		BDA5A0BF9D7D71AD15621E90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1891,17 +1885,11 @@
 			target = CE60FB500B781C8126957C5A /* XCTestDynamicOverlay */;
 			targetProxy = 9B5B6558D92A38CDB5A55353 /* PBXContainerItemProxy */;
 		};
-		C6E0CB98C89E381C614B4F5F /* PBXTargetDependency */ = {
+		D47489D69277FEA82D6170CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = 6BFF0ED595BF75D0308AF48D /* PBXContainerItemProxy */;
-		};
-		C7AD4A75DA389E2877527121 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = 97D76F5F92DB69E680400CD8 /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 98B7F3DF7B13B0E6ABB67592 /* PBXContainerItemProxy */;
 		};
 		D5F65B44A3A5B58EC00BF47B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1909,17 +1897,29 @@
 			target = AFE4D24E5783CFEA55476089 /* AEXML */;
 			targetProxy = 4FA052E4857080583368FC00 /* PBXContainerItemProxy */;
 		};
-		E32B494E5BC7AB22F804B2D4 /* PBXTargetDependency */ = {
+		DA2AC3E8FD27B24B1FC6BBA1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = FB79B5625C17E28955E462B7 /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 10F8F2838624AF67BC893D33 /* PBXContainerItemProxy */;
 		};
-		FB07AD10170F77050FD96F55 /* PBXTargetDependency */ = {
+		DEDF11936E2B6985EAD6EF3D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = 080A300BE3115422936ABA80 /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 94E23707CC9C8CEEF247C4DB /* PBXContainerItemProxy */;
+		};
+		E7F137FA1D1A2C8BD26C3968 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 316E22CAB9BB9F7860D6694E /* PBXContainerItemProxy */;
+		};
+		FADB152A0FA21E3E5524594D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 3D14D7C57660F3BAFA9AF781 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2089,18 +2089,6 @@
 			};
 			name = Debug;
 		};
-		3120F32C41840B1165104AAF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
-				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
-				INDEX_FORCE_SCRIPT_EXECUTION = YES;
-				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
-				SUPPORTS_MACCATALYST = YES;
-				TARGET_NAME = BazelDependencies;
-			};
-			name = Debug;
-		};
 		4ABFE648FEDF6C610CBE9985 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2156,6 +2144,18 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = generator;
+			};
+			name = Debug;
+		};
+		67F44AB65FA7A2E38A56F5FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				TARGET_NAME = BazelDependencies;
 			};
 			name = Debug;
 		};
@@ -2481,14 +2481,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		1CF9208AFC262BED8CB8A0A9 /* Build configuration list for PBXAggregateTarget "Bazel Dependencies" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3120F32C41840B1165104AAF /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		40FEEA421A7F15F350EDECCF /* Build configuration list for PBXNativeTarget "CustomDump" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2525,6 +2517,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C221D886D6D02D33114D3473 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67F44AB65FA7A2E38A56F5FB /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
