@@ -11,7 +11,7 @@ extension Generator {
     static func setTargetConfigurations(
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
-        pbxTargets: [TargetID: PBXNativeTarget],
+        pbxTargets: [TargetID: PBXTarget],
         filePathResolver: FilePathResolver
     ) throws {
         for (id, disambiguatedTarget) in disambiguatedTargets {

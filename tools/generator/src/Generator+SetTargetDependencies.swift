@@ -8,10 +8,10 @@ extension Generator {
     /// `PBXNativeTarget`s have been created first.
     static func setTargetDependencies(
         disambiguatedTargets: [TargetID: DisambiguatedTarget],
-        pbxTargets: [TargetID: PBXNativeTarget]
+        pbxTargets: [TargetID: PBXTarget]
     ) throws {
         for (id, disambiguatedTarget) in disambiguatedTargets {
-            guard let pbxTarget = pbxTargets[id] else {
+            guard let pbxTarget = pbxTargets.nativeTarget(id) else {
                 throw PreconditionError(message: """
 Target "\(id)" not found in `pbxTargets`
 """)
@@ -20,7 +20,7 @@ Target "\(id)" not found in `pbxTargets`
             try disambiguatedTarget.target.dependencies
                 // Find the `PBXNativeTarget`s for the dependencies
                 .map { dependency -> PBXNativeTarget in
-                    guard let nativeDependency = pbxTargets[dependency] else {
+                    guard let nativeDependency = pbxTargets.nativeTarget(dependency) else {
                         throw PreconditionError(message: """
 Target "\(id)"'s dependency on "\(dependency)" not found in `pbxTargets`
 """)

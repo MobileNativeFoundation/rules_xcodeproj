@@ -60,6 +60,7 @@ final class AddTargetsTests: XCTestCase {
         let createdTargets = try Generator.addTargets(
             in: pbxProj,
             for: disambiguatedTargets,
+            buildMode: .xcode,
             products: products,
             files: files,
             filePathResolver: filePathResolver,
