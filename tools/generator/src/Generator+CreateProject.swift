@@ -44,6 +44,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
                 "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
 $(BUILD_DIR)/bazel_build_output_groups
 """,
+                "CODE_SIGNING_ALLOWED": false,
             ], uniquingKeysWith: { _, r in r })
         }
 
