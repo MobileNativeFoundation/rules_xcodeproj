@@ -67,7 +67,7 @@ final class GeneratorTests: XCTestCase {
         
         let productsGroup = PBXGroup(name: "42")
         let bazelDependenciesTarget = PBXAggregateTarget(name: "BD")
-        let pbxTargets: [TargetID: PBXNativeTarget] = [
+        let pbxTargets: [TargetID: PBXTarget] = [
             "A": PBXNativeTarget(name: "A (3456a)"),
         ]
         let schemes = [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
@@ -314,7 +314,7 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             bazelDependenciesTarget: PBXAggregateTarget?
-        ) throws -> [TargetID: PBXNativeTarget] {
+        ) throws -> [TargetID: PBXTarget] {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
@@ -342,7 +342,7 @@ final class GeneratorTests: XCTestCase {
         struct SetTargetConfigurationsCalled: Equatable {
             let pbxProj: PBXProj
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
-            let pbxTargets: [TargetID: PBXNativeTarget]
+            let pbxTargets: [TargetID: PBXTarget]
             let filePathResolver: FilePathResolver
         }
 
@@ -350,7 +350,7 @@ final class GeneratorTests: XCTestCase {
         func setTargetConfigurations(
             in pbxProj: PBXProj,
             for disambiguatedTargets: [TargetID: DisambiguatedTarget],
-            pbxTargets: [TargetID: PBXNativeTarget],
+            pbxTargets: [TargetID: PBXTarget],
             filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(
@@ -374,13 +374,13 @@ final class GeneratorTests: XCTestCase {
 
         struct SetTargetDependenciesCalled: Equatable {
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
-            let pbxTargets: [TargetID: PBXNativeTarget]
+            let pbxTargets: [TargetID: PBXTarget]
         }
 
         var setTargetDependenciesCalled: [SetTargetDependenciesCalled] = []
         func setTargetDependencies(
             disambiguatedTargets: [TargetID: DisambiguatedTarget],
-            pbxTargets: [TargetID: PBXNativeTarget]
+            pbxTargets: [TargetID: PBXTarget]
         ) {
             setTargetDependenciesCalled.append(SetTargetDependenciesCalled(
                 disambiguatedTargets: disambiguatedTargets,

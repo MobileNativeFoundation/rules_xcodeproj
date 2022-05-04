@@ -53,7 +53,7 @@ struct Environment {
         _ filePathResolver: FilePathResolver,
         _ xcodeprojBazelLabel: String
     ) throws -> PBXAggregateTarget?
-    
+
     let addTargets: (
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
@@ -62,18 +62,18 @@ struct Environment {
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
         _ bazelDependenciesTarget: PBXAggregateTarget?
-    ) throws -> [TargetID: PBXNativeTarget]
+    ) throws -> [TargetID: PBXTarget]
 
     let setTargetConfigurations: (
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
-        _ pbxTargets: [TargetID: PBXNativeTarget],
+        _ pbxTargets: [TargetID: PBXTarget],
         _ filePathResolver: FilePathResolver
     ) throws -> Void
 
     let setTargetDependencies: (
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
-        _ pbxTargets: [TargetID: PBXNativeTarget]
+        _ pbxTargets: [TargetID: PBXTarget]
     ) throws -> Void
 
     let createXCSchemes: (
