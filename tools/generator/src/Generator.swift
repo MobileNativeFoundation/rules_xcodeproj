@@ -121,6 +121,7 @@ Was unable to merge "\(srcTarget.label) \
             buildMode,
             products,
             files,
+            filePathResolver,
             bazelDependencies
         )
         try environment.setTargetConfigurations(
