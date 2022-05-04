@@ -11,7 +11,7 @@ extension Generator {
         pbxTargets: [TargetID: PBXTarget]
     ) throws {
         for (id, disambiguatedTarget) in disambiguatedTargets {
-            guard let pbxTarget = pbxTargets[id] as? PBXNativeTarget else {
+            guard let pbxTarget = pbxTargets.nativeTarget(id) else {
                 throw PreconditionError(message: """
 Target "\(id)" not found in `pbxTargets`
 """)
