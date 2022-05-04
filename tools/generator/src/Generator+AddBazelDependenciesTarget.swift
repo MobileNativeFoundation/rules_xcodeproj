@@ -83,7 +83,7 @@ env -i \
         )
 
         let pbxTarget = PBXAggregateTarget(
-            name: "Bazel Dependencies",
+            name: "BazelDependencies",
             buildConfigurationList: configurationList,
             buildPhases: [
                 bazelBuildScript,
@@ -91,7 +91,7 @@ env -i \
                 fixModuleMapsScript,
                 fixInfoPlistsScript,
             ].compactMap { $0 },
-            productName: "Bazel Dependencies"
+            productName: "BazelDependencies"
         )
         pbxProj.add(object: pbxTarget)
         pbxProject.targets.append(pbxTarget)

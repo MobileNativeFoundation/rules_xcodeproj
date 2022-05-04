@@ -171,7 +171,7 @@ fully control the build.
 
 Here are some benefits that the proxy provides over "Build with Bazel":
 
-- No additional "Bazel Dependencies" target in the build graph
+- No additional "BazelDependencies" target in the build graph
 - Removal of duplicate warnings/errors
 - More stable Indexing
 - User created schemes (without defining bazel rules to create them) work as

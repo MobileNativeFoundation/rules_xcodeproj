@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */ = {
+		FE59281FE487F27A37DC2EE7 /* BazelDependencies */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 1CF9208AFC262BED8CB8A0A9 /* Build configuration list for PBXAggregateTarget "Bazel Dependencies" */;
+			buildConfigurationList = A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
-				EFD5DC5BF35D589213C98597 /* Generate Files */,
-				14DE13B950F0A4E49F5CF508 /* Copy Files */,
-				D59B838F58CCDC97935C509C /* Fix Modulemaps */,
-				FF8B0244BAA1F32D8929C997 /* Fix Info.plists */,
+				773C70B69E7F801B38FDC01C /* Generate Files */,
+				87B0BF431191C40A5DA3740B /* Copy Files */,
+				4A203495210B86B9111BD6C9 /* Fix Modulemaps */,
+				A1B677A301B894FBD0B5AB58 /* Fix Info.plists */,
 			);
 			dependencies = (
 			);
-			name = "Bazel Dependencies";
-			productName = "Bazel Dependencies";
+			name = BazelDependencies;
+			productName = BazelDependencies;
 		};
 /* End PBXAggregateTarget section */
 
@@ -40,12 +40,12 @@
 			remoteGlobalIDString = 195FCD65F4EB377830E3E996;
 			remoteInfo = lib_swift;
 		};
-		5EC24FA64469EE293D7EC05E /* PBXContainerItemProxy */ = {
+		28A83CBB86EF28A90A42A515 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		653BE8483F924022BD246430 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -54,26 +54,19 @@
 			remoteGlobalIDString = BB180DABF9AB371C353A7F0D;
 			remoteInfo = private_lib;
 		};
-		8BBBD18AF62B7FB2BA7B2553 /* PBXContainerItemProxy */ = {
+		880FFE0FA4EE63FB2C4847F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
-		B0C48A885AAB4B338F5457ED /* PBXContainerItemProxy */ = {
+		B1E5509E710AAD34090DD08E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
-		};
-		BD9A874E2F6E38703790C461 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		CA9CDA938E8AE3259FBC42DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -89,12 +82,19 @@
 			remoteGlobalIDString = 195FCD65F4EB377830E3E996;
 			remoteInfo = lib_swift;
 		};
-		EE89CCA5CCF1C26DAA0505EA /* PBXContainerItemProxy */ = {
+		E5AFE3202D2F8EA04418A11D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 657E5F38D9811E4DFA49DA75;
-			remoteInfo = "Bazel Dependencies";
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
+		E6F5CC6545521EF4DBAE3D15 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -358,7 +358,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D83476C7D73E68CF9961DDAE /* PBXTargetDependency */,
+				BA7B64071823CA6AE12BC51B /* PBXTargetDependency */,
 				1945C34941723F46B78E9D8D /* PBXTargetDependency */,
 			);
 			name = LibSwiftTests.__internal__.__test_bundle;
@@ -376,7 +376,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				085D63D0B3A87638171583ED /* PBXTargetDependency */,
+				649D6CCAD3B2D370364F2085 /* PBXTargetDependency */,
 				5788E50D72472F75EFAA6061 /* PBXTargetDependency */,
 				912FBD722EA10EF086198A14 /* PBXTargetDependency */,
 			);
@@ -394,7 +394,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				3BEEB43740C27C0D0C69F2D0 /* PBXTargetDependency */,
+				88BD90568A1ED6147322E6D1 /* PBXTargetDependency */,
 			);
 			name = lib_impl;
 			productName = lib_impl;
@@ -410,7 +410,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				FA7322CDCDE66B2E4F06D9AA /* PBXTargetDependency */,
+				CB011C7AF72C27E1ECA48047 /* PBXTargetDependency */,
 			);
 			name = private_lib;
 			productName = private_lib;
@@ -426,7 +426,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				10ECF6ABB6A3DA527E8F6091 /* PBXTargetDependency */,
+				C7CE0C2F304E0B02B1E4E5A4 /* PBXTargetDependency */,
 				204A0BCF0B6A0D2D142BCA76 /* PBXTargetDependency */,
 			);
 			name = tool;
@@ -452,9 +452,6 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
-					657E5F38D9811E4DFA49DA75 = {
-						CreatedOnToolsVersion = 13.2.1;
-					};
 					8329F08BE01D4CC32B819CE9 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -466,6 +463,9 @@
 					EC6A68AC956C60AA25485960 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
+					};
+					FE59281FE487F27A37DC2EE7 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
@@ -482,7 +482,7 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
-				657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */,
+				FE59281FE487F27A37DC2EE7 /* BazelDependencies */,
 				8329F08BE01D4CC32B819CE9 /* lib_impl */,
 				195FCD65F4EB377830E3E996 /* lib_swift */,
 				0290E727C546D76C651A3B2D /* LibSwiftTests.__internal__.__test_bundle */,
@@ -493,7 +493,48 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14DE13B950F0A4E49F5CF508 /* Copy Files */ = {
+		4A203495210B86B9111BD6C9 /* Fix Modulemaps */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(INTERNAL_DIR)/modulemaps.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Fix Modulemaps";
+			outputFileListPaths = (
+				"$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nwhile IFS= read -r input; do\n  output=\"${input%.modulemap}.xcode.modulemap\"\n  perl -p -e \\\n    's%^(\\s*(\\w+ )?header )(?!(\"\\.\\.(\\/\\.\\.)*\\/|\")(bazel-out|external)\\/)(\"(\\.\\.\\/)*)(.*\")%\\1\\6SRCROOT/\\8%' \\\n    < \"$input\" \\\n    > \"$output\"\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		773C70B69E7F801B38FDC01C /* Generate Files */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Files";
+			outputFileListPaths = (
+				"$(INTERNAL_DIR)/external.xcfilelist",
+				"$(INTERNAL_DIR)/generated.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --experimental_convenience_symlinks=ignore \\\n  output_path)\nexternal=\"${output_path%/*/*/*}/external\"\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf real-bazel-out\n\nln -sf \"$external\" external\nln -sf \"$output_path\" real-bazel-out\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|\\/[^\\/]*$||' \\\n  \"$INTERNAL_DIR/generated.rsynclist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n\ncd \"$SRCROOT\"\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --experimental_convenience_symlinks=ignore \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/command_line:xcodeproj_bwx\n";
+			showEnvVarsInLog = 0;
+		};
+		87B0BF431191C40A5DA3740B /* Copy Files */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -531,48 +572,7 @@
 			shellScript = "cp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D59B838F58CCDC97935C509C /* Fix Modulemaps */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(INTERNAL_DIR)/modulemaps.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Fix Modulemaps";
-			outputFileListPaths = (
-				"$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nwhile IFS= read -r input; do\n  output=\"${input%.modulemap}.xcode.modulemap\"\n  perl -p -e \\\n    's%^(\\s*(\\w+ )?header )(?!(\"\\.\\.(\\/\\.\\.)*\\/|\")(bazel-out|external)\\/)(\"(\\.\\.\\/)*)(.*\")%\\1\\6SRCROOT/\\8%' \\\n    < \"$input\" \\\n    > \"$output\"\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFD5DC5BF35D589213C98597 /* Generate Files */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Generate Files";
-			outputFileListPaths = (
-				"$(INTERNAL_DIR)/external.xcfilelist",
-				"$(INTERNAL_DIR)/generated.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --experimental_convenience_symlinks=ignore \\\n  output_path)\nexternal=\"${output_path%/*/*/*}/external\"\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf real-bazel-out\n\nln -sf \"$external\" external\nln -sf \"$output_path\" real-bazel-out\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|\\/[^\\/]*$||' \\\n  \"$INTERNAL_DIR/generated.rsynclist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n\ncd \"$SRCROOT\"\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --experimental_convenience_symlinks=ignore \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/command_line:xcodeproj_bwx\n";
-			showEnvVarsInLog = 0;
-		};
-		FF8B0244BAA1F32D8929C997 /* Fix Info.plists */ = {
+		A1B677A301B894FBD0B5AB58 /* Fix Info.plists */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -640,18 +640,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		085D63D0B3A87638171583ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = BD9A874E2F6E38703790C461 /* PBXContainerItemProxy */;
-		};
-		10ECF6ABB6A3DA527E8F6091 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = 8BBBD18AF62B7FB2BA7B2553 /* PBXContainerItemProxy */;
-		};
 		1945C34941723F46B78E9D8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = lib_swift;
@@ -664,17 +652,23 @@
 			target = 195FCD65F4EB377830E3E996 /* lib_swift */;
 			targetProxy = CEF33237E121C8902D54BB86 /* PBXContainerItemProxy */;
 		};
-		3BEEB43740C27C0D0C69F2D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = EE89CCA5CCF1C26DAA0505EA /* PBXContainerItemProxy */;
-		};
 		5788E50D72472F75EFAA6061 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = lib_impl;
 			target = 8329F08BE01D4CC32B819CE9 /* lib_impl */;
 			targetProxy = CA9CDA938E8AE3259FBC42DC /* PBXContainerItemProxy */;
+		};
+		649D6CCAD3B2D370364F2085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = E5AFE3202D2F8EA04418A11D /* PBXContainerItemProxy */;
+		};
+		88BD90568A1ED6147322E6D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = B1E5509E710AAD34090DD08E /* PBXContainerItemProxy */;
 		};
 		912FBD722EA10EF086198A14 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -682,22 +676,28 @@
 			target = BB180DABF9AB371C353A7F0D /* private_lib */;
 			targetProxy = 653BE8483F924022BD246430 /* PBXContainerItemProxy */;
 		};
-		D83476C7D73E68CF9961DDAE /* PBXTargetDependency */ = {
+		BA7B64071823CA6AE12BC51B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = B0C48A885AAB4B338F5457ED /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 28A83CBB86EF28A90A42A515 /* PBXContainerItemProxy */;
 		};
-		FA7322CDCDE66B2E4F06D9AA /* PBXTargetDependency */ = {
+		C7CE0C2F304E0B02B1E4E5A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Bazel Dependencies";
-			target = 657E5F38D9811E4DFA49DA75 /* Bazel Dependencies */;
-			targetProxy = 5EC24FA64469EE293D7EC05E /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 880FFE0FA4EE63FB2C4847F8 /* PBXContainerItemProxy */;
+		};
+		CB011C7AF72C27E1ECA48047 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = E6F5CC6545521EF4DBAE3D15 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3120F32C41840B1165104AAF /* Debug */ = {
+		67F44AB65FA7A2E38A56F5FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
@@ -1047,14 +1047,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1CF9208AFC262BED8CB8A0A9 /* Build configuration list for PBXAggregateTarget "Bazel Dependencies" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3120F32C41840B1165104AAF /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		25505A4CBF68C981D5D1CAD4 /* Build configuration list for PBXNativeTarget "private_lib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1083,6 +1075,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C221D886D6D02D33114D3473 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67F44AB65FA7A2E38A56F5FB /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

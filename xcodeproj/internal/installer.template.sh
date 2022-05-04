@@ -77,11 +77,11 @@ if [[ \
   cd "$BUILD_WORKSPACE_DIRECTORY"
   error_log=$(mktemp)
   exit_status=0
-  xcodebuild -project "$dest" -scheme "Bazel Dependencies" \
+  xcodebuild -project "$dest" -scheme "BazelDependencies" \
     > "$error_log" 2>&1 \
     || exit_status=$?
   if [ $exit_status -ne 0 ]; then
-    echo "WARNING: Failed to build \"Bazel Dependencies\" scheme:"
+    echo "WARNING: Failed to build \"BazelDependencies\" scheme:"
     cat "$error_log" >&2
   fi
 fi
