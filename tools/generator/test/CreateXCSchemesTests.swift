@@ -20,16 +20,26 @@ class CreateXCSchemesTests: XCTestCase {
         targetName: String,
         shouldExpectBuildActionEntries: Bool,
         shouldExpectTestables: Bool,
-        shouldExpectBuildableProductRunnable: Bool
+        shouldExpectBuildableProductRunnable: Bool,
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) throws {
         let targetID = TargetID(targetName)
         guard let target = pbxTargetsDict[targetID] else {
-            XCTFail("Did not find the target '\(targetName)'")
+            XCTFail(
+                "Did not find the target '\(targetName)'",
+                file: file,
+                line: line
+            )
             return
         }
         let schemeName = target.schemeName
         guard let scheme = schemesDict[schemeName] else {
-            XCTFail("Did not find a scheme named \(schemeName)")
+            XCTFail(
+                "Did not find a scheme named \(schemeName)",
+                file: file,
+                line: line
+            )
             return
         }
 
@@ -59,82 +69,128 @@ class CreateXCSchemesTests: XCTestCase {
 
         // Assertions
 
-        XCTAssertNotNil(scheme.lastUpgradeVersion)
+        XCTAssertNotNil(
+            scheme.lastUpgradeVersion,
+            file: file,
+            line: line
+        )
 
         guard let buildAction = scheme.buildAction else {
-            XCTFail("Expected a build action for \(scheme.name)")
+            XCTFail(
+                "Expected a build action for \(scheme.name)",
+                file: file,
+                line: line
+            )
             return
         }
         XCTAssertEqual(
             buildAction.buildActionEntries,
             expectedBuildActionEntries,
-            "buildActionEntries did not match for \(scheme.name)"
+            "buildActionEntries did not match for \(scheme.name)",
+            file: file,
+            line: line
         )
         XCTAssertTrue(
             buildAction.parallelizeBuild,
-            "parallelizeBuild was not true for \(scheme.name)"
+            "parallelizeBuild was not true for \(scheme.name)",
+            file: file,
+            line: line
         )
         XCTAssertTrue(
             buildAction.buildImplicitDependencies,
-            "buildImplicitDependencies was not true for \(scheme.name)"
+            "buildImplicitDependencies was not true for \(scheme.name)",
+            file: file,
+            line: line
         )
 
         guard let testAction = scheme.testAction else {
-            XCTFail("Expected a test action for \(scheme.name)")
+            XCTFail(
+                "Expected a test action for \(scheme.name)",
+                file: file,
+                line: line
+            )
             return
         }
         XCTAssertNil(
             testAction.macroExpansion,
-            "macroExpansion was not nil for \(scheme.name)"
+            "macroExpansion was not nil for \(scheme.name)",
+            file: file,
+            line: line
         )
         XCTAssertEqual(
             testAction.buildConfiguration,
             expectedBuildConfigurationName,
-            "the test action buildConfiguration did not match for \(scheme.name)"
+            "the test action buildConfiguration did not match for \(scheme.name)",
+            file: file,
+            line: line
         )
         XCTAssertEqual(
             testAction.testables,
             expectedTestables,
-            "testables did not match for \(scheme.name)"
+            "testables did not match for \(scheme.name)",
+            file: file,
+            line: line
         )
 
         guard let launchAction = scheme.launchAction else {
-            XCTFail("Expected a launch action for \(scheme.name)")
+            XCTFail(
+                "Expected a launch action for \(scheme.name)",
+                file: file,
+                line: line
+            )
             return
         }
         XCTAssertEqual(
             launchAction.buildConfiguration,
             expectedBuildConfigurationName,
-            "the launch action buildConfiguration did not match for \(scheme.name)"
+            "the launch action buildConfiguration did not match for \(scheme.name)",
+            file: file,
+            line: line
         )
         XCTAssertEqual(
             launchAction.runnable,
             expectedBuildableProductRunnable,
-            "runnable did not match for \(scheme.name)"
+            "runnable did not match for \(scheme.name)",
+            file: file,
+            line: line
         )
 
         guard let analyzeAction = scheme.analyzeAction else {
-            XCTFail("Expected an analyze action for \(scheme.name)")
+            XCTFail(
+                "Expected an analyze action for \(scheme.name)",
+                file: file,
+                line: line
+            )
             return
         }
         XCTAssertEqual(
             analyzeAction.buildConfiguration,
             expectedBuildConfigurationName,
-            "the analyze action buildConfiguration did not match for \(scheme.name)"
+            "the analyze action buildConfiguration did not match for \(scheme.name)",
+            file: file,
+            line: line
         )
 
         guard let archiveAction = scheme.archiveAction else {
-            XCTFail("Expected an archive action for \(scheme.name)")
+            XCTFail(
+                "Expected an archive action for \(scheme.name)",
+                file: file,
+                line: line
+            )
             return
         }
         XCTAssertEqual(
             archiveAction.buildConfiguration,
             expectedBuildConfigurationName,
-            "the archive action buildConfiguration did not match for \(scheme.name)"
+            "the archive action buildConfiguration did not match for \(scheme.name)",
+            file: file,
+            line: line
         )
         XCTAssertTrue(
             archiveAction.revealArchiveInOrganizer,
-            "revealArchiveInOrganizer did not match for \(scheme.name)"
+            "revealArchiveInOrganizer did not match for \(scheme.name)",
+            file: file,
+            line: line
         )
     }
 
