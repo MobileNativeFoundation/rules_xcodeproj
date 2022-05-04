@@ -38,6 +38,7 @@ final class GeneratorTests: XCTestCase {
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
+
         let mergedTargets: [TargetID: Target] = [
             "Y": Target.mock(
                 label: "//:Y",
