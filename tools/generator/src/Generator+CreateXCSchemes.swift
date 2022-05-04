@@ -77,7 +77,7 @@ extension Generator {
             revealArchiveInOrganizer: true
         )
 
-        let scheme = XCScheme(
+        return XCScheme(
             name: try pbxTarget.getSchemeName(),
             lastUpgradeVersion: nil,
             version: nil,
@@ -89,6 +89,5 @@ extension Generator {
             archiveAction: archiveAction,
             wasCreatedForAppExtension: nil
         )
-        return scheme
     }
 }
