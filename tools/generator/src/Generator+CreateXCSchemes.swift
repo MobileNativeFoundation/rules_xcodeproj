@@ -8,7 +8,7 @@ extension Generator {
         pbxTargets: [TargetID: PBXTarget]
     ) throws -> [XCScheme] {
         let referencedContainer = filePathResolver.containerReference
-        return try pbxTargets.map { $0.1 }.map { pbxTarget in
+        return try pbxTargets..map { _, pbxTarget in
             try createXCScheme(
                 referencedContainer: referencedContainer,
                 pbxTarget: pbxTarget
