@@ -49,13 +49,13 @@ load(
     "process_modulemaps",
     "process_sdk_links",
     "process_swiftmodules",
+    "should_bundle_resources",
+    "should_include_outputs",
 )
 load(
     ":top_level_targets.bzl",
     "process_top_level_properties",
     "process_top_level_target",
-    "should_bundle_resources",
-    "should_include_outputs",
 )
 
 # Library targets

@@ -1,11 +1,36 @@
 """Functions for processing target properties"""
 
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:collections.bzl", "collections")
 load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":files.bzl",
     "file_path",
 )
+
+def should_bundle_resources(ctx):
+    """Determines whether resources should be bundled in the generated project.
+
+    Args:
+        ctx: The aspect context.
+
+    Returns:
+        `True` if resources should be bundled, `False` otherwise.
+    """
+    return ctx.attr._build_mode[BuildSettingInfo].value != "bazel"
+
+def should_include_outputs(ctx):
+    """Determines whether outputs should be included in the generated project.
+
+    Args:
+        ctx: The aspect context.
+
+    Returns:
+        `True` if outputs should be included, `False` otherwise. This will be
+        `True` for Build with Bazel projects and portions of the build that
+        need to build with Bazel (i.e. Focused Projects).
+    """
+    return ctx.attr._build_mode[BuildSettingInfo].value != "xcode"
 
 def process_dependencies(*, attrs_info, transitive_infos):
     """ Logic for processing target dependencies

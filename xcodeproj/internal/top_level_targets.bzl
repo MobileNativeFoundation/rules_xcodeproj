@@ -46,6 +46,8 @@ load(
     "process_modulemaps",
     "process_sdk_links",
     "process_swiftmodules",
+    "should_bundle_resources",
+    "should_include_outputs",
 )
 
 def get_tree_artifact_enabled(*, ctx, bundle_info):
@@ -76,30 +78,6 @@ you can't set that flag, you can set `archived_bundles_allowed = True` on the \
 """)
 
     return tree_artifact_enabled
-
-def should_bundle_resources(ctx):
-    """Determines whether resources should be bundled in the generated project.
-
-    Args:
-        ctx: The aspect context.
-
-    Returns:
-        `True` if resources should be bundled, `False` otherwise.
-    """
-    return ctx.attr._build_mode[BuildSettingInfo].value != "bazel"
-
-def should_include_outputs(ctx):
-    """Determines whether outputs should be included in the generated project.
-
-    Args:
-        ctx: The aspect context.
-
-    Returns:
-        `True` if outputs should be included, `False` otherwise. This will be
-        `True` for Build with Bazel projects and portions of the build that
-        need to build with Bazel (i.e. Focused Projects).
-    """
-    return ctx.attr._build_mode[BuildSettingInfo].value != "xcode"
 
 def process_top_level_properties(
         *,
