@@ -8,6 +8,7 @@ extension Generator {
         buildMode: BuildMode,
         products: Products,
         files: [FilePath: File],
+        filePathResolver: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> [TargetID: PBXTarget] {
         let pbxProject = pbxProj.rootObject!
