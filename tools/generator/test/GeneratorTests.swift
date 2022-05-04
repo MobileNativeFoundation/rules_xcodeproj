@@ -298,6 +298,7 @@ final class GeneratorTests: XCTestCase {
         struct AddTargetsCalled: Equatable {
             let pbxProj: PBXProj
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
+            let buildMode: BuildMode
             let products: Products
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
@@ -308,6 +309,7 @@ final class GeneratorTests: XCTestCase {
         func addTargets(
             in pbxProj: PBXProj,
             for disambiguatedTargets: [TargetID: DisambiguatedTarget],
+            buildMode: BuildMode,
             products: Products,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
@@ -316,6 +318,7 @@ final class GeneratorTests: XCTestCase {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
+                buildMode: buildMode,
                 products: products,
                 files: files,
                 filePathResolver: filePathResolver,
@@ -327,6 +330,7 @@ final class GeneratorTests: XCTestCase {
         let expectedAddTargetsCalled = [AddTargetsCalled(
             pbxProj: pbxProj,
             disambiguatedTargets: disambiguatedTargets,
+            buildMode: buildMode,
             products: products,
             files: files,
             filePathResolver: filePathResolver,

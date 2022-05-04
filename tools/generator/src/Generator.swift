@@ -118,6 +118,7 @@ Was unable to merge "\(srcTarget.label) \
         let pbxTargets = try environment.addTargets(
             pbxProj,
             disambiguatedTargets,
+            buildMode,
             products,
             files,
             filePathResolver,

@@ -27,7 +27,6 @@
 		4BFD859F1371C86D02DB25A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB9E176B3AB4F6354A1167 /* ContentView.swift */; };
 		550BA6FCF1894C7DFA32D1E3 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA542B31DC88C70950011E86 /* ExternalFramework.framework */; };
 		6A97C8EA8F4607A20FA6E3C2 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027F83636D3D6C6ABBF375F /* ExampleTests.swift */; };
-		6B192A693F6E888F64E4D471 /* ExternalFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA542B31DC88C70950011E86 /* ExternalFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8490D2560B037FDA913FA479 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFA501580379A58AE2389D0 /* TestingUtils.swift */; };
 		8827E174961A52D2C88CF0C9 /* ExampleObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1945E01AD98FE05054F33AE5 /* ExampleObjcTests.m */; };
 		A29169FF12586786795BC72E /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDA5C3FF5C9611B6DF55D3C /* ExampleUITests.swift */; };
@@ -153,20 +152,6 @@
 			remoteInfo = Example;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		833364064E1457AC6C05CD5F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6B192A693F6E888F64E4D471 /* ExternalFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05CED94736B3F5BB8E2E87B5 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -717,7 +702,6 @@
 			buildPhases = (
 				F94B766A6F00B6427D27F290 /* Sources */,
 				6E426D209568E509FBE28076 /* Frameworks */,
-				833364064E1457AC6C05CD5F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
