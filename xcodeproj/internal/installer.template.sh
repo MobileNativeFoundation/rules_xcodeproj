@@ -7,7 +7,6 @@ readonly dest="$BUILD_WORKSPACE_DIRECTORY/%output_path%"
 
 # Sync over the project, changing the permissions to be writable
 
-# TODO: Handle schemes schemes
 # Don't touch project.xcworkspace as that will make Xcode prompt
 rsync \
   --archive \
@@ -15,7 +14,6 @@ rsync \
   --chmod=u+w,F-x \
   --exclude=project.xcworkspace \
   --exclude=xcuserdata \
-  --exclude=xcshareddata/xcschemes \
   --exclude=rules_xcodeproj/links \
   --delete \
   "$src/" "$dest/"
@@ -57,9 +55,8 @@ plutil -replace IDEDidComputeMac32BitWarning -bool true "$workspace_checks"
 # Configure the project to use Xcode's new build system.
 plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 
-# TODO: Uncomment once we create schemes ourselves
-# # Prevent Xcode from prompting the user to autocreate schemes for all targets
-# plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
+# Prevent Xcode from prompting the user to autocreate schemes for all targets
+plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
 
 echo 'Updated project at "%output_path%"'
 

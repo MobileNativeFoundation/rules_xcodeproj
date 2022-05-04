@@ -28,7 +28,7 @@ class Generator {
     let logger: Logger
 
     init(
-        environment: Environment = Generator.defaultEnvironment, 
+        environment: Environment = Generator.defaultEnvironment,
         logger: Logger
     ) {
         self.logger = logger
@@ -135,7 +135,10 @@ Was unable to merge "\(srcTarget.label) \
             pbxTargets
         )
 
-        let schemes = environment.createXCSchemes(disambiguatedTargets)
+        let schemes = try environment.createXCSchemes(
+            filePathResolver,
+            pbxTargets
+        )
         let sharedData = environment.createXCSharedData(schemes)
 
         let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)

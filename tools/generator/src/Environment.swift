@@ -77,8 +77,9 @@ struct Environment {
     ) throws -> Void
 
     let createXCSchemes: (
-        _ disambiguatedTargets: [TargetID: DisambiguatedTarget]
-    ) -> [XCScheme]
+        _ filePathResolver: FilePathResolver,
+        _ pbxTargets: [TargetID: PBXTarget]
+    ) throws -> [XCScheme]
 
     let createXCSharedData: (_ schemes: [XCScheme]) -> XCSharedData
 

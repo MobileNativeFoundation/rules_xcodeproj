@@ -4,7 +4,7 @@ struct TargetID: Equatable, Hashable, Decodable {
 
     /// Creates a `TargetID` from a given `String`.
     init(_ id: String) {
-        self.rawValue = id
+        rawValue = id
     }
 }
 
@@ -28,6 +28,12 @@ extension TargetID: Comparable {
 
 extension TargetID: CustomStringConvertible {
     var description: String {
-        return self.rawValue
+        return rawValue
     }
+}
+
+// MARK: Constant TargetIDs
+
+extension TargetID {
+    static let bazelDependencies = TargetID("bazel_dependencies")
 }

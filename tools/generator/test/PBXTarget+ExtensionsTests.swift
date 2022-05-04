@@ -4,16 +4,38 @@ import XCTest
 @testable import generator
 
 class PBXTargetExtensionsTests: XCTestCase {
-    let pbxTarget = PBXTarget(name: "chicken", productName: "MyChicken")
+    // Need to create the PBXFileReference separate from the PBXTarget
+    // initializer, so that the file reference initializes properly.
+    // If you inline the construction of the file reference the
+    // product properties will not initialize properly.
+    let productFileReference = PBXFileReference(
+        path: "MyChicken.app"
+    )
+    lazy var pbxTarget = PBXTarget(
+        name: "chicken",
+        productName: "MyChicken",
+        product: productFileReference
+    )
 
-    func test_getBuildableName_withProductName() throws {
+    let pbxTargetWithoutProduct = PBXTarget(
+        name: "chicken",
+        productName: "MyChicken"
+    )
+
+    func test_getBuildableName_withProductPath() throws {
         let buildableName = try pbxTarget.getBuildableName()
+        XCTAssertEqual(buildableName, "MyChicken.app")
+    }
+
+    func test_getBuildableName_withoutProductPathWithProductName() throws {
+        pbxTarget.product = nil
+        let buildableName = try pbxTargetWithoutProduct.getBuildableName()
         XCTAssertEqual(buildableName, "MyChicken")
     }
 
-    func test_getBuildableName_withoutProductName() throws {
-        pbxTarget.productName = nil
-        XCTAssertThrowsError(try pbxTarget.getBuildableName()) { error in
+    func test_getBuildableName_withoutProductPathAndProductName() throws {
+        pbxTargetWithoutProduct.productName = nil
+        XCTAssertThrowsError(try pbxTargetWithoutProduct.getBuildableName()) { error in
             guard let preconditionError = error as? PreconditionError else {
                 XCTFail(
                     "The thrown error was not a `PreconditionError`. \(error)"
@@ -22,7 +44,7 @@ class PBXTargetExtensionsTests: XCTestCase {
             }
             XCTAssertEqual(
                 preconditionError.message,
-                "`productName` not set on target"
+                "`product` path and `productName` not set on target (chicken)"
             )
         }
     }
@@ -42,18 +64,15 @@ class PBXTargetExtensionsTests: XCTestCase {
     }
 
     func test_getSchemeName_withSlashesInBuildableName() throws {
-        pbxTarget.productName = "//examples/chicken:smidgen"
+        pbxTarget.name = "//examples/chicken:smidgen"
         XCTAssertEqual(
-            try pbxTarget.getSchemeName(),
-            "__examples_chicken:smidgen"
+            pbxTarget.schemeName,
+            "__examples_chicken_smidgen"
         )
     }
 
     func test_schemeName_withoutSlashesInBuildableName() throws {
-        XCTAssertEqual(
-            try pbxTarget.getSchemeName(),
-            "MyChicken"
-        )
+        XCTAssertEqual(pbxTarget.schemeName, "chicken")
     }
 
     func test_isTestable_withoutProductType() throws {

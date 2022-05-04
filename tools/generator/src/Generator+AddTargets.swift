@@ -86,6 +86,10 @@ Product for target "\(id)" not found in `products`
             }
         }
 
+        if let bazelDependenciesTarget = bazelDependenciesTarget {
+            pbxTargets[.bazelDependencies] = bazelDependenciesTarget
+        }
+
         return pbxTargets
     }
 

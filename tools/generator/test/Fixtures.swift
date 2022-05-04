@@ -1372,12 +1372,15 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             pbxProj.rootObject!.targets.append(pbxTarget)
         }
 
-        return Dictionary(
+        var pbxTargets = Dictionary(
             uniqueKeysWithValues: pbxNativeTargets
                 .map { targetID, pbxTarget -> (TargetID, PBXTarget) in 
                     return (targetID, pbxTarget)
                 }
         )
+        pbxTargets[.bazelDependencies] = bazelDependenciesTarget
+
+        return pbxTargets
     }
 
     static func pbxTargets(
