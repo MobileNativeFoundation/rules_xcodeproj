@@ -17,7 +17,7 @@ extension Generator {
     }
 
     /// Creates an `XCScheme` for the specified target.
-    static func createXCScheme(
+    private static func createXCScheme(
         referencedContainer: String,
         pbxTarget: PBXTarget
     ) throws -> XCScheme {
