@@ -55,11 +55,8 @@ plutil -replace IDEDidComputeMac32BitWarning -bool true "$workspace_checks"
 # Configure the project to use Xcode's new build system.
 plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 
-# TODO(cgrindel): Decide if we need to uncomment this in the installer.
-
-# TODO: Uncomment once we create schemes ourselves
-# # Prevent Xcode from prompting the user to autocreate schemes for all targets
-# plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
+# Prevent Xcode from prompting the user to autocreate schemes for all targets
+plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
 
 echo 'Updated project at "%output_path%"'
 
