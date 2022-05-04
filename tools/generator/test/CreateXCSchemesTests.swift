@@ -9,7 +9,7 @@ class CreateXCSchemesTests: XCTestCase {
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
-    let pbxTargetsDict: [TargetID: PBXNativeTarget] =
+    let pbxTargetsDict: [TargetID: PBXTarget] =
         Fixtures.pbxTargetsWithDependencies(
             in: Fixtures.pbxProj(),
             targets: Fixtures.targets

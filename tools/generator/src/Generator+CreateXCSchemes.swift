@@ -1,22 +1,15 @@
 import PathKit
 import XcodeProj
 
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
-
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
         filePathResolver: FilePathResolver,
-        pbxTargets: [TargetID: PBXNativeTarget]
+        pbxTargets: [TargetID: PBXTarget]
     ) throws -> [XCScheme] {
         let referencedContainer = filePathResolver.containerReference
         return try pbxTargets.map { $0.1 }.map { pbxTarget in
-            // DEBUG BEGIN
-            Swift.print("*** CHUCK  pbxTarget.name: \(String(reflecting: pbxTarget.name))")
-            // DEBUG END
-            return try createXCScheme(
+            try createXCScheme(
                 referencedContainer: referencedContainer,
                 pbxTarget: pbxTarget
             )
@@ -26,7 +19,7 @@ extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCScheme(
         referencedContainer: String,
-        pbxTarget: PBXNativeTarget
+        pbxTarget: PBXTarget
     ) throws -> XCScheme {
         let buildableReference = try pbxTarget.createBuildableReference(
             referencedContainer: referencedContainer

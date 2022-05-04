@@ -155,7 +155,7 @@ final class GeneratorTests: XCTestCase {
             extraFiles: Set<FilePath>,
             xccurrentversions: [XCCurrentVersion],
             filePathResolver: FilePathResolver,
-            logger: Logger
+            logger _: Logger
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement]
@@ -396,13 +396,13 @@ final class GeneratorTests: XCTestCase {
 
         struct CreateXCSchemesCalled: Equatable {
             let filePathResolver: FilePathResolver
-            let pbxTargets: [TargetID: PBXNativeTarget]
+            let pbxTargets: [TargetID: PBXTarget]
         }
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
             filePathResolver: FilePathResolver,
-            pbxTargets: [TargetID: PBXNativeTarget]
+            pbxTargets: [TargetID: PBXTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
                 filePathResolver: filePathResolver,

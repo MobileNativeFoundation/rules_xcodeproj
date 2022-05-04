@@ -78,7 +78,7 @@ struct Environment {
 
     let createXCSchemes: (
         _ filePathResolver: FilePathResolver,
-        _ pbxTargets: [TargetID: PBXNativeTarget]
+        _ pbxTargets: [TargetID: PBXTarget]
     ) throws -> [XCScheme]
 
     let createXCSharedData: (_ schemes: [XCScheme]) -> XCSharedData
