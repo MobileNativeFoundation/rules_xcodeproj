@@ -8,7 +8,7 @@ extension Generator {
         pbxTargets: [TargetID: PBXTarget]
     ) throws -> [XCScheme] {
         let referencedContainer = filePathResolver.containerReference
-        return try pbxTargets..map { _, pbxTarget in
+        return try pbxTargets.map { _, pbxTarget in
             try createXCScheme(
                 referencedContainer: referencedContainer,
                 pbxTarget: pbxTarget
@@ -16,7 +16,7 @@ extension Generator {
         }
     }
 
-    /// Creates an array of `XCScheme` entries for the specified targets.
+    /// Creates an `XCScheme` for the specified target.
     static func createXCScheme(
         referencedContainer: String,
         pbxTarget: PBXTarget
