@@ -301,7 +301,6 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let products: Products
             let files: [FilePath: File]
-            let filePathResolver: FilePathResolver
             let bazelDependenciesTarget: PBXAggregateTarget?
         }
 
@@ -312,7 +311,6 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             products: Products,
             files: [FilePath: File],
-            filePathResolver: FilePathResolver,
             bazelDependenciesTarget: PBXAggregateTarget?
         ) throws -> [TargetID: PBXTarget] {
             addTargetsCalled.append(.init(
@@ -321,7 +319,6 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 products: products,
                 files: files,
-                filePathResolver: filePathResolver,
                 bazelDependenciesTarget: bazelDependenciesTarget
             ))
             return pbxTargets
@@ -333,7 +330,6 @@ final class GeneratorTests: XCTestCase {
             buildMode: buildMode,
             products: products,
             files: files,
-            filePathResolver: filePathResolver,
             bazelDependenciesTarget: bazelDependenciesTarget
         )]
         

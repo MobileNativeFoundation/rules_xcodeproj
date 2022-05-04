@@ -63,7 +63,6 @@ final class AddTargetsTests: XCTestCase {
             buildMode: .xcode,
             products: products,
             files: files,
-            filePathResolver: filePathResolver,
             bazelDependenciesTarget: bazelDependenciesTarget
         )
 
