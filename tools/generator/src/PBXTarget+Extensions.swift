@@ -3,9 +3,9 @@ import XcodeProj
 
 public extension PBXTarget {
     func getBuildableName() throws -> String {
-        guard let buildableName = productName else {
+        guard let buildableName = (product?.path ?? productName) else {
             throw PreconditionError(message: """
-`productName` not set on target
+`product` path and `productName` not set on target (\(name))
 """)
         }
         return buildableName
