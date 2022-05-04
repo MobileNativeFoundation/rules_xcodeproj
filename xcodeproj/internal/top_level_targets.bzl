@@ -1,5 +1,6 @@
 """ Functions for processing top level targets """
 
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
@@ -46,6 +47,59 @@ load(
     "process_sdk_links",
     "process_swiftmodules",
 )
+
+def get_tree_artifact_enabled(*, ctx, bundle_info):
+    """Returns whether tree artifacts are enabled.
+
+    Args:
+        ctx: The context
+        bundle_info: An instance of `BundleInfo`
+
+    Returns:
+        A boolean representing if tree artifacts are enabled
+    """
+    if not bundle_info:
+        return False
+
+    tree_artifact_enabled = (
+        ctx.var.get("apple.experimental.tree_artifact_outputs", "")
+            .lower() in
+        ("true", "yes", "1")
+    )
+
+    if not ctx.attr._archived_bundles_allowed[BuildSettingInfo].value:
+        if not tree_artifact_enabled:
+            fail("""\
+Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow. If \
+you can't set that flag, you can set `archived_bundles_allowed = True` on the \
+`xcodeproj` rule to have it unarchive bundles when installing them.
+""")
+
+    return tree_artifact_enabled
+
+def should_bundle_resources(ctx):
+    """Determines whether resources should be bundled in the generated project.
+
+    Args:
+        ctx: The aspect context.
+
+    Returns:
+        `True` if resources should be bundled, `False` otherwise.
+    """
+    return ctx.attr._build_mode[BuildSettingInfo].value != "bazel"
+
+def should_include_outputs(ctx):
+    """Determines whether outputs should be included in the generated project.
+
+    Args:
+        ctx: The aspect context.
+
+    Returns:
+        `True` if outputs should be included, `False` otherwise. This will be
+        `True` for Build with Bazel projects and portions of the build that
+        need to build with Bazel (i.e. Focused Projects).
+    """
+    return ctx.attr._build_mode[BuildSettingInfo].value != "xcode"
 
 def process_top_level_properties(
         *,
@@ -172,10 +226,13 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         entitlements_file_path = file_path(entitlements_file)
         additional_files.append(entitlements_file)
 
+    bundle_resources = should_bundle_resources(ctx = ctx)
+
     resource_owner = str(target.label)
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        bundle_resources = bundle_resources,
         attrs_info = attrs_info,
         owner = resource_owner,
         additional_files = additional_files,
@@ -186,6 +243,7 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         swift_info = swift_info,
         id = id,
         transitive_infos = transitive_infos,
+        should_produce_dto = should_include_outputs(ctx = ctx),
     )
 
     build_settings = {}
@@ -202,9 +260,9 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         build_settings = build_settings,
     )
 
-    tree_artifact_enabled = (
-        ctx.var.get("apple.experimental.tree_artifact_outputs", "").lower() in
-        ("true", "yes", "1")
+    tree_artifact_enabled = get_tree_artifact_enabled(
+        ctx = ctx,
+        bundle_info = bundle_info,
     )
     props = process_top_level_properties(
         target_name = ctx.rule.attr.name,
@@ -282,6 +340,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     resource_bundles = resource_bundle_products.collect(
         owner = resource_owner,
         is_consuming_bundle = is_bundle,
+        bundle_resources = bundle_resources,
         attrs_info = attrs_info,
         transitive_infos = transitive_infos,
     )
@@ -345,5 +404,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             info_plist = info_plist,
             entitlements = entitlements_file_path,
             dependencies = dependencies,
+            outputs = outputs,
         ),
     )
