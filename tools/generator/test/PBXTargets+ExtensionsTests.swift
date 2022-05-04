@@ -4,15 +4,25 @@ import XCTest
 @testable import generator
 
 class PBXTargetsExtensionsTests: XCTestCase {
+    let pbxNativeTarget = PBXNativeTarget(name: "foo")
+    lazy var pbxTargets: [String: PBXTarget] = [
+        "foo": pbxNativeTarget,
+        "bar": PBXAggregateTarget(name: "bar"),
+    ]
+
     func test_nativeTarget_whereKeyDoesNotExist() throws {
-        XCTFail("IMPLEMENT ME!")
+        XCTAssertNil(pbxTargets.nativeTarget("does_not_exist"))
     }
 
     func test_nativeTarget_whereKeyExistsButNotNativeTarget() throws {
-        XCTFail("IMPLEMENT ME!")
+        XCTAssertNil(pbxTargets.nativeTarget("bar"))
     }
 
     func test_nativeTarget_whereKeyExistxAndIsNativeTarget() throws {
-        XCTFail("IMPLEMENT ME!")
+        guard let actual = pbxTargets.nativeTarget("foo") else {
+            XCTFail("Expected to find `foo`")
+            return
+        }
+        XCTAssertEqual(actual, pbxNativeTarget)
     }
 }
