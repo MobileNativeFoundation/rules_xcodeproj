@@ -5,14 +5,14 @@ import XcodeProj
 /// Wrapper for files (`PBXFileReference`, `PBXVariantGroup`, and
 /// `XCVersionGroup`), adding additional associated data.
 enum File: Equatable {
-    case reference(PBXFileReference?, content: String)
+    case reference(PBXFileReference?, content: String?)
     case variantGroup(PBXVariantGroup)
     case xcVersionGroup(XCVersionGroup)
 }
 
 extension File {
     static func reference(_ reference: PBXFileReference) -> File {
-        return .reference(reference, content: "")
+        return .reference(reference, content: nil)
     }
 
     static func nonReferencedContent(_ content: String) -> File {
@@ -34,6 +34,7 @@ extension File {
 }
 
 extension Generator {
+    static let bazelForcedSwiftCompilePath: Path = "_BazelForcedCompile_.swift"
     static let compileStubPath: Path = "CompileStub.m"
     static let externalFileListPath: Path = "external.xcfilelist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
@@ -306,6 +307,9 @@ extension Generator {
             // We use .nonGenerated instead of .all because generated files will 
             // be collected via product outputs, or `extraFiles`
             allInputPaths.formUnion(target.linkerInputs.nonGenerated)
+            allInputPaths.formUnion(
+                target.outputs.forcedBazelCompileFiles(buildMode: buildMode)
+            )
             if !target.inputs.containsSources
                 && target.product.type != .bundle
             {
@@ -384,6 +388,11 @@ extension Generator {
             }
         }
 
+        // Fix sourceTree of `bazelForcedSwiftCompilePath`
+        if let element = elements[.internal(bazelForcedSwiftCompilePath)] {
+            element.sourceTree = .custom("DERIVED_FILE_DIR")
+        }
+
         try setXCCurrentVersions(
             elements: elements,
             xccurrentversions: xccurrentversions,
@@ -393,7 +402,11 @@ extension Generator {
         var files: [FilePath: File] = [:]
         for (filePath, element) in elements {
             if let reference = element as? PBXFileReference {
-                files[filePath] = .reference(reference)
+                if filePath == .internal(compileStubPath) {
+                    files[filePath] = .reference(reference, content: "")
+                } else {
+                    files[filePath] = .reference(reference)
+                }
             } else if let variantGroup = element as? PBXVariantGroup {
                 files[filePath] = .variantGroup(variantGroup)
             } else if let xcVersionGroup = element as? XCVersionGroup {

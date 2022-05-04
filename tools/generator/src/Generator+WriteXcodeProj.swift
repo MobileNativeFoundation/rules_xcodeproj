@@ -14,7 +14,10 @@ extension Generator {
         let internalOutputPath = outputPath + internalDirectoryName
 
         for (filePath, file) in files.filter(\.key.isInternal) {
-            guard case let .reference(_, content) = file else {
+            guard case let .reference(_, maybeContent) = file else {
+                continue
+            }
+            guard let content = maybeContent else {
                 continue
             }
             

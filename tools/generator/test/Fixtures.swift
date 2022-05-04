@@ -680,7 +680,11 @@ enum Fixtures {
         var files: [FilePath: File] = [:]
         for (filePath, element) in elements {
             if let reference = element as? PBXFileReference {
-                files[filePath] = .reference(reference)
+                if filePath == .internal("CompileStub.m") {
+                    files[filePath] = .reference(reference, content: "")
+                } else {
+                    files[filePath] = .reference(reference)
+                }
             } else if let variantGroup = element as? PBXVariantGroup {
                 files[filePath] = .variantGroup(variantGroup)
             } else if let xcVersionGroup = element as? XCVersionGroup {
