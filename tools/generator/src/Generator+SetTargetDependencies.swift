@@ -13,8 +13,8 @@ extension Generator {
         for (id, disambiguatedTarget) in disambiguatedTargets {
             guard let pbxTarget = pbxTargets.nativeTarget(id) else {
                 throw PreconditionError(message: """
-                Target "\(id)" not found in `pbxTargets`
-                """)
+ Target "\(id)" not found in `pbxTargets`
+ """)
             }
 
             try disambiguatedTarget.target.dependencies
@@ -22,14 +22,14 @@ extension Generator {
                 .map { dependency -> PBXNativeTarget in
                     guard let nativeDependency = pbxTargets.nativeTarget(dependency) else {
                         throw PreconditionError(message: """
-                        Target "\(id)"'s dependency on "\(dependency)" not found in `pbxTargets`
-                        """)
+ Target "\(id)"'s dependency on "\(dependency)" not found in `pbxTargets`
+ """)
                     }
                     return nativeDependency
                 }
                 // Sort them by name
                 .sorted { lhs, rhs in
-                    lhs.name.localizedStandardCompare(
+                    return lhs.name.localizedStandardCompare(
                         rhs.name
                     ) == .orderedAscending
                 }
