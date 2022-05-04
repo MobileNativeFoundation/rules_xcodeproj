@@ -59,6 +59,8 @@ class CreateXCSchemesTests: XCTestCase {
 
         // Assertions
 
+        XCTAssertNotNil(scheme.lastUpgradeVersion)
+
         guard let buildAction = scheme.buildAction else {
             XCTFail("Expected a build action for \(scheme.name)")
             return
