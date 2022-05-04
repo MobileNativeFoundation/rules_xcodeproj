@@ -36,11 +36,13 @@
 		0A904F2FB1E7254686796387 /* PBXReferenceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152B8A419980E27BD7EE5FB /* PBXReferenceProxy.swift */; };
 		0B5033389291A3C98DAB6E41 /* PathKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7F0486AC72B3E68F194D01 /* PathKit.swift */; };
 		0BFA0A77F5504DCED931F795 /* FilePathResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E1E2200AB2DCA91F4999CE /* FilePathResolver.swift */; };
+		0CFE5003A65B2EA84CE7BA55 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		0D0AC258CDE90DE121688624 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356817EF2BC65A89F7FB439C /* UserNotifications.swift */; };
 		0D6ED2396B7AA4FCCB10F093 /* XCBreakpointList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C28A43616AE9FC78C05EE0 /* XCBreakpointList.swift */; };
 		0D85907F40BB6B647D855A72 /* SetTargetDependenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7832C26060C56DE2EAB1A1 /* SetTargetDependenciesTests.swift */; };
 		0F1A9B6BE970BA80097FCE6F /* PBXCopyFilesBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D118534D347C200B0701A /* PBXCopyFilesBuildPhase.swift */; };
 		0F988C99D14D5314D5DE55AE /* CoreMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41944A58347442213CC45E6 /* CoreMotion.swift */; };
+		109B975FBDD50CF17D56A1EF /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		1238A9F19DF8C3E8C044C69C /* Generator+AddTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D483D2084AABC408B35CD /* Generator+AddTargets.swift */; };
 		1288BFDB7D8BDA0DE5F90F78 /* OrderedDictionary+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850474D28DB907CF28F2410 /* OrderedDictionary+Sequence.swift */; };
 		13C6DF44016DCB53AD3798F0 /* WorkspaceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ABCD1903D2A2F3FAE064BC /* WorkspaceSettings.swift */; };
@@ -59,6 +61,7 @@
 		21EFB487A4B2DCA0539113C6 /* BuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE677C0FD789C4A0ADDC1901 /* BuildPhase.swift */; };
 		23041301A5060235785895F8 /* CoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55071574526ADBF7683AB165 /* CoreImage.swift */; };
 		23E55395726FC402185AD081 /* _HashTable+BucketIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD377ABEF6A8CECEE71C6A3 /* _HashTable+BucketIterator.swift */; };
+		25439613FB7D1BD428EED6A1 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		25608AD5228D99F311C26845 /* PBXBuildRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B537637F91E4A43CAE2CF2 /* PBXBuildRule.swift */; };
 		265A3566719072FF07A20004 /* CustomDumpRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A40DA2B2633E2E5090B39B /* CustomDumpRepresentable.swift */; };
 		2662F5160B7446672BF10AC3 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A134E3CBDC57315EE1B0221 /* Element.swift */; };
@@ -116,6 +119,7 @@
 		6A8B43D7AB579FFA4EA560A8 /* CustomDumpReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFFE6348E347FF9ED001081 /* CustomDumpReflectable.swift */; };
 		6B28EE0853F7B0F596C5351C /* Generator+SetTargetConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A035CBED0F4DCF5A388F10 /* Generator+SetTargetConfigurations.swift */; };
 		6BA353E9953AC16BBDB0F76B /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D918C1EA31CECDFC8FF2F6 /* FilePath.swift */; };
+		6BB7B640D7C02FE13DE53316 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		6BD6785813F2AC9561F5C197 /* PBXProj+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0B7B94D16AAD3979ACCEFA /* PBXProj+Testing.swift */; };
 		6BEA8E1A797CD3E05D0BAE40 /* Generator+CreateFilesAndGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD705CC770A884D5A78D17D /* Generator+CreateFilesAndGroups.swift */; };
 		6BEEFB6F9ABBD9DE61F18D20 /* CreateFilesAndGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42EAB1A5AEF651AF8F6F865 /* CreateFilesAndGroupsTests.swift */; };
@@ -126,6 +130,7 @@
 		75F5358EA36D1D122ED378E8 /* OrderedSet+Partial MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D440109F7949F1B412CB9 /* OrderedSet+Partial MutableCollection.swift */; };
 		78D160559CB33620BE055D67 /* PBXTargetDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0D9481DEB5CB89790C09F /* PBXTargetDependency.swift */; };
 		7B3AD502D81DAD7185608351 /* Generator+WriteXcodeProj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B56CD9E6641A10324B096B /* Generator+WriteXcodeProj.swift */; };
+		7BA49A4800CC9D5C7CF1A3AE /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		7D2E840E973AA9E5F5898CF0 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0725D1FE9D931F37B2F6AA3 /* DTO.swift */; };
 		7F2927EE0191B937929E8EA9 /* Generator+CreateXCSchemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04307C3D13AF08A10830B41 /* Generator+CreateXCSchemes.swift */; };
 		7F476F3EA1860204A2BC970E /* ReferenceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0D02295BBDD7113D940406 /* ReferenceGenerator.swift */; };
@@ -251,9 +256,12 @@
 		F45E3A1DA6E6C87FDF69EF5D /* PBXGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA06E5C81DCD25281036C7 /* PBXGroup.swift */; };
 		F489A2B6BC16017B0A96F7C5 /* Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726579883BDE5C574DD25742 /* Xcode.swift */; };
 		F4D13ACCE9A32E9C849214DA /* GameKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485411F2F79794474B9E8AAB /* GameKit.swift */; };
+		F7E6FDDF50AAB650480FB900 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		F87890E59D29431994A8AD60 /* XCBuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9354E6340A0B10BEB1FDEE /* XCBuildConfiguration.swift */; };
 		F8DAB8FCE71E293402C101A7 /* OrderedSet+Invariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2062B3E1312EAF079BC5E26C /* OrderedSet+Invariants.swift */; };
+		F9312E0C5F409E17F509CC96 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		FAED0146F1038080B71472A6 /* Generator+ProcessTargetMerges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80C203DC9A482C0F657AE7 /* Generator+ProcessTargetMerges.swift */; };
+		FD2B9E3F88E7E36B11EBE9C9 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		FD83242BF95B2ED90590668A /* PBXShellScriptBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133D091B34B3EB60A9400C02 /* PBXShellScriptBuildPhase.swift */; };
 		FE3BD3396FE837CE724065A0 /* OrderedDictionary+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF80F5B25255A95D7D8D66 /* OrderedDictionary+Values.swift */; };
 /* End PBXBuildFile section */
@@ -606,6 +614,7 @@
 		E43EBF1E6F26B25BB157D396 /* PBXBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXBuildPhase.swift; sourceTree = "<group>"; };
 		E4507DAF85285409A7CA226E /* PBXObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXObject.swift; sourceTree = "<group>"; };
 		E61319B361ABA09FD294600A /* _HashTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HashTable.swift; sourceTree = "<group>"; };
+		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
 		E6E27E547A12A951FF64D0C4 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		E7C28A43616AE9FC78C05EE0 /* XCBreakpointList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCBreakpointList.swift; sourceTree = "<group>"; };
 		E8EA3706E06DFF6DBA1DCBE0 /* Generator+AddBazelDependenciesTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+AddBazelDependenciesTarget.swift"; sourceTree = "<group>"; };
@@ -1178,6 +1187,7 @@
 		D182AF8E059C5832405A845F /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
+				E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */,
 				E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */,
 			);
 			name = rules_xcodeproj;
@@ -1512,10 +1522,11 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3B581A2D7C1575EF22D8ECDA /* Copy Bazel Outputs */ = {
@@ -1528,10 +1539,11 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3C2F7597AADF65DD2B4DA5CC /* Copy Bazel Outputs */ = {
@@ -1544,10 +1556,11 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		552BD18EE10BBA93EBBDB88E /* Copy Bazel Outputs */ = {
@@ -1560,10 +1573,11 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8AD6171C2CD18BEE615F0279 /* Copy Bazel Outputs */ = {
@@ -1576,10 +1590,11 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		90B04C8AB5A07A2ECF257268 /* Copy Bazel Outputs */ = {
@@ -1592,10 +1607,11 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
@@ -1627,10 +1643,11 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F5738A25C92C3E659EB1C474 /* Copy Bazel Outputs */ = {
@@ -1643,10 +1660,11 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1656,6 +1674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2B9E3F88E7E36B11EBE9C9 /* _BazelForcedCompile_.swift in Sources */,
 				BB1FEC913287E5B00F096E68 /* XCTFail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1672,6 +1691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BA49A4800CC9D5C7CF1A3AE /* _BazelForcedCompile_.swift in Sources */,
 				A222D10EC921D5DAB1ADFDD8 /* Errors.swift in Sources */,
 				D19739179B7FE91C8CF9BEEC /* AEXML+XcodeFormat.swift in Sources */,
 				15120DC7E10B41C7A500DC4C /* Array+Extras.swift in Sources */,
@@ -1774,6 +1794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9312E0C5F409E17F509CC96 /* _BazelForcedCompile_.swift in Sources */,
 				75B34A42A3528868C8D25993 /* AddTargetsTests.swift in Sources */,
 				6BEEFB6F9ABBD9DE61F18D20 /* CreateFilesAndGroupsTests.swift in Sources */,
 				72A3C7DA6BF74DE5F2EFC28C /* CreateProductsTest.swift in Sources */,
@@ -1802,6 +1823,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB7B640D7C02FE13DE53316 /* _BazelForcedCompile_.swift in Sources */,
 				2143F6802705E6E45746C463 /* Document.swift in Sources */,
 				2662F5160B7446672BF10AC3 /* Element.swift in Sources */,
 				D8706141935099FEB119B28D /* Error.swift in Sources */,
@@ -1814,6 +1836,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25439613FB7D1BD428EED6A1 /* _BazelForcedCompile_.swift in Sources */,
 				ABD3CC0D018E5D848875B287 /* BuildMode.swift in Sources */,
 				BC91F35AD1E15D616E4CC164 /* BuildSetting.swift in Sources */,
 				7D2E840E973AA9E5F5898CF0 /* DTO.swift in Sources */,
@@ -1857,6 +1880,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CFE5003A65B2EA84CE7BA55 /* _BazelForcedCompile_.swift in Sources */,
 				0B5033389291A3C98DAB6E41 /* PathKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1865,6 +1889,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				109B975FBDD50CF17D56A1EF /* _BazelForcedCompile_.swift in Sources */,
 				AD9AE80F269A043724BB1E83 /* _HashTable+Bucket.swift in Sources */,
 				23E55395726FC402185AD081 /* _HashTable+BucketIterator.swift in Sources */,
 				B07246FF3AFE26CA293A39F7 /* _HashTable+Constants.swift in Sources */,
@@ -1922,6 +1947,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7E6FDDF50AAB650480FB900 /* _BazelForcedCompile_.swift in Sources */,
 				23041301A5060235785895F8 /* CoreImage.swift in Sources */,
 				B556B319407CEE94214F965A /* CoreLocation.swift in Sources */,
 				0F988C99D14D5314D5DE55AE /* CoreMotion.swift in Sources */,
