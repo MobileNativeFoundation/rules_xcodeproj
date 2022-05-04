@@ -10,12 +10,12 @@ extension Generator {
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget?
-    ) throws -> [TargetID: PBXNativeTarget] {
+    ) throws -> [TargetID: PBXTarget] {
         let pbxProject = pbxProj.rootObject!
 
         let sortedDisambiguatedTargets = disambiguatedTargets
             .sortedLocalizedStandard(\.value.name)
-        var pbxTargets = Dictionary<TargetID, PBXNativeTarget>(
+        var pbxTargets = Dictionary<TargetID, PBXTarget>(
             minimumCapacity: disambiguatedTargets.count
         )
         for (id, disambiguatedTarget) in sortedDisambiguatedTargets {
