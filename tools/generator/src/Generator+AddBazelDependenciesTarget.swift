@@ -437,7 +437,7 @@ set -euo pipefail
 while IFS= read -r input; do
   output="${input%.plist}.xcode.plist"
   cp "$input" "$output"
-  plutil -remove UIDeviceFamily "$output" || true
+  plutil -remove UIDeviceFamily "$output" > /dev/null 2>&1 || true
 done < "$SCRIPT_INPUT_FILE_LIST_0"
 
 """#,
