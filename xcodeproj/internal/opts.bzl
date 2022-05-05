@@ -411,8 +411,7 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         gcc_optimization = "-O0"
         conly_optimizations = [default_conly_optimization] + conly_optimizations
         cxx_optimizations = [default_cxx_optimization] + cxx_optimizations
-    if gcc_optimization != "-O0":
-        build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
+    build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
 
     # Calculate GCC_PREPROCESSOR_DEFINITIONS, from common conly and cxx defines
     defines = []

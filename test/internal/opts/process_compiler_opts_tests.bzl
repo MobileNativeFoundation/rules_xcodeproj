@@ -24,6 +24,7 @@ def _process_compiler_opts_test_impl(ctx):
     json_search_paths = json.encode(search_paths)
 
     expected_build_settings = {
+        "GCC_OPTIMIZATION_LEVEL": "0",
         "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         "SWIFT_VERSION": "5",
