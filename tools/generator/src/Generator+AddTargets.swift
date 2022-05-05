@@ -622,7 +622,8 @@ else
         if let generatedHeader = swift.generatedHeader {
             copyGeneratedHeader = #"""
 # Copy generated header
-mkdir -p "$OBJECT_FILE_DIR-normal/$ARCHS/${SWIFT_OBJC_INTERFACE_HEADER_NAME%/*}"
+header="$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
+mkdir -p "${header%/*}"
 cp \
   "\#(try filePathResolver
     .resolve(
@@ -630,8 +631,8 @@ cp \
         useOriginalGeneratedFiles: true,
         mode: .script
 ))" \
-  "$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
-chmod u+w "$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
+  "$header"
+chmod u+w "$header"
 
 
 """#
