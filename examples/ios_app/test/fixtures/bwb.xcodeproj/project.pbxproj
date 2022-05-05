@@ -1206,6 +1206,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					"__DATE__=\"redacted\"",
@@ -1288,6 +1289,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					"__DATE__=\"redacted\"",
@@ -1352,6 +1354,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					"__DATE__=\"redacted\"",
@@ -1426,6 +1429,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1499,6 +1503,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					"__DATE__=\"redacted\"",
@@ -1609,6 +1614,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					"__DATE__=\"redacted\"",
@@ -1698,6 +1704,7 @@
 					"$(PROJECT_DIR)/third_party",
 					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					"__DATE__=\"redacted\"",
