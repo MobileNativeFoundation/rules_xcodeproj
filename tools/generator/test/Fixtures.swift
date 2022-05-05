@@ -932,6 +932,12 @@ if [ "$ACTION" == "indexbuild" ]; then
   output_base="$OBJROOT/bazel_output_base"
 fi
 
+if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
+  color=yes
+else
+  color=no
+fi
+
 output_path=$(env -i \
   DEVELOPER_DIR="$DEVELOPER_DIR" \
   HOME="$HOME" \
@@ -940,6 +946,7 @@ output_path=$(env -i \
   "$BAZEL_PATH" \
   ${output_base:+--output_base "$output_base"} \
   info \
+  --color="$color" \
   --experimental_convenience_symlinks=ignore \
   output_path)
 external="${output_path%/*/*/*}/external"
@@ -999,6 +1006,7 @@ env -i \
   "$BAZEL_PATH" \
   ${output_base:+--output_base "$output_base"} \
   build \
+  --color="$color" \
   --experimental_convenience_symlinks=ignore \
   --output_groups=generated_inputs \
   \#(xcodeprojBazelLabel)

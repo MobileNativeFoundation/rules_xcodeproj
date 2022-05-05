@@ -202,9 +202,16 @@ if [ "$ACTION" == "indexbuild" ]; then
   output_base="$OBJROOT/bazel_output_base"
 fi
 
+if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
+  color=yes
+else
+  color=no
+fi
+
 output_path=$(\#(bazelExec) \
   ${output_base:+--output_base "$output_base"} \
   info \
+  --color="$color" \
   --experimental_convenience_symlinks=ignore \
   output_path)
 external="${output_path%/*/*/*}/external"
@@ -275,6 +282,7 @@ date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
 \#(bazelExec) \
   ${output_base:+--output_base "$output_base"} \
   build \
+  --color="$color" \
   --experimental_convenience_symlinks=ignore \
   --output_groups=generated_inputs \
 \#(useAdditionalOutputGroups)\#
