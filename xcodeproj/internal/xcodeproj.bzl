@@ -189,17 +189,15 @@ def _xcodeproj_transition_impl(settings, attr):
 
     if attr.build_mode == "bazel":
         archived_bundles_allowed = attr.archived_bundles_allowed
-        compilation_mode = "dbg"
         features = [
             "oso_prefix_is_pwd",
             "relative_ast_path",
         ] + features
     else:
         archived_bundles_allowed = True
-        compilation_mode = settings["//command_line_option:compilation_mode"]
 
     return {
-        "//command_line_option:compilation_mode": compilation_mode,
+        "//command_line_option:compilation_mode": "dbg",
         "//command_line_option:features": features,
         "//xcodeproj/internal:archived_bundles_allowed": (
             archived_bundles_allowed

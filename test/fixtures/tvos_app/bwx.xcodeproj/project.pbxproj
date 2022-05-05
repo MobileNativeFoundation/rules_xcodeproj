@@ -73,22 +73,31 @@
 		122A98FA505350325F6740CA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		1452248E39E2C6D3CB3559F0 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		1D174B1D4C25E9FD21719679 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A7837103FBBB71BF6AA9099 /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
+		571CB9C778821EDA57792868 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		61BDA7F5F96E7A0A135F45B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		64C2E66AC3E3B7DA1B01CFE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6D716145772914014B1460C6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		6FB9EDA6F321B496D89ECD94 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		7E6A6CF9C9CD7BEED9F65CA3 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8663461CED7547020CF90026 /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
+		8E8D6376516B165CBD87FD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		99B15598E2A225AF0402DDCF /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
-		A3B5CFFB1FA8450FE0E56CA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE960EFF7013DD45F88383CC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B562ACA2962498FAC2313801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B69AF786B804E6CD15F61528 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		CCDCF5497AF5CB6FD82EB9AB /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
-		E99250735A4A6D2AE47256B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0D6645B73DA1AB39447D60DE /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				3D1122567A83A57E77722E61 /* Example-intermediates */,
+				8663461CED7547020CF90026 /* Example_entitlements.entitlements */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		1064E5B9DD0CD4D72A92A1E4 /* Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +107,22 @@
 				075CBE79402054D4E0D7FD2F /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		232EEC5C42468FB62C22C7B2 /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				64C2E66AC3E3B7DA1B01CFE4 /* Info.plist */,
+			);
+			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
+		2478846C633527F09A7E1D68 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				4A6BD7E43ED5A43D3EBE7951 /* tvos_app */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 		273036962EC5C64F59C2ADF3 /* tvos_app */ = {
@@ -110,10 +135,10 @@
 			path = tvos_app;
 			sourceTree = "<group>";
 		};
-		2B0C01E419216BAA04EDDB13 /* bin */ = {
+		2EF6A9343B0F0B2A72A45CD3 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				F5598DA8A7FD54EBC809401D /* examples */,
+				2478846C633527F09A7E1D68 /* examples */,
 			);
 			path = bin;
 			sourceTree = "<group>";
@@ -134,6 +159,22 @@
 			path = testing;
 			sourceTree = "<group>";
 		};
+		3A65CA498368EE19927C4FB4 /* ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				824BBB81BFF3C6CACA433BB1 /* ExampleTests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleTests;
+			sourceTree = "<group>";
+		};
+		3D1122567A83A57E77722E61 /* Example-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				571CB9C778821EDA57792868 /* Info.plist */,
+			);
+			path = "Example-intermediates";
+			sourceTree = "<group>";
+		};
 		462C3519CA354BE1B04D4855 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,12 +185,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6161C9CDEF3EE04AC8C902D4 /* ExampleTests.__internal__.__test_bundle-intermediates */ = {
+		4A6BD7E43ED5A43D3EBE7951 /* tvos_app */ = {
 			isa = PBXGroup;
 			children = (
-				A3B5CFFB1FA8450FE0E56CA2 /* Info.plist */,
+				0D6645B73DA1AB39447D60DE /* Example */,
+				3A65CA498368EE19927C4FB4 /* ExampleTests */,
+				66CCC809C868B586AE3D3406 /* ExampleUITests */,
 			);
-			path = "ExampleTests.__internal__.__test_bundle-intermediates";
+			path = tvos_app;
+			sourceTree = "<group>";
+		};
+		66CCC809C868B586AE3D3406 /* ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				232EEC5C42468FB62C22C7B2 /* ExampleUITests.__internal__.__test_bundle-intermediates */,
+			);
+			path = ExampleUITests;
+			sourceTree = "<group>";
+		};
+		6E74EADC77596EAF6371C3E3 /* applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65 */ = {
+			isa = PBXGroup;
+			children = (
+				2EF6A9343B0F0B2A72A45CD3 /* bin */,
+			);
+			path = "applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
 			sourceTree = "<group>";
 		};
 		768C0B6FBEA15B86DF2C38DC /* apple */ = {
@@ -171,6 +230,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		824BBB81BFF3C6CACA433BB1 /* ExampleTests.__internal__.__test_bundle-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				8E8D6376516B165CBD87FD47 /* Info.plist */,
+			);
+			path = "ExampleTests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
 		85F708DD1F5484A0D5558108 /* Bazel External Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,14 +245,6 @@
 			);
 			name = "Bazel External Repositories";
 			path = test/fixtures/tvos_app/bwx.xcodeproj/rules_xcodeproj/links/external;
-			sourceTree = "<group>";
-		};
-		861CB544A3D64FDECAC529AA /* ExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C010B874B616F6BB8BAEDF42 /* ExampleUITests.__internal__.__test_bundle-intermediates */,
-			);
-			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
 		86E3AA094AC3498BEDC1D673 /* examples */ = {
@@ -206,31 +265,13 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
-		A0F2247D0540A3543B1C907B /* ExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				6161C9CDEF3EE04AC8C902D4 /* ExampleTests.__internal__.__test_bundle-intermediates */,
-			);
-			path = ExampleTests;
-			sourceTree = "<group>";
-		};
 		A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
-				E7B2AE3382E27FEFF7175B69 /* applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856 */,
+				6E74EADC77596EAF6371C3E3 /* applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65 */,
 			);
 			name = "Bazel Generated Files";
 			path = test/fixtures/tvos_app/bwx.xcodeproj/rules_xcodeproj/links/gen_dir;
-			sourceTree = "<group>";
-		};
-		A69BDF248097FF5F571383CA /* tvos_app */ = {
-			isa = PBXGroup;
-			children = (
-				E045AA1A210F288EAF15F25F /* Example */,
-				A0F2247D0540A3543B1C907B /* ExampleTests */,
-				861CB544A3D64FDECAC529AA /* ExampleUITests */,
-			);
-			path = tvos_app;
 			sourceTree = "<group>";
 		};
 		BE32A3F8BF60AFC36D9ED0E7 /* ExampleTests */ = {
@@ -242,52 +283,11 @@
 			path = ExampleTests;
 			sourceTree = "<group>";
 		};
-		C010B874B616F6BB8BAEDF42 /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				B562ACA2962498FAC2313801 /* Info.plist */,
-			);
-			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
-			sourceTree = "<group>";
-		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DCAF3D350EEBC5B87A7C878B /* Example-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				E99250735A4A6D2AE47256B6 /* Info.plist */,
-			);
-			path = "Example-intermediates";
-			sourceTree = "<group>";
-		};
-		E045AA1A210F288EAF15F25F /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				DCAF3D350EEBC5B87A7C878B /* Example-intermediates */,
-				4A7837103FBBB71BF6AA9099 /* Example_entitlements.entitlements */,
-			);
-			path = Example;
-			sourceTree = "<group>";
-		};
-		E7B2AE3382E27FEFF7175B69 /* applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856 */ = {
-			isa = PBXGroup;
-			children = (
-				2B0C01E419216BAA04EDDB13 /* bin */,
-			);
-			path = "applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856";
-			sourceTree = "<group>";
-		};
-		F5598DA8A7FD54EBC809401D /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				A69BDF248097FF5F571383CA /* tvos_app */,
-			);
-			path = examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,8 +525,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/ExampleUITests";
-				BAZEL_TARGET_ID = "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/ExampleUITests";
+				BAZEL_TARGET_ID = "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -536,18 +536,18 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				OTHER_CFLAGS = (
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -559,13 +559,14 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
 				PRODUCT_MODULE_NAME = ExampleUITests;
 				PRODUCT_NAME = ExampleUITests;
@@ -597,8 +598,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/ExampleTests";
-				BAZEL_TARGET_ID = "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/ExampleTests";
+				BAZEL_TARGET_ID = "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -609,18 +610,18 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				OTHER_CFLAGS = (
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -632,26 +633,27 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = appletvsimulator;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/Example";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/Example";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
-				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/Example$(TARGET_BUILD_SUBPATH)";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/Example$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = ExampleTests.__internal__.__test_bundle;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/Example/Example.app/Example";
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/Example/Example.app/Example";
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Debug;
@@ -660,24 +662,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/Example";
-				BAZEL_TARGET_ID = "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/Example";
+				BAZEL_TARGET_ID = "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/Example/Example_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/Example/Example_entitlements.entitlements";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-fastbuild-ST-ba7b40daa856/bin/examples/tvos_app/Example/Example-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/Example/Example-intermediates/Info.xcode.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -688,6 +689,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -699,13 +701,14 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;

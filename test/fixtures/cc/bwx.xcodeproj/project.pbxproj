@@ -452,14 +452,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib";
-				BAZEL_TARGET_ID = "//examples/cc/lib:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/lib";
+				BAZEL_TARGET_ID = "//examples/cc/lib:lib_impl darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -468,7 +467,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib/private",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -477,6 +476,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -488,6 +488,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -503,7 +504,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin",
 				);
 			};
 			name = Debug;
@@ -549,14 +550,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib2";
-				BAZEL_TARGET_ID = "//examples/cc/lib2:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/lib2";
+				BAZEL_TARGET_ID = "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -569,6 +569,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -580,6 +581,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -594,12 +596,12 @@
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib2/includes",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib2/includes",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin",
 				);
 			};
 			name = Debug;
@@ -608,14 +610,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/tool";
-				BAZEL_TARGET_ID = "//examples/cc/tool:tool darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/tool";
+				BAZEL_TARGET_ID = "//examples/cc/tool:tool darwin_x86_64-dbg-ST-0376e8cd69e6";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEPLOYMENT_LOCATION = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -630,6 +631,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -641,6 +643,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -648,7 +651,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-fastbuild-ST-3a06c5106091/examples/cc/tool/tool.LinkFileList",
+					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-0376e8cd69e6/examples/cc/tool/tool.LinkFileList",
 					"-Wl,-rpath,/usr/lib/swift",
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
@@ -663,16 +666,16 @@
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib2/includes",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/examples/cc/lib2/includes",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/examples_cc_external",
 					"$(BAZEL_EXTERNAL)/bazel_tools",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/bazel_tools",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/bazel_tools",
 				);
 			};
 			name = Debug;
@@ -681,14 +684,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external";
-				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/examples_cc_external";
+				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -697,7 +699,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external/private",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -706,6 +708,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -717,6 +720,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -732,7 +736,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/examples_cc_external",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/examples_cc_external",
 				);
 			};
 			name = Debug;
