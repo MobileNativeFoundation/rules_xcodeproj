@@ -1932,15 +1932,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_pointfreeco_swift_custom_dump";
-				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_pointfreeco_swift_custom_dump";
+				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -1953,6 +1952,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -1964,19 +1964,20 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = CustomDump;
 				PRODUCT_NAME = CustomDump;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1988,15 +1989,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tuist_xcodeproj";
-				BAZEL_TARGET_ID = "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_tuist_xcodeproj";
+				BAZEL_TARGET_ID = "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -2009,6 +2009,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2020,19 +2021,20 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = XcodeProj;
 				PRODUCT_NAME = XcodeProj;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_kylef_pathkit";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_kylef_pathkit";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -2044,15 +2046,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator.library darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/tools/generator";
+				BAZEL_TARGET_ID = "//tools/generator:generator.library darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -2065,6 +2066,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2076,19 +2078,20 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = generator;
 				PRODUCT_NAME = generator.library;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_kylef_pathkit $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tuist_xcodeproj";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_kylef_pathkit $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_tuist_xcodeproj";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -2100,14 +2103,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/tools/generator";
+				BAZEL_TARGET_ID = "//tools/generator:generator darwin_x86_64-dbg-ST-0376e8cd69e6";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEPLOYMENT_LOCATION = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -2120,6 +2122,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2131,6 +2134,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2138,7 +2142,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-fastbuild-ST-3a06c5106091/tools/generator/generator.LinkFileList",
+					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-0376e8cd69e6/tools/generator/generator.LinkFileList",
 					"-Wl,-rpath,/usr/lib/swift",
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
@@ -2171,15 +2175,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
-				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
+				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -2192,6 +2195,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2203,13 +2207,14 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = XCTestDynamicOverlay;
 				PRODUCT_NAME = XCTestDynamicOverlay;
 				SDKROOT = macosx;
@@ -2226,8 +2231,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/tools/generator/test";
-				BAZEL_TARGET_ID = "//tools/generator/test:tests darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/tools/generator/test";
+				BAZEL_TARGET_ID = "//tools/generator/test:tests darwin_x86_64-dbg-ST-0376e8cd69e6";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2237,7 +2242,6 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -2250,6 +2254,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2261,6 +2266,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2268,16 +2274,16 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-fastbuild-ST-3a06c5106091/tools/generator/test/tests.LinkFileList",
+					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-0376e8cd69e6/tools/generator/test/tests.LinkFileList",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = tests;
 				PRODUCT_NAME = tests;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_kylef_pathkit $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tuist_xcodeproj $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/tools/generator $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_pointfreeco_xctest_dynamic_overlay $(BUILD_DIR)/bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_pointfreeco_swift_custom_dump";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_kylef_pathkit $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_tuist_xcodeproj $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/tools/generator $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_pointfreeco_xctest_dynamic_overlay $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_pointfreeco_swift_custom_dump";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -2289,15 +2295,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_kylef_pathkit";
-				BAZEL_TARGET_ID = "@com_github_kylef_pathkit//:PathKit darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_kylef_pathkit";
+				BAZEL_TARGET_ID = "@com_github_kylef_pathkit//:PathKit darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -2310,6 +2315,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2321,13 +2327,14 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = PathKit;
 				PRODUCT_NAME = PathKit;
 				SDKROOT = macosx;
@@ -2344,15 +2351,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_apple_swift_collections";
-				BAZEL_TARGET_ID = "@com_github_apple_swift_collections//:OrderedCollections darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_apple_swift_collections";
+				BAZEL_TARGET_ID = "@com_github_apple_swift_collections//:OrderedCollections darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -2365,6 +2371,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2376,13 +2383,14 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = OrderedCollections;
 				PRODUCT_NAME = OrderedCollections;
 				SDKROOT = macosx;
@@ -2424,15 +2432,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-fastbuild-ST-3a06c5106091/bin/external/com_github_tadija_aexml";
-				BAZEL_TARGET_ID = "@com_github_tadija_aexml//:AEXML darwin_x86_64-fastbuild-ST-3a06c5106091";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/com_github_tadija_aexml";
+				BAZEL_TARGET_ID = "@com_github_tadija_aexml//:AEXML darwin_x86_64-dbg-ST-0376e8cd69e6";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
-					DEBUG,
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
@@ -2445,6 +2452,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -2456,13 +2464,14 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = AEXML;
 				PRODUCT_NAME = AEXML;
 				SDKROOT = macosx;
