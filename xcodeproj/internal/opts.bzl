@@ -29,6 +29,7 @@ _SWIFTC_SKIP_OPTS = {
     # TODO: Make sure we should skip _all_ of these
     "-Xfrontend": 2,
     "-Xwrapped-swift": 1,
+    "-debug-prefix-map": 2,
     "-emit-module-path": 2,
     "-emit-object": 1,
     "-enable-batch-mode": 1,
