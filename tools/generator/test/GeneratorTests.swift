@@ -32,6 +32,7 @@ final class GeneratorTests: XCTestCase {
         let projectRootDirectory: Path = "~/project"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
+        let stubsPath: Path = "stubs"
         let outputPath: Path = "P.xcodeproj"
 
         let filePathResolver = FilePathResolver(
@@ -469,30 +470,38 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
 
         struct WriteXcodeProjCalled: Equatable {
             let xcodeProj: XcodeProj
+            let buildMode: BuildMode
             let files: [FilePath: File]
             let internalDirectoryName: String
+            let stubsPath: Path
             let outputPath: Path
         }
 
         var writeXcodeProjCalled: [WriteXcodeProjCalled] = []
         func writeXcodeProj(
             xcodeProj: XcodeProj,
+            buildMode: BuildMode,
             files: [FilePath: File],
             internalDirectoryName: String,
+            stubsPath: Path,
             to outputPath: Path
         ) {
             writeXcodeProjCalled.append(.init(
                 xcodeProj: xcodeProj,
+                buildMode: buildMode,
                 files: files,
                 internalDirectoryName: internalDirectoryName,
+                stubsPath: stubsPath,
                 outputPath: outputPath
             ))
         }
 
         let expectedWriteXcodeProjCalled = [WriteXcodeProjCalled(
             xcodeProj: xcodeProj,
+            buildMode: buildMode,
             files: files,
             internalDirectoryName: internalDirectoryName,
+            stubsPath: stubsPath,
             outputPath: outputPath
         )]
 
@@ -528,6 +537,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             xccurrentversions: xccurrentversions,
             projectRootDirectory: projectRootDirectory,
             internalDirectoryName: internalDirectoryName,
+            stubsPath: stubsPath,
             workspaceOutputPath: workspaceOutputPath,
             outputPath: outputPath
         )
