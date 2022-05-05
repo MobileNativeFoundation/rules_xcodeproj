@@ -190,15 +190,11 @@ def _to_dto(linker_inputs):
             avoid_imported_libraries = sets.make(
                 avoid_linker_inputs._objc.imported_library.to_list(),
             )
-            avoid_cc_libraries = sets.make(
-                avoid_linker_inputs._objc.cc_library.to_list(),
-            )
         else:
             avoid_dynamic_framework_files = sets.make()
             avoid_static_framework_files = sets.make()
             avoid_libraries = sets.make()
             avoid_imported_libraries = sets.make()
-            avoid_cc_libraries = sets.make()
 
         dynamic_frameworks = [
             file_path_to_dto(file_path(file, path = file.dirname))
@@ -220,12 +216,7 @@ def _to_dto(linker_inputs):
             for file in objc.imported_library.to_list()
             if not sets.contains(avoid_imported_libraries, file)
         ]
-        cc_libraries = [
-            file_path_to_dto(file_path(file))
-            for file in objc.cc_library.to_list()
-            if not sets.contains(avoid_cc_libraries, file)
-        ]
-        static_libraries = libraries + imported_libraries + cc_libraries
+        static_libraries = libraries + imported_libraries
     elif cc_info:
         if avoid_linker_inputs:
             if not avoid_linker_inputs._cc_info:
