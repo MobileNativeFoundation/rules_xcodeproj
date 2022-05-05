@@ -174,6 +174,7 @@ def process_compiler_opts_test_suite(name):
     ## Swift:
     # Anything with __BAZEL_XCODE_
     # -Ipath
+    # -debug-prefix-map
     # -emit-module-path
     # -emit-object
     # -enable-batch-mode
@@ -230,6 +231,8 @@ def process_compiler_opts_test_suite(name):
             "-output-file-map",
             "path",
             "-passthrough",
+            "-debug-prefix-map",
+            "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
             "-emit-module-path",
             "path",
             "-passthrough",
