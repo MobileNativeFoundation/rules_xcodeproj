@@ -14,7 +14,10 @@ def _process_top_level_properties_test_impl(ctx):
     build_settings = {}
     properties = process_top_level_properties(
         target_name = ctx.attr.target_name,
-        target_files = [struct(short_path = p) for p in ctx.attr.files],
+        target_files = [
+            struct(is_source = False, path = p)
+            for p in ctx.attr.target_files
+        ],
         bundle_info = _bundle_info_stub(ctx.attr.bundle_info),
         tree_artifact_enabled = ctx.attr.tree_artifact_enabled,
         build_settings = build_settings,
@@ -25,11 +28,11 @@ def _process_top_level_properties_test_impl(ctx):
         env,
         struct(
             path = ctx.attr.expected_bundle_path,
-            type = "p",
+            type = "g",
             is_folder = False,
         ) if ctx.attr.expected_bundle_path else None,
-        properties.bundle_path,
-        "bundle_path",
+        properties.bundle_file_path,
+        "bundle_file_path",
     )
     asserts.equals(
         env,
@@ -97,8 +100,7 @@ def _bundle_info_stub(dict):
         return None
     return struct(
         archive = struct(
-            is_source = True,
-            owner = struct(workspace_name = None),
+            is_source = False,
             path = dict["archive.path"],
         ),
         archive_root = dict["archive_root"],
@@ -151,7 +153,7 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_binary".format(name),
         target_name = "binary",
-        target_files = ["some/binary"],
+        target_files = ["bazel-out/some/binary"],
         bundle_info = None,
         tree_artifact_enabled = True,
         expected_bundle_path = None,
@@ -164,9 +166,9 @@ def process_top_level_properties_test_suite(name):
     )
 
     _add_test(
-        name = "{}_test".format(name),
+        name = "{}_xctest".format(name),
         target_name = "test",
-        target_files = ["some/test.xctest/test"],
+        target_files = ["bazel-out/some/test.xctest/test"],
         bundle_info = None,
         tree_artifact_enabled = True,
         expected_bundle_path = "some/test.xctest",
@@ -183,10 +185,10 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_tree_artifact".format(name),
         target_name = "a",
-        files = [],
+        target_files = [],
         bundle_info = _bundle_info(
-            archive_path = "some/flagship.app",
-            archive_root = "some/intermediate",
+            archive_path = "bazel-out/some/flagship.app",
+            archive_root = "bazel-out/some/intermediate",
             bundle_id = "com.example.flagship",
             bundle_extension = ".app",
             bundle_name = "flagship",
@@ -209,8 +211,8 @@ def process_top_level_properties_test_suite(name):
         target_name = "a",
         target_files = [],
         bundle_info = _bundle_info(
-            archive_path = "some/flagship.app",
-            archive_root = "some/intermediate",
+            archive_path = "bazel-out/some/flagship.app",
+            archive_root = "bazel-out/some/intermediate",
             bundle_id = "com.example.flagship",
             bundle_extension = ".app",
             bundle_name = "flagship",
@@ -233,8 +235,8 @@ def process_top_level_properties_test_suite(name):
         target_name = "a",
         target_files = [],
         bundle_info = _bundle_info(
-            archive_path = "some/flagship.xctest",
-            archive_root = "some/intermediate",
+            archive_path = "bazel-out/some/flagship.xctest",
+            archive_root = "bazel-out/some/intermediate",
             bundle_id = "com.example.flagship.test",
             bundle_extension = ".xctest",
             bundle_name = "flagship",

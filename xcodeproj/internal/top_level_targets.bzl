@@ -105,22 +105,22 @@ def process_top_level_properties(
         minimum_deployment_version = bundle_info.minimum_deployment_os_version
 
         if tree_artifact_enabled:
-            bundle_path = file_path(bundle_info.archive)
+            bundle_file_path = file_path(bundle_info.archive)
         else:
             bundle_extension = bundle_info.bundle_extension
             bundle = "{}{}".format(bundle_info.bundle_name, bundle_extension)
             if bundle_extension == ".app":
-                bundle_path = parsed_file_path(
-                    paths.join(
-                        bundle_info.archive_root,
-                        "Payload",
-                        bundle,
-                    ),
+                bundle_path = paths.join(
+                    bundle_info.archive_root,
+                    "Payload",
+                    bundle,
                 )
             else:
-                bundle_path = parsed_file_path(
-                    paths.join(bundle_info.archive_root, bundle),
-                )
+                bundle_path = paths.join(bundle_info.archive_root, bundle)
+            bundle_file_path = file_path(
+                bundle_info.archive,
+                bundle_path,
+            )
 
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
@@ -129,7 +129,7 @@ def process_top_level_properties(
 
         xctest = None
         for file in target_files:
-            if ".xctest/" in file.short_path:
+            if ".xctest/" in file.path:
                 xctest = file
                 break
         if xctest:
@@ -138,7 +138,7 @@ def process_top_level_properties(
 
             # "some/test.xctest/binary" -> "some/test.xctest"
             xctest_path = xctest.path
-            bundle_path = file_path(
+            bundle_file_path = file_path(
                 xctest,
                 path = xctest_path[
                     :-(len(xctest_path.split(".xctest/")[1]) + 1)
@@ -146,12 +146,12 @@ def process_top_level_properties(
             )
         else:
             product_type = "com.apple.product-type.tool"
-            bundle_path = None
+            bundle_file_path = None
 
     build_settings["PRODUCT_MODULE_NAME"] = "_{}_Stub".format(product_name)
 
     return struct(
-        bundle_path = bundle_path,
+        bundle_file_path = bundle_file_path,
         minimum_deployment_os_version = minimum_deployment_version,
         product_name = product_name,
         product_type = product_type,
@@ -319,7 +319,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         target = target,
         product_name = props.product_name,
         product_type = props.product_type,
-        bundle_path = props.bundle_path,
+        bundle_file_path = props.bundle_file_path,
         linker_inputs = linker_inputs,
         build_settings = build_settings,
     )
