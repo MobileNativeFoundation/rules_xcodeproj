@@ -14,7 +14,7 @@ def _process_top_level_properties_test_impl(ctx):
     build_settings = {}
     properties = process_top_level_properties(
         target_name = ctx.attr.target_name,
-        files = [struct(short_path = p) for p in ctx.attr.files],
+        target_files = [struct(short_path = p) for p in ctx.attr.files],
         bundle_info = _bundle_info_stub(ctx.attr.bundle_info),
         tree_artifact_enabled = ctx.attr.tree_artifact_enabled,
         build_settings = build_settings,
@@ -67,7 +67,7 @@ process_top_level_properties_test = unittest.make(
         "expected_minimum_deployment_version": attr.string(mandatory = False),
         "expected_product_name": attr.string(mandatory = True),
         "expected_product_type": attr.string(mandatory = True),
-        "files": attr.string_list(mandatory = True),
+        "target_files": attr.string_list(mandatory = True),
         "target_name": attr.string(mandatory = True),
         "tree_artifact_enabled": attr.bool(mandatory = True),
     },
@@ -122,7 +122,7 @@ def process_top_level_properties_test_suite(name):
             *,
             name,
             target_name,
-            files,
+            target_files,
             bundle_info,
             tree_artifact_enabled,
             expected_bundle_path,
@@ -134,7 +134,7 @@ def process_top_level_properties_test_suite(name):
         process_top_level_properties_test(
             name = name,
             target_name = target_name,
-            files = files,
+            target_files = target_files,
             bundle_info = bundle_info,
             tree_artifact_enabled = tree_artifact_enabled,
             expected_bundle_path = expected_bundle_path,
@@ -151,7 +151,7 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_binary".format(name),
         target_name = "binary",
-        files = ["some/binary"],
+        target_files = ["some/binary"],
         bundle_info = None,
         tree_artifact_enabled = True,
         expected_bundle_path = None,
@@ -166,7 +166,7 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_test".format(name),
         target_name = "test",
-        files = ["some/test.xctest/test"],
+        target_files = ["some/test.xctest/test"],
         bundle_info = None,
         tree_artifact_enabled = True,
         expected_bundle_path = "some/test.xctest",
@@ -207,7 +207,7 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_app".format(name),
         target_name = "a",
-        files = [],
+        target_files = [],
         bundle_info = _bundle_info(
             archive_path = "some/flagship.app",
             archive_root = "some/intermediate",
@@ -231,7 +231,7 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_bundled_test".format(name),
         target_name = "a",
-        files = [],
+        target_files = [],
         bundle_info = _bundle_info(
             archive_path = "some/flagship.xctest",
             archive_root = "some/intermediate",

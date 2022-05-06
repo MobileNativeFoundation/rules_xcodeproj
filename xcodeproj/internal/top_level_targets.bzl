@@ -82,21 +82,22 @@ you can't set that flag, you can set `archived_bundles_allowed = True` on the \
 def process_top_level_properties(
         *,
         target_name,
-        files,
+        target_files,
         bundle_info,
         tree_artifact_enabled,
         build_settings):
-    """ Processes a top level target
+    """Processes properties for a top level target.
 
     Args:
-        target_name: Name of the target
-        files: Files for the target
-        bundle_info: AppleBundleInfo for the target
-        tree_artifact_enabled: Boolean controlling if tree artifacts is enabled
-        build_settings: A dictionary of build settings
+        target_name: Name of the target.
+        target_files: The `files` attribute of the target.
+        bundle_info: The `AppleBundleInfo` provider for the target.
+        tree_artifact_enabled: A `bool` controlling if tree artifacts are
+            enabled.
+        build_settings: A mutable `dict` of build settings.
 
     Returns:
-        A struct of information from the top level target
+        A `struct` of information about the top level target.
     """
     if bundle_info:
         product_name = bundle_info.bundle_name
@@ -127,17 +128,21 @@ def process_top_level_properties(
         minimum_deployment_version = None
 
         xctest = None
-        for file in files:
+        for file in target_files:
             if ".xctest/" in file.short_path:
-                xctest = file.short_path
+                xctest = file
                 break
         if xctest:
             # This is something like `swift_test`: it creates an xctest bundle
             product_type = "com.apple.product-type.bundle.unit-test"
 
             # "some/test.xctest/binary" -> "some/test.xctest"
-            bundle_path = parsed_file_path(
-                xctest[:-(len(xctest.split(".xctest/")[1]) + 1)],
+            xctest_path = xctest.path
+            bundle_path = file_path(
+                xctest,
+                path = xctest_path[
+                    :-(len(xctest_path.split(".xctest/")[1]) + 1)
+                ],
             )
         else:
             product_type = "com.apple.product-type.tool"
@@ -206,6 +211,11 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
 
     bundle_resources = should_bundle_resources(ctx = ctx)
 
+    # The common case is to have a `bundle_info`, so this check prevents
+    # expanding the `depset` unless needed. Yes, this uses knowledge of what
+    # `process_top_level_properties` and `output_files.collect` does internally.
+    target_files = [] if bundle_info else target.files.to_list()
+
     resource_owner = str(target.label)
     inputs = input_files.collect(
         ctx = ctx,
@@ -217,6 +227,7 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(
+        target_files = target_files,
         bundle_info = bundle_info,
         default_info = target[DefaultInfo],
         swift_info = swift_info,
@@ -245,10 +256,7 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     )
     props = process_top_level_properties(
         target_name = ctx.rule.attr.name,
-        # The common case is to have a `bundle_info`, so this check prevents
-        # expanding the `depset` unless needed. Yes, this uses knowledge of what
-        # `process_top_level_properties` does internally.
-        files = [] if bundle_info else target.files.to_list(),
+        target_files = target_files,
         bundle_info = bundle_info,
         tree_artifact_enabled = tree_artifact_enabled,
         build_settings = build_settings,
