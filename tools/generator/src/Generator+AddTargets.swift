@@ -595,7 +595,7 @@ try filePathResolver
 
         return #"""
 else
-  # Copy bundle
+  # Copy product
 \#(extract)\#
   rsync \
     --copy-links \
