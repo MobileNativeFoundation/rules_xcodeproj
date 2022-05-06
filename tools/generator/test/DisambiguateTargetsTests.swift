@@ -71,11 +71,20 @@ final class DisambiguateTargetsTests: XCTestCase {
             "B": Target.mock(
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
+            // The following targets only differ by case
+            "C 1": Target.mock(
+                product: .init(type: .staticLibrary, name: "C", path: "")
+            ),
+            "C 2": Target.mock(
+                product: .init(type: .application, name: "c", path: "")
+            ),
         ]
         let expectedTargetNames: [TargetID: String] = [
             "A 1": "A (Library)",
             "A 2": "A (App)",
             "B": "B",
+            "C 1": "C (Library)",
+            "C 2": "c (App)",
         ]
 
         // Act
