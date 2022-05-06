@@ -32,7 +32,7 @@ final class GeneratorTests: XCTestCase {
         let projectRootDirectory: Path = "~/project"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
-        let stubsPath: Path = "stubs"
+        let bazelIntegrationDirectory: Path = "stubs"
         let outputPath: Path = "P.xcodeproj"
 
         let filePathResolver = FilePathResolver(
@@ -473,7 +473,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             let buildMode: BuildMode
             let files: [FilePath: File]
             let internalDirectoryName: String
-            let stubsPath: Path
+            let bazelIntegrationDirectory: Path
             let outputPath: Path
         }
 
@@ -483,7 +483,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             buildMode: BuildMode,
             files: [FilePath: File],
             internalDirectoryName: String,
-            stubsPath: Path,
+            bazelIntegrationDirectory: Path,
             to outputPath: Path
         ) {
             writeXcodeProjCalled.append(.init(
@@ -491,7 +491,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
                 buildMode: buildMode,
                 files: files,
                 internalDirectoryName: internalDirectoryName,
-                stubsPath: stubsPath,
+                bazelIntegrationDirectory: bazelIntegrationDirectory,
                 outputPath: outputPath
             ))
         }
@@ -501,7 +501,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             buildMode: buildMode,
             files: files,
             internalDirectoryName: internalDirectoryName,
-            stubsPath: stubsPath,
+            bazelIntegrationDirectory: bazelIntegrationDirectory,
             outputPath: outputPath
         )]
 
@@ -537,7 +537,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             xccurrentversions: xccurrentversions,
             projectRootDirectory: projectRootDirectory,
             internalDirectoryName: internalDirectoryName,
-            stubsPath: stubsPath,
+            bazelIntegrationDirectory: bazelIntegrationDirectory,
             workspaceOutputPath: workspaceOutputPath,
             outputPath: outputPath
         )
