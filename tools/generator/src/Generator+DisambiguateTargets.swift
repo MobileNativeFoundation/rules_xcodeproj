@@ -1,7 +1,6 @@
 import CryptoKit
 import XcodeProj
 
-
 /// A `struct` containing values for a target that need to be unique in the eyes
 /// of Xcode, as well as the target itself.
 ///
