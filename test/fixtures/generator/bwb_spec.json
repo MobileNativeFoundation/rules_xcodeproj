@@ -121,7 +121,12 @@
             },
             "modulemaps": [],
             "name": "tests",
-            "outputs": {},
+            "outputs": {
+                "p": {
+                    "_": "darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.test-runner.sh",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test",
             "platform": {
                 "arch": "x86_64",
@@ -372,7 +377,12 @@
             },
             "modulemaps": [],
             "name": "generator",
-            "outputs": {},
+            "outputs": {
+                "p": {
+                    "_": "darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator",
             "platform": {
                 "arch": "x86_64",

@@ -21,14 +21,14 @@ struct Outputs: Equatable {
         }
     }
 
-    let bundle: FilePath?
+    let product: FilePath?
     var swift: Swift?
 
     init(
-        bundle: FilePath? = nil,
+        product: FilePath? = nil,
         swift: Swift? = nil
     ) {
-        self.bundle = bundle
+        self.product = product
         self.swift = swift
     }
 }
@@ -49,14 +49,14 @@ extension Outputs {
 
 extension Outputs: Decodable {
     enum CodingKeys: String, CodingKey {
-        case bundle = "b"
+        case product = "p"
         case swift = "s"
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        bundle = try container.decodeIfPresent(FilePath.self, forKey: .bundle)
+        product = try container.decodeIfPresent(FilePath.self, forKey: .product)
         swift = try container.decodeIfPresent(Swift.self, forKey: .swift)
     }
 }

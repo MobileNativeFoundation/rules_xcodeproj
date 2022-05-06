@@ -167,6 +167,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
     )
     outputs = output_files.collect(
         bundle_info = None,
+        default_info = target[DefaultInfo],
         swift_info = swift_info,
         id = id,
         transitive_infos = transitive_infos,
@@ -318,6 +319,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
     )
     outputs = output_files.collect(
         bundle_info = None,
+        default_info = target[DefaultInfo],
         swift_info = None,
         id = id,
         transitive_infos = transitive_infos,

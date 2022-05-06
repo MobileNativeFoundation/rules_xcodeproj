@@ -134,7 +134,7 @@
             "modulemaps": [],
             "name": "LibSwiftTests.__internal__.__test_bundle",
             "outputs": {
-                "b": {
+                "p": {
                     "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.zip",
                     "t": "g"
                 }
@@ -673,7 +673,12 @@
             },
             "modulemaps": [],
             "name": "tool",
-            "outputs": {},
+            "outputs": {
+                "p": {
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool/tool",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool",
             "platform": {
                 "arch": "x86_64",

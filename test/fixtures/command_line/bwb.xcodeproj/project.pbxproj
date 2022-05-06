@@ -366,6 +366,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D146AD00BEF0EE94F6F1E2AD /* Build configuration list for PBXNativeTarget "tool" */;
 			buildPhases = (
+				DC5C20F1CBE45FA898D3AC86 /* Copy Bazel Outputs */,
 				72C6D01265A3ACBB4140607C /* Sources */,
 			);
 			buildRules = (
@@ -598,6 +599,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy generated header\nheader=\"$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME\"\nmkdir -p \"${header%/*}\"\ncp \\\n  \"$BAZEL_OUT/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/private/LibSwift-Swift.h\" \\\n  \"$header\"\nchmod u+w \"$header\"\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/LibSwift.swiftmodule\" \\\n  \"$BAZEL_OUT/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/LibSwift.swiftdoc\" \\\n  \"$BAZEL_OUT/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/LibSwift.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DC5C20F1CBE45FA898D3AC86 /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy bundle\n  cd \"$BAZEL_OUT/applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"tool\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */ = {
