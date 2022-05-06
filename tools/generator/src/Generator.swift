@@ -42,7 +42,7 @@ class Generator {
         xccurrentversions: [XCCurrentVersion],
         projectRootDirectory: Path,
         internalDirectoryName: String,
-        stubsPath: Path,
+        bazelIntegrationDirectory: Path,
         workspaceOutputPath: Path,
         outputPath: Path
     ) throws {
@@ -150,7 +150,7 @@ Was unable to merge "\(srcTarget.label) \
             buildMode,
             files,
             internalDirectoryName,
-            stubsPath,
+            bazelIntegrationDirectory,
             outputPath
         )
     }

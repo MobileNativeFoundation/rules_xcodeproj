@@ -21,7 +21,7 @@ extension Generator {
                 xccurrentversions: xccurrentversions,
                 projectRootDirectory: arguments.projectRootDirectory,
                 internalDirectoryName: "rules_xcodeproj",
-                stubsPath: arguments.stubsPath,
+                bazelIntegrationDirectory: arguments.bazelIntegrationDirectory,
                 workspaceOutputPath: arguments.workspaceOutputPath,
                 outputPath: arguments.outputPath
             )
@@ -34,18 +34,18 @@ extension Generator {
     struct Arguments {
         let specPath: Path
         let xccurrentversionsPath: Path
+        let bazelIntegrationDirectory: Path
         let outputPath: Path
         let workspaceOutputPath: Path
         let projectRootDirectory: Path
         let buildMode: BuildMode
-        let stubsPath: Path
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
         guard CommandLine.arguments.count == 7 else {
             throw UsageError(message: """
 Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
-<path/to/xccurrentversions.json> <path/to/stubs/dir> \
+<path/to/xccurrentversions.json> <path/to/bazel/integration/dir> \
 <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
 (xcode|bazel)
 """)
@@ -72,11 +72,11 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         return Arguments(
             specPath: Path(CommandLine.arguments[1]),
             xccurrentversionsPath: Path(CommandLine.arguments[2]),
+            bazelIntegrationDirectory: Path(CommandLine.arguments[3]),
             outputPath: Path(CommandLine.arguments[4]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
-            buildMode: buildMode,
-            stubsPath: Path(CommandLine.arguments[3])
+            buildMode: buildMode
         )
     }
 

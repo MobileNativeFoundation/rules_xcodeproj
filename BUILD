@@ -57,6 +57,7 @@ filegroup(
         "//tools/xccurrentversions_parser:all_files",
         "//xcodeproj:all_files",
         "//xcodeproj/internal:all_files",
+        "//xcodeproj/internal/bazel_integration_files:all_files",
     ],
     visibility = [":integration_test_visibility"],
 )
