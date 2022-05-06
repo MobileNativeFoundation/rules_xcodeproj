@@ -24,6 +24,20 @@
          </ExecutionAction>
       </PreActions>
       <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7E5DFA29686635FDE423D8F4"
+               BuildableName = "ExampleObjcTests.xctest"
+               BlueprintName = "ExampleObjcTests.__internal__.__test_bundle"
+               ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -55,8 +69,7 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       customLLDBInitFile = "$(BAZEL_LLDB_INIT)">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7E5DFA29686635FDE423D8F4"
@@ -64,7 +77,7 @@
             BlueprintName = "ExampleObjcTests.__internal__.__test_bundle"
             ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
@@ -72,16 +85,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7E5DFA29686635FDE423D8F4"
-            BuildableName = "ExampleObjcTests.xctest"
-            BlueprintName = "ExampleObjcTests.__internal__.__test_bundle"
-            ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
