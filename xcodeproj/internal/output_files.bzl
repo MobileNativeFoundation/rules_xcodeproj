@@ -125,6 +125,7 @@ def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
         *   `swift_module`: A value as returned by
             `swift_common.create_swift_module`, or `None`.
     """
+
     # TODO: Deduplicate work here and in `_process_top_level_target`.
     xctest = None
     for file in target_files:
@@ -142,9 +143,7 @@ def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
         xctest_path = xctest.path
         product_file_path = file_path(
             xctest,
-            path = xctest_path[
-                :-(len(xctest_path.split(".xctest/")[1]) + 1)
-            ],
+            path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)],
         )
     elif default_info.files_to_run.executable:
         product = default_info.files_to_run.executable

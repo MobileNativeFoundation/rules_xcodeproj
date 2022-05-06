@@ -13,7 +13,6 @@ load(
     ":files.bzl",
     "file_path",
     "join_paths_ignoring_empty",
-    "parsed_file_path",
 )
 load(":info_plists.bzl", "info_plists")
 load(":entitlements.bzl", "entitlements")
@@ -140,9 +139,7 @@ def process_top_level_properties(
             xctest_path = xctest.path
             bundle_file_path = file_path(
                 xctest,
-                path = xctest_path[
-                    :-(len(xctest_path.split(".xctest/")[1]) + 1)
-                ],
+                path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)],
             )
         else:
             product_type = "com.apple.product-type.tool"
