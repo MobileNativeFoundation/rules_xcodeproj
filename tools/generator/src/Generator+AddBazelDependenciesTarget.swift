@@ -169,7 +169,7 @@ env -i \
             lldbInit = #"""
 
 if [ "$ACTION" != "indexbuild" ]; then
-  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$external" > "$BAZEL_LLDB_INIT"
+  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" > "$BAZEL_LLDB_INIT"
 fi
 
 """#
@@ -198,7 +198,8 @@ output_path=$(\#(bazelExec) \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
   output_path)
-external="${output_path%/*/*/*}/external"
+exec_root="${output_path%/*}"
+external="${exec_root%/*/*}/external"
 \#(lldbInit)
 # We only want to modify `$LINKS_DIR` during normal builds since Indexing can
 # run concurrent to normal builds
