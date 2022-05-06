@@ -19,6 +19,7 @@ class CreateXCSchemesTests: XCTestCase {
         shouldExpectBuildActionEntries: Bool,
         shouldExpectTestables: Bool,
         shouldExpectBuildableProductRunnable: Bool,
+        shouldExpectLaunchMacroExpansion: Bool,
         shouldExpectCustomLLDBInitFile: Bool,
         file: StaticString = #filePath,
         line: UInt = #line
@@ -47,6 +48,8 @@ class CreateXCSchemesTests: XCTestCase {
         let expectedBuildableReference = try target.createBuildableReference(
             referencedContainer: filePathResolver.containerReference
         )
+        let expectedLaunchMacroExpansion = shouldExpectLaunchMacroExpansion ?
+            expectedBuildableReference : nil
         let expectedBuildPreActions: [XCScheme.ExecutionAction] =
             shouldExpectBuildPreActions ?
             [.init(
@@ -136,7 +139,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         }
         XCTAssertNil(
             testAction.macroExpansion,
-            "macroExpansion was not nil for \(scheme.name)",
+            "testAction.macroExpansion was not nil for \(scheme.name)",
             file: file,
             line: line
         )
@@ -174,6 +177,13 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             launchAction.runnable,
             expectedBuildableProductRunnable,
             "runnable did not match for \(scheme.name)",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            launchAction.macroExpansion,
+            expectedLaunchMacroExpansion,
+            "launchAction.macroExpansion did not match for \(scheme.name)",
             file: file,
             line: line
         )
@@ -259,6 +269,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
+            shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: false
         )
 
@@ -270,17 +281,19 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
+            shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: false
         )
 
-        // Testable and launchable
+        // Launchable, testable
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "B 2",
             shouldExpectBuildPreActions: false,
-            shouldExpectBuildActionEntries: false,
+            shouldExpectBuildActionEntries: true,
             shouldExpectTestables: true,
-            shouldExpectBuildableProductRunnable: true,
+            shouldExpectBuildableProductRunnable: false,
+            shouldExpectLaunchMacroExpansion: true,
             shouldExpectCustomLLDBInitFile: false
         )
 
@@ -292,6 +305,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
+            shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: false
         )
     }
@@ -314,6 +328,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
+            shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: true
         )
 
@@ -325,17 +340,19 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
+            shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: true
         )
 
-        // Testable and launchable
+        // Launchable, testable
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "B 2",
             shouldExpectBuildPreActions: true,
-            shouldExpectBuildActionEntries: false,
+            shouldExpectBuildActionEntries: true,
             shouldExpectTestables: true,
-            shouldExpectBuildableProductRunnable: true,
+            shouldExpectBuildableProductRunnable: false,
+            shouldExpectLaunchMacroExpansion: true,
             shouldExpectCustomLLDBInitFile: true
         )
 
@@ -347,6 +364,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
+            shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: true
         )
     }
