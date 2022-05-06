@@ -169,23 +169,7 @@ env -i \
             lldbInit = #"""
 
 if [ "$ACTION" != "indexbuild" ]; then
-  if [[ -f "$HOME/.lldbinit" ]]; then
-    home_init="command source ~/.lldbinit
-
-  "
-  else
-    home_init=""
-  fi
-
-  cat <<EOF > "$BAZEL_LLDB_INIT"
-$home_init\
-# Set \`CWD\` to \`\$SRCROOT\` so relative paths in binaries work
-platform settings -w "$SRCROOT"
-
-# "Undo" \`-debug-prefix-map\`
-settings set target.source-map ./external/ "$external"
-settings append target.source-map ./ "$SRCROOT"
-EOF
+  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$external" > "$BAZEL_LLDB_INIT"
 fi
 
 """#
