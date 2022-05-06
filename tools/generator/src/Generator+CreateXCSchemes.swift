@@ -72,7 +72,9 @@ extension Generator {
         let testAction = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
-            testables: testables
+            testables: testables,
+            customLLDBInitFile: buildMode.requiresLLDBInit ?
+                "$(BAZEL_LLDB_INIT)" : nil
         )
         let launchAction = XCScheme.LaunchAction(
             runnable: buildableProductRunnable,

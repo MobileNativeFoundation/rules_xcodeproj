@@ -190,7 +190,14 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         XCTAssertEqual(
             launchAction.customLLDBInitFile,
             expectedCustomLLDBInitFile,
-            "customLLDBInitFile did not match for \(scheme.name)",
+            "launchAction.customLLDBInitFile did not match for \(scheme.name)",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            testAction.customLLDBInitFile,
+            expectedCustomLLDBInitFile,
+            "testAction.customLLDBInitFile did not match for \(scheme.name)",
             file: file,
             line: line
         )
