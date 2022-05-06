@@ -145,7 +145,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         target = target,
         product_name = product_name,
         product_type = "com.apple.product-type.library.static",
-        bundle_path = None,
+        bundle_file_path = None,
         linker_inputs = linker_inputs,
         build_settings = build_settings,
     )
@@ -166,6 +166,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(
+        target_files = [],
         bundle_info = None,
         default_info = target[DefaultInfo],
         swift_info = swift_info,
@@ -281,7 +282,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         label.workspace_root,
         label.package,
     )
-    bundle_path = parsed_file_path(paths.join(
+    bundle_file_path = parsed_file_path(paths.join(
         package_bin_dir,
         "{}.bundle".format(bundle_name),
     ))
@@ -301,7 +302,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         target = target,
         product_name = product_name,
         product_type = "com.apple.product-type.bundle",
-        bundle_path = bundle_path,
+        bundle_file_path = bundle_file_path,
         linker_inputs = linker_inputs,
         build_settings = build_settings,
     )
@@ -318,6 +319,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(
+        target_files = [],
         bundle_info = None,
         default_info = target[DefaultInfo],
         swift_info = None,
@@ -327,7 +329,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
     )
 
     resource_bundles = resource_bundle_products.collect(
-        bundle_path = bundle_path,
+        bundle_file_path = bundle_file_path,
         owner = resource_owner,
         is_consuming_bundle = False,
         bundle_resources = bundle_resources,

@@ -130,7 +130,10 @@
             },
             "product": {
                 "name": "tests",
-                "path": "tools/generator/test/tests.xctest",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-0376e8cd69e6/bin/tools/generator/test/tests.xctest",
+                    "t": "g"
+                },
                 "type": "com.apple.product-type.bundle.unit-test"
             },
             "resource_bundles": [],
