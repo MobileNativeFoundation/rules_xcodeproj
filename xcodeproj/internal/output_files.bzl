@@ -48,8 +48,8 @@ def _create(
             direct_build.append(direct_outputs.swift_generated_header)
             direct_index.append(direct_outputs.swift_generated_header)
 
-        if direct_outputs.bundle:
-            direct_build.append(direct_outputs.bundle)
+        if direct_outputs.product:
+            direct_build.append(direct_outputs.product)
     else:
         direct_build = None
         direct_index = None
@@ -99,7 +99,7 @@ def _create(
         _transitive_index = transitive_index,
     )
 
-def _get_outputs(*, bundle_info, id, swift_info):
+def _get_outputs(*, bundle_info, id, default_info, swift_info):
     """Collects the output files for a given target.
 
     The outputs are bucketed into two categories: build and index. The build
@@ -110,6 +110,7 @@ def _get_outputs(*, bundle_info, id, swift_info):
     Args:
         bundle_info: The `AppleBundleInfo` provider for the target, or `None`.
         id: The unique identifier of the target.
+        default_info: The `DefaultInfo` provider for the target, or `None`.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
 
     Returns:
@@ -123,9 +124,11 @@ def _get_outputs(*, bundle_info, id, swift_info):
             `swift_common.create_swift_module`, or `None`.
     """
     if bundle_info:
-        bundle = bundle_info.archive
+        product = bundle_info.archive
+    elif default_info.files_to_run.executable:
+        product = default_info.files_to_run.executable
     else:
-        bundle = None
+        product = None
 
     swift_generated_header = None
     swift_module = None
@@ -145,7 +148,7 @@ def _get_outputs(*, bundle_info, id, swift_info):
 
     return struct(
         id = id,
-        bundle = bundle,
+        product = product,
         swift_generated_header = swift_generated_header,
         swift_module = swift_module,
     )
@@ -170,6 +173,7 @@ def _swift_to_dto(generated_header, module):
 def _collect(
         *,
         bundle_info,
+        default_info,
         swift_info,
         id,
         transitive_infos,
@@ -178,6 +182,7 @@ def _collect(
 
     Args:
         bundle_info: The `AppleBundleInfo` provider for  the target, or `None`.
+        default_info: The `DefaultInfo` provider for the target, or `None`.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         id: A unique identifier for the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -193,6 +198,7 @@ def _collect(
     outputs = _get_outputs(
         bundle_info = bundle_info,
         id = id,
+        default_info = default_info,
         swift_info = swift_info,
     )
 
@@ -224,8 +230,8 @@ def _to_dto(outputs):
 
     dto = {}
 
-    if direct_outputs.bundle:
-        dto["b"] = file_path_to_dto(file_path(direct_outputs.bundle))
+    if direct_outputs.product:
+        dto["p"] = file_path_to_dto(file_path(direct_outputs.product))
 
     if direct_outputs.swift_module:
         dto["s"] = _swift_to_dto(

@@ -218,6 +218,7 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     )
     outputs = output_files.collect(
         bundle_info = bundle_info,
+        default_info = target[DefaultInfo],
         swift_info = swift_info,
         id = id,
         transitive_infos = transitive_infos,
