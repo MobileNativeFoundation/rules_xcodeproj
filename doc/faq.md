@@ -41,3 +41,6 @@ following
 This is the same issue as the previous two questions.  You merely need to
 synchronize the files with your Bazel project by following
 [these steps](#my-xcode-project-seems-to-be-of-of-sync-with-my-bazel-project-what-should-i-do).
+
+For this one though, you will probably have to close and re-open your project,
+regardless if there are any red items in the Project navigator.
