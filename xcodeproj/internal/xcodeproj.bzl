@@ -127,8 +127,8 @@ def _write_xcodeproj(
         ctx,
         project_name,
         spec_file,
+        bazel_integration_files,
         xccurrentversions_file,
-        stubs,
         build_mode):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
@@ -144,7 +144,7 @@ def _write_xcodeproj(
     args = ctx.actions.args()
     args.add(spec_file.path)
     args.add(xccurrentversions_file.path)
-    args.add(stubs[0].dirname)
+    args.add(bazel_integration_files[0].dirname)
     args.add(xcodeproj.path)
     args.add(install_path)
     args.add(build_mode)
@@ -153,7 +153,7 @@ def _write_xcodeproj(
         executable = ctx.executable._generator,
         mnemonic = "GenerateXcodeProj",
         arguments = [args],
-        inputs = [spec_file, xccurrentversions_file] + stubs,
+        inputs = [spec_file, xccurrentversions_file] + bazel_integration_files,
         outputs = [xcodeproj],
     )
 
@@ -252,7 +252,7 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         spec_file = spec_file,
         xccurrentversions_file = xccurrentversions_file,
-        stubs = ctx.files._stubs,
+        bazel_integration_files = ctx.files._bazel_integration_files,
         build_mode = ctx.attr.build_mode,
     )
     installer = _write_installer(
@@ -316,6 +316,11 @@ def make_xcodeproj_rule(*, transition = None):
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
+        "_bazel_integration_files": attr.label(
+            allow_files = True,
+            executable = False,
+            default = Label("//xcodeproj/internal/bazel_integration_files"),
+        ),
         "_external_file_marker": attr.label(
             allow_single_file = True,
             # This just has to point to a source file in an external repo. It is
@@ -337,11 +342,6 @@ def make_xcodeproj_rule(*, transition = None):
             allow_single_file = True,
             executable = False,
             default = Label("//xcodeproj/internal:installer.template.sh"),
-        ),
-        "_stubs": attr.label(
-            allow_files = True,
-            executable = False,
-            default = Label("//xcodeproj/internal:stubs"),
         ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",

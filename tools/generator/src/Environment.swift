@@ -95,7 +95,7 @@ struct Environment {
         _ buildMode: BuildMode,
         _ files: [FilePath: File],
         _ internalDirectoryName: String,
-        _ stubsPath: Path,
+        _ bazelIntegrationDirectory: Path,
         _ outputPath: Path
     ) throws -> Void
 }

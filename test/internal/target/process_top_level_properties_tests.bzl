@@ -14,7 +14,10 @@ def _process_top_level_properties_test_impl(ctx):
     build_settings = {}
     properties = process_top_level_properties(
         target_name = ctx.attr.target_name,
-        files = [struct(short_path = p) for p in ctx.attr.files],
+        target_files = [
+            struct(is_source = False, path = p)
+            for p in ctx.attr.target_files
+        ],
         bundle_info = _bundle_info_stub(ctx.attr.bundle_info),
         tree_artifact_enabled = ctx.attr.tree_artifact_enabled,
         build_settings = build_settings,
@@ -25,11 +28,11 @@ def _process_top_level_properties_test_impl(ctx):
         env,
         struct(
             path = ctx.attr.expected_bundle_path,
-            type = "p",
+            type = "g",
             is_folder = False,
         ) if ctx.attr.expected_bundle_path else None,
-        properties.bundle_path,
-        "bundle_path",
+        properties.bundle_file_path,
+        "bundle_file_path",
     )
     asserts.equals(
         env,
@@ -67,7 +70,7 @@ process_top_level_properties_test = unittest.make(
         "expected_minimum_deployment_version": attr.string(mandatory = False),
         "expected_product_name": attr.string(mandatory = True),
         "expected_product_type": attr.string(mandatory = True),
-        "files": attr.string_list(mandatory = True),
+        "target_files": attr.string_list(mandatory = True),
         "target_name": attr.string(mandatory = True),
         "tree_artifact_enabled": attr.bool(mandatory = True),
     },
@@ -97,8 +100,7 @@ def _bundle_info_stub(dict):
         return None
     return struct(
         archive = struct(
-            is_source = True,
-            owner = struct(workspace_name = None),
+            is_source = False,
             path = dict["archive.path"],
         ),
         archive_root = dict["archive_root"],
@@ -122,7 +124,7 @@ def process_top_level_properties_test_suite(name):
             *,
             name,
             target_name,
-            files,
+            target_files,
             bundle_info,
             tree_artifact_enabled,
             expected_bundle_path,
@@ -134,7 +136,7 @@ def process_top_level_properties_test_suite(name):
         process_top_level_properties_test(
             name = name,
             target_name = target_name,
-            files = files,
+            target_files = target_files,
             bundle_info = bundle_info,
             tree_artifact_enabled = tree_artifact_enabled,
             expected_bundle_path = expected_bundle_path,
@@ -151,7 +153,7 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_binary".format(name),
         target_name = "binary",
-        files = ["some/binary"],
+        target_files = ["bazel-out/some/binary"],
         bundle_info = None,
         tree_artifact_enabled = True,
         expected_bundle_path = None,
@@ -164,9 +166,9 @@ def process_top_level_properties_test_suite(name):
     )
 
     _add_test(
-        name = "{}_test".format(name),
+        name = "{}_xctest".format(name),
         target_name = "test",
-        files = ["some/test.xctest/test"],
+        target_files = ["bazel-out/some/test.xctest/test"],
         bundle_info = None,
         tree_artifact_enabled = True,
         expected_bundle_path = "some/test.xctest",
@@ -183,10 +185,10 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_tree_artifact".format(name),
         target_name = "a",
-        files = [],
+        target_files = [],
         bundle_info = _bundle_info(
-            archive_path = "some/flagship.app",
-            archive_root = "some/intermediate",
+            archive_path = "bazel-out/some/flagship.app",
+            archive_root = "bazel-out/some/intermediate",
             bundle_id = "com.example.flagship",
             bundle_extension = ".app",
             bundle_name = "flagship",
@@ -207,10 +209,10 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_app".format(name),
         target_name = "a",
-        files = [],
+        target_files = [],
         bundle_info = _bundle_info(
-            archive_path = "some/flagship.app",
-            archive_root = "some/intermediate",
+            archive_path = "bazel-out/some/flagship.app",
+            archive_root = "bazel-out/some/intermediate",
             bundle_id = "com.example.flagship",
             bundle_extension = ".app",
             bundle_name = "flagship",
@@ -231,10 +233,10 @@ def process_top_level_properties_test_suite(name):
     _add_test(
         name = "{}_bundled_test".format(name),
         target_name = "a",
-        files = [],
+        target_files = [],
         bundle_info = _bundle_info(
-            archive_path = "some/flagship.xctest",
-            archive_root = "some/intermediate",
+            archive_path = "bazel-out/some/flagship.xctest",
+            archive_root = "bazel-out/some/intermediate",
             bundle_id = "com.example.flagship.test",
             bundle_extension = ".xctest",
             bundle_name = "flagship",

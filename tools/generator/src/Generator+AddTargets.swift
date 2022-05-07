@@ -113,7 +113,7 @@ Product for target "\(id)" not found in `products`
         guard
             buildMode.usesBazelModeBuildScripts,
             let copyCommand = try outputs.scriptCopyCommand(
-                product: product,
+                targetProduct: product,
                 filePathResolver: filePathResolver
             )
         else {
@@ -480,16 +480,16 @@ extension Outputs {
     }
 
     fileprivate func scriptCopyCommand(
-        product: Product,
+        targetProduct: Product,
         filePathResolver: FilePathResolver
     ) throws -> String? {
-        guard bundle != nil || swift != nil else {
+        guard product != nil || swift != nil else {
             return nil
         }
 
         let commands = [
             try conditionalCopyCommand(
-                product: product,
+                targetProduct: targetProduct,
                 filePathResolver: filePathResolver
             ),
             try swiftCopyCommand(filePathResolver: filePathResolver),
@@ -505,7 +505,7 @@ mkdir -p "$OBJECT_FILE_DIR-normal/$ARCHS"
     }
 
     fileprivate func conditionalCopyCommand(
-        product: Product,
+        targetProduct: Product,
         filePathResolver: FilePathResolver
     ) throws -> String {
         return #"""
@@ -513,7 +513,7 @@ if [[ "$ACTION" == indexbuild ]]; then
   # Write to "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" to allow next index to catch up
   echo "i $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 \#(try nonIndexCopyCommand(
-    product: product,
+    targetProduct: targetProduct,
     filePathResolver: filePathResolver
 ))\#
 fi
@@ -547,19 +547,19 @@ fi
     }
 
     private func nonIndexCopyCommand(
-        product: Product,
+        targetProduct: Product,
         filePathResolver: FilePathResolver
     ) throws -> String {
-        guard let bundle = bundle else {
+        guard let product = product else {
             return ""
         }
 
         let outputPath = try filePathResolver
-            .resolve(bundle, useOriginalGeneratedFiles: true, mode: .script)
-        let bundlePath = product.path.path.lastComponent
+            .resolve(product, useOriginalGeneratedFiles: true, mode: .script)
+        let bundlePath = targetProduct.path.path.lastComponent
 
         let extract: String
-        switch bundle.path.extension {
+        switch product.path.extension {
         case "ipa":
             extract = Self.extractBundleCommand(
                 outputPath: outputPath,
@@ -580,7 +580,7 @@ fi
         }
 
         let excludeList: String
-        if product.type.isApplication {
+        if targetProduct.type.isApplication {
             excludeList = #"""
     --exclude-from="\#(
 try filePathResolver
@@ -595,7 +595,7 @@ try filePathResolver
 
         return #"""
 else
-  # Copy bundle
+  # Copy product
 \#(extract)\#
   rsync \
     --copy-links \

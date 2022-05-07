@@ -18,8 +18,8 @@ rsync \
   --delete \
   "$src/" "$dest/"
 
-if [[ -d "$dest/rules_xcodeproj/stubs" ]]; then
-  chmod u+x "$dest/rules_xcodeproj/stubs/"*.{py,sh}
+if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
+  chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
 fi
 
 # Copy over project.xcworkspace/contents.xcworkspacedata if needed

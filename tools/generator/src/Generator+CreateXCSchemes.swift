@@ -33,16 +33,25 @@ extension Generator {
         )
         let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
 
-        let buildEntries: [XCScheme.BuildAction.Entry]
+        let buildableProductRunnable: XCScheme.BuildableProductRunnable?
+        let macroExpansion: XCScheme.BuildableReference?
         let testables: [XCScheme.TestableReference]
         if pbxTarget.isTestable {
-            buildEntries = []
+            buildableProductRunnable = nil
+            macroExpansion = buildableReference
             testables = [.init(
                 skipped: false,
                 buildableReference: buildableReference
             )]
         } else {
-            buildEntries = [.init(
+            buildableProductRunnable = pbxTarget.isLaunchable ?
+                .init(buildableReference: buildableReference) : nil
+            macroExpansion = nil
+            testables = []
+        }
+
+        let buildAction = XCScheme.BuildAction(
+            buildActionEntries: [.init(
                 buildableReference: buildableReference,
                 buildFor: [
                     .running,
@@ -51,15 +60,7 @@ extension Generator {
                     .archiving,
                     .analyzing
                 ]
-            )]
-            testables = []
-        }
-        let buildableProductRunnable: XCScheme.BuildableProductRunnable? =
-            pbxTarget.isLaunchable ?
-            .init(buildableReference: buildableReference) : nil
-
-        let buildAction = XCScheme.BuildAction(
-            buildActionEntries: buildEntries,
+            )],
             preActions: createBuildPreActions(
                 buildMode: buildMode,
                 pbxTarget: pbxTarget,
@@ -71,11 +72,14 @@ extension Generator {
         let testAction = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
-            testables: testables
+            testables: testables,
+            customLLDBInitFile: buildMode.requiresLLDBInit ?
+                "$(BAZEL_LLDB_INIT)" : nil
         )
         let launchAction = XCScheme.LaunchAction(
             runnable: buildableProductRunnable,
             buildConfiguration: buildConfigurationName,
+            macroExpansion: macroExpansion,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )

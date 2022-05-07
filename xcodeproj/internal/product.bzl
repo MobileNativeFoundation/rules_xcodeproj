@@ -12,7 +12,7 @@ def process_product(
         target,
         product_name,
         product_type,
-        bundle_path,
+        bundle_file_path,
         linker_inputs,
         build_settings):
     """Generates information about the target's product.
@@ -24,7 +24,7 @@ def process_product(
         product_type: A PBXProductType string. See
             https://github.com/tuist/XcodeProj/blob/main/Sources/XcodeProj/Objects/Targets/PBXProductType.swift
             for examples.
-        bundle_path: If the product is a bundle, this is the the path to the
+        bundle_file_path: If the product is a bundle, this is `file_path` to the
             bundle, otherwise `None`.
         linker_inputs: A value returned by `linker_input_files.collect`.
         build_settings: A mutable `dict` that will be updated with Xcode build
@@ -33,8 +33,8 @@ def process_product(
     Returns:
         A `struct` containing the name, the path to the product and the product type.
     """
-    if bundle_path:
-        fp = bundle_path
+    if bundle_file_path:
+        fp = bundle_file_path
     elif target[DefaultInfo].files_to_run.executable:
         fp = file_path(target[DefaultInfo].files_to_run.executable)
     elif CcInfo in target:

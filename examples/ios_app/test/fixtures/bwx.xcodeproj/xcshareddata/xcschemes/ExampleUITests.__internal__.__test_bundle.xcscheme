@@ -6,6 +6,20 @@
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BDC5BB543739DEC8809249F9"
+               BuildableName = "ExampleUITests.xctest"
+               BlueprintName = "ExampleUITests.__internal__.__test_bundle"
+               ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -36,8 +50,7 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BDC5BB543739DEC8809249F9"
@@ -45,7 +58,7 @@
             BlueprintName = "ExampleUITests.__internal__.__test_bundle"
             ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
@@ -53,16 +66,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDC5BB543739DEC8809249F9"
-            BuildableName = "ExampleUITests.xctest"
-            BlueprintName = "ExampleUITests.__internal__.__test_bundle"
-            ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

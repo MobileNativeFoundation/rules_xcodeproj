@@ -8,7 +8,7 @@ extension Generator {
         buildMode: BuildMode,
         files: [FilePath: File],
         internalDirectoryName: String,
-        stubsPath: Path,
+        bazelIntegrationDirectory: Path,
         to outputPath: Path
     ) throws {
         try xcodeProj.write(path: outputPath)
@@ -29,8 +29,8 @@ extension Generator {
         }
 
         if buildMode.usesBazelModeBuildScripts {
-            let dest = internalOutputPath + "stubs"
-            try stubsPath.copy(dest)
+            let dest = internalOutputPath + "bazel"
+            try bazelIntegrationDirectory.copy(dest)
         }
     }
 }

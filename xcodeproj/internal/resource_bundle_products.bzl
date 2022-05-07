@@ -4,7 +4,7 @@ load(":files.bzl", "file_path_to_dto")
 
 def _collect(
         *,
-        bundle_path = None,
+        bundle_file_path = None,
         owner,
         is_consuming_bundle,
         bundle_resources,
@@ -28,14 +28,16 @@ def _collect(
             ],
         )
         owned_products = [
-            (owner, bundle_path)
-            for bundle_path in transitive_unowned_products.to_list()
+            (owner, bundle_file_path)
+            for bundle_file_path in transitive_unowned_products.to_list()
         ]
-        unowned_products = depset([bundle_path] if bundle_path else None)
+        unowned_products = depset(
+            [bundle_file_path] if bundle_file_path else None,
+        )
     else:
         owned_products = []
         unowned_products = depset(
-            [bundle_path] if bundle_path else None,
+            [bundle_file_path] if bundle_file_path else None,
             transitive = [
                 info.resource_bundles._unowned_products
                 for attr, info in transitive_infos

@@ -1328,6 +1328,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C3B0DA5FF54217998FA354A /* Build configuration list for PBXNativeTarget "generator" */;
 			buildPhases = (
+				EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */,
 				42A070DBC30FFCFC46CB6D1F /* Sources */,
 			);
 			buildRules = (
@@ -1560,7 +1561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"tests.xctest\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		552BD18EE10BBA93EBBDB88E /* Copy Bazel Outputs */ = {
@@ -1630,7 +1631,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  output_path)\nexternal=\"${output_path%/*/*/*}/external\"\n\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  if [[ -f \"$HOME/.lldbinit\" ]]; then\n    home_init=\"command source ~/.lldbinit\n\n  \"\n  else\n    home_init=\"\"\n  fi\n\n  cat <<EOF > \"$BAZEL_LLDB_INIT\"\n$home_init\\\n# Set \\`CWD\\` to \\`\\$SRCROOT\\` so relative paths in binaries work\nplatform settings -w \"$SRCROOT\"\n\n# \"Undo\" \\`-debug-prefix-map\\`\nsettings set target.source-map ./external/ \"$external\"\nsettings append target.source-map ./ \"$SRCROOT\"\nEOF\nfi\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf real-bazel-out\n\nln -sf \"$external\" external\nln -sf \"$output_path\" real-bazel-out\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\ncd \"$SRCROOT\"\n\noutput_groups=()\nif [ -s \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" ]; then\n  while IFS= read -r output_group; do\n    output_groups+=(\"--output_groups=+$output_group\")\n  done < \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --output_groups=generated_inputs \\\n  ${output_groups[@]+\"${output_groups[@]}\"} \\\n  //test/fixtures/generator:xcodeproj_bwb\n";
+			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  output_path)\nexec_root=\"${output_path%/*}\"\nexternal=\"${exec_root%/*/*}/external\"\n\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  \"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh\" \"$exec_root\" > \"$BAZEL_LLDB_INIT\"\nfi\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf real-bazel-out\n\nln -sf \"$external\" external\nln -sf \"$output_path\" real-bazel-out\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\ncd \"$SRCROOT\"\n\noutput_groups=()\nif [ -s \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" ]; then\n  while IFS= read -r output_group; do\n    output_groups+=(\"--output_groups=+$output_group\")\n  done < \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --output_groups=generated_inputs \\\n  ${output_groups[@]+\"${output_groups[@]}\"} \\\n  //test/fixtures/generator:xcodeproj_bwb\n";
 			showEnvVarsInLog = 0;
 		};
 		BF93DFB380D1CC637B96A769 /* Copy Bazel Outputs */ = {
@@ -1648,6 +1649,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"generator\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F5738A25C92C3E659EB1C474 /* Copy Bazel Outputs */ = {
@@ -2280,12 +2297,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_BUILD_OUTPUT_GROUPS_FILE = "$(BUILD_DIR)/bazel_build_output_groups";
 				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";
+				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(BUILD_DIR)/bazel.lldbinit";
 				BAZEL_OUT = "$(BUILD_DIR)/real-bazel-out";
 				BAZEL_PATH = bazel;
-				BAZEL_STUBS_DIR = "$(INTERNAL_DIR)/stubs";
 				BUILT_PRODUCTS_DIR = "$(BUILD_DIR)";
-				CC = "$(BAZEL_STUBS_DIR)/cc.sh";
+				CC = "$(BAZEL_INTEGRATION_DIR)/cc.sh";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGNING_ALLOWED = NO;
@@ -2296,11 +2313,11 @@
 				GEN_DIR = "$(LINKS_DIR)/gen_dir";
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
-				LD = "$(BAZEL_STUBS_DIR)/ld.sh";
-				LIBTOOL = "$(BAZEL_STUBS_DIR)/libtool.sh";
+				LD = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
+				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				LINKS_DIR = "$(INTERNAL_DIR)/links";
 				ONLY_ACTIVE_ARCH = YES;
-				SWIFT_EXEC = "$(BAZEL_STUBS_DIR)/swiftc.py";
+				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc.py";
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
