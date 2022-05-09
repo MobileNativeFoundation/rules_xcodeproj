@@ -140,6 +140,14 @@ env -i \
             name = "Fetch External Repositories"
         }
 
+        let xcodeprojBinDir = calculateBinDir(
+            xcodeprojBazelLabel: xcodeprojBazelLabel,
+            xcodeprojConfiguration: xcodeprojConfiguration
+        )
+        let generatedInputsOutputGroup = #"""
+generated_inputs \#(xcodeprojConfiguration)
+"""#
+
         let shellScript = [
             bazelSetupCommand(buildMode: buildMode),
             try createGeneratedFileDirectoriesCommand(
@@ -149,11 +157,12 @@ env -i \
             bazelBuildCommand(
                 buildMode: buildMode,
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
-                xcodeprojConfiguration: xcodeprojConfiguration
+                xcodeprojBinDir: xcodeprojBinDir,
+                generatedInputsOutputGroup: generatedInputsOutputGroup
             ),
             try createCheckGeneratedFilesCommand(
-                xcodeprojBazelLabel: xcodeprojBazelLabel,
-                xcodeprojConfiguration: xcodeprojConfiguration,
+                xcodeprojBinDir: xcodeprojBinDir,
+                generatedInputsOutputGroup: generatedInputsOutputGroup,
                 hasGeneratedFiles: hasGeneratedFiles,
                 filePathResolver: filePathResolver
             ),
@@ -247,45 +256,51 @@ ln -sfn "$PROJECT_DIR" SRCROOT
     private static func bazelBuildCommand(
         buildMode: BuildMode,
         xcodeprojBazelLabel: String,
-        xcodeprojConfiguration: String
+        xcodeprojBinDir: String,
+        generatedInputsOutputGroup: String
     ) -> String {
-        let createAdditionalOutputGroups: String
-        let useAdditionalOutputGroups: String
+        let addAdditionalOutputGroups: String
         switch buildMode {
         case .bazel:
-            createAdditionalOutputGroups = #"""
-
-output_groups=()
+            addAdditionalOutputGroups = #"""
 if [ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]; then
   while IFS= read -r output_group; do
-    output_groups+=("--output_groups=+$output_group")
+    output_groups+=("$output_group")
   done < "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 fi
-
-"""#
-            useAdditionalOutputGroups = #"""
-  ${output_groups[@]+"${output_groups[@]}"} \
-
 """#
         case .xcode:
-            createAdditionalOutputGroups = ""
-            useAdditionalOutputGroups = ""
+            addAdditionalOutputGroups = ""
         }
 
         return #"""
 cd "$SRCROOT"
-\#(createAdditionalOutputGroups)
+
+output_groups=("\#(generatedInputsOutputGroup)")
+\#(addAdditionalOutputGroups)
+output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
+
 date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
 
+log=$(mktemp)
 \#(bazelExec) \
   ${output_base:+--output_base "$output_base"} \
   build \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
-  '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
-\#(useAdditionalOutputGroups)\#
-  \#(xcodeprojBazelLabel)
+  "$output_groups_flag" \
+  \#(xcodeprojBazelLabel) \
+  2>&1 | tee -i "$log"
 
+for output_group in "${output_groups[@]}"; do
+  filelist="${output_group//\//_}"
+  filelist="${filelist/#/bazel-out/\#(xcodeprojBinDir)/}"
+  filelist="${filelist/%/.filelist}"
+  if ! grep -q "^  $filelist$" "$log"; then
+    echo "error: Bazel didn't generate the files asked of it. Please regenerate the project to fix this. If your bazel version is less than 5.2, you may need to \`bazel clean\` and \`bazel shutdown\` to work around a bug in project generation. If you still are getting this error, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
+    exit 1
+  fi
+done
 """#
     }
 
@@ -320,8 +335,8 @@ done
     }
 
     private static func createCheckGeneratedFilesCommand(
-        xcodeprojBazelLabel: String,
-        xcodeprojConfiguration: String,
+        xcodeprojBinDir: String,
+        generatedInputsOutputGroup: String,
         hasGeneratedFiles: Bool,
         filePathResolver: FilePathResolver
     ) throws -> String? {
@@ -329,15 +344,10 @@ done
             return nil
         }
 
-        var packageDirectory = xcodeprojBazelLabel.split(separator: ":")[0]
-        packageDirectory = packageDirectory[
-            packageDirectory.index(packageDirectory.startIndex, offsetBy: 2)...
-        ]
-
         let rsynclist = try filePathResolver
             .resolve(.internal(rsyncFileListPath), mode: .script)
         let filelist = #"""
-$BAZEL_OUT/\#(xcodeprojConfiguration)/bin/\#(packageDirectory)/generated_inputs \#(xcodeprojConfiguration).filelist
+$BAZEL_OUT/\#(xcodeprojBinDir)/\#(generatedInputsOutputGroup).filelist
 """#
 
         return #"""
@@ -483,6 +493,20 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         pbxProj.add(object: script)
 
         return script
+    }
+
+    private static func calculateBinDir(
+        xcodeprojBazelLabel: String,
+        xcodeprojConfiguration: String
+    ) -> String {
+        var packageDirectory = xcodeprojBazelLabel.split(separator: ":")[0]
+        packageDirectory = packageDirectory[
+            packageDirectory.index(packageDirectory.startIndex, offsetBy: 2)...
+        ]
+
+        return (
+            Path("\(xcodeprojConfiguration)/bin") + String(packageDirectory)
+        ).string
     }
 }
 
