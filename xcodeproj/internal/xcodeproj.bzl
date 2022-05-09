@@ -5,6 +5,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":collections.bzl", "uniq")
+load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
@@ -14,7 +15,7 @@ load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
 # Actions
 
-def _write_json_spec(*, ctx, project_name, inputs, infos):
+def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
     extra_files = inputs.extra_files
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
@@ -68,6 +69,7 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 "USE_HEADERMAP":false,\
 "VALIDATE_WORKSPACE":false\
 }},\
+"configuration":"{configuration}",\
 "extra_files":{extra_files},\
 "invalid_target_merges":{invalid_target_merges},\
 "label":"{label}",\
@@ -77,6 +79,7 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 }}
 """.format(
         bazel_path = ctx.attr.bazel_path,
+        configuration = configuration,
         extra_files = json.encode([
             file_path_to_dto(file)
             for file in extra_files.to_list()
@@ -250,6 +253,7 @@ def _xcodeproj_impl(ctx):
         for dep in ctx.attr.targets
         if XcodeProjInfo in dep
     ]
+    configuration = get_configuration(ctx = ctx)
     inputs = input_files.merge(
         attrs_info = None,
         transitive_infos = [(None, info) for info in infos],
@@ -262,6 +266,7 @@ def _xcodeproj_impl(ctx):
     spec_file = _write_json_spec(
         ctx = ctx,
         project_name = project_name,
+        configuration = configuration,
         inputs = inputs,
         infos = infos,
     )
@@ -290,11 +295,13 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
+            # configuration = depset([configuration_file]),
             **dicts.add(
                 input_files.to_output_groups_fields(
                     ctx = ctx,
                     inputs = inputs,
                     toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+                    configuration = configuration,
                 ),
                 output_files.to_output_groups_fields(
                     ctx = ctx,

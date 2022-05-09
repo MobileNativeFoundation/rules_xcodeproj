@@ -115,7 +115,8 @@ Was unable to merge "\(srcTarget.label) \
             buildMode,
             files,
             filePathResolver,
-            project.label
+            project.label,
+            project.configuration
         )
         let pbxTargets = try environment.addTargets(
             pbxProj,

@@ -465,7 +465,12 @@ def _to_dto(inputs, *, is_bundle, avoid_infos):
 
     return ret
 
-def _to_output_groups_fields(*, ctx, inputs, toplevel_cache_buster):
+def _to_output_groups_fields(
+        *,
+        ctx,
+        inputs,
+        toplevel_cache_buster,
+        configuration):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
@@ -475,15 +480,18 @@ def _to_output_groups_fields(*, ctx, inputs, toplevel_cache_buster):
             and are used as inputs to the output map generation, to ensure that
             the files references by the output map are always downloaded from
             the remote cache, even when using `--remote_download_toplevel`.
+        configuration: The configuration identifier (see "configuration.bzl"'s
+            `get_configuration`) for the project.
 
     Returns:
         A `dict` where the keys are output group names and the values are
         `depset` of `File`s.
     """
+    name = "generated_inputs {}".format(configuration)
     return {
-        "generated_inputs": depset([output_group_map.write_map(
+        name: depset([output_group_map.write_map(
             ctx = ctx,
-            name = "generated_inputs",
+            name = name,
             files = inputs.generated,
             toplevel_cache_buster = toplevel_cache_buster,
         )]),
