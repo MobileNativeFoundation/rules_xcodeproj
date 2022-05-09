@@ -5,6 +5,12 @@ import XCTest
 @testable import generator
 
 class CreateXCSchemesTests: XCTestCase {
+    enum BuildPreActionType {
+        case set
+        case remove
+        case none
+    }
+
     let filePathResolver = FilePathResolver(
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
@@ -15,7 +21,7 @@ class CreateXCSchemesTests: XCTestCase {
     func assertScheme(
         schemesDict: [String: XCScheme],
         targetID: TargetID,
-        shouldExpectBuildPreActions: Bool,
+        buildPreActions: BuildPreActionType,
         shouldExpectBuildActionEntries: Bool,
         shouldExpectTestables: Bool,
         shouldExpectBuildableProductRunnable: Bool,
@@ -50,17 +56,6 @@ class CreateXCSchemesTests: XCTestCase {
         )
         let expectedLaunchMacroExpansion = shouldExpectLaunchMacroExpansion ?
             expectedBuildableReference : nil
-        let expectedBuildPreActions: [XCScheme.ExecutionAction] =
-            shouldExpectBuildPreActions ?
-            [.init(
-                scriptText: #"""
-mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-
-"""#,
-                title: "Set Bazel Build Output Groups",
-                environmentBuildable: expectedBuildableReference
-            )] : []
         let expectedBuildActionEntries: [XCScheme.BuildAction.Entry] =
             shouldExpectBuildActionEntries ?
             [.init(
@@ -80,6 +75,33 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             ) : nil
         let expectedCustomLLDBInitFile = shouldExpectCustomLLDBInitFile ?
             "$(BAZEL_LLDB_INIT)" : nil
+
+        let expectedBuildPreActions: [XCScheme.ExecutionAction]
+        switch buildPreActions {
+        case .set:
+            expectedBuildPreActions = [.init(
+                scriptText: #"""
+mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
+echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+
+"""#,
+                title: "Set Bazel Build Output Groups",
+                environmentBuildable: expectedBuildableReference
+            )]
+        case .remove:
+            expectedBuildPreActions = [.init(
+                scriptText: #"""
+if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
+    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+fi
+
+"""#,
+                title: "Set Bazel Build Output Groups",
+                environmentBuildable: expectedBuildableReference
+            )]
+        case .none:
+            expectedBuildPreActions = []
+        }
 
         // Assertions
 
@@ -265,7 +287,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         try assertScheme(
             schemesDict: schemesDict,
             targetID: .bazelDependencies,
-            shouldExpectBuildPreActions: false,
+            buildPreActions: .none,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
@@ -277,7 +299,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "A 1",
-            shouldExpectBuildPreActions: false,
+            buildPreActions: .none,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
@@ -289,7 +311,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "B 2",
-            shouldExpectBuildPreActions: false,
+            buildPreActions: .none,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: true,
             shouldExpectBuildableProductRunnable: false,
@@ -301,7 +323,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "A 2",
-            shouldExpectBuildPreActions: false,
+            buildPreActions: .none,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
@@ -324,7 +346,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         try assertScheme(
             schemesDict: schemesDict,
             targetID: .bazelDependencies,
-            shouldExpectBuildPreActions: false,
+            buildPreActions: .remove,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
@@ -336,7 +358,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "A 1",
-            shouldExpectBuildPreActions: true,
+            buildPreActions: .set,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
@@ -348,7 +370,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "B 2",
-            shouldExpectBuildPreActions: true,
+            buildPreActions: .set,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: true,
             shouldExpectBuildableProductRunnable: false,
@@ -360,7 +382,7 @@ echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
         try assertScheme(
             schemesDict: schemesDict,
             targetID: "A 2",
-            shouldExpectBuildPreActions: true,
+            buildPreActions: .set,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
