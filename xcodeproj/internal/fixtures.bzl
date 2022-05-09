@@ -1,7 +1,12 @@
 """Functions for updating test fixtures."""
 
 load(":providers.bzl", "XcodeProjOutputInfo")
-load(":xcodeproj.bzl", "make_xcodeproj_rule", "xcodeproj")
+load(
+    ":xcodeproj.bzl",
+    "make_xcodeproj_rule",
+    "make_xcodeproj_transition",
+    "xcodeproj",
+)
 
 # Transition
 
@@ -16,7 +21,7 @@ def _fixtures_transition_impl(_settings, _attr):
         "//command_line_option:watchos_minimum_os": "7.6.2",
     }
 
-fixtures_transition = transition(
+_fixtures_transition = make_xcodeproj_transition(
     implementation = _fixtures_transition_impl,
     inputs = [],
     outputs = [
@@ -74,12 +79,8 @@ _update_fixtures = rule(
     implementation = _update_fixtures_impl,
     attrs = {
         "targets": attr.label_list(
-            cfg = fixtures_transition,
             mandatory = True,
             providers = [XcodeProjOutputInfo],
-        ),
-        "_allowlist_function_transition": attr.label(
-            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
         "_updater_template": attr.label(
             allow_single_file = True,
@@ -97,7 +98,7 @@ def update_fixtures(**kwargs):
     )
 
 _fixture_xcodeproj = make_xcodeproj_rule(
-    transition = fixtures_transition,
+    transition = _fixtures_transition,
 )
 
 def fixture_output_name(fixture_name):
