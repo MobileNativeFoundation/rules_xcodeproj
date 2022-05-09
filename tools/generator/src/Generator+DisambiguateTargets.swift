@@ -25,13 +25,14 @@ extension Generator {
         var labels: [String: TargetComponents] = [:]
         for target in targets.values {
             let normalizedName = target.normalizedName
-            labelsByName[normalizedName, default: []].insert(target.label)
+            let normalizedLabel = target.normalizedLabel
+            labelsByName[normalizedName, default: []].insert(normalizedLabel)
             names[normalizedName, default: .init()].add(target: target)
-            labels[target.normalizedLabel, default: .init()].add(target: target)
+            labels[normalizedLabel, default: .init()].add(target: target)
         }
 
         // And then distinguish them
-        var uniqueValues = Dictionary<TargetID, DisambiguatedTarget>(
+        var uniqueValues = [TargetID: DisambiguatedTarget](
             minimumCapacity: targets.count
         )
         for (id, target) in targets {
@@ -255,7 +256,7 @@ private extension Target {
         return [
             platform.arch,
             platform.minimumOsVersion,
-            platform.environment ?? "Device"
+            platform.environment ?? "Device",
         ].joined(separator: "-")
     }
 }
