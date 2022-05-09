@@ -32,7 +32,7 @@ extension Generator {
         }
 
         // And then distinguish them
-        var uniqueValues = Dictionary<TargetID: DisambiguatedTarget>(
+        var uniqueValues = Dictionary<TargetID, DisambiguatedTarget>(
             minimumCapacity: targets.count
         )
         for (id, target) in targets {
