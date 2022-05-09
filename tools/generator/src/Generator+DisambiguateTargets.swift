@@ -32,7 +32,7 @@ extension Generator {
         }
 
         // And then distinguish them
-        var uniqueValues = [TargetID: DisambiguatedTarget](
+        var uniqueValues = Dictionary<TargetID: DisambiguatedTarget>(
             minimumCapacity: targets.count
         )
         for (id, target) in targets {
@@ -256,7 +256,7 @@ private extension Target {
         return [
             platform.arch,
             platform.minimumOsVersion,
-            platform.environment ?? "Device",
+            platform.environment ?? "Device"
         ].joined(separator: "-")
     }
 }
