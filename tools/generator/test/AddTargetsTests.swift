@@ -15,6 +15,7 @@ final class AddTargetsTests: XCTestCase {
         let expectedMainGroup = expectedPBXProj.rootObject!.mainGroup!
 
         let xcodeprojBazelLabel = "//:project"
+        let xcodeprojConfiguration = "1234zyx"
         let targets = Fixtures.targets
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
@@ -38,11 +39,13 @@ final class AddTargetsTests: XCTestCase {
 
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: pbxProj,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            xcodeprojBazelLabel: xcodeprojBazelLabel,
+            xcodeprojConfiguration: xcodeprojConfiguration
         )
         let expectedBazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: expectedPBXProj,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            xcodeprojBazelLabel: xcodeprojBazelLabel,
+            xcodeprojConfiguration: xcodeprojConfiguration
         )
 
         let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)

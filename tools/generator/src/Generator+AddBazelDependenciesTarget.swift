@@ -28,7 +28,8 @@ env -i \
         buildMode: BuildMode,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String
+        xcodeprojBazelLabel: String,
+        xcodeprojConfiguration: String
     ) throws -> PBXAggregateTarget? {
         guard
             files.containsExternalFiles || files.containsGeneratedFiles
@@ -61,7 +62,8 @@ env -i \
             buildMode: buildMode,
             files: files,
             filePathResolver: filePathResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            xcodeprojBazelLabel: xcodeprojBazelLabel,
+            xcodeprojConfiguration: xcodeprojConfiguration
         )
 
         let copyFilesScript = try createCopyFilesScript(
@@ -110,7 +112,8 @@ env -i \
         buildMode: BuildMode,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String
+        xcodeprojBazelLabel: String,
+        xcodeprojConfiguration: String
     ) throws -> PBXShellScriptBuildPhase {
         let hasGeneratedFiles = files.containsGeneratedFiles
 
@@ -145,7 +148,8 @@ env -i \
             ),
             bazelBuildCommand(
                 buildMode: buildMode,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                xcodeprojBazelLabel: xcodeprojBazelLabel,
+                xcodeprojConfiguration: xcodeprojConfiguration
             ),
         ].compactMap { $0 }.joined(separator: "\n\n")
 
@@ -234,7 +238,8 @@ ln -sfn "$PROJECT_DIR" SRCROOT
 
     private static func bazelBuildCommand(
         buildMode: BuildMode,
-        xcodeprojBazelLabel: String
+        xcodeprojBazelLabel: String,
+        xcodeprojConfiguration: String
     ) -> String {
         let createAdditionalOutputGroups: String
         let useAdditionalOutputGroups: String
@@ -269,7 +274,7 @@ date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
   build \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
-  --output_groups=generated_inputs \
+  '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
 \#(useAdditionalOutputGroups)\#
   \#(xcodeprojBazelLabel)
 

@@ -12,6 +12,7 @@ final class GeneratorTests: XCTestCase {
         let project = Project(
             name: "P",
             label: "//a/P:xcodeproj",
+            configuration: "abc123",
             buildSettings: [:],
             targets: Fixtures.targets,
             targetMerges: [:],
@@ -267,6 +268,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
             let xcodeprojBazelLabel: String
+            let xcodeprojConfiguration: String
         }
 
         var addBazelDependenciesTargetCalled: [AddBazelDependenciesTargetCalled]
@@ -276,14 +278,16 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             buildMode: BuildMode,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
-            xcodeprojBazelLabel: String
+            xcodeprojBazelLabel: String,
+            xcodeprojConfiguration: String
         ) throws -> PBXAggregateTarget? {
             addBazelDependenciesTargetCalled.append(.init(
                 pbxProj: pbxProj,
                 buildMode: buildMode,
                 files: files,
                 filePathResolver: filePathResolver,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                xcodeprojBazelLabel: xcodeprojBazelLabel,
+                xcodeprojConfiguration: xcodeprojConfiguration
             ))
             return bazelDependenciesTarget
         }
@@ -294,7 +298,8 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
                 buildMode: buildMode,
                 files: files,
                 filePathResolver: filePathResolver,
-                xcodeprojBazelLabel: project.label
+                xcodeprojBazelLabel: project.label,
+                xcodeprojConfiguration: project.configuration
             ),
         ]
 

@@ -12,7 +12,7 @@ load(
     "get_product_module_name",
 )
 load(":collections.bzl", "set_if_true")
-load("configuration.bzl", "calculate_configuration", "get_configuration")
+load(":configuration.bzl", "calculate_configuration", "get_configuration")
 load(
     ":files.bzl",
     "join_paths_ignoring_empty",

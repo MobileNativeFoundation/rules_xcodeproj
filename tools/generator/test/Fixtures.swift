@@ -8,6 +8,7 @@ enum Fixtures {
     static let project = Project(
         name: "Bazel",
         label: "//:xcodeproj",
+        configuration: "z3y2z",
         buildSettings: [
             "ALWAYS_SEARCH_USER_PATHS": .bool(false),
             "COPY_PHASE_STRIP": .bool(false),
@@ -886,7 +887,8 @@ a/imported.a
 
     static func bazelDependenciesTarget(
         in pbxProj: PBXProj,
-        xcodeprojBazelLabel: String
+        xcodeprojBazelLabel: String,
+        xcodeprojConfiguration: String
     ) -> PBXAggregateTarget {
         let allPlatforms = """
 watchsimulator \
@@ -1008,7 +1010,7 @@ env -i \
   build \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
-  --output_groups=generated_inputs \
+  '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
   \#(xcodeprojBazelLabel)
 
 """#,
@@ -1415,7 +1417,8 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: pbxProj,
-            xcodeprojBazelLabel: ""
+            xcodeprojBazelLabel: "//:xcodeproj",
+            xcodeprojConfiguration: "xyz321"
         )
 
         let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)

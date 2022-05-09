@@ -4,6 +4,7 @@ import XcodeProj
 struct Project: Equatable, Decodable {
     let name: String
     let label: String
+    let configuration: String
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
     let targetMerges: [TargetID: Set<TargetID>]
