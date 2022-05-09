@@ -151,11 +151,18 @@ env -i \
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
                 xcodeprojConfiguration: xcodeprojConfiguration
             ),
-        ].compactMap { $0 }.joined(separator: "\n\n")
+            try createCheckGeneratedFilesCommand(
+                xcodeprojBazelLabel: xcodeprojBazelLabel,
+                xcodeprojConfiguration: xcodeprojConfiguration,
+                hasGeneratedFiles: hasGeneratedFiles,
+                filePathResolver: filePathResolver
+            ),
+        ].compactMap { $0 }.joined(separator: "\n")
 
         let script = PBXShellScriptBuildPhase(
             name: name,
             outputFileListPaths: outputFileListPaths,
+            shellPath: "/bin/bash",
             shellScript: shellScript,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
@@ -233,6 +240,7 @@ rm -rf real-bazel-out
 ln -sf "$external" external
 ln -sf "$output_path" real-bazel-out
 ln -sfn "$PROJECT_DIR" SRCROOT
+
 """#
     }
 
@@ -307,6 +315,45 @@ sed 's|\/[^\/]*$||' \
 do
   mkdir -p "$dir"
 done
+
+"""#
+    }
+
+    private static func createCheckGeneratedFilesCommand(
+        xcodeprojBazelLabel: String,
+        xcodeprojConfiguration: String,
+        hasGeneratedFiles: Bool,
+        filePathResolver: FilePathResolver
+    ) throws -> String? {
+        guard hasGeneratedFiles else {
+            return nil
+        }
+
+        var packageDirectory = xcodeprojBazelLabel.split(separator: ":")[0]
+        packageDirectory = packageDirectory[
+            packageDirectory.index(packageDirectory.startIndex, offsetBy: 2)...
+        ]
+
+        let rsynclist = try filePathResolver
+            .resolve(.internal(rsyncFileListPath), mode: .script)
+        let filelist = #"""
+$BAZEL_OUT/\#(xcodeprojConfiguration)/bin/\#(packageDirectory)/generated_inputs \#(xcodeprojConfiguration).filelist
+"""#
+
+        return #"""
+if ! sed -e 's|^|bazel-out/|' "\#(rsynclist)" | sort | cmp -s \#
+<(sort "\#(filelist)")
+then
+  echo "error: The files that Bazel generated don't match what the project \#
+expects. Please regenerate the project. If your bazel version is less than \#
+5.2, you may need to \`bazel clean\` and \`bazel shutdown\` to work around a \#
+bug in project generation. If you still are getting this error, please file a \#
+bug report here: \#
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \#
+>&2
+  exit 1
+fi
+
 """#
     }
 
