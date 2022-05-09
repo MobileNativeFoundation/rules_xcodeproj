@@ -287,7 +287,7 @@ def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
     return {
         name: depset([output_group_map.write_map(
             ctx = ctx,
-            name = name.replace("/", "_").replace(" ", "_"),
+            name = name.replace("/", "_"),
             files = files,
             toplevel_cache_buster = toplevel_cache_buster,
         )])
