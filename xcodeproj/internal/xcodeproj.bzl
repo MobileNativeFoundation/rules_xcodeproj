@@ -4,6 +4,7 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load(":collections.bzl", "uniq")
 load(":files.bzl", "file_path", "file_path_to_dto")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
@@ -183,41 +184,62 @@ def _write_installer(
 
 # Transition
 
-def _xcodeproj_transition_impl(settings, attr):
-    """Transition that applies command-line settings for the xcodeproj rule."""
-    features = settings.get("//command_line_option:features", [])
+def make_xcodeproj_transition(
+        implementation = None,
+        inputs = [],
+        outputs = []):
+    def _xcodeproj_transition_impl(settings, attr):
+        """Transition that applies command-line settings for the xcodeproj rule."""
 
-    if attr.build_mode == "bazel":
-        archived_bundles_allowed = attr.archived_bundles_allowed
-        features = [
-            "oso_prefix_is_pwd",
-            "relative_ast_path",
-        ] + features
-    else:
-        archived_bundles_allowed = True
+        # Apply the other transition first
+        if implementation:
+            outputs = implementation(settings, attr)
+            new_settings = outputs
+        else:
+            outputs = {}
+            new_settings = settings
 
-    return {
-        "//command_line_option:compilation_mode": "dbg",
-        "//command_line_option:features": features,
-        "//xcodeproj/internal:archived_bundles_allowed": (
-            archived_bundles_allowed
-        ),
-        "//xcodeproj/internal:build_mode": attr.build_mode,
-    }
+        features = new_settings.get("//command_line_option:features", [])
 
-_xcodeproj_transition = transition(
-    implementation = _xcodeproj_transition_impl,
-    inputs = [
-        "//command_line_option:compilation_mode",
-        "//command_line_option:features",
-    ],
-    outputs = [
-        "//command_line_option:compilation_mode",
-        "//command_line_option:features",
-        "//xcodeproj/internal:archived_bundles_allowed",
-        "//xcodeproj/internal:build_mode",
-    ],
-)
+        if attr.build_mode == "bazel":
+            archived_bundles_allowed = attr.archived_bundles_allowed
+            features = [
+                "oso_prefix_is_pwd",
+                "relative_ast_path",
+            ] + features
+        else:
+            archived_bundles_allowed = True
+
+        outputs.update({
+            "//command_line_option:compilation_mode": "dbg",
+            "//command_line_option:features": features,
+            "//xcodeproj/internal:archived_bundles_allowed": (
+                archived_bundles_allowed
+            ),
+            "//xcodeproj/internal:build_mode": attr.build_mode,
+        })
+        return outputs
+
+    merged_inputs = uniq(
+        inputs + [
+            "//command_line_option:compilation_mode",
+            "//command_line_option:features",
+        ],
+    )
+    merged_outputs = uniq(
+        outputs + [
+            "//command_line_option:compilation_mode",
+            "//command_line_option:features",
+            "//xcodeproj/internal:archived_bundles_allowed",
+            "//xcodeproj/internal:build_mode",
+        ],
+    )
+
+    return transition(
+        implementation = _xcodeproj_transition_impl,
+        inputs = merged_inputs,
+        outputs = merged_outputs,
+    )
 
 # Rule
 
@@ -303,7 +325,6 @@ def make_xcodeproj_rule(*, transition = None):
         ),
         "project_name": attr.string(),
         "targets": attr.label_list(
-            cfg = transition,
             mandatory = True,
             allow_empty = False,
             aspects = [xcodeproj_aspect],
@@ -350,15 +371,10 @@ def make_xcodeproj_rule(*, transition = None):
         ),
     }
 
-    if transition:
-        attrs["_allowlist_function_transition"] = attr.label(
-            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
-        )
-
     return rule(
         implementation = _xcodeproj_impl,
         attrs = attrs,
-        cfg = _xcodeproj_transition,
+        cfg = transition if transition else make_xcodeproj_transition(),
         executable = True,
     )
 
