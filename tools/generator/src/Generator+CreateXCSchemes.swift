@@ -115,17 +115,29 @@ extension Generator {
         buildableReference: XCScheme.BuildableReference
     ) -> [XCScheme.ExecutionAction] {
         guard
-            buildMode.usesBazelModeBuildScripts && pbxTarget is PBXNativeTarget
+            buildMode.usesBazelModeBuildScripts
         else {
             return []
         }
 
-        return [XCScheme.ExecutionAction(
-            scriptText: #"""
+        let scriptText: String
+        if pbxTarget is PBXNativeTarget {
+            scriptText = #"""
 mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
 echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 
-"""#,
+"""#
+        } else {
+            scriptText = #"""
+if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
+    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+fi
+
+"""#
+        }
+
+        return [XCScheme.ExecutionAction(
+            scriptText: scriptText,
             title: "Set Bazel Build Output Groups",
             environmentBuildable: buildableReference
         )]
