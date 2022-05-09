@@ -24,9 +24,11 @@ extension Generator {
         var names: [String: TargetComponents] = [:]
         var labels: [String: TargetComponents] = [:]
         for target in targets.values {
-            labelsByName[target.name, default: []].insert(target.label)
-            names[target.name, default: .init()].add(target: target)
-            labels[target.label, default: .init()].add(target: target)
+            let normalizedName = target.normalizedName
+            let normalizedLabel = target.normalizedLabel
+            labelsByName[normalizedName, default: []].insert(normalizedLabel)
+            names[normalizedName, default: .init()].add(target: target)
+            labels[normalizedLabel, default: .init()].add(target: target)
         }
 
         // And then distinguish them
@@ -35,17 +37,22 @@ extension Generator {
         )
         for (id, target) in targets {
             let name: String
+            let componentKey: String
             let components: [String: TargetComponents]
-            if labelsByName[target.name]!.count == 1 {
+            let normalizedName = target.normalizedName
+            if labelsByName[normalizedName]!.count == 1 {
                 name = target.name
+                componentKey = normalizedName
                 components = names
             } else {
                 name = target.label
+                componentKey = target.normalizedLabel
                 components = labels
             }
 
             uniqueValues[id] = DisambiguatedTarget(
-                name: components[name]!.uniqueName(for: target, baseName: name),
+                name: components[componentKey]!
+                    .uniqueName(for: target, baseName: name),
                 target: target
             )
         }

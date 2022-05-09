@@ -23,12 +23,23 @@ final class DisambiguateTargetsTests: XCTestCase {
                 label: "//a:B",
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
+            // The following targets only differ by case
+            "C 1": Target.mock(
+                label: "//c:A",
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "C 2": Target.mock(
+                label: "//c:a",
+                product: .init(type: .application, name: "a", path: "")
+            ),
         ]
         let expectedTargetNames: [TargetID: String] = [
             "A 1": "//a:A",
             "A 2": "//b:A (App)",
             "A 3": "//b:A (Library)",
             "B": "B",
+            "C 1": "//c:A (Library)",
+            "C 2": "//c:a (App)",
         ]
 
         // Act
@@ -60,11 +71,20 @@ final class DisambiguateTargetsTests: XCTestCase {
             "B": Target.mock(
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
+            // The following targets only differ by case
+            "C 1": Target.mock(
+                product: .init(type: .staticLibrary, name: "C", path: "")
+            ),
+            "C 2": Target.mock(
+                product: .init(type: .application, name: "c", path: "")
+            ),
         ]
         let expectedTargetNames: [TargetID: String] = [
             "A 1": "A (Library)",
             "A 2": "A (App)",
             "B": "B",
+            "C 1": "C (Library)",
+            "C 2": "c (App)",
         ]
 
         // Act
