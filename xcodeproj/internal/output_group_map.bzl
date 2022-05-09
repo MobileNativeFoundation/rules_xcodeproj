@@ -129,9 +129,10 @@ def _write_map(*, ctx, name, files, toplevel_cache_buster):
 
     ctx.actions.run_shell(
         command = """
+set -euo pipefail
 readonly output="$1"
 shift
-cat $@ > "$output"
+cat "$@" > "$output"
 """,
         arguments = [
             output.path,
