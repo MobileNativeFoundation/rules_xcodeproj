@@ -653,7 +653,7 @@ rsync \
   -L \
   --out-format="%n%L" \
   "$OBJECT_FILE_DIR-normal/$ARCHS" \
-  | tee "$log"
+  | tee -i "$log"
 if [[ -s "$log" ]]; then
   touch "$DERIVED_FILE_DIR/\#(Generator.bazelForcedSwiftCompilePath)"
 fi
