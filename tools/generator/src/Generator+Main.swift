@@ -23,7 +23,8 @@ extension Generator {
                 internalDirectoryName: "rules_xcodeproj",
                 bazelIntegrationDirectory: arguments.bazelIntegrationDirectory,
                 workspaceOutputPath: arguments.workspaceOutputPath,
-                outputPath: arguments.outputPath
+                outputPath: arguments.outputPath,
+                automaticSigningTeamId: arguments.automaticSigningTeamId
             )
         } catch {
             logger.logError(error.localizedDescription)
@@ -39,20 +40,23 @@ extension Generator {
         let workspaceOutputPath: Path
         let projectRootDirectory: Path
         let buildMode: BuildMode
+        let automaticSigningTeamId: String
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard CommandLine.arguments.count == 7 else {
+        guard CommandLine.arguments.count == 8 else {
             throw UsageError(message: """
 Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
 <path/to/xccurrentversions.json> <path/to/bazel/integration/dir> \
 <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
-(xcode|bazel)
+(xcode|bazel) (teamId)
 """)
         }
 
         let workspaceOutput = CommandLine.arguments[5]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
+
+        let teamId = CommandLine.arguments[7]
 
         // Generate a relative path to the project root
         // e.g. "examples/ios/iOS App.xcodeproj" -> "../.."
@@ -76,7 +80,8 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             outputPath: Path(CommandLine.arguments[4]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
-            buildMode: buildMode
+            buildMode: buildMode,
+            automaticSigningTeamId: teamId
         )
     }
 

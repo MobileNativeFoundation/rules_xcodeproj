@@ -44,7 +44,8 @@ class Generator {
         internalDirectoryName: String,
         bazelIntegrationDirectory: Path,
         workspaceOutputPath: Path,
-        outputPath: Path
+        outputPath: Path,
+        automaticSigningTeamId: String? = nil
     ) throws {
         let filePathResolver = FilePathResolver(
             internalDirectoryName: internalDirectoryName,
@@ -55,7 +56,8 @@ class Generator {
             buildMode,
             project,
             projectRootDirectory,
-            filePathResolver
+            filePathResolver,
+            automaticSigningTeamId
         )
         guard let pbxProject = pbxProj.rootObject else {
             throw PreconditionError(message: """

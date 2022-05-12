@@ -10,7 +10,8 @@ struct Environment {
         _ buildMode: BuildMode,
         _ project: Project,
         _ projectRootDirectory: Path,
-        _ filePathResolver: FilePathResolver
+        _ filePathResolver: FilePathResolver,
+        _ automaticSigningTeamId: String?
     ) -> PBXProj
 
     let processTargetMerges: (

@@ -133,7 +133,8 @@ def _write_xcodeproj(
         spec_file,
         bazel_integration_files,
         xccurrentversions_file,
-        build_mode):
+        build_mode,
+        automatic_signing_team_id):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
     )
@@ -152,6 +153,7 @@ def _write_xcodeproj(
     args.add(xcodeproj.path)
     args.add(install_path)
     args.add(build_mode)
+    args.add(automatic_signing_team_id)
 
     ctx.actions.run(
         executable = ctx.executable._generator,
@@ -281,6 +283,7 @@ def _xcodeproj_impl(ctx):
         xccurrentversions_file = xccurrentversions_file,
         bazel_integration_files = ctx.files._bazel_integration_files,
         build_mode = ctx.attr.build_mode,
+        automatic_signing_team_id = ctx.attr.automatic_signing_team_id,
     )
     installer = _write_installer(
         ctx = ctx,
@@ -340,6 +343,9 @@ def make_xcodeproj_rule(*, transition = None):
             allow_empty = True,
             allow_files = True,
             doc = "For internal use only. Do not set this value yourself.",
+        ),
+        "automatic_signing_team_id": attr.string(
+            mandatory = False,
         ),
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",

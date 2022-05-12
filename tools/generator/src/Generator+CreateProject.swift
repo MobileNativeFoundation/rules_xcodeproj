@@ -10,7 +10,8 @@ extension Generator {
         buildMode: BuildMode,
         project: Project,
         projectRootDirectory: Path,
-        filePathResolver: FilePathResolver
+        filePathResolver: FilePathResolver,
+        automaticSigningTeamId: String? = nil
     ) -> PBXProj {
         let pbxProj = PBXProj()
 
@@ -55,6 +56,10 @@ $(BUILD_DIR)/bazel_build_output_groups
 
         if buildMode.requiresLLDBInit {
             buildSettings["BAZEL_LLDB_INIT"] = "$(BUILD_DIR)/bazel.lldbinit"
+        }
+        
+        if automaticSigningTeamId?.isEmpty == false {
+            buildSettings["DEVELOPMENT_TEAM"] = automaticSigningTeamId
         }
 
         let debugConfiguration = XCBuildConfiguration(

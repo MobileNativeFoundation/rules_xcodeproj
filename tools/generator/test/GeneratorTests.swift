@@ -35,6 +35,7 @@ final class GeneratorTests: XCTestCase {
         let workspaceOutputPath: Path = "P.xcodeproj"
         let bazelIntegrationDirectory: Path = "stubs"
         let outputPath: Path = "P.xcodeproj"
+        let automaticSigningTeamId: String = "ABCDEFG"
 
         let filePathResolver = FilePathResolver(
             internalDirectoryName: internalDirectoryName,
@@ -89,6 +90,7 @@ final class GeneratorTests: XCTestCase {
             let project: Project
             let projectRootDirectory: Path
             let filePathResolver: FilePathResolver
+            let automaticSigningTeamId: String?
         }
 
         var createProjectCalled: [CreateProjectCalled] = []
@@ -96,13 +98,15 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             project: Project,
             projectRootDirectory: Path,
-            filePathResolver: FilePathResolver
+            filePathResolver: FilePathResolver,
+            automaticSigningTeamId: String?
         ) -> PBXProj {
             createProjectCalled.append(.init(
                 buildMode: buildMode,
                 project: project,
                 projectRootDirectory: projectRootDirectory,
-                filePathResolver: filePathResolver
+                filePathResolver: filePathResolver,
+                automaticSigningTeamId: automaticSigningTeamId
             ))
             return pbxProj
         }
@@ -111,7 +115,8 @@ final class GeneratorTests: XCTestCase {
             buildMode: buildMode,
             project: project,
             projectRootDirectory: projectRootDirectory,
-            filePathResolver: filePathResolver
+            filePathResolver: filePathResolver,
+            automaticSigningTeamId: automaticSigningTeamId
         )]
 
         // MARK: processTargetMerges()
