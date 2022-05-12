@@ -80,6 +80,22 @@ extension Generator {
             runnable: buildableProductRunnable,
             buildConfiguration: buildConfigurationName,
             macroExpansion: macroExpansion,
+            environmentVariables: [
+                .init(
+                    variable: "BAZEL_WORKSPACE_DIRECTORY",
+                    value: "$(SRCROOT)",
+                    enabled: true
+                ),
+                .init(
+                    variable: "BAZEL_WORKING_DIRECTORY",
+                    // This is a poor substitute for the working directory. 
+                    // Preferably, it would be $(PWD) or something similar.
+                    // Unfortunately, none of the following worked:
+                    //   $(PWD), $PWD, ${PWD}, \$(pwd), $\(pwd\)
+                    value: "$(SRCROOT)",
+                    enabled: true
+                )
+            ],
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
