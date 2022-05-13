@@ -80,7 +80,7 @@ extension Generator {
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
             testables: testables,
-            shouldUseLaunchSchemeArgsEnv: testEnvVars == nil ? true : false,
+            shouldUseLaunchSchemeArgsEnv: testEnvVars == nil,
             environmentVariables: testEnvVars,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
