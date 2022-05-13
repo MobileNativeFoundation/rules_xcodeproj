@@ -139,6 +139,7 @@ Was unable to merge "\(srcTarget.label) \
         )
 
         let schemes = try environment.createXCSchemes(
+            project,
             buildMode,
             filePathResolver,
             pbxTargets

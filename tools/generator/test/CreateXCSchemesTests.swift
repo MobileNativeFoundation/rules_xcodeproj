@@ -11,6 +11,17 @@ class CreateXCSchemesTests: XCTestCase {
         case none
     }
 
+    let project = Project(
+        name: "MyProject",
+        label: "",
+        configuration: "",
+        buildSettings: [:],
+        targets: [:],
+        targetMerges: [:],
+        invalidTargetMerges: [:],
+        extraFiles: []
+    )
+
     let filePathResolver = FilePathResolver(
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
@@ -81,21 +92,21 @@ class CreateXCSchemesTests: XCTestCase {
         case .set:
             expectedBuildPreActions = [.init(
                 scriptText: #"""
-mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+                mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
+                echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 
-"""#,
+                """#,
                 title: "Set Bazel Build Output Groups",
                 environmentBuildable: expectedBuildableReference
             )]
         case .remove:
             expectedBuildPreActions = [.init(
                 scriptText: #"""
-if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
-    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-fi
+                if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
+                    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+                fi
 
-"""#,
+                """#,
                 title: "Set Bazel Build Output Groups",
                 environmentBuildable: expectedBuildableReference
             )]
@@ -265,6 +276,7 @@ fi
 
     func test_createXCSchemes_withNoTargets() throws {
         let schemes = try Generator.createXCSchemes(
+            project: project,
             buildMode: .xcode,
             filePathResolver: filePathResolver,
             pbxTargets: [:]
@@ -275,6 +287,7 @@ fi
 
     func test_createXCSchemes_withTargets_xcode() throws {
         let schemes = try Generator.createXCSchemes(
+            project: project,
             buildMode: .xcode,
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargetsDict
@@ -334,6 +347,7 @@ fi
 
     func test_createXCSchemes_withTargets_bazel() throws {
         let schemes = try Generator.createXCSchemes(
+            project: project,
             buildMode: .bazel,
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargetsDict

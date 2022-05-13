@@ -4,6 +4,7 @@ import XcodeProj
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
+        project: Project,
         buildMode: BuildMode,
         filePathResolver: FilePathResolver,
         pbxTargets: [TargetID: PBXTarget]
@@ -11,6 +12,7 @@ extension Generator {
         let referencedContainer = filePathResolver.containerReference
         return try pbxTargets.map { _, pbxTarget in
             try createXCScheme(
+                project: project,
                 buildMode: buildMode,
                 referencedContainer: referencedContainer,
                 pbxTarget: pbxTarget
@@ -24,6 +26,7 @@ extension Generator {
 
     /// Creates an `XCScheme` for the specified target.
     private static func createXCScheme(
+        project: Project,
         buildMode: BuildMode,
         referencedContainer: String,
         pbxTarget: PBXTarget
@@ -75,8 +78,8 @@ extension Generator {
             testables: testables,
             environmentVariables: buildMode.usesBazelEnvironmentVariables ?
                 pbxTarget.productType?.createBazelTestEnvironmentVariables(
-                    // TODO(chuck): FIX ME!
-                    workspaceName: "FOO"
+                    // TODO(chuck): This should be the workspace name, not the project name.
+                    workspaceName: project.name
                 ) : nil,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
