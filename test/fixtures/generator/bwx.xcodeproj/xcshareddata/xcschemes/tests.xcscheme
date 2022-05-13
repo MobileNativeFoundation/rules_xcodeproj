@@ -39,6 +39,18 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -59,6 +71,18 @@
             ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"

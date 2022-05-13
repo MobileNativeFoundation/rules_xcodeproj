@@ -48,6 +48,18 @@
       customLLDBInitFile = "$(BAZEL_LLDB_INIT)">
       <Testables>
       </Testables>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -70,6 +82,18 @@
             ReferencedContainer = "container:test/fixtures/cc/bwb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"

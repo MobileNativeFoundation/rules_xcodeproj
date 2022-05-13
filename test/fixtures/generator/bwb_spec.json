@@ -220,6 +220,7 @@
                     "tools/generator/test/FilePathResolverTests.swift",
                     "tools/generator/test/Fixtures.swift",
                     "tools/generator/test/GeneratorTests.swift",
+                    "tools/generator/test/PBXProductType+ExtensionsTests.swift",
                     "tools/generator/test/PBXProj+Testing.swift",
                     "tools/generator/test/PBXTarget+ExtensionsTests.swift",
                     "tools/generator/test/PBXTargets+ExtensionsTests.swift",
@@ -230,6 +231,7 @@
                     "tools/generator/test/SetTargetDependenciesTests.swift",
                     "tools/generator/test/Target+ExtensionsTests.swift",
                     "tools/generator/test/Target+Testing.swift",
+                    "tools/generator/test/XCSchemeEnvironmentVariablesExtensionsTests.swift",
                     "tools/generator/test/XcodeProj+CustomDump.swift"
                 ]
             },
@@ -505,7 +507,8 @@
                     "tools/generator/src/Sorting.swift",
                     "tools/generator/src/Target+Extensions.swift",
                     "tools/generator/src/TargetID.swift",
-                    "tools/generator/src/XCCurrentVersion.swift"
+                    "tools/generator/src/XCCurrentVersion.swift",
+                    "tools/generator/src/XCSchemeEnvrionmentVariables+Extensions.swift"
                 ]
             },
             "is_swift": true,

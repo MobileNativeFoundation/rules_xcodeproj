@@ -73,6 +73,11 @@ extension Generator {
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
             testables: testables,
+            environmentVariables: pbxTarget.productType?
+                .createBazelTestEnvironmentVariables(
+                    // TODO(chuck): FIX ME!
+                    workspaceName: "FOO"
+                ),
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
@@ -82,22 +87,6 @@ extension Generator {
             macroExpansion: macroExpansion,
             environmentVariables: pbxTarget.productType?
                 .bazelLaunchEnvironmentVariables,
-            // environmentVariables: [
-            //     .init(
-            //         variable: "BUILD_WORKSPACE_DIRECTORY",
-            //         value: "$(SRCROOT)",
-            //         enabled: true
-            //     ),
-            //     .init(
-            //         variable: "BUILD_WORKING_DIRECTORY",
-            //         // This is a poor substitute for the working directory. 
-            //         // Preferably, it would be $(PWD) or something similar.
-            //         // Unfortunately, none of the following worked:
-            //         //   $(PWD), $PWD, ${PWD}, \$(pwd), $\(pwd\)
-            //         value: "$(SRCROOT)",
-            //         enabled: true
-            //     )
-            // ],
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
@@ -159,68 +148,5 @@ fi
             title: "Set Bazel Build Output Groups",
             environmentBuildable: buildableReference
         )]
-    }
-}
-
-// extension [XCScheme.EnvironmentVariable] {
-extension Array where Element == XCScheme.EnvironmentVariable {
-
-    /// For more information:
-    /// https://docs.bazel.build/versions/main/user-manual.html#run
-    static let bazelLaunchVariables: [XCScheme.EnvironmentVariable] = [
-        .init(
-            variable: "BUILD_WORKSPACE_DIRECTORY",
-            value: "$(SRCROOT)",
-            enabled: true
-        ),
-        .init(
-            variable: "BUILD_WORKING_DIRECTORY",
-            // This is a poor substitute for the working directory. 
-            // Preferably, it would be $(PWD) or something similar.
-            // Unfortunately, none of the following worked:
-            //   $(PWD), $PWD, ${PWD}, \$(pwd), $\(pwd\)
-            value: "$(SRCROOT)",
-            enabled: true
-        )
-    ]
-
-    // static let bazelTest: [XCScheme.EnvironmentVariable] = [
-    // ]
-
-    /// For more information:
-    /// https://bazel.build/reference/test-encyclopedia#initial-conditions
-    static func createBazelTestVariables(workspaceName: String) -> [XCScheme.EnvironmentVariable] {
-        // TODO(chuck): Add other TEST_XXX variables
-        return [
-            .init(
-                variable: "TEST_SRCDIR",
-                // TODO(chuck): Confirm this value
-                value: "$(SRCROOT)",
-                enabled: true
-            ),
-            .init(
-                variable: "TEST_WORKSPACE",
-                value: workspaceName,
-                enabled: true
-            )
-        ]
-    }
-    
-}
-
-extension PBXProductType {
-
-    var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
-        return isLaunchable ? .bazelLaunchVariables : nil
-    }
-
-    func createBazelTestEnvironmentVariables(workspaceName: String) -> [XCScheme.EnvironmentVariable]? {
-        if isLaunchable {
-            return .bazelLaunchVariables
-        }
-        if isTestBundle {
-            return .createBazelTestVariables(workspaceName: workspaceName)
-        }
-        return nil
     }
 }
