@@ -80,22 +80,24 @@ extension Generator {
             runnable: buildableProductRunnable,
             buildConfiguration: buildConfigurationName,
             macroExpansion: macroExpansion,
-            environmentVariables: [
-                .init(
-                    variable: "BUILD_WORKSPACE_DIRECTORY",
-                    value: "$(SRCROOT)",
-                    enabled: true
-                ),
-                .init(
-                    variable: "BUILD_WORKING_DIRECTORY",
-                    // This is a poor substitute for the working directory. 
-                    // Preferably, it would be $(PWD) or something similar.
-                    // Unfortunately, none of the following worked:
-                    //   $(PWD), $PWD, ${PWD}, \$(pwd), $\(pwd\)
-                    value: "$(SRCROOT)",
-                    enabled: true
-                )
-            ],
+            environmentVariables: pbxTarget.productType?
+                .bazelLaunchEnvironmentVariables,
+            // environmentVariables: [
+            //     .init(
+            //         variable: "BUILD_WORKSPACE_DIRECTORY",
+            //         value: "$(SRCROOT)",
+            //         enabled: true
+            //     ),
+            //     .init(
+            //         variable: "BUILD_WORKING_DIRECTORY",
+            //         // This is a poor substitute for the working directory. 
+            //         // Preferably, it would be $(PWD) or something similar.
+            //         // Unfortunately, none of the following worked:
+            //         //   $(PWD), $PWD, ${PWD}, \$(pwd), $\(pwd\)
+            //         value: "$(SRCROOT)",
+            //         enabled: true
+            //     )
+            // ],
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
@@ -158,4 +160,71 @@ fi
             environmentBuildable: buildableReference
         )]
     }
+}
+
+// extension [XCScheme.EnvironmentVariable] {
+extension Array where Element == XCScheme.EnvironmentVariable {
+
+    /// For more information:
+    /// https://docs.bazel.build/versions/main/user-manual.html#run
+    static let bazelLaunchVariables: [XCScheme.EnvironmentVariable] = [
+        .init(
+            variable: "BUILD_WORKSPACE_DIRECTORY",
+            value: "$(SRCROOT)",
+            enabled: true
+        ),
+        .init(
+            variable: "BUILD_WORKING_DIRECTORY",
+            // This is a poor substitute for the working directory. 
+            // Preferably, it would be $(PWD) or something similar.
+            // Unfortunately, none of the following worked:
+            //   $(PWD), $PWD, ${PWD}, \$(pwd), $\(pwd\)
+            value: "$(SRCROOT)",
+            enabled: true
+        )
+    ]
+
+    // static let bazelTest: [XCScheme.EnvironmentVariable] = [
+    // ]
+
+    /// For more information:
+    /// https://bazel.build/reference/test-encyclopedia#initial-conditions
+    static func createBazelTestVariables(workspaceName: String) -> [XCScheme.EnvironmentVariable] {
+        // TODO(chuck): Add other TEST_XXX variables
+        return [
+            .init(
+                variable: "TEST_SRCDIR",
+                // TODO(chuck): Confirm this value
+                value: "$(SRCROOT)",
+                enabled: true
+            ),
+            .init(
+                variable: "TEST_WORKSPACE",
+                value: workspaceName,
+                enabled: true
+            )
+        ]
+    }
+    
+}
+
+extension PBXProductType {
+
+    var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
+        guard isLaunchable else {
+          return nil
+        }
+        return .bazelLaunchVariables
+    }
+
+    // func getBazelEnvironmentVariables(workspaceName: String) -> [XCScheme.EnvironmentVariable]? {
+    //     if isLaunchable {
+    //         return .bazelLaunch
+    //     }
+    //     if isTestBundle {
+    //         return .createBazelTest(workspaceName: workspaceName)
+    //     }
+    //     return nil
+    // }
+    
 }
