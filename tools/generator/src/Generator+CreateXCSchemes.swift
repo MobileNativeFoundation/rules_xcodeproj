@@ -211,20 +211,16 @@ extension Array where Element == XCScheme.EnvironmentVariable {
 extension PBXProductType {
 
     var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
-        guard isLaunchable else {
-          return nil
-        }
-        return .bazelLaunchVariables
+        return isLaunchable ? .bazelLaunchVariables : nil
     }
 
-    // func getBazelEnvironmentVariables(workspaceName: String) -> [XCScheme.EnvironmentVariable]? {
-    //     if isLaunchable {
-    //         return .bazelLaunch
-    //     }
-    //     if isTestBundle {
-    //         return .createBazelTest(workspaceName: workspaceName)
-    //     }
-    //     return nil
-    // }
-    
+    func createBazelTestEnvironmentVariables(workspaceName: String) -> [XCScheme.EnvironmentVariable]? {
+        if isLaunchable {
+            return .bazelLaunchVariables
+        }
+        if isTestBundle {
+            return .createBazelTestVariables(workspaceName: workspaceName)
+        }
+        return nil
+    }
 }
