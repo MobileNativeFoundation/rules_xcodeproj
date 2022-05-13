@@ -222,12 +222,8 @@ extension PBXProductType {
     func createBazelTestEnvironmentVariables(
         workspaceName: String
     ) -> [XCScheme.EnvironmentVariable]? {
-        if isLaunchable {
-            return .bazelLaunchVariables
-        }
-        if isTestBundle {
-            return .createBazelTestVariables(workspaceName: workspaceName)
-        }
-        return nil
+        return isTestBundle ?
+            .createBazelTestVariables(workspaceName: workspaceName) :
+            nil
     }
 }
