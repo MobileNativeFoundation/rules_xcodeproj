@@ -82,12 +82,12 @@ extension Generator {
             macroExpansion: macroExpansion,
             environmentVariables: [
                 .init(
-                    variable: "BAZEL_WORKSPACE_DIRECTORY",
+                    variable: "BUILD_WORKSPACE_DIRECTORY",
                     value: "$(SRCROOT)",
                     enabled: true
                 ),
                 .init(
-                    variable: "BAZEL_WORKING_DIRECTORY",
+                    variable: "BUILD_WORKING_DIRECTORY",
                     // This is a poor substitute for the working directory. 
                     // Preferably, it would be $(PWD) or something similar.
                     // Unfortunately, none of the following worked:
