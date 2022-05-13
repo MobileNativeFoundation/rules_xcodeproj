@@ -73,11 +73,11 @@ extension Generator {
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
             testables: testables,
-            environmentVariables: pbxTarget.productType?
-                .createBazelTestEnvironmentVariables(
+            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
+                pbxTarget.productType?.createBazelTestEnvironmentVariables(
                     // TODO(chuck): FIX ME!
                     workspaceName: "FOO"
-                ),
+                ) : nil,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
@@ -85,8 +85,8 @@ extension Generator {
             runnable: buildableProductRunnable,
             buildConfiguration: buildConfigurationName,
             macroExpansion: macroExpansion,
-            environmentVariables: pbxTarget.productType?
-                .bazelLaunchEnvironmentVariables,
+            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
+                pbxTarget.productType?.bazelLaunchEnvironmentVariables : nil,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
