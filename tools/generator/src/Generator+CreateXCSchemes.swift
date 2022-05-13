@@ -72,14 +72,16 @@ extension Generator {
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
+        let testEnvVars = buildMode.usesBazelEnvironmentVariables ?
+            pbxTarget.productType?.createBazelTestEnvironmentVariables(
+                workspaceName: project.bazelWorkspaceName
+            ) : nil
         let testAction = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
             testables: testables,
-            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
-                pbxTarget.productType?.createBazelTestEnvironmentVariables(
-                    workspaceName: project.bazelWorkspaceName
-                ) : nil,
+            shouldUseLaunchSchemeArgsEnv: testEnvVars == nil ? true : false,
+            environmentVariables: testEnvVars,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
