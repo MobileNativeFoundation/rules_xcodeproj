@@ -13,14 +13,14 @@ class CreateXCSchemesTests: XCTestCase {
 
     let project = Project(
         name: "MyProject",
+        bazelWorkspaceName: "bazel_workspace",
         label: "",
         configuration: "",
         buildSettings: [:],
         targets: [:],
         targetMerges: [:],
         invalidTargetMerges: [:],
-        extraFiles: [],
-        bazelWorkspaceName: "bazel_workspace"
+        extraFiles: []
     )
 
     let filePathResolver = FilePathResolver(
