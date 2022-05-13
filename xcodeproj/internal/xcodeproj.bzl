@@ -75,7 +75,6 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 "invalid_target_merges":{invalid_target_merges},\
 "label":"{label}",\
 "name":"{name}",\
-"bazel_workspace_name":"{bazel_workspace_name}",\
 "target_merges":{target_merges},\
 "targets":{targets}\
 }}
