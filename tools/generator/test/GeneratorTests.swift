@@ -11,6 +11,7 @@ final class GeneratorTests: XCTestCase {
 
         let project = Project(
             name: "P",
+            bazelWorkspaceName: "bazel_workspace",
             label: "//a/P:xcodeproj",
             configuration: "abc123",
             buildSettings: [:],

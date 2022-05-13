@@ -3,6 +3,7 @@ import XcodeProj
 
 struct Project: Equatable, Decodable {
     let name: String
+    let bazelWorkspaceName: String
     let label: String
     let configuration: String
     let buildSettings: [String: BuildSetting]

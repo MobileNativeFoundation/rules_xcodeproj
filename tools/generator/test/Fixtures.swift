@@ -7,6 +7,7 @@ import XcodeProj
 enum Fixtures {
     static let project = Project(
         name: "Bazel",
+        bazelWorkspaceName: "bazel_workspace",
         label: "//:xcodeproj",
         configuration: "z3y2z",
         buildSettings: [

@@ -59,6 +59,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     spec_json = """\
 {{\
+"bazel_workspace_name":"{bazel_workspace_name}",\
 "build_settings":{{\
 "ALWAYS_SEARCH_USER_PATHS":false,\
 "BAZEL_PATH":"{bazel_path}",\
@@ -88,6 +89,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
         label = ctx.label,
         target_merges = target_merges_json,
         name = project_name,
+        bazel_workspace_name = ctx.workspace_name,
         targets = targets_json,
     )
 
