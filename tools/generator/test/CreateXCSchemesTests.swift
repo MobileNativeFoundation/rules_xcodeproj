@@ -19,7 +19,8 @@ class CreateXCSchemesTests: XCTestCase {
         targets: [:],
         targetMerges: [:],
         invalidTargetMerges: [:],
-        extraFiles: []
+        extraFiles: [],
+        bazelWorkspaceName: "bazel_workspace"
     )
 
     let filePathResolver = FilePathResolver(
@@ -28,6 +29,8 @@ class CreateXCSchemesTests: XCTestCase {
     )
     let pbxTargetsDict: [TargetID: PBXTarget] =
         Fixtures.pbxTargets(in: Fixtures.pbxProj(), targets: Fixtures.targets).0
+
+    // TODO(chuck): Add environment variable tests
 
     func assertScheme(
         schemesDict: [String: XCScheme],
