@@ -7,6 +7,7 @@ import XcodeProj
 enum Fixtures {
     static let project = Project(
         name: "Bazel",
+        bazelWorkspaceName: "bazel_workspace",
         label: "//:xcodeproj",
         configuration: "z3y2z",
         buildSettings: [
@@ -24,8 +25,7 @@ enum Fixtures {
             "a/c.h",
             "a/d/a.h",
             "a/module.modulemap",
-        ],
-        bazelWorkspaceName: "bazel_workspace"
+        ]
     )
 
     static let xccurrentversions: [XCCurrentVersion] = [

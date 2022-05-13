@@ -11,14 +11,14 @@ final class GeneratorTests: XCTestCase {
 
         let project = Project(
             name: "P",
+            bazelWorkspaceName: "bazel_workspace",
             label: "//a/P:xcodeproj",
             configuration: "abc123",
             buildSettings: [:],
             targets: Fixtures.targets,
             targetMerges: [:],
             invalidTargetMerges: ["Y": ["Z"]],
-            extraFiles: [],
-            bazelWorkspaceName: "bazel_workspace"
+            extraFiles: []
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
