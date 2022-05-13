@@ -18,8 +18,7 @@ final class GeneratorTests: XCTestCase {
             targets: Fixtures.targets,
             targetMerges: [:],
             invalidTargetMerges: ["Y": ["Z"]],
-            extraFiles: [],
-            bazelWorkspaceName: "bazel_workspace"
+            extraFiles: []
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),

@@ -25,8 +25,7 @@ enum Fixtures {
             "a/c.h",
             "a/d/a.h",
             "a/module.modulemap",
-        ],
-        bazelWorkspaceName: "bazel_workspace"
+        ]
     )
 
     static let xccurrentversions: [XCCurrentVersion] = [

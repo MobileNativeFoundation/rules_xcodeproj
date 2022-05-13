@@ -11,7 +11,6 @@ struct Project: Equatable, Decodable {
     let targetMerges: [TargetID: Set<TargetID>]
     let invalidTargetMerges: [TargetID: Set<TargetID>]
     let extraFiles: Set<FilePath>
-    let bazelWorkspaceName: String
 }
 
 struct Target: Equatable, Decodable {
