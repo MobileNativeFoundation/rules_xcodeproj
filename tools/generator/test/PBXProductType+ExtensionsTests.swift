@@ -15,11 +15,22 @@ class PBXProductTypeExtensionsTests: XCTestCase {
         XCTAssertNil(PBXProductType.framework.bazelLaunchEnvironmentVariables)
     }
 
-    func test_bazelTestEnvironmentVariables_WhenIsTestBundle() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_createBazelTestEnvironmentVariables_WhenIsTestBundle() throws {
+        let workspaceName = "bazel_workspace"
+        XCTAssertEqual(
+            PBXProductType.unitTestBundle.createBazelTestEnvironmentVariables(
+                workspaceName: workspaceName
+            ),
+            .createBazelTestVariables(workspaceName: workspaceName)
+        )
     }
 
-    func test_bazelTestEnvironmentVariables_WhenIsNotTestBundle() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_createBazelTestEnvironmentVariables_WhenIsNotTestBundle() throws {
+        let workspaceName = "bazel_workspace"
+        XCTAssertNil(
+            PBXProductType.application.createBazelTestEnvironmentVariables(
+                workspaceName: workspaceName
+            )
+        )
     }
 }
