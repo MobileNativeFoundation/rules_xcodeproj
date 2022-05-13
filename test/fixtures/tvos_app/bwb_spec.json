@@ -40,6 +40,7 @@
     "invalid_target_merges": [],
     "label": "//test/fixtures/tvos_app:xcodeproj_bwb",
     "name": "bwb",
+    "bazel_workspace_name": "com_github_buildbuddy_io_rules_xcodeproj",
     "target_merges": [
         "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
         [

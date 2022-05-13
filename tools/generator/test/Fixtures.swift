@@ -25,7 +25,8 @@ enum Fixtures {
             "a/c.h",
             "a/d/a.h",
             "a/module.modulemap",
-        ]
+        ],
+        bazelWorkspaceName: "bazel_workspace"
     )
 
     static let xccurrentversions: [XCCurrentVersion] = [
@@ -66,7 +67,7 @@ enum Fixtures {
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_A"),
                 "T": .string("43"),
-                "Z": .string("0")
+                "Z": .string("0"),
             ],
             swiftmodules: [.generated("x/y.swiftmodule")],
             resourceBundles: [.generated("r1/R1.bundle")],
@@ -214,7 +215,7 @@ enum Fixtures {
     static func disambiguatedTargets(
         _ targets: [TargetID: Target]
     ) -> [TargetID: DisambiguatedTarget] {
-        var disambiguatedTargets = Dictionary<TargetID, DisambiguatedTarget>(
+        var disambiguatedTargets = [TargetID: DisambiguatedTarget](
             minimumCapacity: targets.count
         )
         for (id, target) in targets {
@@ -697,59 +698,59 @@ enum Fixtures {
         // xcfilelists
 
         files[.internal("external.xcfilelist")] = .nonReferencedContent("""
-$(BAZEL_EXTERNAL)/a_repo/a.swift
-$(BAZEL_EXTERNAL)/another_repo/b.swift
+        $(BAZEL_EXTERNAL)/a_repo/a.swift
+        $(BAZEL_EXTERNAL)/another_repo/b.swift
 
-""")
+        """)
 
         let genDir = "$(BUILD_DIR)/bazel-out"
         let srcRootGenDir = "\(linksDir)/gen_dir"
 
         files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
-$(BAZEL_OUT)/a/b/module.modulemap
-$(BAZEL_OUT)/a1b2c/bin/t.c
+        $(BAZEL_OUT)/a/b/module.modulemap
+        $(BAZEL_OUT)/a1b2c/bin/t.c
 
-""")
+        """)
 
         files[.internal("generated.copied.xcfilelist")] = .nonReferencedContent(
-"""
-$(GEN_DIR)/a/b/module.modulemap
-$(GEN_DIR)/a1b2c/bin/t.c
+            """
+            $(GEN_DIR)/a/b/module.modulemap
+            $(GEN_DIR)/a1b2c/bin/t.c
 
-""")
+            """)
 
         files[.internal("generated.rsynclist")] = .nonReferencedContent("""
-a/b/module.modulemap
-a1b2c/bin/t.c
+        a/b/module.modulemap
+        a1b2c/bin/t.c
 
-""")
+        """)
 
         files[.internal("modulemaps.xcfilelist")] = .nonReferencedContent("""
-\(genDir)/a/b/module.modulemap
+        \(genDir)/a/b/module.modulemap
 
-""")
+        """)
 
         files[.internal("modulemaps.fixed.xcfilelist")] = .nonReferencedContent(
-"""
-\(genDir)/a/b/module.xcode.modulemap
+            """
+            \(genDir)/a/b/module.xcode.modulemap
 
-""")
+            """)
 
         // LinkFileLists
 
         files[.internal("targets/a1b2c/A 2/A.LinkFileList")] =
             .nonReferencedContent("""
-\(srcRootGenDir)/a/c.a
-\(srcRootGenDir)/z/A.a
-a/imported.a
+            \(srcRootGenDir)/a/c.a
+            \(srcRootGenDir)/z/A.a
+            a/imported.a
 
-""")
+            """)
 
         files[.internal("targets/a1b2c/C 2/d.LinkFileList")] =
             .nonReferencedContent("""
-\(srcRootGenDir)/a/c.a
+            \(srcRootGenDir)/a/c.a
 
-""")
+            """)
 
         return (files, elements)
     }
@@ -892,15 +893,15 @@ a/imported.a
         xcodeprojConfiguration: String
     ) -> PBXAggregateTarget {
         let allPlatforms = """
-watchsimulator \
-watchos \
-macosx \
-iphonesimulator \
-iphoneos \
-driverkit \
-appletvsimulator \
-appletvos
-"""
+        watchsimulator \
+        watchos \
+        macosx \
+        iphonesimulator \
+        iphoneos \
+        driverkit \
+        appletvsimulator \
+        appletvos
+        """
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
@@ -927,94 +928,94 @@ appletvos
                 "$(INTERNAL_DIR)/generated.xcfilelist",
             ],
             shellScript: #"""
-set -euo pipefail
+            set -euo pipefail
 
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other
-  output_base="$OBJROOT/bazel_output_base"
-fi
+            if [ "$ACTION" == "indexbuild" ]; then
+              # We use a different output base for Index Build to prevent normal builds and
+              # indexing waiting on bazel locks from the other
+              output_base="$OBJROOT/bazel_output_base"
+            fi
 
-if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
-  color=yes
-else
-  color=no
-fi
+            if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
+              color=yes
+            else
+              color=no
+            fi
 
-output_path=$(env -i \
-  DEVELOPER_DIR="$DEVELOPER_DIR" \
-  HOME="$HOME" \
-  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-  USER="$USER" \
-  "$BAZEL_PATH" \
-  ${output_base:+--output_base "$output_base"} \
-  info \
-  --color="$color" \
-  --experimental_convenience_symlinks=ignore \
-  output_path)
-external="${output_path%/*/*/*}/external"
+            output_path=$(env -i \
+              DEVELOPER_DIR="$DEVELOPER_DIR" \
+              HOME="$HOME" \
+              PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+              USER="$USER" \
+              "$BAZEL_PATH" \
+              ${output_base:+--output_base "$output_base"} \
+              info \
+              --color="$color" \
+              --experimental_convenience_symlinks=ignore \
+              output_path)
+            external="${output_path%/*/*/*}/external"
 
-# We only want to modify `$LINKS_DIR` during normal builds since Indexing can
-# run concurrent to normal builds
-if [ "$ACTION" != "indexbuild" ]; then
-  mkdir -p "$LINKS_DIR"
-  cd "$LINKS_DIR"
+            # We only want to modify `$LINKS_DIR` during normal builds since Indexing can
+            # run concurrent to normal builds
+            if [ "$ACTION" != "indexbuild" ]; then
+              mkdir -p "$LINKS_DIR"
+              cd "$LINKS_DIR"
 
-  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-  # files to the internal links directory to prevent Bazel from recursing into
-  # it, and thus following the `external` symlink
-  touch BUILD
-  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+              # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+              # files to the internal links directory to prevent Bazel from recursing into
+              # it, and thus following the `external` symlink
+              touch BUILD
+              touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
 
-  # Need to remove the directories that Xcode creates as part of output prep
-  rm -rf external
-  rm -rf gen_dir
+              # Need to remove the directories that Xcode creates as part of output prep
+              rm -rf external
+              rm -rf gen_dir
 
-  ln -sf "$external" external
-  ln -sf "$BUILD_DIR/bazel-out" gen_dir
-fi
+              ln -sf "$external" external
+              ln -sf "$BUILD_DIR/bazel-out" gen_dir
+            fi
 
-cd "$BUILD_DIR"
+            cd "$BUILD_DIR"
 
-rm -rf external
-rm -rf real-bazel-out
+            rm -rf external
+            rm -rf real-bazel-out
 
-ln -sf "$external" external
-ln -sf "$output_path" real-bazel-out
-ln -sfn "$PROJECT_DIR" SRCROOT
+            ln -sf "$external" external
+            ln -sf "$output_path" real-bazel-out
+            ln -sfn "$PROJECT_DIR" SRCROOT
 
-# Create parent directories of generated files, so the project navigator works
-# better faster
+            # Create parent directories of generated files, so the project navigator works
+            # better faster
 
-mkdir -p bazel-out
-cd bazel-out
+            mkdir -p bazel-out
+            cd bazel-out
 
-sed 's|\/[^\/]*$||' \
-  "$INTERNAL_DIR/generated.rsynclist" \
-  | uniq \
-  | while IFS= read -r dir
-do
-  mkdir -p "$dir"
-done
+            sed 's|\/[^\/]*$||' \
+              "$INTERNAL_DIR/generated.rsynclist" \
+              | uniq \
+              | while IFS= read -r dir
+            do
+              mkdir -p "$dir"
+            done
 
-cd "$SRCROOT"
+            cd "$SRCROOT"
 
-date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
+            date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
 
-env -i \
-  DEVELOPER_DIR="$DEVELOPER_DIR" \
-  HOME="$HOME" \
-  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-  USER="$USER" \
-  "$BAZEL_PATH" \
-  ${output_base:+--output_base "$output_base"} \
-  build \
-  --color="$color" \
-  --experimental_convenience_symlinks=ignore \
-  '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
-  \#(xcodeprojBazelLabel)
+            env -i \
+              DEVELOPER_DIR="$DEVELOPER_DIR" \
+              HOME="$HOME" \
+              PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+              USER="$USER" \
+              "$BAZEL_PATH" \
+              ${output_base:+--output_base "$output_base"} \
+              build \
+              --color="$color" \
+              --experimental_convenience_symlinks=ignore \
+              '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
+              \#(xcodeprojBazelLabel)
 
-"""#,
+            """#,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
         )
@@ -1027,23 +1028,23 @@ env -i \
                 "$(INTERNAL_DIR)/generated.copied.xcfilelist",
             ],
             shellScript: #"""
-set -euo pipefail
+            set -euo pipefail
 
-cd "$BAZEL_OUT"
+            cd "$BAZEL_OUT"
 
-# Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
-# builds, but is different for Index Builds. `PBXBuildFile`s will use the
-# "$GEN_DIR" version, so indexing might get messed up until they are normally
-# generated. It's the best we can do though as we need to use the `gen_dir`
-# symlink.
-rsync \
-  --files-from "$INTERNAL_DIR/generated.rsynclist" \
-  --chmod=u+w \
-  -L \
-  . \
-  "$BUILD_DIR/bazel-out"
+            # Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
+            # builds, but is different for Index Builds. `PBXBuildFile`s will use the
+            # "$GEN_DIR" version, so indexing might get messed up until they are normally
+            # generated. It's the best we can do though as we need to use the `gen_dir`
+            # symlink.
+            rsync \
+              --files-from "$INTERNAL_DIR/generated.rsynclist" \
+              --chmod=u+w \
+              -L \
+              . \
+              "$BUILD_DIR/bazel-out"
 
-"""#,
+            """#,
             showEnvVarsInLog: false
         )
         pbxProj.add(object: copyFilesScript)
@@ -1053,17 +1054,17 @@ rsync \
             inputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.xcfilelist"],
             outputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist"],
             shellScript: #"""
-set -euo pipefail
+            set -euo pipefail
 
-while IFS= read -r input; do
-  output="${input%.modulemap}.xcode.modulemap"
-  perl -p -e \
-    's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
-    < "$input" \
-    > "$output"
-done < "$SCRIPT_INPUT_FILE_LIST_0"
+            while IFS= read -r input; do
+              output="${input%.modulemap}.xcode.modulemap"
+              perl -p -e \
+                's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
+                < "$input" \
+                > "$output"
+            done < "$SCRIPT_INPUT_FILE_LIST_0"
 
-"""#,
+            """#,
             showEnvVarsInLog: false
         )
         pbxProj.add(object: fixModulemapsScript)
@@ -1099,7 +1100,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         disambiguatedTargets: [TargetID: DisambiguatedTarget],
         files: [FilePath: File],
         products: Products,
-        filePathResolver: FilePathResolver,
+        filePathResolver _: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget
     ) -> [TargetID: PBXTarget] {
         // Build phases
@@ -1114,9 +1115,9 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                     "$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
                 ],
                 shellScript: #"""
-    cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
+                cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
-    """#,
+                """#,
                 showEnvVarsInLog: false
             )
             pbxProj.add(object: shellScript)
@@ -1234,8 +1235,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             "E1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.external("a_repo/a.swift")]!),
-                    ])
+                        file: elements[.external("a_repo/a.swift")]!)])
                 ),
                 createGeneratedHeaderShellScript(),
             ],
@@ -1389,8 +1389,8 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 
         var pbxTargets = Dictionary(
             uniqueKeysWithValues: pbxNativeTargets
-                .map { targetID, pbxTarget -> (TargetID, PBXTarget) in 
-                    return (targetID, pbxTarget)
+                .map { targetID, pbxTarget -> (TargetID, PBXTarget) in
+                    (targetID, pbxTarget)
                 }
         )
         pbxTargets[.bazelDependencies] = bazelDependenciesTarget
@@ -1401,7 +1401,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
     static func pbxTargets(
         in pbxProj: PBXProj,
         targets: [TargetID: Target]
-    ) -> ([TargetID: PBXTarget], [TargetID : DisambiguatedTarget]) {
+    ) -> ([TargetID: PBXTarget], [TargetID: DisambiguatedTarget]) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
 
@@ -1497,8 +1497,8 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                     #""$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList""#,
                     "-Wl,-rpath,/usr/lib/swift",
                     """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
+                    -L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+                    """,
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
@@ -1511,8 +1511,8 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "BAZEL_TARGET_ID": "B 1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_SWIFT_FLAGS": """
--Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
-""",
+                -Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
+                """,
                 "SDKROOT": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["B 1"]!.name,
@@ -1528,14 +1528,14 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
                     """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
+                    -L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+                    """,
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
                 "TARGET_BUILD_DIR": """
-$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
-""",
+                $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
+                """,
                 "TARGET_NAME": targets["B 2"]!.name,
                 "TEST_HOST": "$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A",
             ]) { $1 },
@@ -1549,8 +1549,8 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
                     """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
+                    -L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+                    """,
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
@@ -1563,8 +1563,8 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_TARGET_ID": "C 1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "OTHER_SWIFT_FLAGS": """
--Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
-""",
+                -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
+                """,
                 "SDKROOT": "macosx",
                 "TARGET_NAME": targets["C 1"]!.name,
             ]) { $1 },
@@ -1580,8 +1580,8 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                     #""$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList""#,
                     "-Wl,-rpath,/usr/lib/swift",
                     """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
+                    -L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+                    """,
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
@@ -1611,8 +1611,8 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
                     """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
+                    -L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
+                    """,
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
