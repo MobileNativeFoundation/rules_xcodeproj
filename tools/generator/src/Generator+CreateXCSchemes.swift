@@ -78,8 +78,7 @@ extension Generator {
             testables: testables,
             environmentVariables: buildMode.usesBazelEnvironmentVariables ?
                 pbxTarget.productType?.createBazelTestEnvironmentVariables(
-                    // TODO(chuck): This should be the workspace name, not the project name.
-                    workspaceName: project.name
+                    workspaceName: project.bazelWorkspaceName
                 ) : nil,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil

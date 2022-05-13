@@ -30,8 +30,6 @@ class CreateXCSchemesTests: XCTestCase {
     let pbxTargetsDict: [TargetID: PBXTarget] =
         Fixtures.pbxTargets(in: Fixtures.pbxProj(), targets: Fixtures.targets).0
 
-    // TODO(chuck): Add environment variable tests
-
     func assertScheme(
         schemesDict: [String: XCScheme],
         targetID: TargetID,
@@ -41,6 +39,8 @@ class CreateXCSchemesTests: XCTestCase {
         shouldExpectBuildableProductRunnable: Bool,
         shouldExpectLaunchMacroExpansion: Bool,
         shouldExpectCustomLLDBInitFile: Bool,
+        shouldExpectTestEnvVariables: Bool,
+        shouldExpectLaunchEnvVariables: Bool,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws {
@@ -116,6 +116,15 @@ class CreateXCSchemesTests: XCTestCase {
         case .none:
             expectedBuildPreActions = []
         }
+
+        let expectedTestEnvVariables: [XCScheme.EnvironmentVariable]? = 
+            shouldExpectTestEnvVariables ?
+            .createBazelTestVariables(
+                workspaceName: project.bazelWorkspaceName
+            ) : nil
+
+        let expectedLaunchEnvVariables: [XCScheme.EnvironmentVariable]? = 
+            shouldExpectLaunchEnvVariables ? .bazelLaunchVariables : nil
 
         // Assertions
 
@@ -193,6 +202,20 @@ class CreateXCSchemesTests: XCTestCase {
             file: file,
             line: line
         )
+        XCTAssertEqual(
+            testAction.customLLDBInitFile,
+            expectedCustomLLDBInitFile,
+            "testAction.customLLDBInitFile did not match for \(scheme.name)",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            testAction.environmentVariables,
+            expectedTestEnvVariables,
+            "test environment variables did not match for \(scheme.name)",
+            file: file,
+            line: line
+        )
 
         guard let launchAction = scheme.launchAction else {
             XCTFail(
@@ -231,9 +254,9 @@ class CreateXCSchemesTests: XCTestCase {
             line: line
         )
         XCTAssertEqual(
-            testAction.customLLDBInitFile,
-            expectedCustomLLDBInitFile,
-            "testAction.customLLDBInitFile did not match for \(scheme.name)",
+            launchAction.environmentVariables,
+            expectedLaunchEnvVariables,
+            "launch environment variables did not match for \(scheme.name)",
             file: file,
             line: line
         )
@@ -308,7 +331,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: false
+            shouldExpectCustomLLDBInitFile: false,
+            shouldExpectTestEnvVariables: false,
+            shouldExpectLaunchEnvVariables: false
         )
 
         // Library
@@ -320,7 +345,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: false
+            shouldExpectCustomLLDBInitFile: false,
+            shouldExpectTestEnvVariables: false,
+            shouldExpectLaunchEnvVariables: false
         )
 
         // Launchable, testable
@@ -332,7 +359,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: true,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: true,
-            shouldExpectCustomLLDBInitFile: false
+            shouldExpectCustomLLDBInitFile: false,
+            shouldExpectTestEnvVariables: false,
+            shouldExpectLaunchEnvVariables: false
         )
 
         // Launchable, not testable
@@ -344,7 +373,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: false
+            shouldExpectCustomLLDBInitFile: false,
+            shouldExpectTestEnvVariables: false,
+            shouldExpectLaunchEnvVariables: false
         )
     }
 
@@ -368,7 +399,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: true
+            shouldExpectCustomLLDBInitFile: true,
+            shouldExpectTestEnvVariables: false,
+            shouldExpectLaunchEnvVariables: false
         )
 
         // Library
@@ -380,7 +413,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: true
+            shouldExpectCustomLLDBInitFile: true,
+            shouldExpectTestEnvVariables: false,
+            shouldExpectLaunchEnvVariables: false
         )
 
         // Launchable, testable
@@ -392,7 +427,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: true,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: true,
-            shouldExpectCustomLLDBInitFile: true
+            shouldExpectCustomLLDBInitFile: true,
+            shouldExpectTestEnvVariables: true,
+            shouldExpectLaunchEnvVariables: true
         )
 
         // Launchable, not testable
@@ -404,7 +441,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: true
+            shouldExpectCustomLLDBInitFile: true,
+            shouldExpectTestEnvVariables: false,
+            shouldExpectLaunchEnvVariables: true
         )
     }
 }
