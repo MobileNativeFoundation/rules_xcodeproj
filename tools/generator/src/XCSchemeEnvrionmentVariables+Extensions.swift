@@ -1,6 +1,9 @@
 import XcodeProj
 
 extension Array where Element == XCScheme.EnvironmentVariable {
+    /// Provides the Bazel-specific environment variables for Build with Bazel
+    /// launch action.
+    ///
     /// For more information:
     /// https://docs.bazel.build/versions/main/user-manual.html#run
     static let bazelLaunchVariables: [XCScheme.EnvironmentVariable] = [
@@ -20,9 +23,14 @@ extension Array where Element == XCScheme.EnvironmentVariable {
         ),
     ]
 
+    /// Provides the Bazel-specific environment variables for Build with Bazel
+    /// test action.
+    ///
     /// For more information:
     /// https://bazel.build/reference/test-encyclopedia#initial-conditions
-    static func createBazelTestVariables(workspaceName: String) -> [XCScheme.EnvironmentVariable] {
+    static func createBazelTestVariables(
+        workspaceName: String
+    ) -> [XCScheme.EnvironmentVariable] {
         // TODO(chuck): Add other TEST_XXX variables
         return [
             .init(
