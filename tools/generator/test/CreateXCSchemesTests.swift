@@ -117,13 +117,14 @@ class CreateXCSchemesTests: XCTestCase {
             expectedBuildPreActions = []
         }
 
-        let expectedTestEnvVariables: [XCScheme.EnvironmentVariable]? = 
+        let expectedTestEnvVariables: [XCScheme.EnvironmentVariable]? =
             shouldExpectTestEnvVariables ?
             .createBazelTestVariables(
                 workspaceName: project.bazelWorkspaceName
             ) : nil
+        let expectedShouldUseLaunchSchemeArgsEnv = !shouldExpectTestEnvVariables
 
-        let expectedLaunchEnvVariables: [XCScheme.EnvironmentVariable]? = 
+        let expectedLaunchEnvVariables: [XCScheme.EnvironmentVariable]? =
             shouldExpectLaunchEnvVariables ? .bazelLaunchVariables : nil
 
         // Assertions
@@ -206,6 +207,13 @@ class CreateXCSchemesTests: XCTestCase {
             testAction.customLLDBInitFile,
             expectedCustomLLDBInitFile,
             "testAction.customLLDBInitFile did not match for \(scheme.name)",
+            file: file,
+            line: line
+        )
+        XCTAssertEqual(
+            testAction.shouldUseLaunchSchemeArgsEnv,
+            expectedShouldUseLaunchSchemeArgsEnv,
+            "shouldUseLaunchSchemeArgsEnv did not match for \(scheme.name)",
             file: file,
             line: line
         )
