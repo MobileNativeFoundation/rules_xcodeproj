@@ -20,9 +20,16 @@ class XCSchemeEnvironmentVariablesExtensionsTests: XCTestCase {
         let result: [XCScheme.EnvironmentVariable] = .createBazelTestVariables(
             workspaceName: workspaceName
         )
-        XCTAssertEqual(result.count, 2)
 
-        let variableNames = Set(result.map(\.variable))
-        XCTAssertEqual(variableNames, Set(["TEST_SRCDIR", "TEST_WORKSPACE"]))
+        let indexedResult = Dictionary(
+            uniqueKeysWithValues: result.map { ($0.variable, $0) }
+        )
+        XCTAssertEqual(indexedResult.count, 2)
+        XCTAssertNotNil(indexedResult["TEST_SRCDIR"])
+        guard let testWorkspace = indexedResult["TEST_WORKSPACE"] else {
+            XCTFail("Expected to find TEST_WORKSPACE")
+            return
+        }
+        XCTAssertEqual(testWorkspace.value, workspaceName)
     }
 }

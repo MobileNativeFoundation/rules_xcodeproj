@@ -190,6 +190,7 @@
 		BB3CC3D6D33F204C8D7C045B /* Generator+SetTargetConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C596D2381A72E00D018785 /* Generator+SetTargetConfigurations.swift */; };
 		BC2E4C154778862EC7A6333F /* OrderedDictionary+Invariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008AEA61834626CAF9F5918 /* OrderedDictionary+Invariants.swift */; };
 		BCB0C579E8E2BE798C2F18C1 /* OrderedDictionary+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B947E1837B5A93F9780BD6 /* OrderedDictionary+Values.swift */; };
+		BD7B5B63CF5DC4E2396568A7 /* XCSchemeEnvironmentVariables+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3EFE17E2F0430A5FF135BD /* XCSchemeEnvironmentVariables+ExtensionsTests.swift */; };
 		BE39FE10674A194569FE38B0 /* XCWorkspaceDataGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC50485D8BD4E7D39B598D /* XCWorkspaceDataGroup.swift */; };
 		BE60D448058D06333F6324F7 /* PBXFileReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC45BC1DD67C50E86FEE9DC /* PBXFileReference.swift */; };
 		BEE0091A3F4A4CF9661882B5 /* OrderedDictionary+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7E223798EECD44147286FC /* OrderedDictionary+Sequence.swift */; };
@@ -216,7 +217,6 @@
 		D3FD5696C6116192FFE229FD /* CoreMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81E93B131F43FB6E991EA1 /* CoreMotion.swift */; };
 		D4F1178F5AC75B4734931E6E /* SetTargetDependenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E66F2DF65C11D45D520A4F3 /* SetTargetDependenciesTests.swift */; };
 		D6798766AA5A108A277E29FC /* XCBuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569061E7D9EA196F60842AB /* XCBuildConfiguration.swift */; };
-		D8B8D31CB485253F11AA2E45 /* XCSchemeEnvironmentVariablesExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34946AED01455EBF31ED31B1 /* XCSchemeEnvironmentVariablesExtensionsTests.swift */; };
 		D8C244E3237BDB5B84F8FCD6 /* OrderedDictionary+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC9574D73D444A40C0F7116 /* OrderedDictionary+Codable.swift */; };
 		D8DE74C338D895D76D60E1F1 /* XCScheme+ExecutionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7CEAAC8BB889C2A2968A81 /* XCScheme+ExecutionAction.swift */; };
 		D9977932DECB407F3233A390 /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF2ABBD0B6B98E3FDA61828 /* Speech.swift */; };
@@ -451,7 +451,6 @@
 		3100C1877D8D628B02BF5584 /* PathKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathKit.swift; sourceTree = "<group>"; };
 		3134774196A92DDFE6467A90 /* PBXSourcesBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXSourcesBuildPhase.swift; sourceTree = "<group>"; };
 		31BC264ECA2884D8C55BD24D /* PBXTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXTarget.swift; sourceTree = "<group>"; };
-		34946AED01455EBF31ED31B1 /* XCSchemeEnvironmentVariablesExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCSchemeEnvironmentVariablesExtensionsTests.swift; sourceTree = "<group>"; };
 		35A20E5A35DA3971E891B8B7 /* generator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = generator; sourceTree = BUILT_PRODUCTS_DIR; };
 		365F7E69A624B293323CFFBF /* Target+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Target+Extensions.swift"; sourceTree = "<group>"; };
 		37060CBDC54D48ADDEEA0274 /* AddTargetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTargetsTests.swift; sourceTree = "<group>"; };
@@ -586,6 +585,7 @@
 		B9CC2D5E3BD42DA1195EE7D9 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		BCB404C2B67D4D196754D99A /* XCSchemeEnvrionmentVariables+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeEnvrionmentVariables+Extensions.swift"; sourceTree = "<group>"; };
 		BCB6D4C1A760E0F5039DCA16 /* OrderedSet+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
+		BD3EFE17E2F0430A5FF135BD /* XCSchemeEnvironmentVariables+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeEnvironmentVariables+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		BDB74D3730A6741F0EBA95CF /* PBXGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXGroup.swift; sourceTree = "<group>"; };
 		BE66E7C6767A2929A5D0F4C5 /* Generator+WriteXcodeProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+WriteXcodeProj.swift"; sourceTree = "<group>"; };
 		BEFE87E1BA432999CAE565E4 /* Writable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writable.swift; sourceTree = "<group>"; };
@@ -803,7 +803,7 @@
 				6FD5B118AB618B387331F2F8 /* Target+ExtensionsTests.swift */,
 				EC5DDE735367F49D1F8347A4 /* Target+Testing.swift */,
 				598C59FCAC898D6EE23D2CA4 /* XcodeProj+CustomDump.swift */,
-				34946AED01455EBF31ED31B1 /* XCSchemeEnvironmentVariablesExtensionsTests.swift */,
+				BD3EFE17E2F0430A5FF135BD /* XCSchemeEnvironmentVariables+ExtensionsTests.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1622,7 +1622,7 @@
 				D4F1178F5AC75B4734931E6E /* SetTargetDependenciesTests.swift in Sources */,
 				46287720175CB79D98D5E045 /* Target+ExtensionsTests.swift in Sources */,
 				466E78ED3B31F9724409CCE3 /* Target+Testing.swift in Sources */,
-				D8B8D31CB485253F11AA2E45 /* XCSchemeEnvironmentVariablesExtensionsTests.swift in Sources */,
+				BD7B5B63CF5DC4E2396568A7 /* XCSchemeEnvironmentVariables+ExtensionsTests.swift in Sources */,
 				3D9A78660D051C58D312CA3A /* XcodeProj+CustomDump.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
