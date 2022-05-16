@@ -58,7 +58,7 @@ extension Generator {
                     .testing,
                     .profiling,
                     .archiving,
-                    .analyzing,
+                    .analyzing
                 ]
             )],
             preActions: createBuildPreActions(
@@ -125,17 +125,17 @@ extension Generator {
         let scriptText: String
         if pbxTarget is PBXNativeTarget {
             scriptText = #"""
-            mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-            echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
+echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 
-            """#
+"""#
         } else {
             scriptText = #"""
-            if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
-                rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-            fi
+if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
+    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+fi
 
-            """#
+"""#
         }
 
         return [XCScheme.ExecutionAction(
