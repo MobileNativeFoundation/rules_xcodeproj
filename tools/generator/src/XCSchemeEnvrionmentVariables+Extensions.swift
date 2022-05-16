@@ -31,7 +31,6 @@ extension Array where Element == XCScheme.EnvironmentVariable {
     static func createBazelTestVariables(
         workspaceName: String
     ) -> [XCScheme.EnvironmentVariable] {
-        // TODO(chuck): Add other TEST_XXX variables
         return [
             .init(
                 variable: "TEST_SRCDIR",
