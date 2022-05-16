@@ -4,7 +4,6 @@ import XcodeProj
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
-        project: Project,
         buildMode: BuildMode,
         filePathResolver: FilePathResolver,
         pbxTargets: [TargetID: PBXTarget]
@@ -12,7 +11,6 @@ extension Generator {
         let referencedContainer = filePathResolver.containerReference
         return try pbxTargets.map { _, pbxTarget in
             try createXCScheme(
-                project: project,
                 buildMode: buildMode,
                 referencedContainer: referencedContainer,
                 pbxTarget: pbxTarget
@@ -26,7 +24,6 @@ extension Generator {
 
     /// Creates an `XCScheme` for the specified target.
     private static func createXCScheme(
-        project: Project,
         buildMode: BuildMode,
         referencedContainer: String,
         pbxTarget: PBXTarget
@@ -61,7 +58,7 @@ extension Generator {
                     .testing,
                     .profiling,
                     .archiving,
-                    .analyzing
+                    .analyzing,
                 ]
             )],
             preActions: createBuildPreActions(
@@ -72,16 +69,10 @@ extension Generator {
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
-        let testEnvVars = buildMode.usesBazelEnvironmentVariables ?
-            pbxTarget.productType?.createBazelTestEnvironmentVariables(
-                workspaceName: project.bazelWorkspaceName
-            ) : nil
         let testAction = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
             testables: testables,
-            shouldUseLaunchSchemeArgsEnv: testEnvVars == nil,
-            environmentVariables: testEnvVars,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
@@ -134,17 +125,17 @@ extension Generator {
         let scriptText: String
         if pbxTarget is PBXNativeTarget {
             scriptText = #"""
-mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+            mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
+            echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 
-"""#
+            """#
         } else {
             scriptText = #"""
-if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
-    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-fi
+            if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
+                rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+            fi
 
-"""#
+            """#
         }
 
         return [XCScheme.ExecutionAction(

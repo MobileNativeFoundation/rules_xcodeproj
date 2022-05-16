@@ -218,12 +218,4 @@ extension PBXProductType {
     var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
         return isLaunchable ? .bazelLaunchVariables : nil
     }
-
-    func createBazelTestEnvironmentVariables(
-        workspaceName: String
-    ) -> [XCScheme.EnvironmentVariable]? {
-        return isTestBundle ?
-            .createBazelTestVariables(workspaceName: workspaceName) :
-            nil
-    }
 }

@@ -117,13 +117,6 @@ fi
             expectedBuildPreActions = []
         }
 
-        let expectedTestEnvVariables: [XCScheme.EnvironmentVariable]? =
-            shouldExpectTestEnvVariables ?
-            .createBazelTestVariables(
-                workspaceName: project.bazelWorkspaceName
-            ) : nil
-        let expectedShouldUseLaunchSchemeArgsEnv = !shouldExpectTestEnvVariables
-
         let expectedLaunchEnvVariables: [XCScheme.EnvironmentVariable]? =
             shouldExpectLaunchEnvVariables ? .bazelLaunchVariables : nil
 
@@ -207,20 +200,6 @@ fi
             testAction.customLLDBInitFile,
             expectedCustomLLDBInitFile,
             "testAction.customLLDBInitFile did not match for \(scheme.name)",
-            file: file,
-            line: line
-        )
-        XCTAssertEqual(
-            testAction.shouldUseLaunchSchemeArgsEnv,
-            expectedShouldUseLaunchSchemeArgsEnv,
-            "shouldUseLaunchSchemeArgsEnv did not match for \(scheme.name)",
-            file: file,
-            line: line
-        )
-        XCTAssertEqual(
-            testAction.environmentVariables,
-            expectedTestEnvVariables,
-            "test environment variables did not match for \(scheme.name)",
             file: file,
             line: line
         )
@@ -310,7 +289,6 @@ fi
 
     func test_createXCSchemes_withNoTargets() throws {
         let schemes = try Generator.createXCSchemes(
-            project: project,
             buildMode: .xcode,
             filePathResolver: filePathResolver,
             pbxTargets: [:]
@@ -321,7 +299,6 @@ fi
 
     func test_createXCSchemes_withTargets_xcode() throws {
         let schemes = try Generator.createXCSchemes(
-            project: project,
             buildMode: .xcode,
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargetsDict
@@ -389,7 +366,6 @@ fi
 
     func test_createXCSchemes_withTargets_bazel() throws {
         let schemes = try Generator.createXCSchemes(
-            project: project,
             buildMode: .bazel,
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargetsDict

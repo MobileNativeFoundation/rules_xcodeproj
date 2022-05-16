@@ -139,8 +139,8 @@ final class GeneratorTests: XCTestCase {
             targetMerges: project.targetMerges
         )]
         expectedMessagesLogged.append(StubLogger.MessageLogged(.warning, """
-Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
-"""))
+        Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
+        """))
 
         // MARK: createFilesAndGroups()
 
@@ -407,7 +407,6 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         // MARK: createXCSchemes()
 
         struct CreateXCSchemesCalled: Equatable {
-            let project: Project
             let buildMode: BuildMode
             let filePathResolver: FilePathResolver
             let pbxTargets: [TargetID: PBXTarget]
@@ -415,13 +414,11 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
-            project: Project,
             buildMode: BuildMode,
             filePathResolver: FilePathResolver,
             pbxTargets: [TargetID: PBXTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
-                project: project,
                 buildMode: buildMode,
                 filePathResolver: filePathResolver,
                 pbxTargets: pbxTargets
@@ -430,7 +427,6 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         }
 
         let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
-            project: project,
             buildMode: buildMode,
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargets

@@ -79,7 +79,6 @@ struct Environment {
     ) throws -> Void
 
     let createXCSchemes: (
-        _ project: Project,
         _ buildMode: BuildMode,
         _ filePathResolver: FilePathResolver,
         _ pbxTargets: [TargetID: PBXTarget]

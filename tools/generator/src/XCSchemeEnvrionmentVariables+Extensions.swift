@@ -22,27 +22,4 @@ extension Array where Element == XCScheme.EnvironmentVariable {
             enabled: true
         ),
     ]
-
-    /// Provides the Bazel-specific environment variables for Build with Bazel
-    /// test action.
-    ///
-    /// For more information:
-    /// https://bazel.build/reference/test-encyclopedia#initial-conditions
-    static func createBazelTestVariables(
-        workspaceName: String
-    ) -> [XCScheme.EnvironmentVariable] {
-        return [
-            .init(
-                variable: "TEST_SRCDIR",
-                // TODO(chuck): Confirm this value
-                value: "$(SRCROOT)",
-                enabled: true
-            ),
-            .init(
-                variable: "TEST_WORKSPACE",
-                value: workspaceName,
-                enabled: true
-            ),
-        ]
-    }
 }
