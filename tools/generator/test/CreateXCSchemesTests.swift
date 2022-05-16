@@ -11,18 +11,6 @@ class CreateXCSchemesTests: XCTestCase {
         case none
     }
 
-    let project = Project(
-        name: "MyProject",
-        bazelWorkspaceName: "bazel_workspace",
-        label: "",
-        configuration: "",
-        buildSettings: [:],
-        targets: [:],
-        targetMerges: [:],
-        invalidTargetMerges: [:],
-        extraFiles: []
-    )
-
     let filePathResolver = FilePathResolver(
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
@@ -39,7 +27,6 @@ class CreateXCSchemesTests: XCTestCase {
         shouldExpectBuildableProductRunnable: Bool,
         shouldExpectLaunchMacroExpansion: Bool,
         shouldExpectCustomLLDBInitFile: Bool,
-        shouldExpectTestEnvVariables: Bool,
         shouldExpectLaunchEnvVariables: Bool,
         file: StaticString = #filePath,
         line: UInt = #line
@@ -95,21 +82,21 @@ class CreateXCSchemesTests: XCTestCase {
         case .set:
             expectedBuildPreActions = [.init(
                 scriptText: #"""
-mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+                mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
+                echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 
-"""#,
+                """#,
                 title: "Set Bazel Build Output Groups",
                 environmentBuildable: expectedBuildableReference
             )]
         case .remove:
             expectedBuildPreActions = [.init(
                 scriptText: #"""
-if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
-    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-fi
+                if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
+                    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+                fi
 
-"""#,
+                """#,
                 title: "Set Bazel Build Output Groups",
                 environmentBuildable: expectedBuildableReference
             )]
@@ -317,7 +304,6 @@ fi
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: false,
-            shouldExpectTestEnvVariables: false,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -331,7 +317,6 @@ fi
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: false,
-            shouldExpectTestEnvVariables: false,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -345,7 +330,6 @@ fi
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: true,
             shouldExpectCustomLLDBInitFile: false,
-            shouldExpectTestEnvVariables: false,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -359,7 +343,6 @@ fi
             shouldExpectBuildableProductRunnable: true,
             shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: false,
-            shouldExpectTestEnvVariables: false,
             shouldExpectLaunchEnvVariables: false
         )
     }
@@ -384,7 +367,6 @@ fi
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: true,
-            shouldExpectTestEnvVariables: false,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -398,7 +380,6 @@ fi
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: true,
-            shouldExpectTestEnvVariables: false,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -412,7 +393,6 @@ fi
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: true,
             shouldExpectCustomLLDBInitFile: true,
-            shouldExpectTestEnvVariables: true,
             shouldExpectLaunchEnvVariables: true
         )
 
@@ -426,7 +406,6 @@ fi
             shouldExpectBuildableProductRunnable: true,
             shouldExpectLaunchMacroExpansion: false,
             shouldExpectCustomLLDBInitFile: true,
-            shouldExpectTestEnvVariables: false,
             shouldExpectLaunchEnvVariables: true
         )
     }
