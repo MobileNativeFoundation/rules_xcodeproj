@@ -8,10 +8,35 @@ extension Generator {
     ) -> (Products, PBXGroup) {
         var products = Products()
         for (id, target) in targets {
+            let fileType: String?
+            let name: String?
+            let path: String?
+            if target.product.type.isLaunchable {
+                fileType = target.product.type.fileType
+                name = nil
+                path = target.product.path.path.lastComponent
+            } else {
+                if target.product.type == .staticLibrary {
+                    // This filetype is used to make the icon match what it
+                    // would be if it was associated with a product (which it
+                    // won't be)
+                    fileType = "compiled.mach-o.dylib"
+                } else {
+                    fileType = target.product.type.fileType
+                }
+
+                // We need to fix the path for non-launchable products, since we
+                // override `DEPLOYMENT_LOCATION` and `BUILT_PRODUCTS_DIR`
+                // for them
+                name = target.product.path.path.lastComponent
+                path = "bazel-out/\(target.product.path.path)"
+            }
+
             let product = PBXFileReference(
                 sourceTree: .buildProductsDir,
-                explicitFileType: target.product.type.fileType,
-                path: target.product.path.path.lastComponent,
+                name: name,
+                explicitFileType: fileType,
+                path: path,
                 includeInIndex: false
             )
             pbxProj.add(object: product)

@@ -82,17 +82,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01934C980471E67330AC657C /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		01934C980471E67330AC657C /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0282BFF13FDF4BED1663D2AF /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		054732C7DCF543EED5337D81 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		19B81294B60CEC2BA6843380 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		1E24825205C7C82ED0184DEA /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		31620B8F4712C7D8A23356B9 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		4C8095547A55E1C477C2E094 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		61D4E93D586B426B1BE67C73 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		61D4E93D586B426B1BE67C73 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72DD4925E3FB6AE32B7ACADA /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		887E70CEDC5A85E62FB23126 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
-		8C467A9CF11D6BFFA7FEE894 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib_impl.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C467A9CF11D6BFFA7FEE894 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		921187174A58741CF8ADCCD9 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		BD77ACEF34FC7AFD41A09A4A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		D9A7460F2FC6BC68BC6B7D6A /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
@@ -236,7 +236,6 @@
 			);
 			name = "@examples_cc_external//:lib_impl";
 			productName = lib_impl;
-			productReference = 61D4E93D586B426B1BE67C73 /* liblib_impl.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		B2EDA6BA27C01B7B8423DADB /* //examples/cc/lib2:lib_impl */ = {
@@ -252,7 +251,6 @@
 			);
 			name = "//examples/cc/lib2:lib_impl";
 			productName = lib_impl;
-			productReference = 01934C980471E67330AC657C /* liblib_impl.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		BCD9FA95C7CBE2A799AC3DF9 /* //examples/cc/lib:lib_impl */ = {
@@ -268,7 +266,6 @@
 			);
 			name = "//examples/cc/lib:lib_impl";
 			productName = lib_impl;
-			productReference = 8C467A9CF11D6BFFA7FEE894 /* liblib_impl.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		EC6A68AC956C60AA25485960 /* tool */ = {
