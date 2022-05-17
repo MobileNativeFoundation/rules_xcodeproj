@@ -351,9 +351,9 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(generatedInputsOutputGroup).filelist
 """#
 
         return #"""
-if ! sed -e 's|^|bazel-out/|' "\#(rsynclist)" | sort | cmp -s \#
-<(sort "\#(filelist)")
-then
+
+diff=$(comm -23 <(sed -e 's|^|bazel-out/|' "\#(rsynclist)" | sort) <(sort "\#(filelist)"))
+if ! [ -z "$diff" ]; then
   echo "error: The files that Bazel generated don't match what the project \#
 expects. Please regenerate the project. If your bazel version is less than \#
 5.2, you may need to \`bazel clean\` and \`bazel shutdown\` to work around a \#
