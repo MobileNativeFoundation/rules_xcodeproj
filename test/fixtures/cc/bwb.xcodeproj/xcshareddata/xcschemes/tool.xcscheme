@@ -78,7 +78,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "BUILD_WORKING_DIRECTORY"
-            value = "$(SRCROOT)"
+            value = "$(BUILT_PRODUCTS_DIR)"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
