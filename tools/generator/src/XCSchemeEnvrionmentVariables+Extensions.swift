@@ -14,11 +14,9 @@ extension Array where Element == XCScheme.EnvironmentVariable {
         ),
         .init(
             variable: "BUILD_WORKING_DIRECTORY",
-            // This is a poor substitute for the working directory.
-            // Preferably, it would be $(PWD) or something similar.
-            // Unfortunately, none of the following worked:
-            //   $(PWD), $PWD, ${PWD}, \$(pwd), $\(pwd\)
-            value: "$(SRCROOT)",
+            // By default, Xcode appears to set the working directory to the
+            // BUILT_PRODUCTS_DIR.
+            value: "$(BUILT_PRODUCTS_DIR)",
             enabled: true
         ),
     ]
