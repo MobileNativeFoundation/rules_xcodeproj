@@ -80,6 +80,8 @@ extension Generator {
             runnable: buildableProductRunnable,
             buildConfiguration: buildConfigurationName,
             macroExpansion: macroExpansion,
+            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
+                pbxTarget.productType?.bazelLaunchEnvironmentVariables : nil,
             customLLDBInitFile: buildMode.requiresLLDBInit ?
                 "$(BAZEL_LLDB_INIT)" : nil
         )
