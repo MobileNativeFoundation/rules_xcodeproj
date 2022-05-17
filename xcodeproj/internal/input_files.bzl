@@ -313,7 +313,10 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
             xccurrentversions,
             transitive = [
                 info.inputs.xccurrentversions
-                for _, info in transitive_infos
+                for attr, info in transitive_infos
+                if (not attrs_info or
+                    info.target_type in
+                    attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
         contains_generated_files = bool(generated),
@@ -331,7 +334,10 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
             extra_files,
             transitive = flatten([
                 _collect_transitive_extra_files(info)
-                for _, info in transitive_infos
+                for attr, info in transitive_infos
+                if (not attrs_info or
+                    info.target_type in
+                    attrs_info.xcode_targets.get(attr, [None]))
             ]),
         ),
     )
@@ -390,7 +396,10 @@ def _merge(*, attrs_info, transitive_infos):
         xccurrentversions = depset(
             transitive = [
                 info.inputs.xccurrentversions
-                for _, info in transitive_infos
+                for attr, info in transitive_infos
+                if (not attrs_info or
+                    info.target_type in
+                    attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
         generated = depset(
@@ -405,7 +414,10 @@ def _merge(*, attrs_info, transitive_infos):
         extra_files = depset(
             transitive = [
                 info.inputs.extra_files
-                for _, info in transitive_infos
+                for attr, info in transitive_infos
+                if (not attrs_info or
+                    info.target_type in
+                    attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
     )

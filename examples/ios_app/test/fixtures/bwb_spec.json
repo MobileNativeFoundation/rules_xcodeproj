@@ -12,14 +12,6 @@
     },
     "configuration": "darwin_x86_64-dbg-ST-59f3be6ef3d4",
     "extra_files": [
-        {
-            "_": "examples_ios_app_external/bundles/Utils.bundle",
-            "f": true,
-            "t": "e"
-        },
-        "third_party/BUILD",
-        "CoreUtilsObjC/BUILD",
-        "Utils/BUILD",
         "ExampleResources/BUILD",
         "ExampleResources/Info.plist",
         "ExampleResources/Assets.xcassets/Contents.json",
@@ -30,6 +22,14 @@
             "f": true
         },
         "Example/BUILD",
+        {
+            "_": "examples_ios_app_external/bundles/Utils.bundle",
+            "f": true,
+            "t": "e"
+        },
+        "third_party/BUILD",
+        "CoreUtilsObjC/BUILD",
+        "Utils/BUILD",
         {
             "_": "examples_ios_app_external/ImportableLibrary/Library.h",
             "t": "e"
