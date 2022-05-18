@@ -957,6 +957,7 @@ output_path=$(env -i \
   info \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
+  --symlink_prefix=/ \
   output_path)
 external="${output_path%/*/*/*}/external"
 
@@ -1017,6 +1018,7 @@ env -i \
   build \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
+  --symlink_prefix=/ \
   '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
   \#(xcodeprojBazelLabel)
 
