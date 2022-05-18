@@ -33,6 +33,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         try Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
+            buildMode: .xcode,
             pbxTargets: pbxTargets,
             filePathResolver: Self.filePathResolverFixture
         )
@@ -208,6 +209,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         try Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
+            buildMode: .xcode,
             pbxTargets: pbxTargets,
             filePathResolver: Self.filePathResolverFixture
         )

@@ -479,7 +479,6 @@
 					"__TIME__=\"redacted\"",
 					"EXTERNAL_SECRET_3=\\\"Goodbye\\\"",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external/private",
@@ -541,7 +540,6 @@
 					"__TIME__=\"redacted\"",
 					"SECRET_3=\\\"Hello\\\"",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/examples/cc/lib/private",
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/private",
@@ -616,7 +614,6 @@
 					"SECRET_2=\\\"World!\\\"",
 					"EXTERNAL_SECRET_2=\\\"World?\\\"",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-fstack-protector",
@@ -689,7 +686,6 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-fstack-protector",
