@@ -764,8 +764,9 @@ a/imported.a
                 filePath: .generated("z/A.a")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
-                explicitFileType: PBXProductType.staticLibrary.fileType,
-                path: "A.a",
+                name: "A.a",
+                explicitFileType: "compiled.mach-o.dylib",
+                path: "bazel-out/z/A.a",
                 includeInIndex: false
             ),
             Products.ProductKeys(
@@ -782,8 +783,9 @@ a/imported.a
                 filePath: .generated("a/b.framework")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
+                name: "b.framework",
                 explicitFileType: PBXProductType.staticFramework.fileType,
-                path: "b.framework",
+                path: "bazel-out/a/b.framework",
                 includeInIndex: false
             ),
             Products.ProductKeys(
@@ -809,8 +811,9 @@ a/imported.a
                 filePath: .generated("a/c.a")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
-                explicitFileType: PBXProductType.staticLibrary.fileType,
-                path: "c.a",
+                name: "c.a",
+                explicitFileType: "compiled.mach-o.dylib",
+                path: "bazel-out/a/c.a",
                 includeInIndex: false
             ),
             Products.ProductKeys(
@@ -827,8 +830,9 @@ a/imported.a
                 filePath: .generated("e1/E.a")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
-                explicitFileType: PBXProductType.staticLibrary.fileType,
-                path: "E.a",
+                name: "E.a",
+                explicitFileType: "compiled.mach-o.dylib",
+                path: "bazel-out/e1/E.a",
                 includeInIndex: false
             ),
             Products.ProductKeys(
@@ -836,8 +840,9 @@ a/imported.a
                 filePath: .generated("e2/E.a")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
-                explicitFileType: PBXProductType.staticLibrary.fileType,
-                path: "E.a",
+                name: "E.a",
+                explicitFileType: "compiled.mach-o.dylib",
+                path: "bazel-out/e2/E.a",
                 includeInIndex: false
             ),
             Products.ProductKeys(
@@ -845,8 +850,9 @@ a/imported.a
                 filePath: .generated("r1/R1.bundle")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
+                name: "R1.bundle",
                 explicitFileType: PBXProductType.bundle.fileType,
-                path: "R1.bundle",
+                path: "bazel-out/r1/R1.bundle",
                 includeInIndex: false
             ),
         ])
@@ -1282,7 +1288,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 name: disambiguatedTargets["A 1"]!.name,
                 buildPhases: buildPhases["A 1"] ?? [],
                 productName: "a",
-                product: products.byTarget["A 1"],
+                product: nil,
                 productType: .staticLibrary
             ),
             "A 2": PBXNativeTarget(
@@ -1296,7 +1302,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 name: disambiguatedTargets["B 1"]!.name,
                 buildPhases: buildPhases["B 1"] ?? [],
                 productName: "b",
-                product: products.byTarget["B 1"],
+                product: nil,
                 productType: .staticFramework
             ),
             "B 2": PBXNativeTarget(
@@ -1317,7 +1323,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 name: disambiguatedTargets["C 1"]!.name,
                 buildPhases: buildPhases["C 1"] ?? [],
                 productName: "c",
-                product: products.byTarget["C 1"],
+                product: nil,
                 productType: .staticLibrary
             ),
             "C 2": PBXNativeTarget(
@@ -1331,21 +1337,21 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 name: disambiguatedTargets["E1"]!.name,
                 buildPhases: buildPhases["E1"] ?? [],
                 productName: "E1",
-                product: products.byTarget["E1"],
+                product: nil,
                 productType: .staticLibrary
             ),
             "E2": PBXNativeTarget(
                 name: disambiguatedTargets["E2"]!.name,
                 buildPhases: buildPhases["E2"] ?? [],
                 productName: "E2",
-                product: products.byTarget["E2"],
+                product: nil,
                 productType: .staticLibrary
             ),
             "R 1": PBXNativeTarget(
                 name: disambiguatedTargets["R 1"]!.name,
                 buildPhases: buildPhases["R 1"] ?? [],
                 productName: "R 1",
-                product: products.byTarget["R 1"],
+                product: nil,
                 productType: .bundle
             ),
         ]
