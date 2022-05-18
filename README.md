@@ -40,11 +40,11 @@ rules.
 
 ## Compatibility
 
-- macOS 12.0-12.3
-- Xcode 13.0-13.3
+- macOS 12.0-12.4
+- Xcode 13.0-13.3.1
 - Bazel 5.1.0
-- rules_swift 0.27.0
-- rules_apple 0.34.0
+- rules_swift post-0.27.0 (a release with https://github.com/bazelbuild/rules_swift/commit/8d4b096b90e47095755e47c27e749ae9b9f83e81)
+- rules_apple post-0.34.0 (a release with https://github.com/bazelbuild/rules_apple/commit/d4943e5e165069b42d44a432a0cc29ff6eb3efed)
 
 More versions of these tools and rulesets might be supported, but these are the
 ones we've officially tested with.
