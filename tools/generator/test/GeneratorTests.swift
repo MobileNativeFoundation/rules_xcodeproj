@@ -353,6 +353,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         struct SetTargetConfigurationsCalled: Equatable {
             let pbxProj: PBXProj
             let disambiguatedTargets: [TargetID: DisambiguatedTarget]
+            let buildMode: BuildMode
             let pbxTargets: [TargetID: PBXTarget]
             let filePathResolver: FilePathResolver
         }
@@ -361,12 +362,14 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         func setTargetConfigurations(
             in pbxProj: PBXProj,
             for disambiguatedTargets: [TargetID: DisambiguatedTarget],
+            buildMode: BuildMode,
             pbxTargets: [TargetID: PBXTarget],
             filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
+                buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 filePathResolver: filePathResolver
             ))
@@ -376,6 +379,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             SetTargetConfigurationsCalled(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
+                buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 filePathResolver: filePathResolver
             ),

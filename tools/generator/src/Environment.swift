@@ -69,6 +69,7 @@ struct Environment {
     let setTargetConfigurations: (
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        _ buildMode: BuildMode,
         _ pbxTargets: [TargetID: PBXTarget],
         _ filePathResolver: FilePathResolver
     ) throws -> Void

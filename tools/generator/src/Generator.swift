@@ -130,6 +130,7 @@ Was unable to merge "\(srcTarget.label) \
         try environment.setTargetConfigurations(
             pbxProj,
             disambiguatedTargets,
+            buildMode,
             pbxTargets,
             filePathResolver
         )

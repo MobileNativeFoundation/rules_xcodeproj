@@ -11,6 +11,7 @@ extension Generator {
     static func setTargetConfigurations(
         in pbxProj: PBXProj,
         for disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        buildMode: BuildMode,
         pbxTargets: [TargetID: PBXTarget],
         filePathResolver: FilePathResolver
     ) throws {
@@ -163,8 +164,8 @@ $(CONFIGURATION_BUILD_DIR)
                     infoPlistPath.replaceExtension("xcode.plist")
                 }
                 buildSettings["INFOPLIST_FILE"] = infoPlistPath.string.quoted
-            } else {
-              buildSettings["GENERATE_INFOPLIST_FILE"] = true
+            } else if buildMode.allowsGeneratedInfoPlists {
+                buildSettings["GENERATE_INFOPLIST_FILE"] = true
             }
 
             if let entitlements = target.entitlements {
