@@ -11,7 +11,7 @@ extension Generator {
             let fileType: String?
             let name: String?
             let path: String?
-            if target.product.type.isLaunchable {
+            if target.product.type.setsAssociatedProduct {
                 fileType = target.product.type.fileType
                 name = nil
                 path = target.product.path.path.lastComponent
@@ -25,9 +25,9 @@ extension Generator {
                     fileType = target.product.type.fileType
                 }
 
-                // We need to fix the path for non-launchable products, since we
-                // override `DEPLOYMENT_LOCATION` and `BUILT_PRODUCTS_DIR`
-                // for them
+                // We need to fix the path for deployment location products,
+                // since we override `DEPLOYMENT_LOCATION` and
+                // `BUILT_PRODUCTS_DIR` for them
                 name = target.product.path.path.lastComponent
                 path = "bazel-out/\(target.product.path.path)"
             }

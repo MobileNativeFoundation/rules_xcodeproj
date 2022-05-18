@@ -84,9 +84,8 @@ Product for target "\(id)" not found in `products`
                 name: disambiguatedTarget.name,
                 buildPhases: buildPhases.compactMap { $0 },
                 productName: target.product.name,
-                // We remove the link on non-launchable products to allow the
-                // correct path to be respected
-                product: target.product.type.isLaunchable ? product: nil,
+                product: target.product.type.setsAssociatedProduct ?
+                    product : nil,
                 productType: target.product.type
             )
             pbxProj.add(object: pbxTarget)
