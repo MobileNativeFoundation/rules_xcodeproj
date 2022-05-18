@@ -133,8 +133,9 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "resources": [target_type.resources],
         }
     elif AppleFrameworkImportInfo in target:
-        xcode_targets = {}
-        excluded = ("framework_imports")
+        xcode_targets = {"deps": [target_type.compile, target_type.resources]}
+        excluded = ("deps", "framework_imports")
+        resources = {"deps": [target_type.compile, target_type.resources]}
     else:
         xcode_targets = {"deps": [this_target_type, target_type.resources]}
         excluded = ("deps")
