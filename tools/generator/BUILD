@@ -28,6 +28,7 @@ swift_binary(
 
 xcodeproj(
     name = "xcodeproj",
+    build_mode = "bazel",
     project_name = "generator",
     tags = ["manual"],
     targets = XCODEPROJ_TARGETS,
