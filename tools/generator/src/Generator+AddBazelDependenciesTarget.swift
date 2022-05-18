@@ -299,10 +299,20 @@ for output_group in "${output_groups[@]}"; do
   filelist="${filelist/#/$output_path/\#(xcodeprojBinDir)/}"
   filelist="${filelist/%/.filelist}"
   if ! grep -q "^  $filelist$" "$log"; then
-    echo "error: Bazel didn't generate the files asked of it. Please regenerate the project to fix this. If your bazel version is less than 5.2, you may need to \`bazel clean\` and \`bazel shutdown\` to work around a bug in project generation. If you still are getting this error, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
+    echo "error: Bazel didn't generate the correct files (it should have \#
+generated outputs for output group \"$output_group\", but the logs don't have \#
+an entry for \"$filelist\"). Please regenerate the project to fix this." >&2
+    echo "error: If your bazel version is less than 5.2, you may need to \#
+\`bazel clean\` and/or \`bazel shutdown\` to work around a bug in project \#
+generation." >&2
+    echo "error: If you are still getting this error after all of that, \#
+please file a bug report here: \#
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \#
+>&2
     exit 1
   fi
 done
+
 """#
     }
 
@@ -357,10 +367,9 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(generatedInputsOutputGroup).filelist
 diff=$(comm -23 <(sed -e 's|^|bazel-out/|' "\#(rsynclist)" | sort) <(sort "\#(filelist)"))
 if ! [ -z "$diff" ]; then
   echo "error: The files that Bazel generated don't match what the project \#
-expects. Please regenerate the project. If your bazel version is less than \#
-5.2, you may need to \`bazel clean\` and \`bazel shutdown\` to work around a \#
-bug in project generation. If you still are getting this error, please file a \#
-bug report here: \#
+expects. Please regenerate the project." >&2
+  echo "error: If you still get this error after regenerating your project, \#
+please file a bug report here: \#
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \#
 >&2
   exit 1
