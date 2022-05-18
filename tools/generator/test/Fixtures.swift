@@ -783,9 +783,8 @@ a/imported.a
                 filePath: .generated("a/b.framework")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
-                name: "b.framework",
                 explicitFileType: PBXProductType.staticFramework.fileType,
-                path: "bazel-out/a/b.framework",
+                path: "b.framework",
                 includeInIndex: false
             ),
             Products.ProductKeys(
@@ -850,9 +849,8 @@ a/imported.a
                 filePath: .generated("r1/R1.bundle")
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
-                name: "R1.bundle",
                 explicitFileType: PBXProductType.bundle.fileType,
-                path: "bazel-out/r1/R1.bundle",
+                path: "R1.bundle",
                 includeInIndex: false
             ),
         ])
@@ -1304,7 +1302,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 name: disambiguatedTargets["B 1"]!.name,
                 buildPhases: buildPhases["B 1"] ?? [],
                 productName: "b",
-                product: nil,
+                product: products.byTarget["B 1"],
                 productType: .staticFramework
             ),
             "B 2": PBXNativeTarget(
@@ -1353,7 +1351,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 name: disambiguatedTargets["R 1"]!.name,
                 buildPhases: buildPhases["R 1"] ?? [],
                 productName: "R 1",
-                product: nil,
+                product: products.byTarget["R 1"],
                 productType: .bundle
             ),
         ]
