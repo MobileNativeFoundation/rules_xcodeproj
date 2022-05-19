@@ -16,7 +16,7 @@ genrule(
     name = "gen_Answer.swift",
     srcs = ["Answer.swift.stencil"],
     outs = ["Answer.swift"],
-    cmd = """sed 's/{{ answer }}/42/' $< > $@""",
+    cmd = """sed 's/{{ answer }}/2147483647/' $< > $@""",
 )
 
 genrule(
