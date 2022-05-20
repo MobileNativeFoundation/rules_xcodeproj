@@ -1535,7 +1535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3B581A2D7C1575EF22D8ECDA /* Copy Bazel Outputs */ = {
@@ -1552,7 +1552,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3C2F7597AADF65DD2B4DA5CC /* Copy Bazel Outputs */ = {
@@ -1569,7 +1569,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"tests.xctest\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"${BAZEL_OUTPUTS_PRODUCT%/*}\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"tests.xctest\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		552BD18EE10BBA93EBBDB88E /* Copy Bazel Outputs */ = {
@@ -1586,7 +1586,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8AD6171C2CD18BEE615F0279 /* Copy Bazel Outputs */ = {
@@ -1603,7 +1603,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		90B04C8AB5A07A2ECF257268 /* Copy Bazel Outputs */ = {
@@ -1620,7 +1620,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
@@ -1656,7 +1656,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */ = {
@@ -1672,7 +1672,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"generator\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"${BAZEL_OUTPUTS_PRODUCT%/*}\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"generator\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F5738A25C92C3E659EB1C474 /* Copy Bazel Outputs */ = {
@@ -1689,7 +1689,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nlog=\"$(mktemp)\"\nrsync \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftdoc\" \\\n  \"$BAZEL_OUT/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftsourceinfo\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2124,6 +2124,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit";
 				BAZEL_TARGET_ID = "@com_github_kylef_pathkit//:PathKit darwin_x86_64-dbg-ST-5534cb307cb8";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -2192,6 +2193,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj";
 				BAZEL_TARGET_ID = "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-dbg-ST-5534cb307cb8";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -2249,6 +2251,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml";
 				BAZEL_TARGET_ID = "@com_github_tadija_aexml//:AEXML darwin_x86_64-dbg-ST-5534cb307cb8";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -2338,6 +2341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-dbg-ST-5534cb307cb8";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -2394,6 +2398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump";
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-dbg-ST-5534cb307cb8";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -2451,6 +2456,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.xctest";
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test";
 				BAZEL_TARGET_ID = "//tools/generator/test:tests darwin_x86_64-dbg-ST-5534cb307cb8";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
@@ -2515,6 +2522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections";
 				BAZEL_TARGET_ID = "@com_github_apple_swift_collections//:OrderedCollections darwin_x86_64-dbg-ST-5534cb307cb8";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -2571,6 +2579,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator";
 				BAZEL_TARGET_ID = "//tools/generator:generator darwin_x86_64-dbg-ST-5534cb307cb8";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
@@ -2631,6 +2640,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator";
 				BAZEL_TARGET_ID = "//tools/generator:generator.library darwin_x86_64-dbg-ST-5534cb307cb8";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";

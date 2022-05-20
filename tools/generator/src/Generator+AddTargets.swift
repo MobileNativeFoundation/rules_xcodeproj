@@ -493,7 +493,7 @@ extension Outputs {
                 targetProduct: targetProduct,
                 filePathResolver: filePathResolver
             ),
-            try swiftCopyCommand(filePathResolver: filePathResolver),
+            swiftCopyCommand(),
         ].compactMap { $0 }
 
         return #"""
@@ -523,12 +523,11 @@ fi
     }
 
     private static func extractBundleCommand(
-        outputPath: Path,
         bundlePathPrefix: String,
         bundlePath: String
     ) -> String {
         return #"""
-  readonly archive="\#(outputPath)"
+  readonly archive="$BAZEL_OUTPUTS_PRODUCT"
   readonly expanded_dest="$DERIVED_FILE_DIR/expanded_archive"
   readonly sha_output="$DERIVED_FILE_DIR/archive.sha256"
 
@@ -555,27 +554,23 @@ fi
             return ""
         }
 
-        let outputPath = try filePathResolver
-            .resolve(product, useOriginalGeneratedFiles: true, mode: .script)
         let bundlePath = targetProduct.path.path.lastComponent
 
         let extract: String
         switch product.path.extension {
         case "ipa":
             extract = Self.extractBundleCommand(
-                outputPath: outputPath,
                 bundlePathPrefix: "/Payload",
                 bundlePath: bundlePath
             )
         case "zip":
             extract = Self.extractBundleCommand(
-                outputPath: outputPath,
                 bundlePathPrefix: "",
                 bundlePath: bundlePath
             )
         default:
             extract = #"""
-  cd "\#(outputPath.parent())"
+  cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
 
 """#
         }
@@ -612,26 +607,19 @@ else
 """#
     }
 
-    private func swiftCopyCommand(
-        filePathResolver: FilePathResolver
-    ) throws -> String? {
+    private func swiftCopyCommand() -> String? {
         guard let swift = swift else {
             return nil
         }
 
         let copyGeneratedHeader: String
-        if let generatedHeader = swift.generatedHeader {
+        if swift.generatedHeader != nil {
             copyGeneratedHeader = #"""
 # Copy generated header
 header="$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
 mkdir -p "${header%/*}"
 cp \
-  "\#(try filePathResolver
-    .resolve(
-        generatedHeader,
-        useOriginalGeneratedFiles: true,
-        mode: .script
-))" \
+  "$BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER" \
   "$header"
 chmod u+w "$header"
 
@@ -644,11 +632,14 @@ chmod u+w "$header"
         return #"""
 \#(copyGeneratedHeader)\#
 # Copy swiftmodule
+SAVEIFS=$IFS; IFS=$'\n'
+# shellcheck disable=2206 # `read` doesn't work correctly for this case
+swiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)
+IFS=$SAVEIFS
+
 log="$(mktemp)"
 rsync \
-  \#(try swift
-    .paths(filePathResolver: filePathResolver)
-    .joined(separator: #" \\#n  "#)) \
+  "${swiftmodule[@]}" \
   --times \
   --chmod=u+w \
   -L \
@@ -660,23 +651,5 @@ if [[ -s "$log" ]]; then
 fi
 
 """#
-    }
-}
-
-private extension Outputs.Swift {
-    func paths(filePathResolver: FilePathResolver) throws -> [String] {
-        return try [
-                module,
-                doc,
-                sourceInfo,
-                interface,
-            ]
-            .compactMap { $0 }
-            .map { filePath in
-                return """
-"\(try filePathResolver
-    .resolve(filePath, useOriginalGeneratedFiles: true, mode: .script))"
-"""
-            }
     }
 }
