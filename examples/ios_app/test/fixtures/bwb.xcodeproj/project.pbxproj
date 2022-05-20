@@ -834,7 +834,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"${BAZEL_OUTPUTS_PRODUCT%/*}\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"ExampleObjcTests.xctest\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n";
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"ExampleObjcTests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		21D8AA3BEA3F6C89F37D75A1 /* Copy Bazel Outputs */ = {
@@ -851,7 +851,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"${BAZEL_OUTPUTS_PRODUCT%/*}\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"ExampleTests.xctest\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"ExampleTests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3D4CFD8FC03BCBC4496FF968 /* Copy Swift Generated Header */ = {
@@ -885,7 +885,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nfi\n\n# Copy generated header\nheader=\"$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME\"\nmkdir -p \"${header%/*}\"\ncp \\\n  \"$BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER\" \\\n  \"$header\"\nchmod u+w \"$header\"\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libTestingUtils.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8B78105B0FED0E97D2411615 /* Copy Bazel Outputs */ = {
@@ -902,7 +902,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"${BAZEL_OUTPUTS_PRODUCT%/*}\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"ExampleUITests.xctest\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"ExampleUITests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		91A249C04A86079A36A5303D /* Copy Bazel Outputs */ = {
@@ -919,7 +919,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nmkdir -p \"$OBJECT_FILE_DIR-normal/$ARCHS\"\n\nif [[ \"$ACTION\" == indexbuild ]]; then\n  # Write to \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\" to allow next index to catch up\n  echo \"i $BAZEL_TARGET_ID\" > \"$BAZEL_BUILD_OUTPUT_GROUPS_FILE\"\nelse\n  # Copy product\n  cd \"${BAZEL_OUTPUTS_PRODUCT%/*}\"\n  rsync \\\n    --copy-links \\\n    --recursive \\\n    --times \\\n    --delete \\\n    --exclude-from=\"$INTERNAL_DIR/app.exclude.rsynclist\" \\\n    --chmod=u+w \\\n    --out-format=\"%n%L\" \\\n    \"Example.app\" \\\n    \"$TARGET_BUILD_DIR\"\nfi\n\n# Copy swiftmodule\nSAVEIFS=$IFS; IFS=$'\\n'\n# shellcheck disable=2206 # `read` doesn't work correctly for this case\nswiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)\nIFS=$SAVEIFS\n\nlog=\"$(mktemp)\"\nrsync \\\n  \"${swiftmodule[@]}\" \\\n  --times \\\n  --chmod=u+w \\\n  -L \\\n  --out-format=\"%n%L\" \\\n  \"$OBJECT_FILE_DIR-normal/$ARCHS\" \\\n  | tee -i \"$log\"\nif [[ -s \"$log\" ]]; then\n  touch \"$DERIVED_FILE_DIR/_BazelForcedCompile_.swift\"\nfi\n";
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"Example.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
