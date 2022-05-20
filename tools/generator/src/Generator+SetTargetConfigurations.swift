@@ -201,6 +201,34 @@ $(CONFIGURATION_BUILD_DIR)
                     .joined(separator: " ")
             }
 
+            if let swiftOutputs = target.outputs.swift {
+                let swiftmoduleOutputPaths = try swiftOutputs.paths(
+                    filePathResolver: filePathResolver
+                )
+                if !swiftmoduleOutputPaths.isEmpty {
+                    buildSettings["BAZEL_OUTPUTS_SWIFTMODULE"] =
+                        swiftmoduleOutputPaths.joined(separator: "\n")
+                }
+
+                if let generatedHeader = swiftOutputs.generatedHeader {
+                    buildSettings["BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER"] =
+                        try filePathResolver.resolve(
+                            generatedHeader,
+                            useOriginalGeneratedFiles: true
+                        )
+                        .string
+                }
+            }
+
+            if let productOutput = target.outputs.product {
+                buildSettings["BAZEL_OUTPUTS_PRODUCT"] =
+                    try filePathResolver.resolve(
+                        productOutput,
+                        useOriginalGeneratedFiles: true
+                    )
+                    .string
+            }
+
             if let ldRunpathSearchPaths = target.ldRunpathSearchPaths {
                 buildSettings["LD_RUNPATH_SEARCH_PATHS"] = ldRunpathSearchPaths
             }
@@ -387,6 +415,24 @@ extension Target {
 private extension Inputs {
     var containsSourceFiles: Bool {
         return !(srcs.isEmpty && nonArcSrcs.isEmpty)
+    }
+}
+
+private extension Outputs.Swift {
+    func paths(filePathResolver: FilePathResolver) throws -> [String] {
+        return try [
+                module,
+                doc,
+                sourceInfo,
+                interface,
+            ]
+            .compactMap { $0 }
+            .map { filePath in
+                return try filePathResolver.resolve(
+                    filePath,
+                    useOriginalGeneratedFiles: true
+                ).string
+            }
     }
 }
 
