@@ -140,6 +140,7 @@ Target "\(id)" not found in `pbxTargets`
             buildSettings["BAZEL_PACKAGE_BIN_DIR"] = target.packageBinDir.string
             buildSettings["BAZEL_TARGET_ID"] = id.rawValue
             buildSettings["SDKROOT"] = target.platform.os.sdkRoot
+            buildSettings["SUPPORTED_PLATFORMS"] = target.platform.name
             buildSettings["TARGET_NAME"] = target.name
 
             if target.product.type.isLaunchable {

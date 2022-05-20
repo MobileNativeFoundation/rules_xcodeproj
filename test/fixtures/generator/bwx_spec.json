@@ -71,7 +71,6 @@
                 ],
                 "PRODUCT_MODULE_NAME": "_tests_Stub",
                 "PRODUCT_NAME": "tests",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -128,6 +127,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -189,7 +189,6 @@
                 "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "tests",
                 "PRODUCT_NAME": "tests.library",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -240,6 +239,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -325,7 +325,6 @@
                 ],
                 "PRODUCT_MODULE_NAME": "_generator_Stub",
                 "PRODUCT_NAME": "generator",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -370,6 +369,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -430,7 +430,6 @@
                 "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "generator",
                 "PRODUCT_NAME": "generator.library",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -496,6 +495,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -573,7 +573,6 @@
                 "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "OrderedCollections",
                 "PRODUCT_NAME": "OrderedCollections",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -797,6 +796,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -857,7 +857,6 @@
                 "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "PathKit",
                 "PRODUCT_NAME": "PathKit",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -885,6 +884,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -945,7 +945,6 @@
                 "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "CustomDump",
                 "PRODUCT_NAME": "CustomDump",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1071,6 +1070,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -1136,7 +1136,6 @@
                 "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay",
                 "PRODUCT_NAME": "XCTestDynamicOverlay",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1164,6 +1163,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -1224,7 +1224,6 @@
                 "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "AEXML",
                 "PRODUCT_NAME": "AEXML",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1268,6 +1267,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {
@@ -1328,7 +1328,6 @@
                 "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "XcodeProj",
                 "PRODUCT_NAME": "XcodeProj",
-                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1735,6 +1734,7 @@
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
+                "name": "macosx",
                 "os": "macos"
             },
             "product": {

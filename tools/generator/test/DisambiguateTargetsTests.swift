@@ -109,6 +109,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.0",
@@ -118,6 +119,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
             "A 2": Target.mock(
                 platform: .init(
+                    name: "watchos",
                     os: .watchOS,
                     arch: "arm64",
                     minimumOsVersion: "8.0",
@@ -157,6 +159,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
                 platform: .init(
+                    name: "macosx",
                     os: .macOS,
                     arch: "arm64",
                     minimumOsVersion: "12.0",
@@ -166,6 +169,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
             "A 2": Target.mock(
                 platform: .init(
+                    name: "macosx",
                     os: .macOS,
                     arch: "x86_64",
                     minimumOsVersion: "12.0",
@@ -205,6 +209,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -214,6 +219,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
             "A 2": Target.mock(
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "13.2",
@@ -253,6 +259,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -262,6 +269,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
             "A 2": Target.mock(
                 platform: .init(
+                    name: "iphonesimulator",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -301,6 +309,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -310,6 +319,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
             "A 2": Target.mock(
                 platform: .init(
+                    name: "macosx",
                     os: .macOS,
                     arch: "x86_64",
                     minimumOsVersion: "12.0",
@@ -349,6 +359,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -358,6 +369,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
             "A 2": Target.mock(
                 platform: .init(
+                    name: "macosx",
                     os: .macOS,
                     arch: "arm64",
                     minimumOsVersion: "11.2",
@@ -367,6 +379,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
             "A 3": Target.mock(
                 platform: .init(
+                    name: "macosx",
                     os: .macOS,
                     arch: "arm64",
                     minimumOsVersion: "11.2",
@@ -408,6 +421,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 1": Target.mock(
                 configuration: "1",
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -418,6 +432,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 2": Target.mock(
                 configuration: "2",
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -458,6 +473,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 1": Target.mock(
                 configuration: "1",
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -468,6 +484,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 2": Target.mock(
                 configuration: "2",
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -478,6 +495,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 3": Target.mock(
                 configuration: "2",
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -519,6 +537,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 1": Target.mock(
                 configuration: "1",
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -529,6 +548,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 2": Target.mock(
                 configuration: "2",
                 platform: .init(
+                    name: "iphoneos",
                     os: .iOS,
                     arch: "arm64",
                     minimumOsVersion: "15.1",
@@ -539,6 +559,7 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 3": Target.mock(
                 configuration: "2",
                 platform: .init(
+                    name: "macosx",
                     os: .macOS,
                     arch: "arm64",
                     minimumOsVersion: "12.0",
