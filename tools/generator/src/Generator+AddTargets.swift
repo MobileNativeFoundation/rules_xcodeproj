@@ -34,7 +34,8 @@ Product for target "\(id)" not found in `products`
                 try createCopyBazelOutputsScript(
                     in: pbxProj,
                     buildMode: buildMode,
-                    product: target.product,
+                    productType: productType,
+                    productBasename: target.product.path.path.lastComponent,
                     outputs: outputs,
                     filePathResolver: filePathResolver
                 ),
@@ -84,9 +85,9 @@ Product for target "\(id)" not found in `products`
                 name: disambiguatedTarget.name,
                 buildPhases: buildPhases.compactMap { $0 },
                 productName: target.product.name,
-                product: target.product.type.setsAssociatedProduct ?
+                product: productType.setsAssociatedProduct ?
                     product : nil,
-                productType: target.product.type
+                productType: productType
             )
             pbxProj.add(object: pbxTarget)
             pbxProject.targets.append(pbxTarget)
@@ -107,14 +108,16 @@ Product for target "\(id)" not found in `products`
     private static func createCopyBazelOutputsScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
-        product: Product,
+        productType: PBXProductType,
+        productBasename: String,
         outputs: Outputs,
         filePathResolver: FilePathResolver
     ) throws -> PBXShellScriptBuildPhase? {
         guard
             buildMode.usesBazelModeBuildScripts,
             let copyCommand = try outputs.scriptCopyCommand(
-                targetProduct: product,
+                productType: productType,
+                productBasename: productBasename,
                 filePathResolver: filePathResolver
             )
         else {
@@ -481,7 +484,8 @@ extension Outputs {
     }
 
     fileprivate func scriptCopyCommand(
-        targetProduct: Product,
+        productType: PBXProductType,
+        productBasename: String,
         filePathResolver: FilePathResolver
     ) throws -> String? {
         guard product != nil || swift != nil else {
@@ -489,7 +493,7 @@ extension Outputs {
         }
 
         let excludeList: String
-        if targetProduct.type.isApplication {
+        if productType.isApplication {
             excludeList = try filePathResolver.resolve(
                 .internal(Generator.appRsyncExcludeFileListPath),
                 mode: .script
@@ -504,7 +508,7 @@ set -euo pipefail
 
 "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
   "\#(Generator.bazelForcedSwiftCompilePath)" \
-  "\#(targetProduct.path.path.lastComponent)" \
+  "\#(productBasename)" \
   "\#(excludeList)"
 
 """#
