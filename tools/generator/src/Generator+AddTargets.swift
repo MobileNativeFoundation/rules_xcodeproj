@@ -488,167 +488,24 @@ extension Outputs {
             return nil
         }
 
-        let commands = [
-            try conditionalCopyCommand(
-                targetProduct: targetProduct,
-                filePathResolver: filePathResolver
-            ),
-            swiftCopyCommand(),
-        ].compactMap { $0 }
-
-        return #"""
-set -euo pipefail
-
-mkdir -p "$OBJECT_FILE_DIR-normal/$ARCHS"
-
-
-"""# + commands.joined(separator: "\n")
-    }
-
-    fileprivate func conditionalCopyCommand(
-        targetProduct: Product,
-        filePathResolver: FilePathResolver
-    ) throws -> String {
-        return #"""
-if [[ "$ACTION" == indexbuild ]]; then
-  # Write to "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" to allow next index to catch up
-  echo "i $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-\#(try nonIndexCopyCommand(
-    targetProduct: targetProduct,
-    filePathResolver: filePathResolver
-))\#
-fi
-
-"""#
-    }
-
-    private static func extractBundleCommand(
-        bundlePathPrefix: String,
-        bundlePath: String
-    ) -> String {
-        return #"""
-  readonly archive="$BAZEL_OUTPUTS_PRODUCT"
-  readonly expanded_dest="$DERIVED_FILE_DIR/expanded_archive"
-  readonly sha_output="$DERIVED_FILE_DIR/archive.sha256"
-
-  existing_sha=$(cat "$sha_output" 2>/dev/null || true)
-  sha=$(shasum -a 256 "$archive")
-
-  if [[ "$existing_sha" != "$sha" || ! -d "$expanded_dest\#(bundlePathPrefix)/\#(bundlePath)" ]]; then
-    mkdir -p "$expanded_dest"
-    rm -rf "${expanded_dest:?}/"
-    unzip -q "$archive" -d "$expanded_dest"
-    echo "$sha" > "$sha_output"
-  fi
-
-  cd "$expanded_dest\#(bundlePathPrefix)"
-
-"""#
-    }
-
-    private func nonIndexCopyCommand(
-        targetProduct: Product,
-        filePathResolver: FilePathResolver
-    ) throws -> String {
-        guard let product = product else {
-            return ""
-        }
-
-        let bundlePath = targetProduct.path.path.lastComponent
-
-        let extract: String
-        switch product.path.extension {
-        case "ipa":
-            extract = Self.extractBundleCommand(
-                bundlePathPrefix: "/Payload",
-                bundlePath: bundlePath
-            )
-        case "zip":
-            extract = Self.extractBundleCommand(
-                bundlePathPrefix: "",
-                bundlePath: bundlePath
-            )
-        default:
-            extract = #"""
-  cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
-
-"""#
-        }
-
         let excludeList: String
         if targetProduct.type.isApplication {
-            excludeList = #"""
-    --exclude-from="\#(
-try filePathResolver
-    .resolve(.internal(Generator.appRsyncExcludeFileListPath), mode: .script)
-    .string
-)" \
-
-"""#
+            excludeList = try filePathResolver.resolve(
+                .internal(Generator.appRsyncExcludeFileListPath),
+                mode: .script
+            )
+            .string
         } else {
             excludeList = ""
         }
 
         return #"""
-else
-  # Copy product
-\#(extract)\#
-  rsync \
-    --copy-links \
-    --recursive \
-    --times \
-    --delete \
-\#(excludeList)\#
-    --chmod=u+w \
-    --out-format="%n%L" \
-    "\#(bundlePath)" \
-    "$TARGET_BUILD_DIR"
+set -euo pipefail
 
-"""#
-    }
-
-    private func swiftCopyCommand() -> String? {
-        guard let swift = swift else {
-            return nil
-        }
-
-        let copyGeneratedHeader: String
-        if swift.generatedHeader != nil {
-            copyGeneratedHeader = #"""
-# Copy generated header
-header="$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
-mkdir -p "${header%/*}"
-cp \
-  "$BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER" \
-  "$header"
-chmod u+w "$header"
-
-
-"""#
-        } else {
-            copyGeneratedHeader = ""
-        }
-
-        return #"""
-\#(copyGeneratedHeader)\#
-# Copy swiftmodule
-SAVEIFS=$IFS; IFS=$'\n'
-# shellcheck disable=2206 # `read` doesn't work correctly for this case
-swiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)
-IFS=$SAVEIFS
-
-log="$(mktemp)"
-rsync \
-  "${swiftmodule[@]}" \
-  --times \
-  --chmod=u+w \
-  -L \
-  --out-format="%n%L" \
-  "$OBJECT_FILE_DIR-normal/$ARCHS" \
-  | tee -i "$log"
-if [[ -s "$log" ]]; then
-  touch "$DERIVED_FILE_DIR/\#(Generator.bazelForcedSwiftCompilePath)"
-fi
+"$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
+  "\#(Generator.bazelForcedSwiftCompilePath)" \
+  "\#(targetProduct.path.path.lastComponent)" \
+  "\#(excludeList)"
 
 """#
     }
