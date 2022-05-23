@@ -34,6 +34,18 @@ struct Outputs: Equatable {
 }
 
 extension Outputs {
+    var hasOutputs: Bool {
+        return hasSwiftOutputs || hasProductOutput
+    }
+
+    var hasProductOutput: Bool {
+        return product != nil
+    }
+
+    var hasSwiftOutputs: Bool {
+        return swift != nil
+    }
+
     mutating func merge(_ other: Outputs) {
         swift = other.swift
     }
