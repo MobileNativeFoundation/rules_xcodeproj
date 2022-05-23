@@ -29,6 +29,7 @@ extension Target {
             configuration: configuration,
             packageBinDir: packageBinDir,
             platform: platform ?? Platform(
+                name: "macosx",
                 os: .macOS,
                 arch: "arm64",
                 minimumOsVersion: "12.0",

@@ -67,6 +67,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
                 name: id.rawValue,
                 target: Target.mock(
                     platform: .init(
+                        name: "platformName",
                         os: input.os,
                         arch: "arm64",
                         minimumOsVersion: "11.0",

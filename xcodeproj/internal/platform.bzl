@@ -45,6 +45,7 @@ def _generate_platform_information(
     is_device = platform.is_device
 
     platform_dict = {
+        "name": _PLATFORM_NAME[platform],
         "os": str(platform_type),
         "arch": arch,
         "minimum_os_version": minimum_os_version,
@@ -55,7 +56,6 @@ def _generate_platform_information(
     build_settings[_DEPLOYMENT_TARGET_KEY[platform_type]] = (
         minimum_deployment_os_version if minimum_deployment_os_version else minimum_os_version
     )
-    build_settings["SUPPORTED_PLATFORMS"] = _PLATFORM_NAME[platform]
 
     return platform_dict
 

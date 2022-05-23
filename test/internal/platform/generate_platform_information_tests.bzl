@@ -90,11 +90,11 @@ def generate_platform_information_test_suite(name):
         expected_platform_dict = {
             "arch": "wild",
             "minimum_os_version": "12.0",
+            "name": "appletvos",
             "os": "tvos",
         },
         expected_build_settings = {
             "TVOS_DEPLOYMENT_TARGET": "12.0",
-            "SUPPORTED_PLATFORMS": "appletvos",
         },
     )
 
@@ -107,12 +107,12 @@ def generate_platform_information_test_suite(name):
         expected_platform_dict = {
             "arch": "x86_64",
             "environment": "Simulator",
+            "name": "iphonesimulator",
             "minimum_os_version": "11.0",
             "os": "ios",
         },
         expected_build_settings = {
             "IPHONEOS_DEPLOYMENT_TARGET": "13.0",
-            "SUPPORTED_PLATFORMS": "iphonesimulator",
         },
     )
 
@@ -126,12 +126,12 @@ def generate_platform_information_test_suite(name):
         minimum_deployment_os_version = None,
         expected_platform_dict = {
             "arch": "arm64",
+            "name": "macosx",
             "minimum_os_version": "12.1",
             "os": "macos",
         },
         expected_build_settings = {
             "MACOSX_DEPLOYMENT_TARGET": "12.1",
-            "SUPPORTED_PLATFORMS": "macosx",
         },
     )
 

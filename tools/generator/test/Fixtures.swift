@@ -161,6 +161,7 @@ enum Fixtures {
         "E1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/E1",
             platform: .init(
+                name: "watchos",
                 os: .watchOS,
                 arch: "x86_64",
                 minimumOsVersion: "9.1",
@@ -177,6 +178,7 @@ enum Fixtures {
         "E2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/E2",
             platform: .init(
+                name: "appletvos",
                 os: .tvOS,
                 arch: "arm64",
                 minimumOsVersion: "9.1",
@@ -1485,6 +1487,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "BAZEL_TARGET_ID": "A 1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["A 1"]!.name,
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
@@ -1508,6 +1511,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["A 2"]!.name,
             ]) { $1 },
@@ -1520,6 +1524,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 -Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
 """,
                 "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["B 1"]!.name,
             ]) { $1 },
@@ -1539,6 +1544,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_BUILD_DIR": """
 $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 """,
@@ -1560,6 +1566,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["B 3"]!.name,
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
             ]) { $1 },
@@ -1572,6 +1579,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
 """,
                 "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["C 1"]!.name,
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
@@ -1591,6 +1599,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["C 2"]!.name,
             ]) { $1 },
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
@@ -1599,6 +1608,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_TARGET_ID": "E1",
                 "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "watchos",
+                "SUPPORTED_PLATFORMS": "watchos",
                 "TARGET_NAME": targets["E1"]!.name,
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
@@ -1607,6 +1617,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_TARGET_ID": "E2",
                 "GENERATE_INFOPLIST_FILE": true,
                 "SDKROOT": "appletvos",
+                "SUPPORTED_PLATFORMS": "appletvos",
                 "TARGET_NAME": targets["E2"]!.name,
             ]) { $1 },
             "R 1": targets["R 1"]!.buildSettings.asDictionary.merging([
@@ -1622,6 +1633,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                     "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["R 1"]!.name,
             ]) { $1 },
         ]

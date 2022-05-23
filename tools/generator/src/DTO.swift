@@ -49,6 +49,7 @@ struct Platform: Equatable, Decodable {
         case watchOS = "watchos"
     }
 
+    let name: String
     let os: OS
     let arch: String
     let minimumOsVersion: String
