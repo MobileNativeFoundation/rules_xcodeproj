@@ -34,13 +34,19 @@ while (("$#")); do
   esac
 done
 
+# Resolve the source
 [[ -z "${src:-}" ]] && src="$PWD/%source_path%"
+[[ -d "${src}" ]] || fail "The specified source does not exist. ${src}"
 
+# Resolve the destination
 [[ -z "${dest:-}" ]] \
   && [[ -n "${BUILD_WORKSPACE_DIRECTORY:-}" ]] \
   && dest="$BUILD_WORKSPACE_DIRECTORY/%output_path%"
 [[ -n "${dest:-}" ]] || fail "A destination for the Xcode project was not set."
-
+dest_dir="$(dirname "${dest}")"
+[[ -d "${dest_dir}" ]] || \
+  fail "The destination directory does not exist or is not a directory." \
+    "${dest_dir}"
 
 # Sync over the project, changing the permissions to be writable
 
