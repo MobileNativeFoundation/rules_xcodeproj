@@ -466,7 +466,7 @@ extension Outputs {
             return []
         }
 
-        if swift != nil {
+        if hasSwiftOutputs {
             return [.internal(Generator.bazelForcedSwiftCompilePath)]
         }
 
@@ -474,7 +474,7 @@ extension Outputs {
     }
 
     fileprivate var outputPaths: [String] {
-        if swift != nil {
+        if hasSwiftOutputs {
             return [
                 "$(DERIVED_FILE_DIR)/\(Generator.bazelForcedSwiftCompilePath)",
             ]
@@ -488,7 +488,7 @@ extension Outputs {
         productBasename: String,
         filePathResolver: FilePathResolver
     ) throws -> String? {
-        guard product != nil || swift != nil else {
+        guard hasOutputs else {
             return nil
         }
 
