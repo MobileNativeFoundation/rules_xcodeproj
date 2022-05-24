@@ -22,10 +22,7 @@ load(
     "processed_target",
     "xcode_target",
 )
-load(
-    ":product.bzl",
-    "process_product",
-)
+load(":product.bzl", "process_product")
 load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
