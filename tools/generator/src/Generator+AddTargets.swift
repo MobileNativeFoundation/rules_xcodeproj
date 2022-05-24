@@ -451,11 +451,10 @@ private struct SourceFile: Hashable {
 
 private extension Path {
     var isHeader: Bool {
-        switch `extension` {
-        case "h": return true
-        case "hh": return true
-        case "hpp": return true
-        default: return false
+        if let ext = `extension` {
+            return Xcode.headersExtensions.contains(".\(ext)")
+        } else {
+            return false
         }
     }
 }

@@ -1,4 +1,4 @@
-#include "private.h"
+#include "private.inc"
 
 char *externalGreeting() {
     return SECRET;

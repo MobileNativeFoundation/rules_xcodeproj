@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		9F8860D106D9ABB10483EA7A /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = 941A754D1FBB5ACD78B4C755 /* private.h */; };
+		91AD5E78AE94B72CEDD275A5 /* private.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3C80F439DD6B6A9F76C8BCC6 /* private.inc */; };
 		CD2AA10AC79D5924E155E574 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = FB80EF95C89684721EBBDC35 /* lib.c */; };
 		CFDEFD32F9576B104A39894D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9411DCDC5C6F92122299107F /* main.c */; };
 		D770DE28E597BAF74254AFCB /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = 8D73636373B8CDD4BE62C0A5 /* private.h */; };
@@ -85,6 +85,7 @@
 		1FA9CAC061B4F491CEBDF60A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		26866FEDF67CD3FA66FFAB17 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		2F2B12BDC30B75C3CD2012BD /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		3C80F439DD6B6A9F76C8BCC6 /* private.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.inc; sourceTree = "<group>"; };
 		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CB090CE80B33F7C6C1C7F6 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		5CEC67C55F51736AB9F17063 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +93,6 @@
 		8D73636373B8CDD4BE62C0A5 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		9411DCDC5C6F92122299107F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		941A754D1FBB5ACD78B4C755 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		CDA701F96A5177E4188BEA69 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E179886B32A8D20BA0FD517F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F360F9D030E464AA774319E0 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 		E612587DC09602FB8217B300 /* private */ = {
 			isa = PBXGroup;
 			children = (
-				941A754D1FBB5ACD78B4C755 /* private.h */,
+				3C80F439DD6B6A9F76C8BCC6 /* private.inc */,
 			);
 			path = private;
 			sourceTree = "<group>";
@@ -385,7 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8961DA25CBC1AF0367FBA37 /* lib.c in Sources */,
-				9F8860D106D9ABB10483EA7A /* private.h in Sources */,
+				91AD5E78AE94B72CEDD275A5 /* private.inc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
