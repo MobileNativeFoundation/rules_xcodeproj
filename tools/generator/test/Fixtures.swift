@@ -1485,7 +1485,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "BAZEL_TARGET_ID": "A 1",
-                "GENERATE_INFOPLIST_FILE": true,
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["A 1"]!.name,
@@ -1495,8 +1495,8 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "A 2",
-                "DEPLOYMENT_LOCATION": false,
-                "GENERATE_INFOPLIST_FILE": true,
+                "DEPLOYMENT_LOCATION": "NO",
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/../Frameworks",
@@ -1519,7 +1519,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "BAZEL_TARGET_ID": "B 1",
-                "GENERATE_INFOPLIST_FILE": true,
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
 """,
@@ -1534,8 +1534,8 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "B 2",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
-                "DEPLOYMENT_LOCATION": false,
-                "GENERATE_INFOPLIST_FILE": true,
+                "DEPLOYMENT_LOCATION": "NO",
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
                     """
@@ -1556,8 +1556,8 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "B 3",
-                "DEPLOYMENT_LOCATION": false,
-                "GENERATE_INFOPLIST_FILE": true,
+                "DEPLOYMENT_LOCATION": "NO",
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
                     """
@@ -1574,7 +1574,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "BAZEL_TARGET_ID": "C 1",
-                "GENERATE_INFOPLIST_FILE": true,
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
 """,
@@ -1587,8 +1587,8 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "C 2",
-                "DEPLOYMENT_LOCATION": false,
-                "GENERATE_INFOPLIST_FILE": true,
+                "DEPLOYMENT_LOCATION": "NO",
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #""$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList""#,
@@ -1606,7 +1606,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "x86_64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
                 "BAZEL_TARGET_ID": "E1",
-                "GENERATE_INFOPLIST_FILE": true,
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
                 "TARGET_NAME": targets["E1"]!.name,
@@ -1615,7 +1615,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
                 "BAZEL_TARGET_ID": "E2",
-                "GENERATE_INFOPLIST_FILE": true,
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "SDKROOT": "appletvos",
                 "SUPPORTED_PLATFORMS": "appletvos",
                 "TARGET_NAME": targets["E2"]!.name,
@@ -1624,7 +1624,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "BAZEL_TARGET_ID": "R 1",
-                "GENERATE_INFOPLIST_FILE": true,
+                "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_LDFLAGS": [
                     "-Wl,-rpath,/usr/lib/swift",
                     """
