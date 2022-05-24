@@ -27,14 +27,30 @@ final class CreateProjectTests: XCTestCase {
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
-                "BUILT_PRODUCTS_DIR": "$(BUILD_DIR)",
+                "BUILT_PRODUCTS_DIR": """
+$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
-                "DEPLOYMENT_LOCATION": true,
+                "DEPLOYMENT_LOCATION": """
+$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
+""",
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
+                "INDEXING_BUILT_PRODUCTS_DIR__": "$(BUILD_DIR)",
+                "INDEXING_BUILT_PRODUCTS_DIR__NO": """
+$(INDEXING_BUILT_PRODUCTS_DIR__)
+""",
+                "INDEXING_BUILT_PRODUCTS_DIR__YES": """
+$(CONFIGURATION_BUILD_DIR)
+""",
+                "INDEXING_DEPLOYMENT_LOCATION__": true,
+                "INDEXING_DEPLOYMENT_LOCATION__NO": """
+$(INDEXING_DEPLOYMENT_LOCATION__)
+""",
+                "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
                 "TARGET_TEMP_DIR": """
@@ -110,18 +126,34 @@ $(BUILD_DIR)/bazel_build_output_groups
                 "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
                 "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
-                "BUILT_PRODUCTS_DIR": "$(BUILD_DIR)",
+                "BUILT_PRODUCTS_DIR": """
+$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
                 "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
-                "DEPLOYMENT_LOCATION": true,
+                "DEPLOYMENT_LOCATION": """
+$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
+""",
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
+                "INDEXING_BUILT_PRODUCTS_DIR__": "$(BUILD_DIR)",
+                "INDEXING_BUILT_PRODUCTS_DIR__NO": """
+$(INDEXING_BUILT_PRODUCTS_DIR__)
+""",
+                "INDEXING_BUILT_PRODUCTS_DIR__YES": """
+$(CONFIGURATION_BUILD_DIR)
+""",
+                "INDEXING_DEPLOYMENT_LOCATION__": true,
+                "INDEXING_DEPLOYMENT_LOCATION__NO": """
+$(INDEXING_DEPLOYMENT_LOCATION__)
+""",
+                "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
