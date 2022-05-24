@@ -23,6 +23,11 @@ extension Path {
     }
 
     var lastKnownFileType: String? {
+        // XcodeProj treats `.inc` files as Pascal source files, but
+        // they're commonly C/C++ headers, so map them as such here.
+        if self.extension == "inc", let ext = Xcode.filetype(extension: "h") {
+            return ext
+        }
         return self.extension.flatMap { Xcode.filetype(extension: $0) }
     }
 

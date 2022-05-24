@@ -4,7 +4,7 @@ cc_library(
     name = "lib_impl",
     srcs = [
         "lib.c",
-        "private/private.h",
+        "private/private.inc",
     ],
     # Simulating a "local_includes"
     copts = local_includes("private"),
