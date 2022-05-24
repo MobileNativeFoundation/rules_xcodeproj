@@ -34,7 +34,7 @@ extension Dictionary where Value == BuildSetting {
     var asDictionary: [Key: Any] { self.mapValues { $0.asAny } }
 }
 
-// MARK: Decodable
+// MARK: - Decodable
 
 extension BuildSetting: Decodable {
     init(from decoder: Decoder) throws {
@@ -58,5 +58,48 @@ extension BuildSetting: Decodable {
                 debugDescription: "Expected to decode String/[String]"
             )
         )
+    }
+}
+
+// MARK: - ExpressibleByStringLiteral
+
+extension BuildSetting: ExpressibleByStringLiteral {
+    public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
+    public typealias UnicodeScalarLiteralType = StringLiteralType
+
+    public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
+        self.init(stringLiteral: value)
+    }
+
+    public init(unicodeScalarLiteral value: StringLiteralType) {
+        self.init(stringLiteral: value)
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self = .string(value)
+    }
+}
+
+// MARK: - ExpressibleByBooleanLiteral
+
+extension BuildSetting: ExpressibleByBooleanLiteral {
+    public init(booleanLiteral value: BooleanLiteralType) {
+        self = .bool(value)
+    }
+}
+
+// MARK: - Convenience
+
+extension Dictionary where Value == BuildSetting {
+    mutating func set(_ key: Key, to value: Bool) {
+        self[key] = .bool(value)
+    }
+
+    mutating func set(_ key: Key, to value: String) {
+        self[key] = .string(value)
+    }
+
+    mutating func set(_ key: Key, to value: [String]) {
+        self[key] = .array(value)
     }
 }
