@@ -14,11 +14,14 @@ struct DisambiguatedTarget: Equatable {
     let target: Target
 }
 
+struct DisambiguatedTargets: Equatable {
+    let targets: [TargetID: DisambiguatedTarget]
+}
+
 extension Generator {
-    /// Returns a mapping of target ids to `DisambiguatedTarget`s.
     static func disambiguateTargets(
         _ targets: [TargetID: Target]
-    ) -> [TargetID: DisambiguatedTarget] {
+    ) -> DisambiguatedTargets {
         // Gather all information needed to distinguish the targets
         var labelsByName: [String: Set<String>] = [:]
         var names: [String: TargetComponents] = [:]
@@ -57,7 +60,9 @@ extension Generator {
             )
         }
 
-        return uniqueValues
+        return DisambiguatedTargets(
+            targets: uniqueValues
+        )
     }
 }
 

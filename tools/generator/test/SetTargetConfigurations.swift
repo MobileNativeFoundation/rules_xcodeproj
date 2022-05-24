@@ -54,16 +54,16 @@ final class SetTargetConfigurationsTests: XCTestCase {
             expectedLdRunpathSearchPaths: [String]?
         )]
     ) -> (
-        disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        disambiguatedTargets: DisambiguatedTargets,
         pbxTargets: [TargetID: PBXNativeTarget],
         expectedLdRunpathSearchPaths: [TargetID: [String]?]
     ) {
-        var disambiguatedTargets: [TargetID: DisambiguatedTarget] = [:]
+        var targets: [TargetID: DisambiguatedTarget] = [:]
         var pbxTargets: [TargetID: PBXNativeTarget] = [:]
         var ldRunpathSearchPaths: [TargetID: [String]?] = [:]
         for input in inputs {
             let id = TargetID("\(input.os)-\(input.productType)")
-            disambiguatedTargets[id] = DisambiguatedTarget(
+            targets[id] = DisambiguatedTarget(
                 name: id.rawValue,
                 target: Target.mock(
                     platform: .init(
@@ -85,7 +85,9 @@ final class SetTargetConfigurationsTests: XCTestCase {
         }
 
         return (
-            disambiguatedTargets,
+            DisambiguatedTargets(
+                targets: targets
+            ),
             pbxTargets,
             ldRunpathSearchPaths
         )

@@ -4,7 +4,7 @@ import XcodeProj
 extension Generator {
     static func addTargets(
         in pbxProj: PBXProj,
-        for disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        for disambiguatedTargets: DisambiguatedTargets,
         buildMode: BuildMode,
         products: Products,
         files: [FilePath: File],
@@ -13,10 +13,10 @@ extension Generator {
     ) throws -> [TargetID: PBXTarget] {
         let pbxProject = pbxProj.rootObject!
 
-        let sortedDisambiguatedTargets = disambiguatedTargets
+        let sortedDisambiguatedTargets = disambiguatedTargets.targets
             .sortedLocalizedStandard(\.value.name)
         var pbxTargets = Dictionary<TargetID, PBXTarget>(
-            minimumCapacity: disambiguatedTargets.count
+            minimumCapacity: sortedDisambiguatedTargets.count
         )
         for (id, disambiguatedTarget) in sortedDisambiguatedTargets {
             let target = disambiguatedTarget.target

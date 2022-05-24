@@ -10,12 +10,12 @@ extension Generator {
     /// settings related to test hosts need to reference other targets.
     static func setTargetConfigurations(
         in pbxProj: PBXProj,
-        for disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        for disambiguatedTargets: DisambiguatedTargets,
         buildMode: BuildMode,
         pbxTargets: [TargetID: PBXTarget],
         filePathResolver: FilePathResolver
     ) throws {
-        for (id, disambiguatedTarget) in disambiguatedTargets {
+        for (id, disambiguatedTarget) in disambiguatedTargets.targets {
             guard let pbxTarget = pbxTargets[id] else {
                 throw PreconditionError(message: """
 Target "\(id)" not found in `pbxTargets`
@@ -286,14 +286,14 @@ $(CONFIGURATION_BUILD_DIR)
 
     private static func handleTestHost(
         for target: Target,
-        disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        disambiguatedTargets: DisambiguatedTargets,
         pbxTargets: [TargetID: PBXTarget],
         attributes: inout [String: Any],
         buildSettings: inout [String: BuildSetting]
     ) throws {
         if let testHostID = target.testHost {
             guard
-                let testHost = disambiguatedTargets[testHostID]?.target
+                let testHost = disambiguatedTargets.targets[testHostID]?.target
             else {
                 throw PreconditionError(message: """
 Test host target with id "\(testHostID)" not found in `disambiguatedTargets`

@@ -45,7 +45,7 @@ struct Environment {
 
     let disambiguateTargets: (
         _ targets: [TargetID: Target]
-    ) -> [TargetID: DisambiguatedTarget]
+    ) -> DisambiguatedTargets
 
     let addBazelDependenciesTarget: (
         _ pbxProj: PBXProj,
@@ -58,7 +58,7 @@ struct Environment {
 
     let addTargets: (
         _ pbxProj: PBXProj,
-        _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        _ disambiguatedTargets: DisambiguatedTargets,
         _ buildMode: BuildMode,
         _ products: Products,
         _ files: [FilePath: File],
@@ -68,14 +68,14 @@ struct Environment {
 
     let setTargetConfigurations: (
         _ pbxProj: PBXProj,
-        _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        _ disambiguatedTargets: DisambiguatedTargets,
         _ buildMode: BuildMode,
         _ pbxTargets: [TargetID: PBXTarget],
         _ filePathResolver: FilePathResolver
     ) throws -> Void
 
     let setTargetDependencies: (
-        _ disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        _ disambiguatedTargets: DisambiguatedTargets,
         _ pbxTargets: [TargetID: PBXTarget]
     ) throws -> Void
 

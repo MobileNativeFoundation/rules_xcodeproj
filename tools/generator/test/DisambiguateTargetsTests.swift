@@ -49,11 +49,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -94,11 +94,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -144,11 +144,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -194,11 +194,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -244,11 +244,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -294,11 +294,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -344,11 +344,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -405,11 +405,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -457,11 +457,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -521,11 +521,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
@@ -585,11 +585,11 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.name),
+            disambiguatedTargets.targets.mapValues(\.name),
             expectedTargetNames
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.mapValues(\.target),
+            disambiguatedTargets.targets.mapValues(\.target),
             targets
         )
     }
