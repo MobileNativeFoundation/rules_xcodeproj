@@ -146,7 +146,7 @@ Product for target "\(id)" not found in `products`
             return nil
         }
 
-        let publicHeaders = inputs.hdrs.filter(\.path.isHeader)
+        let publicHeaders = inputs.hdrs
         let projectHeaders = Set(inputs.srcs).filter(\.path.isHeader)
             .union(Set(inputs.nonArcSrcs).filter(\.path.isHeader))
             .subtracting(publicHeaders)
