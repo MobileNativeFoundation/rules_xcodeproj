@@ -193,7 +193,9 @@ File "\(headerFile.filePath)" not found in `files`
             .forcedBazelCompileFiles(buildMode: buildMode)
         let sources = forcedBazelCompileFiles.map(SourceFile.init) +
             inputs.srcs.map(SourceFile.init) +
-            inputs.nonArcSrcs.map { filePath in
+            inputs.nonArcSrcs
+                .filter { !$0.path.isHeader }
+                .map { filePath in
                 return SourceFile(
                     filePath,
                     compilerFlags: ["-fno-objc-arc"]
