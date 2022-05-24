@@ -23,7 +23,7 @@ objc_library(
 cc_library(
     name = "private_lib",
     srcs = ["private_lib.c"],
-    hdrs = ["private_lib.inc"],
+    hdrs = ["private_lib.h"],
     tags = ["swift_module=_Lib"],
 )
 
