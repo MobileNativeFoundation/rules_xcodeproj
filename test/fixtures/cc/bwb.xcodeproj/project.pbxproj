@@ -21,10 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		91AD5E78AE94B72CEDD275A5 /* private.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3C80F439DD6B6A9F76C8BCC6 /* private.inc */; };
 		CD2AA10AC79D5924E155E574 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = FB80EF95C89684721EBBDC35 /* lib.c */; };
 		CFDEFD32F9576B104A39894D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9411DCDC5C6F92122299107F /* main.c */; };
-		D770DE28E597BAF74254AFCB /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = 8D73636373B8CDD4BE62C0A5 /* private.h */; };
 		D8961DA25CBC1AF0367FBA37 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 26866FEDF67CD3FA66FFAB17 /* lib.c */; };
 		FC39DB0614B0AB5B5A2DF90E /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = FB0F020B344E60F89B31265D /* lib.c */; };
 /* End PBXBuildFile section */
@@ -385,7 +383,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8961DA25CBC1AF0367FBA37 /* lib.c in Sources */,
-				91AD5E78AE94B72CEDD275A5 /* private.inc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +399,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD2AA10AC79D5924E155E574 /* lib.c in Sources */,
-				D770DE28E597BAF74254AFCB /* private.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

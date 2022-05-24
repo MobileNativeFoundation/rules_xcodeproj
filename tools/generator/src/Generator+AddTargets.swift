@@ -192,8 +192,8 @@ File "\(headerFile.filePath)" not found in `files`
         let forcedBazelCompileFiles = outputs
             .forcedBazelCompileFiles(buildMode: buildMode)
         let sources = forcedBazelCompileFiles.map(SourceFile.init) +
-            inputs.srcs.filter { !$0.path.isHeader }.map(SourceFile.init) +
-            inputs.nonArcSrcs.filter { !$0.path.isHeader }.map { filePath in
+            inputs.srcs.excludingHeaders.map(SourceFile.init) +
+            inputs.nonArcSrcs.excludingHeaders.map { filePath in
                 return SourceFile(
                     filePath,
                     compilerFlags: ["-fno-objc-arc"]
@@ -399,6 +399,12 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
         pbxProj.add(object: buildPhase)
 
         return buildPhase
+    }
+}
+
+private extension Sequence where Element == FilePath {
+    var excludingHeaders: [Element] {
+        self.filter { !$0.path.isHeader }
     }
 }
 
