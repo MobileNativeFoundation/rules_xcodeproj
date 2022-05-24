@@ -25,8 +25,6 @@
 		27F99F3C7155CD79101A4A0F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BD77ACEF34FC7AFD41A09A4A /* main.c */; };
 		376A1C58A742EDEA9540B257 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C8095547A55E1C477C2E094 /* lib.c */; };
 		6487CF8827955B8B86C59E14 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 72DD4925E3FB6AE32B7ACADA /* lib.c */; };
-		67FC89385DBE8738095CFD9E /* private.h in Sources */ = {isa = PBXBuildFile; fileRef = 054732C7DCF543EED5337D81 /* private.h */; };
-		9BA8E705EB7AE75262F669CA /* private.inc in Sources */ = {isa = PBXBuildFile; fileRef = 473752B2F4FD8D5B513230B3 /* private.inc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -384,7 +382,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6487CF8827955B8B86C59E14 /* lib.c in Sources */,
-				67FC89385DBE8738095CFD9E /* private.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +390,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				051B8A7BC0F5DBB11025923F /* lib.c in Sources */,
-				9BA8E705EB7AE75262F669CA /* private.inc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

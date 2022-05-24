@@ -1196,7 +1196,6 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                 ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: elements["z.h"]!),
                         PBXBuildFile(file: elements["z.mm"]!),
                     ])
                 ),
@@ -1397,7 +1396,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 
         var pbxTargets = Dictionary(
             uniqueKeysWithValues: pbxNativeTargets
-                .map { targetID, pbxTarget -> (TargetID, PBXTarget) in 
+                .map { targetID, pbxTarget -> (TargetID, PBXTarget) in
                     return (targetID, pbxTarget)
                 }
         )
