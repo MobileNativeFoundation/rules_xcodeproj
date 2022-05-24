@@ -455,6 +455,7 @@ private extension Path {
         case "h": return true
         case "hh": return true
         case "hpp": return true
+        case "inc": return true
         default: return false
         }
     }

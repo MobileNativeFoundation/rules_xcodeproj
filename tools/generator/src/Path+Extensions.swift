@@ -23,6 +23,9 @@ extension Path {
     }
 
     var lastKnownFileType: String? {
+        guard self.extension != "inc", let ext = Xcode.filetype(extension: "h") {
+            return ext
+        }
         return self.extension.flatMap { Xcode.filetype(extension: $0) }
     }
 
