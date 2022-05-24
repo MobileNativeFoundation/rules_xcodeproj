@@ -20,10 +20,6 @@ fail() {
 
 while (("$#")); do
   case "${1}" in
-    "--source")
-      src="${2}"
-      shift 2
-      ;;
     "--destination")
       dest="${2}"
       shift 2
@@ -35,8 +31,7 @@ while (("$#")); do
 done
 
 # Resolve the source
-[[ -z "${src:-}" ]] && src="$PWD/%source_path%"
-[[ -d "${src}" ]] || fail "The specified source does not exist. ${src}"
+readonly src="$PWD/%source_path%"
 
 # Resolve the destination
 [[ -z "${dest:-}" ]] \
