@@ -215,7 +215,7 @@ enum Fixtures {
 
     static func disambiguatedTargets(
         _ targets: [TargetID: Target]
-    ) -> [TargetID: DisambiguatedTarget] {
+    ) -> DisambiguatedTargets {
         var disambiguatedTargets = Dictionary<TargetID, DisambiguatedTarget>(
             minimumCapacity: targets.count
         )
@@ -225,7 +225,9 @@ enum Fixtures {
                 target: target
             )
         }
-        return disambiguatedTargets
+        return DisambiguatedTargets(
+            targets: disambiguatedTargets
+        )
     }
 
     static func pbxProj() -> PBXProj {
@@ -1104,7 +1106,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 
     static func pbxTargets(
         in pbxProj: PBXProj,
-        disambiguatedTargets: [TargetID: DisambiguatedTarget],
+        disambiguatedTargets: DisambiguatedTargets,
         files: [FilePath: File],
         products: Products,
         filePathResolver: FilePathResolver,
@@ -1286,70 +1288,70 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 
         let pbxNativeTargets: [TargetID: PBXNativeTarget] = [
             "A 1": PBXNativeTarget(
-                name: disambiguatedTargets["A 1"]!.name,
+                name: disambiguatedTargets.targets["A 1"]!.name,
                 buildPhases: buildPhases["A 1"] ?? [],
                 productName: "a",
                 product: nil,
                 productType: .staticLibrary
             ),
             "A 2": PBXNativeTarget(
-                name: disambiguatedTargets["A 2"]!.name,
+                name: disambiguatedTargets.targets["A 2"]!.name,
                 buildPhases: buildPhases["A 2"] ?? [],
                 productName: "A",
                 product: products.byTarget["A 2"],
                 productType: .application
             ),
             "B 1": PBXNativeTarget(
-                name: disambiguatedTargets["B 1"]!.name,
+                name: disambiguatedTargets.targets["B 1"]!.name,
                 buildPhases: buildPhases["B 1"] ?? [],
                 productName: "b",
                 product: products.byTarget["B 1"],
                 productType: .staticFramework
             ),
             "B 2": PBXNativeTarget(
-                name: disambiguatedTargets["B 2"]!.name,
+                name: disambiguatedTargets.targets["B 2"]!.name,
                 buildPhases: buildPhases["B 2"] ?? [],
                 productName: "B",
                 product: products.byTarget["B 2"],
                 productType: .unitTestBundle
             ),
             "B 3": PBXNativeTarget(
-                name: disambiguatedTargets["B 3"]!.name,
+                name: disambiguatedTargets.targets["B 3"]!.name,
                 buildPhases: buildPhases["B 3"] ?? [],
                 productName: "B3",
                 product: products.byTarget["B 3"],
                 productType: .uiTestBundle
             ),
             "C 1": PBXNativeTarget(
-                name: disambiguatedTargets["C 1"]!.name,
+                name: disambiguatedTargets.targets["C 1"]!.name,
                 buildPhases: buildPhases["C 1"] ?? [],
                 productName: "c",
                 product: nil,
                 productType: .staticLibrary
             ),
             "C 2": PBXNativeTarget(
-                name: disambiguatedTargets["C 2"]!.name,
+                name: disambiguatedTargets.targets["C 2"]!.name,
                 buildPhases: buildPhases["C 2"] ?? [],
                 productName: "d",
                 product: products.byTarget["C 2"],
                 productType: .commandLineTool
             ),
             "E1": PBXNativeTarget(
-                name: disambiguatedTargets["E1"]!.name,
+                name: disambiguatedTargets.targets["E1"]!.name,
                 buildPhases: buildPhases["E1"] ?? [],
                 productName: "E1",
                 product: nil,
                 productType: .staticLibrary
             ),
             "E2": PBXNativeTarget(
-                name: disambiguatedTargets["E2"]!.name,
+                name: disambiguatedTargets.targets["E2"]!.name,
                 buildPhases: buildPhases["E2"] ?? [],
                 productName: "E2",
                 product: nil,
                 productType: .staticLibrary
             ),
             "R 1": PBXNativeTarget(
-                name: disambiguatedTargets["R 1"]!.name,
+                name: disambiguatedTargets.targets["R 1"]!.name,
                 buildPhases: buildPhases["R 1"] ?? [],
                 productName: "R 1",
                 product: products.byTarget["R 1"],
@@ -1408,7 +1410,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
     static func pbxTargets(
         in pbxProj: PBXProj,
         targets: [TargetID: Target]
-    ) -> ([TargetID: PBXTarget], [TargetID : DisambiguatedTarget]) {
+    ) -> ([TargetID: PBXTarget], DisambiguatedTargets) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
 
