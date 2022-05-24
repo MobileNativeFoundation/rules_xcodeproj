@@ -4,7 +4,7 @@ set -euo pipefail
 
 # Functions
 
-# Echos the provided message to stderr and exits with an error (1).
+# Echos the provided message to stderr and exits with an error (1)
 fail() {
   local msg="${1:-}"
   shift 1
@@ -25,7 +25,7 @@ while (("$#")); do
       shift 2
       ;;
     *)
-      fail "Unrecognized argument. ${1}"
+      fail "Unrecognized argument: ${1}"
       ;;
   esac
 done
@@ -37,10 +37,10 @@ readonly src="$PWD/%source_path%"
 [[ -z "${dest:-}" ]] \
   && [[ -n "${BUILD_WORKSPACE_DIRECTORY:-}" ]] \
   && dest="$BUILD_WORKSPACE_DIRECTORY/%output_path%"
-[[ -n "${dest:-}" ]] || fail "A destination for the Xcode project was not set."
+[[ -n "${dest:-}" ]] || fail "A destination for the Xcode project was not set"
 dest_dir="$(dirname "${dest}")"
 [[ -d "${dest_dir}" ]] || \
-  fail "The destination directory does not exist or is not a directory." \
+  fail "The destination directory does not exist or is not a directory" \
     "${dest_dir}"
 
 # Sync over the project, changing the permissions to be writable
