@@ -39,6 +39,7 @@
 		0ECB525A51FEB74588AAC93B /* Generator+CreateXCSchemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95084ACBED4858D5559E399 /* Generator+CreateXCSchemes.swift */; };
 		114337D1EE92A54BD108429D /* XCScheme+SerialAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3EB849AA377331B54327E0 /* XCScheme+SerialAction.swift */; };
 		1288DA0AB3DA8C0A7757FC13 /* BuildSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96374AEC70A27090561C1A7 /* BuildSetting.swift */; };
+		130CE1601B9654CC0320CD9C /* BuildSettingConditionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E71029096D6AC34B84A74A /* BuildSettingConditionalTests.swift */; };
 		1310313F22DBFF5FDC0124B2 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0917D4CE41302D9DE4C953AE /* Box.swift */; };
 		161DD546A712F07C31E4B557 /* OrderedSet+UnorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112B87FF9C843E171D58BB93 /* OrderedSet+UnorderedView.swift */; };
 		17095A82BB4FE7CDA90E3415 /* Dictionary+Enumerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C47A5DE4BE5C9A1D3F71691 /* Dictionary+Enumerate.swift */; };
@@ -259,6 +260,7 @@
 		FAB13E3F45AE78F09CE60F4F /* XCScheme+RemoteRunnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6438679FD6AB31C5C30165ED /* XCScheme+RemoteRunnable.swift */; };
 		FBC1C2F7977EC950A5A8FBFC /* Generator+ProcessTargetMerges.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57109CEAC1C92656CA79300 /* Generator+ProcessTargetMerges.swift */; };
 		FBD6CC5399F54335BAC4AD08 /* XCSwiftPackageProductDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2432A0EDFA23A5A28222A6E /* XCSwiftPackageProductDependency.swift */; };
+		FC8F414E5E27000A18EA2767 /* BuildSettingConditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7331459DA932906C5CB4EF4 /* BuildSettingConditional.swift */; };
 		FE0441491AA47513CF076348 /* XCScheme+BuildableReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38B898A6742977CE8C0E174 /* XCScheme+BuildableReference.swift */; };
 		FFBF629A61596A5CC71D8612 /* FilePathResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FAEBD49D872651BA24005E /* FilePathResolver.swift */; };
 /* End PBXBuildFile section */
@@ -561,6 +563,7 @@
 		9FF2ABBD0B6B98E3FDA61828 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		A0F8185DC1A11CB7F0BF8D23 /* PBXHeadersBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXHeadersBuildPhase.swift; sourceTree = "<group>"; };
 		A6C4C6E0602ADE6E5FBAE206 /* PBXAggregateTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXAggregateTarget.swift; sourceTree = "<group>"; };
+		A7331459DA932906C5CB4EF4 /* BuildSettingConditional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildSettingConditional.swift; sourceTree = "<group>"; };
 		A736DF0EDF5D152163A2C7AE /* XCRemoteSwiftPackageReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCRemoteSwiftPackageReference.swift; sourceTree = "<group>"; };
 		A84BD9EDF510637C6C2BB269 /* _HashTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HashTable.swift; sourceTree = "<group>"; };
 		A8C5EDE827922E2C3C04DA62 /* _Hashtable+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_Hashtable+Header.swift"; sourceTree = "<group>"; };
@@ -637,6 +640,7 @@
 		F10D89FCF7B5FEC2EB96BB01 /* PBXBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXBuildPhase.swift; sourceTree = "<group>"; };
 		F1E252313444698DA3574515 /* OrderedSet+RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+RandomAccessCollection.swift"; sourceTree = "<group>"; };
 		F328B736C7AF330724A15666 /* Generator+CreateFilesAndGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+CreateFilesAndGroups.swift"; sourceTree = "<group>"; };
+		F4E71029096D6AC34B84A74A /* BuildSettingConditionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildSettingConditionalTests.swift; sourceTree = "<group>"; };
 		F52B40BE9E5A13756AD20F88 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		F989E51F5A4A6F6C61A92D70 /* _HashTable+Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Bucket.swift"; sourceTree = "<group>"; };
 		FA83272F166637CFAFC4C79C /* OrderedDictionary+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Hashable.swift"; sourceTree = "<group>"; };
@@ -781,6 +785,7 @@
 			children = (
 				37060CBDC54D48ADDEEA0274 /* AddTargetsTests.swift */,
 				A8C917E9D54ACB73DF3F6EAA /* BUILD */,
+				F4E71029096D6AC34B84A74A /* BuildSettingConditionalTests.swift */,
 				06589BA8CA823F86E64B2417 /* CreateFilesAndGroupsTests.swift */,
 				798455D7A824BAB585C1E8EB /* CreateProductsTest.swift */,
 				E200ED9999C2E4E55C7EC34E /* CreateProjectTests.swift */,
@@ -1150,6 +1155,7 @@
 			children = (
 				6BA209AD9DAC1037A641D772 /* BuildMode.swift */,
 				D96374AEC70A27090561C1A7 /* BuildSetting.swift */,
+				A7331459DA932906C5CB4EF4 /* BuildSettingConditional.swift */,
 				F52B40BE9E5A13756AD20F88 /* DTO.swift */,
 				CE7C8330C0BB8964775949E8 /* Environment.swift */,
 				1D5358A8116F9302A3808730 /* Errors.swift */,
@@ -1594,6 +1600,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1FF2A2A272865879D4B94D2 /* AddTargetsTests.swift in Sources */,
+				130CE1601B9654CC0320CD9C /* BuildSettingConditionalTests.swift in Sources */,
 				250DE90578C454256F39C418 /* CreateFilesAndGroupsTests.swift in Sources */,
 				D28AD805F11C60A1A2CEBE5A /* CreateProductsTest.swift in Sources */,
 				0B06F16B6814BDD36D863BDF /* CreateProjectTests.swift in Sources */,
@@ -1646,6 +1653,7 @@
 			files = (
 				C83A047E2CB813C95C6BDC13 /* BuildMode.swift in Sources */,
 				1288DA0AB3DA8C0A7757FC13 /* BuildSetting.swift in Sources */,
+				FC8F414E5E27000A18EA2767 /* BuildSettingConditional.swift in Sources */,
 				735D5210F46BBA12E2A5F882 /* DTO.swift in Sources */,
 				0280FDEBEC56D58315C6B86D /* Environment.swift in Sources */,
 				24C289F49E45CC97DEA82E4D /* Errors.swift in Sources */,
