@@ -204,6 +204,7 @@
             "inputs": {
                 "srcs": [
                     "tools/generator/test/AddTargetsTests.swift",
+                    "tools/generator/test/BuildSettingConditionalTests.swift",
                     "tools/generator/test/CreateFilesAndGroupsTests.swift",
                     "tools/generator/test/CreateProductsTest.swift",
                     "tools/generator/test/CreateProjectTests.swift",
@@ -447,6 +448,7 @@
                 "srcs": [
                     "tools/generator/src/BuildMode.swift",
                     "tools/generator/src/BuildSetting.swift",
+                    "tools/generator/src/BuildSettingConditional.swift",
                     "tools/generator/src/DTO.swift",
                     "tools/generator/src/Environment.swift",
                     "tools/generator/src/Errors.swift",

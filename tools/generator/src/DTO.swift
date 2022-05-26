@@ -41,7 +41,7 @@ struct Product: Equatable, Decodable {
     let path: FilePath
 }
 
-struct Platform: Equatable, Decodable {
+struct Platform: Equatable, Hashable, Decodable {
     enum OS: String, Decodable {
         case macOS = "macos"
         case iOS = "ios"
