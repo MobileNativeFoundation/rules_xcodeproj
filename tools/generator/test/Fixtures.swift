@@ -1121,12 +1121,18 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
                     "$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
                 ],
                 outputPaths: [
-                    "$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+                    """
+$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)
+""",
                 ],
                 shellScript: #"""
-    cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
+if [[ -z "${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}" ]]; then
+  exit 0
+fi
 
-    """#,
+cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
+
+"""#,
                 showEnvVarsInLog: false
             )
             pbxProj.add(object: shellScript)
@@ -1661,15 +1667,24 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
     ) -> [TargetID: PBXTarget] {
         let (pbxTargets, _) = Fixtures.pbxTargets(in: pbxProj, targets: targets)
 
-        _ = try! pbxTargets.nativeTarget("A 2")!.addDependency(target: pbxTargets["A 1"]!)
-        _ = try! pbxTargets.nativeTarget("A 2")!.addDependency(target: pbxTargets["C 1"]!)
-        _ = try! pbxTargets.nativeTarget("A 2")!.addDependency(target: pbxTargets["R 1"]!)
-        _ = try! pbxTargets.nativeTarget("B 1")!.addDependency(target: pbxTargets["A 1"]!)
-        _ = try! pbxTargets.nativeTarget("B 2")!.addDependency(target: pbxTargets["A 2"]!)
-        _ = try! pbxTargets.nativeTarget("B 2")!.addDependency(target: pbxTargets["B 1"]!)
-        _ = try! pbxTargets.nativeTarget("B 3")!.addDependency(target: pbxTargets["A 2"]!)
-        _ = try! pbxTargets.nativeTarget("B 3")!.addDependency(target: pbxTargets["B 1"]!)
-        _ = try! pbxTargets.nativeTarget("C 2")!.addDependency(target: pbxTargets["C 1"]!)
+        _ = try! pbxTargets.nativeTarget("A 2")!
+            .addDependency(target: pbxTargets["A 1"]!)
+        _ = try! pbxTargets.nativeTarget("A 2")!
+            .addDependency(target: pbxTargets["C 1"]!)
+        _ = try! pbxTargets.nativeTarget("A 2")!
+            .addDependency(target: pbxTargets["R 1"]!)
+        _ = try! pbxTargets.nativeTarget("B 1")!
+            .addDependency(target: pbxTargets["A 1"]!)
+        _ = try! pbxTargets.nativeTarget("B 2")!
+            .addDependency(target: pbxTargets["A 2"]!)
+        _ = try! pbxTargets.nativeTarget("B 2")!
+            .addDependency(target: pbxTargets["B 1"]!)
+        _ = try! pbxTargets.nativeTarget("B 3")!
+            .addDependency(target: pbxTargets["A 2"]!)
+        _ = try! pbxTargets.nativeTarget("B 3")!
+            .addDependency(target: pbxTargets["B 1"]!)
+        _ = try! pbxTargets.nativeTarget("C 2")!
+            .addDependency(target: pbxTargets["C 1"]!)
 
         return pbxTargets
     }

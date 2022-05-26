@@ -991,7 +991,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "if [[ -z \"${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}\" ]]; then\n  exit 0\nfi\n\ncp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4A203495210B86B9111BD6C9 /* Fix Modulemaps */ = {
