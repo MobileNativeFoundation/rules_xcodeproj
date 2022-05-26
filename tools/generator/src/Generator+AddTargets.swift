@@ -251,9 +251,15 @@ File "\(sourceFile.filePath)" not found in `files`
                 "$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
             ],
             outputPaths: [
-                "$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+                """
+$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)
+""",
             ],
             shellScript: #"""
+if [[ -z "${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}" ]]; then
+  exit 0
+fi
+
 cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
 """#,
