@@ -29,10 +29,10 @@ final class BuildSettingConditionalTests: XCTestCase {
         "any": .any,
     ]
 
-    func test_comparable() throws {
+    func test_comparable() {
         // Arrange
 
-        let conditionalA = try XCTUnwrap(Self.conditionals["A"])
+        let conditionalA = Self.conditionals["A"]!
         let conditionalAny = BuildSettingConditional.any
 
         // Assert
