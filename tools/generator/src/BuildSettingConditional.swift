@@ -14,12 +14,13 @@ extension BuildSettingConditional {
             return key
         }
 
+        // The order here is the order that Xcode likes them (sdk before arch)
         var components = [key]
-        if archConditionalAllowed(on: key) {
-            components.append("[arch=\(platform.arch)]")
-        }
         if sdkConditionalAllowed(on: key) {
             components.append("[sdk=\(platform.name)]")
+        }
+        if archConditionalAllowed(on: key) {
+            components.append("[arch=\(platform.arch)]")
         }
         return components.joined()
     }
