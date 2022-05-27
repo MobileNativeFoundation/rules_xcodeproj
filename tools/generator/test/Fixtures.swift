@@ -139,8 +139,7 @@ enum Fixtures {
             modulemaps: [.generated("a/b/module.modulemap")],
             inputs: .init(
                 srcs: ["a/b/c.m"],
-                hdrs: ["a/b/c.h"],
-                containsGeneratedFiles: true
+                hdrs: ["a/b/c.h"]
             )
         ),
         "C 2": Target.mock(

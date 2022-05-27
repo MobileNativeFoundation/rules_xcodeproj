@@ -4,22 +4,19 @@ struct Inputs: Equatable {
     var hdrs: Set<FilePath>
     var pch: FilePath?
     var resources: Set<FilePath>
-    var containsGeneratedFiles: Bool
 
     init(
         srcs: [FilePath] = [],
         nonArcSrcs: [FilePath] = [],
         hdrs: Set<FilePath> = [],
         pch: FilePath? = nil,
-        resources: Set<FilePath> = [],
-        containsGeneratedFiles: Bool = false
+        resources: Set<FilePath> = []
     ) {
         self.srcs = srcs
         self.nonArcSrcs = nonArcSrcs
         self.hdrs = hdrs
         self.pch = pch
         self.resources = resources
-        self.containsGeneratedFiles = containsGeneratedFiles
     }
 }
 
@@ -30,8 +27,6 @@ extension Inputs {
         hdrs = other.hdrs
         pch = other.pch
         resources.formUnion(other.resources)
-        containsGeneratedFiles = containsGeneratedFiles
-            || other.containsGeneratedFiles
     }
 
     func merging(_ other: Inputs) -> Inputs {
@@ -67,7 +62,6 @@ extension Inputs: Decodable {
         case hdrs
         case resources
         case pch
-        case containsGeneratedFiles
     }
 
     init(from decoder: Decoder) throws {
@@ -78,10 +72,6 @@ extension Inputs: Decodable {
         hdrs = try container.decodeFilePaths(.hdrs)
         pch = try container.decodeIfPresent(FilePath.self, forKey: .pch)
         resources = try container.decodeFilePaths(.resources)
-        containsGeneratedFiles = try container.decodeIfPresent(
-            Bool.self,
-            forKey: .containsGeneratedFiles
-        ) ?? false
     }
 }
 
