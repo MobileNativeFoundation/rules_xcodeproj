@@ -73,9 +73,9 @@ final class BuildSettingConditionalTests: XCTestCase {
         let conditionals = Self.conditionals
         let expectedConditionalizedKeys = [
             "SOME_SETTING",
-            "SOME_SETTING[arch=arm64][sdk=A]",
-            "SOME_SETTING[arch=x86_64][sdk=B]",
-            "SOME_SETTING[arch=arm64][sdk=C]",
+            "SOME_SETTING[sdk=A][arch=arm64]",
+            "SOME_SETTING[sdk=B][arch=x86_64]",
+            "SOME_SETTING[sdk=C][arch=arm64]",
         ]
 
         // Act
