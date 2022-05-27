@@ -42,7 +42,7 @@ extension BuildSettingConditional: Comparable {
             let lhsPlatform = lhs.platform, let rhsPlatform = rhs.platform
         else {
             // Sort `.any` first
-            return lhs.platform == nil
+            return lhs.platform == nil && rhs.platform != nil
         }
 
         guard lhsPlatform.environment == rhsPlatform.environment else {
@@ -57,7 +57,7 @@ extension BuildSettingConditional: Comparable {
         }
 
         // Sort Apple Silicon first
-        return lhsPlatform.arch == "arm64"
+        return lhsPlatform.arch == "arm64" && rhsPlatform.arch != "arm64"
     }
 }
 
