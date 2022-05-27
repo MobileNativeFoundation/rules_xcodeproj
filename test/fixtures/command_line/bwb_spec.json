@@ -107,9 +107,7 @@
                 "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
             },
-            "inputs": {
-                "contains_generated_files": true
-            },
+            "inputs": {},
             "is_swift": false,
             "label": "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle",
             "linker_inputs": {
@@ -219,7 +217,6 @@
             "entitlements": null,
             "info_plist": null,
             "inputs": {
-                "contains_generated_files": true,
                 "srcs": [
                     "examples/command_line/Tests/SwiftGreetingsTests.swift"
                 ]
@@ -439,7 +436,6 @@
             "entitlements": null,
             "info_plist": null,
             "inputs": {
-                "contains_generated_files": true,
                 "srcs": [
                     "examples/command_line/lib/lib.swift"
                 ]

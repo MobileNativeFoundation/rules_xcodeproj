@@ -319,7 +319,6 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
                     attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
-        contains_generated_files = bool(generated),
         generated = depset(
             generated,
             transitive = [
@@ -474,12 +473,6 @@ def _to_dto(inputs, *, is_bundle, avoid_infos):
                 if owner not in avoid_owners
             ],
         )
-
-    set_if_true(
-        ret,
-        "contains_generated_files",
-        inputs.contains_generated_files,
-    )
 
     return ret
 
