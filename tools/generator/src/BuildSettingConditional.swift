@@ -51,8 +51,10 @@ extension BuildSettingConditional: Comparable {
             switch (lhsPlatform.environment, rhsPlatform.environment) {
             case ("Simulator", _): return true
             case (_, "Simulator"): return false
-            case (nil, _), ("Device", _): return true
-            case (_, nil), (_, "Device"): return false
+            case (nil, _): return true
+            case (_, nil): return false
+            case ("Device", _): return true
+            case (_, "Device"): return false
             default: return false
             }
         }
