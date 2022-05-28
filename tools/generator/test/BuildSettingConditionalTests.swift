@@ -15,16 +15,16 @@ final class BuildSettingConditionalTests: XCTestCase {
         "B": .init(platform: .init(
             name: "B",
             os: .iOS,
-            arch: "x86_64",
+            arch: "arm64",
             minimumOsVersion: "11.0",
-            environment: "Simulator"
+            environment: nil
         )),
         "C": .init(platform: .init(
             name: "C",
             os: .iOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
-            environment: nil
+            environment: "Device"
         )),
         "any": .any,
     ]
@@ -73,9 +73,9 @@ final class BuildSettingConditionalTests: XCTestCase {
         let conditionals = Self.conditionals
         let expectedConditionalizedKeys = [
             "SOME_SETTING",
-            "SOME_SETTING[sdk=A*][arch=arm64]",
-            "SOME_SETTING[sdk=B*][arch=x86_64]",
-            "SOME_SETTING[sdk=C*][arch=arm64]",
+            "SOME_SETTING[sdk=A*]",
+            "SOME_SETTING[sdk=B*]",
+            "SOME_SETTING[sdk=C*]",
         ]
 
         // Act
@@ -125,9 +125,9 @@ final class BuildSettingConditionalTests: XCTestCase {
         let conditionals = Self.conditionals
         let expectedConditionalizedKeys = [
             "SDKROOT",
-            "SDKROOT[arch=arm64]",
-            "SDKROOT[arch=x86_64]",
-            "SDKROOT[arch=arm64]",
+            "SDKROOT",
+            "SDKROOT",
+            "SDKROOT",
         ]
 
         // Act
