@@ -5,7 +5,6 @@ load(
     "AppleBundleInfo",
     "AppleResourceBundleInfo",
 )
-load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -34,7 +33,6 @@ load(
 )
 load(
     ":top_level_targets.bzl",
-    "process_top_level_properties",
     "process_top_level_target",
 )
 
