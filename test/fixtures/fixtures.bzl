@@ -4,6 +4,7 @@ _FIXTURE_BASENAMES = [
     "cc",
     "command_line",
     "generator",
+    "multiplatform",
     "tvos_app",
 ]
 
