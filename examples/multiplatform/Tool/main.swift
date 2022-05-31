@@ -1,0 +1,4 @@
+import Lib
+
+print(greeting)
+

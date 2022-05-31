@@ -156,6 +156,7 @@ def xcodeproj_fixture(
                     "{}.xcodeproj/**/xcuserdata/**/*".format(suffix),
                     "{}.xcodeproj/*.xcuserdatad/**/*".format(suffix),
                 ],
+                allow_empty = True,
             ),
             visibility = ["//test:__subpackages__"],
         )
