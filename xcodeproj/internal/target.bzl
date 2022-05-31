@@ -11,7 +11,7 @@ load(":library_targets.bzl", "process_library_target")
 load(":linker_input_files.bzl", "linker_input_files")
 load(
     ":non_xcode_targets.bzl",
-    "process_non_xcode_target"
+    "process_non_xcode_target",
 )
 load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
