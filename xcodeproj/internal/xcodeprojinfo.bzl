@@ -5,7 +5,6 @@ load(
     "AppleBundleInfo",
     "AppleResourceBundleInfo",
 )
-load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -34,7 +33,6 @@ load(
 )
 load(
     ":top_level_targets.bzl",
-    "process_top_level_properties",
     "process_top_level_target",
 )
 
@@ -182,7 +180,7 @@ def _skip_target(*, deps, transitive_infos):
         ),
     )
 
-def _process_target(*, ctx, target, transitive_infos):
+def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
 
     Args:
@@ -268,7 +266,7 @@ def _process_target(*, ctx, target, transitive_infos):
 
 # API
 
-def process_target(*, ctx, target, transitive_infos):
+def create_xcodeprojinfo(*, ctx, target, transitive_infos):
     """Creates an `XcodeProjInfo` for the given target.
 
     Args:
@@ -287,7 +285,7 @@ def process_target(*, ctx, target, transitive_infos):
             transitive_infos = transitive_infos,
         )
     else:
-        info_fields = _process_target(
+        info_fields = _create_xcodeprojinfo(
             ctx = ctx,
             target = target,
             transitive_infos = transitive_infos,
@@ -296,9 +294,3 @@ def process_target(*, ctx, target, transitive_infos):
     return XcodeProjInfo(
         **info_fields
     )
-
-# These functions are exposed only for access in unit tests.
-testable = struct(
-    calculate_configuration = calculate_configuration,
-    process_top_level_properties = process_top_level_properties,
-)

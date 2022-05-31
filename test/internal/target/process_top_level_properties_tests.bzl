@@ -4,9 +4,10 @@ load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("//test:utils.bzl", "stringify_dict")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:target.bzl", "testable")
-
-process_top_level_properties = testable.process_top_level_properties
+load(
+    "//xcodeproj/internal:top_level_targets.bzl",
+    "process_top_level_properties",
+)
 
 def _process_top_level_properties_test_impl(ctx):
     env = unittest.begin(ctx)
