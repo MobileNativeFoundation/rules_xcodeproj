@@ -182,7 +182,7 @@ def _skip_target(*, deps, transitive_infos):
         ),
     )
 
-def _process_target(*, ctx, target, transitive_infos):
+def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
 
     Args:
@@ -268,7 +268,7 @@ def _process_target(*, ctx, target, transitive_infos):
 
 # API
 
-def process_target(*, ctx, target, transitive_infos):
+def create_xcodeprojinfo(*, ctx, target, transitive_infos):
     """Creates an `XcodeProjInfo` for the given target.
 
     Args:
@@ -287,7 +287,7 @@ def process_target(*, ctx, target, transitive_infos):
             transitive_infos = transitive_infos,
         )
     else:
-        info_fields = _process_target(
+        info_fields = _create_xcodeprojinfo(
             ctx = ctx,
             target = target,
             transitive_infos = transitive_infos,

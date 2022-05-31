@@ -6,7 +6,7 @@ load(
     "default_input_file_attributes_aspect",
 )
 load(":providers.bzl", "XcodeProjInfo")
-load(":target.bzl", "process_target")
+load(":xcodeprojinfo.bzl", "create_xcodeprojinfo")
 
 # Utility
 
@@ -38,7 +38,7 @@ def _transitive_infos(*, ctx):
 
 def _xcodeproj_aspect_impl(target, ctx):
     return [
-        process_target(
+        create_xcodeprojinfo(
             ctx = ctx,
             target = target,
             transitive_infos = _transitive_infos(ctx = ctx),

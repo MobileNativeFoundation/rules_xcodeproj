@@ -3,9 +3,7 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:target.bzl", "testable")
-
-calculate_configuration = testable.calculate_configuration
+load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
 
 def _calculate_configuration_test_impl(ctx):
     env = unittest.begin(ctx)
