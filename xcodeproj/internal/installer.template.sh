@@ -24,6 +24,10 @@ while (("$#")); do
       dest="${2}"
       shift 2
       ;;
+    "--remove_spaces")
+      remove_spaces=true
+      shift 1
+      ;;
     *)
       fail "Unrecognized argument: ${1}"
       ;;
@@ -56,6 +60,15 @@ rsync \
   --delete \
   "$src/" "$dest/"
 
+# Remove spaces from filenames if needed
+if [[ -n "${remove_spaces:-}" ]]; then
+  find "$dest/xcshareddata/xcschemes" \
+    -type f \
+    -name "* *" \
+    -exec bash -c 'mv "$0" "${0// /_}"' {} \;
+fi
+
+# Make scripts runnable
 if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
   chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
 fi
@@ -70,7 +83,6 @@ then
 fi
 
 # Set desired project.xcworkspace data
-
 workspace_data="$dest/project.xcworkspace/xcshareddata"
 if [[ ! -d $workspace_data ]]; then
   mkdir -p "$workspace_data"
