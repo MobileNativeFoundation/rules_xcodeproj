@@ -296,9 +296,3 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
     return XcodeProjInfo(
         **info_fields
     )
-
-# These functions are exposed only for access in unit tests.
-testable = struct(
-    calculate_configuration = calculate_configuration,
-    process_top_level_properties = process_top_level_properties,
-)
