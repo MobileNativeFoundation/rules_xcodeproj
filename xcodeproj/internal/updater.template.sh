@@ -24,5 +24,5 @@ for i in "${!specs[@]}"; do
 done
 
 for installer in "${installers[@]}"; do
-  "$installer"
+  "$installer" --remove_spaces
 done
