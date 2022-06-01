@@ -20,7 +20,7 @@ extension Generator {
 
     // GH399: Derive the defaultLastUpgradeVersion and defaultVersion.
     private static let defaultLastUpgradeVersion = "1320"
-    private static let defaultVersion = "1.3"
+    private static let defaultVersion = "1.7"
 
     /// Creates an `XCScheme` for the specified target.
     private static func createXCScheme(
