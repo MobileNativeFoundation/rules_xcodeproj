@@ -48,6 +48,10 @@ extension BuildSettingConditional: Comparable {
             return lhs.platform == nil && rhs.platform != nil
         }
 
+        guard lhsPlatform.os == rhsPlatform.os else {
+            return lhsPlatform.os < rhsPlatform.os
+        }
+
         guard lhsPlatform.environment == rhsPlatform.environment else {
             // Sort simulator first
             switch (lhsPlatform.environment, rhsPlatform.environment) {
