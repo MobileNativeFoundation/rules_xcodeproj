@@ -152,7 +152,10 @@
             "info_plist": null,
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/Lib/Lib.swift"
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/Lib/Lib.swift",
+                        "t": "g"
+                    }
                 ]
             },
             "is_swift": true,
@@ -238,7 +241,10 @@
             "info_plist": null,
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/Lib/Lib.swift"
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib/Lib.swift",
+                        "t": "g"
+                    }
                 ]
             },
             "is_swift": true,
@@ -323,7 +329,10 @@
             "info_plist": null,
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/Lib/Lib.swift"
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/Lib/Lib.swift",
+                        "t": "g"
+                    }
                 ]
             },
             "is_swift": true,
@@ -409,7 +418,10 @@
             "info_plist": null,
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/Lib/Lib.swift"
+                    {
+                        "_": "watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/Lib/Lib.swift",
+                        "t": "g"
+                    }
                 ]
             },
             "is_swift": true,
