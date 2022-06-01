@@ -7,20 +7,27 @@ final class BuildSettingConditionalTests: XCTestCase {
     static let conditionals: [String: BuildSettingConditional] = [
         "A": .init(platform: .init(
             name: "A",
-            os: .iOS,
+            os: .macOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
-            environment: "Simulator"
+            environment: nil
         )),
         "B": .init(platform: .init(
             name: "B",
             os: .iOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
-            environment: nil
+            environment: "Simulator"
         )),
         "C": .init(platform: .init(
             name: "C",
+            os: .iOS,
+            arch: "arm64",
+            minimumOsVersion: "11.0",
+            environment: nil
+        )),
+        "D": .init(platform: .init(
+            name: "D",
             os: .iOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
@@ -55,6 +62,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             conditionals["A"]!,
             conditionals["B"]!,
             conditionals["C"]!,
+            conditionals["D"]!,
         ]
 
         // Act
@@ -76,6 +84,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             "SOME_SETTING[sdk=A*]",
             "SOME_SETTING[sdk=B*]",
             "SOME_SETTING[sdk=C*]",
+            "SOME_SETTING[sdk=D*]",
         ]
 
         // Act
@@ -85,6 +94,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             conditionals["A"]!.conditionalize(buildSettingKey),
             conditionals["B"]!.conditionalize(buildSettingKey),
             conditionals["C"]!.conditionalize(buildSettingKey),
+            conditionals["D"]!.conditionalize(buildSettingKey),
         ]
 
         // Assert
@@ -102,6 +112,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             "ARCHS[sdk=A*]",
             "ARCHS[sdk=B*]",
             "ARCHS[sdk=C*]",
+            "ARCHS[sdk=D*]",
         ]
 
         // Act
@@ -111,6 +122,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             conditionals["A"]!.conditionalize(buildSettingKey),
             conditionals["B"]!.conditionalize(buildSettingKey),
             conditionals["C"]!.conditionalize(buildSettingKey),
+            conditionals["D"]!.conditionalize(buildSettingKey),
         ]
 
         // Assert
@@ -128,6 +140,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             "SDKROOT",
             "SDKROOT",
             "SDKROOT",
+            "SDKROOT",
         ]
 
         // Act
@@ -137,6 +150,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             conditionals["A"]!.conditionalize(buildSettingKey),
             conditionals["B"]!.conditionalize(buildSettingKey),
             conditionals["C"]!.conditionalize(buildSettingKey),
+            conditionals["D"]!.conditionalize(buildSettingKey),
         ]
 
         // Assert

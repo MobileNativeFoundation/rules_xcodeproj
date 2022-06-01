@@ -55,3 +55,18 @@ struct Platform: Equatable, Hashable, Decodable {
     let minimumOsVersion: String
     let environment: String?
 }
+
+extension Platform.OS: Comparable {
+    static func < (lhs: Platform.OS, rhs: Platform.OS) -> Bool {
+        switch (lhs, rhs) {
+        case (.macOS, _): return true
+        case (_, .macOS): return false
+        case (.iOS, _): return true
+        case (_, .iOS): return false
+        case (.tvOS, _): return true
+        case (_, .tvOS): return false
+        case (.watchOS, _): return true
+        case (_, .watchOS): return false
+        }
+    }
+}
