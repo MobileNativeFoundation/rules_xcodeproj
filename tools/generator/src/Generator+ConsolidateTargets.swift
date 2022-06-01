@@ -1,6 +1,213 @@
 import OrderedCollections
 import XcodeProj
 
+extension Generator {
+    /// Attempts to consolidate targets that differ only by configuration.
+    ///
+    /// - See: `ConsolidatedTarget`.
+    ///
+    /// - Parameters:
+    ///   - targets: The universe of targets.
+    ///   - logger: A `Logger` to output warnings to when certain configuration
+    ///     prevents a consolidation.
+    static func consolidateTargets(
+        _ targets: [TargetID: Target],
+        logger: Logger
+    ) throws -> ConsolidatedTargets {
+        // First pass
+        var consolidatable: [ConsolidatableKey: Set<TargetID>] = [:]
+        for (id, target) in targets {
+            consolidatable[.init(target: target), default: []].insert(id)
+        }
+
+        // Filter out multiple archs of the same platform
+        // TODO: Eventually we should probably support this, for Universal macOS
+        //   binaries. Xcode doesn't respect the `arch` condition for product
+        //   directory related build settings, so it's non-trival to support.
+        var consolidateGroups: [Set<TargetID>] = []
+        for ids in consolidatable.values {
+            var platforms: [String: Set<ArchAndTargetID>] = [:]
+            for id in ids {
+                let platform = targets[id]!.platform
+                platforms[platform.name, default: []]
+                    .insert(.init(platform.arch, id))
+            }
+
+            var consolidateIDs: Set<TargetID> = []
+            var uniqueIDs: Set<TargetID> = []
+            for archAndIDs in platforms.values {
+                guard archAndIDs.count > 1 else {
+                    consolidateIDs.insert(archAndIDs.first!.id)
+                    continue
+                }
+
+                // We will keep the first architecture consolidated
+                let sortedIDs = archAndIDs
+                    .sorted { lhs, _ in lhs.arch == "arm64" }
+                    .map(\.id)
+                consolidateIDs.insert(sortedIDs[0])
+                uniqueIDs.formUnion(sortedIDs[1...])
+            }
+
+            consolidateGroups.append(consolidateIDs)
+            uniqueIDs.forEach { consolidateGroups.append([$0]) }
+        }
+
+        // Build up mappings
+        var targetIDMapping: [TargetID: ConsolidatedTarget.Key] = [:]
+        var keys: Set<ConsolidatedTarget.Key> = []
+        for ids in consolidateGroups {
+            let key = ConsolidatedTarget.Key(ids)
+            keys.insert(key)
+            for id in ids {
+                targetIDMapping[id] = key
+            }
+        }
+
+        // Calculate dependencies
+        func resolveDependency(
+            _ depID: TargetID,
+            for id: TargetID
+        ) throws -> ConsolidatedTarget.Key {
+            guard let dependencyKey = targetIDMapping[depID] else {
+                throw PreconditionError(message: """
+Target "\(id)" dependency on "\(depID)" not found in \
+`consolidateTargets().targetIDMapping`
+""")
+            }
+            return dependencyKey
+        }
+
+        var testHostMap: [TargetID: ConsolidatedTarget.Key] = [:]
+        var depsMap: [TargetID: Set<ConsolidatedTarget.Key>] = [:]
+        var rdepsMap: [ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>] =
+            [:]
+        for key in keys {
+            for id in key.targetIDs {
+                guard let target = targets[id] else {
+                    throw PreconditionError(message: """
+Target "\(id)" not found in `consolidateTargets().targets`
+""")
+                }
+
+                var dependencies = Set<ConsolidatedTarget.Key>(
+                    try target.dependencies.map { depID in
+                        return try resolveDependency(depID, for: id)
+                    }
+                )
+                depsMap[id] = dependencies
+
+                if let testHost = target.testHost {
+                    let depKey = try resolveDependency(testHost, for: id)
+                    testHostMap[id] = depKey
+                    dependencies.insert(depKey)
+                }
+
+                for dependencyKey in dependencies {
+                    rdepsMap[dependencyKey, default: []].insert(key)
+                }
+            }
+        }
+
+        // Account for conditional dependencies
+        func deconsolidateKey(_ key: ConsolidatedTarget.Key) {
+            keys.remove(key)
+            // TODO: Use `depsGrouping` to be more specific with what
+            // needs to be reevaluated. As it stands, we just blow away all
+            // dependent targets ability to be consolidated.
+            for id in key.targetIDs {
+                let newKey = ConsolidatedTarget.Key([id])
+                keys.insert(newKey)
+                targetIDMapping[id] = newKey
+            }
+            if let rdeps = rdepsMap.removeValue(forKey: key) {
+                rdeps.forEach { deconsolidateKey($0) }
+            }
+        }
+
+        for key in keys.filter({ $0.targetIDs.count > 1 }) {
+            var testHostGrouping: [ConsolidatedTarget.Key?: Set<TargetID>] =
+                [:]
+            var depsGrouping: [Set<ConsolidatedTarget.Key>: Set<TargetID>] = [:]
+            for id in key.targetIDs {
+                testHostGrouping[testHostMap[id], default: []].insert(id)
+                depsGrouping[depsMap[id] ?? [], default: []].insert(id)
+            }
+
+            if testHostGrouping.count != 1 {
+                logger.logWarning("""
+Was unable to consolidate targets \(key.targetIDs.sorted()) since they have a \
+conditional `test_host`
+""")
+                deconsolidateKey(key)
+            }
+
+            if depsGrouping.count != 1 {
+                logger.logWarning("""
+Was unable to consolidate targets \(key.targetIDs.sorted()) since they have a \
+conditional `deps`
+""")
+                deconsolidateKey(key)
+            }
+        }
+
+        // Create `ConsolidateTarget`s
+        var consolidatedTargets: [ConsolidatedTarget.Key: ConsolidatedTarget] =
+            [:]
+        for key in keys {
+            var cTargets: [TargetID: Target] = [:]
+            for targetID in key.targetIDs {
+                guard let target = targets[targetID] else {
+                    throw PreconditionError(message: """
+Target "\(targetID)" not found in `consolidateTargets().targets`
+""")
+                }
+                cTargets[targetID] = target
+            }
+
+            consolidatedTargets[key] = ConsolidatedTarget(targets: cTargets)
+        }
+
+        return ConsolidatedTargets(
+            keys: targetIDMapping,
+            targets: consolidatedTargets
+        )
+    }
+}
+
+// MARK: - Computation
+
+/// If multiple `Targets` have the same `ConsolidatableKey`, they can
+/// potentially be consolidated. "Potentially", since there are some
+/// disqualifying properties that require further inspection (e.g conditional
+/// dependencies).
+private struct ConsolidatableKey: Equatable, Hashable {
+    let label: String
+    let productType: PBXProductType
+}
+
+extension ConsolidatableKey {
+    init(target: Target) {
+        label = target.label
+        productType = target.product.type
+    }
+}
+
+private struct ArchAndTargetID: Equatable, Hashable {
+    let arch: String
+    let id: TargetID
+
+    init(_ arch: String, _ id: TargetID) {
+        self.arch = arch
+        self.id = id
+    }
+}
+
+struct ConsolidatedTargets: Equatable {
+    let keys: [TargetID: ConsolidatedTarget.Key]
+    let targets: [ConsolidatedTarget.Key: ConsolidatedTarget]
+}
+
 /// Collects multiple Bazel targets (see `Target`) that can be represented by
 /// a single Xcode target (see `PBXNativeTarget`).
 ///
@@ -10,6 +217,10 @@ import XcodeProj
 /// using build settings, and conditionals on build settings, to account
 /// for the differences.
 struct ConsolidatedTarget: Equatable {
+    struct Key: Equatable, Hashable {
+        fileprivate let targetIDs: Set<TargetID>
+    }
+
     let name: String
     let label: String
     let product: ConsolidatedTargetProduct
@@ -32,6 +243,12 @@ struct ConsolidatedTarget: Equatable {
     /// value (i.e. the one most likely to be built), so we store the sorted
     /// targets as an optimization.
     let sortedTargets: [Target]
+}
+
+extension ConsolidatedTarget.Key {
+    init(_ targetIDs: Set<TargetID>) {
+        self.targetIDs = targetIDs
+    }
 }
 
 extension ConsolidatedTarget {

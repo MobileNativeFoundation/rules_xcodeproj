@@ -26,6 +26,7 @@
 		0211E9F4E28AF5AACDA18BE0 /* _Hashtable+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5EDE827922E2C3C04DA62 /* _Hashtable+Header.swift */; };
 		0280FDEBEC56D58315C6B86D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7C8330C0BB8964775949E8 /* Environment.swift */; };
 		02CB4630B04CA81FA5D198F6 /* CommentedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03610C8A88B668CC0E52047B /* CommentedString.swift */; };
+		02DCA9635FB629EFFEB10F73 /* ConsolidateTargetsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD37ED60DF0F25AB4A7DCE63 /* ConsolidateTargetsTest.swift */; };
 		03543A759A0331A5A2E4F71B /* SetTargetConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E516638B5C9A3B2B3E2AB46 /* SetTargetConfigurations.swift */; };
 		03C06C472EA5126C439849F2 /* OrderedDictionary+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83272F166637CFAFC4C79C /* OrderedDictionary+Hashable.swift */; };
 		0449C2D6F2A01D6B7A98C752 /* PBXTarget+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1133DC1402E9C43EE1126DC4 /* PBXTarget+ExtensionsTests.swift */; };
@@ -651,6 +652,7 @@
 		FAD042334686EC625458D787 /* XCWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspace.swift; sourceTree = "<group>"; };
 		FB78F15F8AFA4FD268CBC7BD /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
 		FC11619155D626635A9AB65A /* CreateXCSchemesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCSchemesTests.swift; sourceTree = "<group>"; };
+		FD37ED60DF0F25AB4A7DCE63 /* ConsolidateTargetsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidateTargetsTest.swift; sourceTree = "<group>"; };
 		FD68E5A7AC6AF524F6B2E4D3 /* WorkspaceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -791,6 +793,7 @@
 				A8C917E9D54ACB73DF3F6EAA /* BUILD */,
 				F4E71029096D6AC34B84A74A /* BuildSettingConditionalTests.swift */,
 				FA0FEDB45F02638177A108FC /* ConsolidatedTargetTests.swift */,
+				FD37ED60DF0F25AB4A7DCE63 /* ConsolidateTargetsTest.swift */,
 				06589BA8CA823F86E64B2417 /* CreateFilesAndGroupsTests.swift */,
 				798455D7A824BAB585C1E8EB /* CreateProductsTest.swift */,
 				E200ED9999C2E4E55C7EC34E /* CreateProjectTests.swift */,
@@ -1607,6 +1610,7 @@
 			files = (
 				D1FF2A2A272865879D4B94D2 /* AddTargetsTests.swift in Sources */,
 				130CE1601B9654CC0320CD9C /* BuildSettingConditionalTests.swift in Sources */,
+				02DCA9635FB629EFFEB10F73 /* ConsolidateTargetsTest.swift in Sources */,
 				59E7A071C1A3448B297846D4 /* ConsolidatedTargetTests.swift in Sources */,
 				250DE90578C454256F39C418 /* CreateFilesAndGroupsTests.swift in Sources */,
 				D28AD805F11C60A1A2CEBE5A /* CreateProductsTest.swift in Sources */,
