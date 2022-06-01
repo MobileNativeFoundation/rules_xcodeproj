@@ -78,7 +78,11 @@ def process_modulemaps(*, swift_info):
     modulemap_file_paths = []
     modulemap_files = []
     for module in swift_info.direct_modules:
-        for module_map in module.compilation_context.module_maps:
+        compilation_context = module.compilation_context
+        if not compilation_context:
+            continue
+
+        for module_map in compilation_context.module_maps:
             if type(module_map) == "File":
                 modulemap = file_path(module_map)
                 modulemap_files.append(module_map)
@@ -190,7 +194,11 @@ def process_swiftmodules(*, swift_info):
 
     swiftmodules = []
     for module in swift_info.direct_modules:
-        for swiftmodule in module.compilation_context.swiftmodules:
+        compilation_context = module.compilation_context
+        if not compilation_context:
+            continue
+
+        for swiftmodule in compilation_context.swiftmodules:
             swiftmodules.append(file_path(swiftmodule))
 
     return swiftmodules
