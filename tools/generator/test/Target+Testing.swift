@@ -28,13 +28,7 @@ extension Target {
             label: label ?? "//some/package:\(product.name)",
             configuration: configuration,
             packageBinDir: packageBinDir,
-            platform: platform ?? Platform(
-                name: "macosx",
-                os: .macOS,
-                arch: "arm64",
-                minimumOsVersion: "12.0",
-                environment: nil
-            ),
+            platform: platform ?? .macOS(),
             product: product,
             isSwift: isSwift,
             testHost: testHost,
@@ -47,6 +41,65 @@ extension Target {
             linkerInputs: linkerInputs,
             dependencies: dependencies,
             outputs: outputs
+        )
+    }
+}
+
+extension Platform {
+    static func simulator(
+        os: Platform.OS = .iOS,
+        arch: String = "arm64",
+        minimumOsVersion: String = "11.0"
+    ) -> Self {
+        let name: String
+        switch os {
+        case .macOS: preconditionFailure("use `.macOS`")
+        case .iOS: name = "iphonesimulator"
+        case .tvOS: name = "appletvsimulator"
+        case .watchOS: name = "watchsimulator"
+        }
+
+        return Platform(
+            name: name,
+            os: os,
+            arch: arch,
+            minimumOsVersion: minimumOsVersion,
+            environment: "Simulator"
+        )
+    }
+
+    static func device(
+        os: Platform.OS = .iOS,
+        arch: String = "arm64",
+        minimumOsVersion: String = "11.0"
+    ) -> Self {
+        let name: String
+        switch os {
+        case .macOS: preconditionFailure("use `.macOS`")
+        case .iOS: name = "iphoneos"
+        case .tvOS: name = "appletvos"
+        case .watchOS: name = "watchos"
+        }
+
+        return Platform(
+            name: name,
+            os: os,
+            arch: arch,
+            minimumOsVersion: minimumOsVersion,
+            environment: nil
+        )
+    }
+
+    static func macOS(
+        arch: String = "arm64",
+        minimumOsVersion: String = "11.0"
+    ) -> Self {
+        return Platform(
+            name: "macosx",
+            os: .macOS,
+            arch: arch,
+            minimumOsVersion: minimumOsVersion,
+            environment: nil
         )
     }
 }
