@@ -1,4 +1,5 @@
 import CryptoKit
+import OrderedCollections
 import XcodeProj
 
 /// A `struct` containing values for a target that need to be unique in the eyes
@@ -123,8 +124,10 @@ struct ProductTypeComponents {
 
     /// Adds another `Target` into consideration for `distinguishers()`.
     mutating func add(target: Target) {
-        oses[target.platform.os, default: .init()].add(target: target)
-        distinguisherKeys[target.distinguisherKey, default: 0] += 1
+        for target in [target] {
+            oses[target.platform.os, default: .init()].add(target: target)
+            distinguisherKeys[target.distinguisherKey, default: 0] += 1
+        }
     }
 
     /// Generates an array of user-facing strings that, along with a target
@@ -143,6 +146,8 @@ struct ProductTypeComponents {
         includeProductType: Bool
     ) -> [String] {
         var distinguishers: [String] = []
+        var consolidatedDistinguishers: OrderedSet<String> = []
+        let targets = [target]
 
         if includeProductType {
             distinguishers.append(target.product.type.prettyName)
@@ -155,23 +160,32 @@ struct ProductTypeComponents {
             // components. We will show a shorted configuration hash instead,
             // which will be unique.
             if includeOS {
+                consolidatedDistinguishers.append(
+                    contentsOf: targets.map(\.platform.os.prettyName)
+                )
                 distinguishers.append(
-                    target.platform.os.prettyName
+                    consolidatedDistinguishers.joined(separator: ", ")
                 )
             }
 
-            distinguishers.append(
-                Target.prettyConfiguration(target.configuration)
-            )
+            distinguishers.append(prettyConfiguration(targets: targets))
 
             return distinguishers
         }
 
-        if let osDistinguisher = oses[target.platform.os]!.distinguisher(
-            target: target,
-            includeOS: includeOS
-        ) {
-            distinguishers.append(osDistinguisher)
+        for target in targets {
+            if let osDistinguisher = oses[target.platform.os]!.distinguisher(
+                target: target,
+                includeOS: includeOS
+            ) {
+                consolidatedDistinguishers.append(osDistinguisher)
+            }
+        }
+
+        if !consolidatedDistinguishers.isEmpty {
+            distinguishers.append(
+                consolidatedDistinguishers.joined(separator: ", ")
+            )
         }
 
         return distinguishers
@@ -179,6 +193,26 @@ struct ProductTypeComponents {
 
     private func needsConfigurationDistinguishing(target: Target) -> Bool {
         return distinguisherKeys[target.distinguisherKey]! > 1
+    }
+
+    /// Returns a user-facing string for the configurations of a given set of
+    /// targets.
+    private func prettyConfiguration(targets: [Target]) -> String {
+        return Self.prettyConfigurations(targets.map(\.configuration))
+    }
+
+    /// Memoized configuration hashes.
+    private static var configurationHashes: [[String]: String] = [:]
+
+    static func prettyConfigurations(_ configurations: [String]) -> String {
+        if let hash = configurationHashes[configurations] {
+            return hash
+        }
+
+        let hash = String(configurations.sha1Hash().prefix(5))
+        configurationHashes[configurations] = hash
+
+        return hash
     }
 }
 
@@ -219,14 +253,16 @@ struct OperatingSystemComponents {
 
         let includeVersion = minimumVersions.count > 1
 
-        let versionDistinguisher = minimumVersions[
+        let versionDistinguisher: VersionedOperatingSystemComponents
+            .Distinguisher?
+        versionDistinguisher = minimumVersions[
             target.platform.minimumOsVersion
         ]!.distinguisher(
             target: target,
             includeVersion: includeVersion
         )
 
-        if let prefix = versionDistinguisher.prefix {
+        if let prefix = versionDistinguisher?.prefix {
             components.append(prefix)
         }
 
@@ -234,7 +270,9 @@ struct OperatingSystemComponents {
             components.append(platform.os.prettyName)
         }
 
-        components.append(contentsOf: versionDistinguisher.suffix)
+        if let suffix = versionDistinguisher?.suffix {
+            components.append(contentsOf: suffix)
+        }
 
         return components.isEmpty ? nil : components.joined(separator: " ")
     }
@@ -281,21 +319,22 @@ struct VersionedOperatingSystemComponents {
     ) -> Distinguisher {
         let platform = target.platform
 
-        let environmentDistinguisher = environments[
+        let environmentDistinguisher: EnvironmentSystemComponents.Distinguisher?
+        environmentDistinguisher = environments[
                 platform.environment ?? "Device"
         ]!.distinguisher(
             target: target,
             includeEnvironment: environments.count > 1
         )
 
-        let prefix = environmentDistinguisher.prefix
+        let prefix = environmentDistinguisher?.prefix
 
         var suffix: [String] = []
 
         if includeVersion {
             suffix.append(platform.minimumOsVersion)
         }
-        if let environmentSuffix = environmentDistinguisher.suffix {
+        if let environmentSuffix = environmentDistinguisher?.suffix {
             suffix.append(environmentSuffix)
         }
 
@@ -344,23 +383,6 @@ struct EnvironmentSystemComponents {
     }
 }
 
-extension Target {
-    /// Memoized configuration hashes.
-    private static var configurationHashes: [String: String] = [:]
-
-    /// Returns a user-facing string for a given configuration.
-    static func prettyConfiguration(_ configuration: String) -> String {
-        if let hash = configurationHashes[configuration] {
-            return hash
-        }
-
-        let hash = String(configuration.sha1Hash().prefix(5))
-        configurationHashes[configuration] = hash
-
-        return hash
-    }
-}
-
 private extension Target {
     /// A key that corresponds to the most-distinguished string that
     /// `ProductTypeComponents.distinguisher()` can return for this
@@ -386,11 +408,16 @@ private extension Platform.OS {
     }
 }
 
-private extension String {
-    /// Computes a sha1 hash string for this `String`.
+private extension Sequence where Element == String {
+    /// Computes a sha1 hash string for this `Sequence<String>`.
     func sha1Hash() -> String {
-        return Insecure.SHA1
-            .hash(data: data(using: .utf8)!)
+        var hasher = Insecure.SHA1()
+
+        for string in sorted() {
+            hasher.update(data: string.data(using: .utf8)!)
+        }
+
+        return hasher.finalize()
             .map { String(format: "%02x", $0) }
             .joined()
     }
