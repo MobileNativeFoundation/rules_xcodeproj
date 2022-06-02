@@ -71,7 +71,7 @@ struct TargetComponents {
     ///
     /// For each product type name among the `Target`s passed to `add(target:)`,
     /// there will be an entry in `productTypes`.
-    /// `ProductTypeComponents.add(target)` will have been called for each
+    /// `ProductTypeComponents.add(target:)` will have been called for each
     /// `Target`.
     private var productTypes: [String: ProductTypeComponents] = [:]
 
@@ -89,10 +89,11 @@ struct TargetComponents {
         // TODO: Handle same name at different parts in the build graph?
         // This shouldn't happen for modules (though maybe with the new renaming
         // stuff in Swift it can?), but could for bundles.
-        let distinguishers = productTypes[target.product.type.prettyName]!.distinguishers(
-            target: target,
-            forceDistinguisher: productTypes.count > 1
-        )
+        let distinguishers = productTypes[target.product.type.prettyName]!
+            .distinguishers(
+                target: target,
+                includeProductType: productTypes.count > 1
+            )
 
         // Returns "Name (a) (b)" when `distinguishers` is `["a", "b"]`, and
         // returns "Name" when `distinguishers` is empty.
@@ -109,7 +110,7 @@ struct ProductTypeComponents {
     ///
     /// For each operating system name among the `Target`s passed to
     /// `add(target:)`, there will be an entry in `oses`.
-    /// `OperatingSystemComponents.add(target)` will have been called for each
+    /// `OperatingSystemComponents.add(target:)` will have been called for each
     /// `Target`.
     var oses: [Platform.OS: OperatingSystemComponents] = [:]
 
@@ -127,23 +128,21 @@ struct ProductTypeComponents {
     ///
     /// - Parameters:
     ///   - target: The `Target` to generate a distinguisher for.
-    ///   - forceDistinguisher: If `true`, the product type will be part of the
+    ///   - includeProductType: If `true`, the product type will be part of the
     ///     array returned.
-    ///
-    /// - Returns: `nil` if no distinguisher is needed.
     func distinguishers(
         target: Target,
-        forceDistinguisher: Bool
+        includeProductType: Bool
     ) -> [String] {
         var distinguishers: [String] = []
 
-        if forceDistinguisher {
+        if includeProductType {
             distinguishers.append(target.product.type.prettyName)
         }
 
         if let osDistinguisher = oses[target.platform.os]!.distinguisher(
             target: target,
-            forceDistinguisher: oses.count > 1
+            includeOS: oses.count > 1
         ) {
             distinguishers.append(osDistinguisher)
         }
@@ -156,16 +155,12 @@ struct ProductTypeComponents {
 /// operating system name and provides the capability to generate a
 /// distinguisher string for any of the `Target`s it collected properties from.
 struct OperatingSystemComponents {
-    /// The set of architectures among the targets passed to `add(target:)`.
-    private var archs: Set<String> = []
-
-    /// The set of minimum OS versions among the targets passed to
-    /// `add(target:)`.
-    private var minimumVersions: Set<String> = []
-
-    /// The set of environments (e.g. "Simulator") among the targets passed to
-    /// `add(target:)`.
-    private var environments: Set<String?> = []
+    /// For operating system minimum versions among the `Target`s passed to
+    /// `add(target:)`, there will be an entry in `minimumVersions`.
+    /// `VersionedOperatingSystemComponents.add(target:)` will have been called
+    /// for each `Target`.
+    private var minimumVersions: [String: VersionedOperatingSystemComponents] =
+        [:]
 
     /// A count of `Target.distinguisherKey`s seen in `add(target:)`.
     ///
@@ -176,11 +171,9 @@ struct OperatingSystemComponents {
 
     /// Adds another `Target` into consideration for `distinguisher()`.
     mutating func add(target: Target) {
-        let platform = target.platform
+        let minimumVersion = target.platform.minimumOsVersion
 
-        archs.insert(platform.arch)
-        minimumVersions.insert(platform.minimumOsVersion)
-        environments.insert(platform.environment)
+        minimumVersions[minimumVersion, default: .init()].add(target: target)
         distinguisherKeys[target.distinguisherKey, default: 0] += 1
     }
 
@@ -193,11 +186,11 @@ struct OperatingSystemComponents {
     ///
     /// - Parameters:
     ///   - target: The `Target` to generate a distinguisher for.
-    ///   - forceDistinguisher: If `true`, the operating system name will be
-    ///     part of the string returned.
+    ///   - includeOS: If `true`, the operating system name will be part of the
+    ///     string returned.
     ///
     /// - Returns: `nil` if no distinguisher is needed.
-    func distinguisher(target: Target, forceDistinguisher: Bool) -> String? {
+    func distinguisher(target: Target, includeOS: Bool) -> String? {
         let platform = target.platform
 
         if distinguisherKeys[target.distinguisherKey]! > 1 {
@@ -206,7 +199,7 @@ struct OperatingSystemComponents {
             // which will be unique.
             var components: [String] = []
 
-            if forceDistinguisher {
+            if includeOS {
                 components.append(platform.os.prettyName)
             }
 
@@ -216,21 +209,131 @@ struct OperatingSystemComponents {
         } else {
             var components: [String] = []
 
-            if archs.count > 1 {
-                components.append(platform.arch)
+            let includeVersion = minimumVersions.count > 1
+
+            let versionDistinguisher = minimumVersions[
+                target.platform.minimumOsVersion
+            ]!.distinguisher(
+                target: target,
+                includeVersion: includeVersion
+            )
+
+            if let prefix = versionDistinguisher.prefix {
+                components.append(prefix)
             }
-            if forceDistinguisher || minimumVersions.count > 1 {
+
+            if includeOS || includeVersion {
                 components.append(platform.os.prettyName)
             }
-            if minimumVersions.count > 1 {
-                components.append(platform.minimumOsVersion)
-            }
-            if environments.count > 1 {
-                components.append(platform.environment ?? "Device")
-            }
+
+            components.append(contentsOf: versionDistinguisher.suffix)
 
             return components.isEmpty ? nil : components.joined(separator: " ")
         }
+    }
+}
+
+/// `VersionedOperatingSystemComponents` collects properties of `Target`s for a
+/// given operating system version and provides the capability to generate a
+/// distinguisher string for any of the `Target`s it collected properties from.
+struct VersionedOperatingSystemComponents {
+    struct Distinguisher {
+        let prefix: String?
+        let suffix: [String]
+    }
+
+    /// Maps platform environments (e.g. "Simulator") to
+    /// `EnvironmentSystemComponents`.
+    ///
+    /// For operating system minimum versions among the `Target`s passed to
+    /// `add(target:)`, there will be an entry in `environments`.
+    /// `EnvironmentSystemComponents.add(target:)` will have been called for
+    /// each `Target`.
+    private var environments: [String: EnvironmentSystemComponents] = [:]
+
+    /// Adds another `Target` into consideration for `distinguisher()`.
+    mutating func add(target: Target) {
+        environments[target.platform.environment ?? "Device", default: .init()]
+            .add(target: target)
+    }
+
+    /// Potentially generates user-facing strings that, along with a target
+    /// name and previous component distinguishers, uniquely distinguishes it
+    /// from targets with the same non-distinguished name.
+    ///
+    /// - Precondition: All targets have been added with `add(target:)` before
+    ///   this is called.
+    ///
+    /// - Parameters:
+    ///   - target: The `Target` to generate a distinguisher for.
+    ///   - includeVersion: If `true`, the operating system version will be
+    ///     part of the `Distinguisher` returned.
+    func distinguisher(
+        target: Target,
+        includeVersion: Bool
+    ) -> Distinguisher {
+        let platform = target.platform
+
+        let environmentDistinguisher = environments[
+                platform.environment ?? "Device"
+        ]!.distinguisher(
+            target: target,
+            includeEnvironment: environments.count > 1
+        )
+
+        let prefix = environmentDistinguisher.prefix
+
+        var suffix: [String] = []
+
+        if includeVersion {
+            suffix.append(platform.minimumOsVersion)
+        }
+        if let environmentSuffix = environmentDistinguisher.suffix {
+            suffix.append(environmentSuffix)
+        }
+
+        return Distinguisher(prefix: prefix, suffix: suffix)
+    }
+}
+
+/// `EnvironmentSystemComponents` collects properties of `Target`s for a
+/// given platform environment and provides the capability to generate a
+/// distinguisher string for any of the `Target`s it collected properties from.
+struct EnvironmentSystemComponents {
+    struct Distinguisher {
+        let prefix: String?
+        let suffix: String?
+    }
+
+    /// The set of architectures among the targets passed to `add(target:)`.
+    private var archs: Set<String> = []
+
+    /// Adds another `Target` into consideration for `distinguisher()`.
+    mutating func add(target: Target) {
+        archs.insert(target.platform.arch)
+    }
+
+    /// Potentially generates user-facing strings that, along with a target
+    /// name and previous component distinguishers, uniquely distinguishes it
+    /// from targets with the same non-distinguished name.
+    ///
+    /// - Precondition: All targets have been added with `add(target:)`
+    ///   before this is called.
+    ///
+    /// - Parameters:
+    ///   - target: The `Target` to generate a distinguisher for.
+    ///   - includeEnvironment: If `true`, the operating system version will be
+    ///     part of the `Distinguisher` returned.
+    func distinguisher(
+        target: Target,
+        includeEnvironment: Bool
+    ) -> Distinguisher {
+        let platform = target.platform
+
+        let prefix = archs.count > 1 ? platform.arch : nil
+        let suffix = includeEnvironment ? platform.environment ?? "Device" : nil
+
+        return Distinguisher(prefix: prefix, suffix: suffix)
     }
 }
 
