@@ -442,8 +442,8 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
         ]
         let expectedTargetNames: [TargetID: String] = [
-            "A 1": "A (iOS, \(Target.prettyConfiguration("1")))",
-            "A 2": "A (iOS, \(Target.prettyConfiguration("2")))",
+            "A 1": "A (iOS) (\(Target.prettyConfiguration("1")))",
+            "A 2": "A (iOS) (\(Target.prettyConfiguration("2")))",
             "A 3": "A (macOS)",
             "B": "B",
         ]
