@@ -1,4 +1,4 @@
-extension Target {
+extension ConsolidatedTarget {
     /// The normalized name is used during target disambiguation. It allows the
     /// logic to differentiate targets where the names only differ by case.
     var normalizedName: String {

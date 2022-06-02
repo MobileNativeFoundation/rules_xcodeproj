@@ -10,15 +10,15 @@ final class SetTargetDependenciesTests: XCTestCase {
         let pbxProj = Fixtures.pbxProj()
         let expectedPBXProj = Fixtures.pbxProj()
 
-        let targets = Fixtures.targets
+        let consolidatedTargets = Fixtures.consolidatedTargets
 
         let (pbxTargets, disambiguatedTargets) = Fixtures.pbxTargets(
             in: pbxProj,
-            targets: targets
+            consolidatedTargets: consolidatedTargets
         )
         let expectedPBXTargets = Fixtures.pbxTargetsWithDependencies(
             in: expectedPBXProj,
-            targets: targets
+            consolidatedTargets: consolidatedTargets
         )
 
         // Act

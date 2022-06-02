@@ -13,7 +13,7 @@ final class CreateProductsTests: XCTestCase {
         let expectedPBXProject = expectedPBXProj.rootObject!
         let expectedMainGroup = expectedPBXProject.mainGroup!
 
-        let targets = Fixtures.targets
+        let consolidatedTargets = Fixtures.consolidatedTargets
 
         let expectedProducts = Fixtures.products(in: expectedPBXProj)
 
@@ -28,7 +28,7 @@ final class CreateProductsTests: XCTestCase {
 
         let (createdProducts, createdProductsGroup) = Generator.createProducts(
             in: pbxProj,
-            for: targets
+            for: consolidatedTargets
         )
 
         // We need to add the products group to a group to allow references to

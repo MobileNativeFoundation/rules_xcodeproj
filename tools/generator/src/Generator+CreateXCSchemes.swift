@@ -6,7 +6,7 @@ extension Generator {
     static func createXCSchemes(
         buildMode: BuildMode,
         filePathResolver: FilePathResolver,
-        pbxTargets: [TargetID: PBXTarget]
+        pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
     ) throws -> [XCScheme] {
         let referencedContainer = filePathResolver.containerReference
         return try pbxTargets.map { _, pbxTarget in

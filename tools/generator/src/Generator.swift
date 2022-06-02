@@ -90,7 +90,7 @@ Was unable to merge "\(srcTarget.label) \
             }
         }
 
-        let _ = try environment.consolidateTargets(
+        let consolidatedTargets = try environment.consolidateTargets(
             targets,
             logger
         )
@@ -106,7 +106,7 @@ Was unable to merge "\(srcTarget.label) \
         )
         let (products, productsGroup) = environment.createProducts(
             pbxProj,
-            targets
+            consolidatedTargets
         )
         environment.populateMainGroup(
             mainGroup,
@@ -115,7 +115,9 @@ Was unable to merge "\(srcTarget.label) \
             productsGroup
         )
 
-        let disambiguatedTargets = environment.disambiguateTargets(targets)
+        let disambiguatedTargets = environment.disambiguateTargets(
+            consolidatedTargets
+        )
         let bazelDependencies = try environment.addBazelDependenciesTarget(
             pbxProj,
             buildMode,

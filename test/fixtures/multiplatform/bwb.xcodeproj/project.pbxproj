@@ -24,48 +24,31 @@
 
 /* Begin PBXBuildFile section */
 		0425CCFCCD1FE1ECEDCA1226 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FED84E16539192393AF06C /* ContentView.swift */; };
-		2652E46187D68BA7FC5F329A /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AACB22E5F4B160E9CD14629 /* Lib.swift */; };
-		320AB8BDC1C33D102825BB35 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B1C1315331D8C35661567C /* Lib.swift */; };
-		3A8A4BCF92C278F74487AE52 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1792082FAECED2C023297BF2 /* Lib.swift */; };
+		1F1EF1874DB8F36A7030731A /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5818C3CCD50CE380C7447BA5 /* Lib.swift */; };
+		23C660B9A43C31E0DF8D1633 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AACB22E5F4B160E9CD14629 /* Lib.swift */; };
 		4026DA28A4B2DCB480467C8F /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		41731BDC24BE872323FEA0E3 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416D7556BFEC26938A62BA77 /* iOSApp.swift */; };
 		4E214A0EB55985D3ED1C80F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451AB65F903A79F644C34E4F /* ContentView.swift */; };
-		6360FF396B49E1B6632C1FD0 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		665F77C9222300A8F41DACC7 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
+		5FB8D35E49212BC28E0B7CF2 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
+		6AED2D016EC8E5EE385750BB /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B1C1315331D8C35661567C /* Lib.swift */; };
 		6C89B018AC1296F321FE0E77 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89AED11EAA442900F8C9C96 /* tvOSApp.swift */; };
-		6D2F1ADF4920720C18D5A33B /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5818C3CCD50CE380C7447BA5 /* Lib.swift */; };
 		7BD877C49FD76A8E2622EA3D /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BD6C219E6E5167618EBD9 /* watchOSApp.swift */; };
 		8595E830B7AC432730FD9BD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0561945EBB23E334B7EC83E3 /* main.swift */; };
 		A6269C02FE150BA5AF5127C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7184778C265E6AF5491B6 /* ContentView.swift */; };
-		B4D41F7E0C65354F7E1086CB /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		C0410183B2A47BD134098700 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		C3F80F355B01BEA0D54145EC /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		C5602D0F0E22F02A64BBFA35 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		D11B89AB1C17492A09D6941B /* CompileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */; };
 		E0E96DF94A3CD3E134AE28B4 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
+		F721AF084CBF56DC2A360D1E /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1792082FAECED2C023297BF2 /* Lib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		09D698FC3E9D73F9FBCA7176 /* PBXContainerItemProxy */ = {
+		15B3F51C8A9D43CC50D8E82C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 83D00AD7532094902D925C83;
-			remoteInfo = "Lib (watchOS)";
-		};
-		17FD5D33416D525D6B318FBC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
-		386300736627B427D77693DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
+			remoteGlobalIDString = 97C0B94AB8C957F2A520B819;
+			remoteInfo = Lib;
 		};
 		3F2526905F32AB84EFE7FBFE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -74,35 +57,21 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		4D22C6B26E63AAEB89A6365A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
+		570953DD5651A4E2B52FA1FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C0B94AB8C957F2A520B819;
+			remoteInfo = Lib;
+		};
 		64291FDA9C4F8EFE675DD30F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
-		744F4FBA1C865A8068C13C48 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 212DC2E05ECB4330F8D97046;
-			remoteInfo = "Lib (macOS)";
-		};
-		8E15AE87C87A54D7B9B7AC4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
-		930865EDBCDA2B7CC4F94DAA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F5BF80BFBFC7570B02664402;
-			remoteInfo = "Lib (iOS)";
-		};
-		97D45B69549B7B3CD85C9BCF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -116,6 +85,13 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		A950D3D3F8AF52FF04025137 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C0B94AB8C957F2A520B819;
+			remoteInfo = Lib;
+		};
 		AFABADA1B93EA6785C2D2D78 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -123,19 +99,19 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		B441F64157679F4D86CF3BA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C0B94AB8C957F2A520B819;
+			remoteInfo = Lib;
+		};
 		CED913C91B38F307EEA90999 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		DD30EE8B31719840D8E56E6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 57F1E76BC3F37BD9B3D84351;
-			remoteInfo = "Lib (tvOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -147,10 +123,8 @@
 		1792082FAECED2C023297BF2 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		17C68CB3AB068C4D32CB53C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B5A0430B943510A260B7A6F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		24AED6734D2F89E7339E6F86 /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		299462449E93953E521D87D8 /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
 		2DBB7AE642E655A5B1FD9FC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3366B92BC2D8DC68ACD38034 /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36A2370868E7CBB081CB11E0 /* iOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSApp_entitlements.entitlements; sourceTree = "<group>"; };
 		3AC69858583169F87F19CEA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		416D7556BFEC26938A62BA77 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
@@ -169,8 +143,7 @@
 		8F49CCC488DBF944363A76E3 /* tvOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9065B04356832B39E95AA885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		99C79CA8BF8DBF31ED1958B3 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		9B92DB0A68A3B511E0B4527D /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A0D53513CFBFCA1DD5F01CE8 /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B92DB0A68A3B511E0B4527D /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4FED84E16539192393AF06C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A888E2361B64B76E81875CE1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AC3BD6C219E6E5167618EBD9 /* watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOSApp.swift; sourceTree = "<group>"; };
@@ -342,9 +315,6 @@
 			children = (
 				C9839B245FE2AD82F977E567 /* iOSApp.app */,
 				9B92DB0A68A3B511E0B4527D /* libLib.a */,
-				A0D53513CFBFCA1DD5F01CE8 /* libLib.a */,
-				3366B92BC2D8DC68ACD38034 /* libLib.a */,
-				24AED6734D2F89E7339E6F86 /* libLib.a */,
 				C2A152505C080E82E6F2D44A /* Tool */,
 				8F49CCC488DBF944363A76E3 /* tvOSApp.app */,
 				B3F2BB6661347D1891100734 /* watchOSApp.app */,
@@ -717,28 +687,12 @@
 			);
 			dependencies = (
 				588C37BAE74BD661E5366E96 /* PBXTargetDependency */,
-				85A7AABB8D28EB8E9479A4A1 /* PBXTargetDependency */,
+				534300A7E83D26CCF02AE864 /* PBXTargetDependency */,
 			);
 			name = iOSApp;
 			productName = iOSApp;
 			productReference = C9839B245FE2AD82F977E567 /* iOSApp.app */;
 			productType = "com.apple.product-type.application";
-		};
-		212DC2E05ECB4330F8D97046 /* Lib (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3361776870D9BD864091FDBA /* Build configuration list for PBXNativeTarget "Lib (macOS)" */;
-			buildPhases = (
-				6A0C1F83EE2A38E033E41593 /* Copy Bazel Outputs */,
-				D43B335A5336E8C0A54789E9 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A5641A9CE495B987AE5A2EC7 /* PBXTargetDependency */,
-			);
-			name = "Lib (macOS)";
-			productName = Lib;
-			productType = "com.apple.product-type.library.static";
 		};
 		2DBD14C7DE92127B94265B10 /* watchOSAppExtension */ = {
 			isa = PBXNativeTarget;
@@ -751,28 +705,12 @@
 			);
 			dependencies = (
 				D5B6D9348B4FF1077A2E0334 /* PBXTargetDependency */,
-				0B4F0EB86580D666D2540EAF /* PBXTargetDependency */,
+				3036077D3ABA4D80220CC0B0 /* PBXTargetDependency */,
 			);
 			name = watchOSAppExtension;
 			productName = watchOSAppExtension;
 			productReference = ADBEAB2C84FEA499584D9C18 /* watchOSAppExtension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
-		};
-		57F1E76BC3F37BD9B3D84351 /* Lib (tvOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E29AC8B0198461E9E2B26AFB /* Build configuration list for PBXNativeTarget "Lib (tvOS)" */;
-			buildPhases = (
-				D1FF59519E63B86B2D9F5BF0 /* Copy Bazel Outputs */,
-				2029CDA6F4FA67C8F57A8279 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5A467BFAED5224145FB2A1F1 /* PBXTargetDependency */,
-			);
-			name = "Lib (tvOS)";
-			productName = Lib;
-			productType = "com.apple.product-type.library.static";
 		};
 		632D255CE04E97FB997EBDD7 /* watchOSApp */ = {
 			isa = PBXNativeTarget;
@@ -791,19 +729,19 @@
 			productReference = B3F2BB6661347D1891100734 /* watchOSApp.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		83D00AD7532094902D925C83 /* Lib (watchOS) */ = {
+		97C0B94AB8C957F2A520B819 /* Lib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EFD92156A876B6D6FFBB6CA8 /* Build configuration list for PBXNativeTarget "Lib (watchOS)" */;
+			buildConfigurationList = A2CD6BB723C83622725C7B0C /* Build configuration list for PBXNativeTarget "Lib" */;
 			buildPhases = (
-				1688E39CDF556E908D89600C /* Copy Bazel Outputs */,
-				D9176A0A70D09FD506167F09 /* Sources */,
+				AEE7993597975BFFF57C35FD /* Copy Bazel Outputs */,
+				B99525B6193CA9D5972B1299 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5A12402353D8CD1962F921E5 /* PBXTargetDependency */,
+				2364C7A7609E3E662ABF8B96 /* PBXTargetDependency */,
 			);
-			name = "Lib (watchOS)";
+			name = Lib;
 			productName = Lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -818,7 +756,7 @@
 			);
 			dependencies = (
 				AB49BF5E9069EF4E6553316B /* PBXTargetDependency */,
-				F823C6E1759E5D1E8AC1BAA7 /* PBXTargetDependency */,
+				D9B2853F893F3B4E1A5F89A4 /* PBXTargetDependency */,
 			);
 			name = Tool;
 			productName = Tool;
@@ -836,28 +774,12 @@
 			);
 			dependencies = (
 				0E54586AEB47B3853C7BA936 /* PBXTargetDependency */,
-				91D37608C498351FAEAB4192 /* PBXTargetDependency */,
+				121E21EA8ECE13FF4B375BB6 /* PBXTargetDependency */,
 			);
 			name = tvOSApp;
 			productName = tvOSApp;
 			productReference = 8F49CCC488DBF944363A76E3 /* tvOSApp.app */;
 			productType = "com.apple.product-type.application";
-		};
-		F5BF80BFBFC7570B02664402 /* Lib (iOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 49702AFF47C7C8281F475366 /* Build configuration list for PBXNativeTarget "Lib (iOS)" */;
-			buildPhases = (
-				0B7438974C16F668374BB0A5 /* Copy Bazel Outputs */,
-				2923189D67C759525DA8E7BE /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E8F911C4ED71A3CDC3542B6C /* PBXTargetDependency */,
-			);
-			name = "Lib (iOS)";
-			productName = Lib;
-			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -873,15 +795,7 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
-					212DC2E05ECB4330F8D97046 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 1320;
-					};
 					2DBD14C7DE92127B94265B10 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 1320;
-					};
-					57F1E76BC3F37BD9B3D84351 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -892,7 +806,7 @@
 					7E7D155EBCA520F35DEA3571 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					83D00AD7532094902D925C83 = {
+					97C0B94AB8C957F2A520B819 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -901,10 +815,6 @@
 						LastSwiftMigration = 1320;
 					};
 					ACEF2F653E0F6BEA37D2C7B6 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 1320;
-					};
-					F5BF80BFBFC7570B02664402 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -925,10 +835,7 @@
 			targets = (
 				7E7D155EBCA520F35DEA3571 /* BazelDependencies */,
 				1765D91CC168F25A5BC51603 /* iOSApp */,
-				F5BF80BFBFC7570B02664402 /* Lib (iOS) */,
-				212DC2E05ECB4330F8D97046 /* Lib (macOS) */,
-				57F1E76BC3F37BD9B3D84351 /* Lib (tvOS) */,
-				83D00AD7532094902D925C83 /* Lib (watchOS) */,
+				97C0B94AB8C957F2A520B819 /* Lib */,
 				9A91A239ECE812E066012BAF /* Tool */,
 				ACEF2F653E0F6BEA37D2C7B6 /* tvOSApp */,
 				632D255CE04E97FB997EBDD7 /* watchOSApp */,
@@ -938,40 +845,6 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B7438974C16F668374BB0A5 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1688E39CDF556E908D89600C /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		656CED3E4E2349D88BAA2EF6 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -987,23 +860,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSAppExtension.appex\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6A0C1F83EE2A38E033E41593 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7039C854B8A9F4A9D0C5E105 /* Copy Bazel Outputs */ = {
@@ -1059,6 +915,23 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AEE7993597975BFFF57C35FD /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C3B530109FE5F98A1693F0A1 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1095,23 +968,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\ncd \"$BAZEL_OUT\"\n\n# Sync to \"$BUILD_DIR/bazel-out\". This is the same as \"$GEN_DIR\" for normal\n# builds, but is different for Index Builds. `PBXBuildFile`s will use the\n# \"$GEN_DIR\" version, so indexing might get messed up until they are normally\n# generated. It's the best we can do though as we need to use the `gen_dir`\n# symlink.\nrsync \\\n  --files-from \"$INTERNAL_DIR/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1FF59519E63B86B2D9F5BF0 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DF8E9D9CD1E839DFDDC57F9F /* Copy Bazel Outputs */ = {
@@ -1154,24 +1010,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2029CDA6F4FA67C8F57A8279 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B4D41F7E0C65354F7E1086CB /* _BazelForcedCompile_.swift in Sources */,
-				3A8A4BCF92C278F74487AE52 /* Lib.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2923189D67C759525DA8E7BE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				665F77C9222300A8F41DACC7 /* _BazelForcedCompile_.swift in Sources */,
-				320AB8BDC1C33D102825BB35 /* Lib.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A2C67B856171DBAB022F04D9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1200,21 +1038,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D43B335A5336E8C0A54789E9 /* Sources */ = {
+		B99525B6193CA9D5972B1299 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5602D0F0E22F02A64BBFA35 /* _BazelForcedCompile_.swift in Sources */,
-				2652E46187D68BA7FC5F329A /* Lib.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D9176A0A70D09FD506167F09 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6360FF396B49E1B6632C1FD0 /* _BazelForcedCompile_.swift in Sources */,
-				6D2F1ADF4920720C18D5A33B /* Lib.swift in Sources */,
+				5FB8D35E49212BC28E0B7CF2 /* _BazelForcedCompile_.swift in Sources */,
+				1F1EF1874DB8F36A7030731A /* Lib.swift in Sources */,
+				F721AF084CBF56DC2A360D1E /* Lib.swift in Sources */,
+				6AED2D016EC8E5EE385750BB /* Lib.swift in Sources */,
+				23C660B9A43C31E0DF8D1633 /* Lib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1240,53 +1072,41 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0B4F0EB86580D666D2540EAF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (watchOS)";
-			target = 83D00AD7532094902D925C83 /* Lib (watchOS) */;
-			targetProxy = 09D698FC3E9D73F9FBCA7176 /* PBXContainerItemProxy */;
-		};
 		0E54586AEB47B3853C7BA936 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 64291FDA9C4F8EFE675DD30F /* PBXContainerItemProxy */;
 		};
+		121E21EA8ECE13FF4B375BB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Lib;
+			target = 97C0B94AB8C957F2A520B819 /* Lib */;
+			targetProxy = A950D3D3F8AF52FF04025137 /* PBXContainerItemProxy */;
+		};
+		2364C7A7609E3E662ABF8B96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 4D22C6B26E63AAEB89A6365A /* PBXContainerItemProxy */;
+		};
+		3036077D3ABA4D80220CC0B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Lib;
+			target = 97C0B94AB8C957F2A520B819 /* Lib */;
+			targetProxy = 15B3F51C8A9D43CC50D8E82C /* PBXContainerItemProxy */;
+		};
+		534300A7E83D26CCF02AE864 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Lib;
+			target = 97C0B94AB8C957F2A520B819 /* Lib */;
+			targetProxy = B441F64157679F4D86CF3BA1 /* PBXContainerItemProxy */;
+		};
 		588C37BAE74BD661E5366E96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 3F2526905F32AB84EFE7FBFE /* PBXContainerItemProxy */;
-		};
-		5A12402353D8CD1962F921E5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 386300736627B427D77693DB /* PBXContainerItemProxy */;
-		};
-		5A467BFAED5224145FB2A1F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 8E15AE87C87A54D7B9B7AC4A /* PBXContainerItemProxy */;
-		};
-		85A7AABB8D28EB8E9479A4A1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS)";
-			target = F5BF80BFBFC7570B02664402 /* Lib (iOS) */;
-			targetProxy = 930865EDBCDA2B7CC4F94DAA /* PBXContainerItemProxy */;
-		};
-		91D37608C498351FAEAB4192 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (tvOS)";
-			target = 57F1E76BC3F37BD9B3D84351 /* Lib (tvOS) */;
-			targetProxy = DD30EE8B31719840D8E56E6C /* PBXContainerItemProxy */;
-		};
-		A5641A9CE495B987AE5A2EC7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 97D45B69549B7B3CD85C9BCF /* PBXContainerItemProxy */;
 		};
 		AB49BF5E9069EF4E6553316B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1306,78 +1126,15 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = A649ADF25A384947B0A5D62A /* PBXContainerItemProxy */;
 		};
-		E8F911C4ED71A3CDC3542B6C /* PBXTargetDependency */ = {
+		D9B2853F893F3B4E1A5F89A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 17FD5D33416D525D6B318FBC /* PBXContainerItemProxy */;
-		};
-		F823C6E1759E5D1E8AC1BAA7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (macOS)";
-			target = 212DC2E05ECB4330F8D97046 /* Lib (macOS) */;
-			targetProxy = 744F4FBA1C865A8068C13C48 /* PBXContainerItemProxy */;
+			name = Lib;
+			target = 97C0B94AB8C957F2A520B819 /* Lib */;
+			targetProxy = 570953DD5651A4E2B52FA1FB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07FEF894563FD058BBC747E4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/Lib.swiftmodule\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/Lib.swiftdoc\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib";
-				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_CFLAGS = (
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-g",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-g",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-				);
-				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
-				PRODUCT_MODULE_NAME = Lib;
-				PRODUCT_NAME = Lib;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5;
-				TARGET_NAME = Lib;
-			};
-			name = Debug;
-		};
 		111C3642FF48431B6DC10483 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1449,120 +1206,6 @@
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOSApp;
-			};
-			name = Debug;
-		};
-		2053AD123052A1E8184ABE01 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib/Lib.swiftmodule\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib/Lib.swiftdoc\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib";
-				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_CFLAGS = (
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-g",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-g",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-				);
-				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
-				PRODUCT_MODULE_NAME = Lib;
-				PRODUCT_NAME = Lib;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5;
-				TARGET_NAME = Lib;
-			};
-			name = Debug;
-		};
-		2988B75E6860AB31F94BDAD8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = i386;
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib/Lib.swiftmodule\n$(BAZEL_OUT)/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib/Lib.swiftdoc\n$(BAZEL_OUT)/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib";
-				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
-				OTHER_CFLAGS = (
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-g",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-g",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-				);
-				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
-				PRODUCT_MODULE_NAME = Lib;
-				PRODUCT_NAME = Lib;
-				SDKROOT = watchos;
-				SUPPORTED_PLATFORMS = watchsimulator;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5;
-				TARGET_NAME = Lib;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -1829,17 +1472,34 @@
 			};
 			name = Debug;
 		};
-		B94D0D865515F60BE52A77D6 /* Debug */ = {
+		CE7DAD5F0BB10759A19E1EA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLETVSIMULATOR_FILES = "$(GEN_DIR)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib/Lib.swift";
 				ARCHS = x86_64;
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib/Lib.swiftmodule\n$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib/Lib.swiftdoc\n$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib";
-				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1";
+				"ARCHS[sdk=watchsimulator*]" = i386;
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/Lib.swiftmodule\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/Lib.swiftdoc\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo";
+				"BAZEL_OUTPUTS_SWIFTMODULE[sdk=appletvsimulator*]" = "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib/Lib.swiftmodule\n$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib/Lib.swiftdoc\n$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo";
+				"BAZEL_OUTPUTS_SWIFTMODULE[sdk=iphonesimulator*]" = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib/Lib.swiftmodule\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib/Lib.swiftdoc\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo";
+				"BAZEL_OUTPUTS_SWIFTMODULE[sdk=watchsimulator*]" = "$(BAZEL_OUT)/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib/Lib.swiftmodule\n$(BAZEL_OUT)/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib/Lib.swiftdoc\n$(BAZEL_OUT)/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvsimulator*]" = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/multiplatform/Lib";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]" = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=watchsimulator*]" = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib";
+				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630";
+				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d";
+				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "//examples/multiplatform/Lib:Lib watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = (
+					"$(APPLETVSIMULATOR_FILES)",
+					"$(IPHONESIMULATOR_FILES)",
+					"$(MACOSX_FILES)",
+					"$(WATCHSIMULATOR_FILES)",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1847,6 +1507,15 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
+				INCLUDED_SOURCE_FILE_NAMES = "";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvsimulator*]" = "$(APPLETVSIMULATOR_FILES)";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONESIMULATOR_FILES = "$(GEN_DIR)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-000eec03138d/bin/examples/multiplatform/Lib/Lib.swift";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_FILES = "$(GEN_DIR)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Lib/Lib.swift";
 				OTHER_CFLAGS = (
 					"-fstack-protector",
 					"-Wall",
@@ -1875,14 +1544,16 @@
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
-				SDKROOT = appletvos;
-				SUPPORTED_PLATFORMS = appletvsimulator;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "watchsimulator macosx iphonesimulator appletvsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = Lib;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+				WATCHSIMULATOR_FILES = "$(GEN_DIR)/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-73754738665f/bin/examples/multiplatform/Lib/Lib.swift";
 			};
 			name = Debug;
 		};
@@ -1952,22 +1623,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3361776870D9BD864091FDBA /* Build configuration list for PBXNativeTarget "Lib (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				07FEF894563FD058BBC747E4 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		49702AFF47C7C8281F475366 /* Build configuration list for PBXNativeTarget "Lib (iOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2053AD123052A1E8184ABE01 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		543335B1028B94071588C31E /* Build configuration list for PBXNativeTarget "watchOSAppExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2008,10 +1663,10 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		E29AC8B0198461E9E2B26AFB /* Build configuration list for PBXNativeTarget "Lib (tvOS)" */ = {
+		A2CD6BB723C83622725C7B0C /* Build configuration list for PBXNativeTarget "Lib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B94D0D865515F60BE52A77D6 /* Debug */,
+				CE7DAD5F0BB10759A19E1EA4 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2020,14 +1675,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				111C3642FF48431B6DC10483 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		EFD92156A876B6D6FFBB6CA8 /* Build configuration list for PBXNativeTarget "Lib (watchOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2988B75E6860AB31F94BDAD8 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

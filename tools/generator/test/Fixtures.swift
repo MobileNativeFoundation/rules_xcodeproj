@@ -212,19 +212,24 @@ enum Fixtures {
         ),
     ]
 
+    static let consolidatedTargets = ConsolidatedTargets(targets: targets)
+
     static func disambiguatedTargets(
-        _ targets: [TargetID: Target]
+        _ consolidatedTargets: ConsolidatedTargets
     ) -> DisambiguatedTargets {
-        var disambiguatedTargets = Dictionary<TargetID, DisambiguatedTarget>(
+        var disambiguatedTargets = Dictionary<
+            ConsolidatedTarget.Key, DisambiguatedTarget
+        >(
             minimumCapacity: targets.count
         )
-        for (id, target) in targets {
-            disambiguatedTargets[id] = DisambiguatedTarget(
-                name: "\(id.rawValue) (Distinguished)",
+        for (key, target) in consolidatedTargets.targets {
+            disambiguatedTargets[key] = DisambiguatedTarget(
+                name: "\(key) (Distinguished)",
                 target: target
             )
         }
         return DisambiguatedTargets(
+            keys: consolidatedTargets.keys,
             targets: disambiguatedTargets
         )
     }
@@ -763,8 +768,8 @@ a/imported.a
     ) -> Products {
         let products = Products([
             Products.ProductKeys(
-                target: "A 1",
-                filePath: .generated("z/A.a")
+                targetKey: "A 1",
+                filePaths: [.generated("z/A.a")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 name: "A.a",
@@ -773,8 +778,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "A 2",
-                filePath: .generated("z/A.app")
+                targetKey: "A 2",
+                filePaths: [.generated("z/A.app")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.application.fileType,
@@ -782,8 +787,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "B 1",
-                filePath: .generated("a/b.framework")
+                targetKey: "B 1",
+                filePaths: [.generated("a/b.framework")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.staticFramework.fileType,
@@ -791,8 +796,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "B 2",
-                filePath: .generated("B.xctest")
+                targetKey: "B 2",
+                filePaths: [.generated("B.xctest")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.unitTestBundle.fileType,
@@ -800,8 +805,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "B 3",
-                filePath: .generated("B3.xctest")
+                targetKey: "B 3",
+                filePaths: [.generated("B3.xctest")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.uiTestBundle.fileType,
@@ -809,8 +814,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "C 1",
-                filePath: .generated("a/c.a")
+                targetKey: "C 1",
+                filePaths: [.generated("a/c.a")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 name: "c.a",
@@ -819,8 +824,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "C 2",
-                filePath: .generated("d")
+                targetKey: "C 2",
+                filePaths: [.generated("d")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.commandLineTool.fileType,
@@ -828,8 +833,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "E1",
-                filePath: .generated("e1/E.a")
+                targetKey: "E1",
+                filePaths: [.generated("e1/E.a")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 name: "E.a",
@@ -838,8 +843,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "E2",
-                filePath: .generated("e2/E.a")
+                targetKey: "E2",
+                filePaths: [.generated("e2/E.a")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 name: "E.a",
@@ -848,8 +853,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "R 1",
-                filePath: .generated("r1/R1.bundle")
+                targetKey: "R 1",
+                filePaths: [.generated("r1/R1.bundle")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.bundle.fileType,
@@ -1110,7 +1115,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         products: Products,
         filePathResolver: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget
-    ) -> [TargetID: PBXTarget] {
+    ) -> [ConsolidatedTarget.Key: PBXTarget] {
         // Build phases
 
         func createGeneratedHeaderShellScript() -> PBXShellScriptBuildPhase {
@@ -1291,7 +1296,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
         // Targets
 
-        let pbxNativeTargets: [TargetID: PBXNativeTarget] = [
+        let pbxNativeTargets: [ConsolidatedTarget.Key: PBXNativeTarget] = [
             "A 1": PBXNativeTarget(
                 name: disambiguatedTargets.targets["A 1"]!.name,
                 buildPhases: buildPhases["A 1"] ?? [],
@@ -1401,11 +1406,8 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             pbxProj.rootObject!.targets.append(pbxTarget)
         }
 
-        var pbxTargets = Dictionary(
-            uniqueKeysWithValues: pbxNativeTargets
-                .map { targetID, pbxTarget -> (TargetID, PBXTarget) in
-                    return (targetID, pbxTarget)
-                }
+        var pbxTargets = Dictionary<ConsolidatedTarget.Key, PBXTarget>(
+            uniqueKeysWithValues: pbxNativeTargets.map { $0 }
         )
         pbxTargets[.bazelDependencies] = bazelDependenciesTarget
 
@@ -1414,8 +1416,8 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
     static func pbxTargets(
         in pbxProj: PBXProj,
-        targets: [TargetID: Target]
-    ) -> ([TargetID: PBXTarget], DisambiguatedTargets) {
+        consolidatedTargets: ConsolidatedTargets
+    ) -> ([ConsolidatedTarget.Key: PBXTarget], DisambiguatedTargets) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
 
@@ -1436,7 +1438,9 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             xcodeprojConfiguration: "xyz321"
         )
 
-        let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)
+        let disambiguatedTargets = Fixtures.disambiguatedTargets(
+            consolidatedTargets
+        )
         let pbxTargets = Fixtures.pbxTargets(
             in: pbxProj,
             disambiguatedTargets: disambiguatedTargets,
@@ -1451,11 +1455,11 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
     static func pbxTargetsWithConfigurations(
         in pbxProj: PBXProj,
-        targets: [TargetID: Target]
-    ) -> [TargetID: PBXTarget] {
+        consolidatedTargets: ConsolidatedTargets
+    ) -> [ConsolidatedTarget.Key: PBXTarget] {
         let (pbxTargets, _) = Fixtures.pbxTargets(
             in: pbxProj,
-            targets: targets
+            consolidatedTargets: consolidatedTargets
         )
 
         let baseAttributes: [String: Any] = [
@@ -1463,7 +1467,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             "LastSwiftMigration": 1320,
         ]
 
-        let attributes: [TargetID: [String: Any]] = [
+        let attributes: [ConsolidatedTarget.Key: [String: Any]] = [
             "A 1": baseAttributes,
             "A 2": baseAttributes,
             "B 1": baseAttributes,
@@ -1481,12 +1485,12 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         ]
 
         let pbxProject = pbxProj.rootObject!
-        for (id, targetAttributes) in attributes {
-            let pbxTarget = pbxTargets[id]!
+        for (key, targetAttributes) in attributes {
+            let pbxTarget = pbxTargets[key]!
             pbxProject.setTargetAttributes(targetAttributes, target: pbxTarget)
         }
 
-        let buildSettings: [TargetID: [String: Any]] = [
+        let buildSettings: [ConsolidatedTarget.Key: [String: Any]] = [
             "A 1": targets["A 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
@@ -1643,7 +1647,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "TARGET_NAME": targets["R 1"]!.name,
             ]) { $1 },
         ]
-        for (id, buildSettings) in buildSettings {
+        for (key, buildSettings) in buildSettings {
             let debugConfiguration = XCBuildConfiguration(
                 name: "Debug",
                 buildSettings: buildSettings
@@ -1654,7 +1658,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 defaultConfigurationName: debugConfiguration.name
             )
             pbxProj.add(object: configurationList)
-            pbxTargets[id]!.buildConfigurationList = configurationList
+            pbxTargets[key]!.buildConfigurationList = configurationList
         }
 
         return pbxTargets
@@ -1662,9 +1666,12 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 
     static func pbxTargetsWithDependencies(
         in pbxProj: PBXProj,
-        targets: [TargetID: Target]
-    ) -> [TargetID: PBXTarget] {
-        let (pbxTargets, _) = Fixtures.pbxTargets(in: pbxProj, targets: targets)
+        consolidatedTargets: ConsolidatedTargets
+    ) -> [ConsolidatedTarget.Key: PBXTarget] {
+        let (pbxTargets, _) = Fixtures.pbxTargets(
+            in: pbxProj,
+            consolidatedTargets: consolidatedTargets
+        )
 
         _ = try! pbxTargets.nativeTarget("A 2")!
             .addDependency(target: pbxTargets["A 1"]!)

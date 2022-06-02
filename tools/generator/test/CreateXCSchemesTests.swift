@@ -15,12 +15,16 @@ class CreateXCSchemesTests: XCTestCase {
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
-    let pbxTargetsDict: [TargetID: PBXTarget] =
-        Fixtures.pbxTargets(in: Fixtures.pbxProj(), targets: Fixtures.targets).0
+    let pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
+        Fixtures.pbxTargets(
+            in: Fixtures.pbxProj(),
+            consolidatedTargets: Fixtures.consolidatedTargets
+        )
+        .0
 
     func assertScheme(
         schemesDict: [String: XCScheme],
-        targetID: TargetID,
+        targetKey: ConsolidatedTarget.Key,
         buildPreActions: BuildPreActionType,
         shouldExpectBuildActionEntries: Bool,
         shouldExpectTestables: Bool,
@@ -31,9 +35,9 @@ class CreateXCSchemesTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws {
-        guard let target = pbxTargetsDict[targetID] else {
+        guard let target = pbxTargetsDict[targetKey] else {
             XCTFail(
-                "Did not find the target '\(targetID)'",
+                "Did not find the target '\(targetKey)'",
                 file: file,
                 line: line
             )
@@ -297,7 +301,7 @@ fi
         // Non-native target
         try assertScheme(
             schemesDict: schemesDict,
-            targetID: .bazelDependencies,
+            targetKey: .bazelDependencies,
             buildPreActions: .none,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
@@ -310,7 +314,7 @@ fi
         // Library
         try assertScheme(
             schemesDict: schemesDict,
-            targetID: "A 1",
+            targetKey: "A 1",
             buildPreActions: .none,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
@@ -323,7 +327,7 @@ fi
         // Launchable, testable
         try assertScheme(
             schemesDict: schemesDict,
-            targetID: "B 2",
+            targetKey: "B 2",
             buildPreActions: .none,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: true,
@@ -336,7 +340,7 @@ fi
         // Launchable, not testable
         try assertScheme(
             schemesDict: schemesDict,
-            targetID: "A 2",
+            targetKey: "A 2",
             buildPreActions: .none,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
@@ -360,7 +364,7 @@ fi
         // Non-native target
         try assertScheme(
             schemesDict: schemesDict,
-            targetID: .bazelDependencies,
+            targetKey: .bazelDependencies,
             buildPreActions: .remove,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
@@ -373,7 +377,7 @@ fi
         // Library
         try assertScheme(
             schemesDict: schemesDict,
-            targetID: "A 1",
+            targetKey: "A 1",
             buildPreActions: .set,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,
@@ -386,7 +390,7 @@ fi
         // Launchable, testable
         try assertScheme(
             schemesDict: schemesDict,
-            targetID: "B 2",
+            targetKey: "B 2",
             buildPreActions: .set,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: true,
@@ -399,7 +403,7 @@ fi
         // Launchable, not testable
         try assertScheme(
             schemesDict: schemesDict,
-            targetID: "A 2",
+            targetKey: "A 2",
             buildPreActions: .set,
             shouldExpectBuildActionEntries: true,
             shouldExpectTestables: false,

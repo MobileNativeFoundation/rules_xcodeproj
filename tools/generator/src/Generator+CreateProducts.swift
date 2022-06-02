@@ -4,17 +4,17 @@ import XcodeProj
 extension Generator {
     static func createProducts(
         in pbxProj: PBXProj,
-        for targets: [TargetID: Target]
+        for consolidatedTargets: ConsolidatedTargets
     ) -> (Products, PBXGroup) {
         var products = Products()
-        for (id, target) in targets {
+        for (key, target) in consolidatedTargets.targets {
             let fileType: String?
             let name: String?
             let path: String?
             if target.product.type.setsAssociatedProduct {
                 fileType = target.product.type.fileType
                 name = nil
-                path = target.product.path.path.lastComponent
+                path = target.product.basename
             } else {
                 if target.product.type == .staticLibrary {
                     // This filetype is used to make the icon match what it
@@ -25,11 +25,13 @@ extension Generator {
                     fileType = target.product.type.fileType
                 }
 
+                let bestTarget = target.sortedTargets.first!
+
                 // We need to fix the path for deployment location products,
                 // since we override `DEPLOYMENT_LOCATION` and
                 // `BUILT_PRODUCTS_DIR` for them
-                name = target.product.path.path.lastComponent
-                path = "bazel-out/\(target.product.path.path)"
+                name = target.product.basename
+                path = "bazel-out/\(bestTarget.product.path.path)"
             }
 
             let product = PBXFileReference(
@@ -42,7 +44,7 @@ extension Generator {
             pbxProj.add(object: product)
             products.add(
                 product: product,
-                for: .init(target: id, filePath: target.product.path)
+                for: .init(targetKey: key, filePaths: target.product.paths)
             )
         }
 
@@ -60,27 +62,31 @@ extension Generator {
 
 struct Products: Equatable {
     struct ProductKeys: Equatable, Hashable {
-        let target: TargetID
-        let filePath: FilePath
+        let targetKey: ConsolidatedTarget.Key
+        let filePaths: Set<FilePath>
     }
 
-    private(set) var byTarget: [TargetID: PBXFileReference] = [:]
+    private(set) var byTarget: [ConsolidatedTarget.Key: PBXFileReference] = [:]
     private(set) var byFilePath: [FilePath: PBXFileReference] = [:]
 
     mutating func add(
         product: PBXFileReference,
         for keys: ProductKeys
     ) {
-        byTarget[keys.target] = product
-        byFilePath[keys.filePath] = product
+        byTarget[keys.targetKey] = product
+        for filePath in keys.filePaths {
+            byFilePath[filePath] = product
+        }
     }
 }
 
 extension Products {
     init(_ products: [ProductKeys: PBXFileReference]) {
         for (keys, product) in products {
-            byTarget[keys.target] = product
-            byFilePath[keys.filePath] = product
+            byTarget[keys.targetKey] = product
+            for filePath in keys.filePaths {
+                byFilePath[filePath] = product
+            }
         }
     }
 }

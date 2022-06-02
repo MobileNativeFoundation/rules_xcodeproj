@@ -3,7 +3,7 @@ import XcodeProj
 
 extension Generator {
     /// Sets the attributes and build configurations for `PBXNativeTarget`s as
-    /// defined in the matching `Target`.
+    /// defined in the matching `ConsolidatedTarget`.
     ///
     /// This is separate from `addTargets()` to ensure that all
     /// `PBXNativeTarget`s have been created first, as attributes and build
@@ -12,13 +12,13 @@ extension Generator {
         in pbxProj: PBXProj,
         for disambiguatedTargets: DisambiguatedTargets,
         buildMode: BuildMode,
-        pbxTargets: [TargetID: PBXTarget],
+        pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         filePathResolver: FilePathResolver
     ) throws {
-        for (id, disambiguatedTarget) in disambiguatedTargets.targets {
-            guard let pbxTarget = pbxTargets[id] else {
+        for (key, disambiguatedTarget) in disambiguatedTargets.targets {
+            guard let pbxTarget = pbxTargets[key] else {
                 throw PreconditionError(message: """
-Target "\(id)" not found in `pbxTargets`
+Target "\(key)" not found in `pbxTargets`
 """)
             }
 
@@ -32,7 +32,7 @@ Target "\(id)" not found in `pbxTargets`
             ]
 
             var buildSettings = try calculateBuildSettings(
-                for: (id, target),
+                for: target,
                 buildMode: buildMode,
                 filePathResolver: filePathResolver
             )
@@ -65,23 +65,61 @@ Target "\(id)" not found in `pbxTargets`
     }
 
     private static func calculateBuildSettings(
-        for idAndTarget: (TargetID, Target),
+        for consolidatedTarget: ConsolidatedTarget,
         buildMode: BuildMode,
         filePathResolver: FilePathResolver
     ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
-        let anyBuildSettings: [String: BuildSetting] = [:]
+        var anyBuildSettings: [String: BuildSetting] = [:]
         var buildSettings: [BuildSettingConditional: [String: BuildSetting]] =
             [:]
+        var conditionalFileNames: [String: [String]] = [:]
 
-        for (id, target) in [idAndTarget] {
-            let targetBuildSettings = try calculateBuildSettings(
+        for (id, target) in consolidatedTarget.targets {
+            var targetBuildSettings = try calculateBuildSettings(
                 for: target,
                 id: id,
                 buildMode: buildMode,
                 filePathResolver: filePathResolver
             )
 
+            // Calculate "INCLUDED_SOURCE_FILE_NAMES"
+            guard let uniqueFiles = consolidatedTarget.uniqueFiles[id] else {
+                throw PreconditionError(message: """
+Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
+""")
+            }
+            if !uniqueFiles.isEmpty {
+                // This ket needs to not have `-` in it
+                // TODO: If we ever add support for Universal targets this needs
+                //   to include more than just the platform name
+                let key = "\(target.platform.name.uppercased())_FILES"
+                conditionalFileNames[key] = try uniqueFiles
+                    .map { filePath in
+                        try filePathResolver.resolve(filePath, useGenDir: true)
+                            .string
+                    }
+                    .sortedLocalizedStandard()
+                targetBuildSettings.set(
+                    "INCLUDED_SOURCE_FILE_NAMES",
+                    to: "$(\(key))"
+                )
+            }
+
             buildSettings[target.buildSettingConditional] = targetBuildSettings
+        }
+
+        // Calculate "EXCLUDED_SOURCE_FILE_NAMES"
+        var excludedSourceFileNames: [String] = []
+        for (key, fileNames) in conditionalFileNames
+            .sorted(by: { $0.key < $1.key })
+        {
+            anyBuildSettings[key] = .array(fileNames)
+            excludedSourceFileNames.append("$(\(key))")
+        }
+        if !excludedSourceFileNames.isEmpty {
+            anyBuildSettings["EXCLUDED_SOURCE_FILE_NAMES"] =
+                .array(excludedSourceFileNames)
+            anyBuildSettings["INCLUDED_SOURCE_FILE_NAMES"] = ""
         }
 
         // Set an `.any` configuration if needed
@@ -314,24 +352,40 @@ $(CONFIGURATION_BUILD_DIR)
     }
 
     private static func handleTestHost(
-        for target: Target,
+        for target: ConsolidatedTarget,
         disambiguatedTargets: DisambiguatedTargets,
-        pbxTargets: [TargetID: PBXTarget],
+        pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         attributes: inout [String: Any],
         buildSettings: inout [BuildSettingConditional: [String: BuildSetting]]
     ) throws {
-        let targets = [target]
+        let targets = target.targets.values
 
         guard let aTestHostID = targets.first?.testHost else {
             return
         }
 
-        guard let pbxTestHost = pbxTargets[aTestHostID] else {
+        guard let testHostKey = disambiguatedTargets.keys[aTestHostID] else {
             throw PreconditionError(message: """
-Test host pbxTarget with id "\(aTestHostID)" not found in `pbxTargets`
+Test host target with id "\(aTestHostID)" not found in \
+`disambiguatedTargets.keys`
+""")
+        }
+        guard let pbxTestHost = pbxTargets[testHostKey] else {
+            throw PreconditionError(message: """
+Test host pbxTarget with key \(testHostKey) not found in `pbxTargets`
 """)
         }
         attributes["TestTargetID"] = pbxTestHost
+
+        guard
+            let consolidatedTestHost = disambiguatedTargets
+                .targets[testHostKey]?.target
+        else {
+            throw PreconditionError(message: """
+Test host target with key "\(testHostKey)" not found in \
+`disambiguatedTargets.targets`
+""")
+        }
 
         guard target.product.type != .uiTestBundle else {
             buildSettings[.any, default: [:]].set(
@@ -349,11 +403,10 @@ Test host pbxTarget with id "\(aTestHostID)" not found in `pbxTargets`
                 continue
             }
 
-            guard
-                let testHost = disambiguatedTargets.targets[testHostID]?.target
-            else {
+            guard let testHost = consolidatedTestHost.targets[testHostID] else {
                 throw PreconditionError(message: """
-Test host target with id "\(testHostID)" not found in `disambiguatedTargets`
+Test host target with id "\(testHostID)" not found in \
+`consolidatedTestHost.targets`
 """)
             }
 
@@ -511,8 +564,8 @@ private extension Platform.OS {
         switch self {
         case .macOS: return "macosx"
         case .iOS: return "iphoneos"
-        case .watchOS: return "watchos"
         case .tvOS: return "appletvos"
+        case .watchOS: return "watchos"
         }
     }
 }
@@ -569,6 +622,17 @@ private extension Dictionary where Value == BuildSetting {
     }
 }
 
+private extension BuildSetting {
+    func toString(key: String) throws -> String {
+        guard case let .string(string) = self else {
+            throw PreconditionError(message: """
+"\(key)" in `buildSettings` was not a `.string()`. Instead found \(self)
+""")
+        }
+        return string
+    }
+}
+
 private extension Dictionary
 where Key == BuildSettingConditional, Value == [String: BuildSetting] {
     func asBuildSettingDictionary(
@@ -583,6 +647,34 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
                     buildSetting
             }
         }
+
+        // Properly set "SDKROOT"
+        if let sdkrootBuildSettings = conditionalBuildSettings
+            .removeValue(forKey: "SDKROOT")
+        {
+            conditionalBuildSettings["SDKROOT"] = [
+                .any: sdkrootBuildSettings
+                    .sorted { $0.key < $1.key }
+                    .first!.value,
+            ]
+        }
+
+        // Properly set "SUPPORTED_PLATFORMS"
+        if let supportedPlatformsBuildSettings = conditionalBuildSettings
+            .removeValue(forKey: "SUPPORTED_PLATFORMS")
+        {
+            let platforms = try supportedPlatformsBuildSettings.values
+                .map { try $0.toString(key: "SUPPORTED_PLATFORMS") }
+
+            conditionalBuildSettings["SUPPORTED_PLATFORMS"] = [
+                .any: .string(
+                    Set(platforms).sorted().reversed().joined(separator: " ")
+                ),
+            ]
+        }
+
+        // TODO: If we ever add support for Universal targets we need to
+        //   consolidate "ARCHS" to an `.any` conditional
 
         var buildSettings: [String: BuildSetting] = [:]
         for (key, conditionalBuildSetting) in conditionalBuildSettings {
@@ -602,6 +694,14 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
             // Set the base value to `.any` or the most preferable condition
             // (i.e. Simulator or Apple Silicon)
             buildSettings[key] = first
+
+            for (condition, buildSetting) in remainingConditionalBuildSettings {
+                guard buildSetting != first else {
+                    // Don't set redundant settings
+                    continue
+                }
+                buildSettings[condition.conditionalize(key)] = buildSetting
+            }
         }
 
         return buildSettings.asDictionary

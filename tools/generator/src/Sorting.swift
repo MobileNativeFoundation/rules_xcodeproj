@@ -87,26 +87,27 @@ extension Array where Element: PBXFileElement {
     }
 }
 
-private struct PBXFileReferenceByTargetID {
-    let targetID: TargetID
+private struct PBXFileReferenceByTargetKey {
+    let targetKey: ConsolidatedTarget.Key
     let file: PBXFileReference
 
-    init(_ element: (key: TargetID, value: PBXFileReference)) {
-        targetID = element.key
+    init(_ element: (key: ConsolidatedTarget.Key, value: PBXFileReference)) {
+        targetKey = element.key
         file = element.value
     }
 
     var sortString: String {
-        return "\(file.namePathSortString)\t\(targetID)"
+        return "\(file.namePathSortString)\t\(targetKey)"
     }
 }
 
-extension Dictionary where Key == TargetID, Value: PBXFileReference {
+extension Dictionary
+where Key == ConsolidatedTarget.Key, Value: PBXFileReference {
     func sortedLocalizedStandard() -> [PBXFileReference] {
-        let sort = [PBXFileReferenceByTargetID]
+        let sort = [PBXFileReferenceByTargetKey]
             .sortByLocalizedStandard(\.sortString)
         return self
-            .map(PBXFileReferenceByTargetID.init)
+            .map(PBXFileReferenceByTargetKey.init)
             .sorted(by: sort)
             .map(\.file)
     }
