@@ -18,9 +18,10 @@ extension Generator {
         }
     }
 
-    // GH399: Derive the defaultLastUpgradeVersion and defaultVersion.
+    // GH399: Derive the defaultLastUpgradeVersion
     private static let defaultLastUpgradeVersion = "1320"
-    private static let defaultVersion = "1.7"
+    private static let baseVersion = "1.3"
+    private static let lldbInitVersion = "1.7"
 
     /// Creates an `XCScheme` for the specified target.
     private static func createXCScheme(
@@ -100,7 +101,7 @@ extension Generator {
         return XCScheme(
             name: pbxTarget.schemeName,
             lastUpgradeVersion: defaultLastUpgradeVersion,
-            version: defaultVersion,
+            version: buildMode.requiresLLDBInit ? lldbInitVersion : baseVersion,
             buildAction: buildAction,
             testAction: testAction,
             launchAction: launchAction,
