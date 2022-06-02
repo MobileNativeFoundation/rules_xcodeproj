@@ -10,6 +10,7 @@ class Generator {
     static let defaultEnvironment = Environment(
         createProject: Generator.createProject,
         processTargetMerges: Generator.processTargetMerges,
+        consolidateTargets: Generator.consolidateTargets,
         createFilesAndGroups: Generator.createFilesAndGroups,
         createProducts: Generator.createProducts,
         populateMainGroup: populateMainGroup,
@@ -88,6 +89,11 @@ Was unable to merge "\(srcTarget.label) \
 """)
             }
         }
+
+        let _ = try environment.consolidateTargets(
+            targets,
+            logger
+        )
 
         let (files, rootElements) = try environment.createFilesAndGroups(
             pbxProj,

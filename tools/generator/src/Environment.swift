@@ -18,6 +18,11 @@ struct Environment {
         _ targetMerges: [TargetID: Set<TargetID>]
     ) throws -> Void
 
+    let consolidateTargets: (
+        _ targets: [TargetID: Target],
+        _ logger: Logger
+    ) throws -> ConsolidatedTargets
+
     let createFilesAndGroups: (
         _ pbxProj: PBXProj,
         _ buildMode: BuildMode,

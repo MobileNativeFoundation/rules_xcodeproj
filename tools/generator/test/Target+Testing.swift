@@ -104,7 +104,67 @@ extension Platform {
     }
 }
 
+extension ConsolidatedTargets {
+    init(targets: [TargetID: Target]) {
+        var keys: [TargetID: ConsolidatedTarget.Key] = [:]
+        var consolidatedTargets: [ConsolidatedTarget.Key: ConsolidatedTarget] =
+            [:]
+
+        for (id, target) in targets {
+            let key = ConsolidatedTarget.Key([id])
+            keys[id] = key
+            consolidatedTargets[key] = ConsolidatedTarget(targets: [id: target])
+        }
+
+        self.init(keys: keys, targets: consolidatedTargets)
+    }
+
+    init(allTargets: [TargetID: Target], keys: Set<Set<TargetID>>) {
+        var mapping: [TargetID: ConsolidatedTarget.Key] = [:]
+        var consolidatedTargets: [ConsolidatedTarget.Key: ConsolidatedTarget] =
+            [:]
+
+        for targetIDs in keys {
+            let key = ConsolidatedTarget.Key(targetIDs)
+            for targetID in targetIDs {
+                mapping[targetID] = key
+            }
+            consolidatedTargets[key] = ConsolidatedTarget(
+                targets: allTargets.filter { id, _ in targetIDs.contains(id) }
+            )
+        }
+
+        self.init(keys: mapping, targets: consolidatedTargets)
+    }
+}
+
+extension ConsolidatedTarget.Key: Comparable {
+    public static func < (
+        lhs: ConsolidatedTarget.Key,
+        rhs: ConsolidatedTarget.Key
+    ) -> Bool {
+        return lhs.hashValue < rhs.hashValue
+    }
+}
+
 // MARK: StringLiteralConvertible
+
+extension ConsolidatedTarget.Key: ExpressibleByStringLiteral {
+    public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
+    public typealias UnicodeScalarLiteralType = StringLiteralType
+
+    public init(extendedGraphemeClusterLiteral id: StringLiteralType) {
+        self.init(stringLiteral: id)
+    }
+
+    public init(unicodeScalarLiteral id: StringLiteralType) {
+        self.init(stringLiteral: id)
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self.init([TargetID(stringLiteral: value)])
+    }
+}
 
 extension TargetID: ExpressibleByStringLiteral {
     public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType

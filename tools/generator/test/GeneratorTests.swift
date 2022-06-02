@@ -54,6 +54,20 @@ final class GeneratorTests: XCTestCase {
                 product: .init(type: .application, name: "Z", path: "")
             ),
         ]
+        let consolidatedTargets = ConsolidatedTargets(
+            keys: [
+                "Y": "Y",
+                "Z": "Z",
+            ],
+            targets: [
+                "Y": .init(
+                    targets: ["Y": mergedTargets["Y"]!]
+                ),
+                "Z": .init(
+                    targets: ["Z": mergedTargets["Z"]!]
+                ),
+            ]
+        )
         let disambiguatedTargets = DisambiguatedTargets(
             targets: [
                 "A": .init(
@@ -143,6 +157,27 @@ final class GeneratorTests: XCTestCase {
         expectedMessagesLogged.append(StubLogger.MessageLogged(.warning, """
 Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
 """))
+
+        // MARK: consolidateTargets()
+
+        struct ConsolidateTargetsCalled: Equatable {
+            let targets: [TargetID: Target]
+        }
+
+        var consolidateTargetsCalled: [ConsolidateTargetsCalled] = []
+        func consolidateTargets(
+            _ targets: [TargetID: Target],
+            logger _: Logger
+        ) -> ConsolidatedTargets {
+            consolidateTargetsCalled.append(.init(
+                targets: targets
+            ))
+            return consolidatedTargets
+        }
+
+        let expectedConsolidateTargetsCalled = [ConsolidateTargetsCalled(
+            targets: mergedTargets
+        )]
 
         // MARK: createFilesAndGroups()
 
@@ -523,6 +558,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         let environment = Environment(
             createProject: createProject,
             processTargetMerges: processTargetMerges,
+            consolidateTargets: consolidateTargets,
             createFilesAndGroups: createFilesAndGroups,
             createProducts: createProducts,
             populateMainGroup: populateMainGroup,
@@ -565,6 +601,10 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         XCTAssertNoDifference(
             processTargetMergesCalled,
             expectedProcessTargetMergesCalled
+        )
+        XCTAssertNoDifference(
+            consolidateTargetsCalled,
+            expectedConsolidateTargetsCalled
         )
         XCTAssertNoDifference(
             createFilesAndGroupsCalled,
@@ -625,7 +665,7 @@ class StubLogger: Logger {
         case error
     }
 
-    struct MessageLogged: Equatable {
+    struct MessageLogged: Equatable, Hashable {
         let type: MessageType
         let message: String
 

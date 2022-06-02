@@ -132,6 +132,7 @@
 		71F8B1DD599EA5B0F2D03626 /* _HashTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61319B361ABA09FD294600A /* _HashTable.swift */; };
 		72A3C7DA6BF74DE5F2EFC28C /* CreateProductsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40EB7581064768B08E6C529 /* CreateProductsTest.swift */; };
 		72C95B9913557F8ABDA0C644 /* XCScheme+AnalyzeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0E83DF369E5ED390CA3A /* XCScheme+AnalyzeAction.swift */; };
+		73237287CCC966570F78F438 /* ConsolidateTargetsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E7CBE278241683B615924F /* ConsolidateTargetsTest.swift */; };
 		75B34A42A3528868C8D25993 /* AddTargetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBE49740AB347EFAE8EC00 /* AddTargetsTests.swift */; };
 		75F5358EA36D1D122ED378E8 /* OrderedSet+Partial MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D440109F7949F1B412CB9 /* OrderedSet+Partial MutableCollection.swift */; };
 		78D160559CB33620BE055D67 /* PBXTargetDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0D9481DEB5CB89790C09F /* PBXTargetDependency.swift */; };
@@ -608,6 +609,7 @@
 		C680A79739F778E13D555285 /* AnyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyType.swift; sourceTree = "<group>"; };
 		C6E1E2200AB2DCA91F4999CE /* FilePathResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathResolver.swift; sourceTree = "<group>"; };
 		C7281BBDA526D590DB2E6B19 /* libXcodeProj.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libXcodeProj.a; path = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8E7CBE278241683B615924F /* ConsolidateTargetsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidateTargetsTest.swift; sourceTree = "<group>"; };
 		C8FF7F282D79BCC8C890152C /* OrderedSet+Partial SetAlgebra+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Operations.swift"; sourceTree = "<group>"; };
 		C9558541CFD5066169CA9773 /* Generator+CreateProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+CreateProducts.swift"; sourceTree = "<group>"; };
 		C9B9DF12DB21E355D72FC72A /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
@@ -1070,6 +1072,7 @@
 				35445591FE5C7D2FCEF9533F /* BUILD */,
 				08416B4EDA557D797F63BB4F /* BuildSettingConditionalTests.swift */,
 				22E436CA9D5D1BCA7C5E800B /* ConsolidatedTargetTests.swift */,
+				C8E7CBE278241683B615924F /* ConsolidateTargetsTest.swift */,
 				A42EAB1A5AEF651AF8F6F865 /* CreateFilesAndGroupsTests.swift */,
 				A40EB7581064768B08E6C529 /* CreateProductsTest.swift */,
 				6A9607F1AB28FE727DED4651 /* CreateProjectTests.swift */,
@@ -1834,6 +1837,7 @@
 				F9312E0C5F409E17F509CC96 /* _BazelForcedCompile_.swift in Sources */,
 				75B34A42A3528868C8D25993 /* AddTargetsTests.swift in Sources */,
 				0A22A35B5C2350A27CA5A895 /* BuildSettingConditionalTests.swift in Sources */,
+				73237287CCC966570F78F438 /* ConsolidateTargetsTest.swift in Sources */,
 				4C9B7B38FF5ECE3142DB2E35 /* ConsolidatedTargetTests.swift in Sources */,
 				6BEEFB6F9ABBD9DE61F18D20 /* CreateFilesAndGroupsTests.swift in Sources */,
 				72A3C7DA6BF74DE5F2EFC28C /* CreateProductsTest.swift in Sources */,
