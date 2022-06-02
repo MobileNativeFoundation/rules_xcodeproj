@@ -61,16 +61,24 @@ def _write_sharded_map(
     args.add_all(files, expand_directories = False)
 
     if shard:
-        output_path = "shards/{}-{}.filelist".format(name, shard)
+        output_path = "shards/{}-{}-{}.filelist".format(
+            ctx.attr.name,
+            name,
+            shard,
+        )
         progress_message = """\
-Generating output map (shard {} of {}) for '{}'""".format(
+Generating output map (shard {} of {}) for '{}-{}'""".format(
             shard,
             shard_count,
+            ctx.attr.name,
             name,
         )
     else:
-        output_path = "{}.filelist".format(name)
-        progress_message = "Generating output map for '{}'".format(name)
+        output_path = "{}-{}.filelist".format(ctx.attr.name, name)
+        progress_message = "Generating output map for '{}-{}'".format(
+            ctx.attr.name,
+            name,
+        )
 
     output = ctx.actions.declare_file(output_path)
 
@@ -124,7 +132,7 @@ def _write_map(*, ctx, name, files, toplevel_cache_buster):
     args.add_all(files)
 
     output = ctx.actions.declare_file(
-        "{}.filelist".format(name),
+        "{}-{}.filelist".format(ctx.attr.name, name),
     )
 
     ctx.actions.run_shell(
@@ -142,7 +150,10 @@ cat "$@" > "$output"
         # even if they aren't top level targets
         inputs = depset(toplevel_cache_buster, transitive = [files]),
         mnemonic = "XcodeProjOutputMapMerge",
-        progress_message = "Merging {} output map".format(name),
+        progress_message = "Merging '{}-{}' output map".format(
+            ctx.attr.name,
+            name,
+        ),
         outputs = [output],
         execution_requirements = {
             # No need to cache, as it's super ephemeral
