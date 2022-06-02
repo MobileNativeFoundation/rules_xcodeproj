@@ -354,8 +354,8 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
         ]
         let expectedTargetNames: [TargetID: String] = [
-            "A 1": "A (\(Target.prettyConfiguration("1")))",
-            "A 2": "A (\(Target.prettyConfiguration("2")))",
+            "A 1": "A (\(ProductTypeComponents.prettyConfigurations(["1"])))",
+            "A 2": "A (\(ProductTypeComponents.prettyConfigurations(["2"])))",
             "B": "B",
         ]
 
@@ -396,8 +396,12 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
         ]
         let expectedTargetNames: [TargetID: String] = [
-            "A 1": "A (Library) (\(Target.prettyConfiguration("1")))",
-            "A 2": "A (Library) (\(Target.prettyConfiguration("2")))",
+            "A 1": """
+A (Library) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+""",
+            "A 2": """
+A (Library) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+""",
             "A 3": "A (App)",
             "B": "B",
         ]
@@ -442,8 +446,12 @@ final class DisambiguateTargetsTests: XCTestCase {
             ),
         ]
         let expectedTargetNames: [TargetID: String] = [
-            "A 1": "A (iOS) (\(Target.prettyConfiguration("1")))",
-            "A 2": "A (iOS) (\(Target.prettyConfiguration("2")))",
+            "A 1": """
+A (iOS) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+""",
+            "A 2": """
+A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+""",
             "A 3": "A (macOS)",
             "B": "B",
         ]
