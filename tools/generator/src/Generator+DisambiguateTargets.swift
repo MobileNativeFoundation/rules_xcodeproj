@@ -112,11 +112,19 @@ struct ProductTypeComponents {
     /// `add(target:)`, there will be an entry in `oses`.
     /// `OperatingSystemComponents.add(target:)` will have been called for each
     /// `Target`.
-    var oses: [Platform.OS: OperatingSystemComponents] = [:]
+    private var oses: [Platform.OS: OperatingSystemComponents] = [:]
+
+    /// A count of `Target.distinguisherKey`s seen in `add(target:)`.
+    ///
+    /// If the count for a `distinguisherKey` is greater than one, then targets
+    /// that have that key will have their configuration returned from
+    /// `distinguisher()` instead of a string containing architecture, OS, etc.
+    private var distinguisherKeys: [String: Int] = [:]
 
     /// Adds another `Target` into consideration for `distinguishers()`.
     mutating func add(target: Target) {
         oses[target.platform.os, default: .init()].add(target: target)
+        distinguisherKeys[target.distinguisherKey, default: 0] += 1
     }
 
     /// Generates an array of user-facing strings that, along with a target
@@ -140,14 +148,37 @@ struct ProductTypeComponents {
             distinguishers.append(target.product.type.prettyName)
         }
 
+        let includeOS = oses.count > 1
+
+        guard !needsConfigurationDistinguishing(target: target) else {
+            // The target name would be ambiguous, even with our distinguisher
+            // components. We will show a shorted configuration hash instead,
+            // which will be unique.
+            if includeOS {
+                distinguishers.append(
+                    target.platform.os.prettyName
+                )
+            }
+
+            distinguishers.append(
+                Target.prettyConfiguration(target.configuration)
+            )
+
+            return distinguishers
+        }
+
         if let osDistinguisher = oses[target.platform.os]!.distinguisher(
             target: target,
-            includeOS: oses.count > 1
+            includeOS: includeOS
         ) {
             distinguishers.append(osDistinguisher)
         }
 
         return distinguishers
+    }
+
+    private func needsConfigurationDistinguishing(target: Target) -> Bool {
+        return distinguisherKeys[target.distinguisherKey]! > 1
     }
 }
 
@@ -162,19 +193,11 @@ struct OperatingSystemComponents {
     private var minimumVersions: [String: VersionedOperatingSystemComponents] =
         [:]
 
-    /// A count of `Target.distinguisherKey`s seen in `add(target:)`.
-    ///
-    /// If the count for a `distinguisherKey` is greater than one, then targets
-    /// that have that key will have their configuration returned from
-    /// `distinguisher()` instead of a string containing architecture, OS, etc.
-    private var distinguisherKeys: [String: Int] = [:]
-
     /// Adds another `Target` into consideration for `distinguisher()`.
     mutating func add(target: Target) {
         let minimumVersion = target.platform.minimumOsVersion
 
         minimumVersions[minimumVersion, default: .init()].add(target: target)
-        distinguisherKeys[target.distinguisherKey, default: 0] += 1
     }
 
     /// Potentially generates a user-facing string that, along with a target
@@ -191,45 +214,29 @@ struct OperatingSystemComponents {
     ///
     /// - Returns: `nil` if no distinguisher is needed.
     func distinguisher(target: Target, includeOS: Bool) -> String? {
+        var components: [String] = []
         let platform = target.platform
 
-        if distinguisherKeys[target.distinguisherKey]! > 1 {
-            // The target name would be ambiguous, even with our distinguisher
-            // components. We will show a shorted configuration hash instead,
-            // which will be unique.
-            var components: [String] = []
+        let includeVersion = minimumVersions.count > 1
 
-            if includeOS {
-                components.append(platform.os.prettyName)
-            }
+        let versionDistinguisher = minimumVersions[
+            target.platform.minimumOsVersion
+        ]!.distinguisher(
+            target: target,
+            includeVersion: includeVersion
+        )
 
-            components.append(Target.prettyConfiguration(target.configuration))
-
-            return components.joined(separator: ", ")
-        } else {
-            var components: [String] = []
-
-            let includeVersion = minimumVersions.count > 1
-
-            let versionDistinguisher = minimumVersions[
-                target.platform.minimumOsVersion
-            ]!.distinguisher(
-                target: target,
-                includeVersion: includeVersion
-            )
-
-            if let prefix = versionDistinguisher.prefix {
-                components.append(prefix)
-            }
-
-            if includeOS || includeVersion {
-                components.append(platform.os.prettyName)
-            }
-
-            components.append(contentsOf: versionDistinguisher.suffix)
-
-            return components.isEmpty ? nil : components.joined(separator: " ")
+        if let prefix = versionDistinguisher.prefix {
+            components.append(prefix)
         }
+
+        if includeOS || includeVersion {
+            components.append(platform.os.prettyName)
+        }
+
+        components.append(contentsOf: versionDistinguisher.suffix)
+
+        return components.isEmpty ? nil : components.joined(separator: " ")
     }
 }
 
@@ -356,15 +363,14 @@ extension Target {
 
 private extension Target {
     /// A key that corresponds to the most-distinguished string that
-    /// `OperatingSystemComponents.distinguisher()` can return for this
+    /// `ProductTypeComponents.distinguisher()` can return for this
     /// `Target`.
     var distinguisherKey: String {
-        // This doesn't need `platform.os`, as `OperatingSystemComponents` is
-        // already segregated by operating system name.
         return [
             platform.arch,
+            platform.os.rawValue,
             platform.minimumOsVersion,
-            platform.environment ?? "Device"
+            platform.environment ?? "Device",
         ].joined(separator: "-")
     }
 }
