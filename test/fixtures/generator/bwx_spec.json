@@ -205,6 +205,7 @@
                 "srcs": [
                     "tools/generator/test/AddTargetsTests.swift",
                     "tools/generator/test/BuildSettingConditionalTests.swift",
+                    "tools/generator/test/ConsolidatedTargetTests.swift",
                     "tools/generator/test/CreateFilesAndGroupsTests.swift",
                     "tools/generator/test/CreateProductsTest.swift",
                     "tools/generator/test/CreateProjectTests.swift",
@@ -456,6 +457,7 @@
                     "tools/generator/src/FilePathResolver.swift",
                     "tools/generator/src/Generator+AddBazelDependenciesTarget.swift",
                     "tools/generator/src/Generator+AddTargets.swift",
+                    "tools/generator/src/Generator+ConsolidateTargets.swift",
                     "tools/generator/src/Generator+CreateFilesAndGroups.swift",
                     "tools/generator/src/Generator+CreateProducts.swift",
                     "tools/generator/src/Generator+CreateProject.swift",
