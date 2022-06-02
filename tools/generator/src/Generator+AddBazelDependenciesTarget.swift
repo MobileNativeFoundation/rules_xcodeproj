@@ -140,6 +140,11 @@ env -i \
             name = "Fetch External Repositories"
         }
 
+        // TODO: Make a `BazelLabel` type and use `.name` here
+        let xcodeprojBazelTargetName = String(
+            xcodeprojBazelLabel.split(separator: ":")[1]
+        )
+
         let xcodeprojBinDir = calculateBinDir(
             xcodeprojBazelLabel: xcodeprojBazelLabel,
             xcodeprojConfiguration: xcodeprojConfiguration
@@ -157,10 +162,12 @@ generated_inputs \#(xcodeprojConfiguration)
             bazelBuildCommand(
                 buildMode: buildMode,
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
+                xcodeprojBazelTargetName: xcodeprojBazelTargetName,
                 xcodeprojBinDir: xcodeprojBinDir,
                 generatedInputsOutputGroup: generatedInputsOutputGroup
             ),
             try createCheckGeneratedFilesCommand(
+                xcodeprojBazelTargetName: xcodeprojBazelTargetName,
                 xcodeprojBinDir: xcodeprojBinDir,
                 generatedInputsOutputGroup: generatedInputsOutputGroup,
                 hasGeneratedFiles: hasGeneratedFiles,
@@ -257,6 +264,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
     private static func bazelBuildCommand(
         buildMode: BuildMode,
         xcodeprojBazelLabel: String,
+        xcodeprojBazelTargetName: String,
         xcodeprojBinDir: String,
         generatedInputsOutputGroup: String
     ) -> String {
@@ -295,7 +303,7 @@ log=$(mktemp)
   2>&1 | tee -i "$log"
 
 for output_group in "${output_groups[@]}"; do
-  filelist="${output_group//\//_}"
+  filelist="\#(xcodeprojBazelTargetName)-${output_group//\//_}"
   filelist="${filelist/#/$output_path/\#(xcodeprojBinDir)/}"
   filelist="${filelist/%/.filelist}"
   if ! grep -q "^  $filelist$" "$log"; then
@@ -347,6 +355,7 @@ done
     }
 
     private static func createCheckGeneratedFilesCommand(
+        xcodeprojBazelTargetName: String,
         xcodeprojBinDir: String,
         generatedInputsOutputGroup: String,
         hasGeneratedFiles: Bool,
@@ -359,7 +368,7 @@ done
         let rsynclist = try filePathResolver
             .resolve(.internal(rsyncFileListPath), mode: .script)
         let filelist = #"""
-$BAZEL_OUT/\#(xcodeprojBinDir)/\#(generatedInputsOutputGroup).filelist
+$BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOutputGroup).filelist
 """#
 
         return #"""
