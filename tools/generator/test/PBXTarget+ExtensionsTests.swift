@@ -22,31 +22,15 @@ class PBXTargetExtensionsTests: XCTestCase {
         productName: "MyChicken"
     )
 
-    func test_getBuildableName_withProductPath() throws {
-        let buildableName = try pbxTarget.getBuildableName()
+    func test_getBuildableName_withProductPath() {
+        let buildableName = pbxTarget.buildableName
         XCTAssertEqual(buildableName, "MyChicken.app")
     }
 
-    func test_getBuildableName_withoutProductPathWithProductName() throws {
+    func test_getBuildableName_withoutProductPath() {
         pbxTarget.product = nil
-        let buildableName = try pbxTargetWithoutProduct.getBuildableName()
-        XCTAssertEqual(buildableName, "MyChicken")
-    }
-
-    func test_getBuildableName_withoutProductPathAndProductName() throws {
-        pbxTargetWithoutProduct.productName = nil
-        XCTAssertThrowsError(try pbxTargetWithoutProduct.getBuildableName()) { error in
-            guard let preconditionError = error as? PreconditionError else {
-                XCTFail(
-                    "The thrown error was not a `PreconditionError`. \(error)"
-                )
-                return
-            }
-            XCTAssertEqual(
-                preconditionError.message,
-                "`product` path and `productName` not set on target (chicken)"
-            )
-        }
+        let buildableName = pbxTargetWithoutProduct.buildableName
+        XCTAssertEqual(buildableName, "chicken")
     }
 
     func test_createBuildableReference() throws {
@@ -57,7 +41,7 @@ class PBXTargetExtensionsTests: XCTestCase {
         let expected = XCScheme.BuildableReference(
             referencedContainer: "\(referencedContainer)",
             blueprint: pbxTarget,
-            buildableName: try pbxTarget.getBuildableName(),
+            buildableName: pbxTarget.buildableName,
             blueprintName: pbxTarget.name
         )
         XCTAssertEqual(buildableReference, expected)
