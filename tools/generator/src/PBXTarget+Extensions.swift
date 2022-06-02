@@ -2,13 +2,8 @@ import Foundation
 import XcodeProj
 
 public extension PBXTarget {
-    func getBuildableName() throws -> String {
-        guard let buildableName = (product?.path ?? productName) else {
-            throw PreconditionError(message: """
-`product` path and `productName` not set on target (\(name))
-""")
-        }
-        return buildableName
+    var buildableName: String {
+        return product?.path ?? name
     }
 
     func createBuildableReference(
@@ -17,7 +12,7 @@ public extension PBXTarget {
         return .init(
             referencedContainer: referencedContainer,
             blueprint: self,
-            buildableName: try getBuildableName(),
+            buildableName: buildableName,
             blueprintName: name
         )
     }
