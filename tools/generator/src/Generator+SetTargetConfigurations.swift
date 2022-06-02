@@ -32,8 +32,7 @@ Target "\(id)" not found in `pbxTargets`
             ]
 
             var buildSettings = try calculateBuildSettings(
-                for: target,
-                id: id,
+                for: (id, target),
                 buildMode: buildMode,
                 filePathResolver: filePathResolver
             )
@@ -48,7 +47,9 @@ Target "\(id)" not found in `pbxTargets`
 
             let debugConfiguration = XCBuildConfiguration(
                 name: "Debug",
-                buildSettings: buildSettings.asDictionary
+                buildSettings: try buildSettings.asBuildSettingDictionary(
+                    buildMode: buildMode
+                )
             )
             pbxProj.add(object: debugConfiguration)
             let configurationList = XCConfigurationList(
@@ -61,6 +62,34 @@ Target "\(id)" not found in `pbxTargets`
             let pbxProject = pbxProj.rootObject!
             pbxProject.setTargetAttributes(attributes, target: pbxTarget)
         }
+    }
+
+    private static func calculateBuildSettings(
+        for idAndTarget: (TargetID, Target),
+        buildMode: BuildMode,
+        filePathResolver: FilePathResolver
+    ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
+        let anyBuildSettings: [String: BuildSetting] = [:]
+        var buildSettings: [BuildSettingConditional: [String: BuildSetting]] =
+            [:]
+
+        for (id, target) in [idAndTarget] {
+            let targetBuildSettings = try calculateBuildSettings(
+                for: target,
+                id: id,
+                buildMode: buildMode,
+                filePathResolver: filePathResolver
+            )
+
+            buildSettings[target.buildSettingConditional] = targetBuildSettings
+        }
+
+        // Set an `.any` configuration if needed
+        if !anyBuildSettings.isEmpty {
+            buildSettings[.any] = anyBuildSettings
+        }
+
+        return buildSettings
     }
 
     private static func calculateBuildSettings(
@@ -289,9 +318,37 @@ $(CONFIGURATION_BUILD_DIR)
         disambiguatedTargets: DisambiguatedTargets,
         pbxTargets: [TargetID: PBXTarget],
         attributes: inout [String: Any],
-        buildSettings: inout [String: BuildSetting]
+        buildSettings: inout [BuildSettingConditional: [String: BuildSetting]]
     ) throws {
-        if let testHostID = target.testHost {
+        let targets = [target]
+
+        guard let aTestHostID = targets.first?.testHost else {
+            return
+        }
+
+        guard let pbxTestHost = pbxTargets[aTestHostID] else {
+            throw PreconditionError(message: """
+Test host pbxTarget with id "\(aTestHostID)" not found in `pbxTargets`
+""")
+        }
+        attributes["TestTargetID"] = pbxTestHost
+
+        guard target.product.type != .uiTestBundle else {
+            buildSettings[.any, default: [:]].set(
+                "TEST_TARGET_NAME",
+                to: pbxTestHost.name
+            )
+            return
+        }
+
+        buildSettings[.any, default: [:]]["BUNDLE_LOADER"] =
+            "$(TEST_HOST)"
+
+        for target in targets {
+            guard let testHostID = target.testHost else {
+                continue
+            }
+
             guard
                 let testHost = disambiguatedTargets.targets[testHostID]?.target
             else {
@@ -299,42 +356,31 @@ $(CONFIGURATION_BUILD_DIR)
 Test host target with id "\(testHostID)" not found in `disambiguatedTargets`
 """)
             }
-            guard let pbxTestHost = pbxTargets[testHostID] else {
+
+            guard let productPath = pbxTestHost.product?.path else {
                 throw PreconditionError(message: """
-Test host pbxTarget with id "\(testHostID)" not found in `pbxTargets`
-""")
-            }
-
-            attributes["TestTargetID"] = pbxTestHost
-
-            if target.product.type == .uiTestBundle {
-                buildSettings.set("TEST_TARGET_NAME", to: pbxTestHost.name)
-            } else {
-                guard let productPath = pbxTestHost.product?.path else {
-                    throw PreconditionError(message: """
 `product.path` not set on test host "\(pbxTestHost.name)"
 """)
-                }
-                guard let productName = pbxTestHost.productName else {
-                    throw PreconditionError(message: """
+            }
+            guard let productName = pbxTestHost.productName else {
+                throw PreconditionError(message: """
 `productName` not set on test host "\(pbxTestHost.name)"
 """)
-                }
+            }
 
-                buildSettings.set(
-                    "TARGET_BUILD_DIR",
-                    to: """
+            let conditional = target.buildSettingConditional
+            buildSettings[conditional, default: [:]].set(
+                "TARGET_BUILD_DIR",
+                to: """
 $(BUILD_DIR)/\(testHost.packageBinDir)$(TARGET_BUILD_SUBPATH)
 """
-                )
-                buildSettings.set(
-                    "TEST_HOST",
-                    to: """
+            )
+            buildSettings[conditional, default: [:]].set(
+                "TEST_HOST",
+                to: """
 $(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(productName)
 """
-                )
-                buildSettings["BUNDLE_LOADER"] = "$(TEST_HOST)"
-            }
+            )
         }
     }
 }
@@ -460,6 +506,17 @@ extension Target {
     }
 }
 
+private extension Platform.OS {
+    var sdkRoot: String {
+        switch self {
+        case .macOS: return "macosx"
+        case .iOS: return "iphoneos"
+        case .watchOS: return "watchos"
+        case .tvOS: return "appletvos"
+        }
+    }
+}
+
 private extension Inputs {
     var containsSourceFiles: Bool {
         return !(srcs.isEmpty && nonArcSrcs.isEmpty)
@@ -481,17 +538,6 @@ private extension Outputs.Swift {
                     useOriginalGeneratedFiles: true
                 ).string
             }
-    }
-}
-
-private extension Platform.OS {
-    var sdkRoot: String {
-        switch self {
-        case .macOS: return "macosx"
-        case .iOS: return "iphoneos"
-        case .watchOS: return "watchos"
-        case .tvOS: return "appletvos"
-        }
     }
 }
 
@@ -520,5 +566,44 @@ extension Array where Element: Hashable {
 private extension Dictionary where Value == BuildSetting {
     mutating func set(_ key: Key, to value: Path) {
         self[key] = .string(value.string)
+    }
+}
+
+private extension Dictionary
+where Key == BuildSettingConditional, Value == [String: BuildSetting] {
+    func asBuildSettingDictionary(
+        buildMode: BuildMode
+    ) throws -> [String: Any] {
+        var conditionalBuildSettings: [
+            String: [BuildSettingConditional: BuildSetting]
+        ] = [:]
+        for (conditional, buildSettings) in self {
+            for (key, buildSetting) in buildSettings {
+                conditionalBuildSettings[key, default: [:]][conditional] =
+                    buildSetting
+            }
+        }
+
+        var buildSettings: [String: BuildSetting] = [:]
+        for (key, conditionalBuildSetting) in conditionalBuildSettings {
+            let sortedConditionalBuildSettings = conditionalBuildSetting
+                .sorted(by: { $0.key < $1.key } )
+            var remainingConditionalBuildSettings =
+                sortedConditionalBuildSettings[
+                    sortedConditionalBuildSettings.indices
+                ]
+
+            guard
+                let (_, first) = remainingConditionalBuildSettings.popFirst()
+            else {
+                continue
+            }
+
+            // Set the base value to `.any` or the most preferable condition
+            // (i.e. Simulator or Apple Silicon)
+            buildSettings[key] = first
+        }
+
+        return buildSettings.asDictionary
     }
 }
