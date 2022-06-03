@@ -288,11 +288,13 @@ final class ConsolidateTargetsTests: XCTestCase {
                 [
                     "iOS-Simulator",
                     "iOS-Device",
-                    "watchOS-Simulator",
-                    "watchOS-Device",
                     "tvOS-Simulator",
                     "tvOS-Device",
                     "macOS",
+                ],
+                [
+                    "watchOS-Simulator",
+                    "watchOS-Device",
                 ],
             ]
         )
