@@ -472,9 +472,15 @@ private extension ConsolidatedTarget {
             return false
         }
 
-        return targets.values.allSatisfy { target in
-            return target.buildSettings["SWIFT_OBJC_INTERFACE_HEADER_NAME"]
-                != .string("")
+        return targets.values.contains { target in
+            guard let headerBuildSetting = target
+                .buildSettings["SWIFT_OBJC_INTERFACE_HEADER_NAME"]
+            else {
+                // Not setting `SWIFT_OBJC_INTERFACE_HEADER_NAME` will cause
+                // the default `ModuleName-Swift.h` to be generated
+                return true
+            }
+            return headerBuildSetting != .string("")
         }
     }
 }
@@ -491,11 +497,7 @@ private extension ConsolidatedTargetLinkerInputs {
 
 private extension ConsolidatedTargetOutputs {
     func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
-        guard buildMode.usesBazelModeBuildScripts else {
-            return []
-        }
-
-        if hasSwiftOutputs {
+        if buildMode.usesBazelModeBuildScripts && hasSwiftOutputs {
             return [.internal(Generator.bazelForcedSwiftCompilePath)]
         }
 

@@ -586,11 +586,7 @@ private extension Inputs {
 
 private extension Outputs {
     func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
-        guard buildMode.usesBazelModeBuildScripts else {
-            return []
-        }
-
-        if swift != nil {
+        if buildMode.usesBazelModeBuildScripts && swift != nil {
             return [.internal(Generator.bazelForcedSwiftCompilePath)]
         }
 

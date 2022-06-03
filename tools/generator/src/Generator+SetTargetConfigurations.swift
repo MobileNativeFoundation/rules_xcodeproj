@@ -89,7 +89,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
 """)
             }
             if !uniqueFiles.isEmpty {
-                // This ket needs to not have `-` in it
+                // This key needs to not have `-` in it
                 // TODO: If we ever add support for Universal targets this needs
                 //   to include more than just the platform name
                 let key = "\(target.platform.name.uppercased())_FILES"
@@ -360,6 +360,8 @@ $(CONFIGURATION_BUILD_DIR)
     ) throws {
         let targets = target.targets.values
 
+        // Consolidated targets all have the same consolidated test host, so we
+        // can just pick the first one
         guard let aTestHostID = targets.first?.testHost else {
             return
         }

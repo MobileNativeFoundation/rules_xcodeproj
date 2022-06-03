@@ -25,13 +25,15 @@ extension Generator {
                     fileType = target.product.type.fileType
                 }
 
-                let bestTarget = target.sortedTargets.first!
+                // We can only show one product, so show the one for the default
+                // target (i.e macOS, or Simulator, or arm64)
+                let defaultTarget = target.sortedTargets.first!
 
                 // We need to fix the path for deployment location products,
                 // since we override `DEPLOYMENT_LOCATION` and
                 // `BUILT_PRODUCTS_DIR` for them
                 name = target.product.basename
-                path = "bazel-out/\(bestTarget.product.path.path)"
+                path = "bazel-out/\(defaultTarget.product.path.path)"
             }
 
             let product = PBXFileReference(
