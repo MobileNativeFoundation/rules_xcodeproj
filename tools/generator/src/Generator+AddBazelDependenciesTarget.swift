@@ -306,10 +306,11 @@ for output_group in "${output_groups[@]}"; do
   filelist="\#(xcodeprojBazelTargetName)-${output_group//\//_}"
   filelist="${filelist/#/$output_path/\#(xcodeprojBinDir)/}"
   filelist="${filelist/%/.filelist}"
-  if ! grep -q "^  $filelist$" "$log"; then
+  if [[ "$filelist" -ot "$INTERNAL_DIR/toplevel_cache_buster" ]]; then
     echo "error: Bazel didn't generate the correct files (it should have \#
-generated outputs for output group \"$output_group\", but the logs don't have \#
-an entry for \"$filelist\"). Please regenerate the project to fix this." >&2
+generated outputs for output group \"$output_group\", but the timestamp for \#
+\"$filelist\" was from before the build). Please regenerate the project to \#
+fix this." >&2
     echo "error: If your bazel version is less than 5.2, you may need to \#
 \`bazel clean\` and/or \`bazel shutdown\` to work around a bug in project \#
 generation." >&2
