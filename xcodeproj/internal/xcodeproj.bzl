@@ -189,6 +189,27 @@ def _write_installer(
 
 # Transition
 
+def _base_target_transition_impl(settings, attr):
+    features = settings.get("//command_line_option:features", [])
+
+    if attr.build_mode == "bazel":
+        archived_bundles_allowed = attr.archived_bundles_allowed
+        features = [
+            "oso_prefix_is_pwd",
+            "relative_ast_path",
+        ] + features
+    else:
+        archived_bundles_allowed = True
+
+    return {
+        "//command_line_option:compilation_mode": "dbg",
+        "//command_line_option:features": features,
+        "//xcodeproj/internal:archived_bundles_allowed": (
+            archived_bundles_allowed
+        ),
+        "//xcodeproj/internal:build_mode": attr.build_mode,
+    }
+
 def make_target_transition(
         implementation = None,
         inputs = [],
@@ -198,32 +219,14 @@ def make_target_transition(
 
         # Apply the other transition first
         if implementation:
-            outputs = implementation(settings, attr)
-            new_settings = outputs
+            settings = implementation(settings, attr)
         else:
-            outputs = {}
-            new_settings = settings
+            settings = dict(settings)
 
-        features = new_settings.get("//command_line_option:features", [])
+        # Then apply our transition
+        settings.update(_base_target_transition_impl(settings, attr))
 
-        if attr.build_mode == "bazel":
-            archived_bundles_allowed = attr.archived_bundles_allowed
-            features = [
-                "oso_prefix_is_pwd",
-                "relative_ast_path",
-            ] + features
-        else:
-            archived_bundles_allowed = True
-
-        outputs.update({
-            "//command_line_option:compilation_mode": "dbg",
-            "//command_line_option:features": features,
-            "//xcodeproj/internal:archived_bundles_allowed": (
-                archived_bundles_allowed
-            ),
-            "//xcodeproj/internal:build_mode": attr.build_mode,
-        })
-        return outputs
+        return settings
 
     merged_inputs = uniq(
         inputs + [
