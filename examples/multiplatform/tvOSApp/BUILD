@@ -1,3 +1,4 @@
+load("@build_bazel_rules_apple//apple:apple.bzl", "local_provisioning_profile")
 load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_group")
 load("@build_bazel_rules_apple//apple:tvos.bzl", "tvos_application")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
@@ -9,15 +10,32 @@ config_setting(
     },
 )
 
+config_setting(
+    name = "device_build",
+    values = {
+        "cpu": "tvos_arm64",
+    },
+)
+
 tvos_application(
     name = "tvOSApp",
     bundle_id = "io.buildbuddy.example",
     bundle_name = "tvOSApp",
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
+    provisioning_profile = select({
+        ":device_build": ":xcode_managed_profile",
+        "//conditions:default": None,
+    }),
     resources = [":ResourceGroup"],
     visibility = ["//visibility:public"],
     deps = [":tvOSApp.library"],
+)
+
+local_provisioning_profile(
+    name = "xcode_managed_profile",
+    profile_name = "tvOS Team Provisioning Profile: io.buildbuddy.example",
+    tags = ["manual"],
 )
 
 apple_resource_group(

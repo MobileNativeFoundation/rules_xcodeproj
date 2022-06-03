@@ -32,6 +32,15 @@ local_repository(
     path = "examples/cc/external",
 )
 
+load(
+    "@build_bazel_rules_apple//apple:apple.bzl",
+    "provisioning_profile_repository",
+)
+
+provisioning_profile_repository(
+    name = "local_provisioning_profiles",
+)
+
 # Setup Swift Custom Dump test dependency
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
