@@ -186,8 +186,8 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
-        transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
-            transitive dependencies of `target`.
+        transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
+            dependencies of `target`.
 
     Returns:
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
@@ -272,8 +272,8 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
-        transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
-            transitive dependencies of `target`.
+        transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
+            dependencies of `target`.
 
     Returns:
         An `XcodeProjInfo` populated with information from `target` and
@@ -291,6 +291,23 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
             transitive_infos = transitive_infos,
         )
 
+    return XcodeProjInfo(
+        **info_fields
+    )
+
+def merge_xcodeprojinfos(infos):
+    """Creates a merged `XcodeProjInfo` for the given `XcodeProjInfo`s.
+
+    Args:
+        infos: A `list` of `XcodeProjInfo`s to merge.
+
+    Returns:
+        An `XcodeProjInfo` populated with information from `infos`.
+    """
+    info_fields = _skip_target(
+        deps = [],
+        transitive_infos = [(None, info) for info in infos],
+    )
     return XcodeProjInfo(
         **info_fields
     )

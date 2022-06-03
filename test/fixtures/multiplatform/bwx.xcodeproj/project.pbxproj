@@ -30,7 +30,7 @@
 		39FE596A18105235919707F9 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2FC43BDB211622F991234 /* tvOSApp.swift */; };
 		3B4FBAEBCEAAF6DF9161CEA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571673AD5562DFA4AB138EB8 /* ContentView.swift */; };
 		3DA2238D1AE0C4DE3F8700B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */; };
-		43CF9E54E6387851CDC75373 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA79C441283245ABE67694 /* Lib.swift */; };
+		5BCE16B7A966E33EC26E85C4 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F21FCAE44DDA5EDE91D5188 /* Lib.swift */; };
 		62CFF6C7D0DCE936662E389C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D295FECC5CF307D463F8CBD4 /* Preview Assets.xcassets */; };
 		672612624F95412422292B68 /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF973F3635AEB0E5B3101EA8 /* watchOSApp.swift */; };
 		6BB33EE1FF138449161F329C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E47A83139A3569C6FA232A95 /* Assets.xcassets */; };
@@ -38,9 +38,12 @@
 		7A35253D15168D745B41DAC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0ADD9182447B9BBC9D04FD /* ContentView.swift */; };
 		7BADA8103BB4E09B7735582D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC294F18473B4B7357EB8BB /* Assets.xcassets */; };
 		7C8352CD4AC2E75F882BD1B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C519DF0E014F293F71D3BBD3 /* ContentView.swift */; };
-		7DE3867E52D24D26F7A6A2EF /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E681E4EEDAB1135CE4A68 /* Lib.swift */; };
 		83A0C23B7C0DFFF7EEC59CAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A9B77D60580C4AD4C0BF5FC /* Assets.xcassets */; };
-		8540B3FC0EA014E060577822 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AFBDF5B1DB47FAD7E0AF /* Lib.swift */; };
+		8D418AC3CAB6C0317F01D32C /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2141A2F8DB9FB30E7E4D /* Lib.swift */; };
+		9C82D1FC681569D5AFE20A25 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7F18CB59E0CCB2BAF3B4D /* Lib.swift */; };
+		B98518DF701BEB6F1ECDA5DA /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B3AB6691877451BCADD42A /* Lib.swift */; };
+		B9FB6AC70ED490614821F0E7 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE77708B3D15FA2BCAB0D6 /* Lib.swift */; };
+		C55C61B48E6639C5DE1D0F6C /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FCE773138D5956C3DA63B1 /* Lib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,66 +127,77 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		009E681E4EEDAB1135CE4A68 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		08F18312CEA72043B7783D1F /* watchOSAppExtension_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSAppExtension_entitlements.entitlements; sourceTree = "<group>"; };
+		063155AA19E757FB2E40B426 /* watchOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSApp_entitlements.entitlements; sourceTree = "<group>"; };
+		1118895EBE141E30968A9104 /* iOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSApp_entitlements.entitlements; sourceTree = "<group>"; };
+		11D7F18CB59E0CCB2BAF3B4D /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		14C9ACBD60C49872D43B34A8 /* CompileStub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompileStub.m; sourceTree = "<group>"; };
+		16538E0E4950FA389F7E4FCE /* tvOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvOSApp_entitlements.entitlements; sourceTree = "<group>"; };
 		20CD51DEB2E26EC7377B9F16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		25DD988A1358E4C112E2B890 /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		275F2B2443C9A6579EAAABED /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		27FD6B5DAE40F6075227CDF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		29346B581CB9183728EC77CE /* watchOSAppExtension.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = watchOSAppExtension.zip; sourceTree = "<group>"; };
-		2B069AB8FC46B5E3C68CF361 /* watchOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSApp_entitlements.entitlements; sourceTree = "<group>"; };
 		2BE8E26FBFD1B64E48E05808 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		2CC294F18473B4B7357EB8BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2D188D64BAF3E119B10E98C7 /* iOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSApp_entitlements.entitlements; sourceTree = "<group>"; };
-		32FEB66D7D8E818B2340CB47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2F21FCAE44DDA5EDE91D5188 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		381C43DEBE0C92B63F3D590B /* watchOSAppExtension_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSAppExtension_entitlements.entitlements; sourceTree = "<group>"; };
 		3A9B77D60580C4AD4C0BF5FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E2F9B757E77BA1326F94ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4368AB770C20BF4695DD7CE9 /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
+		4394D806B344EB7C2A2BFC23 /* iOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSApp_entitlements.entitlements; sourceTree = "<group>"; };
+		4BCCC9198B37F09E5F74B911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D15882F3881536469A76374 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4DE36E3C6C4DC98BD96BABE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		571673AD5562DFA4AB138EB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		57DED4191C90C7A853FF2A4E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		5808BF0F847CC0BF0E1128FB /* watchOSAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = watchOSAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		646773A9CB58451F7E5016D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		61ABF5DB856CDA93091F8A21 /* tvOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision */ = {isa = PBXFileReference; path = "tvOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision"; sourceTree = "<group>"; };
 		64AE19447389D7B6B9BEC81E /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		7169AFBDF5B1DB47FAD7E0AF /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		81A2718CC1EF53E50BDD4909 /* watchOSApp.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = watchOSApp.zip; sourceTree = "<group>"; };
+		74CE77708B3D15FA2BCAB0D6 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		763746B7E174FD54C578969C /* watchOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSApp_entitlements.entitlements; sourceTree = "<group>"; };
+		796DB6B864AF4EFFBC3F8849 /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
+		81A6D193BFF39B6A336051F7 /* watchOSAppExtension_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSAppExtension_entitlements.entitlements; sourceTree = "<group>"; };
 		84D2483892E8EF0354DF0D4E /* Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tool; sourceTree = BUILT_PRODUCTS_DIR; };
+		89A5597668B3DA128D0A9147 /* iOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision */ = {isa = PBXFileReference; path = "iOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision"; sourceTree = "<group>"; };
 		8E0ADD9182447B9BBC9D04FD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8F1EE8FBE47D232F64888B5C /* iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension.mobileprovision */ = {isa = PBXFileReference; path = "iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension.mobileprovision"; sourceTree = "<group>"; };
 		909CC2C241F4540F5E294662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		92D308E922DF792BCF148850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9122AA9420DF1DC7CEA6891D /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
 		94B4E46AB654CACC5E8E5C55 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9739550C79EA12398392E26C /* tvOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvOSApp_entitlements.entitlements; sourceTree = "<group>"; };
-		A8BA79C441283245ABE67694 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		B8EE097BA523AA6A79268BDA /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6191AB3CB5D88EABB075490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A6A32E6D4A755E88A2E9DC0A /* iOS Team Provisioning Profile: io.buildbuddy.example.watch.mobileprovision */ = {isa = PBXFileReference; path = "iOS Team Provisioning Profile: io.buildbuddy.example.watch.mobileprovision"; sourceTree = "<group>"; };
+		A6B3AB6691877451BCADD42A /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		A7D982498A23C227E0F92061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A9ED7F0279D8C4E01358E285 /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
+		B0A43CFD2E43DEB54B0E4C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B44E58BF339FE8A34DCABA92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B8EE097BA523AA6A79268BDA /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C07D986E341845A1FB7B65E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C19F58FE14D703F8CF8FC2A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C200516B205F70419C263339 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		C519DF0E014F293F71D3BBD3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C75CD97A5BBE066947F77FD2 /* tvOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvOSApp_entitlements.entitlements; sourceTree = "<group>"; };
 		CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D05F392CABFB9D136406F852 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D295FECC5CF307D463F8CBD4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D5FCE773138D5956C3DA63B1 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		D76D2C3E02897E2ED28A8958 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D77542B2B16F5AA77ECBB45D /* watchOSApp.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = watchOSApp.zip; sourceTree = "<group>"; };
 		D9C00801286B351024D0850E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DA0D3C18A4096AF7D3C6C674 /* watchOSAppExtension.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = watchOSAppExtension.zip; sourceTree = "<group>"; };
 		DF01000DC504FA84E99F7E81 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DF973F3635AEB0E5B3101EA8 /* watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOSApp.swift; sourceTree = "<group>"; };
 		E47A83139A3569C6FA232A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EF44979149CC54FEE49AA45C /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
+		EC9B2141A2F8DB9FB30E7E4D /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		EFE419DF9F97AFE66C165865 /* watchOSApp.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = watchOSApp.zip; sourceTree = "<group>"; };
 		F16D71C4BEDCDCB107460E90 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F17FC436B461919E1DDC0F71 /* tvOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3C5751DF1D2742E044AA8EA /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
 		F4AC3FA7356997C44A046004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F5F2FC43BDB211622F991234 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
 		F6D3E8AC19CA682EDEFC131C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		FF30B348660D730EC96E364F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FF3E8827016B882A76B5EC13 /* watchOSAppExtension.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = watchOSAppExtension.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		003B1FF45748353B53E7DD1D /* multiplatform */ = {
-			isa = PBXGroup;
-			children = (
-				85818D223161DDC8BAF43163 /* Lib */,
-			);
-			path = multiplatform;
-			sourceTree = "<group>";
-		};
 		018565965359C2FA437EC773 /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,73 +206,206 @@
 			path = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee";
 			sourceTree = "<group>";
 		};
-		1156F30F1563FA24E5AF4F9E /* watchOSAppExtension */ = {
+		03A0E7EDBDEEB864DABBBD7B /* iOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				6D99B0195063D8EF7F1A1ABB /* watchOSAppExtension-intermediates */,
-				08F18312CEA72043B7783D1F /* watchOSAppExtension_entitlements.entitlements */,
-				29346B581CB9183728EC77CE /* watchOSAppExtension.zip */,
-			);
-			path = watchOSAppExtension;
-			sourceTree = "<group>";
-		};
-		19FBC73DD98B9DEEE71A5CF7 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				92B352E7C3A6F28BCE78E11B /* examples */,
-			);
-			path = bin;
-			sourceTree = "<group>";
-		};
-		2478846C633527F09A7E1D68 /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				B5B7FCB8AF5FCBC6EA44B815 /* multiplatform */,
-			);
-			path = examples;
-			sourceTree = "<group>";
-		};
-		247BDD7D9A939F6716E2D530 /* iOSApp */ = {
-			isa = PBXGroup;
-			children = (
-				D5E0052030891D1D8C2C5182 /* iOSApp-intermediates */,
-				2D188D64BAF3E119B10E98C7 /* iOSApp_entitlements.entitlements */,
-				F3C5751DF1D2742E044AA8EA /* Version.bundle_version */,
+				4368AB770C20BF4695DD7CE9 /* Version.bundle_version */,
 			);
 			path = iOSApp;
 			sourceTree = "<group>";
 		};
-		248CD33B1AC0C310EB23D481 /* tvOSApp */ = {
+		0A98B3F1D66DEDFA39A84E5A /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				538ACAE415EDA08CD863C7B3 /* tvOSApp-intermediates */,
-				9739550C79EA12398392E26C /* tvOSApp_entitlements.entitlements */,
+				D7CB36B23CA1D7E77A7F6DBB /* multiplatform */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		0C5E4466FD2CD89AC20F5889 /* ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef */ = {
+			isa = PBXGroup;
+			children = (
+				B0ED75F50BB31B36D89268D5 /* bin */,
+			);
+			path = "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef";
+			sourceTree = "<group>";
+		};
+		0C9B12A4C54888E97778ACC9 /* applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c */ = {
+			isa = PBXGroup;
+			children = (
+				66AF467318FE29F05C5A6A60 /* bin */,
+			);
+			path = "applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c";
+			sourceTree = "<group>";
+		};
+		0DE33AF81F7A053EA9CB5E34 /* watchOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				22874806F559EE48361DC300 /* watchOSApp-intermediates */,
+				763746B7E174FD54C578969C /* watchOSApp_entitlements.entitlements */,
+				EFE419DF9F97AFE66C165865 /* watchOSApp.zip */,
+			);
+			path = watchOSApp;
+			sourceTree = "<group>";
+		};
+		0F117BDAE46943A3C190B8BF /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				36DFB4633B8E7C0740AEAB0F /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		108DB74BA5F93D357DB6D1F3 /* tvOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				33B9BA6950BAB157AE504B68 /* tvOSApp-intermediates */,
+				16538E0E4950FA389F7E4FCE /* tvOSApp_entitlements.entitlements */,
 			);
 			path = tvOSApp;
 			sourceTree = "<group>";
 		};
-		24914CB4D2F90D614600C373 /* Lib */ = {
+		10EB293BD85931A8057B3F77 /* watchOSAppExtension-intermediates */ = {
 			isa = PBXGroup;
 			children = (
-				A8BA79C441283245ABE67694 /* Lib.swift */,
+				4BCCC9198B37F09E5F74B911 /* Info.plist */,
 			);
-			path = Lib;
+			path = "watchOSAppExtension-intermediates";
 			sourceTree = "<group>";
 		};
-		2AF0ABDBE1BB727A046F3214 /* applebin_ios-ios_x86_64-dbg-ST-5497495606d5 */ = {
+		145C5AC89D31CE37BE20F86E /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				19FBC73DD98B9DEEE71A5CF7 /* bin */,
+				1B51DB5BC53E0F2A57E869D0 /* multiplatform */,
 			);
-			path = "applebin_ios-ios_x86_64-dbg-ST-5497495606d5";
+			path = examples;
 			sourceTree = "<group>";
 		};
-		2EF6A9343B0F0B2A72A45CD3 /* bin */ = {
+		17CB4DF2BA47312A5782C44B /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
-				2478846C633527F09A7E1D68 /* examples */,
+				108DB74BA5F93D357DB6D1F3 /* tvOSApp */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		1AFD4F07E20441C06E2D3E76 /* watchOSAppExtension */ = {
+			isa = PBXGroup;
+			children = (
+				10EB293BD85931A8057B3F77 /* watchOSAppExtension-intermediates */,
+				81A6D193BFF39B6A336051F7 /* watchOSAppExtension_entitlements.entitlements */,
+				DA0D3C18A4096AF7D3C6C674 /* watchOSAppExtension.zip */,
+			);
+			path = watchOSAppExtension;
+			sourceTree = "<group>";
+		};
+		1B51DB5BC53E0F2A57E869D0 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				508A645E342DFCEAA485D694 /* iOSApp */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		1BD77DEAD5D1BA8E6115916D /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				0A98B3F1D66DEDFA39A84E5A /* examples */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		1DB773A822A769C58C32A161 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				17CB4DF2BA47312A5782C44B /* multiplatform */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		1F3D330477AAFA7F28A0BEB2 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				EE5D1F235DF67519E2675C7B /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		22874806F559EE48361DC300 /* watchOSApp-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				A6191AB3CB5D88EABB075490 /* Info.plist */,
+			);
+			path = "watchOSApp-intermediates";
+			sourceTree = "<group>";
+		};
+		229CA558524FF425A6D49413 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				6756B281BF93296168A53A69 /* multiplatform */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		24B7EF291367126A9C04DF56 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				ABD4105E483B78AF33DF23D0 /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		25C11623EED0082D88B25EE1 /* watchOSAppExtension */ = {
+			isa = PBXGroup;
+			children = (
+				F04BF1345516F4CDC39E91CC /* watchOSAppExtension-intermediates */,
+				8F1EE8FBE47D232F64888B5C /* iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension.mobileprovision */,
+				381C43DEBE0C92B63F3D590B /* watchOSAppExtension_entitlements.entitlements */,
+				FF3E8827016B882A76B5EC13 /* watchOSAppExtension.zip */,
+			);
+			path = watchOSAppExtension;
+			sourceTree = "<group>";
+		};
+		26B1F5B93536DCDA662EF8DE /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				F46BBA0B235BD3F2327EC454 /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		2D766DB12AD566485024A5EC /* tvOSApp-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				3E2F9B757E77BA1326F94ECB /* Info.plist */,
+			);
+			path = "tvOSApp-intermediates";
+			sourceTree = "<group>";
+		};
+		2EF9BBD84A8A1D91268B27E0 /* watchOSApp-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				B0A43CFD2E43DEB54B0E4C5D /* Info.plist */,
+			);
+			path = "watchOSApp-intermediates";
+			sourceTree = "<group>";
+		};
+		2FB2D5AB1AB1E98D5578E0B0 /* iOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				796DB6B864AF4EFFBC3F8849 /* Version.bundle_version */,
+			);
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		3003365308E1F4D12B29C496 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				03A0E7EDBDEEB864DABBBD7B /* iOSApp */,
+				68E734CB5EA7C0A0261F5CD1 /* watchOSApp */,
+				25C11623EED0082D88B25EE1 /* watchOSAppExtension */,
+			);
+			path = multiplatform;
 			sourceTree = "<group>";
 		};
 		3041A40F43DEEF6F1733DDE6 /* multiplatform */ = {
@@ -282,12 +429,28 @@
 			path = multiplatform;
 			sourceTree = "<group>";
 		};
-		369B561DC1EC2A19990447DD /* examples */ = {
+		33B9BA6950BAB157AE504B68 /* tvOSApp-intermediates */ = {
 			isa = PBXGroup;
 			children = (
-				F3B0DD8A78BA9797EC8F201C /* multiplatform */,
+				C07D986E341845A1FB7B65E2 /* Info.plist */,
+			);
+			path = "tvOSApp-intermediates";
+			sourceTree = "<group>";
+		};
+		36DFB4633B8E7C0740AEAB0F /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				C9864334AE10C1C3E9D76EB4 /* multiplatform */,
 			);
 			path = examples;
+			sourceTree = "<group>";
+		};
+		39D87A5A264E30021DC8C220 /* iOSApp-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				A7D982498A23C227E0F92061 /* Info.plist */,
+			);
+			path = "iOSApp-intermediates";
 			sourceTree = "<group>";
 		};
 		3FC3C3D9DB560D326ADFA4D9 /* PreviewContent */ = {
@@ -320,28 +483,124 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		501E1104293E357C177425D4 /* examples */ = {
+		4B09747CFA1EF5B6B6A824E1 /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				86988E459FE2AE775CA8E9B1 /* multiplatform */,
+				5CF0CFF4FA9E10B220850AE4 /* multiplatform */,
 			);
 			path = examples;
 			sourceTree = "<group>";
 		};
-		538ACAE415EDA08CD863C7B3 /* tvOSApp-intermediates */ = {
+		4FA36AAF17EBD828DCFDC853 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
-				92D308E922DF792BCF148850 /* Info.plist */,
-			);
-			path = "tvOSApp-intermediates";
-			sourceTree = "<group>";
-		};
-		54279F0C879FA2F87E677C19 /* multiplatform */ = {
-			isa = PBXGroup;
-			children = (
-				247BDD7D9A939F6716E2D530 /* iOSApp */,
+				2FB2D5AB1AB1E98D5578E0B0 /* iOSApp */,
+				0DE33AF81F7A053EA9CB5E34 /* watchOSApp */,
+				1AFD4F07E20441C06E2D3E76 /* watchOSAppExtension */,
 			);
 			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		508A645E342DFCEAA485D694 /* iOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				9AEAE98CDF4257171E1EFE64 /* iOSApp-intermediates */,
+				89A5597668B3DA128D0A9147 /* iOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision */,
+				1118895EBE141E30968A9104 /* iOSApp_entitlements.entitlements */,
+				A9ED7F0279D8C4E01358E285 /* Version.bundle_version */,
+			);
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		50F3CBAA6B16D0797DD0BEB7 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				1DB773A822A769C58C32A161 /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		527B5BD5AE74F6806AB07D51 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				E2C4D57E81D612EE2472E34C /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		5359277E4F1EDBCA7580280C /* tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c */ = {
+			isa = PBXGroup;
+			children = (
+				0F117BDAE46943A3C190B8BF /* bin */,
+			);
+			path = "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c";
+			sourceTree = "<group>";
+		};
+		554A707C5DC24B760B6E0045 /* watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb */ = {
+			isa = PBXGroup;
+			children = (
+				26B1F5B93536DCDA662EF8DE /* bin */,
+			);
+			path = "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb";
+			sourceTree = "<group>";
+		};
+		5CF0CFF4FA9E10B220850AE4 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				7AEE2E8C8CAEF8471E184230 /* Lib */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		5D1DB7AC35AEB55E46C7CECC /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6 */ = {
+			isa = PBXGroup;
+			children = (
+				88CCCF1DBFF7D7B7BD5FB77F /* bin */,
+			);
+			path = "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6";
+			sourceTree = "<group>";
+		};
+		5E4CA54BE237EBAA5C43B068 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				A6B3AB6691877451BCADD42A /* Lib.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		5FD802CD7308CAD1F48E63C4 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				ABB9F6E61801F4253522ED3C /* multiplatform */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		66AF467318FE29F05C5A6A60 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				5FD802CD7308CAD1F48E63C4 /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		6756B281BF93296168A53A69 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				9F642FCA3C2E870CBD940962 /* Lib */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		68E734CB5EA7C0A0261F5CD1 /* watchOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				2EF9BBD84A8A1D91268B27E0 /* watchOSApp-intermediates */,
+				A6A32E6D4A755E88A2E9DC0A /* iOS Team Provisioning Profile: io.buildbuddy.example.watch.mobileprovision */,
+				063155AA19E757FB2E40B426 /* watchOSApp_entitlements.entitlements */,
+				D77542B2B16F5AA77ECBB45D /* watchOSApp.zip */,
+			);
+			path = watchOSApp;
 			sourceTree = "<group>";
 		};
 		6AF936B6BAFAF10DCDAE73D3 /* rules_xcodeproj */ = {
@@ -353,44 +612,12 @@
 			path = test/fixtures/multiplatform/bwx.xcodeproj/rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		6BFF7A52282E6D7022E1F5D7 /* bin */ = {
+		76762D7D82988E8B7CE31E5B /* applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb */ = {
 			isa = PBXGroup;
 			children = (
-				369B561DC1EC2A19990447DD /* examples */,
+				527B5BD5AE74F6806AB07D51 /* bin */,
 			);
-			path = bin;
-			sourceTree = "<group>";
-		};
-		6D99B0195063D8EF7F1A1ABB /* watchOSAppExtension-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				FF30B348660D730EC96E364F /* Info.plist */,
-			);
-			path = "watchOSAppExtension-intermediates";
-			sourceTree = "<group>";
-		};
-		6E74EADC77596EAF6371C3E3 /* applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65 */ = {
-			isa = PBXGroup;
-			children = (
-				2EF6A9343B0F0B2A72A45CD3 /* bin */,
-			);
-			path = "applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
-			sourceTree = "<group>";
-		};
-		6E941F46C5B04969F1479729 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				501E1104293E357C177425D4 /* examples */,
-			);
-			path = bin;
-			sourceTree = "<group>";
-		};
-		6EC08E5A53687FA9CC96F847 /* applebin_watchos-watchos_i386-dbg-ST-f72632014f89 */ = {
-			isa = PBXGroup;
-			children = (
-				9BEBC21D7D96759CA9AB4C7A /* bin */,
-			);
-			path = "applebin_watchos-watchos_i386-dbg-ST-f72632014f89";
+			path = "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb";
 			sourceTree = "<group>";
 		};
 		77E0714FDD425211EBA209DF = {
@@ -404,36 +631,28 @@
 			);
 			sourceTree = "<group>";
 		};
-		7D841ED41AC2974590A9A357 /* watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89 */ = {
+		788180BBA932FD9F42C8A33C /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				6BFF7A52282E6D7022E1F5D7 /* bin */,
+				229CA558524FF425A6D49413 /* examples */,
 			);
-			path = "watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89";
+			path = bin;
 			sourceTree = "<group>";
 		};
-		849D22FB95BCA7F198F79EEC /* watchOSApp-intermediates */ = {
+		7AEE2E8C8CAEF8471E184230 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				32FEB66D7D8E818B2340CB47 /* Info.plist */,
-			);
-			path = "watchOSApp-intermediates";
-			sourceTree = "<group>";
-		};
-		85818D223161DDC8BAF43163 /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				009E681E4EEDAB1135CE4A68 /* Lib.swift */,
+				D5FCE773138D5956C3DA63B1 /* Lib.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
 		};
-		86988E459FE2AE775CA8E9B1 /* multiplatform */ = {
+		83E06E37A3B8784C524A9683 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				939BEB0CAE3982DB6E58F6EB /* Lib */,
+				EC9B2141A2F8DB9FB30E7E4D /* Lib.swift */,
 			);
-			path = multiplatform;
+			path = Lib;
 			sourceTree = "<group>";
 		};
 		86E3AA094AC3498BEDC1D673 /* examples */ = {
@@ -442,6 +661,14 @@
 				319735E3F7CB10A29474FC79 /* multiplatform */,
 			);
 			path = examples;
+			sourceTree = "<group>";
+		};
+		88CCCF1DBFF7D7B7BD5FB77F /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				A5BF50FC829B7AA72043FF78 /* examples */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		8BF3224C812615B4EFCA1E42 /* watchOSAppExtension */ = {
@@ -465,20 +692,20 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
-		92B352E7C3A6F28BCE78E11B /* examples */ = {
+		92118E3F55D17682F6B7FC26 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				54279F0C879FA2F87E677C19 /* multiplatform */,
-			);
-			path = examples;
-			sourceTree = "<group>";
-		};
-		939BEB0CAE3982DB6E58F6EB /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				7169AFBDF5B1DB47FAD7E0AF /* Lib.swift */,
+				2F21FCAE44DDA5EDE91D5188 /* Lib.swift */,
 			);
 			path = Lib;
+			sourceTree = "<group>";
+		};
+		961ED6ADC2B9E104A91F2E01 /* applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb */ = {
+			isa = PBXGroup;
+			children = (
+				1F3D330477AAFA7F28A0BEB2 /* bin */,
+			);
+			path = "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb";
 			sourceTree = "<group>";
 		};
 		97D37ED8A4B325E33973A8E0 /* tvOSApp */ = {
@@ -494,40 +721,52 @@
 			path = tvOSApp;
 			sourceTree = "<group>";
 		};
-		9B83EDC08B1B05D226D6AFAB /* watchOSApp */ = {
+		9A5B144A8784A07268533C2F /* watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb */ = {
 			isa = PBXGroup;
 			children = (
-				849D22FB95BCA7F198F79EEC /* watchOSApp-intermediates */,
-				2B069AB8FC46B5E3C68CF361 /* watchOSApp_entitlements.entitlements */,
-				81A2718CC1EF53E50BDD4909 /* watchOSApp.zip */,
+				788180BBA932FD9F42C8A33C /* bin */,
 			);
-			path = watchOSApp;
+			path = "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb";
 			sourceTree = "<group>";
 		};
-		9BEBC21D7D96759CA9AB4C7A /* bin */ = {
+		9AEAE98CDF4257171E1EFE64 /* iOSApp-intermediates */ = {
 			isa = PBXGroup;
 			children = (
-				D4969B1F49009841C3A93B74 /* examples */,
+				B44E58BF339FE8A34DCABA92 /* Info.plist */,
 			);
-			path = bin;
+			path = "iOSApp-intermediates";
 			sourceTree = "<group>";
 		};
-		9EF6D95A1B4EA064EA04CF14 /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5 */ = {
+		9CF803DA058867C288E1E0BE /* applebin_ios-ios_x86_64-dbg-ST-765845ae47bc */ = {
 			isa = PBXGroup;
 			children = (
-				CAF52869E6E55DA6AF89FD83 /* bin */,
+				1BD77DEAD5D1BA8E6115916D /* bin */,
 			);
-			path = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5";
+			path = "applebin_ios-ios_x86_64-dbg-ST-765845ae47bc";
 			sourceTree = "<group>";
 		};
-		A3EFC5C6A37393D82140D078 /* multiplatform */ = {
+		9D2D2BEB46D81A0805ACBAFD /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc */ = {
 			isa = PBXGroup;
 			children = (
-				EEDF98B8EA8816E95972FAB4 /* iOSApp */,
-				9B83EDC08B1B05D226D6AFAB /* watchOSApp */,
-				1156F30F1563FA24E5AF4F9E /* watchOSAppExtension */,
+				24B7EF291367126A9C04DF56 /* bin */,
 			);
-			path = multiplatform;
+			path = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc";
+			sourceTree = "<group>";
+		};
+		9E2433BA7C067546498C21E6 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				74CE77708B3D15FA2BCAB0D6 /* Lib.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		9F642FCA3C2E870CBD940962 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				11D7F18CB59E0CCB2BAF3B4D /* Lib.swift */,
+			);
+			path = Lib;
 			sourceTree = "<group>";
 		};
 		A57288DAB6FF2B4F50A97F79 /* Lib */ = {
@@ -541,16 +780,56 @@
 		A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
-				2AF0ABDBE1BB727A046F3214 /* applebin_ios-ios_x86_64-dbg-ST-5497495606d5 */,
-				6E74EADC77596EAF6371C3E3 /* applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65 */,
-				6EC08E5A53687FA9CC96F847 /* applebin_watchos-watchos_i386-dbg-ST-f72632014f89 */,
-				9EF6D95A1B4EA064EA04CF14 /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5 */,
+				CA114BC0B6AB51C649C473B9 /* applebin_ios-ios_arm64-dbg-ST-0437e361c6ef */,
+				9CF803DA058867C288E1E0BE /* applebin_ios-ios_x86_64-dbg-ST-765845ae47bc */,
+				0C9B12A4C54888E97778ACC9 /* applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c */,
+				FAB477590E55837047256689 /* applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6 */,
+				76762D7D82988E8B7CE31E5B /* applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb */,
+				961ED6ADC2B9E104A91F2E01 /* applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb */,
+				0C5E4466FD2CD89AC20F5889 /* ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef */,
+				9D2D2BEB46D81A0805ACBAFD /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc */,
 				018565965359C2FA437EC773 /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee */,
-				DE6B2447BF66854774C64DA8 /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65 */,
-				7D841ED41AC2974590A9A357 /* watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89 */,
+				5359277E4F1EDBCA7580280C /* tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c */,
+				5D1DB7AC35AEB55E46C7CECC /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6 */,
+				9A5B144A8784A07268533C2F /* watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb */,
+				554A707C5DC24B760B6E0045 /* watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb */,
 			);
 			name = "Bazel Generated Files";
 			path = test/fixtures/multiplatform/bwx.xcodeproj/rules_xcodeproj/links/gen_dir;
+			sourceTree = "<group>";
+		};
+		A5BF50FC829B7AA72043FF78 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				D0D1EEEC2878FF6360775447 /* multiplatform */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		A9F47BBBD634E07EAF64EA0F /* iOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				39D87A5A264E30021DC8C220 /* iOSApp-intermediates */,
+				4394D806B344EB7C2A2BFC23 /* iOSApp_entitlements.entitlements */,
+				9122AA9420DF1DC7CEA6891D /* Version.bundle_version */,
+			);
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		ABB9F6E61801F4253522ED3C /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				BC8F118467DFEA3782E514FD /* tvOSApp */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		ABD4105E483B78AF33DF23D0 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				C4EC9DFAC543F34FBA674857 /* multiplatform */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 		AFFCA190B90EFBB2AA4EA33E /* Lib */ = {
@@ -559,6 +838,14 @@
 				64AE19447389D7B6B9BEC81E /* Lib.swift */,
 			);
 			path = Lib;
+			sourceTree = "<group>";
+		};
+		B0ED75F50BB31B36D89268D5 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				4B09747CFA1EF5B6B6A824E1 /* examples */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		B1C22B953DFF3FAC69F93BC4 /* watchOSApp */ = {
@@ -571,10 +858,28 @@
 			path = watchOSApp;
 			sourceTree = "<group>";
 		};
-		B5B7FCB8AF5FCBC6EA44B815 /* multiplatform */ = {
+		B635A19B972ADAE90FC9103E /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				248CD33B1AC0C310EB23D481 /* tvOSApp */,
+				145C5AC89D31CE37BE20F86E /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		BC8F118467DFEA3782E514FD /* tvOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				2D766DB12AD566485024A5EC /* tvOSApp-intermediates */,
+				61ABF5DB856CDA93091F8A21 /* tvOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision */,
+				C75CD97A5BBE066947F77FD2 /* tvOSApp_entitlements.entitlements */,
+			);
+			path = tvOSApp;
+			sourceTree = "<group>";
+		};
+		C4EC9DFAC543F34FBA674857 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				92118E3F55D17682F6B7FC26 /* Lib */,
 			);
 			path = multiplatform;
 			sourceTree = "<group>";
@@ -589,36 +894,36 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
-		CAF52869E6E55DA6AF89FD83 /* bin */ = {
+		C9864334AE10C1C3E9D76EB4 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
-				D698BFB4214C845A7811B61B /* examples */,
+				5E4CA54BE237EBAA5C43B068 /* Lib */,
 			);
-			path = bin;
+			path = multiplatform;
 			sourceTree = "<group>";
 		};
-		D4969B1F49009841C3A93B74 /* examples */ = {
+		CA114BC0B6AB51C649C473B9 /* applebin_ios-ios_arm64-dbg-ST-0437e361c6ef */ = {
 			isa = PBXGroup;
 			children = (
-				A3EFC5C6A37393D82140D078 /* multiplatform */,
+				B635A19B972ADAE90FC9103E /* bin */,
 			);
-			path = examples;
+			path = "applebin_ios-ios_arm64-dbg-ST-0437e361c6ef";
 			sourceTree = "<group>";
 		};
-		D5E0052030891D1D8C2C5182 /* iOSApp-intermediates */ = {
+		D0D1EEEC2878FF6360775447 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
-				646773A9CB58451F7E5016D2 /* Info.plist */,
+				83E06E37A3B8784C524A9683 /* Lib */,
 			);
-			path = "iOSApp-intermediates";
+			path = multiplatform;
 			sourceTree = "<group>";
 		};
-		D698BFB4214C845A7811B61B /* examples */ = {
+		D7CB36B23CA1D7E77A7F6DBB /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
-				003B1FF45748353B53E7DD1D /* multiplatform */,
+				A9F47BBBD634E07EAF64EA0F /* iOSApp */,
 			);
-			path = examples;
+			path = multiplatform;
 			sourceTree = "<group>";
 		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {
@@ -628,12 +933,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DE6B2447BF66854774C64DA8 /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65 */ = {
+		E2C4D57E81D612EE2472E34C /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				6E941F46C5B04969F1479729 /* bin */,
+				3003365308E1F4D12B29C496 /* multiplatform */,
 			);
-			path = "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
+			path = examples;
 			sourceTree = "<group>";
 		};
 		EA1035DE042E08B6C35B6612 /* bin */ = {
@@ -644,12 +949,12 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		EEDF98B8EA8816E95972FAB4 /* iOSApp */ = {
+		EE5D1F235DF67519E2675C7B /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				EF44979149CC54FEE49AA45C /* Version.bundle_version */,
+				4FA36AAF17EBD828DCFDC853 /* multiplatform */,
 			);
-			path = iOSApp;
+			path = examples;
 			sourceTree = "<group>";
 		};
 		EFCF0FAA8BD07C493E090211 /* PreviewContent */ = {
@@ -660,12 +965,20 @@
 			path = PreviewContent;
 			sourceTree = "<group>";
 		};
-		F3B0DD8A78BA9797EC8F201C /* multiplatform */ = {
+		F04BF1345516F4CDC39E91CC /* watchOSAppExtension-intermediates */ = {
 			isa = PBXGroup;
 			children = (
-				24914CB4D2F90D614600C373 /* Lib */,
+				C19F58FE14D703F8CF8FC2A4 /* Info.plist */,
 			);
-			path = multiplatform;
+			path = "watchOSAppExtension-intermediates";
+			sourceTree = "<group>";
+		};
+		F46BBA0B235BD3F2327EC454 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				FCF0F205756DD8D069527BA3 /* multiplatform */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 		F823FA05032576486D2A52A5 /* iOSApp */ = {
@@ -679,6 +992,22 @@
 				57DED4191C90C7A853FF2A4E /* iOSApp.swift */,
 			);
 			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		FAB477590E55837047256689 /* applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6 */ = {
+			isa = PBXGroup;
+			children = (
+				50F3CBAA6B16D0797DD0BEB7 /* bin */,
+			);
+			path = "applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6";
+			sourceTree = "<group>";
+		};
+		FCF0F205756DD8D069527BA3 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				9E2433BA7C067546498C21E6 /* Lib */,
+			);
+			path = multiplatform;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1002,8 +1331,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8540B3FC0EA014E060577822 /* Lib.swift in Sources */,
-				7DE3867E52D24D26F7A6A2EF /* Lib.swift in Sources */,
+				B98518DF701BEB6F1ECDA5DA /* Lib.swift in Sources */,
+				8D418AC3CAB6C0317F01D32C /* Lib.swift in Sources */,
+				C55C61B48E6639C5DE1D0F6C /* Lib.swift in Sources */,
+				5BCE16B7A966E33EC26E85C4 /* Lib.swift in Sources */,
 				16762E1B22A22974E02707C9 /* Lib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1021,7 +1352,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43CF9E54E6387851CDC75373 /* Lib.swift in Sources */,
+				9C82D1FC681569D5AFE20A25 /* Lib.swift in Sources */,
+				B9FB6AC70ED490614821F0E7 /* Lib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1100,13 +1432,17 @@
 		1FD7CBEE6F43F044E611614D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = i386;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/watchOSApp";
-				BAZEL_TARGET_ID = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_i386-dbg-ST-f72632014f89";
+				ARCHS = x86_64;
+				"ARCHS[sdk=watchos*]" = arm64_32;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp";
+				BAZEL_TARGET_ID = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/watchOSApp/watchOSApp_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/watchOSApp_entitlements.entitlements";
+				"CODE_SIGN_ENTITLEMENTS[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp_entitlements.entitlements";
 				DEPLOYMENT_LOCATION = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1115,7 +1451,8 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
 				OTHER_CFLAGS = (
 					"-fstack-protector",
 					"-Wall",
@@ -1150,7 +1487,7 @@
 				PRODUCT_MODULE_NAME = _watchOSApp_Stub;
 				PRODUCT_NAME = watchOSApp;
 				SDKROOT = watchos;
-				SUPPORTED_PLATFORMS = watchsimulator;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1175,12 +1512,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/iOSApp";
-				BAZEL_TARGET_ID = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-5497495606d5";
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp";
+				BAZEL_TARGET_ID = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-765845ae47bc";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-0437e361c6ef";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/iOSApp/iOSApp_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/iOSApp_entitlements.entitlements";
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp_entitlements.entitlements";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -1192,7 +1533,8 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1224,7 +1566,12 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5/examples/multiplatform/iOSApp/iOSApp.LinkFileList",
+					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/examples/multiplatform/iOSApp/iOSApp.LinkFileList",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-filelist",
+					"$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/examples/multiplatform/iOSApp/iOSApp.LinkFileList",
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
@@ -1232,9 +1579,10 @@
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/Lib";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/Lib";
+				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/Lib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1247,12 +1595,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/tvOSApp";
-				BAZEL_TARGET_ID = "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
+				"ARCHS[sdk=appletvos*]" = arm64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp";
+				BAZEL_TARGET_ID = "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/tvOSApp/tvOSApp_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/tvOSApp_entitlements.entitlements";
+				"CODE_SIGN_ENTITLEMENTS[sdk=appletvos*]" = "$(GEN_DIR)/applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/tvOSApp_entitlements.entitlements";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -1264,7 +1616,8 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=appletvos*]" = "$(GEN_DIR)/applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.xcode.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1295,7 +1648,12 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/examples/multiplatform/tvOSApp/tvOSApp.LinkFileList",
+					"$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/examples/multiplatform/tvOSApp/tvOSApp.LinkFileList",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[sdk=appletvos*]" = (
+					"-filelist",
+					"$(INTERNAL_DIR)/targets/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/examples/multiplatform/tvOSApp/tvOSApp.LinkFileList",
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
@@ -1303,9 +1661,10 @@
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = tvOSApp;
 				SDKROOT = appletvos;
-				SUPPORTED_PLATFORMS = appletvsimulator;
+				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/Lib";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/Lib";
+				"SWIFT_INCLUDE_PATHS[sdk=appletvos*]" = "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/Lib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1317,13 +1676,20 @@
 		BD961BB3494F78569D130037 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = i386;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/Lib";
-				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89";
+				ARCHS = x86_64;
+				"ARCHS[sdk=watchos*]" = arm64_32;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/Lib";
+				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = (
+					"$(WATCHOS_FILES)",
+					"$(WATCHSIMULATOR_FILES)",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1332,6 +1698,9 @@
 					"__TIME__=\"redacted\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INCLUDED_SOURCE_FILE_NAMES = "";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
 				OTHER_CFLAGS = (
 					"-fstack-protector",
 					"-Wall",
@@ -1361,13 +1730,15 @@
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
-				SUPPORTED_PLATFORMS = watchsimulator;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = Lib;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+				WATCHOS_FILES = "$(GEN_DIR)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/Lib/Lib.swift";
+				WATCHSIMULATOR_FILES = "$(GEN_DIR)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib/Lib.swift";
 			};
 			name = Debug;
 		};
@@ -1469,13 +1840,17 @@
 		E24D61DAE8AAF7A0E7388B78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = i386;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/watchOSAppExtension";
-				BAZEL_TARGET_ID = "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_i386-dbg-ST-f72632014f89";
+				ARCHS = x86_64;
+				"ARCHS[sdk=watchos*]" = arm64_32;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension";
+				BAZEL_TARGET_ID = "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements";
+				"CODE_SIGN_ENTITLEMENTS[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -1487,7 +1862,8 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.xcode.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1519,7 +1895,12 @@
 				);
 				OTHER_LDFLAGS = (
 					"-filelist",
-					"$(INTERNAL_DIR)/targets/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.LinkFileList",
+					"$(INTERNAL_DIR)/targets/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.LinkFileList",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[sdk=watchos*]" = (
+					"-filelist",
+					"$(INTERNAL_DIR)/targets/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.LinkFileList",
 					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
@@ -1527,9 +1908,10 @@
 				PRODUCT_MODULE_NAME = watchOSAppExtension;
 				PRODUCT_NAME = watchOSAppExtension;
 				SDKROOT = watchos;
-				SUPPORTED_PLATFORMS = watchsimulator;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/Lib";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib";
+				"SWIFT_INCLUDE_PATHS[sdk=watchos*]" = "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/Lib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1541,20 +1923,29 @@
 		F4CBCBA247D8820D4F9F15E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLETVSIMULATOR_FILES = "$(GEN_DIR)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/Lib/Lib.swift";
+				APPLETVOS_FILES = "$(GEN_DIR)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/Lib/Lib.swift";
+				APPLETVSIMULATOR_FILES = "$(GEN_DIR)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/Lib/Lib.swift";
 				ARCHS = x86_64;
+				"ARCHS[sdk=appletvos*]" = arm64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib";
-				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvsimulator*]" = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/Lib";
-				"BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]" = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/Lib";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/Lib";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvsimulator*]" = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/Lib";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/Lib";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]" = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/Lib";
 				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee";
-				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c";
+				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = (
+					"$(APPLETVOS_FILES)",
 					"$(APPLETVSIMULATOR_FILES)",
+					"$(IPHONEOS_FILES)",
 					"$(IPHONESIMULATOR_FILES)",
 					"$(MACOSX_FILES)",
 				);
@@ -1567,11 +1958,14 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvsimulator*]" = "$(APPLETVSIMULATOR_FILES)";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				IPHONESIMULATOR_FILES = "$(GEN_DIR)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/Lib/Lib.swift";
+				IPHONEOS_FILES = "$(GEN_DIR)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/Lib/Lib.swift";
+				IPHONESIMULATOR_FILES = "$(GEN_DIR)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/Lib/Lib.swift";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MACOSX_FILES = "$(GEN_DIR)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib/Lib.swift";
 				OTHER_CFLAGS = (
@@ -1603,7 +1997,7 @@
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphonesimulator appletvsimulator";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos appletvsimulator appletvos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

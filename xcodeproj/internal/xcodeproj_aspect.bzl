@@ -37,6 +37,10 @@ def _transitive_infos(*, ctx):
 # Aspect
 
 def _xcodeproj_aspect_impl(target, ctx):
+    # Don't create an `XcodeProjInfo` if the target already created one
+    if XcodeProjInfo in target:
+        return []
+
     return [
         create_xcodeprojinfo(
             ctx = ctx,

@@ -256,7 +256,6 @@ def _xcodeproj_impl(ctx):
     infos = [
         dep[XcodeProjInfo]
         for dep in ctx.attr.targets
-        if XcodeProjInfo in dep
     ]
     configuration = get_configuration(ctx = ctx)
     inputs = input_files.merge(
@@ -300,7 +299,6 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
-            # configuration = depset([configuration_file]),
             **dicts.add(
                 input_files.to_output_groups_fields(
                     ctx = ctx,
@@ -344,6 +342,7 @@ def make_xcodeproj_rule(
             mandatory = True,
             allow_empty = False,
             aspects = [xcodeproj_aspect],
+            providers = [XcodeProjInfo],
         ),
         "toplevel_cache_buster": attr.label_list(
             allow_empty = True,
