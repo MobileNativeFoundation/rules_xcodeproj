@@ -1,4 +1,5 @@
 import CryptoKit
+import OrderedCollections
 import XcodeProj
 
 /// A `struct` containing values for a target that need to be unique in the eyes
@@ -11,34 +12,40 @@ import XcodeProj
 /// formatted in a readable way.
 struct DisambiguatedTarget: Equatable {
     let name: String
-    let target: Target
+    let target: ConsolidatedTarget
 }
 
 struct DisambiguatedTargets: Equatable {
-    let targets: [TargetID: DisambiguatedTarget]
+    let keys: [TargetID: ConsolidatedTarget.Key]
+    let targets: [ConsolidatedTarget.Key: DisambiguatedTarget]
 }
 
 extension Generator {
     static func disambiguateTargets(
-        _ targets: [TargetID: Target]
+        _ consolidatedTargets: ConsolidatedTargets
     ) -> DisambiguatedTargets {
+        let targets = consolidatedTargets.targets
+
         // Gather all information needed to distinguish the targets
         var labelsByName: [String: Set<String>] = [:]
         var names: [String: TargetComponents] = [:]
         var labels: [String: TargetComponents] = [:]
-        for target in targets.values {
+        for (key, target) in targets {
             let normalizedName = target.normalizedName
             let normalizedLabel = target.normalizedLabel
             labelsByName[normalizedName, default: []].insert(normalizedLabel)
-            names[normalizedName, default: .init()].add(target: target)
-            labels[normalizedLabel, default: .init()].add(target: target)
+            names[normalizedName, default: .init()]
+                .add(target: target, key: key)
+            labels[normalizedLabel, default: .init()]
+                .add(target: target, key: key)
         }
 
         // And then distinguish them
-        var uniqueValues = Dictionary<TargetID, DisambiguatedTarget>(
-            minimumCapacity: targets.count
-        )
-        for (id, target) in targets {
+        var uniqueValues = Dictionary<
+            ConsolidatedTarget.Key,
+            DisambiguatedTarget
+        >(minimumCapacity: targets.count)
+        for (key, target) in targets {
             let name: String
             let componentKey: String
             let components: [String: TargetComponents]
@@ -53,45 +60,62 @@ extension Generator {
                 components = labels
             }
 
-            uniqueValues[id] = DisambiguatedTarget(
+            uniqueValues[key] = DisambiguatedTarget(
                 name: components[componentKey]!
-                    .uniqueName(for: target, baseName: name),
+                    .uniqueName(for: target, key: key, baseName: name),
                 target: target
             )
         }
 
         return DisambiguatedTargets(
+            keys: consolidatedTargets.keys,
             targets: uniqueValues
         )
     }
 }
 
 struct TargetComponents {
+    /// The set of `ConsolidatedTarget.Key`s among the targets passed to
+    /// `add(target:key:)`.
+    private var targetKeys: Set<ConsolidatedTarget.Key> = []
+
     /// Maps target product type names to `ProductTypeComponents`.
     ///
-    /// For each product type name among the `Target`s passed to `add(target:)`,
-    /// there will be an entry in `productTypes`.
-    /// `ProductTypeComponents.add(target:)` will have been called for each
-    /// `Target`.
+    /// For each product type name among the `ConsolidatedTarget`s passed to
+    /// `add(target:key:)`, there will be an entry in `productTypes`.
+    /// `ProductTypeComponents.add(target:key:)` will have been called for each
+    /// `ConsolidatedTarget`.
     private var productTypes: [String: ProductTypeComponents] = [:]
 
     /// Adds another `Target` into consideration for `uniqueName()`.
-    mutating func add(target: Target) {
+    mutating func add(target: ConsolidatedTarget, key: ConsolidatedTarget.Key) {
+        targetKeys.insert(key)
         productTypes[target.product.type.prettyName, default: .init()]
-            .add(target: target)
+            .add(target: target, key: key)
     }
 
     /// Returns a unique name for the given `Target`.
     ///
-    /// - Precondition: All targets have been added with `add(target:)` before
-    ///   this is called.
-    func uniqueName(for target: Target, baseName: String) -> String {
+    /// - Precondition: All targets have been added with `add(target:key:)`
+    ///   before this is called.
+    func uniqueName(
+        for target: ConsolidatedTarget,
+        key: ConsolidatedTarget.Key,
+        baseName: String
+    ) -> String {
+        // If all changes are within the same consolidated target, we don't
+        // need to show any distinguishers
+        guard targetKeys.count > 1 else {
+            return baseName
+        }
+
         // TODO: Handle same name at different parts in the build graph?
         // This shouldn't happen for modules (though maybe with the new renaming
         // stuff in Swift it can?), but could for bundles.
         let distinguishers = productTypes[target.product.type.prettyName]!
             .distinguishers(
                 target: target,
+                key: key,
                 includeProductType: productTypes.count > 1
             )
 
@@ -108,13 +132,13 @@ struct TargetComponents {
 struct ProductTypeComponents {
     /// Maps operating system names to `OperatingSystemComponents`.
     ///
-    /// For each operating system name among the `Target`s passed to
-    /// `add(target:)`, there will be an entry in `oses`.
-    /// `OperatingSystemComponents.add(target:)` will have been called for each
-    /// `Target`.
+    /// For each operating system name among the `ConsolidatedTarget`s passed to
+    /// `add(target:key:)`, there will be an entry in `oses`.
+    /// `OperatingSystemComponents.add(target:consolidatedKey:)` will have been
+    /// called for each `ConsolidatedTarget`.
     private var oses: [Platform.OS: OperatingSystemComponents] = [:]
 
-    /// A count of `Target.distinguisherKey`s seen in `add(target:)`.
+    /// A count of `Target.distinguisherKey`s seen in `add(target:key:)`.
     ///
     /// If the count for a `distinguisherKey` is greater than one, then targets
     /// that have that key will have their configuration returned from
@@ -122,27 +146,34 @@ struct ProductTypeComponents {
     private var distinguisherKeys: [String: Int] = [:]
 
     /// Adds another `Target` into consideration for `distinguishers()`.
-    mutating func add(target: Target) {
-        oses[target.platform.os, default: .init()].add(target: target)
-        distinguisherKeys[target.distinguisherKey, default: 0] += 1
+    mutating func add(target: ConsolidatedTarget, key: ConsolidatedTarget.Key) {
+        for target in target.targets.values {
+            oses[target.platform.os, default: .init()]
+                .add(target: target, consolidatedKey: key)
+            distinguisherKeys[target.distinguisherKey, default: 0] += 1
+        }
     }
 
     /// Generates an array of user-facing strings that, along with a target
     /// name, uniquely distinguishes it from targets with the same non-
     /// distinguished name.
     ///
-    /// - Precondition: All targets have been added with `add(target:)` before
-    ///   this is called.
+    /// - Precondition: All targets have been added with `add(target:key:)`
+    ///   before this is called.
     ///
     /// - Parameters:
-    ///   - target: The `Target` to generate a distinguisher for.
+    ///   - target: The `ConsolidatedTarget` to generate a distinguisher for.
+    ///   - key: The `ConsolidatedTarget.Key` for `target`.
     ///   - includeProductType: If `true`, the product type will be part of the
     ///     array returned.
     func distinguishers(
-        target: Target,
+        target: ConsolidatedTarget,
+        key: ConsolidatedTarget.Key,
         includeProductType: Bool
     ) -> [String] {
         var distinguishers: [String] = []
+        var consolidatedDistinguishers: OrderedSet<String> = []
+        let targets = target.sortedTargets
 
         if includeProductType {
             distinguishers.append(target.product.type.prettyName)
@@ -155,30 +186,63 @@ struct ProductTypeComponents {
             // components. We will show a shorted configuration hash instead,
             // which will be unique.
             if includeOS {
+                consolidatedDistinguishers.append(
+                    contentsOf: targets.map(\.platform.os.prettyName)
+                )
                 distinguishers.append(
-                    target.platform.os.prettyName
+                    consolidatedDistinguishers.joined(separator: ", ")
                 )
             }
 
-            distinguishers.append(
-                Target.prettyConfiguration(target.configuration)
-            )
+            distinguishers.append(prettyConfiguration(targets: targets))
 
             return distinguishers
         }
 
-        if let osDistinguisher = oses[target.platform.os]!.distinguisher(
-            target: target,
-            includeOS: includeOS
-        ) {
-            distinguishers.append(osDistinguisher)
+        for target in targets {
+            if let osDistinguisher = oses[target.platform.os]!.distinguisher(
+                target: target,
+                consolidatedKey: key,
+                includeOS: includeOS
+            ) {
+                consolidatedDistinguishers.append(osDistinguisher)
+            }
+        }
+
+        if !consolidatedDistinguishers.isEmpty {
+            distinguishers.append(
+                consolidatedDistinguishers.joined(separator: ", ")
+            )
         }
 
         return distinguishers
     }
 
-    private func needsConfigurationDistinguishing(target: Target) -> Bool {
-        return distinguisherKeys[target.distinguisherKey]! > 1
+    private func needsConfigurationDistinguishing(
+        target: ConsolidatedTarget
+    ) -> Bool {
+        return target.sortedTargets
+            .contains { distinguisherKeys[$0.distinguisherKey]! > 1 }
+    }
+
+    /// Returns a user-facing string for the configurations of a given set of
+    /// targets.
+    private func prettyConfiguration(targets: [Target]) -> String {
+        return Self.prettyConfigurations(targets.map(\.configuration))
+    }
+
+    /// Memoized configuration hashes.
+    private static var configurationHashes: [[String]: String] = [:]
+
+    static func prettyConfigurations(_ configurations: [String]) -> String {
+        if let hash = configurationHashes[configurations] {
+            return hash
+        }
+
+        let hash = String(configurations.sha1Hash().prefix(5))
+        configurationHashes[configurations] = hash
+
+        return hash
     }
 }
 
@@ -186,55 +250,87 @@ struct ProductTypeComponents {
 /// operating system name and provides the capability to generate a
 /// distinguisher string for any of the `Target`s it collected properties from.
 struct OperatingSystemComponents {
+    /// Collects which minimum versions each `ConsolidatedTarget` contains.
+    private var minimumVersionsByKeys: [ConsolidatedTarget.Key: Set<String>] =
+        [:]
+
+    /// Maps operating system minimum versions to
+    /// `VersionedOperatingSystemComponents`.
+    ///
     /// For operating system minimum versions among the `Target`s passed to
-    /// `add(target:)`, there will be an entry in `minimumVersions`.
-    /// `VersionedOperatingSystemComponents.add(target:)` will have been called
-    /// for each `Target`.
+    /// `add(target:consolidatedKey:)`, there will be an entry in
+    /// `minimumVersions`.
+    /// `VersionedOperatingSystemComponents.add(target:consolidatedKey:)` will
+    /// have been called for each `Target`.
     private var minimumVersions: [String: VersionedOperatingSystemComponents] =
         [:]
 
     /// Adds another `Target` into consideration for `distinguisher()`.
-    mutating func add(target: Target) {
+    mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
         let minimumVersion = target.platform.minimumOsVersion
 
-        minimumVersions[minimumVersion, default: .init()].add(target: target)
+        minimumVersionsByKeys[consolidatedKey, default: []]
+            .insert(minimumVersion)
+        minimumVersions[minimumVersion, default: .init()]
+            .add(target: target, consolidatedKey: consolidatedKey)
     }
 
     /// Potentially generates a user-facing string that, along with a target
     /// name, uniquely distinguishes it from targets with the same non-
     /// distinguished name.
     ///
-    /// - Precondition: All targets have been added with `add(target:)` before
-    ///   this is called.
+    /// - Precondition: All targets have been added with
+    ///   `add(target:consolidatedKey:)` before this is called.
     ///
     /// - Parameters:
     ///   - target: The `Target` to generate a distinguisher for.
-    ///   - includeOS: If `true`, the operating system name will be part of the
-    ///     string returned.
+    ///   - consolidatedKey: The `ConsolidatedTarget.Key` of the
+    ///     `ConsolidatedTarget` that `target` is a part of.
+    ///   - includeOS: If `true`, the operating system name will be
+    ///     part of the string returned.
     ///
     /// - Returns: `nil` if no distinguisher is needed.
-    func distinguisher(target: Target, includeOS: Bool) -> String? {
+    func distinguisher(
+        target: Target,
+        consolidatedKey: ConsolidatedTarget.Key,
+        includeOS: Bool
+    ) -> String? {
         var components: [String] = []
         let platform = target.platform
+        let os = platform.os
 
-        let includeVersion = minimumVersions.count > 1
+        // We hide all but the OS name if the differences are within a
+        // consolidated target
+        let needsSubcomponents = minimumVersionsByKeys.count > 1
 
-        let versionDistinguisher = minimumVersions[
-            target.platform.minimumOsVersion
-        ]!.distinguisher(
-            target: target,
-            includeVersion: includeVersion
-        )
+        let includeVersion = needsSubcomponents && minimumVersions.count > 1
 
-        if let prefix = versionDistinguisher.prefix {
+        let versionDistinguisher: VersionedOperatingSystemComponents
+            .Distinguisher?
+        if needsSubcomponents {
+            versionDistinguisher = minimumVersions[
+                target.platform.minimumOsVersion
+            ]!.distinguisher(
+                target: target,
+                includeVersion: includeVersion,
+                forceIncludeEnvironment: minimumVersionsByKeys[consolidatedKey]!
+                    .count > 1
+            )
+        } else {
+            versionDistinguisher = nil
+        }
+
+        if let prefix = versionDistinguisher?.prefix {
             components.append(prefix)
         }
 
         if includeOS || includeVersion {
-            components.append(platform.os.prettyName)
+            components.append(os.prettyName)
         }
 
-        components.append(contentsOf: versionDistinguisher.suffix)
+        if let suffix = versionDistinguisher?.suffix {
+            components.append(contentsOf: suffix)
+        }
 
         return components.isEmpty ? nil : components.joined(separator: " ")
     }
@@ -249,53 +345,73 @@ struct VersionedOperatingSystemComponents {
         let suffix: [String]
     }
 
+    /// The set of `ConsolidatedTarget.Key`s among the targets passed to
+    /// `add(target:consolidatedKey:)`.
+    private var consolidatedKeys: Set<ConsolidatedTarget.Key> = []
+
     /// Maps platform environments (e.g. "Simulator") to
     /// `EnvironmentSystemComponents`.
     ///
     /// For operating system minimum versions among the `Target`s passed to
-    /// `add(target:)`, there will be an entry in `environments`.
-    /// `EnvironmentSystemComponents.add(target:)` will have been called for
-    /// each `Target`.
+    /// `add(target:consolidatedKey:)`, there will be an entry in
+    /// `environments`.
+    /// `EnvironmentSystemComponents.add(target:consolidatedKey:)` will have
+    /// been called for each `Target`.
     private var environments: [String: EnvironmentSystemComponents] = [:]
 
     /// Adds another `Target` into consideration for `distinguisher()`.
-    mutating func add(target: Target) {
+    mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
+        consolidatedKeys.insert(consolidatedKey)
         environments[target.platform.environment ?? "Device", default: .init()]
-            .add(target: target)
+            .add(target: target, consolidatedKey: consolidatedKey)
     }
 
     /// Potentially generates user-facing strings that, along with a target
     /// name and previous component distinguishers, uniquely distinguishes it
     /// from targets with the same non-distinguished name.
     ///
-    /// - Precondition: All targets have been added with `add(target:)` before
-    ///   this is called.
+    /// - Precondition: All targets have been added with
+    ///   `add(target:consolidatedKey:)` before this is called.
     ///
     /// - Parameters:
     ///   - target: The `Target` to generate a distinguisher for.
     ///   - includeVersion: If `true`, the operating system version will be
     ///     part of the `Distinguisher` returned.
+    ///   - forceIncludeEnvironment: If `true`, the platform environment will be
+    ///     part of the `Distinguisher` returned.
     func distinguisher(
         target: Target,
-        includeVersion: Bool
+        includeVersion: Bool,
+        forceIncludeEnvironment: Bool
     ) -> Distinguisher {
         let platform = target.platform
 
-        let environmentDistinguisher = environments[
-                platform.environment ?? "Device"
-        ]!.distinguisher(
-            target: target,
-            includeEnvironment: environments.count > 1
-        )
+        // We hide all but the OS version if the differences are within a
+        // consolidated target
+        let needsSubcomponents = forceIncludeEnvironment ||
+            consolidatedKeys.count > 1
 
-        let prefix = environmentDistinguisher.prefix
+        let environmentDistinguisher: EnvironmentSystemComponents.Distinguisher?
+        if needsSubcomponents {
+            environmentDistinguisher = environments[
+                platform.environment ?? "Device"
+            ]!.distinguisher(
+                target: target,
+                includeEnvironment: forceIncludeEnvironment ||
+                    environments.count > 1
+            )
+        } else {
+            environmentDistinguisher = nil
+        }
+
+        let prefix = environmentDistinguisher?.prefix
 
         var suffix: [String] = []
 
         if includeVersion {
             suffix.append(platform.minimumOsVersion)
         }
-        if let environmentSuffix = environmentDistinguisher.suffix {
+        if let environmentSuffix = environmentDistinguisher?.suffix {
             suffix.append(environmentSuffix)
         }
 
@@ -312,20 +428,28 @@ struct EnvironmentSystemComponents {
         let suffix: String?
     }
 
-    /// The set of architectures among the targets passed to `add(target:)`.
+    /// The set of `ConsolidatedTarget.Key`s among the targets passed to
+    /// `add(target:consolidatedKey:)`.
+    private var consolidatedKeys: Set<ConsolidatedTarget.Key> = []
+
+    /// The set of architectures among the targets passed to
+    /// `add(target:consolidatedKey:)`.
     private var archs: Set<String> = []
 
     /// Adds another `Target` into consideration for `distinguisher()`.
-    mutating func add(target: Target) {
-        archs.insert(target.platform.arch)
+    mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
+        let platform = target.platform
+
+        consolidatedKeys.insert(consolidatedKey)
+        archs.insert(platform.arch)
     }
 
     /// Potentially generates user-facing strings that, along with a target
     /// name and previous component distinguishers, uniquely distinguishes it
     /// from targets with the same non-distinguished name.
     ///
-    /// - Precondition: All targets have been added with `add(target:)`
-    ///   before this is called.
+    /// - Precondition: All targets have been added with
+    ///   `add(target:consolidatedKey:)` before this is called.
     ///
     /// - Parameters:
     ///   - target: The `Target` to generate a distinguisher for.
@@ -337,27 +461,14 @@ struct EnvironmentSystemComponents {
     ) -> Distinguisher {
         let platform = target.platform
 
-        let prefix = archs.count > 1 ? platform.arch : nil
+        // We hide all but the OS version if the differences are within a
+        // consolidated target
+        let needsSubcomponents = consolidatedKeys.count > 1
+
+        let prefix = needsSubcomponents && archs.count > 1 ? platform.arch : nil
         let suffix = includeEnvironment ? platform.environment ?? "Device" : nil
 
         return Distinguisher(prefix: prefix, suffix: suffix)
-    }
-}
-
-extension Target {
-    /// Memoized configuration hashes.
-    private static var configurationHashes: [String: String] = [:]
-
-    /// Returns a user-facing string for a given configuration.
-    static func prettyConfiguration(_ configuration: String) -> String {
-        if let hash = configurationHashes[configuration] {
-            return hash
-        }
-
-        let hash = String(configuration.sha1Hash().prefix(5))
-        configurationHashes[configuration] = hash
-
-        return hash
     }
 }
 
@@ -386,11 +497,16 @@ private extension Platform.OS {
     }
 }
 
-private extension String {
-    /// Computes a sha1 hash string for this `String`.
+private extension Sequence where Element == String {
+    /// Computes a sha1 hash string for this `Sequence<String>`.
     func sha1Hash() -> String {
-        return Insecure.SHA1
-            .hash(data: data(using: .utf8)!)
+        var hasher = Insecure.SHA1()
+
+        for string in sorted() {
+            hasher.update(data: string.data(using: .utf8)!)
+        }
+
+        return hasher.finalize()
             .map { String(format: "%02x", $0) }
             .joined()
     }

@@ -584,6 +584,16 @@ private extension Inputs {
     var containsSources: Bool { !srcs.isEmpty || !nonArcSrcs.isEmpty }
 }
 
+private extension Outputs {
+    func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
+        if buildMode.usesBazelModeBuildScripts && swift != nil {
+            return [.internal(Generator.bazelForcedSwiftCompilePath)]
+        }
+
+        return []
+    }
+}
+
 private extension Path {
     var sourceTree: PBXSourceTree { isAbsolute ? .absolute : .group }
 }

@@ -237,6 +237,9 @@ struct ConsolidatedTarget: Equatable {
     /// `INCLUDED_SOURCE_FILE_NAMES` apply to.
     let uniqueFiles: [TargetID: Set<FilePath>]
 
+    /// Used for `dependencies()`.
+    private let dependencies: Set<TargetID>
+
     let targets: [TargetID: Target]
 
     /// There are a couple places that want to use the "best" target for a
@@ -248,6 +251,24 @@ struct ConsolidatedTarget: Equatable {
 extension ConsolidatedTarget.Key {
     init(_ targetIDs: Set<TargetID>) {
         self.targetIDs = targetIDs
+    }
+}
+
+extension ConsolidatedTarget {
+    func dependencies(
+        key: ConsolidatedTarget.Key,
+        keys: [TargetID: ConsolidatedTarget.Key]
+    ) throws -> Set<ConsolidatedTarget.Key> {
+        return Set(
+            try dependencies.map { targetID in
+                guard let dependencyKey = keys[targetID] else {
+                    throw PreconditionError(message: """
+Target \(key)'s dependency on "\(targetID)" not found in `keys`
+""")
+                }
+                return dependencyKey
+            }
+        )
     }
 }
 
@@ -291,6 +312,7 @@ extension ConsolidatedTarget {
         }
         self.uniqueFiles = uniqueFiles
 
+        dependencies = aTarget.dependencies
         outputs = ConsolidatedTargetOutputs(
             hasOutputs: self.targets.values.contains { $0.outputs.hasOutputs },
             hasSwiftOutputs: self.targets.values
@@ -405,6 +427,12 @@ struct ConsolidatedTargetLinkerInputs: Equatable {
 struct ConsolidatedTargetOutputs: Equatable {
     let hasOutputs: Bool
     let hasSwiftOutputs: Bool
+}
+
+// MARK: - Constant `ConsolidatedTarget.Key`s
+
+extension ConsolidatedTarget.Key {
+    static let bazelDependencies: Self = .init([TargetID("bazel_dependencies")])
 }
 
 // MARK: - Private extensions

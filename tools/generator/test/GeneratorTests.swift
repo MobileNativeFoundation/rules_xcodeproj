@@ -69,10 +69,11 @@ final class GeneratorTests: XCTestCase {
             ]
         )
         let disambiguatedTargets = DisambiguatedTargets(
+            keys: ["A": "A"],
             targets: [
                 "A": .init(
                     name: "A (3456a)",
-                    target: mergedTargets["Y"]!
+                    target: consolidatedTargets.targets["Y"]!
                 ),
             ]
         )
@@ -86,7 +87,7 @@ final class GeneratorTests: XCTestCase {
 
         let productsGroup = PBXGroup(name: "42")
         let bazelDependenciesTarget = PBXAggregateTarget(name: "BD")
-        let pbxTargets: [TargetID: PBXTarget] = [
+        let pbxTargets: [ConsolidatedTarget.Key: PBXTarget] = [
             "A": PBXNativeTarget(name: "A (3456a)"),
         ]
         let schemes = [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
@@ -227,24 +228,24 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
 
         struct CreateProductsCalled: Equatable {
             let pbxProj: PBXProj
-            let targets: [TargetID: Target]
+            let consolidatedTargets: ConsolidatedTargets
         }
 
         var createProductsCalled: [CreateProductsCalled] = []
         func createProducts(
             pbxProj: PBXProj,
-            targets: [TargetID: Target]
+            consolidatedTargets: ConsolidatedTargets
         ) -> (Products, PBXGroup) {
             createProductsCalled.append(.init(
                 pbxProj: pbxProj,
-                targets: targets
+                consolidatedTargets: consolidatedTargets
             ))
             return (products, productsGroup)
         }
 
         let expectedCreateProductsCalled = [CreateProductsCalled(
             pbxProj: pbxProj,
-            targets: mergedTargets
+            consolidatedTargets: consolidatedTargets
         )]
 
         // MARK: populateMainGroup()
@@ -281,21 +282,21 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         // MARK: disambiguateTargets()
 
         struct DisambiguateTargetsCalled: Equatable {
-            let targets: [TargetID: Target]
+            let consolidatedTargets: ConsolidatedTargets
         }
 
         var disambiguateTargetsCalled: [DisambiguateTargetsCalled] = []
         func disambiguateTargets(
-            targets: [TargetID: Target]
+            consolidatedTargets: ConsolidatedTargets
         ) -> DisambiguatedTargets {
             disambiguateTargetsCalled.append(.init(
-                targets: targets
+                consolidatedTargets: consolidatedTargets
             ))
             return disambiguatedTargets
         }
 
         let expectedDisambiguateTargetsCalled = [DisambiguateTargetsCalled(
-            targets: mergedTargets
+            consolidatedTargets: consolidatedTargets
         )]
 
         // MARK: addBazelDependenciesTarget()
@@ -362,7 +363,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             bazelDependenciesTarget: PBXAggregateTarget?
-        ) throws -> [TargetID: PBXTarget] {
+        ) throws -> [ConsolidatedTarget.Key: PBXTarget] {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
@@ -391,7 +392,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             let pbxProj: PBXProj
             let disambiguatedTargets: DisambiguatedTargets
             let buildMode: BuildMode
-            let pbxTargets: [TargetID: PBXTarget]
+            let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let filePathResolver: FilePathResolver
         }
 
@@ -400,7 +401,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             in pbxProj: PBXProj,
             for disambiguatedTargets: DisambiguatedTargets,
             buildMode: BuildMode,
-            pbxTargets: [TargetID: PBXTarget],
+            pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(
@@ -426,13 +427,13 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
 
         struct SetTargetDependenciesCalled: Equatable {
             let disambiguatedTargets: DisambiguatedTargets
-            let pbxTargets: [TargetID: PBXTarget]
+            let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         }
 
         var setTargetDependenciesCalled: [SetTargetDependenciesCalled] = []
         func setTargetDependencies(
             disambiguatedTargets: DisambiguatedTargets,
-            pbxTargets: [TargetID: PBXTarget]
+            pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         ) {
             setTargetDependenciesCalled.append(SetTargetDependenciesCalled(
                 disambiguatedTargets: disambiguatedTargets,
@@ -450,14 +451,14 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         struct CreateXCSchemesCalled: Equatable {
             let buildMode: BuildMode
             let filePathResolver: FilePathResolver
-            let pbxTargets: [TargetID: PBXTarget]
+            let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         }
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
             buildMode: BuildMode,
             filePathResolver: FilePathResolver,
-            pbxTargets: [TargetID: PBXTarget]
+            pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
                 buildMode: buildMode,

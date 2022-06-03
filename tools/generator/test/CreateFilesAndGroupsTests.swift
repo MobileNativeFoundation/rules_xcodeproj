@@ -106,6 +106,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedElements["a"]!,
             // Root group that holds "r1/X.txt" and others
             expectedElements["r1"]!,
+            expectedElements["T"]!,
             // Root group that holds "x/y.swift"
             expectedElements["x"]!,
             // Files are sorted below groups

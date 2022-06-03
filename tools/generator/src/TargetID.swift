@@ -8,7 +8,7 @@ struct TargetID: Equatable, Hashable, Decodable {
     }
 }
 
-// MARK: RawRepresentable
+// MARK: - RawRepresentable
 
 extension TargetID: RawRepresentable {
     init?(rawValue: String) {
@@ -16,7 +16,7 @@ extension TargetID: RawRepresentable {
     }
 }
 
-// MARK: Comparable
+// MARK: - Comparable
 
 extension TargetID: Comparable {
     static func < (lhs: TargetID, rhs: TargetID) -> Bool {
@@ -24,16 +24,10 @@ extension TargetID: Comparable {
     }
 }
 
-// MARK: CustomStringConvertible
+// MARK: - CustomStringConvertible
 
 extension TargetID: CustomStringConvertible {
     var description: String {
         return rawValue
     }
-}
-
-// MARK: Constant TargetIDs
-
-extension TargetID {
-    static let bazelDependencies = TargetID("bazel_dependencies")
 }

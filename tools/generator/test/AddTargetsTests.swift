@@ -16,7 +16,7 @@ final class AddTargetsTests: XCTestCase {
 
         let xcodeprojBazelLabel = "//:project"
         let xcodeprojConfiguration = "1234zyx"
-        let targets = Fixtures.targets
+        let consolidatedTargets = Fixtures.consolidatedTargets
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
@@ -48,7 +48,9 @@ final class AddTargetsTests: XCTestCase {
             xcodeprojConfiguration: xcodeprojConfiguration
         )
 
-        let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)
+        let disambiguatedTargets = Fixtures.disambiguatedTargets(
+            consolidatedTargets
+        )
         let expectedTargets = Fixtures.pbxTargets(
             in: expectedPBXProj,
             disambiguatedTargets: disambiguatedTargets,
@@ -75,20 +77,23 @@ final class AddTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(createdTargets, expectedTargets)
+        XCTAssertNoDifference(
+            createdTargets.map(KeyAndValue.init).sorted { $0.key < $1.key },
+            expectedTargets.map(KeyAndValue.init).sorted { $0.key < $1.key }
+        )
 
         // We only need the rest of the asserts if the targets are equivalent
         guard createdTargets == expectedTargets else { return }
 
-        for (id, target) in expectedTargets {
-            guard let createdTarget = createdTargets[id] else { continue }
+        for (key, target) in expectedTargets {
+            guard let createdTarget = createdTargets[key] else { continue }
             // The assert above won't tell us when the build phases are
             // different, and the assert below won't give us the context of
             // which target, so we assert here as well.
             XCTAssertNoDifference(
                 createdTarget.buildPhases,
                 target.buildPhases,
-                id.rawValue
+                "\(key)"
             )
         }
 

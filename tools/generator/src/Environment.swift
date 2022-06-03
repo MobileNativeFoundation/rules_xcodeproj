@@ -38,7 +38,7 @@ struct Environment {
 
     let createProducts: (
         _ pbxProj: PBXProj,
-        _ targets: [TargetID: Target]
+        _ consolidatedTargets: ConsolidatedTargets
     ) -> (Products, PBXGroup)
 
     let populateMainGroup: (
@@ -49,7 +49,7 @@ struct Environment {
     ) -> Void
 
     let disambiguateTargets: (
-        _ targets: [TargetID: Target]
+        _ consolidatedTargets: ConsolidatedTargets
     ) -> DisambiguatedTargets
 
     let addBazelDependenciesTarget: (
@@ -69,25 +69,25 @@ struct Environment {
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
         _ bazelDependenciesTarget: PBXAggregateTarget?
-    ) throws -> [TargetID: PBXTarget]
+    ) throws -> [ConsolidatedTarget.Key: PBXTarget]
 
     let setTargetConfigurations: (
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: DisambiguatedTargets,
         _ buildMode: BuildMode,
-        _ pbxTargets: [TargetID: PBXTarget],
+        _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ filePathResolver: FilePathResolver
     ) throws -> Void
 
     let setTargetDependencies: (
         _ disambiguatedTargets: DisambiguatedTargets,
-        _ pbxTargets: [TargetID: PBXTarget]
+        _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
     ) throws -> Void
 
     let createXCSchemes: (
         _ buildMode: BuildMode,
         _ filePathResolver: FilePathResolver,
-        _ pbxTargets: [TargetID: PBXTarget]
+        _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
     ) throws -> [XCScheme]
 
     let createXCSharedData: (_ schemes: [XCScheme]) -> XCSharedData

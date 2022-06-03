@@ -10,23 +10,23 @@ extension Generator {
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget?
-    ) throws -> [TargetID: PBXTarget] {
+    ) throws -> [ConsolidatedTarget.Key: PBXTarget] {
         let pbxProject = pbxProj.rootObject!
 
         let sortedDisambiguatedTargets = disambiguatedTargets.targets
             .sortedLocalizedStandard(\.value.name)
-        var pbxTargets = Dictionary<TargetID, PBXTarget>(
+        var pbxTargets = Dictionary<ConsolidatedTarget.Key, PBXTarget>(
             minimumCapacity: sortedDisambiguatedTargets.count
         )
-        for (id, disambiguatedTarget) in sortedDisambiguatedTargets {
+        for (key, disambiguatedTarget) in sortedDisambiguatedTargets {
             let target = disambiguatedTarget.target
             let inputs = target.inputs
             let outputs = target.outputs
             let productType = target.product.type
 
-            guard let product = products.byTarget[id] else {
+            guard let product = products.byTarget[key] else {
                 throw PreconditionError(message: """
-Product for target "\(id)" not found in `products`
+Product for target "\(key)" not found in `products`
 """)
             }
 
@@ -35,7 +35,7 @@ Product for target "\(id)" not found in `products`
                     in: pbxProj,
                     buildMode: buildMode,
                     productType: productType,
-                    productBasename: target.product.path.path.lastComponent,
+                    productBasename: target.product.basename,
                     outputs: outputs,
                     filePathResolver: filePathResolver
                 ),
@@ -55,8 +55,7 @@ Product for target "\(id)" not found in `products`
                 ),
                 try createCopyGeneratedHeaderScript(
                     in: pbxProj,
-                    isSwift: target.isSwift,
-                    buildSettings: target.buildSettings
+                    generatesSwiftHeader: target.generatesSwiftHeader
                 ),
                 try createFrameworksPhase(
                     in: pbxProj,
@@ -91,7 +90,7 @@ Product for target "\(id)" not found in `products`
             )
             pbxProj.add(object: pbxTarget)
             pbxProject.targets.append(pbxTarget)
-            pbxTargets[id] = pbxTarget
+            pbxTargets[key] = pbxTarget
 
             if let bazelDependenciesTarget = bazelDependenciesTarget {
                 _ = try pbxTarget.addDependency(target: bazelDependenciesTarget)
@@ -110,7 +109,7 @@ Product for target "\(id)" not found in `products`
         buildMode: BuildMode,
         productType: PBXProductType,
         productBasename: String,
-        outputs: Outputs,
+        outputs: ConsolidatedTargetOutputs,
         filePathResolver: FilePathResolver
     ) throws -> PBXShellScriptBuildPhase? {
         guard
@@ -139,7 +138,7 @@ Product for target "\(id)" not found in `products`
     private static func createHeadersPhase(
         in pbxProj: PBXProj,
         productType: PBXProductType,
-        inputs: Inputs,
+        inputs: ConsolidatedTargetInputs,
         files: [FilePath: File]
     ) throws -> PBXHeadersBuildPhase? {
         guard productType.isFramework else {
@@ -185,8 +184,8 @@ File "\(headerFile.filePath)" not found in `files`
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         productType: PBXProductType,
-        inputs: Inputs,
-        outputs: Outputs,
+        inputs: ConsolidatedTargetInputs,
+        outputs: ConsolidatedTargetOutputs,
         files: [FilePath: File]
     ) throws -> PBXSourcesBuildPhase? {
         let forcedBazelCompileFiles = outputs
@@ -235,13 +234,9 @@ File "\(sourceFile.filePath)" not found in `files`
 
     private static func createCopyGeneratedHeaderScript(
         in pbxProj: PBXProj,
-        isSwift: Bool,
-        buildSettings: [String: BuildSetting]
+        generatesSwiftHeader: Bool
     ) throws -> PBXShellScriptBuildPhase? {
-        guard
-            isSwift,
-            buildSettings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] != .string("")
-        else {
+        guard generatesSwiftHeader else {
             return nil
         }
 
@@ -308,7 +303,7 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
         buildMode: BuildMode,
         productType: PBXProductType,
         resourceBundles: Set<FilePath>,
-        inputs: Inputs,
+        inputs: ConsolidatedTargetInputs,
         products: Products,
         files: [FilePath: File]
     ) throws -> PBXResourcesBuildPhase? {
@@ -471,20 +466,45 @@ private extension Path {
     }
 }
 
-extension Outputs {
-    func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
-        guard buildMode.usesBazelModeBuildScripts else {
-            return []
+private extension ConsolidatedTarget {
+    var generatesSwiftHeader: Bool {
+        guard isSwift else {
+            return false
         }
 
-        if hasSwiftOutputs {
+        return targets.values.contains { target in
+            guard let headerBuildSetting = target
+                .buildSettings["SWIFT_OBJC_INTERFACE_HEADER_NAME"]
+            else {
+                // Not setting `SWIFT_OBJC_INTERFACE_HEADER_NAME` will cause
+                // the default `ModuleName-Swift.h` to be generated
+                return true
+            }
+            return headerBuildSetting != .string("")
+        }
+    }
+}
+
+private extension ConsolidatedTargetLinkerInputs {
+    var frameworks: [FilePath] {
+        return staticFrameworks + dynamicFrameworks
+    }
+
+    var embeddable: [FilePath] {
+        return dynamicFrameworks
+    }
+}
+
+private extension ConsolidatedTargetOutputs {
+    func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
+        if buildMode.usesBazelModeBuildScripts && hasSwiftOutputs {
             return [.internal(Generator.bazelForcedSwiftCompilePath)]
         }
 
         return []
     }
 
-    fileprivate var outputPaths: [String] {
+    var outputPaths: [String] {
         if hasSwiftOutputs {
             return [
                 "$(DERIVED_FILE_DIR)/\(Generator.bazelForcedSwiftCompilePath)",
@@ -494,7 +514,7 @@ extension Outputs {
         return []
     }
 
-    fileprivate func scriptCopyCommand(
+    func scriptCopyCommand(
         productType: PBXProductType,
         productBasename: String,
         filePathResolver: FilePathResolver

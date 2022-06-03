@@ -22,14 +22,6 @@ extension LinkerInputs {
             .union(Set(dynamicFrameworks.filter { $0.type != .generated }))
             .union(Set(staticLibraries.filter { $0.type != .generated }))
     }
-
-    var frameworks: [FilePath] {
-        return staticFrameworks + dynamicFrameworks
-    }
-
-    var embeddable: [FilePath] {
-        return dynamicFrameworks
-    }
 }
 
 // MARK: - Decodable

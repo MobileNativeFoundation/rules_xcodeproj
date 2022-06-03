@@ -210,21 +210,95 @@ enum Fixtures {
                 ]
             )
         ),
+        "T 1": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/T 1",
+            platform: .device(),
+            product: .init(
+                type: .staticLibrary,
+                name: "t",
+                path: .generated("T/T 1/T.a")
+            ),
+            isSwift: true,
+            inputs: .init(
+                srcs: ["T/T 1/Ta.swift", "T/Tb.swift"],
+                nonArcSrcs: ["T/T 1/Ta.c", "T/Tb.c"],
+                resources: [
+                    "T/T 1/Ta.png",
+                    "T/Tb.png",
+                ]
+            )
+        ),
+        "T 2": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/T 2",
+            platform: .simulator(),
+            product: .init(
+                type: .staticLibrary,
+                name: "t",
+                path: .generated("T/T 2/T.a")
+            ),
+            isSwift: true,
+            inputs: .init(
+                srcs: ["T/T 2/Ta.swift", "T/Tb.swift"],
+                nonArcSrcs: ["T/T 2/Ta.c", "T/Tb.c"],
+                resources: [
+                    "T/T 2/Ta.png",
+                    "T/Tb.png",
+                ]
+            )
+        ),
+        "T 3": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/T 3",
+            platform: .macOS(),
+            product: .init(
+                type: .staticLibrary,
+                name: "t",
+                path: .generated("T/T 3/T.a")
+            ),
+            isSwift: true,
+            inputs: .init(
+                srcs: ["T/T 3/Ta.swift", "T/Tb.swift"],
+                nonArcSrcs: ["T/T 3/Ta.c", "T/Tb.c"],
+                resources: [
+                    "T/T 3/Ta.png",
+                    "T/Tb.png",
+                ]
+            )
+        ),
     ]
 
+    static let consolidatedTargets = ConsolidatedTargets(
+        allTargets: targets,
+        keys: [
+            ["A 1"],
+            ["A 2"],
+            ["B 1"],
+            ["B 2"],
+            ["B 3"],
+            ["C 1"],
+            ["C 2"],
+            ["E1"],
+            ["E2"],
+            ["R 1"],
+            ["T 1", "T 2", "T 3"],
+        ]
+    )
+
     static func disambiguatedTargets(
-        _ targets: [TargetID: Target]
+        _ consolidatedTargets: ConsolidatedTargets
     ) -> DisambiguatedTargets {
-        var disambiguatedTargets = Dictionary<TargetID, DisambiguatedTarget>(
+        var disambiguatedTargets = Dictionary<
+            ConsolidatedTarget.Key, DisambiguatedTarget
+        >(
             minimumCapacity: targets.count
         )
-        for (id, target) in targets {
-            disambiguatedTargets[id] = DisambiguatedTarget(
-                name: "\(id.rawValue) (Distinguished)",
+        for (key, target) in consolidatedTargets.targets {
+            disambiguatedTargets[key] = DisambiguatedTarget(
+                name: "\(key) (Distinguished)",
                 target: target
             )
         }
         return DisambiguatedTargets(
+            keys: consolidatedTargets.keys,
             targets: disambiguatedTargets
         )
     }
@@ -443,7 +517,7 @@ enum Fixtures {
             path: "module.modulemap"
         )
 
-        // Parent of the 8 above
+        // a
 
         elements["a"] = PBXGroup(
             children: [
@@ -645,6 +719,121 @@ enum Fixtures {
             path: "r1"
         )
 
+        // T/T 1
+
+        elements["T/T 1/Ta.c"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.c",
+            path: "Ta.c"
+        )
+        elements["T/T 1/Ta.png"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "image.png",
+            path: "Ta.png"
+        )
+        elements["T/T 1/Ta.swift"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.swift",
+            path: "Ta.swift"
+        )
+
+        elements["T/T 1"] = PBXGroup(
+            children: [
+                elements["T/T 1/Ta.c"]!,
+                elements["T/T 1/Ta.png"]!,
+                elements["T/T 1/Ta.swift"]!,
+            ],
+            sourceTree: .group,
+            path: "T 1"
+        )
+
+        // T/T 2
+
+        elements["T/T 2/Ta.c"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.c",
+            path: "Ta.c"
+        )
+        elements["T/T 2/Ta.png"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "image.png",
+            path: "Ta.png"
+        )
+        elements["T/T 2/Ta.swift"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.swift",
+            path: "Ta.swift"
+        )
+
+        elements["T/T 2"] = PBXGroup(
+            children: [
+                elements["T/T 2/Ta.c"]!,
+                elements["T/T 2/Ta.png"]!,
+                elements["T/T 2/Ta.swift"]!,
+            ],
+            sourceTree: .group,
+            path: "T 2"
+        )
+
+        // T/T 3
+
+        elements["T/T 3/Ta.c"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.c",
+            path: "Ta.c"
+        )
+        elements["T/T 3/Ta.png"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "image.png",
+            path: "Ta.png"
+        )
+        elements["T/T 3/Ta.swift"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.swift",
+            path: "Ta.swift"
+        )
+
+        elements["T/T 3"] = PBXGroup(
+            children: [
+                elements["T/T 3/Ta.c"]!,
+                elements["T/T 3/Ta.png"]!,
+                elements["T/T 3/Ta.swift"]!,
+            ],
+            sourceTree: .group,
+            path: "T 3"
+        )
+
+        // T
+
+        elements["T/Tb.c"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.c",
+            path: "Tb.c"
+        )
+        elements["T/Tb.png"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "image.png",
+            path: "Tb.png"
+        )
+        elements["T/Tb.swift"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.swift",
+            path: "Tb.swift"
+        )
+
+        elements["T"] = PBXGroup(
+            children: [
+                elements["T/T 1"]!,
+                elements["T/T 2"]!,
+                elements["T/T 3"]!,
+                elements["T/Tb.c"]!,
+                elements["T/Tb.png"]!,
+                elements["T/Tb.swift"]!,
+            ],
+            sourceTree: .group,
+            path: "T"
+        )
+
         // `internal`/CompileStub.m
 
         elements[.internal("CompileStub.m")] = PBXFileReference(
@@ -763,8 +952,8 @@ a/imported.a
     ) -> Products {
         let products = Products([
             Products.ProductKeys(
-                target: "A 1",
-                filePath: .generated("z/A.a")
+                targetKey: "A 1",
+                filePaths: [.generated("z/A.a")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 name: "A.a",
@@ -773,8 +962,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "A 2",
-                filePath: .generated("z/A.app")
+                targetKey: "A 2",
+                filePaths: [.generated("z/A.app")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.application.fileType,
@@ -782,8 +971,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "B 1",
-                filePath: .generated("a/b.framework")
+                targetKey: "B 1",
+                filePaths: [.generated("a/b.framework")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.staticFramework.fileType,
@@ -791,8 +980,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "B 2",
-                filePath: .generated("B.xctest")
+                targetKey: "B 2",
+                filePaths: [.generated("B.xctest")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.unitTestBundle.fileType,
@@ -800,8 +989,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "B 3",
-                filePath: .generated("B3.xctest")
+                targetKey: "B 3",
+                filePaths: [.generated("B3.xctest")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.uiTestBundle.fileType,
@@ -809,8 +998,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "C 1",
-                filePath: .generated("a/c.a")
+                targetKey: "C 1",
+                filePaths: [.generated("a/c.a")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 name: "c.a",
@@ -819,8 +1008,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "C 2",
-                filePath: .generated("d")
+                targetKey: "C 2",
+                filePaths: [.generated("d")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.commandLineTool.fileType,
@@ -828,8 +1017,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "E1",
-                filePath: .generated("e1/E.a")
+                targetKey: "E1",
+                filePaths: [.generated("e1/E.a")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 name: "E.a",
@@ -838,8 +1027,8 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "E2",
-                filePath: .generated("e2/E.a")
+                targetKey: "E2",
+                filePaths: [.generated("e2/E.a")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 name: "E.a",
@@ -848,12 +1037,26 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
-                target: "R 1",
-                filePath: .generated("r1/R1.bundle")
+                targetKey: "R 1",
+                filePaths: [.generated("r1/R1.bundle")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.bundle.fileType,
                 path: "R1.bundle",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
+                targetKey: .init(["T 1", "T 2", "T 3"]),
+                filePaths: [
+                    .generated("T/T 1/T.a"),
+                    .generated("T/T 2/T.a"),
+                    .generated("T/T 3/T.a"),
+                ]
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                name: "T.a",
+                explicitFileType: "compiled.mach-o.dylib",
+                path: "bazel-out/T/T 3/T.a",
                 includeInIndex: false
             ),
         ])
@@ -884,6 +1087,7 @@ a/imported.a
                 products.byFilePath[.generated("e1/E.a")]!,
                 products.byFilePath[.generated("e2/E.a")]!,
                 products.byFilePath[.generated("r1/R1.bundle")]!,
+                products.byFilePath[.generated("T/T 3/T.a")]!,
             ],
             sourceTree: .group,
             name: "Products"
@@ -1110,7 +1314,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         products: Products,
         filePathResolver: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget
-    ) -> [TargetID: PBXTarget] {
+    ) -> [ConsolidatedTarget.Key: PBXTarget] {
         // Build phases
 
         func createGeneratedHeaderShellScript() -> PBXShellScriptBuildPhase {
@@ -1145,7 +1349,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
         let elements = files.mapValues(\.fileElement)
 
-        let buildPhases: [TargetID: [PBXBuildPhase]] = [
+        let buildPhases: [ConsolidatedTarget.Key: [PBXBuildPhase]] = [
             "A 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
@@ -1284,6 +1488,33 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                     ])
                 ),
             ],
+            .init(["T 1", "T 2", "T 3"]): [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: elements["T/T 1/Ta.swift"]!),
+                        PBXBuildFile(file: elements["T/T 2/Ta.swift"]!),
+                        PBXBuildFile(file: elements["T/T 3/Ta.swift"]!),
+                        PBXBuildFile(file: elements["T/Tb.swift"]!),
+                        PBXBuildFile(
+                            file: elements["T/T 1/Ta.c"]!,
+                            settings: ["COMPILER_FLAGS": "-fno-objc-arc"]
+                        ),
+                        PBXBuildFile(
+                            file: elements["T/T 2/Ta.c"]!,
+                            settings: ["COMPILER_FLAGS": "-fno-objc-arc"]
+                        ),
+                        PBXBuildFile(
+                            file: elements["T/T 3/Ta.c"]!,
+                            settings: ["COMPILER_FLAGS": "-fno-objc-arc"]
+                        ),
+                        PBXBuildFile(
+                            file: elements["T/Tb.c"]!,
+                            settings: ["COMPILER_FLAGS": "-fno-objc-arc"]
+                        ),
+                    ])
+                ),
+                createGeneratedHeaderShellScript(),
+            ],
         ]
         buildPhases.values.forEach { buildPhases in
             buildPhases.forEach { pbxProj.add(object: $0) }
@@ -1291,7 +1522,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
         // Targets
 
-        let pbxNativeTargets: [TargetID: PBXNativeTarget] = [
+        let pbxNativeTargets: [ConsolidatedTarget.Key: PBXNativeTarget] = [
             "A 1": PBXNativeTarget(
                 name: disambiguatedTargets.targets["A 1"]!.name,
                 buildPhases: buildPhases["A 1"] ?? [],
@@ -1362,6 +1593,14 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 product: products.byTarget["R 1"],
                 productType: .bundle
             ),
+            .init(["T 1", "T 2", "T 3"]): PBXNativeTarget(
+                name: disambiguatedTargets
+                    .targets[.init(["T 1", "T 2", "T 3"])]!.name,
+                buildPhases: buildPhases[.init(["T 1", "T 2", "T 3"])] ?? [],
+                productName: "t",
+                product: nil,
+                productType: .staticLibrary
+            ),
         ]
 
         _ = try! pbxNativeTargets["A 1"]!.addDependency(
@@ -1394,6 +1633,9 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         _ = try! pbxNativeTargets["R 1"]!.addDependency(
             target: bazelDependenciesTarget
         )
+        _ = try! pbxNativeTargets[.init(["T 1", "T 2", "T 3"])]!.addDependency(
+            target: bazelDependenciesTarget
+        )
 
         // The order target are added to `PBXProject`s matter for uuid fixing.
         for pbxTarget in pbxNativeTargets.values.sortedLocalizedStandard(\.name) {
@@ -1401,11 +1643,8 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             pbxProj.rootObject!.targets.append(pbxTarget)
         }
 
-        var pbxTargets = Dictionary(
-            uniqueKeysWithValues: pbxNativeTargets
-                .map { targetID, pbxTarget -> (TargetID, PBXTarget) in
-                    return (targetID, pbxTarget)
-                }
+        var pbxTargets = Dictionary<ConsolidatedTarget.Key, PBXTarget>(
+            uniqueKeysWithValues: pbxNativeTargets.map { $0 }
         )
         pbxTargets[.bazelDependencies] = bazelDependenciesTarget
 
@@ -1414,8 +1653,8 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
     static func pbxTargets(
         in pbxProj: PBXProj,
-        targets: [TargetID: Target]
-    ) -> ([TargetID: PBXTarget], DisambiguatedTargets) {
+        consolidatedTargets: ConsolidatedTargets
+    ) -> ([ConsolidatedTarget.Key: PBXTarget], DisambiguatedTargets) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
 
@@ -1436,7 +1675,9 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             xcodeprojConfiguration: "xyz321"
         )
 
-        let disambiguatedTargets = Fixtures.disambiguatedTargets(targets)
+        let disambiguatedTargets = Fixtures.disambiguatedTargets(
+            consolidatedTargets
+        )
         let pbxTargets = Fixtures.pbxTargets(
             in: pbxProj,
             disambiguatedTargets: disambiguatedTargets,
@@ -1451,11 +1692,11 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
     static func pbxTargetsWithConfigurations(
         in pbxProj: PBXProj,
-        targets: [TargetID: Target]
-    ) -> [TargetID: PBXTarget] {
+        consolidatedTargets: ConsolidatedTargets
+    ) -> [ConsolidatedTarget.Key: PBXTarget] {
         let (pbxTargets, _) = Fixtures.pbxTargets(
             in: pbxProj,
-            targets: targets
+            consolidatedTargets: consolidatedTargets
         )
 
         let baseAttributes: [String: Any] = [
@@ -1463,7 +1704,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             "LastSwiftMigration": 1320,
         ]
 
-        let attributes: [TargetID: [String: Any]] = [
+        let attributes: [ConsolidatedTarget.Key: [String: Any]] = [
             "A 1": baseAttributes,
             "A 2": baseAttributes,
             "B 1": baseAttributes,
@@ -1478,15 +1719,16 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             "E1": baseAttributes,
             "E2": baseAttributes,
             "R 1": baseAttributes,
+            .init(["T 1", "T 2", "T 3"]): baseAttributes,
         ]
 
         let pbxProject = pbxProj.rootObject!
-        for (id, targetAttributes) in attributes {
-            let pbxTarget = pbxTargets[id]!
+        for (key, targetAttributes) in attributes {
+            let pbxTarget = pbxTargets[key]!
             pbxProject.setTargetAttributes(targetAttributes, target: pbxTarget)
         }
 
-        let buildSettings: [TargetID: [String: Any]] = [
+        let buildSettings: [ConsolidatedTarget.Key: [String: Any]] = [
             "A 1": targets["A 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
@@ -1642,8 +1884,57 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["R 1"]!.name,
             ]) { $1 },
+            .init(["T 1", "T 2", "T 3"]): targets["T 1"]!.buildSettings
+                .asDictionary.merging(
+            [
+                "ARCHS": "arm64",
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/T 3",
+                "BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]": """
+bazel-out/a1b2c/bin/T 1
+""",
+                "BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]": """
+bazel-out/a1b2c/bin/T 2
+""",
+                "BAZEL_TARGET_ID": "T 3",
+                "BAZEL_TARGET_ID[sdk=iphoneos*]": "T 1",
+                "BAZEL_TARGET_ID[sdk=iphonesimulator*]": "T 2",
+                "EXCLUDED_SOURCE_FILE_NAMES": [
+                    "$(IPHONEOS_FILES)",
+                    "$(IPHONESIMULATOR_FILES)",
+                    "$(MACOSX_FILES)",
+                ],
+                "GENERATE_INFOPLIST_FILE": "YES",
+                "INCLUDED_SOURCE_FILE_NAMES": "",
+                "INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]": """
+$(IPHONEOS_FILES)
+""",
+                "INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]": """
+$(IPHONESIMULATOR_FILES)
+""",
+                "INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]": """
+$(MACOSX_FILES)
+""",
+                "IPHONEOS_FILES": [
+                    "$(PROJECT_DIR)/T/T 1/Ta.c",
+                    "$(PROJECT_DIR)/T/T 1/Ta.png",
+                    "$(PROJECT_DIR)/T/T 1/Ta.swift",
+                ],
+                "IPHONESIMULATOR_FILES": [
+                    "$(PROJECT_DIR)/T/T 2/Ta.c",
+                    "$(PROJECT_DIR)/T/T 2/Ta.png",
+                    "$(PROJECT_DIR)/T/T 2/Ta.swift",
+                ],
+                "MACOSX_FILES": [
+                    "$(PROJECT_DIR)/T/T 3/Ta.c",
+                    "$(PROJECT_DIR)/T/T 3/Ta.png",
+                    "$(PROJECT_DIR)/T/T 3/Ta.swift",
+                ],
+                "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
+                "TARGET_NAME": targets["T 1"]!.name,
+            ]) { $1 }
         ]
-        for (id, buildSettings) in buildSettings {
+        for (key, buildSettings) in buildSettings {
             let debugConfiguration = XCBuildConfiguration(
                 name: "Debug",
                 buildSettings: buildSettings
@@ -1654,7 +1945,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 defaultConfigurationName: debugConfiguration.name
             )
             pbxProj.add(object: configurationList)
-            pbxTargets[id]!.buildConfigurationList = configurationList
+            pbxTargets[key]!.buildConfigurationList = configurationList
         }
 
         return pbxTargets
@@ -1662,9 +1953,12 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 
     static func pbxTargetsWithDependencies(
         in pbxProj: PBXProj,
-        targets: [TargetID: Target]
-    ) -> [TargetID: PBXTarget] {
-        let (pbxTargets, _) = Fixtures.pbxTargets(in: pbxProj, targets: targets)
+        consolidatedTargets: ConsolidatedTargets
+    ) -> [ConsolidatedTarget.Key: PBXTarget] {
+        let (pbxTargets, _) = Fixtures.pbxTargets(
+            in: pbxProj,
+            consolidatedTargets: consolidatedTargets
+        )
 
         _ = try! pbxTargets.nativeTarget("A 2")!
             .addDependency(target: pbxTargets["A 1"]!)
