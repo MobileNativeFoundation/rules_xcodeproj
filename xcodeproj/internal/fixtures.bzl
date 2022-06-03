@@ -4,7 +4,6 @@ load(":providers.bzl", "XcodeProjOutputInfo")
 load(
     ":xcodeproj.bzl",
     "make_xcodeproj_rule",
-    "make_xcodeproj_transition",
     "xcodeproj",
 )
 
@@ -21,7 +20,7 @@ def _fixtures_transition_impl(_settings, _attr):
         "//command_line_option:watchos_minimum_os": "7.6.2",
     }
 
-_fixtures_transition = make_xcodeproj_transition(
+_fixtures_transition = transition(
     implementation = _fixtures_transition_impl,
     inputs = [],
     outputs = [
@@ -98,7 +97,7 @@ def update_fixtures(**kwargs):
     )
 
 _fixture_xcodeproj = make_xcodeproj_rule(
-    transition = _fixtures_transition,
+    xcodeproj_transition = _fixtures_transition,
 )
 
 def fixture_output_name(fixture_name):

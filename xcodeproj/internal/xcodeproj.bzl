@@ -189,12 +189,12 @@ def _write_installer(
 
 # Transition
 
-def make_xcodeproj_transition(
+def make_target_transition(
         implementation = None,
         inputs = [],
         outputs = []):
-    def _xcodeproj_transition_impl(settings, attr):
-        """Transition that applies command-line settings for the xcodeproj rule."""
+    def _target_transition_impl(settings, attr):
+        """Transition that applies command-line settings for xcodeproj targets."""
 
         # Apply the other transition first
         if implementation:
@@ -241,7 +241,7 @@ def make_xcodeproj_transition(
     )
 
     return transition(
-        implementation = _xcodeproj_transition_impl,
+        implementation = _target_transition_impl,
         inputs = merged_inputs,
         outputs = merged_outputs,
     )
@@ -320,7 +320,10 @@ def _xcodeproj_impl(ctx):
         ),
     ]
 
-def make_xcodeproj_rule(*, transition = None):
+def make_xcodeproj_rule(
+        *,
+        xcodeproj_transition = None,
+        target_transition = make_target_transition()):
     attrs = {
         "archived_bundles_allowed": attr.bool(
             default = False,
@@ -334,6 +337,7 @@ def make_xcodeproj_rule(*, transition = None):
         ),
         "project_name": attr.string(),
         "targets": attr.label_list(
+            cfg = target_transition,
             mandatory = True,
             allow_empty = False,
             aspects = [xcodeproj_aspect],
@@ -381,9 +385,9 @@ def make_xcodeproj_rule(*, transition = None):
     }
 
     return rule(
+        cfg = xcodeproj_transition,
         implementation = _xcodeproj_impl,
         attrs = attrs,
-        cfg = transition if transition else make_xcodeproj_transition(),
         executable = True,
     )
 
