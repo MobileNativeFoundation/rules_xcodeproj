@@ -1,3 +1,4 @@
+load("@build_bazel_rules_apple//apple:apple.bzl", "local_provisioning_profile")
 load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_group")
 load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_extension")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
@@ -9,15 +10,32 @@ config_setting(
     },
 )
 
+config_setting(
+    name = "device_build",
+    values = {
+        "cpu": "watchos_arm64_32",
+    },
+)
+
 watchos_extension(
     name = "watchOSAppExtension",
     bundle_id = "io.buildbuddy.example.watch.extension",
     infoplists = [":Info.plist"],
     minimum_os_version = "7.0",
+    provisioning_profile = select({
+        ":device_build": ":xcode_managed_profile",
+        "//conditions:default": None,
+    }),
     resources = [":ResourceGroup"],
     version = "//examples/multiplatform/iOSApp:Version",
     visibility = ["//visibility:public"],
     deps = [":watchOSAppExtension.library"],
+)
+
+local_provisioning_profile(
+    name = "xcode_managed_profile",
+    profile_name = "iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension",
+    tags = ["manual"],
 )
 
 apple_resource_group(
