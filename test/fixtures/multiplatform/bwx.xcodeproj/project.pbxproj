@@ -25,10 +25,12 @@
 /* Begin PBXBuildFile section */
 		0164DA506F6AFFE8D9484E5B /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DED4191C90C7A853FF2A4E /* iOSApp.swift */; };
 		0A5B4B1401EBA0F452D83036 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D71C4BEDCDCB107460E90 /* main.swift */; };
+		16762E1B22A22974E02707C9 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AE19447389D7B6B9BEC81E /* Lib.swift */; };
 		2A5002AF448008006747E7E5 /* CompileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9ACBD60C49872D43B34A8 /* CompileStub.m */; };
 		39FE596A18105235919707F9 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2FC43BDB211622F991234 /* tvOSApp.swift */; };
 		3B4FBAEBCEAAF6DF9161CEA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571673AD5562DFA4AB138EB8 /* ContentView.swift */; };
 		3DA2238D1AE0C4DE3F8700B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */; };
+		43CF9E54E6387851CDC75373 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA79C441283245ABE67694 /* Lib.swift */; };
 		62CFF6C7D0DCE936662E389C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D295FECC5CF307D463F8CBD4 /* Preview Assets.xcassets */; };
 		672612624F95412422292B68 /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF973F3635AEB0E5B3101EA8 /* watchOSApp.swift */; };
 		6BB33EE1FF138449161F329C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E47A83139A3569C6FA232A95 /* Assets.xcassets */; };
@@ -36,35 +38,12 @@
 		7A35253D15168D745B41DAC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0ADD9182447B9BBC9D04FD /* ContentView.swift */; };
 		7BADA8103BB4E09B7735582D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC294F18473B4B7357EB8BB /* Assets.xcassets */; };
 		7C8352CD4AC2E75F882BD1B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C519DF0E014F293F71D3BBD3 /* ContentView.swift */; };
+		7DE3867E52D24D26F7A6A2EF /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E681E4EEDAB1135CE4A68 /* Lib.swift */; };
 		83A0C23B7C0DFFF7EEC59CAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A9B77D60580C4AD4C0BF5FC /* Assets.xcassets */; };
-		A37C7A251E0EFDF1E980141F /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AFBDF5B1DB47FAD7E0AF /* Lib.swift */; };
-		C730D2CFDD60E24BF2A54444 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E681E4EEDAB1135CE4A68 /* Lib.swift */; };
-		E2ED26FD909104A97EED50B4 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA79C441283245ABE67694 /* Lib.swift */; };
-		F369B344833535AC5E9DA907 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AE19447389D7B6B9BEC81E /* Lib.swift */; };
+		8540B3FC0EA014E060577822 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AFBDF5B1DB47FAD7E0AF /* Lib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0052FF60D5A5788CF3A55BFE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7954FB21D4CB0FB5C3825829;
-			remoteInfo = Lib;
-		};
-		37F9CBE4B89D1FF09B7A1206 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7954FB21D4CB0FB5C3825829;
-			remoteInfo = Lib;
-		};
-		3AB86719B7092BECA06C81FD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7954FB21D4CB0FB5C3825829;
-			remoteInfo = Lib;
-		};
 		3CEC8386C9C01C1C608D2D51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -79,12 +58,26 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		7CB3641A249775764DC59E2D /* PBXContainerItemProxy */ = {
+		4CCF9F788AC4A1B84D4C9BB3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7954FB21D4CB0FB5C3825829;
-			remoteInfo = Lib;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
+		4ECEF40EE45C948375D2E9CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76F606CD9CC4FA5B1A10438D;
+			remoteInfo = "Lib (macOS, iOS, tvOS)";
+		};
+		9E23B1F5B5CD12C63CA70FFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		BA90E139F9A2657720980562 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -93,14 +86,14 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		E480521BEC484A08E14104A6 /* PBXContainerItemProxy */ = {
+		D889EA68BD061BDE819A50D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
+			remoteGlobalIDString = 76F606CD9CC4FA5B1A10438D;
+			remoteInfo = "Lib (macOS, iOS, tvOS)";
 		};
-		E63B0E91EDC7D02CB744A4AB /* PBXContainerItemProxy */ = {
+		E480521BEC484A08E14104A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -113,6 +106,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
+		};
+		FE0F236B046FC84153250B95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D094AA317C2527FB0FCC5015;
+			remoteInfo = "Lib (watchOS)";
+		};
+		FE184D99306F3DDEE7160AB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76F606CD9CC4FA5B1A10438D;
+			remoteInfo = "Lib (macOS, iOS, tvOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -147,6 +154,7 @@
 		94B4E46AB654CACC5E8E5C55 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9739550C79EA12398392E26C /* tvOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvOSApp_entitlements.entitlements; sourceTree = "<group>"; };
 		A8BA79C441283245ABE67694 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		B8EE097BA523AA6A79268BDA /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C200516B205F70419C263339 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		C519DF0E014F293F71D3BBD3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -303,6 +311,7 @@
 			children = (
 				94B4E46AB654CACC5E8E5C55 /* iOSApp.app */,
 				25DD988A1358E4C112E2B890 /* libLib.a */,
+				B8EE097BA523AA6A79268BDA /* libLib.a */,
 				84D2483892E8EF0354DF0D4E /* Tool */,
 				F17FC436B461919E1DDC0F71 /* tvOSApp.app */,
 				D76D2C3E02897E2ED28A8958 /* watchOSApp.app */,
@@ -702,25 +711,25 @@
 			);
 			dependencies = (
 				2F3392E40FFA06B2AD811927 /* PBXTargetDependency */,
-				43EC44A61AF40121894DE1E8 /* PBXTargetDependency */,
+				EBFBA2DB9E0374E62D984CDF /* PBXTargetDependency */,
 			);
 			name = watchOSAppExtension;
 			productName = watchOSAppExtension;
 			productReference = 5808BF0F847CC0BF0E1128FB /* watchOSAppExtension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		7954FB21D4CB0FB5C3825829 /* Lib */ = {
+		76F606CD9CC4FA5B1A10438D /* Lib (macOS, iOS, tvOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F8968D59569B9F200151B1AB /* Build configuration list for PBXNativeTarget "Lib" */;
+			buildConfigurationList = 1D5E655B04B99CC84CD5D030 /* Build configuration list for PBXNativeTarget "Lib (macOS, iOS, tvOS)" */;
 			buildPhases = (
-				1A95CC882F54C8F1B53BE16A /* Sources */,
+				B032F0A72057D76AC3E270F0 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AD089D7E9495D92BB30CDDB6 /* PBXTargetDependency */,
+				E83D4D675DBBAFA4DA468056 /* PBXTargetDependency */,
 			);
-			name = Lib;
+			name = "Lib (macOS, iOS, tvOS)";
 			productName = Lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -734,7 +743,7 @@
 			);
 			dependencies = (
 				BE4A469126A4368EAD19AA60 /* PBXTargetDependency */,
-				D96BEA50E07510270876A9D3 /* PBXTargetDependency */,
+				12D67F21E481F5857306D13A /* PBXTargetDependency */,
 			);
 			name = Tool;
 			productName = Tool;
@@ -752,12 +761,27 @@
 			);
 			dependencies = (
 				E6DF8AB88AFBE93299AD4256 /* PBXTargetDependency */,
-				F9D468596944800461D2DFD5 /* PBXTargetDependency */,
+				B9AC9C610AFC84DBF20B3B96 /* PBXTargetDependency */,
 			);
 			name = iOSApp;
 			productName = iOSApp;
 			productReference = 94B4E46AB654CACC5E8E5C55 /* iOSApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D094AA317C2527FB0FCC5015 /* Lib (watchOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 667B18565BDC2254C734B317 /* Build configuration list for PBXNativeTarget "Lib (watchOS)" */;
+			buildPhases = (
+				DE1B3A9EA650C28D59ACC711 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4E9A2DE09B1DEB79A242766 /* PBXTargetDependency */,
+			);
+			name = "Lib (watchOS)";
+			productName = Lib;
+			productType = "com.apple.product-type.library.static";
 		};
 		F3451D8089613E01522F3373 /* tvOSApp */ = {
 			isa = PBXNativeTarget;
@@ -770,7 +794,7 @@
 			);
 			dependencies = (
 				C112A62A191956EE2E91F3C5 /* PBXTargetDependency */,
-				FBBE98371ED10A385EA67815 /* PBXTargetDependency */,
+				AB2ED8A4049B2D50C7C9F17E /* PBXTargetDependency */,
 			);
 			name = tvOSApp;
 			productName = tvOSApp;
@@ -795,7 +819,7 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
-					7954FB21D4CB0FB5C3825829 = {
+					76F606CD9CC4FA5B1A10438D = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -804,6 +828,10 @@
 						LastSwiftMigration = 1320;
 					};
 					A6969986F4330BE56701A5EC = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					D094AA317C2527FB0FCC5015 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -831,7 +859,8 @@
 			targets = (
 				FE59281FE487F27A37DC2EE7 /* BazelDependencies */,
 				A6969986F4330BE56701A5EC /* iOSApp */,
-				7954FB21D4CB0FB5C3825829 /* Lib */,
+				76F606CD9CC4FA5B1A10438D /* Lib (macOS, iOS, tvOS) */,
+				D094AA317C2527FB0FCC5015 /* Lib (watchOS) */,
 				8CE3F1871538818303774A7D /* Tool */,
 				F3451D8089613E01522F3373 /* tvOSApp */,
 				182B42EFE70A5561F1C023E5 /* watchOSApp */,
@@ -944,17 +973,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1A95CC882F54C8F1B53BE16A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2ED26FD909104A97EED50B4 /* Lib.swift in Sources */,
-				A37C7A251E0EFDF1E980141F /* Lib.swift in Sources */,
-				C730D2CFDD60E24BF2A54444 /* Lib.swift in Sources */,
-				F369B344833535AC5E9DA907 /* Lib.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		571D185D8935D159F43179E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -980,6 +998,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B032F0A72057D76AC3E270F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8540B3FC0EA014E060577822 /* Lib.swift in Sources */,
+				7DE3867E52D24D26F7A6A2EF /* Lib.swift in Sources */,
+				16762E1B22A22974E02707C9 /* Lib.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0746DB917135C251EBC92A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -989,26 +1017,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE1B3A9EA650C28D59ACC711 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43CF9E54E6387851CDC75373 /* Lib.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		12D67F21E481F5857306D13A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Lib (macOS, iOS, tvOS)";
+			target = 76F606CD9CC4FA5B1A10438D /* Lib (macOS, iOS, tvOS) */;
+			targetProxy = FE184D99306F3DDEE7160AB4 /* PBXContainerItemProxy */;
+		};
 		2F3392E40FFA06B2AD811927 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 3E45301BF8C3809705C3664B /* PBXContainerItemProxy */;
 		};
-		43EC44A61AF40121894DE1E8 /* PBXTargetDependency */ = {
+		AB2ED8A4049B2D50C7C9F17E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Lib;
-			target = 7954FB21D4CB0FB5C3825829 /* Lib */;
-			targetProxy = 37F9CBE4B89D1FF09B7A1206 /* PBXContainerItemProxy */;
+			name = "Lib (macOS, iOS, tvOS)";
+			target = 76F606CD9CC4FA5B1A10438D /* Lib (macOS, iOS, tvOS) */;
+			targetProxy = D889EA68BD061BDE819A50D6 /* PBXContainerItemProxy */;
 		};
-		AD089D7E9495D92BB30CDDB6 /* PBXTargetDependency */ = {
+		B4E9A2DE09B1DEB79A242766 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = E63B0E91EDC7D02CB744A4AB /* PBXContainerItemProxy */;
+			targetProxy = 4CCF9F788AC4A1B84D4C9BB3 /* PBXContainerItemProxy */;
+		};
+		B9AC9C610AFC84DBF20B3B96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Lib (macOS, iOS, tvOS)";
+			target = 76F606CD9CC4FA5B1A10438D /* Lib (macOS, iOS, tvOS) */;
+			targetProxy = 4ECEF40EE45C948375D2E9CE /* PBXContainerItemProxy */;
 		};
 		BE4A469126A4368EAD19AA60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1028,29 +1076,23 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = F42CD9468A9C7900AB998DA9 /* PBXContainerItemProxy */;
 		};
-		D96BEA50E07510270876A9D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Lib;
-			target = 7954FB21D4CB0FB5C3825829 /* Lib */;
-			targetProxy = 3AB86719B7092BECA06C81FD /* PBXContainerItemProxy */;
-		};
 		E6DF8AB88AFBE93299AD4256 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = E480521BEC484A08E14104A6 /* PBXContainerItemProxy */;
 		};
-		F9D468596944800461D2DFD5 /* PBXTargetDependency */ = {
+		E83D4D675DBBAFA4DA468056 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Lib;
-			target = 7954FB21D4CB0FB5C3825829 /* Lib */;
-			targetProxy = 7CB3641A249775764DC59E2D /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 9E23B1F5B5CD12C63CA70FFF /* PBXContainerItemProxy */;
 		};
-		FBBE98371ED10A385EA67815 /* PBXTargetDependency */ = {
+		EBFBA2DB9E0374E62D984CDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Lib;
-			target = 7954FB21D4CB0FB5C3825829 /* Lib */;
-			targetProxy = 0052FF60D5A5788CF3A55BFE /* PBXContainerItemProxy */;
+			name = "Lib (watchOS)";
+			target = D094AA317C2527FB0FCC5015 /* Lib (watchOS) */;
+			targetProxy = FE0F236B046FC84153250B95 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1272,6 +1314,63 @@
 			};
 			name = Debug;
 		};
+		BD961BB3494F78569D130037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/Lib";
+				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				OTHER_CFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-g",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-g",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -g -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g";
+				PRODUCT_MODULE_NAME = Lib;
+				PRODUCT_NAME = Lib;
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = watchsimulator;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = Lib;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
 		C221D886D6D02D33114D3473 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1439,20 +1538,17 @@
 			};
 			name = Debug;
 		};
-		FE4559B835767714A6E68AC7 /* Debug */ = {
+		F4CBCBA247D8820D4F9F15E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLETVSIMULATOR_FILES = "$(GEN_DIR)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/Lib/Lib.swift";
 				ARCHS = x86_64;
-				"ARCHS[sdk=watchsimulator*]" = i386;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvsimulator*]" = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/multiplatform/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]" = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/Lib";
-				"BAZEL_PACKAGE_BIN_DIR[sdk=watchsimulator*]" = "bazel-out/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/Lib";
 				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5";
-				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "//examples/multiplatform/Lib:Lib watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1461,7 +1557,6 @@
 					"$(APPLETVSIMULATOR_FILES)",
 					"$(IPHONESIMULATOR_FILES)",
 					"$(MACOSX_FILES)",
-					"$(WATCHSIMULATOR_FILES)",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1475,7 +1570,6 @@
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvsimulator*]" = "$(APPLETVSIMULATOR_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
-				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONESIMULATOR_FILES = "$(GEN_DIR)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5497495606d5/bin/examples/multiplatform/Lib/Lib.swift";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -1509,21 +1603,27 @@
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "watchsimulator macosx iphonesimulator appletvsimulator";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator appletvsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = Lib;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-				WATCHSIMULATOR_FILES = "$(GEN_DIR)/watchos-i386-min7.0-applebin_watchos-watchos_i386-dbg-ST-f72632014f89/bin/examples/multiplatform/Lib/Lib.swift";
 			};
 			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1D5E655B04B99CC84CD5D030 /* Build configuration list for PBXNativeTarget "Lib (macOS, iOS, tvOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4CBCBA247D8820D4F9F15E2 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		49F15B06A7AA10C502852570 /* Build configuration list for PBXNativeTarget "tvOSApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1536,6 +1636,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E24D61DAE8AAF7A0E7388B78 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		667B18565BDC2254C734B317 /* Build configuration list for PBXNativeTarget "Lib (watchOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD961BB3494F78569D130037 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1576,14 +1684,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4E42BC2C093F4BC2D0CEE9D /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		F8968D59569B9F200151B1AB /* Build configuration list for PBXNativeTarget "Lib" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FE4559B835767714A6E68AC7 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
