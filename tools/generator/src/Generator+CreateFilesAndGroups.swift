@@ -435,7 +435,11 @@ extension Generator {
                 useOriginalGeneratedFiles: true
             )
         }
-        let rsyncPaths = generatedFiles.map { filePath, _ in filePath.path }
+        let rsyncPaths = generatedFiles
+            .filter { filePath, _ in
+                return !filePath.path.isFolderTypeFileSource
+            }
+            .map { filePath, _ in filePath.path }
         let copiedGeneratedPaths = try generatedFiles.map { filePath, _ in
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
             // match the project navigator. This is only needed for files
