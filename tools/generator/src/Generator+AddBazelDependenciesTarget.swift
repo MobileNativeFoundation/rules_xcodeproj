@@ -377,7 +377,8 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
 diff=$(comm -23 <(sed -e 's|^|bazel-out/|' "\#(rsynclist)" | sort) <(sort "\#(filelist)"))
 if ! [ -z "$diff" ]; then
   echo "error: The files that Bazel generated don't match what the project \#
-expects ($diff). Please regenerate the project." >&2
+expects. Please regenerate the project." >&2
+  echo "error: $diff" >&2
   echo "error: If you still get this error after regenerating your project, \#
 please file a bug report here: \#
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \#
