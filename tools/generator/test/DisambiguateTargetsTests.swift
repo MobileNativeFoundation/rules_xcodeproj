@@ -778,7 +778,7 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A 1", "A 2", "A 3"]): "A",
             .init(["B 1", "B 2", "B 3"]): """
-B (iOS 13.0 Simulator, iOS 11.0 Device, tvOS)
+B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
 """,
             "B 4": "B (iOS 14.0)",
         ]

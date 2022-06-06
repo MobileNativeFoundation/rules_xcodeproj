@@ -20,37 +20,41 @@ extension Generator {
             consolidatable[.init(target: target), default: []].insert(id)
         }
 
-        // Filter out multiple archs of the same platform
+        // Filter out multiple targets of the same platform name
         // TODO: Eventually we should probably support this, for Universal macOS
         //   binaries. Xcode doesn't respect the `arch` condition for product
-        //   directory related build settings, so it's non-trival to support.
+        //   directory related build settings, so it's non-trivial to support.
         var consolidateGroups: [Set<TargetID>] = []
         for ids in consolidatable.values {
-            var platforms: [String: Set<ArchAndTargetID>] = [:]
+            var configurations: [String: [PlatformAndConfiguration: TargetID]] =
+                [:]
             for id in ids {
-                let platform = targets[id]!.platform
-                platforms[platform.name, default: []]
-                    .insert(.init(platform.arch, id))
+                let target = targets[id]!
+                let platform = target.platform
+                let configuration = PlatformAndConfiguration(
+                    platform: platform,
+                    configuration: target.configuration
+                )
+                configurations[platform.name, default: [:]][configuration] = id
             }
 
-            var consolidateIDs: Set<TargetID> = []
-            var uniqueIDs: Set<TargetID> = []
-            for archAndIDs in platforms.values {
-                guard archAndIDs.count > 1 else {
-                    consolidateIDs.insert(archAndIDs.first!.id)
-                    continue
+            var buckets: [Int: Set<TargetID>] = [:]
+            for ids in configurations.values {
+                // TODO: Handle situations where a unique configurations messes
+                //   up the sorting (e.g. single different minimum os
+                //   configuration where the rest of the targets are pairs of
+                //   minimum os versions differing by environment)
+                let sortedIDs = ids
+                    .sorted { $0.key < $1.key }
+                    .map(\.value)
+                for (idx, id) in sortedIDs.enumerated() {
+                    buckets[idx, default: []].insert(id)
                 }
-
-                // We will keep the first architecture consolidated
-                let sortedIDs = archAndIDs
-                    .sorted { lhs, _ in lhs.arch == "arm64" }
-                    .map(\.id)
-                consolidateIDs.insert(sortedIDs[0])
-                uniqueIDs.formUnion(sortedIDs[1...])
             }
 
-            consolidateGroups.append(consolidateIDs)
-            uniqueIDs.forEach { consolidateGroups.append([$0]) }
+            for ids in buckets.values {
+                consolidateGroups.append(ids)
+            }
         }
 
         // Build up mappings
@@ -199,13 +203,20 @@ extension ConsolidatableKey {
     }
 }
 
-private struct ArchAndTargetID: Equatable, Hashable {
-    let arch: String
-    let id: TargetID
+private struct PlatformAndConfiguration: Equatable, Hashable {
+    let platform: Platform
+    let configuration: String
+}
 
-    init(_ arch: String, _ id: TargetID) {
-        self.arch = arch
-        self.id = id
+extension PlatformAndConfiguration: Comparable {
+    static func < (
+        lhs: PlatformAndConfiguration,
+        rhs: PlatformAndConfiguration
+    ) -> Bool {
+        guard lhs.platform == rhs.platform else {
+            return lhs.platform < rhs.platform
+        }
+        return lhs.configuration < rhs.configuration
     }
 }
 

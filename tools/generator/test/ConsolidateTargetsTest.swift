@@ -218,19 +218,37 @@ final class ConsolidateTargetsTests: XCTestCase {
         // Arrange
 
         let targets: [TargetID: Target] = [
-            "A": .mock(
+            "A1": .mock(
                 platform: .simulator(minimumOsVersion: "11.0"),
-                product: .init(type: .staticLibrary, name: "T", path: "A/T")
+                product: .init(type: .staticLibrary, name: "A", path: "1/A")
             ),
-            "B": .mock(
+            "A2": .mock(
                 platform: .device(minimumOsVersion: "12.0"),
-                product: .init(type: .staticLibrary, name: "T", path: "B/T")
+                product: .init(type: .staticLibrary, name: "A", path: "2/A")
+            ),
+            "B1": .mock(
+                platform: .simulator(minimumOsVersion: "13.0"),
+                product: .init(type: .staticLibrary, name: "B", path: "S13/B")
+            ),
+            "B2": .mock(
+                platform: .device(minimumOsVersion: "13.0"),
+                product: .init(type: .staticLibrary, name: "B", path: "D13/B")
+            ),
+            "B3": .mock(
+                platform: .simulator(minimumOsVersion: "13.2"),
+                product: .init(type: .staticLibrary, name: "B", path: "S13.2/B")
+            ),
+            "B4": .mock(
+                platform: .device(minimumOsVersion: "13.2"),
+                product: .init(type: .staticLibrary, name: "B", path: "D13.2/B")
             ),
         ]
         let expectedConsolidatedTargets = ConsolidatedTargets(
             allTargets: targets,
             keys: [
-                ["A", "B"],
+                ["A1", "A2"],
+                ["B1", "B2"],
+                ["B3", "B4"],
             ]
         )
         let expectedMessagesLogged: [StubLogger.MessageLogged] = []
