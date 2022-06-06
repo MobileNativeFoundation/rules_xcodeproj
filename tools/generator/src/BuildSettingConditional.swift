@@ -48,25 +48,7 @@ extension BuildSettingConditional: Comparable {
             return lhs.platform == nil && rhs.platform != nil
         }
 
-        guard lhsPlatform.os == rhsPlatform.os else {
-            return lhsPlatform.os < rhsPlatform.os
-        }
-
-        guard lhsPlatform.environment == rhsPlatform.environment else {
-            // Sort simulator first
-            switch (lhsPlatform.environment, rhsPlatform.environment) {
-            case ("Simulator", _): return true
-            case (_, "Simulator"): return false
-            case (nil, _): return true
-            case (_, nil): return false
-            case ("Device", _): return true
-            case (_, "Device"): return false
-            default: return false
-            }
-        }
-
-        // Sort Apple Silicon first
-        return lhsPlatform.arch == "arm64" && rhsPlatform.arch != "arm64"
+        return lhsPlatform < rhsPlatform
     }
 }
 
