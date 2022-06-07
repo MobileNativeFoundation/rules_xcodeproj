@@ -195,7 +195,7 @@ generated_inputs \#(xcodeprojConfiguration)
         if buildMode.requiresLLDBInit {
             lldbInit = #"""
 
-if [ "$ACTION" != "indexbuild" ]; then
+if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
   "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" > "$BAZEL_LLDB_INIT"
 fi
 
@@ -272,10 +272,15 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         switch buildMode {
         case .bazel:
             addAdditionalOutputGroups = #"""
-if [ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]; then
+
+# Xcode doesn't adjust `$BUILD_DIR` in scheme action scripts when building for
+# previews. So we need to look in the non-preview build directory for this file.
+output_groups_file="${BAZEL_BUILD_OUTPUT_GROUPS_FILE/\/Intermediates.noindex\/Previews\/*\/Products\///Products/}"
+
+if [ -s "$output_groups_file" ]; then
   while IFS= read -r output_group; do
     output_groups+=("$output_group")
-  done < "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+  done < "$output_groups_file"
 fi
 """#
         case .xcode:
