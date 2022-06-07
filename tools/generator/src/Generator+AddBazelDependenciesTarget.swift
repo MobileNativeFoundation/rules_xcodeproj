@@ -211,6 +211,10 @@ if [ "$ACTION" == "indexbuild" ]; then
   # We use a different output base for Index Build to prevent normal builds and
   # indexing waiting on bazel locks from the other
   output_base="$OBJROOT/bazel_output_base"
+elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
+  # We use a different output base for SwiftUI Previews since they have
+  # different swiftcopts, preventing output trashing
+  output_base="$OBJROOT/bazel_output_base"
 fi
 
 if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
@@ -294,6 +298,17 @@ output_groups=("\#(generatedInputsOutputGroup)")
 \#(addAdditionalOutputGroups)
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 
+if [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
+  swiftui_previews_flags=(
+    --swiftcopt=-Xfrontend
+    --swiftcopt=-enable-implicit-dynamic
+    --swiftcopt=-Xfrontend
+    --swiftcopt=-enable-private-imports
+    --swiftcopt=-Xfrontend
+    --swiftcopt=-enable-dynamic-replacement-chaining
+  )
+fi
+
 date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
 
 log=$(mktemp)
@@ -303,6 +318,7 @@ log=$(mktemp)
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
+  ${swiftui_previews_flags:+${swiftui_previews_flags[*]}} \
   "$output_groups_flag" \
   \#(xcodeprojBazelLabel) \
   2>&1 | tee -i "$log"
