@@ -190,7 +190,7 @@ def _write_installer(
 # Transition
 
 def _base_target_transition_impl(settings, attr):
-    features = settings.get("//command_line_option:features", [])
+    features = settings.get("//command_line_option:features")
 
     if attr.build_mode == "bazel":
         archived_bundles_allowed = attr.archived_bundles_allowed
@@ -219,14 +219,17 @@ def make_target_transition(
 
         # Apply the other transition first
         if implementation:
-            settings = implementation(settings, attr)
+            computed_outputs = implementation(settings, attr)
         else:
-            settings = dict(settings)
+            computed_outputs = {}
+
+        settings = dict(settings)
+        settings.update(computed_outputs)
 
         # Then apply our transition
-        settings.update(_base_target_transition_impl(settings, attr))
+        computed_outputs.update(_base_target_transition_impl(settings, attr))
 
-        return settings
+        return computed_outputs
 
     merged_inputs = uniq(
         inputs + [
