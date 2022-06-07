@@ -2,6 +2,7 @@
 
 import json
 import os
+import subprocess
 import sys
 from typing import List
 
@@ -9,6 +10,11 @@ def _main() -> None:
     if sys.argv[1:] == ["-v"]:
         os.system("swiftc -v")
         return
+
+    # Pass through for SwiftUI Preview thunk compilation
+    if (any(arg.endswith(".preview-thunk.swift") for arg in sys.argv) and
+        "-output-file-map" not in sys.argv):
+        exit(subprocess.run(["swiftc"] + sys.argv[1:], check=False).returncode)
 
     _touch_deps_files(sys.argv)
 
