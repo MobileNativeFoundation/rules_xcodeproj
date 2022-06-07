@@ -50,6 +50,8 @@ $(INDEXING_DEPLOYMENT_LOCATION__)
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
 """,
+            // Needed as the default otherwise `ENABLE_PREIVEWS` isn't set
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 """,
