@@ -68,6 +68,7 @@ $(BUILD_DIR)/bazel_build_output_groups
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
+                "SWIFT_USE_INTEGRATED_DRIVER": "NO",
             ], uniquingKeysWith: { _, r in r })
         }
 

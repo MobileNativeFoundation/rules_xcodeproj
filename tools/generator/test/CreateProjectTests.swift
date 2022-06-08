@@ -159,6 +159,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__)
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_USE_INTEGRATED_DRIVER": "NO",
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 """,
