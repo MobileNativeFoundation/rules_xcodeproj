@@ -213,7 +213,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             // those to clang for PCM compilation
             try buildSettings.prepend(
                 onKey: "OTHER_SWIFT_FLAGS",
-                cFlags.map { "-Xcc \($0)" }.joined(separator: " ")
+                cFlags
+                    .filter { $0 != "-g" }
+                    .map { "-Xcc \($0)" }
+                    .joined(separator: " ")
             )
         }
 
