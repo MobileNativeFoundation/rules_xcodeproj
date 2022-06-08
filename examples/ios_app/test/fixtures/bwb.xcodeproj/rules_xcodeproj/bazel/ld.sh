@@ -22,6 +22,7 @@ do
 
   *.preview-thunk.dylib)
     # Pass through for SwiftUI Preview thunk compilation
+    # TODO: Make this work with custom toolchains
     exec "$developer_dir/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" "${passthrough_args[@]}"
     ;;
   esac
