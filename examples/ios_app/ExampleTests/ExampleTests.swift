@@ -1,6 +1,7 @@
 import Utils
 import TestingUtils
 import XCTest
+import SnapshotTesting
 @testable import Example
 
 class ExampleTests: XCTestCase {
@@ -14,6 +15,7 @@ class ExampleTests: XCTestCase {
     }
 
     func testExample() throws {
+        XCTAssertFalse(SnapshotTesting.isRecording)
         XCTAssertEqual(Foo().greeting(), SwiftGreetings.expectedGreeting)
         XCTAssertEqual(Foo().answer(), SwiftAnswers.expectedAnswer)
     }

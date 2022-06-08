@@ -21,5 +21,6 @@ swift_library(
         "//ExampleResources",
         "//TestingUtils",
         "//Utils",
+        "@SwiftSnapshotTesting//:SnapshotTesting"
     ],
 )

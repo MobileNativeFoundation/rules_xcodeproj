@@ -1,3 +1,5 @@
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
 local_repository(
     name = "com_github_buildbuddy_io_rules_xcodeproj",
     path = "../..",
@@ -43,4 +45,36 @@ apple_support_dependencies()
 local_repository(
     name = "examples_ios_app_external",
     path = "external",
+)
+
+SWIFTSNAPSHOTTESTING_VERSION = "88f6e2c0afe04221fcfb1601a2ecaad83115a05f"
+http_archive(
+    name = "SwiftSnapshotTesting",
+    url = "https://github.com/pointfreeco/swift-snapshot-testing/archive/%s.zip" % SWIFTSNAPSHOTTESTING_VERSION,
+    sha256 = "ab04012658d2eabe6615a830f3cd54702e2fcec19e0d6a579eabe7103863d8c6",
+    build_file_content = """
+load(
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_library"
+)
+
+swift_library(
+    name = "SnapshotTesting",
+    module_name = "SnapshotTesting",
+    test_only = True,
+    srcs = glob(["Sources/SnapshotTesting/**/*.swift"], [
+        "Sources/SnapshotTesting/Snapshotting/*.swift"
+    ], allow_empty = False) + [
+        "Sources/SnapshotTesting/Snapshotting/Any.swift",
+        "Sources/SnapshotTesting/Snapshotting/Data.swift",
+        "Sources/SnapshotTesting/Snapshotting/String.swift",
+        "Sources/SnapshotTesting/Snapshotting/Codable.swift",
+        "Sources/SnapshotTesting/Snapshotting/URLRequest.swift",
+        "Sources/SnapshotTesting/Snapshotting/Description.swift",
+        "Sources/SnapshotTesting/Snapshotting/CaseIterable.swift",
+    ],
+    visibility = ["//visibility:public"]
+)
+    """,
+    strip_prefix = "swift-snapshot-testing-%s" % SWIFTSNAPSHOTTESTING_VERSION
 )
