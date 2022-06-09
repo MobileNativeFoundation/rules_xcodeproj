@@ -1540,6 +1540,7 @@
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp/iOSApp_entitlements.entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp/iOSApp_entitlements.entitlements";
 				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
@@ -1597,7 +1598,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
-				PROVISIONING_PROFILE_SPECIFIER = "iOS Team Provisioning Profile: io.buildbuddy.example";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1702,6 +1702,7 @@
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements";
 				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
@@ -1759,7 +1760,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch.extension;
 				PRODUCT_MODULE_NAME = watchOSAppExtension;
 				PRODUCT_NAME = watchOSAppExtension;
-				PROVISIONING_PROFILE_SPECIFIER = "iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension";
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1885,6 +1885,7 @@
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp/tvOSApp_entitlements.entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=appletvos*]" = "$(GEN_DIR)/applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/tvOSApp_entitlements.entitlements";
 				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_STYLE[sdk=appletvos*]" = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
@@ -1941,7 +1942,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = tvOSApp;
-				PROVISIONING_PROFILE_SPECIFIER = "tvOS Team Provisioning Profile: io.buildbuddy.example";
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2093,6 +2093,7 @@
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/watchOSApp_entitlements.entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp/watchOSApp_entitlements.entitlements";
 				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2137,7 +2138,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch;
 				PRODUCT_MODULE_NAME = _watchOSApp_Stub;
 				PRODUCT_NAME = watchOSApp;
-				PROVISIONING_PROFILE_SPECIFIER = "iOS Team Provisioning Profile: io.buildbuddy.example.watch";
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

@@ -45,14 +45,16 @@ def _process_attr(*, ctx, attrs_info, build_settings):
         ctx.fragments.objc.signing_certificate_name,
     )
 
-def _create_profileinfo(*, target, is_xcode_managed = False):
-    if AppleProvisioningProfileInfo in target:
+def _create_profileinfo(
+        *,
+        target,
+        is_xcode_managed = False,
+        profile_name = None,
+        team_id = None):
+    if target and AppleProvisioningProfileInfo in target:
         info = target[AppleProvisioningProfileInfo]
-        profile_name = info.profile_name
-        team_id = info.team_id
-    else:
-        profile_name = None
-        team_id = None
+        profile_name = profile_name or info.profile_name
+        team_id = team_id or info.team_id
 
     return XcodeProjProvisioningProfileInfo(
         is_xcode_managed = is_xcode_managed,
