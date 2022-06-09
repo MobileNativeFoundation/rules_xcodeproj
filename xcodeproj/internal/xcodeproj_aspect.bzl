@@ -5,7 +5,8 @@ load(
     ":default_input_file_attributes_aspect.bzl",
     "default_input_file_attributes_aspect",
 )
-load(":providers.bzl", "XcodeProjInfo")
+load(":providers.bzl", "XcodeProjInfo", "XcodeProjProvisioningProfileInfo")
+load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":xcodeprojinfo.bzl", "create_xcodeprojinfo")
 
 # Utility
@@ -37,17 +38,27 @@ def _transitive_infos(*, ctx):
 # Aspect
 
 def _xcodeproj_aspect_impl(target, ctx):
-    # Don't create an `XcodeProjInfo` if the target already created one
-    if XcodeProjInfo in target:
-        return []
+    providers = []
 
-    return [
-        create_xcodeprojinfo(
-            ctx = ctx,
-            target = target,
-            transitive_infos = _transitive_infos(ctx = ctx),
-        ),
-    ]
+    if XcodeProjInfo not in target:
+        # Only create an `XcodeProjInfo` if the target hasn't already created
+        # one
+        providers.append(
+            create_xcodeprojinfo(
+                ctx = ctx,
+                target = target,
+                transitive_infos = _transitive_infos(ctx = ctx),
+            ),
+        )
+
+    if XcodeProjProvisioningProfileInfo not in target:
+        # Only create an `XcodeProjProvisioningProfileInfo` if the target hasn't
+        # already created one
+        providers.append(
+            provisioning_profiles.create_profileinfo(target = target),
+        )
+
+    return providers
 
 xcodeproj_aspect = aspect(
     implementation = _xcodeproj_aspect_impl,
@@ -71,6 +82,6 @@ xcodeproj_aspect = aspect(
             ),
         ),
     },
-    fragments = ["apple", "cpp"],
+    fragments = ["apple", "cpp", "objc"],
     requires = [default_input_file_attributes_aspect],
 )

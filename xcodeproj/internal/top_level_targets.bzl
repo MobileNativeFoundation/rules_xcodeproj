@@ -3,17 +3,10 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load(
-    ":build_settings.bzl",
-    "get_targeted_device_family",
-)
+load(":build_settings.bzl", "get_targeted_device_family")
 load(":collections.bzl", "set_if_true")
-load("configuration.bzl", "get_configuration")
-load(
-    ":files.bzl",
-    "file_path",
-    "join_paths_ignoring_empty",
-)
+load(":configuration.bzl", "get_configuration")
+load(":files.bzl", "file_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
 load(":entitlements.bzl", "entitlements")
 load(":input_files.bzl", "input_files")
@@ -21,20 +14,10 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "process_platform")
-load(
-    ":providers.bzl",
-    "InputFileAttributesInfo",
-    "XcodeProjInfo",
-)
-load(
-    ":processed_target.bzl",
-    "processed_target",
-    "xcode_target",
-)
-load(
-    ":product.bzl",
-    "process_product",
-)
+load(":providers.bzl", "InputFileAttributesInfo", "XcodeProjInfo")
+load(":processed_target.bzl", "processed_target", "xcode_target")
+load(":product.bzl", "process_product")
+load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
@@ -188,9 +171,11 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     avoid_deps = [test_host] if test_host else []
 
     additional_files = []
+    build_settings = {}
     is_bundle = bundle_info != None
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
+
     modulemaps = process_modulemaps(swift_info = swift_info)
     additional_files.extend(modulemaps.files)
 
@@ -205,6 +190,14 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     if entitlements_file:
         entitlements_file_path = file_path(entitlements_file)
         additional_files.append(entitlements_file)
+
+    provisioning_file = provisioning_profiles.process_attr(
+        ctx = ctx,
+        attrs_info = attrs_info,
+        build_settings = build_settings,
+    )
+    if provisioning_file:
+        additional_files.append(provisioning_file)
 
     bundle_resources = should_bundle_resources(ctx = ctx)
 
@@ -232,8 +225,6 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         transitive_infos = transitive_infos,
         should_produce_dto = should_include_outputs(ctx = ctx),
     )
-
-    build_settings = {}
 
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,

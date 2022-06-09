@@ -32,6 +32,10 @@ attributes.
 An attribute name (or `None`) to collect `File`s from for the `pch`-like
 attribute.
 """,
+        "provisioning_profile": """\
+An attribute name (or `None`) to collect `File`s from for the
+`provisioning_profile`-like attribute.
+""",
         "resources": """\
 A sequence of attribute names to collect `File`s from for the `resources`-like
 attributes.
@@ -115,9 +119,22 @@ Xcode project.
 XcodeProjOutputInfo = provider(
     "Provides information about the outputs of the `xcodeproj` rule.",
     fields = {
-        "installer": "The xcodeproj installer",
-        "project_name": "The installed project name",
-        "spec": "The json spec",
-        "xcodeproj": "The xcodeproj file",
+        "installer": "The xcodeproj installer.",
+        "project_name": "The installed project name.",
+        "spec": "The json spec.",
+        "xcodeproj": "The xcodeproj file.",
+    },
+)
+
+XcodeProjProvisioningProfileInfo = provider(
+    "Provides information about a provisioning profile.",
+    fields = {
+        "profile_name": """\
+The profile name (e.g. "iOS Team Provisioning Profile: com.example.app").
+""",
+        "team_id": """\
+The Team ID the profile is associated with (e.g. "V82V4GQZXM").
+""",
+        "is_xcode_managed": "Whether the profile is managed by Xcode.",
     },
 )
