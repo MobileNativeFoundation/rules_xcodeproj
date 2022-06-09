@@ -50,6 +50,8 @@ $(INDEXING_DEPLOYMENT_LOCATION__)
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
 """,
+            // Bazel currently doesn't support Catalyst
+            "SUPPORTS_MACCATALYST": false,
             // Needed as the default otherwise `ENABLE_PREIVEWS` isn't set
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "TARGET_TEMP_DIR": """
@@ -68,7 +70,7 @@ $(BUILD_DIR)/bazel_build_output_groups
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
-                "SWIFT_USE_INTEGRATED_DRIVER": "NO",
+                "SWIFT_USE_INTEGRATED_DRIVER": false,
             ], uniquingKeysWith: { _, r in r })
         }
 
