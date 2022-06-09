@@ -53,6 +53,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "SUPPORTS_MACCATALYST": false,
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
@@ -157,9 +158,10 @@ $(INDEXING_DEPLOYMENT_LOCATION__)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "SUPPORTS_MACCATALYST": false,
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_USE_INTEGRATED_DRIVER": "NO",
+                "SWIFT_USE_INTEGRATED_DRIVER": false,
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 """,

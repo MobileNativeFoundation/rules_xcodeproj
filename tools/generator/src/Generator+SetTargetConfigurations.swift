@@ -668,14 +668,19 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
         if let supportedPlatformsBuildSettings = conditionalBuildSettings
             .removeValue(forKey: "SUPPORTED_PLATFORMS")
         {
-            let platforms = try supportedPlatformsBuildSettings.values
-                .map { try $0.toString(key: "SUPPORTED_PLATFORMS") }
+            let platforms = Set(
+                try supportedPlatformsBuildSettings.values
+                    .map { try $0.toString(key: "SUPPORTED_PLATFORMS") }
+            )
 
             conditionalBuildSettings["SUPPORTED_PLATFORMS"] = [
                 .any: .string(
-                    Set(platforms).sorted().reversed().joined(separator: " ")
+                    platforms.sorted().reversed().joined(separator: " ")
                 ),
             ]
+
+            conditionalBuildSettings["SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD"] =
+            [.any: .bool(platforms.contains("iphoneos"))]
         }
 
         // TODO: If we ever add support for Universal targets we need to
