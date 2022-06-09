@@ -59,6 +59,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     non_arc_srcs = ()
     hdrs = ()
     pch = None
+    provisioning_profile = None
     resources = {}
     structured_resources = ()
     bundle_imports = ()
@@ -128,6 +129,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
             excluded.append("test_host")
+        provisioning_profile = "provisioning_profile"
         resources = {
             "deps": [target_type.compile, target_type.resources],
             "resources": [target_type.resources],
@@ -150,6 +152,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             srcs = srcs,
             hdrs = hdrs,
             pch = pch,
+            provisioning_profile = provisioning_profile,
             resources = resources,
             structured_resources = structured_resources,
             bundle_imports = bundle_imports,

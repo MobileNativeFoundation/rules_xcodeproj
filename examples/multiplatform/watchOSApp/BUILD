@@ -27,6 +27,7 @@ local_provisioning_profile(
     name = "xcode_managed_profile",
     profile_name = "iOS Team Provisioning Profile: io.buildbuddy.example.watch",
     tags = ["manual"],
+    team_id = "V82V4GQZXM",
 )
 
 filegroup(

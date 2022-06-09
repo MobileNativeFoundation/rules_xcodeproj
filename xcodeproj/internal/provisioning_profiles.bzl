@@ -1,0 +1,71 @@
+"""API to process provisioning profile information for `Target`s."""
+
+load(
+    "@build_bazel_rules_apple//apple:providers.bzl",
+    "AppleProvisioningProfileInfo",
+)
+load(":collections.bzl", "set_if_true")
+load(":providers.bzl", "XcodeProjProvisioningProfileInfo")
+
+def _process_attr(*, ctx, attrs_info, build_settings):
+    attr = attrs_info.provisioning_profile
+    if not attr:
+        return None
+
+    provisioning_profile_target = getattr(ctx.rule.attr, attr)
+    if (provisioning_profile_target and
+        XcodeProjProvisioningProfileInfo in provisioning_profile_target):
+        info = provisioning_profile_target[XcodeProjProvisioningProfileInfo]
+        is_xcode_managed = info.is_xcode_managed
+        team_id = info.team_id
+
+        # We need to not set the profile name if the profile is managed by Xcode
+        name = info.profile_name if not is_xcode_managed else None
+    else:
+        is_xcode_managed = False
+        team_id = None
+        name = None
+
+    # We don't want to show the copied managed profile in the Project navigator
+    file = None if is_xcode_managed else getattr(ctx.rule.file, attr)
+
+    set_if_true(
+        build_settings,
+        "DEVELOPMENT_TEAM",
+        team_id,
+    )
+    set_if_true(
+        build_settings,
+        "PROVISIONING_PROFILE_SPECIFIER",
+        name,
+    )
+    build_settings["CODE_SIGN_STYLE"] = (
+        "Automatic" if is_xcode_managed else "Manual"
+    )
+    set_if_true(
+        build_settings,
+        "CODE_SIGN_IDENTITY",
+        ctx.fragments.objc.signing_certificate_name,
+    )
+
+    return file
+
+def _create_profileinfo(*, target, is_xcode_managed = False):
+    if AppleProvisioningProfileInfo in target:
+        info = target[AppleProvisioningProfileInfo]
+        profile_name = info.profile_name
+        team_id = info.team_id
+    else:
+        profile_name = None
+        team_id = None
+
+    return XcodeProjProvisioningProfileInfo(
+        is_xcode_managed = is_xcode_managed,
+        profile_name = profile_name,
+        team_id = team_id,
+    )
+
+provisioning_profiles = struct(
+    create_profileinfo = _create_profileinfo,
+    process_attr = _process_attr,
+)

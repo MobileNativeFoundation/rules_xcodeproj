@@ -1443,7 +1443,9 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/watchOSApp_entitlements.entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp_entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				DEPLOYMENT_LOCATION = NO;
+				DEVELOPMENT_TEAM = V82V4GQZXM;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1486,6 +1488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch;
 				PRODUCT_MODULE_NAME = _watchOSApp_Stub;
 				PRODUCT_NAME = watchOSApp;
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Team Provisioning Profile: io.buildbuddy.example.watch";
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1523,8 +1526,10 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/iOSApp_entitlements.entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp_entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
+				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1579,6 +1584,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Team Provisioning Profile: io.buildbuddy.example";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1607,8 +1613,10 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/tvOSApp_entitlements.entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=appletvos*]" = "$(GEN_DIR)/applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/tvOSApp_entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
+				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1662,6 +1670,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = tvOSApp;
+				PROVISIONING_PROFILE_SPECIFIER = "tvOS Team Provisioning Profile: io.buildbuddy.example";
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1858,8 +1867,10 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
+				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1914,6 +1925,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch.extension;
 				PRODUCT_MODULE_NAME = watchOSAppExtension;
 				PRODUCT_NAME = watchOSAppExtension;
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension";
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
