@@ -22,6 +22,9 @@ fi
 # paths to archives relative to the exec root.
 echo "platform settings -w \"$exec_root\""
 
+mkdir -p "$index_bazel_out"
+mkdir -p "$index_external"
+
 # "Undo" `-debug-prefix-map` for breakpoints
 #
 # This needs to cause the files to match exactly what Xcode set for breakpoints,
