@@ -1808,6 +1808,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "B 3",
+                "CODE_SIGNING_ALLOWED": "YES",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_LDFLAGS": [

@@ -397,6 +397,10 @@ Test host target with key "\(testHostKey)" not found in \
                 "TEST_TARGET_NAME",
                 to: pbxTestHost.name
             )
+
+            // UI test bundles need to be code signed to launch
+            buildSettings[.any, default: [:]]["CODE_SIGNING_ALLOWED"] = true
+
             return
         }
 
