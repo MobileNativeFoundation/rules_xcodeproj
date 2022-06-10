@@ -127,11 +127,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		032E3416CD8CFD33DA93CCE6 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		063155AA19E757FB2E40B426 /* watchOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSApp_entitlements.entitlements; sourceTree = "<group>"; };
 		1118895EBE141E30968A9104 /* iOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSApp_entitlements.entitlements; sourceTree = "<group>"; };
 		11D7F18CB59E0CCB2BAF3B4D /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		14C9ACBD60C49872D43B34A8 /* CompileStub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompileStub.m; sourceTree = "<group>"; };
 		16538E0E4950FA389F7E4FCE /* tvOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvOSApp_entitlements.entitlements; sourceTree = "<group>"; };
+		18906EE455400303268D89E2 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		20CD51DEB2E26EC7377B9F16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		25DD988A1358E4C112E2B890 /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		275F2B2443C9A6579EAAABED /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		2F21FCAE44DDA5EDE91D5188 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		381C43DEBE0C92B63F3D590B /* watchOSAppExtension_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSAppExtension_entitlements.entitlements; sourceTree = "<group>"; };
 		3A9B77D60580C4AD4C0BF5FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B89054F58634DBCFB07BA23 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		3E2F9B757E77BA1326F94ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4368AB770C20BF4695DD7CE9 /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
 		4394D806B344EB7C2A2BFC23 /* iOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSApp_entitlements.entitlements; sourceTree = "<group>"; };
@@ -170,6 +173,7 @@
 		B8EE097BA523AA6A79268BDA /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07D986E341845A1FB7B65E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C19F58FE14D703F8CF8FC2A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C1E5E05BCA6D9A76E162C772 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		C200516B205F70419C263339 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		C519DF0E014F293F71D3BBD3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C75CD97A5BBE066947F77FD2 /* tvOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvOSApp_entitlements.entitlements; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				22874806F559EE48361DC300 /* watchOSApp-intermediates */,
+				032E3416CD8CFD33DA93CCE6 /* Info.withbundleid.plist */,
 				763746B7E174FD54C578969C /* watchOSApp_entitlements.entitlements */,
 				EFE419DF9F97AFE66C165865 /* watchOSApp.zip */,
 			);
@@ -290,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				10EB293BD85931A8057B3F77 /* watchOSAppExtension-intermediates */,
+				3B89054F58634DBCFB07BA23 /* Info.withbundleid.plist */,
 				81A6D193BFF39B6A336051F7 /* watchOSAppExtension_entitlements.entitlements */,
 				DA0D3C18A4096AF7D3C6C674 /* watchOSAppExtension.zip */,
 			);
@@ -356,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				F04BF1345516F4CDC39E91CC /* watchOSAppExtension-intermediates */,
+				18906EE455400303268D89E2 /* Info.withbundleid.plist */,
 				381C43DEBE0C92B63F3D590B /* watchOSAppExtension_entitlements.entitlements */,
 				FF3E8827016B882A76B5EC13 /* watchOSAppExtension.zip */,
 			);
@@ -607,6 +614,7 @@
 			isa = PBXGroup;
 			children = (
 				2EF9BBD84A8A1D91268B27E0 /* watchOSApp-intermediates */,
+				C1E5E05BCA6D9A76E162C772 /* Info.withbundleid.plist */,
 				063155AA19E757FB2E40B426 /* watchOSApp_entitlements.entitlements */,
 				D77542B2B16F5AA77ECBB45D /* watchOSApp.zip */,
 			);

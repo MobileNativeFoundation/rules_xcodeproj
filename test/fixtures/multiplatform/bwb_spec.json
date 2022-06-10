@@ -73,12 +73,16 @@
             "t": "g"
         },
         "examples/multiplatform/watchOSApp/BUILD",
+        "examples/multiplatform/watchOSApp/Info.plist",
         "examples/multiplatform/watchOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.zip",
             "t": "g"
         },
-        "examples/multiplatform/watchOSApp/Info.plist",
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
+            "t": "g"
+        },
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/iOSApp/Version.bundle_version",
             "t": "g"
@@ -96,6 +100,10 @@
             "t": "g"
         },
         {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/iOSApp/Version.bundle_version",
             "t": "g"
         },
@@ -109,6 +117,7 @@
         },
         "examples/multiplatform/watchOSAppExtension/BUILD",
         "examples/multiplatform/watchOSAppExtension/PreviewContent/Preview Assets.xcassets/Contents.json",
+        "examples/multiplatform/watchOSAppExtension/Info.plist",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Circular.imageset/Contents.json",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Contents.json",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Extra Large.imageset/Contents.json",
@@ -120,13 +129,20 @@
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Modular.imageset/Contents.json",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Utilitarian.imageset/Contents.json",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Contents.json",
-        "examples/multiplatform/watchOSAppExtension/Info.plist",
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
+            "t": "g"
+        },
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
             "t": "g"
         },
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
         },
         {

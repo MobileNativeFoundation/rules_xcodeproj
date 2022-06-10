@@ -7,6 +7,11 @@ load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:experimental.bzl",
     "xcode_provisioning_profile",
 )
+load(
+    "//examples/multiplatform:xcodeproj_targets.bzl",
+    "IOS_BUNDLE_ID",
+    "TEAMID",
+)
 
 config_setting(
     name = "release_build",
@@ -32,7 +37,7 @@ apple_bundle_version(
 ios_application(
     name = "iOSApp",
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
-    bundle_id = "io.buildbuddy.example",
+    bundle_id = IOS_BUNDLE_ID,
     bundle_name = "iOSApp",
     families = ["iphone"],
     infoplists = [":Info.plist"],
@@ -57,9 +62,9 @@ xcode_provisioning_profile(
 
 local_provisioning_profile(
     name = "xcode_managed_profile",
-    profile_name = "iOS Team Provisioning Profile: io.buildbuddy.example",
+    profile_name = "iOS Team Provisioning Profile: {}".format(IOS_BUNDLE_ID),
     tags = ["manual"],
-    team_id = "V82V4GQZXM",
+    team_id = TEAMID,
 )
 
 apple_resource_group(

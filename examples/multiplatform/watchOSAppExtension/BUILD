@@ -6,6 +6,11 @@ load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:experimental.bzl",
     "xcode_provisioning_profile",
 )
+load(
+    "//examples/multiplatform:xcodeproj_targets.bzl",
+    "TEAMID",
+    "WATCHOS_BUNDLE_ID",
+)
 
 config_setting(
     name = "release_build",
@@ -23,8 +28,8 @@ config_setting(
 
 watchos_extension(
     name = "watchOSAppExtension",
-    bundle_id = "io.buildbuddy.example.watch.extension",
-    infoplists = [":Info.plist"],
+    bundle_id = "{}.extension".format(WATCHOS_BUNDLE_ID),
+    infoplists = [":infoplist"],
     minimum_os_version = "7.0",
     provisioning_profile = select({
         ":device_build": ":xcode_profile",
@@ -36,6 +41,13 @@ watchos_extension(
     deps = [":watchOSAppExtension.library"],
 )
 
+genrule(
+    name = "infoplist",
+    srcs = ["Info.plist"],
+    outs = ["Info.withbundleid.plist"],
+    cmd = "sed 's/WATCHOS_BUNDLE_ID/{}/'  $< > $@".format(WATCHOS_BUNDLE_ID),
+)
+
 xcode_provisioning_profile(
     name = "xcode_profile",
     managed_by_xcode = True,
@@ -45,9 +57,9 @@ xcode_provisioning_profile(
 
 local_provisioning_profile(
     name = "xcode_managed_profile",
-    profile_name = "iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension",
+    profile_name = "iOS Team Provisioning Profile: {}.extension".format(WATCHOS_BUNDLE_ID),
     tags = ["manual"],
-    team_id = "V82V4GQZXM",
+    team_id = TEAMID,
 )
 
 apple_resource_group(
