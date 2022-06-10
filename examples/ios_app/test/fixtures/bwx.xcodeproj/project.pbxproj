@@ -257,6 +257,7 @@
 		89D23B322516C59BD33A8AD7 /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
 		916051C2C6E70ADF8A009197 /* ExampleObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleObjcTests.m; sourceTree = "<group>"; };
 		9316517AE659EC3FD3542664 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		97ADB761BAE21D828622D393 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		A2CE0911AA38538018FB59B9 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		A3C3B1CF0B717C99A8F574E2 /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		A45CBAB497FEF8A6E097D4E3 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -357,6 +358,14 @@
 				BCD44078F9F239889AD2DF33 /* examples_ios_app_external */,
 			);
 			path = external;
+			sourceTree = "<group>";
+		};
+		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				97ADB761BAE21D828622D393 /* BUILD */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */ = {
@@ -467,6 +476,7 @@
 				28F380E32F8FC5DCB5AFFD45 /* ExampleResources */,
 				8C21537402AD247643865B46 /* ExampleTests */,
 				F724A5F34AC8F468AB767487 /* ExampleUITests */,
+				D2C8CC455B9D27F28D323622 /* test */,
 				C9D5F6313E7E0DFC502A47C0 /* TestingUtils */,
 				8517B1369CD5FF9F1914AB78 /* third_party */,
 				B213C913052591DD93B17599 /* Utils */,
@@ -613,6 +623,14 @@
 				1FD92C95D6623911CFD690F3 /* Greeting.swift.stencil */,
 			);
 			path = TestingUtils;
+			sourceTree = "<group>";
+		};
+		D2C8CC455B9D27F28D323622 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				34EEB3D407F10261A42BB9F7 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		D78115B559F35F46253BFA84 /* Utils */ = {

@@ -164,6 +164,7 @@
 		119F88A7D863C38938114348 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		1599D430F101404D8C5229CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1945E01AD98FE05054F33AE5 /* ExampleObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleObjcTests.m; sourceTree = "<group>"; };
+		1B6E86525CF42B0DBC06EF8C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		1DFA501580379A58AE2389D0 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		1F2546A475C2CA76D8E89436 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C844E9CCF398860A8F858D5 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
@@ -278,6 +279,14 @@
 			path = apple;
 			sourceTree = "<group>";
 		};
+		2E6D9E4BA36A87B56922910C /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				1B6E86525CF42B0DBC06EF8C /* BUILD */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 		46AFB439B9C397CE0AD8269A /* Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +355,14 @@
 				9BF5CE4ADD5163F5308F8626 /* Info.plist */,
 			);
 			path = ExampleResources;
+			sourceTree = "<group>";
+		};
+		68A1D737225E7A97337523DE /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2E6D9E4BA36A87B56922910C /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		6CF7424DF05BD6606F3734CF /* Example-intermediates */ = {
@@ -591,6 +608,7 @@
 				68510571C1C2FF91C893A79F /* ExampleResources */,
 				56B81B9C9A0209D46CB5AB83 /* ExampleTests */,
 				0FA8CC4F83F67E8D17E56EF6 /* ExampleUITests */,
+				68A1D737225E7A97337523DE /* test */,
 				8559ED6752C798E87266A14E /* TestingUtils */,
 				B5E6B29C1FEA4108FE0C81E6 /* third_party */,
 				E0A6E74E3EC30503D4296461 /* Utils */,

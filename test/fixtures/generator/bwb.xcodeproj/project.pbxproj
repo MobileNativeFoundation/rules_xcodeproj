@@ -593,6 +593,7 @@
 		B40DA547773CCE961E1E2CCD /* TargetID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetID.swift; sourceTree = "<group>"; };
 		B41944A58347442213CC45E6 /* CoreMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotion.swift; sourceTree = "<group>"; };
 		B65CEDAB3A773DDC13F7BFE7 /* OrderedSet+RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+RandomAccessCollection.swift"; sourceTree = "<group>"; };
+		B705CCAFA33E657BD38E94F4 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B84817AD8F8BF75C3E9D446A /* OrderedDictionary+Deprecations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Deprecations.swift"; sourceTree = "<group>"; };
 		B850474D28DB907CF28F2410 /* OrderedDictionary+Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Sequence.swift"; sourceTree = "<group>"; };
 		B8DED5C2BC9E231B9E242AF4 /* Outputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outputs.swift; sourceTree = "<group>"; };
@@ -730,6 +731,14 @@
 				4FBEE702AF377A840BE7137B /* Sources */,
 			);
 			path = com_github_pointfreeco_xctest_dynamic_overlay;
+			sourceTree = "<group>";
+		};
+		2E6D9E4BA36A87B56922910C /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				ED248D1515D4574E04518EE7 /* generator */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		2F2933DE92373728EBF7D101 /* Conformances */ = {
@@ -935,6 +944,14 @@
 				748E5C2D56A2ED06BF8F5D39 /* XCWorkspaceDataGroup.swift */,
 			);
 			path = Workspace;
+			sourceTree = "<group>";
+		};
+		68A1D737225E7A97337523DE /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2E6D9E4BA36A87B56922910C /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		6EF3A79C8E962E540EC231B4 /* Targets */ = {
@@ -1247,12 +1264,21 @@
 		EC6FEE5AC277A3FEEA95510A = {
 			isa = PBXGroup;
 			children = (
+				68A1D737225E7A97337523DE /* test */,
 				73CEA667F51A4B28BFA414FB /* tools */,
 				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
 				D182AF8E059C5832405A845F /* rules_xcodeproj */,
 				593E7C82FAAD94A7E6A04318 /* Products */,
 				C047AF1D451C7E165914273D /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		ED248D1515D4574E04518EE7 /* generator */ = {
+			isa = PBXGroup;
+			children = (
+				B705CCAFA33E657BD38E94F4 /* BUILD */,
+			);
+			path = generator;
 			sourceTree = "<group>";
 		};
 		ED9B8640D3E2EFC89A122EA2 /* Objects */ = {

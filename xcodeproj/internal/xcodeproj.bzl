@@ -6,7 +6,7 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":collections.bzl", "uniq")
 load(":configuration.bzl", "get_configuration")
-load(":files.bzl", "file_path", "file_path_to_dto")
+load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":output_files.bzl", "output_files")
@@ -56,6 +56,12 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
         flattened_key_values.to_list(invalid_target_merges),
     )
 
+    extra_files = [
+        file_path_to_dto(file)
+        for file in extra_files.to_list()
+    ]
+    extra_files.append(file_path_to_dto(parsed_file_path(ctx.build_file_path)))
+
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     spec_json = """\
 {{\
@@ -81,10 +87,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 """.format(
         bazel_path = ctx.attr.bazel_path,
         configuration = configuration,
-        extra_files = json.encode([
-            file_path_to_dto(file)
-            for file in extra_files.to_list()
-        ]),
+        extra_files = json.encode(extra_files),
         invalid_target_merges = invalid_target_merges_json,
         label = ctx.label,
         target_merges = target_merges_json,

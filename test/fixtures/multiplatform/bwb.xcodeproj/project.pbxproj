@@ -127,6 +127,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		016704F1DDA30C21E67A425D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		02B8B6114E8B764B8E756D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0451EEEFF755708B88527A18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0561945EBB23E334B7EC83E3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -318,6 +319,14 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		2E6D9E4BA36A87B56922910C /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				FFC927AEC16AF43E0005DEDD /* multiplatform */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 		32B8E40D408F5A8A05D01244 /* iOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +483,14 @@
 				AC3BD6C219E6E5167618EBD9 /* watchOSApp.swift */,
 			);
 			path = watchOSAppExtension;
+			sourceTree = "<group>";
+		};
+		68A1D737225E7A97337523DE /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2E6D9E4BA36A87B56922910C /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		6A486C454E80F1FABC295491 /* multiplatform */ = {
@@ -942,6 +959,7 @@
 			isa = PBXGroup;
 			children = (
 				BB34C210E2A56E7B96B81F9A /* examples */,
+				68A1D737225E7A97337523DE /* test */,
 				C407A8E68D8C611448A3E699 /* Bazel Generated Files */,
 				D182AF8E059C5832405A845F /* rules_xcodeproj */,
 				593E7C82FAAD94A7E6A04318 /* Products */,
@@ -1000,6 +1018,14 @@
 			isa = PBXGroup;
 			children = (
 				C186403150AEE1A58B02EBA1 /* Lib */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		FFC927AEC16AF43E0005DEDD /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				016704F1DDA30C21E67A425D /* BUILD */,
 			);
 			path = multiplatform;
 			sourceTree = "<group>";

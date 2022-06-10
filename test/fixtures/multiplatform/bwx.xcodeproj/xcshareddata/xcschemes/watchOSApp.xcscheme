@@ -40,8 +40,10 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/(null)">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "182B42EFE70A5561F1C023E5"
@@ -49,7 +51,7 @@
             BlueprintName = "watchOSApp"
             ReferencedContainer = "container:test/fixtures/multiplatform/bwx.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
@@ -57,8 +59,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/(null)">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "182B42EFE70A5561F1C023E5"
@@ -66,7 +70,16 @@
             BlueprintName = "watchOSApp"
             ReferencedContainer = "container:test/fixtures/multiplatform/bwx.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "182B42EFE70A5561F1C023E5"
+            BuildableName = "watchOSApp.app"
+            BlueprintName = "watchOSApp"
+            ReferencedContainer = "container:test/fixtures/multiplatform/bwx.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

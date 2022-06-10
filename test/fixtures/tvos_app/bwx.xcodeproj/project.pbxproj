@@ -86,9 +86,18 @@
 		B69AF786B804E6CD15F61528 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		CCDCF5497AF5CB6FD82EB9AB /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
+		DF91274AAE62325614655FBE /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		04697D6283B6D52AAE90357D /* tvos_app */ = {
+			isa = PBXGroup;
+			children = (
+				DF91274AAE62325614655FBE /* BUILD */,
+			);
+			path = tvos_app;
+			sourceTree = "<group>";
+		};
 		0D6645B73DA1AB39447D60DE /* Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +150,14 @@
 				2478846C633527F09A7E1D68 /* examples */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				04697D6283B6D52AAE90357D /* tvos_app */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */ = {
@@ -223,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				86E3AA094AC3498BEDC1D673 /* examples */,
+				D2C8CC455B9D27F28D323622 /* test */,
 				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
 				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
 				462C3519CA354BE1B04D4855 /* Products */,
@@ -281,6 +299,14 @@
 				CCDCF5497AF5CB6FD82EB9AB /* ExampleTests.swift */,
 			);
 			path = ExampleTests;
+			sourceTree = "<group>";
+		};
+		D2C8CC455B9D27F28D323622 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				34EEB3D407F10261A42BB9F7 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {

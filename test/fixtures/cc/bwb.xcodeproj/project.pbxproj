@@ -87,6 +87,7 @@
 		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CB090CE80B33F7C6C1C7F6 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		5CEC67C55F51736AB9F17063 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F5A15B1B3110ED9696BD6FB /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		82E8E5D354CD9B769C1DD508 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		8D73636373B8CDD4BE62C0A5 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +108,22 @@
 				F360F9D030E464AA774319E0 /* lib.h */,
 			);
 			path = examples_cc_external;
+			sourceTree = "<group>";
+		};
+		2E6D9E4BA36A87B56922910C /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				396C9D84AEFF8EDCE2CB9D82 /* cc */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
+		396C9D84AEFF8EDCE2CB9D82 /* cc */ = {
+			isa = PBXGroup;
+			children = (
+				5F5A15B1B3110ED9696BD6FB /* BUILD */,
+			);
+			path = cc;
 			sourceTree = "<group>";
 		};
 		538988851287F65BCA835B1D /* cc */ = {
@@ -136,6 +153,14 @@
 				8EEF31F83F9AF990435CC135 /* tool */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		68A1D737225E7A97337523DE /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2E6D9E4BA36A87B56922910C /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		9811D2ED915829A1A7881AFD /* Bazel External Repositories */ = {
@@ -201,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				BB34C210E2A56E7B96B81F9A /* examples */,
+				68A1D737225E7A97337523DE /* test */,
 				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
 				593E7C82FAAD94A7E6A04318 /* Products */,
 				C047AF1D451C7E165914273D /* Frameworks */,

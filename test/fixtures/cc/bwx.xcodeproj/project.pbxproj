@@ -94,6 +94,7 @@
 		8C467A9CF11D6BFFA7FEE894 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/examples/cc/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		921187174A58741CF8ADCCD9 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		BD77ACEF34FC7AFD41A09A4A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		C0FE22BC231A9DB0A7E546A8 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DD6E27CD14BF041559DD9225 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F836536D759D1084EDC9B80D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +118,14 @@
 			path = includes;
 			sourceTree = "<group>";
 		};
+		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				70DC9256243D9E106213838F /* cc */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 		462C3519CA354BE1B04D4855 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,10 +146,19 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
+		70DC9256243D9E106213838F /* cc */ = {
+			isa = PBXGroup;
+			children = (
+				C0FE22BC231A9DB0A7E546A8 /* BUILD */,
+			);
+			path = cc;
+			sourceTree = "<group>";
+		};
 		77E0714FDD425211EBA209DF = {
 			isa = PBXGroup;
 			children = (
 				86E3AA094AC3498BEDC1D673 /* examples */,
+				D2C8CC455B9D27F28D323622 /* test */,
 				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
 				462C3519CA354BE1B04D4855 /* Products */,
 				D9AAB93A5135F69103554470 /* Frameworks */,
@@ -191,6 +209,14 @@
 				921187174A58741CF8ADCCD9 /* lib.h */,
 			);
 			path = examples_cc_external;
+			sourceTree = "<group>";
+		};
+		D2C8CC455B9D27F28D323622 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				34EEB3D407F10261A42BB9F7 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {
