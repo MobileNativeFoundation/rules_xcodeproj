@@ -10,7 +10,7 @@ load(":providers.bzl", "XcodeProjProvisioningProfileInfo")
 def _process_attr(*, ctx, attrs_info, build_settings):
     attr = attrs_info.provisioning_profile
     if not attr:
-        return None
+        return
 
     provisioning_profile_target = getattr(ctx.rule.attr, attr)
     if (provisioning_profile_target and
@@ -25,9 +25,6 @@ def _process_attr(*, ctx, attrs_info, build_settings):
         is_xcode_managed = False
         team_id = None
         name = None
-
-    # We don't want to show the copied managed profile in the Project navigator
-    file = None if is_xcode_managed else getattr(ctx.rule.file, attr)
 
     set_if_true(
         build_settings,
@@ -47,8 +44,6 @@ def _process_attr(*, ctx, attrs_info, build_settings):
         "CODE_SIGN_IDENTITY",
         ctx.fragments.objc.signing_certificate_name,
     )
-
-    return file
 
 def _create_profileinfo(*, target, is_xcode_managed = False):
     if AppleProvisioningProfileInfo in target:

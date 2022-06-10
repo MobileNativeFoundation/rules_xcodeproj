@@ -150,21 +150,17 @@
 		571673AD5562DFA4AB138EB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		57DED4191C90C7A853FF2A4E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		5808BF0F847CC0BF0E1128FB /* watchOSAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = watchOSAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		61ABF5DB856CDA93091F8A21 /* tvOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision */ = {isa = PBXFileReference; path = "tvOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision"; sourceTree = "<group>"; };
 		64AE19447389D7B6B9BEC81E /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		74CE77708B3D15FA2BCAB0D6 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		763746B7E174FD54C578969C /* watchOSApp_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSApp_entitlements.entitlements; sourceTree = "<group>"; };
 		796DB6B864AF4EFFBC3F8849 /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
 		81A6D193BFF39B6A336051F7 /* watchOSAppExtension_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOSAppExtension_entitlements.entitlements; sourceTree = "<group>"; };
 		84D2483892E8EF0354DF0D4E /* Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tool; sourceTree = BUILT_PRODUCTS_DIR; };
-		89A5597668B3DA128D0A9147 /* iOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision */ = {isa = PBXFileReference; path = "iOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision"; sourceTree = "<group>"; };
 		8E0ADD9182447B9BBC9D04FD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8F1EE8FBE47D232F64888B5C /* iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension.mobileprovision */ = {isa = PBXFileReference; path = "iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension.mobileprovision"; sourceTree = "<group>"; };
 		909CC2C241F4540F5E294662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9122AA9420DF1DC7CEA6891D /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
 		94B4E46AB654CACC5E8E5C55 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6191AB3CB5D88EABB075490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A6A32E6D4A755E88A2E9DC0A /* iOS Team Provisioning Profile: io.buildbuddy.example.watch.mobileprovision */ = {isa = PBXFileReference; path = "iOS Team Provisioning Profile: io.buildbuddy.example.watch.mobileprovision"; sourceTree = "<group>"; };
 		A6B3AB6691877451BCADD42A /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		A7D982498A23C227E0F92061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A9ED7F0279D8C4E01358E285 /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
@@ -359,7 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				F04BF1345516F4CDC39E91CC /* watchOSAppExtension-intermediates */,
-				8F1EE8FBE47D232F64888B5C /* iOS Team Provisioning Profile: io.buildbuddy.example.watch.extension.mobileprovision */,
 				381C43DEBE0C92B63F3D590B /* watchOSAppExtension_entitlements.entitlements */,
 				FF3E8827016B882A76B5EC13 /* watchOSAppExtension.zip */,
 			);
@@ -505,7 +500,6 @@
 			isa = PBXGroup;
 			children = (
 				9AEAE98CDF4257171E1EFE64 /* iOSApp-intermediates */,
-				89A5597668B3DA128D0A9147 /* iOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision */,
 				1118895EBE141E30968A9104 /* iOSApp_entitlements.entitlements */,
 				A9ED7F0279D8C4E01358E285 /* Version.bundle_version */,
 			);
@@ -596,7 +590,6 @@
 			isa = PBXGroup;
 			children = (
 				2EF9BBD84A8A1D91268B27E0 /* watchOSApp-intermediates */,
-				A6A32E6D4A755E88A2E9DC0A /* iOS Team Provisioning Profile: io.buildbuddy.example.watch.mobileprovision */,
 				063155AA19E757FB2E40B426 /* watchOSApp_entitlements.entitlements */,
 				D77542B2B16F5AA77ECBB45D /* watchOSApp.zip */,
 			);
@@ -870,7 +863,6 @@
 			isa = PBXGroup;
 			children = (
 				2D766DB12AD566485024A5EC /* tvOSApp-intermediates */,
-				61ABF5DB856CDA93091F8A21 /* tvOS Team Provisioning Profile: io.buildbuddy.example.mobileprovision */,
 				C75CD97A5BBE066947F77FD2 /* tvOSApp_entitlements.entitlements */,
 			);
 			path = tvOSApp;
