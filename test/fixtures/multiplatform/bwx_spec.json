@@ -67,12 +67,16 @@
             "t": "g"
         },
         "examples/multiplatform/watchOSApp/BUILD",
+        "examples/multiplatform/watchOSApp/Info.plist",
         "examples/multiplatform/watchOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.zip",
             "t": "g"
         },
-        "examples/multiplatform/watchOSApp/Info.plist",
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
+            "t": "g"
+        },
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/iOSApp/Version.bundle_version",
             "t": "g"
@@ -90,6 +94,10 @@
             "t": "g"
         },
         {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/iOSApp/Version.bundle_version",
             "t": "g"
         },
@@ -104,11 +112,19 @@
         "examples/multiplatform/watchOSAppExtension/BUILD",
         "examples/multiplatform/watchOSAppExtension/Info.plist",
         {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
             "t": "g"
         },
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_entitlements.entitlements",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
         },
         {

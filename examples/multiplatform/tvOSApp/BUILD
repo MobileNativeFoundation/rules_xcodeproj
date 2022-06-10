@@ -6,6 +6,11 @@ load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:experimental.bzl",
     "xcode_provisioning_profile",
 )
+load(
+    "//examples/multiplatform:xcodeproj_targets.bzl",
+    "TEAMID",
+    "TVOS_BUNDLE_ID",
+)
 
 config_setting(
     name = "release_build",
@@ -23,7 +28,7 @@ config_setting(
 
 tvos_application(
     name = "tvOSApp",
-    bundle_id = "io.buildbuddy.example",
+    bundle_id = TVOS_BUNDLE_ID,
     bundle_name = "tvOSApp",
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
@@ -45,9 +50,9 @@ xcode_provisioning_profile(
 
 local_provisioning_profile(
     name = "xcode_managed_profile",
-    profile_name = "tvOS Team Provisioning Profile: io.buildbuddy.example",
+    profile_name = "tvOS Team Provisioning Profile: {}".format(TVOS_BUNDLE_ID),
     tags = ["manual"],
-    team_id = "V82V4GQZXM",
+    team_id = TEAMID,
 )
 
 apple_resource_group(
