@@ -104,6 +104,7 @@
 		2E8FDF5B64B5BB961DFACC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F2C9A4A2948FD3A6EA210D1 /* private_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private_lib.h; sourceTree = "<group>"; };
 		4090886057A83A932E74D440 /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
+		56E8056002B81ACFBC75E26C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5C5C8BE9CB34B10B3D9FF611 /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		61D4E93D586B426B1BE67C73 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C5E43F5F81562B9428709C /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +130,14 @@
 				EA1035DE042E08B6C35B6612 /* bin */,
 			);
 			path = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee";
+			sourceTree = "<group>";
+		};
+		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				C5CA9947DC4EB509CCBABCA5 /* command_line */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */ = {
@@ -195,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				86E3AA094AC3498BEDC1D673 /* examples */,
+				D2C8CC455B9D27F28D323622 /* test */,
 				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
 				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
 				462C3519CA354BE1B04D4855 /* Products */,
@@ -296,6 +306,22 @@
 				1BA9C0D148D2F511913315F2 /* lib.h */,
 			);
 			path = "dir with space";
+			sourceTree = "<group>";
+		};
+		C5CA9947DC4EB509CCBABCA5 /* command_line */ = {
+			isa = PBXGroup;
+			children = (
+				56E8056002B81ACFBC75E26C /* BUILD */,
+			);
+			path = command_line;
+			sourceTree = "<group>";
+		};
+		D2C8CC455B9D27F28D323622 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				34EEB3D407F10261A42BB9F7 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {

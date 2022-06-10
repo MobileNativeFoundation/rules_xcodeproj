@@ -87,6 +87,7 @@
 		D6E8EC5800B28DC7A5B63624 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		DB017F09DAA174C86C32DE47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DC68E7E69490507A658DF30F /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
+		E18F10CFF85D8830CA170107 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E470DDDC0990D96A685DB11C /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
 		FA0E59FF263E41FFE42D58A1 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
@@ -134,6 +135,14 @@
 			path = apple;
 			sourceTree = "<group>";
 		};
+		2E6D9E4BA36A87B56922910C /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				8A867FE024EF721BBDC46736 /* tvos_app */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 		593E7C82FAAD94A7E6A04318 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +151,14 @@
 				44C19A56FE797949930D145D /* ExampleUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		68A1D737225E7A97337523DE /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2E6D9E4BA36A87B56922910C /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		887FE2F15BE8AF60D2D3C0B0 /* examples */ = {
@@ -161,6 +178,14 @@
 				DB017F09DAA174C86C32DE47 /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		8A867FE024EF721BBDC46736 /* tvos_app */ = {
+			isa = PBXGroup;
+			children = (
+				E18F10CFF85D8830CA170107 /* BUILD */,
+			);
+			path = tvos_app;
 			sourceTree = "<group>";
 		};
 		962A94CEC4834EE66167AEEF /* ExampleTests */ = {
@@ -270,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				BB34C210E2A56E7B96B81F9A /* examples */,
+				68A1D737225E7A97337523DE /* test */,
 				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
 				C407A8E68D8C611448A3E699 /* Bazel Generated Files */,
 				D182AF8E059C5832405A845F /* rules_xcodeproj */,

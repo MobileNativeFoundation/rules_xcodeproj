@@ -166,6 +166,7 @@
 		A9ED7F0279D8C4E01358E285 /* Version.bundle_version */ = {isa = PBXFileReference; path = Version.bundle_version; sourceTree = "<group>"; };
 		B0A43CFD2E43DEB54B0E4C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B44E58BF339FE8A34DCABA92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B458BF83189E16639F54CF22 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B8EE097BA523AA6A79268BDA /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07D986E341845A1FB7B65E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C19F58FE14D703F8CF8FC2A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -369,6 +370,14 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		2ADBFBD52D26AD6BA63437BD /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				B458BF83189E16639F54CF22 /* BUILD */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
 		2D766DB12AD566485024A5EC /* tvOSApp-intermediates */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +439,14 @@
 				C07D986E341845A1FB7B65E2 /* Info.plist */,
 			);
 			path = "tvOSApp-intermediates";
+			sourceTree = "<group>";
+		};
+		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				2ADBFBD52D26AD6BA63437BD /* multiplatform */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		36DFB4633B8E7C0740AEAB0F /* examples */ = {
@@ -617,6 +634,7 @@
 			isa = PBXGroup;
 			children = (
 				86E3AA094AC3498BEDC1D673 /* examples */,
+				D2C8CC455B9D27F28D323622 /* test */,
 				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
 				6AF936B6BAFAF10DCDAE73D3 /* rules_xcodeproj */,
 				462C3519CA354BE1B04D4855 /* Products */,
@@ -908,6 +926,14 @@
 				83E06E37A3B8784C524A9683 /* Lib */,
 			);
 			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		D2C8CC455B9D27F28D323622 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				34EEB3D407F10261A42BB9F7 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		D7CB36B23CA1D7E77A7F6DBB /* multiplatform */ = {

@@ -442,6 +442,7 @@
 		1F43A51D4C138E626542CF2C /* ProcessTargetMergesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessTargetMergesTests.swift; sourceTree = "<group>"; };
 		2008AEA61834626CAF9F5918 /* OrderedDictionary+Invariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Invariants.swift"; sourceTree = "<group>"; };
 		222FB59B457C825D11B08C04 /* PBXOutputSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXOutputSettings.swift; sourceTree = "<group>"; };
+		22D46387D73A49B4A3656C19 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		2347A143E1E07ADEF7098E12 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		246DA27DDBB9DDC350093B5E /* XCTAssertNoDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTAssertNoDifference.swift; sourceTree = "<group>"; };
 		24ED8C4B933D86C4BBECA7F6 /* PBXTargets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXTargets+Extensions.swift"; sourceTree = "<group>"; };
@@ -851,6 +852,14 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				CCCBC797BC0808AFB4B3D86A /* generator */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 		3734384B0300AEC9C603EA28 /* SwiftPackage */ = {
 			isa = PBXGroup;
 			children = (
@@ -943,6 +952,7 @@
 		77E0714FDD425211EBA209DF = {
 			isa = PBXGroup;
 			children = (
+				D2C8CC455B9D27F28D323622 /* test */,
 				BFA9534DF6A126B00EB81FAA /* tools */,
 				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
 				6AF936B6BAFAF10DCDAE73D3 /* rules_xcodeproj */,
@@ -1113,6 +1123,14 @@
 			path = HashTable;
 			sourceTree = "<group>";
 		};
+		CCCBC797BC0808AFB4B3D86A /* generator */ = {
+			isa = PBXGroup;
+			children = (
+				22D46387D73A49B4A3656C19 /* BUILD */,
+			);
+			path = generator;
+			sourceTree = "<group>";
+		};
 		D01A8727D4DBB7DE4863E251 /* OrderedSet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1141,6 +1159,14 @@
 				8415E01540549AB7D9DC7775 /* OrderedSet+UnstableInternals.swift */,
 			);
 			path = OrderedSet;
+			sourceTree = "<group>";
+		};
+		D2C8CC455B9D27F28D323622 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				34EEB3D407F10261A42BB9F7 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {

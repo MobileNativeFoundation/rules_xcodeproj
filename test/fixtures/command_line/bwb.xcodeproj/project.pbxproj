@@ -110,6 +110,7 @@
 		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F18976D8538975B332CAC08 /* private_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = private_lib.c; sourceTree = "<group>"; };
 		537B806ECAA55F19DAFDF318 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		61606C8E4C3C583C1DE87CAE /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		70E39C0BDE73FBB3E0447A9C /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
 		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		97949DA20D6FB752D6AD72F7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -174,6 +175,14 @@
 			path = apple;
 			sourceTree = "<group>";
 		};
+		2E6D9E4BA36A87B56922910C /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				9B1DE792631198814AAA5574 /* command_line */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 		4EED761FD2246722F245DFA0 /* command_line */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +209,14 @@
 				7F39486CE984F082D17A7720 /* command_line */,
 			);
 			path = examples;
+			sourceTree = "<group>";
+		};
+		68A1D737225E7A97337523DE /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2E6D9E4BA36A87B56922910C /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		7F39486CE984F082D17A7720 /* command_line */ = {
@@ -243,6 +260,14 @@
 				5BA196589518BE4DDC5B941D /* examples */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		9B1DE792631198814AAA5574 /* command_line */ = {
+			isa = PBXGroup;
+			children = (
+				61606C8E4C3C583C1DE87CAE /* BUILD */,
+			);
+			path = command_line;
 			sourceTree = "<group>";
 		};
 		9DD9CFFE2CD76BCD5FC81487 /* applebin_macos-darwin_x86_64-dbg-ST-0139d977e630 */ = {
@@ -350,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				BB34C210E2A56E7B96B81F9A /* examples */,
+				68A1D737225E7A97337523DE /* test */,
 				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
 				C407A8E68D8C611448A3E699 /* Bazel Generated Files */,
 				D182AF8E059C5832405A845F /* rules_xcodeproj */,
