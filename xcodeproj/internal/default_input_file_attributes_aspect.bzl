@@ -125,7 +125,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "deps": [target_type.compile, target_type.resources],
             "resources": [target_type.resources],
         }
-        excluded = ["deps", "extensions", "frameworks"]
+        excluded = ["deps", "extensions", "frameworks", "provisioning_profile"]
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
             excluded.append("test_host")

@@ -191,13 +191,11 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         entitlements_file_path = file_path(entitlements_file)
         additional_files.append(entitlements_file)
 
-    provisioning_file = provisioning_profiles.process_attr(
+    provisioning_profiles.process_attr(
         ctx = ctx,
         attrs_info = attrs_info,
         build_settings = build_settings,
     )
-    if provisioning_file:
-        additional_files.append(provisioning_file)
 
     bundle_resources = should_bundle_resources(ctx = ctx)
 
