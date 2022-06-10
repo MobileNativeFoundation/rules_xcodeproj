@@ -139,6 +139,7 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
                 "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
+                "DONT_GENERATE_INFOPLIST_FILE": true,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",

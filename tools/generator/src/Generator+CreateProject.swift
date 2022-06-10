@@ -67,6 +67,7 @@ $(BUILD_DIR)/bazel_build_output_groups
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
+                "DONT_GENERATE_INFOPLIST_FILE": true,
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",

@@ -1580,7 +1580,7 @@
 					"__TIME__=\"redacted\"",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1742,7 +1742,7 @@
 					"__TIME__=\"redacted\"",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1925,7 +1925,7 @@
 					"__TIME__=\"redacted\"",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=appletvos*]" = "$(GEN_DIR)/applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=appletvos*]" = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2078,6 +2078,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
+				DONT_GENERATE_INFOPLIST_FILE = YES;
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				GEN_DIR = "$(LINKS_DIR)/gen_dir";
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(BUILD_DIR)";
@@ -2130,7 +2131,7 @@
 					"__TIME__=\"redacted\"",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "";
 				OTHER_CFLAGS = (
 					"-fstack-protector",
 					"-Wall",
