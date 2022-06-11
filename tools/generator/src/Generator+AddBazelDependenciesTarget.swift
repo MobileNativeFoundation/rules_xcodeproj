@@ -141,7 +141,10 @@ generated_inputs \#(xcodeprojConfiguration)
 """#
 
         let shellScript = [
-            bazelSetupCommand(buildMode: buildMode),
+            bazelSetupCommand(
+                buildMode: buildMode,
+                generatedInputsOutputGroup: generatedInputsOutputGroup
+            ),
             try createGeneratedFileDirectoriesCommand(
                 hasGeneratedFiles: hasGeneratedFiles,
                 filePathResolver: filePathResolver
@@ -150,8 +153,7 @@ generated_inputs \#(xcodeprojConfiguration)
                 buildMode: buildMode,
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
                 xcodeprojBazelTargetName: xcodeprojBazelTargetName,
-                xcodeprojBinDir: xcodeprojBinDir,
-                generatedInputsOutputGroup: generatedInputsOutputGroup
+                xcodeprojBinDir: xcodeprojBinDir
             ),
             try createCheckGeneratedFilesCommand(
                 xcodeprojBazelTargetName: xcodeprojBazelTargetName,
@@ -176,8 +178,30 @@ generated_inputs \#(xcodeprojConfiguration)
     }
 
     private static func bazelSetupCommand(
-        buildMode: BuildMode
+        buildMode: BuildMode,
+        generatedInputsOutputGroup: String
     ) -> String {
+        let addAdditionalOutputGroups: String
+        switch buildMode {
+        case .bazel:
+            addAdditionalOutputGroups = #"""
+
+# Xcode doesn't adjust `$BUILD_DIR` in scheme action scripts when building for
+# previews. So we need to look in the non-preview build directory for this file.
+output_groups_file="${BAZEL_BUILD_OUTPUT_GROUPS_FILE/\/Intermediates.noindex\/Previews\/*\/Products\///Products/}"
+
+# We need to read from this file as soon as possible, as concurrent writes to it
+# can happen during indexing, which breaks the off-by-one-by-design nature of it
+if [ -s "$output_groups_file" ]; then
+  while IFS= read -r output_group; do
+    output_groups+=("$output_group")
+  done < "$output_groups_file"
+fi
+"""#
+        case .xcode:
+            addAdditionalOutputGroups = ""
+        }
+
         let lldbInit: String
         if buildMode.requiresLLDBInit {
             lldbInit = #"""
@@ -193,6 +217,10 @@ fi
 
         return #"""
 set -euo pipefail
+
+output_groups=("\#(generatedInputsOutputGroup)")
+\#(addAdditionalOutputGroups)
+output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 
 if [ "$ACTION" == "indexbuild" ]; then
   # We use a different output base for Index Build to prevent normal builds and
@@ -256,34 +284,10 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         buildMode: BuildMode,
         xcodeprojBazelLabel: String,
         xcodeprojBazelTargetName: String,
-        xcodeprojBinDir: String,
-        generatedInputsOutputGroup: String
+        xcodeprojBinDir: String
     ) -> String {
-        let addAdditionalOutputGroups: String
-        switch buildMode {
-        case .bazel:
-            addAdditionalOutputGroups = #"""
-
-# Xcode doesn't adjust `$BUILD_DIR` in scheme action scripts when building for
-# previews. So we need to look in the non-preview build directory for this file.
-output_groups_file="${BAZEL_BUILD_OUTPUT_GROUPS_FILE/\/Intermediates.noindex\/Previews\/*\/Products\///Products/}"
-
-if [ -s "$output_groups_file" ]; then
-  while IFS= read -r output_group; do
-    output_groups+=("$output_group")
-  done < "$output_groups_file"
-fi
-"""#
-        case .xcode:
-            addAdditionalOutputGroups = ""
-        }
-
         return #"""
 cd "$SRCROOT"
-
-output_groups=("\#(generatedInputsOutputGroup)")
-\#(addAdditionalOutputGroups)
-output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 
 if [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
   swiftui_previews_flags=(
