@@ -2227,6 +2227,7 @@
 		5AFD85147E5F7EEA259481C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				SUPPORTED_PLATFORMS = macosx;
@@ -2355,6 +2356,7 @@
 		B0892EE2AB907B40AA4EB960 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_BUILD_OUTPUT_GROUPS_FILE = "$(BUILD_DIR)/bazel_build_output_groups";
 				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";
@@ -2515,6 +2517,7 @@
 		CE8A864F719785A99D16C3BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.xctest";
 				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftmodule\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftdoc\n$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftsourceinfo";
@@ -2640,6 +2643,7 @@
 		DC1884C822C7D3AD5CAA6B9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator";

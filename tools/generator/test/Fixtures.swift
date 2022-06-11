@@ -1740,6 +1740,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "TARGET_NAME": targets["A 1"]!.name,
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": "NO",
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
@@ -1780,6 +1781,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "TARGET_NAME": targets["B 1"]!.name,
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": "NO",
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
@@ -1804,6 +1806,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "TEST_HOST": "$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A",
             ]) { $1 },
             "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": "NO",
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
@@ -1838,6 +1841,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "TARGET_NAME": targets["C 1"]!.name,
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": "NO",
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",

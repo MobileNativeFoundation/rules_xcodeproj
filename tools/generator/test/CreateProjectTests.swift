@@ -25,6 +25,7 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
                 "BUILT_PRODUCTS_DIR": """
@@ -121,6 +122,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
 $(BUILD_DIR)/bazel_build_output_groups
 """,

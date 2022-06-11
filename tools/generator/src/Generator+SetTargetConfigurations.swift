@@ -257,6 +257,9 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
 $(CONFIGURATION_BUILD_DIR)
 """
             buildSettings["DEPLOYMENT_LOCATION"] = false
+
+            // Only libraries can appear multiple times in the same build
+            buildSettings["ALLOW_TARGET_PLATFORM_SPECIALIZATION"] = false
         }
 
         if let infoPlist = target.infoPlist {

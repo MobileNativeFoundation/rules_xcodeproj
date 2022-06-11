@@ -188,18 +188,12 @@ Target "\(targetID)" not found in `consolidateTargets().targets`
 private struct ConsolidatableKey: Equatable, Hashable {
     let label: String
     let productType: PBXProductType
-
-    /// Used to prevent watchOS from consolidating with other platforms. Xcode
-    /// gets confused when a watchOS App target depends on a consolidated
-    /// iOS/watchOS dependency, so we just don't let it get into that situation.
-    let isWatchOS: Bool
 }
 
 extension ConsolidatableKey {
     init(target: Target) {
         label = target.label
         productType = target.product.type
-        isWatchOS = target.platform.os == .watchOS
     }
 }
 

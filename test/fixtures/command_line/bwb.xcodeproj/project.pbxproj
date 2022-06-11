@@ -854,6 +854,7 @@
 		5AFD85147E5F7EEA259481C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				SUPPORTED_PLATFORMS = macosx;
@@ -924,6 +925,7 @@
 		6D957D3747854B613BE7F96E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool/tool";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool";
@@ -1000,6 +1002,7 @@
 		903631A5EF23335FBA66FC3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.zip";
 				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTestsLib.swiftmodule\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTestsLib.swiftdoc\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTestsLib.swiftsourceinfo";
@@ -1075,6 +1078,7 @@
 		B0892EE2AB907B40AA4EB960 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_BUILD_OUTPUT_GROUPS_FILE = "$(BUILD_DIR)/bazel_build_output_groups";
 				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";

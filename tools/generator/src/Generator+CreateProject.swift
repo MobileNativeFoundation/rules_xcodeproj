@@ -19,6 +19,7 @@ extension Generator {
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
+            "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
             "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
             "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
             // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since

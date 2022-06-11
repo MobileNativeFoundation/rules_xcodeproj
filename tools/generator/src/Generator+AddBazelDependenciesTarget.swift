@@ -30,6 +30,7 @@ env -i \
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
+                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": false,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "SUPPORTED_PLATFORMS": "macosx",

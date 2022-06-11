@@ -2167,6 +2167,7 @@
 		4ABFE648FEDF6C610CBE9985 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/tools/generator";
 				BAZEL_TARGET_ID = "//tools/generator:generator darwin_x86_64-dbg-ST-0376e8cd69e6";
@@ -2229,6 +2230,7 @@
 		67F44AB65FA7A2E38A56F5FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				SUPPORTED_PLATFORMS = macosx;
@@ -2298,6 +2300,7 @@
 		9C849834DACEFB724631D711 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = NO;
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0376e8cd69e6/bin/tools/generator/test";
 				BAZEL_TARGET_ID = "//tools/generator/test:tests darwin_x86_64-dbg-ST-0376e8cd69e6";
@@ -2480,6 +2483,7 @@
 		C221D886D6D02D33114D3473 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";
 				BAZEL_OUT = "$(BUILD_DIR)/real-bazel-out";
