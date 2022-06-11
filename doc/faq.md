@@ -41,12 +41,9 @@ following
 
 ## When I build I get warnings like "Stale file 'PROJECT.xcodeproj/rules_xcodeproj/gen_dir/...' is located outside of the allowed root paths". How do I fix this?
 
-This is the same issue as the previous two questions.  You merely need to
-synchronize the files with your Bazel project by following
-[these steps](#my-xcode-project-seems-to-be-of-of-sync-with-my-bazel-project-what-should-i-do).
-
-For this one though, you will probably have to close and re-open your project,
-regardless if there are any red items in the Project navigator.
+This warning happens when the paths to generated files change after a project
+generation. Closing and re-opening your project, or performing a clean build,
+will remove the warnings.
 
 ## Why aren't Info.plist details shown when Building with Bazel?
 
