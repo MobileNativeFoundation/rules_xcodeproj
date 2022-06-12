@@ -15,28 +15,14 @@
         "ExampleResources/BUILD",
         "ExampleResources/Info.plist",
         "Example/BUILD",
-        "third_party/BUILD",
         "CoreUtilsObjC/BUILD",
         "Utils/BUILD",
-        {
-            "_": "examples_ios_app_external/ImportableLibrary/Library.h",
-            "t": "e"
-        },
-        "third_party/ExampleFramework.framework/Modules/module.modulemap",
-        {
-            "_": "examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap",
-            "t": "e"
-        },
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
             "t": "g"
         },
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Utils/Utils.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external/Library.swift.modulemap",
             "t": "g"
         },
         "Example/Assets.xcassets/AppIcon.appiconset/Contents.json",
@@ -158,10 +144,6 @@
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
-                    "-framework",
-                    "Foundation",
-                    "-weak_framework",
-                    "SwiftUI",
                     "-lc++",
                     "-ObjC"
                 ],
@@ -209,13 +191,6 @@
             },
             "resource_bundles": [],
             "search_paths": {
-                "framework_includes": [
-                    "third_party",
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    }
-                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -227,14 +202,6 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-                        "t": "g"
-                    },
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
                         "t": "g"
                     }
                 ]
@@ -326,15 +293,6 @@
             "is_swift": false,
             "label": "//Example:Example",
             "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "examples_ios_app_external/ExternalFramework.framework",
-                        "t": "e"
-                    }
-                ],
-                "static_frameworks": [
-                    "third_party/ExampleFramework.framework"
-                ],
                 "static_libraries": [
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Example/libExample.library.a",
@@ -347,10 +305,6 @@
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/libCoreUtilsObjC.a",
                         "t": "g"
-                    },
-                    {
-                        "_": "examples_ios_app_external/ImportableLibrary/libImportableLibrary.a",
-                        "t": "e"
                     }
                 ]
             },
@@ -423,14 +377,10 @@
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
-                    "-framework",
-                    "Foundation",
-                    "-weak_framework",
-                    "SwiftUI",
                     "-lc++",
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -Fthird_party -Fexternal/examples_ios_app_external",
+                "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "Example",
                 "PRODUCT_NAME": "Example.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -455,21 +405,12 @@
             "label": "//Example:Example.library",
             "linker_inputs": {},
             "modulemaps": [
-                "third_party/ExampleFramework.framework/Modules/module.modulemap",
-                {
-                    "_": "examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap",
-                    "t": "e"
-                },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
                     "t": "g"
                 },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Utils/Utils.swift.modulemap",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external/Library.swift.modulemap",
                     "t": "g"
                 }
             ],
@@ -493,13 +434,6 @@
             },
             "resource_bundles": [],
             "search_paths": {
-                "framework_includes": [
-                    "third_party",
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    }
-                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -511,14 +445,6 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-                        "t": "g"
-                    },
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
                         "t": "g"
                     }
                 ]
@@ -673,10 +599,6 @@
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
-                    "-framework",
-                    "Foundation",
-                    "-weak_framework",
-                    "SwiftUI",
                     "-lc++",
                     "-ObjC"
                 ],
@@ -723,13 +645,6 @@
             },
             "resource_bundles": [],
             "search_paths": {
-                "framework_includes": [
-                    "third_party",
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    }
-                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -741,14 +656,6 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-                        "t": "g"
-                    },
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
                         "t": "g"
                     }
                 ]
@@ -950,14 +857,10 @@
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
-                    "-framework",
-                    "Foundation",
-                    "-weak_framework",
-                    "SwiftUI",
                     "-lc++",
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -Fthird_party -Fexternal/examples_ios_app_external",
+                "OTHER_SWIFT_FLAGS": "-g",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "PRODUCT_NAME": "ExampleTests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
@@ -983,21 +886,12 @@
             "label": "//ExampleTests:ExampleTests.library",
             "linker_inputs": {},
             "modulemaps": [
-                "third_party/ExampleFramework.framework/Modules/module.modulemap",
-                {
-                    "_": "examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap",
-                    "t": "e"
-                },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
                     "t": "g"
                 },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Utils/Utils.swift.modulemap",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external/Library.swift.modulemap",
                     "t": "g"
                 },
                 {
@@ -1025,13 +919,6 @@
             },
             "resource_bundles": [],
             "search_paths": {
-                "framework_includes": [
-                    "third_party",
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    }
-                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -1043,14 +930,6 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-                        "t": "g"
-                    },
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
                         "t": "g"
                     }
                 ]
@@ -1393,10 +1272,6 @@
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
-                    "-framework",
-                    "Foundation",
-                    "-weak_framework",
-                    "SwiftUI",
                     "-lc++",
                     "-ObjC"
                 ],
@@ -1445,13 +1320,6 @@
             },
             "resource_bundles": [],
             "search_paths": {
-                "framework_includes": [
-                    "third_party",
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    }
-                ],
                 "includes": [
                     "CoreUtilsObjC",
                     {
@@ -1463,14 +1331,6 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-                        "t": "g"
-                    },
-                    {
-                        "_": "examples_ios_app_external",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
                         "t": "g"
                     }
                 ]

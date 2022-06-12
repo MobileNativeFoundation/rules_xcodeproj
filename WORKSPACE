@@ -32,6 +32,11 @@ local_repository(
     path = "examples/cc/external",
 )
 
+local_repository(
+    name = "examples_command_line_external",
+    path = "examples/command_line/external",
+)
+
 load(
     "@build_bazel_rules_apple//apple:apple.bzl",
     "provisioning_profile_repository",

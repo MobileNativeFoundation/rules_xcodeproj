@@ -25,7 +25,6 @@
 
 /* Begin PBXBuildFile section */
 		0C60B39F563ADB3B6F2D4C48 /* ExampleObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 916051C2C6E70ADF8A009197 /* ExampleObjcTests.m */; };
-		48DA05E58ADA7260C0360930 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082E81D1A4883526CA3B52D8 /* ExampleFramework.framework */; };
 		53F60D0388EA498C85C52E52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 181A626E7874B82CF2F6E536 /* Assets.xcassets */; };
 		5521A83EE8FAF745FA267A58 /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
 		60456255EE960BBA7DA9C36C /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 4EFD481E747FFE235872FEBE /* nested */; };
@@ -37,7 +36,6 @@
 		882767D9CDB805AD8C7F1E0C /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
 		8EE3D89704A81FD3D0298097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 213259970531EA32B992572A /* Assets.xcassets */; };
 		8FA8E447D1C0E7AF458CBA3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F89F28CB6CFCADEC31B05F /* ContentView.swift */; };
-		8FF652940E7640438F6A6655 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711E9FC3B7C0052C8DDBA1C9 /* ExternalFramework.framework */; };
 		9D6596D66F67819ED38676EC /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9184C9EF35257FEA88CF306 /* TestingUtils.swift */; };
 		B7C9125DADCE58A835BB950C /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD57FB206F92F73DFECE745 /* Foo.m */; };
 		C424DA316D76D6DBE8E389B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69E093D72CBE082F537F10FD /* Assets.xcassets */; };
@@ -47,7 +45,6 @@
 		CD4E817DEB1ED2B9E3F6F7A8 /* Answers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 394D4062DC00EEFF51A4933F /* Answers.mm */; };
 		D2069F38A517BD3DAD015112 /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 79AFD512EEA35F6B5E384B71 /* nested */; };
 		DF1BBABB29DD1C62C6874B78 /* ExampleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 087B3E45AA9A7430D1BEC9B8 /* ExampleResources.bundle */; };
-		E24F005794DBF4FAC13BCABC /* ExternalFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 711E9FC3B7C0052C8DDBA1C9 /* ExternalFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E42FEF40785F7445F33C1307 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D76639B60E2E2CA3019CBCA /* Localizable.strings */; };
 		E622F80C56CEC483C5E577E5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF64499057F57FE175119DD /* ExampleTests.swift */; };
 /* End PBXBuildFile section */
@@ -202,24 +199,9 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		761DAAD429FC5A4C1EBD5270 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E24F005794DBF4FAC13BCABC /* ExternalFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		04B7FF83EC448D16A88FA827 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		0551D3402BBFA018916880AC /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		082E81D1A4883526CA3B52D8 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		087B3E45AA9A7430D1BEC9B8 /* ExampleResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC7E49CD6F2F86EFC4F09E8 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		0D4BE40B12E61F0EBADF1EF0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -242,19 +224,16 @@
 		397892D81DF3E9D15E18C094 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
 		44BB25020D8FACC865B72D37 /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		4EFD481E747FFE235872FEBE /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
-		52D5C019D7FE1B131E3E26FC /* Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
 		56019D124B91E38AF4906E11 /* ExternalResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExternalResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CABDA09B231335D1A65F54 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		5C2D4A62829A12CF82C8CAFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		66FD903A85D9EC8C1EBDC3C2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		69E093D72CBE082F537F10FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		711E9FC3B7C0052C8DDBA1C9 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
 		72ADA2EDE061878484810ED9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		79AFD512EEA35F6B5E384B71 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		7B3D04144C7784CD7A3331E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7FD57FB206F92F73DFECE745 /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 		813BF43CC67DF4C602E82DCE /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
-		89D23B322516C59BD33A8AD7 /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
 		916051C2C6E70ADF8A009197 /* ExampleObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleObjcTests.m; sourceTree = "<group>"; };
 		9316517AE659EC3FD3542664 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		97ADB761BAE21D828622D393 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -266,7 +245,6 @@
 		A9184C9EF35257FEA88CF306 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		AE960EFF7013DD45F88383CC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69AF786B804E6CD15F61528 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7FE33B24BCFA511CAE756AF /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		C5B3BDEA35D66615774EF182 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D1A77D43C2AC29495314BE08 /* Utils.bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utils.bundle; sourceTree = "<group>"; };
@@ -278,24 +256,11 @@
 		DF687E5CFDD353365469C4A0 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		E788B1C7B112FB6941BD4C12 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Utils/libUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96B6D79A5EE347B1D1525A5 /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
-		E9FA397CF373D551969DCA9F /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		EC7CDEE9BB4DCF113F3A632C /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		F0C6F70E20391113754D1FA5 /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libTestingUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/TestingUtils/libTestingUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7010BA0970E72123DBC46EA /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
 		FD0A412F6FD34BAD4615ACB5 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/libCoreUtilsObjC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		0BB138DF24439C6CB36F159F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48DA05E58ADA7260C0360930 /* ExampleFramework.framework in Frameworks */,
-				8FF652940E7640438F6A6655 /* ExternalFramework.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		03F873082A9A76A86829D49F /* ExampleUITests */ = {
@@ -350,14 +315,6 @@
 				2F06764194B2382B5691A047 /* BUILD */,
 			);
 			path = CoreUtilsObjC;
-			sourceTree = "<group>";
-		};
-		2E53E34875BFE9E86F479178 /* external */ = {
-			isa = PBXGroup;
-			children = (
-				BCD44078F9F239889AD2DF33 /* examples_ios_app_external */,
-			);
-			path = external;
 			sourceTree = "<group>";
 		};
 		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
@@ -415,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				588F7F633B97E7ABC5968BEF /* CoreUtilsObjC */,
-				2E53E34875BFE9E86F479178 /* external */,
 				B663248C0196CEDF0DF34479 /* TestingUtils */,
 				D78115B559F35F46253BFA84 /* Utils */,
 			);
@@ -434,10 +390,8 @@
 			isa = PBXGroup;
 			children = (
 				4FEAD0F887AEB1BB707A8054 /* bundles */,
-				ADC042F0633E8C32FDBCD609 /* ImportableLibrary */,
 				79AFD512EEA35F6B5E384B71 /* nested */,
 				181A626E7874B82CF2F6E536 /* Assets.xcassets */,
-				711E9FC3B7C0052C8DDBA1C9 /* ExternalFramework.framework */,
 				A890FF7B719F233595AEE73E /* Info.plist */,
 			);
 			path = examples_ios_app_external;
@@ -478,7 +432,6 @@
 				F724A5F34AC8F468AB767487 /* ExampleUITests */,
 				D2C8CC455B9D27F28D323622 /* test */,
 				C9D5F6313E7E0DFC502A47C0 /* TestingUtils */,
-				8517B1369CD5FF9F1914AB78 /* third_party */,
 				B213C913052591DD93B17599 /* Utils */,
 				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
 				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
@@ -493,15 +446,6 @@
 				4968DCF44E9E801C346673A1 /* bin */,
 			);
 			path = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61";
-			sourceTree = "<group>";
-		};
-		8517B1369CD5FF9F1914AB78 /* third_party */ = {
-			isa = PBXGroup;
-			children = (
-				B7FE33B24BCFA511CAE756AF /* BUILD */,
-				082E81D1A4883526CA3B52D8 /* ExampleFramework.framework */,
-			);
-			path = third_party;
 			sourceTree = "<group>";
 		};
 		85F708DD1F5484A0D5558108 /* Bazel External Repositories */ = {
@@ -550,15 +494,6 @@
 			path = test/fixtures/bwx.xcodeproj/rules_xcodeproj/links/gen_dir;
 			sourceTree = "<group>";
 		};
-		ADC042F0633E8C32FDBCD609 /* ImportableLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				E9FA397CF373D551969DCA9F /* libImportableLibrary.a */,
-				52D5C019D7FE1B131E3E26FC /* Library.h */,
-			);
-			path = ImportableLibrary;
-			sourceTree = "<group>";
-		};
 		B213C913052591DD93B17599 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -596,14 +531,6 @@
 				404E7E43544B7F938886B554 /* Model.xcdatamodeld */,
 			);
 			path = Example;
-			sourceTree = "<group>";
-		};
-		BCD44078F9F239889AD2DF33 /* examples_ios_app_external */ = {
-			isa = PBXGroup;
-			children = (
-				89D23B322516C59BD33A8AD7 /* Library.swift.modulemap */,
-			);
-			path = examples_ios_app_external;
 			sourceTree = "<group>";
 		};
 		C9C1DEFBCB622AA875F90D60 /* Example */ = {
@@ -787,9 +714,7 @@
 			buildConfigurationList = E6A9520E4E640351CDDD995F /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
 				158225A69996B833609C215D /* Sources */,
-				0BB138DF24439C6CB36F159F /* Frameworks */,
 				EC82FDE86D73A4710E6DBDE5 /* Resources */,
-				761DAAD429FC5A4C1EBD5270 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1494,10 +1419,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/third_party",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1537,10 +1458,6 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-weak_framework",
-					SwiftUI,
 					"-lc++",
 					"-ObjC",
 				);
@@ -1556,8 +1473,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
 				);
 			};
 			name = Debug;
@@ -1577,10 +1492,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/third_party",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1622,14 +1533,10 @@
 				OTHER_LDFLAGS = (
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/ExampleTests/ExampleTests.__internal__.__test_bundle.LinkFileList",
-					"-framework",
-					Foundation,
-					"-weak_framework",
-					SwiftUI,
 					"-lc++",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(PROJECT_DIR)/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external/Library.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -g -Fthird_party -Fexternal/examples_ios_app_external";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -g";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
@@ -1648,8 +1555,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
 				);
 			};
 			name = Debug;
@@ -1669,10 +1574,6 @@
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/third_party",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1717,10 +1618,6 @@
 					"-Wl,-rpath,/usr/lib/swift",
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
-					"-framework",
-					Foundation,
-					"-weak_framework",
-					SwiftUI,
 					"-lc++",
 					"-ObjC",
 				);
@@ -1740,8 +1637,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
 				);
 			};
 			name = Debug;
@@ -1761,10 +1656,6 @@
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/third_party",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1809,14 +1700,10 @@
 				OTHER_LDFLAGS = (
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/Example/Example.LinkFileList",
-					"-framework",
-					Foundation,
-					"-weak_framework",
-					SwiftUI,
 					"-lc++",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(PROJECT_DIR)/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_ios_app_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external/Library.swift.xcode.modulemap -g -Fthird_party -Fexternal/examples_ios_app_external";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Utils/Utils.swift.xcode.modulemap -g";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;
@@ -1832,8 +1719,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
 				);
 			};
 			name = Debug;
@@ -1880,10 +1765,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/third_party",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1922,10 +1803,6 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-weak_framework",
-					SwiftUI,
 					"-lc++",
 					"-ObjC",
 				);
@@ -1941,8 +1818,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin",
-					"$(BAZEL_EXTERNAL)/examples_ios_app_external",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/external/examples_ios_app_external",
 				);
 			};
 			name = Debug;
