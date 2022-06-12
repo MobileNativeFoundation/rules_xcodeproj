@@ -27,6 +27,7 @@
 		25605E8E5912BBF468A910D4 /* private_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F18976D8538975B332CAC08 /* private_lib.c */; };
 		2565B0E6AC6DB939D6A8209E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06A565663AED0899589F574 /* main.m */; };
 		2848C0B211EE176A3865CF72 /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE87466AFFDC6606F8518F8 /* SwiftGreetingsTests.swift */; };
+		5F4165D42F87CF02FDF9BD95 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0B8A6EE3BAC206A38EB651 /* ExampleFramework.framework */; };
 		710D43D76CB511A8B84AADBE /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		A01C6C6B96A9DD78BF99BEAA /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BEEB36D3E48677861539C1 /* ExternalFramework.framework */; };
 		C2856E1EDD6B2C68FB87FD2D /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BEEB36D3E48677861539C1 /* ExternalFramework.framework */; };
@@ -110,8 +111,10 @@
 		26385BC3A03088371FF9B69F /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A44BF8F252A4102EA584307 /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		2D85BE28EA2A37C7DEC17BFB /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		3E0B8A6EE3BAC206A38EB651 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4476EF7C707FF85B9BCC90DD /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
+		4819BF89091A697DA5D97F7B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		4F18976D8538975B332CAC08 /* private_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = private_lib.c; sourceTree = "<group>"; };
 		537B806ECAA55F19DAFDF318 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		61606C8E4C3C583C1DE87CAE /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F4165D42F87CF02FDF9BD95 /* ExampleFramework.framework in Frameworks */,
 				C2856E1EDD6B2C68FB87FD2D /* ExternalFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,6 +183,7 @@
 			children = (
 				063AAADAA89AC96445191502 /* lib */,
 				DFF009E928DD3A84D027B6F2 /* Tests */,
+				94A32693775E53A5F7E770C3 /* third_party */,
 				A1A003CE7A8C4BBD4565BF3B /* tool */,
 			);
 			path = command_line;
@@ -294,6 +299,15 @@
 				F5B8CDF37038F1DAA6B0A624 /* private_lib.swift.modulemap */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		94A32693775E53A5F7E770C3 /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				4819BF89091A697DA5D97F7B /* BUILD */,
+				3E0B8A6EE3BAC206A38EB651 /* ExampleFramework.framework */,
+			);
+			path = third_party;
 			sourceTree = "<group>";
 		};
 		9811D2ED915829A1A7881AFD /* Bazel External Repositories */ = {
@@ -1000,7 +1014,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/examples_command_line_external";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/examples/command_line/third_party",
+					"$(BAZEL_EXTERNAL)/examples_command_line_external",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1047,6 +1064,10 @@
 					"-Wl,-rpath,/usr/lib/swift",
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
+					"-framework",
+					Foundation,
+					"-weak_framework",
+					SwiftUI,
 					"-ObjC",
 				);
 				PRODUCT_NAME = tool;

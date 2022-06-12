@@ -34,6 +34,7 @@
             "t": "g"
         },
         "examples/command_line/lib/dir with space/lib.h",
+        "examples/command_line/third_party/BUILD",
         "examples/command_line/tool/BUILD",
         "examples/command_line/tool/Info.plist",
         "examples/command_line/Tests/BUILD",
@@ -723,6 +724,9 @@
                         "t": "e"
                     }
                 ],
+                "static_frameworks": [
+                    "examples/command_line/third_party/ExampleFramework.framework"
+                ],
                 "static_libraries": [
                     {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool/libtool.library.a",
@@ -816,6 +820,10 @@
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_LDFLAGS": [
+                    "-framework",
+                    "Foundation",
+                    "-weak_framework",
+                    "SwiftUI",
                     "-ObjC"
                 ],
                 "PRODUCT_NAME": "tool.library",
@@ -858,6 +866,7 @@
             "resource_bundles": [],
             "search_paths": {
                 "framework_includes": [
+                    "examples/command_line/third_party",
                     {
                         "_": "examples_command_line_external",
                         "t": "e"
