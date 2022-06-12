@@ -18,6 +18,5 @@ objc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//third_party:ExampleFramework",
-        "@examples_ios_app_external//:ExternalFramework",
     ],
 )
