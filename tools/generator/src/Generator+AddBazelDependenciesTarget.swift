@@ -2,23 +2,11 @@ import PathKit
 import XcodeProj
 
 extension Generator {
-    // Xcode likes this list as a string, and apparently in reverse
-    private static let allPlatforms = """
-watchsimulator \
-watchos \
-macosx \
-iphonesimulator \
-iphoneos \
-driverkit \
-appletvsimulator \
-appletvos
-"""
-
     private static let bazelExec = #"""
 env -i \
   DEVELOPER_DIR="$DEVELOPER_DIR" \
   HOME="$HOME" \
-  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
   USER="$USER" \
   "$BAZEL_PATH"
 """#
@@ -42,10 +30,9 @@ env -i \
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
-                "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
-                "SUPPORTED_PLATFORMS": allPlatforms,
+                "SUPPORTED_PLATFORMS": "macosx",
                 "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "BazelDependencies",
             ]
