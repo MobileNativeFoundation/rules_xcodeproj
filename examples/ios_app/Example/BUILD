@@ -48,7 +48,6 @@ swift_library(
     visibility = ["//visibility:public"],
     deps = [
         "//Utils",
-        "//third_party:ExampleFramework",
     ],
 )
 

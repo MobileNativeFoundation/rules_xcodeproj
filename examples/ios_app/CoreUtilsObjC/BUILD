@@ -16,7 +16,4 @@ objc_library(
     sdk_dylibs = ["c++"],
     tags = ["manual"],
     visibility = ["//visibility:public"],
-    deps = [
-        "//third_party:ExampleFramework",
-    ],
 )

@@ -1,4 +1,3 @@
-import ExampleFramework
 import SwiftUI
 import Utils
 
@@ -12,7 +11,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Text("\(Foo().greeting())\n\(Bar().baz())")
+            Text("\(Foo().greeting())")
                 .padding()
             Image("rules_xcodeproj", bundle: Self.exampleResourcesBundle)
                 .resizable()

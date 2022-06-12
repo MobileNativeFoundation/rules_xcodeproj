@@ -1,4 +1,4 @@
-#import <ExampleFramework/ExampleFramework.h>
+#import <Foundation/Foundation.h>
 
 @interface Answers: NSObject
 
