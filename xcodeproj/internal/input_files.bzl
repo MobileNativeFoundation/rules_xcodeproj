@@ -189,9 +189,7 @@ def _collect(
         if file == None:
             return
 
-        if not file.is_source:
-            generated.append(file)
-
+        categorized = True
         if attr in attrs_info.srcs:
             srcs.append(file)
         elif attr in attrs_info.non_arc_srcs:
@@ -222,8 +220,14 @@ def _collect(
                 file = file,
             )
             _process_resource_file_path(fp)
-        elif file not in output_files:
-            extra_files.append(file_path(file))
+        else:
+            categorized = False
+
+        if file.is_source:
+            if not categorized and file not in output_files:
+                extra_files.append(file_path(file))
+        elif categorized:
+            generated.append(file)
 
     excluded_attrs = attrs_info.excluded
 
