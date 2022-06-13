@@ -1,9 +1,7 @@
 """Module containing functions dealing with target input files."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "flatten", "set_if_true")
 load(":files.bzl", "file_path", "file_path_to_dto", "join_paths_ignoring_empty", "parsed_file_path")
-load(":logging.bzl", "warn")
 load(":output_group_map.bzl", "output_group_map")
 
 # Utility
@@ -109,6 +107,26 @@ in {}""".format(file, target.label))
         path = join_paths_ignoring_empty(package_dir, relative_bundle),
         is_folder = True,
     )
+
+_BUNDLE_EXTENSIONS = [
+    ".bundle",
+    ".framework",
+    ".xcframework",
+]
+
+def _normalized_file_path(file):
+    path = file.path
+
+    for extension in _BUNDLE_EXTENSIONS:
+        prefix, ext, _ = path.partition(extension)
+        if not ext:
+            continue
+        return file_path(
+            file,
+            path = prefix + ext,
+        )
+
+    return file_path(file)
 
 # API
 
@@ -225,7 +243,7 @@ def _collect(
 
         if file.is_source:
             if not categorized and file not in output_files:
-                extra_files.append(file_path(file))
+                extra_files.append(_normalized_file_path(file))
         elif categorized:
             generated.append(file)
 
@@ -241,24 +259,6 @@ def _collect(
         if _should_ignore_attr(attr, excluded_attrs = excluded_attrs):
             continue
         _handle_file(getattr(ctx.rule.file, attr), attr = attr)
-
-    # Sanity check to insure that we are excluding files correctly
-    suspect_files = [
-        file
-        for file in generated
-        if paths.split_extension(file.path)[1] in _SUSPECT_GENERATED_EXTENSIONS
-    ]
-    if suspect_files:
-        warn("""\
-Collected generated files for {target} that probably shouldn't have been \
-collected:
-{files}
-
-If you are providing a custom `InputFileAttributesInfo`, ensure that the \
-`excluded_attrs` attribute excludes the correct attributes.
-If you think this is a bug, please file a bug report at \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
-""".format(target = target.label, files = suspect_files))
 
     generated.extend([file for file in additional_files if not file.is_source])
     for file in additional_files:
