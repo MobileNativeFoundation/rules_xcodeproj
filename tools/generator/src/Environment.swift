@@ -58,7 +58,8 @@ struct Environment {
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
         _ xcodeprojBazelLabel: String,
-        _ xcodeprojConfiguration: String
+        _ xcodeprojConfiguration: String,
+        _ consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget?
 
     let addTargets: (
