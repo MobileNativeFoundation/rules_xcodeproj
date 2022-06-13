@@ -56,6 +56,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     else:
         srcs = ()
 
+    excluded = ("deps")
     non_arc_srcs = ()
     hdrs = ()
     pch = None
@@ -68,7 +69,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "deps": [target_type.compile, target_type.resources],
             "interface_deps": [target_type.compile],
         }
-        excluded = ("deps", "interface_deps", "win_def_file")
+        excluded = ("deps", "interface_deps")
         hdrs = ("hdrs", "textual_hdrs")
         resources = {
             "deps": [target_type.compile, target_type.resources],
@@ -76,7 +77,6 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         }
     elif ctx.rule.kind == "cc_import":
         xcode_targets = {}
-        excluded = ("shared_library", "static_library")
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
             "deps": [target_type.compile, target_type.resources],
@@ -89,12 +89,10 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         pch = "pch"
         resources = {
             "deps": [target_type.compile, target_type.resources],
-            "runtime_deps": [target_type.compile],
             "data": [target_type.resources],
         }
     elif ctx.rule.kind == "objc_import":
         xcode_targets = {}
-        excluded = ("archives")
     elif ctx.rule.kind == "swift_library":
         xcode_targets = {
             "deps": [target_type.compile, target_type.resources],
@@ -104,31 +102,25 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         excluded = ("deps", "private_deps")
         resources = {
             "deps": [target_type.compile, target_type.resources],
-            "private_deps": [target_type.compile],
             "data": [target_type.resources],
         }
     elif (ctx.rule.kind == "apple_resource_group" or
           ctx.rule.kind == "apple_resource_bundle"):
         xcode_targets = {"resources": [target_type.resources]}
-        excluded = ()
         resources = {"resources": [target_type.resources]}
         structured_resources = ("structured_resources")
     elif ctx.rule.kind == "apple_bundle_import":
         xcode_targets = {}
-        excluded = ()
         bundle_imports = ("bundle_imports")
     elif ctx.rule.kind == "genrule":
         xcode_targets = {}
-        excluded = ("tools")
     elif AppleBundleInfo in target:
         xcode_targets = {
             "deps": [target_type.compile, target_type.resources],
             "resources": [target_type.resources],
         }
-        excluded = ["deps", "extensions", "frameworks", "provisioning_profile"]
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
-            excluded.append("test_host")
         provisioning_profile = "provisioning_profile"
         resources = {
             "deps": [target_type.compile, target_type.resources],
@@ -136,11 +128,9 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         }
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile, target_type.resources]}
-        excluded = ("deps", "framework_imports")
         resources = {"deps": [target_type.compile, target_type.resources]}
     else:
         xcode_targets = {"deps": [this_target_type, target_type.resources]}
-        excluded = ("deps")
         resources = {"deps": [this_target_type, target_type.resources]}
 
     return [
