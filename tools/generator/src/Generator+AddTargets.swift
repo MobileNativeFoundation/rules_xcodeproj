@@ -123,8 +123,16 @@ Product for target "\(key)" not found in `products`
             return nil
         }
 
+        let inputPaths: [String]
+        if productType.isBundle {
+            inputPaths = ["$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)"]
+        } else {
+            inputPaths = []
+        }
+
         let script = PBXShellScriptBuildPhase(
             name: "Copy Bazel Outputs",
+            inputPaths: inputPaths,
             outputPaths: outputs.outputPaths,
             shellScript: copyCommand,
             showEnvVarsInLog: false,

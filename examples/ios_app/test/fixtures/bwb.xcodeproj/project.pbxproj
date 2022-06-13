@@ -786,6 +786,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
@@ -802,6 +803,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
@@ -853,6 +855,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
@@ -870,6 +873,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
@@ -1518,7 +1522,6 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
-				DONT_GENERATE_INFOPLIST_FILE = YES;
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				GEN_DIR = "$(LINKS_DIR)/gen_dir";
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(BUILD_DIR)";
