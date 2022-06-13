@@ -442,7 +442,7 @@ cd "$BAZEL_OUT"
 # builds, but is different for Index Builds. `PBXBuildFile`s will use the
 # "$GEN_DIR" version, so indexing might get messed up until they are normally
 # generated. It's the best we can do though as we need to use the `gen_dir`
-# symlink.
+# symlink, because Index Build can't modify the normal build's "$BUILD_DIR".
 rsync \
   --files-from "\#(
     try filePathResolver
@@ -525,6 +525,12 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             ],
             shellScript: #"""
 set -euo pipefail
+
+if [ "$ACTION" == "indexbuild" ]; then
+  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during
+  # Index Build
+  exit
+fi
 
 while IFS= read -r input; do
   output="${input%.plist}.xcode.plist"
