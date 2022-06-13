@@ -1,7 +1,15 @@
 """Module containing functions dealing with target input files."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "flatten", "set_if_true")
-load(":files.bzl", "file_path", "file_path_to_dto", "join_paths_ignoring_empty", "parsed_file_path")
+load(
+    ":files.bzl",
+    "file_path",
+    "file_path_to_dto",
+     "join_paths_ignoring_empty",
+     "parsed_file_path",
+)
+load(":logging.bzl", "warn")
 load(":output_group_map.bzl", "output_group_map")
 
 # Utility
