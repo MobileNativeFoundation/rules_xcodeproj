@@ -24,10 +24,14 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3B3FB8A8404D63DAC7716D58 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28E1B68D93B2489A9F8CE22 /* ExampleFramework.framework */; };
+		66771A85F1193E4097651624 /* ExternalFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9D46BEBDD407F679ED938408 /* ExternalFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69DB639F814B746736CBE9A2 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D46BEBDD407F679ED938408 /* ExternalFramework.framework */; };
 		7BC8A776D2D1C760F9C38A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B86F4542BE9E526167481 /* main.m */; };
 		8061E3DE63D96635F98C9B3A /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5E4ABAACB85A529597A95E /* lib.swift */; };
 		9D33767266FC4D21B0BF2358 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = B45E624D6CB9A25AD05AA3EB /* lib.m */; };
 		DCEAC0456D3DB4A3DE4A12A2 /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D945EBC9B2F4A830BCCF4F4 /* SwiftGreetingsTests.swift */; };
+		E8562BD6CA809EA0BD1921D9 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D46BEBDD407F679ED938408 /* ExternalFramework.framework */; };
 		EE8870A9BDAE53F2ABD71A26 /* private_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 782EFB0F35839BA9778CEB6A /* private_lib.c */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +101,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F88CFEB308E1E67FA533C8FE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				66771A85F1193E4097651624 /* ExternalFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0C0B86F4542BE9E526167481 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1BA9C0D148D2F511913315F2 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
@@ -104,6 +122,8 @@
 		2E8FDF5B64B5BB961DFACC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F2C9A4A2948FD3A6EA210D1 /* private_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private_lib.h; sourceTree = "<group>"; };
 		4090886057A83A932E74D440 /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
+		4BF3CFD7558147C7C3CD7E51 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		53992DEBB8E57F199C693704 /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
 		56E8056002B81ACFBC75E26C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5C5C8BE9CB34B10B3D9FF611 /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		61D4E93D586B426B1BE67C73 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,14 +134,38 @@
 		7D945EBC9B2F4A830BCCF4F4 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
 		7EA31D6C8ED425D3BB693543 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7F5E4ABAACB85A529597A95E /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
+		9D46BEBDD407F679ED938408 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
+		B093EB1BAB8D20D1457C10D2 /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		B45E624D6CB9A25AD05AA3EB /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
+		C28E1B68D93B2489A9F8CE22 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		CEA1DFE38FE902756F4C6FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D04DA2A609AD72919E00E6F6 /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E23788130BC4E7FCB9DB99 /* LibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD7F092ECFB7A42788CDBA5F /* Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
 		F079AF4E09A6C7D7089DE38F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F7195ED6E5A6C3B8F36B42A6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7165B44A589EFBFBB82CDA17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B3FB8A8404D63DAC7716D58 /* ExampleFramework.framework in Frameworks */,
+				69DB639F814B746736CBE9A2 /* ExternalFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3E3E3024ED208A4FF669280 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8562BD6CA809EA0BD1921D9 /* ExternalFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		018565965359C2FA437EC773 /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee */ = {
@@ -130,6 +174,23 @@
 				EA1035DE042E08B6C35B6612 /* bin */,
 			);
 			path = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee";
+			sourceTree = "<group>";
+		};
+		04E0907BDFB7CA34FE318A6F /* examples_command_line_external */ = {
+			isa = PBXGroup;
+			children = (
+				53992DEBB8E57F199C693704 /* Library.swift.modulemap */,
+			);
+			path = examples_command_line_external;
+			sourceTree = "<group>";
+		};
+		098BD37A03EC1B474CBC2853 /* examples_command_line_external */ = {
+			isa = PBXGroup;
+			children = (
+				983E91991C1832498377D188 /* ImportableLibrary */,
+				9D46BEBDD407F679ED938408 /* ExternalFramework.framework */,
+			);
+			path = examples_command_line_external;
 			sourceTree = "<group>";
 		};
 		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
@@ -232,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */,
+				098BD37A03EC1B474CBC2853 /* examples_command_line_external */,
 			);
 			name = "Bazel External Repositories";
 			path = test/fixtures/command_line/bwx.xcodeproj/rules_xcodeproj/links/external;
@@ -259,6 +321,24 @@
 				CEA1DFE38FE902756F4C6FF3 /* Info.plist */,
 			);
 			path = "LibSwiftTests.__internal__.__test_bundle-intermediates";
+			sourceTree = "<group>";
+		};
+		983E91991C1832498377D188 /* ImportableLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				B093EB1BAB8D20D1457C10D2 /* libImportableLibrary.a */,
+				DD7F092ECFB7A42788CDBA5F /* Library.h */,
+			);
+			path = ImportableLibrary;
+			sourceTree = "<group>";
+		};
+		9E9F9830911E91D6AF7C1EAB /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				4BF3CFD7558147C7C3CD7E51 /* BUILD */,
+				C28E1B68D93B2489A9F8CE22 /* ExampleFramework.framework */,
+			);
+			path = third_party;
 			sourceTree = "<group>";
 		};
 		A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */ = {
@@ -345,10 +425,19 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		E4E4BBB2496AB4B75A8F592D /* external */ = {
+			isa = PBXGroup;
+			children = (
+				04E0907BDFB7CA34FE318A6F /* examples_command_line_external */,
+			);
+			path = external;
+			sourceTree = "<group>";
+		};
 		EA1035DE042E08B6C35B6612 /* bin */ = {
 			isa = PBXGroup;
 			children = (
 				8F80512324184463F84D6FCC /* examples */,
+				E4E4BBB2496AB4B75A8F592D /* external */,
 			);
 			path = bin;
 			sourceTree = "<group>";
@@ -366,6 +455,7 @@
 			children = (
 				E0DF9FDD420D7C34C5522A8F /* lib */,
 				A6261EE09B72823672631225 /* Tests */,
+				9E9F9830911E91D6AF7C1EAB /* third_party */,
 				AEA469E9B752E999F07AF5BE /* tool */,
 			);
 			path = command_line;
@@ -379,6 +469,8 @@
 			buildConfigurationList = F22B54D0A6F2A9289C654CE0 /* Build configuration list for PBXNativeTarget "LibSwiftTests.__internal__.__test_bundle" */;
 			buildPhases = (
 				44F011F3CE3C58E01B37B898 /* Sources */,
+				B3E3E3024ED208A4FF669280 /* Frameworks */,
+				F88CFEB308E1E67FA533C8FE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -444,6 +536,7 @@
 			buildConfigurationList = 85DAE5AD4B16C63749019BBB /* Build configuration list for PBXNativeTarget "tool" */;
 			buildPhases = (
 				5070903440E6C33AE9B061E6 /* Sources */,
+				7165B44A589EFBFBB82CDA17 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -553,7 +646,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  # We use a different output base for SwiftUI Previews since they have\n  # different swiftcopts, preventing output trashing\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  output_path)\nexec_root=\"${output_path%/*}\"\nexternal=\"${exec_root%/*/*}/external\"\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf real-bazel-out\n\nln -sf \"$external\" external\nln -sf \"$output_path\" real-bazel-out\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|\\/[^\\/]*$||' \\\n  \"$INTERNAL_DIR/generated.rsynclist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n\ncd \"$SRCROOT\"\n\noutput_groups=(\"generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1\")\n\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  swiftui_previews_flags=(\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-implicit-dynamic\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-private-imports\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-dynamic-replacement-chaining\n  )\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nlog=$(mktemp)\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  ${swiftui_previews_flags:+${swiftui_previews_flags[*]}} \\\n  \"$output_groups_flag\" \\\n  //test/fixtures/command_line:xcodeproj_bwx \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwx-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/command_line/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$INTERNAL_DIR/toplevel_cache_buster\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n\n\ndiff=$(comm -23 <(sed -e 's|^|bazel-out/|' \"$INTERNAL_DIR/generated.rsynclist\" | sort) <(sort \"$BAZEL_OUT/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/command_line/xcodeproj_bwx-generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1.filelist\"))\nif ! [ -z \"$diff\" ]; then\n  echo \"error: The files that Bazel generated don't match what the project expects. Please regenerate the project.\" >&2\n  echo \"error: $diff\" >&2\n  echo \"error: If you still get this error after regenerating your project, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n  exit 1\nfi\n";
+			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  # We use a different output base for SwiftUI Previews since they have\n  # different swiftcopts, preventing output trashing\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  output_path)\nexec_root=\"${output_path%/*}\"\nexternal=\"${exec_root%/*/*}/external\"\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf real-bazel-out\n\nln -sf \"$external\" external\nln -sf \"$output_path\" real-bazel-out\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|\\/[^\\/]*$||' \\\n  \"$INTERNAL_DIR/generated.rsynclist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n\ncd \"$SRCROOT\"\n\noutput_groups=(\"generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1\")\n\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  swiftui_previews_flags=(\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-implicit-dynamic\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-private-imports\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-dynamic-replacement-chaining\n  )\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nlog=$(mktemp)\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  ${swiftui_previews_flags:+${swiftui_previews_flags[*]}} \\\n  \"$output_groups_flag\" \\\n  //test/fixtures/command_line:xcodeproj_bwx \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwx-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/command_line/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$INTERNAL_DIR/toplevel_cache_buster\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n\n\ndiff=$(comm -23 <(sed -e 's|^|bazel-out/|' \"$INTERNAL_DIR/generated.rsynclist\" | sort) <(sort \"$BAZEL_OUT/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/command_line/xcodeproj_bwx-generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1.filelist\"))\nif ! [ -z \"$diff\" ]; then\n  echo \"error: The files that Bazel generated don't match what the project expects. Please regenerate the project.\" >&2\n  echo \"error: $diff\" >&2\n  echo \"error: If you still get this error after regenerating your project, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n  exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		87B0BF431191C40A5DA3740B /* Copy Files */ = {
@@ -721,10 +814,9 @@
 		67F44AB65FA7A2E38A56F5FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
-				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
 			};
@@ -740,6 +832,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/examples_command_line_external";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -776,7 +869,7 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/private_lib.swift.xcode.modulemap -g";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/external/examples_command_line_external/Library.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/private_lib.swift.xcode.modulemap -g -Fexternal/examples_command_line_external";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -790,6 +883,8 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin",
+					"$(BAZEL_EXTERNAL)/examples_command_line_external",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/external/examples_command_line_external",
 				);
 			};
 			name = Debug;
@@ -865,6 +960,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/examples_command_line_external";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -905,7 +1001,7 @@
 					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.LinkFileList",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/lib_swift.swift.xcode.modulemap -g";
+				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/lib_impl.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/external/examples_command_line_external/Library.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/command_line/lib/lib_swift.swift.xcode.modulemap -g -Fexternal/examples_command_line_external";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
 				PRODUCT_MODULE_NAME = LibSwiftTestsLib;
 				PRODUCT_NAME = LibSwiftTests;
@@ -921,6 +1017,8 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin",
+					"$(BAZEL_EXTERNAL)/examples_command_line_external",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/external/examples_command_line_external",
 				);
 			};
 			name = Debug;
@@ -970,6 +1068,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/examples/command_line/third_party",
+					"$(BAZEL_EXTERNAL)/examples_command_line_external",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1017,6 +1119,10 @@
 					"-Wl,-rpath,/usr/lib/swift",
 					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 					"-L/usr/lib/swift",
+					"-framework",
+					Foundation,
+					"-weak_framework",
+					SwiftUI,
 					"-ObjC",
 				);
 				PRODUCT_NAME = tool;
@@ -1030,6 +1136,8 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin",
+					"$(BAZEL_EXTERNAL)/examples_command_line_external",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/external/examples_command_line_external",
 				);
 			};
 			name = Debug;

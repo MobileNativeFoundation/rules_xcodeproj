@@ -1,5 +1,4 @@
-#import <ExampleFramework/ExampleFramework.h>
-#import <ExternalFramework/ExternalFramework-Swift.h>
+#import <Foundation/Foundation.h>
 
 @interface Answers: NSObject
 
