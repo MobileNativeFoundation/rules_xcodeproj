@@ -247,6 +247,25 @@ def _collect(
         elif categorized:
             generated.append(file)
 
+            # Sanity check to insure that we are excluding files correctly
+            if (paths.split_extension(file.path)[1] in
+                _SUSPECT_GENERATED_EXTENSIONS):
+                warn("Collecting {} from {} in {}".format(
+                    file,
+                    attr,
+                    target.label,
+                ))
+                warn("""\
+Collected generated file "{file}" for {target} from the "{attr}" attribute \
+that probably shouldn't have been collected.
+
+If you are providing a custom `InputFileAttributesInfo`, ensure that the \
+`excluded` attribute excludes the correct attributes.
+
+If you think this is a bug, please file a bug report at \
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
+""".format(attr = attr, file = file.path, target = target.label))
+
     excluded_attrs = attrs_info.excluded
 
     for attr in dir(ctx.rule.files):
