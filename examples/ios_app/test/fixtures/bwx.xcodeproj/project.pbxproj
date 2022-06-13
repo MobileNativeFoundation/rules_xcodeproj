@@ -237,7 +237,6 @@
 		916051C2C6E70ADF8A009197 /* ExampleObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleObjcTests.m; sourceTree = "<group>"; };
 		9316517AE659EC3FD3542664 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		97ADB761BAE21D828622D393 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		A2CE0911AA38538018FB59B9 /* Greeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		A3C3B1CF0B717C99A8F574E2 /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		A45CBAB497FEF8A6E097D4E3 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A6F89F28CB6CFCADEC31B05F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -249,7 +248,6 @@
 		C5B3BDEA35D66615774EF182 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D1A77D43C2AC29495314BE08 /* Utils.bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utils.bundle; sourceTree = "<group>"; };
 		D56500D4BDA570832AE3734D /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
-		D613892C6E8A3AE191C963BE /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		D71EB598E6B4BE7F35063F30 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		D90FB752C15E622C61D662C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DE4E55DA7325F65B7598D64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -508,8 +506,6 @@
 		B663248C0196CEDF0DF34479 /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
-				D613892C6E8A3AE191C963BE /* Answer.swift */,
-				A2CE0911AA38538018FB59B9 /* Greeting.swift */,
 				A9184C9EF35257FEA88CF306 /* TestingUtils.swift */,
 				0AC7E49CD6F2F86EFC4F09E8 /* TestingUtils.swift.modulemap */,
 			);
