@@ -994,7 +994,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\ncd \"$BAZEL_OUT\"\n\n# Sync to \"$BUILD_DIR/bazel-out\". This is the same as \"$GEN_DIR\" for normal\n# builds, but is different for Index Builds. `PBXBuildFile`s will use the\n# \"$GEN_DIR\" version, so indexing might get messed up until they are normally\n# generated. It's the best we can do though as we need to use the `gen_dir`\n# symlink.\nrsync \\\n  --files-from \"$INTERNAL_DIR/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			shellScript = "set -euo pipefail\n\ncd \"$BAZEL_OUT\"\n\n# Sync to \"$BUILD_DIR/bazel-out\". This is the same as \"$GEN_DIR\" for normal\n# builds, but is different for Index Builds. `PBXBuildFile`s will use the\n# \"$GEN_DIR\" version, so indexing might get messed up until they are normally\n# generated. It's the best we can do though as we need to use the `gen_dir`\n# symlink, because Index Build can't modify the normal build's \"$BUILD_DIR\".\nrsync \\\n  --files-from \"$INTERNAL_DIR/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1B677A301B894FBD0B5AB58 /* Fix Info.plists */ = {
@@ -1015,7 +1015,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
+			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
