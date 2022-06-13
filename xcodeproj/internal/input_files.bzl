@@ -6,8 +6,8 @@ load(
     ":files.bzl",
     "file_path",
     "file_path_to_dto",
-     "join_paths_ignoring_empty",
-     "parsed_file_path",
+    "join_paths_ignoring_empty",
+    "parsed_file_path",
 )
 load(":logging.bzl", "warn")
 load(":output_group_map.bzl", "output_group_map")
