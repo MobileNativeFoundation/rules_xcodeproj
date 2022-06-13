@@ -124,7 +124,8 @@ Was unable to merge "\(srcTarget.label) \
             files,
             filePathResolver,
             project.label,
-            project.configuration
+            project.configuration,
+            consolidatedTargets
         )
         let pbxTargets = try environment.addTargets(
             pbxProj,

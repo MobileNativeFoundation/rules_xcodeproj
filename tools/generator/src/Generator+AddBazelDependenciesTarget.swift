@@ -17,7 +17,8 @@ env -i \
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: String,
-        xcodeprojConfiguration: String
+        xcodeprojConfiguration: String,
+        consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
         guard
             files.containsExternalFiles || files.containsGeneratedFiles
@@ -27,12 +28,22 @@ env -i \
 
         let pbxProject = pbxProj.rootObject!
 
+        let projectPlatforms: Set<Platform> = consolidatedTargets.targets.values
+            .reduce(into: []) { platforms, consolidatedTarget in
+                consolidatedTarget.targets.values
+                    .forEach { platforms.insert($0.platform) }
+            }
+
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
-                "SUPPORTED_PLATFORMS": "macosx",
+                // We have to support only a single platform to prevent issues
+                // with duplicated outputs during Index Build, but it also
+                // has to be a platform that one of the targets uses, otherwise
+                // it's not invoked at all. Index Build is so weird...
+                "SUPPORTED_PLATFORMS": projectPlatforms.sorted().first!.name,
                 "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "BazelDependencies",
             ]

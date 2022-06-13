@@ -308,6 +308,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             let filePathResolver: FilePathResolver
             let xcodeprojBazelLabel: String
             let xcodeprojConfiguration: String
+            let consolidatedTargets: ConsolidatedTargets
         }
 
         var addBazelDependenciesTargetCalled: [AddBazelDependenciesTargetCalled]
@@ -318,7 +319,8 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             xcodeprojBazelLabel: String,
-            xcodeprojConfiguration: String
+            xcodeprojConfiguration: String,
+            consolidatedTargets: ConsolidatedTargets
         ) throws -> PBXAggregateTarget? {
             addBazelDependenciesTargetCalled.append(.init(
                 pbxProj: pbxProj,
@@ -326,7 +328,8 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
                 files: files,
                 filePathResolver: filePathResolver,
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
-                xcodeprojConfiguration: xcodeprojConfiguration
+                xcodeprojConfiguration: xcodeprojConfiguration,
+                consolidatedTargets: consolidatedTargets
             ))
             return bazelDependenciesTarget
         }
@@ -338,7 +341,8 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
                 files: files,
                 filePathResolver: filePathResolver,
                 xcodeprojBazelLabel: project.label,
-                xcodeprojConfiguration: project.configuration
+                xcodeprojConfiguration: project.configuration,
+                consolidatedTargets: consolidatedTargets
             ),
         ]
 
