@@ -45,15 +45,6 @@ This warning happens when the paths to generated files change after a project
 generation. Closing and re-opening your project, or performing a clean build,
 will remove the warnings.
 
-## Why aren't Info.plist details shown when Building with Bazel?
-
-If you are building with Bazel, and the target has a Device destination
-available to it, then currently we unset the Info.plist to work around an issue
-with Xcode and code signing:
-https://github.com/buildbuddy-io/rules_xcodeproj/pull/531
-
-Hopefully in the future we can have that association in Xcode.
-
 ## Why do I get an error like "Provisioning profile "PROFILE_NAME" is Xcode managed, but signing settings require a manually managed profile. (in target 'TARGET' from project 'PROJECT')"?
 
 This error should only occur if `build_mode = "xcode"`. If you are using another

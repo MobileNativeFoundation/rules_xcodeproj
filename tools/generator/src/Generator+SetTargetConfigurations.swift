@@ -260,30 +260,18 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let infoPlist = target.infoPlist {
-            if buildMode.usesBazelModeBuildScripts &&
-                target.platform.os != .macOS &&
-                target.platform.environment != "Simulator" {
-                // Until we can find a way to disable Xcode's
-                // "Process Info.plist" step, which breaks the code signature of
-                // bundles, we can't set an INFOPLIST_FILE
-                buildSettings["INFOPLIST_FILE"] = ""
-            } else {
-                var infoPlistPath = try filePathResolver.resolve(
-                    infoPlist,
-                    useGenDir: true
-                )
+            var infoPlistPath = try filePathResolver.resolve(
+                infoPlist,
+                useGenDir: true
+            )
 
-                // If the plist is generated, use the patched version that
-                // removes a specific key that causes a warning when building
-                // with Xcode
-                if infoPlist.type == .generated {
-                    infoPlistPath.replaceExtension("xcode.plist")
-                }
-                buildSettings.set(
-                    "INFOPLIST_FILE",
-                    to: infoPlistPath.string.quoted
-                )
+            // If the plist is generated, use the patched version that
+            // removes a specific key that causes a warning when building
+            // with Xcode
+            if infoPlist.type == .generated {
+                infoPlistPath.replaceExtension("xcode.plist")
             }
+            buildSettings.set("INFOPLIST_FILE", to: infoPlistPath.string.quoted)
         } else if buildMode.allowsGeneratedInfoPlists {
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
         }
