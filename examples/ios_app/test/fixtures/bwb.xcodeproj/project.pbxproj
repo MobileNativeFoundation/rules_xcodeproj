@@ -188,7 +188,6 @@
 		86B6FAB2FF4A94053E4D470E /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8ADB9E176B3AB4F6354A1167 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F8B001AB6315D99F13FAC92 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/libCoreUtilsObjC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		936C89D0AECF460936BF9489 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		9BF5CE4ADD5163F5308F8626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D61CBAFE2C78BDC7960D5A4 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		9E2AD3FF7B70CC8C730B7A22 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -200,7 +199,6 @@
 		B97C2835F125F69B2FDF8477 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		C6DFECB6D814B2CE3ADA51CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC8E3F6E9A6B44248BD06712 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/libUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CFC9A2A1615D8DCB6AF8914F /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
 		D027F83636D3D6C6ABBF375F /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		D165E542DE0036D69F5A152B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D227CE711F51FF221F83B7EA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				6CF7424DF05BD6606F3734CF /* Example-intermediates */,
-				CFC9A2A1615D8DCB6AF8914F /* Example_entitlements.entitlements */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -402,7 +399,6 @@
 			children = (
 				B97C2835F125F69B2FDF8477 /* nested */,
 				1B8846860A494D5FC82D2072 /* PreviewContent */,
-				936C89D0AECF460936BF9489 /* app.entitlements */,
 				1F2546A475C2CA76D8E89436 /* Assets.xcassets */,
 				3044751746014D22D03BB28E /* BUILD */,
 				8ADB9E176B3AB4F6354A1167 /* ContentView.swift */,
@@ -1555,7 +1551,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(PROJECT_DIR)/Example/app.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;

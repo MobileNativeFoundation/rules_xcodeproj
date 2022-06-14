@@ -206,7 +206,6 @@
 		0AC7E49CD6F2F86EFC4F09E8 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		0D4BE40B12E61F0EBADF1EF0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		104ECD97B1C1B9C4DF3F9949 /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1114222EF47A93F0F39BC416 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		147E33BBAF4F6DCF2F01C37A /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		17B2F663BC801F10EF12A7C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		181A626E7874B82CF2F6E536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -257,7 +256,6 @@
 		E96B6D79A5EE347B1D1525A5 /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
 		EC7CDEE9BB4DCF113F3A632C /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		F0C6F70E20391113754D1FA5 /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libTestingUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/TestingUtils/libTestingUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7010BA0970E72123DBC46EA /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
 		FD0A412F6FD34BAD4615ACB5 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/CoreUtilsObjC/libCoreUtilsObjC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -518,7 +516,6 @@
 			children = (
 				D71EB598E6B4BE7F35063F30 /* nested */,
 				E3C90F22A5DD89C34CFED453 /* PreviewContent */,
-				1114222EF47A93F0F39BC416 /* app.entitlements */,
 				213259970531EA32B992572A /* Assets.xcassets */,
 				66FD903A85D9EC8C1EBDC3C2 /* BUILD */,
 				A6F89F28CB6CFCADEC31B05F /* ContentView.swift */,
@@ -534,7 +531,6 @@
 			isa = PBXGroup;
 			children = (
 				E1007BD1EBAE8C1FEDFF021D /* Example-intermediates */,
-				F7010BA0970E72123DBC46EA /* Example_entitlements.entitlements */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -1648,7 +1644,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Example/Example_entitlements.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(PROJECT_DIR)/Example/app.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;

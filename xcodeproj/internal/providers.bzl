@@ -15,6 +15,10 @@ InputFileAttributesInfo = provider(
 A sequence of attribute names to collect `File`s from for `bundle_imports`-like
 attributes.
 """,
+        "entitlements": """\
+An attribute name (or `None`) to collect `File`s from for the
+`entitlements`-like attribute.
+""",
         "excluded": """\
 A sequence of attribute names to not collect `File`s from. This should generally
 be `deps` and `deps`-like attributes. The goal is to exclude attributes that

@@ -86,7 +86,6 @@
 		D227CE711F51FF221F83B7EA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E8EC5800B28DC7A5B63624 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		DB017F09DAA174C86C32DE47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		DC68E7E69490507A658DF30F /* Example_entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_entitlements.entitlements; sourceTree = "<group>"; };
 		E18F10CFF85D8830CA170107 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E470DDDC0990D96A685DB11C /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
@@ -98,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				DEB736E24C4BCE7BC891ED08 /* Example-intermediates */,
-				DC68E7E69490507A658DF30F /* Example_entitlements.entitlements */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -751,8 +749,6 @@
 				BAZEL_TARGET_ID = "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example_entitlements.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
