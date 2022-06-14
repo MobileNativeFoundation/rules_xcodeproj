@@ -35,7 +35,10 @@ else
       ]]; then
         mkdir -p "$expanded_dest"
         rm -rf "${expanded_dest:?}/"
-        unzip -q "$archive" -d "$expanded_dest"
+        echo "Extracting $archive to $expanded_dest"
+        # Set timestamps (-DD) to allow rsync to work properly, since Bazel
+        # zeroes out timestamps in the archive
+        unzip -q -DD "$archive" -d "$expanded_dest"
         echo "$sha" > "$sha_output"
       fi
       cd "$product_parent_dir"
