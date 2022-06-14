@@ -143,7 +143,6 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "hdrs": [
@@ -249,12 +248,12 @@
             "dependencies": [
                 "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": "Example/app.entitlements",
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/Example/Example-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
+                "entitlements": "Example/app.entitlements",
                 "resources": [
                     {
                         "_": "examples_ios_app_external/bundles/Utils.bundle",
@@ -378,7 +377,6 @@
                 "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -490,7 +488,6 @@
                 "//ExampleObjcTests:ExampleObjcTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
                 "//Example:Example applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -599,7 +596,6 @@
                 "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -658,7 +654,6 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "resources": [
@@ -751,7 +746,6 @@
                 "//ExampleTests:ExampleTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
                 "//Example:Example applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -860,7 +854,6 @@
                 "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
                 "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -984,7 +977,6 @@
                 "//ExampleUITests:ExampleUITests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
                 "//Example:Example applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -1084,7 +1076,6 @@
             "dependencies": [
                 "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1173,7 +1164,6 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1270,7 +1260,6 @@
             "dependencies": [
                 "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "hdrs": [
@@ -1333,7 +1322,6 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "resources": [

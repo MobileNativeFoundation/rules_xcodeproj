@@ -110,6 +110,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             // Root group that holds "x/y.swift"
             expectedElements["x"]!,
             // Files are sorted below groups
+            expectedElements["app.entitlements"]!,
             expectedElements["Assets.xcassets"]!,
             expectedElements["b.c"]!,
             expectedElements["d.h"]!,

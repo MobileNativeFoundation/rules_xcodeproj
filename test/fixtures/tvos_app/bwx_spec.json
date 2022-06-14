@@ -103,12 +103,16 @@
             "dependencies": [
                 "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
+            "inputs": {
+                "entitlements": {
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/Example/app.entitlements",
+                    "t": "g"
+                }
+            },
             "is_swift": false,
             "label": "//examples/tvos_app/Example:Example",
             "linker_inputs": {
@@ -195,7 +199,6 @@
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -282,7 +285,6 @@
                 "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65",
                 "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -377,7 +379,6 @@
             "dependencies": [
                 "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -468,7 +469,6 @@
                 "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65",
                 "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
                 "t": "g"
@@ -561,7 +561,6 @@
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c9bb83621c65",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [

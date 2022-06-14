@@ -476,7 +476,9 @@ def _to_dto(inputs, *, is_bundle, avoid_infos):
         *   `srcs`: A `list` of `FilePath`s for `srcs`.
         *   `non_arc_srcs`: A `list` of `FilePath`s for `non_arc_srcs`.
         *   `hdrs`: A `list` of `FilePath`s for `hdrs`.
+        *   `pch`: An optional `FilePath` for `pch`.
         *   `resources`: A `list` of `FilePath`s for `resources`.
+        *   `entitlements`: An optional `FilePath` for `entitlements`.
     """
     ret = {}
 
@@ -494,6 +496,9 @@ def _to_dto(inputs, *, is_bundle, avoid_infos):
 
     if inputs.pch:
         ret["pch"] = file_path_to_dto(file_path(inputs.pch))
+
+    if inputs.entitlements:
+        ret["entitlements"] = file_path_to_dto(file_path(inputs.entitlements))
 
     if is_bundle and inputs.resources:
         avoid_owners = depset(

@@ -276,7 +276,7 @@ $(CONFIGURATION_BUILD_DIR)
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
         }
 
-        if let entitlements = target.entitlements {
+        if let entitlements = target.inputs.entitlements {
             let entitlementsPath = try filePathResolver.resolve(
                 entitlements,
                 // Path needs to use `$(GEN_DIR)` to ensure XCBuild picks it

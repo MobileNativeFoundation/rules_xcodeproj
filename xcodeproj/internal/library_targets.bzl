@@ -216,7 +216,6 @@ def process_library_target(*, ctx, target, transitive_infos):
             inputs = inputs,
             linker_inputs = linker_inputs,
             info_plist = None,
-            entitlements = None,
             dependencies = dependencies,
             outputs = outputs,
         ),

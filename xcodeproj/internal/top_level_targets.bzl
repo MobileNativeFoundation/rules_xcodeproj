@@ -217,11 +217,6 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         should_produce_dto = should_include_outputs(ctx = ctx),
     )
 
-    entitlements_file_path = None
-    entitlements_file = inputs.entitlements
-    if entitlements_file:
-        entitlements_file_path = file_path(entitlements_file)
-
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,
         label.workspace_root,
@@ -373,7 +368,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             inputs = inputs,
             linker_inputs = linker_inputs,
             info_plist = info_plist,
-            entitlements = entitlements_file_path,
             dependencies = dependencies,
             outputs = outputs,
         ),
