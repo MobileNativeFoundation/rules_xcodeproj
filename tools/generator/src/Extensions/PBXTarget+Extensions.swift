@@ -1,7 +1,7 @@
 import Foundation
 import XcodeProj
 
-public extension PBXTarget {
+extension PBXTarget {
     var buildableName: String {
         return product?.path ?? name
     }
@@ -34,5 +34,11 @@ public extension PBXTarget {
     var defaultBuildConfigurationName: String {
         return buildConfigurationList?.buildConfigurations.first?.name ??
             "Debug"
+    }
+}
+
+extension Dictionary where Value: PBXTarget {
+    func nativeTarget(_ targetID: Self.Key) -> PBXNativeTarget? {
+        return self[targetID] as? PBXNativeTarget
     }
 }
