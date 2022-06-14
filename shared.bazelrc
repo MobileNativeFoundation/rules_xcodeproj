@@ -6,7 +6,11 @@ build --remote_default_exec_properties=cache_bust=macOS_11.0/1
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
+build:cache --experimental_remote_cache_async
+build:cache --experimental_remote_cache_compression
+build:cache --incompatible_remote_build_event_upload_respect_no_cache
 build:cache --jobs=100
+build:cache --modify_execution_info=^(BitcodeSymbolsCopy|BundleApp|BundleTreeApp|DsymDwarf|DsymLipo|GenerateAppleSymbolsFile|ObjcBinarySymbolStrip|CppLink|ObjcLink|ProcessAndSign|SignBinary|SwiftArchive|SwiftStdlibCopy)$=+no-remote,^(BundleResources|ImportedDynamicFrameworkProcessor)$=+no-remote-exec
 build:cache --remote_cache=grpcs://remote.buildbuddy.io
 
 # Build with --config=remote to use BuildBuddy RBE
@@ -17,6 +21,7 @@ build:remote --remote_executor=grpcs://remote.buildbuddy.io
 build:workflows --config=cache
 build:workflows --build_metadata=ROLE=CI
 build:workflows --build_metadata=VISIBILITY=PUBLIC
+build:workflows --remote_download_toplevel
 build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
 build:workflows --color=yes
 build:workflows --terminal_columns=120
