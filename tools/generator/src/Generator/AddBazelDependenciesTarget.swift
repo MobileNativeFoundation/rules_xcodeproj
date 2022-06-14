@@ -313,6 +313,9 @@ fi
 
 date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
 
+build_marker="$OBJROOT/bazel_build_start"
+touch "$build_marker"
+
 log=$(mktemp)
 \#(bazelExec) \
   ${output_base:+--output_base "$output_base"} \
@@ -329,7 +332,7 @@ for output_group in "${output_groups[@]}"; do
   filelist="\#(xcodeprojBazelTargetName)-${output_group//\//_}"
   filelist="${filelist/#/$output_path/\#(xcodeprojBinDir)/}"
   filelist="${filelist/%/.filelist}"
-  if [[ "$filelist" -ot "$INTERNAL_DIR/toplevel_cache_buster" ]]; then
+  if [[ "$filelist" -ot "$build_marker" ]]; then
     echo "error: Bazel didn't generate the correct files (it should have \#
 generated outputs for output group \"$output_group\", but the timestamp for \#
 \"$filelist\" was from before the build). Please regenerate the project to \#
