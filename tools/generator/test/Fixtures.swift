@@ -140,7 +140,8 @@ enum Fixtures {
             modulemaps: [.generated("a/b/module.modulemap")],
             inputs: .init(
                 srcs: ["a/b/c.m"],
-                hdrs: ["a/b/c.h"]
+                hdrs: ["a/b/c.h"],
+                pch: "a/b/c.pch"
             )
         ),
         "C 2": Target.mock(
@@ -466,6 +467,14 @@ enum Fixtures {
             path: "c.m"
         )
 
+        // a/b/c.pch
+
+        elements["a/b/c.pch"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "sourcecode.c.h",
+            path: "c.pch"
+        )
+
         // a/b/d.m
 
         elements["a/b/d.m"] = PBXFileReference(
@@ -480,6 +489,7 @@ enum Fixtures {
             children: [
                 elements["a/b/c.h"]!,
                 elements["a/b/c.m"]!,
+                elements["a/b/c.pch"]!,
                 elements["a/b/d.m"]!,
             ],
             sourceTree: .group,
@@ -1839,6 +1849,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "BAZEL_TARGET_ID": "C 1",
+                "GCC_PREFIX_HEADER": "$(PROJECT_DIR)/a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
