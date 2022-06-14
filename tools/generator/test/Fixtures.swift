@@ -77,7 +77,8 @@ enum Fixtures {
                     "Base.lproj/Example.xib",
                     "en.lproj/Localized.strings",
                     "en.lproj/Example.strings",
-                ]
+                ],
+                entitlements: "app.entitlements"
             ),
             linkerInputs: .init(
                 dynamicFrameworks: ["a/Fram.framework"],
@@ -533,6 +534,14 @@ enum Fixtures {
             ],
             sourceTree: .group,
             path: "a"
+        )
+
+        // app.entitlements
+
+        elements["app.entitlements"] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "text.plist.entitlements",
+            path: "app.entitlements"
         )
 
         // b.c
@@ -1744,6 +1753,8 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "A 2",
+                "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION": "YES",
+                "CODE_SIGN_ENTITLEMENTS": "$(PROJECT_DIR)/app.entitlements",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LD_RUNPATH_SEARCH_PATHS": [

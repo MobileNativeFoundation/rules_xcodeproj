@@ -145,7 +145,6 @@
             },
             "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -233,7 +232,6 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -322,7 +320,6 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -410,7 +407,6 @@
             },
             "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -498,7 +494,6 @@
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -587,7 +582,6 @@
             },
             "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -675,7 +669,6 @@
             },
             "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -761,7 +754,6 @@
             "dependencies": [
                 "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {},
             "is_swift": false,
@@ -855,7 +847,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -946,7 +937,6 @@
             "dependencies": [
                 "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1047,7 +1037,6 @@
             "dependencies": [
                 "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1151,7 +1140,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1244,7 +1232,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1336,7 +1323,6 @@
             "dependencies": [
                 "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1436,7 +1422,6 @@
             "dependencies": [
                 "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1540,7 +1525,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1633,7 +1617,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1723,7 +1706,6 @@
             },
             "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1804,7 +1786,6 @@
             },
             "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
             "dependencies": [],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1889,7 +1870,6 @@
             "dependencies": [
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
                 "t": "g"
@@ -1998,7 +1978,6 @@
             "dependencies": [
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb"
             ],
-            "entitlements": null,
             "info_plist": {
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
                 "t": "g"
@@ -2111,7 +2090,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -2204,7 +2182,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb"
             ],
-            "entitlements": null,
             "info_plist": null,
             "inputs": {
                 "srcs": [

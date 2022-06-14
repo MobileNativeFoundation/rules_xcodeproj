@@ -75,6 +75,7 @@
 		1AD4E21BF05EA13F3C0E032B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		342B0D5AD074F05B17DBB52D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		39004B79217BED4A67CB9A93 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		42355FA46D7FE62183AD94CC /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		44C19A56FE797949930D145D /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D13467AC1061414CAD92AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		55E73B21A31B0275825B773B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				DEB736E24C4BCE7BC891ED08 /* Example-intermediates */,
+				42355FA46D7FE62183AD94CC /* app.entitlements */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -749,6 +751,8 @@
 				BAZEL_TARGET_ID = "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/app.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;

@@ -4,19 +4,22 @@ struct Inputs: Equatable {
     var hdrs: Set<FilePath>
     var pch: FilePath?
     var resources: Set<FilePath>
+    var entitlements: FilePath?
 
     init(
         srcs: [FilePath] = [],
         nonArcSrcs: [FilePath] = [],
         hdrs: Set<FilePath> = [],
         pch: FilePath? = nil,
-        resources: Set<FilePath> = []
+        resources: Set<FilePath> = [],
+        entitlements: FilePath? = nil
     ) {
         self.srcs = srcs
         self.nonArcSrcs = nonArcSrcs
         self.hdrs = hdrs
         self.pch = pch
         self.resources = resources
+        self.entitlements = entitlements
     }
 }
 
@@ -43,6 +46,7 @@ extension Inputs {
             .union(Set(hdrs))
             .union(pchSet)
             .union(resources)
+            .union(entitlementsSet)
     }
 
     private var pchSet: Set<FilePath> {
@@ -50,6 +54,13 @@ extension Inputs {
             return []
         }
         return [pch]
+    }
+
+    private var entitlementsSet: Set<FilePath> {
+        guard let entitlements = entitlements else {
+            return []
+        }
+        return [entitlements]
     }
 }
 
@@ -60,8 +71,9 @@ extension Inputs: Decodable {
         case srcs
         case nonArcSrcs
         case hdrs
-        case resources
         case pch
+        case resources
+        case entitlements
     }
 
     init(from decoder: Decoder) throws {
@@ -72,6 +84,8 @@ extension Inputs: Decodable {
         hdrs = try container.decodeFilePaths(.hdrs)
         pch = try container.decodeIfPresent(FilePath.self, forKey: .pch)
         resources = try container.decodeFilePaths(.resources)
+        entitlements = try container
+            .decodeIfPresent(FilePath.self, forKey: .entitlements)
     }
 }
 
