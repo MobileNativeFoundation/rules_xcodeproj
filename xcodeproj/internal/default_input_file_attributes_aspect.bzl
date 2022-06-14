@@ -63,6 +63,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     provisioning_profile = None
     resources = {}
     structured_resources = ()
+    entitlements = None
     bundle_imports = ()
     if ctx.rule.kind == "cc_library":
         xcode_targets = {
@@ -126,6 +127,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "deps": [target_type.compile, target_type.resources],
             "resources": [target_type.resources],
         }
+        entitlements = "entitlements"
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile, target_type.resources]}
         resources = {"deps": [target_type.compile, target_type.resources]}
@@ -145,6 +147,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             provisioning_profile = provisioning_profile,
             resources = resources,
             structured_resources = structured_resources,
+            entitlements = entitlements,
             bundle_imports = bundle_imports,
         ),
     ]

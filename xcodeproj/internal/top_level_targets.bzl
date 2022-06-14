@@ -8,7 +8,6 @@ load(":collections.bzl", "set_if_true")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
-load(":entitlements.bzl", "entitlements")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
@@ -185,12 +184,6 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         info_plist = file_path(info_plist_file)
         additional_files.append(info_plist_file)
 
-    entitlements_file_path = None
-    entitlements_file = entitlements.get_file(target)
-    if entitlements_file:
-        entitlements_file_path = file_path(entitlements_file)
-        additional_files.append(entitlements_file)
-
     provisioning_profiles.process_attr(
         ctx = ctx,
         attrs_info = attrs_info,
@@ -223,6 +216,11 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         transitive_infos = transitive_infos,
         should_produce_dto = should_include_outputs(ctx = ctx),
     )
+
+    entitlements_file_path = None
+    entitlements_file = inputs.entitlements
+    if entitlements_file:
+        entitlements_file_path = file_path(entitlements_file)
 
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,

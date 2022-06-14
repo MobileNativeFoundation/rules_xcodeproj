@@ -193,6 +193,7 @@ def _collect(
     pch = []
     resources = []
     unowned_resources = []
+    entitlements = []
     xccurrentversions = []
     generated = []
     extra_files = []
@@ -240,6 +241,11 @@ def _collect(
                 file = file,
             )
             _process_resource_file_path(fp)
+        elif attr == attrs_info.entitlements:
+            # We use `append` instead of setting a single value because
+            # assigning to `entitlements` creates a new local variable instead
+            # of assigning to the existing variable
+            entitlements.append(file)
         elif attr in attrs_info.bundle_imports:
             fp = _bundle_import_file_path(
                 target = target,
@@ -340,6 +346,7 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
                 )
             ],
         ),
+        entitlements = entitlements[0] if entitlements else None,
         xccurrentversions = depset(
             xccurrentversions,
             transitive = [
@@ -423,6 +430,7 @@ def _merge(*, attrs_info, transitive_infos):
                 )
             ],
         ),
+        entitlements = None,
         xccurrentversions = depset(
             transitive = [
                 info.inputs.xccurrentversions
