@@ -318,6 +318,7 @@ extension Generator {
         }
 
         var rootElements: [PBXFileElement] = []
+        var nonDirectFolderLikeFilePaths: Set<FilePath> = []
         for fullFilePath in allInputPaths {
             var filePath: FilePath
             var lastElement: PBXFileElement?
@@ -385,6 +386,7 @@ extension Generator {
                 // We need to add extra entries for file-like folders, to allow
                 // easy copying of resources
                 elements[fullFilePath] = lastElement
+                nonDirectFolderLikeFilePaths.insert(filePath)
             }
         }
 
@@ -416,14 +418,18 @@ extension Generator {
 
         // Write xcfilelists
 
-        let externalPaths = try elements
+        let fileListElements = elements.filter { filePath, _ in
+            return !nonDirectFolderLikeFilePaths.contains(filePath)
+        }
+
+        let externalPaths = try fileListElements
             .filter { filePath, element in
                 return filePath.type == .external
                     && element is PBXFileReference
             }
             .map { filePath, _ in try filePathResolver.resolve(filePath) }
 
-        let generatedFiles = elements
+        let generatedFiles = fileListElements
             .filter { filePath, element in
                 return filePath.type == .generated
                     && element is PBXFileReference
@@ -435,11 +441,7 @@ extension Generator {
                 useOriginalGeneratedFiles: true
             )
         }
-        let rsyncPaths = generatedFiles
-            .filter { filePath, _ in
-                return !filePath.path.isFolderTypeFileSource
-            }
-            .map { filePath, _ in filePath.path }
+        let rsyncPaths = generatedFiles.map { filePath, _ in filePath.path }
         let copiedGeneratedPaths = try generatedFiles.map { filePath, _ in
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
             // match the project navigator. This is only needed for files
