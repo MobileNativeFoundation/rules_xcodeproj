@@ -404,6 +404,12 @@
             "dependencies": [],
             "info_plist": null,
             "inputs": {
+                "hdrs": [
+                    {
+                        "_": "examples_cc_external/private/private.inc",
+                        "t": "e"
+                    }
+                ],
                 "srcs": [
                     {
                         "_": "examples_cc_external/lib.c",

@@ -1,7 +1,7 @@
 """Module containing functions dealing with target input files."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load(":collections.bzl", "flatten", "set_if_true")
+load(":collections.bzl", "set_if_true")
 load(
     ":files.bzl",
     "file_path",
@@ -11,6 +11,7 @@ load(
 )
 load(":logging.bzl", "warn")
 load(":output_group_map.bzl", "output_group_map")
+load(":providers.bzl", "XcodeProjInfo")
 
 # Utility
 
@@ -52,7 +53,12 @@ def _collect_transitive_extra_files(info):
             for file in inputs.hdrs.to_list()
         ]))
 
-    return transitive
+    return depset(transitive = transitive)
+
+def _collect_transitive_uncategorized(info):
+    if info.target:
+        return depset()
+    return info.inputs.uncategorized
 
 def _should_include_transitive_resources(*, attrs_info, attr, info):
     return ((not info.target or not info.target.is_bundle) and
@@ -136,6 +142,37 @@ def _normalized_file_path(file):
 
     return file_path(file)
 
+def _is_categorized_attr(attr, *, attrs_info):
+    if attr in attrs_info.srcs:
+        return True
+    elif attr in attrs_info.non_arc_srcs:
+        return True
+    elif attr in attrs_info.hdrs:
+        return True
+    elif attr == attrs_info.pch:
+        return True
+    elif attrs_info.resources.get(attr):
+        return True
+    elif attr in attrs_info.structured_resources:
+        return True
+    elif attr in attrs_info.infoplists:
+        return True
+    elif attr == attrs_info.entitlements:
+        return True
+    elif attr in attrs_info.bundle_imports:
+        return True
+    else:
+        return False
+
+def _process_cc_info_headers(headers, *, pch):
+    return [
+        header
+        for header in headers
+        if (header.is_source and
+            ".framework" not in header.path and
+            header not in pch)
+    ]
+
 # API
 
 def _collect(
@@ -180,10 +217,14 @@ def _collect(
             are in `resources`.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
-        *   `extra_files`: A `depset` of `FilePath`s that are inputs to `target`
-            that didn't fall into one of the more specific (e.g. `srcs`)
-            catagories. This also includes files of transitive dependencies
+        *   `extra_files`: A `depset` of `FilePath`s that should be included in
+            the project, but aren't necessarily inputs to the target. This also
+            includes some categorized files of transitive dependencies
             that didn't create an Xcode target.
+        *   `uncategorized`: A `depset` of `FilePath`s that are inputs to
+            `target` didn't fall into one of the more specific (e.g. `srcs`)
+            categories. These will only be included in the Xcode project if this
+            target becomes an input to another target's categorized attribute.
     """
     output_files = target.files.to_list()
 
@@ -197,6 +238,7 @@ def _collect(
     xccurrentversions = []
     generated = []
     extra_files = []
+    uncategorized = []
 
     # Include BUILD files for the project but not for external repos
     if not target.label.workspace_root:
@@ -241,6 +283,11 @@ def _collect(
                 file = file,
             )
             _process_resource_file_path(fp)
+        elif attr in attrs_info.infoplists:
+            if file.is_source:
+                # We don't need to include a generated one, as we already use
+                # the Bazel generated one, which is one step further generated
+                extra_files.append(file_path(file))
         elif attr == attrs_info.entitlements:
             # We use `append` instead of setting a single value because
             # assigning to `entitlements` creates a new local variable instead
@@ -257,7 +304,7 @@ def _collect(
 
         if file.is_source:
             if not categorized and file not in output_files:
-                extra_files.append(_normalized_file_path(file))
+                uncategorized.append(_normalized_file_path(file))
         elif categorized:
             generated.append(file)
 
@@ -282,6 +329,15 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
 
     excluded_attrs = attrs_info.excluded
 
+    transitive_extra_files = []
+
+    # buildifier: disable=uninitialized
+    def _handle_dep(dep, *, attr):
+        if (XcodeProjInfo not in dep or
+            not _is_categorized_attr(attr, attrs_info = attrs_info)):
+            return
+        transitive_extra_files.append(dep[XcodeProjInfo].inputs.uncategorized)
+
     for attr in dir(ctx.rule.files):
         if _should_ignore_attr(attr, excluded_attrs = excluded_attrs):
             continue
@@ -292,6 +348,17 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
         if _should_ignore_attr(attr, excluded_attrs = excluded_attrs):
             continue
         _handle_file(getattr(ctx.rule.file, attr), attr = attr)
+
+    for attr in dir(ctx.rule.attr):
+        if _should_ignore_attr(attr, excluded_attrs = excluded_attrs):
+            continue
+        dep = getattr(ctx.rule.attr, attr, None)
+        if type(dep) == "Target":
+            _handle_dep(dep, attr = attr)
+        elif type(dep) == "list":
+            for dep in dep:
+                if type(dep) == "Target":
+                    _handle_dep(dep, attr = attr)
 
     generated.extend([file for file in additional_files if not file.is_source])
     for file in additional_files:
@@ -315,6 +382,24 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
             for fp in unowned_resources_depset.to_list()
         ])
         unowned_resources_depset = depset()
+
+    # Generically handle CcInfo providing rules. This allows us to pick up
+    # headers from `objc_import` and the like.
+    if CcInfo in target:
+        compilation_context = target[CcInfo].compilation_context
+        srcs.extend(
+            _process_cc_info_headers(
+                compilation_context.direct_private_headers,
+                pch = pch,
+            ),
+        )
+        hdrs.extend(
+            _process_cc_info_headers(
+                (compilation_context.direct_public_headers +
+                 compilation_context.direct_textual_headers),
+                pch = pch,
+            ),
+        )
 
     return struct(
         _unowned_resources = unowned_resources_depset,
@@ -369,13 +454,23 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
         ),
         extra_files = depset(
             extra_files,
-            transitive = flatten([
+            transitive = [
                 _collect_transitive_extra_files(info)
                 for attr, info in transitive_infos
                 if (not attrs_info or
                     info.target_type in
                     attrs_info.xcode_targets.get(attr, [None]))
-            ]),
+            ] + transitive_extra_files,
+        ),
+        uncategorized = depset(
+            uncategorized,
+            transitive = [
+                _collect_transitive_uncategorized(info)
+                for attr, info in transitive_infos
+                if (not attrs_info or
+                    info.target_type in
+                    attrs_info.xcode_targets.get(attr, [None]))
+            ],
         ),
     )
 
@@ -452,6 +547,15 @@ def _merge(*, attrs_info, transitive_infos):
         extra_files = depset(
             transitive = [
                 info.inputs.extra_files
+                for attr, info in transitive_infos
+                if (not attrs_info or
+                    info.target_type in
+                    attrs_info.xcode_targets.get(attr, [None]))
+            ],
+        ),
+        uncategorized = depset(
+            transitive = [
+                info.inputs.uncategorized
                 for attr, info in transitive_infos
                 if (not attrs_info or
                     info.target_type in
