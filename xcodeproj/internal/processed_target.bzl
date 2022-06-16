@@ -4,6 +4,7 @@ load(":files.bzl", "file_path_to_dto")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "output_files")
+load(":platform.bzl", "platform_info")
 load(":product.bzl", "product_to_dto")
 load(":providers.bzl", "target_type")
 load(":resource_bundle_products.bzl", "resource_bundle_products")
@@ -125,12 +126,17 @@ def xcode_target(
         to create a json array string, possibly joining multiples of these
         strings with `","`.
     """
+    platform_dto = platform_info.to_dto(
+        platform,
+        build_settings = build_settings,
+    )
+
     target = json.encode(struct(
         name = name,
         label = str(label),
         configuration = configuration,
         package_bin_dir = package_bin_dir,
-        platform = platform,
+        platform = platform_dto,
         product = product_to_dto(product),
         is_swift = is_swift,
         test_host = test_host,

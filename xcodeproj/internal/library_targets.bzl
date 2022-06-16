@@ -15,7 +15,7 @@ load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
-load(":platform.bzl", "process_platform")
+load(":platform.bzl", "platform_info")
 load(
     ":providers.bzl",
     "InputFileAttributesInfo",
@@ -119,10 +119,9 @@ def process_library_target(*, ctx, target, transitive_infos):
         [],
     )
 
-    platform = process_platform(
+    platform = platform_info.collect(
         ctx = ctx,
         minimum_deployment_os_version = None,
-        build_settings = build_settings,
     )
     product = process_product(
         target = target,

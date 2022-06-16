@@ -4,22 +4,20 @@ load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("//test:utils.bzl", "stringify_dict")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:platform.bzl", "testable")
+load("//xcodeproj/internal:platform.bzl", "platform_info")
 
-generate_platform_information = testable.generate_platform_information
-
-def _generate_platform_information_test_impl(ctx):
+def _platform_info_to_dto_test_impl(ctx):
     env = unittest.begin(ctx)
 
     build_settings = {}
-    platform = generate_platform_information(
-        platform = getattr(apple_common.platform, ctx.attr.platform_key),
-        arch = ctx.attr.arch,
-        minimum_os_version = ctx.attr.minimum_os_version,
-        minimum_deployment_os_version = ctx.attr.minimum_deployment_os_version,
-        build_settings = build_settings,
+    platform = struct(
+        _platform = getattr(apple_common.platform, ctx.attr.platform_key),
+        _arch = ctx.attr.arch,
+        _minimum_os_version = ctx.attr.minimum_os_version,
+        _minimum_deployment_os_version = ctx.attr.minimum_deployment_os_version,
     )
-    string_platform = stringify_dict(platform)
+    dto = platform_info.to_dto(platform, build_settings = build_settings)
+    string_platform = stringify_dict(dto)
     string_build_settings = stringify_dict(build_settings)
 
     asserts.equals(
@@ -37,8 +35,8 @@ def _generate_platform_information_test_impl(ctx):
 
     return unittest.end(env)
 
-generate_platform_information_test = unittest.make(
-    impl = _generate_platform_information_test_impl,
+platform_info_to_dto_test = unittest.make(
+    impl = _platform_info_to_dto_test_impl,
     attrs = {
         "arch": attr.string(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
@@ -49,8 +47,8 @@ generate_platform_information_test = unittest.make(
     },
 )
 
-def generate_platform_information_test_suite(name):
-    """Test suite for `generate_platform_information`.
+def platform_info_to_dto_test_suite(name):
+    """Test suite for `platform_info.to_dto`.
 
     Args:
         name: The base name to be used in things created by this macro. Also the
@@ -68,7 +66,7 @@ def generate_platform_information_test_suite(name):
             expected_platform_dict,
             expected_build_settings):
         test_names.append(name)
-        generate_platform_information_test(
+        platform_info_to_dto_test(
             name = name,
             platform_key = platform_key,
             arch = arch,
