@@ -14,7 +14,6 @@
     "extra_files": [
         "examples/multiplatform/Lib/BUILD",
         "examples/multiplatform/iOSApp/BUILD",
-        "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
         "examples/multiplatform/iOSApp/Info.plist",
         {
             "_": "applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
@@ -36,7 +35,6 @@
         },
         "examples/multiplatform/watchOSApp/BUILD",
         "examples/multiplatform/watchOSApp/Info.plist",
-        "examples/multiplatform/watchOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
             "t": "g"
@@ -944,6 +942,7 @@
             "inputs": {
                 "resources": [
                     "examples/multiplatform/iOSApp/PreviewContent/Preview Assets.xcassets/Contents.json",
+                    "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
                     "examples/multiplatform/iOSApp/Assets.xcassets/AccentColor.colorset/Contents.json",
                     "examples/multiplatform/iOSApp/Assets.xcassets/Contents.json"
                 ]
@@ -1044,6 +1043,7 @@
             "inputs": {
                 "resources": [
                     "examples/multiplatform/iOSApp/PreviewContent/Preview Assets.xcassets/Contents.json",
+                    "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
                     "examples/multiplatform/iOSApp/Assets.xcassets/AccentColor.colorset/Contents.json",
                     "examples/multiplatform/iOSApp/Assets.xcassets/Contents.json"
                 ]
@@ -1710,7 +1710,11 @@
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
+            "inputs": {
+                "resources": [
+                    "examples/multiplatform/watchOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json"
+                ]
+            },
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSApp:watchOSApp",
             "linker_inputs": {},
@@ -1790,7 +1794,11 @@
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
+            "inputs": {
+                "resources": [
+                    "examples/multiplatform/watchOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json"
+                ]
+            },
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSApp:watchOSApp",
             "linker_inputs": {},

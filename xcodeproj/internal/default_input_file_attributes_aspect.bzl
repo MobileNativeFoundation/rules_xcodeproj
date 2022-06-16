@@ -124,6 +124,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             xcode_targets["test_host"] = [target_type.compile]
         provisioning_profile = "provisioning_profile"
         resources = {
+            "app_icons": [target_type.resources],
             "deps": [target_type.compile, target_type.resources],
             "resources": [target_type.resources],
         }

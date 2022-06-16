@@ -27,6 +27,7 @@
 		0A5B4B1401EBA0F452D83036 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D71C4BEDCDCB107460E90 /* main.swift */; };
 		16762E1B22A22974E02707C9 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AE19447389D7B6B9BEC81E /* Lib.swift */; };
 		2A5002AF448008006747E7E5 /* CompileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9ACBD60C49872D43B34A8 /* CompileStub.m */; };
+		3303FABFC056EBA3253EF7AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 909CC2C241F4540F5E294662 /* Assets.xcassets */; };
 		39FE596A18105235919707F9 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2FC43BDB211622F991234 /* tvOSApp.swift */; };
 		3B4FBAEBCEAAF6DF9161CEA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571673AD5562DFA4AB138EB8 /* ContentView.swift */; };
 		3DA2238D1AE0C4DE3F8700B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */; };
@@ -988,6 +989,7 @@
 			buildConfigurationList = AD31562E1C81A14E5AE6FF64 /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
 				571D185D8935D159F43179E7 /* Sources */,
+				3F15C214513EBB6C3C513EB3 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1175,6 +1177,14 @@
 			files = (
 				6BB33EE1FF138449161F329C /* Assets.xcassets in Resources */,
 				62CFF6C7D0DCE936662E389C /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F15C214513EBB6C3C513EB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3303FABFC056EBA3253EF7AD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
