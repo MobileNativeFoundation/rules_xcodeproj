@@ -12,7 +12,7 @@ load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
-load(":platform.bzl", "process_platform")
+load(":platform.bzl", "platform_info")
 load(":providers.bzl", "InputFileAttributesInfo", "XcodeProjInfo")
 load(":processed_target.bzl", "processed_target", "xcode_target")
 load(":product.bzl", "process_product")
@@ -289,10 +289,9 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         get_targeted_device_family(getattr(ctx.rule.attr, "families", [])),
     )
 
-    platform = process_platform(
+    platform = platform_info.collect(
         ctx = ctx,
         minimum_deployment_os_version = props.minimum_deployment_os_version,
-        build_settings = build_settings,
     )
     product = process_product(
         target = target,
