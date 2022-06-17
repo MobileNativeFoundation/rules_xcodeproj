@@ -36,7 +36,7 @@ def parsed_file_path(path):
         path: A file path string.
 
     Returns:
-        A value as returned from `file_path().
+        A value as returned from `file_path`.
     """
 
     # These checks are less than ideal, but since it's a string we can't tell if
