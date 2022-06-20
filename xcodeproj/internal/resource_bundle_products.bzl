@@ -1,5 +1,6 @@
 """Functions to deal with resource bundle products."""
 
+load(":collections.bzl", "uniq")
 load(":files.bzl", "file_path_to_dto")
 
 def _collect(
@@ -94,10 +95,15 @@ def _to_dto(resource_bundles, *, avoid_infos):
         ],
     ).to_list()
 
-    return [
-        file_path_to_dto(bundle_path)
+    avoided_bundle_paths = uniq([
+        bundle_path
         for owner, bundle_path in resource_bundles._products.to_list()
         if owner not in avoid_bundle_product_owners
+    ])
+
+    return [
+        file_path_to_dto(bundle_path)
+        for bundle_path in avoided_bundle_paths
     ]
 
 resource_bundle_products = struct(
