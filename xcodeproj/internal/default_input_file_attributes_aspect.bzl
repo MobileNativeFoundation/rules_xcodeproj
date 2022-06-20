@@ -2,6 +2,7 @@
 
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
+    "AppleBinaryInfo",
     "AppleBundleInfo",
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
@@ -63,6 +64,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     provisioning_profile = None
     resources = {}
     structured_resources = ()
+    infoplists = ()
     entitlements = None
     bundle_imports = ()
     if ctx.rule.kind == "cc_library":
@@ -110,6 +112,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         xcode_targets = {"resources": [target_type.resources]}
         resources = {"resources": [target_type.resources]}
         structured_resources = ("structured_resources")
+        infoplists = ("infoplists")
     elif ctx.rule.kind == "apple_bundle_import":
         xcode_targets = {}
         bundle_imports = ("bundle_imports")
@@ -123,12 +126,17 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
         provisioning_profile = "provisioning_profile"
+        infoplists = ("infoplists")
         resources = {
             "app_icons": [target_type.resources],
             "deps": [target_type.compile, target_type.resources],
             "resources": [target_type.resources],
         }
         entitlements = "entitlements"
+    elif AppleBinaryInfo in target:
+        xcode_targets = {"deps": [target_type.compile, target_type.resources]}
+        infoplists = ("infoplists")
+        resources = {"deps": [target_type.compile, target_type.resources]}
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile, target_type.resources]}
         resources = {"deps": [target_type.compile, target_type.resources]}
@@ -148,6 +156,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             provisioning_profile = provisioning_profile,
             resources = resources,
             structured_resources = structured_resources,
+            infoplists = infoplists,
             entitlements = entitlements,
             bundle_imports = bundle_imports,
         ),
