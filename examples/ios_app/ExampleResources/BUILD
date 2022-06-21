@@ -5,7 +5,10 @@ apple_resource_bundle(
     name = "ExampleResources",
     bundle_id = "com.example.resources",
     infoplists = ["Info.plist"],
-    resources = glob(["Assets.xcassets/**"]) + [":deps_txt"],
+    resources = glob(["Assets.xcassets/**"]) + [
+        "//ExampleNestedResources",
+        ":deps_txt",
+    ],
     structured_resources = ["nested/hello.txt"],
     visibility = ["//visibility:public"],
 )

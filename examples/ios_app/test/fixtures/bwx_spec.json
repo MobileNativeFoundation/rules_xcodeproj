@@ -12,6 +12,8 @@
     },
     "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
     "extra_files": [
+        "ExampleNestedResources/BUILD",
+        "ExampleNestedResources/Info.plist",
         "ExampleResources/BUILD",
         "ExampleResources/Info.plist",
         "Example/BUILD",
@@ -238,6 +240,7 @@
             },
             "configuration": "applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
             "dependencies": [
+                "//ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
                 "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
             ],
             "info_plist": {
@@ -267,7 +270,9 @@
                     "Example/Model.xcdatamodeld/Model.xcdatamodel/contents",
                     "Example/Model.xcdatamodeld/Model2.xcdatamodel/contents",
                     "Example/en.lproj/Localizable.strings",
+                    "Example/en.lproj/unprocessed.json",
                     "Example/es.lproj/Localizable.strings",
+                    "Example/es.lproj/unprocessed.json",
                     {
                         "_": "Example/nested",
                         "f": true
@@ -312,6 +317,10 @@
                 "type": "com.apple.product-type.application"
             },
             "resource_bundles": [
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/ExampleNestedResources/ExampleNestedResources.bundle",
+                    "t": "g"
+                },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/ExampleResources/ExampleResources.bundle",
                     "t": "g"
@@ -432,6 +441,62 @@
                     }
                 ]
             },
+            "swiftmodules": [],
+            "test_host": null
+        },
+        "//ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
+        {
+            "build_settings": {
+                "GENERATE_INFOPLIST_FILE": true,
+                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.nested",
+                "PRODUCT_NAME": "ExampleNestedResources"
+            },
+            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
+            "dependencies": [],
+            "info_plist": null,
+            "inputs": {
+                "resources": [
+                    "ExampleNestedResources/Assets.xcassets/Contents.json",
+                    "ExampleNestedResources/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
+                    "ExampleNestedResources/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
+                    "ExampleNestedResources/en.lproj/Localizable.strings",
+                    "ExampleNestedResources/es.lproj/Localizable.strings",
+                    {
+                        "_": "ExampleNestedResources/dir",
+                        "f": true
+                    },
+                    {
+                        "_": "examples_ios_app_external/bundles/Utils.bundle",
+                        "f": true,
+                        "t": "e"
+                    }
+                ]
+            },
+            "is_swift": false,
+            "label": "//ExampleNestedResources:ExampleNestedResources",
+            "linker_inputs": {},
+            "modulemaps": [],
+            "name": "ExampleNestedResources",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/ExampleNestedResources",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "name": "iphonesimulator",
+                "os": "ios"
+            },
+            "product": {
+                "name": "ExampleNestedResources",
+                "path": {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61/bin/ExampleNestedResources/ExampleNestedResources.bundle",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.bundle"
+            },
+            "resource_bundles": [],
+            "search_paths": {},
             "swiftmodules": [],
             "test_host": null
         },
@@ -653,7 +718,9 @@
                 "PRODUCT_NAME": "ExampleResources"
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61",
-            "dependencies": [],
+            "dependencies": [
+                "//ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-ede36487cf61"
+            ],
             "info_plist": null,
             "inputs": {
                 "resources": [

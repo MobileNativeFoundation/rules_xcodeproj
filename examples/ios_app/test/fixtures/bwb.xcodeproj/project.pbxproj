@@ -155,9 +155,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		019D3A4D654E3F57859B308A /* dir */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dir; sourceTree = "<group>"; };
 		05CED94736B3F5BB8E2E87B5 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		0B4615EBFB02A2D6C5B1045D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0BDA5C3FF5C9611B6DF55D3C /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
+		0FF81727486DFB1FEF810586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1104D414730D2DC8DC9DD9E9 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		119F88A7D863C38938114348 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		1599D430F101404D8C5229CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		2EA929BD072628145C22AE36 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		3044751746014D22D03BB28E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		328731FD80DB31CAF28DA35F /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		3E9430435031013D9579BA7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		41E087EFF7DB4B31F84CEF5F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		44C19A56FE797949930D145D /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A804416537B31F7C6B6E0E /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		577BC07B4F6E580BDB13B5B1 /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
 		62BA266605A71726F9EF2A78 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		6602B63E152B03A28F98567A /* merge.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = merge.sh; sourceTree = "<group>"; };
+		66C2B7761637CC74C1042BF8 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = es; path = es.lproj/unprocessed.json; sourceTree = "<group>"; };
 		72FDDAA6D06AEFA8D20DFEF6 /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
 		823A0A913DE6BBF3286D06E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		86B6FAB2FF4A94053E4D470E /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -197,12 +201,16 @@
 		B236D472E2B01203C379DE61 /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		B4D73F5C48C2711F4DEE0F31 /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
 		B75CC91156E9D2337A9933AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B915E847DC5E1D2AE2A711AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B97C2835F125F69B2FDF8477 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
+		BBD5F9FCF8CFEE20432A6F6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/unprocessed.json; sourceTree = "<group>"; };
 		C6DFECB6D814B2CE3ADA51CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CBF6879457EECCD257587348 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CC8E3F6E9A6B44248BD06712 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/libUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D027F83636D3D6C6ABBF375F /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		D165E542DE0036D69F5A152B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D227CE711F51FF221F83B7EA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D47EE69A4D0CE40D8484EE52 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DC51A4085F05FC61686E7785 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		DE684C8B8336D55C43040D1E /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 		E470DDDC0990D96A685DB11C /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +297,18 @@
 				D027F83636D3D6C6ABBF375F /* ExampleTests.swift */,
 			);
 			path = ExampleTests;
+			sourceTree = "<group>";
+		};
+		5939AC08FE0B2BD3C3A63C3B /* ExampleNestedResources */ = {
+			isa = PBXGroup;
+			children = (
+				019D3A4D654E3F57859B308A /* dir */,
+				B915E847DC5E1D2AE2A711AC /* Assets.xcassets */,
+				D47EE69A4D0CE40D8484EE52 /* BUILD */,
+				0FF81727486DFB1FEF810586 /* Info.plist */,
+				F948CA2D1F07FED332516A9C /* Localizable.strings */,
+			);
+			path = ExampleNestedResources;
 			sourceTree = "<group>";
 		};
 		593E7C82FAAD94A7E6A04318 /* Products */ = {
@@ -408,6 +428,7 @@
 				A619B11AC2106BAC08FA7DB0 /* Info.plist */,
 				ECC63D78B0A2D399B5E493C5 /* Localizable.strings */,
 				76E7868858212743220B114A /* Model.xcdatamodeld */,
+				9E33833F6CC66730B5253CB7 /* unprocessed.json */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -543,6 +564,7 @@
 			children = (
 				8EE3DCB9E9E0C79809FF9CE4 /* CoreUtilsObjC */,
 				93C53778407416F526CE86B2 /* Example */,
+				5939AC08FE0B2BD3C3A63C3B /* ExampleNestedResources */,
 				F4C29C5B5E612CC17B03B1C0 /* ExampleObjcTests */,
 				68510571C1C2FF91C893A79F /* ExampleResources */,
 				56B81B9C9A0209D46CB5AB83 /* ExampleTests */,
@@ -1130,11 +1152,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9E33833F6CC66730B5253CB7 /* unprocessed.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBD5F9FCF8CFEE20432A6F6B /* en */,
+				66C2B7761637CC74C1042BF8 /* es */,
+			);
+			name = unprocessed.json;
+			sourceTree = "<group>";
+		};
 		ECC63D78B0A2D399B5E493C5 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				823A0A913DE6BBF3286D06E6 /* en */,
 				0B4615EBFB02A2D6C5B1045D /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F948CA2D1F07FED332516A9C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E9430435031013D9579BA7A /* en */,
+				CBF6879457EECCD257587348 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
