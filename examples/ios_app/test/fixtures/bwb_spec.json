@@ -12,13 +12,21 @@
     },
     "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
     "extra_files": [
-        {
-            "_": "examples_ios_app_external/bundles/Utils.bundle",
-            "f": true,
-            "t": "e"
-        },
         "ExampleNestedResources/BUILD",
         "ExampleNestedResources/Info.plist",
+        "ExampleResources/BUILD",
+        "ExampleResources/Info.plist",
+        "Example/BUILD",
+        "CoreUtilsObjC/BUILD",
+        "Utils/BUILD",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap",
+            "t": "g"
+        },
         "ExampleNestedResources/Assets.xcassets/Contents.json",
         "ExampleNestedResources/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
         "ExampleNestedResources/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
@@ -28,8 +36,11 @@
             "_": "ExampleNestedResources/dir",
             "f": true
         },
-        "ExampleResources/BUILD",
-        "ExampleResources/Info.plist",
+        {
+            "_": "examples_ios_app_external/bundles/Utils.bundle",
+            "f": true,
+            "t": "e"
+        },
         "ExampleResources/Assets.xcassets/Contents.json",
         "ExampleResources/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
         "ExampleResources/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
@@ -37,24 +48,24 @@
             "_": "ExampleResources/nested",
             "f": true
         },
-        "Example/BUILD",
-        "CoreUtilsObjC/BUILD",
-        "Utils/BUILD",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleResources/bucket",
+            "f": true,
+            "t": "g"
+        },
+        "Example/Info.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example-intermediates/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleResources/bucket/deps.txt",
+            "i": false,
+            "t": "g"
+        },
         "Example/PreviewContent/PreviewAssets.xcassets/Contents.json",
         "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/Contents.json",
         "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "Example/nested",
-            "f": true
-        },
         "Example/Assets.xcassets/AppIcon.appiconset/Contents.json",
         "Example/Assets.xcassets/AppIcon.appiconset/ios_2x_icon-1.png",
         "Example/Assets.xcassets/AppIcon.appiconset/ios_2x_icon.png",
@@ -63,18 +74,17 @@
         "Example/Assets.xcassets/AppIcon.appiconset/ipad_1x_icon.png",
         "Example/Assets.xcassets/AppIcon.appiconset/ipad_2x_icon.png",
         "Example/Assets.xcassets/AppIcon.appiconset/ipadpro_2x_icon.png",
-        "Example/Info.plist",
         "Example/Assets.xcassets/Contents.json",
         "Example/Model.xcdatamodeld/Model.xcdatamodel/contents",
         "Example/Model.xcdatamodeld/Model2.xcdatamodel/contents",
         "Example/en.lproj/Localizable.strings",
-        "Example/en.lproj/unprocessed.json",
         "Example/es.lproj/Localizable.strings",
-        "Example/es.lproj/unprocessed.json",
         {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example-intermediates/Info.plist",
-            "t": "g"
+            "_": "Example/nested",
+            "f": true
         },
+        "Example/en.lproj/unprocessed.json",
+        "Example/es.lproj/unprocessed.json",
         "TestingUtils/BUILD",
         "TestingUtils/Greeting.swift.stencil",
         "TestingUtils/Answer.swift.stencil",
@@ -101,6 +111,7 @@
             "_": "examples_ios_app_external/Info.plist",
             "t": "e"
         },
+        "ExampleUITests/BUILD",
         {
             "_": "examples_ios_app_external/Assets.xcassets/Contents.json",
             "t": "e"
@@ -118,7 +129,6 @@
             "f": true,
             "t": "e"
         },
-        "ExampleUITests/BUILD",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
             "t": "g"
@@ -230,7 +240,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {
                 "includes": [
                     "CoreUtilsObjC",
@@ -351,7 +361,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -464,7 +474,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {
                 "includes": [
                     "CoreUtilsObjC",
@@ -580,7 +590,7 @@
                 },
                 "type": "com.apple.product-type.bundle.unit-test"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": "//Example:Example applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217"
@@ -670,7 +680,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {
                 "includes": [
                     "CoreUtilsObjC",
@@ -786,7 +796,7 @@
                 },
                 "type": "com.apple.product-type.bundle.unit-test"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": "//Example:Example applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217"
@@ -906,7 +916,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {
                 "includes": [
                     "CoreUtilsObjC",
@@ -1027,7 +1037,7 @@
                 },
                 "type": "com.apple.product-type.bundle.ui-testing"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": "//Example:Example applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217"
@@ -1129,7 +1139,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1238,7 +1248,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -1335,7 +1345,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {
                 "includes": [
                     "CoreUtilsObjC",

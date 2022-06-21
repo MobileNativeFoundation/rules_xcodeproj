@@ -66,10 +66,12 @@ Product for target "\(key)" not found in `products`
                     in: pbxProj,
                     buildMode: buildMode,
                     productType: productType,
-                    resourceBundles: target.resourceBundles,
+                    resourceBundleDependencies:
+                        target.resourceBundleDependencies,
                     inputs: target.inputs,
                     products: products,
-                    files: files
+                    files: files,
+                    targetKeys: disambiguatedTargets.keys
                 ),
                 try createEmbedFrameworksPhase(
                     in: pbxProj,
@@ -310,14 +312,15 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         productType: PBXProductType,
-        resourceBundles: Set<FilePath>,
+        resourceBundleDependencies: Set<TargetID>,
         inputs: ConsolidatedTargetInputs,
         products: Products,
-        files: [FilePath: File]
+        files: [FilePath: File],
+        targetKeys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> PBXResourcesBuildPhase? {
         guard !buildMode.usesBazelModeBuildScripts
             && productType.isBundle
-            && !(inputs.resources.isEmpty && resourceBundles.isEmpty)
+            && !(inputs.resources.isEmpty && resourceBundleDependencies.isEmpty)
         else {
             return nil
         }
@@ -336,11 +339,15 @@ Resource with file path "\(filePath)" had nil `PBXFileElement` in `files`
             return fileElement
         }
 
-        func productReference(filePath: FilePath) throws -> PBXFileReference {
-            guard let reference = products.byFilePath[filePath] else {
+        func productReference(id: TargetID) throws -> PBXFileReference {
+            guard let key = targetKeys[id] else {
                 throw PreconditionError(message: """
-Resource bundle product reference with file path "\(filePath)" not found in \
-`products`
+Resource bundle product with id "\(id)" not found in `targetKeys`
+""")
+            }
+            guard let reference = products.byTarget[key] else {
+                throw PreconditionError(message: """
+Resource bundle product reference with key \(key) not found in `products`
 """)
             }
             return reference
@@ -353,7 +360,8 @@ Resource bundle product reference with file path "\(filePath)" not found in \
         }
 
         let nonProductResources = try inputs.resources.map(fileElement)
-        let produceResources = try resourceBundles.map(productReference)
+        let produceResources = try resourceBundleDependencies
+            .map(productReference)
         let fileElements = Set(nonProductResources + produceResources)
 
         let buildPhase = PBXResourcesBuildPhase(

@@ -319,7 +319,13 @@ extension Generator {
 
         var rootElements: [PBXFileElement] = []
         var nonDirectFolderLikeFilePaths: Set<FilePath> = []
+        var nonIncludedFiles: Set<FilePath> = []
         for fullFilePath in allInputPaths {
+            guard fullFilePath.includeInNavigator else {
+                nonIncludedFiles.insert(fullFilePath)
+                continue
+            }
+
             var filePath: FilePath
             var lastElement: PBXFileElement?
             switch fullFilePath.type {
@@ -429,36 +435,36 @@ extension Generator {
             }
             .map { filePath, _ in try filePathResolver.resolve(filePath) }
 
-        let generatedFiles = fileListElements
+        let generatedFilePaths = fileListElements
             .filter { filePath, element in
                 return filePath.type == .generated
+                    && !filePath.isFolder
                     && element is PBXFileReference
             }
+            .map { filePath, _ in filePath } + nonIncludedFiles
 
-        let generatedPaths = try generatedFiles.map { filePath, _ in
+        let generatedPaths = try generatedFilePaths.map { filePath in
             return try filePathResolver.resolve(
                 filePath,
                 useOriginalGeneratedFiles: true
             )
         }
-        let rsyncPaths = generatedFiles.map { filePath, _ in filePath.path }
-        let copiedGeneratedPaths = try generatedFiles.map { filePath, _ in
+        let rsyncPaths = generatedFilePaths.map { $0.path }
+        let copiedGeneratedPaths = try generatedFilePaths.map { filePath in
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
             // match the project navigator. This is only needed for files
             // referenced by `PBXBuildFile` or have specific build settings.
             return try filePathResolver.resolve(filePath, useGenDir: true)
         }
-        let modulemapPaths = try generatedFiles
-            .filter { filePath, _ in filePath.path.extension == "modulemap" }
-            .map { filePath, _ in try filePathResolver.resolve(filePath) }
+        let modulemapPaths = try generatedFilePaths
+            .filter { $0.path.extension == "modulemap" }
+            .map { try filePathResolver.resolve($0) }
         let fixedModulemapPaths = modulemapPaths.map { path in
             return path.replacingExtension("xcode.modulemap")
         }
-        let infoPlistPaths = try generatedFiles
-            .filter { filePath, _ in
-                return filePath.path.lastComponent == "Info.plist"
-            }
-            .map { filePath, _ in
+        let infoPlistPaths = try generatedFilePaths
+            .filter { $0.path.lastComponent == "Info.plist" }
+            .map { filePath in
                 // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
                 // match the project navigator. This is only needed for files
                 // referenced by `PBXBuildFile` or have specific build settings.

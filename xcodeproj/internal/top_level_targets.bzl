@@ -17,7 +17,6 @@ load(":providers.bzl", "InputFileAttributesInfo", "XcodeProjInfo")
 load(":processed_target.bzl", "processed_target", "xcode_target")
 load(":product.bzl", "process_product")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
-load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
 load(
@@ -197,15 +196,32 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     # `process_top_level_properties` and `output_files.collect` does internally.
     target_files = [] if bundle_info else target.files.to_list()
 
-    resource_owner = str(target.label)
+    tree_artifact_enabled = get_tree_artifact_enabled(
+        ctx = ctx,
+        bundle_info = bundle_info,
+    )
+    props = process_top_level_properties(
+        target_name = ctx.rule.attr.name,
+        target_files = target_files,
+        bundle_info = bundle_info,
+        tree_artifact_enabled = tree_artifact_enabled,
+        build_settings = build_settings,
+    )
+    platform = platform_info.collect(
+        ctx = ctx,
+        minimum_deployment_os_version = props.minimum_deployment_os_version,
+    )
+
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        platform = platform,
+        is_bundle = is_bundle,
         bundle_resources = bundle_resources,
         attrs_info = attrs_info,
-        owner = resource_owner,
         additional_files = additional_files,
         transitive_infos = transitive_infos,
+        avoid_deps = avoid_deps,
     )
     outputs = output_files.collect(
         target_files = target_files,
@@ -226,18 +242,6 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         ctx = ctx,
         target = target,
         package_bin_dir = package_bin_dir,
-        build_settings = build_settings,
-    )
-
-    tree_artifact_enabled = get_tree_artifact_enabled(
-        ctx = ctx,
-        bundle_info = bundle_info,
-    )
-    props = process_top_level_properties(
-        target_name = ctx.rule.attr.name,
-        target_files = target_files,
-        bundle_info = bundle_info,
-        tree_artifact_enabled = tree_artifact_enabled,
         build_settings = build_settings,
     )
 
@@ -289,10 +293,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         get_targeted_device_family(getattr(ctx.rule.attr, "families", [])),
     )
 
-    platform = platform_info.collect(
-        ctx = ctx,
-        minimum_deployment_os_version = props.minimum_deployment_os_version,
-    )
     product = process_product(
         target = target,
         product_name = props.product_name,
@@ -300,14 +300,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         bundle_file_path = props.bundle_file_path,
         linker_inputs = linker_inputs,
         build_settings = build_settings,
-    )
-
-    resource_bundles = resource_bundle_products.collect(
-        owner = resource_owner,
-        is_consuming_bundle = is_bundle,
-        bundle_resources = bundle_resources,
-        attrs_info = attrs_info,
-        transitive_infos = transitive_infos,
     )
 
     cc_info = target[CcInfo] if CcInfo in target else None
@@ -334,7 +326,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
-        resource_bundles = resource_bundles,
         search_paths = search_paths,
         target = struct(
             id = id,
@@ -350,20 +341,14 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             package_bin_dir = package_bin_dir,
             platform = platform,
             product = product,
-            is_bundle = is_bundle,
             is_swift = is_swift,
             test_host = (
                 test_host_target_info.target.id if test_host_target_info else None
             ),
-            avoid_infos = [
-                ("test_host", dep[XcodeProjInfo])
-                for dep in avoid_deps
-            ],
             build_settings = build_settings,
             search_paths = search_paths,
             modulemaps = modulemaps,
             swiftmodules = process_swiftmodules(swift_info = swift_info),
-            resource_bundles = resource_bundles,
             inputs = inputs,
             linker_inputs = linker_inputs,
             info_plist = info_plist,

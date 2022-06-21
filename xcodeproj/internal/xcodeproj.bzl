@@ -11,11 +11,21 @@ load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":output_files.bzl", "output_files")
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
+load(":resource_target.bzl", "process_resource_bundles")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
 # Actions
 
 def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
+    resource_bundle_informations = depset(
+        transitive = [info.resource_bundle_informations for info in infos],
+    ).to_list()
+
+    resource_bundle_xcode_targets = process_resource_bundles(
+        bundles = inputs.resource_bundles.to_list(),
+        resource_bundle_informations = resource_bundle_informations,
+    )
+
     extra_files = inputs.extra_files
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
@@ -24,6 +34,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
         transitive = [info.required_links for info in infos],
     )
     xcode_targets = depset(
+        resource_bundle_xcode_targets,
         transitive = [info.xcode_targets for info in infos],
     )
 

@@ -51,7 +51,8 @@ final class TargetMergingTests: XCTestCase {
             ],
             modulemaps: targets["A 1"]!.modulemaps,
             swiftmodules: targets["A 1"]!.swiftmodules,
-            resourceBundles: targets["A 2"]!.resourceBundles,
+            resourceBundleDependencies: targets["A 2"]!
+                .resourceBundleDependencies,
             inputs: targets["A 2"]!.inputs.merging(targets["A 1"]!.inputs),
             linkerInputs: .init(
                 staticFrameworks: targets["A 2"]!.linkerInputs.staticFrameworks,
@@ -74,7 +75,8 @@ final class TargetMergingTests: XCTestCase {
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
-            resourceBundles: targets["B 2"]!.resourceBundles,
+            resourceBundleDependencies: targets["B 2"]!
+                .resourceBundleDependencies,
             inputs: targets["B 2"]!.inputs.merging(targets["B 1"]!.inputs),
             linkerInputs: .init(
                 staticFrameworks: targets["B 2"]!.linkerInputs.staticFrameworks,
@@ -94,7 +96,8 @@ final class TargetMergingTests: XCTestCase {
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
-            resourceBundles: targets["B 3"]!.resourceBundles,
+            resourceBundleDependencies: targets["B 3"]!
+                .resourceBundleDependencies,
             inputs: targets["B 3"]!.inputs.merging(targets["B 1"]!.inputs),
             linkerInputs: .init(
                 staticFrameworks: targets["B 3"]!.linkerInputs.staticFrameworks,

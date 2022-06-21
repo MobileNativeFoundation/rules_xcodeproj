@@ -145,7 +145,7 @@ def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
             xctest,
             path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)],
         )
-    elif default_info.files_to_run.executable:
+    elif default_info and default_info.files_to_run.executable:
         product = default_info.files_to_run.executable
     else:
         product = None
