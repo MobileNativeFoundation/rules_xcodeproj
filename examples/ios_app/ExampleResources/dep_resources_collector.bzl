@@ -31,13 +31,16 @@ def _dep_resources_collector_impl(ctx):
         transitive = [dep[DepCollectorInfo].dep_names for dep in ctx.attr.deps],
     ).to_list()
 
-    output = ctx.actions.declare_file("deps.txt")
+    output = ctx.actions.declare_file("bucket/deps.txt")
     ctx.actions.run_shell(
         outputs = [output],
         command = "echo '{}' > {}".format("\n".join(all_deps), output.path),
     )
 
-    return resources.bucketize(resources = [output])
+    return resources.bucketize(
+        resources = [output],
+        parent_dir_param = "bucket",
+    )
 
 dep_resources_collector = rule(
     implementation = _dep_resources_collector_impl,
