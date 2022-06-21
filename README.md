@@ -43,15 +43,11 @@ rules.
 - macOS 12.0-12.4
 - Xcode 13.0-13.3.1
 - Bazel 5.2.0
-- rules_swift post-0.27.0 (a release with https://github.com/bazelbuild/rules_swift/commit/8d4b096b90e47095755e47c27e749ae9b9f83e81)
-- rules_apple post-0.34.2 (a release with https://github.com/bazelbuild/rules_apple/commit/029eab0a6bbb4147d227d623721b205eb62aca9c)
+- rules_swift 1.0.0
+- rules_apple 1.0.1
 
 More versions of these tools and rulesets might be supported, but these are the
 ones we've officially tested with.
-
-Please refer to the
-[release notes](https://github.com/buildbuddy-io/rules_xcodeproj/releases) for a
-given release to see which versions it is compatible with.
 
 ## Quick setup
 

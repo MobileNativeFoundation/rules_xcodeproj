@@ -188,7 +188,7 @@
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g",
+                "OTHER_SWIFT_FLAGS": "-g -static",
                 "PRODUCT_MODULE_NAME": "Example",
                 "PRODUCT_NAME": "Example.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -366,7 +366,7 @@
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g",
+                "OTHER_SWIFT_FLAGS": "-g -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "PRODUCT_NAME": "ExampleTests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -550,7 +550,7 @@
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g",
+                "OTHER_SWIFT_FLAGS": "-g -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
                 "PRODUCT_NAME": "ExampleUITests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
