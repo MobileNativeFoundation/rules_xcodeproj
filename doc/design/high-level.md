@@ -165,9 +165,9 @@ This will be the default build mode by the 1.0 release.
 
 rules_xcodeproj will support one more build mode called "Build with Bazel via
 Proxy". In this mode the generated project will rely on Xcode using an
-[XCBBuildServiceProxy](https://github.com/target/XCBBuildServiceProxy). This
-takes the Xcode build system entirely out of the equation, allowing Bazel to
-fully control the build.
+[XCBBuildServiceProxyKit](https://github.com/MobileNativeFoundation/XCBBuildServiceProxyKit).
+This takes the Xcode build system entirely out of the equation, allowing Bazel
+to fully control the build.
 
 Here are some benefits that the proxy provides over "Build with Bazel":
 
