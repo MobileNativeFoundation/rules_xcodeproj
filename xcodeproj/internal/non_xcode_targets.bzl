@@ -4,21 +4,10 @@ load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
-load(
-    ":providers.bzl",
-    "InputFileAttributesInfo",
-)
-load(
-    ":processed_target.bzl",
-    "processed_target",
-)
-load(":resource_bundle_products.bzl", "resource_bundle_products")
+load(":providers.bzl", "InputFileAttributesInfo")
+load(":processed_target.bzl", "processed_target")
 load(":search_paths.bzl", "process_search_paths")
-load(
-    ":target_properties.bzl",
-    "process_dependencies",
-    "should_bundle_resources",
-)
+load(":target_properties.bzl", "process_dependencies")
 
 def process_non_xcode_target(*, ctx, target, transitive_infos):
     """Gathers information about a non-Xcode target.
@@ -36,8 +25,6 @@ def process_non_xcode_target(*, ctx, target, transitive_infos):
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
 
     attrs_info = target[InputFileAttributesInfo]
-    bundle_resources = should_bundle_resources(ctx = ctx)
-    resource_owner = None
 
     return processed_target(
         attrs_info = attrs_info,
@@ -48,10 +35,12 @@ def process_non_xcode_target(*, ctx, target, transitive_infos):
         inputs = input_files.collect(
             ctx = ctx,
             target = target,
-            bundle_resources = bundle_resources,
+            platform = None,
+            bundle_resources = False,
+            is_bundle = False,
             attrs_info = attrs_info,
-            owner = resource_owner,
             transitive_infos = transitive_infos,
+            avoid_deps = [],
         ),
         linker_inputs = linker_input_files.collect_for_non_top_level(
             cc_info = cc_info,
@@ -64,13 +53,6 @@ def process_non_xcode_target(*, ctx, target, transitive_infos):
         ),
         potential_target_merges = None,
         required_links = None,
-        resource_bundles = resource_bundle_products.collect(
-            owner = resource_owner,
-            is_consuming_bundle = False,
-            bundle_resources = bundle_resources,
-            attrs_info = attrs_info,
-            transitive_infos = transitive_infos,
-        ),
         search_paths = process_search_paths(
             cc_info = cc_info,
             objc = objc,

@@ -11,11 +11,18 @@ struct FilePath: Hashable, Decodable {
     let type: PathType
     var path: Path
     var isFolder: Bool
+    let includeInNavigator: Bool
 
-    fileprivate init(type: PathType, path: Path, isFolder: Bool) {
+    fileprivate init(
+        type: PathType,
+        path: Path,
+        isFolder: Bool,
+        includeInNavigator: Bool
+    ) {
         self.type = type
         self.path = path
         self.isFolder = isFolder
+        self.includeInNavigator = includeInNavigator
     }
 
     // MARK: Decodable
@@ -24,6 +31,7 @@ struct FilePath: Hashable, Decodable {
         case path = "_"
         case type = "t"
         case isFolder = "f"
+        case includeInNavigator = "i"
     }
 
     init(from decoder: Decoder) throws {
@@ -32,6 +40,7 @@ struct FilePath: Hashable, Decodable {
             type = .project
             self.path = path
             isFolder = false
+            includeInNavigator = true
             return
         }
 
@@ -41,30 +50,73 @@ struct FilePath: Hashable, Decodable {
             ?? .project
         isFolder = try container.decodeIfPresent(Bool.self, forKey: .isFolder)
             ?? false
+        includeInNavigator = try container
+            .decodeIfPresent(Bool.self, forKey: .includeInNavigator) ?? true
     }
 }
 
 extension FilePath {
-    static func project(_ path: Path, isFolder: Bool = false) -> FilePath {
-        return FilePath(type: .project, path: path, isFolder: isFolder)
+    static func project(
+        _ path: Path,
+        isFolder: Bool = false, 
+        includeInNavigator: Bool = true
+    ) -> FilePath {
+        return FilePath(
+            type: .project,
+            path: path,
+            isFolder: isFolder,
+            includeInNavigator: includeInNavigator
+        )
     }
 
-    static func external(_ path: Path, isFolder: Bool = false) -> FilePath {
-        return FilePath(type: .external, path: path, isFolder: isFolder)
+    static func external(
+        _ path: Path,
+        isFolder: Bool = false, 
+        includeInNavigator: Bool = true
+    ) -> FilePath {
+        return FilePath(
+            type: .external,
+            path: path,
+            isFolder: isFolder,
+            includeInNavigator: includeInNavigator
+        )
     }
 
-    static func generated(_ path: Path, isFolder: Bool = false) -> FilePath {
-        return FilePath(type: .generated, path: path, isFolder: isFolder)
+    static func generated(
+        _ path: Path,
+        isFolder: Bool = false, 
+        includeInNavigator: Bool = true
+    ) -> FilePath {
+        return FilePath(
+            type: .generated,
+            path: path,
+            isFolder: isFolder,
+            includeInNavigator: includeInNavigator
+        )
     }
 
-    static func `internal`(_ path: Path, isFolder: Bool = false) -> FilePath {
-        return FilePath(type: .internal, path: path, isFolder: isFolder)
+    static func `internal`(
+        _ path: Path, 
+        isFolder: Bool = false, 
+        includeInNavigator: Bool = true
+    ) -> FilePath {
+        return FilePath(
+            type: .internal,
+            path: path,
+            isFolder: isFolder,
+            includeInNavigator: includeInNavigator
+        )
     }
 }
 
 extension FilePath {
     func parent() -> FilePath {
-        return FilePath(type: type, path: path.parent(), isFolder: false)
+        return FilePath(
+            type: type,
+            path: path.parent(),
+            isFolder: false,
+            includeInNavigator: includeInNavigator
+        )
     }
 }
 
@@ -100,5 +152,10 @@ extension FilePath.PathType: Comparable {
 // MARK: Operators
 
 func +(lhs: FilePath, rhs: String) -> FilePath {
-    return FilePath(type: lhs.type, path: lhs.path + rhs, isFolder: false)
+    return FilePath(
+        type: lhs.type,
+        path: lhs.path + rhs,
+        isFolder: false,
+        includeInNavigator: lhs.includeInNavigator
+    )
 }

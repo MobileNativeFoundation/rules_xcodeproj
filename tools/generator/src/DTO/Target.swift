@@ -13,11 +13,17 @@ struct Target: Equatable, Decodable {
     var searchPaths: SearchPaths
     var modulemaps: [FilePath]
     var swiftmodules: [FilePath]
-    let resourceBundles: Set<FilePath>
     var inputs: Inputs
     var linkerInputs: LinkerInputs
     var infoPlist: FilePath?
     var entitlements: FilePath?
+    let resourceBundleDependencies: Set<TargetID>
     var dependencies: Set<TargetID>
     var outputs: Outputs
+}
+
+extension Target {
+    var allDependencies: Set<TargetID> {
+        return dependencies.union(resourceBundleDependencies)
+    }
 }

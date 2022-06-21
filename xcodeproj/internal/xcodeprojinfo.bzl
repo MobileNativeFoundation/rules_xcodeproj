@@ -8,33 +8,16 @@ load(
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":linker_input_files.bzl", "linker_input_files")
-load(
-    ":non_xcode_targets.bzl",
-    "process_non_xcode_target",
-)
+load(":non_xcode_targets.bzl", "process_non_xcode_target")
 load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
-load(
-    ":providers.bzl",
-    "XcodeProjInfo",
-    "target_type",
-)
-load(
-    ":processed_target.bzl",
-    "processed_target",
-)
-load(":resource_bundle_products.bzl", "resource_bundle_products")
+load(":providers.bzl", "XcodeProjInfo", "target_type")
+load(":processed_target.bzl", "processed_target")
 load(":resource_target.bzl", "process_resource_target")
 load(":search_paths.bzl", "process_search_paths")
 load(":targets.bzl", "targets")
-load(
-    ":target_properties.bzl",
-    "process_dependencies",
-)
-load(
-    ":top_level_targets.bzl",
-    "process_top_level_target",
-)
+load(":target_properties.bzl", "process_dependencies")
+load(":top_level_targets.bzl", "process_top_level_target")
 
 # Creating `XcodeProjInfo`
 
@@ -66,7 +49,7 @@ def _target_info_fields(
         outputs,
         potential_target_merges,
         required_links,
-        resource_bundles,
+        resource_bundle_informations,
         search_paths,
         target,
         target_type,
@@ -83,7 +66,8 @@ def _target_info_fields(
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
         required_links: Maps to the `XcodeProjInfo.required_links` field.
-        resource_bundles: Maps to the `XcodeProjInfo.resource_bundles` field.
+        resource_bundle_informations: Maps to the
+            `XcodeProjInfo.resource_bundle_informations` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target: Maps to the `XcodeProjInfo.target` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
@@ -98,8 +82,8 @@ def _target_info_fields(
         *   `linker_inputs`
         *   `outputs`
         *   `potential_target_merges`
+        *   `resource_bundle_informations`
         *   `required_links`
-        *   `resource_bundles`
         *   `search_paths`
         *   `target`
         *   `target_type`
@@ -112,7 +96,7 @@ def _target_info_fields(
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
         "required_links": required_links,
-        "resource_bundles": resource_bundles,
+        "resource_bundle_informations": resource_bundle_informations,
         "search_paths": search_paths,
         "target": target,
         "target_type": target_type,
@@ -157,12 +141,11 @@ def _skip_target(*, deps, transitive_infos):
         required_links = depset(
             transitive = [info.required_links for _, info in transitive_infos],
         ),
-        resource_bundles = resource_bundle_products.collect(
-            owner = None,
-            is_consuming_bundle = False,
-            bundle_resources = False,
-            attrs_info = None,
-            transitive_infos = transitive_infos,
+        resource_bundle_informations = depset(
+            transitive = [
+                info.resource_bundle_informations
+                for _, info in transitive_infos
+            ],
         ),
         search_paths = process_search_paths(
             cc_info = None,
@@ -240,6 +223,15 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                     processed_target.attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
+        resource_bundle_informations = depset(
+            processed_target.resource_bundle_informations,
+            transitive = [
+                info.resource_bundle_informations
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    processed_target.attrs_info.xcode_targets.get(attr, [None]))
+            ],
+        ),
         required_links = depset(
             processed_target.required_links,
             transitive = [
@@ -249,7 +241,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                     processed_target.attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
-        resource_bundles = processed_target.resource_bundles,
         search_paths = processed_target.search_paths,
         target = processed_target.target,
         target_type = processed_target.attrs_info.target_type,

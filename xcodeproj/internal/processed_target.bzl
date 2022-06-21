@@ -7,7 +7,6 @@ load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":product.bzl", "product_to_dto")
 load(":providers.bzl", "target_type")
-load(":resource_bundle_products.bzl", "resource_bundle_products")
 
 def processed_target(
         *,
@@ -18,7 +17,7 @@ def processed_target(
         outputs,
         potential_target_merges,
         required_links,
-        resource_bundles,
+        resource_bundle_informations = None,
         search_paths,
         target,
         xcode_target):
@@ -39,8 +38,8 @@ def processed_target(
             the `XcodeProjInfo.potential_target_merges` `depset`.
         required_links: An optional `list` of strings that will be in the
             `XcodeProjInfo.required_links` `depset`.
-        resource_bundles: The value returned from
-            `resource_bundle_products.collect`.
+        resource_bundle_informations: An optional `list` of `struct`s that will
+            be in the `XcodeProjInfo.resource_bundle_informations` `depset`.
         search_paths: The value returned from `_process_search_paths`.
         target: An optional `XcodeProjInfo.target` `struct`.
         xcode_target: An optional string that will be in the
@@ -57,7 +56,7 @@ def processed_target(
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         required_links = required_links,
-        resource_bundles = resource_bundles,
+        resource_bundle_informations = resource_bundle_informations,
         search_paths = search_paths,
         target = target,
         target_type = target_type,
@@ -73,15 +72,12 @@ def xcode_target(
         package_bin_dir,
         platform,
         product,
-        is_bundle,
         is_swift,
         test_host,
-        avoid_infos = [],
         build_settings,
         search_paths,
         modulemaps,
         swiftmodules,
-        resource_bundles,
         inputs,
         linker_inputs,
         info_plist,
@@ -102,18 +98,13 @@ def xcode_target(
             `ctx.bin_dir`.
         platform: The value returned from `process_platform`.
         product: The value returned from `process_product`.
-        is_bundle: Whether the target is a bundle.
         is_swift: Whether the target compiles Swift code.
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
-        avoid_infos: A list of `XcodeProjInfo`s for the targets that have
-            already consumed resources, or linked to libraries.
         build_settings: A `dict` of Xcode build settings for the target.
         search_paths: The value returned from `_process_search_paths`.
         modulemaps: The value returned from `_process_modulemaps`.
         swiftmodules: The value returned from `_process_swiftmodules`.
-        resource_bundles: The value returned from
-            `resource_bundle_products.collect`.
         inputs: The value returned from `input_files.collect`.
         linker_inputs: A value returned from `linker_input_files.collect`.
         info_plist: A value as returned by `files.file_path` or `None`.
@@ -144,15 +135,10 @@ def xcode_target(
         search_paths = search_paths,
         modulemaps = [file_path_to_dto(fp) for fp in modulemaps.file_paths],
         swiftmodules = [file_path_to_dto(fp) for fp in swiftmodules],
-        resource_bundles = resource_bundle_products.to_dto(
-            resource_bundles,
-            avoid_infos = avoid_infos,
+        resource_bundle_dependencies = (
+            inputs.resource_bundle_dependencies.to_list()
         ),
-        inputs = input_files.to_dto(
-            inputs,
-            is_bundle = is_bundle,
-            avoid_infos = avoid_infos,
-        ),
+        inputs = input_files.to_dto(inputs),
         linker_inputs = linker_input_files.to_dto(linker_inputs),
         info_plist = file_path_to_dto(info_plist),
         dependencies = dependencies.to_list(),

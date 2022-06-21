@@ -29,7 +29,6 @@ load(
     ":product.bzl",
     "process_product",
 )
-load(":resource_bundle_products.bzl", "resource_bundle_products")
 load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
 load(
@@ -137,15 +136,16 @@ def process_library_target(*, ctx, target, transitive_infos):
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = process_modulemaps(swift_info = swift_info)
-    resource_owner = str(target.label)
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        platform = platform,
         bundle_resources = bundle_resources,
+        is_bundle = False,
         attrs_info = attrs_info,
-        owner = resource_owner,
         additional_files = modulemaps.files,
         transitive_infos = transitive_infos,
+        avoid_deps = [],
     )
     outputs = output_files.collect(
         target_files = [],
@@ -155,14 +155,6 @@ def process_library_target(*, ctx, target, transitive_infos):
         id = id,
         transitive_infos = transitive_infos,
         should_produce_dto = should_include_outputs(ctx = ctx),
-    )
-
-    resource_bundles = resource_bundle_products.collect(
-        owner = resource_owner,
-        is_consuming_bundle = False,
-        bundle_resources = bundle_resources,
-        attrs_info = attrs_info,
-        transitive_infos = transitive_infos,
     )
 
     cc_info = target[CcInfo] if CcInfo in target else None
@@ -188,7 +180,6 @@ def process_library_target(*, ctx, target, transitive_infos):
         outputs = outputs,
         potential_target_merges = None,
         required_links = None,
-        resource_bundles = resource_bundles,
         search_paths = search_paths,
         target = struct(
             id = id,
@@ -204,14 +195,12 @@ def process_library_target(*, ctx, target, transitive_infos):
             package_bin_dir = package_bin_dir,
             platform = platform,
             product = product,
-            is_bundle = False,
             is_swift = is_swift,
             test_host = None,
             build_settings = build_settings,
             search_paths = search_paths,
             modulemaps = modulemaps,
             swiftmodules = process_swiftmodules(swift_info = swift_info),
-            resource_bundles = resource_bundles,
             inputs = inputs,
             linker_inputs = linker_inputs,
             info_plist = None,

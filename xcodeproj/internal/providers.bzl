@@ -8,12 +8,20 @@ but if you want to write your own custom rules that interact with these
 rules, then you will use these providers to communicate between them.
 """
 
+INPUT_FILE_ATTRIBUTES = {
+    "entitlements": None,
+    "hdrs": None,
+    "non_arc_srcs": None,
+    "pch": None,
+    "provisioning_profile": None,
+    "srcs": None,
+}
+
 InputFileAttributesInfo = provider(
     "Specifies how input files of a target are collected.",
     fields = {
-        "bundle_imports": """\
-A sequence of attribute names to collect `File`s from for `bundle_imports`-like
-attributes.
+        "bundle_id": """\
+An attribute name (or `None`) to collect the bundle id string from.
 """,
         "entitlements": """\
 An attribute name (or `None`) to collect `File`s from for the
@@ -44,17 +52,9 @@ attribute.
 An attribute name (or `None`) to collect `File`s from for the
 `provisioning_profile`-like attribute.
 """,
-        "resources": """\
-A sequence of attribute names to collect `File`s from for the `resources`-like
-attributes.
-""",
         "srcs": """\
 A sequence of attribute names to collect `File`s from for `srcs`-like
 attributes.
-""",
-        "structured_resources": """\
-A sequence of attribute names to collect `File`s from for
-`structured_resources`-like attributes.
 """,
         "target_type": "See `XcodeProjInfo.target_type`.",
         "xcode_targets": """\
@@ -67,7 +67,6 @@ target type are allowed to propagate.
 
 target_type = struct(
     compile = "compile",
-    resources = "resources",
 )
 
 XcodeProjInfo = provider(
@@ -98,9 +97,9 @@ the output files for this target and its transitive dependencies.
 A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
 """,
-        "resource_bundles": """\
-A `depset` of all resource bundle product paths (these are made up, but a key
-that the generator uses) that haven't been added to an Xcode target yet.
+        "resource_bundle_informations": """\
+A `depset` of `struct`s with information used to generate resource bundles,
+which couldn't be collected from `AppleResourceInfo` alone.
 """,
         "search_paths": """\
 A value returned from `_process_search_paths`, that contains the search paths

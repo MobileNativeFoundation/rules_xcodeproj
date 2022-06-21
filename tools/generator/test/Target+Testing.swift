@@ -17,7 +17,7 @@ extension Target {
         searchPaths: SearchPaths = .init(),
         modulemaps: [FilePath] = [],
         swiftmodules: [FilePath] = [],
-        resourceBundles: Set<FilePath> = [],
+        resourceBundleDependencies: Set<TargetID> = [],
         inputs: Inputs = .init(),
         linkerInputs: LinkerInputs = .init(),
         dependencies: Set<TargetID> = [],
@@ -36,9 +36,9 @@ extension Target {
             searchPaths: searchPaths,
             modulemaps: modulemaps,
             swiftmodules: swiftmodules,
-            resourceBundles: resourceBundles,
             inputs: inputs,
             linkerInputs: linkerInputs,
+            resourceBundleDependencies: resourceBundleDependencies,
             dependencies: dependencies,
             outputs: outputs
         )

@@ -25,6 +25,7 @@
 
 /* Begin PBXBuildFile section */
 		0C60B39F563ADB3B6F2D4C48 /* ExampleObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 916051C2C6E70ADF8A009197 /* ExampleObjcTests.m */; };
+		2304ED861B15664CD25BF34A /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
 		2BA9A964A54E38410EE51403 /* ExampleNestedResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6A527C6B5C64DEF9CF7DD /* ExampleNestedResources.bundle */; };
 		53F60D0388EA498C85C52E52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 181A626E7874B82CF2F6E536 /* Assets.xcassets */; };
 		5521A83EE8FAF745FA267A58 /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
@@ -51,8 +52,10 @@
 		D2069F38A517BD3DAD015112 /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 79AFD512EEA35F6B5E384B71 /* nested */; };
 		DA4DABDDE4E7A99E7BB18185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F10117E7E50E4002C433A03 /* Localizable.strings */; };
 		DF1BBABB29DD1C62C6874B78 /* ExampleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 087B3E45AA9A7430D1BEC9B8 /* ExampleResources.bundle */; };
+		DFE9A6EC43175FCA538F448B /* ExampleNestedResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6A527C6B5C64DEF9CF7DD /* ExampleNestedResources.bundle */; };
 		E42FEF40785F7445F33C1307 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D76639B60E2E2CA3019CBCA /* Localizable.strings */; };
 		E622F80C56CEC483C5E577E5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF64499057F57FE175119DD /* ExampleTests.swift */; };
+		F7C1EA533FC97BFBCC05427D /* bucket in Resources */ = {isa = PBXBuildFile; fileRef = 7A441341C253320B7557275D /* bucket */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +266,7 @@
 		69E093D72CBE082F537F10FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72ADA2EDE061878484810ED9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		79AFD512EEA35F6B5E384B71 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
+		7A441341C253320B7557275D /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		7B3D04144C7784CD7A3331E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7DC9208516B89B092C7DF137 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FD57FB206F92F73DFECE745 /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
@@ -297,6 +301,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		00E20F4022CA35F5E25430F7 /* ExampleResources */ = {
+			isa = PBXGroup;
+			children = (
+				7A441341C253320B7557275D /* bucket */,
+			);
+			path = ExampleResources;
+			sourceTree = "<group>";
+		};
 		03F873082A9A76A86829D49F /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				588F7F633B97E7ABC5968BEF /* CoreUtilsObjC */,
+				00E20F4022CA35F5E25430F7 /* ExampleResources */,
 				B663248C0196CEDF0DF34479 /* TestingUtils */,
 				D78115B559F35F46253BFA84 /* Utils */,
 			);
@@ -944,6 +957,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7557E6AAB4DA540A0470203 /* ExampleResources.bundle in Resources */,
+				2304ED861B15664CD25BF34A /* Utils.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +966,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C424DA316D76D6DBE8E389B3 /* Assets.xcassets in Resources */,
+				F7C1EA533FC97BFBCC05427D /* bucket in Resources */,
+				DFE9A6EC43175FCA538F448B /* ExampleNestedResources.bundle in Resources */,
 				60456255EE960BBA7DA9C36C /* nested in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

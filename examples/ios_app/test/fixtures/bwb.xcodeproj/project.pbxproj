@@ -201,6 +201,7 @@
 		B236D472E2B01203C379DE61 /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		B4D73F5C48C2711F4DEE0F31 /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
 		B75CC91156E9D2337A9933AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B873B2FD17BE21AD4363D4CE /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		B915E847DC5E1D2AE2A711AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B97C2835F125F69B2FDF8477 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		BBD5F9FCF8CFEE20432A6F6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/unprocessed.json; sourceTree = "<group>"; };
@@ -383,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				668B0DDD0CD36596E944B03F /* CoreUtilsObjC */,
+				95AB4C2910CB455077A1B54F /* ExampleResources */,
 				518AA8FB370DCA3819DD9A8D /* TestingUtils */,
 				8C20F5F7A777AE2FAA4C7229 /* Utils */,
 			);
@@ -439,6 +441,14 @@
 				8B6B40F20EDEA3383ACD02BD /* ExampleObjcTests.__internal__.__test_bundle-intermediates */,
 			);
 			path = ExampleObjcTests;
+			sourceTree = "<group>";
+		};
+		95AB4C2910CB455077A1B54F /* ExampleResources */ = {
+			isa = PBXGroup;
+			children = (
+				B873B2FD17BE21AD4363D4CE /* bucket */,
+			);
+			path = ExampleResources;
 			sourceTree = "<group>";
 		};
 		9811D2ED915829A1A7881AFD /* Bazel External Repositories */ = {

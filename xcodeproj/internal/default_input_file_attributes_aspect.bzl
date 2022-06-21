@@ -5,24 +5,15 @@ load(
     "AppleBinaryInfo",
     "AppleBundleInfo",
     "AppleFrameworkImportInfo",
-    "AppleResourceBundleInfo",
-    "AppleResourceInfo",
 )
 load(":providers.bzl", "InputFileAttributesInfo", "target_type")
 
 # Utility
 
-def _get_target_type(*, ctx, target):
-    if ctx.rule.kind == "apple_resource_group":
-        return target_type.resources
-
+def _get_target_type(*, target):
     # Top-level bundles
     if AppleBundleInfo in target:
         return target_type.compile
-
-    # Resources
-    if AppleResourceBundleInfo in target or AppleResourceInfo in target:
-        return target_type.resources
 
     # Libraries
     if CcInfo in target:
@@ -50,7 +41,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     if InputFileAttributesInfo in target:
         return []
 
-    this_target_type = _get_target_type(ctx = ctx, target = target)
+    this_target_type = _get_target_type(target = target)
 
     if CcInfo in target:
         srcs = ("srcs")
@@ -61,88 +52,60 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     non_arc_srcs = ()
     hdrs = ()
     pch = None
+    bundle_id = None
     provisioning_profile = None
-    resources = {}
-    structured_resources = ()
     infoplists = ()
     entitlements = None
-    bundle_imports = ()
     if ctx.rule.kind == "cc_library":
         xcode_targets = {
-            "deps": [target_type.compile, target_type.resources],
+            "deps": [target_type.compile],
             "interface_deps": [target_type.compile],
         }
         excluded = ("deps", "interface_deps")
         hdrs = ("hdrs", "textual_hdrs")
-        resources = {
-            "deps": [target_type.compile, target_type.resources],
-            "interface_deps": [target_type.compile],
-        }
     elif ctx.rule.kind == "cc_import":
         xcode_targets = {}
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
-            "deps": [target_type.compile, target_type.resources],
+            "deps": [target_type.compile],
             "runtime_deps": [target_type.compile],
-            "data": [target_type.resources],
         }
         excluded = ("deps", "runtime_deps")
         non_arc_srcs = ("non_arc_srcs")
         hdrs = ("hdrs", "textual_hdrs")
         pch = "pch"
-        resources = {
-            "deps": [target_type.compile, target_type.resources],
-            "data": [target_type.resources],
-        }
     elif ctx.rule.kind == "objc_import":
         xcode_targets = {}
     elif ctx.rule.kind == "swift_library":
         xcode_targets = {
-            "deps": [target_type.compile, target_type.resources],
+            "deps": [target_type.compile],
             "private_deps": [target_type.compile],
-            "data": [target_type.resources],
         }
         excluded = ("deps", "private_deps")
-        resources = {
-            "deps": [target_type.compile, target_type.resources],
-            "data": [target_type.resources],
-        }
-    elif (ctx.rule.kind == "apple_resource_group" or
-          ctx.rule.kind == "apple_resource_bundle"):
-        xcode_targets = {"resources": [target_type.resources]}
-        resources = {"resources": [target_type.resources]}
-        structured_resources = ("structured_resources")
-        infoplists = ("infoplists")
-    elif ctx.rule.kind == "apple_bundle_import":
+    elif ctx.rule.kind == "apple_resource_bundle":
         xcode_targets = {}
-        bundle_imports = ("bundle_imports")
+
+        # Ideally this would be exposed on `AppleResourceBundleInfo`
+        bundle_id = "bundle_id"
+        infoplists = ("infoplists")
     elif ctx.rule.kind == "genrule":
         xcode_targets = {}
     elif AppleBundleInfo in target:
         xcode_targets = {
-            "deps": [target_type.compile, target_type.resources],
-            "resources": [target_type.resources],
+            "deps": [target_type.compile],
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
         provisioning_profile = "provisioning_profile"
         infoplists = ("infoplists")
-        resources = {
-            "app_icons": [target_type.resources],
-            "deps": [target_type.compile, target_type.resources],
-            "resources": [target_type.resources],
-        }
         entitlements = "entitlements"
     elif AppleBinaryInfo in target:
-        xcode_targets = {"deps": [target_type.compile, target_type.resources]}
+        xcode_targets = {"deps": [target_type.compile]}
         infoplists = ("infoplists")
-        resources = {"deps": [target_type.compile, target_type.resources]}
     elif AppleFrameworkImportInfo in target:
-        xcode_targets = {"deps": [target_type.compile, target_type.resources]}
-        resources = {"deps": [target_type.compile, target_type.resources]}
+        xcode_targets = {"deps": [target_type.compile]}
     else:
-        xcode_targets = {"deps": [this_target_type, target_type.resources]}
-        resources = {"deps": [this_target_type, target_type.resources]}
+        xcode_targets = {"deps": [this_target_type]}
 
     return [
         InputFileAttributesInfo(
@@ -153,12 +116,10 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             srcs = srcs,
             hdrs = hdrs,
             pch = pch,
+            bundle_id = bundle_id,
             provisioning_profile = provisioning_profile,
-            resources = resources,
-            structured_resources = structured_resources,
             infoplists = infoplists,
             entitlements = entitlements,
-            bundle_imports = bundle_imports,
         ),
     ]
 

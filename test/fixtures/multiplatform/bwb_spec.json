@@ -12,46 +12,51 @@
     },
     "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
     "extra_files": [
-        "examples/multiplatform/Lib/BUILD",
         "examples/multiplatform/iOSApp/BUILD",
-        "examples/multiplatform/iOSApp/PreviewContent/Preview Assets.xcassets/Contents.json",
-        "examples/multiplatform/iOSApp/Assets.xcassets/AccentColor.colorset/Contents.json",
-        "examples/multiplatform/iOSApp/Assets.xcassets/Contents.json",
-        "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
+        "examples/multiplatform/Lib/BUILD",
         "examples/multiplatform/iOSApp/Info.plist",
         {
             "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/iOSApp/PreviewContent/Preview Assets.xcassets/Contents.json",
+        "examples/multiplatform/iOSApp/Assets.xcassets/AccentColor.colorset/Contents.json",
+        "examples/multiplatform/iOSApp/Assets.xcassets/Contents.json",
+        "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/tvOSApp/BUILD",
-        "examples/multiplatform/tvOSApp/PreviewContent/Preview Assets.xcassets/Contents.json",
-        "examples/multiplatform/tvOSApp/Assets.xcassets/AccentColor.colorset/Contents.json",
-        "examples/multiplatform/tvOSApp/Assets.xcassets/Contents.json",
         "examples/multiplatform/tvOSApp/Info.plist",
         {
             "_": "applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/tvOSApp/PreviewContent/Preview Assets.xcassets/Contents.json",
+        "examples/multiplatform/tvOSApp/Assets.xcassets/AccentColor.colorset/Contents.json",
+        "examples/multiplatform/tvOSApp/Assets.xcassets/Contents.json",
         {
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/watchOSApp/BUILD",
         "examples/multiplatform/watchOSApp/Info.plist",
-        "examples/multiplatform/watchOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/watchOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/watchOSAppExtension/BUILD",
+        "examples/multiplatform/watchOSAppExtension/Info.plist",
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
+            "t": "g"
+        },
         "examples/multiplatform/watchOSAppExtension/PreviewContent/Preview Assets.xcassets/Contents.json",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Circular.imageset/Contents.json",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Contents.json",
@@ -64,11 +69,6 @@
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Modular.imageset/Contents.json",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Complication.complicationset/Utilitarian.imageset/Contents.json",
         "examples/multiplatform/watchOSAppExtension/Assets.xcassets/Contents.json",
-        "examples/multiplatform/watchOSAppExtension/Info.plist",
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
-            "t": "g"
-        },
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
             "t": "g"
@@ -208,7 +208,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -311,7 +311,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -413,7 +413,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -515,7 +515,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -618,7 +618,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -720,7 +720,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -823,7 +823,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -916,7 +916,7 @@
                 },
                 "type": "com.apple.product-type.tool"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1017,7 +1017,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1122,7 +1122,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1222,7 +1222,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1324,7 +1324,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1432,7 +1432,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1536,7 +1536,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1635,7 +1635,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1737,7 +1737,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1845,7 +1845,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1936,7 +1936,7 @@
                 },
                 "type": "com.apple.product-type.application.watchapp2"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -2022,7 +2022,7 @@
                 },
                 "type": "com.apple.product-type.application.watchapp2"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -2121,7 +2121,7 @@
                 },
                 "type": "com.apple.product-type.watchkit2-extension"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -2220,7 +2220,7 @@
                 },
                 "type": "com.apple.product-type.watchkit2-extension"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -2322,7 +2322,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -2430,7 +2430,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {

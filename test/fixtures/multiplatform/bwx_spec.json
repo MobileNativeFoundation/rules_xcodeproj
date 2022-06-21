@@ -12,8 +12,8 @@
     },
     "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
     "extra_files": [
-        "examples/multiplatform/Lib/BUILD",
         "examples/multiplatform/iOSApp/BUILD",
+        "examples/multiplatform/Lib/BUILD",
         "examples/multiplatform/iOSApp/Info.plist",
         {
             "_": "applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
@@ -173,7 +173,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -261,7 +261,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -348,7 +348,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -435,7 +435,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -523,7 +523,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -610,7 +610,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -698,7 +698,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -786,7 +786,7 @@
                 },
                 "type": "com.apple.product-type.tool"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -872,7 +872,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -942,9 +942,9 @@
             "inputs": {
                 "resources": [
                     "examples/multiplatform/iOSApp/PreviewContent/Preview Assets.xcassets/Contents.json",
-                    "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
                     "examples/multiplatform/iOSApp/Assets.xcassets/AccentColor.colorset/Contents.json",
-                    "examples/multiplatform/iOSApp/Assets.xcassets/Contents.json"
+                    "examples/multiplatform/iOSApp/Assets.xcassets/Contents.json",
+                    "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json"
                 ]
             },
             "is_swift": false,
@@ -979,7 +979,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1043,9 +1043,9 @@
             "inputs": {
                 "resources": [
                     "examples/multiplatform/iOSApp/PreviewContent/Preview Assets.xcassets/Contents.json",
-                    "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json",
                     "examples/multiplatform/iOSApp/Assets.xcassets/AccentColor.colorset/Contents.json",
-                    "examples/multiplatform/iOSApp/Assets.xcassets/Contents.json"
+                    "examples/multiplatform/iOSApp/Assets.xcassets/Contents.json",
+                    "examples/multiplatform/iOSApp/Assets.xcassets/AppIcon.appiconset/Contents.json"
                 ]
             },
             "is_swift": false,
@@ -1081,7 +1081,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1168,7 +1168,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1261,7 +1261,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1366,7 +1366,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1466,7 +1466,7 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1553,7 +1553,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1646,7 +1646,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -1736,7 +1736,7 @@
                 },
                 "type": "com.apple.product-type.application.watchapp2"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1821,7 +1821,7 @@
                 },
                 "type": "com.apple.product-type.application.watchapp2"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -1930,7 +1930,7 @@
                 },
                 "type": "com.apple.product-type.watchkit2-extension"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -2039,7 +2039,7 @@
                 },
                 "type": "com.apple.product-type.watchkit2-extension"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
             "test_host": null
@@ -2126,7 +2126,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {
@@ -2219,7 +2219,7 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundles": [],
+            "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [
                 {

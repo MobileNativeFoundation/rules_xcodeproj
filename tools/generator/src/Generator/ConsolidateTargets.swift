@@ -95,7 +95,7 @@ Target "\(id)" not found in `consolidateTargets().targets`
                 }
 
                 var dependencies = Set<ConsolidatedTarget.Key>(
-                    try target.dependencies.map { depID in
+                    try target.allDependencies.map { depID in
                         return try resolveDependency(depID, for: id)
                     }
                 )
@@ -242,7 +242,7 @@ struct ConsolidatedTarget: Equatable {
     let label: String
     let product: ConsolidatedTargetProduct
     let isSwift: Bool
-    let resourceBundles: Set<FilePath>
+    let resourceBundleDependencies: Set<TargetID>
     let inputs: ConsolidatedTargetInputs
     let linkerInputs: ConsolidatedTargetLinkerInputs
     let outputs: ConsolidatedTargetOutputs
@@ -255,7 +255,7 @@ struct ConsolidatedTarget: Equatable {
     let uniqueFiles: [TargetID: Set<FilePath>]
 
     /// Used for `dependencies()`.
-    private let dependencies: Set<TargetID>
+    private let allDependencies: Set<TargetID>
 
     let targets: [TargetID: Target]
 
@@ -277,7 +277,7 @@ extension ConsolidatedTarget {
         keys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> Set<ConsolidatedTarget.Key> {
         return Set(
-            try dependencies.map { targetID in
+            try allDependencies.map { targetID in
                 guard let dependencyKey = keys[targetID] else {
                     throw PreconditionError(message: """
 Target \(key)'s dependency on "\(targetID)" not found in `keys`
@@ -304,9 +304,11 @@ extension ConsolidatedTarget {
         )
         isSwift = aTarget.isSwift
 
-        var resourceBundles: Set<FilePath> = []
-        targets.values.forEach { resourceBundles.formUnion($0.resourceBundles) }
-        self.resourceBundles = resourceBundles
+        var resourceBundleDependencies: Set<TargetID> = []
+        targets.values.forEach {
+            resourceBundleDependencies.formUnion($0.resourceBundleDependencies)
+        }
+        self.resourceBundleDependencies = resourceBundleDependencies
 
         sortedTargets = targets
             .sorted { lhs, rhs in
@@ -329,7 +331,7 @@ extension ConsolidatedTarget {
         }
         self.uniqueFiles = uniqueFiles
 
-        dependencies = aTarget.dependencies
+        allDependencies = aTarget.allDependencies
         outputs = ConsolidatedTargetOutputs(
             hasOutputs: self.targets.values.contains { $0.outputs.hasOutputs },
             hasSwiftOutputs: self.targets.values
@@ -458,7 +460,6 @@ private extension Target {
     var allExcludableFiles: Set<FilePath> {
         var files = inputs.all
         files.formUnion(linkerInputs.allExcludableFiles)
-        files.formUnion(resourceBundles)
         return files
     }
 }

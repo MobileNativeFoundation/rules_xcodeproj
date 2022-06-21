@@ -25,6 +25,7 @@ enum Fixtures {
             "a/c.h",
             "a/d/a.h",
             "a/module.modulemap",
+            .generated("v/a.txt", includeInNavigator: false),
         ]
     )
 
@@ -69,7 +70,7 @@ enum Fixtures {
                 "Z": .string("0")
             ],
             swiftmodules: [.generated("x/y.swiftmodule")],
-            resourceBundles: [.generated("r1/R1.bundle")],
+            resourceBundleDependencies: ["R 1"],
             inputs: .init(
                 resources: [
                     "es.lproj/Localized.strings",
@@ -77,6 +78,7 @@ enum Fixtures {
                     "Base.lproj/Example.xib",
                     "en.lproj/Localized.strings",
                     "en.lproj/Example.strings",
+                    .generated("v", isFolder: true),
                 ],
                 entitlements: "app.entitlements"
             ),
@@ -372,12 +374,21 @@ enum Fixtures {
             path: "a"
         )
 
+        // bazel-out/v
+
+        elements[.generated("v", isFolder: true)] = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "folder",
+            path: "v"
+        )
+
         // bazel-out
 
         elements[.generated("")] = PBXGroup(
             children: [
                 elements[.generated("a")]!,
                 elements[.generated("a1b2c")]!,
+                elements[.generated("v", isFolder: true)]!,
             ],
             sourceTree: .group,
             name: "Bazel Generated Files",
@@ -919,6 +930,7 @@ $(BAZEL_EXTERNAL)/another_repo/b.swift
         files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
 $(BAZEL_OUT)/a/b/module.modulemap
 $(BAZEL_OUT)/a1b2c/bin/t.c
+$(BAZEL_OUT)/v/a.txt
 
 """)
 
@@ -926,12 +938,14 @@ $(BAZEL_OUT)/a1b2c/bin/t.c
 """
 $(GEN_DIR)/a/b/module.modulemap
 $(GEN_DIR)/a1b2c/bin/t.c
+$(GEN_DIR)/v/a.txt
 
 """)
 
         files[.internal("generated.rsynclist")] = .nonReferencedContent("""
 a/b/module.modulemap
 a1b2c/bin/t.c
+v/a.txt
 
 """)
 
@@ -1398,6 +1412,9 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                         PBXBuildFile(file: elements["Localized.strings"]!),
                         PBXBuildFile(file: products
                             .byFilePath[.generated("r1/R1.bundle")]!
+                        ),
+                        PBXBuildFile(
+                            file: elements[.generated("v", isFolder: true)]!
                         ),
                     ])
                 ),
