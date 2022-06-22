@@ -118,9 +118,10 @@ def process_top_level_properties(
 
             # "some/test.xctest/binary" -> "some/test.xctest"
             xctest_path = xctest.path
+            path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)]
             bundle_file_path = file_path(
                 xctest,
-                path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)],
+                path = path,
             )
         else:
             product_type = "com.apple.product-type.tool"
@@ -318,6 +319,10 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         opts_search_paths = opts_search_paths,
     )
 
+    test_host = (
+        test_host_target_info.target.id if test_host_target_info else None
+    )
+
     return processed_target(
         attrs_info = attrs_info,
         dependencies = dependencies,
@@ -342,9 +347,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             platform = platform,
             product = product,
             is_swift = is_swift,
-            test_host = (
-                test_host_target_info.target.id if test_host_target_info else None
-            ),
+            test_host = test_host,
             build_settings = build_settings,
             search_paths = search_paths,
             modulemaps = modulemaps,
