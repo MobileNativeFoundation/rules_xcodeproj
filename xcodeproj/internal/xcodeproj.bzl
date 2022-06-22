@@ -27,26 +27,26 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
     )
 
     extra_files = inputs.extra_files
+    non_mergable_targets = depset(
+        transitive = [info.non_mergable_targets for info in infos],
+    )
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
-    )
-    required_links = depset(
-        transitive = [info.required_links for info in infos],
     )
     xcode_targets = depset(
         resource_bundle_xcode_targets,
         transitive = [info.xcode_targets for info in infos],
     )
 
-    required_links_set = sets.make([
+    non_mergable_targets_set = sets.make([
         file_path(file)
-        for file in required_links.to_list()
+        for file in non_mergable_targets.to_list()
     ])
 
     target_merges = {}
     invalid_target_merges = {}
     for merge in potential_target_merges.to_list():
-        if sets.contains(required_links_set, merge.src.product_path):
+        if sets.contains(non_mergable_targets_set, merge.src.product_path):
             destinations = invalid_target_merges.get(merge.src.id, [])
             destinations.append(merge.dest)
             invalid_target_merges[merge.src.id] = destinations

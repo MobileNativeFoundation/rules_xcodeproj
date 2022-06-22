@@ -51,8 +51,6 @@ def process_non_xcode_target(*, ctx, target, transitive_infos):
             attrs_info = attrs_info,
             transitive_infos = transitive_infos,
         ),
-        potential_target_merges = None,
-        required_links = None,
         search_paths = process_search_paths(
             cc_info = cc_info,
             objc = objc,

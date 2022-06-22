@@ -14,9 +14,9 @@ def processed_target(
         dependencies,
         inputs,
         linker_inputs,
+        non_mergable_targets = None,
         outputs,
-        potential_target_merges,
-        required_links,
+        potential_target_merges = None,
         resource_bundle_informations = None,
         search_paths,
         target,
@@ -32,12 +32,12 @@ def processed_target(
         linker_inputs: A value returned from `linker_input_files.collect`
             that will provide values for the `XcodeProjInfo.linker_inputs`
             field.
+        non_mergable_targets: An optional `list` of strings that will be in the
+            `XcodeProjInfo.non_mergable_targets` `depset`.
         outputs: A value as returned from `output_files.collect` that will
             provide values for the `XcodeProjInfo.outputs` field.
         potential_target_merges: An optional `list` of `struct`s that will be in
             the `XcodeProjInfo.potential_target_merges` `depset`.
-        required_links: An optional `list` of strings that will be in the
-            `XcodeProjInfo.required_links` `depset`.
         resource_bundle_informations: An optional `list` of `struct`s that will
             be in the `XcodeProjInfo.resource_bundle_informations` `depset`.
         search_paths: The value returned from `_process_search_paths`.
@@ -53,9 +53,9 @@ def processed_target(
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,
+        non_mergable_targets = non_mergable_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
-        required_links = required_links,
         resource_bundle_informations = resource_bundle_informations,
         search_paths = search_paths,
         target = target,
