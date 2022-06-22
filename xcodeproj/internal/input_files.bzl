@@ -64,9 +64,8 @@ def _collect_transitive_uncategorized(info):
         return depset()
     return info.inputs.uncategorized
 
-def _should_ignore_attr(attr, *, excluded_attrs):
+def _should_ignore_attr(attr):
     return (
-        attr in excluded_attrs or
         # We don't want to include implicit dependencies
         attr.startswith("_") or
         # These are actually Starklark methods, so ignore them
@@ -253,21 +252,19 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
             return
         transitive_extra_files.append(dep[XcodeProjInfo].inputs.uncategorized)
 
-    excluded_attrs = attrs_info.excluded
-
     for attr in dir(ctx.rule.files):
-        if _should_ignore_attr(attr, excluded_attrs = excluded_attrs):
+        if _should_ignore_attr(attr):
             continue
         for file in getattr(ctx.rule.files, attr):
             _handle_file(file, attr = attr)
 
     for attr in dir(ctx.rule.file):
-        if _should_ignore_attr(attr, excluded_attrs = excluded_attrs):
+        if _should_ignore_attr(attr):
             continue
         _handle_file(getattr(ctx.rule.file, attr), attr = attr)
 
     for attr in dir(ctx.rule.attr):
-        if _should_ignore_attr(attr, excluded_attrs = excluded_attrs):
+        if _should_ignore_attr(attr):
             continue
         dep = getattr(ctx.rule.attr, attr, None)
         if type(dep) == "Target":

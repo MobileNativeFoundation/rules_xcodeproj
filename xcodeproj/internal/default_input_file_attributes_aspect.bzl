@@ -48,7 +48,6 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     else:
         srcs = ()
 
-    excluded = ("deps")
     non_arc_srcs = ()
     hdrs = ()
     pch = None
@@ -61,7 +60,6 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "deps": [target_type.compile],
             "interface_deps": [target_type.compile],
         }
-        excluded = ("deps", "interface_deps")
         hdrs = ("hdrs", "textual_hdrs")
     elif ctx.rule.kind == "cc_import":
         xcode_targets = {}
@@ -70,7 +68,6 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "deps": [target_type.compile],
             "runtime_deps": [target_type.compile],
         }
-        excluded = ("deps", "runtime_deps")
         non_arc_srcs = ("non_arc_srcs")
         hdrs = ("hdrs", "textual_hdrs")
         pch = "pch"
@@ -81,7 +78,6 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
             "deps": [target_type.compile],
             "private_deps": [target_type.compile],
         }
-        excluded = ("deps", "private_deps")
     elif ctx.rule.kind == "apple_resource_bundle":
         xcode_targets = {}
 
@@ -111,7 +107,6 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         InputFileAttributesInfo(
             target_type = this_target_type,
             xcode_targets = xcode_targets,
-            excluded = excluded,
             non_arc_srcs = non_arc_srcs,
             srcs = srcs,
             hdrs = hdrs,
