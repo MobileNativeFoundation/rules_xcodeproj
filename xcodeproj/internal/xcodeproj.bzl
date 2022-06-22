@@ -276,7 +276,6 @@ def _xcodeproj_impl(ctx):
     ]
     configuration = get_configuration(ctx = ctx)
     inputs = input_files.merge(
-        attrs_info = None,
         transitive_infos = [(None, info) for info in infos],
     )
     outputs = output_files.merge(
