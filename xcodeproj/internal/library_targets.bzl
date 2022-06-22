@@ -178,8 +178,6 @@ def process_library_target(*, ctx, target, transitive_infos):
         inputs = inputs,
         linker_inputs = linker_inputs,
         outputs = outputs,
-        potential_target_merges = None,
-        required_links = None,
         search_paths = search_paths,
         target = struct(
             id = id,

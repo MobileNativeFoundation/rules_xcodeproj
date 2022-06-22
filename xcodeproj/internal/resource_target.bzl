@@ -154,8 +154,6 @@ def process_resource_target(*, ctx, target, transitive_infos):
             attrs_info = attrs_info,
             transitive_infos = transitive_infos,
         ),
-        potential_target_merges = None,
-        required_links = None,
         resource_bundle_informations = [
             struct(
                 id = id,

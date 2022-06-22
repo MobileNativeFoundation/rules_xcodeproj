@@ -46,9 +46,9 @@ def _target_info_fields(
         dependencies,
         inputs,
         linker_inputs,
+        non_mergable_targets,
         outputs,
         potential_target_merges,
-        required_links,
         resource_bundle_informations,
         search_paths,
         target,
@@ -62,10 +62,11 @@ def _target_info_fields(
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
         inputs: Maps to the `XcodeProjInfo.inputs` field.
         linker_inputs: Maps to the `XcodeProjInfo.linker_inputs` field.
+        non_mergable_targets: Maps to the `XcodeProjInfo.non_mergable_targets`
+            field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
-        required_links: Maps to the `XcodeProjInfo.required_links` field.
         resource_bundle_informations: Maps to the
             `XcodeProjInfo.resource_bundle_informations` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
@@ -80,10 +81,10 @@ def _target_info_fields(
         *   `generated_inputs`
         *   `inputs`
         *   `linker_inputs`
+        *   `non_mergable_targets`
         *   `outputs`
         *   `potential_target_merges`
         *   `resource_bundle_informations`
-        *   `required_links`
         *   `search_paths`
         *   `target`
         *   `target_type`
@@ -93,9 +94,9 @@ def _target_info_fields(
         "dependencies": dependencies,
         "inputs": inputs,
         "linker_inputs": linker_inputs,
+        "non_mergable_targets": non_mergable_targets,
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
-        "required_links": required_links,
         "resource_bundle_informations": resource_bundle_informations,
         "search_paths": search_paths,
         "target": target,
@@ -126,6 +127,12 @@ def _skip_target(*, deps, transitive_infos):
         inputs = input_files.merge(
             transitive_infos = transitive_infos,
         ),
+        non_mergable_targets = depset(
+            transitive = [
+                info.non_mergable_targets
+                for _, info in transitive_infos
+            ],
+        ),
         outputs = output_files.merge(
             attrs_info = None,
             transitive_infos = transitive_infos,
@@ -136,9 +143,6 @@ def _skip_target(*, deps, transitive_infos):
                 info.potential_target_merges
                 for _, info in transitive_infos
             ],
-        ),
-        required_links = depset(
-            transitive = [info.required_links for _, info in transitive_infos],
         ),
         resource_bundle_informations = depset(
             transitive = [
@@ -212,6 +216,15 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         dependencies = processed_target.dependencies,
         inputs = processed_target.inputs,
         linker_inputs = processed_target.linker_inputs,
+        non_mergable_targets = depset(
+            processed_target.non_mergable_targets,
+            transitive = [
+                info.non_mergable_targets
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    processed_target.attrs_info.xcode_targets.get(attr, [None]))
+            ],
+        ),
         outputs = processed_target.outputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,
@@ -226,15 +239,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
             processed_target.resource_bundle_informations,
             transitive = [
                 info.resource_bundle_informations
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.attrs_info.xcode_targets.get(attr, [None]))
-            ],
-        ),
-        required_links = depset(
-            processed_target.required_links,
-            transitive = [
-                info.required_links
                 for attr, info in transitive_infos
                 if (info.target_type in
                     processed_target.attrs_info.xcode_targets.get(attr, [None]))

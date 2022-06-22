@@ -276,7 +276,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         mergeable_label = None
 
     static_libraries = linker_input_files.get_static_libraries(linker_inputs)
-    required_links = [
+    non_mergable_targets = [
         library
         for library in static_libraries
         if mergeable_label and library.owner != mergeable_label
@@ -323,9 +323,9 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,
+        non_mergable_targets = non_mergable_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
-        required_links = required_links,
         search_paths = search_paths,
         target = struct(
             id = id,
