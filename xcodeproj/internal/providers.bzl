@@ -8,15 +8,6 @@ but if you want to write your own custom rules that interact with these
 rules, then you will use these providers to communicate between them.
 """
 
-INPUT_FILE_ATTRIBUTES = {
-    "entitlements": None,
-    "hdrs": None,
-    "non_arc_srcs": None,
-    "pch": None,
-    "provisioning_profile": None,
-    "srcs": None,
-}
-
 InputFileAttributesInfo = provider(
     "Specifies how input files of a target are collected.",
     fields = {
