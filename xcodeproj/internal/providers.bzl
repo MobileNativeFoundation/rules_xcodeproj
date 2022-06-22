@@ -27,11 +27,6 @@ An attribute name (or `None`) to collect the bundle id string from.
 An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.
 """,
-        "excluded": """\
-A sequence of attribute names to not collect `File`s from. This should generally
-be `deps` and `deps`-like attributes. The goal is to exclude attributes that
-have generated products (e.g. ".swiftmodule" or ".a" files) as outputs.
-""",
         "infoplists": """\
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
