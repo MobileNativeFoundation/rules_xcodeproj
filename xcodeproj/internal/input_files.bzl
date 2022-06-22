@@ -296,8 +296,7 @@ def _collect(
             transitive = [
                 info.inputs.resource_bundles
                 for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
+                if (info.target_type in
                     attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
@@ -310,8 +309,7 @@ def _collect(
             transitive = [
                 info.inputs.xccurrentversions
                 for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
+                if (info.target_type in
                     attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
@@ -320,8 +318,7 @@ def _collect(
             transitive = [
                 info.inputs.generated
                 for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
+                if (info.target_type in
                     attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
@@ -330,8 +327,7 @@ def _collect(
             transitive = [
                 _collect_transitive_extra_files(info)
                 for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
+                if (info.target_type in
                     attrs_info.xcode_targets.get(attr, [None]))
             ] + transitive_extra_files,
         ),
@@ -340,8 +336,7 @@ def _collect(
             transitive = [
                 _collect_transitive_uncategorized(info)
                 for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
+                if (info.target_type in
                     attrs_info.xcode_targets.get(attr, [None]))
             ],
         ),
