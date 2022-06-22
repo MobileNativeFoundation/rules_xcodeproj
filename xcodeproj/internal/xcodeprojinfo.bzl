@@ -3,7 +3,6 @@
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
-    "AppleResourceBundleInfo",
 )
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
@@ -13,7 +12,6 @@ load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
 load(":providers.bzl", "XcodeProjInfo", "target_type")
 load(":processed_target.bzl", "processed_target")
-load(":resource_target.bzl", "process_resource_target")
 load(":search_paths.bzl", "process_search_paths")
 load(":targets.bzl", "targets")
 load(":target_properties.bzl", "process_dependencies")
@@ -197,12 +195,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
             ctx = ctx,
             target = target,
             bundle_info = None,
-            transitive_infos = transitive_infos,
-        )
-    elif AppleResourceBundleInfo in target:
-        processed_target = process_resource_target(
-            ctx = ctx,
-            target = target,
             transitive_infos = transitive_infos,
         )
     else:
