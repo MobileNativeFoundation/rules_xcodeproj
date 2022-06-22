@@ -406,11 +406,10 @@ def _from_resource_bundle(bundle):
         uncategorized = depset(),
     )
 
-def _merge(*, attrs_info, transitive_infos):
+def _merge(*, transitive_infos):
     """Creates merged inputs.
 
     Args:
-        attrs_info: The `InputFileAttributesInfo` for the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
 
@@ -428,47 +427,32 @@ def _merge(*, attrs_info, transitive_infos):
         resource_bundles = depset(
             transitive = [
                 info.inputs.resource_bundles
-                for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                for _, info in transitive_infos
             ],
         ),
         entitlements = None,
         xccurrentversions = depset(
             transitive = [
                 info.inputs.xccurrentversions
-                for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                for _, info in transitive_infos
             ],
         ),
         generated = depset(
             transitive = [
                 info.inputs.generated
-                for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                for _, info in transitive_infos
             ],
         ),
         extra_files = depset(
             transitive = [
                 info.inputs.extra_files
-                for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                for _, info in transitive_infos
             ],
         ),
         uncategorized = depset(
             transitive = [
                 info.inputs.uncategorized
-                for attr, info in transitive_infos
-                if (not attrs_info or
-                    info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                for _, info in transitive_infos
             ],
         ),
     )

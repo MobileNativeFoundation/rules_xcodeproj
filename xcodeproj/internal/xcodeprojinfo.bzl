@@ -124,7 +124,6 @@ def _skip_target(*, deps, transitive_infos):
             transitive_infos = transitive_infos,
         ),
         inputs = input_files.merge(
-            attrs_info = None,
             transitive_infos = transitive_infos,
         ),
         outputs = output_files.merge(
