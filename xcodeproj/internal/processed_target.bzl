@@ -10,7 +10,7 @@ load(":providers.bzl", "target_type")
 
 def processed_target(
         *,
-        attrs_info,
+        automatic_target_info,
         dependencies,
         inputs,
         linker_inputs,
@@ -24,7 +24,8 @@ def processed_target(
     """Generates the return value for target processing functions.
 
     Args:
-        attrs_info: The `InputFileAttributesInfo` for the target.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            the target.
         dependencies: A `list` of target ids of direct dependencies of this
             target.
         inputs: A value as returned from `input_files.collect` that will
@@ -49,7 +50,7 @@ def processed_target(
         A `struct` containing fields for each argument.
     """
     return struct(
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,
