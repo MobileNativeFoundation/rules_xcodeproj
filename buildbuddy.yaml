@@ -7,7 +7,7 @@ actions:
           - "main"
       pull_request:
         branches:
-          - "main"
+          - "*"
     bazel_commands:
       - "build --config=workflows //..."
 
@@ -19,7 +19,7 @@ actions:
           - "main"
       pull_request:
         branches:
-          - "main"
+          - "*"
     bazel_commands:
       - "test --config=workflows //tools/... //test/..."
 
@@ -31,7 +31,7 @@ actions:
           - "main"
       pull_request:
         branches:
-          - "main"
+          - "*"
     bazel_commands:
       - "clean"
       - "test --config=workflows //:all_integration_tests"
@@ -43,6 +43,6 @@ actions:
           - "main"
       pull_request:
         branches:
-          - "main"
+          - "*"
     bazel_commands:
       - "run --config=workflows //:buildifier.check"
