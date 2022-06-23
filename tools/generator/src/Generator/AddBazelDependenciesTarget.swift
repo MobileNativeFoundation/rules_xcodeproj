@@ -143,6 +143,9 @@ env -i \
         let generatedInputsOutputGroup = #"""
 generated_inputs \#(xcodeprojConfiguration)
 """#
+        let generatedInputsFileList = #"""
+$BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOutputGroup).filelist
+"""#
 
         let shellScript = [
             bazelSetupCommand(
@@ -160,13 +163,13 @@ generated_inputs \#(xcodeprojConfiguration)
                 xcodeprojBinDir: xcodeprojBinDir
             ),
             try checkGeneratedFilesCommand(
-                xcodeprojBazelTargetName: xcodeprojBazelTargetName,
-                xcodeprojBinDir: xcodeprojBinDir,
-                generatedInputsOutputGroup: generatedInputsOutputGroup,
+                generatedInputsFileList: generatedInputsFileList,
                 hasGeneratedFiles: hasGeneratedFiles,
                 filePathResolver: filePathResolver
             ),
             try copyFilesCommand(
+                generatedInputsFileList: generatedInputsFileList,
+                hasGeneratedFiles: hasGeneratedFiles,
                 files: files,
                 filePathResolver: filePathResolver
             ),
@@ -354,10 +357,10 @@ done
 mkdir -p bazel-out
 cd bazel-out
 
-sed 's|\/[^\/]*$||' \
+sed 's|^\$(GEN_DIR)\/\(.*\)\/[^\/]*$|\1|' \
   "\#(
   try filePathResolver
-      .resolve(.internal(rsyncFileListPath), mode: .script)
+      .resolve(.internal(copiedGeneratedFileListPath), mode: .script)
       .string
 )" \
   | uniq \
@@ -370,9 +373,7 @@ done
     }
 
     private static func checkGeneratedFilesCommand(
-        xcodeprojBazelTargetName: String,
-        xcodeprojBinDir: String,
-        generatedInputsOutputGroup: String,
+        generatedInputsFileList: String,
         hasGeneratedFiles: Bool,
         filePathResolver: FilePathResolver
     ) throws -> String? {
@@ -380,15 +381,12 @@ done
             return nil
         }
 
-        let rsynclist = try filePathResolver
-            .resolve(.internal(rsyncFileListPath), mode: .script)
-        let filelist = #"""
-$BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOutputGroup).filelist
-"""#
+        let copiedGeneratedFileList = try filePathResolver
+            .resolve(.internal(copiedGeneratedFileListPath), mode: .script)
 
         return #"""
 
-diff=$(comm -23 <(sed -e 's|^|bazel-out/|' "\#(rsynclist)" | sort) <(sort "\#(filelist)"))
+diff=$(comm -23 <(sed -e 's|^$(GEN_DIR)|bazel-out|' "\#(copiedGeneratedFileList)" | sort) <(sort "\#(generatedInputsFileList)"))
 if ! [ -z "$diff" ]; then
   echo "error: The files that Bazel generated don't match what the project \#
 expects. Please regenerate the project." >&2
@@ -404,13 +402,11 @@ fi
     }
 
     private static func copyFilesCommand(
+        generatedInputsFileList: String,
+        hasGeneratedFiles: Bool,
         files: [FilePath: File],
         filePathResolver: FilePathResolver
-    ) throws -> String? {
-        guard files.containsGeneratedFiles else {
-            return nil
-        }
-
+    ) throws -> String {
         return #"""
 cd "$BAZEL_OUT"
 
@@ -423,11 +419,7 @@ echo "Copying generated files"
 # generated. It's the best we can do though as we need to use the `gen_dir`
 # symlink, because Index Build can't modify the normal build's "$BUILD_DIR".
 rsync \
-  --files-from "\#(
-    try filePathResolver
-        .resolve(.internal(rsyncFileListPath), mode: .script)
-        .string
-)" \
+  --files-from <(sed -e 's|^bazel-out/||' "\#(generatedInputsFileList)") \
   --copy-links \
   --update \
   --chmod=u+w \
