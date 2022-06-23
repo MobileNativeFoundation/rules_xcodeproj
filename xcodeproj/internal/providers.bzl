@@ -8,8 +8,14 @@ but if you want to write your own custom rules that interact with these
 rules, then you will use these providers to communicate between them.
 """
 
-InputFileAttributesInfo = provider(
-    "Specifies how input files of a target are collected.",
+XcodeProjAutomaticTargetProcessingInfo = provider(
+    """\
+Provides needed information about a target to allow rules_xcodeproj to
+automatically process it.
+
+If you need more control over how a target or it's dependencies are processed,
+return a `XcodeProjInfo` provider instance instead.
+""",
     fields = {
         "bundle_id": """\
 An attribute name (or `None`) to collect the bundle id string from.

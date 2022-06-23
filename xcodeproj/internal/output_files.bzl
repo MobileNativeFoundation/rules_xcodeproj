@@ -8,7 +8,7 @@ load(":output_group_map.bzl", "output_group_map")
 def _create(
         *,
         direct_outputs = None,
-        attrs_info = None,
+        automatic_target_info = None,
         transitive_infos,
         should_produce_dto = False):
     """Creates the internal data structure of the `output_files` module.
@@ -16,7 +16,8 @@ def _create(
     Args:
         direct_outputs: A value returned from `_get_outputs`, or `None` if
             the outputs are being merged.
-        attrs_info: The `InputFileAttributesInfo` for the target.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
@@ -59,8 +60,11 @@ def _create(
         transitive = [
             info.outputs._transitive_build
             for attr, info in transitive_infos
-            if (not attrs_info or
-                info.target_type in attrs_info.xcode_targets.get(attr, [None]))
+            if (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                ))
         ],
     )
 
@@ -69,8 +73,11 @@ def _create(
         transitive = [
             info.outputs._transitive_index
             for attr, info in transitive_infos
-            if (not attrs_info or
-                info.target_type in attrs_info.xcode_targets.get(attr, [None]))
+            if (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                ))
         ],
     )
 
@@ -87,8 +94,11 @@ def _create(
         transitive = [
             info.outputs._output_group_list
             for attr, info in transitive_infos
-            if (not attrs_info or
-                info.target_type in attrs_info.xcode_targets.get(attr, [None]))
+            if (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                ))
         ],
     )
 
@@ -236,11 +246,12 @@ def _collect(
         transitive_infos = transitive_infos,
     )
 
-def _merge(*, attrs_info, transitive_infos):
+def _merge(*, automatic_target_info, transitive_infos):
     """Creates merged outputs.
 
     Args:
-        attrs_info: The `InputFileAttributesInfo` for the target.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
 
@@ -249,7 +260,10 @@ def _merge(*, attrs_info, transitive_infos):
         values include the outputs of the transitive dependencies, via
         `transitive_infos` (e.g. `generated` and `extra_files`).
     """
-    return _create(transitive_infos = transitive_infos, attrs_info = attrs_info)
+    return _create(
+        transitive_infos = transitive_infos,
+        automatic_target_info = automatic_target_info,
+    )
 
 def _to_dto(outputs):
     direct_outputs = outputs._direct_outputs

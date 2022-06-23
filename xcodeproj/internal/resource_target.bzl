@@ -9,7 +9,7 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target", "xcode_target")
-load(":providers.bzl", "InputFileAttributesInfo")
+load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo")
 load(":product.bzl", "process_product")
 load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
@@ -127,12 +127,12 @@ def process_resource_target(*, ctx, target, transitive_infos):
     label = target.label
     id = get_id(label = label, configuration = configuration)
 
-    attrs_info = target[InputFileAttributesInfo]
+    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
 
     return processed_target(
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         dependencies = process_dependencies(
-            attrs_info = attrs_info,
+            automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         ),
         inputs = input_files.collect(
@@ -141,7 +141,7 @@ def process_resource_target(*, ctx, target, transitive_infos):
             platform = None,
             bundle_resources = False,
             is_bundle = False,
-            attrs_info = attrs_info,
+            automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
             avoid_deps = [],
         ),
@@ -151,13 +151,16 @@ def process_resource_target(*, ctx, target, transitive_infos):
             is_xcode_target = False,
         ),
         outputs = output_files.merge(
-            attrs_info = attrs_info,
+            automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         ),
         resource_bundle_informations = [
             struct(
                 id = id,
-                bundle_id = getattr(ctx.rule.attr, attrs_info.bundle_id),
+                bundle_id = getattr(
+                    ctx.rule.attr,
+                    automatic_target_info.bundle_id,
+                ),
             ),
         ],
         search_paths = process_search_paths(

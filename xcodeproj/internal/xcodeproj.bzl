@@ -119,7 +119,9 @@ def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     ctx.actions.write(
         containers_file,
         "".join([
-            json.encode(file_path_to_dto(file_path(file, path = file.dirname))) + "\n"
+            json.encode(
+                file_path_to_dto(file_path(file, path = file.dirname)),
+            ) + "\n"
             for file in xccurrentversion_files
         ]),
     )
@@ -278,7 +280,7 @@ def _xcodeproj_impl(ctx):
         transitive_infos = [(None, info) for info in infos],
     )
     outputs = output_files.merge(
-        attrs_info = None,
+        automatic_target_info = None,
         transitive_infos = [(None, info) for info in infos],
     )
 

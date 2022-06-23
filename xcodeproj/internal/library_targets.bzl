@@ -1,34 +1,18 @@
-""" Functions for processing library targets """
+"""Functions for processing library targets."""
 
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load(
-    ":build_settings.bzl",
-    "get_product_module_name",
-)
+load(":build_settings.bzl", "get_product_module_name")
 load(":collections.bzl", "set_if_true")
 load(":configuration.bzl", "get_configuration")
-load(
-    ":files.bzl",
-    "join_paths_ignoring_empty",
-)
+load(":files.bzl", "join_paths_ignoring_empty")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
-load(
-    ":providers.bzl",
-    "InputFileAttributesInfo",
-)
-load(
-    ":processed_target.bzl",
-    "processed_target",
-    "xcode_target",
-)
-load(
-    ":product.bzl",
-    "process_product",
-)
+load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo")
+load(":processed_target.bzl", "processed_target", "xcode_target")
+load(":product.bzl", "process_product")
 load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
 load(
@@ -54,7 +38,7 @@ def process_library_target(*, ctx, target, transitive_infos):
     Returns:
         The value returned from `processed_target`.
     """
-    attrs_info = target[InputFileAttributesInfo]
+    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
 
     configuration = get_configuration(ctx)
     label = target.label
@@ -80,7 +64,7 @@ def process_library_target(*, ctx, target, transitive_infos):
         get_product_module_name(ctx = ctx, target = target),
     )
     dependencies = process_dependencies(
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         transitive_infos = transitive_infos,
     )
 
@@ -142,7 +126,7 @@ def process_library_target(*, ctx, target, transitive_infos):
         platform = platform,
         bundle_resources = bundle_resources,
         is_bundle = False,
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         additional_files = modulemaps.files,
         transitive_infos = transitive_infos,
         avoid_deps = [],
@@ -173,7 +157,7 @@ def process_library_target(*, ctx, target, transitive_infos):
     )
 
     return processed_target(
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,

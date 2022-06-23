@@ -121,7 +121,7 @@ def _skip_target(*, deps, transitive_infos):
     """
     return _target_info_fields(
         dependencies = process_dependencies(
-            attrs_info = None,
+            automatic_target_info = None,
             transitive_infos = transitive_infos,
         ),
         inputs = input_files.merge(
@@ -134,7 +134,7 @@ def _skip_target(*, deps, transitive_infos):
             ],
         ),
         outputs = output_files.merge(
-            attrs_info = None,
+            automatic_target_info = None,
             transitive_infos = transitive_infos,
         ),
         linker_inputs = linker_input_files.merge(deps = deps),
@@ -222,7 +222,10 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                 info.non_mergable_targets
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    processed_target.attrs_info.xcode_targets.get(attr, [None]))
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
             ],
         ),
         outputs = processed_target.outputs,
@@ -232,7 +235,10 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                 info.potential_target_merges
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    processed_target.attrs_info.xcode_targets.get(attr, [None]))
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
             ],
         ),
         resource_bundle_informations = depset(
@@ -241,19 +247,25 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                 info.resource_bundle_informations
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    processed_target.attrs_info.xcode_targets.get(attr, [None]))
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
             ],
         ),
         search_paths = processed_target.search_paths,
         target = processed_target.target,
-        target_type = processed_target.attrs_info.target_type,
+        target_type = processed_target.automatic_target_info.target_type,
         xcode_targets = depset(
             processed_target.xcode_targets,
             transitive = [
                 info.xcode_targets
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    processed_target.attrs_info.xcode_targets.get(attr, [None]))
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
             ],
         ),
     )
