@@ -16,41 +16,41 @@
         "examples/multiplatform/Lib/BUILD",
         "examples/multiplatform/iOSApp/Info.plist",
         {
-            "_": "applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
+            "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
             "t": "g"
         },
         {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/tvOSApp/BUILD",
         "examples/multiplatform/tvOSApp/Info.plist",
         {
-            "_": "applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
             "t": "g"
         },
         {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/watchOSApp/BUILD",
         "examples/multiplatform/watchOSApp/Info.plist",
         {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/watchOSAppExtension/BUILD",
         "examples/multiplatform/watchOSAppExtension/Info.plist",
         {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/Tool/BUILD",
@@ -61,37 +61,37 @@
     "label": "//test/fixtures/multiplatform:xcodeproj_bwx",
     "name": "bwx",
     "target_merges": [
-        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee",
+        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         [
-            "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee"
+            "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
         ],
-        "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef",
+        "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         [
-            "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-0437e361c6ef"
+            "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
         ],
-        "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc",
+        "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
         [
-            "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-765845ae47bc"
+            "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
         ],
-        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c",
+        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
         [
-            "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c"
+            "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef"
         ],
-        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6",
+        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
         [
-            "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6"
+            "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53"
         ],
-        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         [
-            "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb"
+            "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
         ],
-        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         [
-            "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb"
+            "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
         ]
     ],
     "targets": [
-        "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef",
+        "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -141,13 +141,13 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef",
+            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
             "dependencies": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/Lib/Lib.swift",
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swift",
                         "t": "g"
                     }
                 ]
@@ -158,7 +158,7 @@
             "modulemaps": [],
             "name": "Lib",
             "outputs": {},
-            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/Lib",
+            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64",
                 "minimum_os_version": "15.0",
@@ -168,7 +168,7 @@
             "product": {
                 "name": "Lib",
                 "path": {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/Lib/libLib.a",
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/libLib.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -178,7 +178,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc",
+        "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -228,13 +228,13 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc",
+            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
             "dependencies": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/Lib/Lib.swift",
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swift",
                         "t": "g"
                     }
                 ]
@@ -245,7 +245,7 @@
             "modulemaps": [],
             "name": "Lib",
             "outputs": {},
-            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/Lib",
+            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -256,7 +256,7 @@
             "product": {
                 "name": "Lib",
                 "path": {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/Lib/libLib.a",
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/libLib.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -266,7 +266,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee",
+        "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -316,13 +316,13 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee",
+            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
             "dependencies": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib/Lib.swift",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/Lib.swift",
                         "t": "g"
                     }
                 ]
@@ -333,7 +333,7 @@
             "modulemaps": [],
             "name": "Lib",
             "outputs": {},
-            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib",
+            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -343,7 +343,7 @@
             "product": {
                 "name": "Lib",
                 "path": {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib/libLib.a",
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/libLib.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -353,7 +353,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c",
+        "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -403,13 +403,13 @@
                 "SWIFT_VERSION": "5",
                 "TVOS_DEPLOYMENT_TARGET": "15.0"
             },
-            "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c",
+            "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
             "dependencies": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/Lib/Lib.swift",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib/Lib.swift",
                         "t": "g"
                     }
                 ]
@@ -420,7 +420,7 @@
             "modulemaps": [],
             "name": "Lib",
             "outputs": {},
-            "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/Lib",
+            "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64",
                 "minimum_os_version": "15.0",
@@ -430,7 +430,7 @@
             "product": {
                 "name": "Lib",
                 "path": {
-                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/Lib/libLib.a",
+                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib/libLib.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -440,7 +440,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6",
+        "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -490,13 +490,13 @@
                 "SWIFT_VERSION": "5",
                 "TVOS_DEPLOYMENT_TARGET": "15.0"
             },
-            "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6",
+            "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
             "dependencies": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/Lib/Lib.swift",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/Lib.swift",
                         "t": "g"
                     }
                 ]
@@ -507,7 +507,7 @@
             "modulemaps": [],
             "name": "Lib",
             "outputs": {},
-            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/Lib",
+            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -518,7 +518,7 @@
             "product": {
                 "name": "Lib",
                 "path": {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/Lib/libLib.a",
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/libLib.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -528,7 +528,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+        "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -578,13 +578,13 @@
                 "SWIFT_VERSION": "5",
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
-            "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+            "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "dependencies": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
-                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/Lib/Lib.swift",
+                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swift",
                         "t": "g"
                     }
                 ]
@@ -595,7 +595,7 @@
             "modulemaps": [],
             "name": "Lib",
             "outputs": {},
-            "package_bin_dir": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/Lib",
+            "package_bin_dir": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64_32",
                 "minimum_os_version": "7.0",
@@ -605,7 +605,7 @@
             "product": {
                 "name": "Lib",
                 "path": {
-                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/Lib/libLib.a",
+                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/libLib.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -615,7 +615,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+        "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -665,13 +665,13 @@
                 "SWIFT_VERSION": "5",
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
-            "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+            "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "dependencies": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib/Lib.swift",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/Lib.swift",
                         "t": "g"
                     }
                 ]
@@ -682,7 +682,7 @@
             "modulemaps": [],
             "name": "Lib",
             "outputs": {},
-            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib",
+            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -693,7 +693,7 @@
             "product": {
                 "name": "Lib",
                 "path": {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib/libLib.a",
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/libLib.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -703,7 +703,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee",
+        "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -748,9 +748,9 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee",
+            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
             "dependencies": [
-                "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee"
+                "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
             ],
             "info_plist": null,
             "inputs": {},
@@ -759,11 +759,11 @@
             "linker_inputs": {
                 "static_libraries": [
                     {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Tool/libTool.library.a",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/libTool.library.a",
                         "t": "g"
                     },
                     {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib/libLib.a",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/libLib.a",
                         "t": "g"
                     }
                 ]
@@ -771,7 +771,7 @@
             "modulemaps": [],
             "name": "Tool",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Tool",
+            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -781,7 +781,7 @@
             "product": {
                 "name": "Tool",
                 "path": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Tool/Tool",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.tool"
@@ -791,7 +791,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee",
+        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -841,9 +841,9 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee",
+            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
             "dependencies": [
-                "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee"
+                "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
             ],
             "info_plist": null,
             "inputs": {
@@ -857,7 +857,7 @@
             "modulemaps": [],
             "name": "Tool.library",
             "outputs": {},
-            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Tool",
+            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -867,7 +867,7 @@
             "product": {
                 "name": "Tool.library",
                 "path": {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Tool/libTool.library.a",
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/libTool.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -876,13 +876,13 @@
             "search_paths": {},
             "swiftmodules": [
                 {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0039aacf5cee/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
             ],
             "test_host": null
         },
-        "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-0437e361c6ef",
+        "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -931,12 +931,12 @@
                 "SWIFT_VERSION": "5",
                 "TARGETED_DEVICE_FAMILY": "1"
             },
-            "configuration": "applebin_ios-ios_arm64-dbg-ST-0437e361c6ef",
+            "configuration": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
             "dependencies": [
-                "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef"
+                "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
             ],
             "info_plist": {
-                "_": "applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
+                "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -952,11 +952,11 @@
             "linker_inputs": {
                 "static_libraries": [
                     {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
                         "t": "g"
                     },
                     {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/Lib/libLib.a",
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/libLib.a",
                         "t": "g"
                     }
                 ]
@@ -964,7 +964,7 @@
             "modulemaps": [],
             "name": "iOSApp",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp",
+            "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "arm64",
                 "minimum_os_version": "15.0",
@@ -974,7 +974,7 @@
             "product": {
                 "name": "iOSApp",
                 "path": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/iOSApp_archive-root/Payload/iOSApp.app",
+                    "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp_archive-root/Payload/iOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application"
@@ -984,7 +984,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-765845ae47bc",
+        "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1032,12 +1032,12 @@
                 "SWIFT_VERSION": "5",
                 "TARGETED_DEVICE_FAMILY": "1"
             },
-            "configuration": "applebin_ios-ios_x86_64-dbg-ST-765845ae47bc",
+            "configuration": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
             "dependencies": [
-                "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc"
+                "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
             ],
             "info_plist": {
-                "_": "applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
+                "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -1053,11 +1053,11 @@
             "linker_inputs": {
                 "static_libraries": [
                     {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
                         "t": "g"
                     },
                     {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/Lib/libLib.a",
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/libLib.a",
                         "t": "g"
                     }
                 ]
@@ -1065,7 +1065,7 @@
             "modulemaps": [],
             "name": "iOSApp",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp",
+            "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -1076,7 +1076,7 @@
             "product": {
                 "name": "iOSApp",
                 "path": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/iOSApp_archive-root/Payload/iOSApp.app",
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp_archive-root/Payload/iOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application"
@@ -1086,7 +1086,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef",
+        "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1136,9 +1136,9 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef",
+            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
             "dependencies": [
-                "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef"
+                "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
             ],
             "info_plist": null,
             "inputs": {
@@ -1153,7 +1153,7 @@
             "modulemaps": [],
             "name": "iOSApp.library",
             "outputs": {},
-            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp",
+            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "arm64",
                 "minimum_os_version": "15.0",
@@ -1163,7 +1163,7 @@
             "product": {
                 "name": "iOSApp.library",
                 "path": {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -1172,13 +1172,13 @@
             "search_paths": {},
             "swiftmodules": [
                 {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-0437e361c6ef/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
             ],
             "test_host": null
         },
-        "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc",
+        "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1228,9 +1228,9 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc",
+            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
             "dependencies": [
-                "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc"
+                "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
             ],
             "info_plist": null,
             "inputs": {
@@ -1245,7 +1245,7 @@
             "modulemaps": [],
             "name": "iOSApp.library",
             "outputs": {},
-            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp",
+            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -1256,7 +1256,7 @@
             "product": {
                 "name": "iOSApp.library",
                 "path": {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -1265,13 +1265,13 @@
             "search_paths": {},
             "swiftmodules": [
                 {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-765845ae47bc/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
             ],
             "test_host": null
         },
-        "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c",
+        "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1319,12 +1319,12 @@
                 "SWIFT_VERSION": "5",
                 "TVOS_DEPLOYMENT_TARGET": "15.0"
             },
-            "configuration": "applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c",
+            "configuration": "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
             "dependencies": [
-                "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c"
+                "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef"
             ],
             "info_plist": {
-                "_": "applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
+                "_": "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -1339,11 +1339,11 @@
             "linker_inputs": {
                 "static_libraries": [
                     {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
                         "t": "g"
                     },
                     {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/Lib/libLib.a",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib/libLib.a",
                         "t": "g"
                     }
                 ]
@@ -1351,7 +1351,7 @@
             "modulemaps": [],
             "name": "tvOSApp",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp",
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "arm64",
                 "minimum_os_version": "15.0",
@@ -1361,7 +1361,7 @@
             "product": {
                 "name": "tvOSApp",
                 "path": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/tvOSApp_archive-root/Payload/tvOSApp.app",
+                    "_": "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/tvOSApp_archive-root/Payload/tvOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application"
@@ -1371,7 +1371,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6",
+        "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1418,12 +1418,12 @@
                 "SWIFT_VERSION": "5",
                 "TVOS_DEPLOYMENT_TARGET": "15.0"
             },
-            "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6",
+            "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
             "dependencies": [
-                "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6"
+                "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53"
             ],
             "info_plist": {
-                "_": "applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -1438,11 +1438,11 @@
             "linker_inputs": {
                 "static_libraries": [
                     {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
                         "t": "g"
                     },
                     {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/Lib/libLib.a",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/libLib.a",
                         "t": "g"
                     }
                 ]
@@ -1450,7 +1450,7 @@
             "modulemaps": [],
             "name": "tvOSApp",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp",
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -1461,7 +1461,7 @@
             "product": {
                 "name": "tvOSApp",
                 "path": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/tvOSApp_archive-root/Payload/tvOSApp.app",
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/tvOSApp_archive-root/Payload/tvOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application"
@@ -1471,7 +1471,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c",
+        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1521,9 +1521,9 @@
                 "SWIFT_VERSION": "5",
                 "TVOS_DEPLOYMENT_TARGET": "15.0"
             },
-            "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c",
+            "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
             "dependencies": [
-                "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c"
+                "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef"
             ],
             "info_plist": null,
             "inputs": {
@@ -1538,7 +1538,7 @@
             "modulemaps": [],
             "name": "tvOSApp.library",
             "outputs": {},
-            "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp",
+            "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "arm64",
                 "minimum_os_version": "15.0",
@@ -1548,7 +1548,7 @@
             "product": {
                 "name": "tvOSApp.library",
                 "path": {
-                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
+                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -1557,13 +1557,13 @@
             "search_paths": {},
             "swiftmodules": [
                 {
-                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-aaa1b3aaed8c/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
             ],
             "test_host": null
         },
-        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6",
+        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1613,9 +1613,9 @@
                 "SWIFT_VERSION": "5",
                 "TVOS_DEPLOYMENT_TARGET": "15.0"
             },
-            "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6",
+            "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
             "dependencies": [
-                "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6"
+                "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53"
             ],
             "info_plist": null,
             "inputs": {
@@ -1630,7 +1630,7 @@
             "modulemaps": [],
             "name": "tvOSApp.library",
             "outputs": {},
-            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp",
+            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -1641,7 +1641,7 @@
             "product": {
                 "name": "tvOSApp.library",
                 "path": {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -1650,13 +1650,13 @@
             "search_paths": {},
             "swiftmodules": [
                 {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-50452e3360d6/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
             ],
             "test_host": null
         },
-        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1704,10 +1704,10 @@
                 "SWIFT_VERSION": "5",
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
-            "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+            "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "dependencies": [],
             "info_plist": {
-                "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
+                "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -1721,7 +1721,7 @@
             "modulemaps": [],
             "name": "watchOSApp",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp",
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp",
             "platform": {
                 "arch": "arm64_32",
                 "minimum_os_version": "7.0",
@@ -1731,7 +1731,7 @@
             "product": {
                 "name": "watchOSApp",
                 "path": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
+                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application.watchapp2"
@@ -1741,7 +1741,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1788,10 +1788,10 @@
                 "SWIFT_VERSION": "5",
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
-            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "dependencies": [],
             "info_plist": {
-                "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -1805,7 +1805,7 @@
             "modulemaps": [],
             "name": "watchOSApp",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp",
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -1816,7 +1816,7 @@
             "product": {
                 "name": "watchOSApp",
                 "path": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application.watchapp2"
@@ -1826,7 +1826,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1874,12 +1874,12 @@
                 "SWIFT_VERSION": "5",
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
-            "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+            "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "dependencies": [
-                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb"
+                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
             ],
             "info_plist": {
-                "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
+                "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -1903,11 +1903,11 @@
             "linker_inputs": {
                 "static_libraries": [
                     {
-                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
+                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
                         "t": "g"
                     },
                     {
-                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/Lib/libLib.a",
+                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/libLib.a",
                         "t": "g"
                     }
                 ]
@@ -1915,7 +1915,7 @@
             "modulemaps": [],
             "name": "watchOSAppExtension",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension",
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "arm64_32",
                 "minimum_os_version": "7.0",
@@ -1925,7 +1925,7 @@
             "product": {
                 "name": "watchOSAppExtension",
                 "path": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
+                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.watchkit2-extension"
@@ -1935,7 +1935,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -1982,12 +1982,12 @@
                 "SWIFT_VERSION": "5",
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
-            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "dependencies": [
-                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb"
+                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
             ],
             "info_plist": {
-                "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -2011,11 +2011,11 @@
             "linker_inputs": {
                 "static_libraries": [
                     {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
                         "t": "g"
                     },
                     {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib/libLib.a",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/libLib.a",
                         "t": "g"
                     }
                 ]
@@ -2023,7 +2023,7 @@
             "modulemaps": [],
             "name": "watchOSAppExtension",
             "outputs": {},
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension",
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -2034,7 +2034,7 @@
             "product": {
                 "name": "watchOSAppExtension",
                 "path": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.watchkit2-extension"
@@ -2044,7 +2044,7 @@
             "swiftmodules": [],
             "test_host": null
         },
-        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -2094,9 +2094,9 @@
                 "SWIFT_VERSION": "5",
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
-            "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb",
+            "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "dependencies": [
-                "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb"
+                "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
             ],
             "info_plist": null,
             "inputs": {
@@ -2111,7 +2111,7 @@
             "modulemaps": [],
             "name": "watchOSAppExtension.library",
             "outputs": {},
-            "package_bin_dir": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension",
+            "package_bin_dir": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "arm64_32",
                 "minimum_os_version": "7.0",
@@ -2121,7 +2121,7 @@
             "product": {
                 "name": "watchOSAppExtension.library",
                 "path": {
-                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
+                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -2130,13 +2130,13 @@
             "search_paths": {},
             "swiftmodules": [
                 {
-                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-c095a2469ceb/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
             ],
             "test_host": null
         },
-        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         {
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -2186,9 +2186,9 @@
                 "SWIFT_VERSION": "5",
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
-            "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb",
+            "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "dependencies": [
-                "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb"
+                "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
             ],
             "info_plist": null,
             "inputs": {
@@ -2203,7 +2203,7 @@
             "modulemaps": [],
             "name": "watchOSAppExtension.library",
             "outputs": {},
-            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension",
+            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
@@ -2214,7 +2214,7 @@
             "product": {
                 "name": "watchOSAppExtension.library",
                 "path": {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -2223,7 +2223,7 @@
             "search_paths": {},
             "swiftmodules": [
                 {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4d5f992a6afb/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
             ],

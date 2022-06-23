@@ -204,14 +204,13 @@ def _write_installer(
 # Transition
 
 def _base_target_transition_impl(settings, attr):
-    features = settings.get("//command_line_option:features")
+    features = [
+        "oso_prefix_is_pwd",
+        "relative_ast_path",
+    ] + settings.get("//command_line_option:features")
 
     if attr.build_mode == "bazel":
         archived_bundles_allowed = attr.archived_bundles_allowed
-        features = [
-            "oso_prefix_is_pwd",
-            "relative_ast_path",
-        ] + features
     else:
         archived_bundles_allowed = True
 
