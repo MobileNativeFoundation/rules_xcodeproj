@@ -64,12 +64,6 @@ env -i \
             xcodeprojConfiguration: xcodeprojConfiguration
         )
 
-        let copyFilesScript = try createCopyFilesScript(
-            in: pbxProj,
-            files: files,
-            filePathResolver: filePathResolver
-        )
-
         let fixModuleMapsScript = try createFixModulemapsScript(
             in: pbxProj,
             files: files,
@@ -87,7 +81,6 @@ env -i \
             buildConfigurationList: configurationList,
             buildPhases: [
                 bazelBuildScript,
-                copyFilesScript,
                 fixModuleMapsScript,
                 fixInfoPlistsScript,
             ].compactMap { $0 },
@@ -124,7 +117,7 @@ env -i \
         }
         if hasGeneratedFiles {
             let generatedFileList = try filePathResolver
-                .resolve(.internal(generatedFileListPath))
+                .resolve(.internal(copiedGeneratedFileListPath))
                 .string
             outputFileListPaths.append(generatedFileList)
         }
@@ -166,11 +159,15 @@ generated_inputs \#(xcodeprojConfiguration)
                 xcodeprojBazelTargetName: xcodeprojBazelTargetName,
                 xcodeprojBinDir: xcodeprojBinDir
             ),
-            try createCheckGeneratedFilesCommand(
+            try checkGeneratedFilesCommand(
                 xcodeprojBazelTargetName: xcodeprojBazelTargetName,
                 xcodeprojBinDir: xcodeprojBinDir,
                 generatedInputsOutputGroup: generatedInputsOutputGroup,
                 hasGeneratedFiles: hasGeneratedFiles,
+                filePathResolver: filePathResolver
+            ),
+            try copyFilesCommand(
+                files: files,
                 filePathResolver: filePathResolver
             ),
         ].compactMap { $0 }.joined(separator: "\n")
@@ -381,7 +378,7 @@ done
 """#
     }
 
-    private static func createCheckGeneratedFilesCommand(
+    private static func checkGeneratedFilesCommand(
         xcodeprojBazelTargetName: String,
         xcodeprojBinDir: String,
         generatedInputsOutputGroup: String,
@@ -415,31 +412,19 @@ fi
 """#
     }
 
-    private static func createCopyFilesScript(
-        in pbxProj: PBXProj,
+    private static func copyFilesCommand(
         files: [FilePath: File],
         filePathResolver: FilePathResolver
-    ) throws -> PBXShellScriptBuildPhase? {
+    ) throws -> String? {
         guard files.containsGeneratedFiles else {
             return nil
         }
 
-        let script = PBXShellScriptBuildPhase(
-            name: "Copy Files",
-            inputFileListPaths: [
-                try filePathResolver
-                    .resolve(.internal(generatedFileListPath))
-                    .string,
-            ],
-            outputFileListPaths: [
-                try filePathResolver
-                    .resolve(.internal(copiedGeneratedFileListPath))
-                    .string,
-            ],
-            shellScript: #"""
-set -euo pipefail
-
+        return #"""
 cd "$BAZEL_OUT"
+
+echo
+echo "Copying generated files"
 
 # Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
 # builds, but is different for Index Builds. `PBXBuildFile`s will use the
@@ -459,12 +444,7 @@ rsync \
   . \
   "$BUILD_DIR/bazel-out"
 
-"""#,
-            showEnvVarsInLog: false
-        )
-        pbxProj.add(object: script)
-
-        return script
+"""#
     }
 
     private static func createFixModulemapsScript(
