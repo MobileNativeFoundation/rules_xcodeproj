@@ -1,6 +1,5 @@
 """Module containing functions dealing with target input files."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceInfo",
@@ -12,33 +11,11 @@ load(
     "file_path_to_dto",
     "parsed_file_path",
 )
-load(":logging.bzl", "warn")
 load(":output_group_map.bzl", "output_group_map")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resources.bzl", "collect_resources")
 
 # Utility
-
-# Extensions that represent built targets. If these are seen in
-# `InputFilesInfo.generated`, then it means an attr wasn't properly excluded.
-_SUSPECT_GENERATED_EXTENSIONS = (
-    ".a",
-    ".app",
-    ".appex",
-    ".bundle",
-    ".dylib",
-    ".framework",
-    ".kext",
-    ".mdimporter",
-    ".prefPane",
-    ".qlgenerator",
-    ".swiftdoc",
-    ".swiftinterface",
-    ".swiftmodule",
-    ".xcframework",
-    ".xctest",
-    ".xpc",
-)
 
 def _collect_transitive_extra_files(info):
     inputs = info.inputs
@@ -223,25 +200,6 @@ def _collect(
                 uncategorized.append(_normalized_file_path(file))
         elif categorized:
             generated.append(file)
-
-            # Sanity check to insure that we are excluding files correctly
-            if (paths.split_extension(file.path)[1] in
-                _SUSPECT_GENERATED_EXTENSIONS):
-                warn("Collecting {} from {} in {}".format(
-                    file,
-                    attr,
-                    target.label,
-                ))
-                warn("""\
-Collected generated file "{file}" for {target} from the "{attr}" attribute \
-that probably shouldn't have been collected.
-
-If you are providing a custom `InputFileAttributesInfo`, ensure that the \
-`excluded` attribute excludes the correct attributes.
-
-If you think this is a bug, please file a bug report at \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
-""".format(attr = attr, file = file.path, target = target.label))
 
     transitive_extra_files = []
 
