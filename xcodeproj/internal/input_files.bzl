@@ -69,18 +69,18 @@ def _normalized_file_path(file):
 
     return file_path(file)
 
-def _is_categorized_attr(attr, *, attrs_info):
-    if attr in attrs_info.srcs:
+def _is_categorized_attr(attr, *, automatic_target_info):
+    if attr in automatic_target_info.srcs:
         return True
-    elif attr in attrs_info.non_arc_srcs:
+    elif attr in automatic_target_info.non_arc_srcs:
         return True
-    elif attr in attrs_info.hdrs:
+    elif attr in automatic_target_info.hdrs:
         return True
-    elif attr == attrs_info.pch:
+    elif attr == automatic_target_info.pch:
         return True
-    elif attr in attrs_info.infoplists:
+    elif attr in automatic_target_info.infoplists:
         return True
-    elif attr == attrs_info.entitlements:
+    elif attr == automatic_target_info.entitlements:
         return True
     else:
         return False
@@ -103,7 +103,7 @@ def _collect(
         platform,
         bundle_resources,
         is_bundle,
-        attrs_info,
+        automatic_target_info,
         additional_files = [],
         transitive_infos,
         avoid_deps):
@@ -117,7 +117,8 @@ def _collect(
             project. If this is `False` then all resources will get added to
             `extra_files` instead of `resources`.
         is_bundle: Whether `target` is a bundle.
-        attrs_info: The `InputFileAttributesInfo` for `target`.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
         additional_files: A `list` of `File`s to add to the inputs. This can
             be used to add files to the `generated` and `extra_files` fields
             (e.g. modulemaps or BUILD files).
@@ -171,23 +172,23 @@ def _collect(
             return
 
         categorized = True
-        if attr in attrs_info.srcs:
+        if attr in automatic_target_info.srcs:
             srcs.append(file)
-        elif attr in attrs_info.non_arc_srcs:
+        elif attr in automatic_target_info.non_arc_srcs:
             non_arc_srcs.append(file)
-        elif attr in attrs_info.hdrs:
+        elif attr in automatic_target_info.hdrs:
             hdrs.append(file)
-        elif attr == attrs_info.pch:
+        elif attr == automatic_target_info.pch:
             # We use `append` instead of setting a single value because
             # assigning to `pch` creates a new local variable instead of
             # assigning to the existing variable
             pch.append(file)
-        elif attr in attrs_info.infoplists:
+        elif attr in automatic_target_info.infoplists:
             if file.is_source:
                 # We don't need to include a generated one, as we already use
                 # the Bazel generated one, which is one step further generated
                 extra_files.append(file_path(file))
-        elif attr == attrs_info.entitlements:
+        elif attr == automatic_target_info.entitlements:
             # We use `append` instead of setting a single value because
             # assigning to `entitlements` creates a new local variable instead
             # of assigning to the existing variable
@@ -206,7 +207,10 @@ def _collect(
     # buildifier: disable=uninitialized
     def _handle_dep(dep, *, attr):
         if (XcodeProjInfo not in dep or
-            not _is_categorized_attr(attr, attrs_info = attrs_info)):
+            not _is_categorized_attr(
+                attr,
+                automatic_target_info = automatic_target_info,
+            )):
             return
         transitive_extra_files.append(dep[XcodeProjInfo].inputs.uncategorized)
 
@@ -297,7 +301,7 @@ def _collect(
                 info.inputs.resource_bundles
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
         resource_bundle_dependencies = depset(
@@ -310,7 +314,7 @@ def _collect(
                 info.inputs.xccurrentversions
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
         generated = depset(
@@ -319,7 +323,7 @@ def _collect(
                 info.inputs.generated
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
         extra_files = depset(
@@ -328,7 +332,7 @@ def _collect(
                 _collect_transitive_extra_files(info)
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, [None]))
             ] + transitive_extra_files,
         ),
         uncategorized = depset(
@@ -337,7 +341,7 @@ def _collect(
                 _collect_transitive_uncategorized(info)
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    attrs_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
     )

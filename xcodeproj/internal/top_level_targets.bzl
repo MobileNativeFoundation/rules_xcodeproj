@@ -13,7 +13,11 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
-load(":providers.bzl", "InputFileAttributesInfo", "XcodeProjInfo")
+load(
+    ":providers.bzl",
+    "XcodeProjAutomaticTargetProcessingInfo",
+    "XcodeProjInfo",
+)
 load(":processed_target.bzl", "processed_target", "xcode_target")
 load(":product.bzl", "process_product")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
@@ -154,13 +158,13 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     Returns:
         The value returned from `processed_target`.
     """
-    attrs_info = target[InputFileAttributesInfo]
+    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
 
     configuration = get_configuration(ctx)
     label = target.label
     id = get_id(label = label, configuration = configuration)
     dependencies = process_dependencies(
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         transitive_infos = transitive_infos,
     )
     test_host = getattr(ctx.rule.attr, "test_host", None)
@@ -186,7 +190,7 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
 
     provisioning_profiles.process_attr(
         ctx = ctx,
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         build_settings = build_settings,
     )
 
@@ -219,7 +223,7 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         platform = platform,
         is_bundle = is_bundle,
         bundle_resources = bundle_resources,
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         additional_files = additional_files,
         transitive_infos = transitive_infos,
         avoid_deps = avoid_deps,
@@ -324,7 +328,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     return processed_target(
-        attrs_info = attrs_info,
+        automatic_target_info = automatic_target_info,
         dependencies = dependencies,
         inputs = inputs,
         linker_inputs = linker_inputs,

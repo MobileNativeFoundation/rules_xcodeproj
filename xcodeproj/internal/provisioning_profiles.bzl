@@ -7,8 +7,8 @@ load(
 load(":collections.bzl", "set_if_true")
 load(":providers.bzl", "XcodeProjProvisioningProfileInfo")
 
-def _process_attr(*, ctx, attrs_info, build_settings):
-    attr = attrs_info.provisioning_profile
+def _process_attr(*, ctx, automatic_target_info, build_settings):
+    attr = automatic_target_info.provisioning_profile
     if not attr:
         return
 

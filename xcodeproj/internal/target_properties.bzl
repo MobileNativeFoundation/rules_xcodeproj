@@ -32,11 +32,11 @@ def should_include_outputs(ctx):
     """
     return ctx.attr._build_mode[BuildSettingInfo].value != "xcode"
 
-def process_dependencies(*, attrs_info, transitive_infos):
+def process_dependencies(*, automatic_target_info, transitive_infos):
     """ Logic for processing target dependencies
 
     Args:
-        attrs_info: Attribute information
+        automatic_target_info: Attribute information
         transitive_infos: Transitive information of the deps
 
     Returns:
@@ -45,8 +45,11 @@ def process_dependencies(*, attrs_info, transitive_infos):
     direct_dependencies = []
     transitive_dependencies = []
     for attr, info in transitive_infos:
-        if not (not attrs_info or
-                info.target_type in attrs_info.xcode_targets.get(attr, [None])):
+        if not (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                )):
             continue
         if info.target:
             direct_dependencies.append(info.target.id)

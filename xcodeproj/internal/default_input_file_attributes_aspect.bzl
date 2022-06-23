@@ -6,7 +6,7 @@ load(
     "AppleBundleInfo",
     "AppleFrameworkImportInfo",
 )
-load(":providers.bzl", "InputFileAttributesInfo", "target_type")
+load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 
 # Utility
 
@@ -38,7 +38,7 @@ def _is_test_target(target):
 # Aspects
 
 def _default_input_file_attributes_aspect_impl(target, ctx):
-    if InputFileAttributesInfo in target:
+    if XcodeProjAutomaticTargetProcessingInfo in target:
         return []
 
     this_target_type = _get_target_type(target = target)
@@ -104,7 +104,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         xcode_targets = {"deps": [this_target_type]}
 
     return [
-        InputFileAttributesInfo(
+        XcodeProjAutomaticTargetProcessingInfo(
             target_type = this_target_type,
             xcode_targets = xcode_targets,
             non_arc_srcs = non_arc_srcs,

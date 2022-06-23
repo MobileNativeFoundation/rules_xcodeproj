@@ -2,12 +2,12 @@
 
 load(
     "//xcodeproj/internal:providers.bzl",
-    _InputFileAttributesInfo = "InputFileAttributesInfo",
+    _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
 )
 load("//xcodeproj/internal:xcodeproj.bzl", _xcodeproj = "xcodeproj")
 
 # Re-exporting providers
-InputFileAttributesInfo = _InputFileAttributesInfo
+XcodeProjAutomaticTargetProcessingInfo = _XcodeProjAutomaticTargetProcessingInfo
 
 # Re-exporting rules
 xcodeproj = _xcodeproj
