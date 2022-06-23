@@ -14,7 +14,8 @@ load(
 # Target Classification
 
 def _is_test_bundle_with_provider(target, deps, bundle_provider):
-    """Determines whether the target is a test bundle target that provides the specified bundle provider.
+    """Determines whether the target is a test bundle target that provides the \
+    specified bundle provider.
 
     Apple test bundle targets will provide a test bundle provider and will have
     a single dep that also provides the provider.

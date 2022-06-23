@@ -229,7 +229,7 @@ def make_target_transition(
         inputs = [],
         outputs = []):
     def _target_transition_impl(settings, attr):
-        """Transition that applies command-line settings for xcodeproj targets."""
+        """Transition that applies command-line settings for `xcodeproj` targets."""
 
         # Apply the other transition first
         if implementation:

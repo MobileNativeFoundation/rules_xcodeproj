@@ -61,13 +61,14 @@ def process_dependencies(*, attrs_info, transitive_infos):
     )
 
 def process_modulemaps(*, swift_info):
-    """ Logic for working with modulemaps and their paths
+    """Logic for working with modulemaps and their paths.
 
     Args:
-        swift_info: A SwiftInfo provider
+        swift_info: A `SwiftInfo` provider.
 
     Returns:
-        A struct containing the files and paths of the modules maps of the passed SwiftInfo
+        A `struct` containing the files and paths of the modules maps of the
+        passed `SwiftInfo`.
     """
     if not swift_info:
         return struct(
