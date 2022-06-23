@@ -10,7 +10,6 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
-load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo")
 load(":processed_target.bzl", "processed_target", "xcode_target")
 load(":product.bzl", "process_product")
 load(":search_paths.bzl", "process_search_paths")
@@ -26,20 +25,25 @@ load(
     "should_include_outputs",
 )
 
-def process_library_target(*, ctx, target, transitive_infos):
+def process_library_target(
+        *,
+        ctx,
+        target,
+        automatic_target_info,
+        transitive_infos):
     """Gathers information about a library target.
 
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
     Returns:
         The value returned from `processed_target`.
     """
-    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
-
     configuration = get_configuration(ctx)
     label = target.label
     id = get_id(label = label, configuration = configuration)

@@ -43,6 +43,9 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
 
     this_target_type = _get_target_type(target = target)
 
+    # Targets that don't produce outputs can't be Xcode targets
+    should_generate_target = target.files != depset()
+
     if CcInfo in target:
         srcs = ("srcs")
     else:
@@ -55,14 +58,13 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
     provisioning_profile = None
     infoplists = ()
     entitlements = None
+
     if ctx.rule.kind == "cc_library":
         xcode_targets = {
             "deps": [target_type.compile],
             "interface_deps": [target_type.compile],
         }
         hdrs = ("hdrs", "textual_hdrs")
-    elif ctx.rule.kind == "cc_import":
-        xcode_targets = {}
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
             "deps": [target_type.compile],
@@ -71,8 +73,6 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         non_arc_srcs = ("non_arc_srcs")
         hdrs = ("hdrs", "textual_hdrs")
         pch = "pch"
-    elif ctx.rule.kind == "objc_import":
-        xcode_targets = {}
     elif ctx.rule.kind == "swift_library":
         xcode_targets = {
             "deps": [target_type.compile],
@@ -84,8 +84,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
         infoplists = ("infoplists")
-    elif ctx.rule.kind == "genrule":
-        xcode_targets = {}
+        should_generate_target = False
     elif AppleBundleInfo in target:
         xcode_targets = {
             "deps": [target_type.compile],
@@ -100,11 +99,17 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         infoplists = ("infoplists")
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile]}
+        should_generate_target = False
     else:
         xcode_targets = {"deps": [this_target_type]}
 
+        # Command-line tools
+        executable = target[DefaultInfo].files_to_run.executable
+        should_generate_target = executable and not executable.is_source
+
     return [
         XcodeProjAutomaticTargetProcessingInfo(
+            should_generate_target = should_generate_target,
             target_type = this_target_type,
             xcode_targets = xcode_targets,
             non_arc_srcs = non_arc_srcs,
