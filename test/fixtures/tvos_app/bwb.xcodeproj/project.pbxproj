@@ -529,7 +529,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\ncd \"$BAZEL_OUT\"\n\n# Sync to \"$BUILD_DIR/bazel-out\". This is the same as \"$GEN_DIR\" for normal\n# builds, but is different for Index Builds. `PBXBuildFile`s will use the\n# \"$GEN_DIR\" version, so indexing might get messed up until they are normally\n# generated. It's the best we can do though as we need to use the `gen_dir`\n# symlink, because Index Build can't modify the normal build's \"$BUILD_DIR\".\nrsync \\\n  --files-from \"$INTERNAL_DIR/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			shellScript = "set -euo pipefail\n\ncd \"$BAZEL_OUT\"\n\n# Sync to \"$BUILD_DIR/bazel-out\". This is the same as \"$GEN_DIR\" for normal\n# builds, but is different for Index Builds. `PBXBuildFile`s will use the\n# \"$GEN_DIR\" version, so indexing might get messed up until they are normally\n# generated. It's the best we can do though as we need to use the `gen_dir`\n# symlink, because Index Build can't modify the normal build's \"$BUILD_DIR\".\nrsync \\\n  --files-from \"$INTERNAL_DIR/generated.rsynclist\" \\\n  --copy-links \\\n  --update \\\n  --chmod=u+w \\\n  --out-format=\"%n%L\" \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */ = {

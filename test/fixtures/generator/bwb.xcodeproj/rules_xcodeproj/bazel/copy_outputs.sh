@@ -71,9 +71,9 @@ if [[ -n ${BAZEL_OUTPUTS_SWIFTMODULE:-} ]]; then
   log="$(mktemp)"
   rsync \
     "${swiftmodule[@]}" \
+    --copy-links \
     --times \
     --chmod=u+w \
-    -L \
     --out-format="%n%L" \
     "$OBJECT_FILE_DIR-normal/$ARCHS" \
     | tee -i "$log"

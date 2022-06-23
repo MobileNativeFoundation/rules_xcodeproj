@@ -452,8 +452,10 @@ rsync \
         .resolve(.internal(rsyncFileListPath), mode: .script)
         .string
 )" \
+  --copy-links \
+  --update \
   --chmod=u+w \
-  -L \
+  --out-format="%n%L" \
   . \
   "$BUILD_DIR/bazel-out"
 
