@@ -37,7 +37,6 @@ extension Generator {
     static let bazelForcedSwiftCompilePath: Path = "_BazelForcedCompile_.swift"
     static let compileStubPath: Path = "CompileStub.m"
     static let externalFileListPath: Path = "external.xcfilelist"
-    static let generatedFileListPath: Path = "generated.xcfilelist"
     static let rsyncFileListPath: Path = "generated.rsynclist"
     static let appRsyncExcludeFileListPath: Path = "app.exclude.rsynclist"
     static let copiedGeneratedFileListPath: Path = "generated.copied.xcfilelist"
@@ -443,12 +442,6 @@ extension Generator {
             }
             .map { filePath, _ in filePath } + nonIncludedFiles
 
-        let generatedPaths = try generatedFilePaths.map { filePath in
-            return try filePathResolver.resolve(
-                filePath,
-                useOriginalGeneratedFiles: true
-            )
-        }
         let rsyncPaths = generatedFilePaths.map { $0.path }
         let copiedGeneratedPaths = try generatedFilePaths.map { filePath in
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
@@ -502,7 +495,6 @@ extension Generator {
         }
 
         addXCFileList(externalFileListPath, paths: externalPaths)
-        addXCFileList(generatedFileListPath, paths: generatedPaths)
         addXCFileList(rsyncFileListPath, paths: rsyncPaths)
         addXCFileList(copiedGeneratedFileListPath, paths: copiedGeneratedPaths)
         addXCFileList(modulemapsFileListPath, paths: modulemapPaths)

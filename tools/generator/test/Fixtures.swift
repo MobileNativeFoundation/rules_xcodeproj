@@ -927,13 +927,6 @@ $(BAZEL_EXTERNAL)/another_repo/b.swift
         let genDir = "$(BUILD_DIR)/bazel-out"
         let srcRootGenDir = "\(linksDir)/gen_dir"
 
-        files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
-$(BAZEL_OUT)/a/b/module.modulemap
-$(BAZEL_OUT)/a1b2c/bin/t.c
-$(BAZEL_OUT)/v/a.txt
-
-""")
-
         files[.internal("generated.copied.xcfilelist")] = .nonReferencedContent(
 """
 $(GEN_DIR)/a/b/module.modulemap
