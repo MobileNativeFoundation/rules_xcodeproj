@@ -183,7 +183,8 @@ def create_opts_search_paths(quote_includes, includes, system_includes):
     Args:
         quote_includes: A `list` of quote include paths (i.e `-iquote` values).
         includes: A `list` of include paths (i.e. `-I` values).
-        system_includes: A `list` of system include paths (i.e. `-isystem` values).
+        system_includes: A `list` of system include paths (i.e. `-isystem`
+            values).
 
     Returns:
         A `struct` containing the `quote_includes` and `includes` fields
@@ -443,7 +444,12 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         cxx_search_paths,
     )
 
-def _process_swiftopts(full_swiftcopts, user_swiftcopts, *, package_bin_dir, build_settings):
+def _process_swiftopts(
+        *,
+        full_swiftcopts,
+        user_swiftcopts,
+        package_bin_dir,
+        build_settings):
     """Processes Swift compiler options.
 
     Args:
@@ -637,8 +643,8 @@ def _process_compiler_opts(
         build_settings = build_settings,
     )
     swiftcopts, swift_search_paths = _process_swiftopts(
-        full_swiftcopts,
-        user_swiftcopts,
+        full_swiftcopts = full_swiftcopts,
+        user_swiftcopts = user_swiftcopts,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
@@ -662,7 +668,11 @@ def _process_compiler_opts(
         " ".join(swiftcopts),
     )
 
-    return merge_opts_search_paths([conly_search_paths, cxx_search_paths, swift_search_paths])
+    return merge_opts_search_paths([
+        conly_search_paths,
+        cxx_search_paths,
+        swift_search_paths,
+    ])
 
 def _process_target_compiler_opts(
         *,
@@ -686,7 +696,12 @@ def _process_target_compiler_opts(
         *   `quotes_includes`: A `list` of quote include paths parsed.
         *   `includes`: A `list` of include paths parsed.
     """
-    conlyopts, cxxopts, full_swiftcopts, user_swiftcopts = _get_unprocessed_compiler_opts(
+    (
+        conlyopts,
+        cxxopts,
+        full_swiftcopts,
+        user_swiftcopts,
+    ) = _get_unprocessed_compiler_opts(
         ctx = ctx,
         target = target,
     )
