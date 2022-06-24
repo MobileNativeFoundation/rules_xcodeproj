@@ -3,8 +3,6 @@
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
-    "AppleResourceBundleInfo",
-    "AppleResourceInfo",
     "IosXcTestBundleInfo",
     "MacosXcTestBundleInfo",
     "TvosXcTestBundleInfo",
@@ -72,12 +70,6 @@ def _should_become_xcode_target(target):
 
     # Top-level bundles
     if AppleBundleInfo in target:
-        return True
-
-    # Resource bundles
-    if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
-        # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
-        # a `AppleResourceInfo`, so we use that to exclude it
         return True
 
     # Libraries
