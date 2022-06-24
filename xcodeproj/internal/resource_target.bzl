@@ -2,20 +2,14 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "set_if_true")
-load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "parsed_file_path")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
-load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
-load(":processed_target.bzl", "processed_target", "xcode_target")
-load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo")
+load(":processed_target.bzl", "xcode_target")
 load(":product.bzl", "process_product")
-load(":search_paths.bzl", "process_search_paths")
-load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
-    "process_dependencies",
     "process_modulemaps",
     "process_swiftmodules",
 )
@@ -110,68 +104,3 @@ def process_resource_bundles(bundles, *, resource_bundle_informations):
         )
         for bundle in bundles
     ]
-
-def process_resource_target(*, ctx, target, transitive_infos):
-    """Gathers information about a resource target.
-
-    Args:
-        ctx: The aspect context.
-        target: The `Target` to process.
-        transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
-            transitive dependencies of `target`.
-
-    Returns:
-        The value returned from `processed_target`.
-    """
-    configuration = get_configuration(ctx)
-    label = target.label
-    id = get_id(label = label, configuration = configuration)
-
-    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
-
-    return processed_target(
-        automatic_target_info = automatic_target_info,
-        dependencies = process_dependencies(
-            automatic_target_info = automatic_target_info,
-            transitive_infos = transitive_infos,
-        ),
-        inputs = input_files.collect(
-            ctx = ctx,
-            target = target,
-            platform = None,
-            bundle_resources = False,
-            is_bundle = False,
-            automatic_target_info = automatic_target_info,
-            transitive_infos = transitive_infos,
-            avoid_deps = [],
-        ),
-        linker_inputs = linker_input_files.collect_for_non_top_level(
-            cc_info = None,
-            objc = None,
-            is_xcode_target = False,
-        ),
-        outputs = output_files.merge(
-            automatic_target_info = automatic_target_info,
-            transitive_infos = transitive_infos,
-        ),
-        resource_bundle_informations = [
-            struct(
-                id = id,
-                bundle_id = getattr(
-                    ctx.rule.attr,
-                    automatic_target_info.bundle_id,
-                ),
-            ),
-        ],
-        search_paths = process_search_paths(
-            cc_info = None,
-            objc = None,
-            opts_search_paths = create_opts_search_paths(
-                quote_includes = [],
-                includes = [],
-                system_includes = [],
-            ),
-        ),
-        target = None,
-        xcode_target = None,
-    )
