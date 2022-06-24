@@ -20,6 +20,8 @@ extension Generator {
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
             "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
+            "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
+            "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
             "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
             // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
             // `DEPLOYMENT_LOCATION` is set. It does prevent `DYLD_LIBRARY_PATH`
@@ -64,7 +66,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
                 "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
 $(BUILD_DIR)/bazel_build_output_groups
 """,
-                "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
@@ -72,10 +73,6 @@ $(BUILD_DIR)/bazel_build_output_groups
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
                 "SWIFT_USE_INTEGRATED_DRIVER": false,
             ], uniquingKeysWith: { _, r in r })
-        }
-
-        if buildMode.requiresLLDBInit {
-            buildSettings["BAZEL_LLDB_INIT"] = "$(BUILD_DIR)/bazel.lldbinit"
         }
 
         let debugConfiguration = XCBuildConfiguration(

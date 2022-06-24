@@ -21,13 +21,6 @@ extension BuildMode {
         }
     }
 
-    var requiresLLDBInit: Bool {
-        switch self {
-        case .xcode: return false
-        case .bazel: return true
-        }
-    }
-
     var usesBazelEnvironmentVariables: Bool {
         switch self {
         case .xcode: return false

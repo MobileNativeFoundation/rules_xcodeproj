@@ -1,6 +1,11 @@
+exports_files(["create_lldbinit.sh"])
+
 filegroup(
     name = "bazel_integration_files",
-    srcs = glob(["**/*"]),
+    srcs = glob(
+        ["**/*"],
+        exclude = ["create_lldbinit.sh"],
+    ),
     # This is made public for internal use only
     visibility = ["//visibility:public"],
 )

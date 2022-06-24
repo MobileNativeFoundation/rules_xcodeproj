@@ -20,7 +20,6 @@ extension Generator {
 
     // GH399: Derive the defaultLastUpgradeVersion
     private static let defaultLastUpgradeVersion = "1320"
-    private static let baseVersion = "1.3"
     private static let lldbInitVersion = "1.7"
 
     /// Creates an `XCScheme` for the specified target.
@@ -74,8 +73,7 @@ extension Generator {
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
             testables: testables,
-            customLLDBInitFile: buildMode.requiresLLDBInit ?
-                "$(BAZEL_LLDB_INIT)" : nil
+            customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
         )
         let launchAction = XCScheme.LaunchAction(
             runnable: buildableProductRunnable,
@@ -83,8 +81,7 @@ extension Generator {
             macroExpansion: macroExpansion,
             environmentVariables: buildMode.usesBazelEnvironmentVariables ?
                 pbxTarget.productType?.bazelLaunchEnvironmentVariables : nil,
-            customLLDBInitFile: buildMode.requiresLLDBInit ?
-                "$(BAZEL_LLDB_INIT)" : nil
+            customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
         )
         let profileAction = XCScheme.ProfileAction(
             buildableProductRunnable: buildableProductRunnable,
@@ -101,7 +98,7 @@ extension Generator {
         return XCScheme(
             name: pbxTarget.schemeName,
             lastUpgradeVersion: defaultLastUpgradeVersion,
-            version: buildMode.requiresLLDBInit ? lldbInitVersion : baseVersion,
+            version: lldbInitVersion,
             buildAction: buildAction,
             testAction: testAction,
             launchAction: launchAction,

@@ -30,7 +30,6 @@ class CreateXCSchemesTests: XCTestCase {
         shouldExpectTestables: Bool,
         shouldExpectBuildableProductRunnable: Bool,
         shouldExpectLaunchMacroExpansion: Bool,
-        shouldExpectCustomLLDBInitFile: Bool,
         shouldExpectLaunchEnvVariables: Bool,
         file: StaticString = #filePath,
         line: UInt = #line
@@ -78,8 +77,7 @@ class CreateXCSchemesTests: XCTestCase {
             XCScheme.BuildableProductRunnable(
                 buildableReference: expectedBuildableReference
             ) : nil
-        let expectedCustomLLDBInitFile = shouldExpectCustomLLDBInitFile ?
-            "$(BAZEL_LLDB_INIT)" : nil
+        let expectedCustomLLDBInitFile = "$(BAZEL_LLDB_INIT)"
 
         let expectedBuildPreActions: [XCScheme.ExecutionAction]
         switch buildPreActions {
@@ -307,7 +305,6 @@ fi
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: false,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -320,7 +317,6 @@ fi
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: false,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -333,7 +329,6 @@ fi
             shouldExpectTestables: true,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: true,
-            shouldExpectCustomLLDBInitFile: false,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -346,7 +341,6 @@ fi
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: false,
             shouldExpectLaunchEnvVariables: false
         )
     }
@@ -370,7 +364,6 @@ fi
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: true,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -383,7 +376,6 @@ fi
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: true,
             shouldExpectLaunchEnvVariables: false
         )
 
@@ -396,7 +388,6 @@ fi
             shouldExpectTestables: true,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: true,
-            shouldExpectCustomLLDBInitFile: true,
             shouldExpectLaunchEnvVariables: true
         )
 
@@ -409,7 +400,6 @@ fi
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectCustomLLDBInitFile: true,
             shouldExpectLaunchEnvVariables: true
         )
     }
