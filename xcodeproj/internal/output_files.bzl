@@ -34,21 +34,10 @@ def _create(
 
         swift = direct_outputs.swift
         if swift:
-            module = direct_outputs.swift.module
-
             # TODO: Determine which of these are actually needed for each
-            direct_build.append(module.swiftdoc)
-            direct_index.append(module.swiftdoc)
-            direct_build.append(module.swiftmodule)
-            direct_index.append(module.swiftmodule)
-            direct_build.append(module.swiftsourceinfo)
-            direct_index.append(module.swiftsourceinfo)
-            if module.swiftinterface:
-                direct_build.append(module.swiftinterface)
-                direct_index.append(module.swiftinterface)
-            if swift.generated_header:
-                direct_build.append(swift.generated_header)
-                direct_index.append(swift.generated_header)
+            swift_list = swift_to_list(swift)
+            direct_build.extend(swift_list)
+            direct_index.extend(swift_list)
 
         if direct_outputs.product:
             direct_build.append(direct_outputs.product)
@@ -327,6 +316,28 @@ def parse_swift_info_module(module):
         module = swift,
         generated_header = generated_header,
     )
+
+def swift_to_list(swift):
+    """Converts a Swift output struct to a list of `File`s.
+
+    Args:
+        swift: A value returned from `parse_swift_info_module`.
+
+    Returns:
+        A `list` of `File`s.
+    """
+    ret = []
+
+    module = swift.module
+    ret.append(module.swiftdoc)
+    ret.append(module.swiftmodule)
+    ret.append(module.swiftsourceinfo)
+    if module.swiftinterface:
+        ret.append(module.swiftinterface)
+    if swift.generated_header:
+        ret.append(swift.generated_header)
+
+    return ret
 
 output_files = struct(
     collect = _collect,
