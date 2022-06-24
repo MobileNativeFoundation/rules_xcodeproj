@@ -170,7 +170,6 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     test_host = getattr(ctx.rule.attr, "test_host", None)
     test_host_target_info = _process_test_host(test_host)
 
-    deps = getattr(ctx.rule.attr, "deps", [])
     avoid_deps = [test_host] if test_host else []
 
     additional_files = []
@@ -257,7 +256,11 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         avoid_linker_inputs = None
 
     linker_inputs = linker_input_files.collect_for_top_level(
-        deps = deps,
+        transitive_linker_inputs = [
+            (dep[XcodeProjInfo].target, dep[XcodeProjInfo].linker_inputs)
+            # TODO: Get attr name from `XcodeProjAutomaticTargetProcessingInfo`
+            for dep in getattr(ctx.rule.attr, "deps", [])
+        ],
         avoid_linker_inputs = avoid_linker_inputs,
     )
     xcode_library_targets = linker_inputs.xcode_library_targets
