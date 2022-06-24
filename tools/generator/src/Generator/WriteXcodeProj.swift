@@ -28,10 +28,8 @@ extension Generator {
             try path.write(content)
         }
 
-        if buildMode.usesBazelModeBuildScripts {
-            let dest = internalOutputPath + "bazel"
-            try bazelIntegrationDirectory.copy(dest)
-        }
+        let dest = internalOutputPath + "bazel"
+        try bazelIntegrationDirectory.copy(dest)
     }
 }
 

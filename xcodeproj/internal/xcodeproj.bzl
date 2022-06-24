@@ -284,6 +284,11 @@ def _xcodeproj_impl(ctx):
         transitive_infos = [(None, info) for info in infos],
     )
 
+    bazel_integration_files = [ctx.file._create_lldbinit_script]
+
+    if ctx.attr.build_mode == "bazel":
+        bazel_integration_files.extend(ctx.files._bazel_integration_files)
+
     spec_file = _write_json_spec(
         ctx = ctx,
         project_name = project_name,
@@ -300,7 +305,7 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         spec_file = spec_file,
         xccurrentversions_file = xccurrentversions_file,
-        bazel_integration_files = ctx.files._bazel_integration_files,
+        bazel_integration_files = bazel_integration_files,
         build_mode = ctx.attr.build_mode,
     )
     installer = _write_installer(
@@ -371,7 +376,6 @@ def make_xcodeproj_rule(
         ),
         "_bazel_integration_files": attr.label(
             allow_files = True,
-            executable = False,
             default = Label("//xcodeproj/internal/bazel_integration_files"),
         ),
         "_external_file_marker": attr.label(
@@ -393,8 +397,11 @@ def make_xcodeproj_rule(
         ),
         "_installer_template": attr.label(
             allow_single_file = True,
-            executable = False,
             default = Label("//xcodeproj/internal:installer.template.sh"),
+        ),
+        "_create_lldbinit_script": attr.label(
+            allow_single_file = True,
+            default = Label("//xcodeproj/internal/bazel_integration_files:create_lldbinit.sh"),
         ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",

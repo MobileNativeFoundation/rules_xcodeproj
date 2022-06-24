@@ -210,19 +210,6 @@ fi
             addAdditionalOutputGroups = ""
         }
 
-        let lldbInit: String
-        if buildMode.requiresLLDBInit {
-            lldbInit = #"""
-
-if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
-  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" > "$BAZEL_LLDB_INIT"
-fi
-
-"""#
-        } else {
-            lldbInit = ""
-        }
-
         return #"""
 set -euo pipefail
 
@@ -255,7 +242,11 @@ output_path=$(\#(bazelExec) \
   output_path)
 exec_root="${output_path%/*}"
 external="${exec_root%/*/*}/external"
-\#(lldbInit)
+
+if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
+  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" > "$BAZEL_LLDB_INIT"
+fi
+
 # We only want to modify `$LINKS_DIR` during normal builds since Indexing can
 # run concurrent to normal builds
 if [ "$ACTION" != "indexbuild" ]; then

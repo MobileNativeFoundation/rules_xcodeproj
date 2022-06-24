@@ -70,6 +70,7 @@ fi
 
 # Make scripts runnable
 if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
+  shopt -s nullglob
   chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
 fi
 
