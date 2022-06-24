@@ -4,6 +4,10 @@ set -euo pipefail
 
 readonly exec_root="$1"
 
+readonly output_base="${exec_root%/*/*}"
+readonly build_bazel_out="$exec_root/bazel-out"
+readonly build_external="$output_base/external"
+
 readonly index_objroot="${OBJROOT%/Build/Intermediates.noindex}/Index/Build/Intermediates.noindex"
 readonly workspace_name="${exec_root##*/}"
 readonly index_exec_root="$index_objroot/bazel_output_base/execroot/$workspace_name"
@@ -31,8 +35,20 @@ mkdir -p "$index_external"
 # which is why we don't use `$exec_root` here. Xcode will set the path based
 # on the way you opened a file. If you open a file via the Project navigator,
 # or indexing (e.g. Jump to Definition), it will use the paths specified below.
+
+# Generated when set from Project navigator
 echo "settings set target.source-map ./bazel-out/ \"$GEN_DIR\""
+# Generated when set from indexing opened file
 echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
+# Generated when set from swiftsourcefile
+echo "settings append target.source-map ./external/ \"$build_bazel_out\""
+
+# External when set from Project navigator
 echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
+# External when set from indexing opened file
 echo "settings append target.source-map ./external/ \"$index_external\""
+# External when set from swiftsourcefile
+echo "settings append target.source-map ./external/ \"$build_external\""
+
+# Project files
 echo "settings append target.source-map ./ \"$SRCROOT\""
