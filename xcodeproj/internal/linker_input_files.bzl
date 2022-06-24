@@ -258,7 +258,7 @@ def _get_primary_static_library(linker_inputs):
         linker_inputs: A value returned from `linker_input_files.collect`.
 
     Returns:
-        The `file_path` of the primary static library, or `None`.
+        The `File` of the primary static library, or `None`.
     """
 
     # Ideally we would only return the static library that is owned by this
@@ -266,11 +266,11 @@ def _get_primary_static_library(linker_inputs):
     # outputs it. So far the first library has always been the correct one.
     if linker_inputs._objc:
         for library in linker_inputs._objc.library.to_list():
-            return file_path(library)
+            return library
     elif linker_inputs._cc_info:
         linker_inputs = linker_inputs._cc_info.linking_context.linker_inputs
         for input in linker_inputs.to_list():
-            return file_path(input.libraries[0].static_library)
+            return input.libraries[0].static_library
     return None
 
 linker_input_files = struct(
