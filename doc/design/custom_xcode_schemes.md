@@ -137,10 +137,19 @@ configured to build `//Sources/Foo` and `//Tests/FooTests`. It is also configure
 test `//Tests/FooTests` using the existing logic for identifying testable targets. A launch action
 is not defined.
 
+## Launch Actions
 
-## Complex with `launch_args` and `launch_env`
+### Automatic Detection of the Launch Target
+
+Let's continue our example. We will add an `ios_application` and a `ios_ui_test` to the mix.
 
 ```python
+# Assumptions
+#   //Sources/Foo:Foo - swift_library
+#   //Sources/FooTests:FooTests = ios_unit_test
+#   //Sources/App = ios_application
+#   //Sources/AppUITests = ios_ui_test
+
 scheme(
     name = "foo_scheme",
     scheme_name = "Foo Module",
@@ -151,32 +160,14 @@ scheme(
 )
 
 scheme(
-    name = "bar_scheme",
-    scheme_name = "Bar Module",
-    targets = [
-        "//Sources/Bar",
-        "//Tests/BarTests",
-    ],
-)
-
-scheme(
     name = "app_scheme",
     scheme_name = "My Application",
     targets = [
         "//Sources/App",
         "//Sources/Foo",
-        "//Sources/Bar",
-        "//Tests/FooTests",
-        "//Tests/BarTests",
         "//Tests/AppUITests",
+        "//Tests/FooTests",
     ],
-    launch_target = "//Sources/App",
-    launch_args = [
-        "path/to/a/file.txt",
-    ]
-    launch_env = {
-        "RELEASE_THE_KRAKEN": "true",
-    }
 )
 
 xcodeproj(
@@ -184,16 +175,155 @@ xcodeproj(
     project_name = "Command Line",
     tags = ["manual"],
     schemes = [
-        ":foo_app_scheme",
+        ":app_scheme",
         ":foo_scheme",
-        ":bar_scheme",
     ],
 )
 ```
 
-## Complex with Launch Action
+In the above example, we have added a new scheme called `app_scheme`. It includes the
+`ios_application` and `ios_ui_test` targets in addition to the previously defined targets. This
+scheme will build `//Sources/App`, `//Sources/Foo`, `//Tests/AppUITests`, and `//Tests/FooTests`.
+When tests are requested, the `//Tests/AppUITests` and `//Tests/FooTests` will be executed. When a
+launch is requested, the `//Sources/App` will be executed. 
+
+The existing launchable target detection logic will be used to identify the launch target. If more
+than one launch target is specified, the first one encountered will be selected as the launch
+target. 
+
+The `xcodeproj` logic will combine the targets from both schemes to create the final set of targets
+to be included in the Xcode project.
+
+
+### Specify the Launch Target (`launch_action` Rule)
+
+While the automatic detection of the launch target may work for many cases, it may be desirable to
+specify the launch target. This will be done using the `launch_action` rule. This rule provides an
+`XcodeLaunchActionInfo` provider.
+
+The following expands the previous example by adding a `launch_action` rule to identify the launch
+target.
 
 ```python
+# Assumptions
+#   //Sources/Foo:Foo - swift_library
+#   //Sources/FooTests:FooTests = ios_unit_test
+#   //Sources/App = ios_application
+#   //Sources/AppUITests = ios_ui_test
+
+scheme(
+    name = "foo_scheme",
+    scheme_name = "Foo Module",
+    targets = [
+        "//Sources/Foo",
+        "//Tests/FooTests",
+    ],
+)
+
+launch_action(
+    name = "app_launch_action",
+    target = "//Sources/App",
+)
+
+scheme(
+    name = "app_scheme",
+    scheme_name = "My Application",
+    targets = [
+        ":app_launch_action",
+        "//Sources/Foo",
+        "//Tests/AppUITests",
+        "//Tests/FooTests",
+    ],
+)
+
+xcodeproj(
+    name = "generate_xcodeproj",
+    project_name = "Command Line",
+    tags = ["manual"],
+    schemes = [
+        ":app_scheme",
+        ":foo_scheme",
+    ],
+)
+```
+
+In the above example, we added a `launch_action` called `app_launch_action`. We then replaced the
+reference to `//Sources/App` in the `app_scheme` targets list to `:app_launch_action`. The target
+from the `launch_action` is added to the buildable targets for the `app_scheme` scheme.
+
+### Specify Launch Arguments and Environment Variables
+
+A client may want to provide arguments to the executable or set environment variables in the
+executable's launch environment. This is achieved by specifying those items on the `launch_action`
+declaration.
+
+Let's configure the launch action to provide some arguments and an environment variable.
+
+```python
+# Assumptions
+#   //Sources/Foo:Foo - swift_library
+#   //Sources/FooTests:FooTests = ios_unit_test
+#   //Sources/App = ios_application
+#   //Sources/AppUITests = ios_ui_test
+
+scheme(
+    name = "foo_scheme",
+    scheme_name = "Foo Module",
+    targets = [
+        "//Sources/Foo",
+        "//Tests/FooTests",
+    ],
+)
+
+launch_action(
+    name = "app_launch_action",
+    target = "//Sources/App",
+    args = [
+        "--my_awesome_flag",
+        "path/to/a/file.txt",
+    ],
+    env = {
+        "RELEASE_THE_KRAKEN": "true",
+    },
+)
+
+scheme(
+    name = "app_scheme",
+    scheme_name = "My Application",
+    targets = [
+        ":app_launch_action",
+        "//Sources/Foo",
+        "//Tests/AppUITests",
+        "//Tests/FooTests",
+    ],
+)
+
+xcodeproj(
+    name = "generate_xcodeproj",
+    project_name = "Command Line",
+    tags = ["manual"],
+    schemes = [
+        ":app_scheme",
+        ":foo_scheme",
+    ],
+)
+```
+
+The only change from the previous example is the addition of the `args` and `env` to the
+`app_launch_action` declaration. Now, requesting a run action will execute `//Sources/App` with the
+specified arguments with the specified environment variables.
+
+---
+
+## SCRATCH
+
+```python
+# Assumptions
+#   //Sources/Foo:Foo - swift_library
+#   //Sources/FooTests:FooTests = ios_unit_test
+#   //Sources/App = ios_application
+#   //Sources/AppUITests = ios_ui_test
+
 scheme(
     name = "foo_scheme",
     scheme_name = "Foo Module",
@@ -247,4 +377,3 @@ xcodeproj(
     ],
 )
 ```
-
