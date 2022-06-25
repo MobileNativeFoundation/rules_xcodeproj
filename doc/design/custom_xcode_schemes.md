@@ -41,65 +41,6 @@ provider which contains information about the scheme. It does not generate any f
 build. (The current scheme generation logic requires information that is not available outside of
 the `xcodeproj` generation logic.)
 
-### New Providers
-
-```python
-XcodeSchemeInfo = provider(
-    "Provides information about an Xcode scheme.",
-    fields = {
-        "scheme_name": """\
-The user-visible name for the scheme.\
-""",
-        "build_action": """\
-An `XcodeBuildActionInfo` that contains the targets to be built along with any \
-build information.\
-""",
-        "test_action": """\
-Optional. An `XcodeTestActionInfo` that lists the testable targets.\
-""",
-        "launch_action": """\
-Optional. An `XcodeLaunchActionInfo` that identifies the target to execute on \
-launch along with any arguments and environment variables.\
-""",
-    },
-)
-
-XcodeBuildActionInfo = provider(
-    "Provides information about an Xcode build action.",
-    fields = {
-        "targets": """\
-A `depset` of targets to build.\
-""",
-    },
-)
-
-XcodeTestActionInfo = provider(
-    "Provides information about an Xcode test action.",
-    fields = {
-        "targets": """\
-A `depset` of targets to execute when testing is requested.\
-""",
-    },
-)
-
-XcodeLaunchActionInfo = provider(
-    "Provides information about an Xcode launch action.",
-    fields = {
-        "target": """\
-A `struct` describing the target to launch with the run action is requested.\
-""",
-        "args": """\
-A `list` of `string` values that are passed as arguments when the launch target \
-is executed.\
-"""'
-    },
-        "env": """\
-A `dict` of enviornment variables to set when the launch target is executed.\
-"""'
-    },
-)
-```
-
 ### Updates to `xcodeproj`
 
 The `xcodeproj` rule, in addition to the existing target types, now accepts targets that provide
@@ -313,67 +254,61 @@ The only change from the previous example is the addition of the `args` and `env
 `app_launch_action` declaration. Now, requesting a run action will execute `//Sources/App` with the
 specified arguments with the specified environment variables.
 
----
-
-## SCRATCH
+## Providers
 
 ```python
-# Assumptions
-#   //Sources/Foo:Foo - swift_library
-#   //Sources/FooTests:FooTests = ios_unit_test
-#   //Sources/App = ios_application
-#   //Sources/AppUITests = ios_ui_test
-
-scheme(
-    name = "foo_scheme",
-    scheme_name = "Foo Module",
-    targets = [
-        "//Sources/Foo",
-        "//Tests/FooTests",
-    ],
+XcodeSchemeInfo = provider(
+    "Provides information about an Xcode scheme.",
+    fields = {
+        "scheme_name": """\
+The user-visible name for the scheme.\
+""",
+        "build_action": """\
+An `XcodeBuildActionInfo` that contains the targets to be built along with any \
+build information.\
+""",
+        "test_action": """\
+Optional. An `XcodeTestActionInfo` that lists the testable targets.\
+""",
+        "launch_action": """\
+Optional. An `XcodeLaunchActionInfo` that identifies the target to execute on \
+launch along with any arguments and environment variables.\
+""",
+    },
 )
 
-scheme(
-    name = "bar_scheme",
-    scheme_name = "Bar Module",
-    targets = [
-        "//Sources/Bar",
-        "//Tests/BarTests",
-    ],
+XcodeBuildActionInfo = provider(
+    "Provides information about an Xcode build action.",
+    fields = {
+        "targets": """\
+A `depset` of targets to build.\
+""",
+    },
 )
 
-launch_action(
-    name = "app_launch_action",
-    target = "//Sources/App,"
-    args = [
-        "path/to/a/file.txt",
-    ]
-    env = {
-        "RELEASE_THE_KRAKEN": "true",
-    }
+XcodeTestActionInfo = provider(
+    "Provides information about an Xcode test action.",
+    fields = {
+        "targets": """\
+A `depset` of targets to execute when testing is requested.\
+""",
+    },
 )
 
-scheme(
-    name = "app_scheme",
-    scheme_name = "My Application",
-    targets = [
-        ":app_launch_action",
-        "//Sources/Foo",
-        "//Sources/Bar",
-        "//Tests/FooTests",
-        "//Tests/BarTests",
-        "//Tests/AppUITests",
-    ],
-)
-
-xcodeproj(
-    name = "generate_xcodeproj",
-    project_name = "Command Line",
-    tags = ["manual"],
-    schemes = [
-        ":foo_app_scheme",
-        ":foo_scheme",
-        ":bar_scheme",
-    ],
+XcodeLaunchActionInfo = provider(
+    "Provides information about an Xcode launch action.",
+    fields = {
+        "target": """\
+A `struct` describing the target to launch with the run action is requested.\
+""",
+        "args": """\
+A `list` of `string` values that are passed as arguments when the launch target \
+is executed.\
+"""'
+    },
+        "env": """\
+A `dict` of enviornment variables to set when the launch target is executed.\
+"""'
+    },
 )
 ```
