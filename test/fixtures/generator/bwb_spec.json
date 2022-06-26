@@ -165,6 +165,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -174,7 +175,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -427,6 +431,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -436,7 +441,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -587,6 +595,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -596,7 +605,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -885,6 +897,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -894,7 +907,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -987,6 +1003,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -996,7 +1013,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -1192,6 +1212,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -1201,7 +1222,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -1294,6 +1318,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -1303,7 +1328,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -1412,6 +1440,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -1421,7 +1450,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",

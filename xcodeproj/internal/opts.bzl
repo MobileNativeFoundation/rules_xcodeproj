@@ -109,6 +109,8 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
 
     user_copts = []
     user_swiftcopts = []
+    objc = ctx.fragments.objc
+    objc_copts = []
     if SwiftInfo in target:
         # Rule level swiftcopts are included in action.argv below
         user_swiftcopts = getattr(ctx.rule.attr, "copts", [])
@@ -117,6 +119,7 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
             values = user_swiftcopts,
             attribute_name = "copts",
         )
+        objc_copts = _objc_fragment_copts(objc)
     elif CcInfo in target:
         user_copts = getattr(ctx.rule.attr, "copts", [])
         user_copts = _expand_make_variables(
@@ -124,6 +127,7 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
             values = user_copts,
             attribute_name = "copts",
         )
+        objc_copts = _objc_fragment_copts(objc)
 
     raw_swiftcopts = []
     for action in target.actions:
@@ -134,7 +138,7 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
     cpp = ctx.fragments.cpp
 
     return (
-        base_copts + cpp.copts + cpp.conlyopts + user_copts,
+        base_copts + cpp.copts + cpp.conlyopts + user_copts + objc_copts,
         base_cxxopts + cpp.copts + cpp.cxxopts + user_copts,
         raw_swiftcopts,
         user_swiftcopts,
@@ -776,6 +780,17 @@ def _xcode_std_value(std):
         # Xcode encodes "c++11" as "c++0x"
         return std[:-2] + "0x"
     return std
+
+def _objc_fragment_copts(objc_fragment):
+    """Returns all copts from the provided objc fragment
+
+    Args:
+        objc_fragment: The objc fragment.
+
+    Returns:
+        A `list` of compiler flags
+    """
+    return objc_fragment.copts_for_current_compilation_mode + objc_fragment.copts
 
 # API
 

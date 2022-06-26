@@ -162,6 +162,7 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -171,7 +172,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -340,6 +344,7 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -349,7 +354,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -524,6 +532,7 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
@@ -533,7 +542,10 @@
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector",
+                    "-fstack-protector-all",
+                    "-g"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
