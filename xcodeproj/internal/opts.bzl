@@ -145,11 +145,11 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
     )
 
 def _flattened_unique_copts(
-    base_copts,
-    cpp_copts,
-    cpp_conlyopts,
-    objc_copts,
-    user_opts):
+        base_copts,
+        cpp_copts,
+        cpp_conlyopts,
+        objc_copts,
+        user_opts):
     """ Flattens and uniques the provided copts in the order they are provided to this function
 
     Args:
