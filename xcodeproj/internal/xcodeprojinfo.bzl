@@ -140,7 +140,12 @@ def _skip_target(*, deps, transitive_infos):
             automatic_target_info = None,
             transitive_infos = transitive_infos,
         ),
-        linker_inputs = linker_input_files.merge(deps = deps),
+        linker_inputs = linker_input_files.merge(
+            transitive_linker_inputs = [
+                (dep[XcodeProjInfo].target, dep[XcodeProjInfo].linker_inputs)
+                for dep in deps
+            ],
+        ),
         potential_target_merges = depset(
             transitive = [
                 info.potential_target_merges
