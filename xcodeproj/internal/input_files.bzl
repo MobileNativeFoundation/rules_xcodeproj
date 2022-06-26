@@ -318,7 +318,7 @@ def _collect(
             ],
         ),
         generated = depset(
-            generated,
+            generated if generated else None,
             transitive = [
                 info.inputs.generated
                 for attr, info in transitive_infos
@@ -363,12 +363,13 @@ def _from_resource_bundle(bundle):
         uncategorized = depset(),
     )
 
-def _merge(*, transitive_infos):
+def _merge(*, transitive_infos, extra_generated = None):
     """Creates merged inputs.
 
     Args:
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
+        extra_generated: An optional `list` of `File`s to added to `generated`.
 
     Returns:
         A value similar to the one returned from `input_files.collect`. The
@@ -395,6 +396,7 @@ def _merge(*, transitive_infos):
             ],
         ),
         generated = depset(
+            extra_generated if extra_generated else None,
             transitive = [
                 info.inputs.generated
                 for _, info in transitive_infos

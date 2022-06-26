@@ -13,11 +13,7 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
-load(
-    ":providers.bzl",
-    "XcodeProjAutomaticTargetProcessingInfo",
-    "XcodeProjInfo",
-)
+load(":providers.bzl", "XcodeProjInfo")
 load(":processed_target.bzl", "processed_target", "xcode_target")
 load(":product.bzl", "process_product")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
@@ -145,12 +141,20 @@ def _process_test_host(test_host):
         return test_host[XcodeProjInfo]
     return None
 
-def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
+def process_top_level_target(
+        *,
+        ctx,
+        target,
+        automatic_target_info,
+        bundle_info,
+        transitive_infos):
     """Gathers information about a top-level target.
 
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
         bundle_info: The `AppleBundleInfo` provider for `target`, or `None`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
@@ -158,8 +162,6 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     Returns:
         The value returned from `processed_target`.
     """
-    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
-
     configuration = get_configuration(ctx)
     label = target.label
     id = get_id(label = label, configuration = configuration)
@@ -170,7 +172,6 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
     test_host = getattr(ctx.rule.attr, "test_host", None)
     test_host_target_info = _process_test_host(test_host)
 
-    deps = getattr(ctx.rule.attr, "deps", [])
     avoid_deps = [test_host] if test_host else []
 
     additional_files = []
@@ -257,7 +258,11 @@ def process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         avoid_linker_inputs = None
 
     linker_inputs = linker_input_files.collect_for_top_level(
-        deps = deps,
+        transitive_linker_inputs = [
+            (dep[XcodeProjInfo].target, dep[XcodeProjInfo].linker_inputs)
+            # TODO: Get attr name from `XcodeProjAutomaticTargetProcessingInfo`
+            for dep in getattr(ctx.rule.attr, "deps", [])
+        ],
         avoid_linker_inputs = avoid_linker_inputs,
     )
     xcode_library_targets = linker_inputs.xcode_library_targets

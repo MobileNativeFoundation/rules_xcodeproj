@@ -3,7 +3,6 @@
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":collections.bzl", "flatten", "set_if_true")
 load(":files.bzl", "file_path", "file_path_to_dto")
-load(":providers.bzl", "XcodeProjInfo")
 
 def _collect_for_non_top_level(*, cc_info, objc, is_xcode_target):
     """Collects linker input files for a non top level target.
@@ -30,11 +29,13 @@ def _collect_for_non_top_level(*, cc_info, objc, is_xcode_target):
         xcode_library_targets = [],
     )
 
-def _collect_for_top_level(*, deps, avoid_linker_inputs):
+def _collect_for_top_level(*, transitive_linker_inputs, avoid_linker_inputs):
     """Collects linker input files for a top level library target.
 
     Args:
-        deps: `ctx.attr.deps` of the target.
+        transitive_linker_inputs: A `list` of `(target(), XcodeProjInfo)` tuples
+            of transitive dependencies that should have their linker inputs
+            merged.
         avoid_linker_inputs: A value returned from
             `linker_input_files.collect_for_top_level`. These inputs will be
             excluded from the return list.
@@ -43,15 +44,20 @@ def _collect_for_top_level(*, deps, avoid_linker_inputs):
         A value similar to the one returned from
         `linker_input_files.collect_for_non_top_level`.
     """
-    return _merge(deps = deps, avoid_linker_inputs = avoid_linker_inputs)
+    return _merge(
+        transitive_linker_inputs = transitive_linker_inputs,
+        avoid_linker_inputs = avoid_linker_inputs,
+    )
 
-def _merge(*, deps, avoid_linker_inputs = None):
+def _merge(*, transitive_linker_inputs, avoid_linker_inputs = None):
     """Merges linker input files from the deps of a target.
 
     This should only be used by targets that are being skipped.
 
     Args:
-        deps: `ctx.attr.deps` of the target.
+        transitive_linker_inputs: A `list` of `(target(), XcodeProjInfo)` tuples
+            of transitive dependencies that should have their linker inputs
+            merged.
         avoid_linker_inputs: A value returned from
             `linker_input_files.collect_for_top_level`. These inputs will be
             excluded from the return list.
@@ -64,16 +70,16 @@ def _merge(*, deps, avoid_linker_inputs = None):
     # Ideally we could use `merge_linking_contexts`, but it's private API
     cc_info = cc_common.merge_cc_infos(
         cc_infos = [
-            dep[XcodeProjInfo].linker_inputs._cc_info
-            for dep in deps
-            if dep[XcodeProjInfo].linker_inputs._cc_info
+            linker_inputs._cc_info
+            for _, linker_inputs in transitive_linker_inputs
+            if linker_inputs._cc_info
         ],
     )
 
     objc_providers = [
-        dep[XcodeProjInfo].linker_inputs._objc
-        for dep in deps
-        if dep[XcodeProjInfo].linker_inputs._objc
+        linker_inputs._objc
+        for _, linker_inputs in transitive_linker_inputs
+        if linker_inputs._objc
     ]
     if objc_providers:
         objc = apple_common.new_objc_provider(providers = objc_providers)
@@ -81,9 +87,9 @@ def _merge(*, deps, avoid_linker_inputs = None):
         objc = None
 
     xcode_library_targets = [
-        dep[XcodeProjInfo].target
-        for dep in deps
-        if dep[XcodeProjInfo].linker_inputs._is_xcode_library_target
+        target
+        for target, linker_inputs in transitive_linker_inputs
+        if linker_inputs._is_xcode_library_target
     ]
 
     return struct(
@@ -258,7 +264,7 @@ def _get_primary_static_library(linker_inputs):
         linker_inputs: A value returned from `linker_input_files.collect`.
 
     Returns:
-        The `file_path` of the primary static library, or `None`.
+        The `File` of the primary static library, or `None`.
     """
 
     # Ideally we would only return the static library that is owned by this
@@ -266,11 +272,11 @@ def _get_primary_static_library(linker_inputs):
     # outputs it. So far the first library has always been the correct one.
     if linker_inputs._objc:
         for library in linker_inputs._objc.library.to_list():
-            return file_path(library)
+            return library
     elif linker_inputs._cc_info:
         linker_inputs = linker_inputs._cc_info.linking_context.linker_inputs
         for input in linker_inputs.to_list():
-            return file_path(input.libraries[0].static_library)
+            return input.libraries[0].static_library
     return None
 
 linker_input_files = struct(

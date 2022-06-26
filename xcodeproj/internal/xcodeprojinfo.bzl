@@ -10,7 +10,12 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":non_xcode_targets.bzl", "process_non_xcode_target")
 load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
-load(":providers.bzl", "XcodeProjInfo", "target_type")
+load(
+    ":providers.bzl",
+    "XcodeProjAutomaticTargetProcessingInfo",
+    "XcodeProjInfo",
+    "target_type",
+)
 load(":processed_target.bzl", "processed_target")
 load(":search_paths.bzl", "process_search_paths")
 load(":targets.bzl", "targets")
@@ -135,7 +140,12 @@ def _skip_target(*, deps, transitive_infos):
             automatic_target_info = None,
             transitive_infos = transitive_infos,
         ),
-        linker_inputs = linker_input_files.merge(deps = deps),
+        linker_inputs = linker_input_files.merge(
+            transitive_linker_inputs = [
+                (dep[XcodeProjInfo].target, dep[XcodeProjInfo].linker_inputs)
+                for dep in deps
+            ],
+        ),
         potential_target_merges = depset(
             transitive = [
                 info.potential_target_merges
@@ -177,16 +187,20 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields`.
     """
-    if not targets.should_become_xcode_target(target):
+    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
+
+    if not automatic_target_info.should_generate_target:
         processed_target = process_non_xcode_target(
             ctx = ctx,
             target = target,
+            automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
     elif AppleBundleInfo in target:
         processed_target = process_top_level_target(
             ctx = ctx,
             target = target,
+            automatic_target_info = automatic_target_info,
             bundle_info = target[AppleBundleInfo],
             transitive_infos = transitive_infos,
         )
@@ -194,6 +208,7 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         processed_target = process_top_level_target(
             ctx = ctx,
             target = target,
+            automatic_target_info = automatic_target_info,
             bundle_info = None,
             transitive_infos = transitive_infos,
         )
@@ -201,6 +216,7 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         processed_target = process_library_target(
             ctx = ctx,
             target = target,
+            automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
 

@@ -10,18 +10,24 @@ load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
-load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo")
 load(":processed_target.bzl", "processed_target")
 load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
 load(":target_properties.bzl", "process_dependencies")
 
-def process_non_xcode_target(*, ctx, target, transitive_infos):
+def process_non_xcode_target(
+        *,
+        ctx,
+        target,
+        automatic_target_info,
+        transitive_infos):
     """Gathers information about a non-Xcode target.
 
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
@@ -30,8 +36,6 @@ def process_non_xcode_target(*, ctx, target, transitive_infos):
     """
     cc_info = target[CcInfo] if CcInfo in target else None
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
-
-    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
 
     if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
         # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also

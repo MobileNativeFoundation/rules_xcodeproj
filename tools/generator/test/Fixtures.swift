@@ -935,13 +935,6 @@ $(GEN_DIR)/v/a.txt
 
 """)
 
-        files[.internal("generated.rsynclist")] = .nonReferencedContent("""
-a/b/module.modulemap
-a1b2c/bin/t.c
-v/a.txt
-
-""")
-
         files[.internal("modulemaps.xcfilelist")] = .nonReferencedContent("""
 \(genDir)/a/b/module.modulemap
 
