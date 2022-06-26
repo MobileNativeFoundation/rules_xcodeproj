@@ -3,7 +3,7 @@
 This document is a proposal for how custom Xcode schemes can be defined and implemented in
 `rules_xcodeproj`.
 
-## No Custom Schemes
+## Automatic Scheme Generation
 
 As of this writing, the ruleset generates an Xcode scheme for every buildable target provided to
 the `xcodeproj` rule. This allows a client to quickly define an `xcodeproj` target and generate an
