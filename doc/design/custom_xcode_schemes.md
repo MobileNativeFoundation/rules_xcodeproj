@@ -3,6 +3,20 @@
 This document is a proposal for how custom Xcode schemes can be defined and implemented in
 `rules_xcodeproj`.
 
+## Contents
+
+* [Contents](#contents)
+* [Automatic Scheme Generation](#automatic-scheme-generation)
+* [Introduction of the xcode\_scheme Rule](#introduction-of-the-xcode_scheme-rule)
+  * [Updates to xcodeproj](#updates-to-xcodeproj)
+  * [Simple Example Using xcode\_scheme](#simple-example-using-xcode_scheme)
+* [Launch Actions](#launch-actions)
+  * [Automatic Detection of the Launch Target](#automatic-detection-of-the-launch-target)
+  * [Specify the Launch Target (launch\_action Rule)](#specify-the-launch-target-launch_action-rule)
+  * [Specify Launch Arguments and Environment Variables](#specify-launch-arguments-and-environment-variables)
+* [Providers](#providers)
+* [Outstanding Questions](#outstanding-questions)
+
 ## Automatic Scheme Generation
 
 As of this writing, the ruleset generates an Xcode scheme for every buildable target provided to
@@ -43,6 +57,8 @@ provider which contains information about the scheme. It does not generate any f
 build. (The current scheme generation logic requires information that is not available outside of
 the `xcodeproj` generation logic.)
 
+_NOTE: For details on the providers described in this document, please see [Providers](#providers)._
+
 ### Updates to `xcodeproj`
 
 The `xcodeproj` rule, in addition to the existing target types, now accepts targets that provide
@@ -79,6 +95,10 @@ The `foo_scheme` target generates a scheme with a user visible name of `Foo Modu
 configured to build `//Sources/Foo` and `//Tests/FooTests`. It is also configured to execute the
 test `//Tests/FooTests` using the existing logic for identifying testable targets. A launch action
 is not defined.
+
+Note that the `targets` attribute for the `xcodeproj` declaration now references the scheme target,
+`foo_scheme`. The targets are not listed as they are provided to `xcodeproj` via the
+`XcodeSchemeInfo` provider.
 
 ## Launch Actions
 
@@ -117,7 +137,7 @@ xcodeproj(
     name = "generate_xcodeproj",
     project_name = "Command Line",
     tags = ["manual"],
-    schemes = [
+    targets = [
         ":app_scheme",
         ":foo_scheme",
     ],
@@ -127,12 +147,14 @@ xcodeproj(
 In the above example, we have added a new scheme called `app_scheme`. It includes the
 `ios_application` and `ios_ui_test` targets in addition to the previously defined targets. This
 scheme will build `//Sources/App`, `//Sources/Foo`, `//Tests/AppUITests`, and `//Tests/FooTests`.
-When tests are requested, the `//Tests/AppUITests` and `//Tests/FooTests` will be executed. When a
+When testing is requested, the `//Tests/AppUITests` and `//Tests/FooTests` will be executed. When a
 launch is requested, the `//Sources/App` will be executed. 
 
 The existing launchable target detection logic will be used to identify the launch target. If more
-than one launch target is specified, the first one encountered will be selected as the launch
-target. 
+than one launch target is specified, one of the targets will be selected as the launch target, using
+an unspecified algorithm.  In other words, a client should not rely on the automatic selection of a
+launch target if more than one launch target is present. The specification of a launch target will
+be covered in a subsequent section.
 
 The `xcodeproj` logic will combine the targets from both schemes to create the final set of targets
 to be included in the Xcode project.
@@ -141,7 +163,7 @@ to be included in the Xcode project.
 ### Specify the Launch Target (`launch_action` Rule)
 
 While the automatic detection of the launch target may work for many cases, it may be desirable to
-specify the launch target. This will be done using the `launch_action` rule. This rule provides an
+specify the launch target. This is done using the `launch_action` rule. This rule provides an
 `XcodeLaunchActionInfo` provider.
 
 The following expands the previous example by adding a `launch_action` rule to identify the launch
@@ -183,7 +205,7 @@ xcodeproj(
     name = "generate_xcodeproj",
     project_name = "Command Line",
     tags = ["manual"],
-    schemes = [
+    targets = [
         ":app_scheme",
         ":foo_scheme",
     ],
@@ -245,7 +267,7 @@ xcodeproj(
     name = "generate_xcodeproj",
     project_name = "Command Line",
     tags = ["manual"],
-    schemes = [
+    targets = [
         ":app_scheme",
         ":foo_scheme",
     ],
@@ -257,6 +279,8 @@ The only change from the previous example is the addition of the `args` and `env
 specified arguments with the specified environment variables.
 
 ## Providers
+
+This section lists the providers that will be introduced by this design.
 
 ```python
 XcodeSchemeInfo = provider(
@@ -314,3 +338,213 @@ A `dict` of enviornment variables to set when the launch target is executed.\
     },
 )
 ```
+
+## Outstanding Questions
+
+### Scheme Merging: Can an `xcode_scheme` include an `xcode_scheme` in its `targets`?
+
+It might be useful for a client to create smaller, more focused schemes and then allow them to
+combine those into a larger scheme. If one cannot reference `xcode_scheme` targets in the definition
+of another `xcode_scheme`, the client will need to duplicate target references.
+
+#### Scheme Merging Example
+
+Expanding on our previous example, let's look at the set of declarations that would be necessary
+with and without scheme merging. 
+
+```python
+# Assumptions
+#   //Sources/Foo:Foo - swift_library
+#   //Sources/FooTests:FooTests = ios_unit_test
+#   //Sources/Bar:Bar - swift_library
+#   //Sources/BarTests:BarTests = ios_unit_test
+#   //Sources/App = ios_application
+#   //Sources/AppUITests = ios_ui_test
+
+xcode_scheme(
+    name = "foo_scheme",
+    scheme_name = "Foo Module",
+    targets = [
+        "//Sources/Foo",
+        "//Tests/FooTests",
+    ],
+)
+
+xcode_scheme(
+    name = "bar_scheme",
+    scheme_name = "Bar Module",
+    targets = [
+        "//Sources/Bar",
+        "//Tests/BarTests",
+    ],
+)
+
+
+launch_action(
+    name = "app_launch_action",
+    target = "//Sources/App",
+)
+
+xcode_scheme(
+    name = "app_scheme",
+    scheme_name = "My Application",
+    targets = [
+        ":app_launch_action",
+        "//Sources/Bar",
+        "//Sources/Foo",
+        "//Tests/AppUITests",
+        "//Tests/BarTests",
+        "//Tests/FooTests",
+    ],
+)
+
+xcodeproj(
+    name = "generate_xcodeproj",
+    project_name = "Command Line",
+    tags = ["manual"],
+    targets = [
+        ":app_scheme",
+        ":foo_scheme",
+    ],
+)
+```
+
+The above example defines three `xcode_scheme` targets. Two are focused schemes, `foo_scheme` and
+`bar_scheme`, and one is an uber scheme, `app_scheme`, that contains everything. Without scheme
+merging, the list of targets must be maintained across the different `xcode_scheme` declarations.
+
+Now, let's look at the declarations with scheme merging.
+
+```python
+# Assumptions
+#   //Sources/Foo:Foo - swift_library
+#   //Sources/FooTests:FooTests = ios_unit_test
+#   //Sources/Bar:Bar - swift_library
+#   //Sources/BarTests:BarTests = ios_unit_test
+#   //Sources/App = ios_application
+#   //Sources/AppUITests = ios_ui_test
+
+xcode_scheme(
+    name = "foo_scheme",
+    scheme_name = "Foo Module",
+    targets = [
+        "//Sources/Foo",
+        "//Tests/FooTests",
+    ],
+)
+
+xcode_scheme(
+    name = "bar_scheme",
+    scheme_name = "Bar Module",
+    targets = [
+        "//Sources/Bar",
+        "//Tests/BarTests",
+    ],
+)
+
+launch_action(
+    name = "app_launch_action",
+    target = "//Sources/App",
+)
+
+xcode_scheme(
+    name = "app_scheme",
+    scheme_name = "My Application",
+    targets = [
+        ":app_launch_action",
+        ":bar_scheme",
+        ":foo_scheme",
+        "//Tests/AppUITests",
+    ],
+)
+
+xcodeproj(
+    name = "generate_xcodeproj",
+    project_name = "Command Line",
+    tags = ["manual"],
+    targets = [
+        ":app_scheme",
+        ":foo_scheme",
+    ],
+)
+```
+
+The above example now shows the targets specified in the focused `xcode_scheme` declarations with
+the uber `xcode_scheme` target referencing the focused schemes. This is much cleaner and easier to
+understand.
+
+#### How to Handle Targets Specified in a Scheme and in an `xcodeproj` Declaration
+
+If we scheme merging is allowed, how does one handle a target specified in a scheme and in an
+`xcodeproj` declaration?  Let's look at an example where a target is specified in a custom scheme
+and is specified as a target in the `xcodeproj` declaration.
+
+```python
+# Assumptions
+#   //Sources/Foo:Foo - swift_library
+#   //Sources/FooTests:FooTests = ios_unit_test
+
+xcode_scheme(
+    name = "foo_scheme",
+    scheme_name = "Foo Module",
+    targets = [
+        "//Sources/Foo",
+        "//Tests/FooTests",
+    ],
+)
+
+xcodeproj(
+    name = "generate_xcodeproj",
+    project_name = "Command Line",
+    tags = ["manual"],
+    targets = [
+        ":foo_scheme",
+        "//Sources/Foo",
+    ],
+)
+```
+
+What schemes should be generated? Clearly, a scheme named `Foo Module` will be generated. Should a
+scheme named, `Foo`, be generated? The `//Sources/Foo` target is already included in a scheme.
+
+##### Option 1: No Smarts
+
+The easiest option is to state that any targets specified directly in the `targets` attribute of an
+`xcodeproj` declaration will have a scheme generated for it. This is easy to understand and to
+implement. If a client is not happy with the extra, autogenerated scheme, they can remove it from
+the `targets` list.
+
+##### Option 2: Check if Target is Included in any Other Scheme
+
+Another option is to check if any directly specified targets are already included in a scheme. If
+they aren't, an autogenerated scheme will be created. If they are, an autogenerated scheme will not
+be created. This sounds reasonable, but might be hard for a client to understand how and when an
+autogenerated scheme is created.
+
+##### Recommendation
+
+If scheme merging is included in the design, the recommendation is to proceed with [Option 1: No
+Smarts](). If a target is specified directly in the `targets` attribute for an `xcodeproj`
+declaration, an autogenerated scheme will be created.
+
+#### Scheme Merging Considerations
+
+If scheme merging is added to the design, the following are things to consider.
+
+- The `targets` from the referenced `XcodeBuildActionInfo` will be merged into the current scheme's
+  `XcodeBuildActionInfo`.
+- The `targets` from the referenced `XcodeTestActionInfo` will be merged into the current scheme's
+  `XcodeTestActionInfo`.
+- If a `launch_action` is not provided to the current scheme, one will be selected from the
+  `XcodeLaunchActionInfo` providers of the referenced schemes. Again, the one selected is
+  indeterminate.
+
+#### Concerns about Scheme Merging
+
+Scheme merging was not included initially, due to concerns around how to merge schemes as additional
+information is added to the scheme definitions. For instance, if a `test_action` is introduced in
+later iterations of the implementation and it includes parameters that are only relevant to the
+specified test, how should that be "merged" in the resulting scheme. Also, will someone then
+ask for an `exclude` capability to only merge certain targets from a referneced scheme?
+
+
