@@ -2,7 +2,6 @@
 
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
-    "AppleBundleInfo",
     "IosXcTestBundleInfo",
     "MacosXcTestBundleInfo",
     "TvosXcTestBundleInfo",
@@ -55,36 +54,6 @@ def _is_test_bundle(target, deps):
         _is_test_bundle_with_provider(target, deps, WatchosXcTestBundleInfo)
     )
 
-def _should_become_xcode_target(target):
-    """Determines if the given target should be included in the Xcode project.
-
-    Args:
-        target: The `Target` to check.
-
-    Returns:
-        `False` if `target` shouldn't become an actual target in the generated
-        Xcode project. Resource bundles are a current example of this, as we
-        only include their files in the project, but we don't create targets
-        for them.
-    """
-
-    # Top-level bundles
-    if AppleBundleInfo in target:
-        return True
-
-    # Libraries
-    # Targets that don't produce files are ignored (e.g. imports)
-    if CcInfo in target and target.files != depset():
-        return True
-
-    # Command-line tools
-    executable = target[DefaultInfo].files_to_run.executable
-    if executable and not executable.is_source:
-        return True
-
-    return False
-
 targets = struct(
     is_test_bundle = _is_test_bundle,
-    should_become_xcode_target = _should_become_xcode_target,
 )
