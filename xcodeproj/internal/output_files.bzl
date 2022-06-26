@@ -32,22 +32,12 @@ def _create(
         direct_build = []
         direct_index = []
 
-        swift = direct_outputs.swift_module
+        swift = direct_outputs.swift
         if swift:
             # TODO: Determine which of these are actually needed for each
-            direct_build.append(swift.swiftdoc)
-            direct_index.append(swift.swiftdoc)
-            direct_build.append(swift.swiftmodule)
-            direct_index.append(swift.swiftmodule)
-            direct_build.append(swift.swiftsourceinfo)
-            direct_index.append(swift.swiftsourceinfo)
-            if swift.swiftinterface:
-                direct_build.append(swift.swiftinterface)
-                direct_index.append(swift.swiftinterface)
-
-        if direct_outputs.swift_generated_header:
-            direct_build.append(direct_outputs.swift_generated_header)
-            direct_index.append(direct_outputs.swift_generated_header)
+            swift_list = swift_to_list(swift)
+            direct_build.extend(swift_list)
+            direct_index.extend(swift_list)
 
         if direct_outputs.product:
             direct_build.append(direct_outputs.product)
@@ -129,11 +119,11 @@ def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
         A `struct` containing the following fields:
 
         *   `id`: The unique identifier of the target.
-        *   `bundle`: A `File` for the target's bundle (e.g. ".app") or `None`.
-        *   `swift_generated_header`: A `File` for the generated Swift header
-            file, or `None`.
-        *   `swift_module`: A value as returned by
-            `swift_common.create_swift_module`, or `None`.
+        *   `product`: A `File` for the target's product (e.g. ".app" or ".zip")
+            or `None`.
+        *   `product_file_path`: A `file_path` for the target's product or
+            `None`.
+        *   `swift`: A value returned from `parse_swift_info_module`.
     """
 
     # TODO: Deduplicate work here and in `_process_top_level_target`.
@@ -163,31 +153,23 @@ def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
     if product and not product_file_path:
         product_file_path = file_path(product)
 
-    swift_generated_header = None
-    swift_module = None
+    swift = None
     if swift_info:
         # TODO: Actually handle more than one module?
         for module in swift_info.direct_modules:
-            swift = module.swift
-            if not swift:
-                continue
-            swift_module = swift
-            clang = module.clang
-            if clang.compilation_context.direct_public_headers:
-                swift_generated_header = (
-                    clang.compilation_context.direct_public_headers[0]
-                )
-            break
+            swift = parse_swift_info_module(module)
+            if swift:
+                break
 
     return struct(
         id = id,
         product = product,
         product_file_path = product_file_path,
-        swift_generated_header = swift_generated_header,
-        swift_module = swift_module,
+        swift = swift,
     )
 
-def _swift_to_dto(generated_header, module):
+def _swift_to_dto(swift):
+    module = swift.module
     dto = {
         "m": file_path_to_dto(file_path(module.swiftmodule)),
         "s": file_path_to_dto(file_path(module.swiftsourceinfo)),
@@ -197,8 +179,8 @@ def _swift_to_dto(generated_header, module):
     if module.swiftinterface:
         dto["i"] = file_path_to_dto(file_path(module.swiftinterface))
 
-    if generated_header:
-        dto["h"] = file_path_to_dto(file_path(generated_header))
+    if swift.generated_header:
+        dto["h"] = file_path_to_dto(file_path(swift.generated_header))
 
     return dto
 
@@ -275,11 +257,8 @@ def _to_dto(outputs):
     if direct_outputs.product:
         dto["p"] = file_path_to_dto(direct_outputs.product_file_path)
 
-    if direct_outputs.swift_module:
-        dto["s"] = _swift_to_dto(
-            generated_header = direct_outputs.swift_generated_header,
-            module = direct_outputs.swift_module,
-        )
+    if direct_outputs.swift:
+        dto["s"] = _swift_to_dto(direct_outputs.swift)
 
     return dto
 
@@ -307,6 +286,58 @@ def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
         )])
         for name, files in outputs._output_group_list.to_list()
     }
+
+def parse_swift_info_module(module):
+    """Collects outputs from a rules_swift module.
+
+    Args:
+        module: A value returned from `swift_common.create_module`.
+
+    Returns:
+        A `struct` with the following fields:
+
+        *   `swift_generated_header`: A `File` for the generated Swift header
+            file, or `None`.
+        *   `module`: A value returned from `swift_common.create_swift_module`.
+    """
+    swift = module.swift
+    if not swift:
+        return None
+
+    clang = module.clang
+    if clang.compilation_context.direct_public_headers:
+        generated_header = (
+            clang.compilation_context.direct_public_headers[0]
+        )
+    else:
+        generated_header = None
+
+    return struct(
+        module = swift,
+        generated_header = generated_header,
+    )
+
+def swift_to_list(swift):
+    """Converts a Swift output struct to a list of `File`s.
+
+    Args:
+        swift: A value returned from `parse_swift_info_module`.
+
+    Returns:
+        A `list` of `File`s.
+    """
+    ret = []
+
+    module = swift.module
+    ret.append(module.swiftdoc)
+    ret.append(module.swiftmodule)
+    ret.append(module.swiftsourceinfo)
+    if module.swiftinterface:
+        ret.append(module.swiftinterface)
+    if swift.generated_header:
+        ret.append(swift.generated_header)
+
+    return ret
 
 output_files = struct(
     collect = _collect,
