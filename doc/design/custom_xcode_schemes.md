@@ -54,7 +54,7 @@ xcodeproj(
 )
 ```
 
-The above declaration will generate two schemes: `Foo` and
+The above declaration generates two schemes: `Foo` and
 `FooTests.__internal__.__test_bundle`. The `Foo` scheme contains configuration that builds
 `//Sources/Foo`, but has no configuration for test, launch or any of the other actions. The
 `FooTests.__internal__.__test_bundle` scheme contains configuration that builds `//Tests/FooTests`
@@ -74,7 +74,7 @@ _NOTE: For details on the providers described in this document, please see [Prov
 
 ### Updates to `xcodeproj`
 
-The `xcodeproj` rules now has a `schemes` attribute that accepts targets that provide
+The `xcodeproj` rule now has a `schemes` attribute that accepts targets that provide
 `XcodeSchemeInfo`.  The targets contained in `XcodeSchemeInfo` instances are included in the set of
 targets that are used to generate the Xcode project. Any targets that are provided via the `targets`
 attribute will have an `XcodeSchemeInfo` instance created for it. This ensures that the current
@@ -293,9 +293,8 @@ specified arguments with the specified environment variables.
 
 ## How to Handle Targets Specified in a Scheme and in an `xcodeproj` Declaration
 
-If scheme merging is allowed, how does one handle a target specified in a scheme and in an
-`xcodeproj` declaration?  Let's look at an example where a target is specified in a custom scheme
-and is specified as a target in the `xcodeproj` declaration.
+How does one handle a target specified in a scheme and as a target in an `xcodeproj` declaration?
+Let's look at an example.
 
 ```python
 # Assumptions
@@ -556,7 +555,6 @@ If scheme merging is added to the design, the following are things to consider.
   `XcodeLaunchActionInfo` providers of the referenced schemes. Again, the one selected is
   indeterminate.
 
-
 #### Concerns about Scheme Merging
 
 Scheme merging was not included initially, due to concerns around how to merge schemes as additional
@@ -564,160 +562,6 @@ information is added to the scheme definitions. For instance, if a `test_action`
 later iterations of the implementation and it includes parameters that are only relevant to the
 specified test, how should that be "merged" in the resulting scheme. Also, will someone then
 ask for an `exclude` capability to only merge certain targets from a referneced scheme?
-
-It might be useful for a client to create smaller, focused schemes and then allow them to
-combine those into a larger scheme. If one cannot reference `xcode_scheme` targets in the definition
-of another `xcode_scheme`, the client will need to duplicate target references.
-
-#### Scheme Merging Example
-
-Expanding on our previous example, let's look at the set of declarations that would be necessary
-with and without scheme merging. 
-
-```python
-# Assumptions
-#   //Sources/Foo:Foo - swift_library
-#   //Sources/FooTests:FooTests = ios_unit_test
-#   //Sources/Bar:Bar - swift_library
-#   //Sources/BarTests:BarTests = ios_unit_test
-#   //Sources/App = ios_application
-#   //Sources/AppUITests = ios_ui_test
-
-xcode_scheme(
-    name = "foo_scheme",
-    scheme_name = "Foo Module",
-    targets = [
-        "//Sources/Foo",
-        "//Tests/FooTests",
-    ],
-)
-
-xcode_scheme(
-    name = "bar_scheme",
-    scheme_name = "Bar Module",
-    targets = [
-        "//Sources/Bar",
-        "//Tests/BarTests",
-    ],
-)
-
-
-launch_action(
-    name = "app_launch_action",
-    target = "//Sources/App",
-)
-
-xcode_scheme(
-    name = "app_scheme",
-    scheme_name = "My Application",
-    launch_action = ":app_launch_action",
-    targets = [
-        "//Sources/Bar",
-        "//Sources/Foo",
-        "//Tests/AppUITests",
-        "//Tests/BarTests",
-        "//Tests/FooTests",
-    ],
-)
-
-xcodeproj(
-    name = "generate_xcodeproj",
-    project_name = "Command Line",
-    tags = ["manual"],
-    schemes = [
-        ":app_scheme",
-        ":foo_scheme",
-    ],
-)
-```
-
-The above example defines three `xcode_scheme` targets. Two are focused schemes, `foo_scheme` and
-`bar_scheme`, and one is an uber scheme, `app_scheme`, that contains everything. Without scheme
-merging, the list of targets must be maintained across the different `xcode_scheme` declarations.
-
-Now, let's look at the declarations with scheme merging.
-
-```python
-# Assumptions
-#   //Sources/Foo:Foo - swift_library
-#   //Sources/FooTests:FooTests = ios_unit_test
-#   //Sources/Bar:Bar - swift_library
-#   //Sources/BarTests:BarTests = ios_unit_test
-#   //Sources/App = ios_application
-#   //Sources/AppUITests = ios_ui_test
-
-xcode_scheme(
-    name = "foo_scheme",
-    scheme_name = "Foo Module",
-    targets = [
-        "//Sources/Foo",
-        "//Tests/FooTests",
-    ],
-)
-
-xcode_scheme(
-    name = "bar_scheme",
-    scheme_name = "Bar Module",
-    targets = [
-        "//Sources/Bar",
-        "//Tests/BarTests",
-    ],
-)
-
-launch_action(
-    name = "app_launch_action",
-    target = "//Sources/App",
-)
-
-xcode_scheme(
-    name = "app_scheme",
-    scheme_name = "My Application",
-    launch_action = ":app_launch_action",
-    schemes = [
-        ":bar_scheme",
-        ":foo_scheme",
-    ],
-    targets = [
-        "//Tests/AppUITests",
-    ],
-)
-
-xcodeproj(
-    name = "generate_xcodeproj",
-    project_name = "Command Line",
-    tags = ["manual"],
-    schemes = [
-        ":app_scheme",
-        ":foo_scheme",
-    ],
-)
-```
-
-The above example now shows the targets specified in the focused `xcode_scheme` declarations with
-the uber `xcode_scheme` target referencing the focused schemes. This is much cleaner and easier to
-understand.
-
-#### Scheme Merging Considerations
-
-If scheme merging is added to the design, the following are things to consider.
-
-- The `targets` from the referenced `XcodeBuildActionInfo` will be merged into the current scheme's
-  `XcodeBuildActionInfo`.
-- The `targets` from the referenced `XcodeTestActionInfo` will be merged into the current scheme's
-  `XcodeTestActionInfo`.
-- If a `launch_action` is not provided to the current scheme, one will be selected from the
-  `XcodeLaunchActionInfo` providers of the referenced schemes. Again, the one selected is
-  indeterminate.
-
-
-#### Concerns about Scheme Merging
-
-Scheme merging was not included initially, due to concerns around how to merge schemes as additional
-information is added to the scheme definitions. For instance, if a `test_action` is introduced in
-later iterations of the implementation and it includes parameters that are only relevant to the
-specified test, how should that be "merged" in the resulting scheme. Also, will someone then
-ask for an `exclude` capability to only merge certain targets from a referneced scheme?
-
 
 ### Introduce `schemes` Attribute or Combine with the `targets` Attribut
 
@@ -730,11 +574,11 @@ clarity on what should be referenced where.
 
 Not inferring a launch target would simplify the implementation. It ended up being included in the
 design, because most of the logic to identify a launch target already exists for autogenerated
-schemes. Of course, including the inference logic does open up the issues with selecting a launch
-target/action. If launch action identification is removed from the design, all of the issues
-surroudning multiple launch actions being included in a target list go away.
+schemes. Of course, including the inference logic does open up issues with selecting a launch
+target/action. If launch action identification is removed from the design, all of those issues
+do not exist.
 
 ### Should the `launch_action` Attribute on `xcode_scheme` Accept a Regular Target?
 
 In the end, this was not included in the design as a shortcut for specifying a launch action. This
-would be easy to add, if there is support for this.
+would be easy to add, if there is clients desire this.
