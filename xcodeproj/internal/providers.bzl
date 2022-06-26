@@ -44,6 +44,11 @@ attribute.
 An attribute name (or `None`) to collect `File`s from for the
 `provisioning_profile`-like attribute.
 """,
+        "should_generate_target": """\
+Whether or an Xcode target should be generated for this target. Even if this
+value is `False`, setting values for the other attributes can cause inputs to be
+collected and shown in the Xcode project.
+""",
         "srcs": """\
 A sequence of attribute names to collect `File`s from for `srcs`-like
 attributes.
