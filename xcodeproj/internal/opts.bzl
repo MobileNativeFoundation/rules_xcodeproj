@@ -138,11 +138,41 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
     cpp = ctx.fragments.cpp
 
     return (
-        base_copts + cpp.copts + cpp.conlyopts + user_copts + objc_copts,
+        _flattened_unique_copts(base_copts, cpp.copts, cpp.conlyopts, objc_copts, user_copts),
         base_cxxopts + cpp.copts + cpp.cxxopts + user_copts,
         raw_swiftcopts,
         user_swiftcopts,
     )
+
+def _flattened_unique_copts(
+    base_copts,
+    cpp_copts,
+    cpp_conlyopts,
+    objc_copts,
+    user_opts):
+    """ Flattens and uniques the provided copts in the order they are provided to this function
+
+    Args:
+        base_copts: A `list` of base compiler options
+        cpp_copts: A `list` of cpp compiler options
+        cpp_conlyopts: A `list` of c only options
+        objc_copts: A `list` of objc compiler options
+        user_opts: A `list` of user compiler options
+
+
+    Returns:
+        A `list` of compiler options
+    """
+
+    # Copts that should be ignored
+    ignored_copts = ["-g"]
+    flattened_copts = []
+    for copts in [base_copts, cpp_copts, cpp_conlyopts, objc_copts, user_opts]:
+        for copt in copts:
+            if copt in flattened_copts or copt in ignored_copts:
+                continue
+            flattened_copts.append(copt)
+    return flattened_copts
 
 def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
     """Process compiler options, skipping options that should be skipped.
@@ -790,7 +820,12 @@ def _objc_fragment_copts(objc_fragment):
     Returns:
         A `list` of compiler flags
     """
-    return objc_fragment.copts_for_current_compilation_mode + objc_fragment.copts
+    objc_copts = objc_fragment.copts
+    for copt in objc_fragment.copts_for_current_compilation_mode:
+        if copt in objc_copts:
+            continue
+        objc_copts.append(copt)
+    return objc_copts
 
 # API
 
