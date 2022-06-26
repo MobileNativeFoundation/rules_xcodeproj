@@ -200,8 +200,8 @@ launch_action(
 xcode_scheme(
     name = "app_scheme",
     scheme_name = "My Application",
+    launch_action = ":app_launch_action",
     targets = [
-        ":app_launch_action",
         "//Sources/Foo",
         "//Tests/AppUITests",
         "//Tests/FooTests",
@@ -219,9 +219,10 @@ xcodeproj(
 )
 ```
 
-In the above example, we added a `launch_action` called `app_launch_action`. We then replaced the
-reference to `//Sources/App` in the `app_scheme` targets list to `:app_launch_action`. The target
-from the `launch_action` is added to the buildable targets for the `app_scheme` scheme.
+In the above example, we defined a `launch_action` called `app_launch_action` and referenced it on the
+`app_scheme` target using the `launch_action` attribute. We then removed the reference to
+`//Sources/App` in the `app_scheme` targets list. The target from the `launch_action` is added to
+the buildable targets for the `app_scheme` scheme.
 
 ### Specify Launch Arguments and Environment Variables
 
@@ -262,8 +263,8 @@ launch_action(
 xcode_scheme(
     name = "app_scheme",
     scheme_name = "My Application",
+    launch_action = ":app_launch_action",
     targets = [
-        ":app_launch_action",
         "//Sources/Foo",
         "//Tests/AppUITests",
         "//Tests/FooTests",
@@ -449,8 +450,8 @@ launch_action(
 xcode_scheme(
     name = "app_scheme",
     scheme_name = "My Application",
+    launch_action = ":app_launch_action",
     targets = [
-        ":app_launch_action",
         "//Sources/Bar",
         "//Sources/Foo",
         "//Tests/AppUITests",
@@ -511,8 +512,8 @@ launch_action(
 xcode_scheme(
     name = "app_scheme",
     scheme_name = "My Application",
+    launch_action = ":app_launch_action",
     targets = [
-        ":app_launch_action",
         ":bar_scheme",
         ":foo_scheme",
         "//Tests/AppUITests",
