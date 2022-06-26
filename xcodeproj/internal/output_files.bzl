@@ -44,6 +44,7 @@ def _create(
     else:
         direct_build = None
         direct_index = None
+        swift = None
 
     transitive_build = depset(
         direct_build,
@@ -57,11 +58,22 @@ def _create(
                 ))
         ],
     )
-
     transitive_index = depset(
         direct_index,
         transitive = [
             info.outputs._transitive_index
+            for attr, info in transitive_infos
+            if (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                ))
+        ],
+    )
+    transitive_swift = depset(
+        [swift] if swift else None,
+        transitive = [
+            info.outputs._transitive_swift
             for attr, info in transitive_infos
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
@@ -97,6 +109,7 @@ def _create(
         _output_group_list = output_group_list,
         _transitive_build = transitive_build,
         _transitive_index = transitive_index,
+        _transitive_swift = transitive_swift,
     )
 
 def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
@@ -262,6 +275,9 @@ def _to_dto(outputs):
 
     return dto
 
+def _to_swift_list(outputs):
+    return outputs._transitive_swift.to_list()
+
 def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
@@ -344,4 +360,5 @@ output_files = struct(
     merge = _merge,
     to_dto = _to_dto,
     to_output_groups_fields = _to_output_groups_fields,
+    to_swift_list = _to_swift_list,
 )
