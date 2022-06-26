@@ -217,7 +217,6 @@ def _add_unprocessed_resources(
                 bundle_metadata = bundle_metadata,
                 generated = generated,
                 xccurrentversions = xccurrentversions,
-                extra_files = extra_files,
             )
             continue
 
