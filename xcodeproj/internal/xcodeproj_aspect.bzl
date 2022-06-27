@@ -2,8 +2,8 @@
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
-    ":default_input_file_attributes_aspect.bzl",
-    "default_input_file_attributes_aspect",
+    ":default_automatic_target_processing_aspect.bzl",
+    "default_automatic_target_processing_aspect",
 )
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjProvisioningProfileInfo")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
@@ -83,5 +83,5 @@ xcodeproj_aspect = aspect(
         ),
     },
     fragments = ["apple", "cpp", "objc"],
-    requires = [default_input_file_attributes_aspect],
+    requires = [default_automatic_target_processing_aspect],
 )
