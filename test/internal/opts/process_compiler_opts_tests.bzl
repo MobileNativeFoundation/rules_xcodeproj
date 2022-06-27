@@ -89,9 +89,9 @@ def _objc_fragment_stub(dict):
         )
     return struct(
         copts = json.decode(dict["copts"]),
-        copts_for_current_compilation_mode = json.decode(dict[
-            "copts_for_current_compilation_mode"
-        ]),
+        copts_for_current_compilation_mode = json.decode(
+            dict["copts_for_current_compilation_mode"],
+        ),
     )
 
 def process_compiler_opts_test_suite(name):
