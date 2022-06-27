@@ -655,10 +655,14 @@ def _swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
         compilation_mode = compilation_mode,
         objc_fragment = objc_fragment,
     )
-    pcm_defines = [
-        "-D{}".format(define)
-        for define in cc_info.compilation_context.defines.to_list()
-    ]
+
+    if cc_info:
+        pcm_defines = [
+            "-D{}".format(define)
+            for define in cc_info.compilation_context.defines.to_list()
+        ]
+    else:
+        pcm_defines = []
 
     return base_pcm_flags + pcm_defines
 
