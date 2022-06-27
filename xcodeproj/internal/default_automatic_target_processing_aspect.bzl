@@ -59,6 +59,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     infoplists = ()
     entitlements = None
 
+    attrs = dir(ctx.rule.attr)
+
     if ctx.rule.kind == "cc_library":
         xcode_targets = {
             "deps": [target_type.compile],
@@ -91,12 +93,16 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
-        provisioning_profile = "provisioning_profile"
-        infoplists = ("infoplists")
-        entitlements = "entitlements"
+        if "provisioning_profile" in attrs:
+            provisioning_profile = "provisioning_profile"
+        if "infoplists" in attrs:
+            infoplists = ("infoplists")
+        if "entitlements" in attrs:
+            entitlements = "entitlements"
     elif AppleBinaryInfo in target:
         xcode_targets = {"deps": [target_type.compile]}
-        infoplists = ("infoplists")
+        if "infoplists" in attrs:
+            infoplists = ("infoplists")
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile]}
         should_generate_target = False
