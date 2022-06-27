@@ -148,6 +148,7 @@ def process_library_target(
     cc_info = target[CcInfo] if CcInfo in target else None
     process_defines(
         cc_info = cc_info,
+        swift_info = swift_info,
         build_settings = build_settings,
     )
     process_sdk_links(

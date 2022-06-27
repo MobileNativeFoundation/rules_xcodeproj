@@ -2,6 +2,7 @@
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load("@bazel_skylib//lib:collections.bzl", "collections")
 load(":collections.bzl", "set_if_true", "uniq")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
@@ -78,73 +79,84 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
 
         *   A `list` of C compiler options.
         *   A `list` of C++ compiler options.
-        *   A `list` of Swift compiler options.
+        *   A `list` of all Swift compiler options.
+        *   A `list` of user Swift compiler options.
     """
-    cc_toolchain = find_cpp_toolchain(ctx)
-
-    feature_configuration = cc_common.configure_features(
-        ctx = ctx,
-        cc_toolchain = cc_toolchain,
-        requested_features = ctx.features,
-        unsupported_features = ctx.disabled_features + _UNSUPPORTED_CC_FEATURES,
-    )
-    variables = cc_common.create_compile_variables(
-        feature_configuration = feature_configuration,
-        cc_toolchain = cc_toolchain,
-        user_compile_flags = [],
-    )
-
-    base_copts = cc_common.get_memory_inefficient_command_line(
-        feature_configuration = feature_configuration,
-        action_name = "c-compile",
-        variables = variables,
-    )
-    base_cxxopts = cc_common.get_memory_inefficient_command_line(
-        feature_configuration = feature_configuration,
-        action_name = "c++-compile",
-        variables = variables,
-    )
 
     # TODO: Handle perfileopts somehow?
 
-    user_copts = []
+    conlyopts = []
+    cxxopts = []
+    raw_swiftcopts = []
     user_swiftcopts = []
-    objc = ctx.fragments.objc
-    objc_copts = []
+
     if SwiftInfo in target:
-        # Rule level swiftcopts are included in action.argv below
+        for action in target.actions:
+            if action.mnemonic == "SwiftCompile":
+                # First two arguments are "worker" and "swiftc"
+                raw_swiftcopts = action.argv[2:]
+
+        # Rule level swiftcopts are included in action.argv above
         user_swiftcopts = getattr(ctx.rule.attr, "copts", [])
         user_swiftcopts = _expand_make_variables(
             ctx = ctx,
             values = user_swiftcopts,
             attribute_name = "copts",
         )
-        objc_copts = _objc_fragment_copts(objc)
     elif CcInfo in target:
+        cc_toolchain = find_cpp_toolchain(ctx)
+
+        feature_configuration = cc_common.configure_features(
+            ctx = ctx,
+            cc_toolchain = cc_toolchain,
+            requested_features = (
+                # `CcCommon.ALL_COMPILE_ACTIONS` doesn't include objc...
+                ctx.features + ["objc-compile", "objcpp-compile"]
+            ),
+            unsupported_features = (
+                ctx.disabled_features + _UNSUPPORTED_CC_FEATURES
+            ),
+        )
+        variables = cc_common.create_compile_variables(
+            feature_configuration = feature_configuration,
+            cc_toolchain = cc_toolchain,
+            user_compile_flags = [],
+        )
+
+        is_objc = apple_common.Objc in target
+        base_copts = cc_common.get_memory_inefficient_command_line(
+            feature_configuration = feature_configuration,
+            action_name = "objc-compile" if is_objc else "c-compile",
+            variables = variables,
+        )
+        base_cxxopts = cc_common.get_memory_inefficient_command_line(
+            feature_configuration = feature_configuration,
+            action_name = "objc++-compile" if is_objc else "c++-compile",
+            variables = variables,
+        )
+
         user_copts = getattr(ctx.rule.attr, "copts", [])
         user_copts = _expand_make_variables(
             ctx = ctx,
             values = user_copts,
             attribute_name = "copts",
         )
-        objc_copts = _objc_fragment_copts(objc)
 
-    raw_swiftcopts = []
-    for action in target.actions:
-        if action.mnemonic == "SwiftCompile":
-            # First two arguments are "worker" and "swiftc"
-            raw_swiftcopts = action.argv[2:]
+        if is_objc:
+            objc = ctx.fragments.objc
+            user_copts = (
+                objc.copts +
+                user_copts +
+                objc.copts_for_current_compilation_mode
+            )
 
-    cpp = ctx.fragments.cpp
-    unique_copts = uniq(base_copts + cpp.copts + cpp.conlyopts + objc_copts + user_copts)
+        cpp = ctx.fragments.cpp
+        conlyopts = base_copts + cpp.copts + cpp.conlyopts + user_copts
+        cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts + user_copts
 
     return (
-        [
-            copt
-            for copt in unique_copts
-            if copt != "-g"
-        ],
-        base_cxxopts + cpp.copts + cpp.cxxopts + user_copts,
+        conlyopts,
+        cxxopts,
         raw_swiftcopts,
         user_swiftcopts,
     )
@@ -457,6 +469,9 @@ def _process_swiftopts(
         *,
         full_swiftcopts,
         user_swiftcopts,
+        compilation_mode,
+        objc_fragment,
+        cc_info,
         package_bin_dir,
         build_settings):
     """Processes Swift compiler options.
@@ -464,6 +479,9 @@ def _process_swiftopts(
     Args:
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
+        compilation_mode: The current compilation mode.
+        objc_fragment: The `objc` configuration fragment.
+        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -478,6 +496,9 @@ def _process_swiftopts(
     """
     swiftcopts = _process_full_swiftcopts(
         full_swiftcopts,
+        compilation_mode = compilation_mode,
+        objc_fragment = objc_fragment,
+        cc_info = cc_info,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
@@ -487,11 +508,21 @@ def _process_swiftopts(
     )
     return swiftcopts, swift_search_paths
 
-def _process_full_swiftcopts(opts, *, package_bin_dir, build_settings):
+def _process_full_swiftcopts(
+        opts,
+        *,
+        compilation_mode,
+        objc_fragment,
+        cc_info,
+        package_bin_dir,
+        build_settings):
     """Processes the full Swift compiler options (including Bazel ones).
 
     Args:
         opts: A `list` of Swift compiler options.
+        compilation_mode: The current compilation mode.
+        objc_fragment: The `objc` configuration fragment.
+        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -563,6 +594,17 @@ under {}""".format(opt, package_bin_dir))
         extra_processing = process,
     )
 
+    # If we have swift flags, then we need to add in the PCM flags
+    if opts:
+        unhandled_opts = collections.before_each(
+            "-Xcc",
+            _swift_pcm_copts(
+                compilation_mode = compilation_mode,
+                objc_fragment = objc_fragment,
+                cc_info = cc_info,
+            ),
+        ) + unhandled_opts
+
     set_if_true(
         build_settings,
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS",
@@ -619,11 +661,72 @@ def _process_user_swiftcopts(opts):
 
     return search_paths
 
+def _swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
+    base_pcm_flags = _swift_command_line_objc_copts(
+        compilation_mode = compilation_mode,
+        objc_fragment = objc_fragment,
+    )
+    pcm_defines = [
+        "-D{}".format(define)
+        for define in cc_info.compilation_context.defines.to_list()
+    ]
+
+    return base_pcm_flags + pcm_defines
+
+# Lifted from rules_swift, to mimic its behavior
+def _swift_command_line_objc_copts(*, compilation_mode, objc_fragment):
+    """Returns copts that should be passed to `clang` from the `objc` fragment.
+
+    Args:
+        compilation_mode: The current compilation mode.
+        objc_fragment: The `objc` configuration fragment.
+
+    Returns:
+        A list of `clang` copts, each of which is preceded by `-Xcc` so that
+        they can be passed through `swiftc` to its underlying ClangImporter
+        instance.
+    """
+
+    # In general, every compilation mode flag from native `objc_*` rules should
+    # be passed, but `-g` seems to break Clang module compilation. Since this
+    # flag does not make much sense for module compilation and only touches
+    # headers, it's ok to omit.
+    # TODO: These flags were originally being set by Bazel's legacy
+    # hardcoded Objective-C behavior, which has been migrated to crosstool. In
+    # the long term, we should query crosstool for the flags we're interested in
+    # and pass those to ClangImporter, and do this across all platforms. As an
+    # immediate short-term workaround, we preserve the old behavior by passing
+    # the exact set of flags that Bazel was originally passing if the list we
+    # get back from the configuration fragment is empty.
+    legacy_copts = objc_fragment.copts_for_current_compilation_mode
+    if not legacy_copts:
+        if compilation_mode == "dbg":
+            legacy_copts = [
+                "-O0",
+                "-DDEBUG=1",
+                "-fstack-protector",
+                "-fstack-protector-all",
+            ]
+        elif compilation_mode == "opt":
+            legacy_copts = [
+                "-Os",
+                "-DNDEBUG=1",
+                "-Wno-unused-variable",
+                "-Winit-self",
+                "-Wno-extra",
+            ]
+
+    clang_copts = objc_fragment.copts + legacy_copts
+    return [copt for copt in clang_copts if copt != "-g"]
+
 def _process_compiler_opts(
         *,
         conlyopts,
         cxxopts,
         full_swiftcopts,
+        compilation_mode,
+        objc_fragment,
+        cc_info,
         user_swiftcopts,
         package_bin_dir,
         build_settings):
@@ -634,6 +737,9 @@ def _process_compiler_opts(
         cxxopts: A `list` of C++ compiler options.
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
+        compilation_mode: The current compilation mode.
+        objc_fragment: The `objc` configuration fragment.
+        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -654,12 +760,14 @@ def _process_compiler_opts(
     swiftcopts, swift_search_paths = _process_swiftopts(
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
+        compilation_mode = compilation_mode,
+        objc_fragment = objc_fragment,
+        cc_info = cc_info,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
 
     # TODO: Split out `WARNING_CFLAGS`? (Must maintain order, and only ones that apply to both c and cxx)
-    # TODO: Handle `defines` and `local_defines` as well
 
     set_if_true(
         build_settings,
@@ -719,6 +827,9 @@ def _process_target_compiler_opts(
         cxxopts = cxxopts,
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
+        compilation_mode = ctx.var["COMPILATION_MODE"],
+        objc_fragment = ctx.fragments.objc,
+        cc_info = target[CcInfo] if CcInfo in target else None,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
@@ -785,22 +896,6 @@ def _xcode_std_value(std):
         # Xcode encodes "c++11" as "c++0x"
         return std[:-2] + "0x"
     return std
-
-def _objc_fragment_copts(objc_fragment):
-    """Returns all copts from the provided objc fragment
-
-    Args:
-        objc_fragment: The objc fragment.
-
-    Returns:
-        A `list` of compiler flags
-    """
-    objc_copts = objc_fragment.copts
-    for copt in objc_fragment.copts_for_current_compilation_mode:
-        if copt in objc_copts:
-            continue
-        objc_copts.append(copt)
-    return objc_copts
 
 # API
 

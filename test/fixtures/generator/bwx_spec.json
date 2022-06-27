@@ -34,37 +34,8 @@
         "//tools/generator/test:tests darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -144,47 +115,16 @@
         "//tools/generator/test:tests.library darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "tests",
                 "PRODUCT_NAME": "tests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -287,37 +227,8 @@
         "//tools/generator:generator darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -385,46 +296,15 @@
         "//tools/generator:generator.library darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "generator",
                 "PRODUCT_NAME": "generator.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -530,46 +410,15 @@
         "@com_github_apple_swift_collections//:OrderedCollections darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "OrderedCollections",
                 "PRODUCT_NAME": "OrderedCollections",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -813,46 +662,15 @@
         "@com_github_kylef_pathkit//:PathKit darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "PathKit",
                 "PRODUCT_NAME": "PathKit",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -900,46 +718,15 @@
         "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "CustomDump",
                 "PRODUCT_NAME": "CustomDump",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1090,46 +877,15 @@
         "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay",
                 "PRODUCT_NAME": "XCTestDynamicOverlay",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1177,46 +933,15 @@
         "@com_github_tadija_aexml//:AEXML darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "AEXML",
                 "PRODUCT_NAME": "AEXML",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1280,46 +1005,15 @@
         "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "XcodeProj",
                 "PRODUCT_NAME": "XcodeProj",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",

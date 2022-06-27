@@ -114,46 +114,15 @@
         "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -216,46 +185,15 @@
         "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -319,46 +257,15 @@
         "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -421,45 +328,14 @@
         "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -523,45 +399,14 @@
         "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -626,45 +471,14 @@
         "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -728,45 +542,14 @@
         "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -831,37 +614,8 @@
         "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -922,46 +676,15 @@
         "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Tool",
                 "PRODUCT_NAME": "Tool.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1028,39 +751,10 @@
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -1126,38 +820,9 @@
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -1224,46 +889,15 @@
         "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "PRODUCT_NAME": "iOSApp.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1331,46 +965,15 @@
         "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "PRODUCT_NAME": "iOSApp.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1439,38 +1042,9 @@
         "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -1536,37 +1110,8 @@
         "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -1633,45 +1178,14 @@
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "PRODUCT_NAME": "tvOSApp.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1740,45 +1254,14 @@
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "PRODUCT_NAME": "tvOSApp.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1848,38 +1331,9 @@
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -1932,37 +1386,8 @@
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -2016,38 +1441,9 @@
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -2113,37 +1509,8 @@
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -2210,45 +1577,14 @@
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "watchOSAppExtension",
                 "PRODUCT_NAME": "watchOSAppExtension.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -2317,45 +1653,14 @@
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "watchOSAppExtension",
                 "PRODUCT_NAME": "watchOSAppExtension.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
