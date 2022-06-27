@@ -470,6 +470,7 @@ def _process_swiftopts(
         user_swiftcopts: A `list` of user-provided Swift compiler options.
         compilation_mode: The current compilation mode.
         objc_fragment: The `objc` configuration fragment.
+        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -510,6 +511,7 @@ def _process_full_swiftcopts(
         opts: A `list` of Swift compiler options.
         compilation_mode: The current compilation mode.
         objc_fragment: The `objc` configuration fragment.
+        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -726,6 +728,7 @@ def _process_compiler_opts(
         user_swiftcopts: A `list` of user-provided Swift compiler options.
         compilation_mode: The current compilation mode.
         objc_fragment: The `objc` configuration fragment.
+        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
