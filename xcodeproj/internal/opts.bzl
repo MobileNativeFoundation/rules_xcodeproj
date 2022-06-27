@@ -2,6 +2,7 @@
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load("@bazel_skylib//lib:collections.bzl", "collections")
 load(":collections.bzl", "set_if_true", "uniq")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
@@ -457,6 +458,9 @@ def _process_swiftopts(
         *,
         full_swiftcopts,
         user_swiftcopts,
+        compilation_mode,
+        objc_fragment,
+        cc_info,
         package_bin_dir,
         build_settings):
     """Processes Swift compiler options.
@@ -464,6 +468,8 @@ def _process_swiftopts(
     Args:
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
+        compilation_mode: The current compilation mode.
+        objc_fragment: The `objc` configuration fragment.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -478,6 +484,9 @@ def _process_swiftopts(
     """
     swiftcopts = _process_full_swiftcopts(
         full_swiftcopts,
+        compilation_mode = compilation_mode,
+        objc_fragment = objc_fragment,
+        cc_info = cc_info,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
@@ -487,11 +496,20 @@ def _process_swiftopts(
     )
     return swiftcopts, swift_search_paths
 
-def _process_full_swiftcopts(opts, *, package_bin_dir, build_settings):
+def _process_full_swiftcopts(
+        opts,
+        *,
+        compilation_mode,
+        objc_fragment,
+        cc_info,
+        package_bin_dir,
+        build_settings):
     """Processes the full Swift compiler options (including Bazel ones).
 
     Args:
         opts: A `list` of Swift compiler options.
+        compilation_mode: The current compilation mode.
+        objc_fragment: The `objc` configuration fragment.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -563,6 +581,17 @@ under {}""".format(opt, package_bin_dir))
         extra_processing = process,
     )
 
+    # If we have swift flags, then we need to add in the PCM flags
+    if opts:
+        unhandled_opts = collections.before_each(
+            "-Xcc",
+            _swift_pcm_copts(
+                compilation_mode = compilation_mode,
+                objc_fragment = objc_fragment,
+                cc_info = cc_info,
+            ),
+        ) + unhandled_opts
+
     set_if_true(
         build_settings,
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS",
@@ -619,11 +648,72 @@ def _process_user_swiftcopts(opts):
 
     return search_paths
 
+def _swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
+    base_pcm_flags = _swift_command_line_objc_copts(
+        compilation_mode = compilation_mode,
+        objc_fragment = objc_fragment,
+    )
+    pcm_defines = [
+        "-D{}".format(define)
+        for define in cc_info.compilation_context.defines.to_list()
+    ]
+
+    return base_pcm_flags + pcm_defines
+
+# Lifted from rules_swift, to mimic its behavior
+def _swift_command_line_objc_copts(*, compilation_mode, objc_fragment):
+    """Returns copts that should be passed to `clang` from the `objc` fragment.
+
+    Args:
+        compilation_mode: The current compilation mode.
+        objc_fragment: The `objc` configuration fragment.
+
+    Returns:
+        A list of `clang` copts, each of which is preceded by `-Xcc` so that
+        they can be passed through `swiftc` to its underlying ClangImporter
+        instance.
+    """
+
+    # In general, every compilation mode flag from native `objc_*` rules should
+    # be passed, but `-g` seems to break Clang module compilation. Since this
+    # flag does not make much sense for module compilation and only touches
+    # headers, it's ok to omit.
+    # TODO: These flags were originally being set by Bazel's legacy
+    # hardcoded Objective-C behavior, which has been migrated to crosstool. In
+    # the long term, we should query crosstool for the flags we're interested in
+    # and pass those to ClangImporter, and do this across all platforms. As an
+    # immediate short-term workaround, we preserve the old behavior by passing
+    # the exact set of flags that Bazel was originally passing if the list we
+    # get back from the configuration fragment is empty.
+    legacy_copts = objc_fragment.copts_for_current_compilation_mode
+    if not legacy_copts:
+        if compilation_mode == "dbg":
+            legacy_copts = [
+                "-O0",
+                "-DDEBUG=1",
+                "-fstack-protector",
+                "-fstack-protector-all",
+            ]
+        elif compilation_mode == "opt":
+            legacy_copts = [
+                "-Os",
+                "-DNDEBUG=1",
+                "-Wno-unused-variable",
+                "-Winit-self",
+                "-Wno-extra",
+            ]
+
+    clang_copts = objc_fragment.copts + legacy_copts
+    return [copt for copt in clang_copts if copt != "-g"]
+
 def _process_compiler_opts(
         *,
         conlyopts,
         cxxopts,
         full_swiftcopts,
+        compilation_mode,
+        objc_fragment,
+        cc_info,
         user_swiftcopts,
         package_bin_dir,
         build_settings):
@@ -634,6 +724,8 @@ def _process_compiler_opts(
         cxxopts: A `list` of C++ compiler options.
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
+        compilation_mode: The current compilation mode.
+        objc_fragment: The `objc` configuration fragment.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -654,12 +746,14 @@ def _process_compiler_opts(
     swiftcopts, swift_search_paths = _process_swiftopts(
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
+        compilation_mode = compilation_mode,
+        objc_fragment = objc_fragment,
+        cc_info = cc_info,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
 
     # TODO: Split out `WARNING_CFLAGS`? (Must maintain order, and only ones that apply to both c and cxx)
-    # TODO: Handle `defines` and `local_defines` as well
 
     set_if_true(
         build_settings,
@@ -719,6 +813,9 @@ def _process_target_compiler_opts(
         cxxopts = cxxopts,
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
+        compilation_mode = ctx.var["COMPILATION_MODE"],
+        objc_fragment = ctx.fragments.objc,
+        cc_info = target[CcInfo] if CcInfo in target else None,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )

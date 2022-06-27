@@ -17,6 +17,13 @@ def _process_compiler_opts_test_impl(ctx):
         cxxopts = ctx.attr.cxxopts,
         full_swiftcopts = ctx.attr.full_swiftcopts,
         user_swiftcopts = ctx.attr.user_swiftcopts,
+        compilation_mode = ctx.attr.compilation_mode,
+        objc_fragment = _objc_fragment_stub(ctx.attr.objc_fragment),
+        cc_info = struct(
+            compilation_context = struct(
+                defines = depset(ctx.attr.cc_info_defines),
+            ),
+        ),
         package_bin_dir = ctx.attr.package_bin_dir,
         build_settings = build_settings,
     )
@@ -50,15 +57,42 @@ def _process_compiler_opts_test_impl(ctx):
 process_compiler_opts_test = unittest.make(
     impl = _process_compiler_opts_test_impl,
     attrs = {
+        "cc_info_defines": attr.string_list(default = []),
+        "compilation_mode": attr.string(mandatory = True),
         "conlyopts": attr.string_list(mandatory = True),
         "cxxopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
         "expected_search_paths": attr.string(mandatory = True),
+        "objc_fragment": attr.string_dict(mandatory = False),
         "package_bin_dir": attr.string(mandatory = True),
         "full_swiftcopts": attr.string_list(mandatory = True),
         "user_swiftcopts": attr.string_list(mandatory = True),
     },
 )
+
+def _objc_fragment(
+        *,
+        copts,
+        copts_for_current_compilation_mode):
+    return {
+        "copts": json.encode(copts),
+        "copts_for_current_compilation_mode": json.encode(
+            copts_for_current_compilation_mode,
+        ),
+    }
+
+def _objc_fragment_stub(dict):
+    if not dict:
+        return struct(
+            copts = [],
+            copts_for_current_compilation_mode = ["-DCOPTS_FOR_CURRENT"],
+        )
+    return struct(
+        copts = json.decode(dict["copts"]),
+        copts_for_current_compilation_mode = json.decode(dict[
+            "copts_for_current_compilation_mode"
+        ]),
+    )
 
 def process_compiler_opts_test_suite(name):
     """Test suite for `process_compiler_opts`.
@@ -73,11 +107,18 @@ def process_compiler_opts_test_suite(name):
             *,
             name,
             expected_build_settings,
-            expected_search_paths = {"quote_includes": [], "includes": [], "system_includes": []},
+            expected_search_paths = {
+                "quote_includes": [],
+                "includes": [],
+                "system_includes": [],
+            },
             conlyopts = [],
             cxxopts = [],
             full_swiftcopts = [],
             user_swiftcopts = [],
+            compilation_mode = "dbg",
+            objc_fragment = None,
+            cc_info_defines = [],
             package_bin_dir = ""):
         test_names.append(name)
         process_compiler_opts_test(
@@ -86,6 +127,9 @@ def process_compiler_opts_test_suite(name):
             cxxopts = cxxopts,
             full_swiftcopts = full_swiftcopts,
             user_swiftcopts = user_swiftcopts,
+            compilation_mode = compilation_mode,
+            objc_fragment = objc_fragment,
+            cc_info_defines = cc_info_defines,
             package_bin_dir = package_bin_dir,
             expected_build_settings = stringify_dict(expected_build_settings),
             expected_search_paths = json.encode(expected_search_paths),
@@ -143,7 +187,7 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
             "APPLICATION_EXTENSION_API_ONLY": "True",
-            "OTHER_SWIFT_FLAGS": "weird -unhandled",
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT weird -unhandled",
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
     )
@@ -277,6 +321,7 @@ def process_compiler_opts_test_suite(name):
                 "-passthrough",
             ],
             "OTHER_SWIFT_FLAGS": """\
+-Xcc -DCOPTS_FOR_CURRENT \
 -passthrough \
 -passthrough \
 -passthrough \
@@ -330,6 +375,7 @@ def process_compiler_opts_test_suite(name):
         full_swiftcopts = ["-enable-testing"],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
         },
     )
 
@@ -340,6 +386,7 @@ def process_compiler_opts_test_suite(name):
         full_swiftcopts = ["-application-extension"],
         expected_build_settings = {
             "APPLICATION_EXTENSION_API_ONLY": "True",
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
         },
     )
 
@@ -409,6 +456,7 @@ def process_compiler_opts_test_suite(name):
             "-DBAZEL",
         ],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG BAZEL",
         },
     )
@@ -422,6 +470,7 @@ def process_compiler_opts_test_suite(name):
             "-no-whole-module-optimization",
         ],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_COMPILATION_MODE": "singlefile",
         },
     )
@@ -430,6 +479,7 @@ def process_compiler_opts_test_suite(name):
         name = "{}_swift_option-incremental".format(name),
         full_swiftcopts = ["-incremental"],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_COMPILATION_MODE": "singlefile",
         },
     )
@@ -438,6 +488,7 @@ def process_compiler_opts_test_suite(name):
         name = "{}_swift_option-whole-module-optimization".format(name),
         full_swiftcopts = ["-whole-module-optimization"],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_COMPILATION_MODE": "wholemodule",
         },
     )
@@ -446,6 +497,7 @@ def process_compiler_opts_test_suite(name):
         name = "{}_swift_option-wmo".format(name),
         full_swiftcopts = ["-wmo"],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_COMPILATION_MODE": "wholemodule",
         },
     )
@@ -454,6 +506,7 @@ def process_compiler_opts_test_suite(name):
         name = "{}_swift_option-no-whole-module-optimization".format(name),
         full_swiftcopts = ["-no-whole-module-optimization"],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_COMPILATION_MODE": "singlefile",
         },
     )
@@ -468,6 +521,7 @@ def process_compiler_opts_test_suite(name):
         ],
         package_bin_dir = "a/b",
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "c/TestingUtils-Custom.h",
         },
     )
@@ -482,6 +536,7 @@ def process_compiler_opts_test_suite(name):
             "-O",
         ],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
         },
     )
@@ -490,6 +545,7 @@ def process_compiler_opts_test_suite(name):
         name = "{}_swift_option-Onone".format(name),
         full_swiftcopts = ["-Onone"],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         },
     )
@@ -498,6 +554,7 @@ def process_compiler_opts_test_suite(name):
         name = "{}_swift_option-O".format(name),
         full_swiftcopts = ["-O"],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
         },
     )
@@ -506,6 +563,7 @@ def process_compiler_opts_test_suite(name):
         name = "{}_swift_option-Osize".format(name),
         full_swiftcopts = ["-Osize"],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_OPTIMIZATION_LEVEL": "-Osize",
         },
     )
@@ -516,7 +574,72 @@ def process_compiler_opts_test_suite(name):
         name = "{}_swift_option-swift-version".format(name),
         full_swiftcopts = ["-swift-version=42"],
         expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
             "SWIFT_VERSION": "42",
+        },
+    )
+
+    # Swift PCM flags
+
+    _add_test(
+        name = "{}_pcm_no_copts_no_legacy".format(name),
+        full_swiftcopts = ["-Xcc", "-O1", "-Xcc", "-DNDEBUG=1"],
+        objc_fragment = _objc_fragment(
+            copts = [],
+            copts_for_current_compilation_mode = None,
+        ),
+        expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": """\
+-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all\
+""",
+        },
+    )
+
+    _add_test(
+        name = "{}_pcm_copts_no_legacy".format(name),
+        full_swiftcopts = ["-Xcc", "-O1", "-Xcc", "-DNDEBUG=1"],
+        objc_fragment = _objc_fragment(
+            copts = ["-wild", "-card"],
+            copts_for_current_compilation_mode = None,
+        ),
+        expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": """\
+-Xcc -wild -Xcc -card -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc \
+-fstack-protector-all\
+""",
+        },
+    )
+
+    _add_test(
+        name = "{}_pcm_no_copts_legacy".format(name),
+        full_swiftcopts = ["-Xcc", "-O1", "-Xcc", "-DNDEBUG=1"],
+        objc_fragment = _objc_fragment(
+            copts = [],
+            copts_for_current_compilation_mode = ["-legacy", "-flags"],
+        ),
+        expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -legacy -Xcc -flags",
+        },
+    )
+
+    _add_test(
+        name = "{}_pcm_copts_and_legacy".format(name),
+        full_swiftcopts = ["-Xcc", "-O1", "-Xcc", "-DNDEBUG=1"],
+        objc_fragment = _objc_fragment(
+            copts = ["-c", "-flags"],
+            copts_for_current_compilation_mode = ["-legacy", "-flags"],
+        ),
+        expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -c -Xcc -flags -Xcc -legacy -Xcc -flags",
+        },
+    )
+
+    _add_test(
+        name = "{}_pcm_defines".format(name),
+        cc_info_defines = ["SWIFTY"],
+        full_swiftcopts = ["-Xcc", "-O0", "-Xcc", "-DDEBUG=1"],
+        expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT -Xcc -DSWIFTY",
         },
     )
 
@@ -544,7 +667,14 @@ def process_compiler_opts_test_suite(name):
             "-isystem",
             "s3/s4",
         ],
-        user_swiftcopts = ["-Xcc", "-Ic/d/e", "-Xcc", "-iquote4/5", "-Xcc", "-isystems5/s6"],
+        user_swiftcopts = [
+            "-Xcc",
+            "-Ic/d/e",
+            "-Xcc",
+            "-iquote4/5",
+            "-Xcc",
+            "-isystems5/s6",
+        ],
         expected_build_settings = {},
         expected_search_paths = {
             "quote_includes": [

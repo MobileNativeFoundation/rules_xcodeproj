@@ -224,7 +224,7 @@
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -Fexternal/examples_command_line_external -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -g -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwiftTestsLib",
                 "PRODUCT_NAME": "LibSwiftTestsLib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -462,7 +462,7 @@
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -Fexternal/examples_command_line_external -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -g -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwift",
                 "PRODUCT_NAME": "lib_swift",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
