@@ -107,16 +107,16 @@
                 ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -194,16 +194,16 @@
                 ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -282,16 +282,16 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -368,16 +368,16 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -455,16 +455,16 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -543,16 +543,16 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -630,16 +630,16 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -721,10 +721,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -807,16 +805,16 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -902,10 +900,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -1003,10 +999,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -1102,16 +1096,16 @@
                 ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -1194,16 +1188,16 @@
                 ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -1290,10 +1284,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -1389,10 +1381,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -1486,16 +1476,16 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -1578,16 +1568,16 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -1675,10 +1665,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -1759,10 +1747,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -1845,10 +1831,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -1953,10 +1937,8 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
@@ -2059,16 +2041,16 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -2151,16 +2133,16 @@
                     "__TIME__=\"redacted\""
                 ],
                 "OTHER_CFLAGS": [
+                    "-DDEBUG=1",
                     "-fstack-protector",
                     "-Wall",
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
+                    "-Wno-builtin-macro-redefined",
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",

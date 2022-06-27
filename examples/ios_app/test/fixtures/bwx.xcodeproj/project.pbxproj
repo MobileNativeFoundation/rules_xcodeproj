@@ -1360,16 +1360,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
-					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-fstack-protector-all",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fstack-protector",
@@ -1384,7 +1384,7 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -Wno-builtin-macro-redefined -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
 				SDKROOT = iphoneos;
@@ -1449,16 +1449,16 @@
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
-					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-fstack-protector-all",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fstack-protector",
@@ -1473,7 +1473,7 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -g -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -Wno-builtin-macro-redefined -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
 				PRODUCT_MODULE_NAME = ExampleUITests;
 				PRODUCT_NAME = ExampleUITests;
@@ -1569,16 +1569,16 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
-					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-fstack-protector-all",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fstack-protector",
@@ -1642,16 +1642,16 @@
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
-					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-fstack-protector-all",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fstack-protector",
@@ -1671,7 +1671,7 @@
 					"-lc++",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -g -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -Wno-builtin-macro-redefined -Xcc -fstack-protector-all -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
@@ -1724,16 +1724,16 @@
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
-					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-fstack-protector-all",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fstack-protector",
@@ -1809,16 +1809,16 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_CFLAGS = (
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
-					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-fstack-protector-all",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fstack-protector",
@@ -1838,7 +1838,7 @@
 					"-lc++",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -no-canonical-prefixes -Xcc -Wno-builtin-macro-redefined -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Utils/Utils.swift.xcode.modulemap -g -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -Wall -Xcc -Wthread-safety -Xcc -Wself-assign -Xcc -fno-omit-frame-pointer -Xcc -no-canonical-prefixes -Xcc -pthread -Xcc -Wno-builtin-macro-redefined -Xcc -fstack-protector-all -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Utils/Utils.swift.xcode.modulemap -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;
@@ -1916,16 +1916,16 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-g",
 					"-no-canonical-prefixes",
 					"-pthread",
-					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-fstack-protector-all",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fstack-protector",
