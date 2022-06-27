@@ -140,7 +140,9 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
 
     return (
         [
-            copt for copt in unique_copts if copt != "-g"
+            copt
+            for copt in unique_copts
+            if copt != "-g"
         ],
         base_cxxopts + cpp.copts + cpp.cxxopts + user_copts,
         raw_swiftcopts,
