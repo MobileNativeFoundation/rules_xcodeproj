@@ -347,7 +347,8 @@ def swift_to_list(swift):
     module = swift.module
     ret.append(module.swiftdoc)
     ret.append(module.swiftmodule)
-    ret.append(module.swiftsourceinfo)
+    if module.swiftsourceinfo:
+        ret.append(module.swiftsourceinfo)
     if module.swiftinterface:
         ret.append(module.swiftinterface)
     if swift.generated_header:
