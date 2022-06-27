@@ -244,7 +244,7 @@ def _collect(
     resource_bundles = None
     resource_bundle_dependencies = None
     xccurrentversions = None
-    if is_bundle:
+    if is_bundle and AppleResourceInfo in target:
         resources_result = collect_resources(
             platform = platform,
             resource_info = target[AppleResourceInfo],
