@@ -102,17 +102,18 @@ def process_modulemaps(*, swift_info):
         files = uniq(modulemap_files),
     )
 
-def process_defines(*, cc_info, build_settings):
+def process_defines(*, cc_info, swift_info, build_settings):
     """ Logic for processing defines of a module
 
     Args:
-        cc_info: A CcInfo provider object
-        build_settings: build settings of the target
+        cc_info: The `CcInfo` provider for the target.
+        swift_info: The `SwiftInfo` provider for the target.
+        build_settings: build settings of the target.
 
     Return:
         The modified build settings object
     """
-    if cc_info and build_settings != None:
+    if not swift_info and cc_info and build_settings != None:
         # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
         # process Swift compile options already accounts for `defines`
 

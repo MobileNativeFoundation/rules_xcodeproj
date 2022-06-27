@@ -55,37 +55,8 @@
         "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -153,45 +124,14 @@
         "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Example",
                 "PRODUCT_NAME": "Example.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -254,37 +194,8 @@
         "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -348,46 +259,15 @@
         "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "PRODUCT_NAME": "ExampleTests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -456,37 +336,8 @@
         "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
@@ -550,46 +401,15 @@
         "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
         {
             "build_settings": {
-                "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "GCC_PREPROCESSOR_DEFINITIONS": [
-                    "_FORTIFY_SOURCE=1",
-                    "__DATE__=\"redacted\"",
-                    "__TIMESTAMP__=\"redacted\"",
-                    "__TIME__=\"redacted\""
-                ],
-                "OTHER_CFLAGS": [
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-Wno-builtin-macro-redefined",
-                    "-fstack-protector-all"
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-fstack-protector",
-                    "-Wall",
-                    "-Wthread-safety",
-                    "-Wself-assign",
-                    "-fno-omit-frame-pointer",
-                    "-g",
-                    "-no-canonical-prefixes",
-                    "-pthread",
-                    "-no-canonical-prefixes",
-                    "-Wno-builtin-macro-redefined"
-                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],
-                "OTHER_SWIFT_FLAGS": "-g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
                 "PRODUCT_NAME": "ExampleUITests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",

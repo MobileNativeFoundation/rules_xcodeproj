@@ -199,27 +199,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 .joined(separator: " ")
         )
 
-        if target.isSwift {
-            guard case let .array(cFlags) =
-                    buildSettings["OTHER_CFLAGS", default: .array([])]
-            else {
-                throw PreconditionError(message: """
-"OTHER_CFLAGS" in `buildSettings` was not an `.array()`. Instead found \
-\(buildSettings["OTHER_CFLAGS", default: .array([])])
-""")
-            }
-
-            // `OTHER_CFLAGS` here comes from cc_toolchain. We want to pass
-            // those to clang for PCM compilation
-            try buildSettings.prepend(
-                onKey: "OTHER_SWIFT_FLAGS",
-                cFlags
-                    .filter { $0 != "-g" }
-                    .map { "-Xcc \($0)" }
-                    .joined(separator: " ")
-            )
-        }
-
         if !target.isSwift && target.product.type.isExecutable {
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",

@@ -316,6 +316,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
     process_defines(
         cc_info = cc_info,
+        swift_info = swift_info,
         build_settings = build_settings,
     )
     process_sdk_links(
