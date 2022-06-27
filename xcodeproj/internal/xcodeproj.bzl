@@ -9,7 +9,13 @@ load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
-load(":output_files.bzl", "output_files")
+load(":linker_input_files.bzl", "linker_input_files")
+load(
+    ":output_files.bzl",
+    "output_files",
+    "parse_swift_info_module",
+    "swift_to_list",
+)
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
@@ -276,18 +282,63 @@ def _xcodeproj_impl(ctx):
         for dep in ctx.attr.targets
     ]
     configuration = get_configuration(ctx = ctx)
-    inputs = input_files.merge(
-        transitive_infos = [(None, info) for info in infos],
-    )
+
     outputs = output_files.merge(
         automatic_target_info = None,
         transitive_infos = [(None, info) for info in infos],
     )
 
-    bazel_integration_files = [ctx.file._create_lldbinit_script]
+    non_target_swift_info_modules = depset(
+        transitive = [
+            info.non_target_swift_info_modules
+            for info in infos
+        ],
+    )
 
-    if ctx.attr.build_mode == "bazel":
+    xcode_outputs = sets.union(
+        *[
+            sets.make(swift_to_list(swift))
+            for swift in output_files.to_swift_list(outputs)
+        ]
+    )
+    non_xcode_outputs = sets.union(
+        *[
+            sets.make(swift_to_list(parse_swift_info_module(module)))
+            for module in non_target_swift_info_modules.to_list()
+        ]
+    )
+
+    bazel_integration_files = [ctx.file._create_lldbinit_script]
+    if ctx.attr.build_mode == "xcode":
+        xcode_libraries = sets.make(
+            depset(
+                transitive = [info.target_libraries for info in infos],
+            ).to_list(),
+        )
+        non_xcode_libraries = sets.make(
+            linker_input_files.get_static_libraries(
+                linker_input_files.merge(
+                    transitive_linker_inputs = [
+                        (info.target, info.non_target_linker_inputs)
+                        for info in infos
+                    ],
+                ),
+            ),
+        )
+
+        xcode_outputs = sets.union(xcode_outputs, xcode_libraries)
+        non_xcode_outputs = sets.union(non_xcode_outputs, non_xcode_libraries)
+    else:
         bazel_integration_files.extend(ctx.files._bazel_integration_files)
+
+    extra_generated = sets.to_list(
+        sets.difference(non_xcode_outputs, xcode_outputs),
+    )
+
+    inputs = input_files.merge(
+        transitive_infos = [(None, info) for info in infos],
+        extra_generated = extra_generated,
+    )
 
     spec_file = _write_json_spec(
         ctx = ctx,

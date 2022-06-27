@@ -90,6 +90,14 @@ the target that can be merged into the target with the id of the 'dest' field.
 A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
 """,
+        "non_target_linker_inputs": """\
+A value returned from `linker_input_files.collect`, for targets that aren't
+generating Xcode targets.
+""",
+        "non_target_swift_info_modules": """\
+A value returned from `swift_common.create_swift_info`, for targets that aren't
+generating Xcode targets.
+""",
         "outputs": """\
 A value returned from `output_files.collect`, that contains information about
 the output files for this target and its transitive dependencies.
@@ -106,6 +114,9 @@ any target that depends on this target.
         "target": """\
 A `struct` that contains information about the current target that is
 potentially needed by the dependent targets.
+""",
+        "target_libraries": """\
+A `depset` of library `File`s for targets that generate an Xcode target.
 """,
         "target_type": """\
 A string that categorizes the type of the current target. This will be one of

@@ -4,6 +4,7 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
 )
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -50,11 +51,14 @@ def _target_info_fields(
         inputs,
         linker_inputs,
         non_mergable_targets,
+        non_target_linker_inputs,
+        non_target_swift_info_modules,
         outputs,
         potential_target_merges,
         resource_bundle_informations,
         search_paths,
         target,
+        target_libraries,
         target_type,
         xcode_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
@@ -67,6 +71,10 @@ def _target_info_fields(
         linker_inputs: Maps to the `XcodeProjInfo.linker_inputs` field.
         non_mergable_targets: Maps to the `XcodeProjInfo.non_mergable_targets`
             field.
+        non_target_linker_inputs: Maps to the
+            `XcodeProjInfo.non_target_linker_inputs` field.
+        non_target_swift_info_modules: Maps to the
+            `XcodeProjInfo.non_target_swift_info_modules` field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
@@ -74,6 +82,7 @@ def _target_info_fields(
             `XcodeProjInfo.resource_bundle_informations` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target: Maps to the `XcodeProjInfo.target` field.
+        target_libraries: Maps to the `XcodeProjInfo.target_libraries` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
 
@@ -85,11 +94,14 @@ def _target_info_fields(
         *   `inputs`
         *   `linker_inputs`
         *   `non_mergable_targets`
+        *   `non_target_linker_inputs`
+        *   `non_target_swift_info_modules`
         *   `outputs`
         *   `potential_target_merges`
         *   `resource_bundle_informations`
         *   `search_paths`
         *   `target`
+        *   `target_libraries`
         *   `target_type`
         *   `xcode_targets`
     """
@@ -98,11 +110,14 @@ def _target_info_fields(
         "inputs": inputs,
         "linker_inputs": linker_inputs,
         "non_mergable_targets": non_mergable_targets,
+        "non_target_linker_inputs": non_target_linker_inputs,
+        "non_target_swift_info_modules": non_target_swift_info_modules,
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
         "resource_bundle_informations": resource_bundle_informations,
         "search_paths": search_paths,
         "target": target,
+        "target_libraries": target_libraries,
         "target_type": target_type,
         "xcode_targets": xcode_targets,
     }
@@ -133,6 +148,18 @@ def _skip_target(*, deps, transitive_infos):
         non_mergable_targets = depset(
             transitive = [
                 info.non_mergable_targets
+                for _, info in transitive_infos
+            ],
+        ),
+        non_target_linker_inputs = linker_input_files.merge(
+            transitive_linker_inputs = [
+                (info.target, info.non_target_linker_inputs)
+                for _, info in transitive_infos
+            ],
+        ),
+        non_target_swift_info_modules = depset(
+            transitive = [
+                info.non_target_swift_info_modules
                 for _, info in transitive_infos
             ],
         ),
@@ -168,6 +195,12 @@ def _skip_target(*, deps, transitive_infos):
             ),
         ),
         target = None,
+        target_libraries = depset(
+            transitive = [
+                info.target_libraries
+                for _, info in transitive_infos
+            ],
+        ),
         target_type = target_type.compile,
         xcode_targets = depset(
             transitive = [info.xcode_targets for _, info in transitive_infos],
@@ -189,6 +222,7 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
     """
     automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
 
+    target_library = None
     if not automatic_target_info.should_generate_target:
         processed_target = process_non_xcode_target(
             ctx = ctx,
@@ -219,11 +253,47 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
+        target_library = linker_input_files.get_primary_static_library(
+            processed_target.linker_inputs,
+        )
+
+    linker_inputs = processed_target.linker_inputs
+
+    if processed_target.target:
+        non_target_linker_inputs = linker_input_files.merge(
+            transitive_linker_inputs = [
+                (info.target, info.non_target_linker_inputs)
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
+            ],
+        )
+        non_target_swift_info_modules = depset(
+            transitive = [
+                info.non_target_swift_info_modules
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
+            ],
+        )
+    else:
+        non_target_linker_inputs = linker_inputs
+        swift_info = target[SwiftInfo] if SwiftInfo in target else None
+        if swift_info:
+            non_target_swift_info_modules = swift_info.transitive_modules
+        else:
+            non_target_swift_info_modules = depset()
 
     return _target_info_fields(
         dependencies = processed_target.dependencies,
         inputs = processed_target.inputs,
-        linker_inputs = processed_target.linker_inputs,
+        linker_inputs = linker_inputs,
         non_mergable_targets = depset(
             processed_target.non_mergable_targets,
             transitive = [
@@ -236,6 +306,8 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                     ))
             ],
         ),
+        non_target_linker_inputs = non_target_linker_inputs,
+        non_target_swift_info_modules = non_target_swift_info_modules,
         outputs = processed_target.outputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,
@@ -263,6 +335,18 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         ),
         search_paths = processed_target.search_paths,
         target = processed_target.target,
+        target_libraries = depset(
+            [target_library] if target_library else None,
+            transitive = [
+                info.target_libraries
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
+            ],
+        ),
         target_type = processed_target.automatic_target_info.target_type,
         xcode_targets = depset(
             processed_target.xcode_targets,
