@@ -22,15 +22,15 @@ def _collect_transitive_extra_files(info):
     transitive = [inputs.extra_files]
     if not info.target:
         transitive.append(depset([
-            file_path(file)
+            _normalized_file_path(file)
             for file in inputs.srcs.to_list()
         ]))
         transitive.append(depset([
-            file_path(file)
+            _normalized_file_path(file)
             for file in inputs.non_arc_srcs.to_list()
         ]))
         transitive.append(depset([
-            file_path(file)
+            _normalized_file_path(file)
             for file in inputs.hdrs.to_list()
         ]))
 
@@ -238,7 +238,7 @@ def _collect(
 
     generated.extend([file for file in additional_files if not file.is_source])
     for file in additional_files:
-        extra_files.append(file_path(file))
+        extra_files.append(_normalized_file_path(file))
 
     resources = None
     resource_bundles = None
