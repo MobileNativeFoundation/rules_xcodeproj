@@ -112,6 +112,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
     return [
         XcodeProjAutomaticTargetProcessingInfo(
+            codesignopts = "codesignopts",
             should_generate_target = should_generate_target,
             target_type = this_target_type,
             xcode_targets = xcode_targets,

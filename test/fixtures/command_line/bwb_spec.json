@@ -593,6 +593,10 @@
             "build_settings": {
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_CODE_SIGN_FLAGS": [
+                    "--digest-algorithm=sha1",
+                    "--digest-algorithm=sha384"
+                ],
                 "OTHER_LDFLAGS": [
                     "-ObjC"
                 ],

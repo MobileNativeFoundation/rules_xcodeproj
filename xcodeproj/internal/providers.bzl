@@ -20,6 +20,9 @@ return a `XcodeProjInfo` provider instance instead.
         "bundle_id": """\
 An attribute name (or `None`) to collect the bundle id string from.
 """,
+        "codesignopts": """\
+A `list` of code sign options.
+""",
         "entitlements": """\
 An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.

@@ -102,6 +102,19 @@ def process_modulemaps(*, swift_info):
         files = uniq(modulemap_files),
     )
 
+def process_codesignopts(*, codesignopts, build_settings):
+    """Logic for processing code signing flags.
+
+    Args:
+        codesignopts: A `list` of code sign options
+        build_settings: A mutable `dict` that will be updated with code signing
+            flag build settings that are processed.
+    Return:
+        The modified build settings object
+    """
+    if codesignopts and build_settings != None:
+        set_if_true(build_settings, "OTHER_CODE_SIGN_FLAGS", codesignopts)
+
 def process_defines(*, cc_info, swift_info, build_settings):
     """ Logic for processing defines of a module
 
