@@ -315,7 +315,12 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 
     cc_info = target[CcInfo] if CcInfo in target else None
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
-    codesignopts = getattr(ctx.rule.attr, "codesignopts", None)
+
+    codesignopts = getattr(
+        ctx.rule.attr,
+        automatic_target_info.codesignopts,
+        None,
+    )
     process_codesignopts(
         codesignopts = codesignopts,
         build_settings = build_settings,
