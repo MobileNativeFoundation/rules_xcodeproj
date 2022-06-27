@@ -1,4 +1,4 @@
-"""Implementation of the `default_input_file_attributes_aspect` aspect."""
+"""Implementation of the `default_automatic_target_processing_aspect` aspect."""
 
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
@@ -37,7 +37,7 @@ def _is_test_target(target):
 
 # Aspects
 
-def _default_input_file_attributes_aspect_impl(target, ctx):
+def _default_automatic_target_processing_aspect_impl(target, ctx):
     if XcodeProjAutomaticTargetProcessingInfo in target:
         return []
 
@@ -123,7 +123,7 @@ def _default_input_file_attributes_aspect_impl(target, ctx):
         ),
     ]
 
-default_input_file_attributes_aspect = aspect(
-    implementation = _default_input_file_attributes_aspect_impl,
+default_automatic_target_processing_aspect = aspect(
+    implementation = _default_automatic_target_processing_aspect_impl,
     attr_aspects = ["*"],
 )
