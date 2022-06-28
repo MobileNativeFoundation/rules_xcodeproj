@@ -14,9 +14,11 @@ This document is a proposal for how custom Xcode schemes can be defined and impl
 * [Implementation Changes](#implementation-changes)
   * [xcode\_schemes Module](#xcode_schemes-module)
   * [Changes to xcodeproj Macro](#changes-to-xcodeproj-macro)
+    * [Collecting Targets from Schemes](#collecting-targets-from-schemes)
   * [Changes to \_xcodeproj Rule](#changes-to-_xcodeproj-rule)
     * [scheme\_autogeneration\_mode Attribute](#scheme_autogeneration_mode-attribute)
     * [schemes Attribute](#schemes-attribute)
+* [Configuration and Target Selection in Schemes](#configuration-and-target-selection-in-schemes)
 
 ## Automatic Scheme Generation
 
