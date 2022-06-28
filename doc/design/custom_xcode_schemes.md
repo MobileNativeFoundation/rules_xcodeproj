@@ -39,7 +39,7 @@ and executes `//Tests/FooTests` when testing is requested.
 
 ## Introduction of Scheme Autogeneration Mode for `_xcodeproj`
 
-The `_xcodeproj` rule now has a new attribute called `scheme_autogeneration_mode`. The value of
+The `_xcodeproj` rule has a new attribute called `scheme_autogeneration_mode`. The value of
 this attribute determines how Xcode scheme autogeneration will occur.
 
 Values
@@ -186,7 +186,85 @@ xcodeproj(
 This example is the same as the previous one except arguments and environment variables are
 defined for the launch action.
 
-## Changes to `xcodeproj` Macro and `_xcodeproj` Rule
+## `xcode_schemes` Module
+
+```python
+
+def _scheme(
+    name, 
+    as_json = True, 
+    build_action = None, 
+    test_action = None, 
+    launch_action = None):
+    """Returns a `struct` or JSON `string` representing an Xcode scheme.
+
+    Args:
+        name: The user-visible name for the scheme as a `string`.
+        as_json: Optional. A `bool` indicating whether the resulting struct 
+            should be returned as JSON.
+        build_action: Optional. A `struct` as returned by 
+            `xcode_schemes.build_action`.
+        test_action: Optional. A `struct` as returned by 
+            `xcode_schemes.test_action`.
+        launch_action: Optional. A `struct` as returned by 
+            `xcode_schemes.launch_action`.
+  
+    Returns:
+        If `as_json` is `False`, a `struct` representing an Xcode scheme is 
+        returned. Otherwise, a JSON `string` representing the struct is 
+        returned.
+    """
+    pass
+
+def _build_action(targets):
+    """Constructs a build action for an Xcode scheme.
+
+    Args:
+        targets: A `sequence` of target labels as `string` values.
+
+    Return:
+        A `struct` representing a build action.
+    """
+    pass
+
+def _test_action(targets):
+    """Constructs a test action for an Xcode scheme.
+
+    Args:
+        targets: A `sequence` of target labels as `string` values.
+
+    Return:
+        A `struct` representing a test action.
+    """
+    pass
+
+def _launch_action(target, args = None, env = None):
+    """Constructs a launch action for an Xcode scheme.
+
+    Args:
+        target: A target label as a `string` value.
+        args: Optional. A `list` of `string` arguments that should be passed to 
+            the target when executed.
+        env: Optional. A `dict` of `string` values that will be set as 
+            environment variables when the target is executed.
+
+    Return:
+        A `struct` representing a launch action.
+    """
+    pass
+
+xcode_schemes = struct(
+    scheme = _scheme,
+    build_action = _build_action,
+    test_action = _test_action,
+    launch_action = _launch_action,
+)
+
+```
+
+## Changes to `xcodeproj` Macro 
+
+## Changes to `_xcodeproj` Rule
 
 > TODO (grindel): Do a POC to confirm that we can query for leaf targets.
 
@@ -199,15 +277,3 @@ The `_xcodeproj` rule now has a `schemes` attribute that expects a `list` of JSO
 The `xcodeproj` macro also accepts a `schemes` parameter. The scheme JSON values are then used to
 populate the `targets` attribute and the `schemes` attribute for the `_xcodeproj` rule.
 
-## Starlark Definitions
-
-> TODO (grindel): FINISH ME
-
-```python
-
-def xcode_scheme(name, top_level_targets, other_targets = []):
-    """Returns a JSON string that describes 
-    """
-    pass
-
-```
