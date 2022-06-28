@@ -310,8 +310,117 @@ parameter, the macro will collect all of the targets listed in the test and laun
 them to the build action targets list and the overall targets list. The build actions target list
 and the overall targets list will be sorted and deduplicated.
 
+#### Collecting Targets from Schemes
+
+Let's look at an example that illustrates how targets are collected. The following is the example
+from earlier with two schemes and some overlapping targets.
+
+```python
+# Assumptions
+#   //Sources/Foo:Foo - swift_library
+#   //Sources/FooTests:FooTests = ios_unit_test
+#   //Sources/App = ios_application
+#   //Sources/AppUITests = ios_ui_test
+
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "xcode_schemes",
+    "xcodeproj",
+)
+
+_SCHEMES = [
+    xcode_schemes.scheme(
+        name = "Foo Module",
+        build_action = xcode_schemes.build_action(["//Sources/Foo"]),
+        test_action = xcode_schemes.test_action(["//Tests/FooTests"]),
+    ),
+    xcode_schemes.scheme(
+        name = "My Application",
+        test_action = xcode_schemes.test_action([
+            "//Tests/AppUITests",
+            "//Tests/FooTests",
+        ]),
+        launch_action = xcode_schemes.launch_action("//Sources/App"),
+    ),
+]
+
+xcodeproj(
+    name = "generate_xcodeproj",
+    project_name = "Command Line",
+    tags = ["manual"],
+    schemes = _SCHEMES,
+)
+```
+
+After evaluation of the macro, the declaration for `_xcodeproj` will look like the following:
+
+```python
+_xcodeproj(
+    name = "generate_xcodeproj",
+    project_name = "Command Line",
+    tags = ["manual"],
+    schemes = [
+        "{...}", # JSON representation of Foo Module scheme
+        "{...}", # JSON representation of My Application scheme
+    ],
+    targets = [
+        "//Sources/App",
+        "//Sources/Foo",
+        "//Tests/FooTests",
+        "//Tests/AppUITests",
+    ],
+)
+```
+
+The JSON representation of `Foo Module` will look like the following:
+
+```json
+{
+  "name": "Foo Module",
+  "build_action": {
+    "targets": [
+      "//Sources/Foo",
+      "//Tests/FooTests"
+    ],
+  },
+  "test_action": {
+    "targets": [
+      "//Tests/FooTests"
+    ]
+  }
+}
+```
+
+The JSON representation of `My Application` will look like the following:
+
+```json
+{
+  "name": "My Application",
+  "build_action": {
+    "targets": [
+      "//Sources/App",
+      "//Tests/FooTests"
+      "//Tests/AppUITests"
+    ],
+  },
+  "test_action": {
+    "targets": [
+      "//Tests/FooTests",
+      "//Tests/AppUITests"
+    ]
+  },
+  "launch_action": {
+    "target": "//Sources/App"
+  }
+}
+```
+
+Note that the `targets` list for `_xcodeproj` contains all of the targets listed in the schemes.
+Also, the targets list in the build actions contain all of the targets mentioned for that scheme.
+
 > TODO: Do we want to implement a genquery that reduces the target list to leaf nodes (i.e.,
-nodes that are not referenced by other targets in the list)?
+nodes that are not referenced by other targets in the list)? This would remove //Sources/Foo from
+the `targets` list for `_xcodeproj`.
 
 ### Changes to `_xcodeproj` Rule
 
@@ -329,3 +438,5 @@ The `schemes` attribute accepts a `sequence` of JSON `string` values as returned
 
 
 ## Configuration and Target Selection
+
+
