@@ -14,16 +14,16 @@
     "extra_files": [
         "examples/command_line/lib/BUILD",
         {
+            "_": "examples_command_line_external/ExternalFramework.framework",
+            "t": "e"
+        },
+        {
             "_": "examples_command_line_external/ImportableLibrary/Library.h",
             "t": "e"
         },
         {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/lib_impl.swift.modulemap",
             "t": "g"
-        },
-        {
-            "_": "examples_command_line_external/ExternalFramework.framework",
-            "t": "e"
         },
         {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/external/examples_command_line_external/Library.swift.modulemap",
@@ -35,6 +35,7 @@
         },
         "examples/command_line/lib/dir with space/lib.h",
         "examples/command_line/third_party/BUILD",
+        "examples/command_line/third_party/ExampleFramework.framework",
         "examples/command_line/tool/BUILD",
         "examples/command_line/tool/Info.plist",
         "examples/command_line/Tests/BUILD",
