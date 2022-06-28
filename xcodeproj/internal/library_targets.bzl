@@ -123,6 +123,7 @@ def process_library_target(
         platform = platform,
         bundle_resources = bundle_resources,
         is_bundle = False,
+        linker_inputs = linker_inputs,
         automatic_target_info = automatic_target_info,
         additional_files = modulemaps.files,
         transitive_infos = transitive_infos,

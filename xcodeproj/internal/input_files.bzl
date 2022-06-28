@@ -11,6 +11,7 @@ load(
     "file_path_to_dto",
     "parsed_file_path",
 )
+load(":linker_input_files.bzl", "linker_input_files")
 load(":output_group_map.bzl", "output_group_map")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resources.bzl", "collect_resources")
@@ -104,6 +105,7 @@ def _collect(
         platform,
         bundle_resources,
         is_bundle,
+        linker_inputs,
         automatic_target_info,
         additional_files = [],
         transitive_infos,
@@ -118,6 +120,8 @@ def _collect(
             project. If this is `False` then all resources will get added to
             `extra_files` instead of `resources`.
         is_bundle: Whether `target` is a bundle.
+        linker_inputs: A value returned from
+            `linker_file_inputs.collect_for_top_level`, or a similar function.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         additional_files: A `list` of `File`s to add to the inputs. This can
@@ -234,6 +238,11 @@ def _collect(
             for dep in dep:
                 if type(dep) == "Target":
                     _handle_dep(dep, attr = attr)
+
+    # TODO: Ensure this continues to work once we support framework targets
+    additional_files = additional_files + linker_input_files.to_framework_files(
+        linker_inputs,
+    )
 
     generated.extend([file for file in additional_files if not file.is_source])
     for file in additional_files:
