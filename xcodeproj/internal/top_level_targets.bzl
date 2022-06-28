@@ -21,6 +21,7 @@ load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
+    "process_codesignopts",
     "process_defines",
     "process_dependencies",
     "process_modulemaps",
@@ -314,6 +315,18 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 
     cc_info = target[CcInfo] if CcInfo in target else None
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
+
+    codesignopts_attr_name = automatic_target_info.codesignopts
+    if codesignopts_attr_name:
+        codesignopts = getattr(
+            ctx.rule.attr,
+            automatic_target_info.codesignopts,
+            None,
+        )
+        process_codesignopts(
+            codesignopts = codesignopts,
+            build_settings = build_settings,
+        )
     process_defines(
         cc_info = cc_info,
         swift_info = swift_info,

@@ -1028,6 +1028,10 @@
 					"-fstack-protector-all",
 					"-g",
 				);
+				OTHER_CODE_SIGN_FLAGS = (
+					"--digest-algorithm=sha1",
+					"--digest-algorithm=sha384",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fstack-protector",
 					"-Wall",

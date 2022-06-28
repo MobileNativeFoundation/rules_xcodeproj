@@ -4,6 +4,10 @@ load("@rules_cc//cc:defs.bzl", "objc_library")
 macos_command_line_application(
     name = "tool",
     bundle_id = "io.buildbuddy.example",
+    codesignopts = [
+        "--digest-algorithm=sha1",
+        "--digest-algorithm=sha384",
+    ],
     infoplists = ["Info.plist"],
     minimum_os_version = "11.0",
     visibility = ["//visibility:public"],

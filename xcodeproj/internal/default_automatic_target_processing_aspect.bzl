@@ -51,12 +51,13 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     else:
         srcs = ()
 
+    bundle_id = None
+    codesignopts = None
+    entitlements = None
+    infoplists = ()
     non_arc_srcs = ()
     pch = None
-    bundle_id = None
     provisioning_profile = None
-    infoplists = ()
-    entitlements = None
 
     attrs = dir(ctx.rule.attr)
 
@@ -90,6 +91,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
+        if "codesignopts" in attrs:
+            codesignopts = "codesignopts"
         if "provisioning_profile" in attrs:
             provisioning_profile = "provisioning_profile"
         if "infoplists" in attrs:
@@ -97,9 +100,11 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if "entitlements" in attrs:
             entitlements = "entitlements"
     elif AppleBinaryInfo in target:
-        xcode_targets = {"deps": [target_type.compile]}
+        if "codesignopts" in attrs:
+            codesignopts = "codesignopts"
         if "infoplists" in attrs:
             infoplists = ("infoplists")
+        xcode_targets = {"deps": [target_type.compile]}
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile]}
         should_generate_target = False
@@ -112,6 +117,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
     return [
         XcodeProjAutomaticTargetProcessingInfo(
+            codesignopts = codesignopts,
             should_generate_target = should_generate_target,
             target_type = this_target_type,
             xcode_targets = xcode_targets,
