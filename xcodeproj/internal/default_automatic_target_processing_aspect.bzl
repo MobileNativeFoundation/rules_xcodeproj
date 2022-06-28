@@ -82,15 +82,13 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         infoplists = ("infoplists")
         should_generate_target = False
     elif AppleBundleInfo in target:
-        codesignopts = "codesignopts"
-        entitlements = "entitlements"
-        infoplists = ("infoplists")
-        provisioning_profile = "provisioning_profile"
         xcode_targets = {
             "deps": [target_type.compile],
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
+        if "codesignopts" in attrs:
+            codesignopts = "codesignopts"
         if "provisioning_profile" in attrs:
             provisioning_profile = "provisioning_profile"
         if "infoplists" in attrs:
