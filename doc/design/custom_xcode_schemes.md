@@ -436,7 +436,17 @@ The `schemes` attribute accepts a `sequence` of JSON `string` values as returned
 `xcode_schemes.scheme`. The values are parsed and passed along to the scheme generation code in
 `rules_xcodeproj`. An Xcode scheme is generated for each entry in the list.
 
+## Configuration and Target Selection in Schemes
 
-## Configuration and Target Selection
+Throughout this proposal, the syntax for listing targets in the schemes shows simple Bazel target
+syntax. However, underneath the covers, there is some magic that occurs. 
 
+Every Bazel target can map to one or more buildable targets inside `rules_xcodeproj`. These
+buildable targets consist of the Bazel target along with any configuration variations that are
+required to build any specified leaf nodes. For instance, the configuration for a module being
+tested by a unit test using the iOS simulator is different than the configuration for the module
+when it is used by an iOS application targeted for a device.
 
+To simplify the syntax for specifying targets for schemes, we have opted to allow targets to be
+specifing by their Bazel target only. The logic inside `rules_xcodeproj` will select the correct
+configuration variant based upon the leaf nodes that are included in the scheme.
