@@ -37,7 +37,7 @@ The above declaration generates two schemes: `Foo` and
 `FooTests.__internal__.__test_bundle` scheme contains configuration that builds `//Tests/FooTests`
 and executes `//Tests/FooTests` when testing is requested.
 
-## Introduction of `scheme_autogeneration_mode` on `_xcodeproj` Rule
+## Introduction of Scheme Autogeneration Mode for `_xcodeproj`
 
 The `_xcodeproj` rule now has a new attribute called `scheme_autogeneration_mode`. The value of
 this attribute determines how Xcode scheme autogeneration will occur.
@@ -50,13 +50,15 @@ Values
 
 The default value for `scheme_autogeneration_mode` is `auto`.
 
-## Introduction of the `xcode_schemes` Module
+## Introduction of Custom Xcode Schemes
 
-The `xcode_schemes` Starlark module provides functions for defining an Xcode scheme.
+A new Starlark module called, `xcode_schemes`, provides functions for defining custom, Xcode
+schemes.
 
-### Simple Example Using `xcode_scheme`
+### Defining a Simple Xcode Scheme
 
-Building on the previous example, let's define a scheme that combines the two targets.
+Building on the previous example, let's define a scheme that combines the two targets,
+`//Sources/Foo` and `//Tests/FooTests`.
 
 ```python
 load(
@@ -89,7 +91,7 @@ configured to execute the `//Tests/FooTests` target when testing is requested.
 The result of the function is wrapped in a `list` and passed to the `schemes` parameter of the
 `xcodeproj` macro.
 
-### Specifying a  Launch Target (`xcode_schemes.launch_action`)
+### Specifying a Launch Target
 
 Let's continue our example. We will add an `ios_application` and a `ios_ui_test` to the mix.
 
@@ -130,10 +132,10 @@ xcodeproj(
 )
 ```
 
-The above example adds a second scheme called `My Application`. It is configured with two test
-targets and a single launch target. All three targets are implicitly added to the build list.
+The above example adds a second scheme called `My Application`. It is configured with two test targets
+and a single launch target. All three targets are implicitly included in the build list.
 
-### Specify Launch Arguments and Environment Variables
+### Specifying Launch Arguments and Environment Variables
 
 ```python
 # Assumptions
@@ -181,7 +183,7 @@ xcodeproj(
 )
 ```
 
-This example is the same as the previous example except arguments and environment variables are
+This example is the same as the previous one except arguments and environment variables are
 defined for the launch action.
 
 ## Changes to `xcodeproj` Macro and `_xcodeproj` Rule
