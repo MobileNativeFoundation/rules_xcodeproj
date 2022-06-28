@@ -38,6 +38,10 @@ and executes `//Tests/FooTests` when testing is requested.
 While functional, developers may prefer a single scheme that builds both targets and executes
 the `//Test/FooTests` target when test execution is requested.
 
+## Changes to `xcodeproj` Macro and `_xcodeproj` Rule
+
+> TODO (grindel): 
+
 ## Introduction of the `xcode_scheme` Function
 
 The `xcode_scheme` Starlark function allows a client to define an Xcode scheme and return a
@@ -53,6 +57,12 @@ populate the `targets` attribute and the `schemes` attribute for the `_xcodeproj
 Building on the previous example, let's define a scheme that combines the two targets.
 
 ```python
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "xcode_scheme",
+    "xcodeproj",
+)
+
 _SCHEMES = [
     xcode_scheme(
         name = "Foo Module",
@@ -85,6 +95,13 @@ Let's continue our example. We will add an `ios_application` and a `ios_ui_test`
 #   //Sources/FooTests:FooTests = ios_unit_test
 #   //Sources/App = ios_application
 #   //Sources/AppUITests = ios_ui_test
+
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "launch_action",
+    "xcode_scheme",
+    "xcodeproj",
+)
 
 _SCHEMES = [
     xcode_scheme(
@@ -127,6 +144,13 @@ xcodeproj(
 #   //Sources/FooTests:FooTests = ios_unit_test
 #   //Sources/App = ios_application
 #   //Sources/AppUITests = ios_ui_test
+
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "launch_action",
+    "xcode_scheme",
+    "xcodeproj",
+)
 
 _SCHEMES = [
     xcode_scheme(
