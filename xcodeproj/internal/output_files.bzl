@@ -344,6 +344,9 @@ def swift_to_list(swift):
     """
     ret = []
 
+    if not swift:
+        return ret
+
     module = swift.module
     ret.append(module.swiftdoc)
     ret.append(module.swiftmodule)
