@@ -88,6 +88,7 @@ def _process_cc_info_headers(headers, *, output_files, pch, generated):
         if not header.is_source:
             generated.append(header)
         return header
+
     return [
         _process_header(header)
         for header in headers
@@ -281,7 +282,7 @@ def _collect(
         ))
         hdrs.extend(_process_cc_info_headers(
             (compilation_context.direct_public_headers +
-                compilation_context.direct_textual_headers),
+             compilation_context.direct_textual_headers),
             output_files = output_files,
             pch = pch,
             generated = generated,
