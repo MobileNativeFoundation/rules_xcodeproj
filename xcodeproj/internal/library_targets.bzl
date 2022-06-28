@@ -19,7 +19,6 @@ load(
     "process_defines",
     "process_dependencies",
     "process_modulemaps",
-    "process_sdk_links",
     "process_swiftmodules",
     "should_bundle_resources",
     "should_include_outputs",
@@ -101,11 +100,6 @@ def process_library_target(
         getattr(ctx.rule.attr, "testonly", False),
     )
 
-    build_settings["OTHER_LDFLAGS"] = ["-ObjC"] + build_settings.get(
-        "OTHER_LDFLAGS",
-        [],
-    )
-
     platform = platform_info.collect(
         ctx = ctx,
         minimum_deployment_os_version = None,
@@ -149,10 +143,6 @@ def process_library_target(
     process_defines(
         cc_info = cc_info,
         swift_info = swift_info,
-        build_settings = build_settings,
-    )
-    process_sdk_links(
-        objc = objc,
         build_settings = build_settings,
     )
     search_paths = process_search_paths(

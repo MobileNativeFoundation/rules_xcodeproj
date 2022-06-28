@@ -57,9 +57,6 @@
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_Example_Stub",
                 "PRODUCT_NAME": "Example",
@@ -85,6 +82,17 @@
             "is_swift": false,
             "label": "//examples/tvos_app/Example:Example",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/libExample.library.a",
@@ -123,9 +131,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Example",
                 "PRODUCT_NAME": "Example.library",
@@ -176,9 +181,6 @@
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "PRODUCT_MODULE_NAME": "_ExampleTests_Stub",
                 "PRODUCT_NAME": "ExampleTests",
@@ -200,6 +202,18 @@
             "is_swift": false,
             "label": "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/libExampleTests.library.a",
@@ -239,9 +253,6 @@
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "PRODUCT_NAME": "ExampleTests.library",
@@ -298,9 +309,6 @@
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "PRODUCT_MODULE_NAME": "_ExampleUITests_Stub",
                 "PRODUCT_NAME": "ExampleUITests",
@@ -322,6 +330,17 @@
             "is_swift": false,
             "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/libExampleUITests.library.a",
@@ -361,9 +380,6 @@
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
                 "PRODUCT_NAME": "ExampleUITests.library",

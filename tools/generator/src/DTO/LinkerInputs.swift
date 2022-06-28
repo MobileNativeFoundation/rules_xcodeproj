@@ -1,18 +1,21 @@
 import OrderedCollections
 
 struct LinkerInputs: Equatable {
-    var staticFrameworks: [FilePath]
-    var dynamicFrameworks: [FilePath]
+    let staticFrameworks: [FilePath]
+    let dynamicFrameworks: [FilePath]
     var staticLibraries: OrderedSet<FilePath>
+    let linkopts: [String]
 
     init(
         staticFrameworks: [FilePath] = [],
         dynamicFrameworks: [FilePath] = [],
-        staticLibraries: OrderedSet<FilePath> = []
+        staticLibraries: OrderedSet<FilePath> = [],
+        linkopts: [String] = []
     ) {
         self.staticFrameworks = staticFrameworks
         self.dynamicFrameworks = dynamicFrameworks
         self.staticLibraries = staticLibraries
+        self.linkopts = linkopts
     }
 }
 
@@ -31,6 +34,7 @@ extension LinkerInputs: Decodable {
         case staticFrameworks
         case dynamicFrameworks
         case staticLibraries
+        case linkopts
     }
 
     init(from decoder: Decoder) throws {
@@ -39,6 +43,8 @@ extension LinkerInputs: Decodable {
         staticFrameworks = try container.decodeFilePaths(.staticFrameworks)
         dynamicFrameworks = try container.decodeFilePaths(.dynamicFrameworks)
         staticLibraries = try container.decodeFilePaths(.staticLibraries)
+        linkopts = try container
+            .decodeIfPresent([String].self, forKey: .linkopts) ?? []
     }
 }
 

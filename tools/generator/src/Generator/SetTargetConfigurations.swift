@@ -199,19 +199,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 .joined(separator: " ")
         )
 
-        if !target.isSwift && target.product.type.isExecutable {
-            try buildSettings.prepend(
-                onKey: "OTHER_LDFLAGS",
-                [
-                    "-Wl,-rpath,/usr/lib/swift",
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
-                ]
-            )
-        }
-
         if !target.linkerInputs.staticLibraries.isEmpty {
             let linkFileList = try filePathResolver
                 .resolve(try target.linkFileListFilePath())
@@ -220,6 +207,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 onKey: "OTHER_LDFLAGS",
                 ["-filelist", linkFileList.quoted]
             )
+        }
+
+        let linkopts = target.linkerInputs.linkopts
+        if !linkopts.isEmpty {
+            try buildSettings.prepend(onKey: "OTHER_LDFLAGS", linkopts)
         }
 
         buildSettings.set("ARCHS", to: target.platform.arch)

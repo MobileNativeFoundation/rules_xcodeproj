@@ -530,7 +530,6 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -592,7 +591,6 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -664,12 +662,12 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = (
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/examples/cc/tool/tool.LinkFileList",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-					"-L/usr/lib/swift",
-					"-ObjC",
 				);
 				PRODUCT_MODULE_NAME = _tool_Stub;
 				PRODUCT_NAME = tool;
@@ -736,7 +734,6 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;

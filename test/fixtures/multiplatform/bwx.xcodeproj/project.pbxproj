@@ -1405,10 +1405,12 @@
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
 				OTHER_LDFLAGS = (
-					"-Wl,-rpath,/usr/lib/swift",
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-					"-L/usr/lib/swift",
-					"-ObjC",
+					"-lc++",
+					"-framework",
+					UIKit,
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
+					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch;
 				PRODUCT_MODULE_NAME = _watchOSApp_Stub;
@@ -1461,14 +1463,32 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/examples/multiplatform/iOSApp/iOSApp.LinkFileList",
-					"-ObjC",
 				);
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule/arm64-apple-ios.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/examples/multiplatform/iOSApp/iOSApp.LinkFileList",
-					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
@@ -1513,14 +1533,32 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/examples/multiplatform/tvOSApp/tvOSApp.LinkFileList",
-					"-ObjC",
 				);
 				"OTHER_LDFLAGS[sdk=appletvos*]" = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/arm64-apple-tvos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/AppleTVOS.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/examples/multiplatform/tvOSApp/tvOSApp.LinkFileList",
-					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
@@ -1561,7 +1599,6 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
@@ -1629,9 +1666,18 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/examples/multiplatform/Tool/Tool.LinkFileList",
-					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = Tool;
@@ -1674,14 +1720,32 @@
 					"@executable_path/../../Frameworks",
 				);
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.LinkFileList",
-					"-ObjC",
 				);
 				"OTHER_LDFLAGS[sdk=watchos*]" = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/arm64_32-apple-watchos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/WatchOS.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.LinkFileList",
-					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch.extension;
@@ -1742,7 +1806,6 @@
 				IPHONESIMULATOR_FILES = "$(GEN_DIR)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swift";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MACOSX_FILES = "$(GEN_DIR)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/Lib.swift";
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;

@@ -65,9 +65,6 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -164,9 +161,6 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -260,9 +254,6 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_MODULE_NAME": "_tool_Stub",
                 "PRODUCT_NAME": "tool",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -284,6 +275,12 @@
             "is_swift": false,
             "label": "//examples/cc/tool:tool",
             "linker_inputs": {
+                "linkopts": [
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
                 "static_libraries": [
                     {
                         "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/cc/lib/liblib_impl.a",
@@ -391,9 +388,6 @@
                     "-pthread",
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
-                ],
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
                 ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",

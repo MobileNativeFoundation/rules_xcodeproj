@@ -2027,7 +2027,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = CustomDump;
 				PRODUCT_NAME = CustomDump;
@@ -2055,7 +2054,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = XcodeProj;
 				PRODUCT_NAME = XcodeProj;
@@ -2083,7 +2081,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = generator;
 				PRODUCT_NAME = generator.library;
@@ -2111,12 +2108,21 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/generator.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tadija_aexml/AEXML.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-ccd9595da841/tools/generator/generator.LinkFileList",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-					"-L/usr/lib/swift",
-					"-ObjC",
 				);
 				PRODUCT_MODULE_NAME = _generator_Stub;
 				PRODUCT_NAME = generator;
@@ -2153,7 +2159,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = XCTestDynamicOverlay;
 				PRODUCT_NAME = XCTestDynamicOverlay;
@@ -2184,9 +2189,24 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test/tests.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/generator.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tadija_aexml/AEXML.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-ccd9595da841/tools/generator/test/tests.LinkFileList",
-					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = tests;
@@ -2215,7 +2235,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = PathKit;
 				PRODUCT_NAME = PathKit;
@@ -2242,7 +2261,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = OrderedCollections;
 				PRODUCT_NAME = OrderedCollections;
@@ -2304,7 +2322,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_MODULE_NAME = AEXML;
 				PRODUCT_NAME = AEXML;
