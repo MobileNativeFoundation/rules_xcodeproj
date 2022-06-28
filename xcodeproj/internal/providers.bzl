@@ -28,10 +28,6 @@ An attribute name (or `None`) to collect `File`s from for the
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
 """,
-        "hdrs": """\
-A sequence of attribute names to collect `File`s from for the `hdrs`-like
-attributes.
-""",
         "non_arc_srcs": """\
 A sequence of attribute names to collect `File`s from for `non_arc_srcs`-like
 attributes.

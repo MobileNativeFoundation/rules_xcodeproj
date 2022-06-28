@@ -52,7 +52,6 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         srcs = ()
 
     non_arc_srcs = ()
-    hdrs = ()
     pch = None
     bundle_id = None
     provisioning_profile = None
@@ -66,14 +65,12 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             "deps": [target_type.compile],
             "interface_deps": [target_type.compile],
         }
-        hdrs = ("hdrs", "textual_hdrs")
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
             "deps": [target_type.compile],
             "runtime_deps": [target_type.compile],
         }
         non_arc_srcs = ("non_arc_srcs")
-        hdrs = ("hdrs", "textual_hdrs")
         pch = "pch"
     elif ctx.rule.kind == "swift_library":
         xcode_targets = {
@@ -120,7 +117,6 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             xcode_targets = xcode_targets,
             non_arc_srcs = non_arc_srcs,
             srcs = srcs,
-            hdrs = hdrs,
             pch = pch,
             bundle_id = bundle_id,
             provisioning_profile = provisioning_profile,

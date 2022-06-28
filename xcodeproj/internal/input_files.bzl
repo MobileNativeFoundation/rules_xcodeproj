@@ -74,8 +74,6 @@ def _is_categorized_attr(attr, *, automatic_target_info):
         return True
     elif attr in automatic_target_info.non_arc_srcs:
         return True
-    elif attr in automatic_target_info.hdrs:
-        return True
     elif attr == automatic_target_info.pch:
         return True
     elif attr in automatic_target_info.infoplists:
@@ -85,13 +83,16 @@ def _is_categorized_attr(attr, *, automatic_target_info):
     else:
         return False
 
-def _process_cc_info_headers(headers, *, pch):
+def _process_cc_info_headers(headers, *, output_files, pch, generated):
+    def _process_header(header):
+        if not header.is_source:
+            generated.append(header)
+        return header
+
     return [
-        header
+        _process_header(header)
         for header in headers
-        if (header.is_source and
-            ".framework" not in header.path and
-            header not in pch)
+        if header not in pch and header not in output_files
     ]
 
 # API
@@ -176,8 +177,6 @@ def _collect(
             srcs.append(file)
         elif attr in automatic_target_info.non_arc_srcs:
             non_arc_srcs.append(file)
-        elif attr in automatic_target_info.hdrs:
-            hdrs.append(file)
         elif attr == automatic_target_info.pch:
             # We use `append` instead of setting a single value because
             # assigning to `pch` creates a new local variable instead of
@@ -275,19 +274,19 @@ def _collect(
     # headers from `objc_import` and the like.
     if CcInfo in target:
         compilation_context = target[CcInfo].compilation_context
-        srcs.extend(
-            _process_cc_info_headers(
-                compilation_context.direct_private_headers,
-                pch = pch,
-            ),
-        )
-        hdrs.extend(
-            _process_cc_info_headers(
-                (compilation_context.direct_public_headers +
-                 compilation_context.direct_textual_headers),
-                pch = pch,
-            ),
-        )
+        srcs.extend(_process_cc_info_headers(
+            compilation_context.direct_private_headers,
+            output_files = output_files,
+            pch = pch,
+            generated = generated,
+        ))
+        hdrs.extend(_process_cc_info_headers(
+            (compilation_context.direct_public_headers +
+             compilation_context.direct_textual_headers),
+            output_files = output_files,
+            pch = pch,
+            generated = generated,
+        ))
 
     return struct(
         srcs = depset(srcs),
