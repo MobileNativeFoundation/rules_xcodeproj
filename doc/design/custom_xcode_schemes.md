@@ -5,7 +5,17 @@ This document is a proposal for how custom Xcode schemes can be defined and impl
 
 ## Contents
 
-> TODO (grindel): FIX ME
+* [Automatic Scheme Generation](#automatic-scheme-generation)
+* [Introduction of Scheme Autogeneration Mode](#introduction-of-scheme-autogeneration-mode)
+* [Introduction of Custom Xcode Schemes](#introduction-of-custom-xcode-schemes)
+  * [Defining a Simple Xcode Scheme](#defining-a-simple-xcode-scheme)
+  * [Specifying a Launch Target](#specifying-a-launch-target)
+  * [Specifying Launch Arguments and Environment Variables](#specifying-launch-arguments-and-environment-variables)
+* [xcode\_schemes Module](#xcode_schemes-module)
+* [Changes to xcodeproj Macro](#changes-to-xcodeproj-macro)
+* [Changes to \_xcodeproj Rule](#changes-to-_xcodeproj-rule)
+  * [scheme\_autogeneration\_mode Attribute](#scheme_autogeneration_mode-attribute)
+  * [schemes Attribute](#schemes-attribute)
 
 ## Automatic Scheme Generation
 
@@ -37,7 +47,7 @@ The above declaration generates two schemes: `Foo` and
 `FooTests.__internal__.__test_bundle` scheme contains configuration that builds `//Tests/FooTests`
 and executes `//Tests/FooTests` when testing is requested.
 
-## Introduction of Scheme Autogeneration Mode for `_xcodeproj`
+## Introduction of Scheme Autogeneration Mode
 
 The `_xcodeproj` rule has a new attribute called `scheme_autogeneration_mode`. The value of
 this attribute determines how Xcode scheme autogeneration will occur.
