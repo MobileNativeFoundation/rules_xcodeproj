@@ -51,6 +51,10 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     else:
         srcs = ()
 
+    bundle_id = None
+    codesignopts = None
+    entitlements = None
+    infoplists = ()
     non_arc_srcs = ()
     pch = None
     provisioning_profile = None
@@ -96,7 +100,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if "entitlements" in attrs:
             entitlements = "entitlements"
     elif AppleBinaryInfo in target:
-        codesignopts = "codesignopts"
+        if "codesignopts" in attrs:
+            codesignopts = "codesignopts"
         if "infoplists" in attrs:
             infoplists = ("infoplists")
         xcode_targets = {"deps": [target_type.compile]}
