@@ -81,11 +81,15 @@ xcodeproj(
 )
 ```
 
-The `xcode_scheme` defines a scheme with a user visible name of `Foo Module`. The scheme includes 
+The `xcode_schemes.scheme` function call defines a scheme with a user visible name of `Foo Module`.
+It is configured to build `//Sources/Foo` and `//Tests/FooTests`. (Targets listed in the
+test action or launch action are automatically added to the build action.) The scheme is also
+configured to execute the `//Tests/FooTests` target when testing is requested.
 
-## Launch Actions
+The result of the function is wrapped in a `list` and passed to the `schemes` parameter of the
+`xcodeproj` macro.
 
-### Specify the Launch Target (`launch_action`)
+### Specifying a  Launch Target (`xcode_schemes.launch_action`)
 
 Let's continue our example. We will add an `ios_application` and a `ios_ui_test` to the mix.
 
@@ -125,6 +129,9 @@ xcodeproj(
     schemes = _SCHEMES,
 )
 ```
+
+The above example adds a second scheme called `My Application`. It is configured with two test
+targets and a single launch target. All three targets are implicitly added to the build list.
 
 ### Specify Launch Arguments and Environment Variables
 
@@ -173,6 +180,9 @@ xcodeproj(
     schemes = _SCHEMES,
 )
 ```
+
+This example is the same as the previous example except arguments and environment variables are
+defined for the launch action.
 
 ## Changes to `xcodeproj` Macro and `_xcodeproj` Rule
 
