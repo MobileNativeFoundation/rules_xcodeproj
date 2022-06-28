@@ -5,6 +5,8 @@ This document is a proposal for how custom Xcode schemes can be defined and impl
 
 ## Contents
 
+> TODO (grindel): FIX ME
+
 ## Automatic Scheme Generation
 
 As of this writing, the ruleset generates an Xcode scheme for every buildable target provided to
@@ -38,19 +40,10 @@ and executes `//Tests/FooTests` when testing is requested.
 While functional, developers may prefer a single scheme that builds both targets and executes
 the `//Test/FooTests` target when test execution is requested.
 
-## Changes to `xcodeproj` Macro and `_xcodeproj` Rule
-
-> TODO (grindel): 
-
 ## Introduction of the `xcode_scheme` Function
 
 The `xcode_scheme` Starlark function allows a client to define an Xcode scheme and return a
 representation of the scheme as a JSON string.
-
-The `_xcodeproj` rule now has a `schemes` attribute that expects a `list` of JSON `string` values.
-
-The `xcodeproj` macro also accepts a `schemes` parameter. The scheme JSON values are then used to
-populate the `targets` attribute and the `schemes` attribute for the `_xcodeproj` rule.
 
 ### Simple Example Using `xcode_scheme`
 
@@ -59,19 +52,15 @@ Building on the previous example, let's define a scheme that combines the two ta
 ```python
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
-    "xcode_scheme",
+    "xcode_schemes",
     "xcodeproj",
 )
 
 _SCHEMES = [
-    xcode_scheme(
+    xcode_schemes.scheme(
         name = "Foo Module",
-        top_level_targets = [
-            "//Tests/FooTests",
-        ],
-        other_targets = [
-            "//Sources/Foo",
-        ]
+        build_action = xcode_schemes.build_action(["//Sources/Foo"]),
+        test_action = xcode_schemes.test_action(["//Tests/FooTests"]),
     ),
 ]
 
@@ -82,6 +71,8 @@ xcodeproj(
     schemes = _SCHEMES,
 )
 ```
+
+The `xcode_scheme` defines a scheme with a user visible name of `Foo Module`. The scheme includes 
 
 ## Launch Actions
 
@@ -98,33 +89,23 @@ Let's continue our example. We will add an `ios_application` and a `ios_ui_test`
 
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
-    "launch_action",
-    "xcode_scheme",
+    "xcode_schemes",
     "xcodeproj",
 )
 
 _SCHEMES = [
-    xcode_scheme(
+    xcode_schemes.scheme(
         name = "Foo Module",
-        top_level_targets = [
-            "//Tests/FooTests",
-        ],
-        other_targets = [
-            "//Sources/Foo",
-        ],
+        build_action = xcode_schemes.build_action(["//Sources/Foo"]),
+        test_action = xcode_schemes.test_action(["//Tests/FooTests"]),
     ),
-    # Things to note:
-    # 1. Added a launch_action 
-    # 2. Did not include other_targets
     xcode_scheme(
         name = "My Application",
-        launch_action = launch_action(
-            target = "//Sources/App"
-        ),
-        top_level_targets = [
+        test_action = xcode_schemes.test_action([
             "//Tests/AppUITests",
             "//Tests/FooTests",
-        ],
+        ]),
+        launch_action = xcode_schemes.launch_action("//Sources/App"),
     ),
 ]
 
@@ -147,25 +128,24 @@ xcodeproj(
 
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
-    "launch_action",
-    "xcode_scheme",
+    "xcode_schemes",
     "xcodeproj",
 )
 
 _SCHEMES = [
-    xcode_scheme(
+    xcode_schemes.scheme(
         name = "Foo Module",
-        top_level_targets = [
-            "//Tests/FooTests",
-        ],
-        other_targets = [
-            "//Sources/Foo",
-        ],
+        build_action = xcode_schemes.build_action(["//Sources/Foo"]),
+        test_action = xcode_schemes.test_action(["//Tests/FooTests"]),
     ),
     xcode_scheme(
         name = "My Application",
-        launch_action = launch_action(
-            target = "//Sources/App"
+        test_action = xcode_schemes.test_action([
+            "//Tests/AppUITests",
+            "//Tests/FooTests",
+        ]),
+        launch_action = xcode_schemes.launch_action(
+            target = "//Sources/App",
             args = [
                 "--my_awesome_flag",
                 "path/to/a/file.txt",
@@ -174,10 +154,6 @@ _SCHEMES = [
                 "RELEASE_THE_KRAKEN": "true",
             },
         ),
-        top_level_targets = [
-            "//Tests/AppUITests",
-            "//Tests/FooTests",
-        ],
     ),
 ]
 
@@ -188,6 +164,17 @@ xcodeproj(
     schemes = _SCHEMES,
 )
 ```
+
+## Changes to `xcodeproj` Macro and `_xcodeproj` Rule
+
+> TODO (grindel): FIX ME
+
+> TODO (grindel): Add `scheme_autogeneration_mode`. Values: `none`, `auto`, `all`
+
+The `_xcodeproj` rule now has a `schemes` attribute that expects a `list` of JSON `string` values.
+
+The `xcodeproj` macro also accepts a `schemes` parameter. The scheme JSON values are then used to
+populate the `targets` attribute and the `schemes` attribute for the `_xcodeproj` rule.
 
 ## Starlark Definitions
 
