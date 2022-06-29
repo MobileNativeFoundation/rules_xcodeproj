@@ -440,7 +440,6 @@ The JSON representation of `Foo Module` will look like the following:
   "build_action": {
     "targets": [
       "//Sources/Foo",
-      "//Tests/FooTests"
     ],
   },
   "test_action": {
@@ -459,13 +458,6 @@ The JSON representation of `My Application` will look like the following:
 ```json
 {
   "name": "My Application",
-  "build_action": {
-    "targets": [
-      "//Sources/App",
-      "//Tests/FooTests"
-      "//Tests/AppUITests"
-    ],
-  },
   "test_action": {
     "targets": [
       "//Tests/FooTests",
