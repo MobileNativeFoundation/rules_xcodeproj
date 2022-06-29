@@ -98,9 +98,9 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 "invalid_target_merges":{invalid_target_merges},\
 "label":"{label}",\
 "name":"{name}",\
+"scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
 "target_merges":{target_merges},\
-"targets":{targets},\
-"scheme_autogeneration_mode":"{scheme_autogeneration_mode}"\
+"targets":{targets}\
 }}
 """.format(
         bazel_path = ctx.attr.bazel_path,
