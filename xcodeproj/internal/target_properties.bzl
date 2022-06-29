@@ -1,7 +1,6 @@
 """Functions for processing target properties"""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
-load("@bazel_skylib//lib:collections.bzl", "collections")
 load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":files.bzl",
@@ -121,7 +120,8 @@ def process_defines(*, cc_info, swift_info, build_settings):
     Args:
         cc_info: The `CcInfo` provider for the target.
         swift_info: The `SwiftInfo` provider for the target.
-        build_settings: build settings of the target.
+        build_settings: A mutable `dict` that will be updated with the
+            `GCC_PREPROCESSOR_DEFINITIONS` build setting.
 
     Return:
         The modified build settings object
@@ -163,49 +163,14 @@ def process_defines(*, cc_info, swift_info, build_settings):
 
         set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
 
-def process_sdk_links(*, objc, build_settings):
-    """ Processing sdk linker options
-
-    Args:
-        objc: A ObjC provider
-        build_settings: Build settings for the passed target
-
-    Returns:
-        The mutated build settings object
-    """
-    if not objc or build_settings == None:
-        return
-
-    sdk_framework_flags = collections.before_each(
-        "-framework",
-        objc.sdk_framework.to_list(),
-    )
-    weak_sdk_framework_flags = collections.before_each(
-        "-weak_framework",
-        objc.weak_sdk_framework.to_list(),
-    )
-    sdk_dylib_flags = [
-        "-l" + dylib
-        for dylib in objc.sdk_dylib.to_list()
-    ]
-
-    set_if_true(
-        build_settings,
-        "OTHER_LDFLAGS",
-        (sdk_framework_flags +
-         weak_sdk_framework_flags +
-         sdk_dylib_flags +
-         build_settings.get("OTHER_LDFLAGS", [])),
-    )
-
 def process_swiftmodules(*, swift_info):
-    """ Processs swiftmodules
+    """Processes swiftmodules.
 
     Args:
-        swift_info: A SwiftInfo provider object
+        swift_info: The `SwiftInfo` provider for the target.
 
     Returns:
-        The filepaths of all direct module swiftmodules
+        The `file_path`s of all direct module swiftmodules.
     """
     if not swift_info:
         return []

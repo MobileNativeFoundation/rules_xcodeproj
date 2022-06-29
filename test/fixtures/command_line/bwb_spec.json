@@ -73,9 +73,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
                 "PRODUCT_MODULE_NAME": "_LibSwiftTests_Stub",
                 "PRODUCT_NAME": "LibSwiftTests",
@@ -100,6 +97,18 @@
                         "_": "examples_command_line_external/ExternalFramework.framework",
                         "t": "e"
                     }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTestsLib.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/LibSwift.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
                 ],
                 "static_libraries": [
                     {
@@ -160,9 +169,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -g -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwiftTestsLib",
                 "PRODUCT_NAME": "LibSwiftTestsLib",
@@ -332,9 +338,6 @@
                     "-fstack-protector-all",
                     "-g"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_NAME": "lib_impl",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -391,9 +394,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -g -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwift",
                 "PRODUCT_NAME": "lib_swift",
@@ -535,9 +535,6 @@
                     "-no-canonical-prefixes",
                     "-Wno-builtin-macro-redefined"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_NAME": "private_lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -597,9 +594,6 @@
                     "--digest-algorithm=sha1",
                     "--digest-algorithm=sha384"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_MODULE_NAME": "_tool_Stub",
                 "PRODUCT_NAME": "tool",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -620,6 +614,21 @@
                         "_": "examples_command_line_external/ExternalFramework.framework",
                         "t": "e"
                     }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/LibSwift.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "Foundation",
+                    "-weak_framework",
+                    "SwiftUI",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
                 ],
                 "static_frameworks": [
                     "examples/command_line/third_party/ExampleFramework.framework"
@@ -741,13 +750,6 @@
                     "-fstack-protector",
                     "-fstack-protector-all",
                     "-g"
-                ],
-                "OTHER_LDFLAGS": [
-                    "-framework",
-                    "Foundation",
-                    "-weak_framework",
-                    "SwiftUI",
-                    "-ObjC"
                 ],
                 "PRODUCT_NAME": "tool.library",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",

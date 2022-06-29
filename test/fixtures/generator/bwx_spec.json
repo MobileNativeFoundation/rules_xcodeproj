@@ -36,9 +36,6 @@
             "build_settings": {
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_MODULE_NAME": "_tests_Stub",
                 "PRODUCT_NAME": "tests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -54,6 +51,24 @@
             "is_swift": false,
             "label": "//tools/generator/test:tests",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test/tests.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/generator.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tadija_aexml/AEXML.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test/libtests.library.a",
@@ -121,9 +136,6 @@
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "tests",
                 "PRODUCT_NAME": "tests.library",
@@ -229,9 +241,6 @@
             "build_settings": {
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_MODULE_NAME": "_generator_Stub",
                 "PRODUCT_NAME": "generator",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -247,6 +256,21 @@
             "is_swift": false,
             "label": "//tools/generator:generator",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/generator.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tadija_aexml/AEXML.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/libgenerator.library.a",
@@ -301,9 +325,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "generator",
                 "PRODUCT_NAME": "generator.library",
@@ -415,9 +436,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "OrderedCollections",
                 "PRODUCT_NAME": "OrderedCollections",
@@ -667,9 +685,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "PathKit",
                 "PRODUCT_NAME": "PathKit",
@@ -723,9 +738,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "CustomDump",
                 "PRODUCT_NAME": "CustomDump",
@@ -882,9 +894,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay",
                 "PRODUCT_NAME": "XCTestDynamicOverlay",
@@ -938,9 +947,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "AEXML",
                 "PRODUCT_NAME": "AEXML",
@@ -1010,9 +1016,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "XcodeProj",
                 "PRODUCT_NAME": "XcodeProj",

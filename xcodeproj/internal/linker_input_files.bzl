@@ -1,8 +1,29 @@
 """Module containing functions dealing with target linker input files."""
 
 load("@bazel_skylib//lib:sets.bzl", "sets")
+load("@bazel_skylib//lib:collections.bzl", "collections")
+load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":collections.bzl", "flatten", "set_if_true")
 load(":files.bzl", "file_path", "file_path_to_dto")
+
+# linker flags that we don't want to propagate to Xcode.
+# The values are the number of flags to skip, 1 being the flag itself, 2 being
+# another flag right after it, etc.
+_LD_SKIP_OPTS = {
+    "-isysroot": 2,
+    "-fobjc-link-runtime": 1,
+    "-target": 2,
+}
+
+_TARGET_TRIPLE_OS = {
+    apple_common.platform.ios_device: "ios",
+    apple_common.platform.ios_simulator: "ios-simulator",
+    apple_common.platform.macos: "macos",
+    apple_common.platform.tvos_device: "tvos",
+    apple_common.platform.tvos_simulator: "tvos-simulator",
+    apple_common.platform.watchos_device: "watchos",
+    apple_common.platform.watchos_simulator: "watchos-simulator",
+}
 
 def _collect_for_non_top_level(*, cc_info, objc, is_xcode_target):
     """Collects linker input files for a non top level target.
@@ -24,15 +45,21 @@ def _collect_for_non_top_level(*, cc_info, objc, is_xcode_target):
     return struct(
         _avoid_linker_inputs = None,
         _cc_info = cc_info,
+        _ctx = None,
         _objc = objc,
         _is_xcode_library_target = cc_info and is_xcode_target,
         xcode_library_targets = [],
     )
 
-def _collect_for_top_level(*, transitive_linker_inputs, avoid_linker_inputs):
+def _collect_for_top_level(
+        *,
+        ctx,
+        transitive_linker_inputs,
+        avoid_linker_inputs):
     """Collects linker input files for a top level library target.
 
     Args:
+        ctx: The aspect context.
         transitive_linker_inputs: A `list` of `(target(), XcodeProjInfo)` tuples
             of transitive dependencies that should have their linker inputs
             merged.
@@ -45,16 +72,18 @@ def _collect_for_top_level(*, transitive_linker_inputs, avoid_linker_inputs):
         `linker_input_files.collect_for_non_top_level`.
     """
     return _merge(
+        ctx = ctx,
         transitive_linker_inputs = transitive_linker_inputs,
         avoid_linker_inputs = avoid_linker_inputs,
     )
 
-def _merge(*, transitive_linker_inputs, avoid_linker_inputs = None):
+def _merge(*, ctx = None, transitive_linker_inputs, avoid_linker_inputs = None):
     """Merges linker input files from the deps of a target.
 
     This should only be used by targets that are being skipped.
 
     Args:
+        ctx: The aspect context.
         transitive_linker_inputs: A `list` of `(target(), XcodeProjInfo)` tuples
             of transitive dependencies that should have their linker inputs
             merged.
@@ -95,6 +124,7 @@ def _merge(*, transitive_linker_inputs, avoid_linker_inputs = None):
     return struct(
         _avoid_linker_inputs = avoid_linker_inputs,
         _cc_info = cc_info,
+        _ctx = ctx,
         _objc = objc,
         _is_xcode_library_target = False,
         xcode_library_targets = xcode_library_targets,
@@ -155,6 +185,54 @@ def _get_static_libraries(linker_inputs):
     else:
         fail("Xcode target requires `ObjcProvider` or `CcInfo`")
 
+def _process_linkopts(linkopts, *, triple):
+    ret = []
+    skip_next = 0
+    for linkopt in linkopts:
+        if skip_next:
+            skip_next -= 1
+            continue
+        skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
+        if skip_next:
+            skip_next -= 1
+            continue
+
+        linkopt = _process_linkopt(linkopt, triple = triple)
+        if linkopt:
+            ret.append(linkopt)
+
+    return ret
+
+def _process_linkopt(linkopt, *, triple):
+    if linkopt == "OSO_PREFIX_MAP_PWD":
+        return None
+    if linkopt == "-Wl,-objc_abi_version,2":
+        return None
+    if linkopt.startswith("-F__BAZEL_"):
+        return None
+    if linkopt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
+        return None
+
+    opts = []
+    for opt in linkopt.split(","):
+        if opt.startswith("bazel-out/"):
+            opt = "$(BUILD_DIR)/" + opt
+        elif opt.startswith("external/"):
+            opt = "$(LINKS_DIR)/" + opt
+        else:
+            # Use Xcode set `DEVELOPER_DIR`
+            opt = opt.replace(
+                "__BAZEL_XCODE_DEVELOPER_DIR__",
+                "$(DEVELOPER_DIR)",
+            )
+
+        if opt.endswith(".swiftmodule"):
+            opt = opt + "/{}.swiftmodule".format(triple)
+
+        opts.append(opt)
+
+    return ",".join(opts)
+
 def _to_dto(linker_inputs):
     """Generates a target DTO for linker inputs.
 
@@ -169,6 +247,7 @@ def _to_dto(linker_inputs):
         *   `static_frameworks`: A `list` of `FilePath`s for
             `static_frameworks`.
         *   `static_libraries`: A `list` of `FilePath`s for `static_libraries`.
+        *   `linkopts`: A `list` of `string`s for linkopts.
     """
     if linker_inputs._is_xcode_library_target:
         # We only want to return linker inputs for top level targets
@@ -223,6 +302,21 @@ def _to_dto(linker_inputs):
             if not sets.contains(avoid_imported_libraries, file)
         ]
         static_libraries = libraries + imported_libraries
+
+        raw_linkopts = objc.linkopt.to_list()
+
+        raw_linkopts.extend(collections.before_each(
+            "-framework",
+            objc.sdk_framework.to_list(),
+        ))
+        raw_linkopts.extend(collections.before_each(
+            "-weak_framework",
+            objc.weak_sdk_framework.to_list(),
+        ))
+        raw_linkopts.extend([
+            "-l" + dylib
+            for dylib in objc.sdk_dylib.to_list()
+        ])
     elif cc_info:
         if avoid_linker_inputs:
             if not avoid_linker_inputs._cc_info:
@@ -239,21 +333,57 @@ def _to_dto(linker_inputs):
 
         dynamic_frameworks = []
         static_frameworks = []
-        static_libraries = [
-            file_path_to_dto(file_path(library.static_library))
-            for library in flatten([
-                input.libraries
-                for input in cc_info.linking_context.linker_inputs.to_list()
-            ])
-            if not sets.contains(avoid_libraries, library)
-        ]
+
+        static_libraries = []
+        raw_linkopts = []
+        for input in cc_info.linking_context.linker_inputs.to_list():
+            raw_linkopts.extend(input.user_link_flags)
+            for library in input.libraries:
+                if sets.contains(avoid_libraries, library):
+                    continue
+                static_libraries.append(
+                    file_path_to_dto(file_path(library.static_library)),
+                )
     else:
         return {}
+
+    ctx = linker_inputs._ctx
+    cc_toolchain = find_cpp_toolchain(ctx)
+
+    feature_configuration = cc_common.configure_features(
+        ctx = ctx,
+        cc_toolchain = cc_toolchain,
+        requested_features = ctx.features,
+        unsupported_features = ctx.disabled_features,
+    )
+    variables = cc_common.create_link_variables(
+        feature_configuration = feature_configuration,
+        cc_toolchain = cc_toolchain,
+    )
+
+    is_objc = objc != None
+    cc_linkopts = cc_common.get_memory_inefficient_command_line(
+        feature_configuration = feature_configuration,
+        action_name = "objc-executable" if is_objc else "c++-link-executable",
+        variables = variables,
+    )
+    raw_linkopts.extend(cc_linkopts)
+
+    apple_fragment = ctx.fragments.apple
+    triple = "{}-apple-{}".format(
+        apple_fragment.single_arch_cpu,
+        _TARGET_TRIPLE_OS[apple_fragment.single_arch_platform],
+    )
 
     ret = {}
     set_if_true(ret, "dynamic_frameworks", dynamic_frameworks)
     set_if_true(ret, "static_frameworks", static_frameworks)
     set_if_true(ret, "static_libraries", static_libraries)
+    set_if_true(
+        ret,
+        "linkopts",
+        _process_linkopts(raw_linkopts, triple = triple),
+    )
 
     return ret
 

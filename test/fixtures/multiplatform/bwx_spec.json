@@ -99,9 +99,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
@@ -155,9 +152,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
@@ -212,9 +206,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
@@ -267,9 +258,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
@@ -323,9 +311,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
@@ -380,9 +365,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
@@ -436,9 +418,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "PRODUCT_NAME": "Lib",
@@ -491,9 +470,6 @@
             "build_settings": {
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_MODULE_NAME": "_Tool_Stub",
                 "PRODUCT_NAME": "Tool",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -509,6 +485,18 @@
             "is_swift": false,
             "label": "//examples/multiplatform/Tool:Tool",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/libTool.library.a",
@@ -551,9 +539,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Tool",
                 "PRODUCT_NAME": "Tool.library",
@@ -610,9 +595,6 @@
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_iOSApp_Stub",
                 "PRODUCT_NAME": "iOSApp",
@@ -640,6 +622,18 @@
             "is_swift": false,
             "label": "//examples/multiplatform/iOSApp:iOSApp",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule/arm64-apple-ios.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
@@ -680,9 +674,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_iOSApp_Stub",
                 "PRODUCT_NAME": "iOSApp",
@@ -710,6 +701,18 @@
             "is_swift": false,
             "label": "//examples/multiplatform/iOSApp:iOSApp",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
@@ -753,9 +756,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "PRODUCT_NAME": "iOSApp.library",
@@ -814,9 +814,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "PRODUCT_NAME": "iOSApp.library",
@@ -874,9 +871,6 @@
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_tvOSApp_Stub",
                 "PRODUCT_NAME": "tvOSApp",
@@ -903,6 +897,18 @@
             "is_swift": false,
             "label": "//examples/multiplatform/tvOSApp:tvOSApp",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/arm64-apple-tvos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVOS.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
@@ -942,9 +948,6 @@
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_tvOSApp_Stub",
                 "PRODUCT_NAME": "tvOSApp",
@@ -971,6 +974,18 @@
             "is_swift": false,
             "label": "//examples/multiplatform/tvOSApp:tvOSApp",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
@@ -1013,9 +1028,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "PRODUCT_NAME": "tvOSApp.library",
@@ -1074,9 +1086,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "PRODUCT_NAME": "tvOSApp.library",
@@ -1135,9 +1144,6 @@
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch",
                 "PRODUCT_MODULE_NAME": "_watchOSApp_Stub",
                 "PRODUCT_NAME": "watchOSApp",
@@ -1159,7 +1165,16 @@
             },
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSApp:watchOSApp",
-            "linker_inputs": {},
+            "linker_inputs": {
+                "linkopts": [
+                    "-lc++",
+                    "-framework",
+                    "UIKit",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
             "modulemaps": [],
             "name": "watchOSApp",
             "outputs": {},
@@ -1188,9 +1203,6 @@
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch",
                 "PRODUCT_MODULE_NAME": "_watchOSApp_Stub",
                 "PRODUCT_NAME": "watchOSApp",
@@ -1212,7 +1224,16 @@
             },
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSApp:watchOSApp",
-            "linker_inputs": {},
+            "linker_inputs": {
+                "linkopts": [
+                    "-lc++",
+                    "-framework",
+                    "UIKit",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
             "modulemaps": [],
             "name": "watchOSApp",
             "outputs": {},
@@ -1243,9 +1264,6 @@
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "PRODUCT_MODULE_NAME": "_watchOSAppExtension_Stub",
                 "PRODUCT_NAME": "watchOSAppExtension",
@@ -1281,6 +1299,18 @@
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/arm64_32-apple-watchos.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/WatchOS.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
@@ -1320,9 +1350,6 @@
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "PRODUCT_MODULE_NAME": "_watchOSAppExtension_Stub",
                 "PRODUCT_NAME": "watchOSAppExtension",
@@ -1358,6 +1385,18 @@
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
@@ -1400,9 +1439,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "watchOSAppExtension",
                 "PRODUCT_NAME": "watchOSAppExtension.library",
@@ -1461,9 +1497,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "watchOSAppExtension",
                 "PRODUCT_NAME": "watchOSAppExtension.library",

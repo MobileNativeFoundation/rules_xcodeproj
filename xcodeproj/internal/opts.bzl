@@ -1,8 +1,8 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load("@bazel_skylib//lib:collections.bzl", "collections")
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":collections.bzl", "set_if_true", "uniq")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
@@ -111,7 +111,7 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
             cc_toolchain = cc_toolchain,
             requested_features = (
                 # `CcCommon.ALL_COMPILE_ACTIONS` doesn't include objc...
-                ctx.features + ["objc-compile", "objcpp-compile"]
+                ctx.features + ["objc-compile", "objc++-compile"]
             ),
             unsupported_features = (
                 ctx.disabled_features + _UNSUPPORTED_CC_FEATURES
@@ -834,42 +834,6 @@ def _process_target_compiler_opts(
         build_settings = build_settings,
     )
 
-# Linker option parsing
-
-def _process_linker_opts(*, linkopts, build_settings):
-    """Processes linker options.
-
-    Args:
-        linkopts: A `list` of linker options.
-        build_settings: A mutable `dict` that will be updated with build
-            settings that are parsed from `linkopts`.
-    """
-    set_if_true(
-        build_settings,
-        "OTHER_LDFLAGS",
-        linkopts,
-    )
-
-def _process_target_linker_opts(*, ctx, build_settings):
-    """Processes the linker options for a target.
-
-    Args:
-        ctx: The aspect context.
-        build_settings: A mutable `dict` that will be updated with build
-            settings that are parsed from the target's linker options.
-    """
-    rule_linkopts = getattr(ctx.rule.attr, "linkopts", [])
-    rule_linkopts = _expand_make_variables(
-        ctx = ctx,
-        values = rule_linkopts,
-        attribute_name = "linkopts",
-    )
-
-    _process_linker_opts(
-        linkopts = ctx.fragments.cpp.linkopts + rule_linkopts,
-        build_settings = build_settings,
-    )
-
 # Utility
 
 def _expand_make_variables(*, ctx, values, attribute_name):
@@ -900,7 +864,7 @@ def _xcode_std_value(std):
 # API
 
 def process_opts(*, ctx, target, package_bin_dir, build_settings):
-    """Processes the compiler and linker options for a target.
+    """Processes the compiler options for a target.
 
     Args:
         ctx: The aspect context.
@@ -923,14 +887,9 @@ def process_opts(*, ctx, target, package_bin_dir, build_settings):
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
-    _process_target_linker_opts(
-        ctx = ctx,
-        build_settings = build_settings,
-    )
     return search_paths
 
 # These functions are exposed only for access in unit tests.
 testable = struct(
     process_compiler_opts = _process_compiler_opts,
-    process_linker_opts = _process_linker_opts,
 )

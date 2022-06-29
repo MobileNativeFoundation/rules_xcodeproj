@@ -1777,11 +1777,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #""$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList""#,
-                    "-Wl,-rpath,/usr/lib/swift",
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -1811,13 +1806,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_LDFLAGS": [
-                    "-Wl,-rpath,/usr/lib/swift",
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
-                ],
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
@@ -1835,13 +1823,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "CODE_SIGNING_ALLOWED": "YES",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_LDFLAGS": [
-                    "-Wl,-rpath,/usr/lib/swift",
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
-                ],
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
@@ -1872,11 +1853,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "OTHER_LDFLAGS": [
                     "-filelist",
                     #""$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList""#,
-                    "-Wl,-rpath,/usr/lib/swift",
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
                 ],
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -1908,13 +1884,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "BAZEL_TARGET_ID": "R 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_LDFLAGS": [
-                    "-Wl,-rpath,/usr/lib/swift",
-                    """
--L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)
-""",
-                    "-L/usr/lib/swift",
-                ],
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",

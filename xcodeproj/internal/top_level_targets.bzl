@@ -25,7 +25,6 @@ load(
     "process_defines",
     "process_dependencies",
     "process_modulemaps",
-    "process_sdk_links",
     "process_swiftmodules",
     "should_bundle_resources",
     "should_include_outputs",
@@ -259,6 +258,7 @@ def process_top_level_target(
         avoid_linker_inputs = None
 
     linker_inputs = linker_input_files.collect_for_top_level(
+        ctx = ctx,
         transitive_linker_inputs = [
             (dep[XcodeProjInfo].target, dep[XcodeProjInfo].linker_inputs)
             # TODO: Get attr name from `XcodeProjAutomaticTargetProcessingInfo`
@@ -293,11 +293,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         if mergeable_label and library.owner != mergeable_label
     ]
 
-    build_settings["OTHER_LDFLAGS"] = ["-ObjC"] + build_settings.get(
-        "OTHER_LDFLAGS",
-        [],
-    )
-
     set_if_true(
         build_settings,
         "TARGETED_DEVICE_FAMILY",
@@ -330,10 +325,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     process_defines(
         cc_info = cc_info,
         swift_info = swift_info,
-        build_settings = build_settings,
-    )
-    process_sdk_links(
-        objc = objc,
         build_settings = build_settings,
     )
     search_paths = process_search_paths(

@@ -1351,7 +1351,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_LDFLAGS = "-ObjC";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -g -static";
 				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
@@ -1378,11 +1377,6 @@
 				BAZEL_TARGET_ID = "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_LDFLAGS = (
-					"-Wl,-rpath,/usr/lib/swift",
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-					"-L/usr/lib/swift",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources.external;
 				PRODUCT_NAME = ExternalResources;
 				SDKROOT = iphoneos;
@@ -1409,7 +1403,17 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleUITests/ExampleUITests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
+				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
 				PRODUCT_MODULE_NAME = ExampleUITests;
@@ -1435,11 +1439,6 @@
 				BAZEL_TARGET_ID = "//ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_LDFLAGS = (
-					"-Wl,-rpath,/usr/lib/swift",
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-					"-L/usr/lib/swift",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources.nested;
 				PRODUCT_NAME = ExampleNestedResources;
 				SDKROOT = iphoneos;
@@ -1457,11 +1456,6 @@
 				BAZEL_TARGET_ID = "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_LDFLAGS = (
-					"-Wl,-rpath,/usr/lib/swift",
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-					"-L/usr/lib/swift",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources;
 				PRODUCT_NAME = ExampleResources;
 				SDKROOT = iphoneos;
@@ -1563,10 +1557,6 @@
 					"-fstack-protector-all",
 					"-g",
 				);
-				OTHER_LDFLAGS = (
-					"-lc++",
-					"-ObjC",
-				);
 				PRODUCT_MODULE_NAME = CoreUtils;
 				PRODUCT_NAME = CoreUtilsObjC;
 				SDKROOT = iphoneos;
@@ -1605,10 +1595,20 @@
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleTests/ExampleTests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/Example.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/TestingUtils/TestingUtils.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/ExampleTests/ExampleTests.__internal__.__test_bundle.LinkFileList",
-					"-lc++",
-					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
@@ -1721,13 +1721,19 @@
 					"-g",
 				);
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/Example.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/TestingUtils/TestingUtils.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-L$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-					"-L/usr/lib/swift",
-					"-lc++",
-					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.objctests;
 				PRODUCT_MODULE_NAME = ExampleObjcTests;
@@ -1775,10 +1781,18 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/Example.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-lc++",
+					"-lc++",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/Example/Example.LinkFileList",
-					"-lc++",
-					"-ObjC",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Utils/Utils.swift.xcode.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
@@ -1914,10 +1928,6 @@
 					"-fstack-protector",
 					"-fstack-protector-all",
 					"-g",
-				);
-				OTHER_LDFLAGS = (
-					"-lc++",
-					"-ObjC",
 				);
 				PRODUCT_MODULE_NAME = Utils;
 				PRODUCT_NAME = Utils;

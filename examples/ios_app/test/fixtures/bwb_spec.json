@@ -229,10 +229,6 @@
                     "-fstack-protector-all",
                     "-g"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-lc++",
-                    "-ObjC"
-                ],
                 "PRODUCT_MODULE_NAME": "CoreUtils",
                 "PRODUCT_NAME": "CoreUtilsObjC",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -300,9 +296,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_Example_Stub",
                 "PRODUCT_NAME": "Example",
@@ -325,6 +318,18 @@
             "is_swift": false,
             "label": "//Example:Example",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/libExample.library.a",
@@ -377,10 +382,6 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-lc++",
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Example",
                 "PRODUCT_NAME": "Example.library",
@@ -472,9 +473,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.objctests",
                 "PRODUCT_MODULE_NAME": "_ExampleObjcTests_Stub",
                 "PRODUCT_NAME": "ExampleObjcTests",
@@ -496,6 +494,19 @@
             "is_swift": false,
             "label": "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleObjcTests/libExampleObjcTests.library.a",
@@ -611,10 +622,6 @@
                     "-fstack-protector-all",
                     "-g"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-lc++",
-                    "-ObjC"
-                ],
                 "PRODUCT_MODULE_NAME": "ExampleObjcTests",
                 "PRODUCT_NAME": "ExampleObjcTests.library",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -681,9 +688,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "PRODUCT_MODULE_NAME": "_ExampleTests_Stub",
                 "PRODUCT_NAME": "ExampleTests",
@@ -705,6 +709,20 @@
             "is_swift": false,
             "label": "//ExampleTests:ExampleTests.__internal__.__test_bundle",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/ExampleTests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/libExampleTests.library.a",
@@ -754,10 +772,6 @@
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-lc++",
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -g -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "PRODUCT_NAME": "ExampleTests.library",
@@ -863,9 +877,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "PRODUCT_MODULE_NAME": "_ExampleUITests_Stub",
                 "PRODUCT_NAME": "ExampleUITests",
@@ -887,6 +898,17 @@
             "is_swift": false,
             "label": "//ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/ExampleUITests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes"
+                ],
                 "static_libraries": [
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/libExampleUITests.library.a",
@@ -932,9 +954,6 @@
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
                 "PRODUCT_NAME": "ExampleUITests.library",
@@ -1003,9 +1022,6 @@
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_LDFLAGS": [
-                    "-ObjC"
-                ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -g -static",
                 "PRODUCT_MODULE_NAME": "TestingUtils",
                 "PRODUCT_NAME": "TestingUtils",
@@ -1150,10 +1166,6 @@
                     "-fstack-protector",
                     "-fstack-protector-all",
                     "-g"
-                ],
-                "OTHER_LDFLAGS": [
-                    "-lc++",
-                    "-ObjC"
                 ],
                 "PRODUCT_MODULE_NAME": "Utils",
                 "PRODUCT_NAME": "Utils",
