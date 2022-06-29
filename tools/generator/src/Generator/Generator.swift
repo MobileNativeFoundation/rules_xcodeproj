@@ -60,8 +60,8 @@ class Generator {
         )
         guard let pbxProject = pbxProj.rootObject else {
             throw PreconditionError(message: """
-`rootObject` not set on `pbxProj`
-""")
+            `rootObject` not set on `pbxProj`
+            """)
         }
         let mainGroup: PBXGroup = pbxProject.mainGroup
 
@@ -72,21 +72,21 @@ class Generator {
             guard let srcTarget = targets[src] else {
                 throw PreconditionError(
                     message: """
-Source target "\(src)" not found in `targets`
-""")
+                    Source target "\(src)" not found in `targets`
+                    """)
             }
             for destination in destinations {
                 guard let destTarget = targets[destination] else {
                     throw PreconditionError(message: """
-Destination target "\(destination)" not found in `targets`
-""")
+                    Destination target "\(destination)" not found in `targets`
+                    """)
                 }
                 logger.logWarning("""
-Was unable to merge "\(srcTarget.label) \
-(\(srcTarget.configuration))" into \
-"\(destTarget.label) \
-(\(destTarget.configuration))"
-""")
+                Was unable to merge "\(srcTarget.label) \
+                (\(srcTarget.configuration))" into \
+                "\(destTarget.label) \
+                (\(destTarget.configuration))"
+                """)
             }
         }
 
@@ -149,6 +149,7 @@ Was unable to merge "\(srcTarget.label) \
         )
 
         let schemes = try environment.createXCSchemes(
+            project.schemeAutogenerationMode,
             buildMode,
             filePathResolver,
             pbxTargets

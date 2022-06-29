@@ -348,6 +348,7 @@
                     "tools/generator/src/DTO/Platform.swift",
                     "tools/generator/src/DTO/Product.swift",
                     "tools/generator/src/DTO/Project.swift",
+                    "tools/generator/src/DTO/SchemeAutogenerationMode.swift",
                     "tools/generator/src/DTO/SearchPaths.swift",
                     "tools/generator/src/DTO/Target.swift",
                     "tools/generator/src/DTO/TargetID.swift",
@@ -1439,5 +1440,6 @@
             ],
             "test_host": null
         }
-    ]
+    ],
+    "scheme_autogeneration_mode": "auto"
 }
