@@ -55,6 +55,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     codesignopts = None
     entitlements = None
     infoplists = ()
+    bazel_build_mode_error = None
     non_arc_srcs = ()
     pch = None
     provisioning_profile = None
@@ -107,6 +108,11 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         xcode_targets = {"deps": [target_type.compile]}
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile]}
+        if getattr(ctx.rule.attr, "bundle_only", False):
+            bazel_build_mode_error = """\
+`bundle_only` can't be `True` on {} when `build_mode = \"xcode\"`
+""".format(target.label)
+
         should_generate_target = False
     else:
         xcode_targets = {"deps": [this_target_type]}
@@ -128,6 +134,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             provisioning_profile = provisioning_profile,
             infoplists = infoplists,
             entitlements = entitlements,
+            bazel_build_mode_error = bazel_build_mode_error,
         ),
     ]
 
