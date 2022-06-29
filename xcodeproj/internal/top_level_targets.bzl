@@ -305,7 +305,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         product_type = props.product_type,
         bundle_file_path = props.bundle_file_path,
         linker_inputs = linker_inputs,
-        build_settings = build_settings,
     )
 
     cc_info = target[CcInfo] if CcInfo in target else None

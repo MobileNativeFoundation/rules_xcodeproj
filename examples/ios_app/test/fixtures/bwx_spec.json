@@ -167,7 +167,6 @@
                     "-g"
                 ],
                 "PRODUCT_MODULE_NAME": "CoreUtils",
-                "PRODUCT_NAME": "CoreUtilsObjC",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -235,7 +234,6 @@
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_Example_Stub",
-                "PRODUCT_NAME": "Example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5",
@@ -348,7 +346,6 @@
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "Example",
-                "PRODUCT_NAME": "Example.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -420,8 +417,7 @@
         {
             "build_settings": {
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.nested",
-                "PRODUCT_NAME": "ExampleNestedResources"
+                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.nested"
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
             "dependencies": [],
@@ -479,7 +475,6 @@
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.objctests",
                 "PRODUCT_MODULE_NAME": "_ExampleObjcTests_Stub",
-                "PRODUCT_NAME": "ExampleObjcTests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5",
@@ -632,7 +627,6 @@
                     "-g"
                 ],
                 "PRODUCT_MODULE_NAME": "ExampleObjcTests",
-                "PRODUCT_NAME": "ExampleObjcTests.library",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -695,8 +689,7 @@
         {
             "build_settings": {
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources",
-                "PRODUCT_NAME": "ExampleResources"
+                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources"
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
             "dependencies": [
@@ -756,7 +749,6 @@
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "PRODUCT_MODULE_NAME": "_ExampleTests_Stub",
-                "PRODUCT_NAME": "ExampleTests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5",
@@ -845,7 +837,6 @@
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -g -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
-                "PRODUCT_NAME": "ExampleTests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -935,7 +926,6 @@
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "PRODUCT_MODULE_NAME": "_ExampleUITests_Stub",
-                "PRODUCT_NAME": "ExampleUITests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5",
@@ -1009,7 +999,6 @@
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
-                "PRODUCT_NAME": "ExampleUITests.library",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1055,8 +1044,7 @@
         {
             "build_settings": {
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.only_structured_resources",
-                "PRODUCT_NAME": "OnlyStructuredResources"
+                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.only_structured_resources"
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
             "dependencies": [],
@@ -1107,7 +1095,6 @@
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -g -static",
                 "PRODUCT_MODULE_NAME": "TestingUtils",
-                "PRODUCT_NAME": "TestingUtils",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1232,7 +1219,6 @@
                     "-g"
                 ],
                 "PRODUCT_MODULE_NAME": "Utils",
-                "PRODUCT_NAME": "Utils",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -1297,8 +1283,7 @@
         {
             "build_settings": {
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.external",
-                "PRODUCT_NAME": "ExternalResources"
+                "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.external"
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
             "dependencies": [],

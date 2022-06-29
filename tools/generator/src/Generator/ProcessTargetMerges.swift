@@ -58,9 +58,7 @@ exist
                 merged.buildSettings["PRODUCT_MODULE_NAME"] =
                     merging.buildSettings["PRODUCT_MODULE_NAME"]
                 
-                let productName = merged.buildSettings["PRODUCT_NAME"]
                 merged.buildSettings.merge(merging.buildSettings) { _, r in r }
-                merged.buildSettings["PRODUCT_NAME"] = productName
 
                 // Update search paths
                 merged.searchPaths = merging.searchPaths
