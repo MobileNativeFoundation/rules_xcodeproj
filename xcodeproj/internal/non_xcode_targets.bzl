@@ -13,7 +13,11 @@ load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
 load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
-load(":target_properties.bzl", "process_dependencies")
+load(
+    ":target_properties.bzl",
+    "process_dependencies",
+    "should_bundle_resources",
+)
 
 def process_non_xcode_target(
         *,
@@ -40,6 +44,16 @@ def process_non_xcode_target(
     if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
         # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
         # a `AppleResourceInfo`, so we use that to exclude it
+        bundle_resources = should_bundle_resources(ctx = ctx)
+        if bundle_resources and not getattr(
+            ctx.rule.attr,
+            automatic_target_info.infoplists,
+            None,
+        ):
+            fail("""\
+rules_xcodeproj requires {} to have `{}` set.
+""".format(target.label, automatic_target_info.infoplists))
+
         resource_bundle_informations = [
             struct(
                 id = get_id(
