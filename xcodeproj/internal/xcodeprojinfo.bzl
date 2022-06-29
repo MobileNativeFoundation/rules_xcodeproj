@@ -20,7 +20,11 @@ load(
 load(":processed_target.bzl", "processed_target")
 load(":search_paths.bzl", "process_search_paths")
 load(":targets.bzl", "targets")
-load(":target_properties.bzl", "process_dependencies")
+load(
+    ":target_properties.bzl",
+    "process_dependencies",
+    "should_bundle_resources",
+)
 load(":top_level_targets.bzl", "process_top_level_target")
 
 # Creating `XcodeProjInfo`
@@ -221,6 +225,12 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         `_target_info_fields`.
     """
     automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
+
+    if (
+        automatic_target_info.bazel_build_mode_error and
+        should_bundle_resources(ctx = ctx)
+    ):
+        fail(automatic_target_info.bazel_build_mode_error)
 
     target_library = None
     if not automatic_target_info.should_generate_target:
