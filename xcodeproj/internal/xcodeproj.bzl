@@ -99,7 +99,8 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 "label":"{label}",\
 "name":"{name}",\
 "target_merges":{target_merges},\
-"targets":{targets}\
+"targets":{targets},\
+"scheme_autogeneration_mode":"{scheme_autogeneration_mode}"\
 }}
 """.format(
         bazel_path = ctx.attr.bazel_path,
@@ -111,6 +112,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
         name = project_name,
         bazel_workspace_name = ctx.workspace_name,
         targets = targets_json,
+        scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))
