@@ -155,6 +155,7 @@
 
 /* Begin PBXFileReference section */
 		019D3A4D654E3F57859B308A /* dir */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dir; sourceTree = "<group>"; };
+		053F97B74763902773F5A07C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		05CED94736B3F5BB8E2E87B5 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		0B4615EBFB02A2D6C5B1045D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0BDA5C3FF5C9611B6DF55D3C /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
@@ -204,6 +205,8 @@
 		B915E847DC5E1D2AE2A711AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B97C2835F125F69B2FDF8477 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		BBD5F9FCF8CFEE20432A6F6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/unprocessed.json; sourceTree = "<group>"; };
+		C2563F31378265790FC3ED28 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		C42AA275270CCCAB313290A5 /* Nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Nested; sourceTree = "<group>"; };
 		C6DFECB6D814B2CE3ADA51CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBF6879457EECCD257587348 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CC8E3F6E9A6B44248BD06712 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/libUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -516,6 +519,16 @@
 			path = test/fixtures/bwb.xcodeproj/rules_xcodeproj/links/gen_dir;
 			sourceTree = "<group>";
 		};
+		C8F9CF8C095E7B5926EB5172 /* OnlyStructuredResources */ = {
+			isa = PBXGroup;
+			children = (
+				C42AA275270CCCAB313290A5 /* Nested */,
+				C2563F31378265790FC3ED28 /* BUILD */,
+				053F97B74763902773F5A07C /* Info.plist */,
+			);
+			path = OnlyStructuredResources;
+			sourceTree = "<group>";
+		};
 		D182AF8E059C5832405A845F /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +591,7 @@
 				68510571C1C2FF91C893A79F /* ExampleResources */,
 				56B81B9C9A0209D46CB5AB83 /* ExampleTests */,
 				0FA8CC4F83F67E8D17E56EF6 /* ExampleUITests */,
+				C8F9CF8C095E7B5926EB5172 /* OnlyStructuredResources */,
 				68A1D737225E7A97337523DE /* test */,
 				8559ED6752C798E87266A14E /* TestingUtils */,
 				E0A6E74E3EC30503D4296461 /* Utils */,
