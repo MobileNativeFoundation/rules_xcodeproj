@@ -110,7 +110,6 @@ def process_library_target(
         product_type = "com.apple.product-type.library.static",
         bundle_file_path = None,
         linker_inputs = linker_inputs,
-        build_settings = build_settings,
     )
 
     bundle_resources = should_bundle_resources(ctx = ctx)

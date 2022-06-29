@@ -44,7 +44,6 @@ def _process_resource_bundle(bundle, *, information):
         product_type = "com.apple.product-type.bundle",
         bundle_file_path = bundle_file_path,
         linker_inputs = linker_inputs,
-        build_settings = build_settings,
     )
 
     outputs = output_files.collect(

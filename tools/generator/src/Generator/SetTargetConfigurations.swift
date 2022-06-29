@@ -217,6 +217,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         buildSettings.set("ARCHS", to: target.platform.arch)
         buildSettings.set("BAZEL_PACKAGE_BIN_DIR", to: target.packageBinDir.string)
         buildSettings.set("BAZEL_TARGET_ID", to: id.rawValue)
+        buildSettings.set(
+            "EXECUTABLE_EXTENSION",
+            to: target.product.path.path.extension ?? ""
+        )
+        buildSettings.set("PRODUCT_NAME", to: target.product.name)
         buildSettings.set("SDKROOT", to: target.platform.os.sdkRoot)
         buildSettings.set("SUPPORTED_PLATFORMS", to: target.platform.name)
         buildSettings.set("TARGET_NAME", to: target.name)

@@ -13,8 +13,7 @@ def process_product(
         product_name,
         product_type,
         bundle_file_path,
-        linker_inputs,
-        build_settings):
+        linker_inputs):
     """Generates information about the target's product.
 
     Args:
@@ -27,8 +26,6 @@ def process_product(
         bundle_file_path: If the product is a bundle, this is `file_path` to the
             bundle, otherwise `None`.
         linker_inputs: A value returned by `linker_input_files.collect`.
-        build_settings: A mutable `dict` that will be updated with Xcode build
-            settings.
 
     Returns:
         A `struct` containing the name, the path to the product and the product type.
@@ -45,8 +42,6 @@ def process_product(
 
     if not fp:
         fail("Could not find product for target {}".format(target.label))
-
-    build_settings["PRODUCT_NAME"] = product_name
 
     return struct(
         name = product_name,
