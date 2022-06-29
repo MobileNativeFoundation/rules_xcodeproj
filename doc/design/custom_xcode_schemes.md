@@ -256,16 +256,13 @@ The default value for `scheme_autogeneration_mode` is `auto`.
 ```python
 def _scheme(
     name, 
-    as_json = True, 
     build_action = None, 
     test_action = None, 
     launch_action = None):
-    """Returns a `struct` or JSON `string` representing an Xcode scheme.
+    """Returns a `struct` representing an Xcode scheme.
 
     Args:
         name: The user-visible name for the scheme as a `string`.
-        as_json: Optional. A `bool` indicating whether the resulting struct 
-            should be returned as JSON.
         build_action: Optional. A `struct` as returned by 
             `xcode_schemes.build_action`.
         test_action: Optional. A `struct` as returned by 
@@ -274,9 +271,7 @@ def _scheme(
             `xcode_schemes.launch_action`.
   
     Returns:
-        If `as_json` is `False`, a `struct` representing an Xcode scheme is 
-        returned. Otherwise, a JSON `string` representing the struct is 
-        returned.
+        A `struct` representing an Xcode scheme.
     """
     pass
 
@@ -361,7 +356,7 @@ def xcodeproj(*,
             fixture testing. You shouldn't need to set it yourself.
         targets: Optional. A `list` of targets to be included in the Xcode 
             project.
-        schemes: Optional. A `list` of JSON `string` values as returned by
+        schemes: Optional. A `list` of `struct` values as returned by
             `xcode_schemes.scheme`.
         **kwargs: Additional arguments to pass to `xcodeproj_rule`.
     """
@@ -369,10 +364,15 @@ def xcodeproj(*,
 ```
 
 In addition to what the `xcodeproj` macro does today, if a value is provided for the `schemes`
-parameter, the macro will collect all of the targets listed in the test and launch actions (not the
-build action) and add them to the overall targets list. We only collect targets from the test action
-and launch action because the target list for `xcodeproj` should only contain top-level or
-leaf-nodes (i.e., not depeneded upon by other targets in the Xcode project).
+parameter, the macro will:
+1. Collect all of the targets listed in the test and launch actions (not the
+   build action) and add them to the overall targets list. 
+2. Serialize the scheme `struct` values to JSON and set those values in the `schemes` attribute of
+   `_xcodeproj`.
+
+We only collect targets from the test action and launch action because the target list for
+`xcodeproj` should only contain top-level or leaf-nodes (i.e., not depeneded upon by other targets
+in the Xcode project).
 
 _NOTE: If desired, we can leave the signature of `xcodeproj` as it is today. If we go that route, we
 will retrieve the parameters from the `kwargs`._
