@@ -456,3 +456,11 @@ when it is used by an iOS application targeted for a device.
 To simplify the syntax for specifying targets for schemes, we have opted to allow targets to be
 specified by their Bazel target only. The logic inside `rules_xcodeproj` will select the correct
 configuration variant based upon the leaf nodes that are included in the scheme.
+
+## Outstanding Questions
+
+### Do we need to support [`$(location)`](https://bazel.build/reference/be/make-variables#location) and [Make variable](https://bazel.build/reference/be/make-variables) for the JSON strings provided to the `schemes` attribute?
+
+I think that the answer to this will be yes. I believe that we can use
+[expand_make_vars](https://github.com/aspect-build/bazel-lib/blob/main/docs/expand_make_vars.md) to
+implement it.
