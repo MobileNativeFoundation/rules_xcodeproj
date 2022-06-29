@@ -470,9 +470,6 @@ The JSON representation of `My Application` will look like the following:
 }
 ```
 
-> TODO: Is selecting targets from the test actions and launch actions sufficient for only incuding
-> top-level targets in the overall targets list?
-
 ## Configuration and Target Selection in Schemes
 
 Throughout this proposal, the syntax for listing targets in the schemes shows simple Bazel target
