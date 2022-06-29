@@ -20,6 +20,7 @@ This document is a proposal for how custom Xcode schemes can be defined and impl
     * [Top\-Level Library Target](#top-level-library-target)
     * [Collecting Targets from Schemes](#collecting-targets-from-schemes)
 * [Configuration and Target Selection in Schemes](#configuration-and-target-selection-in-schemes)
+* [Build for Configuration Logic](#build-for-configuration-logic)
 * [Outstanding Questions](#outstanding-questions)
 
 ## Automatic Scheme Generation
@@ -494,6 +495,17 @@ when it is used by an iOS application targeted for a device.
 To simplify the syntax for specifying targets for schemes, we have opted to allow targets to be
 specified by their Bazel target only. The logic inside `rules_xcodeproj` will select the correct
 configuration variant based upon the leaf nodes that are included in the scheme.
+
+## Build for Configuration Logic
+
+Xcode schemes support configuraiton that dictates when a target is built. In the `tuist/XcodeProj`
+data model, this is modeled under
+[`XCScheme.BuildAction.Entry.BuildFor`](https://github.com/tuist/XcodeProj/blob/3a93b47a34860a4d7dbcd9cc0ae8e9543c179c61/Sources/XcodeProj/Scheme/XCScheme%2BBuildAction.swift#L8-L13).
+The following will be the logic used to set the `BuildFor` for targets listed in custom schemes.
+
+- Anything in `test_action` gets `.testing`.
+- Anything in `launch_action` or `build_action` gets `[.running, .profiling, .archiving, .analyzing]`.
+- Thus being in both gets all of the values.
 
 ## Outstanding Questions
 
