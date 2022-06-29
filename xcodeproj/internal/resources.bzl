@@ -135,7 +135,7 @@ def _add_structured_resources(
     bundle = resource_bundle_targets.get(bundle_path)
 
     if bundle:
-        if not bundle.resources:
+        if not bundle.resources and len(bundle_path.split(".bundle")) > 2:
             # This covers a deficiency in rules_apple's `_deduplicate` for
             # nested bundles that should be excluded
             return
