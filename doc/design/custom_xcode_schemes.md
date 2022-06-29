@@ -9,7 +9,8 @@ This document is a proposal for how custom Xcode schemes can be defined and impl
 * [Introduction of Custom Xcode Schemes](#introduction-of-custom-xcode-schemes)
   * [Defining a Simple Xcode Scheme](#defining-a-simple-xcode-scheme)
   * [Specifying a Launch Target](#specifying-a-launch-target)
-  * [Specifying Launch Arguments and Environment Variables](#specifying-launch-arguments-and-environment-variables)
+  * [Specifying Launch Arguments, Environment Variables and a Custom Working Directory](#specifying-launch-arguments-environment-variables-and-a-custom-working-directory)
+    * [Note about Working Directory Support](#note-about-working-directory-support)
 * [Introduction of Scheme Autogeneration Mode](#introduction-of-scheme-autogeneration-mode)
 * [Implementation Changes](#implementation-changes)
   * [xcode\_schemes Module](#xcode_schemes-module)
@@ -137,11 +138,11 @@ xcodeproj(
 The above example adds a second scheme called `My Application`. It is configured with two test targets
 and a single launch target. All three targets are implicitly included in the build list.
 
-### Specifying Launch Arguments and Environment Variables
+### Specifying Launch Arguments, Environment Variables and a Custom Working Directory
 
-There are times when it is desirable to customize the launch action with arguments and environment
-variables. This can be accomplished by specifying them as parameters to the
-`xcode_schemes.launch_action` function call.
+There are times when it is desirable to customize the launch action with arguments, environment
+variables and/or a custom working direectory. This can be accomplished by specifying them as
+parameters to the `xcode_schemes.launch_action` function call.
 
 ```python
 # Assumptions
@@ -177,6 +178,7 @@ _SCHEMES = [
             env = {
                 "RELEASE_THE_KRAKEN": "true",
             },
+            working_directory = "$(PROJECT_DIR)",
         ),
     ),
 ]
@@ -189,8 +191,47 @@ xcodeproj(
 )
 ```
 
-This example is the same as the previous one except arguments and environment variables are
-defined for the launch action.
+This example is the same as the previous one except arguments, environment variables, and a custom
+working directory are defined for the launch action.
+
+#### Note about Working Directory Support
+
+Here is an example of a launch action with a custom working directory as written by Xcode.
+
+```xml
+<LaunchAction
+   buildConfiguration = "Debug"
+   selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+   selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+   launchStyle = "0"
+   useCustomWorkingDirectory = "YES"
+   customWorkingDirectory = "/path/to/working_directory"
+   ignoresPersistentStateOnLaunch = "NO"
+   debugDocumentVersioning = "YES"
+   debugServiceExtension = "internal"
+   allowLocationSimulation = "YES">
+   <BuildableProductRunnable
+      runnableDebuggingMode = "0">
+      <BuildableReference
+         BuildableIdentifier = "primary"
+         BlueprintIdentifier = "E3F17BE9286CBA4400756F9B"
+         BuildableName = "MyCommandLine"
+         BlueprintName = "MyCommandLine"
+         ReferencedContainer = "container:MyCommandLine.xcodeproj">
+      </BuildableReference>
+   </BuildableProductRunnable>
+</LaunchAction>
+```
+
+Note that the `useCustomWorkingDirectory` is set to `YES` and `customWorkingDirectory` is set to the
+custom working directory value.
+
+It appears that `tuist/XcodeProj` supports
+[`useCustomWorkingDirectory`](https://github.com/tuist/XcodeProj/blob/3a93b47a34860a4d7dbcd9cc0ae8e9543c179c61/Sources/XcodeProj/Scheme/XCScheme%2BLaunchAction.swift#L45)
+but does not support [`customWorkingDirectory` in the data
+model](https://github.com/tuist/XcodeProj/search?q=customWorkingDirectory). 
+
+It looks like we will need to put up a PR to `tuist/XcodeProj` to add `customWorkingDirectory`.
 
 ## Introduction of Scheme Autogeneration Mode
 
@@ -261,7 +302,7 @@ def _test_action(targets):
     """
     pass
 
-def _launch_action(target, args = None, env = None):
+def _launch_action(target, args = None, env = None, working_directory = None):
     """Constructs a launch action for an Xcode scheme.
 
     Args:
@@ -270,6 +311,8 @@ def _launch_action(target, args = None, env = None):
             the target when executed.
         env: Optional. A `dict` of `string` values that will be set as 
             environment variables when the target is executed.
+        working_directory: Optional. A `string` that will be set as the custom 
+            working directory in the Xcode scheme's launch action.
 
     Return:
         A `struct` representing a launch action.
@@ -499,8 +542,13 @@ The following will be the logic used to set the `BuildFor` for targets listed in
 
 ## Outstanding Questions
 
-### Do we need to support [`$(location)`](https://bazel.build/reference/be/make-variables#location) and [Make variable](https://bazel.build/reference/be/make-variables) for the JSON strings provided to the `schemes` attribute?
+### Do we need to support [Make variable](https://bazel.build/reference/be/make-variables) for the JSON strings provided to the `schemes` attribute?
 
-I think that the answer to this will be yes. I believe that we can use
+If we do support it, it will make it difficult to specify Xcode-specific variables (e.g.
+[`$(PROJECT_DIR)`](https://stackoverflow.com/questions/67235826/how-do-i-use-an-environment-variable-in-the-xcode-scheme-arguments-passed-on-lau/67235841#67235841))
+in values like the custom working directory.
+
+If we do end up adding support for [make variable](https://bazel.build/reference/be/make-variables),
+I believe that we can use
 [expand_make_vars](https://github.com/aspect-build/bazel-lib/blob/main/docs/expand_make_vars.md) to
 implement it.
