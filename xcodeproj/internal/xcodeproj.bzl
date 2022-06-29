@@ -410,6 +410,11 @@ def make_xcodeproj_rule(
             values = ["xcode", "bazel"],
         ),
         "project_name": attr.string(),
+        "scheme_autogeneration_mode": attr.string(
+            default = "auto",
+            doc = "Specifies how Xcode schemes are automatically generated.",
+            values = ["auto", "none", "all"],
+        ),
         "targets": attr.label_list(
             cfg = target_transition,
             mandatory = True,
@@ -428,6 +433,10 @@ def make_xcodeproj_rule(
         "_bazel_integration_files": attr.label(
             allow_files = True,
             default = Label("//xcodeproj/internal/bazel_integration_files"),
+        ),
+        "_create_lldbinit_script": attr.label(
+            allow_single_file = True,
+            default = Label("//xcodeproj/internal/bazel_integration_files:create_lldbinit.sh"),
         ),
         "_external_file_marker": attr.label(
             allow_single_file = True,
@@ -449,10 +458,6 @@ def make_xcodeproj_rule(
         "_installer_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:installer.template.sh"),
-        ),
-        "_create_lldbinit_script": attr.label(
-            allow_single_file = True,
-            default = Label("//xcodeproj/internal/bazel_integration_files:create_lldbinit.sh"),
         ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",
