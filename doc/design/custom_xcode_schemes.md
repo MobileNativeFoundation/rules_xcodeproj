@@ -424,6 +424,9 @@ _xcodeproj(
 )
 ```
 
+Note that the `targets` list is a deduplicated, sorted list of the targets that were provided from
+the schemes and directly in the `targets` parameter.
+
 The JSON representation of `Foo Module` will look like the following:
 
 ```json
