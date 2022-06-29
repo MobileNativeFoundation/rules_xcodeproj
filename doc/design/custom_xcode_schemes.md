@@ -19,6 +19,7 @@ This document is a proposal for how custom Xcode schemes can be defined and impl
   * [Changes to xcodeproj Macro](#changes-to-xcodeproj-macro)
     * [Collecting Targets from Schemes](#collecting-targets-from-schemes)
 * [Configuration and Target Selection in Schemes](#configuration-and-target-selection-in-schemes)
+* [Outstanding Questions](#outstanding-questions)
 
 ## Automatic Scheme Generation
 
