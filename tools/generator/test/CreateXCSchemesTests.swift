@@ -347,13 +347,11 @@ class CreateXCSchemesTests: XCTestCase {
         )
     }
 
-    func test_createXCSchemes_withTargets_bazel() throws {
-        let schemes = try Generator.createXCSchemes(
-            schemeAutogenerationMode: .auto,
-            buildMode: .bazel,
-            filePathResolver: filePathResolver,
-            pbxTargets: pbxTargetsDict
-        )
+    func assertBazelSchemes(
+        schemes: [XCScheme],
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws {
         XCTAssertEqual(schemes.count, pbxTargetsDict.count)
 
         let schemesDict = Dictionary(uniqueKeysWithValues: schemes.map { ($0.name, $0) })
@@ -367,7 +365,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectLaunchEnvVariables: false
+            shouldExpectLaunchEnvVariables: false,
+            file: file,
+            line: line
         )
 
         // Library
@@ -379,7 +379,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectLaunchEnvVariables: false
+            shouldExpectLaunchEnvVariables: false,
+            file: file,
+            line: line
         )
 
         // Launchable, testable
@@ -391,7 +393,9 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: true,
             shouldExpectBuildableProductRunnable: false,
             shouldExpectLaunchMacroExpansion: true,
-            shouldExpectLaunchEnvVariables: true
+            shouldExpectLaunchEnvVariables: true,
+            file: file,
+            line: line
         )
 
         // Launchable, not testable
@@ -403,7 +407,39 @@ class CreateXCSchemesTests: XCTestCase {
             shouldExpectTestables: false,
             shouldExpectBuildableProductRunnable: true,
             shouldExpectLaunchMacroExpansion: false,
-            shouldExpectLaunchEnvVariables: true
+            shouldExpectLaunchEnvVariables: true,
+            file: file,
+            line: line
         )
+    }
+
+    func test_createXCSchemes_withTargets_bazel_withSchemeModeAuto() throws {
+        let schemes = try Generator.createXCSchemes(
+            schemeAutogenerationMode: .auto,
+            buildMode: .bazel,
+            filePathResolver: filePathResolver,
+            pbxTargets: pbxTargetsDict
+        )
+        try assertBazelSchemes(schemes: schemes)
+    }
+
+    func test_createXCSchemes_withTargets_bazel_withSchemeModeAll() throws {
+        let schemes = try Generator.createXCSchemes(
+            schemeAutogenerationMode: .all,
+            buildMode: .bazel,
+            filePathResolver: filePathResolver,
+            pbxTargets: pbxTargetsDict
+        )
+        try assertBazelSchemes(schemes: schemes)
+    }
+
+    func test_createXCSchemes_withTargets_bazel_withSchemeModeNone() throws {
+        let schemes = try Generator.createXCSchemes(
+            schemeAutogenerationMode: .none,
+            buildMode: .bazel,
+            filePathResolver: filePathResolver,
+            pbxTargets: pbxTargetsDict
+        )
+        XCTAssertEqual(schemes, [])
     }
 }
