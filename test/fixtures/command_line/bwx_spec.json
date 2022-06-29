@@ -571,6 +571,9 @@
                         "t": "e"
                     }
                 ],
+                "force_load": [
+                    "examples/command_line/third_party/ExampleFramework.framework/ExampleFramework"
+                ],
                 "linkopts": [
                     "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/LibSwift.swiftmodule/x86_64-apple-macos.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",

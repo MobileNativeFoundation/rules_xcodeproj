@@ -181,11 +181,15 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
             avoid_imported_libraries = sets.make(
                 avoid_linker_inputs._objc.imported_library.to_list(),
             )
+            avoid_force_load_libraries = sets.make(
+                avoid_linker_inputs._objc.force_load_library.to_list(),
+            )
         else:
             avoid_dynamic_framework_files = sets.make()
             avoid_static_framework_files = sets.make()
             avoid_libraries = sets.make()
             avoid_imported_libraries = sets.make()
+            avoid_force_load_libraries = sets.make()
 
         dynamic_frameworks = [
             file
@@ -207,9 +211,14 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
             for file in objc.imported_library.to_list()
             if not sets.contains(avoid_imported_libraries, file)
         ]
+        force_load_libraries = [
+            file
+            for file in objc.force_load_library.to_list()
+            if not sets.contains(avoid_force_load_libraries, file)
+        ]
 
+        user_linkopts = []
         raw_linkopts = objc.linkopt.to_list()
-
         raw_linkopts.extend(collections.before_each(
             "-framework",
             objc.sdk_framework.to_list(),
@@ -240,15 +249,19 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
         imported_libraries = []
         static_frameworks = []
 
+        force_load_libraries = []
         libraries = []
         raw_linkopts = []
+        user_linkopts = []
         for input in cc_info.linking_context.linker_inputs.to_list():
-            raw_linkopts.extend(input.user_link_flags)
-            libraries.extend([
-                library.static_library
-                for library in input.libraries
-                if not sets.contains(avoid_libraries, library)
-            ])
+            user_linkopts.extend(input.user_link_flags)
+            for library in input.libraries:
+                if sets.contains(avoid_libraries, library):
+                    continue
+                if library.alwayslink:
+                    force_load_libraries.append(library.static_library)
+                else:
+                    libraries.append(library.static_library)
     else:
         fail("cc_info or objc must be non-`None`")
 
@@ -264,6 +277,7 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
         variables = cc_common.create_link_variables(
             feature_configuration = feature_configuration,
             cc_toolchain = cc_toolchain,
+            user_link_flags = user_linkopts,
         )
 
         is_objc = objc != None
@@ -287,6 +301,7 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
 
     return struct(
         dynamic_frameworks = dynamic_frameworks,
+        force_load_libraries = force_load_libraries,
         imported_libraries = imported_libraries,
         libraries = libraries,
         linkopts = linkopts,
@@ -382,6 +397,14 @@ def _to_dto(linker_inputs):
         [
             file_path_to_dto(file_path(file, path = file.dirname))
             for file in top_level_values.dynamic_frameworks
+        ],
+    )
+    set_if_true(
+        ret,
+        "force_load",
+        [
+            file_path_to_dto(file_path(file))
+            for file in top_level_values.force_load_libraries
         ],
     )
     set_if_true(

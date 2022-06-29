@@ -12,4 +12,5 @@ apple_static_framework_import(
     sdk_frameworks = ["Foundation"],
     visibility = ["//visibility:public"],
     weak_sdk_frameworks = ["SwiftUI"],
+    alwayslink = True,
 )
