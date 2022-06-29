@@ -42,14 +42,36 @@ def _collect_for_non_top_level(*, cc_info, objc, is_xcode_target):
         *   `xcode_library_targets`: A list of targets `structs` that are
             Xcode library targets.
     """
+    is_xcode_library_target = cc_info and is_xcode_target
+    if is_xcode_library_target:
+        primary_static_library = _compute_primary_static_library(
+            cc_info = cc_info,
+            objc = objc,
+        )
+    else:
+        primary_static_library = None
+
     return struct(
-        _avoid_linker_inputs = None,
         _cc_info = cc_info,
-        _ctx = None,
         _objc = objc,
-        _is_xcode_library_target = cc_info and is_xcode_target,
+        _primary_static_library = primary_static_library,
+        _top_level_values = None,
+        _is_xcode_library_target = is_xcode_library_target,
         xcode_library_targets = [],
     )
+
+def _compute_primary_static_library(cc_info, objc):
+    # Ideally we would only return the static library that is owned by this
+    # target, but sometimes another rule creates the output and this rule
+    # outputs it. So far the first library has always been the correct one.
+    if objc:
+        for library in objc.library.to_list():
+            return library
+    elif cc_info:
+        linker_inputs = cc_info.linking_context.linker_inputs
+        for input in linker_inputs.to_list():
+            return input.libraries[0].static_library
+    return None
 
 def _collect_for_top_level(
         *,
@@ -121,45 +143,85 @@ def _merge(*, ctx = None, transitive_linker_inputs, avoid_linker_inputs = None):
         if linker_inputs._is_xcode_library_target
     ]
 
+    if cc_info or objc:
+        top_level_values = _extract_top_level_values(
+            ctx = ctx,
+            cc_info = cc_info,
+            objc = objc,
+            avoid_linker_inputs = avoid_linker_inputs,
+        )
+    else:
+        top_level_values = None
+
     return struct(
-        _avoid_linker_inputs = avoid_linker_inputs,
         _cc_info = cc_info,
-        _ctx = ctx,
         _objc = objc,
+        _primary_static_library = None,
+        _top_level_values = top_level_values,
         _is_xcode_library_target = False,
         xcode_library_targets = xcode_library_targets,
     )
 
-def _get_static_libraries(linker_inputs):
-    """Returns the static libraries needed to link the target.
-
-    Args:
-        linker_inputs: A value returned from `linker_input_files.collect`.
-
-    Returns:
-        A `list` of `File`s that need to be linked for the target.
-    """
-    cc_info = linker_inputs._cc_info
-    objc = linker_inputs._objc
-    avoid_linker_inputs = linker_inputs._avoid_linker_inputs
-
+def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
     if objc:
         if avoid_linker_inputs:
             if not avoid_linker_inputs._objc:
                 fail("""\
 `avoid_linker_inputs` doesn't have `ObjcProvider`, but `linker_inputs` does
 """)
+            avoid_dynamic_framework_files = sets.make(
+                avoid_linker_inputs._objc.dynamic_framework_file.to_list(),
+            )
+            avoid_static_framework_files = sets.make(
+                avoid_linker_inputs._objc.static_framework_file.to_list(),
+            )
             avoid_libraries = sets.make(
                 avoid_linker_inputs._objc.library.to_list(),
             )
+            avoid_imported_libraries = sets.make(
+                avoid_linker_inputs._objc.imported_library.to_list(),
+            )
         else:
+            avoid_dynamic_framework_files = sets.make()
+            avoid_static_framework_files = sets.make()
             avoid_libraries = sets.make()
+            avoid_imported_libraries = sets.make()
 
-        return [
+        dynamic_frameworks = [
+            file
+            for file in objc.dynamic_framework_file.to_list()
+            if not sets.contains(avoid_dynamic_framework_files, file)
+        ]
+        static_frameworks = [
+            file
+            for file in objc.static_framework_file.to_list()
+            if not sets.contains(avoid_static_framework_files, file)
+        ]
+        libraries = [
             file
             for file in objc.library.to_list()
             if not sets.contains(avoid_libraries, file)
         ]
+        imported_libraries = [
+            file
+            for file in objc.imported_library.to_list()
+            if not sets.contains(avoid_imported_libraries, file)
+        ]
+
+        raw_linkopts = objc.linkopt.to_list()
+
+        raw_linkopts.extend(collections.before_each(
+            "-framework",
+            objc.sdk_framework.to_list(),
+        ))
+        raw_linkopts.extend(collections.before_each(
+            "-weak_framework",
+            objc.weak_sdk_framework.to_list(),
+        ))
+        raw_linkopts.extend([
+            "-l" + dylib
+            for dylib in objc.sdk_dylib.to_list()
+        ])
     elif cc_info:
         if avoid_linker_inputs:
             if not avoid_linker_inputs._cc_info:
@@ -174,16 +236,76 @@ def _get_static_libraries(linker_inputs):
         else:
             avoid_libraries = sets.make()
 
-        return [
-            library.static_library
-            for library in flatten([
-                input.libraries
-                for input in cc_info.linking_context.linker_inputs.to_list()
+        dynamic_frameworks = []
+        imported_libraries = []
+        static_frameworks = []
+
+        libraries = []
+        raw_linkopts = []
+        for input in cc_info.linking_context.linker_inputs.to_list():
+            raw_linkopts.extend(input.user_link_flags)
+            libraries.extend([
+                library.static_library
+                for library in input.libraries
+                if not sets.contains(avoid_libraries, library)
             ])
-            if not sets.contains(avoid_libraries, library)
-        ]
     else:
+        fail("cc_info or objc must be non-`None`")
+
+    if ctx:
+        cc_toolchain = find_cpp_toolchain(ctx)
+
+        feature_configuration = cc_common.configure_features(
+            ctx = ctx,
+            cc_toolchain = cc_toolchain,
+            requested_features = ctx.features,
+            unsupported_features = ctx.disabled_features,
+        )
+        variables = cc_common.create_link_variables(
+            feature_configuration = feature_configuration,
+            cc_toolchain = cc_toolchain,
+        )
+
+        is_objc = objc != None
+        cc_linkopts = cc_common.get_memory_inefficient_command_line(
+            feature_configuration = feature_configuration,
+            action_name = (
+                "objc-executable" if is_objc else "c++-link-executable"
+            ),
+            variables = variables,
+        )
+        raw_linkopts.extend(cc_linkopts)
+
+        apple_fragment = ctx.fragments.apple
+        triple = "{}-apple-{}".format(
+            apple_fragment.single_arch_cpu,
+            _TARGET_TRIPLE_OS[apple_fragment.single_arch_platform],
+        )
+        linkopts = _process_linkopts(raw_linkopts, triple = triple)
+    else:
+        linkopts = None
+
+    return struct(
+        dynamic_frameworks = dynamic_frameworks,
+        imported_libraries = imported_libraries,
+        libraries = libraries,
+        linkopts = linkopts,
+        static_frameworks = static_frameworks,
+    )
+
+def _get_static_libraries(linker_inputs):
+    """Returns the static libraries needed to link the target.
+
+    Args:
+        linker_inputs: A value returned from `linker_input_files.collect`.
+
+    Returns:
+        A `list` of `File`s that need to be linked for the target.
+    """
+    top_level_values = linker_inputs._top_level_values
+    if not top_level_values:
         fail("Xcode target requires `ObjcProvider` or `CcInfo`")
+    return top_level_values.libraries
 
 def _process_linkopts(linkopts, *, triple):
     ret = []
@@ -249,140 +371,41 @@ def _to_dto(linker_inputs):
         *   `static_libraries`: A `list` of `FilePath`s for `static_libraries`.
         *   `linkopts`: A `list` of `string`s for linkopts.
     """
-    if linker_inputs._is_xcode_library_target:
-        # We only want to return linker inputs for top level targets
+    top_level_values = linker_inputs._top_level_values
+    if not top_level_values:
         return {}
-
-    cc_info = linker_inputs._cc_info
-    objc = linker_inputs._objc
-    avoid_linker_inputs = linker_inputs._avoid_linker_inputs
-
-    if objc:
-        if avoid_linker_inputs:
-            if not avoid_linker_inputs._objc:
-                fail("""\
-`avoid_linker_inputs` doesn't have `ObjcProvider`, but `linker_inputs` does
-""")
-            avoid_dynamic_framework_files = sets.make(
-                avoid_linker_inputs._objc.dynamic_framework_file.to_list(),
-            )
-            avoid_static_framework_files = sets.make(
-                avoid_linker_inputs._objc.static_framework_file.to_list(),
-            )
-            avoid_libraries = sets.make(
-                avoid_linker_inputs._objc.library.to_list(),
-            )
-            avoid_imported_libraries = sets.make(
-                avoid_linker_inputs._objc.imported_library.to_list(),
-            )
-        else:
-            avoid_dynamic_framework_files = sets.make()
-            avoid_static_framework_files = sets.make()
-            avoid_libraries = sets.make()
-            avoid_imported_libraries = sets.make()
-
-        dynamic_frameworks = [
-            file_path_to_dto(file_path(file, path = file.dirname))
-            for file in objc.dynamic_framework_file.to_list()
-            if not sets.contains(avoid_dynamic_framework_files, file)
-        ]
-        static_frameworks = [
-            file_path_to_dto(file_path(file, path = file.dirname))
-            for file in objc.static_framework_file.to_list()
-            if not sets.contains(avoid_static_framework_files, file)
-        ]
-        libraries = [
-            file_path_to_dto(file_path(file))
-            for file in objc.library.to_list()
-            if not sets.contains(avoid_libraries, file)
-        ]
-        imported_libraries = [
-            file_path_to_dto(file_path(file))
-            for file in objc.imported_library.to_list()
-            if not sets.contains(avoid_imported_libraries, file)
-        ]
-        static_libraries = libraries + imported_libraries
-
-        raw_linkopts = objc.linkopt.to_list()
-
-        raw_linkopts.extend(collections.before_each(
-            "-framework",
-            objc.sdk_framework.to_list(),
-        ))
-        raw_linkopts.extend(collections.before_each(
-            "-weak_framework",
-            objc.weak_sdk_framework.to_list(),
-        ))
-        raw_linkopts.extend([
-            "-l" + dylib
-            for dylib in objc.sdk_dylib.to_list()
-        ])
-    elif cc_info:
-        if avoid_linker_inputs:
-            if not avoid_linker_inputs._cc_info:
-                fail("""\
-`avoid_linker_inputs` doesn't have `CcInfo`, but `linker_inputs` does
-""")
-            avoid_linking_context = avoid_linker_inputs._cc_info.linking_context
-            avoid_libraries = sets.make(flatten([
-                input.libraries
-                for input in avoid_linking_context.linker_inputs.to_list()
-            ]))
-        else:
-            avoid_libraries = sets.make()
-
-        dynamic_frameworks = []
-        static_frameworks = []
-
-        static_libraries = []
-        raw_linkopts = []
-        for input in cc_info.linking_context.linker_inputs.to_list():
-            raw_linkopts.extend(input.user_link_flags)
-            for library in input.libraries:
-                if sets.contains(avoid_libraries, library):
-                    continue
-                static_libraries.append(
-                    file_path_to_dto(file_path(library.static_library)),
-                )
-    else:
-        return {}
-
-    ctx = linker_inputs._ctx
-    cc_toolchain = find_cpp_toolchain(ctx)
-
-    feature_configuration = cc_common.configure_features(
-        ctx = ctx,
-        cc_toolchain = cc_toolchain,
-        requested_features = ctx.features,
-        unsupported_features = ctx.disabled_features,
-    )
-    variables = cc_common.create_link_variables(
-        feature_configuration = feature_configuration,
-        cc_toolchain = cc_toolchain,
-    )
-
-    is_objc = objc != None
-    cc_linkopts = cc_common.get_memory_inefficient_command_line(
-        feature_configuration = feature_configuration,
-        action_name = "objc-executable" if is_objc else "c++-link-executable",
-        variables = variables,
-    )
-    raw_linkopts.extend(cc_linkopts)
-
-    apple_fragment = ctx.fragments.apple
-    triple = "{}-apple-{}".format(
-        apple_fragment.single_arch_cpu,
-        _TARGET_TRIPLE_OS[apple_fragment.single_arch_platform],
-    )
 
     ret = {}
-    set_if_true(ret, "dynamic_frameworks", dynamic_frameworks)
-    set_if_true(ret, "static_frameworks", static_frameworks)
-    set_if_true(ret, "static_libraries", static_libraries)
+    set_if_true(
+        ret,
+        "dynamic_frameworks",
+        [
+            file_path_to_dto(file_path(file, path = file.dirname))
+            for file in top_level_values.dynamic_frameworks
+        ],
+    )
     set_if_true(
         ret,
         "linkopts",
-        _process_linkopts(raw_linkopts, triple = triple),
+        top_level_values.linkopts,
+    )
+    set_if_true(
+        ret,
+        "static_libraries",
+        [
+            file_path_to_dto(file_path(file))
+            for file in (
+                top_level_values.libraries + top_level_values.imported_libraries
+            )
+        ],
+    )
+    set_if_true(
+        ret,
+        "static_frameworks",
+        [
+            file_path_to_dto(file_path(file, path = file.dirname))
+            for file in top_level_values.static_frameworks
+        ],
     )
 
     return ret
@@ -396,18 +419,7 @@ def _get_primary_static_library(linker_inputs):
     Returns:
         The `File` of the primary static library, or `None`.
     """
-
-    # Ideally we would only return the static library that is owned by this
-    # target, but sometimes another rule creates the output and this rule
-    # outputs it. So far the first library has always been the correct one.
-    if linker_inputs._objc:
-        for library in linker_inputs._objc.library.to_list():
-            return library
-    elif linker_inputs._cc_info:
-        linker_inputs = linker_inputs._cc_info.linking_context.linker_inputs
-        for input in linker_inputs.to_list():
-            return input.libraries[0].static_library
-    return None
+    return linker_inputs._primary_static_library
 
 linker_input_files = struct(
     collect_for_non_top_level = _collect_for_non_top_level,
