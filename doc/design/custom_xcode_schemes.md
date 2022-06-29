@@ -329,6 +329,38 @@ leaf-nodes (i.e., not depeneded upon by other targets in the Xcode project).
 _NOTE: If desired, we can leave the signature of `xcodeproj` as it is today. If we go that route, we
 will retrieve the parameters from the `kwargs`._
 
+#### Top-Level Library Target
+
+There are situations where a library target might be a top-level target (i.e., no test target or
+launch target).  To ensure that it is included in the Xcode project properly, one will need to
+specify the library target in the `targets` list for `xcodeproj` and any schemes that should include
+it. The following shows an example.
+
+```python
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "xcode_schemes",
+    "xcodeproj",
+)
+
+_SCHEMES = [
+    xcode_schemes.scheme(
+        name = "Foo Module",
+        build_action = xcode_schemes.build_action(["//Sources/Foo"]),
+    ),
+]
+
+xcodeproj(
+    name = "generate_xcodeproj",
+    project_name = "Command Line",
+    tags = ["manual"],
+    schemes = _SCHEMES,
+    targets = [
+        "//Sources/Foo",
+    ],
+)
+```
+
 #### Collecting Targets from Schemes
 
 Let's look at an example that illustrates how targets are collected. The following is the example
