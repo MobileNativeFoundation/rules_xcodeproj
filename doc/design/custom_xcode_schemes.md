@@ -498,10 +498,11 @@ configuration variant based upon the leaf nodes that are included in the scheme.
 
 ## Build for Configuration Logic
 
-Xcode schemes support configuraiton that dictates when a target is built. In the `tuist/XcodeProj`
+Xcode schemes support configuration that dictates when a target is built. In the `tuist/XcodeProj`
 data model, this is modeled under
 [`XCScheme.BuildAction.Entry.BuildFor`](https://github.com/tuist/XcodeProj/blob/3a93b47a34860a4d7dbcd9cc0ae8e9543c179c61/Sources/XcodeProj/Scheme/XCScheme%2BBuildAction.swift#L8-L13).
-The following will be the logic used to set the `BuildFor` for targets listed in custom schemes.
+
+The following will be the logic used to set the `BuildFor` for targets listed in custom schemes:
 
 - Anything in `test_action` gets `.testing`.
 - Anything in `launch_action` or `build_action` gets `[.running, .profiling, .archiving, .analyzing]`.
