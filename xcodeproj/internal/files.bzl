@@ -2,7 +2,13 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 
-def file_path(file, path = None, is_folder = False, include_in_navigator = True):
+def file_path(
+        file,
+        *,
+        path = None,
+        is_folder = False,
+        include_in_navigator = True,
+        force_group_creation = False):
     """Converts a `File` into a `FilePath` Swift DTO value.
 
     Args:
@@ -11,6 +17,9 @@ def file_path(file, path = None, is_folder = False, include_in_navigator = True)
         is_folder: Whether the path is to a folder.
         include_in_navigator: Whether to include the file in the Project
             navigator.
+        force_group_creation: Whether to force the creation of all intermediate
+            groups in the generated project for the file. If this is `True`,
+            then no folder type optimizations will be used.
 
     Returns:
         A `struct` containing the following fields:
@@ -30,17 +39,20 @@ def file_path(file, path = None, is_folder = False, include_in_navigator = True)
             path = path,
             is_folder = is_folder,
             include_in_navigator = include_in_navigator,
+            force_group_creation = force_group_creation,
         )
     if file.owner.workspace_name:
         return external_file_path(
             path = path,
             is_folder = is_folder,
             include_in_navigator = include_in_navigator,
+            force_group_creation = force_group_creation,
         )
     return project_file_path(
         path = path,
         is_folder = is_folder,
         include_in_navigator = include_in_navigator,
+        force_group_creation = force_group_creation,
     )
 
 def parsed_file_path(path):
@@ -93,15 +105,27 @@ def normalized_file_path(file):
 
     return file_path(file)
 
-def _file_path(type, *, path, is_folder, include_in_navigator):
+def _file_path(
+        type,
+        *,
+        path,
+        is_folder,
+        include_in_navigator,
+        force_group_creation):
     return struct(
         path = path,
         type = type,
         is_folder = is_folder,
         include_in_navigator = include_in_navigator,
+        force_group_creation = force_group_creation,
     )
 
-def external_file_path(path, is_folder = False, include_in_navigator = True):
+def external_file_path(
+        path,
+        *,
+        is_folder = False,
+        include_in_navigator = True,
+        force_group_creation = False):
     return _file_path(
         # Type: "e" == `.external`
         type = "e",
@@ -109,9 +133,15 @@ def external_file_path(path, is_folder = False, include_in_navigator = True):
         path = path[9:],
         is_folder = is_folder,
         include_in_navigator = include_in_navigator,
+        force_group_creation = force_group_creation,
     )
 
-def generated_file_path(path, is_folder = False, include_in_navigator = True):
+def generated_file_path(
+        path,
+        *,
+        is_folder = False,
+        include_in_navigator = True,
+        force_group_creation = False):
     return _file_path(
         # Type: "g" == `.generated`
         type = "g",
@@ -119,15 +149,22 @@ def generated_file_path(path, is_folder = False, include_in_navigator = True):
         path = path[10:],
         is_folder = is_folder,
         include_in_navigator = include_in_navigator,
+        force_group_creation = force_group_creation,
     )
 
-def project_file_path(path, is_folder = False, include_in_navigator = True):
+def project_file_path(
+        path,
+        *,
+        is_folder = False,
+        include_in_navigator = True,
+        force_group_creation = False):
     return _file_path(
         # Type: "p" == `.project`
         type = "p",
         path = path,
         is_folder = is_folder,
         include_in_navigator = include_in_navigator,
+        force_group_creation = force_group_creation,
     )
 
 # TODO: Refactor all of file_path stuff to a module
@@ -162,6 +199,9 @@ def file_path_to_dto(file_path):
 
     if not file_path.include_in_navigator:
         ret["i"] = False
+
+    if file_path.force_group_creation:
+        ret["g"] = True
 
     if ret:
         ret["_"] = file_path.path
