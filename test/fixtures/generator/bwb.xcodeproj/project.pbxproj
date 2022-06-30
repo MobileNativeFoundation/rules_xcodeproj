@@ -153,6 +153,7 @@
 		83FBDFA33D8A84AEA3DAC61E /* OrderedSet+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF678DB87E07DDDF0999336 /* OrderedSet+Testing.swift */; };
 		86824C0BC97C6DA06A465D0C /* XCSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AD1D57FD4037EC5BB72645 /* XCSharedData.swift */; };
 		86FE11FE2B8F03BEE4C909B9 /* PathExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493423CD8285C46D06C4169D /* PathExtensionsTests.swift */; };
+		88A1E70B0B98E3C036B65854 /* SchemeAutogenerationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3D3F0268B6D1D4DEA68A2 /* SchemeAutogenerationMode.swift */; };
 		892C9CFBEE5474105B683C75 /* XCScheme+EnvironmentVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F07848723835EC26C2340C /* XCScheme+EnvironmentVariable.swift */; };
 		8A9EBE0DE562329A750CF522 /* PBXGroup+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959229FCAA86770A69AA789 /* PBXGroup+Extensions.swift */; };
 		8BF8CFA67C6213113810FCAD /* PBXContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE25BEDFD3646AD0AB54C40 /* PBXContainerItem.swift */; };
@@ -452,6 +453,7 @@
 		20573500FA17CDB30A03469A /* _Hashtable+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_Hashtable+Header.swift"; sourceTree = "<group>"; };
 		2062B3E1312EAF079BC5E26C /* OrderedSet+Invariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Invariants.swift"; sourceTree = "<group>"; };
 		20A47D52C1A48A1ED498719F /* XcodeProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeProj.swift; sourceTree = "<group>"; };
+		20F3D3F0268B6D1D4DEA68A2 /* SchemeAutogenerationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeAutogenerationMode.swift; sourceTree = "<group>"; };
 		22E436CA9D5D1BCA7C5E800B /* ConsolidatedTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidatedTargetTests.swift; sourceTree = "<group>"; };
 		230BF7ABCF5D7C48951A8641 /* XcodeProj+CustomDump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeProj+CustomDump.swift"; sourceTree = "<group>"; };
 		25072DE452FF8EC4AC148C4A /* GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorTests.swift; sourceTree = "<group>"; };
@@ -1280,6 +1282,7 @@
 				CCAD7D38A6606771FA4A7436 /* Platform.swift */,
 				963808B2F3A1F2B83E6AE6DF /* Product.swift */,
 				F298521A3DBBAD2961DF8973 /* Project.swift */,
+				20F3D3F0268B6D1D4DEA68A2 /* SchemeAutogenerationMode.swift */,
 				4E71E5D5A3ED7BDF0B859C36 /* SearchPaths.swift */,
 				EC947C625E7E6B30468D77B8 /* Target.swift */,
 				F2C81405CA830285CE772318 /* TargetID.swift */,
@@ -1947,6 +1950,7 @@
 				1532FA28D9B68BDD436146B2 /* Platform.swift in Sources */,
 				1602C1E6B3A7B310849DE483 /* Product.swift in Sources */,
 				5FE44C4114314A0A59AF2525 /* Project.swift in Sources */,
+				88A1E70B0B98E3C036B65854 /* SchemeAutogenerationMode.swift in Sources */,
 				ECCA99D11A5C71FF33FFA4B0 /* SearchPaths.swift in Sources */,
 				3F2995EB81E92469E7E2D50D /* Target.swift in Sources */,
 				80172D16E7DA2B9979BAF386 /* TargetID.swift in Sources */,

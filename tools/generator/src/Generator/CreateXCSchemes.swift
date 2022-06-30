@@ -4,10 +4,14 @@ import XcodeProj
 extension Generator {
     /// Creates an array of `XCScheme` entries for the specified targets.
     static func createXCSchemes(
+        schemeAutogenerationMode: SchemeAutogenerationMode,
         buildMode: BuildMode,
         filePathResolver: FilePathResolver,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
     ) throws -> [XCScheme] {
+        guard schemeAutogenerationMode != .none else {
+            return []
+        }
         let referencedContainer = filePathResolver.containerReference
         return try pbxTargets.map { _, pbxTarget in
             try createXCScheme(
@@ -58,7 +62,7 @@ extension Generator {
                     .testing,
                     .profiling,
                     .archiving,
-                    .analyzing
+                    .analyzing,
                 ]
             )],
             preActions: createBuildPreActions(

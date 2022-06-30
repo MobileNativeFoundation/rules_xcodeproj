@@ -24,6 +24,7 @@
     ],
     "label": "//test/fixtures/generator:xcodeproj_bwx",
     "name": "bwx",
+    "scheme_autogeneration_mode": "auto",
     "target_merges": [
         "//tools/generator/test:tests.library darwin_x86_64-dbg-ST-ccd9595da841",
         [
@@ -348,6 +349,7 @@
                     "tools/generator/src/DTO/Platform.swift",
                     "tools/generator/src/DTO/Product.swift",
                     "tools/generator/src/DTO/Project.swift",
+                    "tools/generator/src/DTO/SchemeAutogenerationMode.swift",
                     "tools/generator/src/DTO/SearchPaths.swift",
                     "tools/generator/src/DTO/Target.swift",
                     "tools/generator/src/DTO/TargetID.swift",

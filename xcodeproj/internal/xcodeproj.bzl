@@ -98,6 +98,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 "invalid_target_merges":{invalid_target_merges},\
 "label":"{label}",\
 "name":"{name}",\
+"scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
 "target_merges":{target_merges},\
 "targets":{targets}\
 }}
@@ -111,6 +112,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
         name = project_name,
         bazel_workspace_name = ctx.workspace_name,
         targets = targets_json,
+        scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))
@@ -410,6 +412,11 @@ def make_xcodeproj_rule(
             values = ["xcode", "bazel"],
         ),
         "project_name": attr.string(),
+        "scheme_autogeneration_mode": attr.string(
+            default = "auto",
+            doc = "Specifies how Xcode schemes are automatically generated.",
+            values = ["auto", "none", "all"],
+        ),
         "targets": attr.label_list(
             cfg = target_transition,
             mandatory = True,

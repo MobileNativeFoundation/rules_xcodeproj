@@ -18,7 +18,8 @@ final class GeneratorTests: XCTestCase {
             targets: Fixtures.targets,
             targetMerges: [:],
             invalidTargetMerges: ["Y": ["Z"]],
-            extraFiles: []
+            extraFiles: [],
+            schemeAutogenerationMode: .auto
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
@@ -31,6 +32,7 @@ final class GeneratorTests: XCTestCase {
         pbxProject.mainGroup = mainGroup
 
         let buildMode: BuildMode = .bazel
+        let schemeAutogenerationMode: SchemeAutogenerationMode = .auto
         let projectRootDirectory: Path = "~/project"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
@@ -453,6 +455,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         // MARK: createXCSchemes()
 
         struct CreateXCSchemesCalled: Equatable {
+            let schemeAutogenerationMode: SchemeAutogenerationMode
             let buildMode: BuildMode
             let filePathResolver: FilePathResolver
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
@@ -460,11 +463,13 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
 
         var createXCSchemesCalled: [CreateXCSchemesCalled] = []
         func createXCSchemes(
+            schemeAutogenerationMode: SchemeAutogenerationMode,
             buildMode: BuildMode,
             filePathResolver: FilePathResolver,
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         ) throws -> [XCScheme] {
             createXCSchemesCalled.append(.init(
+                schemeAutogenerationMode: schemeAutogenerationMode,
                 buildMode: buildMode,
                 filePathResolver: filePathResolver,
                 pbxTargets: pbxTargets
@@ -473,6 +478,7 @@ Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
         }
 
         let expectedCreateXCSchemesCalled = [CreateXCSchemesCalled(
+            schemeAutogenerationMode: schemeAutogenerationMode,
             buildMode: buildMode,
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargets
