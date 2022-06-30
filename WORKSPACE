@@ -97,6 +97,27 @@ apple_static_xcframework_import(
     url = "https://dl.google.com/geosdk/GoogleMaps-6.2.1-beta.tar.gz",
 )
 
+http_archive(
+    name = "com_github_krzyzanowskim_cryptoswift",
+    build_file_content = """\
+load(
+    "@build_bazel_rules_apple//apple:apple.bzl",
+    "apple_dynamic_xcframework_import",
+)
+
+apple_dynamic_xcframework_import(
+    name = "CryptoSwift",
+    xcframework_imports = glob(
+        ["CryptoSwift.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    visibility = ["//visibility:public"],
+)
+""",
+    sha256 = "b251155dce1e5f705f40bf1d531d56851b90f1907a8ff07d0e0c471f12316515",
+    url = "https://github.com/krzyzanowskim/CryptoSwift/releases/download/1.5.1/CryptoSwift.xcframework.zip",
+)
+
 # Setup Swift Custom Dump test dependency
 
 http_archive(

@@ -6,6 +6,9 @@ swift_library(
     module_name = "Lib",
     tags = ["manual"],
     visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_krzyzanowskim_cryptoswift//:CryptoSwift",
+    ],
 )
 
 genrule(
