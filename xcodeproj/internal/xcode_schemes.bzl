@@ -74,9 +74,13 @@ def _launch_action(target, args = None, env = None, working_directory = None):
         working_directory = working_directory,
     )
 
+def _collect_top_level_targets(schemes):
+    pass
+
 xcode_schemes = struct(
     scheme = _scheme,
     build_action = _build_action,
     test_action = _test_action,
     launch_action = _launch_action,
+    collect_top_level_targets = _collect_top_level_targets,
 )
