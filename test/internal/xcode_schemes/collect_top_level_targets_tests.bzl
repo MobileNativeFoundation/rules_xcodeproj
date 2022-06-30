@@ -8,7 +8,15 @@ load("//xcodeproj/internal:xcode_schemes.bzl", "xcode_schemes")
 def _no_top_level_targets_test(ctx):
     env = unittest.begin(ctx)
 
-    unittest.fail(env, "IMPLEMENT ME!")
+    schemes = [
+        xcode_schemes.scheme(
+            name = "Foo",
+        ),
+    ]
+
+    actual = xcode_schemes.collect_top_level_targets(schemes)
+    expected = []
+    asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 
