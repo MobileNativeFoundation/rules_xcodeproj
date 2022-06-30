@@ -24,6 +24,7 @@
 /* Begin PBXBuildFile section */
 		0164DA506F6AFFE8D9484E5B /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DED4191C90C7A853FF2A4E /* iOSApp.swift */; };
 		0A5B4B1401EBA0F452D83036 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D71C4BEDCDCB107460E90 /* main.swift */; };
+		171DACB244D0CE6D2880DE13 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4B9C08059A6D7570552A207 /* GoogleMaps.bundle */; };
 		2A5002AF448008006747E7E5 /* CompileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9ACBD60C49872D43B34A8 /* CompileStub.m */; };
 		3303FABFC056EBA3253EF7AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 909CC2C241F4540F5E294662 /* Assets.xcassets */; };
 		39FE596A18105235919707F9 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2FC43BDB211622F991234 /* tvOSApp.swift */; };
@@ -31,19 +32,26 @@
 		3C2C14847DDBAFA2422DFCA1 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58905D8A9A73FF271B31642 /* Lib.swift */; };
 		3DA2238D1AE0C4DE3F8700B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */; };
 		3E70FC597A6921ACCDADB518 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F9E520AE77866C3451F1C7 /* Lib.swift */; };
+		4F1FD2B820497A6AFE6B313C /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7460163239595E240435120 /* GoogleMapsBase.framework */; };
 		62CFF6C7D0DCE936662E389C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D295FECC5CF307D463F8CBD4 /* Preview Assets.xcassets */; };
 		672612624F95412422292B68 /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF973F3635AEB0E5B3101EA8 /* watchOSApp.swift */; };
 		6BB33EE1FF138449161F329C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E47A83139A3569C6FA232A95 /* Assets.xcassets */; };
 		71EC4F6CE5FD79BF0EE2B2A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20CD51DEB2E26EC7377B9F16 /* Preview Assets.xcassets */; };
+		7311E94E23B56BB5576D6E2D /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301920FC4AA3691CDC2070D7 /* GoogleMaps.framework */; };
 		76F951DCD4D44DB6EECA528C /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203F9638F1D5CCA18DCA2A88 /* Lib.swift */; };
 		7A35253D15168D745B41DAC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0ADD9182447B9BBC9D04FD /* ContentView.swift */; };
 		7BADA8103BB4E09B7735582D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC294F18473B4B7357EB8BB /* Assets.xcassets */; };
 		7C8352CD4AC2E75F882BD1B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C519DF0E014F293F71D3BBD3 /* ContentView.swift */; };
 		7FB49AE656607079BF0417EF /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE199118142CEB28BD2C939 /* Lib.swift */; };
+		7FBA65F5399D7FAEB6BDA26D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E3BE71A1A719357D8F185 /* GoogleMaps.bundle */; };
 		83A0C23B7C0DFFF7EEC59CAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A9B77D60580C4AD4C0BF5FC /* Assets.xcassets */; };
 		8A333452D23BC1BFCA639CA9 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603AB56167F6E239000B66E /* Lib.swift */; };
+		9241F80C086E7839F0182266 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4945564FB57B2AAF142EFC4 /* GoogleMaps.framework */; };
 		9D7F12F30703F2D1B7884332 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16FA25DA9963F4DC976A95 /* Lib.swift */; };
 		A2FC3E3712498A93DEBC1923 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3E1F7C6E01C0C1E3D8520 /* Lib.swift */; };
+		C6A280A63EE158A914BA496A /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A80F2D2B5A04CDA0B5E483 /* GoogleMapsCore.framework */; };
+		E8B3605DB78F38F7CFF33469 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12200A389D1ACE33A9160B97 /* GoogleMapsBase.framework */; };
+		FC2493D820425CD6E40C08B7 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB66CE453BB4F66EE19482C5 /* GoogleMapsCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +135,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12200A389D1ACE33A9160B97 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		14C9ACBD60C49872D43B34A8 /* CompileStub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompileStub.m; sourceTree = "<group>"; };
 		1CFD892DB1825B6D1CBF0413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		203F9638F1D5CCA18DCA2A88 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
@@ -136,7 +145,9 @@
 		27FD6B5DAE40F6075227CDF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A16FA25DA9963F4DC976A95 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		2BE8E26FBFD1B64E48E05808 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		2C8E3BE71A1A719357D8F185 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		2CC294F18473B4B7357EB8BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		301920FC4AA3691CDC2070D7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		3A9B77D60580C4AD4C0BF5FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41F9E520AE77866C3451F1C7 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		4D15882F3881536469A76374 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -155,12 +166,16 @@
 		909CC2C241F4540F5E294662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9446FB6D77536A648EE759E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		94B4E46AB654CACC5E8E5C55 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4B9C08059A6D7570552A207 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		A58905D8A9A73FF271B31642 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		B458BF83189E16639F54CF22 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		B4945564FB57B2AAF142EFC4 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		B4E1FE524E1EDEB084596A53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B7460163239595E240435120 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		B8EE097BA523AA6A79268BDA /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C200516B205F70419C263339 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		C519DF0E014F293F71D3BBD3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CB66CE453BB4F66EE19482C5 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D05F392CABFB9D136406F852 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D295FECC5CF307D463F8CBD4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -170,6 +185,7 @@
 		DF01000DC504FA84E99F7E81 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DF973F3635AEB0E5B3101EA8 /* watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOSApp.swift; sourceTree = "<group>"; };
 		E47A83139A3569C6FA232A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5A80F2D2B5A04CDA0B5E483 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		EFBD7B327E06C60E3EEF155B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F16D71C4BEDCDCB107460E90 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F17FC436B461919E1DDC0F71 /* tvOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +193,22 @@
 		F5F2FC43BDB211622F991234 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
 		F6D3E8AC19CA682EDEFC131C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		471BE19642BDC78C551A7F3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7311E94E23B56BB5576D6E2D /* GoogleMaps.framework in Frameworks */,
+				C6A280A63EE158A914BA496A /* GoogleMapsCore.framework in Frameworks */,
+				4F1FD2B820497A6AFE6B313C /* GoogleMapsBase.framework in Frameworks */,
+				9241F80C086E7839F0182266 /* GoogleMaps.framework in Frameworks */,
+				FC2493D820425CD6E40C08B7 /* GoogleMapsCore.framework in Frameworks */,
+				E8B3605DB78F38F7CFF33469 /* GoogleMapsBase.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		00A476C71D18AFC33F265B7C /* examples */ = {
@@ -219,6 +251,22 @@
 			path = "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba";
 			sourceTree = "<group>";
 		};
+		07DD99A9668C4F39F42E98A1 /* ios-arm64_x86_64-simulator */ = {
+			isa = PBXGroup;
+			children = (
+				CB66CE453BB4F66EE19482C5 /* GoogleMapsCore.framework */,
+			);
+			path = "ios-arm64_x86_64-simulator";
+			sourceTree = "<group>";
+		};
+		08EB4D82F363BD81F0FC019A /* ios-arm64 */ = {
+			isa = PBXGroup;
+			children = (
+				B7460163239595E240435120 /* GoogleMapsBase.framework */,
+			);
+			path = "ios-arm64";
+			sourceTree = "<group>";
+		};
 		09A04192AF6180095CD83444 /* watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,12 +275,28 @@
 			path = "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3";
 			sourceTree = "<group>";
 		};
+		0D49706282052BCFCBF66B74 /* ios-arm64 */ = {
+			isa = PBXGroup;
+			children = (
+				E5A80F2D2B5A04CDA0B5E483 /* GoogleMapsCore.framework */,
+			);
+			path = "ios-arm64";
+			sourceTree = "<group>";
+		};
 		14E78EBAC8D9545306B86222 /* tvOSApp-intermediates */ = {
 			isa = PBXGroup;
 			children = (
 				1CFD892DB1825B6D1CBF0413 /* Info.plist */,
 			);
 			path = "tvOSApp-intermediates";
+			sourceTree = "<group>";
+		};
+		1BA749CEF41796114E05A0B8 /* ios-arm64_x86_64-simulator */ = {
+			isa = PBXGroup;
+			children = (
+				12200A389D1ACE33A9160B97 /* GoogleMapsBase.framework */,
+			);
+			path = "ios-arm64_x86_64-simulator";
 			sourceTree = "<group>";
 		};
 		1BF638E0D14509ADC37BD5D5 /* iOSApp-intermediates */ = {
@@ -265,6 +329,15 @@
 				49FDF5D3D0EBFDD85E4820E8 /* bin */,
 			);
 			path = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60";
+			sourceTree = "<group>";
+		};
+		1E8B1F4E74F1BD2A8CCDAA23 /* GoogleMapsBase.xcframework */ = {
+			isa = PBXGroup;
+			children = (
+				08EB4D82F363BD81F0FC019A /* ios-arm64 */,
+				1BA749CEF41796114E05A0B8 /* ios-arm64_x86_64-simulator */,
+			);
+			path = GoogleMapsBase.xcframework;
 			sourceTree = "<group>";
 		};
 		2033BE465C6FFD94F0352E97 /* Lib */ = {
@@ -398,6 +471,15 @@
 				7419BF832DA6CA4249D54EFE /* bin */,
 			);
 			path = "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8";
+			sourceTree = "<group>";
+		};
+		41A359ED38B6F0BF18C3554D /* ios-arm64 */ = {
+			isa = PBXGroup;
+			children = (
+				89BC088C0148BC5522199C2D /* GoogleMaps.framework */,
+				301920FC4AA3691CDC2070D7 /* GoogleMaps.framework */,
+			);
+			path = "ios-arm64";
 			sourceTree = "<group>";
 		};
 		42B7CA7F67B202FE3CFA469E /* applebin_ios-ios_arm64-dbg-ST-787a8770ecb8 */ = {
@@ -551,6 +633,15 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
+		721E3236AADE7DA8A1E0A8A6 /* ios-arm64_x86_64-simulator */ = {
+			isa = PBXGroup;
+			children = (
+				DE9DA51D4387382446C879E2 /* GoogleMaps.framework */,
+				B4945564FB57B2AAF142EFC4 /* GoogleMaps.framework */,
+			);
+			path = "ios-arm64_x86_64-simulator";
+			sourceTree = "<group>";
+		};
 		7317940244F8863BCDF8EAAD /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,6 +671,7 @@
 			children = (
 				86E3AA094AC3498BEDC1D673 /* examples */,
 				D2C8CC455B9D27F28D323622 /* test */,
+				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
 				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
 				6AF936B6BAFAF10DCDAE73D3 /* rules_xcodeproj */,
 				462C3519CA354BE1B04D4855 /* Products */,
@@ -620,12 +712,29 @@
 			path = multiplatform;
 			sourceTree = "<group>";
 		};
+		85F708DD1F5484A0D5558108 /* Bazel External Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FA7E85335C20C6A5171C5D43 /* com_google_google_maps */,
+			);
+			name = "Bazel External Repositories";
+			path = test/fixtures/multiplatform/bwx.xcodeproj/rules_xcodeproj/links/external;
+			sourceTree = "<group>";
+		};
 		86E3AA094AC3498BEDC1D673 /* examples */ = {
 			isa = PBXGroup;
 			children = (
 				319735E3F7CB10A29474FC79 /* multiplatform */,
 			);
 			path = examples;
+			sourceTree = "<group>";
+		};
+		89BC088C0148BC5522199C2D /* GoogleMaps.framework */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB9B1183611F8956609E34 /* Resources */,
+			);
+			path = GoogleMaps.framework;
 			sourceTree = "<group>";
 		};
 		8BC0DE01EFFA4EC65C1B2359 /* tvOSApp-intermediates */ = {
@@ -647,6 +756,14 @@
 				DF973F3635AEB0E5B3101EA8 /* watchOSApp.swift */,
 			);
 			path = watchOSAppExtension;
+			sourceTree = "<group>";
+		};
+		8C4993A23F54F7283CBFFA36 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C8E3BE71A1A719357D8F185 /* GoogleMaps.bundle */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		90E2575E41806B1D79C9969E /* bin */ = {
@@ -713,6 +830,15 @@
 			);
 			name = "Bazel Generated Files";
 			path = test/fixtures/multiplatform/bwx.xcodeproj/rules_xcodeproj/links/gen_dir;
+			sourceTree = "<group>";
+		};
+		AA0C8CF97E05F2750C168364 /* GoogleMapsCore.xcframework */ = {
+			isa = PBXGroup;
+			children = (
+				0D49706282052BCFCBF66B74 /* ios-arm64 */,
+				07DD99A9668C4F39F42E98A1 /* ios-arm64_x86_64-simulator */,
+			);
+			path = GoogleMapsCore.xcframework;
 			sourceTree = "<group>";
 		};
 		AA2E21547D34DB76EE4FF98F /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01 */ = {
@@ -791,6 +917,15 @@
 			path = "watchOSApp-intermediates";
 			sourceTree = "<group>";
 		};
+		CD5974C94152655D0519364A /* GoogleMaps.xcframework */ = {
+			isa = PBXGroup;
+			children = (
+				41A359ED38B6F0BF18C3554D /* ios-arm64 */,
+				721E3236AADE7DA8A1E0A8A6 /* ios-arm64_x86_64-simulator */,
+			);
+			path = GoogleMaps.xcframework;
+			sourceTree = "<group>";
+		};
 		CFEE6CF116F560B49BAE7E5E /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,6 +971,14 @@
 				F392A5BF94B5ACA7FF9505C8 /* multiplatform */,
 			);
 			path = examples;
+			sourceTree = "<group>";
+		};
+		DE9DA51D4387382446C879E2 /* GoogleMaps.framework */ = {
+			isa = PBXGroup;
+			children = (
+				8C4993A23F54F7283CBFFA36 /* Resources */,
+			);
+			path = GoogleMaps.framework;
 			sourceTree = "<group>";
 		};
 		DF99B8BD267964F05445E497 /* multiplatform */ = {
@@ -910,6 +1053,14 @@
 			path = multiplatform;
 			sourceTree = "<group>";
 		};
+		F3DB9B1183611F8956609E34 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4B9C08059A6D7570552A207 /* GoogleMaps.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F62F78E20C083EA00FAA2144 /* watchOSAppExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -961,6 +1112,16 @@
 				03CF2B7E836AA5FD6A196430 /* bin */,
 			);
 			path = "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef";
+			sourceTree = "<group>";
+		};
+		FA7E85335C20C6A5171C5D43 /* com_google_google_maps */ = {
+			isa = PBXGroup;
+			children = (
+				CD5974C94152655D0519364A /* GoogleMaps.xcframework */,
+				1E8B1F4E74F1BD2A8CCDAA23 /* GoogleMapsBase.xcframework */,
+				AA0C8CF97E05F2750C168364 /* GoogleMapsCore.xcframework */,
+			);
+			path = com_google_google_maps;
 			sourceTree = "<group>";
 		};
 		FAF59E9EE55A5ACF785D35F1 /* multiplatform */ = {
@@ -1055,6 +1216,7 @@
 			buildConfigurationList = D08A821A46CE5B46FCADB0B1 /* Build configuration list for PBXNativeTarget "iOSApp" */;
 			buildPhases = (
 				C0746DB917135C251EBC92A3 /* Sources */,
+				471BE19642BDC78C551A7F3C /* Frameworks */,
 				B6738331CF80F57EDBC55412 /* Resources */,
 			);
 			buildRules = (
@@ -1201,6 +1363,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BADA8103BB4E09B7735582D /* Assets.xcassets in Resources */,
+				7FBA65F5399D7FAEB6BDA26D /* GoogleMaps.bundle in Resources */,
+				171DACB244D0CE6D2880DE13 /* GoogleMaps.bundle in Resources */,
 				3DA2238D1AE0C4DE3F8700B6 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1218,6 +1382,7 @@
 			);
 			name = "Generate Files";
 			outputFileListPaths = (
+				"$(INTERNAL_DIR)/external.xcfilelist",
 				"$(INTERNAL_DIR)/generated.copied.xcfilelist",
 			);
 			outputPaths = (
@@ -1455,11 +1620,30 @@
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = (
+					"$(IPHONEOS_FILES)",
+					"$(IPHONESIMULATOR_FILES)",
+				);
 				EXECUTABLE_EXTENSION = app;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
+					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
+					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
+					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
+				INCLUDED_SOURCE_FILE_NAMES = "";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle";
+				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1472,6 +1656,14 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
 					"-Wl,-rpath,/usr/lib/swift",
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-lc++",
+					"-lz",
 					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
@@ -1486,13 +1678,22 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
 					"-Wl,-rpath,/usr/lib/swift",
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-lc++",
+					"-lz",
 					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/examples/multiplatform/iOSApp/iOSApp.LinkFileList",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
@@ -1507,6 +1708,14 @@
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOSApp;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_google_google_maps",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_google_google_maps",
+				);
+				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(BAZEL_EXTERNAL)/com_google_google_maps",
+					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_google_google_maps",
+				);
 			};
 			name = Debug;
 		};

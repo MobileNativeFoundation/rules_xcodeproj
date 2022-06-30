@@ -88,6 +88,7 @@ swift_library(
     tags = ["manual"],
     deps = [
         "//examples/multiplatform/Lib",
+        "@com_google_google_maps//:GoogleMaps",
     ],
 )
 
