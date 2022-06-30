@@ -1,4 +1,4 @@
-"""Model Tests for `xcode_schemes`."""
+"""Model Tests for `xcode_schemes`"""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
