@@ -1,3 +1,5 @@
+"""Model Tests for `xcode_schemes`."""
+
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility

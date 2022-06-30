@@ -1,4 +1,4 @@
-"""API for defining custom Xcode schemes."""
+"""API for defining custom Xcode schemes"""
 
 def _scheme(
         name,
