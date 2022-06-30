@@ -21,7 +21,7 @@ actions:
         branches:
           - "*"
     bazel_commands:
-      - "test --config=workflows //tools/... //test/..."
+      - "test --config=workflows //examples/... //tools/... //test/..."
 
   - name: Integration Test
     os: "darwin"
