@@ -24,6 +24,7 @@
     ],
     "label": "//test/fixtures/generator:xcodeproj_bwb",
     "name": "bwb",
+    "scheme_autogeneration_mode": "auto",
     "target_merges": [
         "//tools/generator/test:tests.library darwin_x86_64-dbg-ST-5534cb307cb8",
         [
@@ -1570,6 +1571,5 @@
             ],
             "test_host": null
         }
-    ],
-    "scheme_autogeneration_mode": "auto"
+    ]
 }
