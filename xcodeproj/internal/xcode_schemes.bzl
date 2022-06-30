@@ -1,5 +1,7 @@
 """API for defining custom Xcode schemes"""
 
+load("@bazel_skylib//lib:sets.bzl", "sets")
+
 def _scheme(
         name,
         build_action = None,
@@ -74,6 +76,15 @@ def _launch_action(target, args = None, env = None, working_directory = None):
         working_directory = working_directory,
     )
 
+def _collect_top_level_targets_from_a_scheme(scheme):
+    results = sets.make()
+    if scheme.test_action != None:
+        for target in scheme.test_action.targets:
+            sets.insert(results, target)
+    if scheme.launch_action != None:
+        sets.insert(results, scheme.launch_action.target)
+    return results
+
 def _collect_top_level_targets(schemes):
     """Collect the top-level targets from a `sequence` of schemes.
 
@@ -82,10 +93,16 @@ def _collect_top_level_targets(schemes):
             `xcode_schemes.scheme`.
 
     Returns:
-        A `list` of `string` values representing Bazel labels that are
-        top-level targets.
+        A unique and sorted `list` of `string` values representing Bazel labels
+        that are top-level targets.
     """
-    pass
+    results = sets.make()
+    for scheme in schemes:
+        results = sets.union(
+            results,
+            _collect_top_level_targets_from_a_scheme(scheme),
+        )
+    return sorted(sets.to_list(results))
 
 xcode_schemes = struct(
     scheme = _scheme,

@@ -1,6 +1,9 @@
 """Tests for `xcode_schemes.collect_top_level_targets`"""
 
-load("@bazel_skylib//lib:unittest.bzl", "unittest")
+load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
+load("//xcodeproj/internal:xcode_schemes.bzl", "xcode_schemes")
 
 def _no_top_level_targets_test(ctx):
     env = unittest.begin(ctx)
@@ -14,7 +17,9 @@ no_top_level_targets_test = unittest.make(_no_top_level_targets_test)
 def _empty_schemes_list_test(ctx):
     env = unittest.begin(ctx)
 
-    unittest.fail(env, "IMPLEMENT ME!")
+    actual = xcode_schemes.collect_top_level_targets([])
+    expected = []
+    asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 
