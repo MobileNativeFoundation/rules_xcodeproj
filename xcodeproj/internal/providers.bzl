@@ -31,6 +31,10 @@ An attribute name (or `None`) to collect the `codesignopts` `list` from.
 An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.
 """,
+        "exported_symbols_lists": """\
+An attribute name (or `None`) to collect `File`s from for the
+`exported_symbols_lists` attribute.
+""",
         "infoplists": """\
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
