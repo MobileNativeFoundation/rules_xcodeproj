@@ -99,7 +99,7 @@ def process_top_level_properties(
                 bundle_path = paths.join(bundle_info.archive_root, bundle)
             bundle_file_path = file_path(
                 bundle_info.archive,
-                bundle_path,
+                path = bundle_path,
             )
 
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id

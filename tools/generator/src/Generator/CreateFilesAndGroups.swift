@@ -51,6 +51,18 @@ extension Generator {
         "xib",
     ]
 
+    enum ElementFilePath: Equatable, Hashable {
+        case file(FilePath)
+        case group(FilePath)
+
+        var filePath: FilePath {
+            switch self {
+            case let .file(filePath): return filePath
+            case let .group(filePath): return filePath
+            }
+        }
+    }
+
     // Most of the logic here is a modified version of
     // https://github.com/tuist/tuist/blob/a76be1d1df2ec912cbf5c4ba91a167fb1dfd0098/Sources/TuistGenerator/Generator/ProjectFileElements.swift
     static func createFilesAndGroups(
@@ -65,19 +77,17 @@ extension Generator {
         files: [FilePath: File],
         rootElements: [PBXFileElement]
     ) {
-        var elements: [FilePath: PBXFileElement] = [:]
+        var fileReferences: [FilePath: PBXFileReference] = [:]
+        var groups: [FilePath: PBXGroup] = [:]
         var knownRegions: Set<String> = []
 
         func createElement(
             in pbxProj: PBXProj,
             filePath: FilePath,
             pathComponent: String,
-            isLeaf: Bool
+            isLeaf: Bool,
+            forceGroupCreation: Bool
         ) -> (PBXFileElement, isNew: Bool)? {
-            if let element = elements[filePath] {
-                return (element, false)
-            }
-
             if filePath.path.isLocalizedContainer {
                 // Localized container (e.g. /path/to/en.lproj)
                 // We don't add it directly; an element will get added once the
@@ -85,8 +95,15 @@ extension Generator {
                 return nil
             } else if filePath.path.parent().isLocalizedContainer {
                 // Localized file (e.g. /path/to/en.lproj/foo.png)
+                if let group = groups[filePath] {
+                    return (group, false)
+                }
                 return addLocalizedFile(filePath: filePath)
             } else if filePath.path.isCoreDataContainer {
+                if let group = groups[filePath] {
+                    return (group, false)
+                }
+
                 let group = XCVersionGroup(
                     path: pathComponent,
                     sourceTree: .group,
@@ -94,16 +111,24 @@ extension Generator {
                 )
                 pbxProj.add(object: group)
 
-                elements[filePath] = group
+                groups[filePath] = group
 
                 return (group, true)
-            } else if !(isLeaf || filePath.path.isFolderTypeFileSource) {
+            } else if !isLeaf && (forceGroupCreation || !filePath.path.isFolderTypeFileSource) {
+                if let group = groups[filePath] {
+                    return (group, false)
+                }
+
                 let group = createGroup(
                     filePath: filePath,
                     pathComponent: pathComponent
                 )
                 return (group, true)
             } else {
+                if let fileReference = fileReferences[filePath] {
+                    return (fileReference, false)
+                }
+
                 let lastKnownFileType: String?
                 if filePath.isFolder && !filePath.path.isFolderTypeFileSource {
                     lastKnownFileType = "folder"
@@ -118,7 +143,7 @@ extension Generator {
                 )
                 pbxProj.add(object: file)
 
-                elements[filePath] = file
+                fileReferences[filePath] = file
 
                 return (file, true)
             }
@@ -130,7 +155,7 @@ extension Generator {
         ) -> PBXGroup {
             let group = PBXGroup(sourceTree: .group, path: pathComponent)
             pbxProj.add(object: group)
-            elements[filePath] = group
+            groups[filePath] = group
 
             return group
         }
@@ -161,8 +186,8 @@ extension Generator {
                    !group.name!.hasSuffix(fileName)
                 {
                     group.name = fileName
-                    elements[existingGroup.filePath] = nil
-                    elements[groupFilePath] = group
+                    groups[existingGroup.filePath] = nil
+                    groups[groupFilePath] = group
                 }
             } else {
                 isNew = true
@@ -172,7 +197,7 @@ extension Generator {
                     name: fileName
                 )
                 pbxProj.add(object: group)
-                elements[groupFilePath] = group
+                groups[groupFilePath] = group
             }
 
             // Localized element
@@ -195,7 +220,7 @@ extension Generator {
             group.addChild(fileReference)
 
             // When a localized file is copied, we should grab the group instead
-            elements[filePath] = group
+            groups[filePath] = group
 
             knownRegions.insert(language)
 
@@ -222,14 +247,14 @@ extension Generator {
                     let groupFilePath = groupBaseFilePath + """
 \(filePath.path.lastComponentWithoutExtension).\(groupExtension)
 """
-                    if let group = elements[groupFilePath] as? PBXVariantGroup {
+                    if let group = groups[groupFilePath] as? PBXVariantGroup {
                         return (group, groupFilePath)
                     }
                 }
             }
 
             let groupFilePath = groupBaseFilePath + filePath.path.lastComponent
-            guard let group = elements[groupFilePath] as? PBXVariantGroup else {
+            guard let group = groups[groupFilePath] as? PBXVariantGroup else {
                 return nil
             }
 
@@ -249,7 +274,7 @@ extension Generator {
                     .string
             )
             pbxProj.add(object: group)
-            elements[.external("")] = group
+            groups[.external("")] = group
             externalGroup = group
 
             return group
@@ -268,7 +293,7 @@ extension Generator {
                     .string
             )
             pbxProj.add(object: group)
-            elements[.generated("")] = group
+            groups[.generated("")] = group
             generatedGroup = group
 
             return group
@@ -286,7 +311,7 @@ extension Generator {
                 path: filePathResolver.internalDirectory.string
             )
             pbxProj.add(object: group)
-            elements[.internal("")] = group
+            groups[.internal("")] = group
             internalGroup = group
 
             return group
@@ -352,7 +377,8 @@ extension Generator {
                         in: pbxProj,
                         filePath: filePath,
                         pathComponent: component,
-                        isLeaf: isLeaf
+                        isLeaf: isLeaf,
+                        forceGroupCreation: fullFilePath.forceGroupCreation
                     )
                 {
                     if isNew {
@@ -366,7 +392,7 @@ extension Generator {
                         if let coreDataContainer = coreDataContainer {
                             // When a model file is copied, we should grab
                             // the group instead
-                            elements[filePath] = coreDataContainer
+                            groups[filePath] = coreDataContainer
                         }
                     }
 
@@ -385,61 +411,61 @@ extension Generator {
             if let coreDataContainer = coreDataContainer {
                 // When a model file is copied, we should grab
                 // the group instead
-                elements[fullFilePath] = coreDataContainer
+                groups[fullFilePath] = coreDataContainer
             } else if fullFilePath != filePath {
                 // We need to add extra entries for file-like folders, to allow
                 // easy copying of resources
-                elements[fullFilePath] = lastElement
+                guard let reference = lastElement as? PBXFileReference else {
+                    throw PreconditionError(message: """
+`lastElement` wasn't a `PBXFileReference`
+""")
+                }
+                fileReferences[fullFilePath] = reference
                 nonDirectFolderLikeFilePaths.insert(filePath)
             }
         }
 
         // Fix sourceTree of `bazelForcedSwiftCompilePath`
-        if let element = elements[.internal(bazelForcedSwiftCompilePath)] {
+        if let element = fileReferences[.internal(bazelForcedSwiftCompilePath)] {
             element.sourceTree = .custom("DERIVED_FILE_DIR")
         }
 
         try setXCCurrentVersions(
-            elements: elements,
+            groups: groups,
             xccurrentversions: xccurrentversions,
             logger: logger
         )
 
         var files: [FilePath: File] = [:]
-        for (filePath, element) in elements {
-            if let reference = element as? PBXFileReference {
-                if filePath == .internal(compileStubPath) {
-                    files[filePath] = .reference(reference, content: "")
-                } else {
-                    files[filePath] = .reference(reference)
-                }
-            } else if let variantGroup = element as? PBXVariantGroup {
+        for (filePath, fileReference) in fileReferences {
+            if filePath == .internal(compileStubPath) {
+                files[filePath] = .reference(fileReference, content: "")
+            } else {
+                files[filePath] = .reference(fileReference)
+            }
+        }
+        for (filePath, group) in groups {
+            if let variantGroup = group as? PBXVariantGroup {
                 files[filePath] = .variantGroup(variantGroup)
-            } else if let xcVersionGroup = element as? XCVersionGroup {
+            } else if let xcVersionGroup = group as? XCVersionGroup {
                 files[filePath] = .xcVersionGroup(xcVersionGroup)
             }
         }
 
         // Write xcfilelists
 
-        let fileListElements = elements.filter { filePath, _ in
-            return !nonDirectFolderLikeFilePaths.contains(filePath)
-        }
-
-        let externalPaths = try fileListElements
-            .filter { filePath, element in
-                return filePath.type == .external
-                    && element is PBXFileReference
+        let fileListFileFilePaths = fileReferences
+            .filter { filePath, _ in
+                return !nonDirectFolderLikeFilePaths.contains(filePath)
             }
-            .map { filePath, _ in try filePathResolver.resolve(filePath) }
+            .map { filePath, _ in filePath }
 
-        let generatedFilePaths = fileListElements
-            .filter { filePath, element in
-                return filePath.type == .generated
-                    && !filePath.isFolder
-                    && element is PBXFileReference
-            }
-            .map { filePath, _ in filePath } + nonIncludedFiles
+        let externalPaths = try fileListFileFilePaths
+            .filter { $0.type == .external }
+            .map { try filePathResolver.resolve($0) }
+
+        let generatedFilePaths = fileListFileFilePaths
+            .filter { $0.type == .generated && !$0.isFolder } + nonIncludedFiles
 
         let copiedGeneratedPaths = try generatedFilePaths.map { filePath in
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
@@ -542,18 +568,18 @@ extension Generator {
     }
 
     private static func setXCCurrentVersions(
-        elements: [FilePath: PBXFileElement],
+        groups: [FilePath: PBXGroup],
         xccurrentversions: [XCCurrentVersion],
         logger: Logger
     ) throws {
         for xccurrentversion in xccurrentversions {
-            guard let element = elements[xccurrentversion.container] else {
+            guard let group = groups[xccurrentversion.container] else {
                 throw PreconditionError(message: """
 "\(xccurrentversion.container.path)" `XCVersionGroup` not found in `elements`
 """)
             }
 
-            guard let container = element as? XCVersionGroup else {
+            guard let container = group as? XCVersionGroup else {
                 throw PreconditionError(message: """
 "\(xccurrentversion.container.path)" isn't an `XCVersionGroup`
 """)
