@@ -9,6 +9,7 @@ load(
     ":files.bzl",
     "file_path",
     "file_path_to_dto",
+    "normalized_file_path",
     "parsed_file_path",
 )
 load(":linker_input_files.bzl", "linker_input_files")
@@ -23,15 +24,15 @@ def _collect_transitive_extra_files(info):
     transitive = [inputs.extra_files]
     if not info.target:
         transitive.append(depset([
-            _normalized_file_path(file)
+            normalized_file_path(file)
             for file in inputs.srcs.to_list()
         ]))
         transitive.append(depset([
-            _normalized_file_path(file)
+            normalized_file_path(file)
             for file in inputs.non_arc_srcs.to_list()
         ]))
         transitive.append(depset([
-            _normalized_file_path(file)
+            normalized_file_path(file)
             for file in inputs.hdrs.to_list()
         ]))
 
@@ -49,26 +50,6 @@ def _should_ignore_attr(attr):
         # These are actually Starklark methods, so ignore them
         attr in ("to_json", "to_proto")
     )
-
-_BUNDLE_EXTENSIONS = [
-    ".bundle",
-    ".framework",
-    ".xcframework",
-]
-
-def _normalized_file_path(file):
-    path = file.path
-
-    for extension in _BUNDLE_EXTENSIONS:
-        prefix, ext, _ = path.partition(extension)
-        if not ext:
-            continue
-        return file_path(
-            file,
-            path = prefix + ext,
-        )
-
-    return file_path(file)
 
 def _is_categorized_attr(attr, *, automatic_target_info):
     if attr in automatic_target_info.srcs:
@@ -201,7 +182,7 @@ def _collect(
 
         if file.is_source:
             if not categorized and file not in output_files:
-                uncategorized.append(_normalized_file_path(file))
+                uncategorized.append(normalized_file_path(file))
         elif categorized:
             generated.append(file)
 
@@ -246,7 +227,7 @@ def _collect(
 
     generated.extend([file for file in additional_files if not file.is_source])
     for file in additional_files:
-        extra_files.append(_normalized_file_path(file))
+        extra_files.append(normalized_file_path(file))
 
     resources = None
     resource_bundles = None
