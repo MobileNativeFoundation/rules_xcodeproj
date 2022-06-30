@@ -18,6 +18,7 @@ load(
 )
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
 load(":resource_target.bzl", "process_resource_bundles")
+load(":xcode_schemes.bzl", "xcode_schemes")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
 # Actions
@@ -498,10 +499,13 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
     project = kwargs.get("project_name", name)
 
     targets = kwargs.pop("targets", [])
-    schemes_json = ""
+    schemes_json = None
     if schemes != None:
+        schemes_json = json.encode(schemes)
         targets_from_schemes = xcode_schemes.collect_top_level_targets(schemes)
-        targets = targets_module.merge(targets, targets_from_schemes)
+        targets_set = sets.make(targets)
+        targets_set = sets.union(targets_set, targets_from_schemes)
+        targets = sorted(sets.to_list(targets_set))
 
     if kwargs.get("toplevel_cache_buster"):
         fail("`toplevel_cache_buster` is for internal use only")
