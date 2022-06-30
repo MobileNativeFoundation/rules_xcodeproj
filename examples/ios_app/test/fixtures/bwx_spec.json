@@ -251,18 +251,8 @@
             "inputs": {
                 "entitlements": "Example/app.entitlements",
                 "resources": [
-                    "Example/PreviewContent/PreviewAssets.xcassets/Contents.json",
-                    "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/Contents.json",
-                    "Example/PreviewContent/PreviewAssets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
-                    "Example/Assets.xcassets/AppIcon.appiconset/Contents.json",
-                    "Example/Assets.xcassets/AppIcon.appiconset/ios_2x_icon-1.png",
-                    "Example/Assets.xcassets/AppIcon.appiconset/ios_2x_icon.png",
-                    "Example/Assets.xcassets/AppIcon.appiconset/ios_3x_icon.png",
-                    "Example/Assets.xcassets/AppIcon.appiconset/ios_store_icon.png",
-                    "Example/Assets.xcassets/AppIcon.appiconset/ipad_1x_icon.png",
-                    "Example/Assets.xcassets/AppIcon.appiconset/ipad_2x_icon.png",
-                    "Example/Assets.xcassets/AppIcon.appiconset/ipadpro_2x_icon.png",
-                    "Example/Assets.xcassets/Contents.json",
+                    "Example/PreviewContent/PreviewAssets.xcassets",
+                    "Example/Assets.xcassets",
                     "Example/Model.xcdatamodeld/Model.xcdatamodel/contents",
                     "Example/Model.xcdatamodeld/Model2.xcdatamodel/contents",
                     "Example/en.lproj/Localizable.strings",
@@ -425,9 +415,7 @@
             "info_plist": null,
             "inputs": {
                 "resources": [
-                    "ExampleNestedResources/Assets.xcassets/Contents.json",
-                    "ExampleNestedResources/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
-                    "ExampleNestedResources/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
+                    "ExampleNestedResources/Assets.xcassets",
                     "ExampleNestedResources/en.lproj/Localizable.strings",
                     "ExampleNestedResources/es.lproj/Localizable.strings",
                     {
@@ -699,9 +687,7 @@
             "info_plist": null,
             "inputs": {
                 "resources": [
-                    "ExampleResources/Assets.xcassets/Contents.json",
-                    "ExampleResources/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
-                    "ExampleResources/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
+                    "ExampleResources/Assets.xcassets",
                     {
                         "_": "ExampleResources/nested",
                         "f": true
@@ -1292,15 +1278,7 @@
             "inputs": {
                 "resources": [
                     {
-                        "_": "examples_ios_app_external/Assets.xcassets/Contents.json",
-                        "t": "e"
-                    },
-                    {
-                        "_": "examples_ios_app_external/Assets.xcassets/rules_xcodeproj.imageset/Contents.json",
-                        "t": "e"
-                    },
-                    {
-                        "_": "examples_ios_app_external/Assets.xcassets/rules_xcodeproj.imageset/rules_xcodeproj.png",
+                        "_": "examples_ios_app_external/Assets.xcassets",
                         "t": "e"
                     },
                     {
