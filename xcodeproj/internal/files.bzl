@@ -62,6 +62,37 @@ def parsed_file_path(path):
     else:
         return project_file_path(path)
 
+_FOLDER_TYPE_EXTENSIONS = {
+    ".bundle": None,
+    ".docc": None,
+    ".framework": None,
+    ".scnassets": None,
+    ".xcassets": None,
+}
+
+def normalized_file_path(file):
+    """Converts a `File` into a `FilePath` Swift DTO value, leaving off \
+    unnecessary components under folder types.
+
+    Args:
+        file: A `File`.
+
+    Returns:
+        A value as returned from `file_path`.
+    """
+    path = file.path
+
+    for extension in _FOLDER_TYPE_EXTENSIONS:
+        prefix, ext, _ = path.partition(extension)
+        if not ext:
+            continue
+        return file_path(
+            file,
+            path = prefix + ext,
+        )
+
+    return file_path(file)
+
 def _file_path(type, *, path, is_folder, include_in_navigator):
     return struct(
         path = path,
