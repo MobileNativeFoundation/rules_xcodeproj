@@ -22,7 +22,10 @@ private extension PBXFileElement {
     }
 
     var namePathSortString: String {
-        "\(name ?? path ?? "")\t\(name ?? "")\t\(path ?? "")"
+        let parentNamePathSortString = parent?.namePathSortString ?? ""
+        return """
+\(name ?? path ?? "")\t\(name ?? "")\t\(path ?? "")\t\(parentNamePathSortString)
+"""
     }
 }
 
@@ -96,9 +99,7 @@ private struct PBXFileReferenceByTargetKey {
         file = element.value
     }
 
-    var sortString: String {
-        return "\(file.namePathSortString)\t\(targetKey)"
-    }
+    var sortString: String { "\(file.namePathSortString)\t\(targetKey)" }
 }
 
 extension Dictionary
