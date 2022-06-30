@@ -105,7 +105,7 @@ extension Generator {
                 return (group, true)
             } else {
                 let lastKnownFileType: String?
-                if filePath.isFolder {
+                if filePath.isFolder && !filePath.path.isFolderTypeFileSource {
                     lastKnownFileType = "folder"
                 } else {
                     lastKnownFileType = filePath.path.lastKnownFileType
