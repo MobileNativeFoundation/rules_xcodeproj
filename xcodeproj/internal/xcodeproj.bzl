@@ -482,18 +482,26 @@ A JSON string representing a list of Xcode schemes to create.\
 
 _xcodeproj = make_xcodeproj_rule()
 
-def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, **kwargs):
+def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
     """Creates an .xcodeproj file in the workspace when run.
 
     Args:
         name: The name of the target.
         xcodeproj_rule: The actual `xcodeproj` rule. This is overridden during
             fixture testing. You shouldn't need to set it yourself.
+        schemes: Optional. A `list` of `struct` values as returned by
+            `xcode_schemes.scheme`.
         **kwargs: Additional arguments to pass to `xcodeproj_rule`.
     """
     testonly = kwargs.pop("testonly", True)
 
     project = kwargs.get("project_name", name)
+
+    targets = kwargs.pop("targets", [])
+    schemes_json = ""
+    if schemes != None:
+        targets_from_schemes = xcode_schemes.collect_top_level_targets(schemes)
+        targets = targets_module.merge(targets, targets_from_schemes)
 
     if kwargs.get("toplevel_cache_buster"):
         fail("`toplevel_cache_buster` is for internal use only")
@@ -515,5 +523,7 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, **kwargs):
         name = name,
         testonly = testonly,
         toplevel_cache_buster = toplevel_cache_buster,
+        schemes_json = schemes_json,
+        targets = targets,
         **kwargs
     )
