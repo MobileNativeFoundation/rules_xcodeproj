@@ -1,5 +1,6 @@
 """Tests for `xcode_schemes.collect_top_level_targets`"""
 
+load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility
@@ -9,8 +10,8 @@ def _empty_schemes_list_test(ctx):
     env = unittest.begin(ctx)
 
     actual = xcode_schemes.collect_top_level_targets([])
-    expected = []
-    asserts.equals(env, expected, actual)
+    expected = sets.make()
+    asserts.true(env, sets.is_equal(expected, actual))
 
     return unittest.end(env)
 
@@ -26,8 +27,8 @@ def _no_top_level_targets_test(ctx):
     ]
 
     actual = xcode_schemes.collect_top_level_targets(schemes)
-    expected = []
-    asserts.equals(env, expected, actual)
+    expected = sets.make()
+    asserts.true(env, sets.is_equal(expected, actual))
 
     return unittest.end(env)
 
@@ -48,12 +49,12 @@ def _single_scheme_test(ctx):
         ),
     ]
     actual = xcode_schemes.collect_top_level_targets(schemes)
-    expected = [
+    expected = sets.make([
         "//Sources/App",
         "//Tests/BarTests",
         "//Tests/FooTests",
-    ]
-    asserts.equals(env, expected, actual)
+    ])
+    asserts.true(env, sets.is_equal(expected, actual))
 
     return unittest.end(env)
 
@@ -82,13 +83,13 @@ def _list_of_schemes_test(ctx):
         ),
     ]
     actual = xcode_schemes.collect_top_level_targets(schemes)
-    expected = [
+    expected = sets.make([
         "//Sources/App",
         "//Tests/BarTests",
         "//Tests/FooTests",
         "//Tests/HelloTests",
-    ]
-    asserts.equals(env, expected, actual)
+    ])
+    asserts.true(env, sets.is_equal(expected, actual))
 
     return unittest.end(env)
 

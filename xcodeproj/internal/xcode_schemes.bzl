@@ -93,8 +93,8 @@ def _collect_top_level_targets(schemes):
             `xcode_schemes.scheme`.
 
     Returns:
-        A unique and sorted `list` of `string` values representing Bazel labels
-        that are top-level targets.
+        A  `set` of `string` values representing Bazel labels that are top-level
+        targets.
     """
     results = sets.make()
     for scheme in schemes:
@@ -102,7 +102,7 @@ def _collect_top_level_targets(schemes):
             results,
             _collect_top_level_targets_from_a_scheme(scheme),
         )
-    return sorted(sets.to_list(results))
+    return results
 
 xcode_schemes = struct(
     scheme = _scheme,
