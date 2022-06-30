@@ -74,6 +74,7 @@ exist
 
                 // Update linker inputs
                 merged.linkerInputs.staticLibraries.remove(merging.product.path)
+                merged.linkerInputs.forceLoad.remove(merging.product.path)
 
                 // Update dependencies
                 merged.dependencies.formUnion(merging.dependencies)

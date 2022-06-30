@@ -1084,6 +1084,8 @@
 					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/examples/command_line/tool/tool.LinkFileList",
+					"-force_load",
+					"$(PROJECT_DIR)/examples/command_line/third_party/ExampleFramework.framework/ExampleFramework",
 				);
 				PRODUCT_NAME = tool;
 				SDKROOT = macosx;

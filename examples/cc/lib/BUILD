@@ -9,6 +9,7 @@ cc_library(
     # Simulating a "local_includes"
     copts = local_includes("private"),
     local_defines = ["SECRET_3=\\\"Hello\\\""],
+    alwayslink = True,
 )
 
 cc_library(

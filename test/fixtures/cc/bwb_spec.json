@@ -190,7 +190,7 @@
             "product": {
                 "name": "lib_impl",
                 "path": {
-                    "_": "darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/liblib_impl.a",
+                    "_": "darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/liblib_impl.lo",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -273,6 +273,12 @@
             "is_swift": false,
             "label": "//examples/cc/tool:tool",
             "linker_inputs": {
+                "force_load": [
+                    {
+                        "_": "darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/liblib_impl.lo",
+                        "t": "g"
+                    }
+                ],
                 "linkopts": [
                     "-lc++",
                     "-headerpad_max_install_names",
@@ -280,10 +286,6 @@
                     "-lc++"
                 ],
                 "static_libraries": [
-                    {
-                        "_": "darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/liblib_impl.a",
-                        "t": "g"
-                    },
                     {
                         "_": "darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib2/liblib_impl.a",
                         "t": "g"

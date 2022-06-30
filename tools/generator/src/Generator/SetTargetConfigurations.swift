@@ -199,6 +199,16 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 .joined(separator: " ")
         )
 
+        let forceLoadLibraries = target.linkerInputs.forceLoad
+        if !forceLoadLibraries.isEmpty {
+            try buildSettings.prepend(
+                onKey: "OTHER_LDFLAGS",
+                forceLoadLibraries.flatMap { filePath in
+                    return ["-force_load", try filePathResolver.resolve(filePath).string.quoted]
+                }
+            )
+        }
+
         if !target.linkerInputs.staticLibraries.isEmpty {
             let linkFileList = try filePathResolver
                 .resolve(try target.linkFileListFilePath())
