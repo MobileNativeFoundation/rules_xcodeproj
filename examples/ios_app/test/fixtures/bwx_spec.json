@@ -260,11 +260,13 @@
                     {
                         "_": "examples_ios_app_external/bundles/Utils.bundle",
                         "f": true,
+                        "g": true,
                         "t": "e"
                     },
                     {
                         "_": "Example/nested",
-                        "f": true
+                        "f": true,
+                        "g": true
                     },
                     "Example/en.lproj/unprocessed.json",
                     "Example/es.lproj/unprocessed.json"
@@ -420,11 +422,13 @@
                     "ExampleNestedResources/es.lproj/Localizable.strings",
                     {
                         "_": "ExampleNestedResources/dir",
-                        "f": true
+                        "f": true,
+                        "g": true
                     },
                     {
                         "_": "examples_ios_app_external/bundles/Utils.bundle",
                         "f": true,
+                        "g": true,
                         "t": "e"
                     }
                 ]
@@ -483,6 +487,7 @@
                     {
                         "_": "examples_ios_app_external/bundles/Utils.bundle",
                         "f": true,
+                        "g": true,
                         "t": "e"
                     }
                 ]
@@ -690,11 +695,13 @@
                     "ExampleResources/Assets.xcassets",
                     {
                         "_": "ExampleResources/nested",
-                        "f": true
+                        "f": true,
+                        "g": true
                     },
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleResources/bucket",
                         "f": true,
+                        "g": true,
                         "t": "g"
                     }
                 ]
@@ -755,6 +762,7 @@
                     {
                         "_": "examples_ios_app_external/bundles/Utils.bundle",
                         "f": true,
+                        "g": true,
                         "t": "e"
                     }
                 ]
@@ -1040,7 +1048,8 @@
                 "resources": [
                     {
                         "_": "OnlyStructuredResources/Nested",
-                        "f": true
+                        "f": true,
+                        "g": true
                     }
                 ]
             },
@@ -1284,6 +1293,7 @@
                     {
                         "_": "examples_ios_app_external/nested",
                         "f": true,
+                        "g": true,
                         "t": "e"
                     }
                 ]
