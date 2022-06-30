@@ -75,6 +75,16 @@ def _launch_action(target, args = None, env = None, working_directory = None):
     )
 
 def _collect_top_level_targets(schemes):
+    """Collect the top-level targets from a `sequence` of schemes.
+
+    Args:
+        schemes: A `sequence` of `struct` values as returned by
+            `xcode_schemes.scheme`.
+
+    Returns:
+        A `list` of `string` values representing Bazel labels that are
+        top-level targets.
+    """
     pass
 
 xcode_schemes = struct(
