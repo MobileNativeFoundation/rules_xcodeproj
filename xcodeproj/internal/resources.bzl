@@ -3,7 +3,12 @@
 load("@build_bazel_rules_apple//apple:resources.bzl", "resources_common")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":configuration.bzl", "calculate_configuration")
-load(":files.bzl", "file_path", "join_paths_ignoring_empty")
+load(
+    ":files.bzl",
+    "file_path",
+    "join_paths_ignoring_empty",
+    "normalized_file_path",
+)
 load(":target_id.bzl", "get_id")
 
 # Utility
@@ -35,8 +40,6 @@ def _process_resource(
         xccurrentversions.append(file)
         return None
 
-    fp = file_path(file)
-
     if not file.is_source:
         generated.append(file)
         if bundle_path and file.basename == "Info.plist":
@@ -55,7 +58,7 @@ def _process_resource(
             #   Folder Type detection.
             return None
 
-    return fp
+    return normalized_file_path(file)
 
 def _add_resources_to_bundle(
         *,
