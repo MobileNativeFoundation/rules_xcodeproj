@@ -8,6 +8,9 @@ macos_command_line_application(
         "--digest-algorithm=sha1",
         "--digest-algorithm=sha384",
     ],
+    exported_symbols_lists = [
+        "export_symbol_list.exp"
+    ],
     infoplists = ["Info.plist"],
     minimum_os_version = "11.0",
     visibility = ["//visibility:public"],

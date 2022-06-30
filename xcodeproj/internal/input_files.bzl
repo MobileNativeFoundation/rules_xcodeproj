@@ -62,6 +62,8 @@ def _is_categorized_attr(attr, *, automatic_target_info):
         return True
     elif attr == automatic_target_info.entitlements:
         return True
+    elif attr in automatic_target_info.exported_symbols_lists:
+        return True
     else:
         return False
 
@@ -139,13 +141,14 @@ def _collect(
     """
     output_files = target.files.to_list()
 
-    srcs = []
-    non_arc_srcs = []
-    hdrs = []
-    pch = []
     entitlements = []
-    generated = []
+    exported_symbols_lists = []
     extra_files = []
+    generated = []
+    hdrs = []
+    non_arc_srcs = []
+    pch = []
+    srcs = []
     uncategorized = []
 
     # Include BUILD files for the project but not for external repos
@@ -177,6 +180,8 @@ def _collect(
             # assigning to `entitlements` creates a new local variable instead
             # of assigning to the existing variable
             entitlements.append(file)
+        elif attr in automatic_target_info.exported_symbols_lists:
+            exported_symbols_lists.append(file)
         else:
             categorized = False
 
@@ -297,6 +302,15 @@ def _collect(
             resource_bundle_dependencies,
         ),
         entitlements = entitlements[0] if entitlements else None,
+        exported_symbols_lists = depset(
+            exported_symbols_lists,
+            transitive = [
+                info.inputs.exported_symbols_lists
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        ),
         xccurrentversions = depset(
             xccurrentversions,
             transitive = [
@@ -346,6 +360,7 @@ def _from_resource_bundle(bundle):
         resource_bundle_dependencies = bundle.dependencies,
         infoplists = depset(),
         entitlements = None,
+        exported_symbols_lists = depset(),
         xccurrentversions = depset(),
         generated = depset(),
         extra_files = depset(),
@@ -378,6 +393,12 @@ def _merge(*, transitive_infos, extra_generated = None):
             ],
         ),
         entitlements = None,
+        exported_symbols_lists = depset(
+            transitive = [
+                info.inputs.exported_symbols_lists
+                for _, info in transitive_infos
+            ],
+        ),
         xccurrentversions = depset(
             transitive = [
                 info.inputs.xccurrentversions
