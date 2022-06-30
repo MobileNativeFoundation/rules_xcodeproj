@@ -46,8 +46,58 @@ provisioning_profile_repository(
     name = "local_provisioning_profiles",
 )
 
-# Setup Swift Custom Dump test dependency
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "com_google_google_maps",
+    build_file_content = """\
+load(
+    "@build_bazel_rules_apple//apple:apple.bzl",
+    "apple_static_xcframework_import",
+)
+
+apple_static_xcframework_import(
+    name = "GoogleMaps",
+    sdk_frameworks = ["SystemConfiguration"],
+    xcframework_imports = glob(
+        ["GoogleMaps.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [":GoogleMapsCore"],
+)
+
+apple_static_xcframework_import(
+    name = "GoogleMapsBase",
+    sdk_dylibs = [
+        "c++",
+        "z",
+    ],
+    sdk_frameworks = [
+        "CoreLocation",
+        "CoreTelephony",
+    ],
+    xcframework_imports = glob(
+        ["GoogleMapsBase.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+)
+
+apple_static_xcframework_import(
+    name = "GoogleMapsCore",
+    xcframework_imports = glob(
+        ["GoogleMapsCore.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [":GoogleMapsBase"],
+)
+""",
+    sha256 = "2308155fc29655ee3722e1829bd2c1b09f457b7140bc65cad6116dd8a4ca8bff",
+    strip_prefix = "GoogleMaps-6.2.1-beta",
+    url = "https://dl.google.com/geosdk/GoogleMaps-6.2.1-beta.tar.gz",
+)
+
+# Setup Swift Custom Dump test dependency
 
 http_archive(
     name = "com_github_pointfreeco_xctest_dynamic_overlay",
