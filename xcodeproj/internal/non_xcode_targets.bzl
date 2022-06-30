@@ -69,6 +69,12 @@ rules_xcodeproj requires {} to have `{}` set.
     else:
         resource_bundle_informations = None
 
+    linker_inputs = linker_input_files.collect_for_non_top_level(
+        cc_info = cc_info,
+        objc = objc,
+        is_xcode_target = False,
+    )
+
     return processed_target(
         automatic_target_info = automatic_target_info,
         dependencies = process_dependencies(
@@ -81,15 +87,12 @@ rules_xcodeproj requires {} to have `{}` set.
             platform = None,
             bundle_resources = False,
             is_bundle = False,
+            linker_inputs = linker_inputs,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
             avoid_deps = [],
         ),
-        linker_inputs = linker_input_files.collect_for_non_top_level(
-            cc_info = cc_info,
-            objc = objc,
-            is_xcode_target = False,
-        ),
+        linker_inputs = linker_inputs,
         outputs = output_files.merge(
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,

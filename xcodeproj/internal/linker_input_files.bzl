@@ -433,6 +433,16 @@ def _to_dto(linker_inputs):
 
     return ret
 
+def _to_framework_files(linker_inputs):
+    top_level_values = linker_inputs._top_level_values
+    if not top_level_values:
+        return []
+
+    return (
+        top_level_values.dynamic_frameworks +
+        top_level_values.static_frameworks
+    )
+
 def _get_primary_static_library(linker_inputs):
     """Returns the "primary" static library for this target.
 
@@ -451,4 +461,5 @@ linker_input_files = struct(
     get_static_libraries = _get_static_libraries,
     merge = _merge,
     to_dto = _to_dto,
+    to_framework_files = _to_framework_files,
 )

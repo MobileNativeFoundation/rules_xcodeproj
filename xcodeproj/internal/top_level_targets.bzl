@@ -218,27 +218,6 @@ def process_top_level_target(
         minimum_deployment_os_version = props.minimum_deployment_os_version,
     )
 
-    inputs = input_files.collect(
-        ctx = ctx,
-        target = target,
-        platform = platform,
-        is_bundle = is_bundle,
-        bundle_resources = bundle_resources,
-        automatic_target_info = automatic_target_info,
-        additional_files = additional_files,
-        transitive_infos = transitive_infos,
-        avoid_deps = avoid_deps,
-    )
-    outputs = output_files.collect(
-        target_files = target_files,
-        bundle_info = bundle_info,
-        default_info = target[DefaultInfo],
-        swift_info = swift_info,
-        id = id,
-        transitive_infos = transitive_infos,
-        should_produce_dto = should_include_outputs(ctx = ctx),
-    )
-
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,
         label.workspace_root,
@@ -266,8 +245,30 @@ def process_top_level_target(
         ],
         avoid_linker_inputs = avoid_linker_inputs,
     )
-    xcode_library_targets = linker_inputs.xcode_library_targets
 
+    inputs = input_files.collect(
+        ctx = ctx,
+        target = target,
+        platform = platform,
+        is_bundle = is_bundle,
+        linker_inputs = linker_inputs,
+        bundle_resources = bundle_resources,
+        automatic_target_info = automatic_target_info,
+        additional_files = additional_files,
+        transitive_infos = transitive_infos,
+        avoid_deps = avoid_deps,
+    )
+    outputs = output_files.collect(
+        target_files = target_files,
+        bundle_info = bundle_info,
+        default_info = target[DefaultInfo],
+        swift_info = swift_info,
+        id = id,
+        transitive_infos = transitive_infos,
+        should_produce_dto = should_include_outputs(ctx = ctx),
+    )
+
+    xcode_library_targets = linker_inputs.xcode_library_targets
     if len(xcode_library_targets) == 1 and not inputs.srcs:
         mergeable_target = xcode_library_targets[0]
         mergeable_label = mergeable_target.label
