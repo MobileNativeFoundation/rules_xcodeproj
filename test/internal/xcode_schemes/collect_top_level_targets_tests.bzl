@@ -38,7 +38,7 @@ def _single_scheme_test(ctx):
 
     schemes = [
         xcode_schemes.scheme(
-            name = "Foo",
+            name = "App",
             build_action = xcode_schemes.build_action(["//Do/Not/Find/Me"]),
             test_action = xcode_schemes.test_action([
                 "//Tests/FooTests",
@@ -62,7 +62,33 @@ single_scheme_test = unittest.make(_single_scheme_test)
 def _list_of_schemes_test(ctx):
     env = unittest.begin(ctx)
 
-    unittest.fail(env, "IMPLEMENT ME!")
+    schemes = [
+        xcode_schemes.scheme(
+            name = "App",
+            build_action = xcode_schemes.build_action(["//Do/Not/Find/Me"]),
+            test_action = xcode_schemes.test_action([
+                "//Tests/FooTests",
+                "//Tests/BarTests",
+            ]),
+            launch_action = xcode_schemes.launch_action("//Sources/App"),
+        ),
+        xcode_schemes.scheme(
+            name = "Foo",
+            build_action = xcode_schemes.build_action(["//Sources/Foo"]),
+            test_action = xcode_schemes.test_action([
+                "//Tests/FooTests",
+                "//Tests/HelloTests",
+            ]),
+        ),
+    ]
+    actual = xcode_schemes.collect_top_level_targets(schemes)
+    expected = [
+        "//Sources/App",
+        "//Tests/BarTests",
+        "//Tests/FooTests",
+        "//Tests/HelloTests",
+    ]
+    asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 
