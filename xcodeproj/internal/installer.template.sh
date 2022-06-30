@@ -118,7 +118,7 @@ echo 'Updated project at "%output_path%"'
 if [[ \
   (-f "$dest/rules_xcodeproj/external.xcfilelist" && \
    ! -d "$dest/rules_xcodeproj/links/external") || \
-  (-f "$dest/rules_xcodeproj/generated.xcfilelist" && \
+  (-f "$dest/rules_xcodeproj/generated.copied.xcfilelist" && \
    ! -d "$dest/rules_xcodeproj/links/gen_dir") \
 ]]; then
   # If "gen_dir" doesn't exist, this is most likely a fresh project. In that
