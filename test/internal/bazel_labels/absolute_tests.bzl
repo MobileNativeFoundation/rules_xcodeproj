@@ -1,11 +1,17 @@
 """Tests for `bazel_labels.absolute`"""
 
-load("@bazel_skylib//lib:unittest.bzl", "unittest")
+load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+
+# buildifier: disable=bzl-visibility
+load("//xcodeproj/internal:bazel_labels.bzl", "bazel_labels")
 
 def _absolute_label_without_repo_name_test(ctx):
     env = unittest.begin(ctx)
 
-    unittest.fail(env, "IMPLEMENT ME!")
+    # TODO: FIX ME
+    actual = bazel_labels.absolute("//Sources/Foo")
+    expected = ""
+    asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 

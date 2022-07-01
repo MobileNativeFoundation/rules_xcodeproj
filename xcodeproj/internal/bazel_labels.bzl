@@ -14,6 +14,9 @@ def _absolute(label):
         name = name,
     )
 
+# TODO: Handle label without explicit name (//Sources/Foo)
+# TODO: Should I normalize in absolute or create a separate function?
+
 bazel_labels = struct(
     absolute = _absolute,
 )
