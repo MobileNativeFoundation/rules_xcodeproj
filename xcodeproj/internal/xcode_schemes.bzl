@@ -1,6 +1,7 @@
 """API for defining custom Xcode schemes"""
 
 load("@bazel_skylib//lib:sets.bzl", "sets")
+load(":bazel_labels.bzl", "bazel_labels")
 
 def _scheme(
         name,
@@ -38,7 +39,7 @@ def _build_action(targets):
         A `struct` representing a build action.
     """
     return struct(
-        targets = targets,
+        targets = [bazel_labels.absolute(t) for t in targets],
     )
 
 def _test_action(targets):
@@ -51,7 +52,7 @@ def _test_action(targets):
         A `struct` representing a test action.
     """
     return struct(
-        targets = targets,
+        targets = [bazel_labels.absolute(t) for t in targets],
     )
 
 def _launch_action(target, args = None, env = None, working_directory = None):
@@ -70,7 +71,7 @@ def _launch_action(target, args = None, env = None, working_directory = None):
         A `struct` representing a launch action.
     """
     return struct(
-        target = target,
+        target = bazel_labels.absolute(target),
         args = args,
         env = env,
         working_directory = working_directory,

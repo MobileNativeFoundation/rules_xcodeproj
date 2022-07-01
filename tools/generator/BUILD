@@ -30,7 +30,8 @@ _SCHEMES = [
     xcode_schemes.scheme(
         name = "Generator",
         launch_action = xcode_schemes.launch_action(
-            "//tools/generator:generator",
+            # "//tools/generator:generator",
+            ":generator",
         ),
         test_action = xcode_schemes.test_action([
             "//tools/generator/test:tests",
