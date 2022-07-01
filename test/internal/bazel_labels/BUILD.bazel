@@ -1,3 +1,3 @@
-load(":absolute_tests.bzl", "absolute_test_suite")
+load(":parse_tests.bzl", "parse_test_suite")
 
-absolute_test_suite(name = "absolute_tests")
+parse_test_suite(name = "parse_tests")

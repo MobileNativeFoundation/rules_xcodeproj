@@ -3,6 +3,9 @@
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
 
+# TODO: Consider switching loading_phase to injecting the module to use for
+# bazel_labels.
+
 def _scheme(
         name,
         build_action = None,
@@ -29,33 +32,50 @@ def _scheme(
         launch_action = launch_action,
     )
 
-def _build_action(targets):
+def _build_action(targets, loading_phase = True):
     """Constructs a build action for an Xcode scheme.
 
     Args:
         targets: A `sequence` of target labels as `string` values.
+        load_phase: Optional. A `bool` that indicates whether the function is
+            being called from Bazel's loading phase. Some native functionality
+            is only available during the loading phase.
 
     Return:
         A `struct` representing a build action.
     """
     return struct(
-        targets = [bazel_labels.absolute(t) for t in targets],
+        targets = [
+            bazel_labels.normalize(t, loading_phase = loading_phase)
+            for t in targets
+        ],
     )
 
-def _test_action(targets):
+def _test_action(targets, loading_phase = True):
     """Constructs a test action for an Xcode scheme.
 
     Args:
         targets: A `sequence` of target labels as `string` values.
+        load_phase: Optional. A `bool` that indicates whether the function is
+            being called from Bazel's loading phase. Some native functionality
+            is only available during the loading phase.
 
     Return:
         A `struct` representing a test action.
     """
     return struct(
-        targets = [bazel_labels.absolute(t) for t in targets],
+        targets = [
+            bazel_labels.normalize(t, loading_phase = loading_phase)
+            for t in targets
+        ],
     )
 
-def _launch_action(target, args = None, env = None, working_directory = None):
+def _launch_action(
+        target,
+        args = None,
+        env = None,
+        working_directory = None,
+        loading_phase = True):
     """Constructs a launch action for an Xcode scheme.
 
     Args:
@@ -66,12 +86,15 @@ def _launch_action(target, args = None, env = None, working_directory = None):
             environment variables when the target is executed.
         working_directory: Optional. A `string` that will be set as the custom
             working directory in the Xcode scheme's launch action.
+        load_phase: Optional. A `bool` that indicates whether the function is
+            being called from Bazel's loading phase. Some native functionality
+            is only available during the loading phase.
 
     Return:
         A `struct` representing a launch action.
     """
     return struct(
-        target = bazel_labels.absolute(target),
+        target = bazel_labels.normalize(target, loading_phase = loading_phase),
         args = args,
         env = env,
         working_directory = working_directory,

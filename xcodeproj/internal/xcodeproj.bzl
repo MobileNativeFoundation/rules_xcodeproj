@@ -4,6 +4,7 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "uniq")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
@@ -498,7 +499,7 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
 
     project = kwargs.get("project_name", name)
 
-    targets = kwargs.pop("targets", [])
+    targets = [bazel_labels.normalize(t) for t in kwargs.pop("targets", [])]
     schemes_json = None
     if schemes != None:
         # TODO: Try to support relative labels?

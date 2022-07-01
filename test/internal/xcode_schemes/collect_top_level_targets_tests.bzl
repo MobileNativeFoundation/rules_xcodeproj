@@ -40,19 +40,28 @@ def _single_scheme_test(ctx):
     schemes = [
         xcode_schemes.scheme(
             name = "App",
-            build_action = xcode_schemes.build_action(["//Do/Not/Find/Me"]),
-            test_action = xcode_schemes.test_action([
-                "//Tests/FooTests",
-                "//Tests/BarTests",
-            ]),
-            launch_action = xcode_schemes.launch_action("//Sources/App"),
+            build_action = xcode_schemes.build_action(
+                targets = ["//Do/Not/Find/Me"],
+                loading_phase = False,
+            ),
+            test_action = xcode_schemes.test_action(
+                targets = [
+                    "//Tests/FooTests",
+                    "//Tests/BarTests",
+                ],
+                loading_phase = False,
+            ),
+            launch_action = xcode_schemes.launch_action(
+                "//Sources/App",
+                loading_phase = False,
+            ),
         ),
     ]
     actual = xcode_schemes.collect_top_level_targets(schemes)
     expected = sets.make([
-        "//Sources/App",
-        "//Tests/BarTests",
-        "//Tests/FooTests",
+        "@//Sources/App:App",
+        "@//Tests/BarTests:BarTests",
+        "@//Tests/FooTests:FooTests",
     ])
     asserts.true(env, sets.is_equal(expected, actual))
 
@@ -66,28 +75,43 @@ def _list_of_schemes_test(ctx):
     schemes = [
         xcode_schemes.scheme(
             name = "App",
-            build_action = xcode_schemes.build_action(["//Do/Not/Find/Me"]),
-            test_action = xcode_schemes.test_action([
-                "//Tests/FooTests",
-                "//Tests/BarTests",
-            ]),
-            launch_action = xcode_schemes.launch_action("//Sources/App"),
+            build_action = xcode_schemes.build_action(
+                targets = ["//Do/Not/Find/Me"],
+                loading_phase = False,
+            ),
+            test_action = xcode_schemes.test_action(
+                targets = [
+                    "//Tests/FooTests",
+                    "//Tests/BarTests",
+                ],
+                loading_phase = False,
+            ),
+            launch_action = xcode_schemes.launch_action(
+                "//Sources/App",
+                loading_phase = False,
+            ),
         ),
         xcode_schemes.scheme(
             name = "Foo",
-            build_action = xcode_schemes.build_action(["//Sources/Foo"]),
-            test_action = xcode_schemes.test_action([
-                "//Tests/FooTests",
-                "//Tests/HelloTests",
-            ]),
+            build_action = xcode_schemes.build_action(
+                targets = ["//Sources/Foo"],
+                loading_phase = False,
+            ),
+            test_action = xcode_schemes.test_action(
+                targets = [
+                    "//Tests/FooTests",
+                    "//Tests/HelloTests",
+                ],
+                loading_phase = False,
+            ),
         ),
     ]
     actual = xcode_schemes.collect_top_level_targets(schemes)
     expected = sets.make([
-        "//Sources/App",
-        "//Tests/BarTests",
-        "//Tests/FooTests",
-        "//Tests/HelloTests",
+        "@//Sources/App:App",
+        "@//Tests/BarTests:BarTests",
+        "@//Tests/FooTests:FooTests",
+        "@//Tests/HelloTests:HelloTests",
     ])
     asserts.true(env, sets.is_equal(expected, actual))
 

@@ -9,9 +9,9 @@ def _scheme_test(ctx):
     env = unittest.begin(ctx)
 
     name = "Foo"
-    build_action = xcode_schemes.build_action(["//Sources/Foo"])
-    test_action = xcode_schemes.test_action(["//Tests/FooTests"])
-    launch_action = xcode_schemes.launch_action("//Sources/App")
+    build_action = xcode_schemes.build_action(["//Sources/Foo"], loading_phase = False)
+    test_action = xcode_schemes.test_action(["//Tests/FooTests"], loading_phase = False)
+    launch_action = xcode_schemes.launch_action("//Sources/App", loading_phase = False)
 
     actual = xcode_schemes.scheme(
         name = name,
@@ -36,7 +36,7 @@ def _build_action_test(ctx):
 
     targets = ["//Sources/Foo"]
 
-    actual = xcode_schemes.build_action(targets)
+    actual = xcode_schemes.build_action(targets, loading_phase = False)
     expected = struct(
         targets = targets,
     )
@@ -51,7 +51,7 @@ def _test_action_test(ctx):
 
     targets = ["//Tests/FooTests"]
 
-    actual = xcode_schemes.test_action(targets)
+    actual = xcode_schemes.test_action(targets, loading_phase = False)
     expected = struct(
         targets = targets,
     )
@@ -74,6 +74,7 @@ def _launch_action_test(ctx):
         args = args,
         env = env,
         working_directory = working_directory,
+        loading_phase = False,
     )
     expected = struct(
         target = target,
