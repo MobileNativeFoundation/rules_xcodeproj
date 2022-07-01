@@ -3,8 +3,8 @@ load(
     "swift_binary",
     "swift_library",
 )
-load("//xcodeproj:xcodeproj.bzl", "xcode_schemes", "xcodeproj")
-load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
+load("//xcodeproj:xcodeproj.bzl", "xcodeproj")
+load(":xcodeproj_targets.bzl", "get_xcode_schemes")
 
 swift_library(
     name = "generator.library",
@@ -26,25 +26,14 @@ swift_binary(
     ],
 )
 
-_SCHEMES = [
-    xcode_schemes.scheme(
-        name = "Generator",
-        launch_action = xcode_schemes.launch_action(":generator"),
-        test_action = xcode_schemes.test_action([
-            "//tools/generator/test:tests",
-        ]),
-    ),
-]
-
 xcodeproj(
     name = "xcodeproj",
     build_mode = "bazel",
     project_name = "generator",
     # GH573: Revert to `auto` once custom schemes are implemented.
     scheme_autogeneration_mode = "all",
-    schemes = _SCHEMES,
+    schemes = get_xcode_schemes(),
     tags = ["manual"],
-    targets = XCODEPROJ_TARGETS,
 )
 
 # Integration test related targets

@@ -1,6 +1,24 @@
 """Exposes targets used by `xcodeproj` to allow use in fixture tests."""
 
-XCODEPROJ_TARGETS = [
-    "//tools/generator:generator",
-    "//tools/generator/test:tests",
-]
+load("@bazel_skylib//lib:sets.bzl", "sets")
+load("//xcodeproj:xcodeproj.bzl", "xcode_schemes")
+
+def get_xcode_schemes():
+    return [
+        xcode_schemes.scheme(
+            name = "Generator",
+            launch_action = xcode_schemes.launch_action(
+                "//tools/generator:generator",
+            ),
+            test_action = xcode_schemes.test_action([
+                "//tools/generator/test:tests",
+            ]),
+        ),
+    ]
+
+def get_xcodeproj_targets():
+    return sets.to_list(
+        xcode_schemes.collect_top_level_targets(
+            get_xcode_schemes(),
+        ),
+    )
