@@ -20,7 +20,6 @@ def _absolute_label_without_repo_name_test(ctx):
     env = unittest.begin(ctx)
 
     value = "//Sources/Foo:chicken"
-
     actual = bazel_labels.parse(value)
     expected = bazel_labels.create(
         repository_name = "@",
@@ -36,9 +35,14 @@ absolute_label_without_repo_name_test = unittest.make(_absolute_label_without_re
 def _absolute_label_with_repo_name_test(ctx):
     env = unittest.begin(ctx)
 
-    unittest.fail(env, "IMPLEMENT ME!")
-
     value = "@my_dep//Sources/Foo:chicken"
+    actual = bazel_labels.parse(value)
+    expected = bazel_labels.create(
+        repository_name = "@my_dep",
+        package = "Sources/Foo",
+        name = "chicken",
+    )
+    asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 
@@ -47,9 +51,14 @@ absolute_label_with_repo_name_test = unittest.make(_absolute_label_with_repo_nam
 def _absolute_label_without_explicit_name_test(ctx):
     env = unittest.begin(ctx)
 
-    unittest.fail(env, "IMPLEMENT ME!")
-
     value = "//Sources/Foo"
+    actual = bazel_labels.parse(value)
+    expected = bazel_labels.create(
+        repository_name = "@",
+        package = "Sources/Foo",
+        name = "Foo",
+    )
+    asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 
@@ -58,9 +67,14 @@ absolute_label_without_explicit_name_test = unittest.make(_absolute_label_withou
 def _relative_label_with_colon_test(ctx):
     env = unittest.begin(ctx)
 
-    unittest.fail(env, "IMPLEMENT ME!")
-
     value = ":chicken"
+    actual = bazel_labels.parse(value)
+    expected = bazel_labels.create(
+        repository_name = "@",
+        package = "Sources/Foo",
+        name = "chicken",
+    )
+    asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 
@@ -69,9 +83,14 @@ relative_label_with_colon_test = unittest.make(_relative_label_with_colon_test)
 def _relative_label_without_colon_test(ctx):
     env = unittest.begin(ctx)
 
-    unittest.fail(env, "IMPLEMENT ME!")
-
     value = "chicken"
+    actual = bazel_labels.parse(value)
+    expected = bazel_labels.create(
+        repository_name = "@",
+        package = "Sources/Foo",
+        name = "chicken",
+    )
+    asserts.equals(env, expected, actual)
 
     return unittest.end(env)
 

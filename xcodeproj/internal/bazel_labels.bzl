@@ -61,6 +61,15 @@ def _create_label_parts(repository_name, package, name):
     )
 
 def make_bazel_labels(name_resolver = native_name_resolver):
+    """Creates a `bazel_labels` module using the specified name resolver.
+
+    Args:
+        name_resolver: Optional. A name resolver `struct`.
+
+    Returns:
+        A `struct` that can be used as a Bazel labels module.
+    """
+
     def _parse(value):
         """Parse a string as a Bazel label returning its parts.
 
@@ -102,7 +111,7 @@ def make_bazel_labels(name_resolver = native_name_resolver):
                 name_start_pos = pkg_start_pos
         else:
             # No colon and no package, the value is the name
-            name = value
+            name_start_pos = 0
             pkg_end_pos = -1
         name = value[name_start_pos:]
 
