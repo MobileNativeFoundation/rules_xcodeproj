@@ -68,7 +68,7 @@ def make_bazel_labels(name_resolver = native_name_resolver):
     """Creates a `bazel_labels` module using the specified name resolver.
 
     Args:
-        name_resolver: Optional. A name resolver `struct`.
+        name_resolver: Optional. A `name_resolver` module.
 
     Returns:
         A `struct` that can be used as a Bazel labels module.

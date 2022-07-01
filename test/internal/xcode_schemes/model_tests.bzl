@@ -3,15 +3,32 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:xcode_schemes.bzl", "xcode_schemes")
+load(
+    "//xcodeproj/internal:bazel_labels.bzl",
+    "make_bazel_labels",
+    "make_stub_name_resolver",
+)
+
+# buildifier: disable=bzl-visibility
+load("//xcodeproj/internal:xcode_schemes.bzl", "make_xcode_schemes")
+
+name_resolver = make_stub_name_resolver()
+
+bazel_labels = make_bazel_labels(
+    name_resolver = name_resolver,
+)
+
+xcode_schemes = make_xcode_schemes(
+    name_resolver = name_resolver,
+)
 
 def _scheme_test(ctx):
     env = unittest.begin(ctx)
 
     name = "Foo"
-    build_action = xcode_schemes.build_action(["//Sources/Foo"], loading_phase = False)
-    test_action = xcode_schemes.test_action(["//Tests/FooTests"], loading_phase = False)
-    launch_action = xcode_schemes.launch_action("//Sources/App", loading_phase = False)
+    build_action = xcode_schemes.build_action(["//Sources/Foo"])
+    test_action = xcode_schemes.test_action(["//Tests/FooTests"])
+    launch_action = xcode_schemes.launch_action("//Sources/App")
 
     actual = xcode_schemes.scheme(
         name = name,
@@ -36,9 +53,9 @@ def _build_action_test(ctx):
 
     targets = ["//Sources/Foo"]
 
-    actual = xcode_schemes.build_action(targets, loading_phase = False)
+    actual = xcode_schemes.build_action(targets)
     expected = struct(
-        targets = targets,
+        targets = [bazel_labels.normalize(t) for t in targets],
     )
     asserts.equals(env, expected, actual)
 
@@ -51,9 +68,9 @@ def _test_action_test(ctx):
 
     targets = ["//Tests/FooTests"]
 
-    actual = xcode_schemes.test_action(targets, loading_phase = False)
+    actual = xcode_schemes.test_action(targets)
     expected = struct(
-        targets = targets,
+        targets = [bazel_labels.normalize(t) for t in targets],
     )
     asserts.equals(env, expected, actual)
 
@@ -74,10 +91,9 @@ def _launch_action_test(ctx):
         args = args,
         env = env,
         working_directory = working_directory,
-        loading_phase = False,
     )
     expected = struct(
-        target = target,
+        target = bazel_labels.normalize(target),
         args = args,
         env = env,
         working_directory = working_directory,

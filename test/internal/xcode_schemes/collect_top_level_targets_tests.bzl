@@ -4,7 +4,12 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:xcode_schemes.bzl", "xcode_schemes")
+load("//xcodeproj/internal:bazel_labels.bzl", "make_stub_name_resolver")
+load("//xcodeproj/internal:xcode_schemes.bzl", "make_xcode_schemes")
+
+xcode_schemes = make_xcode_schemes(
+    name_resolver = make_stub_name_resolver(),
+)
 
 def _empty_schemes_list_test(ctx):
     env = unittest.begin(ctx)
@@ -40,21 +45,12 @@ def _single_scheme_test(ctx):
     schemes = [
         xcode_schemes.scheme(
             name = "App",
-            build_action = xcode_schemes.build_action(
-                targets = ["//Do/Not/Find/Me"],
-                loading_phase = False,
-            ),
-            test_action = xcode_schemes.test_action(
-                targets = [
-                    "//Tests/FooTests",
-                    "//Tests/BarTests",
-                ],
-                loading_phase = False,
-            ),
-            launch_action = xcode_schemes.launch_action(
-                "//Sources/App",
-                loading_phase = False,
-            ),
+            build_action = xcode_schemes.build_action(["//Do/Not/Find/Me"]),
+            test_action = xcode_schemes.test_action([
+                "//Tests/FooTests",
+                "//Tests/BarTests",
+            ]),
+            launch_action = xcode_schemes.launch_action("//Sources/App"),
         ),
     ]
     actual = xcode_schemes.collect_top_level_targets(schemes)
@@ -75,35 +71,20 @@ def _list_of_schemes_test(ctx):
     schemes = [
         xcode_schemes.scheme(
             name = "App",
-            build_action = xcode_schemes.build_action(
-                targets = ["//Do/Not/Find/Me"],
-                loading_phase = False,
-            ),
-            test_action = xcode_schemes.test_action(
-                targets = [
-                    "//Tests/FooTests",
-                    "//Tests/BarTests",
-                ],
-                loading_phase = False,
-            ),
-            launch_action = xcode_schemes.launch_action(
-                "//Sources/App",
-                loading_phase = False,
-            ),
+            build_action = xcode_schemes.build_action(["//Do/Not/Find/Me"]),
+            test_action = xcode_schemes.test_action([
+                "//Tests/FooTests",
+                "//Tests/BarTests",
+            ]),
+            launch_action = xcode_schemes.launch_action("//Sources/App"),
         ),
         xcode_schemes.scheme(
             name = "Foo",
-            build_action = xcode_schemes.build_action(
-                targets = ["//Sources/Foo"],
-                loading_phase = False,
-            ),
-            test_action = xcode_schemes.test_action(
-                targets = [
-                    "//Tests/FooTests",
-                    "//Tests/HelloTests",
-                ],
-                loading_phase = False,
-            ),
+            build_action = xcode_schemes.build_action(["//Sources/Foo"]),
+            test_action = xcode_schemes.test_action([
+                "//Tests/FooTests",
+                "//Tests/HelloTests",
+            ]),
         ),
     ]
     actual = xcode_schemes.collect_top_level_targets(schemes)
