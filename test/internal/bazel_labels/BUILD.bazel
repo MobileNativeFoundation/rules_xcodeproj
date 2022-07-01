@@ -1,0 +1,3 @@
+load(":absolute_tests.bzl", "absolute_test_suite")
+
+absolute_test_suite(name = "absolute_tests")

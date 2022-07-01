@@ -508,13 +508,6 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
         targets_set = sets.union(targets_set, targets_from_schemes)
         targets = sorted(sets.to_list(targets_set))
 
-        # DEBUG BEGIN
-        print("*** CHUCK targets: ")
-        for idx, item in enumerate(targets):
-            print("*** CHUCK", idx, ":", item)
-
-        # DEBUG END
-
     if kwargs.get("toplevel_cache_buster"):
         fail("`toplevel_cache_buster` is for internal use only")
 
