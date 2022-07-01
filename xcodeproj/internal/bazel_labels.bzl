@@ -54,6 +54,10 @@ _PKG_SEPARATOR = "/"
 _PKG_SEPARATOR_LEN = len(_PKG_SEPARATOR)
 
 def _create_label_parts(repository_name, package, name):
+    if not repository_name.startswith("@"):
+        fail("Repository names must start with an '@'. {repo_name}".format(
+            repo_name = repository_name,
+        ))
     return struct(
         repository_name = repository_name,
         package = package,
@@ -125,14 +129,6 @@ def make_bazel_labels(name_resolver = native_name_resolver):
             package = package,
             name = name,
         )
-
-        # if value.startswith("@") or value.startswith("//"):
-        #     return value
-        # repo_name = native.repository_name()
-        # if repo_name == "@":
-        #     repo_name = ""
-        # pkg_name = native.package_name()
-        # name = value[1:] if value.startswith(":") else value
 
     def _normalize(value):
         parts = _parse(value)
