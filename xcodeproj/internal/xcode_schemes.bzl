@@ -1,7 +1,7 @@
 """API for defining custom Xcode schemes"""
 
 load("@bazel_skylib//lib:sets.bzl", "sets")
-load(":bazel_labels.bzl", "make_bazel_labels", "native_name_resolver")
+load(":bazel_labels.bzl", _bazel_labels = "bazel_labels")
 
 def _scheme(
         name,
@@ -57,17 +57,15 @@ def _collect_top_level_targets(schemes):
         )
     return results
 
-def make_xcode_schemes(name_resolver = native_name_resolver):
+def make_xcode_schemes(bazel_labels):
     """Create an `xcode_schemes` module.
 
     Args:
-        name_resolver: Optional. A `name_resolver` module.
+        bazel_labels: A `bazel_labels` module.
 
     Returns:
         A `struct` that can be used as a `bazel_labels` module.
     """
-
-    bazel_labels = make_bazel_labels(name_resolver = name_resolver)
 
     def _build_action(targets):
         """Constructs a build action for an Xcode scheme.
@@ -135,4 +133,6 @@ def make_xcode_schemes(name_resolver = native_name_resolver):
         collect_top_level_targets = _collect_top_level_targets,
     )
 
-xcode_schemes = make_xcode_schemes()
+xcode_schemes = make_xcode_schemes(
+    bazel_labels = _bazel_labels,
+)

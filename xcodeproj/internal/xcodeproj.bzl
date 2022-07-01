@@ -502,7 +502,6 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
     targets = [bazel_labels.normalize(t) for t in kwargs.pop("targets", [])]
     schemes_json = None
     if schemes != None:
-        # TODO: Try to support relative labels?
         schemes_json = json.encode(schemes)
         targets_from_schemes = xcode_schemes.collect_top_level_targets(schemes)
         targets_set = sets.make(targets)

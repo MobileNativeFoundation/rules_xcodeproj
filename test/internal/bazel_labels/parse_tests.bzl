@@ -6,11 +6,16 @@ load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load(
     "//xcodeproj/internal:bazel_labels.bzl",
     "make_bazel_labels",
-    "make_stub_name_resolver",
+)
+
+# buildifier: disable=bzl-visibility
+load(
+    "//xcodeproj/internal:workspace_name_resolvers.bzl",
+    "make_stub_workspace_name_resolvers",
 )
 
 bazel_labels = make_bazel_labels(
-    name_resolver = make_stub_name_resolver(
+    workspace_name_resolvers = make_stub_workspace_name_resolvers(
         repo_name = "@",
         pkg_name = "Sources/Foo",
     ),

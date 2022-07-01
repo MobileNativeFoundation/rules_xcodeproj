@@ -6,20 +6,25 @@ load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load(
     "//xcodeproj/internal:bazel_labels.bzl",
     "make_bazel_labels",
-    "make_stub_name_resolver",
+)
+
+# buildifier: disable=bzl-visibility
+load(
+    "//xcodeproj/internal:workspace_name_resolvers.bzl",
+    "make_stub_workspace_name_resolvers",
 )
 
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:xcode_schemes.bzl", "make_xcode_schemes")
 
-name_resolver = make_stub_name_resolver()
+workspace_name_resolvers = make_stub_workspace_name_resolvers()
 
 bazel_labels = make_bazel_labels(
-    name_resolver = name_resolver,
+    workspace_name_resolvers = workspace_name_resolvers,
 )
 
 xcode_schemes = make_xcode_schemes(
-    name_resolver = name_resolver,
+    bazel_labels = bazel_labels,
 )
 
 def _scheme_test(ctx):
