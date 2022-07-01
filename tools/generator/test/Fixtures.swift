@@ -1761,7 +1761,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "SDKROOT": "macosx",
                 "PRODUCT_NAME": "a",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "TARGET_NAME": targets["A 1"]!.name,
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
@@ -1785,7 +1784,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "PRODUCT_NAME": "A",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["A 2"]!.name,
             ]) { $1 },
@@ -1801,7 +1799,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "PRODUCT_NAME": "b",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["B 1"]!.name,
             ]) { $1 },
@@ -1817,7 +1814,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "PRODUCT_NAME": "B",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "TARGET_BUILD_DIR": """
 $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 """,
@@ -1836,7 +1832,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "PRODUCT_NAME": "B3",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "TARGET_NAME": targets["B 3"]!.name,
                 "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
             ]) { $1 },
@@ -1853,7 +1848,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "PRODUCT_NAME": "c",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "TARGET_NAME": targets["C 1"]!.name,
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
@@ -1871,7 +1865,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "PRODUCT_NAME": "d",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "TARGET_NAME": targets["C 2"]!.name,
             ]) { $1 },
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
@@ -1883,7 +1876,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "PRODUCT_NAME": "E1",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "TARGET_NAME": targets["E1"]!.name,
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
@@ -1895,7 +1887,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "PRODUCT_NAME": "E2",
                 "SDKROOT": "appletvos",
                 "SUPPORTED_PLATFORMS": "appletvos",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "TARGET_NAME": targets["E2"]!.name,
             ]) { $1 },
             "R 1": targets["R 1"]!.buildSettings.asDictionary.merging([
@@ -1907,7 +1898,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "PRODUCT_NAME": "R 1",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
                 "TARGET_NAME": targets["R 1"]!.name,
             ]) { $1 },
             .init(["T 1", "T 2", "T 3"]): targets["T 1"]!.buildSettings
@@ -1961,7 +1951,7 @@ $(MACOSX_FILES)
                 "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
                 "TARGET_NAME": targets["T 1"]!.name,
-            ]) { $1 }
+            ]) { $1 },
         ]
         for (key, buildSettings) in buildSettings {
             let debugConfiguration = XCBuildConfiguration(
