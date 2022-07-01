@@ -3,15 +3,16 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:bazel_labels.bzl", "bazel_labels")
+load("//xcodeproj/internal:bazel_labels.bzl", "make_bazel_labels")
+
+bazel_labels = make_bazel_labels(loading_phase = False)
 
 def _absolute_label_without_repo_name_test(ctx):
     env = unittest.begin(ctx)
 
     value = "//Sources/Foo:chicken"
 
-    # TODO: FIX ME
-    actual = bazel_labels.parse(value, loading_phase = False)
+    actual = bazel_labels.parse(value)
     expected = bazel_labels.create(
         repository_name = "@",
         package = "Sources/Foo",
