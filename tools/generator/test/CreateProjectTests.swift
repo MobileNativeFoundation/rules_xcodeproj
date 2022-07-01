@@ -41,17 +41,17 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
-                "INDEXING_BUILT_PRODUCTS_DIR__": "$(BUILD_DIR)",
-                "INDEXING_BUILT_PRODUCTS_DIR__NO": """
-$(INDEXING_BUILT_PRODUCTS_DIR__)
+                "INDEXING_BUILT_PRODUCTS_DIR__": """
+$(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,
+                "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
                 "INDEXING_BUILT_PRODUCTS_DIR__YES": """
 $(CONFIGURATION_BUILD_DIR)
 """,
-                "INDEXING_DEPLOYMENT_LOCATION__": true,
-                "INDEXING_DEPLOYMENT_LOCATION__NO": """
-$(INDEXING_DEPLOYMENT_LOCATION__)
+                "INDEXING_DEPLOYMENT_LOCATION__": """
+$(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
+                "INDEXING_DEPLOYMENT_LOCATION__NO": true,
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
@@ -146,17 +146,17 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
-                "INDEXING_BUILT_PRODUCTS_DIR__": "$(BUILD_DIR)",
-                "INDEXING_BUILT_PRODUCTS_DIR__NO": """
-$(INDEXING_BUILT_PRODUCTS_DIR__)
+                "INDEXING_BUILT_PRODUCTS_DIR__": """
+$(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,
+                "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
                 "INDEXING_BUILT_PRODUCTS_DIR__YES": """
 $(CONFIGURATION_BUILD_DIR)
 """,
-                "INDEXING_DEPLOYMENT_LOCATION__": true,
-                "INDEXING_DEPLOYMENT_LOCATION__NO": """
-$(INDEXING_DEPLOYMENT_LOCATION__)
+                "INDEXING_DEPLOYMENT_LOCATION__": """
+$(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
+                "INDEXING_DEPLOYMENT_LOCATION__NO": true,
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
