@@ -1,5 +1,51 @@
 """API for resolving and managing Bazel labels"""
 
+# MARK: - name_resolver Module Factory
+
+def _create_name_resolver(repository_name, package_name):
+    """Create a name resolver module.
+
+    Args:
+        repository_name: A `function` that returns the current repository name.
+        package_name: A `function` that returns the current package name.
+
+    Returns:
+        A `struct` that can be used as a name resolver module.
+    """
+    return struct(
+        repository_name = repository_name,
+        package_name = package_name,
+    )
+
+native_name_resolver = _create_name_resolver(
+    repository_name = native.repository_name,
+    package_name = native.package_name,
+)
+
+def make_stub_name_resolver(repo_name = "@", pkg_name = ""):
+    """Create a name resolver module that returns the provided values.
+
+    Args:
+        repo_name: A `string` value returned as the repository name.
+        pkg_name: A `string` value returned as the package name.
+
+    Returns:
+        A `struct` that can nbe used as a name resolver module.
+    """
+
+    def _stub_repository_name():
+        return repo_name
+
+    def _stub_package_name():
+        return pkg_name
+
+    return _create_name_resolver(
+        repository_name = _stub_repository_name,
+        package_name = _stub_package_name,
+    )
+
+# MARK: - bazel_labels Module Factory
+
 _ROOT_SEPARATOR = "//"
 _ROOT_SEPARATOR_LEN = len(_ROOT_SEPARATOR)
 _NAME_SEPARATOR = ":"
@@ -7,14 +53,14 @@ _NAME_SEPARATOR_LEN = len(_NAME_SEPARATOR)
 _PKG_SEPARATOR = "/"
 _PKG_SEPARATOR_LEN = len(_PKG_SEPARATOR)
 
-def _create(repository_name, package, name):
+def _create_label_parts(repository_name, package, name):
     return struct(
         repository_name = repository_name,
         package = package,
         name = name,
     )
 
-def make_bazel_labels(loading_phase = True):
+def make_bazel_labels(name_resolver = native_name_resolver):
     def _parse(value):
         """Parse a string as a Bazel label returning its parts.
 
@@ -35,10 +81,8 @@ def make_bazel_labels(loading_phase = True):
         # Extract the repo name
         if root_sep_pos > 0:
             repo_name = value[:root_sep_pos]
-        elif loading_phase:
-            repo_name = native.repository_name()
         else:
-            repo_name = "@"
+            repo_name = name_resolver.repository_name()
 
         colon_pos = value.find(_NAME_SEPARATOR)
 
@@ -64,12 +108,10 @@ def make_bazel_labels(loading_phase = True):
 
         if pkg_start_pos > -1:
             package = value[pkg_start_pos:pkg_end_pos]
-        elif loading_phase:
-            package = native.package_name()
         else:
-            package = ""
+            package = name_resolver.package_name()
 
-        return _create(
+        return _create_label_parts(
             repository_name = repo_name,
             package = package,
             name = name,
@@ -84,7 +126,7 @@ def make_bazel_labels(loading_phase = True):
         # name = value[1:] if value.startswith(":") else value
 
     def _normalize(value):
-        parts = _parse(value, loading_phase = loading_phase)
+        parts = _parse(value)
         return "{repo_name}//{package}:{name}".format(
             repo_name = parts.repository_name,
             package = parts.package,
@@ -96,7 +138,7 @@ def make_bazel_labels(loading_phase = True):
     # explicit label with all parts), and validate (
 
     return struct(
-        create = _create,
+        create = _create_label_parts,
         parse = _parse,
         normalize = _normalize,
     )
