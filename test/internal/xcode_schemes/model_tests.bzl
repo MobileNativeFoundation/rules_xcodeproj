@@ -3,7 +3,29 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:xcode_schemes.bzl", "xcode_schemes")
+load(
+    "//xcodeproj/internal:bazel_labels.bzl",
+    "make_bazel_labels",
+)
+
+# buildifier: disable=bzl-visibility
+load(
+    "//xcodeproj/internal:workspace_name_resolvers.bzl",
+    "make_stub_workspace_name_resolvers",
+)
+
+# buildifier: disable=bzl-visibility
+load("//xcodeproj/internal:xcode_schemes.bzl", "make_xcode_schemes")
+
+workspace_name_resolvers = make_stub_workspace_name_resolvers()
+
+bazel_labels = make_bazel_labels(
+    workspace_name_resolvers = workspace_name_resolvers,
+)
+
+xcode_schemes = make_xcode_schemes(
+    bazel_labels = bazel_labels,
+)
 
 def _scheme_test(ctx):
     env = unittest.begin(ctx)
@@ -38,7 +60,7 @@ def _build_action_test(ctx):
 
     actual = xcode_schemes.build_action(targets)
     expected = struct(
-        targets = targets,
+        targets = [bazel_labels.normalize(t) for t in targets],
     )
     asserts.equals(env, expected, actual)
 
@@ -53,7 +75,7 @@ def _test_action_test(ctx):
 
     actual = xcode_schemes.test_action(targets)
     expected = struct(
-        targets = targets,
+        targets = [bazel_labels.normalize(t) for t in targets],
     )
     asserts.equals(env, expected, actual)
 
@@ -76,7 +98,7 @@ def _launch_action_test(ctx):
         working_directory = working_directory,
     )
     expected = struct(
-        target = target,
+        target = bazel_labels.normalize(target),
         args = args,
         env = env,
         working_directory = working_directory,
