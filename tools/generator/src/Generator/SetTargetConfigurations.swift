@@ -628,6 +628,11 @@ private extension BuildSetting {
     }
 }
 
+private let iPhonePlatforms: Set<String> = [
+    "iphoneos",
+    "iphonesimulator",
+]
+
 private extension Dictionary
 where Key == BuildSettingConditional, Value == [String: BuildSetting] {
     func asBuildSettingDictionary(
@@ -669,8 +674,11 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
                 ),
             ]
 
-            conditionalBuildSettings["SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD"] =
-            [.any: .bool(platforms.contains("iphoneos"))]
+            if !platforms.intersection(iPhonePlatforms).isEmpty {
+                conditionalBuildSettings[
+                    "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD"
+                ] = [.any: .bool(platforms.contains("iphoneos"))]
+            }
         }
 
         // TODO: If we ever add support for Universal targets we need to
