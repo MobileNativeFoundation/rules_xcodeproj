@@ -27,7 +27,10 @@ ios_application(
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
     ),
     visibility = ["//visibility:public"],
-    deps = [":Example.library"],
+    deps = [
+        ":Example.library",
+        "@rules_apple_linker//:lld",
+    ],
 )
 
 apple_resource_group(
