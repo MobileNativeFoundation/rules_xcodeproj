@@ -367,8 +367,8 @@ def _process_linkopt(linkopt, *, triple):
             opt = opt + "/{}.swiftmodule".format(triple)
 
         # Process paths in the --flag=value format
-        if "=" in opt:
-            flag, sep, value = opt.partition("=")
+        flag, sep, value = opt.partition("=")
+        if value:
             if value.startswith("bazel-out/"):
                 opt = flag + sep + "$(BUILD_DIR)/" + value
             elif value.startswith("external/"):
