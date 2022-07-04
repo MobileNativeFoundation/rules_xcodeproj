@@ -352,12 +352,10 @@ def _process_linkopt(linkopt, *, triple):
 
     opts = []
     for opt in linkopt.split(","):
-        if "bazel-out/" in opt:
-            before, sep, after = opt.partition("bazel-out/")
-            opt = before + "$(BUILD_DIR)/" + sep + after
-        elif "external/" in opt:
-            before, sep, after = opt.partition("external/")
-            opt = before + "$(LINKS_DIR)/" + sep + after
+        if opt.startswith("bazel-out/"):
+            opt = "$(BUILD_DIR)/" + opt
+        elif opt.startswith("external/"):
+            opt = "$(LINKS_DIR)/" + opt
         else:
             # Use Xcode set `DEVELOPER_DIR`
             opt = opt.replace(
@@ -368,6 +366,13 @@ def _process_linkopt(linkopt, *, triple):
         if opt.endswith(".swiftmodule"):
             opt = opt + "/{}.swiftmodule".format(triple)
 
+        # Process paths in the --flag=value format
+        if "=" in opt:
+            flag, sep, value = opt.partition("=")
+            if value.startswith("bazel-out/"):
+                opt = flag + sep + "$(BUILD_DIR)/" + value
+            elif value.startswith("external/"):
+                opt = flag + sep + "$(LINKS_DIR)/" + value
         opts.append(opt)
 
     return ",".join(opts)
