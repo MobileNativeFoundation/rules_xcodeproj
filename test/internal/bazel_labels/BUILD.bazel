@@ -1,0 +1,3 @@
+load(":parse_tests.bzl", "parse_test_suite")
+
+parse_test_suite(name = "parse_tests")
