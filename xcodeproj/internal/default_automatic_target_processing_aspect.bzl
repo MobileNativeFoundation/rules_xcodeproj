@@ -47,16 +47,16 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     should_generate_target = target.files != depset()
 
     if CcInfo in target:
-        srcs = ("srcs")
+        srcs = ["srcs"]
     else:
-        srcs = ()
+        srcs = []
 
     bundle_id = None
     codesignopts = None
     entitlements = None
-    infoplists = ()
+    infoplists = []
     bazel_build_mode_error = None
-    non_arc_srcs = ()
+    non_arc_srcs = []
     pch = None
     provisioning_profile = None
 
@@ -72,7 +72,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             "deps": [target_type.compile],
             "runtime_deps": [target_type.compile],
         }
-        non_arc_srcs = ("non_arc_srcs")
+        non_arc_srcs = ["non_arc_srcs"]
         pch = "pch"
     elif ctx.rule.kind == "swift_library":
         xcode_targets = {
@@ -84,7 +84,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
-        infoplists = ("infoplists")
+        infoplists = ["infoplists"]
         should_generate_target = False
     elif AppleBundleInfo in target:
         xcode_targets = {
@@ -97,14 +97,14 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if "provisioning_profile" in attrs:
             provisioning_profile = "provisioning_profile"
         if "infoplists" in attrs:
-            infoplists = ("infoplists")
+            infoplists = ["infoplists"]
         if "entitlements" in attrs:
             entitlements = "entitlements"
     elif AppleBinaryInfo in target:
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"
         if "infoplists" in attrs:
-            infoplists = ("infoplists")
+            infoplists = ["infoplists"]
         xcode_targets = {"deps": [target_type.compile]}
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile]}

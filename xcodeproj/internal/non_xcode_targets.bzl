@@ -47,12 +47,12 @@ def process_non_xcode_target(
         bundle_resources = should_bundle_resources(ctx = ctx)
         if bundle_resources and not getattr(
             ctx.rule.attr,
-            automatic_target_info.infoplists,
+            automatic_target_info.infoplists[0],
             None,
         ):
             fail("""\
 rules_xcodeproj requires {} to have `{}` set.
-""".format(target.label, automatic_target_info.infoplists))
+""".format(target.label, automatic_target_info.infoplists[0]))
 
         resource_bundle_informations = [
             struct(
