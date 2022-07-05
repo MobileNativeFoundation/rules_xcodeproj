@@ -993,7 +993,15 @@
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null
         },

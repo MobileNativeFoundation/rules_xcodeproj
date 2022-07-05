@@ -1506,6 +1506,10 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_NAME = ExampleUITests.__internal__.__test_bundle;
 				TEST_TARGET_NAME = Example;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
+				);
 			};
 			name = Debug;
 		};

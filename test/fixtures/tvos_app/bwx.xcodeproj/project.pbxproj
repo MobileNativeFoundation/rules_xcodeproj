@@ -566,6 +566,10 @@
 				TARGET_NAME = ExampleUITests.__internal__.__test_bundle;
 				TEST_TARGET_NAME = Example;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -624,6 +628,10 @@
 				TARGET_NAME = ExampleTests.__internal__.__test_bundle;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.app/Example";
 				TVOS_DEPLOYMENT_TARGET = 15.0;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -671,6 +679,10 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = Example;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin",
+				);
 			};
 			name = Debug;
 		};
