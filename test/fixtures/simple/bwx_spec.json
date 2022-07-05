@@ -1,0 +1,82 @@
+{
+    "bazel_workspace_name": "com_github_buildbuddy_io_rules_xcodeproj",
+    "build_settings": {
+        "ALWAYS_SEARCH_USER_PATHS": false,
+        "BAZEL_PATH": "bazel",
+        "CLANG_ENABLE_OBJC_ARC": true,
+        "CLANG_MODULES_AUTOLINK": false,
+        "COPY_PHASE_STRIP": false,
+        "ONLY_ACTIVE_ARCH": true,
+        "USE_HEADERMAP": false,
+        "VALIDATE_WORKSPACE": false
+    },
+    "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+    "extra_files": [
+        "examples/simple/BUILD",
+        "test/fixtures/simple/BUILD"
+    ],
+    "invalid_target_merges": [],
+    "label": "//test/fixtures/simple:xcodeproj_bwx",
+    "name": "bwx",
+    "scheme_autogeneration_mode": "auto",
+    "target_merges": [],
+    "targets": [
+        "//examples/simple:SwiftLib darwin_x86_64-dbg-ST-ccd9595da841",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
+                "PRODUCT_MODULE_NAME": "examples_simple_SwiftLib",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-ccd9595da841",
+            "dependencies": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/simple/Simple.swift"
+                ]
+            },
+            "is_swift": true,
+            "label": "//examples/simple:SwiftLib",
+            "linker_inputs": {},
+            "modulemaps": [],
+            "name": "SwiftLib",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/simple",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "11.0",
+                "name": "macosx",
+                "os": "macos"
+            },
+            "product": {
+                "name": "SwiftLib",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/simple/libSwiftLib.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundle_dependencies": [],
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [],
+            "test_host": null
+        }
+    ]
+}

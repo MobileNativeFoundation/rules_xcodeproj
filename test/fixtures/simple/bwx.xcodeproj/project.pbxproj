@@ -1,0 +1,237 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FE3383EFF1D854D9D4846F60 /* Simple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C44952DD5F5456C26985341 /* Simple.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		020B724402D287748A1EDA31 /* libSwiftLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libSwiftLib.a; path = "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/simple/libSwiftLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C44952DD5F5456C26985341 /* Simple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simple.swift; sourceTree = "<group>"; };
+		805698F32A89163552CCEDA0 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		CAE9B6B26F2CB596376EB704 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				46A88A116A26AD93924E1AE6 /* simple */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
+		462C3519CA354BE1B04D4855 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				020B724402D287748A1EDA31 /* libSwiftLib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		46A88A116A26AD93924E1AE6 /* simple */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9B6B26F2CB596376EB704 /* BUILD */,
+			);
+			path = simple;
+			sourceTree = "<group>";
+		};
+		59B1194CC5258BED9E812E33 /* simple */ = {
+			isa = PBXGroup;
+			children = (
+				805698F32A89163552CCEDA0 /* BUILD */,
+				7C44952DD5F5456C26985341 /* Simple.swift */,
+			);
+			path = simple;
+			sourceTree = "<group>";
+		};
+		77E0714FDD425211EBA209DF = {
+			isa = PBXGroup;
+			children = (
+				86E3AA094AC3498BEDC1D673 /* examples */,
+				D2C8CC455B9D27F28D323622 /* test */,
+				462C3519CA354BE1B04D4855 /* Products */,
+				D9AAB93A5135F69103554470 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		86E3AA094AC3498BEDC1D673 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				59B1194CC5258BED9E812E33 /* simple */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		D2C8CC455B9D27F28D323622 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				34EEB3D407F10261A42BB9F7 /* fixtures */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		D9AAB93A5135F69103554470 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		76E061AB0CA7FA140667E530 /* SwiftLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7432B2E592DE3E3F9D8D947 /* Build configuration list for PBXNativeTarget "SwiftLib" */;
+			buildPhases = (
+				2E02756FA53287FEE4BA2957 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftLib;
+			productName = SwiftLib;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36B5F79C7ED8B081842AF69D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					76E061AB0CA7FA140667E530 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+				};
+			};
+			buildConfigurationList = 8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 77E0714FDD425211EBA209DF;
+			productRefGroup = 462C3519CA354BE1B04D4855 /* Products */;
+			projectDirPath = ../../..;
+			projectRoot = "";
+			targets = (
+				76E061AB0CA7FA140667E530 /* SwiftLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2E02756FA53287FEE4BA2957 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE3383EFF1D854D9D4846F60 /* Simple.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0777873EF831E3593AC9BEB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/simple";
+				BAZEL_TARGET_ID = "//examples/simple:SwiftLib darwin_x86_64-dbg-ST-ccd9595da841";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_EXTENSION = a;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
+				PRODUCT_MODULE_NAME = examples_simple_SwiftLib;
+				PRODUCT_NAME = SwiftLib;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = SwiftLib;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin",
+				);
+			};
+			name = Debug;
+		};
+		C221D886D6D02D33114D3473 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";
+				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
+				BAZEL_LLDB_INIT = "$(BUILD_DIR)/bazel.lldbinit";
+				BAZEL_OUT = "$(BUILD_DIR)/real-bazel-out";
+				BAZEL_PATH = bazel;
+				BUILT_PRODUCTS_DIR = "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_MODULES_AUTOLINK = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
+				DSTROOT = "$(PROJECT_TEMP_DIR)";
+				GEN_DIR = "$(LINKS_DIR)/gen_dir";
+				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
+				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
+				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
+				INDEXING_DEPLOYMENT_LOCATION__ = "$(INDEXING_DEPLOYMENT_LOCATION__NO)";
+				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
+				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
+				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
+				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
+				LINKS_DIR = "$(INTERNAL_DIR)/links";
+				ONLY_ACTIVE_ARCH = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)";
+				USE_HEADERMAP = NO;
+				VALIDATE_WORKSPACE = NO;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C221D886D6D02D33114D3473 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B7432B2E592DE3E3F9D8D947 /* Build configuration list for PBXNativeTarget "SwiftLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0777873EF831E3593AC9BEB8 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 36B5F79C7ED8B081842AF69D /* Project object */;
+}
