@@ -164,10 +164,10 @@ def process_defines(*, cc_info, swift_info, build_settings):
         set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
 
 def process_exported_symbols_lists(
-    *,
-    exported_symbols_lists,
-    package_bin_dir,
-    build_settings):
+        *,
+        exported_symbols_lists,
+        package_bin_dir,
+        build_settings):
     """Logic for processing code signing flags.
 
     Args:
