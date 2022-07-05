@@ -10,6 +10,13 @@ load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 
 # Utility
 
+_UNSUPPORTED_SRCS_EXTENSIONS = {
+    "a": True,
+    "lo": True,
+    "so": True,
+    "o": True,
+}
+
 def _get_target_type(*, target):
     # Top-level bundles
     if AppleBundleInfo in target:
@@ -120,6 +127,13 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
         should_generate_target = executable and not executable.is_source
+
+    # Xcode doesn't support some source types that Bazel supports
+    for attr in srcs:
+        for file in getattr(ctx.rule.files, attr, []):
+            if _UNSUPPORTED_SRCS_EXTENSIONS.get(file.extension):
+                should_generate_target = False
+                break
 
     return [
         XcodeProjAutomaticTargetProcessingInfo(
