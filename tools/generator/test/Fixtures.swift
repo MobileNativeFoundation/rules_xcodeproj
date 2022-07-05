@@ -269,6 +269,18 @@ enum Fixtures {
                 ]
             )
         ),
+        "WKE": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/WKE",
+            platform: .device(os: .watchOS),
+            product: .init(
+                type: .watch2Extension,
+                name: "WKE",
+                path: .generated("z/WK.appex")
+            ),
+            buildSettings: [
+                "PRODUCT_MODULE_NAME": .string("_Stubbed_WK"),
+            ]
+        ),
     ]
 
     static let consolidatedTargets = ConsolidatedTargets(
@@ -283,6 +295,7 @@ enum Fixtures {
             ["C 2"],
             ["E1"],
             ["E2"],
+            ["WKE"],
             ["R 1"],
             ["T 1", "T 2", "T 3"],
         ]
@@ -1079,6 +1092,15 @@ a/imported.a
                 path: "bazel-out/T/T 3/T.a",
                 includeInIndex: false
             ),
+            Products.ProductKeys(
+                targetKey: "WKE",
+                filePaths: [.generated("z/WK.appex")]
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.watch2Extension.fileType,
+                path: "WK.appex",
+                includeInIndex: false
+            ),
         ])
         products.byTarget.values.forEach { pbxProj.add(object: $0) }
 
@@ -1108,6 +1130,7 @@ a/imported.a
                 products.byFilePath[.generated("e2/E.a")]!,
                 products.byFilePath[.generated("r1/R1.bundle")]!,
                 products.byFilePath[.generated("T/T 3/T.a")]!,
+                products.byFilePath[.generated("z/WK.appex")]!,
             ],
             sourceTree: .group,
             name: "Products"
@@ -1538,6 +1561,13 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 ),
                 createGeneratedHeaderShellScript(),
             ],
+            "WKE": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: elements[.internal("CompileStub.m")]!
+                    )])
+                ),
+            ],
         ]
         buildPhases.values.forEach { buildPhases in
             buildPhases.forEach { pbxProj.add(object: $0) }
@@ -1624,6 +1654,13 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 product: nil,
                 productType: .staticLibrary
             ),
+            "WKE": PBXNativeTarget(
+                name: disambiguatedTargets.targets["WKE"]!.name,
+                buildPhases: buildPhases["WKE"] ?? [],
+                productName: "WKE",
+                product: products.byTarget["WKE"],
+                productType: .watch2Extension
+            ),
         ]
 
         _ = try! pbxNativeTargets["A 1"]!.addDependency(
@@ -1657,6 +1694,9 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             target: bazelDependenciesTarget
         )
         _ = try! pbxNativeTargets[.init(["T 1", "T 2", "T 3"])]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxNativeTargets["WKE"]!.addDependency(
             target: bazelDependenciesTarget
         )
 
@@ -1743,6 +1783,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             "E2": baseAttributes,
             "R 1": baseAttributes,
             .init(["T 1", "T 2", "T 3"]): baseAttributes,
+            "WKE": baseAttributes,
         ]
 
         let pbxProject = pbxProj.rootObject!
@@ -1951,6 +1992,24 @@ $(MACOSX_FILES)
                 "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
                 "TARGET_NAME": targets["T 1"]!.name,
+            ]) { $1 },
+            "WKE": targets["WKE"]!.buildSettings.asDictionary.merging([
+                "ARCHS": "arm64",
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/WKE",
+                "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "BAZEL_TARGET_ID": "WKE",
+                "DEPLOYMENT_LOCATION": "NO",
+                "EXECUTABLE_EXTENSION": "appex",
+                "GENERATE_INFOPLIST_FILE": "YES",
+                "LD_RUNPATH_SEARCH_PATHS": [
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@executable_path/../../Frameworks",
+                ],
+                "PRODUCT_NAME": "WKE",
+                "SDKROOT": "watchos",
+                "SUPPORTED_PLATFORMS": "watchos",
+                "TARGET_NAME": targets["WKE"]!.name,
             ]) { $1 },
         ]
         for (key, buildSettings) in buildSettings {
