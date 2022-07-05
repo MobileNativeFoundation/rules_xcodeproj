@@ -27,7 +27,8 @@ enum Fixtures {
             "a/module.modulemap",
             .generated("v/a.txt", includeInNavigator: false),
         ],
-        schemeAutogenerationMode: .auto
+        schemeAutogenerationMode: .auto,
+        customXcodeSchemes: []
     )
 
     static let xccurrentversions: [XCCurrentVersion] = [

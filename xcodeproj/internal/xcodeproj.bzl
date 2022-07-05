@@ -81,6 +81,11 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
     ]
     extra_files.append(file_path_to_dto(parsed_file_path(ctx.build_file_path)))
 
+    if ctx.attr.schemes_json == "":
+        custom_xcode_schemes_json = "null"
+    else:
+        custom_xcode_schemes_json = ctx.attr.schemes_json
+
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     spec_json = """\
 {{\
@@ -96,6 +101,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 "VALIDATE_WORKSPACE":false\
 }},\
 "configuration":"{configuration}",\
+"custom_xcode_schemes":{custom_xcode_schemes},\
 "extra_files":{extra_files},\
 "invalid_target_merges":{invalid_target_merges},\
 "label":"{label}",\
@@ -107,6 +113,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 """.format(
         bazel_path = ctx.attr.bazel_path,
         configuration = configuration,
+        custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(extra_files),
         invalid_target_merges = invalid_target_merges_json,
         label = ctx.label,
