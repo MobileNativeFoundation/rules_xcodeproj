@@ -112,7 +112,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"
         if "exported_symbols_lists" in attrs:
-            exported_symbols_lists = ("exported_symbols_lists")
+            exported_symbols_lists = ["exported_symbols_lists"]
         if "infoplists" in attrs:
             infoplists = ["infoplists"]
         xcode_targets = {"deps": [target_type.compile]}
