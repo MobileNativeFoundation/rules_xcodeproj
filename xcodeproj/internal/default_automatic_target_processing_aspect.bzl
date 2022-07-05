@@ -61,8 +61,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     bundle_id = None
     codesignopts = None
     entitlements = None
-    infoplists = []
     exported_symbols_lists = []
+    infoplists = []
     bazel_build_mode_error = None
     non_arc_srcs = []
     pch = None
