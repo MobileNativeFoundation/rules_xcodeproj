@@ -94,9 +94,6 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
             name = parts.name,
         )
 
-    # TODO: Perhaps do normalze (convert string to a format that is
-    # explicit label with all parts), and validate (
-
     return struct(
         create = _create_label_parts,
         parse = _parse,

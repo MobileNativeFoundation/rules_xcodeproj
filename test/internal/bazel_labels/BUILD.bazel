@@ -1,3 +1,6 @@
+load(":normalize_tests.bzl", "normalize_test_suite")
 load(":parse_tests.bzl", "parse_test_suite")
 
 parse_test_suite(name = "parse_tests")
+
+normalize_test_suite(name = "normalize_tests")
