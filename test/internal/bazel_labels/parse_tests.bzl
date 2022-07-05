@@ -1,4 +1,4 @@
-"""Tests for `bazel_labels.absolute`"""
+"""Tests for `bazel_labels.parse`"""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
