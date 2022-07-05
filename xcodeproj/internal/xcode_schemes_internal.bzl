@@ -28,6 +28,21 @@ def _scheme(
         launch_action = launch_action,
     )
 
+# def _copy_scheme(
+#         scheme,
+#         name = None,
+#         build_action = None,
+#         test_action = None,
+#         launch_action = None):
+#     if scheme == None:
+#         return None
+#     return _scheme(
+#         name = name if name != None else scheme.name,
+#         build_action = build_action if build_action != None else scheme.build_action,
+#         test_action = test_action if test_action != None else scheme.test_action,
+#         launch_action = launch_action if launch_action != None else scheme.launch_action,
+#     )
+
 def _build_action(targets):
     """Constructs a build action for an Xcode scheme.
 
@@ -41,6 +56,13 @@ def _build_action(targets):
         targets = targets,
     )
 
+# def _copy_build_action(build_action, targets = None):
+#     if build_action == None:
+#         return None
+#     return _build_action(
+#         targets = targets if target != None else build_action.targets,
+#     )
+
 def _test_action(targets):
     """Constructs a test action for an Xcode scheme.
 
@@ -53,6 +75,13 @@ def _test_action(targets):
     return struct(
         targets = targets,
     )
+
+# def _copy_test_action(test_action, targets = None):
+#     if test_action == None:
+#         return None
+#     return _test_action(
+#         targets = targets if target != None else test_action.targets,
+#     )
 
 def _launch_action(
         target,
@@ -79,6 +108,21 @@ def _launch_action(
         env = env,
         working_directory = working_directory,
     )
+
+# def _copy_launch_action(
+#         launch_action,
+#         target = None,
+#         args = None,
+#         env = None,
+#         working_directory = None):
+#     if launch_action == None:
+#         return None
+#     return _launch_action(
+#         target = target if target != None else launch_action.target,
+#         args = args if args != None else launch_action.args,
+#         env = env if env != None else launch_action.env,
+#         working_directory = working_directory if working_directory != None else launch_action.working_directory,
+#     )
 
 def _replace_labels_with_target_ids(scheme, configuration):
     new_build_action = None
