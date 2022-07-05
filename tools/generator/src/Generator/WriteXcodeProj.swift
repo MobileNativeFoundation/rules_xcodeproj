@@ -29,6 +29,7 @@ extension Generator {
         }
 
         let dest = internalOutputPath + "bazel"
+        try internalOutputPath.mkpath()
         try bazelIntegrationDirectory.copy(dest)
     }
 }
