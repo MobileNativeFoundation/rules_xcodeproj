@@ -101,6 +101,7 @@ rules_xcodeproj requires {} to have `{}` set.
         search_paths = process_search_paths(
             cc_info = cc_info,
             objc = objc,
+            bin_dir_path = ctx.bin_dir.path,
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],
                 includes = [],

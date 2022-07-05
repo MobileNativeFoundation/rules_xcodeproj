@@ -1892,12 +1892,16 @@
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_google_google_maps",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps",
 					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_google_google_maps",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
 				);
 			};
 			name = Debug;
@@ -1984,10 +1988,14 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin",
 				);
 			};
 			name = Debug;
@@ -2030,10 +2038,14 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "$(GEN_DIR)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swift";
@@ -2120,6 +2132,8 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
 				);
 			};
 			name = Debug;
@@ -2204,10 +2218,14 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework";
@@ -2281,22 +2299,32 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvsimulator*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
 				);
 			};
 			name = Debug;

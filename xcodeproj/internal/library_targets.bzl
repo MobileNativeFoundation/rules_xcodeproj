@@ -148,6 +148,7 @@ def process_library_target(
     search_paths = process_search_paths(
         cc_info = cc_info,
         objc = objc,
+        bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
     )
 

@@ -7,12 +7,13 @@ load(
     "parsed_file_path",
 )
 
-def process_search_paths(*, cc_info, objc, opts_search_paths):
+def process_search_paths(*, cc_info, objc, bin_dir_path, opts_search_paths):
     """Processes search paths.
 
     Args:
         cc_info: The `CcInfo` provider for the target.
         objc: The `ObjcProvider` provider for the target.
+        bin_dir_path: `ctx.bin_dir.path`.
         opts_search_paths: A value returned from `create_opts_search_paths`.
 
     Returns:
@@ -21,13 +22,18 @@ def process_search_paths(*, cc_info, objc, opts_search_paths):
     search_paths = {}
     if cc_info:
         compilation_context = cc_info.compilation_context
+
+        quote_includes = depset(
+            [".", bin_dir_path] + opts_search_paths.quote_includes,
+            transitive = [compilation_context.quote_includes],
+        )
+
         set_if_true(
             search_paths,
             "quote_includes",
             [
                 file_path_to_dto(parsed_file_path(path))
-                for path in compilation_context.quote_includes.to_list() +
-                            opts_search_paths.quote_includes
+                for path in quote_includes.to_list()
             ],
         )
         set_if_true(

@@ -192,6 +192,7 @@ def _skip_target(*, deps, transitive_infos):
         search_paths = process_search_paths(
             cc_info = None,
             objc = None,
+            bin_dir_path = None,
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],
                 includes = [],

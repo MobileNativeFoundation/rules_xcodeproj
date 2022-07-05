@@ -171,7 +171,15 @@
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null
         },
@@ -292,7 +300,15 @@
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [
                 {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule",
@@ -416,7 +432,15 @@
                 "type": "com.apple.product-type.library.static"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null
         }
