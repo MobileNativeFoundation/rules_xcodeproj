@@ -74,7 +74,7 @@ def xcode_target(
         platform,
         product,
         is_swift,
-        test_host,
+        test_host = None,
         build_settings,
         search_paths,
         modulemaps,

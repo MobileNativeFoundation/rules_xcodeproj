@@ -136,11 +136,6 @@ def process_top_level_properties(
         product_type = product_type,
     )
 
-def _process_test_host(test_host):
-    if test_host:
-        return test_host[XcodeProjInfo]
-    return None
-
 def process_top_level_target(
         *,
         ctx,
@@ -169,10 +164,15 @@ def process_top_level_target(
         automatic_target_info = automatic_target_info,
         transitive_infos = transitive_infos,
     )
-    test_host = getattr(ctx.rule.attr, "test_host", None)
-    test_host_target_info = _process_test_host(test_host)
 
-    avoid_deps = [test_host] if test_host else []
+    test_host_target = getattr(ctx.rule.attr, "test_host", None)
+    test_host_target_info = (
+        test_host_target[XcodeProjInfo] if test_host_target else None
+    )
+    test_host = (
+        test_host_target_info.target.id if test_host_target_info else None
+    )
+    avoid_deps = [test_host_target] if test_host_target else []
 
     additional_files = []
     build_settings = {}
@@ -332,10 +332,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         objc = objc,
         bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
-    )
-
-    test_host = (
-        test_host_target_info.target.id if test_host_target_info else None
     )
 
     return processed_target(
