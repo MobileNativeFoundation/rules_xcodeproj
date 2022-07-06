@@ -1,7 +1,5 @@
 """Internal API for creating and manipulating Xcode schemes"""
 
-load(":target_id.bzl", "get_id")
-
 def _scheme(
         name,
         build_action = None,
@@ -80,51 +78,9 @@ def _launch_action(
         working_directory = working_directory,
     )
 
-def _replace_labels_with_target_ids(scheme, configuration):
-    new_build_action = None
-    build_action = scheme.build_action
-    if build_action != None:
-        new_build_action = _build_action(
-            targets = [
-                get_id(label = t, configuration = configuration)
-                for t in build_action.targets
-            ],
-        )
-
-    new_test_action = None
-    test_action = scheme.test_action
-    if test_action != None:
-        new_test_action = _test_action(
-            targets = [
-                get_id(label = t, configuration = configuration)
-                for t in test_action.targets
-            ],
-        )
-
-    new_launch_action = None
-    launch_action = scheme.launch_action
-    if launch_action != None:
-        new_launch_action = _launch_action(
-            target = get_id(
-                label = launch_action.target,
-                configuration = configuration,
-            ),
-            args = launch_action.args,
-            env = launch_action.env,
-            working_directory = launch_action.working_directory,
-        )
-
-    return _scheme(
-        name = scheme.name,
-        build_action = new_build_action,
-        test_action = new_test_action,
-        launch_action = new_launch_action,
-    )
-
 xcode_schemes_internal = struct(
     scheme = _scheme,
     build_action = _build_action,
     test_action = _test_action,
     launch_action = _launch_action,
-    replace_labels_with_target_ids = _replace_labels_with_target_ids,
 )
