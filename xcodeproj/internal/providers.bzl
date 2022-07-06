@@ -32,7 +32,7 @@ An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.
 """,
         "exported_symbols_lists": """\
-An sequence of attribute names to collect `File`s from for the
+A sequence of attribute names to collect `File`s from for the
 `exported_symbols_lists`-like attributes.
 """,
         "infoplists": """\
