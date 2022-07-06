@@ -132,6 +132,7 @@
 		7D945EBC9B2F4A830BCCF4F4 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
 		7EA31D6C8ED425D3BB693543 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7F5E4ABAACB85A529597A95E /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
+		85AA47D00BD6B0AF833B0617 /* export_symbol_list.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = export_symbol_list.exp; sourceTree = "<group>"; };
 		9D46BEBDD407F679ED938408 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
 		B093EB1BAB8D20D1457C10D2 /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		B457072C62E4282C472889FB /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
@@ -382,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				7EA31D6C8ED425D3BB693543 /* BUILD */,
+				85AA47D00BD6B0AF833B0617 /* export_symbol_list.exp */,
 				2E8FDF5B64B5BB961DFACC26 /* Info.plist */,
 				0C0B86F4542BE9E526167481 /* main.m */,
 			);
@@ -1081,6 +1083,8 @@
 					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/examples/command_line/tool/tool.LinkFileList",
+					"-exported_symbols_list",
+					"$(PROJECT_DIR)/examples/command_line/tool/export_symbol_list.exp",
 					"-force_load",
 					"$(PROJECT_DIR)/examples/command_line/third_party/ExampleFramework.framework/ExampleFramework",
 				);

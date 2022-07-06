@@ -122,6 +122,7 @@
 		94BEEB36D3E48677861539C1 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
 		97949DA20D6FB752D6AD72F7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		A59B10F9022E9CC335541BDA /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
+		A87E0D1B629CCF579B579DA6 /* export_symbol_list.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = export_symbol_list.exp; sourceTree = "<group>"; };
 		AA8B40F3394AF193E0043C9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		C06A565663AED0899589F574 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CA0EAFDED9F09448A2933165 /* private_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private_lib.h; sourceTree = "<group>"; };
@@ -348,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				537B806ECAA55F19DAFDF318 /* BUILD */,
+				A87E0D1B629CCF579B579DA6 /* export_symbol_list.exp */,
 				E3938AB43AEB959A432DB9EF /* Info.plist */,
 				C06A565663AED0899589F574 /* main.m */,
 			);
@@ -1075,6 +1077,8 @@
 					"-no-canonical-prefixes",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/examples/command_line/tool/tool.LinkFileList",
+					"-exported_symbols_list",
+					"$(PROJECT_DIR)/examples/command_line/tool/export_symbol_list.exp",
 					"-force_load",
 					"$(PROJECT_DIR)/examples/command_line/third_party/ExampleFramework.framework/ExampleFramework",
 				);
