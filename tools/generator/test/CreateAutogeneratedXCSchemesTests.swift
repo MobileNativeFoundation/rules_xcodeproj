@@ -294,7 +294,8 @@ fi
             filePathResolver: filePathResolver,
             pbxTargets: pbxTargetsDict
         )
-        XCTAssertEqual(schemes.count, pbxTargetsDict.count)
+        // -1 since we don't create a scheme for WatchKit Extensions
+        XCTAssertEqual(schemes.count, pbxTargetsDict.count - 1)
 
         let schemesDict = Dictionary(uniqueKeysWithValues: schemes.map { ($0.name, $0) })
 
@@ -352,7 +353,8 @@ fi
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws {
-        XCTAssertEqual(schemes.count, pbxTargetsDict.count)
+        // -1 since we don't create a scheme for WatchKit Extensions
+        XCTAssertEqual(schemes.count, pbxTargetsDict.count - 1)
 
         let schemesDict = Dictionary(uniqueKeysWithValues: schemes.map { ($0.name, $0) })
 

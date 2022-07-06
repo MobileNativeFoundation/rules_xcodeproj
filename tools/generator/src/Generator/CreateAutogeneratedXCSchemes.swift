@@ -13,7 +13,7 @@ extension Generator {
             return []
         }
         let referencedContainer = filePathResolver.containerReference
-        return try pbxTargets.map { _, pbxTarget in
+        return try pbxTargets.compactMap { _, pbxTarget in
             try createXCScheme(
                 buildMode: buildMode,
                 referencedContainer: referencedContainer,
@@ -31,7 +31,11 @@ extension Generator {
         buildMode: BuildMode,
         referencedContainer: String,
         pbxTarget: PBXTarget
-    ) throws -> XCScheme {
+    ) throws -> XCScheme? {
+        guard pbxTarget.shouldCreateScheme else {
+            return nil
+        }
+
         let buildableReference = try pbxTarget.createBuildableReference(
             referencedContainer: referencedContainer
         )
