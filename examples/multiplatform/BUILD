@@ -21,7 +21,6 @@ device_and_simulator(
     targets = [
         "//examples/multiplatform/iOSApp",
         "//examples/multiplatform/tvOSApp",
-        "//examples/multiplatform/watchOSApp",
         "//examples/multiplatform/watchOSAppExtension",
     ],
     visibility = ["//visibility:public"],

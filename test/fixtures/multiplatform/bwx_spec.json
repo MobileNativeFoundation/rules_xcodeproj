@@ -31,6 +31,12 @@
             "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
             "t": "e"
         },
+        "examples/multiplatform/watchOSApp/BUILD",
+        "examples/multiplatform/watchOSApp/Info.plist",
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
+            "t": "g"
+        },
         "examples/multiplatform/iOSApp/Info.plist",
         {
             "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
@@ -53,6 +59,10 @@
             "t": "e"
         },
         {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
+            "t": "g"
+        },
+        {
             "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
             "t": "g"
         },
@@ -72,16 +82,6 @@
         },
         {
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
-            "t": "g"
-        },
-        "examples/multiplatform/watchOSApp/BUILD",
-        "examples/multiplatform/watchOSApp/Info.plist",
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/watchOSAppExtension/BUILD",
@@ -221,7 +221,8 @@
                 ]
             },
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
         {
@@ -301,7 +302,8 @@
                 ]
             },
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         {
@@ -380,7 +382,8 @@
                 ]
             },
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
         {
@@ -459,7 +462,8 @@
                 ]
             },
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
         {
@@ -539,7 +543,8 @@
                 ]
             },
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         {
@@ -618,7 +623,8 @@
                 ]
             },
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         {
@@ -698,7 +704,8 @@
                 ]
             },
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         {
@@ -771,7 +778,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         {
@@ -854,7 +862,8 @@
                     "t": "g"
                 }
             ],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         {
@@ -874,7 +883,8 @@
             },
             "configuration": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
             "dependencies": [
-                "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
+                "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
+                "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
             ],
             "info_plist": {
                 "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
@@ -967,7 +977,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
         },
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
         {
@@ -986,7 +997,8 @@
             },
             "configuration": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
             "dependencies": [
-                "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
+                "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
+                "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
             ],
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
@@ -1080,7 +1092,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
         },
         "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         {
@@ -1196,7 +1209,8 @@
                     "t": "g"
                 }
             ],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
         {
@@ -1313,7 +1327,8 @@
                     "t": "g"
                 }
             ],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
         {
@@ -1397,7 +1412,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
         {
@@ -1481,7 +1497,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
         {
@@ -1565,7 +1582,8 @@
                     "t": "g"
                 }
             ],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
         {
@@ -1650,7 +1668,8 @@
                     "t": "g"
                 }
             ],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         {
@@ -1708,7 +1727,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         {
@@ -1766,7 +1786,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         {
@@ -1850,7 +1871,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         {
@@ -1934,7 +1956,8 @@
             "resource_bundle_dependencies": [],
             "search_paths": {},
             "swiftmodules": [],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         {
@@ -2018,7 +2041,8 @@
                     "t": "g"
                 }
             ],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
         {
@@ -2103,7 +2127,8 @@
                     "t": "g"
                 }
             ],
-            "test_host": null
+            "test_host": null,
+            "watch_application": null
         }
     ]
 }

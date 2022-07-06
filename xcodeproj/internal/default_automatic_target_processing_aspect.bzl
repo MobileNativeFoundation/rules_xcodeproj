@@ -108,6 +108,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             infoplists = ["infoplists"]
         if "provisioning_profile" in attrs:
             provisioning_profile = "provisioning_profile"
+        if "watch_application" in attrs:
+            xcode_targets["watch_application"] = [target_type.compile]
     elif AppleBinaryInfo in target:
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"

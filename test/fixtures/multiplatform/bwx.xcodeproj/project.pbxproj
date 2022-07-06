@@ -26,6 +26,7 @@
 		0A5B4B1401EBA0F452D83036 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D71C4BEDCDCB107460E90 /* main.swift */; };
 		115EAC732D1D5551003F4988 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95A5CEC36DFCD8E9405557B7 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11F3CA8F80B0BB2597AF76E1 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 161FCC8E16610CC731029DF1 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13A6B947448B36A004253831 /* watchOSApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D76D2C3E02897E2ED28A8958 /* watchOSApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		171DACB244D0CE6D2880DE13 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4B9C08059A6D7570552A207 /* GoogleMaps.bundle */; };
 		1844D45BC9E3021EE6F61472 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A5CEC36DFCD8E9405557B7 /* CryptoSwift.framework */; };
 		3303FABFC056EBA3253EF7AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 909CC2C241F4540F5E294662 /* Assets.xcassets */; };
@@ -67,6 +68,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2A2F6D7F84E6070FAC5C8657 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 182B42EFE70A5561F1C023E5;
+			remoteInfo = watchOSApp;
+		};
 		3CEC8386C9C01C1C608D2D51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -181,6 +189,17 @@
 				3663F6F02852C0086A6D8C55 /* CryptoSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B728FD36D5E24A1628E973F5 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				13A6B947448B36A004253831 /* watchOSApp.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1375,12 +1394,14 @@
 				471BE19642BDC78C551A7F3C /* Frameworks */,
 				B6738331CF80F57EDBC55412 /* Resources */,
 				54E0573228E25BA06A17C8A4 /* Embed Frameworks */,
+				B728FD36D5E24A1628E973F5 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				E6DF8AB88AFBE93299AD4256 /* PBXTargetDependency */,
 				B9AC9C610AFC84DBF20B3B96 /* PBXTargetDependency */,
+				CAF25B094F61CC75910E867C /* PBXTargetDependency */,
 			);
 			name = iOSApp;
 			productName = iOSApp;
@@ -1675,6 +1696,12 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = BA90E139F9A2657720980562 /* PBXContainerItemProxy */;
+		};
+		CAF25B094F61CC75910E867C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = watchOSApp;
+			target = 182B42EFE70A5561F1C023E5 /* watchOSApp */;
+			targetProxy = 2A2F6D7F84E6070FAC5C8657 /* PBXContainerItemProxy */;
 		};
 		D45E44066C6623FC94D56734 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

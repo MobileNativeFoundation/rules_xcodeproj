@@ -18,6 +18,7 @@ struct Target: Equatable, Decodable {
     var infoPlist: FilePath?
     var entitlements: FilePath?
     let resourceBundleDependencies: Set<TargetID>
+    let watchApplication: TargetID?
     var dependencies: Set<TargetID>
     var outputs: Outputs
 }

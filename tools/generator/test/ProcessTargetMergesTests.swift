@@ -51,8 +51,6 @@ final class TargetMergingTests: XCTestCase {
             ],
             modulemaps: targets["A 1"]!.modulemaps,
             swiftmodules: targets["A 1"]!.swiftmodules,
-            resourceBundleDependencies: targets["A 2"]!
-                .resourceBundleDependencies,
             inputs: targets["A 2"]!.inputs.merging(targets["A 1"]!.inputs),
             linkerInputs: .init(
                 staticFrameworks: targets["A 2"]!.linkerInputs.staticFrameworks,
@@ -64,6 +62,8 @@ final class TargetMergingTests: XCTestCase {
                     .project("a/imported.a"),
                 ]
             ),
+            resourceBundleDependencies: targets["A 2"]!
+                .resourceBundleDependencies,
             // Inherited "A 1"'s dependencies and removed "A 1"
             dependencies: ["C 1", "R 1"],
             outputs: targets["A 2"]!.outputs.merging(targets["A 1"]!.outputs)
@@ -75,8 +75,6 @@ final class TargetMergingTests: XCTestCase {
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
-            resourceBundleDependencies: targets["B 2"]!
-                .resourceBundleDependencies,
             inputs: targets["B 2"]!.inputs.merging(targets["B 1"]!.inputs),
             linkerInputs: .init(
                 staticFrameworks: targets["B 2"]!.linkerInputs.staticFrameworks,
@@ -85,6 +83,8 @@ final class TargetMergingTests: XCTestCase {
                 // Removed "A 1"'s and "B 1"'s product
                 staticLibraries: []
             ),
+            resourceBundleDependencies: targets["B 2"]!
+                .resourceBundleDependencies,
             // Inherited "B 1"'s dependencies and removed "A 1"
             dependencies: ["A 2"],
             outputs: targets["B 2"]!.outputs.merging(targets["B 1"]!.outputs)
@@ -96,8 +96,6 @@ final class TargetMergingTests: XCTestCase {
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
-            resourceBundleDependencies: targets["B 3"]!
-                .resourceBundleDependencies,
             inputs: targets["B 3"]!.inputs.merging(targets["B 1"]!.inputs),
             linkerInputs: .init(
                 staticFrameworks: targets["B 3"]!.linkerInputs.staticFrameworks,
@@ -106,6 +104,8 @@ final class TargetMergingTests: XCTestCase {
                 // Removed "B 1"'s product
                 staticLibraries: []
             ),
+            resourceBundleDependencies: targets["B 3"]!
+                .resourceBundleDependencies,
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
             dependencies: ["A 2"],
             outputs: targets["B 3"]!.outputs.merging(targets["B 1"]!.outputs)

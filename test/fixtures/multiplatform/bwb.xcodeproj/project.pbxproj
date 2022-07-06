@@ -114,6 +114,13 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		89C81292F43E0E5EFBC65615 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 632D255CE04E97FB997EBDD7;
+			remoteInfo = watchOSApp;
+		};
 		A649ADF25A384947B0A5D62A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -1274,6 +1281,7 @@
 			dependencies = (
 				588C37BAE74BD661E5366E96 /* PBXTargetDependency */,
 				C94C023F42EA28F45CE93ED4 /* PBXTargetDependency */,
+				5437B75F248043889B16F23E /* PBXTargetDependency */,
 			);
 			name = iOSApp;
 			productName = iOSApp;
@@ -1702,6 +1710,12 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 64291FDA9C4F8EFE675DD30F /* PBXContainerItemProxy */;
+		};
+		5437B75F248043889B16F23E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = watchOSApp;
+			target = 632D255CE04E97FB997EBDD7 /* watchOSApp */;
+			targetProxy = 89C81292F43E0E5EFBC65615 /* PBXContainerItemProxy */;
 		};
 		588C37BAE74BD661E5366E96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

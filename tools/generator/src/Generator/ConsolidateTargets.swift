@@ -83,6 +83,7 @@ Target "\(id)" dependency on "\(depID)" not found in \
         }
 
         var testHostMap: [TargetID: ConsolidatedTarget.Key] = [:]
+        var watchAppMap: [TargetID: ConsolidatedTarget.Key] = [:]
         var depsMap: [TargetID: Set<ConsolidatedTarget.Key>] = [:]
         var rdepsMap: [ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>] =
             [:]
@@ -104,6 +105,11 @@ Target "\(id)" not found in `consolidateTargets().targets`
                 if let testHost = target.testHost {
                     let depKey = try resolveDependency(testHost, for: id)
                     testHostMap[id] = depKey
+                    dependencies.insert(depKey)
+                }
+                if let watchApp = target.watchApplication {
+                    let depKey = try resolveDependency(watchApp, for: id)
+                    watchAppMap[id] = depKey
                     dependencies.insert(depKey)
                 }
 
@@ -132,9 +138,12 @@ Target "\(id)" not found in `consolidateTargets().targets`
         for key in keys.filter({ $0.targetIDs.count > 1 }) {
             var testHostGrouping: [ConsolidatedTarget.Key?: Set<TargetID>] =
                 [:]
+            var watchAppGrouping: [ConsolidatedTarget.Key?: Set<TargetID>] =
+                [:]
             var depsGrouping: [Set<ConsolidatedTarget.Key>: Set<TargetID>] = [:]
             for id in key.targetIDs {
                 testHostGrouping[testHostMap[id], default: []].insert(id)
+                watchAppGrouping[watchAppMap[id], default: []].insert(id)
                 depsGrouping[depsMap[id] ?? [], default: []].insert(id)
             }
 
@@ -145,7 +154,13 @@ conditional `test_host`
 """)
                 deconsolidateKey(key)
             }
-
+            if watchAppGrouping.count != 1 {
+                logger.logWarning("""
+Was unable to consolidate targets \(key.targetIDs.sorted()) since they have a \
+conditional `watch_application`
+""")
+                deconsolidateKey(key)
+            }
             if depsGrouping.count != 1 {
                 logger.logWarning("""
 Was unable to consolidate targets \(key.targetIDs.sorted()) since they have a \
@@ -242,9 +257,10 @@ struct ConsolidatedTarget: Equatable {
     let label: String
     let product: ConsolidatedTargetProduct
     let isSwift: Bool
-    let resourceBundleDependencies: Set<TargetID>
     let inputs: ConsolidatedTargetInputs
     let linkerInputs: ConsolidatedTargetLinkerInputs
+    let resourceBundleDependencies: Set<TargetID>
+    let watchApplication: TargetID?
     let outputs: ConsolidatedTargetOutputs
 
     /// The `Set` of `FilePath`s that each target references above the baseline.
@@ -304,12 +320,6 @@ extension ConsolidatedTarget {
         )
         isSwift = aTarget.isSwift
 
-        var resourceBundleDependencies: Set<TargetID> = []
-        targets.values.forEach {
-            resourceBundleDependencies.formUnion($0.resourceBundleDependencies)
-        }
-        self.resourceBundleDependencies = resourceBundleDependencies
-
         sortedTargets = targets
             .sorted { lhs, rhs in
                 return lhs.value.buildSettingConditional <
@@ -330,6 +340,14 @@ extension ConsolidatedTarget {
                 .subtracting(baselineFiles)
         }
         self.uniqueFiles = uniqueFiles
+
+        var resourceBundleDependencies: Set<TargetID> = []
+        targets.values.forEach {
+            resourceBundleDependencies.formUnion($0.resourceBundleDependencies)
+        }
+        self.resourceBundleDependencies = resourceBundleDependencies
+
+        watchApplication = aTarget.watchApplication
 
         allDependencies = aTarget.allDependencies
         outputs = ConsolidatedTargetOutputs(
