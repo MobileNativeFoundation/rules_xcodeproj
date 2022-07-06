@@ -130,7 +130,7 @@ def _collect(
             are in `resources`.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
-        *   `exported_symbols_lists`: A `list` of `FilePath`s for
+        *   `exported_symbols_lists`: A `depset` of `FilePath`s for
             `exported_symbols_lists`.
         *   `extra_files`: A `depset` of `FilePath`s that should be included in
             the project, but aren't necessarily inputs to the target. This also
