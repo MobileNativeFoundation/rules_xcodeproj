@@ -342,12 +342,7 @@ extension ConsolidatedTarget {
         }
         self.uniqueFiles = uniqueFiles
 
-        var resourceBundleDependencies: Set<TargetID> = []
-        targets.values.forEach {
-            resourceBundleDependencies.formUnion($0.resourceBundleDependencies)
-        }
-        self.resourceBundleDependencies = resourceBundleDependencies
-
+        resourceBundleDependencies = aTarget.resourceBundleDependencies
         watchApplication = aTarget.watchApplication
         extensions = aTarget.extensions
 
