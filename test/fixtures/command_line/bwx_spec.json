@@ -561,7 +561,11 @@
                 "//examples/command_line/tool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
             ],
             "info_plist": null,
-            "inputs": {},
+            "inputs": {
+                "exported_symbols_lists": [
+                    "examples/command_line/tool/export_symbol_list.exp"
+                ]
+            },
             "is_swift": false,
             "label": "//examples/command_line/tool:tool",
             "linker_inputs": {

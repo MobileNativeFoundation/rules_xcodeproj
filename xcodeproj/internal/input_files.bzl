@@ -62,6 +62,8 @@ def _is_categorized_attr(attr, *, automatic_target_info):
         return True
     elif attr == automatic_target_info.entitlements:
         return True
+    elif attr in automatic_target_info.exported_symbols_lists:
+        return True
     else:
         return False
 
@@ -128,6 +130,8 @@ def _collect(
             are in `resources`.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
+        *   `exported_symbols_lists`: A `depset` of `FilePath`s for
+            `exported_symbols_lists`.
         *   `extra_files`: A `depset` of `FilePath`s that should be included in
             the project, but aren't necessarily inputs to the target. This also
             includes some categorized files of transitive dependencies
@@ -139,13 +143,14 @@ def _collect(
     """
     output_files = target.files.to_list()
 
-    srcs = []
-    non_arc_srcs = []
-    hdrs = []
-    pch = []
     entitlements = []
-    generated = []
+    exported_symbols_lists = []
     extra_files = []
+    generated = []
+    hdrs = []
+    non_arc_srcs = []
+    pch = []
+    srcs = []
     uncategorized = []
 
     # Include BUILD files for the project but not for external repos
@@ -177,6 +182,8 @@ def _collect(
             # assigning to `entitlements` creates a new local variable instead
             # of assigning to the existing variable
             entitlements.append(file)
+        elif attr in automatic_target_info.exported_symbols_lists:
+            exported_symbols_lists.append(file)
         else:
             categorized = False
 
@@ -297,6 +304,7 @@ def _collect(
             resource_bundle_dependencies,
         ),
         entitlements = entitlements[0] if entitlements else None,
+        exported_symbols_lists = depset(exported_symbols_lists),
         xccurrentversions = depset(
             xccurrentversions,
             transitive = [
@@ -346,6 +354,7 @@ def _from_resource_bundle(bundle):
         resource_bundle_dependencies = bundle.dependencies,
         infoplists = depset(),
         entitlements = None,
+        exported_symbols_lists = depset(),
         xccurrentversions = depset(),
         generated = depset(),
         extra_files = depset(),
@@ -378,6 +387,7 @@ def _merge(*, transitive_infos, extra_generated = None):
             ],
         ),
         entitlements = None,
+        exported_symbols_lists = depset(),
         xccurrentversions = depset(
             transitive = [
                 info.inputs.xccurrentversions
@@ -420,6 +430,7 @@ def _to_dto(inputs):
         *   `pch`: An optional `FilePath` for `pch`.
         *   `resources`: A `list` of `FilePath`s for `resources`.
         *   `entitlements`: An optional `FilePath` for `entitlements`.
+        *   `exported_symbols_lists`: A `list` of `FilePath`s for `exported_symbols_lists`.
     """
     ret = {}
 
@@ -434,6 +445,7 @@ def _to_dto(inputs):
     _process_attr("srcs")
     _process_attr("non_arc_srcs")
     _process_attr("hdrs")
+    _process_attr("exported_symbols_lists")
 
     if inputs.pch:
         ret["pch"] = file_path_to_dto(file_path(inputs.pch))

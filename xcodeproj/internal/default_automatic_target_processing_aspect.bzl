@@ -61,6 +61,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     bundle_id = None
     codesignopts = None
     entitlements = None
+    exported_symbols_lists = []
     infoplists = []
     bazel_build_mode_error = None
     non_arc_srcs = []
@@ -110,6 +111,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     elif AppleBinaryInfo in target:
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"
+        if "exported_symbols_lists" in attrs:
+            exported_symbols_lists = ["exported_symbols_lists"]
         if "infoplists" in attrs:
             infoplists = ["infoplists"]
         xcode_targets = {"deps": [target_type.compile]}
@@ -138,6 +141,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     return [
         XcodeProjAutomaticTargetProcessingInfo(
             codesignopts = codesignopts,
+            exported_symbols_lists = exported_symbols_lists,
             should_generate_target = should_generate_target,
             target_type = this_target_type,
             xcode_targets = xcode_targets,
