@@ -450,6 +450,10 @@ A JSON string representing a list of Xcode schemes to create.\
             allow_files = True,
             default = Label("//xcodeproj/internal/bazel_integration_files"),
         ),
+        "_create_lldbinit_script": attr.label(
+            allow_single_file = True,
+            default = Label("//xcodeproj/internal/bazel_integration_files:create_lldbinit.sh"),
+        ),
         "_external_file_marker": attr.label(
             allow_single_file = True,
             # This just has to point to a source file in an external repo. It is
@@ -470,10 +474,6 @@ A JSON string representing a list of Xcode schemes to create.\
         "_installer_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:installer.template.sh"),
-        ),
-        "_create_lldbinit_script": attr.label(
-            allow_single_file = True,
-            default = Label("//xcodeproj/internal/bazel_integration_files:create_lldbinit.sh"),
         ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",
