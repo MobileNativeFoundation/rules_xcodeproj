@@ -32,7 +32,6 @@ extension Inputs {
         nonArcSrcs = other.nonArcSrcs
         hdrs = other.hdrs
         pch = other.pch
-        exportedSymbolsLists = other.exportedSymbolsLists
         resources.formUnion(other.resources)
     }
 
