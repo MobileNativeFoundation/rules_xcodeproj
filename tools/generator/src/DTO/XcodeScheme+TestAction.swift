@@ -1,5 +1,5 @@
 extension XcodeScheme {
     struct TestAction: Equatable, Decodable {
-        let targets: Set<TargetID>
+        let targets: Set<String>
     }
 }
