@@ -163,30 +163,6 @@ def process_defines(*, cc_info, swift_info, build_settings):
 
         set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
 
-def process_exported_symbols_lists(
-        *,
-        exported_symbols_lists,
-        package_bin_dir,
-        build_settings):
-    """Logic for processing code signing flags.
-
-    Args:
-        exported_symbols_lists: A `list` of `File`s representing the
-        exported symbol lists files for the target.
-        package_bin_dir: Path to the package's bin directory.
-        build_settings: A mutable `dict` that will be updated with code signing
-            flag build settings that are processed.
-    Return:
-        The modified build settings object
-    """
-    if exported_symbols_lists and build_settings != None:
-        path_prefix = "$(BUILD_DIR)/" + package_bin_dir + "/"
-        setting = [
-            "-Wl,-exported_symbols_list,{}"
-                .format(path_prefix + exported_symbol_list.path)
-            for exported_symbol_list in exported_symbols_lists.to_list()
-        ]
-        set_if_true(build_settings, "OTHER_LDFLAGS", setting)
 
 def process_swiftmodules(*, swift_info):
     """Processes swiftmodules.

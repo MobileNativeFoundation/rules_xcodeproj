@@ -5,6 +5,7 @@ struct Inputs: Equatable {
     var pch: FilePath?
     var resources: Set<FilePath>
     var entitlements: FilePath?
+    var exportedSymbolsLists: [FilePath]
 
     init(
         srcs: [FilePath] = [],
@@ -12,7 +13,8 @@ struct Inputs: Equatable {
         hdrs: Set<FilePath> = [],
         pch: FilePath? = nil,
         resources: Set<FilePath> = [],
-        entitlements: FilePath? = nil
+        entitlements: FilePath? = nil,
+        exportedSymbolsLists: [FilePath] = []
     ) {
         self.srcs = srcs
         self.nonArcSrcs = nonArcSrcs
@@ -20,6 +22,7 @@ struct Inputs: Equatable {
         self.pch = pch
         self.resources = resources
         self.entitlements = entitlements
+        self.exportedSymbolsLists = exportedSymbolsLists
     }
 }
 
@@ -29,6 +32,7 @@ extension Inputs {
         nonArcSrcs = other.nonArcSrcs
         hdrs = other.hdrs
         pch = other.pch
+        exportedSymbolsLists = other.exportedSymbolsLists
         resources.formUnion(other.resources)
     }
 
@@ -47,6 +51,7 @@ extension Inputs {
             .union(pchSet)
             .union(resources)
             .union(entitlementsSet)
+            .union(exportedSymbolsLists)
     }
 
     private var pchSet: Set<FilePath> {
@@ -74,6 +79,7 @@ extension Inputs: Decodable {
         case pch
         case resources
         case entitlements
+        case exportedSymbolsLists
     }
 
     init(from decoder: Decoder) throws {
@@ -86,6 +92,8 @@ extension Inputs: Decodable {
         resources = try container.decodeFilePaths(.resources)
         entitlements = try container
             .decodeIfPresent(FilePath.self, forKey: .entitlements)
+        exportedSymbolsLists = try container
+            .decodeFilePaths(.exportedSymbolsLists)
     }
 }
 

@@ -551,9 +551,6 @@
                     "--digest-algorithm=sha1",
                     "--digest-algorithm=sha384"
                 ],
-                "OTHER_LDFLAGS": [
-                    "-Wl,-exported_symbols_list,$(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/tool/examples/command_line/tool/export_symbol_list.exp"
-                ],
                 "PRODUCT_MODULE_NAME": "_tool_Stub",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -564,7 +561,11 @@
                 "//examples/command_line/tool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
             ],
             "info_plist": null,
-            "inputs": {},
+            "inputs": {
+                "exported_symbols_lists": [
+                    "examples/command_line/tool/export_symbol_list.exp"
+                ]
+            },
             "is_swift": false,
             "label": "//examples/command_line/tool:tool",
             "linker_inputs": {

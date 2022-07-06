@@ -209,6 +209,17 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             )
         }
 
+        let exportedSymbolsLists = target.inputs.exportedSymbolsLists
+        if !exportedSymbolsLists.isEmpty {
+            print(target.inputs.exportedSymbolsLists)
+            try buildSettings.prepend(
+                onKey: "OTHER_LDFLAGS",
+                exportedSymbolsLists.flatMap { filePath in
+                    return ["-exported_symbols_list", try filePathResolver.resolve(filePath).string.quoted]
+                }
+            )
+        }
+
         if !target.linkerInputs.staticLibraries.isEmpty {
             let linkFileList = try filePathResolver
                 .resolve(try target.linkFileListFilePath())

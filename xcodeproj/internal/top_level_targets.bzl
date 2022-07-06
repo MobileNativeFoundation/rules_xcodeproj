@@ -24,7 +24,6 @@ load(
     "process_codesignopts",
     "process_defines",
     "process_dependencies",
-    "process_exported_symbols_lists",
     "process_modulemaps",
     "process_swiftmodules",
     "should_bundle_resources",
@@ -321,14 +320,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         )
         process_codesignopts(
             codesignopts = codesignopts,
-            build_settings = build_settings,
-        )
-    exported_symbols_lists_attr_name = automatic_target_info.exported_symbols_lists
-    exported_symbols_lists = inputs.exported_symbols_lists
-    if exported_symbols_lists_attr_name:
-        process_exported_symbols_lists(
-            exported_symbols_lists = exported_symbols_lists,
-            package_bin_dir = package_bin_dir,
             build_settings = build_settings,
         )
     process_defines(
