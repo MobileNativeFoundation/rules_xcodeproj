@@ -269,6 +269,18 @@ enum Fixtures {
                 ]
             )
         ),
+        "W": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/W",
+            platform: .device(os: .watchOS),
+            product: .init(
+                type: .watch2App,
+                name: "W",
+                path: .generated("z/W.app")
+            ),
+            buildSettings: [
+                "PRODUCT_MODULE_NAME": .string("W"),
+            ]
+        ),
         "WKE": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/WKE",
             platform: .device(os: .watchOS),
@@ -295,6 +307,7 @@ enum Fixtures {
             ["C 2"],
             ["E1"],
             ["E2"],
+            ["W"],
             ["WKE"],
             ["R 1"],
             ["T 1", "T 2", "T 3"],
@@ -1093,6 +1106,15 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
+                targetKey: "W",
+                filePaths: [.generated("z/W.app")]
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.watch2App.fileType,
+                path: "W.app",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
                 targetKey: "WKE",
                 filePaths: [.generated("z/WK.appex")]
             ): PBXFileReference(
@@ -1130,6 +1152,7 @@ a/imported.a
                 products.byFilePath[.generated("e2/E.a")]!,
                 products.byFilePath[.generated("r1/R1.bundle")]!,
                 products.byFilePath[.generated("T/T 3/T.a")]!,
+                products.byFilePath[.generated("z/W.app")]!,
                 products.byFilePath[.generated("z/WK.appex")]!,
             ],
             sourceTree: .group,
@@ -1561,6 +1584,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 ),
                 createGeneratedHeaderShellScript(),
             ],
+            "W": [],
             "WKE": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
@@ -1654,6 +1678,13 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 product: nil,
                 productType: .staticLibrary
             ),
+            "W": PBXNativeTarget(
+                name: disambiguatedTargets.targets["W"]!.name,
+                buildPhases: buildPhases["W"] ?? [],
+                productName: "W",
+                product: products.byTarget["W"],
+                productType: .watch2App
+            ),
             "WKE": PBXNativeTarget(
                 name: disambiguatedTargets.targets["WKE"]!.name,
                 buildPhases: buildPhases["WKE"] ?? [],
@@ -1694,6 +1725,9 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             target: bazelDependenciesTarget
         )
         _ = try! pbxNativeTargets[.init(["T 1", "T 2", "T 3"])]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxNativeTargets["W"]!.addDependency(
             target: bazelDependenciesTarget
         )
         _ = try! pbxNativeTargets["WKE"]!.addDependency(
@@ -1783,6 +1817,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             "E2": baseAttributes,
             "R 1": baseAttributes,
             .init(["T 1", "T 2", "T 3"]): baseAttributes,
+            "W": baseAttributes,
             "WKE": baseAttributes,
         ]
 
@@ -1992,6 +2027,19 @@ $(MACOSX_FILES)
                 "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
                 "TARGET_NAME": targets["T 1"]!.name,
+            ]) { $1 },
+            "W": targets["W"]!.buildSettings.asDictionary.merging([
+                "ARCHS": "arm64",
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/W",
+                "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "BAZEL_TARGET_ID": "W",
+                "DEPLOYMENT_LOCATION": "NO",
+                "EXECUTABLE_EXTENSION": "app",
+                "GENERATE_INFOPLIST_FILE": "YES",
+                "PRODUCT_NAME": "W",
+                "SDKROOT": "watchos",
+                "SUPPORTED_PLATFORMS": "watchos",
+                "TARGET_NAME": targets["W"]!.name,
             ]) { $1 },
             "WKE": targets["WKE"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
