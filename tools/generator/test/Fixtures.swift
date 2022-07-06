@@ -69,7 +69,7 @@ enum Fixtures {
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_A"),
                 "T": .string("43"),
-                "Z": .string("0"),
+                "Z": .string("0")
             ],
             swiftmodules: [.generated("x/y.swiftmodule")],
             resourceBundleDependencies: ["R 1"],
@@ -318,7 +318,9 @@ enum Fixtures {
     static func disambiguatedTargets(
         _ consolidatedTargets: ConsolidatedTargets
     ) -> DisambiguatedTargets {
-        var disambiguatedTargets = [ConsolidatedTarget.Key: DisambiguatedTarget](
+        var disambiguatedTargets = Dictionary<
+            ConsolidatedTarget.Key, DisambiguatedTarget
+        >(
             minimumCapacity: targets.count
         )
         for (key, target) in consolidatedTargets.targets {
@@ -945,48 +947,48 @@ enum Fixtures {
         // xcfilelists
 
         files[.internal("external.xcfilelist")] = .nonReferencedContent("""
-        $(BAZEL_EXTERNAL)/a_repo/a.swift
-        $(BAZEL_EXTERNAL)/another_repo/b.swift
+$(BAZEL_EXTERNAL)/a_repo/a.swift
+$(BAZEL_EXTERNAL)/another_repo/b.swift
 
-        """)
+""")
 
         let genDir = "$(BUILD_DIR)/bazel-out"
         let srcRootGenDir = "\(linksDir)/gen_dir"
 
         files[.internal("generated.copied.xcfilelist")] = .nonReferencedContent(
-            """
-            $(GEN_DIR)/a/b/module.modulemap
-            $(GEN_DIR)/a1b2c/bin/t.c
-            $(GEN_DIR)/v/a.txt
+"""
+$(GEN_DIR)/a/b/module.modulemap
+$(GEN_DIR)/a1b2c/bin/t.c
+$(GEN_DIR)/v/a.txt
 
-            """)
+""")
 
         files[.internal("modulemaps.xcfilelist")] = .nonReferencedContent("""
-        \(genDir)/a/b/module.modulemap
+\(genDir)/a/b/module.modulemap
 
-        """)
+""")
 
         files[.internal("modulemaps.fixed.xcfilelist")] = .nonReferencedContent(
-            """
-            \(genDir)/a/b/module.xcode.modulemap
+"""
+\(genDir)/a/b/module.xcode.modulemap
 
-            """)
+""")
 
         // LinkFileLists
 
         files[.internal("targets/a1b2c/A 2/A.LinkFileList")] =
             .nonReferencedContent("""
-            \(srcRootGenDir)/a/c.a
-            \(srcRootGenDir)/z/A.a
-            a/imported.a
+\(srcRootGenDir)/a/c.a
+\(srcRootGenDir)/z/A.a
+a/imported.a
 
-            """)
+""")
 
         files[.internal("targets/a1b2c/C 2/d.LinkFileList")] =
             .nonReferencedContent("""
-            \(srcRootGenDir)/a/c.a
+\(srcRootGenDir)/a/c.a
 
-            """)
+""")
 
         return (files, elements)
     }
@@ -1168,15 +1170,15 @@ enum Fixtures {
         xcodeprojConfiguration: String
     ) -> PBXAggregateTarget {
         let allPlatforms = """
-        watchsimulator \
-        watchos \
-        macosx \
-        iphonesimulator \
-        iphoneos \
-        driverkit \
-        appletvsimulator \
-        appletvos
-        """
+watchsimulator \
+watchos \
+macosx \
+iphonesimulator \
+iphoneos \
+driverkit \
+appletvsimulator \
+appletvos
+"""
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
@@ -1203,96 +1205,96 @@ enum Fixtures {
                 "$(INTERNAL_DIR)/generated.xcfilelist",
             ],
             shellScript: #"""
-            set -euo pipefail
+set -euo pipefail
 
-            if [ "$ACTION" == "indexbuild" ]; then
-              # We use a different output base for Index Build to prevent normal builds and
-              # indexing waiting on bazel locks from the other
-              output_base="$OBJROOT/bazel_output_base"
-            fi
+if [ "$ACTION" == "indexbuild" ]; then
+  # We use a different output base for Index Build to prevent normal builds and
+  # indexing waiting on bazel locks from the other
+  output_base="$OBJROOT/bazel_output_base"
+fi
 
-            if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
-              color=yes
-            else
-              color=no
-            fi
+if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
+  color=yes
+else
+  color=no
+fi
 
-            output_path=$(env -i \
-              DEVELOPER_DIR="$DEVELOPER_DIR" \
-              HOME="$HOME" \
-              PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-              USER="$USER" \
-              "$BAZEL_PATH" \
-              ${output_base:+--output_base "$output_base"} \
-              info \
-              --color="$color" \
-              --experimental_convenience_symlinks=ignore \
-              --symlink_prefix=/ \
-              output_path)
-            external="${output_path%/*/*/*}/external"
+output_path=$(env -i \
+  DEVELOPER_DIR="$DEVELOPER_DIR" \
+  HOME="$HOME" \
+  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  USER="$USER" \
+  "$BAZEL_PATH" \
+  ${output_base:+--output_base "$output_base"} \
+  info \
+  --color="$color" \
+  --experimental_convenience_symlinks=ignore \
+  --symlink_prefix=/ \
+  output_path)
+external="${output_path%/*/*/*}/external"
 
-            # We only want to modify `$LINKS_DIR` during normal builds since Indexing can
-            # run concurrent to normal builds
-            if [ "$ACTION" != "indexbuild" ]; then
-              mkdir -p "$LINKS_DIR"
-              cd "$LINKS_DIR"
+# We only want to modify `$LINKS_DIR` during normal builds since Indexing can
+# run concurrent to normal builds
+if [ "$ACTION" != "indexbuild" ]; then
+  mkdir -p "$LINKS_DIR"
+  cd "$LINKS_DIR"
 
-              # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-              # files to the internal links directory to prevent Bazel from recursing into
-              # it, and thus following the `external` symlink
-              touch BUILD
-              touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+  # files to the internal links directory to prevent Bazel from recursing into
+  # it, and thus following the `external` symlink
+  touch BUILD
+  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
 
-              # Need to remove the directories that Xcode creates as part of output prep
-              rm -rf external
-              rm -rf gen_dir
+  # Need to remove the directories that Xcode creates as part of output prep
+  rm -rf external
+  rm -rf gen_dir
 
-              ln -sf "$external" external
-              ln -sf "$BUILD_DIR/bazel-out" gen_dir
-            fi
+  ln -sf "$external" external
+  ln -sf "$BUILD_DIR/bazel-out" gen_dir
+fi
 
-            cd "$BUILD_DIR"
+cd "$BUILD_DIR"
 
-            rm -rf external
-            rm -rf real-bazel-out
+rm -rf external
+rm -rf real-bazel-out
 
-            ln -sf "$external" external
-            ln -sf "$output_path" real-bazel-out
-            ln -sfn "$PROJECT_DIR" SRCROOT
+ln -sf "$external" external
+ln -sf "$output_path" real-bazel-out
+ln -sfn "$PROJECT_DIR" SRCROOT
 
-            # Create parent directories of generated files, so the project navigator works
-            # better faster
+# Create parent directories of generated files, so the project navigator works
+# better faster
 
-            mkdir -p bazel-out
-            cd bazel-out
+mkdir -p bazel-out
+cd bazel-out
 
-            sed 's|\/[^\/]*$||' \
-              "$INTERNAL_DIR/generated.rsynclist" \
-              | uniq \
-              | while IFS= read -r dir
-            do
-              mkdir -p "$dir"
-            done
+sed 's|\/[^\/]*$||' \
+  "$INTERNAL_DIR/generated.rsynclist" \
+  | uniq \
+  | while IFS= read -r dir
+do
+  mkdir -p "$dir"
+done
 
-            cd "$SRCROOT"
+cd "$SRCROOT"
 
-            date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
+date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
 
-            env -i \
-              DEVELOPER_DIR="$DEVELOPER_DIR" \
-              HOME="$HOME" \
-              PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-              USER="$USER" \
-              "$BAZEL_PATH" \
-              ${output_base:+--output_base "$output_base"} \
-              build \
-              --color="$color" \
-              --experimental_convenience_symlinks=ignore \
-              --symlink_prefix=/ \
-              '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
-              \#(xcodeprojBazelLabel)
+env -i \
+  DEVELOPER_DIR="$DEVELOPER_DIR" \
+  HOME="$HOME" \
+  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
+  USER="$USER" \
+  "$BAZEL_PATH" \
+  ${output_base:+--output_base "$output_base"} \
+  build \
+  --color="$color" \
+  --experimental_convenience_symlinks=ignore \
+  --symlink_prefix=/ \
+  '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
+  \#(xcodeprojBazelLabel)
 
-            """#,
+"""#,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
         )
@@ -1305,23 +1307,23 @@ enum Fixtures {
                 "$(INTERNAL_DIR)/generated.copied.xcfilelist",
             ],
             shellScript: #"""
-            set -euo pipefail
+set -euo pipefail
 
-            cd "$BAZEL_OUT"
+cd "$BAZEL_OUT"
 
-            # Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
-            # builds, but is different for Index Builds. `PBXBuildFile`s will use the
-            # "$GEN_DIR" version, so indexing might get messed up until they are normally
-            # generated. It's the best we can do though as we need to use the `gen_dir`
-            # symlink.
-            rsync \
-              --files-from "$INTERNAL_DIR/generated.rsynclist" \
-              --chmod=u+w \
-              -L \
-              . \
-              "$BUILD_DIR/bazel-out"
+# Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
+# builds, but is different for Index Builds. `PBXBuildFile`s will use the
+# "$GEN_DIR" version, so indexing might get messed up until they are normally
+# generated. It's the best we can do though as we need to use the `gen_dir`
+# symlink.
+rsync \
+  --files-from "$INTERNAL_DIR/generated.rsynclist" \
+  --chmod=u+w \
+  -L \
+  . \
+  "$BUILD_DIR/bazel-out"
 
-            """#,
+"""#,
             showEnvVarsInLog: false
         )
         pbxProj.add(object: copyFilesScript)
@@ -1331,17 +1333,17 @@ enum Fixtures {
             inputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.xcfilelist"],
             outputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist"],
             shellScript: #"""
-            set -euo pipefail
+set -euo pipefail
 
-            while IFS= read -r input; do
-              output="${input%.modulemap}.xcode.modulemap"
-              perl -p -e \
-                's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
-                < "$input" \
-                > "$output"
-            done < "$SCRIPT_INPUT_FILE_LIST_0"
+while IFS= read -r input; do
+  output="${input%.modulemap}.xcode.modulemap"
+  perl -p -e \
+    's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
+    < "$input" \
+    > "$output"
+done < "$SCRIPT_INPUT_FILE_LIST_0"
 
-            """#,
+"""#,
             showEnvVarsInLog: false
         )
         pbxProj.add(object: fixModulemapsScript)
@@ -1377,7 +1379,7 @@ enum Fixtures {
         disambiguatedTargets: DisambiguatedTargets,
         files: [FilePath: File],
         products: Products,
-        filePathResolver _: FilePathResolver,
+        filePathResolver: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
         // Build phases
@@ -1390,17 +1392,17 @@ enum Fixtures {
                 ],
                 outputPaths: [
                     """
-                    $(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)
-                    """,
+$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)
+""",
                 ],
                 shellScript: #"""
-                if [[ -z "${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}" ]]; then
-                  exit 0
-                fi
+if [[ -z "${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}" ]]; then
+  exit 0
+fi
 
-                cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
+cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
-                """#,
+"""#,
                 showEnvVarsInLog: false
             )
             pbxProj.add(object: shellScript)
@@ -1520,7 +1522,8 @@ enum Fixtures {
             "E1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.external("a_repo/a.swift")]!)])
+                        file: elements[.external("a_repo/a.swift")]!),
+                    ])
                 ),
                 createGeneratedHeaderShellScript(),
             ],
@@ -1738,7 +1741,7 @@ enum Fixtures {
             pbxProj.rootObject!.targets.append(pbxTarget)
         }
 
-        var pbxTargets = [ConsolidatedTarget.Key: PBXTarget](
+        var pbxTargets = Dictionary<ConsolidatedTarget.Key, PBXTarget>(
             uniqueKeysWithValues: pbxNativeTargets.map { $0 }
         )
         pbxTargets[.bazelDependencies] = bazelDependenciesTarget
@@ -1868,8 +1871,8 @@ enum Fixtures {
                 "EXECUTABLE_EXTENSION": "framework",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
-                -Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
-                """,
+-Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
+""",
                 "PRODUCT_NAME": "b",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -1889,8 +1892,8 @@ enum Fixtures {
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_BUILD_DIR": """
-                $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
-                """,
+$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
+""",
                 "TARGET_NAME": targets["B 2"]!.name,
                 "TEST_HOST": "$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A",
             ]) { $1 },
@@ -1917,8 +1920,8 @@ enum Fixtures {
                 "GCC_PREFIX_HEADER": "$(PROJECT_DIR)/a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
-                -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
-                """,
+-Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
+""",
                 "PRODUCT_NAME": "c",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -1976,56 +1979,56 @@ enum Fixtures {
             ]) { $1 },
             .init(["T 1", "T 2", "T 3"]): targets["T 1"]!.buildSettings
                 .asDictionary.merging(
-                    [
-                        "ARCHS": "arm64",
-                        "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/T 3",
-                        "BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]": """
-                        bazel-out/a1b2c/bin/T 1
-                        """,
-                        "BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]": """
-                        bazel-out/a1b2c/bin/T 2
-                        """,
-                        "BAZEL_TARGET_ID": "T 3",
-                        "BAZEL_TARGET_ID[sdk=iphoneos*]": "T 1",
-                        "BAZEL_TARGET_ID[sdk=iphonesimulator*]": "T 2",
-                        "EXCLUDED_SOURCE_FILE_NAMES": [
-                            "$(IPHONEOS_FILES)",
-                            "$(IPHONESIMULATOR_FILES)",
-                            "$(MACOSX_FILES)",
-                        ],
-                        "EXECUTABLE_EXTENSION": "a",
-                        "GENERATE_INFOPLIST_FILE": "YES",
-                        "INCLUDED_SOURCE_FILE_NAMES": "",
-                        "INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]": """
-                        $(IPHONEOS_FILES)
-                        """,
-                        "INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]": """
-                        $(IPHONESIMULATOR_FILES)
-                        """,
-                        "INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]": """
-                        $(MACOSX_FILES)
-                        """,
-                        "IPHONEOS_FILES": [
-                            "$(PROJECT_DIR)/T/T 1/Ta.c",
-                            "$(PROJECT_DIR)/T/T 1/Ta.png",
-                            "$(PROJECT_DIR)/T/T 1/Ta.swift",
-                        ],
-                        "IPHONESIMULATOR_FILES": [
-                            "$(PROJECT_DIR)/T/T 2/Ta.c",
-                            "$(PROJECT_DIR)/T/T 2/Ta.png",
-                            "$(PROJECT_DIR)/T/T 2/Ta.swift",
-                        ],
-                        "MACOSX_FILES": [
-                            "$(PROJECT_DIR)/T/T 3/Ta.c",
-                            "$(PROJECT_DIR)/T/T 3/Ta.png",
-                            "$(PROJECT_DIR)/T/T 3/Ta.swift",
-                        ],
-                        "PRODUCT_NAME": "t",
-                        "SDKROOT": "macosx",
-                        "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
-                        "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
-                        "TARGET_NAME": targets["T 1"]!.name,
-                    ]) { $1 },
+            [
+                "ARCHS": "arm64",
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/T 3",
+                "BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]": """
+bazel-out/a1b2c/bin/T 1
+""",
+                "BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]": """
+bazel-out/a1b2c/bin/T 2
+""",
+                "BAZEL_TARGET_ID": "T 3",
+                "BAZEL_TARGET_ID[sdk=iphoneos*]": "T 1",
+                "BAZEL_TARGET_ID[sdk=iphonesimulator*]": "T 2",
+                "EXCLUDED_SOURCE_FILE_NAMES": [
+                    "$(IPHONEOS_FILES)",
+                    "$(IPHONESIMULATOR_FILES)",
+                    "$(MACOSX_FILES)",
+                ],
+                "EXECUTABLE_EXTENSION": "a",
+                "GENERATE_INFOPLIST_FILE": "YES",
+                "INCLUDED_SOURCE_FILE_NAMES": "",
+                "INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]": """
+$(IPHONEOS_FILES)
+""",
+                "INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]": """
+$(IPHONESIMULATOR_FILES)
+""",
+                "INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]": """
+$(MACOSX_FILES)
+""",
+                "IPHONEOS_FILES": [
+                    "$(PROJECT_DIR)/T/T 1/Ta.c",
+                    "$(PROJECT_DIR)/T/T 1/Ta.png",
+                    "$(PROJECT_DIR)/T/T 1/Ta.swift",
+                ],
+                "IPHONESIMULATOR_FILES": [
+                    "$(PROJECT_DIR)/T/T 2/Ta.c",
+                    "$(PROJECT_DIR)/T/T 2/Ta.png",
+                    "$(PROJECT_DIR)/T/T 2/Ta.swift",
+                ],
+                "MACOSX_FILES": [
+                    "$(PROJECT_DIR)/T/T 3/Ta.c",
+                    "$(PROJECT_DIR)/T/T 3/Ta.png",
+                    "$(PROJECT_DIR)/T/T 3/Ta.swift",
+                ],
+                "PRODUCT_NAME": "t",
+                "SDKROOT": "macosx",
+                "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
+                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
+                "TARGET_NAME": targets["T 1"]!.name,
+            ]) { $1 },
             "WKE": targets["WKE"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/WKE",
