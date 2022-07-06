@@ -28,7 +28,7 @@ enum Fixtures {
             .generated("v/a.txt", includeInNavigator: false),
         ],
         schemeAutogenerationMode: .auto,
-        customXcodeSchemes: nil
+        customXcodeSchemes: []
     )
 
     static let xccurrentversions: [XCCurrentVersion] = [

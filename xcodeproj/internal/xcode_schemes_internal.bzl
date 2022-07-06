@@ -73,8 +73,8 @@ def _launch_action(
     """
     return struct(
         target = target,
-        args = args,
-        env = env,
+        args = args if args != None else [],
+        env = env if env != None else {},
         working_directory = working_directory,
     )
 

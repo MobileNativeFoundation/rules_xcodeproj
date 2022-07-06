@@ -20,7 +20,7 @@ final class GeneratorTests: XCTestCase {
             invalidTargetMerges: ["Y": ["Z"]],
             extraFiles: [],
             schemeAutogenerationMode: .auto,
-            customXcodeSchemes: nil
+            customXcodeSchemes: []
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
