@@ -214,7 +214,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
                 exportedSymbolsLists.flatMap { filePath in
-                    return ["-exported_symbols_list", try filePathResolver.resolve(filePath).string.quoted]
+                    return [
+                        "-exported_symbols_list",
+                        try filePathResolver.resolve(filePath).string.quoted
+                    ]
                 }
             )
         }
