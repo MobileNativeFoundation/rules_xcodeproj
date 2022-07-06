@@ -4,7 +4,7 @@ filegroup(
     name = "bazel_integration_files",
     srcs = glob(
         ["**/*"],
-        exclude = ["create_lldbinit.sh"],
+        exclude = ["BUILD", "create_lldbinit.sh"],
     ),
     # This is made public for internal use only
     visibility = ["//visibility:public"],
