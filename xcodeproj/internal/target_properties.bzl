@@ -163,7 +163,6 @@ def process_defines(*, cc_info, swift_info, build_settings):
 
         set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
 
-
 def process_swiftmodules(*, swift_info):
     """Processes swiftmodules.
 
