@@ -143,6 +143,18 @@ extension PBXProductType {
         }
     }
 
+    var hasCompilePhase: Bool {
+        switch self {
+        case .bundle,
+             .watchApp,
+             .watch2App,
+             .none:
+            return false
+        default:
+            return true
+        }
+    }
+
     var fileType: String? {
         switch self {
         case .application: return "wrapper.application"
@@ -219,7 +231,7 @@ extension PBXProductType {
         return isLaunchable || isBundle
     }
 
-    // MARK: Bazel-specific Environment Variable Functions
+    // MARK: Schemes
 
     var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
         return isLaunchable ? .bazelLaunchVariables : nil

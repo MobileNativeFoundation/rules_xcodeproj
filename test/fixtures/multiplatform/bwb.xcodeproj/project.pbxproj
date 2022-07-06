@@ -51,7 +51,6 @@
 		A6269C02FE150BA5AF5127C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7184778C265E6AF5491B6 /* ContentView.swift */; };
 		C0410183B2A47BD134098700 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		C3F80F355B01BEA0D54145EC /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		D11B89AB1C17492A09D6941B /* CompileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */; };
 		D9ED091F2428AAE0F00A0860 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F13F50760C51CF5C96142 /* Lib.swift */; };
 		DB5E9309EC817EBBCE4249EC /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286459D2E587B2DF91067194 /* Lib.swift */; };
 		E0E96DF94A3CD3E134AE28B4 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
@@ -197,7 +196,6 @@
 		DCAD2E3EA0F9B2B9A58A4F90 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DDD8B97AA93AE8B902A67A36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF7126971C71380F35EAD51D /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompileStub.m; sourceTree = "<group>"; };
 		E1074AF1626C67C7ADA77E61 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E25AB0992362AE2E4F48AF2D /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
@@ -1123,7 +1121,6 @@
 			isa = PBXGroup;
 			children = (
 				E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */,
-				E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */,
 			);
 			name = rules_xcodeproj;
 			path = test/fixtures/multiplatform/bwb.xcodeproj/rules_xcodeproj;
@@ -1307,7 +1304,6 @@
 			buildConfigurationList = 8A037957A7D43A07EB471C2A /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
 				DF8E9D9CD1E839DFDDC57F9F /* Copy Bazel Outputs */,
-				A2C67B856171DBAB022F04D9 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1634,14 +1630,6 @@
 				E33B1548599BFCBE1729A977 /* Lib.swift in Sources */,
 				0F0FF535D335E505B878A37E /* Lib.swift in Sources */,
 				4F47B622AA69C49396A394F1 /* Lib.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A2C67B856171DBAB022F04D9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D11B89AB1C17492A09D6941B /* CompileStub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

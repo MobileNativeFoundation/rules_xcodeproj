@@ -209,7 +209,7 @@ File "\(headerFile.filePath)" not found in `files`
                 )
             }
 
-        guard !sources.isEmpty || productType != .bundle else {
+        guard productType.hasCompilePhase else {
             return nil
         }
 

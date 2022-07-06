@@ -333,8 +333,8 @@ extension Generator {
             allInputPaths.formUnion(
                 target.outputs.forcedBazelCompileFiles(buildMode: buildMode)
             )
-            if !target.inputs.containsSources
-                && target.product.type != .bundle
+            if !target.inputs.containsSources &&
+                target.product.type.hasCompilePhase
             {
                 allInputPaths.insert(.internal(compileStubPath))
             }

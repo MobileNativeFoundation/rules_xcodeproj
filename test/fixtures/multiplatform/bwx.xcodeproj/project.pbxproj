@@ -28,7 +28,6 @@
 		11F3CA8F80B0BB2597AF76E1 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 161FCC8E16610CC731029DF1 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		171DACB244D0CE6D2880DE13 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4B9C08059A6D7570552A207 /* GoogleMaps.bundle */; };
 		1844D45BC9E3021EE6F61472 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A5CEC36DFCD8E9405557B7 /* CryptoSwift.framework */; };
-		2A5002AF448008006747E7E5 /* CompileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9ACBD60C49872D43B34A8 /* CompileStub.m */; };
 		3303FABFC056EBA3253EF7AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 909CC2C241F4540F5E294662 /* Assets.xcassets */; };
 		3663F6F02852C0086A6D8C55 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E03EA73D2F5DAB6EDED34595 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39B70EB5A4AEE55947BD2DB9 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F99A7D79C5DEADA3086ADE2 /* CryptoSwift.framework */; };
@@ -188,7 +187,6 @@
 
 /* Begin PBXFileReference section */
 		12200A389D1ACE33A9160B97 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
-		14C9ACBD60C49872D43B34A8 /* CompileStub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompileStub.m; sourceTree = "<group>"; };
 		161FCC8E16610CC731029DF1 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		1CFD892DB1825B6D1CBF0413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		203F9638F1D5CCA18DCA2A88 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
@@ -725,15 +723,6 @@
 			path = "watchOSAppExtension-intermediates";
 			sourceTree = "<group>";
 		};
-		6AF936B6BAFAF10DCDAE73D3 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				14C9ACBD60C49872D43B34A8 /* CompileStub.m */,
-			);
-			name = rules_xcodeproj;
-			path = test/fixtures/multiplatform/bwx.xcodeproj/rules_xcodeproj;
-			sourceTree = "<group>";
-		};
 		6BA7A7936F106C13B08C6269 /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,7 +795,6 @@
 				D2C8CC455B9D27F28D323622 /* test */,
 				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
 				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
-				6AF936B6BAFAF10DCDAE73D3 /* rules_xcodeproj */,
 				462C3519CA354BE1B04D4855 /* Products */,
 				D9AAB93A5135F69103554470 /* Frameworks */,
 			);
@@ -1314,7 +1302,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD31562E1C81A14E5AE6FF64 /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
-				571D185D8935D159F43179E7 /* Sources */,
 				3F15C214513EBB6C3C513EB3 /* Resources */,
 			);
 			buildRules = (
@@ -1594,14 +1581,6 @@
 			files = (
 				7A35253D15168D745B41DAC5 /* ContentView.swift in Sources */,
 				672612624F95412422292B68 /* watchOSApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		571D185D8935D159F43179E7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A5002AF448008006747E7E5 /* CompileStub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
