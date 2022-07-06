@@ -17,13 +17,13 @@
             "launch_action": {
                 "args": null,
                 "env": null,
-                "target": "@//tools/generator:generator",
+                "target": "//tools/generator:generator",
                 "working_directory": null
             },
             "name": "Generator",
             "test_action": {
                 "targets": [
-                    "@//tools/generator/test:tests"
+                    "//tools/generator/test:tests"
                 ]
             }
         }
