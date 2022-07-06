@@ -11,6 +11,23 @@
         "VALIDATE_WORKSPACE": false
     },
     "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+    "custom_xcode_schemes": [
+        {
+            "build_action": null,
+            "launch_action": {
+                "args": [],
+                "env": {},
+                "target": "//tools/generator:generator",
+                "working_directory": null
+            },
+            "name": "Generator",
+            "test_action": {
+                "targets": [
+                    "//tools/generator/test:tests"
+                ]
+            }
+        }
+    ],
     "extra_files": [
         "tools/generator/BUILD",
         "tools/generator/test/BUILD",
@@ -362,6 +379,7 @@
                     "tools/generator/src/DTO/Target.swift",
                     "tools/generator/src/DTO/TargetID.swift",
                     "tools/generator/src/DTO/XCCurrentVersion.swift",
+                    "tools/generator/src/DTO/XcodeScheme.swift",
                     "tools/generator/src/Errors.swift",
                     "tools/generator/src/Extensions/PBXGroup+Extensions.swift",
                     "tools/generator/src/Extensions/PBXProductType+Extensions.swift",

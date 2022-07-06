@@ -9,4 +9,5 @@ struct Project: Equatable, Decodable {
     let invalidTargetMerges: [TargetID: Set<TargetID>]
     let extraFiles: Set<FilePath>
     let schemeAutogenerationMode: SchemeAutogenerationMode
+    let customXcodeSchemes: [XcodeScheme]
 }
