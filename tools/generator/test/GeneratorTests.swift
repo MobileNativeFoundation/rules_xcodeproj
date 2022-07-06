@@ -20,7 +20,7 @@ final class GeneratorTests: XCTestCase {
             invalidTargetMerges: ["Y": ["Z"]],
             extraFiles: [],
             schemeAutogenerationMode: .auto,
-            customXcodeSchemes: []
+            customXcodeSchemes: nil
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
@@ -159,8 +159,8 @@ final class GeneratorTests: XCTestCase {
             targetMerges: project.targetMerges
         )]
         expectedMessagesLogged.append(StubLogger.MessageLogged(.warning, """
-Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
-"""))
+        Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
+        """))
 
         // MARK: consolidateTargets()
 
