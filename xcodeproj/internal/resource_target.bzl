@@ -65,7 +65,6 @@ def _process_resource_bundle(bundle, *, information):
         platform = bundle.platform,
         product = product,
         is_swift = False,
-        test_host = None,
         build_settings = build_settings,
         search_paths = {},
         modulemaps = process_modulemaps(swift_info = None),

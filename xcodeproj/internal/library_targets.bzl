@@ -174,7 +174,6 @@ def process_library_target(
             platform = platform,
             product = product,
             is_swift = is_swift,
-            test_host = None,
             build_settings = build_settings,
             search_paths = search_paths,
             modulemaps = modulemaps,
