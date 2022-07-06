@@ -80,7 +80,6 @@
 		30D51D7450B1E5BC999396AC /* AnyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A79739F778E13D555285 /* AnyType.swift */; };
 		30F0C043E51363669C0D7E43 /* XCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC44F6F9D5F1EBF4D7110DD /* XCConfig.swift */; };
 		36161192BE3C16570649BB90 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C89E41DF806BDFD0AF9A374 /* Photos.swift */; };
-		369DBCBF6BCC2E56BBBD225C /* XcodeScheme+TestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6681398C0ED83DA72BC734 /* XcodeScheme+TestAction.swift */; };
 		390F0EA150BF1F34944B6ADA /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C30E65D6E9C205B83B73E /* Sourcery.swift */; };
 		3A4A00E9748F9B2BE18264A6 /* XCScheme+AditionalOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A1E648AD1793142280604D /* XCScheme+AditionalOption.swift */; };
 		3A7349AFC0C6CBFFC6DEE039 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D323B626241F566F3B8A2CB7 /* SwiftUI.swift */; };
@@ -112,10 +111,8 @@
 		56D1E3A779E64B952444C092 /* Writable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD756B2EEB174424376D063 /* Writable.swift */; };
 		59195F78C9366C3C166CB371 /* PBXNativeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AF6892EDF00CA059623628 /* PBXNativeTarget.swift */; };
 		5A1AB232F984E776A2BD9AC4 /* SetTargetDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079FE3313C09B3B7A4383D07 /* SetTargetDependencies.swift */; };
-		5AAA53664707F449B0E53A66 /* XcodeScheme+BuildAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F6447D6520F154BD9BAA12 /* XcodeScheme+BuildAction.swift */; };
 		5AF24276F09A7163D1351514 /* AddBazelDependenciesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD653DE8BB96227EDAAE9B28 /* AddBazelDependenciesTarget.swift */; };
 		5C69464F742D0B6D2F68B3EA /* OrderedDictionary+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB50D8D42412EB98A465DED /* OrderedDictionary+Elements.swift */; };
-		5C8D4ABFA6DDA1E40BB819DB /* XcodeScheme+LaunchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8CC2E6A2124DCDCDE9D0CC /* XcodeScheme+LaunchAction.swift */; };
 		5D436B3E872B368A77248360 /* PBXBatchUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F395A784F145A641B09FC95 /* PBXBatchUpdater.swift */; };
 		5D50E1896900C92386C932B3 /* SetTargetConfigurationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA554A6803D388E0347F369 /* SetTargetConfigurationsTests.swift */; };
 		5ECD0DB0994205C603166004 /* PopulateMainGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69926E3303EC6DCEFF83DE3 /* PopulateMainGroup.swift */; };
@@ -506,7 +503,6 @@
 		57B23BC150E3266757707492 /* XCScheme+CommandLineArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+CommandLineArguments.swift"; sourceTree = "<group>"; };
 		57CD85080B3E34F2529D7CB8 /* PBXProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXProj.swift; sourceTree = "<group>"; };
 		58F2246D7AB62C07E1D092E7 /* XCScheme+SerialAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+SerialAction.swift"; sourceTree = "<group>"; };
-		59F6447D6520F154BD9BAA12 /* XcodeScheme+BuildAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+BuildAction.swift"; sourceTree = "<group>"; };
 		5A0D02295BBDD7113D940406 /* ReferenceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceGenerator.swift; sourceTree = "<group>"; };
 		5E517675E70186E73924EB60 /* XCScheme+TestableReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+TestableReference.swift"; sourceTree = "<group>"; };
 		5E7B2DB807B1509ABDD69E31 /* libXCTestDynamicOverlay.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libXCTestDynamicOverlay.a; path = "bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -522,7 +518,6 @@
 		68733F62C401C1AA84617E96 /* KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPath.swift; sourceTree = "<group>"; };
 		6A9607F1AB28FE727DED4651 /* CreateProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectTests.swift; sourceTree = "<group>"; };
 		6B175666DC0102DE35EBD173 /* XCRemoteSwiftPackageReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCRemoteSwiftPackageReference.swift; sourceTree = "<group>"; };
-		6B6681398C0ED83DA72BC734 /* XcodeScheme+TestAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+TestAction.swift"; sourceTree = "<group>"; };
 		6BC2AE826C4EDD1E4BADB41F /* DisambiguateTargets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisambiguateTargets.swift; sourceTree = "<group>"; };
 		6BD756B2EEB174424376D063 /* Writable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writable.swift; sourceTree = "<group>"; };
 		6C89E41DF806BDFD0AF9A374 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
@@ -675,7 +670,6 @@
 		FD5E768F0086402FCD23DDD0 /* _HashTable+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Constants.swift"; sourceTree = "<group>"; };
 		FDF69A69C5C9048DCF61E301 /* XCScheme+TestAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+TestAction.swift"; sourceTree = "<group>"; };
 		FE1ED821757FFFB97CF9BCA3 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
-		FF8CC2E6A2124DCDCDE9D0CC /* XcodeScheme+LaunchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+LaunchAction.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -1296,9 +1290,6 @@
 				F2C81405CA830285CE772318 /* TargetID.swift */,
 				86549ABD234E1583AA0655DE /* XCCurrentVersion.swift */,
 				253A2904128D2EFC18CEA676 /* XcodeScheme.swift */,
-				59F6447D6520F154BD9BAA12 /* XcodeScheme+BuildAction.swift */,
-				FF8CC2E6A2124DCDCDE9D0CC /* XcodeScheme+LaunchAction.swift */,
-				6B6681398C0ED83DA72BC734 /* XcodeScheme+TestAction.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -1967,9 +1958,6 @@
 				3F2995EB81E92469E7E2D50D /* Target.swift in Sources */,
 				80172D16E7DA2B9979BAF386 /* TargetID.swift in Sources */,
 				AACDF2550D64805FC90879F6 /* XCCurrentVersion.swift in Sources */,
-				5AAA53664707F449B0E53A66 /* XcodeScheme+BuildAction.swift in Sources */,
-				5C8D4ABFA6DDA1E40BB819DB /* XcodeScheme+LaunchAction.swift in Sources */,
-				369DBCBF6BCC2E56BBBD225C /* XcodeScheme+TestAction.swift in Sources */,
 				7F56B654E12D77ECCC467E09 /* XcodeScheme.swift in Sources */,
 				83B8755AB81932C2FE256B16 /* Errors.swift in Sources */,
 				8A9EBE0DE562329A750CF522 /* PBXGroup+Extensions.swift in Sources */,
