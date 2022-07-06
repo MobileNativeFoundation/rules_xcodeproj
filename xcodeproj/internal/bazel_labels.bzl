@@ -88,8 +88,16 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
 
     def _normalize(value):
         parts = _parse(value)
+
+        # If the label is for the default/current repository, use the shorthand
+        # label expression and not include the repository name.
+        if parts.repository_name == "@":
+            repo_name = ""
+        else:
+            repo_name = parts.repository_name
+
         return "{repo_name}//{package}:{name}".format(
-            repo_name = parts.repository_name,
+            repo_name = repo_name,
             package = parts.package,
             name = parts.name,
         )
