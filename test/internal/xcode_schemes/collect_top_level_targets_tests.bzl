@@ -65,9 +65,9 @@ def _single_scheme_test(ctx):
     ]
     actual = xcode_schemes.collect_top_level_targets(schemes)
     expected = sets.make([
-        "@//Sources/App:App",
-        "@//Tests/BarTests:BarTests",
-        "@//Tests/FooTests:FooTests",
+        "//Sources/App:App",
+        "//Tests/BarTests:BarTests",
+        "//Tests/FooTests:FooTests",
     ])
     asserts.true(env, sets.is_equal(expected, actual))
 
@@ -99,10 +99,10 @@ def _list_of_schemes_test(ctx):
     ]
     actual = xcode_schemes.collect_top_level_targets(schemes)
     expected = sets.make([
-        "@//Sources/App:App",
-        "@//Tests/BarTests:BarTests",
-        "@//Tests/FooTests:FooTests",
-        "@//Tests/HelloTests:HelloTests",
+        "//Sources/App:App",
+        "//Tests/BarTests:BarTests",
+        "//Tests/FooTests:FooTests",
+        "//Tests/HelloTests:HelloTests",
     ])
     asserts.true(env, sets.is_equal(expected, actual))
 
