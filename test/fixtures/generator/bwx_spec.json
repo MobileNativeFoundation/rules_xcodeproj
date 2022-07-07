@@ -33,12 +33,6 @@
         "tools/generator/test/BUILD",
         "test/fixtures/generator/BUILD"
     ],
-    "invalid_target_merges": [
-        "//tools/generator:generator.library darwin_x86_64-dbg-ST-ccd9595da841",
-        [
-            "//tools/generator:generator darwin_x86_64-dbg-ST-ccd9595da841"
-        ]
-    ],
     "label": "//test/fixtures/generator:xcodeproj_bwx",
     "name": "bwx",
     "scheme_autogeneration_mode": "auto",

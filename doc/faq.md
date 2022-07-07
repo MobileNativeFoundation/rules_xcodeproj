@@ -15,6 +15,7 @@ gh-md-toc --hide-header --hide-footer --start-depth=1
 * [Why aren't Info\.plist details shown when Building with Bazel?](#why-arent-infoplist-details-shown-when-building-with-bazel)
 * [Why do I get an error like "Provisioning profile "PROFILE\_NAME" is Xcode managed, but signing settings require a manually managed profile\. (in target 'TARGET' from project 'PROJECT')"?](#why-do-i-get-an-error-like-provisioning-profile-profile_name-is-xcode-managed-but-signing-settings-require-a-manually-managed-profile-in-target-target-from-project-project)
 * [Why do I get an error like "No profile for team 'TEAM' matching 'PROFILE\_NAME' found: Xcode couldn't find any provisioning profiles matching 'TEAM\_ID/PROFILE\_NAME'\. Install the profile (by dragging and dropping it onto Xcode's dock item) or select a different one in the Signing &amp; Capabilities tab of the target editor\."?](#why-do-i-get-an-error-like-no-profile-for-team-team-matching-profile_name-found-xcode-couldnt-find-any-provisioning-profiles-matching-team_idprofile_name-install-the-profile-by-dragging-and-dropping-it-onto-xcodes-dock-item-or-select-a-different-one-in-the-signing--capabilities-tab-of-the-target-editor)
+* [What is CompileStub\.m?](#what-is-compilestubm)
 
 ## My Xcode project seems to be of of sync with my Bazel project. What should I do?
 
@@ -88,3 +89,18 @@ fallback profiles, or if you use specify a profile in the workspace.
 
 Copying the profile to `~/Library/MobileDevice/Provisioning Profiles` will
 resolve the error.
+
+## What is `CompileStub.m`?
+
+If you have a top level target, such as `ios_application`, and it's primary
+library dependency is also directly depended on by another top level target,
+such as `ios_unit_test`, then we can't merge that library into the first top
+level target. When that happens, the first top level target doesn't have any
+source files, so we need to add a stub one to allow Xcode to link to the proper
+library target.
+
+If this setup isn't desired (e.g. wanting to have the target merged to enable
+SwiftUI Previews), there are a couple ways to fix it. For tests, setting the
+first top level target as the `test_host` will allow for the library to merge.
+In other cases, refactor the build graph to have the shared code in it's own
+library separate from the top level target's primary library.

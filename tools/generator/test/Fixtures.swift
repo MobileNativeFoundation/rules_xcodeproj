@@ -17,7 +17,6 @@ enum Fixtures {
         ],
         targets: targets,
         targetMerges: [:],
-        invalidTargetMerges: [:],
         extraFiles: [
             .generated("a1b2c/bin/t.c"),
             .generated("a/b/module.modulemap"),
