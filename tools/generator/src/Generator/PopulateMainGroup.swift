@@ -12,7 +12,7 @@ extension Generator {
         mainGroup.addChildren(rootElements)
 
         // If the "Products" group is the last in the list (so after Frameworks)
-        // Xcode won't show it... 
+        // Xcode won't show it...
         // https://developer.apple.com/forums/thread/77406?answerId=703020022#703020022
         // So we have the products before the Frameworks group.
         mainGroup.addChild(productsGroup)

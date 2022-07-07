@@ -325,7 +325,7 @@ extension Generator {
         var allInputPaths = extraFiles
         for target in targets.values {
             allInputPaths.formUnion(target.inputs.all)
-            // We use .nonGenerated instead of .all because generated files will 
+            // We use .nonGenerated instead of .all because generated files will
             // be collected via product outputs, or `extraFiles`
             allInputPaths.formUnion(target.linkerInputs.nonGenerated)
             allInputPaths.formUnion(
@@ -521,7 +521,7 @@ extension Generator {
         addXCFileList(fixedInfoPlistsFileListPath, paths: fixedInfoPlistPaths)
 
         // Write LinkFileLists
-        
+
         for target in targets.values {
             let linkFiles = try target.linkerInputs.staticLibraries
                 .map { filePath in

@@ -22,7 +22,7 @@ extension Generator {
             guard let content = maybeContent else {
                 continue
             }
-            
+
             let path = internalOutputPath + filePath.path
             try path.parent().mkpath()
             try path.write(content)
