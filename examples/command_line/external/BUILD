@@ -1,16 +1,19 @@
 load(
     "@build_bazel_rules_apple//apple:apple.bzl",
-    "apple_dynamic_framework_import",
+    "apple_static_framework_import",
 )
 load("@rules_cc//cc:defs.bzl", "objc_import", "objc_library")
 
-apple_dynamic_framework_import(
+apple_static_framework_import(
     name = "ExternalFramework",
     framework_imports = glob(
         ["ExternalFramework.framework/**"],
         exclude = ["**/.*"],
     ),
+    sdk_frameworks = ["Foundation"],
     visibility = ["//visibility:public"],
+    weak_sdk_frameworks = ["SwiftUI"],
+    alwayslink = True,
 )
 
 objc_import(

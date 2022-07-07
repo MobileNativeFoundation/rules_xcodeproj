@@ -4,6 +4,7 @@ _FIXTURE_BASENAMES = [
     "cc",
     "command_line",
     "generator",
+    "macos_app",
     "multiplatform",
     "simple",
     "tvos_app",
