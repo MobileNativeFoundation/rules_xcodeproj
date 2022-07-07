@@ -57,7 +57,7 @@ exist
                 // Merge build settings
                 merged.buildSettings["PRODUCT_MODULE_NAME"] =
                     merging.buildSettings["PRODUCT_MODULE_NAME"]
-                
+
                 merged.buildSettings.merge(merging.buildSettings) { _, r in r }
 
                 // Update search paths

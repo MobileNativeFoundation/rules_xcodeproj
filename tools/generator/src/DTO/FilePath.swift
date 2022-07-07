@@ -65,7 +65,7 @@ struct FilePath: Hashable, Decodable {
 extension FilePath {
     static func project(
         _ path: Path,
-        isFolder: Bool = false, 
+        isFolder: Bool = false,
         includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
@@ -80,7 +80,7 @@ extension FilePath {
 
     static func external(
         _ path: Path,
-        isFolder: Bool = false, 
+        isFolder: Bool = false,
         includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
@@ -95,7 +95,7 @@ extension FilePath {
 
     static func generated(
         _ path: Path,
-        isFolder: Bool = false, 
+        isFolder: Bool = false,
         includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
@@ -109,8 +109,8 @@ extension FilePath {
     }
 
     static func `internal`(
-        _ path: Path, 
-        isFolder: Bool = false, 
+        _ path: Path,
+        isFolder: Bool = false,
         includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
