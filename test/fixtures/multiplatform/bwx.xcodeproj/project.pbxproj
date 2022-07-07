@@ -1724,9 +1724,6 @@
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
 				OTHER_LDFLAGS = (
-					"-lc++",
-					"-framework",
-					UIKit,
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
 					"-lc++",
@@ -1824,9 +1821,9 @@
 					CoreTelephony,
 					"-lc++",
 					"-lz",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/examples/multiplatform/iOSApp/iOSApp.LinkFileList",
 				);
@@ -1846,9 +1843,9 @@
 					CoreTelephony,
 					"-lc++",
 					"-lz",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/examples/multiplatform/iOSApp/iOSApp.LinkFileList",
 				);
@@ -1931,9 +1928,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/examples/multiplatform/tvOSApp/tvOSApp.LinkFileList",
 				);
@@ -1945,9 +1942,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/examples/multiplatform/tvOSApp/tvOSApp.LinkFileList",
 				);
@@ -2093,9 +2090,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/examples/multiplatform/Tool/Tool.LinkFileList",
 				);
@@ -2162,9 +2159,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.LinkFileList",
 				);
@@ -2176,9 +2173,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.LinkFileList",
 				);

@@ -92,9 +92,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -241,9 +241,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -396,9 +396,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {

@@ -860,9 +860,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -1051,9 +1051,9 @@
                     "CoreTelephony",
                     "-lc++",
                     "-lz",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_frameworks": [
                     {
@@ -1157,9 +1157,9 @@
                     "CoreTelephony",
                     "-lc++",
                     "-lz",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_frameworks": [
                     {
@@ -1519,9 +1519,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -1602,9 +1602,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -1871,9 +1871,6 @@
             "label": "//examples/multiplatform/watchOSApp:watchOSApp",
             "linker_inputs": {
                 "linkopts": [
-                    "-lc++",
-                    "-framework",
-                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -1932,9 +1929,6 @@
             "label": "//examples/multiplatform/watchOSApp:watchOSApp",
             "linker_inputs": {
                 "linkopts": [
-                    "-lc++",
-                    "-framework",
-                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -2010,9 +2004,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -2093,9 +2087,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {

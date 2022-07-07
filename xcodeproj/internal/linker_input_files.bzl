@@ -15,6 +15,10 @@ _LD_SKIP_OPTS = {
     "-target": 2,
 }
 
+_CC_LD_SKIP_OPTS = {
+    "-framework": 2,
+}
+
 _TARGET_TRIPLE_OS = {
     apple_common.platform.ios_device: "ios",
     apple_common.platform.ios_simulator: "ios-simulator",
@@ -272,7 +276,7 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
             ctx = ctx,
             cc_toolchain = cc_toolchain,
             requested_features = ctx.features,
-            unsupported_features = ctx.disabled_features,
+            unsupported_features = ctx.disabled_features + ["link_libc++"],
         )
         variables = cc_common.create_link_variables(
             feature_configuration = feature_configuration,
@@ -280,15 +284,15 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
             user_link_flags = user_linkopts,
         )
 
-        is_objc = objc != None
         cc_linkopts = cc_common.get_memory_inefficient_command_line(
             feature_configuration = feature_configuration,
-            action_name = (
-                "objc-executable" if is_objc else "c++-link-executable"
-            ),
+            # TODO: Use "objc++-executable".
+            # We currently can't because it breaks when `--apple_generate_dsym`
+            # is used. This results in slightly different flags.
+            action_name = "c++-link-executable",
             variables = variables,
         )
-        raw_linkopts.extend(cc_linkopts)
+        raw_linkopts.extend(_process_cc_linkopts(cc_linkopts))
 
         apple_fragment = ctx.fragments.apple
         triple = "{}-apple-{}".format(
@@ -321,6 +325,22 @@ def _get_static_libraries(linker_inputs):
     if not top_level_values:
         fail("Xcode target requires `ObjcProvider` or `CcInfo`")
     return top_level_values.libraries
+
+def _process_cc_linkopts(linkopts):
+    ret = []
+    skip_next = 0
+    for linkopt in linkopts:
+        if skip_next:
+            skip_next -= 1
+            continue
+        skip_next = _CC_LD_SKIP_OPTS.get(linkopt, 0)
+        if skip_next:
+            skip_next -= 1
+            continue
+
+        ret.append(linkopt)
+
+    return ret
 
 def _process_linkopts(linkopts, *, triple):
     ret = []

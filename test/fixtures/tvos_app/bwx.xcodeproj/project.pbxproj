@@ -549,9 +549,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
@@ -609,9 +609,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
@@ -663,9 +663,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
