@@ -111,8 +111,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         // Calculate "EXCLUDED_SOURCE_FILE_NAMES"
         var excludedSourceFileNames: [String] = []
         for (key, fileNames) in conditionalFileNames
-            .sorted(by: { $0.key < $1.key })
-        {
+            .sorted(by: { $0.key < $1.key }) {
             anyBuildSettings[key] = .array(fileNames)
             excludedSourceFileNames.append("$(\(key))")
         }
@@ -663,8 +662,7 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
 
         // Properly set "SDKROOT"
         if let sdkrootBuildSettings = conditionalBuildSettings
-            .removeValue(forKey: "SDKROOT")
-        {
+            .removeValue(forKey: "SDKROOT") {
             conditionalBuildSettings["SDKROOT"] = [
                 .any: sdkrootBuildSettings
                     .sorted { $0.key < $1.key }
@@ -674,8 +672,7 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
 
         // Properly set "SUPPORTED_PLATFORMS"
         if let supportedPlatformsBuildSettings = conditionalBuildSettings
-            .removeValue(forKey: "SUPPORTED_PLATFORMS")
-        {
+            .removeValue(forKey: "SUPPORTED_PLATFORMS") {
             let platforms = Set(
                 try supportedPlatformsBuildSettings.values
                     .map { try $0.toString(key: "SUPPORTED_PLATFORMS") }
