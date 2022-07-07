@@ -2353,8 +2353,10 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
+				ENABLE_BITCODE = NO;
 				EXECUTABLE_EXTENSION = app;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";

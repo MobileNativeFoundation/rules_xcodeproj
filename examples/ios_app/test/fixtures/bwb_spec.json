@@ -286,6 +286,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
@@ -462,6 +464,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.objctests",
@@ -675,6 +679,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
@@ -862,6 +868,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",

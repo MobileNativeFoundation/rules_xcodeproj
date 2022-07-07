@@ -73,6 +73,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
@@ -546,6 +548,8 @@
         "//examples/command_line/tool:tool applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         {
             "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CODE_SIGN_FLAGS": [

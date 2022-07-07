@@ -300,6 +300,15 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         get_targeted_device_family(getattr(ctx.rule.attr, "families", [])),
     )
 
+    cpp = ctx.fragments.cpp
+
+    # TODO: Get the value for device builds, even when active config is not for
+    # device, as Xcode only uses this value for device builds
+    build_settings["ENABLE_BITCODE"] = str(cpp.apple_bitcode_mode) != "none"
+
+    debug_format = "dwarf-with-dsym" if cpp.apple_generate_dsym else "dwarf"
+    build_settings["DEBUG_INFORMATION_FORMAT"] = debug_format
+
     product = process_product(
         target = target,
         product_name = props.product_name,
