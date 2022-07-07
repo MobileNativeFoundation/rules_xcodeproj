@@ -157,9 +157,6 @@ final class GeneratorTests: XCTestCase {
             targets: project.targets,
             targetMerges: project.targetMerges
         )]
-        expectedMessagesLogged.append(StubLogger.MessageLogged(.warning, """
-Was unable to merge "//:Y (a1b2c)" into "//:Z (1a2b3)"
-"""))
 
         // MARK: consolidateTargets()
 
