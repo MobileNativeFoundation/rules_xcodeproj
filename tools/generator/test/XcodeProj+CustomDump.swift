@@ -40,7 +40,7 @@ extension PBXObjectReference: CustomDumpReflectable {
 
 extension PBXObject: CustomDumpReflectable {
     public var customDumpMirror: Mirror {
-        return Mirror(
+        Mirror(
             self,
             // `PBXObject` has subclasses, and CustomDump will only look at the
             // direct children of a mirror. Here we show them all.
@@ -79,7 +79,7 @@ extension PBXObject: CustomDumpReflectable {
     }
 
     static func typeName(_ type: Any.Type) -> String {
-        return String(reflecting: type)
+        String(reflecting: type)
     }
 
     static let valueSubstitutions: [String: [String: AnyKeyPath]] = [

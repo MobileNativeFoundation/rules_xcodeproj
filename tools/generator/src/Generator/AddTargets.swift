@@ -211,7 +211,7 @@ File "\(headerFile.filePath)" not found in `files`
         let sources = forcedBazelCompileFiles.map(SourceFile.init) +
             inputs.srcs.excludingHeaders.map(SourceFile.init) +
             inputs.nonArcSrcs.excludingHeaders.map { filePath in
-                return SourceFile(
+                SourceFile(
                     filePath,
                     compilerFlags: ["-fno-objc-arc"]
                 )
@@ -521,8 +521,8 @@ private struct SourceFile: Hashable {
     }
 
     var settings: [String: Any]? {
-        return compilerFlags.flatMap { flags in
-            return ["COMPILER_FLAGS": BuildSetting.array(flags).asAny]
+        compilerFlags.flatMap { flags in
+            ["COMPILER_FLAGS": BuildSetting.array(flags).asAny]
         }
     }
 }
@@ -558,11 +558,11 @@ private extension ConsolidatedTarget {
 
 private extension ConsolidatedTargetLinkerInputs {
     var frameworks: [FilePath] {
-        return staticFrameworks + dynamicFrameworks
+        staticFrameworks + dynamicFrameworks
     }
 
     var embeddable: [FilePath] {
-        return dynamicFrameworks
+        dynamicFrameworks
     }
 }
 

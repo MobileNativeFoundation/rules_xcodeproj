@@ -6,6 +6,6 @@ import ImportableLibrary
 @objcMembers
 public class SwiftGreetings: NSObject {
     public static func greeting() -> String {
-        return String(cString: cc_greeting()) + Baz.bar + Library().foo()
+        String(cString: cc_greeting()) + Baz.bar + Library().foo()
     }
 }

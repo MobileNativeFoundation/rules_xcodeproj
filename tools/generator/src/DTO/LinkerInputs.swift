@@ -24,7 +24,7 @@ struct LinkerInputs: Equatable {
 
 extension LinkerInputs {
     var nonGenerated: Set<FilePath> {
-        return Set(staticFrameworks.filter { $0.type != .generated })
+        Set(staticFrameworks.filter { $0.type != .generated })
             .union(Set(dynamicFrameworks.filter { $0.type != .generated }))
             .union(Set(staticLibraries.filter { $0.type != .generated }))
             .union(Set(forceLoad.filter { $0.type != .generated }))
@@ -56,10 +56,10 @@ extension LinkerInputs: Decodable {
 
 private extension KeyedDecodingContainer where K == LinkerInputs.CodingKeys {
     func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
+        try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
 
     func decodeFilePaths(_ key: K) throws -> OrderedSet<FilePath> {
-        return try decodeIfPresent(OrderedSet<FilePath>.self, forKey: key) ?? []
+        try decodeIfPresent(OrderedSet<FilePath>.self, forKey: key) ?? []
     }
 }

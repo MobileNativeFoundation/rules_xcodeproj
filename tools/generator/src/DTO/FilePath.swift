@@ -69,7 +69,7 @@ extension FilePath {
         includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
-        return FilePath(
+        FilePath(
             type: .project,
             path: path,
             isFolder: isFolder,
@@ -84,7 +84,7 @@ extension FilePath {
         includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
-        return FilePath(
+        FilePath(
             type: .external,
             path: path,
             isFolder: isFolder,
@@ -99,7 +99,7 @@ extension FilePath {
         includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
-        return FilePath(
+        FilePath(
             type: .generated,
             path: path,
             isFolder: isFolder,
@@ -114,7 +114,7 @@ extension FilePath {
         includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
-        return FilePath(
+        FilePath(
             type: .internal,
             path: path,
             isFolder: isFolder,
@@ -126,7 +126,7 @@ extension FilePath {
 
 extension FilePath {
     func parent() -> FilePath {
-        return FilePath(
+        FilePath(
             type: type,
             path: path.parent(),
             isFolder: false,
@@ -152,7 +152,7 @@ extension FilePath: Comparable {
 
 extension FilePath.PathType: Comparable {
     static func < (lhs: FilePath.PathType, rhs: FilePath.PathType) -> Bool {
-        return lhs.sortKey < rhs.sortKey
+        lhs.sortKey < rhs.sortKey
     }
 
     private var sortKey: Int {
@@ -168,7 +168,7 @@ extension FilePath.PathType: Comparable {
 // MARK: Operators
 
 func +(lhs: FilePath, rhs: String) -> FilePath {
-    return FilePath(
+    FilePath(
         type: lhs.type,
         path: lhs.path + rhs,
         isFolder: false,

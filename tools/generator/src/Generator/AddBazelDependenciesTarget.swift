@@ -289,7 +289,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         xcodeprojBazelTargetName: String,
         xcodeprojBinDir: String
     ) -> String {
-        return #"""
+        #"""
 cd "$SRCROOT"
 
 if [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
@@ -408,7 +408,7 @@ fi
         files: [FilePath: File],
         filePathResolver: FilePathResolver
     ) throws -> String {
-        return #"""
+        #"""
 cd "$BAZEL_OUT"
 
 echo
@@ -533,14 +533,14 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 private extension Dictionary where Key == FilePath {
     var containsModulemaps: Bool {
         contains(where: { filePath, _ in
-            return filePath.type == .generated
+            filePath.type == .generated
                 && filePath.path.extension == "modulemap"
         })
     }
 
     var containsInfoPlists: Bool {
         contains(where: { filePath, _ in
-            return filePath.type == .generated
+            filePath.type == .generated
                 && filePath.path.lastComponent == "Info.plist"
         })
     }

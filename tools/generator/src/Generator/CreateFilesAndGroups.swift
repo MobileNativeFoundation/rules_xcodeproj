@@ -12,11 +12,11 @@ enum File: Equatable {
 
 extension File {
     static func reference(_ reference: PBXFileReference) -> File {
-        return .reference(reference, content: nil)
+        .reference(reference, content: nil)
     }
 
     static func nonReferencedContent(_ content: String) -> File {
-        return .reference(nil, content: content)
+        .reference(nil, content: content)
     }
 }
 
@@ -316,7 +316,7 @@ extension Generator {
         }
 
         func isSpecialGroup(_ element: PBXFileElement) -> Bool {
-            return element == externalGroup
+            element == externalGroup
                 || element == generatedGroup
                 || element == internalGroup
         }
@@ -452,7 +452,7 @@ extension Generator {
 
         let fileListFileFilePaths = fileReferences
             .filter { filePath, _ in
-                return !nonDirectFolderLikeFilePaths.contains(filePath)
+                !nonDirectFolderLikeFilePaths.contains(filePath)
             }
             .map { filePath, _ in filePath }
 
@@ -467,13 +467,13 @@ extension Generator {
             // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
             // match the project navigator. This is only needed for files
             // referenced by `PBXBuildFile` or have specific build settings.
-            return try filePathResolver.resolve(filePath, useGenDir: true)
+            try filePathResolver.resolve(filePath, useGenDir: true)
         }
         let modulemapPaths = try generatedFilePaths
             .filter { $0.path.extension == "modulemap" }
             .map { try filePathResolver.resolve($0) }
         let fixedModulemapPaths = modulemapPaths.map { path in
-            return path.replacingExtension("xcode.modulemap")
+            path.replacingExtension("xcode.modulemap")
         }
         let infoPlistPaths = try generatedFilePaths
             .filter { $0.path.lastComponent == "Info.plist" }
@@ -481,10 +481,10 @@ extension Generator {
                 // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
                 // match the project navigator. This is only needed for files
                 // referenced by `PBXBuildFile` or have specific build settings.
-                return try filePathResolver.resolve(filePath, useGenDir: true)
+                try filePathResolver.resolve(filePath, useGenDir: true)
             }
         let fixedInfoPlistPaths = infoPlistPaths.map { path in
-            return path.replacingExtension("xcode.plist")
+            path.replacingExtension("xcode.plist")
         }
 
         if buildMode.usesBazelModeBuildScripts &&
@@ -525,7 +525,7 @@ extension Generator {
         for target in targets.values {
             let linkFiles = try target.linkerInputs.staticLibraries
                 .map { filePath in
-                    return """
+                    """
 \(try filePathResolver.resolve(filePath, useGenDir: true, mode: .srcRoot))
 
 """

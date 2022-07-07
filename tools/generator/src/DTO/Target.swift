@@ -25,6 +25,6 @@ struct Target: Equatable, Decodable {
 
 extension Target {
     var allDependencies: Set<TargetID> {
-        return dependencies.union(resourceBundleDependencies)
+        dependencies.union(resourceBundleDependencies)
     }
 }

@@ -132,6 +132,6 @@ At codingPath [\(context.codingPathString)]: \(context.debugDescription)
 
 private extension DecodingError.Context {
     var codingPathString: String {
-        return codingPath.map(\.stringValue).joined(separator: ", ")
+        codingPath.map(\.stringValue).joined(separator: ", ")
     }
 }

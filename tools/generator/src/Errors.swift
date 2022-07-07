@@ -20,7 +20,7 @@ struct PreconditionError: Error {
 
 extension PreconditionError: LocalizedError {
     var errorDescription: String? {
-        return """
+        """
 Internal precondition failure:
 \(message)
 Please file a bug report at \

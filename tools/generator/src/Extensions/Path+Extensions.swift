@@ -3,7 +3,7 @@ import XcodeProj
 
 extension Path {
     var isFolderTypeFileSource: Bool {
-        return isXCAssets
+        isXCAssets
             || isFramework
             || isBundle
             || isDocCArchive
@@ -46,7 +46,7 @@ extension Path {
     private var isCoreDataModel: Bool { self.extension == "xcdatamodel" }
     private var isDocCArchive: Bool { self.extension == "docc" }
     private var isFramework: Bool {
-        return self.extension == "framework"
+        self.extension == "framework"
     }
     private var isSceneKitAssets: Bool { self.extension == "scnassets" }
     private var isXCAssets: Bool { self.extension == "xcassets" }
@@ -84,6 +84,6 @@ extension Path: RawRepresentable, Decodable {
     }
 
     public var rawValue: String {
-        return string
+        string
     }
 }

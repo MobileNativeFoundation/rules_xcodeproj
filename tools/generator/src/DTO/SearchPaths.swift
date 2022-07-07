@@ -39,6 +39,6 @@ extension SearchPaths: Decodable {
 
 private extension KeyedDecodingContainer where K == SearchPaths.CodingKeys {
     func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
+        try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
 }

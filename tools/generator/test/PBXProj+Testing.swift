@@ -11,8 +11,8 @@ extension PBXProj {
         // `PBXProject: PlistSerializable`.
         rootObject!.targetAttributeReferences = rootObject!
             .targetAttributeReferences.mapValues { attributes in
-                return attributes.mapValues { value in
-                    return (value as? PBXObject)?.reference.value ?? value
+                attributes.mapValues { value in
+                    (value as? PBXObject)?.reference.value ?? value
                 }
             }
     }

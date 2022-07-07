@@ -3,13 +3,13 @@ import XcodeProj
 
 extension PBXTarget {
     var buildableName: String {
-        return product?.path ?? name
+        product?.path ?? name
     }
 
     func createBuildableReference(
         referencedContainer: String
     ) throws -> XCScheme.BuildableReference {
-        return .init(
+        .init(
             referencedContainer: referencedContainer,
             blueprint: self,
             buildableName: buildableName,
@@ -18,27 +18,27 @@ extension PBXTarget {
     }
 
     var schemeName: String {
-        return name
+        name
             .replacingOccurrences(of: "/", with: "_")
             .replacingOccurrences(of: ":", with: "_")
     }
 
     var isTestable: Bool {
-        return productType?.isTestBundle ?? false
+        productType?.isTestBundle ?? false
     }
 
     var isLaunchable: Bool {
-        return productType?.isLaunchable ?? false
+        productType?.isLaunchable ?? false
     }
 
     var defaultBuildConfigurationName: String {
-        return buildConfigurationList?.buildConfigurations.first?.name ??
+        buildConfigurationList?.buildConfigurations.first?.name ??
             "Debug"
     }
 }
 
 extension Dictionary where Value: PBXTarget {
     func nativeTarget(_ targetID: Self.Key) -> PBXNativeTarget? {
-        return self[targetID] as? PBXNativeTarget
+        self[targetID] as? PBXNativeTarget
     }
 }

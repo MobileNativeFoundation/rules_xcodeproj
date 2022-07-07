@@ -20,7 +20,7 @@ extension TargetID: RawRepresentable {
 
 extension TargetID: Comparable {
     static func < (lhs: TargetID, rhs: TargetID) -> Bool {
-        return lhs.rawValue < rhs.rawValue
+        lhs.rawValue < rhs.rawValue
     }
 }
 
@@ -28,6 +28,6 @@ extension TargetID: Comparable {
 
 extension TargetID: CustomStringConvertible {
     var description: String {
-        return rawValue
+        rawValue
     }
 }

@@ -28,11 +28,11 @@ extension BuildSettingConditional {
     private func archConditionalAllowed(on key: String) -> Bool {
         // TODO: If we ever add support for Universal targets we minimally need
         //   to exclude "ARCHS" here
-        return false
+        false
     }
 
     private func sdkConditionalAllowed(on key: String) -> Bool {
-        return key != "SDKROOT"
+        key != "SDKROOT"
     }
 }
 
@@ -54,6 +54,6 @@ extension BuildSettingConditional: Comparable {
 
 extension Target {
     var buildSettingConditional: BuildSettingConditional {
-        return BuildSettingConditional(platform: platform)
+        BuildSettingConditional(platform: platform)
     }
 }

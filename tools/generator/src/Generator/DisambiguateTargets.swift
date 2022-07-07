@@ -221,14 +221,14 @@ struct ProductTypeComponents {
     private func needsConfigurationDistinguishing(
         target: ConsolidatedTarget
     ) -> Bool {
-        return target.sortedTargets
+        target.sortedTargets
             .contains { distinguisherKeys[$0.distinguisherKey]! > 1 }
     }
 
     /// Returns a user-facing string for the configurations of a given set of
     /// targets.
     private func prettyConfiguration(targets: [Target]) -> String {
-        return Self.prettyConfigurations(targets.map(\.configuration))
+        Self.prettyConfigurations(targets.map(\.configuration))
     }
 
     /// Memoized configuration hashes.
@@ -476,13 +476,13 @@ extension ConsolidatedTarget {
     /// The normalized name is used during target disambiguation. It allows the
     /// logic to differentiate targets where the names only differ by case.
     var normalizedName: String {
-        return name.lowercased()
+        name.lowercased()
     }
 
     /// The normalized label is used during target disambiguation. It allows the
     /// logic to differentiate targets where the names only differ by case.
     var normalizedLabel: String {
-        return label.lowercased()
+        label.lowercased()
     }
 }
 
@@ -491,7 +491,7 @@ private extension Target {
     /// `ProductTypeComponents.distinguisher()` can return for this
     /// `Target`.
     var distinguisherKey: String {
-        return [
+        [
             platform.arch,
             platform.os.rawValue,
             platform.minimumOsVersion,

@@ -177,6 +177,6 @@ extension KeyAndValue: Equatable where Key: Equatable, Value: Equatable {}
 extension KeyAndValue: Hashable where Key: Hashable, Value: Hashable {}
 extension KeyAndValue: Comparable where Key: Comparable, Value: Equatable {
     static func < (lhs: KeyAndValue, rhs: KeyAndValue) -> Bool {
-        return lhs.key < rhs.key
+        lhs.key < rhs.key
     }
 }

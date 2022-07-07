@@ -142,7 +142,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             try buildSettings.prepend(
                 onKey: "FRAMEWORK_SEARCH_PATHS",
                 frameworkIncludes.map { filePath in
-                    return try filePathResolver.resolve(filePath)
+                    try filePathResolver.resolve(filePath)
                         .string.quoted
                 }
             )
@@ -153,7 +153,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             try buildSettings.prepend(
                 onKey: "USER_HEADER_SEARCH_PATHS",
                 quoteIncludes.map { filePath in
-                    return try filePathResolver.resolve(filePath)
+                    try filePathResolver.resolve(filePath)
                         .string.quoted
                 }
             )
@@ -164,7 +164,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             try buildSettings.prepend(
                 onKey: "HEADER_SEARCH_PATHS",
                 includes.map { filePath in
-                    return try filePathResolver.resolve(filePath)
+                    try filePathResolver.resolve(filePath)
                         .string.quoted
                 }
             )
@@ -175,7 +175,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             try buildSettings.prepend(
                 onKey: "SYSTEM_HEADER_SEARCH_PATHS",
                 systemIncludes.map { filePath in
-                    return try filePathResolver.resolve(filePath)
+                    try filePathResolver.resolve(filePath)
                         .string.quoted
                 }
             )
@@ -203,7 +203,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
                 forceLoadLibraries.flatMap { filePath in
-                    return ["-force_load", try filePathResolver.resolve(filePath).string.quoted]
+                    ["-force_load", try filePathResolver.resolve(filePath).string.quoted]
                 }
             )
         }
@@ -213,7 +213,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
                 exportedSymbolsLists.flatMap { filePath in
-                    return [
+                    [
                         "-exported_symbols_list",
                         try filePathResolver.resolve(filePath).string.quoted
                     ]
@@ -579,13 +579,13 @@ private extension Platform.OS {
 
 private extension Inputs {
     var containsSourceFiles: Bool {
-        return !(srcs.isEmpty && nonArcSrcs.isEmpty)
+        !(srcs.isEmpty && nonArcSrcs.isEmpty)
     }
 }
 
 private extension Outputs.Swift {
     func paths(filePathResolver: FilePathResolver) throws -> [String] {
-        return try [
+        try [
                 module,
                 doc,
                 sourceInfo,
@@ -593,7 +593,7 @@ private extension Outputs.Swift {
             ]
             .compactMap { $0 }
             .map { filePath in
-                return try filePathResolver.resolve(
+                try filePathResolver.resolve(
                     filePath,
                     useOriginalGeneratedFiles: true
                 ).string

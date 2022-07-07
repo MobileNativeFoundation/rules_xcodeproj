@@ -24,7 +24,7 @@ extension Target {
         dependencies: Set<TargetID> = [],
         outputs : Outputs = .init()
     ) -> Self {
-        return Target(
+        Target(
             name: product.name,
             label: label ?? "//some/package:\(product.name)",
             configuration: configuration,
@@ -96,7 +96,7 @@ extension Platform {
         arch: String = "arm64",
         minimumOsVersion: String = "11.0"
     ) -> Self {
-        return Platform(
+        Platform(
             name: "macosx",
             os: .macOS,
             arch: arch,
@@ -145,7 +145,7 @@ extension ConsolidatedTarget.Key: Comparable {
         lhs: ConsolidatedTarget.Key,
         rhs: ConsolidatedTarget.Key
     ) -> Bool {
-        return lhs.hashValue < rhs.hashValue
+        lhs.hashValue < rhs.hashValue
     }
 }
 

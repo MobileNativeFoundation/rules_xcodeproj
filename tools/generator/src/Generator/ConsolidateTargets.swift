@@ -97,7 +97,7 @@ Target "\(id)" not found in `consolidateTargets().targets`
 
                 var dependencies = Set<ConsolidatedTarget.Key>(
                     try target.allDependencies.map { depID in
-                        return try resolveDependency(depID, for: id)
+                        try resolveDependency(depID, for: id)
                     }
                 )
                 depsMap[id] = dependencies
@@ -292,7 +292,7 @@ extension ConsolidatedTarget {
         key: ConsolidatedTarget.Key,
         keys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> Set<ConsolidatedTarget.Key> {
-        return Set(
+        Set(
             try allDependencies.map { targetID in
                 guard let dependencyKey = keys[targetID] else {
                     throw PreconditionError(message: """
@@ -322,7 +322,7 @@ extension ConsolidatedTarget {
 
         sortedTargets = targets
             .sorted { lhs, rhs in
-                return lhs.value.buildSettingConditional <
+                lhs.value.buildSettingConditional <
                     rhs.value.buildSettingConditional
             }
             .map { $1 }
@@ -360,14 +360,14 @@ extension ConsolidatedTarget {
     private static func consolidateInputs(
         targets: [Target]
     ) -> ConsolidatedTargetInputs {
-        return ConsolidatedTargetInputs(
+        ConsolidatedTargetInputs(
             srcs: consolidateFiles(targets.map(\.inputs.srcs)),
             nonArcSrcs: consolidateFiles(targets.map(\.inputs.nonArcSrcs)),
             hdrs: targets.reduce(into: []) { all, target in
-                return all.formUnion(target.inputs.hdrs)
+                all.formUnion(target.inputs.hdrs)
             },
             resources: targets.reduce(into: []) { all, target in
-                return all.formUnion(target.inputs.resources)
+                all.formUnion(target.inputs.resources)
             }
         )
     }
@@ -375,7 +375,7 @@ extension ConsolidatedTarget {
     private static func consolidateLinkerInputs(
         targets: [Target]
     ) -> ConsolidatedTargetLinkerInputs {
-        return ConsolidatedTargetLinkerInputs(
+        ConsolidatedTargetLinkerInputs(
             staticFrameworks: consolidateFiles(
                 targets.map(\.linkerInputs.staticFrameworks)
             ),
@@ -483,6 +483,6 @@ private extension Target {
 
 private extension LinkerInputs {
     var allExcludableFiles: Set<FilePath> {
-        return Set(dynamicFrameworks)
+        Set(dynamicFrameworks)
     }
 }

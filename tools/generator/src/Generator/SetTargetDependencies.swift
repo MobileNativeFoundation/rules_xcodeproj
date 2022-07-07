@@ -33,7 +33,7 @@ Target \(key)'s dependency on \(dependencyKey) not found in `pbxTargets`
                 }
                 // Sort them by name
                 .sorted { lhs, rhs in
-                    return lhs.name.localizedStandardCompare(
+                    lhs.name.localizedStandardCompare(
                         rhs.name
                     ) == .orderedAscending
                 }

@@ -229,12 +229,12 @@ extension PBXProductType {
     var setsAssociatedProduct: Bool {
         // We remove the association for non-bundle products to allow the
         // correct path to be shown in the project navigator
-        return isLaunchable || isBundle
+        isLaunchable || isBundle
     }
 
     // MARK: Schemes
 
     var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
-        return isLaunchable ? .bazelLaunchVariables : nil
+        isLaunchable ? .bazelLaunchVariables : nil
     }
 }

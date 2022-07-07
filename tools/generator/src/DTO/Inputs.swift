@@ -44,7 +44,7 @@ extension Inputs {
 
 extension Inputs {
     var all: Set<FilePath> {
-        return Set(srcs)
+        Set(srcs)
             .union(Set(nonArcSrcs))
             .union(Set(hdrs))
             .union(pchSet)
@@ -98,10 +98,10 @@ extension Inputs: Decodable {
 
 private extension KeyedDecodingContainer where K == Inputs.CodingKeys {
     func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
+        try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
 
     func decodeFilePaths(_ key: K) throws -> Set<FilePath> {
-        return try decodeIfPresent(Set<FilePath>.self, forKey: key) ?? []
+        try decodeIfPresent(Set<FilePath>.self, forKey: key) ?? []
     }
 }

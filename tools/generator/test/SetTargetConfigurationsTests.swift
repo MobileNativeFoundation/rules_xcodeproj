@@ -460,7 +460,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             selectedBuildSettings[key] = try buildSettings
                 .filter { key, _ in key.starts(with: keyPrefix) }
                 .mapValues { buildSetting in
-                    return try XCTUnwrap(buildSetting as? BuildSettingType)
+                    try XCTUnwrap(buildSetting as? BuildSettingType)
                 }
         }
         return selectedBuildSettings

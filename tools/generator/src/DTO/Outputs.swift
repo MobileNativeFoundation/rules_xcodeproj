@@ -35,15 +35,15 @@ struct Outputs: Equatable {
 
 extension Outputs {
     var hasOutputs: Bool {
-        return hasSwiftOutputs || hasProductOutput
+        hasSwiftOutputs || hasProductOutput
     }
 
     var hasProductOutput: Bool {
-        return product != nil
+        product != nil
     }
 
     var hasSwiftOutputs: Bool {
-        return swift != nil
+        swift != nil
     }
 
     mutating func merge(_ other: Outputs) {
@@ -101,6 +101,6 @@ extension Outputs.Swift: Decodable {
 
 private extension KeyedDecodingContainer where K == Outputs.CodingKeys {
     func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
+        try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
 }

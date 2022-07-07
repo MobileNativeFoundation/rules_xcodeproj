@@ -2183,7 +2183,7 @@ $(MACOSX_FILES)
     }
 
     static func xcSchemes() -> [XCScheme] {
-        return [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
+        [XCScheme(name: "Custom Scheme", lastUpgradeVersion: nil, version: nil)]
     }
 
     static func xcSharedData() -> XCSharedData {

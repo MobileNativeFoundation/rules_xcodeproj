@@ -6,7 +6,7 @@ extension Generator {
         for pbxProj: PBXProj,
         sharedData: XCSharedData?
     ) -> XcodeProj {
-        return XcodeProj(
+        XcodeProj(
             workspace: XCWorkspace(),
             pbxproj: pbxProj,
             sharedData: sharedData

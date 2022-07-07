@@ -36,7 +36,7 @@ extension Sequence {
         _ lhs: Element,
         _ rhs: Element
     ) -> Bool {
-        return { lhs, rhs in
+        { lhs, rhs in
             let l = lhs[keyPath: keyPath]
             let r = rhs[keyPath: keyPath]
             return l.localizedStandardCompare(r) == .orderedAscending
@@ -46,25 +46,25 @@ extension Sequence {
     func sortedLocalizedStandard(
         _ keyPath: KeyPath<Element, String>
     ) -> [Element] {
-        return self.sorted(by: Self.sortByLocalizedStandard(keyPath))
+        self.sorted(by: Self.sortByLocalizedStandard(keyPath))
     }
 }
 
 extension Sequence where Element == String {
     func sortedLocalizedStandard() -> [Element] {
-        return sortedLocalizedStandard(\.self)
+        sortedLocalizedStandard(\.self)
     }
 }
 
 extension Sequence where Element: PBXFileElement {
     func sortedLocalizedStandard() -> [Element] {
-        return sortedLocalizedStandard(\.namePathSortString)
+        sortedLocalizedStandard(\.namePathSortString)
     }
 }
 
 extension Sequence where Element == PBXBuildFile {
     func sortedLocalizedStandard() -> [Element] {
-        return sortedLocalizedStandard(\.file!.namePathSortString)
+        sortedLocalizedStandard(\.file!.namePathSortString)
     }
 }
 
