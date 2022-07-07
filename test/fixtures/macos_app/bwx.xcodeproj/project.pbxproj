@@ -1,0 +1,500 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		FE59281FE487F27A37DC2EE7 /* BazelDependencies */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
+			buildPhases = (
+				773C70B69E7F801B38FDC01C /* Generate Files */,
+				A1B677A301B894FBD0B5AB58 /* Fix Info.plists */,
+			);
+			dependencies = (
+			);
+			name = BazelDependencies;
+			productName = BazelDependencies;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		2A9C7B2694B074B34CE1622C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD45C53E5DCAC15BCF5764D /* ContentView.swift */; };
+		454667A16E391F68EFF5F703 /* ExampleFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 064F4BD4543FEAF27507ABED /* ExampleFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		54F6F91C757354B6B3A39639 /* macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68B74CE26786DEFFE645D3C /* macOSApp.swift */; };
+		59EE8266C2DE2B3FD22E2246 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 064F4BD4543FEAF27507ABED /* ExampleFramework.framework */; };
+		AD0CF994A192837D1E79768B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE97F6D6D5995C0DE3C23E17 /* Assets.xcassets */; };
+		BD77F248941C5014D3537699 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA136BCC5F8FF7F12B402D13 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFB6B3D768109FDA95CBEF01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		761DAAD429FC5A4C1EBD5270 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				454667A16E391F68EFF5F703 /* ExampleFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		064F4BD4543FEAF27507ABED /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
+		30C48FC7C131C94F65F8BC29 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		3DD45C53E5DCAC15BCF5764D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4E0183A010067D0E90916009 /* macOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE97F6D6D5995C0DE3C23E17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B7410E97198CD67FCF608541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B941DEAA3E5A30BDF158E57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C68B74CE26786DEFFE645D3C /* macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSApp.swift; sourceTree = "<group>"; };
+		CD1089FB595A4AE6D3F310D0 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		DEB253216085BA70FBA37EC3 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		EA136BCC5F8FF7F12B402D13 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0BB138DF24439C6CB36F159F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59EE8266C2DE2B3FD22E2246 /* ExampleFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07D255CDCF63DF2F0869E1F1 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				F58A662731948D584076951C /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		236A49F168736F137E869049 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				EF92BF8405AC7F27164DF7A6 /* Example-intermediates */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				D33CCCCA9AB0590F674BE724 /* macos_app */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
+		355FA70F3D5E3216F351A4F0 /* macos_app */ = {
+			isa = PBXGroup;
+			children = (
+				81DF72949793AEFDD1B06BDD /* Example */,
+				5CBA2F9E44924729DFECF190 /* third_party */,
+			);
+			path = macos_app;
+			sourceTree = "<group>";
+		};
+		462C3519CA354BE1B04D4855 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E0183A010067D0E90916009 /* macOSApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5CBA2F9E44924729DFECF190 /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				DEB253216085BA70FBA37EC3 /* BUILD */,
+				064F4BD4543FEAF27507ABED /* ExampleFramework.framework */,
+			);
+			path = third_party;
+			sourceTree = "<group>";
+		};
+		6932C5FE08977DC3DA62415C /* applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd */ = {
+			isa = PBXGroup;
+			children = (
+				07D255CDCF63DF2F0869E1F1 /* bin */,
+			);
+			path = "applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd";
+			sourceTree = "<group>";
+		};
+		77E0714FDD425211EBA209DF = {
+			isa = PBXGroup;
+			children = (
+				86E3AA094AC3498BEDC1D673 /* examples */,
+				D2C8CC455B9D27F28D323622 /* test */,
+				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
+				462C3519CA354BE1B04D4855 /* Products */,
+				D9AAB93A5135F69103554470 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		81DF72949793AEFDD1B06BDD /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				D45747A50B9FCDA001D3AD4F /* PreviewContent */,
+				AE97F6D6D5995C0DE3C23E17 /* Assets.xcassets */,
+				30C48FC7C131C94F65F8BC29 /* BUILD */,
+				3DD45C53E5DCAC15BCF5764D /* ContentView.swift */,
+				B941DEAA3E5A30BDF158E57F /* Info.plist */,
+				C68B74CE26786DEFFE645D3C /* macOSApp.swift */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		86E3AA094AC3498BEDC1D673 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				355FA70F3D5E3216F351A4F0 /* macos_app */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		91FB923D6E09BBE73158C8F5 /* macos_app */ = {
+			isa = PBXGroup;
+			children = (
+				236A49F168736F137E869049 /* Example */,
+			);
+			path = macos_app;
+			sourceTree = "<group>";
+		};
+		A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */ = {
+			isa = PBXGroup;
+			children = (
+				6932C5FE08977DC3DA62415C /* applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd */,
+			);
+			name = "Bazel Generated Files";
+			path = test/fixtures/macos_app/bwx.xcodeproj/rules_xcodeproj/links/gen_dir;
+			sourceTree = "<group>";
+		};
+		D2C8CC455B9D27F28D323622 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				34EEB3D407F10261A42BB9F7 /* fixtures */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		D33CCCCA9AB0590F674BE724 /* macos_app */ = {
+			isa = PBXGroup;
+			children = (
+				CD1089FB595A4AE6D3F310D0 /* BUILD */,
+			);
+			path = macos_app;
+			sourceTree = "<group>";
+		};
+		D45747A50B9FCDA001D3AD4F /* PreviewContent */ = {
+			isa = PBXGroup;
+			children = (
+				EA136BCC5F8FF7F12B402D13 /* Preview Assets.xcassets */,
+			);
+			path = PreviewContent;
+			sourceTree = "<group>";
+		};
+		D9AAB93A5135F69103554470 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF92BF8405AC7F27164DF7A6 /* Example-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				B7410E97198CD67FCF608541 /* Info.plist */,
+			);
+			path = "Example-intermediates";
+			sourceTree = "<group>";
+		};
+		F58A662731948D584076951C /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				91FB923D6E09BBE73158C8F5 /* macos_app */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9E46111B59CD5CC4865299C2 /* Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6A9520E4E640351CDDD995F /* Build configuration list for PBXNativeTarget "Example" */;
+			buildPhases = (
+				158225A69996B833609C215D /* Sources */,
+				0BB138DF24439C6CB36F159F /* Frameworks */,
+				EC82FDE86D73A4710E6DBDE5 /* Resources */,
+				761DAAD429FC5A4C1EBD5270 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB1C3081B4C14FDC3D765DFD /* PBXTargetDependency */,
+			);
+			name = Example;
+			productName = macOSApp;
+			productReference = 4E0183A010067D0E90916009 /* macOSApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36B5F79C7ED8B081842AF69D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					9E46111B59CD5CC4865299C2 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					FE59281FE487F27A37DC2EE7 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 77E0714FDD425211EBA209DF;
+			productRefGroup = 462C3519CA354BE1B04D4855 /* Products */;
+			projectDirPath = ../../..;
+			projectRoot = "";
+			targets = (
+				FE59281FE487F27A37DC2EE7 /* BazelDependencies */,
+				9E46111B59CD5CC4865299C2 /* Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC82FDE86D73A4710E6DBDE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD0CF994A192837D1E79768B /* Assets.xcassets in Resources */,
+				BD77F248941C5014D3537699 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		773C70B69E7F801B38FDC01C /* Generate Files */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Files";
+			outputFileListPaths = (
+				"$(INTERNAL_DIR)/generated.copied.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -euo pipefail\n\noutput_groups=(\"generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1\")\n\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  # We use a different output base for SwiftUI Previews since they have\n  # different swiftcopts, preventing output trashing\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  output_path)\nexec_root=\"${output_path%/*}\"\nexternal=\"${exec_root%/*/*}/external\"\n\nif [[ \"$ACTION\" != \"indexbuild\" && \"${ENABLE_PREVIEWS:-}\" != \"YES\" ]]; then\n  \"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh\" \"$exec_root\" > \"$BAZEL_LLDB_INIT\"\nfi\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf real-bazel-out\n\nln -sf \"$external\" external\nln -sf \"$output_path\" real-bazel-out\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|^\\$(GEN_DIR)\\/\\(.*\\)\\/[^\\/]*$|\\1|' \\\n  \"$INTERNAL_DIR/generated.copied.xcfilelist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n\ncd \"$SRCROOT\"\n\nif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  swiftui_previews_flags=(\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-implicit-dynamic\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-private-imports\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-dynamic-replacement-chaining\n  )\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nbuild_marker=\"$OBJROOT/bazel_build_start\"\ntouch \"$build_marker\"\n\nlog=$(mktemp)\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  ${swiftui_previews_flags:+${swiftui_previews_flags[*]}} \\\n  \"$output_groups_flag\" \\\n  //test/fixtures/macos_app:xcodeproj_bwx \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwx-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/macos_app/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$build_marker\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n\n\ndiff=$(comm -23 <(sed -e 's|^$(GEN_DIR)|bazel-out|' \"$INTERNAL_DIR/generated.copied.xcfilelist\" | sort) <(sort \"$BAZEL_OUT/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/macos_app/xcodeproj_bwx-generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1.filelist\"))\nif ! [ -z \"$diff\" ]; then\n  echo \"error: The files that Bazel generated don't match what the project expects. Please regenerate the project.\" >&2\n  echo \"error: $diff\" >&2\n  echo \"error: If you still get this error after regenerating your project, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n  exit 1\nfi\n\ncd \"$BAZEL_OUT\"\n\necho\necho \"Copying generated files\"\n\n# Sync to \"$BUILD_DIR/bazel-out\". This is the same as \"$GEN_DIR\" for normal\n# builds, but is different for Index Builds. `PBXBuildFile`s will use the\n# \"$GEN_DIR\" version, so indexing might get messed up until they are normally\n# generated. It's the best we can do though as we need to use the `gen_dir`\n# symlink, because Index Build can't modify the normal build's \"$BUILD_DIR\".\nrsync \\\n  --files-from <(sed -e 's|^bazel-out/||' \"$BAZEL_OUT/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/macos_app/xcodeproj_bwx-generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1.filelist\") \\\n  --copy-links \\\n  --update \\\n  --chmod=u+w \\\n  --out-format=\"%n%L\" \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1B677A301B894FBD0B5AB58 /* Fix Info.plists */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(INTERNAL_DIR)/infoplists.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Fix Info.plists";
+			outputFileListPaths = (
+				"$(INTERNAL_DIR)/infoplists.fixed.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		158225A69996B833609C215D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9C7B2694B074B34CE1622C /* ContentView.swift in Sources */,
+				54F6F91C757354B6B3A39639 /* macOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AB1C3081B4C14FDC3D765DFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = DFB6B3D768109FDA95CBEF01 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		67F44AB65FA7A2E38A56F5FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
+				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = YES;
+				TARGET_NAME = BazelDependencies;
+			};
+			name = Debug;
+		};
+		BE2CA0A20BAEAC56C4898C1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example";
+				BAZEL_TARGET_ID = "//examples/macos_app/Example:Example applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = NO;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_EXTENSION = app;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/examples/macos_app/third_party";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/Example-intermediates/Info.xcode.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/iOSApp.swiftmodule/x86_64-apple-macos.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_DIR)/examples/macos_app/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -Fexamples/macos_app/third_party -static";
+				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
+				PRODUCT_MODULE_NAME = iOSApp;
+				PRODUCT_NAME = macOSApp;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = Example;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin",
+				);
+			};
+			name = Debug;
+		};
+		C221D886D6D02D33114D3473 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";
+				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
+				BAZEL_LLDB_INIT = "$(BUILD_DIR)/bazel.lldbinit";
+				BAZEL_OUT = "$(BUILD_DIR)/real-bazel-out";
+				BAZEL_PATH = bazel;
+				BUILT_PRODUCTS_DIR = "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_MODULES_AUTOLINK = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
+				DSTROOT = "$(PROJECT_TEMP_DIR)";
+				GEN_DIR = "$(LINKS_DIR)/gen_dir";
+				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
+				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
+				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
+				INDEXING_DEPLOYMENT_LOCATION__ = "$(INDEXING_DEPLOYMENT_LOCATION__NO)";
+				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
+				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
+				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
+				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
+				LINKS_DIR = "$(INTERNAL_DIR)/links";
+				ONLY_ACTIVE_ARCH = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)";
+				USE_HEADERMAP = NO;
+				VALIDATE_WORKSPACE = NO;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C221D886D6D02D33114D3473 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67F44AB65FA7A2E38A56F5FB /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E6A9520E4E640351CDDD995F /* Build configuration list for PBXNativeTarget "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE2CA0A20BAEAC56C4898C1A /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 36B5F79C7ED8B081842AF69D /* Project object */;
+}

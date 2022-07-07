@@ -24,7 +24,6 @@ objc_library(
     tags = ["manual"],
     deps = [
         "//examples/command_line/lib",
-        "//examples/command_line/third_party:ExampleFramework",
         "@examples_command_line_external//:ExternalFramework",
     ],
 )
