@@ -52,6 +52,7 @@ def _should_skip_target(*, ctx, target):
 def _target_info_fields(
         *,
         dependencies,
+        extension_infoplists,
         inputs,
         linker_inputs,
         non_mergable_targets,
@@ -71,6 +72,8 @@ def _target_info_fields(
 
     Args:
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
+        extension_infoplists: Maps to the `XcodeProjInfo.extension_infoplists`
+            field.
         inputs: Maps to the `XcodeProjInfo.inputs` field.
         linker_inputs: Maps to the `XcodeProjInfo.linker_inputs` field.
         non_mergable_targets: Maps to the `XcodeProjInfo.non_mergable_targets`
@@ -94,6 +97,7 @@ def _target_info_fields(
         A `dict` containing the following fields:
 
         *   `dependencies`
+        *   `extension_infoplists`
         *   `generated_inputs`
         *   `inputs`
         *   `linker_inputs`
@@ -111,6 +115,7 @@ def _target_info_fields(
     """
     return {
         "dependencies": dependencies,
+        "extension_infoplists": extension_infoplists,
         "inputs": inputs,
         "linker_inputs": linker_inputs,
         "non_mergable_targets": non_mergable_targets,
@@ -145,6 +150,12 @@ def _skip_target(*, deps, transitive_infos):
         dependencies = process_dependencies(
             automatic_target_info = None,
             transitive_infos = transitive_infos,
+        ),
+        extension_infoplists = depset(
+            transitive = [
+                info.extension_infoplists
+                for _, info in transitive_infos
+            ],
         ),
         inputs = input_files.merge(
             transitive_infos = transitive_infos,
@@ -303,6 +314,18 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
 
     return _target_info_fields(
         dependencies = processed_target.dependencies,
+        extension_infoplists = depset(
+            processed_target.extension_infoplists,
+            transitive = [
+                info.extension_infoplists
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
+            ],
+        ),
         inputs = processed_target.inputs,
         linker_inputs = linker_inputs,
         non_mergable_targets = depset(

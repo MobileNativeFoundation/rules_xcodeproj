@@ -202,9 +202,17 @@ def process_top_level_target(
 
     info_plist = None
     info_plist_file = info_plists.get_file(target)
+    extension_infoplists = None
     if info_plist_file:
         info_plist = file_path(info_plist_file)
         additional_files.append(info_plist_file)
+        if bundle_info.bundle_extension == ".appex":
+            extension_infoplists = [
+                struct(
+                    id = id,
+                    infoplist = info_plist_file,
+                ),
+            ]
 
     launchd_plist_file = launchd_plists.get_file(target)
     if launchd_plist_file:
@@ -373,6 +381,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     return processed_target(
         automatic_target_info = automatic_target_info,
         dependencies = dependencies,
+        extension_infoplists = extension_infoplists,
         inputs = inputs,
         linker_inputs = linker_inputs,
         non_mergable_targets = non_mergable_targets,
