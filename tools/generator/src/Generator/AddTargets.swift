@@ -88,6 +88,14 @@ Product for target "\(key)" not found in `products`
                     products: products,
                     targetKeys: disambiguatedTargets.keys
                 ),
+                try createEmbedAppExtensionsPhase(
+                    in: pbxProj,
+                    buildMode: buildMode,
+                    productType: productType,
+                    extensions: target.extensions,
+                    products: products,
+                    targetKeys: disambiguatedTargets.keys
+                ),
             ]
 
             let pbxTarget = PBXNativeTarget(
@@ -467,6 +475,54 @@ Watch application product reference with key \(key) not found in `products`
             dstSubfolderSpec: .productsDirectory,
             name: "Embed Watch Content",
             files: [try buildFile(id: watchApplication)]
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
+    private static func createEmbedAppExtensionsPhase(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        productType: PBXProductType,
+        extensions: Set<TargetID>,
+        products: Products,
+        targetKeys: [TargetID: ConsolidatedTarget.Key]
+    ) throws -> PBXCopyFilesBuildPhase? {
+        guard !extensions.isEmpty &&
+              !buildMode.usesBazelModeBuildScripts &&
+              productType.isBundle
+        else {
+            return nil
+        }
+
+        func buildFile(id: TargetID) throws -> PBXBuildFile {
+            guard let key = targetKeys[id] else {
+                throw PreconditionError(message: """
+App extension product with id "\(id)" not found in `targetKeys`
+""")
+            }
+            guard let reference = products.byTarget[key] else {
+                throw PreconditionError(message: """
+App extension product reference with key \(key) not found in `products`
+""")
+            }
+
+            let pbxBuildFile = PBXBuildFile(
+                file: reference,
+                settings: [
+                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
+                ]
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = PBXCopyFilesBuildPhase(
+            dstPath: "",
+            dstSubfolderSpec: .plugins,
+            name: "Embed App Extensions",
+            files: try extensions.map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 

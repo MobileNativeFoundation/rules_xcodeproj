@@ -32,6 +32,16 @@
             "t": "e"
         },
         "examples/multiplatform/watchOSApp/BUILD",
+        "examples/multiplatform/watchOSAppExtension/BUILD",
+        {
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
+            "t": "e"
+        },
+        "examples/multiplatform/watchOSAppExtension/Info.plist",
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
+            "t": "g"
+        },
         "examples/multiplatform/watchOSApp/Info.plist",
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
@@ -59,6 +69,14 @@
             "t": "e"
         },
         {
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
+            "t": "e"
+        },
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
+            "t": "g"
+        },
+        {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
             "t": "g"
         },
@@ -82,24 +100,6 @@
         },
         {
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
-            "t": "g"
-        },
-        "examples/multiplatform/watchOSAppExtension/BUILD",
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
-            "t": "e"
-        },
-        "examples/multiplatform/watchOSAppExtension/Info.plist",
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
-            "t": "e"
-        },
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
             "t": "g"
         },
         {
@@ -161,6 +161,7 @@
             },
             "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
             "dependencies": [],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -241,6 +242,7 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
             "dependencies": [],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -322,6 +324,7 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
             "dependencies": [],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -402,6 +405,7 @@
             },
             "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
             "dependencies": [],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -482,6 +486,7 @@
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
             "dependencies": [],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -563,6 +568,7 @@
             },
             "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "dependencies": [],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -643,6 +649,7 @@
             },
             "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "dependencies": [],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -722,6 +729,7 @@
             "dependencies": [
                 "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
             ],
+            "extensions": [],
             "info_plist": null,
             "inputs": {},
             "is_swift": false,
@@ -799,6 +807,7 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
             ],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -884,6 +893,7 @@
                 "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
                 "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
             ],
+            "extensions": [],
             "info_plist": {
                 "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -997,6 +1007,7 @@
                 "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
                 "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
             ],
+            "extensions": [],
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1111,6 +1122,7 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
             ],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1228,6 +1240,7 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
             ],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1345,6 +1358,7 @@
             "dependencies": [
                 "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef"
             ],
+            "extensions": [],
             "info_plist": {
                 "_": "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1428,6 +1442,7 @@
             "dependencies": [
                 "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53"
             ],
+            "extensions": [],
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1514,6 +1529,7 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef"
             ],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1599,6 +1615,7 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53"
             ],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -1681,7 +1698,12 @@
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
             "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
-            "dependencies": [],
+            "dependencies": [
+                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
+            ],
+            "extensions": [
+                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
+            ],
             "info_plist": {
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1738,7 +1760,12 @@
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
             "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
-            "dependencies": [],
+            "dependencies": [
+                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
+            ],
+            "extensions": [
+                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
+            ],
             "info_plist": {
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1800,6 +1827,7 @@
             "dependencies": [
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
             ],
+            "extensions": [],
             "info_plist": {
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
                 "t": "g"
@@ -1883,6 +1911,7 @@
             "dependencies": [
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
             ],
+            "extensions": [],
             "info_plist": {
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.plist",
                 "t": "g"
@@ -1969,6 +1998,7 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
             ],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [
@@ -2054,6 +2084,7 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
             ],
+            "extensions": [],
             "info_plist": null,
             "inputs": {
                 "srcs": [

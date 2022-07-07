@@ -105,6 +105,10 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             codesignopts = "codesignopts"
         if "entitlements" in attrs:
             entitlements = "entitlements"
+        if "extension" in attrs:
+            xcode_targets["extension"] = [target_type.compile]
+        if "extensions" in attrs:
+            xcode_targets["extensions"] = [target_type.compile]
         if "infoplists" in attrs:
             infoplists = ["infoplists"]
         if "provisioning_profile" in attrs:

@@ -292,7 +292,8 @@ enum Fixtures {
             ),
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("W"),
-            ]
+            ],
+            extensions: ["WKE"]
         ),
         "WKE": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/WKE",
@@ -1623,7 +1624,19 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 ),
                 createGeneratedHeaderShellScript(),
             ],
-            "W": [],
+            "W": [
+                PBXCopyFilesBuildPhase(
+                    dstPath: "",
+                    dstSubfolderSpec: .plugins,
+                    name: "Embed App Extensions",
+                    files: buildFiles([PBXBuildFile(
+                        file: products.byFilePath[.generated("z/WK.appex")]!,
+                        settings: ["ATTRIBUTES": [
+                            "RemoveHeadersOnCopy",
+                        ]]
+                    )])
+                ),
+            ],
             "WKE": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
