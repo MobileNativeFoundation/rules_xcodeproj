@@ -1,0 +1,8 @@
+disabled_rules:
+  - trailing_comma
+  - todo
+
+excluded:
+  # Exclude test files
+  - "**/test/**/*.swift"
+  - "**/*Tests/*.swift"
