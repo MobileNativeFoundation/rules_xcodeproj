@@ -404,7 +404,8 @@ extension ConsolidatedTarget {
             var consolidatedIdx = 0
             var filesIdx = 0
             while consolidatedIdx < consolidatedFiles.count &&
-                    filesIdx < files.count {
+                    filesIdx < files.count
+            {
                 let file = files[filesIdx]
                 filesIdx += 1
 

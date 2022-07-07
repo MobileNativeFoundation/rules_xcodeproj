@@ -183,7 +183,8 @@ extension Generator {
                 // are formed is not deterministic, we must change the name and
                 // path here as necessary.
                 if ["xib", "storyboard"].contains(filePath.path.extension),
-                   !group.name!.hasSuffix(fileName) {
+                   !group.name!.hasSuffix(fileName)
+                {
                     group.name = fileName
                     groups[existingGroup.filePath] = nil
                     groups[groupFilePath] = group
@@ -240,7 +241,8 @@ extension Generator {
             // deterministic, we must check for existing groups having the same
             // name as the localized file and any of these extensions.
             if let fileExtension = filePath.path.extension,
-               Self.localizedGroupExtensions.contains(fileExtension) {
+               Self.localizedGroupExtensions.contains(fileExtension)
+            {
                 for groupExtension in Self.localizedGroupExtensions {
                     let groupFilePath = groupBaseFilePath + """
 \(filePath.path.lastComponentWithoutExtension).\(groupExtension)
@@ -332,7 +334,8 @@ extension Generator {
                 target.outputs.forcedBazelCompileFiles(buildMode: buildMode)
             )
             if !target.inputs.containsSources &&
-                target.product.type.hasCompilePhase {
+                target.product.type.hasCompilePhase
+            {
                 allInputPaths.insert(.internal(compileStubPath))
             }
         }
@@ -376,7 +379,8 @@ extension Generator {
                         pathComponent: component,
                         isLeaf: isLeaf,
                         forceGroupCreation: fullFilePath.forceGroupCreation
-                    ) {
+                    )
+                {
                     if isNew {
                         if let group = lastElement as? PBXGroup {
                             // This will be the case for all non-root elements
@@ -488,7 +492,8 @@ extension Generator {
         }
 
         if buildMode.usesBazelModeBuildScripts &&
-            targets.contains(where: { $1.product.type.isApplication }) {
+            targets.contains(where: { $1.product.type.isApplication })
+        {
             files[.internal(appRsyncExcludeFileListPath)] =
                 .nonReferencedContent(#"""
 /*.app/Frameworks/libXCTestBundleInject.dylib
