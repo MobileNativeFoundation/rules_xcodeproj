@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null && pwd)"
+
+# DEBUG BEGIN
+echo >&2 "*** CHUCK $(basename "${BASH_SOURCE[0]}") MADE IT" 
+# DEBUG END
+
+swiftformat --config "${script_dir}/.swiftformat" "$@"
