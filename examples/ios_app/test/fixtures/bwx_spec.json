@@ -287,9 +287,9 @@
                     "-Wl,-rpath,/usr/lib/swift",
                     "--ld-path=$(LINKS_DIR)/external/rules_apple_linker_lld/ld64.lld",
                     "-lc++",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -510,9 +510,9 @@
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
                     "-lc++",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -788,9 +788,9 @@
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
                     "-lc++",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -956,9 +956,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {

@@ -2439,9 +2439,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/tools/generator/test/tests.LinkFileList",
 				);
@@ -2518,9 +2518,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/tools/generator/generator.LinkFileList",
 				);

@@ -1282,9 +1282,9 @@
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
 					"-Wl,-rpath,/usr/lib/swift",
 					"-lc++",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList",
 				);
@@ -1368,9 +1368,9 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
 					"-Wl,-rpath,/usr/lib/swift",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
@@ -1676,9 +1676,9 @@
 					"-Wl,-rpath,/usr/lib/swift",
 					"--ld-path=$(LINKS_DIR)/external/rules_apple_linker_lld/ld64.lld",
 					"-lc++",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/Example/Example.LinkFileList",
 				);
@@ -1736,9 +1736,9 @@
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
 					"-Wl,-rpath,/usr/lib/swift",
 					"-lc++",
-					"-lc++",
 					"-headerpad_max_install_names",
 					"-no-canonical-prefixes",
+					"-lc++",
 					"-filelist",
 					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/ExampleTests/ExampleTests.__internal__.__test_bundle.LinkFileList",
 				);

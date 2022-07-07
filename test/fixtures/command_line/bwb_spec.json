@@ -109,9 +109,9 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
                     "-Wl,-rpath,/usr/lib/swift",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_libraries": [
                     {
@@ -633,9 +633,9 @@
                     "Foundation",
                     "-weak_framework",
                     "SwiftUI",
-                    "-lc++",
                     "-headerpad_max_install_names",
-                    "-no-canonical-prefixes"
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ],
                 "static_frameworks": [
                     "examples/command_line/third_party/ExampleFramework.framework"
