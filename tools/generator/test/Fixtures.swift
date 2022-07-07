@@ -66,7 +66,6 @@ enum Fixtures {
                 path: .generated("z/A.app")
             ),
             buildSettings: [
-                "PRODUCT_MODULE_NAME": .string("_Stubbed_A"),
                 "T": .string("43"),
                 "Z": .string("0")
             ],
@@ -302,10 +301,7 @@ enum Fixtures {
                 type: .watch2Extension,
                 name: "WKE",
                 path: .generated("z/WK.appex")
-            ),
-            buildSettings: [
-                "PRODUCT_MODULE_NAME": .string("_Stubbed_WK"),
-            ]
+            )
         ),
     ]
 

@@ -3,7 +3,11 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load(":build_settings.bzl", "get_targeted_device_family")
+load(
+    ":build_settings.bzl",
+    "get_product_module_name",
+    "get_targeted_device_family",
+)
 load(":collections.bzl", "set_if_true")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "join_paths_ignoring_empty")
@@ -127,8 +131,6 @@ def process_top_level_properties(
         else:
             product_type = "com.apple.product-type.tool"
             bundle_file_path = None
-
-    build_settings["PRODUCT_MODULE_NAME"] = "_{}_Stub".format(product_name)
 
     return struct(
         bundle_file_path = bundle_file_path,
@@ -325,6 +327,12 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         product_type = props.product_type,
         bundle_file_path = props.bundle_file_path,
         linker_inputs = linker_inputs,
+    )
+
+    set_if_true(
+        build_settings,
+        "PRODUCT_MODULE_NAME",
+        get_product_module_name(ctx = ctx, target = target),
     )
 
     cc_info = target[CcInfo] if CcInfo in target else None
