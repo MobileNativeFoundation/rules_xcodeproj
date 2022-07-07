@@ -68,28 +68,6 @@ class Generator {
         var targets = project.targets
         try environment.processTargetMerges(&targets, project.targetMerges)
 
-        for (src, destinations) in project.invalidTargetMerges {
-            guard let srcTarget = targets[src] else {
-                throw PreconditionError(
-                    message: """
-Source target "\(src)" not found in `targets`
-""")
-            }
-            for destination in destinations {
-                guard let destTarget = targets[destination] else {
-                    throw PreconditionError(message: """
-Destination target "\(destination)" not found in `targets`
-""")
-                }
-                logger.logWarning("""
-Was unable to merge "\(srcTarget.label) \
-(\(srcTarget.configuration))" into \
-"\(destTarget.label) \
-(\(destTarget.configuration))"
-""")
-            }
-        }
-
         let consolidatedTargets = try environment.consolidateTargets(
             targets,
             logger
@@ -166,11 +144,4 @@ Was unable to merge "\(srcTarget.label) \
             outputPath
         )
     }
-}
-
-/// When a potential merge wasn't valid, then the ids of the targets involved
-/// are returned in this `struct`.
-struct InvalidMerge: Equatable {
-    let source: TargetID
-    let destinations: Set<TargetID>
 }

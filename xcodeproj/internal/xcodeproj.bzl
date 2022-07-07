@@ -52,16 +52,9 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
     ])
 
     target_merges = {}
-    invalid_target_merges = {}
     for merge in potential_target_merges.to_list():
-        if sets.contains(non_mergable_targets_set, merge.src.product_path):
-            destinations = invalid_target_merges.get(merge.src.id, [])
-            destinations.append(merge.dest)
-            invalid_target_merges[merge.src.id] = destinations
-        else:
-            destinations = target_merges.get(merge.src.id, [])
-            destinations.append(merge.dest)
-            target_merges[merge.src.id] = destinations
+        if not sets.contains(non_mergable_targets_set, merge.src.product_path):
+            target_merges.setdefault(merge.src.id, []).append(merge.dest)
 
     # `xcode_targets` is partial json dictionary strings. It and
     # `potential_target_merges` are dictionaries in alternating key and value
@@ -70,9 +63,6 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
     targets_json = "[{}]".format(",".join(sorted_xcode_targets))
     target_merges_json = json.encode(
         flattened_key_values.to_list(target_merges),
-    )
-    invalid_target_merges_json = json.encode(
-        flattened_key_values.to_list(invalid_target_merges),
     )
 
     extra_files = [
@@ -103,7 +93,6 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 "configuration":"{configuration}",\
 "custom_xcode_schemes":{custom_xcode_schemes},\
 "extra_files":{extra_files},\
-"invalid_target_merges":{invalid_target_merges},\
 "label":"{label}",\
 "name":"{name}",\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
@@ -115,7 +104,6 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
         configuration = configuration,
         custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(extra_files),
-        invalid_target_merges = invalid_target_merges_json,
         label = ctx.label,
         target_merges = target_merges_json,
         name = project_name,

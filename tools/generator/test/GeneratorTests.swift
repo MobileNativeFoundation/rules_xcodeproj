@@ -17,7 +17,6 @@ final class GeneratorTests: XCTestCase {
             buildSettings: [:],
             targets: Fixtures.targets,
             targetMerges: [:],
-            invalidTargetMerges: ["Y": ["Z"]],
             extraFiles: [],
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: []
