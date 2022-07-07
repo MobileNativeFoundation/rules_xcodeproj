@@ -23,11 +23,11 @@ extension File {
 extension File {
     var fileElement: PBXFileElement? {
         switch self {
-        case .reference(let reference, _):
+        case let .reference(reference, _):
             return reference
-        case .variantGroup(let group):
+        case let .variantGroup(group):
             return group
-        case .xcVersionGroup(let group):
+        case let .xcVersionGroup(group):
             return group
         }
     }

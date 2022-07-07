@@ -121,10 +121,10 @@ At codingPath [\(context.codingPathString)]: \(context.debugDescription)
 
     private var context: Context? {
         switch self {
-        case .typeMismatch(_, let context): return context
-        case .valueNotFound(_, let context): return context
-        case .keyNotFound(_, let context): return context
-        case .dataCorrupted(let context): return context
+        case let .typeMismatch(_, context): return context
+        case let .valueNotFound(_, context): return context
+        case let .keyNotFound(_, context): return context
+        case let .dataCorrupted(context): return context
         @unknown default: return nil
         }
     }
