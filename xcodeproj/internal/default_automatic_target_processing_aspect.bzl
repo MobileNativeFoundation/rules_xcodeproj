@@ -131,7 +131,11 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
-        should_generate_target = executable and not executable.is_source
+        is_executable = executable and not executable.is_source
+
+        should_generate_target = is_executable
+        if is_executable and "srcs" in attrs:
+            srcs = ["srcs"]
 
     # Xcode doesn't support some source types that Bazel supports
     for attr in srcs:
