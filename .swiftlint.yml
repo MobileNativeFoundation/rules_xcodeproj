@@ -3,5 +3,6 @@ disabled_rules:
   - todo
 
 excluded:
+  # Exclude test files
   - "**/test/**/*.swift"
   - "**/*Tests/*.swift"

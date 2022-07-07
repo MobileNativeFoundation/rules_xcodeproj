@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# This file exists to help IDE helpers (e.g., vim+ALE) to execute swiftformat
+# This file exists to help IDE helpers (e.g., vim+ALE) to execute swiftlint
 # using this project's configuration.
 
 set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null && pwd)"
 
-swiftformat --config "${script_dir}/.swiftformat" "$@"
+swiftlint lint --config "${script_dir}/.swiftlint.yml" "$@"
