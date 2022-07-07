@@ -46,7 +46,7 @@ extension Sequence {
     func sortedLocalizedStandard(
         _ keyPath: KeyPath<Element, String>
     ) -> [Element] {
-        return self.sorted(by: Self.sortByLocalizedStandard(keyPath))
+        return sorted(by: Self.sortByLocalizedStandard(keyPath))
     }
 }
 
@@ -71,7 +71,7 @@ extension Sequence where Element == PBXBuildFile {
 extension Array where Element: PBXFileElement {
     mutating func sortGroupedLocalizedStandard() {
         let fileSort = Self.sortByLocalizedStandard(\.namePathSortString)
-        self.sort { lhs, rhs in
+        sort { lhs, rhs in
             let lhsSortOrder = lhs.sortOrder
             let rhsSortOrder = rhs.sortOrder
             if lhsSortOrder != rhsSortOrder {
@@ -107,8 +107,7 @@ where Key == ConsolidatedTarget.Key, Value: PBXFileReference {
     func sortedLocalizedStandard() -> [PBXFileReference] {
         let sort = [PBXFileReferenceByTargetKey]
             .sortByLocalizedStandard(\.sortString)
-        return self
-            .map(PBXFileReferenceByTargetKey.init)
+        return map(PBXFileReferenceByTargetKey.init)
             .sorted(by: sort)
             .map(\.file)
     }
