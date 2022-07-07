@@ -148,6 +148,7 @@ extension PBXProductType {
         case .bundle,
              .watchApp,
              .watch2App,
+             .watch2AppContainer,
              .none:
             return false
         default:
