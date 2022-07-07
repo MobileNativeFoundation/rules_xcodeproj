@@ -80,6 +80,14 @@ Product for target "\(key)" not found in `products`
                     frameworks: target.linkerInputs.embeddable,
                     files: files
                 ),
+                try createEmbedWatchContentPhase(
+                    in: pbxProj,
+                    buildMode: buildMode,
+                    productType: productType,
+                    watchApplication: target.watchApplication,
+                    products: products,
+                    targetKeys: disambiguatedTargets.keys
+                ),
             ]
 
             let pbxTarget = PBXNativeTarget(
@@ -379,7 +387,7 @@ Resource bundle product reference with key \(key) not found in `products`
         frameworks: [FilePath],
         files: [FilePath: File]
     ) throws -> PBXCopyFilesBuildPhase? {
-        guard  !buildMode.usesBazelModeBuildScripts
+        guard !buildMode.usesBazelModeBuildScripts
             && productType.isBundle
             && !frameworks.isEmpty
         else {
@@ -412,6 +420,53 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
             dstSubfolderSpec: .frameworks,
             name: "Embed Frameworks",
             files: try frameworks.map(buildFile)
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
+    private static func createEmbedWatchContentPhase(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        productType: PBXProductType,
+        watchApplication: TargetID?,
+        products: Products,
+        targetKeys: [TargetID: ConsolidatedTarget.Key]
+    ) throws -> PBXCopyFilesBuildPhase? {
+        guard let watchApplication = watchApplication,
+              !buildMode.usesBazelModeBuildScripts && productType.isBundle
+        else {
+            return nil
+        }
+
+        func buildFile(id: TargetID) throws -> PBXBuildFile {
+            guard let key = targetKeys[id] else {
+                throw PreconditionError(message: """
+Watch application product with id "\(id)" not found in `targetKeys`
+""")
+            }
+            guard let reference = products.byTarget[key] else {
+                throw PreconditionError(message: """
+Watch application product reference with key \(key) not found in `products`
+""")
+            }
+
+            let pbxBuildFile = PBXBuildFile(
+                file: reference,
+                settings: [
+                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
+                ]
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = PBXCopyFilesBuildPhase(
+            dstPath: "$(CONTENTS_FOLDER_PATH)/Watch",
+            dstSubfolderSpec: .productsDirectory,
+            name: "Embed Watch Content",
+            files: [try buildFile(id: watchApplication)]
         )
         pbxProj.add(object: buildPhase)
 

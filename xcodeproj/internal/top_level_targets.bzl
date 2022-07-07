@@ -174,6 +174,11 @@ def process_top_level_target(
     )
     avoid_deps = [test_host_target] if test_host_target else []
 
+    watch_app_target = getattr(ctx.rule.attr, "watch_application", None)
+    watch_application = (
+        watch_app_target[XcodeProjInfo].target.id if watch_app_target else None
+    )
+
     additional_files = []
     build_settings = {}
     is_bundle = bundle_info != None
@@ -375,6 +380,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             inputs = inputs,
             linker_inputs = linker_inputs,
             info_plist = info_plist,
+            watch_application = watch_application,
             dependencies = dependencies,
             outputs = outputs,
         ),

@@ -82,6 +82,7 @@ def xcode_target(
         inputs,
         linker_inputs,
         info_plist,
+        watch_application = None,
         dependencies,
         outputs):
     """Generates the partial json string representation of an Xcode target.
@@ -109,6 +110,8 @@ def xcode_target(
         inputs: The value returned from `input_files.collect`.
         linker_inputs: A value returned from `linker_input_files.collect`.
         info_plist: A value as returned by `files.file_path` or `None`.
+        watch_application: The `id` of the watch application target that should
+            be embedded in this target, or `None`.
         dependencies: A `depset` of `id`s of targets that this target depends
             on.
         outputs: A value returned from `output_files.collect`.
@@ -142,6 +145,7 @@ def xcode_target(
         inputs = input_files.to_dto(inputs),
         linker_inputs = linker_input_files.to_dto(linker_inputs),
         info_plist = file_path_to_dto(info_plist),
+        watch_application = watch_application,
         dependencies = dependencies.to_list(),
         outputs = output_files.to_dto(outputs),
     ))

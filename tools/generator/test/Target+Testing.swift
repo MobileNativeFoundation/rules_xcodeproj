@@ -17,9 +17,10 @@ extension Target {
         searchPaths: SearchPaths = .init(),
         modulemaps: [FilePath] = [],
         swiftmodules: [FilePath] = [],
-        resourceBundleDependencies: Set<TargetID> = [],
         inputs: Inputs = .init(),
         linkerInputs: LinkerInputs = .init(),
+        resourceBundleDependencies: Set<TargetID> = [],
+        watchApplication: TargetID? = nil,
         dependencies: Set<TargetID> = [],
         outputs : Outputs = .init()
     ) -> Self {
@@ -39,6 +40,7 @@ extension Target {
             inputs: inputs,
             linkerInputs: linkerInputs,
             resourceBundleDependencies: resourceBundleDependencies,
+            watchApplication: watchApplication,
             dependencies: dependencies,
             outputs: outputs
         )
