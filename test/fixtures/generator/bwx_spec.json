@@ -52,6 +52,8 @@
         "//tools/generator/test:tests darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "PRODUCT_MODULE_NAME": "_tests_Stub",
@@ -263,6 +265,8 @@
         "//tools/generator:generator darwin_x86_64-dbg-ST-ccd9595da841",
         {
             "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "PRODUCT_MODULE_NAME": "_generator_Stub",

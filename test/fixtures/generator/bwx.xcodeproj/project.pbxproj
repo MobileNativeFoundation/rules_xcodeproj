@@ -2123,7 +2123,9 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator";
 				BAZEL_TARGET_ID = "//tools/generator:generator darwin_x86_64-dbg-ST-ccd9595da841";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
+				ENABLE_BITCODE = NO;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;

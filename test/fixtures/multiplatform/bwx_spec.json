@@ -704,6 +704,8 @@
         "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         {
             "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "PRODUCT_MODULE_NAME": "_Tool_Stub",
@@ -859,7 +861,9 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
@@ -970,6 +974,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
@@ -1314,7 +1320,9 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_tvOSApp_Stub",
@@ -1396,6 +1404,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_tvOSApp_Stub",
@@ -1647,7 +1657,9 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch",
                 "PRODUCT_MODULE_NAME": "_watchOSApp_Stub",
@@ -1706,6 +1718,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch",
                 "PRODUCT_MODULE_NAME": "_watchOSApp_Stub",
@@ -1765,7 +1779,9 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "PRODUCT_MODULE_NAME": "_watchOSAppExtension_Stub",
@@ -1847,6 +1863,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "PRODUCT_MODULE_NAME": "_watchOSAppExtension_Stub",

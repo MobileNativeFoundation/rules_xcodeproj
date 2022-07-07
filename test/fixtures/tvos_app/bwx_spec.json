@@ -58,6 +58,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "_Example_Stub",
@@ -188,6 +190,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "PRODUCT_MODULE_NAME": "_ExampleTests_Stub",
@@ -322,6 +326,8 @@
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "PRODUCT_MODULE_NAME": "_ExampleUITests_Stub",
