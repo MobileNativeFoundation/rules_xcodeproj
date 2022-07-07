@@ -31,7 +31,7 @@ extension BuildSetting {
 
 extension Dictionary where Value == BuildSetting {
     /// Converts the build settings to `[String: Any]`.
-    var asDictionary: [Key: Any] { self.mapValues { $0.asAny } }
+    var asDictionary: [Key: Any] { mapValues { $0.asAny } }
 }
 
 // MARK: - Decodable

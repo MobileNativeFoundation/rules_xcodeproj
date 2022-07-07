@@ -476,7 +476,7 @@ Watch application product reference with key \(key) not found in `products`
 
 private extension Sequence where Element == FilePath {
     var excludingHeaders: [Element] {
-        self.filter { !$0.path.isHeader }
+        filter { !$0.path.isHeader }
     }
 }
 
