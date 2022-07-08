@@ -62,7 +62,7 @@ Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
         // Generate a relative path to the project root
         // e.g. "examples/ios/iOS App.xcodeproj" -> "../.."
         // e.g. "project.xcodeproj" -> ""
-        let projectRoot = (0..<(workspaceOutputComponents.count-1))
+        let projectRoot = (0 ..< (workspaceOutputComponents.count - 1))
             .map { _ in ".." }
             .joined(separator: "/")
 

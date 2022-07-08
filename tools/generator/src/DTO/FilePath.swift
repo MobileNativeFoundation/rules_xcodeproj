@@ -167,7 +167,7 @@ extension FilePath.PathType: Comparable {
 
 // MARK: Operators
 
-func +(lhs: FilePath, rhs: String) -> FilePath {
+func + (lhs: FilePath, rhs: String) -> FilePath {
     return FilePath(
         type: lhs.type,
         path: lhs.path + rhs,

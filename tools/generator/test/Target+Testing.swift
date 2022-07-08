@@ -23,7 +23,7 @@ extension Target {
         watchApplication: TargetID? = nil,
         extensions: Set<TargetID> = [],
         dependencies: Set<TargetID> = [],
-        outputs : Outputs = .init()
+        outputs: Outputs = .init()
     ) -> Self {
         return Target(
             name: product.name,

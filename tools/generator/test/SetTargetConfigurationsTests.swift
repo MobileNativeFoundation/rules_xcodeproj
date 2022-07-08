@@ -194,7 +194,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets,
             expectedSDKRoots
         ) = Self.createFixtures([
-            ([.macOS, .iOS, .tvOS, .watchOS], .staticLibrary,[key: "macosx"]),
+            ([.macOS, .iOS, .tvOS, .watchOS], .staticLibrary, [key: "macosx"]),
             ([.macOS, .iOS], .staticLibrary, [key: "macosx"]),
             ([.macOS, .tvOS], .staticLibrary, [key: "macosx"]),
             ([.macOS, .watchOS], .staticLibrary, [key: "macosx"]),
