@@ -17,6 +17,10 @@ enum Fixtures {
         ],
         targets: targets,
         targetMerges: [:],
+        targetHosts: [
+            "W": ["I"],
+            "WKE": ["W"],
+        ],
         extraFiles: [
             .generated("a1b2c/bin/t.c"),
             .generated("a/b/module.modulemap"),

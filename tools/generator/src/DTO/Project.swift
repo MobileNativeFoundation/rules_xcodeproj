@@ -6,6 +6,7 @@ struct Project: Equatable, Decodable {
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
     let targetMerges: [TargetID: Set<TargetID>]
+    let targetHosts: [TargetID: Set<TargetID>]
     let extraFiles: Set<FilePath>
     let schemeAutogenerationMode: SchemeAutogenerationMode
     let customXcodeSchemes: [XcodeScheme]

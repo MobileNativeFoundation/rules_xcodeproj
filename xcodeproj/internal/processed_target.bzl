@@ -13,6 +13,7 @@ def processed_target(
         automatic_target_info,
         dependencies,
         extension_infoplists = None,
+        hosted_targets = None,
         inputs,
         linker_inputs,
         non_mergable_targets = None,
@@ -31,6 +32,8 @@ def processed_target(
             target.
         extension_infoplists: A `list` of `File` for the Info.plist's of an
             application extension target, or `None`.
+        hosted_targets: An optional `list` of `struct`s as used in
+            `XcodeProjInfo.hosted_targets`.
         inputs: A value as returned from `input_files.collect` that will
             provide values for the `XcodeProjInfo.inputs` field.
         linker_inputs: A value returned from `linker_input_files.collect`
@@ -56,6 +59,7 @@ def processed_target(
         automatic_target_info = automatic_target_info,
         extension_infoplists = extension_infoplists,
         dependencies = dependencies,
+        hosted_targets = hosted_targets,
         inputs = inputs,
         linker_inputs = linker_inputs,
         non_mergable_targets = non_mergable_targets,
