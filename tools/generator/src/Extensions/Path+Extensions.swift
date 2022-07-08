@@ -48,6 +48,7 @@ extension Path {
     private var isFramework: Bool {
         return self.extension == "framework"
     }
+
     private var isSceneKitAssets: Bool { self.extension == "scnassets" }
     private var isXCAssets: Bool { self.extension == "xcassets" }
 }
