@@ -295,6 +295,15 @@ enum Fixtures {
             ],
             extensions: ["WKE"]
         ),
+        "WDKE": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/WDKE",
+            platform: .device(os: .iOS),
+            product: .init(
+                type: .appExtension,
+                name: "WDKE",
+                path: .generated("z/WDK.appex")
+            )
+        ),
         "WKE": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/WKE",
             platform: .device(os: .watchOS),
@@ -320,6 +329,7 @@ enum Fixtures {
             ["E2"],
             ["I"],
             ["W"],
+            ["WDKE"],
             ["WKE"],
             ["R 1"],
             ["T 1", "T 2", "T 3"],
@@ -1136,6 +1146,15 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
+                targetKey: "WDKE",
+                filePaths: [.generated("z/WDK.appex")]
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType.appExtension.fileType,
+                path: "WDK.appex",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
                 targetKey: "WKE",
                 filePaths: [.generated("z/WK.appex")]
             ): PBXFileReference(
@@ -1175,6 +1194,7 @@ a/imported.a
                 products.byFilePath[.generated("r1/R1.bundle")]!,
                 products.byFilePath[.generated("T/T 3/T.a")]!,
                 products.byFilePath[.generated("z/W.app")]!,
+                products.byFilePath[.generated("z/WDK.appex")]!,
                 products.byFilePath[.generated("z/WK.appex")]!,
             ],
             sourceTree: .group,
@@ -1636,6 +1656,13 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                     )])
                 ),
             ],
+            "WDKE": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: elements[.internal("CompileStub.m")]!
+                    )])
+                ),
+            ],
             "WKE": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
@@ -1743,6 +1770,13 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 product: products.byTarget["W"],
                 productType: .watch2App
             ),
+            "WDKE": PBXNativeTarget(
+                name: disambiguatedTargets.targets["WDKE"]!.name,
+                buildPhases: buildPhases["WDKE"] ?? [],
+                productName: "WDKE",
+                product: products.byTarget["WDKE"],
+                productType: .appExtension
+            ),
             "WKE": PBXNativeTarget(
                 name: disambiguatedTargets.targets["WKE"]!.name,
                 buildPhases: buildPhases["WKE"] ?? [],
@@ -1789,6 +1823,9 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             target: bazelDependenciesTarget
         )
         _ = try! pbxNativeTargets["W"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxNativeTargets["WDKE"]!.addDependency(
             target: bazelDependenciesTarget
         )
         _ = try! pbxNativeTargets["WKE"]!.addDependency(
@@ -1874,6 +1911,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             "R 1": baseAttributes,
             .init(["T 1", "T 2", "T 3"]): baseAttributes,
             "W": baseAttributes,
+            "WDKE": baseAttributes,
             "WKE": baseAttributes,
         ]
 
@@ -2114,6 +2152,25 @@ $(MACOSX_FILES)
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
                 "TARGET_NAME": targets["W"]!.name,
+            ]) { $1 },
+            "WDKE": targets["WDKE"]!.buildSettings.asDictionary.merging([
+                "ARCHS": "arm64",
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/WDKE",
+                "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "BAZEL_TARGET_ID": "WDKE",
+                "DEPLOYMENT_LOCATION": "NO",
+                "EXECUTABLE_EXTENSION": "appex",
+                "GENERATE_INFOPLIST_FILE": "YES",
+                "LD_RUNPATH_SEARCH_PATHS": [
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@executable_path/../../Frameworks",
+                ],
+                "PRODUCT_NAME": "WDKE",
+                "SDKROOT": "iphoneos",
+                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
+                "SUPPORTED_PLATFORMS": "iphoneos",
+                "TARGET_NAME": targets["WDKE"]!.name,
             ]) { $1 },
             "WKE": targets["WKE"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
