@@ -47,9 +47,7 @@ Target "\(key)" not found in `pbxTargets`
 
             let debugConfiguration = XCBuildConfiguration(
                 name: "Debug",
-                buildSettings: try buildSettings.asBuildSettingDictionary(
-                    buildMode: buildMode
-                )
+                buildSettings: try buildSettings.asBuildSettingDictionary()
             )
             pbxProj.add(object: debugConfiguration)
             let configurationList = XCConfigurationList(
@@ -648,9 +646,7 @@ private let iPhonePlatforms: Set<String> = [
 
 private extension Dictionary
 where Key == BuildSettingConditional, Value == [String: BuildSetting] {
-    func asBuildSettingDictionary(
-        buildMode: BuildMode
-    ) throws -> [String: Any] {
+    func asBuildSettingDictionary() throws -> [String: Any] {
         var conditionalBuildSettings: [
             String: [BuildSettingConditional: BuildSetting]
         ] = [:]

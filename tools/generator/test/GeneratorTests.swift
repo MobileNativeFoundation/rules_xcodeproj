@@ -528,7 +528,6 @@ final class GeneratorTests: XCTestCase {
 
         struct WriteXcodeProjCalled: Equatable {
             let xcodeProj: XcodeProj
-            let buildMode: BuildMode
             let files: [FilePath: File]
             let internalDirectoryName: String
             let bazelIntegrationDirectory: Path
@@ -538,7 +537,6 @@ final class GeneratorTests: XCTestCase {
         var writeXcodeProjCalled: [WriteXcodeProjCalled] = []
         func writeXcodeProj(
             xcodeProj: XcodeProj,
-            buildMode: BuildMode,
             files: [FilePath: File],
             internalDirectoryName: String,
             bazelIntegrationDirectory: Path,
@@ -546,7 +544,6 @@ final class GeneratorTests: XCTestCase {
         ) {
             writeXcodeProjCalled.append(.init(
                 xcodeProj: xcodeProj,
-                buildMode: buildMode,
                 files: files,
                 internalDirectoryName: internalDirectoryName,
                 bazelIntegrationDirectory: bazelIntegrationDirectory,
@@ -556,7 +553,6 @@ final class GeneratorTests: XCTestCase {
 
         let expectedWriteXcodeProjCalled = [WriteXcodeProjCalled(
             xcodeProj: xcodeProj,
-            buildMode: buildMode,
             files: files,
             internalDirectoryName: internalDirectoryName,
             bazelIntegrationDirectory: bazelIntegrationDirectory,

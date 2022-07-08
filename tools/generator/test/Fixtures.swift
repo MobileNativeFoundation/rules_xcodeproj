@@ -1400,7 +1400,6 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         disambiguatedTargets: DisambiguatedTargets,
         files: [FilePath: File],
         products: Products,
-        filePathResolver: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
         // Build phases
@@ -1823,11 +1822,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let filePathResolver = FilePathResolver(
-            internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
-        )
-
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: pbxProj,
             xcodeprojBazelLabel: "//:xcodeproj",
@@ -1842,7 +1836,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             disambiguatedTargets: disambiguatedTargets,
             files: files,
             products: products,
-            filePathResolver: filePathResolver,
             bazelDependenciesTarget: bazelDependenciesTarget
         )
 
