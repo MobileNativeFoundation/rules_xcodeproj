@@ -31,10 +31,13 @@ projects with `bazel run //examples/cc:xcodeproj`. You might need to `cd`
 into the directory if the example app is in a separate `WORKSPACE` with
 `cd examples/ios_app; bazel run //:xcodeproj`.
 
-You can even test your changes in a separate project living outside this repo by overriding the repository in your `.bazelrc`. It's important to add it to the `.bazelrc` instead of passing it as a flag to ensure all invocations will use the same configuration.
+You can even test your changes in a separate project living outside this
+repo by overriding the repository in your `.bazelrc`.
 ```
 build --override_repository=com_github_buildbuddy_io_rules_xcodeproj=/Users/username/rules_xcodeproj
 ```
+It's important to add it to the `.bazelrc` instead of passing it as a
+flag to ensure all invocations will use the same configuration.
 
 While developing, you might need to regenerate the test fixtures.
 You can do so with 
