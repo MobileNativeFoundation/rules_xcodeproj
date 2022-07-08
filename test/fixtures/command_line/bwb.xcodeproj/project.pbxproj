@@ -102,6 +102,7 @@
 
 /* Begin PBXFileReference section */
 		02C5A30086BED77944B9B2DA /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
+		0477978206709B50F3C4A328 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		061F2388C98C7C8A40A50744 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		12C3BFE593A8E590FD298519 /* LibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE87466AFFDC6606F8518F8 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 		CBE528880485D0994B3CC1FC /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DBF917653F9E4EBBEDB863FD /* Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
 		E3938AB43AEB959A432DB9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E5C95BEC19004126C5F267A8 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
 		F5B8CDF37038F1DAA6B0A624 /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
 		F93835BAA75A671D6D3361A9 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +219,14 @@
 			path = fixtures;
 			sourceTree = "<group>";
 		};
+		41A8BFC84E25E93767A7B621 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				5EC76696A9306345EC2B2A95 /* tool.merged_launchdplists-intermediates */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
 		4EED761FD2246722F245DFA0 /* command_line */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +263,14 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
+		5EC76696A9306345EC2B2A95 /* tool.merged_launchdplists-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				E5C95BEC19004126C5F267A8 /* Launchd.plist */,
+			);
+			path = "tool.merged_launchdplists-intermediates";
+			sourceTree = "<group>";
+		};
 		68A1D737225E7A97337523DE /* test */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				936244BBF22D78803D3F9055 /* lib */,
+				41A8BFC84E25E93767A7B621 /* tool */,
 			);
 			path = command_line;
 			sourceTree = "<group>";
@@ -337,6 +356,7 @@
 				537B806ECAA55F19DAFDF318 /* BUILD */,
 				A87E0D1B629CCF579B579DA6 /* export_symbol_list.exp */,
 				E3938AB43AEB959A432DB9EF /* Info.plist */,
+				0477978206709B50F3C4A328 /* Launchd.plist */,
 				C06A565663AED0899589F574 /* main.m */,
 			);
 			path = tool;
@@ -1052,6 +1072,7 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
 					"-Wl,-rpath,/usr/lib/swift",
+					"-Wl,-sectcreate,__TEXT,__launchd_plist,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool/tool.merged_launchdplists-intermediates/Launchd.plist",
 					"-framework",
 					Foundation,
 					"-weak_framework",

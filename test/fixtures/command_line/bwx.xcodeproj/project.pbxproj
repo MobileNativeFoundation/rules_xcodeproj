@@ -116,11 +116,13 @@
 		7EA31D6C8ED425D3BB693543 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7F5E4ABAACB85A529597A95E /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
 		85AA47D00BD6B0AF833B0617 /* export_symbol_list.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = export_symbol_list.exp; sourceTree = "<group>"; };
+		8B03B3D734122C32E07042B6 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		9D46BEBDD407F679ED938408 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
 		B093EB1BAB8D20D1457C10D2 /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		B457072C62E4282C472889FB /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		B45E624D6CB9A25AD05AA3EB /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
+		BE8FEDF37273346A16A57EFB /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		CA049D9915CC7DA47818EB6A /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
 		D04DA2A609AD72919E00E6F6 /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E23788130BC4E7FCB9DB99 /* LibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,10 +239,19 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		64D2B5C0BE051C0CF3653C77 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				BDF82AAB3F607DFA7969DA86 /* tool.merged_launchdplists-intermediates */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
 		65C3F8240235013331E64FFD /* command_line */ = {
 			isa = PBXGroup;
 			children = (
 				502410081D92A547EC3F3479 /* lib */,
+				64D2B5C0BE051C0CF3653C77 /* tool */,
 			);
 			path = command_line;
 			sourceTree = "<group>";
@@ -357,6 +368,7 @@
 				7EA31D6C8ED425D3BB693543 /* BUILD */,
 				85AA47D00BD6B0AF833B0617 /* export_symbol_list.exp */,
 				2E8FDF5B64B5BB961DFACC26 /* Info.plist */,
+				BE8FEDF37273346A16A57EFB /* Launchd.plist */,
 				0C0B86F4542BE9E526167481 /* main.m */,
 			);
 			path = tool;
@@ -376,6 +388,14 @@
 				75220B3D4824CC076232744F /* command_line */,
 			);
 			path = examples;
+			sourceTree = "<group>";
+		};
+		BDF82AAB3F607DFA7969DA86 /* tool.merged_launchdplists-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				8B03B3D734122C32E07042B6 /* Launchd.plist */,
+			);
+			path = "tool.merged_launchdplists-intermediates";
 			sourceTree = "<group>";
 		};
 		C5CA9947DC4EB509CCBABCA5 /* command_line */ = {
@@ -1049,6 +1069,7 @@
 					"-L/usr/lib/swift",
 					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
 					"-Wl,-rpath,/usr/lib/swift",
+					"-Wl,-sectcreate,__TEXT,__launchd_plist,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/tool/tool.merged_launchdplists-intermediates/Launchd.plist",
 					"-framework",
 					Foundation,
 					"-weak_framework",

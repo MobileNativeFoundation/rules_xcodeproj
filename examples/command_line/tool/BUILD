@@ -12,6 +12,7 @@ macos_command_line_application(
         "export_symbol_list.exp",
     ],
     infoplists = ["Info.plist"],
+    launchdplists = ["Launchd.plist"],
     minimum_os_version = "11.0",
     visibility = ["//visibility:public"],
     deps = [":tool.library"],

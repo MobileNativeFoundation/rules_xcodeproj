@@ -39,6 +39,10 @@ A sequence of attribute names to collect `File`s from for the
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
 """,
+        "launchdplists": """\
+A sequence of attribute names to collect `File`s from for the `launchdplists`-like
+attributes.
+""",
         "non_arc_srcs": """\
 A sequence of attribute names to collect `File`s from for `non_arc_srcs`-like
 attributes.

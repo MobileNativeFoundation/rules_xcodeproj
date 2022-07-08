@@ -8,6 +8,7 @@ load(":collections.bzl", "set_if_true")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
+load(":launchd_plists.bzl", "launchd_plists")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
@@ -193,6 +194,10 @@ def process_top_level_target(
     if info_plist_file:
         info_plist = file_path(info_plist_file)
         additional_files.append(info_plist_file)
+
+    launchd_plist_file = launchd_plists.get_file(target)
+    if launchd_plist_file:
+        additional_files.append(launchd_plist_file)
 
     provisioning_profiles.process_attr(
         ctx = ctx,
