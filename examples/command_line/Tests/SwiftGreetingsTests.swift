@@ -1,6 +1,7 @@
 import Foundation
-@testable import LibSwift
 import XCTest
+
+@testable import LibSwift
 
 class SwiftGreetingsTests: XCTestCase {
 
