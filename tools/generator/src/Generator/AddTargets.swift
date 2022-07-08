@@ -15,7 +15,7 @@ extension Generator {
 
         let sortedDisambiguatedTargets = disambiguatedTargets.targets
             .sortedLocalizedStandard(\.value.name)
-        var pbxTargets = Dictionary<ConsolidatedTarget.Key, PBXTarget>(
+        var pbxTargets = [ConsolidatedTarget.Key: PBXTarget](
             minimumCapacity: sortedDisambiguatedTargets.count
         )
         for (key, disambiguatedTarget) in sortedDisambiguatedTargets {
