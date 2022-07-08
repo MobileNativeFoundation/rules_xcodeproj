@@ -237,4 +237,15 @@ extension PBXProductType {
     var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
         return isLaunchable ? .bazelLaunchVariables : nil
     }
+
+    var shouldCreateScheme: Bool {
+        switch self {
+        case .watchExtension,
+             .watch2AppContainer,
+             .watch2Extension:
+            return false
+        default:
+            return true
+        }
+    }
 }

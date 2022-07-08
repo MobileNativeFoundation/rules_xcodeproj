@@ -2,6 +2,10 @@ import Foundation
 import XcodeProj
 
 extension PBXTarget {
+    var shouldCreateScheme: Bool {
+        return productType?.shouldCreateScheme ?? true
+    }
+
     var buildableName: String {
         return product?.path ?? name
     }
