@@ -5,7 +5,7 @@ extension Generator {
     /// Writes the ".xcodeproj" file to disk.
     static func writeXcodeProj(
         _ xcodeProj: XcodeProj,
-        buildMode: BuildMode,
+        buildMode _: BuildMode,
         files: [FilePath: File],
         internalDirectoryName: String,
         bazelIntegrationDirectory: Path,

@@ -649,7 +649,7 @@ private let iPhonePlatforms: Set<String> = [
 private extension Dictionary
 where Key == BuildSettingConditional, Value == [String: BuildSetting] {
     func asBuildSettingDictionary(
-        buildMode: BuildMode
+        buildMode _: BuildMode
     ) throws -> [String: Any] {
         var conditionalBuildSettings: [
             String: [BuildSettingConditional: BuildSetting]

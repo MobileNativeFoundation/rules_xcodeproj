@@ -1400,7 +1400,7 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
         disambiguatedTargets: DisambiguatedTargets,
         files: [FilePath: File],
         products: Products,
-        filePathResolver: FilePathResolver,
+        filePathResolver _: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
         // Build phases

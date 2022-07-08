@@ -284,7 +284,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
     }
 
     private static func bazelBuildCommand(
-        buildMode: BuildMode,
+        buildMode _: BuildMode,
         xcodeprojBazelLabel: String,
         xcodeprojBazelTargetName: String,
         xcodeprojBinDir: String
@@ -404,9 +404,9 @@ fi
 
     private static func copyFilesCommand(
         generatedInputsFileList: String,
-        hasGeneratedFiles: Bool,
-        files: [FilePath: File],
-        filePathResolver: FilePathResolver
+        hasGeneratedFiles _: Bool,
+        files _: [FilePath: File],
+        filePathResolver _: FilePathResolver
     ) throws -> String {
         return #"""
 cd "$BAZEL_OUT"

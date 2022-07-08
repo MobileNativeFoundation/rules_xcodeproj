@@ -47,7 +47,7 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard CommandLine.arguments.count == 8 else {
+        guard arguments.count == 8 else {
             throw UsageError(message: """
 Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
