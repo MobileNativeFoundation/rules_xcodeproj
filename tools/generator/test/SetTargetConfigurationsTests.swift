@@ -296,10 +296,10 @@ final class SetTargetConfigurationsTests: XCTestCase {
         ) = Self.createFixtures([
             ([.macOS, .iOS, .tvOS, .watchOS], .staticLibrary,
              [
-                key: "macOS-staticLibrary",
-                "\(key)[sdk=iphoneos*]": "iOS-staticLibrary",
-                "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
-                "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                 key: "macOS-staticLibrary",
+                 "\(key)[sdk=iphoneos*]": "iOS-staticLibrary",
+                 "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
+                 "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
              ]),
             ([.macOS, .iOS], .staticLibrary, [
                 key: "macOS-staticLibrary",
@@ -319,9 +319,9 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
             ([.iOS, .tvOS, .watchOS,], .staticLibrary,
              [
-                key: "iOS-staticLibrary",
-                "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
-                "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                 key: "iOS-staticLibrary",
+                 "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
+                 "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
              ]),
             ([.iOS, .tvOS], .staticLibrary, [
                 key: "iOS-staticLibrary",

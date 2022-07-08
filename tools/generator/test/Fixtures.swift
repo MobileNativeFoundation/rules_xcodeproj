@@ -1566,8 +1566,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             "E1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.external("a_repo/a.swift")]!),
-                    ])
+                        file: elements[.external("a_repo/a.swift")]!)])
                 ),
                 createGeneratedHeaderShellScript(),
             ],
