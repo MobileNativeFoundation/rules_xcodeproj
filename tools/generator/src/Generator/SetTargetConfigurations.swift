@@ -700,7 +700,7 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
         var buildSettings: [String: BuildSetting] = [:]
         for (key, conditionalBuildSetting) in conditionalBuildSettings {
             let sortedConditionalBuildSettings = conditionalBuildSetting
-                .sorted(by: { $0.key < $1.key } )
+                .sorted(by: { $0.key < $1.key })
             var remainingConditionalBuildSettings =
                 sortedConditionalBuildSettings[
                     sortedConditionalBuildSettings.indices
