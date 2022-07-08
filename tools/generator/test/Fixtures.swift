@@ -330,8 +330,7 @@ enum Fixtures {
         _ consolidatedTargets: ConsolidatedTargets
     ) -> DisambiguatedTargets {
         var disambiguatedTargets = [
-            // swiftlint:disable:next trailing_comma
-            ConsolidatedTarget.Key: DisambiguatedTarget
+            ConsolidatedTarget.Key: DisambiguatedTarget,
         ](
             minimumCapacity: targets.count
         )
