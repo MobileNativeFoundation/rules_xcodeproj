@@ -63,6 +63,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     entitlements = None
     exported_symbols_lists = []
     infoplists = []
+    launchdplists = []
     bazel_build_mode_error = None
     non_arc_srcs = []
     pch = None
@@ -117,6 +118,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             exported_symbols_lists = ["exported_symbols_lists"]
         if "infoplists" in attrs:
             infoplists = ["infoplists"]
+        if "launchdplists" in attrs:
+            launchdplists = ["launchdplists"]
         xcode_targets = {"deps": [target_type.compile]}
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile]}
@@ -157,6 +160,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             bundle_id = bundle_id,
             provisioning_profile = provisioning_profile,
             infoplists = infoplists,
+            launchdplists = launchdplists,
             entitlements = entitlements,
             bazel_build_mode_error = bazel_build_mode_error,
         ),

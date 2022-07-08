@@ -64,6 +64,8 @@ def _is_categorized_attr(attr, *, automatic_target_info):
         return True
     elif attr in automatic_target_info.exported_symbols_lists:
         return True
+    elif attr in automatic_target_info.launchdplists:
+        return True
     else:
         return False
 
@@ -173,6 +175,11 @@ def _collect(
             # assigning to the existing variable
             pch.append(file)
         elif attr in automatic_target_info.infoplists:
+            if file.is_source:
+                # We don't need to include a generated one, as we already use
+                # the Bazel generated one, which is one step further generated
+                extra_files.append(file_path(file))
+        elif attr in automatic_target_info.launchdplists:
             if file.is_source:
                 # We don't need to include a generated one, as we already use
                 # the Bazel generated one, which is one step further generated
@@ -353,6 +360,7 @@ def _from_resource_bundle(bundle):
         resource_bundles = depset(),
         resource_bundle_dependencies = bundle.dependencies,
         infoplists = depset(),
+        launchdplists = depset(),
         entitlements = None,
         exported_symbols_lists = depset(),
         xccurrentversions = depset(),
