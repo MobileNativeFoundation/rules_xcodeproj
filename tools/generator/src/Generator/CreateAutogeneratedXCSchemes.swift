@@ -51,6 +51,7 @@ extension Generator {
                 skipped: false,
                 buildableReference: buildableReference
             )]
+            // swiftlint:disable:previous trailing_comma
         } else {
             buildableProductRunnable = pbxTarget.isLaunchable ?
                 .init(buildableReference: buildableReference) : nil
@@ -69,6 +70,7 @@ extension Generator {
                     .analyzing,
                 ]
             )],
+            // swiftlint:disable:previous trailing_comma
             preActions: createBuildPreActions(
                 buildMode: buildMode,
                 pbxTarget: pbxTarget,
@@ -149,5 +151,6 @@ fi
             title: "Set Bazel Build Output Groups",
             environmentBuildable: buildableReference
         )]
+        // swiftlint:disable:previous trailing_comma
     }
 }

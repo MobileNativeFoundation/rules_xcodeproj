@@ -216,7 +216,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 exportedSymbolsLists.flatMap { filePath in
                     return [
                         "-exported_symbols_list",
-                        try filePathResolver.resolve(filePath).string.quoted
+                        try filePathResolver.resolve(filePath).string.quoted,
                     ]
                 }
             )
