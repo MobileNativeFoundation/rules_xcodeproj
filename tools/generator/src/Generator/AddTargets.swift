@@ -334,9 +334,9 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
         files: [FilePath: File],
         targetKeys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> PBXResourcesBuildPhase? {
-        guard !buildMode.usesBazelModeBuildScripts
-            && productType.isBundle
-            && !(inputs.resources.isEmpty && resourceBundleDependencies.isEmpty)
+        guard !buildMode.usesBazelModeBuildScripts,
+            productType.isBundle,
+            !(inputs.resources.isEmpty && resourceBundleDependencies.isEmpty)
         else {
             return nil
         }
@@ -395,9 +395,9 @@ Resource bundle product reference with key \(key) not found in `products`
         frameworks: [FilePath],
         files: [FilePath: File]
     ) throws -> PBXCopyFilesBuildPhase? {
-        guard !buildMode.usesBazelModeBuildScripts
-            && productType.isBundle
-            && !frameworks.isEmpty
+        guard !buildMode.usesBazelModeBuildScripts,
+            productType.isBundle,
+            !frameworks.isEmpty
         else {
             return nil
         }
@@ -443,7 +443,7 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
         targetKeys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> PBXCopyFilesBuildPhase? {
         guard let watchApplication = watchApplication,
-              !buildMode.usesBazelModeBuildScripts && productType.isBundle
+              !buildMode.usesBazelModeBuildScripts, productType.isBundle
         else {
             return nil
         }
@@ -489,8 +489,8 @@ Watch application product reference with key \(key) not found in `products`
         products: Products,
         targetKeys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> PBXCopyFilesBuildPhase? {
-        guard !extensions.isEmpty &&
-              !buildMode.usesBazelModeBuildScripts &&
+        guard !extensions.isEmpty,
+              !buildMode.usesBazelModeBuildScripts,
               productType.isBundle
         else {
             return nil
@@ -624,7 +624,7 @@ private extension ConsolidatedTargetLinkerInputs {
 
 private extension ConsolidatedTargetOutputs {
     func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
-        if buildMode.usesBazelModeBuildScripts && hasSwiftOutputs {
+        if buildMode.usesBazelModeBuildScripts, hasSwiftOutputs {
             return [.internal(Generator.bazelForcedSwiftCompilePath)]
         }
 
