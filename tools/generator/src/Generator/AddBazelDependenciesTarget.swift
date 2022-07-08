@@ -158,7 +158,6 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
                 filePathResolver: filePathResolver
             ),
             bazelBuildCommand(
-                buildMode: buildMode,
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
                 xcodeprojBazelTargetName: xcodeprojBazelTargetName,
                 xcodeprojBinDir: xcodeprojBinDir
@@ -169,10 +168,7 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
                 filePathResolver: filePathResolver
             ),
             try copyFilesCommand(
-                generatedInputsFileList: generatedInputsFileList,
-                hasGeneratedFiles: hasGeneratedFiles,
-                files: files,
-                filePathResolver: filePathResolver
+                generatedInputsFileList: generatedInputsFileList
             ),
         ].compactMap { $0 }.joined(separator: "\n")
 
@@ -284,7 +280,6 @@ ln -sfn "$PROJECT_DIR" SRCROOT
     }
 
     private static func bazelBuildCommand(
-        buildMode _: BuildMode,
         xcodeprojBazelLabel: String,
         xcodeprojBazelTargetName: String,
         xcodeprojBinDir: String
@@ -403,10 +398,7 @@ fi
     }
 
     private static func copyFilesCommand(
-        generatedInputsFileList: String,
-        hasGeneratedFiles _: Bool,
-        files _: [FilePath: File],
-        filePathResolver _: FilePathResolver
+        generatedInputsFileList: String
     ) throws -> String {
         return #"""
 cd "$BAZEL_OUT"
