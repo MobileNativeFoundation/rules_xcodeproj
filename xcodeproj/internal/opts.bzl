@@ -258,12 +258,14 @@ def _process_conlyopts(opts):
         *   A `list` of C compiler optimization levels parsed.
         *   A value returned by `create_opts_search_paths` with the parsed
             search paths.
+        *   A `bool` indicting if the target has debug info enabled.
     """
     defines = []
     optimizations = []
     quote_includes = []
     includes = []
     system_includes = []
+    has_debug_info = {}
 
     def process(opt, previous_opt):
         if previous_opt == "-isystem":
@@ -278,6 +280,12 @@ def _process_conlyopts(opts):
 
         if opt.startswith("-O"):
             optimizations.append(opt)
+            return True
+        if opt == "-g":
+            # We use a `dict` instead of setting a single value because
+            # assigning to `has_debug_info` creates a new local variable instead
+            # of assigning to the existing variable
+            has_debug_info[True] = None
             return True
         if opt == "-isystem":
             return True
@@ -300,6 +308,7 @@ def _process_conlyopts(opts):
     )
 
     defines = uniq(defines)
+    has_debug_info = bool(has_debug_info)
 
     search_paths = create_opts_search_paths(
         quote_includes = uniq(quote_includes),
@@ -307,7 +316,7 @@ def _process_conlyopts(opts):
         system_includes = uniq(system_includes),
     )
 
-    return unhandled_opts, defines, optimizations, search_paths
+    return unhandled_opts, defines, optimizations, search_paths, has_debug_info
 
 def _process_cxxopts(opts, *, build_settings):
     """Processes C++ compiler options.
@@ -318,19 +327,21 @@ def _process_cxxopts(opts, *, build_settings):
             settings that are parsed from `opts`.
 
     Returns:
-        A `tuple` containing four elements:
+        A `tuple` containing five elements:
 
         *   A `list` of unhandled C++ compiler options.
         *   A `list` of defines parsed.
         *   A `list` of C++ compiler optimization levels parsed.
         *   A value returned by `_create_search_paths` with the parsed search
             paths.
+        *   A `bool` indicting if the target has debug info enabled.
     """
     defines = []
     optimizations = []
     quote_includes = []
     includes = []
     system_includes = []
+    has_debug_info = {}
 
     def process(opt, previous_opt):
         if previous_opt == "-isystem":
@@ -354,6 +365,12 @@ def _process_cxxopts(opts, *, build_settings):
         if opt.startswith("-stdlib="):
             build_settings["CLANG_CXX_LIBRARY"] = opt[8:]
             return True
+        if opt == "-g":
+            # We use a `dict` instead of setting a single value because
+            # assigning to `has_debug_info` creates a new local variable instead
+            # of assigning to the existing variable
+            has_debug_info[True] = None
+            return True
         if opt == "-isystem":
             return True
         if opt == "-iquote":
@@ -375,6 +392,7 @@ def _process_cxxopts(opts, *, build_settings):
     )
 
     defines = uniq(defines)
+    has_debug_info = bool(has_debug_info)
 
     search_paths = create_opts_search_paths(
         quote_includes = uniq(quote_includes),
@@ -382,7 +400,7 @@ def _process_cxxopts(opts, *, build_settings):
         system_includes = uniq(system_includes),
     )
 
-    return unhandled_opts, defines, optimizations, search_paths
+    return unhandled_opts, defines, optimizations, search_paths, has_debug_info
 
 def _process_copts(*, conlyopts, cxxopts, build_settings):
     """Processes C and C++ compiler options.
@@ -400,18 +418,22 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         *   A `list` of unhandled C++ compiler options.
         *   A value returned by `_create_search_paths` with the parsed search
             paths.
+        *   A `bool` indicting if the target has debug info enabled for C.
+        *   A `bool` indicting if the target has debug info enabled for C++.
     """
     (
         conlyopts,
         conly_defines,
         conly_optimizations,
         conly_search_paths,
+        c_has_debug_info,
     ) = _process_conlyopts(conlyopts)
     (
         cxxopts,
         cxx_defines,
         cxx_optimizations,
         cxx_search_paths,
+        cxx_has_debug_info,
     ) = _process_cxxopts(
         cxxopts,
         build_settings = build_settings,
@@ -463,6 +485,8 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         cxx_optimizations + cxx_defines + cxxopts,
         conly_search_paths,
         cxx_search_paths,
+        c_has_debug_info,
+        cxx_has_debug_info,
     )
 
 def _process_swiftopts(
@@ -488,13 +512,14 @@ def _process_swiftopts(
             settings that are parsed from `opts`.
 
     Returns:
-        A `tuple` containing two elements:
+        A `tuple` containing three elements:
 
         *   A `list` of unhandled Swift compiler options.
         *   A value returned by `_create_search_paths` with the parsed search
             paths.
+        *   A `bool` indicting if the target has debug info enabled.
     """
-    swiftcopts = _process_full_swiftcopts(
+    swiftcopts, raw_has_debug_info = _process_full_swiftcopts(
         full_swiftcopts,
         compilation_mode = compilation_mode,
         objc_fragment = objc_fragment,
@@ -503,10 +528,13 @@ def _process_swiftopts(
         build_settings = build_settings,
     )
 
-    swift_search_paths = _process_user_swiftcopts(
+    swift_search_paths, user_has_debug_info = _process_user_swiftcopts(
         user_swiftcopts,
     )
-    return swiftcopts, swift_search_paths
+
+    has_debug_info = raw_has_debug_info or user_has_debug_info
+
+    return swiftcopts, swift_search_paths, has_debug_info
 
 def _process_full_swiftcopts(
         opts,
@@ -529,7 +557,10 @@ def _process_full_swiftcopts(
             settings that are parsed from `opts`.
 
     Returns:
-        A `list` of unhandled Swift compiler options.
+        A `tuple` containing two elements:
+
+        *   A `list` of unhandled Swift compiler options.
+        *   A `bool` indicting if the target has debug info enabled.
     """
 
     # Xcode needs a value for SWIFT_VERSION, so we set it to "5" by default.
@@ -541,6 +572,7 @@ def _process_full_swiftcopts(
     build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
 
     defines = []
+    has_debug_info = {}
 
     def process(opt, previous_opt):
         if previous_opt == "-emit-objc-header-path":
@@ -556,6 +588,12 @@ under {}""".format(opt, package_bin_dir))
             build_settings["SWIFT_OPTIMIZATION_LEVEL"] = opt
             return True
         if opt.startswith("-I"):
+            return True
+        if opt == "-g":
+            # We use a `dict` instead of setting a single value because
+            # assigning to `has_debug_info` creates a new local variable instead
+            # of assigning to the existing variable
+            has_debug_info[True] = None
             return True
         if opt == "-enable-testing":
             build_settings["ENABLE_TESTABILITY"] = True
@@ -594,6 +632,8 @@ under {}""".format(opt, package_bin_dir))
         extra_processing = process,
     )
 
+    has_debug_info = bool(has_debug_info)
+
     # If we have swift flags, then we need to add in the PCM flags
     if opts:
         unhandled_opts = collections.before_each(
@@ -612,7 +652,7 @@ under {}""".format(opt, package_bin_dir))
         " ".join(uniq(defines)),
     )
 
-    return unhandled_opts
+    return unhandled_opts, has_debug_info
 
 def _process_user_swiftcopts(opts):
     """Processes user-provided Swift compiler options.
@@ -624,12 +664,16 @@ def _process_user_swiftcopts(opts):
     `_process_full_swiftcopts`.
 
     Returns:
-        A `list` of search paths.
+        A `tuple` containing two elements:
+
+        *   A `list` of search paths.
+        *   A `bool` indicting if the target has debug info enabled.
     """
 
     quote_includes = []
     includes = []
     system_includes = []
+    has_debug_info = {}
 
     def process(opt, previous_opt):
         # TODO: handle the format "-Xcc -iquote -Xcc path"
@@ -643,7 +687,13 @@ def _process_user_swiftcopts(opts):
             includes.append(opt[2:])
             return True
 
-        if opt == "-Xcc":
+        if opt == "-Xcc" or previous_opt == "-Xcc":
+            return True
+        if opt == "-g":
+            # We use a `dict` instead of setting a single value because
+            # assigning to `has_debug_info` creates a new local variable instead
+            # of assigning to the existing variable
+            has_debug_info[True] = None
             return True
         return False
 
@@ -653,13 +703,15 @@ def _process_user_swiftcopts(opts):
         extra_processing = process,
     )
 
+    has_debug_info = bool(has_debug_info)
+
     search_paths = create_opts_search_paths(
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
         system_includes = uniq(system_includes),
     )
 
-    return search_paths
+    return search_paths, has_debug_info
 
 def _swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
     base_pcm_flags = _swift_command_line_objc_copts(
@@ -725,6 +777,7 @@ def _process_compiler_opts(
         cxxopts,
         full_swiftcopts,
         compilation_mode,
+        cpp_fragment,
         objc_fragment,
         cc_info,
         user_swiftcopts,
@@ -738,6 +791,7 @@ def _process_compiler_opts(
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
         compilation_mode: The current compilation mode.
+        cpp_fragment: The `cpp` configuration fragment.
         objc_fragment: The `objc` configuration fragment.
         cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
@@ -752,12 +806,21 @@ def _process_compiler_opts(
         *   `quotes_includes`: A `list` of quote include paths parsed.
         *   `includes`: A `list` of include paths parsed.
     """
-    conlyopts, cxxopts, conly_search_paths, cxx_search_paths = _process_copts(
+    has_copts = conlyopts or cxxopts
+
+    (
+        conlyopts,
+        cxxopts,
+        conly_search_paths,
+        cxx_search_paths,
+        c_has_debug_info,
+        cxx_has_debug_info,
+    ) = _process_copts(
         conlyopts = conlyopts,
         cxxopts = cxxopts,
         build_settings = build_settings,
     )
-    swiftcopts, swift_search_paths = _process_swiftopts(
+    swiftcopts, swift_search_paths, swift_has_debug_info = _process_swiftopts(
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
         compilation_mode = compilation_mode,
@@ -766,6 +829,31 @@ def _process_compiler_opts(
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
+
+    has_debug_info = {}
+    if has_copts:
+        has_debug_info[c_has_debug_info] = None
+        has_debug_info[cxx_has_debug_info] = None
+    if full_swiftcopts:
+        has_debug_info[swift_has_debug_info] = None
+
+    has_debug_infos = has_debug_info.keys()
+
+    if len(has_debug_infos) == 1:
+        # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf"-with-dsym",
+        # as that's Xcode's default
+        if not has_debug_infos[0]:
+            build_settings["DEBUG_INFORMATION_FORMAT"] = ""
+        elif not cpp_fragment.apple_generate_dsym:
+            build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf"
+    else:
+        build_settings["DEBUG_INFORMATION_FORMAT"] = ""
+        if c_has_debug_info:
+            conlyopts = ["-g"] + conlyopts
+        if cxx_has_debug_info:
+            cxxopts = ["-g"] + cxxopts
+        if swift_has_debug_info:
+            swiftcopts = ["-g"] + swiftcopts
 
     # TODO: Split out `WARNING_CFLAGS`? (Must maintain order, and only ones that apply to both c and cxx)
 
@@ -828,6 +916,7 @@ def _process_target_compiler_opts(
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
         compilation_mode = ctx.var["COMPILATION_MODE"],
+        cpp_fragment = ctx.fragments.cpp,
         objc_fragment = ctx.fragments.objc,
         cc_info = target[CcInfo] if CcInfo in target else None,
         package_bin_dir = package_bin_dir,

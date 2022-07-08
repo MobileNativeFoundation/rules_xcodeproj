@@ -85,9 +85,6 @@ def process_library_target(
     # device, as Xcode only uses this value for device builds
     build_settings["ENABLE_BITCODE"] = str(cpp.apple_bitcode_mode) != "none"
 
-    debug_format = "dwarf-with-dsym" if cpp.apple_generate_dsym else "dwarf"
-    build_settings["DEBUG_INFORMATION_FORMAT"] = debug_format
-
     set_if_true(
         build_settings,
         "CLANG_ENABLE_MODULES",
