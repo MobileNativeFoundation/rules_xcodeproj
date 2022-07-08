@@ -450,7 +450,7 @@ private extension Dictionary where Value == BuildSetting {
     mutating func prepend(onKey key: Key, _ content: String) throws {
         let buildSetting = self[key, default: .string("")]
         switch buildSetting {
-        case .string(let existing):
+        case let .string(existing):
             let new: String
             if content.isEmpty {
                 new = existing
@@ -473,7 +473,7 @@ Build setting for \(key) is not a string: \(buildSetting)
     mutating func prepend(onKey key: Key, _ content: [String]) throws {
         let buildSetting = self[key, default: .array([])]
         switch buildSetting {
-        case .array(let existing):
+        case let .array(existing):
             let new = content + existing
             guard !new.isEmpty else {
                 return
@@ -517,7 +517,7 @@ extension Target {
             ]
 
         // App Extensions
-        case (.macOS, let type) where type.isAppExtension:
+        case let (.macOS, type) where type.isAppExtension:
             return [
                 "$(inherited)",
                 "@executable_path/../Frameworks",
@@ -532,7 +532,7 @@ extension Target {
                 "@executable_path/../../Frameworks",
                 "@executable_path/../../../../Frameworks",
             ]
-        case (_, let type) where type.isAppExtension:
+        case let (_, type) where type.isAppExtension:
             return [
                 "$(inherited)",
                 "@executable_path/Frameworks",

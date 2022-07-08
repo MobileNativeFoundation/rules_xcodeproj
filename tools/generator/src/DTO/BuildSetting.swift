@@ -15,11 +15,11 @@ extension BuildSetting {
     /// becomes an array of `String`s).
     var asAny: Any {
         switch self {
-        case .string(let string):
+        case let .string(string):
             return string
-        case .bool(let bool):
+        case let .bool(bool):
             return bool ? "YES" : "NO"
-        case .array(let array):
+        case let .array(array):
             guard array.count > 1 else {
                 // Xcode formats arrays of 0 or 1 strings as a string
                 return array.first ?? ""
