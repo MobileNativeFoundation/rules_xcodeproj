@@ -36,28 +36,28 @@ extension Generator {
             return nil
         }
 
+        let isLaunchable = pbxTarget.isLaunchable
+        let isTestable = pbxTarget.isTestable
+        let productType = pbxTarget.productType ?? .none
+
         let buildableReference = try pbxTarget.createBuildableReference(
             referencedContainer: referencedContainer
         )
         let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
-
-        let buildableProductRunnable: XCScheme.BuildableProductRunnable?
-        let macroExpansion: XCScheme.BuildableReference?
-        let testables: [XCScheme.TestableReference]
-        if pbxTarget.isTestable {
-            buildableProductRunnable = nil
-            macroExpansion = buildableReference
-            testables = [.init(
-                skipped: false,
-                buildableReference: buildableReference
-            )]
-            // swiftlint:disable:previous trailing_comma
-        } else {
-            buildableProductRunnable = pbxTarget.isLaunchable ?
-                .init(buildableReference: buildableReference) : nil
-            macroExpansion = nil
-            testables = []
-        }
+        let runnables = createRunnables(
+            buildableReference: buildableReference,
+            isLaunchable: isLaunchable,
+            isTestable: isTestable
+        )
+        let macroExpansions = createMacroExpansions(
+            buildableReference: buildableReference,
+            isTestable: isTestable
+        )
+        let selectedIdentifiers = createSelectedIdentifiers(
+            productType: productType
+        )
+        let launchAutomaticallySubstyle = productType
+            .launchAutomaticallySubstyle
 
         let buildAction = XCScheme.BuildAction(
             buildActionEntries: [.init(
@@ -79,22 +79,28 @@ extension Generator {
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
-        let testAction = XCScheme.TestAction(
+        let launchAction = XCScheme.LaunchAction(
+            runnable: runnables.launch,
             buildConfiguration: buildConfigurationName,
-            macroExpansion: nil,
-            testables: testables,
+            macroExpansion: macroExpansions.launch,
+            selectedDebuggerIdentifier: selectedIdentifiers.debugger,
+            selectedLauncherIdentifier: selectedIdentifiers.launcher,
+            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
+                productType.bazelLaunchEnvironmentVariables : nil,
+            launchAutomaticallySubstyle: launchAutomaticallySubstyle,
             customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
         )
-        let launchAction = XCScheme.LaunchAction(
-            runnable: buildableProductRunnable,
+        let testAction = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
-            macroExpansion: macroExpansion,
-            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
-                pbxTarget.productType?.bazelLaunchEnvironmentVariables : nil,
+            macroExpansion: macroExpansions.test,
+            testables: createTestables(
+                buildableReference: buildableReference,
+                isTestable: isTestable
+            ),
             customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
         )
         let profileAction = XCScheme.ProfileAction(
-            buildableProductRunnable: buildableProductRunnable,
+            buildableProductRunnable: runnables.profile,
             buildConfiguration: buildConfigurationName
         )
         let analyzeAction = XCScheme.AnalyzeAction(
@@ -115,8 +121,70 @@ extension Generator {
             profileAction: profileAction,
             analyzeAction: analyzeAction,
             archiveAction: archiveAction,
-            wasCreatedForAppExtension: nil
+            wasCreatedForAppExtension: productType.isExtension ? true : nil
         )
+    }
+
+    private static func createRunnables(
+        buildableReference: XCScheme.BuildableReference,
+        isLaunchable: Bool,
+        isTestable: Bool
+    ) -> (
+        launch: XCScheme.Runnable?,
+        profile: XCScheme.BuildableProductRunnable?
+    ) {
+        guard !isTestable else {
+            return (launch: nil, profile: nil)
+        }
+
+        let runnable: XCScheme.BuildableProductRunnable? = isLaunchable ?
+            .init(buildableReference: buildableReference) : nil
+
+        return (launch: runnable, profile: runnable)
+    }
+
+    private static func createMacroExpansions(
+        buildableReference: XCScheme.BuildableReference,
+        isTestable: Bool
+    ) -> (
+        launch: XCScheme.BuildableReference?,
+        test: XCScheme.BuildableReference?
+    ) {
+        if isTestable {
+            return (launch: buildableReference, test: nil)
+        } else {
+            return (launch: nil, test: nil)
+        }
+    }
+
+    private static func createSelectedIdentifiers(
+        productType: PBXProductType
+    ) -> (launcher: String, debugger: String) {
+        if productType.canUseDebugLauncher {
+            return (
+                launcher: XCScheme.defaultLauncher,
+                debugger: XCScheme.defaultDebugger
+            )
+        } else {
+            return (
+                launcher: "Xcode.IDEFoundation.Launcher.PosixSpawn",
+                debugger: ""
+            )
+        }
+    }
+
+    private static func createTestables(
+        buildableReference: XCScheme.BuildableReference,
+        isTestable: Bool
+    ) -> [XCScheme.TestableReference] {
+        guard isTestable else {
+            return []
+        }
+
+        return [.init(
+            skipped: false,
+            buildableReference: buildableReference
+        )]
     }
 
     private static func createBuildPreActions(
