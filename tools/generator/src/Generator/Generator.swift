@@ -138,7 +138,6 @@ class Generator {
         let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)
         try environment.writeXcodeProj(
             xcodeProj,
-            buildMode,
             files,
             internalDirectoryName,
             bazelIntegrationDirectory,
