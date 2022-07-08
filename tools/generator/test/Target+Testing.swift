@@ -21,6 +21,7 @@ extension Target {
         linkerInputs: LinkerInputs = .init(),
         resourceBundleDependencies: Set<TargetID> = [],
         watchApplication: TargetID? = nil,
+        extensions: Set<TargetID> = [],
         dependencies: Set<TargetID> = [],
         outputs : Outputs = .init()
     ) -> Self {
@@ -41,6 +42,7 @@ extension Target {
             linkerInputs: linkerInputs,
             resourceBundleDependencies: resourceBundleDependencies,
             watchApplication: watchApplication,
+            extensions: extensions,
             dependencies: dependencies,
             outputs: outputs
         )

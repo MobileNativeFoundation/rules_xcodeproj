@@ -261,6 +261,7 @@ struct ConsolidatedTarget: Equatable {
     let linkerInputs: ConsolidatedTargetLinkerInputs
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
+    let extensions: Set<TargetID>
     let outputs: ConsolidatedTargetOutputs
 
     /// The `Set` of `FilePath`s that each target references above the baseline.
@@ -348,6 +349,7 @@ extension ConsolidatedTarget {
         self.resourceBundleDependencies = resourceBundleDependencies
 
         watchApplication = aTarget.watchApplication
+        extensions = aTarget.extensions
 
         allDependencies = aTarget.allDependencies
         outputs = ConsolidatedTargetOutputs(

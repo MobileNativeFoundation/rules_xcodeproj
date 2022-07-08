@@ -182,6 +182,15 @@ def process_top_level_target(
         watch_app_target[XcodeProjInfo].target.id if watch_app_target else None
     )
 
+    extension_targets = getattr(ctx.rule.attr, "extensions", [])
+    extension_target = getattr(ctx.rule.attr, "extension", None)
+    if extension_target:
+        extension_targets.append(extension_target)
+    extensions = [
+        extension[XcodeProjInfo].target.id
+        for extension in extension_targets
+    ]
+
     additional_files = []
     build_settings = {}
     is_bundle = bundle_info != None
@@ -394,6 +403,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             linker_inputs = linker_inputs,
             info_plist = info_plist,
             watch_application = watch_application,
+            extensions = extensions,
             dependencies = dependencies,
             outputs = outputs,
         ),
