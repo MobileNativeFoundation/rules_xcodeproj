@@ -84,6 +84,11 @@ XcodeProjInfo = provider(
 A `list` of target ids (see the `target` `struct`) that this target directly
 depends on.
 """,
+        "extension_infoplists": """\
+A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is
+the target id of the application extension target. The 'infoplist' field is a
+`File` for the Info.plist for the target.
+""",
         "inputs": """\
 A value returned from `input_files.collect`, that contains the input files
 for this target. It also includes the two extra fields that collect all of the
@@ -94,8 +99,9 @@ project, but are not associated with any targets.
 A value returned from `linker_input_files.collect`.
 """,
         "potential_target_merges": """\
-A `depset` of structs with 'src' and 'dest' fields. The 'src' field is the id of
-the target that can be merged into the target with the id of the 'dest' field.
+A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
+of the target that can be merged into the target with the id of the 'dest'
+field.
 """,
         "non_mergable_targets": """\
 A `depset` of all static library files that are linked into top-level targets

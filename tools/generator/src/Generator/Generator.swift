@@ -41,6 +41,7 @@ class Generator {
         buildMode: BuildMode,
         project: Project,
         xccurrentversions: [XCCurrentVersion],
+        extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
         projectRootDirectory: Path,
         internalDirectoryName: String,
         bazelIntegrationDirectory: Path,

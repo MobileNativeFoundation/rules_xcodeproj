@@ -149,6 +149,35 @@ def _write_xccurrentversions(*, ctx, xccurrentversion_files):
 
     return output
 
+def _write_extensionpointidentifiers(*, ctx, extension_infoplists):
+    targetids_file = ctx.actions.declare_file(
+        "{}_extensionpointidentifiers_targetids".format(ctx.attr.name),
+    )
+    ctx.actions.write(
+        targetids_file,
+        "".join([s.id + "\n" for s in extension_infoplists]),
+    )
+
+    infoplist_files = [s.infoplist for s in extension_infoplists]
+
+    files_list = ctx.actions.args()
+    files_list.use_param_file("%s", use_always = True)
+    files_list.set_param_file_format("multiline")
+    files_list.add_all(infoplist_files)
+
+    output = ctx.actions.declare_file(
+        "{}_extensionpointidentifiers".format(ctx.attr.name),
+    )
+    ctx.actions.run(
+        arguments = [targetids_file.path, files_list, output.path],
+        executable = ctx.executable._extensionpointidentifiers_parser,
+        inputs = [targetids_file] + infoplist_files,
+        outputs = [output],
+        mnemonic = "CalculateXcodeProjExtensionPointIdentifiers",
+    )
+
+    return output
+
 def _write_xcodeproj(
         *,
         ctx,
@@ -156,6 +185,7 @@ def _write_xcodeproj(
         spec_file,
         bazel_integration_files,
         xccurrentversions_file,
+        extensionpointidentifiers_file,
         build_mode):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
@@ -171,6 +201,7 @@ def _write_xcodeproj(
     args = ctx.actions.args()
     args.add(spec_file.path)
     args.add(xccurrentversions_file.path)
+    args.add(extensionpointidentifiers_file.path)
     args.add(bazel_integration_files[0].dirname)
     args.add(xcodeproj.path)
     args.add(install_path)
@@ -180,7 +211,11 @@ def _write_xcodeproj(
         executable = ctx.executable._generator,
         mnemonic = "GenerateXcodeProj",
         arguments = [args],
-        inputs = [spec_file, xccurrentversions_file] + bazel_integration_files,
+        inputs = [
+            spec_file,
+            xccurrentversions_file,
+            extensionpointidentifiers_file,
+        ] + bazel_integration_files,
         outputs = [xcodeproj],
     )
 
@@ -287,6 +322,13 @@ def _xcodeproj_impl(ctx):
         transitive_infos = [(None, info) for info in infos],
     )
 
+    extension_infoplists = depset(
+        transitive = [
+            info.extension_infoplists
+            for info in infos
+        ],
+    )
+
     non_target_swift_info_modules = depset(
         transitive = [
             info.non_target_swift_info_modules
@@ -350,11 +392,16 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         xccurrentversion_files = inputs.xccurrentversions.to_list(),
     )
+    extensionpointidentifiers_file = _write_extensionpointidentifiers(
+        ctx = ctx,
+        extension_infoplists = extension_infoplists.to_list(),
+    )
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
         project_name = project_name,
         spec_file = spec_file,
         xccurrentversions_file = xccurrentversions_file,
+        extensionpointidentifiers_file = extensionpointidentifiers_file,
         bazel_integration_files = bazel_integration_files,
         build_mode = ctx.attr.build_mode,
     )
@@ -441,6 +488,11 @@ A JSON string representing a list of Xcode schemes to create.\
         "_create_lldbinit_script": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/bazel_integration_files:create_lldbinit.sh"),
+        ),
+        "_extensionpointidentifiers_parser": attr.label(
+            cfg = "exec",
+            default = Label("//tools/extensionpointidentifiers_parser"),
+            executable = True,
         ),
         "_external_file_marker": attr.label(
             allow_single_file = True,

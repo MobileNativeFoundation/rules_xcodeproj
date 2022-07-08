@@ -25,6 +25,9 @@ final class GeneratorTests: XCTestCase {
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
             .init(container: "Xe/P.xcdatamodeld", version: "M1.xcdatamodel"),
         ]
+        let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier] = [
+            "WKE": .watchKit,
+        ]
 
         let pbxProj = Fixtures.pbxProj()
         let pbxProject = pbxProj.rootObject!
@@ -591,6 +594,7 @@ final class GeneratorTests: XCTestCase {
             buildMode: buildMode,
             project: project,
             xccurrentversions: xccurrentversions,
+            extensionPointIdentifiers: extensionPointIdentifiers,
             projectRootDirectory: projectRootDirectory,
             internalDirectoryName: internalDirectoryName,
             bazelIntegrationDirectory: bazelIntegrationDirectory,

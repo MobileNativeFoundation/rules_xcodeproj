@@ -52,6 +52,7 @@ filegroup(
         "//third_party/com_github_pointfreeco_swift_custom_dump:all_files",
         "//third_party/com_github_tuist_xcodeproj:all_files",
         "//tools:all_files",
+        "//tools/extensionpointidentifiers_parser:all_files",
         "//tools/generator:all_files",
         "//tools/generator/test:all_files",
         "//tools/xccurrentversions_parser:all_files",
