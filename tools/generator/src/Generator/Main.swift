@@ -14,11 +14,15 @@ extension Generator {
             let xccurrentversions = try readXCCurrentVersions(
                 path: arguments.xccurrentversionsPath
             )
+            let extensionPointIdentifiers = try readExtensionPointIdentifiers(
+                path: arguments.extensionPointIdentifiersPath
+            )
 
             try Generator(logger: logger).generate(
                 buildMode: arguments.buildMode,
                 project: project,
                 xccurrentversions: xccurrentversions,
+                extensionPointIdentifiers: extensionPointIdentifiers,
                 projectRootDirectory: arguments.projectRootDirectory,
                 internalDirectoryName: "rules_xcodeproj",
                 bazelIntegrationDirectory: arguments.bazelIntegrationDirectory,
@@ -34,6 +38,7 @@ extension Generator {
     struct Arguments {
         let specPath: Path
         let xccurrentversionsPath: Path
+        let extensionPointIdentifiersPath: Path
         let bazelIntegrationDirectory: Path
         let outputPath: Path
         let workspaceOutputPath: Path
@@ -42,16 +47,16 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard CommandLine.arguments.count == 7 else {
+        guard CommandLine.arguments.count == 8 else {
             throw UsageError(message: """
 Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
-<path/to/xccurrentversions.json> <path/to/bazel/integration/dir> \
-<path/to/output/project.xcodeproj> <workspace/relative/output/path> \
-(xcode|bazel)
+<path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
+<path/to/bazel/integration/dir> <path/to/output/project.xcodeproj> \
+<workspace/relative/output/path> (xcode|bazel)
 """)
         }
 
-        let workspaceOutput = CommandLine.arguments[5]
+        let workspaceOutput = CommandLine.arguments[6]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
@@ -62,7 +67,7 @@ Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
             .joined(separator: "/")
 
         guard
-            let buildMode = BuildMode(rawValue: CommandLine.arguments[6])
+            let buildMode = BuildMode(rawValue: CommandLine.arguments[7])
         else {
             throw UsageError(message: """
 ERROR: build_mode wasn't one of the supported values: xcode, bazel
@@ -72,8 +77,9 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         return Arguments(
             specPath: Path(CommandLine.arguments[1]),
             xccurrentversionsPath: Path(CommandLine.arguments[2]),
-            bazelIntegrationDirectory: Path(CommandLine.arguments[3]),
-            outputPath: Path(CommandLine.arguments[4]),
+            extensionPointIdentifiersPath: Path(CommandLine.arguments[3]),
+            bazelIntegrationDirectory: Path(CommandLine.arguments[4]),
+            outputPath: Path(CommandLine.arguments[5]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode
@@ -99,6 +105,23 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         do {
             return try decoder.decode(
                 [XCCurrentVersion].self,
+                from: try path.read()
+            )
+        } catch let error as DecodingError {
+            // Return a more detailed error message
+            throw PreconditionError(message: error.message)
+        }
+    }
+
+    static func readExtensionPointIdentifiers(
+        path: Path
+    ) throws -> [TargetID: ExtensionPointIdentifier] {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        do {
+            return try decoder.decode(
+                [TargetID: ExtensionPointIdentifier].self,
                 from: try path.read()
             )
         } catch let error as DecodingError {
