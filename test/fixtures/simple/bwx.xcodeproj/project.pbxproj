@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FE3383EFF1D854D9D4846F60 /* Simple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C44952DD5F5456C26985341 /* Simple.swift */; };
+		6B580635F136B2B4F21AECA8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CAF173167678D4AA03292A /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		020B724402D287748A1EDA31 /* libSwiftLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libSwiftLib.a; path = "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/simple/libSwiftLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C44952DD5F5456C26985341 /* Simple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simple.swift; sourceTree = "<group>"; };
 		805698F32A89163552CCEDA0 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		8D5740841C20DDAA295ACE32 /* SwiftBin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftBin; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6CAF173167678D4AA03292A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CAE9B6B26F2CB596376EB704 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -29,7 +29,7 @@
 		462C3519CA354BE1B04D4855 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				020B724402D287748A1EDA31 /* libSwiftLib.a */,
+				8D5740841C20DDAA295ACE32 /* SwiftBin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -46,7 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				805698F32A89163552CCEDA0 /* BUILD */,
-				7C44952DD5F5456C26985341 /* Simple.swift */,
+				B6CAF173167678D4AA03292A /* main.swift */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -87,19 +87,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		76E061AB0CA7FA140667E530 /* SwiftLib */ = {
+		5365B2022C99A98F03DF07CA /* SwiftBin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7432B2E592DE3E3F9D8D947 /* Build configuration list for PBXNativeTarget "SwiftLib" */;
+			buildConfigurationList = 6E924F0CBE1CE62C4DE78EBB /* Build configuration list for PBXNativeTarget "SwiftBin" */;
 			buildPhases = (
-				2E02756FA53287FEE4BA2957 /* Sources */,
+				068C8466216A7B314C8730B1 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SwiftLib;
-			productName = SwiftLib;
-			productType = "com.apple.product-type.library.static";
+			name = SwiftBin;
+			productName = SwiftBin;
+			productReference = 8D5740841C20DDAA295ACE32 /* SwiftBin */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -111,7 +112,7 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					76E061AB0CA7FA140667E530 = {
+					5365B2022C99A98F03DF07CA = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -130,50 +131,50 @@
 			projectDirPath = ../../..;
 			projectRoot = "";
 			targets = (
-				76E061AB0CA7FA140667E530 /* SwiftLib */,
+				5365B2022C99A98F03DF07CA /* SwiftBin */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2E02756FA53287FEE4BA2957 /* Sources */ = {
+		068C8466216A7B314C8730B1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE3383EFF1D854D9D4846F60 /* Simple.swift in Sources */,
+				6B580635F136B2B4F21AECA8 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		0777873EF831E3593AC9BEB8 /* Debug */ = {
+		5EDDCF1541CCB315EB29DCDE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/simple";
-				BAZEL_TARGET_ID = "//examples/simple:SwiftLib darwin_x86_64-dbg-ST-ccd9595da841";
+				BAZEL_TARGET_ID = "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-ccd9595da841";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static";
-				PRODUCT_MODULE_NAME = examples_simple_SwiftLib;
-				PRODUCT_NAME = SwiftLib;
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
+					"-lc++",
+				);
+				PRODUCT_MODULE_NAME = _SwiftBin_Stub;
+				PRODUCT_NAME = SwiftBin;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
-				TARGET_NAME = SwiftLib;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin",
-				);
+				TARGET_NAME = SwiftBin;
 			};
 			name = Debug;
 		};
@@ -215,18 +216,18 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */ = {
+		6E924F0CBE1CE62C4DE78EBB /* Build configuration list for PBXNativeTarget "SwiftBin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C221D886D6D02D33114D3473 /* Debug */,
+				5EDDCF1541CCB315EB29DCDE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		B7432B2E592DE3E3F9D8D947 /* Build configuration list for PBXNativeTarget "SwiftLib" */ = {
+		8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0777873EF831E3593AC9BEB8 /* Debug */,
+				C221D886D6D02D33114D3473 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
