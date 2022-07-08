@@ -100,7 +100,7 @@ final class GeneratorTests: XCTestCase {
             sharedData: sharedData
         )
 
-        var expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
 
         // MARK: createProject()
 
