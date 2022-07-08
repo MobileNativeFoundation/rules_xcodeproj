@@ -1,7 +1,7 @@
-import Utils
-import TestingUtils
-import XCTest
 @testable import Example
+import TestingUtils
+import Utils
+import XCTest
 
 class ExampleTests: XCTestCase {
 
