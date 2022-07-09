@@ -466,4 +466,3 @@ final class SetTargetConfigurationsTests: XCTestCase {
         return selectedBuildSettings
     }
 }
-

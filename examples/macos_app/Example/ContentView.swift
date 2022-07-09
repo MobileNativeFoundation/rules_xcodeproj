@@ -1,7 +1,6 @@
 import ExampleFramework
 import SwiftUI
 
-
 struct ContentView: View {
     var body: some View {
         Text(Bar().baz())
