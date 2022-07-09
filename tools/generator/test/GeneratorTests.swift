@@ -17,6 +17,7 @@ final class GeneratorTests: XCTestCase {
             buildSettings: [:],
             targets: Fixtures.targets,
             targetMerges: [:],
+            targetHosts: [:],
             extraFiles: [],
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: []
