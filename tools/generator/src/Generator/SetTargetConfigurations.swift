@@ -585,11 +585,11 @@ private extension Inputs {
 private extension Outputs.Swift {
     func paths(filePathResolver: FilePathResolver) throws -> [String] {
         return try [
-                module,
-                doc,
-                sourceInfo,
-                interface,
-            ]
+            module,
+            doc,
+            sourceInfo,
+            interface,
+        ]
             .compactMap { $0 }
             .map { filePath in
                 return try filePathResolver.resolve(
