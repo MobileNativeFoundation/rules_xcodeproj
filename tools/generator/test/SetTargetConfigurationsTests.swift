@@ -401,7 +401,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
                 }
 
                 let target = Target.mock(
-                    platform:  .init(
+                    platform: .init(
                         name: platformName,
                         os: os,
                         arch: "arm64",
