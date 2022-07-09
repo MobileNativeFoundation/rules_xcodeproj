@@ -85,13 +85,18 @@ A `list` of target ids (see the `target` `struct`) that this target directly
 depends on.
 """,
         "extension_infoplists": """\
-A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is
-the target id of the application extension target. The 'infoplist' field is a
-`File` for the Info.plist for the target.
+A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the
+target id of the application extension target. The 'infoplist' field is a `File`
+for the Info.plist for the target.
+""",
+        "hosted_targets": """\
+A `depset` of `struct`s with 'host' and 'hosted' fields. The 'host' field is the
+target id of the hosting target. The 'hosted' field is the target id of the
+hosted target.
 """,
         "inputs": """\
-A value returned from `input_files.collect`, that contains the input files
-for this target. It also includes the two extra fields that collect all of the
+A value returned from `input_files.collect`, that contains the input files for
+this target. It also includes the two extra fields that collect all of the
 generated `Files` and all of the `Files` that should be added to the Xcode
 project, but are not associated with any targets.
 """,

@@ -65,6 +65,16 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
         flattened_key_values.to_list(target_merges),
     )
 
+    hosted_targets = depset(
+        transitive = [info.hosted_targets for info in infos],
+    )
+    target_hosts = {}
+    for s in hosted_targets.to_list():
+        target_hosts.setdefault(s.hosted, []).append(s.host)
+    target_hosts_json = json.encode(
+        flattened_key_values.to_list(target_hosts),
+    )
+
     extra_files = [
         file_path_to_dto(file)
         for file in extra_files.to_list()
@@ -96,20 +106,22 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 "label":"{label}",\
 "name":"{name}",\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
+"target_hosts":{target_hosts},\
 "target_merges":{target_merges},\
 "targets":{targets}\
 }}
 """.format(
         bazel_path = ctx.attr.bazel_path,
+        bazel_workspace_name = ctx.workspace_name,
         configuration = configuration,
         custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(extra_files),
         label = ctx.label,
-        target_merges = target_merges_json,
         name = project_name,
-        bazel_workspace_name = ctx.workspace_name,
-        targets = targets_json,
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
+        target_hosts = target_hosts_json,
+        target_merges = target_merges_json,
+        targets = targets_json,
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))

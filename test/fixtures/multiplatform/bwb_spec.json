@@ -132,6 +132,24 @@
     "label": "//test/fixtures/multiplatform:xcodeproj_bwb",
     "name": "bwb",
     "scheme_autogeneration_mode": "auto",
+    "target_hosts": [
+        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
+        [
+            "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf"
+        ],
+        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
+        [
+            "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db"
+        ],
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
+        [
+            "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc"
+        ],
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
+        [
+            "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a"
+        ]
+    ],
     "target_merges": [
         "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         [

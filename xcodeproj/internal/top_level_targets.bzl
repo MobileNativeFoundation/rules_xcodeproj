@@ -178,17 +178,32 @@ def process_top_level_target(
     avoid_deps = [test_host_target] if test_host_target else []
 
     watch_app_target = getattr(ctx.rule.attr, "watch_application", None)
+    watch_app_target_info = (
+        watch_app_target[XcodeProjInfo] if watch_app_target else None
+    )
     watch_application = (
-        watch_app_target[XcodeProjInfo].target.id if watch_app_target else None
+        watch_app_target_info.target.id if watch_app_target_info else None
     )
 
     extension_targets = getattr(ctx.rule.attr, "extensions", [])
     extension_target = getattr(ctx.rule.attr, "extension", None)
     if extension_target:
         extension_targets.append(extension_target)
-    extensions = [
-        extension[XcodeProjInfo].target.id
-        for extension in extension_targets
+    extension_target_infos = [
+        extension_target[XcodeProjInfo]
+        for extension_target in extension_targets
+    ]
+    extensions = [info.target.id for info in extension_target_infos]
+
+    hosted_target_infos = extension_target_infos
+    if watch_app_target_info:
+        hosted_target_infos.append(watch_app_target_info)
+    hosted_targets = [
+        struct(
+            host = id,
+            hosted = info.target.id,
+        )
+        for info in hosted_target_infos
     ]
 
     additional_files = []
@@ -388,6 +403,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         automatic_target_info = automatic_target_info,
         dependencies = dependencies,
         extension_infoplists = extension_infoplists,
+        hosted_targets = hosted_targets,
         inputs = inputs,
         linker_inputs = linker_inputs,
         non_mergable_targets = non_mergable_targets,

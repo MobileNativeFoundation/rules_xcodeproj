@@ -53,6 +53,7 @@ def _target_info_fields(
         *,
         dependencies,
         extension_infoplists,
+        hosted_targets,
         inputs,
         linker_inputs,
         non_mergable_targets,
@@ -74,6 +75,7 @@ def _target_info_fields(
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
         extension_infoplists: Maps to the `XcodeProjInfo.extension_infoplists`
             field.
+        hosted_targets: Maps to the `XcodeProjInfo.hosted_targets` field.
         inputs: Maps to the `XcodeProjInfo.inputs` field.
         linker_inputs: Maps to the `XcodeProjInfo.linker_inputs` field.
         non_mergable_targets: Maps to the `XcodeProjInfo.non_mergable_targets`
@@ -99,6 +101,7 @@ def _target_info_fields(
         *   `dependencies`
         *   `extension_infoplists`
         *   `generated_inputs`
+        *   `hosted_targets`
         *   `inputs`
         *   `linker_inputs`
         *   `non_mergable_targets`
@@ -116,6 +119,7 @@ def _target_info_fields(
     return {
         "dependencies": dependencies,
         "extension_infoplists": extension_infoplists,
+        "hosted_targets": hosted_targets,
         "inputs": inputs,
         "linker_inputs": linker_inputs,
         "non_mergable_targets": non_mergable_targets,
@@ -154,6 +158,12 @@ def _skip_target(*, deps, transitive_infos):
         extension_infoplists = depset(
             transitive = [
                 info.extension_infoplists
+                for _, info in transitive_infos
+            ],
+        ),
+        hosted_targets = depset(
+            transitive = [
+                info.hosted_targets
                 for _, info in transitive_infos
             ],
         ),
@@ -318,6 +328,18 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
             processed_target.extension_infoplists,
             transitive = [
                 info.extension_infoplists
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
+            ],
+        ),
+        hosted_targets = depset(
+            processed_target.hosted_targets,
+            transitive = [
+                info.hosted_targets
                 for attr, info in transitive_infos
                 if (info.target_type in
                     processed_target.automatic_target_info.xcode_targets.get(

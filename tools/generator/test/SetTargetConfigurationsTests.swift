@@ -296,10 +296,10 @@ final class SetTargetConfigurationsTests: XCTestCase {
         ) = Self.createFixtures([
             ([.macOS, .iOS, .tvOS, .watchOS], .staticLibrary,
              [
-                key: "macOS-staticLibrary",
-                "\(key)[sdk=iphoneos*]": "iOS-staticLibrary",
-                "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
-                "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                 key: "macOS-staticLibrary",
+                 "\(key)[sdk=iphoneos*]": "iOS-staticLibrary",
+                 "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
+                 "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
              ]),
             ([.macOS, .iOS], .staticLibrary, [
                 key: "macOS-staticLibrary",
@@ -319,9 +319,9 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
             ([.iOS, .tvOS, .watchOS,], .staticLibrary,
              [
-                key: "iOS-staticLibrary",
-                "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
-                "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                 key: "iOS-staticLibrary",
+                 "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
+                 "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
              ]),
             ([.iOS, .tvOS], .staticLibrary, [
                 key: "iOS-staticLibrary",
@@ -401,7 +401,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
                 }
 
                 let target = Target.mock(
-                    platform:  .init(
+                    platform: .init(
                         name: platformName,
                         os: os,
                         arch: "arm64",
@@ -466,4 +466,3 @@ final class SetTargetConfigurationsTests: XCTestCase {
         return selectedBuildSettings
     }
 }
-

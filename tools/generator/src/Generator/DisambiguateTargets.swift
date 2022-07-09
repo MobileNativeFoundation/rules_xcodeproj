@@ -41,10 +41,9 @@ extension Generator {
         }
 
         // And then distinguish them
-        var uniqueValues = Dictionary<
-            ConsolidatedTarget.Key,
-            DisambiguatedTarget
-        >(minimumCapacity: targets.count)
+        var uniqueValues = [
+            ConsolidatedTarget.Key: DisambiguatedTarget,
+        ](minimumCapacity: targets.count)
         for (key, target) in targets {
             let name: String
             let componentKey: String
