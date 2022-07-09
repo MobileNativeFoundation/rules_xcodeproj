@@ -47,9 +47,7 @@ Target "\(key)" not found in `pbxTargets`
 
             let debugConfiguration = XCBuildConfiguration(
                 name: "Debug",
-                buildSettings: try buildSettings.asBuildSettingDictionary(
-                    buildMode: buildMode
-                )
+                buildSettings: try buildSettings.asBuildSettingDictionary()
             )
             pbxProj.add(object: debugConfiguration)
             let configurationList = XCConfigurationList(
@@ -611,14 +609,14 @@ private extension String {
     }
 }
 
-extension Array where Element: Hashable {
+public extension Array where Element: Hashable {
     /// Return the array with all duplicates removed.
     ///
     /// i.e. `[ 1, 2, 3, 1, 2 ].uniqued() == [ 1, 2, 3 ]`
     ///
     /// - note: Taken from stackoverflow.com/a/46354989/3141234, as
     ///         per @Alexander's comment.
-    public func uniqued() -> [Element] {
+    func uniqued() -> [Element] {
         var seen = Set<Element>()
         return filter { seen.insert($0).inserted }
     }
@@ -648,9 +646,7 @@ private let iPhonePlatforms: Set<String> = [
 
 private extension Dictionary
 where Key == BuildSettingConditional, Value == [String: BuildSetting] {
-    func asBuildSettingDictionary(
-        buildMode: BuildMode
-    ) throws -> [String: Any] {
+    func asBuildSettingDictionary() throws -> [String: Any] {
         var conditionalBuildSettings: [
             String: [BuildSettingConditional: BuildSetting]
         ] = [:]
@@ -700,7 +696,7 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
         var buildSettings: [String: BuildSetting] = [:]
         for (key, conditionalBuildSetting) in conditionalBuildSettings {
             let sortedConditionalBuildSettings = conditionalBuildSetting
-                .sorted(by: { $0.key < $1.key } )
+                .sorted(by: { $0.key < $1.key })
             var remainingConditionalBuildSettings =
                 sortedConditionalBuildSettings[
                     sortedConditionalBuildSettings.indices

@@ -1,5 +1,6 @@
-@testable import Example
 import XCTest
+
+@testable import Example
 
 class ExampleTests: XCTestCase {
     override func setUpWithError() throws {

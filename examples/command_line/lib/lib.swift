@@ -1,6 +1,6 @@
 @_implementationOnly import _Lib
-import Foundation
 import ExternalFramework
+import Foundation
 import ImportableLibrary
 
 @objcMembers

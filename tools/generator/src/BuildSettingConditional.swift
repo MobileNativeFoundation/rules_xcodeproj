@@ -25,7 +25,7 @@ extension BuildSettingConditional {
         return components.joined()
     }
 
-    private func archConditionalAllowed(on key: String) -> Bool {
+    private func archConditionalAllowed(on _: String) -> Bool {
         // TODO: If we ever add support for Universal targets we minimally need
         //   to exclude "ARCHS" here
         return false

@@ -114,7 +114,7 @@ extension Generator {
                 groups[filePath] = group
 
                 return (group, true)
-            } else if !isLeaf && (forceGroupCreation || !filePath.path.isFolderTypeFileSource) {
+            } else if !isLeaf, (forceGroupCreation || !filePath.path.isFolderTypeFileSource) {
                 if let group = groups[filePath] {
                     return (group, false)
                 }
@@ -130,7 +130,7 @@ extension Generator {
                 }
 
                 let lastKnownFileType: String?
-                if filePath.isFolder && !filePath.path.isFolderTypeFileSource {
+                if filePath.isFolder, !filePath.path.isFolderTypeFileSource {
                     lastKnownFileType = "folder"
                 } else {
                     lastKnownFileType = filePath.path.lastKnownFileType
@@ -333,7 +333,7 @@ extension Generator {
             allInputPaths.formUnion(
                 target.outputs.forcedBazelCompileFiles(buildMode: buildMode)
             )
-            if !target.inputs.containsSources &&
+            if !target.inputs.containsSources,
                 target.product.type.hasCompilePhase
             {
                 allInputPaths.insert(.internal(compileStubPath))
@@ -491,7 +491,7 @@ extension Generator {
             return path.replacingExtension("xcode.plist")
         }
 
-        if buildMode.usesBazelModeBuildScripts &&
+        if buildMode.usesBazelModeBuildScripts,
             targets.contains(where: { $1.product.type.isApplication })
         {
             files[.internal(appRsyncExcludeFileListPath)] =
@@ -613,7 +613,7 @@ private extension Inputs {
 
 private extension Outputs {
     func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
-        if buildMode.usesBazelModeBuildScripts && swift != nil {
+        if buildMode.usesBazelModeBuildScripts, swift != nil {
             return [.internal(Generator.bazelForcedSwiftCompilePath)]
         }
 

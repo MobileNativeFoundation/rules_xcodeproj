@@ -47,27 +47,27 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard CommandLine.arguments.count == 8 else {
+        guard arguments.count == 8 else {
             throw UsageError(message: """
-Usage: \(CommandLine.arguments[0]) <path/to/project.json> \
+Usage: \(arguments[0]) <path/to/project.json> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/bazel/integration/dir> <path/to/output/project.xcodeproj> \
 <workspace/relative/output/path> (xcode|bazel)
 """)
         }
 
-        let workspaceOutput = CommandLine.arguments[6]
+        let workspaceOutput = arguments[6]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
         // e.g. "examples/ios/iOS App.xcodeproj" -> "../.."
         // e.g. "project.xcodeproj" -> ""
-        let projectRoot = (0..<(workspaceOutputComponents.count-1))
+        let projectRoot = (0 ..< (workspaceOutputComponents.count - 1))
             .map { _ in ".." }
             .joined(separator: "/")
 
         guard
-            let buildMode = BuildMode(rawValue: CommandLine.arguments[7])
+            let buildMode = BuildMode(rawValue: arguments[7])
         else {
             throw UsageError(message: """
 ERROR: build_mode wasn't one of the supported values: xcode, bazel
@@ -75,11 +75,11 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         }
 
         return Arguments(
-            specPath: Path(CommandLine.arguments[1]),
-            xccurrentversionsPath: Path(CommandLine.arguments[2]),
-            extensionPointIdentifiersPath: Path(CommandLine.arguments[3]),
-            bazelIntegrationDirectory: Path(CommandLine.arguments[4]),
-            outputPath: Path(CommandLine.arguments[5]),
+            specPath: Path(arguments[1]),
+            xccurrentversionsPath: Path(arguments[2]),
+            extensionPointIdentifiersPath: Path(arguments[3]),
+            bazelIntegrationDirectory: Path(arguments[4]),
+            outputPath: Path(arguments[5]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode

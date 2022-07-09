@@ -101,7 +101,6 @@ struct Environment {
 
     let writeXcodeProj: (
         _ xcodeProj: XcodeProj,
-        _ buildMode: BuildMode,
         _ files: [FilePath: File],
         _ internalDirectoryName: String,
         _ bazelIntegrationDirectory: Path,

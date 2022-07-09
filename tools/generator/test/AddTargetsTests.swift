@@ -56,7 +56,6 @@ final class AddTargetsTests: XCTestCase {
             disambiguatedTargets: disambiguatedTargets,
             files: expectedFiles,
             products: expectedProducts,
-            filePathResolver: filePathResolver,
             bazelDependenciesTarget: expectedBazelDependenciesTarget
         )
 
