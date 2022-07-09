@@ -28,4 +28,3 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
 """
     }
 }
-
