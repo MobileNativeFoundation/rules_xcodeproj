@@ -329,9 +329,9 @@ enum Fixtures {
     static func disambiguatedTargets(
         _ consolidatedTargets: ConsolidatedTargets
     ) -> DisambiguatedTargets {
-        var disambiguatedTargets = Dictionary<
-            ConsolidatedTarget.Key, DisambiguatedTarget
-        >(
+        var disambiguatedTargets = [
+            ConsolidatedTarget.Key: DisambiguatedTarget,
+        ](
             minimumCapacity: targets.count
         )
         for (key, target) in consolidatedTargets.targets {
@@ -1801,7 +1801,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             pbxProj.rootObject!.targets.append(pbxTarget)
         }
 
-        var pbxTargets = Dictionary<ConsolidatedTarget.Key, PBXTarget>(
+        var pbxTargets = [ConsolidatedTarget.Key: PBXTarget](
             uniqueKeysWithValues: pbxNativeTargets.map { $0 }
         )
         pbxTargets[.bazelDependencies] = bazelDependenciesTarget
