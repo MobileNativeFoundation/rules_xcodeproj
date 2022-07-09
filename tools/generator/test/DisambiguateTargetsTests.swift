@@ -4,7 +4,6 @@ import XCTest
 @testable import generator
 
 final class DisambiguateTargetsTests: XCTestCase {
-
     // MARK: - Label
 
     func test_label() throws {
