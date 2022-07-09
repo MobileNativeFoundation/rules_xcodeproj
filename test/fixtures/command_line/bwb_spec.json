@@ -187,7 +187,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -g -Fexternal/examples_command_line_external -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwiftTestsLib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -313,7 +313,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -329,8 +328,7 @@
                     "-Wunused-variable",
                     "-fno-autolink",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -338,7 +336,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -354,8 +351,7 @@
                     "-Wunused-variable",
                     "-fno-autolink",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -414,7 +410,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -g -Fexternal/examples_command_line_external -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwift",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h",
@@ -538,7 +534,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
@@ -550,7 +545,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-no-canonical-prefixes",
                     "-pthread",
                     "-no-canonical-prefixes",
@@ -740,7 +734,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -756,8 +749,7 @@
                     "-Wunused-variable",
                     "-fno-autolink",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -765,7 +757,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -781,8 +772,7 @@
                     "-Wunused-variable",
                     "-fno-autolink",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",

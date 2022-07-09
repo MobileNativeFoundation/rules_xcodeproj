@@ -170,7 +170,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -190,8 +189,7 @@
                     "-fobjc-abi-version=2",
                     "-fobjc-legacy-dispatch",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -199,7 +197,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -219,8 +216,7 @@
                     "-fobjc-abi-version=2",
                     "-fobjc-legacy-dispatch",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "PRODUCT_MODULE_NAME": "CoreUtils",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -379,7 +375,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "Example",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -570,7 +566,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -590,8 +585,7 @@
                     "-fobjc-abi-version=2",
                     "-fobjc-legacy-dispatch",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -599,7 +593,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -619,8 +612,7 @@
                     "-fobjc-abi-version=2",
                     "-fobjc-legacy-dispatch",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "PRODUCT_MODULE_NAME": "ExampleObjcTests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -775,7 +767,7 @@
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -960,7 +952,7 @@
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -1037,7 +1029,7 @@
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -g -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static",
                 "PRODUCT_MODULE_NAME": "TestingUtils",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h",
@@ -1131,7 +1123,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -1151,8 +1142,7 @@
                     "-fobjc-abi-version=2",
                     "-fobjc-legacy-dispatch",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-fstack-protector",
@@ -1160,7 +1150,6 @@
                     "-Wthread-safety",
                     "-Wself-assign",
                     "-fno-omit-frame-pointer",
-                    "-g",
                     "-Wshorten-64-to-32",
                     "-Wbool-conversion",
                     "-Wconstant-conversion",
@@ -1180,8 +1169,7 @@
                     "-fobjc-abi-version=2",
                     "-fobjc-legacy-dispatch",
                     "-fstack-protector",
-                    "-fstack-protector-all",
-                    "-g"
+                    "-fstack-protector-all"
                 ],
                 "PRODUCT_MODULE_NAME": "Utils",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",

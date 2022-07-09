@@ -18,6 +18,7 @@ def _process_compiler_opts_test_impl(ctx):
         full_swiftcopts = ctx.attr.full_swiftcopts,
         user_swiftcopts = ctx.attr.user_swiftcopts,
         compilation_mode = ctx.attr.compilation_mode,
+        cpp_fragment = _cpp_fragment_stub(ctx.attr.cpp_fragment),
         objc_fragment = _objc_fragment_stub(ctx.attr.objc_fragment),
         cc_info = struct(
             compilation_context = struct(
@@ -31,12 +32,17 @@ def _process_compiler_opts_test_impl(ctx):
     json_search_paths = json.encode(search_paths)
 
     expected_build_settings = {
+        "DEBUG_INFORMATION_FORMAT": "",
         "GCC_OPTIMIZATION_LEVEL": "0",
         "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         "SWIFT_VERSION": "5",
     }
     expected_build_settings.update(ctx.attr.expected_build_settings)
+
+    if (ctx.attr.expected_build_settings.get("DEBUG_INFORMATION_FORMAT", "") ==
+        "None"):
+        expected_build_settings.pop("DEBUG_INFORMATION_FORMAT")
 
     asserts.equals(
         env,
@@ -63,12 +69,18 @@ process_compiler_opts_test = unittest.make(
         "cxxopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
         "expected_search_paths": attr.string(mandatory = True),
+        "cpp_fragment": attr.string_dict(mandatory = False),
         "objc_fragment": attr.string_dict(mandatory = False),
         "package_bin_dir": attr.string(mandatory = True),
         "full_swiftcopts": attr.string_list(mandatory = True),
         "user_swiftcopts": attr.string_list(mandatory = True),
     },
 )
+
+def _cpp_fragment(*, apple_generate_dsym):
+    return {
+        "apple_generate_dsym": json.encode(apple_generate_dsym),
+    }
 
 def _objc_fragment(
         *,
@@ -80,6 +92,15 @@ def _objc_fragment(
             copts_for_current_compilation_mode,
         ),
     }
+
+def _cpp_fragment_stub(dict):
+    if not dict:
+        return struct(
+            apple_generate_dsym = True,
+        )
+    return struct(
+        apple_generate_dsym = json.decode(dict["apple_generate_dsym"]),
+    )
 
 def _objc_fragment_stub(dict):
     if not dict:
@@ -117,6 +138,7 @@ def process_compiler_opts_test_suite(name):
             full_swiftcopts = [],
             user_swiftcopts = [],
             compilation_mode = "dbg",
+            cpp_fragment = None,
             objc_fragment = None,
             cc_info_defines = [],
             package_bin_dir = ""):
@@ -128,6 +150,7 @@ def process_compiler_opts_test_suite(name):
             full_swiftcopts = full_swiftcopts,
             user_swiftcopts = user_swiftcopts,
             compilation_mode = compilation_mode,
+            cpp_fragment = cpp_fragment,
             objc_fragment = objc_fragment,
             cc_info_defines = cc_info_defines,
             package_bin_dir = package_bin_dir,
@@ -365,6 +388,115 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "CLANG_CXX_LIBRARY": "random",
             "OTHER_CFLAGS": ["-stdlib=random"],
+        },
+    )
+
+    ## DEBUG_INFORMATION_FORMAT
+
+    _add_test(
+        name = "{}_all-debug-dsym".format(name),
+        conlyopts = ["-g"],
+        cxxopts = ["-g"],
+        full_swiftcopts = ["-g"],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": None,
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
+        },
+    )
+
+    _add_test(
+        name = "{}_all-debug-no-dsym".format(name),
+        conlyopts = ["-g"],
+        cxxopts = ["-g"],
+        full_swiftcopts = ["-g"],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
+        },
+    )
+
+    _add_test(
+        name = "{}_c-debug-dsym".format(name),
+        conlyopts = ["-g"],
+        cxxopts = ["-g"],
+        full_swiftcopts = [],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": None,
+        },
+    )
+
+    _add_test(
+        name = "{}_c-debug-no-dsym".format(name),
+        conlyopts = ["-g"],
+        cxxopts = ["-g"],
+        full_swiftcopts = [],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+        },
+    )
+
+    _add_test(
+        name = "{}_conly-debug".format(name),
+        conlyopts = ["-g"],
+        cxxopts = [],
+        full_swiftcopts = [],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": "",
+            "OTHER_CFLAGS": ["-g"],
+        },
+    )
+
+    _add_test(
+        name = "{}_cxx-debug".format(name),
+        conlyopts = [],
+        cxxopts = ["-g"],
+        full_swiftcopts = [],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": "",
+            "OTHER_CPLUSPLUSFLAGS": ["-g"],
+        },
+    )
+
+    _add_test(
+        name = "{}_swift-debug-dsym".format(name),
+        conlyopts = [],
+        cxxopts = [],
+        full_swiftcopts = ["-g"],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": None,
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
+        },
+    )
+
+    _add_test(
+        name = "{}_swift-debug-no-dsym".format(name),
+        conlyopts = [],
+        cxxopts = [],
+        full_swiftcopts = ["-g"],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT",
+        },
+    )
+
+    _add_test(
+        name = "{}_swift-and-c-debug".format(name),
+        conlyopts = ["-g"],
+        cxxopts = [],
+        full_swiftcopts = ["-g"],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": "",
+            "OTHER_CFLAGS": ["-g"],
+            "OTHER_SWIFT_FLAGS": "-g -Xcc -DCOPTS_FOR_CURRENT",
         },
     )
 
