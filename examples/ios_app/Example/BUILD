@@ -26,6 +26,7 @@ ios_application(
         ],
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
     ),
+    launch_storyboard = "Launch.storyboard",
     visibility = ["//visibility:public"],
     deps = [
         ":Example.library",
