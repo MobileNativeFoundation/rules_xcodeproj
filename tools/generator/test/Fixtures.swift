@@ -71,7 +71,7 @@ enum Fixtures {
             ),
             buildSettings: [
                 "T": .string("43"),
-                "Z": .string("0")
+                "Z": .string("0"),
             ],
             swiftmodules: [.generated("x/y.swiftmodule")],
             inputs: .init(

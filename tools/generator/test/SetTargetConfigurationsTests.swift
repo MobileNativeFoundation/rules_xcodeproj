@@ -200,7 +200,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             ([.macOS, .watchOS], .staticLibrary, [key: "macosx"]),
             ([.macOS], .staticLibrary, [key: "macosx"]),
 
-            ([.iOS, .tvOS, .watchOS,], .staticLibrary, [key: "iphoneos"]),
+            ([.iOS, .tvOS, .watchOS], .staticLibrary, [key: "iphoneos"]),
             ([.iOS, .tvOS], .staticLibrary, [key: "iphoneos"]),
             ([.iOS, .watchOS], .staticLibrary, [key: "iphoneos"]),
             ([.iOS], .staticLibrary, [key: "iphoneos"]),
@@ -250,7 +250,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             ([.macOS, .watchOS], .staticLibrary, [key: "watchos macosx"]),
             ([.macOS], .staticLibrary, [key: "macosx"]),
 
-            ([.iOS, .tvOS, .watchOS,], .staticLibrary,
+            ([.iOS, .tvOS, .watchOS], .staticLibrary,
              [key: "watchos iphoneos appletvos"]),
             ([.iOS, .tvOS], .staticLibrary, [key: "iphoneos appletvos"]),
             ([.iOS, .watchOS], .staticLibrary, [key: "watchos iphoneos"]),
@@ -317,7 +317,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
                 key: "macOS-staticLibrary",
             ]),
 
-            ([.iOS, .tvOS, .watchOS,], .staticLibrary,
+            ([.iOS, .tvOS, .watchOS], .staticLibrary,
              [
                  key: "iOS-staticLibrary",
                  "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
