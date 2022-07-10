@@ -37,6 +37,7 @@ swift_library(
     visibility = ["//examples/command_line/Tests:__subpackages__"],
     deps = [
         ":lib_impl",
+        "//examples/command_line/swift_c_module",
         "@examples_command_line_external//:ExternalFramework",
         "@examples_command_line_external//:Library",
     ],
