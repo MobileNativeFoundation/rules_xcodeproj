@@ -1,5 +1,5 @@
 #include "c_lib.h"
 
-int answer() {
-    return 42;
+char *swift_c_module_greeting() {
+    return "SwiftCModule";
 }

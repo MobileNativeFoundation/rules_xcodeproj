@@ -1,2 +1,2 @@
 // function declaration that returns a string
-int answer();
+char *swift_c_module_greeting();
