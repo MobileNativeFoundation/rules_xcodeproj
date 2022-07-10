@@ -12,6 +12,6 @@ if [[ ${#} -eq 0 ]]; then
   # If no args, then apply formatting to the entire project
   cmd+=( "${script_dir}" )
 else
-  cmd+=( "$@")
+  cmd+=( "$@" )
 fi
 "${cmd[@]}"
