@@ -7,4 +7,11 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null && pwd)"
 
-swiftformat --config "${script_dir}/.swiftformat" "$@"
+cmd=(swiftformat --config "${script_dir}/.swiftformat")
+if [[ ${#} -eq 0 ]]; then
+  # If no args, then apply formatting to the entire project
+  cmd+=( "${script_dir}" )
+else
+  cmd+=( "$@" )
+fi
+"${cmd[@]}"
