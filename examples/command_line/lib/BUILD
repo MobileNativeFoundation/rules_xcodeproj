@@ -39,6 +39,7 @@ swift_library(
         ":lib_impl",
         "@examples_command_line_external//:ExternalFramework",
         "@examples_command_line_external//:Library",
+        "//examples/command_line/swift_c_module:swift_c_module",
     ],
 )
 
