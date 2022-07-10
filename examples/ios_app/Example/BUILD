@@ -17,6 +17,7 @@ ios_application(
     entitlements = "app.entitlements",
     families = ["iphone"],
     infoplists = [":Info.plist"],
+    launch_storyboard = "Launch.storyboard",
     minimum_os_version = "15.0",
     resources = [":ExampleResourceGroup"] + glob(
         [
