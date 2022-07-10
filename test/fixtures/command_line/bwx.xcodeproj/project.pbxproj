@@ -26,8 +26,8 @@
 		69DB639F814B746736CBE9A2 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D46BEBDD407F679ED938408 /* ExternalFramework.framework */; };
 		7BC8A776D2D1C760F9C38A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B86F4542BE9E526167481 /* main.m */; };
 		8061E3DE63D96635F98C9B3A /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5E4ABAACB85A529597A95E /* lib.swift */; };
+		91FE80ADF2A640F7B0307364 /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = F817551E2B0DDD61FB46AC46 /* c_lib.c */; };
 		9D33767266FC4D21B0BF2358 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = B45E624D6CB9A25AD05AA3EB /* lib.m */; };
-		D0D52EFC7123156474A6D113 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = E4B6F74FE28A491EAC0AB2DF /* lib.c */; };
 		DCEAC0456D3DB4A3DE4A12A2 /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D945EBC9B2F4A830BCCF4F4 /* SwiftGreetingsTests.swift */; };
 		E8562BD6CA809EA0BD1921D9 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D46BEBDD407F679ED938408 /* ExternalFramework.framework */; };
 		EE8870A9BDAE53F2ABD71A26 /* private_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 782EFB0F35839BA9778CEB6A /* private_lib.c */; };
@@ -117,7 +117,6 @@
 		0C0B86F4542BE9E526167481 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1BA9C0D148D2F511913315F2 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		1E24825205C7C82ED0184DEA /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
-		284DB2CB670382738DB456DB /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		2E8FDF5B64B5BB961DFACC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F2C9A4A2948FD3A6EA210D1 /* private_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private_lib.h; sourceTree = "<group>"; };
 		3C8E9A0EB230F3F78D8F09F7 /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
@@ -145,10 +144,11 @@
 		D4E23788130BC4E7FCB9DB99 /* LibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7F092ECFB7A42788CDBA5F /* Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
 		E3EF7388EBA4ACEE4E5C5A4F /* c_lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = c_lib.modulemap; sourceTree = "<group>"; };
-		E4B6F74FE28A491EAC0AB2DF /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		E5B29EFE9E4782D578874298 /* libc_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libc_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/swift_c_module/libc_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F079AF4E09A6C7D7089DE38F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		F463F670F3D262716DBB039D /* c_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_lib.h; sourceTree = "<group>"; };
 		F7195ED6E5A6C3B8F36B42A6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		F817551E2B0DDD61FB46AC46 /* c_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = c_lib.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,9 +297,9 @@
 			isa = PBXGroup;
 			children = (
 				582FB43778615654FC9D8089 /* BUILD */,
+				F817551E2B0DDD61FB46AC46 /* c_lib.c */,
+				F463F670F3D262716DBB039D /* c_lib.h */,
 				E3EF7388EBA4ACEE4E5C5A4F /* c_lib.modulemap */,
-				E4B6F74FE28A491EAC0AB2DF /* lib.c */,
-				284DB2CB670382738DB456DB /* lib.h */,
 			);
 			path = swift_c_module;
 			sourceTree = "<group>";
@@ -779,7 +779,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0D52EFC7123156474A6D113 /* lib.c in Sources */,
+				91FE80ADF2A640F7B0307364 /* c_lib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

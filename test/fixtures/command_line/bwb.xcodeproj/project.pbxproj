@@ -27,7 +27,7 @@
 		2565B0E6AC6DB939D6A8209E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06A565663AED0899589F574 /* main.m */; };
 		2848C0B211EE176A3865CF72 /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE87466AFFDC6606F8518F8 /* SwiftGreetingsTests.swift */; };
 		710D43D76CB511A8B84AADBE /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		7F940746882556A579FDAA3C /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 00ECFA6F2166489821653DB6 /* lib.c */; };
+		79B8305AFF7844F1C8F569ED /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 331147AAE77477BF2E210C00 /* c_lib.c */; };
 		A01C6C6B96A9DD78BF99BEAA /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BEEB36D3E48677861539C1 /* ExternalFramework.framework */; };
 		C2856E1EDD6B2C68FB87FD2D /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BEEB36D3E48677861539C1 /* ExternalFramework.framework */; };
 		D339677D7D46139DE6887FAB /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59B10F9022E9CC335541BDA /* lib.swift */; };
@@ -116,18 +116,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00ECFA6F2166489821653DB6 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		02C5A30086BED77944B9B2DA /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		0477978206709B50F3C4A328 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		061F2388C98C7C8A40A50744 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		12C3BFE593A8E590FD298519 /* LibSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE87466AFFDC6606F8518F8 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
-		251745AE471CBD381EE75BAC /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		25DB9B92D67C570FB072858B /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
 		26385BC3A03088371FF9B69F /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A44BF8F252A4102EA584307 /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		2D85BE28EA2A37C7DEC17BFB /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		2DBFB19C19AEF213FE6DFA93 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		331147AAE77477BF2E210C00 /* c_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = c_lib.c; sourceTree = "<group>"; };
 		391FE6BAD634D0EBEDCB1127 /* libc_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libc_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/swift_c_module/libc_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4476EF7C707FF85B9BCC90DD /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		537B806ECAA55F19DAFDF318 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		61606C8E4C3C583C1DE87CAE /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		70E39C0BDE73FBB3E0447A9C /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
+		7FC818A23F6CAC131654773F /* c_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_lib.h; sourceTree = "<group>"; };
 		8EA0A841B76E8C631203A851 /* c_lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = c_lib.modulemap; sourceTree = "<group>"; };
 		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BEEB36D3E48677861539C1 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
@@ -244,9 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				2DBFB19C19AEF213FE6DFA93 /* BUILD */,
+				331147AAE77477BF2E210C00 /* c_lib.c */,
+				7FC818A23F6CAC131654773F /* c_lib.h */,
 				8EA0A841B76E8C631203A851 /* c_lib.modulemap */,
-				00ECFA6F2166489821653DB6 /* lib.c */,
-				251745AE471CBD381EE75BAC /* lib.h */,
 			);
 			path = swift_c_module;
 			sourceTree = "<group>";
@@ -831,7 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F940746882556A579FDAA3C /* lib.c in Sources */,
+				79B8305AFF7844F1C8F569ED /* c_lib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

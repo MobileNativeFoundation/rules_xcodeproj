@@ -3,10 +3,10 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_c_module")
 cc_library(
     name = "c_lib",
     srcs = [
-        "lib.c",
+        "c_lib.c",
     ],
     hdrs = [
-        "lib.h",
+        "c_lib.h",
     ],
 )
 
