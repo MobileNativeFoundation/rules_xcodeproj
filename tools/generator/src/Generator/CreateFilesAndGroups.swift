@@ -114,7 +114,7 @@ extension Generator {
                 groups[filePath] = group
 
                 return (group, true)
-            } else if !isLeaf, (forceGroupCreation || !filePath.path.isFolderTypeFileSource) {
+            } else if !isLeaf, forceGroupCreation || !filePath.path.isFolderTypeFileSource {
                 if let group = groups[filePath] {
                     return (group, false)
                 }

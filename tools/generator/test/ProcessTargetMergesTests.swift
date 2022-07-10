@@ -47,7 +47,7 @@ final class TargetMergingTests: XCTestCase {
                 // Inherited "A 1"'s `T`, `Y`, `Z`
                 "T": .string("42"),
                 "Y": .bool(true),
-                "Z": .string("0")
+                "Z": .string("0"),
             ],
             modulemaps: targets["A 1"]!.modulemaps,
             swiftmodules: targets["A 1"]!.swiftmodules,
