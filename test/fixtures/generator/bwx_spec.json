@@ -205,7 +205,8 @@
                     "tools/generator/test/SetTargetDependenciesTests.swift",
                     "tools/generator/test/Target+Testing.swift",
                     "tools/generator/test/XCSchemeEnvironmentVariablesExtensionsTests.swift",
-                    "tools/generator/test/XcodeProj+CustomDump.swift"
+                    "tools/generator/test/XcodeProj+CustomDump.swift",
+                    "tools/generator/test/XcodeScheme+ExtensionsTests.swift"
                 ]
             },
             "is_swift": true,
@@ -415,6 +416,7 @@
                     "tools/generator/src/Extensions/Path+Extensions.swift",
                     "tools/generator/src/Extensions/Sorting.swift",
                     "tools/generator/src/Extensions/XCSchemeEnvrionmentVariables+Extensions.swift",
+                    "tools/generator/src/Extensions/XcodeScheme+Extensions.swift",
                     "tools/generator/src/FilePathResolver.swift",
                     "tools/generator/src/Generator/AddBazelDependenciesTarget.swift",
                     "tools/generator/src/Generator/AddTargets.swift",
