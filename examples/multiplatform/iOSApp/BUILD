@@ -42,6 +42,7 @@ ios_application(
     extensions = ["//examples/multiplatform/WidgetExtension"],
     families = ["iphone"],
     infoplists = [":Info.plist"],
+    launch_images = glob(["launch_images_ios.xcassets/**"]),
     minimum_os_version = "15.0",
     provisioning_profile = select({
         ":device_build": ":xcode_profile",
