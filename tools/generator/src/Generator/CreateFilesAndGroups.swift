@@ -504,6 +504,7 @@ extension Generator {
 /*.app/Frameworks/XCUIAutomation.framework
 /*.app/Frameworks/XCUnit.framework
 /*.app/PlugIns
+/*.app/Watch
 
 """#)
         }
