@@ -15,7 +15,7 @@ ios_application(
     bundle_id = "io.buildbuddy.example",
     bundle_name = "Example",
     entitlements = "app.entitlements",
-    executable_name = "Examnple_ExecutableName",
+    executable_name = "Example_ExecutableName",
     families = ["iphone"],
     infoplists = [":Info.plist"],
     launch_storyboard = "Launch.storyboard",
