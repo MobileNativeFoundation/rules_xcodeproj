@@ -70,7 +70,7 @@ Target "\(key)" not found in `pbxTargets`
         var anyBuildSettings: [String: BuildSetting] = [:]
         var buildSettings: [BuildSettingConditional: [String: BuildSetting]] =
             [:]
-        var conditionalFileNames: [String: [String]] = [:]
+        var conditionalFileNames: [String: String] = [:]
 
         for (id, target) in consolidatedTarget.targets {
             var targetBuildSettings = try calculateBuildSettings(
@@ -94,9 +94,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 conditionalFileNames[key] = try uniqueFiles
                     .map { filePath in
                         try filePathResolver.resolve(filePath, useGenDir: true)
-                            .string
+                            .string.quoted
                     }
                     .sortedLocalizedStandard()
+                    .joined(separator: " ")
                 targetBuildSettings.set(
                     "INCLUDED_SOURCE_FILE_NAMES",
                     to: "$(\(key))"
@@ -111,12 +112,12 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         for (key, fileNames) in conditionalFileNames
             .sorted(by: { $0.key < $1.key })
         {
-            anyBuildSettings[key] = .array(fileNames)
+            anyBuildSettings[key] = .string(fileNames)
             excludedSourceFileNames.append("$(\(key))")
         }
         if !excludedSourceFileNames.isEmpty {
             anyBuildSettings["EXCLUDED_SOURCE_FILE_NAMES"] =
-                .array(excludedSourceFileNames)
+                .string(excludedSourceFileNames.joined(separator: " "))
             anyBuildSettings["INCLUDED_SOURCE_FILE_NAMES"] = ""
         }
 

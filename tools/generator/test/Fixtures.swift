@@ -2106,11 +2106,9 @@ bazel-out/a1b2c/bin/T 2
                 "BAZEL_TARGET_ID": "T 3",
                 "BAZEL_TARGET_ID[sdk=iphoneos*]": "T 1",
                 "BAZEL_TARGET_ID[sdk=iphonesimulator*]": "T 2",
-                "EXCLUDED_SOURCE_FILE_NAMES": [
-                    "$(IPHONEOS_FILES)",
-                    "$(IPHONESIMULATOR_FILES)",
-                    "$(MACOSX_FILES)",
-                ],
+                "EXCLUDED_SOURCE_FILE_NAMES": """
+$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) $(MACOSX_FILES)
+""",
                 "EXECUTABLE_EXTENSION": "a",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "INCLUDED_SOURCE_FILE_NAMES": "",
@@ -2123,21 +2121,18 @@ $(IPHONESIMULATOR_FILES)
                 "INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]": """
 $(MACOSX_FILES)
 """,
-                "IPHONEOS_FILES": [
-                    "$(PROJECT_DIR)/T/T 1/Ta.c",
-                    "$(PROJECT_DIR)/T/T 1/Ta.png",
-                    "$(PROJECT_DIR)/T/T 1/Ta.swift",
-                ],
-                "IPHONESIMULATOR_FILES": [
-                    "$(PROJECT_DIR)/T/T 2/Ta.c",
-                    "$(PROJECT_DIR)/T/T 2/Ta.png",
-                    "$(PROJECT_DIR)/T/T 2/Ta.swift",
-                ],
-                "MACOSX_FILES": [
-                    "$(PROJECT_DIR)/T/T 3/Ta.c",
-                    "$(PROJECT_DIR)/T/T 3/Ta.png",
-                    "$(PROJECT_DIR)/T/T 3/Ta.swift",
-                ],
+                "IPHONEOS_FILES": """
+"$(PROJECT_DIR)/T/T 1/Ta.c" "$(PROJECT_DIR)/T/T 1/Ta.png" \
+"$(PROJECT_DIR)/T/T 1/Ta.swift"
+""",
+                "IPHONESIMULATOR_FILES": """
+"$(PROJECT_DIR)/T/T 2/Ta.c" "$(PROJECT_DIR)/T/T 2/Ta.png" \
+"$(PROJECT_DIR)/T/T 2/Ta.swift"
+""",
+                "MACOSX_FILES": """
+"$(PROJECT_DIR)/T/T 3/Ta.c" "$(PROJECT_DIR)/T/T 3/Ta.png" \
+"$(PROJECT_DIR)/T/T 3/Ta.swift"
+""",
                 "PRODUCT_NAME": "t",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
