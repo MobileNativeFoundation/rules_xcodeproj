@@ -78,13 +78,6 @@
         },
         "Example/en.lproj/unprocessed.json",
         "Example/es.lproj/unprocessed.json",
-        "ExampleLaunchImages/BUILD",
-        "ExampleLaunchImages/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/ExampleLaunchImages-intermediates/Info.plist",
-            "t": "g"
-        },
-        "ExampleLaunchImages/launch_images_ios.xcassets",
         "TestingUtils/BUILD",
         "TestingUtils/Greeting.swift.stencil",
         "TestingUtils/Answer.swift.stencil",
@@ -143,10 +136,6 @@
         "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217",
         [
             "//Example:Example applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217"
-        ],
-        "//ExampleLaunchImages:ExampleLaunchImages.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217",
-        [
-            "//ExampleLaunchImages:ExampleLaunchImages applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217"
         ],
         "//ExampleObjcTests:ExampleObjcTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217",
         [
@@ -461,159 +450,6 @@
                         "t": "g"
                     }
                 ],
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
-                        "t": "g"
-                    }
-                ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
-        },
-        "//ExampleLaunchImages:ExampleLaunchImages applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217",
-        {
-            "build_settings": {
-                "CODE_SIGN_STYLE": "Manual",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.examplelaunchimages",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TARGETED_DEVICE_FAMILY": "1"
-            },
-            "configuration": "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217",
-            "dependencies": [
-                "//ExampleLaunchImages:ExampleLaunchImages.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217"
-            ],
-            "extensions": [],
-            "info_plist": {
-                "_": "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/ExampleLaunchImages-intermediates/Info.plist",
-                "t": "g"
-            },
-            "inputs": {
-                "entitlements": "ExampleLaunchImages/app.entitlements"
-            },
-            "is_swift": false,
-            "label": "//ExampleLaunchImages:ExampleLaunchImages",
-            "linker_inputs": {
-                "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/ExampleLaunchImages.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-                    "-ObjC",
-                    "-L/usr/lib/swift",
-                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                    "-Wl,-rpath,/usr/lib/swift",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ],
-                "static_libraries": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/libExampleLaunchImages.library.a",
-                        "t": "g"
-                    }
-                ]
-            },
-            "modulemaps": [],
-            "name": "ExampleLaunchImages",
-            "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/ExampleLaunchImages.app",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages",
-            "platform": {
-                "arch": "x86_64",
-                "environment": "Simulator",
-                "minimum_os_version": "15.0",
-                "name": "iphonesimulator",
-                "os": "ios"
-            },
-            "product": {
-                "name": "ExampleLaunchImages",
-                "path": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/ExampleLaunchImages.app",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.application"
-            },
-            "resource_bundle_dependencies": [],
-            "search_paths": {},
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
-        },
-        "//ExampleLaunchImages:ExampleLaunchImages.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217",
-        {
-            "build_settings": {
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "ENABLE_TESTABILITY": true,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
-                "PRODUCT_MODULE_NAME": "ExampleLaunchImages",
-                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5"
-            },
-            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
-            "inputs": {
-                "srcs": [
-                    "ExampleLaunchImages/ContentView.swift",
-                    "ExampleLaunchImages/ExampleApp.swift"
-                ]
-            },
-            "is_swift": true,
-            "label": "//ExampleLaunchImages:ExampleLaunchImages.library",
-            "linker_inputs": {},
-            "modulemaps": [],
-            "name": "ExampleLaunchImages.library",
-            "outputs": {
-                "s": {
-                    "d": {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/ExampleLaunchImages.swiftdoc",
-                        "t": "g"
-                    },
-                    "m": {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/ExampleLaunchImages.swiftmodule",
-                        "t": "g"
-                    },
-                    "s": {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/ExampleLaunchImages.swiftsourceinfo",
-                        "t": "g"
-                    }
-                }
-            },
-            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages",
-            "platform": {
-                "arch": "x86_64",
-                "environment": "Simulator",
-                "minimum_os_version": "15.0",
-                "name": "iphonesimulator",
-                "os": "ios"
-            },
-            "product": {
-                "name": "ExampleLaunchImages.library",
-                "path": {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleLaunchImages/libExampleLaunchImages.library.a",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.library.static"
-            },
-            "resource_bundle_dependencies": [],
-            "search_paths": {
                 "quote_includes": [
                     ".",
                     {

@@ -39,6 +39,7 @@
 		3C8AB3316133B3A7579E4803 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 714F4CDA20A0822521C3B389 /* CryptoSwift.framework */; };
 		3DA2238D1AE0C4DE3F8700B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */; };
 		3E70FC597A6921ACCDADB518 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F9E520AE77866C3451F1C7 /* Lib.swift */; };
+		492DBD0487A4A24DBF30E098 /* launch_images_ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F64E9922884087CB16660702 /* launch_images_ios.xcassets */; };
 		4F1FD2B820497A6AFE6B313C /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7460163239595E240435120 /* GoogleMapsBase.framework */; };
 		54A219CCEA2DFC2768716496 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576F7810A9916B9C9D473C43 /* CryptoSwift.framework */; };
 		62CFF6C7D0DCE936662E389C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D295FECC5CF307D463F8CBD4 /* Preview Assets.xcassets */; };
@@ -286,6 +287,7 @@
 		F17FC436B461919E1DDC0F71 /* tvOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AC3FA7356997C44A046004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F5F2FC43BDB211622F991234 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
+		F64E9922884087CB16660702 /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
 		F6D3E8AC19CA682EDEFC131C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1254,6 +1256,7 @@
 				C519DF0E014F293F71D3BBD3 /* ContentView.swift */,
 				27FD6B5DAE40F6075227CDF7 /* Info.plist */,
 				57DED4191C90C7A853FF2A4E /* iOSApp.swift */,
+				F64E9922884087CB16660702 /* launch_images_ios.xcassets */,
 			);
 			path = iOSApp;
 			sourceTree = "<group>";
@@ -1566,6 +1569,7 @@
 				7BADA8103BB4E09B7735582D /* Assets.xcassets in Resources */,
 				171DACB244D0CE6D2880DE13 /* GoogleMaps.bundle in Resources */,
 				7FBA65F5399D7FAEB6BDA26D /* GoogleMaps.bundle in Resources */,
+				492DBD0487A4A24DBF30E098 /* launch_images_ios.xcassets in Resources */,
 				3DA2238D1AE0C4DE3F8700B6 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

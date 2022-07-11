@@ -50,6 +50,7 @@ ios_application(
     version = ":Version",
     visibility = ["//visibility:public"],
     watch_application = "//examples/multiplatform/watchOSApp",
+    launch_images = glob(["launch_images_ios.xcassets/**"]),
     deps = [":iOSApp.library"],
 )
 
