@@ -31,6 +31,13 @@
             "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
             "t": "e"
         },
+        "examples/multiplatform/WidgetExtension/BUILD",
+        "examples/multiplatform/WidgetExtension/WidgetExtension.intentdefinition",
+        "examples/multiplatform/WidgetExtension/Info.plist",
+        {
+            "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/WidgetExtension-intermediates/Info.plist",
+            "t": "g"
+        },
         "examples/multiplatform/watchOSApp/BUILD",
         "examples/multiplatform/watchOSAppExtension/BUILD",
         {
@@ -67,6 +74,10 @@
         {
             "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
             "t": "e"
+        },
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/WidgetExtension-intermediates/Info.plist",
+            "t": "g"
         },
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -114,6 +125,14 @@
     "name": "bwx",
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [
+        "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
+        [
+            "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
+        ],
+        "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
+        [
+            "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
+        ],
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
         [
             "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
@@ -135,6 +154,14 @@
         "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
         [
             "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
+        ],
+        "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
+        [
+            "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
+        ],
+        "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
+        [
+            "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
         ],
         "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         [
@@ -891,6 +918,355 @@
             "test_host": null,
             "watch_application": null
         },
+        "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
+        {
+            "build_settings": {
+                "CODE_SIGN_STYLE": "Automatic",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "DEVELOPMENT_TEAM": "V82V4GQZXM",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.widget-extension",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5",
+                "TARGETED_DEVICE_FAMILY": "1"
+            },
+            "configuration": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
+            "dependencies": [
+                "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
+            ],
+            "extensions": [],
+            "info_plist": {
+                "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/WidgetExtension-intermediates/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "examples/multiplatform/WidgetExtension/Assets.xcassets"
+                ]
+            },
+            "is_swift": false,
+            "label": "//examples/multiplatform/WidgetExtension:WidgetExtension",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule/arm64-apple-ios.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/libWidgetExtension.library.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "modulemaps": [],
+            "name": "WidgetExtension",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension",
+            "platform": {
+                "arch": "arm64",
+                "minimum_os_version": "15.0",
+                "name": "iphoneos",
+                "os": "ios"
+            },
+            "product": {
+                "name": "WidgetExtension",
+                "path": {
+                    "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.app-extension"
+            },
+            "resource_bundle_dependencies": [],
+            "search_paths": {},
+            "swiftmodules": [],
+            "test_host": null,
+            "watch_application": null
+        },
+        "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
+        {
+            "build_settings": {
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.widget-extension",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5",
+                "TARGETED_DEVICE_FAMILY": "1"
+            },
+            "configuration": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
+            "dependencies": [
+                "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
+            ],
+            "extensions": [],
+            "info_plist": {
+                "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/WidgetExtension-intermediates/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "examples/multiplatform/WidgetExtension/Assets.xcassets"
+                ]
+            },
+            "is_swift": false,
+            "label": "//examples/multiplatform/WidgetExtension:WidgetExtension",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/libWidgetExtension.library.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "modulemaps": [],
+            "name": "WidgetExtension",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "name": "iphonesimulator",
+                "os": "ios"
+            },
+            "product": {
+                "name": "WidgetExtension",
+                "path": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.app-extension"
+            },
+            "resource_bundle_dependencies": [],
+            "search_paths": {},
+            "swiftmodules": [],
+            "test_host": null,
+            "watch_application": null
+        },
+        "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
+                "PRODUCT_MODULE_NAME": "WidgetExtension",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
+            "dependencies": [
+                "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
+            ],
+            "extensions": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/multiplatform/WidgetExtension/WidgetExtension.swift",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/Intents.swift",
+                        "t": "g"
+                    }
+                ]
+            },
+            "is_swift": true,
+            "label": "//examples/multiplatform/WidgetExtension:WidgetExtension.library",
+            "linker_inputs": {},
+            "modulemaps": [
+                {
+                    "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
+                    "t": "e"
+                }
+            ],
+            "name": "WidgetExtension.library",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension",
+            "platform": {
+                "arch": "arm64",
+                "minimum_os_version": "15.0",
+                "name": "iphoneos",
+                "os": "ios"
+            },
+            "product": {
+                "name": "WidgetExtension.library",
+                "path": {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/libWidgetExtension.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundle_dependencies": [],
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "t": "g"
+                }
+            ],
+            "test_host": null,
+            "watch_application": null
+        },
+        "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
+                "PRODUCT_MODULE_NAME": "WidgetExtension",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
+            "dependencies": [
+                "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
+            ],
+            "extensions": [],
+            "info_plist": null,
+            "inputs": {
+                "srcs": [
+                    "examples/multiplatform/WidgetExtension/WidgetExtension.swift",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/Intents.swift",
+                        "t": "g"
+                    }
+                ]
+            },
+            "is_swift": true,
+            "label": "//examples/multiplatform/WidgetExtension:WidgetExtension.library",
+            "linker_inputs": {},
+            "modulemaps": [
+                {
+                    "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
+                    "t": "e"
+                }
+            ],
+            "name": "WidgetExtension.library",
+            "outputs": {},
+            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension",
+            "platform": {
+                "arch": "x86_64",
+                "environment": "Simulator",
+                "minimum_os_version": "15.0",
+                "name": "iphonesimulator",
+                "os": "ios"
+            },
+            "product": {
+                "name": "WidgetExtension.library",
+                "path": {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/libWidgetExtension.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "resource_bundle_dependencies": [],
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "t": "g"
+                }
+            ],
+            "test_host": null,
+            "watch_application": null
+        },
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         {
             "build_settings": {
@@ -910,9 +1286,12 @@
             "configuration": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
             "dependencies": [
                 "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
+                "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
                 "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
             ],
-            "extensions": [],
+            "extensions": [
+                "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-787a8770ecb8"
+            ],
             "info_plist": {
                 "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -921,6 +1300,7 @@
                 "resources": [
                     "examples/multiplatform/iOSApp/PreviewContent/Preview Assets.xcassets",
                     "examples/multiplatform/iOSApp/Assets.xcassets",
+                    "examples/multiplatform/iOSApp/launch_images_ios.xcassets",
                     {
                         "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
                         "f": true,
@@ -1025,9 +1405,12 @@
             "configuration": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
             "dependencies": [
                 "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
+                "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01",
                 "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
             ],
-            "extensions": [],
+            "extensions": [
+                "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
+            ],
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.plist",
                 "t": "g"
@@ -1036,6 +1419,7 @@
                 "resources": [
                     "examples/multiplatform/iOSApp/PreviewContent/Preview Assets.xcassets",
                     "examples/multiplatform/iOSApp/Assets.xcassets",
+                    "examples/multiplatform/iOSApp/launch_images_ios.xcassets",
                     {
                         "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle",
                         "f": true,

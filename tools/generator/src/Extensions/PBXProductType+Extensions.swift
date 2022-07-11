@@ -93,6 +93,22 @@ extension PBXProductType {
         }
     }
 
+    var isExtension: Bool {
+        switch self {
+        case .appExtension,
+             .tvExtension,
+             .watchExtension,
+             .watch2Extension,
+             .messagesExtension,
+             .stickerPack,
+             .xcodeExtension,
+             .intentsServiceExtension:
+            return true
+        default:
+            return false
+        }
+    }
+
     var isFramework: Bool {
         switch self {
         case .framework,
@@ -236,6 +252,15 @@ extension PBXProductType {
 
     var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
         return isLaunchable ? .bazelLaunchVariables : nil
+    }
+
+    var canUseDebugLauncher: Bool {
+        // Extensions don't use the lldb launcher
+        return !isExtension
+    }
+
+    var launchAutomaticallySubstyle: String? {
+        return isExtension ? "2" : nil
     }
 
     var shouldCreateScheme: Bool {

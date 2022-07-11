@@ -442,8 +442,7 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
         products: Products,
         targetKeys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> PBXCopyFilesBuildPhase? {
-        guard let watchApplication = watchApplication,
-              !buildMode.usesBazelModeBuildScripts, productType.isBundle
+        guard let watchApplication = watchApplication, productType.isBundle
         else {
             return nil
         }
@@ -490,7 +489,6 @@ Watch application product reference with key \(key) not found in `products`
         targetKeys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> PBXCopyFilesBuildPhase? {
         guard !extensions.isEmpty,
-              !buildMode.usesBazelModeBuildScripts,
               productType.isBundle
         else {
             return nil

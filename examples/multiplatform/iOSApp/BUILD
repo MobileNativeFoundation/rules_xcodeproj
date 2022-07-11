@@ -39,8 +39,10 @@ ios_application(
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = IOS_BUNDLE_ID,
     bundle_name = "iOSApp",
+    extensions = ["//examples/multiplatform/WidgetExtension"],
     families = ["iphone"],
     infoplists = [":Info.plist"],
+    launch_images = glob(["launch_images_ios.xcassets/**"]),
     minimum_os_version = "15.0",
     provisioning_profile = select({
         ":device_build": ":xcode_profile",
