@@ -180,7 +180,33 @@
                 "type": "com.apple.product-type.bundle.unit-test"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "examples_command_line_external",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "examples_command_line_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/external/examples_command_line_external",
+                        "t": "g"
+                    },
+                    {
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -806,7 +832,45 @@
                 "type": "com.apple.product-type.tool"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "examples_command_line_external",
+                        "t": "e"
+                    }
+                ],
+                "includes": [
+                    "examples/command_line/lib/dir with space",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/dir with space",
+                        "t": "g"
+                    },
+                    "examples/command_line/lib/private",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/private",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "examples_command_line_external",
+                        "t": "e"
+                    },
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/external/examples_command_line_external",
+                        "t": "g"
+                    },
+                    {
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null

@@ -5,6 +5,7 @@ load(
     "AppleResourceBundleInfo",
     "AppleResourceInfo",
 )
+load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -69,14 +70,19 @@ rules_xcodeproj requires {} to have `{}` set.
     else:
         resource_bundle_informations = None
 
-    linker_inputs = linker_input_files.collect_for_non_top_level(
+    compilation_providers = comp_providers.collect(
         cc_info = cc_info,
         objc = objc,
         is_xcode_target = False,
     )
+    linker_inputs = linker_input_files.collect(
+        ctx = ctx,
+        compilation_providers = compilation_providers,
+    )
 
     return processed_target(
         automatic_target_info = automatic_target_info,
+        compilation_providers = compilation_providers,
         dependencies = process_dependencies(
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
@@ -92,15 +98,13 @@ rules_xcodeproj requires {} to have `{}` set.
             transitive_infos = transitive_infos,
             avoid_deps = [],
         ),
-        linker_inputs = linker_inputs,
         outputs = output_files.merge(
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         ),
         resource_bundle_informations = resource_bundle_informations,
         search_paths = process_search_paths(
-            cc_info = cc_info,
-            objc = objc,
+            compilation_providers = compilation_providers,
             bin_dir_path = ctx.bin_dir.path,
             opts_search_paths = create_opts_search_paths(
                 quote_includes = [],

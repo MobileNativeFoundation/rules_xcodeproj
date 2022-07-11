@@ -34,7 +34,7 @@ def process_product(
         fp = bundle_file_path
     elif target[DefaultInfo].files_to_run.executable:
         fp = file_path(target[DefaultInfo].files_to_run.executable)
-    elif CcInfo in target:
+    elif CcInfo in target and linker_inputs:
         library = linker_input_files.get_primary_static_library(linker_inputs)
         fp = file_path(library) if library else None
     else:

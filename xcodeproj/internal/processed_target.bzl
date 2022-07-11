@@ -11,11 +11,12 @@ load(":providers.bzl", "target_type")
 def processed_target(
         *,
         automatic_target_info,
+        compilation_providers,
         dependencies,
         extension_infoplists = None,
         hosted_targets = None,
         inputs,
-        linker_inputs,
+        library = None,
         non_mergable_targets = None,
         outputs,
         potential_target_merges = None,
@@ -28,6 +29,8 @@ def processed_target(
     Args:
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             the target.
+        compilation_providers: A value returned from
+            `compilation_providers.collect`.
         dependencies: A `list` of target ids of direct dependencies of this
             target.
         extension_infoplists: A `list` of `File` for the Info.plist's of an
@@ -36,9 +39,8 @@ def processed_target(
             `XcodeProjInfo.hosted_targets`.
         inputs: A value as returned from `input_files.collect` that will
             provide values for the `XcodeProjInfo.inputs` field.
-        linker_inputs: A value returned from `linker_input_files.collect`
-            that will provide values for the `XcodeProjInfo.linker_inputs`
-            field.
+        library: A `File` for the static library produced by this target, or
+            `None`.
         non_mergable_targets: An optional `list` of strings that will be in the
             `XcodeProjInfo.non_mergable_targets` `depset`.
         outputs: A value as returned from `output_files.collect` that will
@@ -57,11 +59,12 @@ def processed_target(
     """
     return struct(
         automatic_target_info = automatic_target_info,
+        compilation_providers = compilation_providers,
         extension_infoplists = extension_infoplists,
         dependencies = dependencies,
         hosted_targets = hosted_targets,
         inputs = inputs,
-        linker_inputs = linker_inputs,
+        library = library,
         non_mergable_targets = non_mergable_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
@@ -117,7 +120,8 @@ def xcode_target(
         modulemaps: The value returned from `_process_modulemaps`.
         swiftmodules: The value returned from `_process_swiftmodules`.
         inputs: The value returned from `input_files.collect`.
-        linker_inputs: A value returned from `linker_input_files.collect`.
+        linker_inputs: A value returned from `linker_input_files.collect` or
+            `None`.
         info_plist: A value as returned by `files.file_path` or `None`.
         watch_application: The `id` of the watch application target that should
             be embedded in this target, or `None`.
