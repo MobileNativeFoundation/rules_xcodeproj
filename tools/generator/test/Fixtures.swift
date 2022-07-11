@@ -2123,21 +2123,18 @@ $(IPHONESIMULATOR_FILES)
                 "INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]": """
 $(MACOSX_FILES)
 """,
-                "IPHONEOS_FILES": [
-                    "$(PROJECT_DIR)/T/T 1/Ta.c",
-                    "$(PROJECT_DIR)/T/T 1/Ta.png",
-                    "$(PROJECT_DIR)/T/T 1/Ta.swift",
-                ],
-                "IPHONESIMULATOR_FILES": [
-                    "$(PROJECT_DIR)/T/T 2/Ta.c",
-                    "$(PROJECT_DIR)/T/T 2/Ta.png",
-                    "$(PROJECT_DIR)/T/T 2/Ta.swift",
-                ],
-                "MACOSX_FILES": [
-                    "$(PROJECT_DIR)/T/T 3/Ta.c",
-                    "$(PROJECT_DIR)/T/T 3/Ta.png",
-                    "$(PROJECT_DIR)/T/T 3/Ta.swift",
-                ],
+                "IPHONEOS_FILES": """
+"$(PROJECT_DIR)/T/T 1/Ta.c" "$(PROJECT_DIR)/T/T 1/Ta.png" \
+"$(PROJECT_DIR)/T/T 1/Ta.swift"
+""",
+                "IPHONESIMULATOR_FILES": """
+"$(PROJECT_DIR)/T/T 2/Ta.c" "$(PROJECT_DIR)/T/T 2/Ta.png" \
+"$(PROJECT_DIR)/T/T 2/Ta.swift"
+""",
+                "MACOSX_FILES": """
+"$(PROJECT_DIR)/T/T 3/Ta.c" "$(PROJECT_DIR)/T/T 3/Ta.png" \
+"$(PROJECT_DIR)/T/T 3/Ta.swift"
+""",
                 "PRODUCT_NAME": "t",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
