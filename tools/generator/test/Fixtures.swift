@@ -2106,11 +2106,9 @@ bazel-out/a1b2c/bin/T 2
                 "BAZEL_TARGET_ID": "T 3",
                 "BAZEL_TARGET_ID[sdk=iphoneos*]": "T 1",
                 "BAZEL_TARGET_ID[sdk=iphonesimulator*]": "T 2",
-                "EXCLUDED_SOURCE_FILE_NAMES": [
-                    "$(IPHONEOS_FILES)",
-                    "$(IPHONESIMULATOR_FILES)",
-                    "$(MACOSX_FILES)",
-                ],
+                "EXCLUDED_SOURCE_FILE_NAMES": """
+$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) $(MACOSX_FILES)
+""",
                 "EXECUTABLE_EXTENSION": "a",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "INCLUDED_SOURCE_FILE_NAMES": "",
