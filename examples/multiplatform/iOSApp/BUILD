@@ -39,6 +39,7 @@ ios_application(
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = IOS_BUNDLE_ID,
     bundle_name = "iOSApp",
+    extensions = ["//examples/multiplatform/WidgetExtension"],
     families = ["iphone"],
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",

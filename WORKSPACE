@@ -1,5 +1,16 @@
 workspace(name = "com_github_buildbuddy_io_rules_xcodeproj")
 
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# TODO: Remove override and bump `xcodeproj_rules_dependencies` once
+# rules_apple 1.1.0 is released. Needed for `apple_intent_library`.
+http_archive(
+    name = "build_bazel_rules_apple",
+    sha256 = "5620fcaf237444ba088b2c1669c81ff14a7746357487d7a58ea7d90deb21a82d",
+    strip_prefix = "rules_apple-22c292e70cf7169038de9ef25d4b1b25f411c89f",
+    url = "https://github.com/bazelbuild/rules_apple/archive/22c292e70cf7169038de9ef25d4b1b25f411c89f.tar.gz",
+)
+
 load("//xcodeproj:repositories.bzl", "xcodeproj_rules_dependencies")
 
 xcodeproj_rules_dependencies(use_dev_patches = True)
@@ -45,8 +56,6 @@ load(
 provisioning_profile_repository(
     name = "local_provisioning_profiles",
 )
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "com_google_google_maps",
