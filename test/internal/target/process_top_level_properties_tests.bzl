@@ -61,6 +61,12 @@ def _process_top_level_properties_test_impl(ctx):
         string_build_settings,
         "build_settings",
     )
+    asserts.equals(
+        env,
+        ctx.attr.expected_executable_name,
+        properties.executable_name,
+        "executable_name",
+    )
 
     return unittest.end(env)
 
@@ -76,6 +82,7 @@ process_top_level_properties_test = unittest.make(
         "target_files": attr.string_list(mandatory = True),
         "target_name": attr.string(mandatory = True),
         "tree_artifact_enabled": attr.bool(mandatory = True),
+        "expected_executable_name": attr.string(mandatory = True),
     },
 )
 
@@ -87,7 +94,8 @@ def _bundle_info(
         bundle_extension,
         bundle_name,
         minimum_deployment_os_version,
-        product_type):
+        product_type,
+        executable_name):
     return {
         "archive.path": archive_path,
         "archive_root": archive_root,
@@ -96,6 +104,7 @@ def _bundle_info(
         "bundle_name": bundle_name,
         "minimum_deployment_os_version": minimum_deployment_os_version,
         "product_type": product_type,
+        "executable_name": executable_name,
     }
 
 def _bundle_info_stub(dict):
@@ -112,6 +121,7 @@ def _bundle_info_stub(dict):
         bundle_name = dict["bundle_name"],
         minimum_deployment_os_version = dict["minimum_deployment_os_version"],
         product_type = dict["product_type"],
+        executable_name = dict["executable_name"],
     )
 
 def process_top_level_properties_test_suite(name):
@@ -134,7 +144,8 @@ def process_top_level_properties_test_suite(name):
             expected_minimum_deployment_os_version,
             expected_product_name,
             expected_product_type,
-            expected_build_settings):
+            expected_build_settings,
+            expected_executable_name):
         test_names.append(name)
         process_top_level_properties_test(
             name = name,
@@ -148,6 +159,7 @@ def process_top_level_properties_test_suite(name):
             expected_product_name = expected_product_name,
             expected_product_type = expected_product_type,
             expected_build_settings = stringify_dict(expected_build_settings),
+            expected_executable_name = expected_executable_name,
             timeout = "short",
         )
 
@@ -164,6 +176,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "binary",
         expected_product_type = "com.apple.product-type.tool",
         expected_build_settings = {},
+        expected_executable_name = "binary",
     )
 
     _add_test(
@@ -177,6 +190,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_name = "test",
         expected_product_type = "com.apple.product-type.bundle.unit-test",
         expected_build_settings = {},
+        expected_executable_name = "test",
     )
 
     # Bundles
@@ -193,6 +207,7 @@ def process_top_level_properties_test_suite(name):
             bundle_name = "flagship",
             minimum_deployment_os_version = "13.1",
             product_type = "com.apple.product-type.application",
+            executable_name = "executable_name",
         ),
         tree_artifact_enabled = True,
         expected_bundle_path = "some/flagship.app",
@@ -202,6 +217,7 @@ def process_top_level_properties_test_suite(name):
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
         },
+        expected_executable_name = "executable_name",
     )
 
     _add_test(
@@ -216,6 +232,7 @@ def process_top_level_properties_test_suite(name):
             bundle_name = "flagship",
             minimum_deployment_os_version = "11.2",
             product_type = "com.apple.product-type.application",
+            executable_name = "executable_name",
         ),
         tree_artifact_enabled = False,
         expected_bundle_path = "some/intermediate/Payload/flagship.app",
@@ -225,6 +242,7 @@ def process_top_level_properties_test_suite(name):
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
         },
+        expected_executable_name = "executable_name",
     )
 
     _add_test(
@@ -239,6 +257,7 @@ def process_top_level_properties_test_suite(name):
             bundle_name = "flagship",
             minimum_deployment_os_version = "12.1",
             product_type = "com.apple.product-type.bundle.unit-test",
+            executable_name = "executable_name",
         ),
         tree_artifact_enabled = False,
         expected_bundle_path = "some/intermediate/flagship.xctest",
@@ -248,6 +267,7 @@ def process_top_level_properties_test_suite(name):
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship.test",
         },
+        expected_executable_name = "executable_name",
     )
 
     # Test suite

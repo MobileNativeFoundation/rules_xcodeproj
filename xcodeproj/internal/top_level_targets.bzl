@@ -88,6 +88,7 @@ def process_top_level_properties(
         product_name = bundle_info.bundle_name
         product_type = bundle_info.product_type
         minimum_deployment_version = bundle_info.minimum_deployment_os_version
+        executable_name = bundle_info.executable_name
 
         if tree_artifact_enabled:
             bundle_file_path = file_path(bundle_info.archive)
@@ -111,6 +112,7 @@ def process_top_level_properties(
     else:
         product_name = target_name
         minimum_deployment_version = None
+        executable_name = target_name
 
         xctest = None
         for file in target_files:
@@ -137,6 +139,7 @@ def process_top_level_properties(
         minimum_deployment_os_version = minimum_deployment_version,
         product_name = product_name,
         product_type = product_type,
+        executable_name = executable_name,
     )
 
 def process_top_level_target(
