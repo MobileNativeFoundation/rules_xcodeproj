@@ -117,7 +117,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
         if !excludedSourceFileNames.isEmpty {
             anyBuildSettings["EXCLUDED_SOURCE_FILE_NAMES"] =
-                .array(excludedSourceFileNames)
+                .string(excludedSourceFileNames.joined(separator: " "))
             anyBuildSettings["INCLUDED_SOURCE_FILE_NAMES"] = ""
         }
 
