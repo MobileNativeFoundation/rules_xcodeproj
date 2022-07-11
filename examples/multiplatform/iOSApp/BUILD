@@ -41,6 +41,7 @@ ios_application(
     bundle_name = "iOSApp",
     families = ["iphone"],
     infoplists = [":Info.plist"],
+    launch_images = glob(["launch_images_ios.xcassets/**"]),
     minimum_os_version = "15.0",
     provisioning_profile = select({
         ":device_build": ":xcode_profile",
@@ -50,7 +51,6 @@ ios_application(
     version = ":Version",
     visibility = ["//visibility:public"],
     watch_application = "//examples/multiplatform/watchOSApp",
-    launch_images = glob(["launch_images_ios.xcassets/**"]),
     deps = [":iOSApp.library"],
 )
 
