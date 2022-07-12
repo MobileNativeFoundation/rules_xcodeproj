@@ -36,6 +36,7 @@
     "targets": [
         "//examples/macos_app/Example:Example applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -128,6 +129,7 @@
         },
         "//examples/macos_app/Example:Example.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,

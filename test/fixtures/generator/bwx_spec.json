@@ -46,6 +46,7 @@
     "targets": [
         "//tools/generator/test:tests darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -152,6 +153,7 @@
         },
         "//tools/generator/test:tests.library darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -270,6 +272,7 @@
         },
         "//tools/generator:generator darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -361,6 +364,7 @@
         },
         "//tools/generator:generator.library darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -484,6 +488,7 @@
         },
         "@com_github_apple_swift_collections//:OrderedCollections darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -742,6 +747,7 @@
         },
         "@com_github_kylef_pathkit//:PathKit darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -804,6 +810,7 @@
         },
         "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -969,6 +976,7 @@
         },
         "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1031,6 +1039,7 @@
         },
         "@com_github_tadija_aexml//:AEXML darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1109,6 +1118,7 @@
         },
         "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-dbg-ST-ccd9595da841",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,

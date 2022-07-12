@@ -96,6 +96,14 @@ Product for target "\(key)" not found in `products`
                     products: products,
                     targetKeys: disambiguatedTargets.keys
                 ),
+                try createEmbedAppClipsPhase(
+                    in: pbxProj,
+                    buildMode: buildMode,
+                    productType: productType,
+                    appClips: target.appClips,
+                    products: products,
+                    targetKeys: disambiguatedTargets.keys
+                ),
             ]
 
             let pbxTarget = PBXNativeTarget(
@@ -521,6 +529,53 @@ App extension product reference with key \(key) not found in `products`
             dstSubfolderSpec: .plugins,
             name: "Embed App Extensions",
             files: try extensions.map(buildFile)
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
+    private static func createEmbedAppClipsPhase(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        productType: PBXProductType,
+        appClips: Set<TargetID>,
+        products: Products,
+        targetKeys: [TargetID: ConsolidatedTarget.Key]
+    ) throws -> PBXCopyFilesBuildPhase? {
+        guard !appClips.isEmpty,
+              productType.isBundle
+        else {
+            return nil
+        }
+
+        func buildFile(id: TargetID) throws -> PBXBuildFile {
+            guard let key = targetKeys[id] else {
+                throw PreconditionError(message: """
+App clip product with id "\(id)" not found in `targetKeys`
+""")
+            }
+            guard let reference = products.byTarget[key] else {
+                throw PreconditionError(message: """
+App clip product reference with key \(key) not found in `products`
+""")
+            }
+
+            let pbxBuildFile = PBXBuildFile(
+                file: reference,
+                settings: [
+                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
+                ]
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = PBXCopyFilesBuildPhase(
+            dstPath: "$(CONTENTS_FOLDER_PATH)/AppClips",
+            dstSubfolderSpec: .productsDirectory,
+            name: "Embed App Clips",
+            files: try appClips.map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 

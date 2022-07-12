@@ -102,6 +102,15 @@ enum Fixtures {
             resourceBundleDependencies: ["R 1"],
             dependencies: ["C 1", "A 1", "R 1"]
         ),
+        "AC": Target.mock(
+            packageBinDir: "bazel-out/a1b2c/bin/AC",
+            platform: .device(os: .iOS),
+            product: .init(
+                type: .onDemandInstallCapableApplication,
+                name: "AC",
+                path: .generated("z/AC.app")
+            )
+        ),
         "B 1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/B 1",
             product: .init(
@@ -217,7 +226,8 @@ enum Fixtures {
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_I"),
             ],
             watchApplication: "W",
-            dependencies: ["W"]
+            appClips: ["AC"],
+            dependencies: ["AC", "W"]
         ),
         "R 1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/R 1",
@@ -330,6 +340,7 @@ enum Fixtures {
         keys: [
             ["A 1"],
             ["A 2"],
+            ["AC"],
             ["B 1"],
             ["B 2"],
             ["B 3"],
@@ -1049,6 +1060,16 @@ a/imported.a
                 includeInIndex: false
             ),
             Products.ProductKeys(
+                targetKey: "AC",
+                filePaths: [.generated("z/AC.app")]
+            ): PBXFileReference(
+                sourceTree: .buildProductsDir,
+                explicitFileType: PBXProductType
+                    .onDemandInstallCapableApplication.fileType,
+                path: "AC.app",
+                includeInIndex: false
+            ),
+            Products.ProductKeys(
                 targetKey: "B 1",
                 filePaths: [.generated("a/b.framework")]
             ): PBXFileReference(
@@ -1193,6 +1214,7 @@ a/imported.a
             children: [
                 products.byFilePath[.generated("z/A.a")]!,
                 products.byFilePath[.generated("z/A.app")]!,
+                products.byFilePath[.generated("z/AC.app")]!,
                 products.byFilePath[.generated("a/b.framework")]!,
                 products.byFilePath[.generated("B.xctest")]!,
                 products.byFilePath[.generated("B3.xctest")]!,
@@ -1515,6 +1537,13 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                     )])
                 ),
             ],
+            "AC": [
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(
+                        file: elements[.internal("CompileStub.m")]!
+                    )])
+                ),
+            ],
             "B 1": [
                 PBXHeadersBuildPhase(
                     files: buildFiles([
@@ -1597,6 +1626,17 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                     name: "Embed Watch Content",
                     files: buildFiles([PBXBuildFile(
                         file: products.byFilePath[.generated("z/W.app")]!,
+                        settings: ["ATTRIBUTES": [
+                            "RemoveHeadersOnCopy",
+                        ]]
+                    )])
+                ),
+                PBXCopyFilesBuildPhase(
+                    dstPath: "$(CONTENTS_FOLDER_PATH)/AppClips",
+                    dstSubfolderSpec: .productsDirectory,
+                    name: "Embed App Clips",
+                    files: buildFiles([PBXBuildFile(
+                        file: products.byFilePath[.generated("z/AC.app")]!,
                         settings: ["ATTRIBUTES": [
                             "RemoveHeadersOnCopy",
                         ]]
@@ -1702,6 +1742,13 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 product: products.byTarget["A 2"],
                 productType: .application
             ),
+            "AC": PBXNativeTarget(
+                name: disambiguatedTargets.targets["AC"]!.name,
+                buildPhases: buildPhases["AC"] ?? [],
+                productName: "AC",
+                product: products.byTarget["AC"],
+                productType: .onDemandInstallCapableApplication
+            ),
             "B 1": PBXNativeTarget(
                 name: disambiguatedTargets.targets["B 1"]!.name,
                 buildPhases: buildPhases["B 1"] ?? [],
@@ -1800,6 +1847,9 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             target: bazelDependenciesTarget
         )
         _ = try! pbxNativeTargets["A 2"]!.addDependency(
+            target: bazelDependenciesTarget
+        )
+        _ = try! pbxNativeTargets["AC"]!.addDependency(
             target: bazelDependenciesTarget
         )
         _ = try! pbxNativeTargets["B 1"]!.addDependency(
@@ -1906,6 +1956,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         let attributes: [ConsolidatedTarget.Key: [String: Any]] = [
             "A 1": baseAttributes,
             "A 2": baseAttributes,
+            "AC": baseAttributes,
             "B 1": baseAttributes,
             "B 2": baseAttributes.merging([
                 "TestTargetID": pbxTargets["A 2"]!,
@@ -1966,6 +2017,24 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["A 2"]!.name,
+            ]) { $1 },
+            "AC": targets["AC"]!.buildSettings.asDictionary.merging([
+                "ARCHS": "arm64",
+                "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/AC",
+                "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
+                "BAZEL_TARGET_ID": "AC",
+                "DEPLOYMENT_LOCATION": "NO",
+                "EXECUTABLE_EXTENSION": "app",
+                "GENERATE_INFOPLIST_FILE": "YES",
+                "LD_RUNPATH_SEARCH_PATHS": [
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                ],
+                "PRODUCT_NAME": "AC",
+                "SDKROOT": "iphoneos",
+                "SUPPORTED_PLATFORMS": "iphoneos",
+                "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
+                "TARGET_NAME": targets["AC"]!.name,
             ]) { $1 },
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
@@ -2243,6 +2312,8 @@ $(MACOSX_FILES)
             .addDependency(target: pbxTargets["B 1"]!)
         _ = try! pbxTargets.nativeTarget("C 2")!
             .addDependency(target: pbxTargets["C 1"]!)
+        _ = try! pbxTargets.nativeTarget("I")!
+            .addDependency(target: pbxTargets["AC"]!)
         _ = try! pbxTargets.nativeTarget("I")!
             .addDependency(target: pbxTargets["W"]!)
 

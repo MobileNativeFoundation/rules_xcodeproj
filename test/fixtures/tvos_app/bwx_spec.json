@@ -56,6 +56,7 @@
     "targets": [
         "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -139,6 +140,7 @@
         },
         "//examples/tvos_app/Example:Example.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -200,6 +202,7 @@
         },
         "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -280,6 +283,7 @@
         },
         "//examples/tvos_app/ExampleTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -348,6 +352,7 @@
         },
         "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -427,6 +432,7 @@
         },
         "//examples/tvos_app/ExampleUITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,

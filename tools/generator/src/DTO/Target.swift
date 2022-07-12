@@ -20,6 +20,7 @@ struct Target: Equatable, Decodable {
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
     let extensions: Set<TargetID>
+    let appClips: Set<TargetID>
     var dependencies: Set<TargetID>
     var outputs: Outputs
 }

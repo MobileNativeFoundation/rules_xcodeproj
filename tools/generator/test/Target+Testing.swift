@@ -22,6 +22,7 @@ extension Target {
         resourceBundleDependencies: Set<TargetID> = [],
         watchApplication: TargetID? = nil,
         extensions: Set<TargetID> = [],
+        appClips: Set<TargetID> = [],
         dependencies: Set<TargetID> = [],
         outputs: Outputs = .init()
     ) -> Self {
@@ -43,6 +44,7 @@ extension Target {
             resourceBundleDependencies: resourceBundleDependencies,
             watchApplication: watchApplication,
             extensions: extensions,
+            appClips: appClips,
             dependencies: dependencies,
             outputs: outputs
         )
