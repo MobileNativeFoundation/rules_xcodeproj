@@ -27,20 +27,24 @@ extension XcodeScheme.TargetWithID: Comparable {
 
 // MARK: BazelLabel
 
-extension XcodeScheme {
-    struct SchemeLabel {
-        let label: LabelValue
-        let isTopLevel: Bool
-    }
-}
+// extension XcodeScheme {
+//     struct SchemeLabel {
+//         let label: LabelValue
+//         let isTopLevel: Bool
+//     }
+// }
 
 // MARK: Resolve TargetIDs
 
 extension XcodeScheme {
     // The Bazel label as a string (Target.label)
     typealias LabelValue = String
+
     // The configuration string (Target.configuration)
     typealias Configuration = String
+
+    // Represents a Bazel label from a scheme
+    typealias SchemeLabel = (label: LabelValue, isTopLevel: Bool)
 
     typealias LabelValueTargetInfo = (
         byConfiguration: [Configuration: TargetWithID],
@@ -123,11 +127,11 @@ extension XcodeScheme {
 
         var results = [SchemeLabel]()
         for label in topLevelTargetLabels {
-            results.append(.init(label: label, isTopLevel: true))
+            results.append((label: label, isTopLevel: true))
         }
         if let buildAction = buildAction {
             for label in buildAction.targets {
-                results.append(.init(
+                results.append((
                     label: label,
                     isTopLevel: topLevelTargetLabels.contains(label)
                 ))
@@ -137,18 +141,3 @@ extension XcodeScheme {
         return results
     }
 }
-
-// // MARK: Top-Level Targets
-
-// extension XcodeScheme {
-//     var topLevelTargetLabels: Set<SchemeLabel> {
-//         var results = Set<String>()
-//         if let testAction = testAction {
-//             testAction.targets.forEach { results.update($0) }
-//         }
-//         if let launchAction = launchAction {
-//             results.update(launchAction.target)
-//         }
-//         return results
-//     }
-// }
