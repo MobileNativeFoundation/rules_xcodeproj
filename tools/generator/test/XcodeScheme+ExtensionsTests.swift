@@ -7,14 +7,16 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         XCTFail("IMPLEMENT ME!")
     }
 
-    // Labels
+    // MARK: Labels
+
     let libLabel = "//examples/multiplatform/Lib:Lib"
     let toolLabel = "//examples/multiplatform/Tool:Tool"
     let iOSAppLabel = "//examples/multiplatform/iOSApp:iOSApp"
     let tvOSAppLabel = "//examples/multiplatform/tvOSApp:tvOSApp"
     let watchOSAppLabel = "//examples/multiplatform/watchOSApp:watchOSApp"
 
-    // Configurations
+    // MARK: Configurations
+
     let iOSarm64Configuration = "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-2427ca916465"
     let iOSx8664Configuration = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d619bc5eae76"
     let macOSx8664Coniguration = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-7373f6dcb398"
@@ -31,7 +33,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     let applebinwatchOSwatchOSarm64Configuration = "applebin_watchos-watchos_arm64_32-dbg-ST-ffdc9fd07085"
     let applebinwatchOSwatchOSx8664Configuration = "applebin_watchos-watchos_x86_64-dbg-ST-cd006600ac60"
 
-    // Platforms
+    // MARK: Platforms
+
     let appletvOSPlatform = Platform(
         name: "appletvos",
         os: .tvOS,
@@ -81,6 +84,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         minimumOsVersion: "7.0",
         environment: Optional("Simulator")
     )
+
+    // MARK: Targets and TargetIDs
 
     lazy var libiOSarm64TargetID: TargetID = .init("\(libLabel) \(iOSarm64Configuration)")
     lazy var libiOSarm64Target = Target.mock(
@@ -245,5 +250,12 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    let targets: [TargetID: Target] = [:]
+    lazy var targets: [TargetID: Target] = [
+        libiOSarm64TargetID: libiOSarm64Target,
+        libiOSx8664TargetID: libiOSx8664Target,
+        libtvOSarm64TargetID: libtvOSarm64Target,
+        libtvOSx8664TargetID: libtvOSx8664Target,
+        libwatchOSarm64TargetID: libwatchOSarm64Target,
+        libwatchOSx8664TargetID: libwatchOSx8664Target,
+    ]
 }
