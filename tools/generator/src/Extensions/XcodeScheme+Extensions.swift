@@ -122,17 +122,8 @@ Unable to find the best `TargetWithID` for "\(label)"
             targetInfo.byConfiguration[target.configuration] = targetWithID
             targetInfo.inPlatformOrder.append(targetWithID)
             targetInfo.inPlatformOrder.sort()
-            // let inPlatformOrder = targetInfo.inPlatformOrder + [targetWithID]
-            // targetInfo.inPlatformOrder = (targetInfo.inPlatformOrder + [targetWithID]).sort()
             results[target.label] = targetInfo
         }
-
-        // // Ensure that the inPlatformOrder is set properly
-        // for (label, targetInfo) in results {
-        //     var newTargetInfo =
-        //     targetInfo.inPlatformOrder = targetInfo.inPlatformOrder.sort()
-        //     results[label] = targetInfo
-        // }
 
         return results
     }
