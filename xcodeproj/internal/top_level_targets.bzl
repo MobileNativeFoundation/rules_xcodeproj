@@ -112,9 +112,9 @@ def process_top_level_properties(
         build_settings["EXECUTABLE_NAME"] = executable_name
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
-        product_name = target_name
         minimum_deployment_version = None
         executable_name = target_name
+        product_name = target_name
 
         xctest = None
         for file in target_files:
