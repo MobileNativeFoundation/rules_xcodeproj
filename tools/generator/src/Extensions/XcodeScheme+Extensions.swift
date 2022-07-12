@@ -43,8 +43,7 @@ extension XcodeScheme {
         // Collect top-level labels
         let topLevelLabelValues = allSchemeLabels.filter(\.isTopLevel).map(\.label)
 
-        // This list of the top-level platforms is sorted with the preferred/best platform
-        // first.
+        // This list of the top-level platforms is sorted with the preferred/best platform first.
         let topLevelPlatforms = Set(
             targetWithIDs
                 .filter { topLevelLabelValues.contains($0.target.label) }
@@ -62,11 +61,12 @@ Did not find `targetInfo` for label "\(schemeLabel.label)"
 
             let targetID: TargetID
             if schemeLabel.isTopLevel {
-                // If schemeLabel is top-level, then get the Target-TargetID with the "best" platform
+                // If schemeLabel is top-level, then get the Target-TargetID with the "best"
+                // platform.
                 targetID = try targetInfo.best().id
             } else {
                 // If schemeLabel is not top-level, then collect all of the Target-TargetID for the
-                // top-level configurations
+                // top-level configurations and select the first one.
                 let targetIDs = topLevelPlatforms.compactMap { targetInfo.byPlatform[$0]?.id }
                 guard let bestTargetID = targetIDs.first else {
                     throw PreconditionError(message: """
@@ -88,7 +88,6 @@ extension XcodeScheme {
     /// Collects Target information for a LabelValue.
     struct LabelValueTargetInfo {
         let label: LabelValue
-        // var byConfiguration: [Configuration: TargetWithID] = [:]
         var byPlatform: [Platform: TargetWithID] = [:]
         var inPlatformOrder: [TargetWithID] = []
 
@@ -113,7 +112,6 @@ Unable to find the best `TargetWithID` for "\(label)"
             var targetInfo = results[
                 target.label, default: LabelValueTargetInfo(label: target.label)
             ]
-            // targetInfo.byConfiguration[target.configuration] = targetWithID
             targetInfo.byPlatform[target.platform] = targetWithID
             targetInfo.inPlatformOrder.append(targetWithID)
             targetInfo.inPlatformOrder.sort()
@@ -128,7 +126,6 @@ Unable to find the best `TargetWithID` for "\(label)"
 
 extension XcodeScheme {
     /// Represents a Bazel label from a scheme.
-    // typealias SchemeLabel = (label: LabelValue, isTopLevel: Bool)
     struct SchemeLabel: Equatable, Hashable {
         let label: LabelValue
         let isTopLevel: Bool
@@ -145,6 +142,7 @@ extension XcodeScheme {
         return results
     }
 
+    /// Retrieve all of the labels specified in the scheme.
     var allSchemeLabels: Set<SchemeLabel> {
         let topLevelTargetLabels = topLevelTargetLabels
 
