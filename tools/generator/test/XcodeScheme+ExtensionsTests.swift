@@ -193,5 +193,57 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
+    lazy var tvOSApptvOSarm64TargetID: TargetID = .init(
+        "\(tvOSAppLabel) \(applebintvOStvOSarm64Configuration)")
+    lazy var tvOSApptvOSarm64Target = Target.mock(
+        label: tvOSAppLabel,
+        configuration: applebintvOStvOSarm64Configuration,
+        platform: appletvOSPlatform,
+        product: .init(
+            type: .application,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var tvOSApptvOSx8664TargetID: TargetID = .init(
+        "\(tvOSAppLabel) \(applebintvOStvOSx8664Configuration)")
+    lazy var tvOSApptvOSx8664Target = Target.mock(
+        label: tvOSAppLabel,
+        configuration: applebintvOStvOSx8664Configuration,
+        platform: appletvSimulatorPlatform,
+        product: .init(
+            type: .application,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var watchOSAppwatchOSarm64TargetID: TargetID = .init(
+        "\(watchOSAppLabel) \(applebinwatchOSwatchOSarm64Configuration)")
+    lazy var watchOSAppwatchOSarm64Target = Target.mock(
+        label: watchOSAppLabel,
+        configuration: applebinwatchOSwatchOSarm64Configuration,
+        platform: watchOSPlatform,
+        product: .init(
+            type: .watch2App,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var watchOSAppwatchOSx8664TargetID: TargetID = .init(
+        "\(watchOSAppLabel) \(applebinwatchOSwatchOSx8664Configuration)")
+    lazy var watchOSAppwatchOSx8664Target = Target.mock(
+        label: watchOSAppLabel,
+        configuration: applebinwatchOSwatchOSx8664Configuration,
+        platform: watchSimulatorPlatform,
+        product: .init(
+            type: .watch2App,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
     let targets: [TargetID: Target] = [:]
 }
