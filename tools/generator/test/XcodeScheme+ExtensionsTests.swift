@@ -2,8 +2,6 @@ import XCTest
 
 @testable import generator
 
-// TODO: Add some testActions
-
 // MARK: allSchemeLabels Tests
 
 extension XcodeSchemeExtensionsTests {
@@ -52,6 +50,7 @@ extension XcodeSchemeExtensionsTests {
         let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
         let expected = [
             libLabel: libiOSx8664TargetID,
+            libTestsLabel: libTestsiOSx8664TargetID,
             iOSAppLabel: iOSAppiOSx8664TargetID,
         ]
         XCTAssertEqual(expected, actual)
@@ -76,6 +75,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     // Labels
 
     let libLabel = "//examples/multiplatform/Lib:Lib"
+    let libTestsLabel = "//examples/multiplatform/LibTests:LibTests.__internal__.__test_bundle"
     let toolLabel = "//examples/multiplatform/Tool:Tool"
     let iOSAppLabel = "//examples/multiplatform/iOSApp:iOSApp"
     let tvOSAppLabel = "//examples/multiplatform/tvOSApp:tvOSApp"
@@ -88,7 +88,6 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     let macOSx8664Coniguration = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-7373f6dcb398"
     let tvOSarm64Configuration = "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-90aac610cf68"
     let tvOSx8664Configuration = "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9d824d5ada9f"
-
     let watchOSarm64Configuration = "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-ffdc9fd07085"
     let watchOSx8664Configuration = "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-cd006600ac60"
     let applebinMacOSDarwinx8664Configuration = "applebin_macos-darwin_x86_64-dbg-ST-7373f6dcb398"
@@ -238,6 +237,18 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
+    lazy var libTestsiOSx8664TargetID: TargetID = .init("\(libTestsLabel) \(applebiniOSiOSx8664Configuration)")
+    lazy var libTestsiOSx8664Target = Target.mock(
+        label: libTestsLabel,
+        configuration: applebiniOSiOSx8664Configuration,
+        platform: iphoneSimulatorPlatform,
+        product: .init(
+            type: .unitTestBundle,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
     lazy var toolmacOSx8664TargetID: TargetID = .init(
         "\(toolLabel) \(applebinMacOSDarwinx8664Configuration)")
     lazy var toolmacOSx8664Target = Target.mock(
@@ -332,6 +343,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     lazy var targets: [TargetID: Target] = [
         iOSAppiOSarm64TargetID: iOSAppiOSarm64Target,
         iOSAppiOSx8664TargetID: iOSAppiOSx8664Target,
+        libTestsiOSx8664TargetID: libTestsiOSx8664Target,
         libiOSarm64TargetID: libiOSarm64Target,
         libiOSx8664TargetID: libiOSx8664Target,
         libmacOSx8664TargetID: libmacOSx8664Target,
@@ -358,7 +370,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     lazy var iOSAppScheme = XcodeScheme(
         name: "iOSApp",
         buildAction: .init(targets: [libLabel]),
-        testAction: nil,
+        testAction: .init(targets: [libTestsLabel]),
         launchAction: .init(target: iOSAppLabel, args: [], env: [:], workingDirectory: nil)
     )
 
