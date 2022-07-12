@@ -27,9 +27,6 @@ extension XcodeScheme {
     /// Represents a configuration string (Target.configuration).
     typealias Configuration = String
 
-    /// Represents a Bazel label from a scheme.
-    typealias SchemeLabel = (label: LabelValue, isTopLevel: Bool)
-
     /// Determines the mapping of `LabelValue` to the `TargetID` values based upon the scheme's
     /// configuration.
     func resolveTargetIDs(targets: [TargetID: Target]) throws -> [LabelValue: [TargetID]] {
@@ -74,7 +71,6 @@ Did not find `targetInfo` for label "\(schemeLabel.label)"
                 // top-level configurations
                 targetIDs = topLevelConfigurations
                     .compactMap { targetInfo.byConfiguration[$0]?.id }
-                    // .flatMap { $0 }
             }
             resolvedTargetIDs[schemeLabel.label] = targetIDs
         }
@@ -126,6 +122,13 @@ Unable to find the best `TargetWithID` for "\(label)"
 // MARK: Collect the SchemeLabel Values
 
 extension XcodeScheme {
+    /// Represents a Bazel label from a scheme.
+    // typealias SchemeLabel = (label: LabelValue, isTopLevel: Bool)
+    struct SchemeLabel: Equatable, Hashable {
+        let label: LabelValue
+        let isTopLevel: Bool
+    }
+
     private var topLevelTargetLabels: Set<String> {
         var results = Set<String>()
         if let testAction = testAction {
@@ -137,22 +140,25 @@ extension XcodeScheme {
         return results
     }
 
-    var allSchemeLabels: [SchemeLabel] {
+    var allSchemeLabels: Set<SchemeLabel> {
         let topLevelTargetLabels = topLevelTargetLabels
 
-        var results = [SchemeLabel]()
+        var byLabelValue = [LabelValue: SchemeLabel]()
         for label in topLevelTargetLabels {
-            results.append((label: label, isTopLevel: true))
+            byLabelValue[label] = .init(label: label, isTopLevel: true)
         }
         if let buildAction = buildAction {
             for label in buildAction.targets {
-                results.append((
+                if byLabelValue[label] != nil {
+                    continue
+                }
+                byLabelValue[label] = .init(
                     label: label,
                     isTopLevel: topLevelTargetLabels.contains(label)
-                ))
+                )
             }
         }
 
-        return results
+        return .init(byLabelValue.values)
     }
 }

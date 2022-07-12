@@ -3,8 +3,32 @@ import XCTest
 @testable import generator
 
 class XcodeSchemeExtensionsTests: XCTestCase {
-    func test_topLevelTargetLabels() throws {
-        XCTFail("IMPLEMENT ME!")
+    // TODO: Add some testActions
+
+    func test_allSchemeLabels_doNotOverwriteTopLevel() throws {
+        // Ensure that toolLabel comes through as top-level even though it
+        // is specified in build action as well.
+        let scheme = XcodeScheme(
+            name: "Foo",
+            buildAction: .init(targets: [libLabel, toolLabel]),
+            testAction: nil,
+            launchAction: .init(target: toolLabel, args: [], env: [:], workingDirectory: nil)
+        )
+        let actual = scheme.allSchemeLabels
+        let expected: Set<XcodeScheme.SchemeLabel> = [
+            .init(label: libLabel, isTopLevel: false),
+            .init(label: toolLabel, isTopLevel: true),
+        ]
+        XCTAssertEqual(expected, actual)
+    }
+
+    func test_allSchemeLabels_forToolScheme() throws {
+        let actual = toolScheme.allSchemeLabels
+        let expected: Set<XcodeScheme.SchemeLabel> = [
+            .init(label: libLabel, isTopLevel: false),
+            .init(label: toolLabel, isTopLevel: true),
+        ]
+        XCTAssertEqual(expected, actual)
     }
 
     func test_resolveTargetIDs_withToolScheme() throws {
