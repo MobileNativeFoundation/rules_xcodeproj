@@ -86,10 +86,10 @@ def process_top_level_properties(
         A `struct` of information about the top level target.
     """
     if bundle_info:
+        executable_name = bundle_info.executable_name
+        minimum_deployment_version = bundle_info.minimum_deployment_os_version
         product_name = bundle_info.bundle_name
         product_type = bundle_info.product_type
-        minimum_deployment_version = bundle_info.minimum_deployment_os_version
-        executable_name = bundle_info.executable_name
 
         if tree_artifact_enabled:
             bundle_file_path = file_path(bundle_info.archive)
