@@ -1,9 +1,5 @@
 import OrderedCollections
 
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
-
 // MARK: TargetWithID
 
 extension XcodeScheme {
@@ -46,25 +42,16 @@ extension XcodeScheme {
 
         let targetInfoByLabelValue = collectTargetInfoByLabelValue(targetWithIDs: targetWithIDs)
 
-        // Collect top-level configurations
+        // Collect top-level labels
         let topLevelLabelValues = allSchemeLabels.filter(\.isTopLevel).map(\.label)
+
+        // This list of the top-level platforms is sorted with the preferred/best platform
+        // first.
         let topLevelPlatforms = Set(
             targetWithIDs
                 .filter { topLevelLabelValues.contains($0.target.label) }
                 .map(\.target.platform)
-        )
-        // let topLevelConfigurations = Set(
-        //     targetWithIDs
-        //         .filter { topLevelLabelValues.contains($0.target.label) }
-        //         .map(\.target.configuration)
-        // )
-
-        // DEBUG BEGIN
-        fputs("*** CHUCK topLevelPlatforms:\n", stderr)
-        for (idx, item) in topLevelPlatforms.enumerated() {
-            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-        }
-        // DEBUG END
+        ).sorted()
 
         // For each schemeLabel,
         var resolvedTargetIDs = [LabelValue: TargetID]()
@@ -84,16 +71,14 @@ Did not find `targetInfo` for label "\(schemeLabel.label)"
                 // top-level configurations
                 let targetIDs = topLevelPlatforms
                     .compactMap { targetInfo.byPlatform[$0]?.id }
-                // DEBUG BEGIN
-                fputs("*** CHUCK targetIDs:\n", stderr)
-                for (idx, item) in targetIDs.enumerated() {
-                    fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+                guard let bestTargetID = targetIDs.first else {
+                    throw PreconditionError(message: """
+No `TargetID` values found for "\(schemeLabel.label)"
+""")
                 }
-                // DEBUG END
+                 targetID = bestTargetID
                 // TODO: FIX ME!
-                targetID = targetIDs.first!
-                // targetIDs = topLevelConfigurations
-                //     .compactMap { targetInfo.byConfiguration[$0]?.id }
+                // targetID = targetIDs.first!
             }
             resolvedTargetIDs[schemeLabel.label] = targetID
         }
