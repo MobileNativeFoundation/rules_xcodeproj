@@ -28,8 +28,6 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     let applebintvOStvOSx8664Configuration = "applebin_tvos-tvos_x86_64-dbg-ST-9d824d5ada9f"
     let applebinwatchOSwatchOSarm64Configuration = "applebin_watchos-watchos_arm64_32-dbg-ST-ffdc9fd07085"
     let applebinwatchOSwatchOSx8664Configuration = "applebin_watchos-watchos_x86_64-dbg-ST-cd006600ac60"
-    let applebinwatchOSwatchOSarm64Configuration = "applebin_watchos-watchos_arm64_32-dbg-ST-ffdc9fd07085"
-    let applebinwatchOSwatchOSx8664Configuration = "applebin_watchos-watchos_x86_64-dbg-ST-cd006600ac60"
 
     let iosarm64Platform = Platform(
         name: "ios-arm64-min15.0",
@@ -39,19 +37,14 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         environment: nil
     )
 
-    let configurations: [XcodeSceme.Configuration] = [
-        iosarm64Configuration,
-    ]
+    lazy var libIosarm64TargetID: TargetID = .init("\(libLabel) \(iOSarm64Configuration)")
+    // let libIosarm64Target = Target.mock(
+    //     label: libLabel,
+    //     configuration: iosarm64Configuration,
+    //     platform: iosarm64Platform
+    // )
 
-    let libIosarm64TargetID: TargetID = "\(libLabel) \(iosarm64Configuration)"
-    let libIosarm64Target = Target.mock(
-        label: libLabel,
-        configuration: iosarm64Configuration,
-        platform: iosarm64Platform
-    )
-
-    let targets: [TargetID: Target] = [
-    ]
+    let targets: [TargetID: Target] = [:]
 
   // examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-2427ca916465 : "//examples/multiplatform/Lib:Lib"
   // examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d619bc5eae76 : "//examples/multiplatform/Lib:Lib"
