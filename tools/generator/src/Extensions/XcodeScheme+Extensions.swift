@@ -33,7 +33,7 @@ extension XcodeScheme {
 
     /// Determines the mapping of `LabelValue` to the `TargetID` values based upon the scheme's
     /// configuration.
-    func resolveTargetIDs(targets: [TargetID: Target]) throws -> [LabelValue: [TargetID]] {
+    func resolveTargetIDs(targets: [TargetID: Target]) throws -> [LabelValue: TargetID] {
         // Get all of the scheme labels
         let allSchemeLabels = allSchemeLabels
 
@@ -59,8 +59,15 @@ extension XcodeScheme {
         //         .map(\.target.configuration)
         // )
 
+        // DEBUG BEGIN
+        fputs("*** CHUCK topLevelPlatforms:\n", stderr)
+        for (idx, item) in topLevelPlatforms.enumerated() {
+            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        }
+        // DEBUG END
+
         // For each schemeLabel,
-        var resolvedTargetIDs = [LabelValue: [TargetID]]()
+        var resolvedTargetIDs = [LabelValue: TargetID]()
         for schemeLabel in allSchemeLabels {
             guard let targetInfo = targetInfoByLabelValue[schemeLabel.label] else {
                 throw PreconditionError(message: """
@@ -68,19 +75,27 @@ Did not find `targetInfo` for label "\(schemeLabel.label)"
 """)
             }
 
-            let targetIDs: [TargetID]
+            let targetID: TargetID
             if schemeLabel.isTopLevel {
                 // If schemeLabel is top-level, then get the Target-TargetID with the "best" platform
-                targetIDs = [try targetInfo.best().id]
+                targetID = try targetInfo.best().id
             } else {
                 // If schemeLabel is not top-level, then collect all of the Target-TargetID for the
                 // top-level configurations
-                targetIDs = topLevelPlatforms
+                let targetIDs = topLevelPlatforms
                     .compactMap { targetInfo.byPlatform[$0]?.id }
+                // DEBUG BEGIN
+                fputs("*** CHUCK targetIDs:\n", stderr)
+                for (idx, item) in targetIDs.enumerated() {
+                    fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+                }
+                // DEBUG END
+                // TODO: FIX ME!
+                targetID = targetIDs.first!
                 // targetIDs = topLevelConfigurations
                 //     .compactMap { targetInfo.byConfiguration[$0]?.id }
             }
-            resolvedTargetIDs[schemeLabel.label] = targetIDs
+            resolvedTargetIDs[schemeLabel.label] = targetID
         }
 
         return resolvedTargetIDs

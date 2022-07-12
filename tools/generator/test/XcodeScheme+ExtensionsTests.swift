@@ -38,18 +38,26 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     func test_resolveTargetIDs_withToolScheme() throws {
         let actual = try toolScheme.resolveTargetIDs(targets: targets)
         let expected = [
-            libLabel: [libmacOSx8664TargetID],
-            toolLabel: [toolmacOSx8664TargetID],
+            libLabel: libmacOSx8664TargetID,
+            toolLabel: toolmacOSx8664TargetID,
         ]
+        // let expected = [
+        //     libLabel: [libmacOSx8664TargetID],
+        //     toolLabel: [toolmacOSx8664TargetID],
+        // ]
         XCTAssertEqual(expected, actual)
     }
 
     func test_resolveTargetIDs_withIOSAppScheme() throws {
         let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
         let expected = [
-            libLabel: [libiOSarm64TargetID],
-            iOSAppLabel: [iOSAppiOSarm64TargetID],
+            libLabel: libiOSx8664TargetID,
+            iOSAppLabel: iOSAppiOSx8664TargetID,
         ]
+        // let expected = [
+        //     libLabel: [libiOSarm64TargetID],
+        //     iOSAppLabel: [iOSAppiOSarm64TargetID],
+        // ]
         XCTAssertEqual(expected, actual)
     }
 
@@ -318,28 +326,20 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     )
 
     lazy var targets: [TargetID: Target] = [
+        iOSAppiOSarm64TargetID: iOSAppiOSarm64Target,
+        iOSAppiOSx8664TargetID: iOSAppiOSx8664Target,
         libiOSarm64TargetID: libiOSarm64Target,
         libiOSx8664TargetID: libiOSx8664Target,
+        libmacOSx8664TargetID: libmacOSx8664Target,
         libtvOSarm64TargetID: libtvOSarm64Target,
         libtvOSx8664TargetID: libtvOSx8664Target,
         libwatchOSarm64TargetID: libwatchOSarm64Target,
         libwatchOSx8664TargetID: libwatchOSx8664Target,
-        libmacOSx8664TargetID: libmacOSx8664Target,
         toolmacOSx8664TargetID: toolmacOSx8664Target,
-        iOSAppiOSarm64TargetID: iOSAppiOSarm64Target,
-        iOSAppiOSx8664TargetID: iOSAppiOSx8664Target,
         tvOSApptvOSarm64TargetID: tvOSApptvOSarm64Target,
         tvOSApptvOSx8664TargetID: tvOSApptvOSx8664Target,
         watchOSAppwatchOSarm64TargetID: watchOSAppwatchOSarm64Target,
         watchOSAppwatchOSx8664TargetID: watchOSAppwatchOSx8664Target,
-        // libiOSarm64TargetID: libiOSarm64Target,
-        // libiOSx8664TargetID: libiOSx8664Target,
-        // libtvOSarm64TargetID: libtvOSarm64Target,
-        // libtvOSx8664TargetID: libtvOSx8664Target,
-        // libwatchOSarm64TargetID: libwatchOSarm64Target,
-        // libwatchOSx8664TargetID: libwatchOSx8664Target,
-        // libmacOSx8664TargetID: libmacOSx8664Target,
-        // toolmacOSx8664TargetID: toolmacOSx8664Target,
     ]
 
     // MARK: Schemes
