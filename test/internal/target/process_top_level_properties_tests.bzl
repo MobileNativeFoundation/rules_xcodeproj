@@ -216,6 +216,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_type = "com.apple.product-type.application",
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
+            "EXECUTABLE_NAME": "executable_name",
         },
         expected_executable_name = "executable_name",
     )
@@ -241,6 +242,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_type = "com.apple.product-type.application",
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship",
+            "EXECUTABLE_NAME": "executable_name",
         },
         expected_executable_name = "executable_name",
     )
@@ -266,6 +268,7 @@ def process_top_level_properties_test_suite(name):
         expected_product_type = "com.apple.product-type.bundle.unit-test",
         expected_build_settings = {
             "PRODUCT_BUNDLE_IDENTIFIER": "com.example.flagship.test",
+            "EXECUTABLE_NAME": "executable_name",
         },
         expected_executable_name = "executable_name",
     )
