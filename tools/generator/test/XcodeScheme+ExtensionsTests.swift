@@ -167,5 +167,31 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
+    lazy var iOSAppiOSarm64TargetID: TargetID = .init(
+        "\(iOSAppLabel) \(applebiniOSiOSarm64Configuration)")
+    lazy var iOSAppiOSarm64Target = Target.mock(
+        label: iOSAppLabel,
+        configuration: applebiniOSiOSarm64Configuration,
+        platform: iphoneOSPlatform,
+        product: .init(
+            type: .application,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var iOSAppiOSx8664TargetID: TargetID = .init(
+        "\(iOSAppLabel) \(applebiniOSiOSx8664Configuration)")
+    lazy var iOSAppiOSx8664Target = Target.mock(
+        label: iOSAppLabel,
+        configuration: applebiniOSiOSx8664Configuration,
+        platform: iphoneSimulatorPlatform,
+        product: .init(
+            type: .application,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
     let targets: [TargetID: Target] = [:]
 }
