@@ -21,12 +21,6 @@ extension XcodeScheme.TargetWithID: Comparable {
     }
 }
 
-// extension XcodeScheme.TargetWithID: Hashable {
-//     func hash(into hasher: inout Hasher) {
-//         hasher.combine(id)
-//     }
-// }
-
 // MARK: Resolve TargetIDs
 
 extension XcodeScheme {
