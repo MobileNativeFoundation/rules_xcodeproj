@@ -250,6 +250,7 @@
     "targets": [
         "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -346,6 +347,7 @@
         },
         "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -443,6 +445,7 @@
         },
         "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -539,6 +542,7 @@
         },
         "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -635,6 +639,7 @@
         },
         "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -732,6 +737,7 @@
         },
         "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -828,6 +834,7 @@
         },
         "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -925,6 +932,7 @@
         },
         "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1026,6 +1034,7 @@
         },
         "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1126,6 +1135,7 @@
         },
         "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1235,6 +1245,7 @@
         },
         "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1344,6 +1355,7 @@
         },
         "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1448,6 +1460,7 @@
         },
         "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1553,6 +1566,7 @@
         },
         "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1627,6 +1641,7 @@
         },
         "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1701,6 +1716,7 @@
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1810,6 +1826,7 @@
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1919,6 +1936,7 @@
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -2019,6 +2037,7 @@
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -2120,6 +2139,7 @@
         },
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -2275,6 +2295,7 @@
         },
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -2430,6 +2451,7 @@
         },
         "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -2563,6 +2585,7 @@
         },
         "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -2697,6 +2720,7 @@
         },
         "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -2805,6 +2829,7 @@
         },
         "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -2913,6 +2938,7 @@
         },
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -3014,6 +3040,7 @@
         },
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -3116,6 +3143,7 @@
         },
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3189,6 +3217,7 @@
         },
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3262,6 +3291,7 @@
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3370,6 +3400,7 @@
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3478,6 +3509,7 @@
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -3579,6 +3611,7 @@
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,

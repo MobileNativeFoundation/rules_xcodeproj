@@ -101,6 +101,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
+        if "app_clips" in attrs:
+            xcode_targets["app_clips"] = [target_type.compile]
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"
         if "entitlements" in attrs:

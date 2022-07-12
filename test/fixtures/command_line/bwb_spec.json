@@ -76,6 +76,7 @@
     "targets": [
         "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -214,6 +215,7 @@
         },
         "//examples/command_line/Tests:LibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -327,6 +329,7 @@
         },
         "//examples/command_line/lib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
                 "CLANG_CXX_LIBRARY": "libc++",
@@ -438,6 +441,7 @@
         },
         "//examples/command_line/lib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -552,6 +556,7 @@
         },
         "//examples/command_line/lib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -639,6 +644,7 @@
         },
         "//examples/command_line/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -726,6 +732,7 @@
         },
         "//examples/command_line/tool:tool applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -882,6 +889,7 @@
         },
         "//examples/command_line/tool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
                 "CLANG_CXX_LIBRARY": "libc++",

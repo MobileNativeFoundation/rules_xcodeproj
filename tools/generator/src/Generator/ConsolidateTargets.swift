@@ -262,6 +262,7 @@ struct ConsolidatedTarget: Equatable {
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
     let extensions: Set<TargetID>
+    let appClips: Set<TargetID>
     let outputs: ConsolidatedTargetOutputs
 
     /// The `Set` of `FilePath`s that each target references above the baseline.
@@ -345,6 +346,7 @@ extension ConsolidatedTarget {
         resourceBundleDependencies = aTarget.resourceBundleDependencies
         watchApplication = aTarget.watchApplication
         extensions = aTarget.extensions
+        appClips = aTarget.appClips
 
         allDependencies = aTarget.allDependencies
         outputs = ConsolidatedTargetOutputs(

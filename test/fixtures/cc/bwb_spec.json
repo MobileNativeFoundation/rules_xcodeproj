@@ -31,6 +31,7 @@
     "targets": [
         "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-5534cb307cb8",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -125,6 +126,7 @@
         },
         "//examples/cc/lib:lib_impl darwin_x86_64-dbg-ST-5534cb307cb8",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -218,6 +220,7 @@
         },
         "//examples/cc/tool:tool darwin_x86_64-dbg-ST-5534cb307cb8",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -358,6 +361,7 @@
         },
         "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-5534cb307cb8",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",

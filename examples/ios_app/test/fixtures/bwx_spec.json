@@ -98,6 +98,7 @@
     "targets": [
         "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
                 "CLANG_CXX_LIBRARY": "libc++",
@@ -228,6 +229,7 @@
         },
         "//Example:Example applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -355,6 +357,7 @@
         },
         "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -434,6 +437,7 @@
         },
         "//ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.nested"
@@ -490,6 +494,7 @@
         },
         "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -601,6 +606,7 @@
         },
         "//ExampleObjcTests:ExampleObjcTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
                 "CLANG_CXX_LIBRARY": "libc++",
@@ -733,6 +739,7 @@
         },
         "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources"
@@ -791,6 +798,7 @@
         },
         "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -900,6 +908,7 @@
         },
         "//ExampleTests:ExampleTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -994,6 +1003,7 @@
         },
         "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1076,6 +1086,7 @@
         },
         "//ExampleUITests:ExampleUITests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1138,6 +1149,7 @@
         },
         "//OnlyStructuredResources:OnlyStructuredResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.example.only_structured_resources"
@@ -1185,6 +1197,7 @@
         },
         "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1249,6 +1262,7 @@
         },
         "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
                 "CLANG_CXX_LIBRARY": "libc++",
@@ -1380,6 +1394,7 @@
         },
         "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
         {
+            "app_clips": [],
             "build_settings": {
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.external"
