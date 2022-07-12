@@ -1,3 +1,5 @@
+import OrderedCollections
+
 // MARK: TargetWithID
 
 extension XcodeScheme {
@@ -25,40 +27,17 @@ extension XcodeScheme.TargetWithID: Comparable {
 //     }
 // }
 
-// MARK: BazelLabel
-
-// extension XcodeScheme {
-//     struct SchemeLabel {
-//         let label: LabelValue
-//         let isTopLevel: Bool
-//     }
-// }
-
 // MARK: Resolve TargetIDs
 
 extension XcodeScheme {
-    // The Bazel label as a string (Target.label)
-    typealias LabelValue = String
-
-    // The configuration string (Target.configuration)
+    /// Represents a configuration string (Target.configuration).
     typealias Configuration = String
 
-    // Represents a Bazel label from a scheme
+    /// Represents a Bazel label from a scheme.
     typealias SchemeLabel = (label: LabelValue, isTopLevel: Bool)
 
-    typealias LabelValueTargetInfo = (
-        byConfiguration: [Configuration: TargetWithID],
-        // inPlatformOrder: [TargetWithID]
-        best: TargetWithID
-    )
-
-    private func collectTargetInfoByLabelValue(
-        targetWithIDs _: [TargetWithID]
-    ) -> [LabelValue: LabelValueTargetInfo] {
-        // TODO: IMPLEMENT ME!
-        return [:]
-    }
-
+    /// Determines the mapping of `LabelValue` to the `TargetID` values based upon the scheme's
+    /// configuration.
     func resolveTargetIDs(targets: [TargetID: Target]) throws -> [LabelValue: [TargetID]] {
         // Get all of the scheme labels
         let allSchemeLabels = allSchemeLabels
@@ -95,7 +74,7 @@ Did not find `targetInfo` for label "\(schemeLabel.label)"
             let targetIDs: [TargetID]
             if schemeLabel.isTopLevel {
                 // If schemeLabel is top-level, then get the Target-TargetID with the "best" platform
-                targetIDs = [targetInfo.best.id]
+                targetIDs = [try targetInfo.best().id]
             } else {
                 // If schemeLabel is not top-level, then collect all of the Target-TargetID for the
                 // top-level configurations
@@ -109,6 +88,57 @@ Did not find `targetInfo` for label "\(schemeLabel.label)"
         return resolvedTargetIDs
     }
 }
+
+// MARK: LabelValueTargetInfo
+
+extension XcodeScheme {
+    /// Collects Target information for a LabelValue.
+    struct LabelValueTargetInfo {
+        let label: LabelValue
+        var byConfiguration: [Configuration: TargetWithID] = [:]
+        var inPlatformOrder: [TargetWithID] = []
+
+        func best() throws -> TargetWithID {
+            guard let best = inPlatformOrder.first else {
+                throw PreconditionError(message: """
+Unable to find the best `TargetWithID` for "\(label)"
+""")
+            }
+            return best
+        }
+    }
+
+    private func collectTargetInfoByLabelValue(
+        targetWithIDs: [TargetWithID]
+    ) -> [LabelValue: LabelValueTargetInfo] {
+        var results = [LabelValue: LabelValueTargetInfo]()
+
+        // Collect the target information
+        for targetWithID in targetWithIDs {
+            let target = targetWithID.target
+            var targetInfo = results[
+                target.label, default: LabelValueTargetInfo(label: target.label)
+            ]
+            targetInfo.byConfiguration[target.configuration] = targetWithID
+            targetInfo.inPlatformOrder.append(targetWithID)
+            targetInfo.inPlatformOrder.sort()
+            // let inPlatformOrder = targetInfo.inPlatformOrder + [targetWithID]
+            // targetInfo.inPlatformOrder = (targetInfo.inPlatformOrder + [targetWithID]).sort()
+            results[target.label] = targetInfo
+        }
+
+        // // Ensure that the inPlatformOrder is set properly
+        // for (label, targetInfo) in results {
+        //     var newTargetInfo =
+        //     targetInfo.inPlatformOrder = targetInfo.inPlatformOrder.sort()
+        //     results[label] = targetInfo
+        // }
+
+        return results
+    }
+}
+
+// MARK: Collect the SchemeLabel Values
 
 extension XcodeScheme {
     private var topLevelTargetLabels: Set<String> {
