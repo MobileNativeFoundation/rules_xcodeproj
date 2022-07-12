@@ -5,6 +5,8 @@ import XCTest
 class XcodeSchemeExtensionsTests: XCTestCase {
     // TODO: Add some testActions
 
+    // MARK: allSchemeLabels Tests
+
     func test_allSchemeLabels_doNotOverwriteTopLevel() throws {
         // Ensure that toolLabel comes through as top-level even though it
         // is specified in build action as well.
@@ -31,6 +33,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
 
+    // MARK: resolveTargetIDs Tests
+
     func test_resolveTargetIDs_withToolScheme() throws {
         let actual = try toolScheme.resolveTargetIDs(targets: targets)
         let expected = [
@@ -41,7 +45,12 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     }
 
     func test_resolveTargetIDs_withIOSAppScheme() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
+        let expected = [
+            libLabel: [libiOSarm64TargetID],
+            iOSAppLabel: [iOSAppiOSarm64TargetID],
+        ]
+        XCTAssertEqual(expected, actual)
     }
 
     func test_resolveTargetIDs_withTVOSAppScheme() throws {
@@ -317,6 +326,20 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         libwatchOSx8664TargetID: libwatchOSx8664Target,
         libmacOSx8664TargetID: libmacOSx8664Target,
         toolmacOSx8664TargetID: toolmacOSx8664Target,
+        iOSAppiOSarm64TargetID: iOSAppiOSarm64Target,
+        iOSAppiOSx8664TargetID: iOSAppiOSx8664Target,
+        tvOSApptvOSarm64TargetID: tvOSApptvOSarm64Target,
+        tvOSApptvOSx8664TargetID: tvOSApptvOSx8664Target,
+        watchOSAppwatchOSarm64TargetID: watchOSAppwatchOSarm64Target,
+        watchOSAppwatchOSx8664TargetID: watchOSAppwatchOSx8664Target,
+        // libiOSarm64TargetID: libiOSarm64Target,
+        // libiOSx8664TargetID: libiOSx8664Target,
+        // libtvOSarm64TargetID: libtvOSarm64Target,
+        // libtvOSx8664TargetID: libtvOSx8664Target,
+        // libwatchOSarm64TargetID: libwatchOSarm64Target,
+        // libwatchOSx8664TargetID: libwatchOSx8664Target,
+        // libmacOSx8664TargetID: libmacOSx8664Target,
+        // toolmacOSx8664TargetID: toolmacOSx8664Target,
     ]
 
     // MARK: Schemes
@@ -326,5 +349,12 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         buildAction: .init(targets: [libLabel]),
         testAction: nil,
         launchAction: .init(target: toolLabel, args: [], env: [:], workingDirectory: nil)
+    )
+
+    lazy var iOSAppScheme = XcodeScheme(
+        name: "iOSApp",
+        buildAction: .init(targets: [libLabel]),
+        testAction: nil,
+        launchAction: .init(target: iOSAppLabel, args: [], env: [:], workingDirectory: nil)
     )
 }
