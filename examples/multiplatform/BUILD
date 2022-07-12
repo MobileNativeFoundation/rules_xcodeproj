@@ -20,6 +20,7 @@ device_and_simulator(
     tags = ["manual"],
     targets = [
         "//examples/multiplatform/iOSApp",
+        "//examples/multiplatform/iMessageApp",
         "//examples/multiplatform/tvOSApp",
     ],
     visibility = ["//visibility:public"],
