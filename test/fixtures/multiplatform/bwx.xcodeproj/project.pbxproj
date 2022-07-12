@@ -1998,6 +1998,14 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = watchOSApp;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
+				);
+				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
+				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;

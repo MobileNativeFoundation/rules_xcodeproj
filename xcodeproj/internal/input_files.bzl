@@ -105,8 +105,7 @@ def _collect(
             project. If this is `False` then all resources will get added to
             `extra_files` instead of `resources`.
         is_bundle: Whether `target` is a bundle.
-        linker_inputs: A value returned from
-            `linker_file_inputs.collect_for_top_level`, or a similar function.
+        linker_inputs: A value returned from `linker_file_inputs.collect`.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         additional_files: A `list` of `File`s to add to the inputs. This can

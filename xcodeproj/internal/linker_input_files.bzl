@@ -29,164 +29,87 @@ _TARGET_TRIPLE_OS = {
     apple_common.platform.watchos_simulator: "watchos-simulator",
 }
 
-def _collect_for_non_top_level(*, cc_info, objc, is_xcode_target):
-    """Collects linker input files for a non top level target.
+def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
+    """Collects linker input files for a target.
 
     Args:
-        cc_info: The `CcInfo` of the target, or `None`.
-        objc: The `ObjcProvider` of the target, or `None`.
-        is_xcode_target: Whether the target is an Xcode target.
+        ctx: The aspect context.
+        compilation_providers: A value returned by
+            `compilation_providers.collect`.
+        avoid_compilation_providers: A value returned from
+            `compilation_providers.collect`. The linker inputs from these
+            providers will be excluded from the return list.
 
     Returns:
-        An mostly-opaque `struct` containing the linker input files for a
-        target. The `struct` should be passed to functions on
-        `linker_input_files` to retrieve its contents. It also exposes the
-        following public attributes:
-
-        *   `xcode_library_targets`: A list of targets `structs` that are
-            Xcode library targets.
+        A mostly-opaque `struct` containing the linker input files for a target.
+        The `struct` should be passed to functions on `linker_input_files` to
+        retrieve its contents.
     """
-    is_xcode_library_target = cc_info and is_xcode_target
-    if is_xcode_library_target:
+    if compilation_providers._is_xcode_library_target:
         primary_static_library = _compute_primary_static_library(
-            cc_info = cc_info,
-            objc = objc,
+            compilation_providers = compilation_providers,
         )
+        top_level_values = None
     else:
         primary_static_library = None
+        top_level_values = _extract_top_level_values(
+            ctx = ctx,
+            compilation_providers = compilation_providers,
+            avoid_compilation_providers = avoid_compilation_providers,
+        )
 
     return struct(
-        _cc_info = cc_info,
-        _objc = objc,
+        _compilation_providers = compilation_providers,
         _primary_static_library = primary_static_library,
-        _top_level_values = None,
-        _is_xcode_library_target = is_xcode_library_target,
-        xcode_library_targets = [],
+        _top_level_values = top_level_values,
     )
 
-def _compute_primary_static_library(cc_info, objc):
+def _merge(*, compilation_providers):
+    return _collect(ctx = None, compilation_providers = compilation_providers)
+
+def _compute_primary_static_library(*, compilation_providers):
     # Ideally we would only return the static library that is owned by this
     # target, but sometimes another rule creates the output and this rule
     # outputs it. So far the first library has always been the correct one.
-    if objc:
-        for library in objc.library.to_list():
+    if compilation_providers._objc:
+        for library in compilation_providers._objc.library.to_list():
             return library
-    elif cc_info:
-        linker_inputs = cc_info.linking_context.linker_inputs
+    elif compilation_providers._cc_info:
+        linker_inputs = (
+            compilation_providers._cc_info.linking_context.linker_inputs
+        )
         for input in linker_inputs.to_list():
             return input.libraries[0].static_library
     return None
 
-def _collect_for_top_level(
+def _extract_top_level_values(
         *,
         ctx,
-        transitive_linker_inputs,
-        avoid_linker_inputs):
-    """Collects linker input files for a top level library target.
-
-    Args:
-        ctx: The aspect context.
-        transitive_linker_inputs: A `list` of `(target(), XcodeProjInfo)` tuples
-            of transitive dependencies that should have their linker inputs
-            merged.
-        avoid_linker_inputs: A value returned from
-            `linker_input_files.collect_for_top_level`. These inputs will be
-            excluded from the return list.
-
-    Returns:
-        A value similar to the one returned from
-        `linker_input_files.collect_for_non_top_level`.
-    """
-    return _merge(
-        ctx = ctx,
-        transitive_linker_inputs = transitive_linker_inputs,
-        avoid_linker_inputs = avoid_linker_inputs,
-    )
-
-def _merge(*, ctx = None, transitive_linker_inputs, avoid_linker_inputs = None):
-    """Merges linker input files from the deps of a target.
-
-    This should only be used by targets that are being skipped.
-
-    Args:
-        ctx: The aspect context.
-        transitive_linker_inputs: A `list` of `(target(), XcodeProjInfo)` tuples
-            of transitive dependencies that should have their linker inputs
-            merged.
-        avoid_linker_inputs: A value returned from
-            `linker_input_files.collect_for_top_level`. These inputs will be
-            excluded from the return list.
-
-    Returns:
-        A value similar to the one returned from
-        `linker_input_files.collect_for_top_level`.
-    """
-
-    # Ideally we could use `merge_linking_contexts`, but it's private API
-    cc_info = cc_common.merge_cc_infos(
-        cc_infos = [
-            linker_inputs._cc_info
-            for _, linker_inputs in transitive_linker_inputs
-            if linker_inputs._cc_info
-        ],
-    )
-
-    objc_providers = [
-        linker_inputs._objc
-        for _, linker_inputs in transitive_linker_inputs
-        if linker_inputs._objc
-    ]
-    if objc_providers:
-        objc = apple_common.new_objc_provider(providers = objc_providers)
-    else:
-        objc = None
-
-    xcode_library_targets = [
-        target
-        for target, linker_inputs in transitive_linker_inputs
-        if linker_inputs._is_xcode_library_target
-    ]
-
-    if cc_info or objc:
-        top_level_values = _extract_top_level_values(
-            ctx = ctx,
-            cc_info = cc_info,
-            objc = objc,
-            avoid_linker_inputs = avoid_linker_inputs,
-        )
-    else:
-        top_level_values = None
-
-    return struct(
-        _cc_info = cc_info,
-        _objc = objc,
-        _primary_static_library = None,
-        _top_level_values = top_level_values,
-        _is_xcode_library_target = False,
-        xcode_library_targets = xcode_library_targets,
-    )
-
-def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
-    if objc:
-        if avoid_linker_inputs:
-            if not avoid_linker_inputs._objc:
+        compilation_providers,
+        avoid_compilation_providers):
+    if compilation_providers._objc:
+        objc = compilation_providers._objc
+        if avoid_compilation_providers:
+            avoid_objc = avoid_compilation_providers._objc
+            if not avoid_objc:
                 fail("""\
-`avoid_linker_inputs` doesn't have `ObjcProvider`, but `linker_inputs` does
+`avoid_compilation_providers` doesn't have `ObjcProvider`, but \
+`compilation_providers` does
 """)
             avoid_dynamic_framework_files = sets.make(
-                avoid_linker_inputs._objc.dynamic_framework_file.to_list(),
+                avoid_objc.dynamic_framework_file.to_list(),
             )
             avoid_static_framework_files = sets.make(
-                avoid_linker_inputs._objc.static_framework_file.to_list(),
+                avoid_objc.static_framework_file.to_list(),
             )
             avoid_libraries = sets.make(
-                avoid_linker_inputs._objc.library.to_list(),
+                avoid_objc.library.to_list(),
             )
             avoid_imported_libraries = sets.make(
-                avoid_linker_inputs._objc.imported_library.to_list(),
+                avoid_objc.imported_library.to_list(),
             )
             avoid_force_load_libraries = sets.make(
-                avoid_linker_inputs._objc.force_load_library.to_list(),
+                avoid_objc.force_load_library.to_list(),
             )
         else:
             avoid_dynamic_framework_files = sets.make()
@@ -235,13 +158,16 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
             "-l" + dylib
             for dylib in objc.sdk_dylib.to_list()
         ])
-    elif cc_info:
-        if avoid_linker_inputs:
-            if not avoid_linker_inputs._cc_info:
+    elif compilation_providers._cc_info:
+        cc_info = compilation_providers._cc_info
+        if avoid_compilation_providers:
+            avoid_cc_info = avoid_compilation_providers._cc_info
+            if not avoid_cc_info:
                 fail("""\
-`avoid_linker_inputs` doesn't have `CcInfo`, but `linker_inputs` does
+`avoid_compilation_providers` doesn't have `CcInfo`, but \
+`compilation_providers` does
 """)
-            avoid_linking_context = avoid_linker_inputs._cc_info.linking_context
+            avoid_linking_context = avoid_cc_info.linking_context
             avoid_libraries = sets.make(flatten([
                 input.libraries
                 for input in avoid_linking_context.linker_inputs.to_list()
@@ -267,7 +193,7 @@ def _extract_top_level_values(*, ctx, cc_info, objc, avoid_linker_inputs):
                 else:
                     libraries.append(library.static_library)
     else:
-        fail("cc_info or objc must be non-`None`")
+        return None
 
     if ctx:
         cc_toolchain = find_cpp_toolchain(ctx)
@@ -412,7 +338,9 @@ def _to_dto(linker_inputs):
         *   `static_libraries`: A `list` of `FilePath`s for `static_libraries`.
         *   `linkopts`: A `list` of `string`s for linkopts.
     """
-    top_level_values = linker_inputs._top_level_values
+    top_level_values = (
+        linker_inputs._top_level_values if linker_inputs else None
+    )
     if not top_level_values:
         return {}
 
@@ -481,11 +409,10 @@ def _get_primary_static_library(linker_inputs):
     return linker_inputs._primary_static_library
 
 linker_input_files = struct(
-    collect_for_non_top_level = _collect_for_non_top_level,
-    collect_for_top_level = _collect_for_top_level,
+    collect = _collect,
+    merge = _merge,
     get_primary_static_library = _get_primary_static_library,
     get_static_libraries = _get_static_libraries,
-    merge = _merge,
     to_dto = _to_dto,
     to_framework_files = _to_framework_files,
 )

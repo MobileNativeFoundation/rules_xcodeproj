@@ -3,6 +3,7 @@
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":build_settings.bzl", "get_product_module_name")
 load(":collections.bzl", "set_if_true")
+load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "join_paths_ignoring_empty")
 load(":input_files.bzl", "input_files")
@@ -73,10 +74,14 @@ def process_library_target(
 
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
 
-    linker_inputs = linker_input_files.collect_for_non_top_level(
+    compilation_providers = comp_providers.collect(
         cc_info = target[CcInfo],
         objc = objc,
         is_xcode_target = True,
+    )
+    linker_inputs = linker_input_files.collect(
+        ctx = ctx,
+        compilation_providers = compilation_providers,
     )
 
     cpp = ctx.fragments.cpp
@@ -143,17 +148,17 @@ def process_library_target(
         build_settings = build_settings,
     )
     search_paths = process_search_paths(
-        cc_info = cc_info,
-        objc = objc,
+        compilation_providers = compilation_providers,
         bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
     )
 
     return processed_target(
         automatic_target_info = automatic_target_info,
+        compilation_providers = compilation_providers,
         dependencies = dependencies,
         inputs = inputs,
-        linker_inputs = linker_inputs,
+        library = linker_input_files.get_primary_static_library(linker_inputs),
         outputs = outputs,
         search_paths = search_paths,
         target = struct(

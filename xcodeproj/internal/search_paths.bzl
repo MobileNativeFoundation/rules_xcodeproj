@@ -7,18 +7,28 @@ load(
     "parsed_file_path",
 )
 
-def process_search_paths(*, cc_info, objc, bin_dir_path, opts_search_paths):
+def process_search_paths(
+        *,
+        compilation_providers,
+        bin_dir_path,
+        opts_search_paths):
     """Processes search paths.
 
     Args:
-        cc_info: The `CcInfo` provider for the target.
-        objc: The `ObjcProvider` provider for the target.
+        compilation_providers: A value returned from
+            `compilation_providers.collect`.
         bin_dir_path: `ctx.bin_dir.path`.
         opts_search_paths: A value returned from `create_opts_search_paths`.
 
     Returns:
         A DTO `dict`.
     """
+    if not compilation_providers:
+        return {}
+
+    cc_info = compilation_providers._cc_info
+    objc = compilation_providers._objc
+
     search_paths = {}
     if cc_info:
         compilation_context = cc_info.compilation_context

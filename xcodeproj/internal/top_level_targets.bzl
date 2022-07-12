@@ -9,6 +9,7 @@ load(
     "get_targeted_device_family",
 )
 load(":collections.bzl", "set_if_true")
+load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
@@ -280,18 +281,26 @@ def process_top_level_target(
 
     if (test_host_target_info and
         props.product_type == "com.apple.product-type.bundle.unit-test"):
-        avoid_linker_inputs = test_host_target_info.linker_inputs
+        avoid_compilation_providers = (
+            test_host_target_info.compilation_providers
+        )
     else:
-        avoid_linker_inputs = None
+        avoid_compilation_providers = None
 
-    linker_inputs = linker_input_files.collect_for_top_level(
-        ctx = ctx,
-        transitive_linker_inputs = [
-            (dep[XcodeProjInfo].target, dep[XcodeProjInfo].linker_inputs)
+    compilation_providers = comp_providers.merge(
+        transitive_compilation_providers = [
+            (
+                dep[XcodeProjInfo].target,
+                dep[XcodeProjInfo].compilation_providers,
+            )
             # TODO: Get attr name from `XcodeProjAutomaticTargetProcessingInfo`
             for dep in getattr(ctx.rule.attr, "deps", [])
         ],
-        avoid_linker_inputs = avoid_linker_inputs,
+    )
+    linker_inputs = linker_input_files.collect(
+        ctx = ctx,
+        compilation_providers = compilation_providers,
+        avoid_compilation_providers = avoid_compilation_providers,
     )
 
     inputs = input_files.collect(
@@ -316,7 +325,9 @@ def process_top_level_target(
         should_produce_dto = should_include_outputs(ctx = ctx),
     )
 
-    xcode_library_targets = linker_inputs.xcode_library_targets
+    xcode_library_targets = comp_providers.get_xcode_library_targets(
+        compilation_providers = compilation_providers,
+    )
     if len(xcode_library_targets) == 1 and not inputs.srcs:
         mergeable_target = xcode_library_targets[0]
         mergeable_label = mergeable_target.label
@@ -378,7 +389,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     )
 
     cc_info = target[CcInfo] if CcInfo in target else None
-    objc = target[apple_common.Objc] if apple_common.Objc in target else None
 
     codesignopts_attr_name = automatic_target_info.codesignopts
     if codesignopts_attr_name:
@@ -397,19 +407,18 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         build_settings = build_settings,
     )
     search_paths = process_search_paths(
-        cc_info = cc_info,
-        objc = objc,
+        compilation_providers = compilation_providers,
         bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
     )
 
     return processed_target(
         automatic_target_info = automatic_target_info,
+        compilation_providers = compilation_providers,
         dependencies = dependencies,
         extension_infoplists = extension_infoplists,
         hosted_targets = hosted_targets,
         inputs = inputs,
-        linker_inputs = linker_inputs,
         non_mergable_targets = non_mergable_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,

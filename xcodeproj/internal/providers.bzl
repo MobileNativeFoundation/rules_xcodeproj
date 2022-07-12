@@ -80,6 +80,9 @@ target_type = struct(
 XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",
     fields = {
+        "compilation_providers": """\
+A value returned from `compilation_providers.collect_for_{non_,}top_level`.
+""",
         "dependencies": """\
 A `list` of target ids (see the `target` `struct`) that this target directly
 depends on.
@@ -100,9 +103,6 @@ this target. It also includes the two extra fields that collect all of the
 generated `Files` and all of the `Files` that should be added to the Xcode
 project, but are not associated with any targets.
 """,
-        "linker_inputs": """\
-A value returned from `linker_input_files.collect`.
-""",
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
 of the target that can be merged into the target with the id of the 'dest'
@@ -112,8 +112,8 @@ field.
 A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
 """,
-        "non_target_linker_inputs": """\
-A value returned from `linker_input_files.collect`, for targets that aren't
+        "non_target_compilation_providers": """\
+A value returned from `compilation_providers.collect`, for targets that aren't
 generating Xcode targets.
 """,
         "non_target_swift_info_modules": """\
