@@ -2,11 +2,11 @@ import XCTest
 
 @testable import generator
 
-class XcodeSchemeExtensionsTests: XCTestCase {
-    // TODO: Add some testActions
+// TODO: Add some testActions
 
-    // MARK: allSchemeLabels Tests
+// MARK: allSchemeLabels Tests
 
+extension XcodeSchemeExtensionsTests {
     func test_allSchemeLabels_doNotOverwriteTopLevel() throws {
         // Ensure that toolLabel comes through as top-level even though it
         // is specified in build action as well.
@@ -32,9 +32,11 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         ]
         XCTAssertEqual(expected, actual)
     }
+}
 
-    // MARK: resolveTargetIDs Tests
+// MARK: resolveTargetIDs Tests
 
+extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withToolScheme() throws {
         let actual = try toolScheme.resolveTargetIDs(targets: targets)
         let expected = [
@@ -65,8 +67,13 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         ]
         XCTAssertEqual(expected, actual)
     }
+}
 
-    // MARK: Labels
+// MARK: Test Data
+
+// swiftlint:disable:next type_body_length
+class XcodeSchemeExtensionsTests: XCTestCase {
+    // Labels
 
     let libLabel = "//examples/multiplatform/Lib:Lib"
     let toolLabel = "//examples/multiplatform/Tool:Tool"
@@ -74,7 +81,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     let tvOSAppLabel = "//examples/multiplatform/tvOSApp:tvOSApp"
     let watchOSAppLabel = "//examples/multiplatform/watchOSApp:watchOSApp"
 
-    // MARK: Configurations
+    // Configurations
 
     let iOSarm64Configuration = "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-2427ca916465"
     let iOSx8664Configuration = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d619bc5eae76"
@@ -93,7 +100,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     let applebinwatchOSwatchOSx8664Configuration = "applebin_watchos-watchos_x86_64-dbg-ST-cd006600ac60"
     let macOSx8664Configuration = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-7373f6dcb398"
 
-    // MARK: Platforms
+    // Platforms
 
     let appletvOSPlatform = Platform(
         name: "appletvos",
@@ -145,7 +152,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         environment: Optional("Simulator")
     )
 
-    // MARK: Targets and TargetIDs
+    // Targets and TargetIDs
 
     lazy var libiOSarm64TargetID: TargetID = .init("\(libLabel) \(iOSarm64Configuration)")
     lazy var libiOSarm64Target = Target.mock(
@@ -339,7 +346,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         watchOSAppwatchOSx8664TargetID: watchOSAppwatchOSx8664Target,
     ]
 
-    // MARK: Schemes
+    // Schemes
 
     lazy var toolScheme = XcodeScheme(
         name: "Tool",
