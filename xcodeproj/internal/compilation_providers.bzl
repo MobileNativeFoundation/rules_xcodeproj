@@ -1,11 +1,14 @@
 """Module for propagating compilation providers."""
 
-def _collect(*, cc_info, objc, is_xcode_target):
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_common")
+
+def _collect(*, cc_info, objc, swift_info, is_xcode_target):
     """Collects compilation providers for a non top-level target.
 
     Args:
         cc_info: The `CcInfo` of the target, or `None`.
         objc: The `ObjcProvider` of the target, or `None`.
+        swift_info: The `SwiftInfo` of the target, or `None`.
         is_xcode_target: Whether the target is an Xcode target.
 
     Returns:
@@ -18,13 +21,22 @@ def _collect(*, cc_info, objc, is_xcode_target):
     return struct(
         _cc_info = cc_info,
         _objc = objc,
+        _swift_info = swift_info,
         _is_xcode_library_target = is_xcode_library_target,
     )
 
-def _merge(*, transitive_compilation_providers):
+def _merge(
+        *,
+        cc_info = None,
+        objc = None,
+        swift_info = None,
+        transitive_compilation_providers):
     """Merges compilation providers from the deps of a target.
 
     Args:
+        cc_info: The `CcInfo` of the target, or `None`.
+        objc: The `ObjcProvider` of the target, or `None`.
+        swift_info: The `SwiftInfo` of the target, or `None`.
         transitive_compilation_providers: A `list` of
             `(target(), XcodeProjInfo)` tuples of transitive dependencies that
             should have compilation providers merged.
@@ -34,6 +46,7 @@ def _merge(*, transitive_compilation_providers):
         `compilation_providers.collect`.
     """
     cc_info = cc_common.merge_cc_infos(
+        direct_cc_infos = [cc_info] if cc_info else [],
         cc_infos = [
             providers._cc_info
             for _, providers in transitive_compilation_providers
@@ -41,20 +54,31 @@ def _merge(*, transitive_compilation_providers):
         ],
     )
 
-    objc_providers = [
-        providers._objc
-        for _, providers in transitive_compilation_providers
-        if providers._objc
-    ]
-    if objc_providers:
-        objc = apple_common.new_objc_provider(providers = objc_providers)
-    else:
-        objc = None
+    if not objc:
+        objc_providers = [
+            providers._objc
+            for _, providers in transitive_compilation_providers
+            if providers._objc
+        ]
+        if objc_providers:
+            objc = apple_common.new_objc_provider(providers = objc_providers)
+
+    if not swift_info:
+        swift_infos = [
+            providers._swift_info
+            for _, providers in transitive_compilation_providers
+            if providers._swift_info
+        ]
+        if swift_infos:
+            swift_info = swift_common.create_swift_info(
+                swift_infos = swift_infos,
+            )
 
     return struct(
         _cc_info = cc_info,
         _is_xcode_library_target = False,
         _objc = objc,
+        _swift_info = swift_info,
         _transitive_compilation_providers = transitive_compilation_providers,
     )
 

@@ -496,6 +496,9 @@
                 "ENABLE_BITCODE": false,
                 "EXECUTABLE_NAME": "ExampleObjcTests",
                 "GCC_OPTIMIZATION_LEVEL": "0",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "AWESOME"
+                ],
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.objctests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",

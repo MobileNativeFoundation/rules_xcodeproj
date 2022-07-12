@@ -90,12 +90,12 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
     raw_swiftcopts = []
     user_swiftcopts = []
 
-    if SwiftInfo in target:
-        for action in target.actions:
-            if action.mnemonic == "SwiftCompile":
-                # First two arguments are "worker" and "swiftc"
-                raw_swiftcopts = action.argv[2:]
+    for action in target.actions:
+        if action.mnemonic == "SwiftCompile":
+            # First two arguments are "worker" and "swiftc"
+            raw_swiftcopts = action.argv[2:]
 
+    if SwiftInfo in target or raw_swiftcopts:
         # Rule level swiftcopts are included in action.argv above
         user_swiftcopts = getattr(ctx.rule.attr, "copts", [])
         user_swiftcopts = _expand_locations(
@@ -730,7 +730,9 @@ def _swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
     )
     pcm_defines = [
         "-D{}".format(define)
-        for define in cc_info.compilation_context.defines.to_list()
+        for define in (
+            cc_info.compilation_context.defines.to_list() if cc_info else []
+        )
     ]
 
     return base_pcm_flags + pcm_defines

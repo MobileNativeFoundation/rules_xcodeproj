@@ -287,7 +287,17 @@ def process_top_level_target(
     else:
         avoid_compilation_providers = None
 
+    if apple_common.Objc in target:
+        objc = target[apple_common.Objc]
+    elif apple_common.AppleExecutableBinary in target:
+        objc = target[apple_common.AppleExecutableBinary].objc
+    else:
+        objc = None
+
     compilation_providers = comp_providers.merge(
+        cc_info = target[CcInfo] if CcInfo in target else None,
+        objc = objc,
+        swift_info = target[SwiftInfo] if SwiftInfo in target else None,
         transitive_compilation_providers = [
             (
                 dep[XcodeProjInfo].target,
@@ -388,8 +398,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         get_product_module_name(ctx = ctx, target = target),
     )
 
-    cc_info = target[CcInfo] if CcInfo in target else None
-
     codesignopts_attr_name = automatic_target_info.codesignopts
     if codesignopts_attr_name:
         codesignopts = getattr(
@@ -402,8 +410,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             build_settings = build_settings,
         )
     process_defines(
-        cc_info = cc_info,
-        swift_info = swift_info,
+        compilation_providers = compilation_providers,
         build_settings = build_settings,
     )
     search_paths = process_search_paths(
