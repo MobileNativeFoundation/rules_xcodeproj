@@ -154,5 +154,18 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
+    lazy var toolmacOSx8664TargetID: TargetID = .init(
+        "\(toolLabel) \(applebinMacOSDarwinx8664Configuration)")
+    lazy var toolmacOSx8664Target = Target.mock(
+        label: toolLabel,
+        configuration: applebinMacOSDarwinx8664Configuration,
+        platform: macOSPlatform,
+        product: .init(
+            type: .commandLineTool,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
     let targets: [TargetID: Target] = [:]
 }
