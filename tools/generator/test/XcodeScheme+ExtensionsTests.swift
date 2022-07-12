@@ -302,6 +302,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         libtvOSx8664TargetID: libtvOSx8664Target,
         libwatchOSarm64TargetID: libwatchOSarm64Target,
         libwatchOSx8664TargetID: libwatchOSx8664Target,
+        toolmacOSx8664TargetID: toolmacOSx8664Target,
     ]
 
     // MARK: Schemes

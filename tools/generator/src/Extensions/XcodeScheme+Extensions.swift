@@ -1,5 +1,9 @@
 import OrderedCollections
 
+// DEBUG BEGIN
+import Darwin
+// DEBUG END
+
 // MARK: TargetWithID
 
 extension XcodeScheme {
@@ -37,12 +41,20 @@ extension XcodeScheme {
         let allLabelValues = Set(allSchemeLabels.map(\.label))
         let targetWithIDs = targets
             // We only need target info for labels explicitly mentioned in the scheme
-            .filter { _, target in
-                allLabelValues.contains(target.label)
-            }
-            .map { id, target in
-                TargetWithID(id: id, target: target)
-            }
+            .filter { _, target in allLabelValues.contains(target.label) }
+            .map { id, target in TargetWithID(id: id, target: target) }
+        // DEBUG BEGIN
+        fputs("*** CHUCK =============\n", stderr)
+        fputs("*** CHUCK allLabelValues:\n", stderr)
+        for (idx, item) in allLabelValues.enumerated() {
+            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        }
+        fputs("*** CHUCK targetWithIDs:\n", stderr)
+        for (idx, item) in targetWithIDs.enumerated() {
+            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        }
+        // DEBUG END
+
         let targetInfoByLabelValue = collectTargetInfoByLabelValue(targetWithIDs: targetWithIDs)
 
         // Collect top-level configurations
