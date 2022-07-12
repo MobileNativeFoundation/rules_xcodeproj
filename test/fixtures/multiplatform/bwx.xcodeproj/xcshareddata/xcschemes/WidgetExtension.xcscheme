@@ -21,6 +21,20 @@
                ReferencedContainer = "container:test/fixtures/multiplatform/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A6969986F4330BE56701A5EC"
+               BuildableName = "iOSApp.app"
+               BlueprintName = "iOSApp"
+               ReferencedContainer = "container:test/fixtures/multiplatform/bwx.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -43,9 +57,11 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
+      askForAppToLaunch = "YES"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         BundleIdentifier = "com.apple.springboard"
+         runnableDebuggingMode = "2">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDF8F127D3EA3E7481E6D3D5"
@@ -53,7 +69,16 @@
             BlueprintName = "WidgetExtension"
             ReferencedContainer = "container:test/fixtures/multiplatform/bwx.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A6969986F4330BE56701A5EC"
+            BuildableName = "iOSApp.app"
+            BlueprintName = "iOSApp"
+            ReferencedContainer = "container:test/fixtures/multiplatform/bwx.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"

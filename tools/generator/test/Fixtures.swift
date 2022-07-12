@@ -19,6 +19,7 @@ enum Fixtures {
         targetMerges: [:],
         targetHosts: [
             "W": ["I"],
+            "WDKE": ["I"],
             "WKE": ["W"],
         ],
         extraFiles: [
@@ -33,6 +34,11 @@ enum Fixtures {
         schemeAutogenerationMode: .auto,
         customXcodeSchemes: []
     )
+
+    static let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier] = [
+        "WDKE": .widgetKitExtension,
+        "WKE": .watchKit,
+    ]
 
     static let xccurrentversions: [XCCurrentVersion] = [
         .init(container: "r1/E.xcdatamodeld", version: "K2.xcdatamodel"),
@@ -2144,6 +2150,7 @@ $(MACOSX_FILES)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/W",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "W",
+                "BAZEL_HOST_TARGET_ID_0": "I",
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "app",
                 "GENERATE_INFOPLIST_FILE": "YES",
@@ -2157,6 +2164,7 @@ $(MACOSX_FILES)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/WDKE",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "WDKE",
+                "BAZEL_HOST_TARGET_ID_0": "I",
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "appex",
                 "GENERATE_INFOPLIST_FILE": "YES",
@@ -2176,6 +2184,7 @@ $(MACOSX_FILES)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/WKE",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "WKE",
+                "BAZEL_HOST_TARGET_ID_0": "W",
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "appex",
                 "GENERATE_INFOPLIST_FILE": "YES",

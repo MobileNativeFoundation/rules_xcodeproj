@@ -15,6 +15,16 @@ extension PBXProductType {
         }
     }
 
+    var isWatchApplication: Bool {
+        switch self {
+        case .watchApp,
+             .watch2App:
+            return true
+        default:
+            return false
+        }
+    }
+
     var isAppExtension: Bool {
         switch self {
         case .appExtension,

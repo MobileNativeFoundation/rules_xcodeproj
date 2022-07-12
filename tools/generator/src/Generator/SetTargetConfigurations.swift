@@ -13,6 +13,7 @@ extension Generator {
         for disambiguatedTargets: DisambiguatedTargets,
         buildMode: BuildMode,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
+        hostIDs: [TargetID: [TargetID]],
         filePathResolver: FilePathResolver
     ) throws {
         for (key, disambiguatedTarget) in disambiguatedTargets.targets {
@@ -34,6 +35,7 @@ Target "\(key)" not found in `pbxTargets`
             var buildSettings = try calculateBuildSettings(
                 for: target,
                 buildMode: buildMode,
+                hostIDs: hostIDs,
                 filePathResolver: filePathResolver
             )
 
@@ -65,6 +67,7 @@ Target "\(key)" not found in `pbxTargets`
     private static func calculateBuildSettings(
         for consolidatedTarget: ConsolidatedTarget,
         buildMode: BuildMode,
+        hostIDs: [TargetID: [TargetID]],
         filePathResolver: FilePathResolver
     ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
         var anyBuildSettings: [String: BuildSetting] = [:]
@@ -76,6 +79,7 @@ Target "\(key)" not found in `pbxTargets`
             var targetBuildSettings = try calculateBuildSettings(
                 for: target,
                 id: id,
+                hostIDs: hostIDs[id, default: []],
                 buildMode: buildMode,
                 filePathResolver: filePathResolver
             )
@@ -132,6 +136,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     private static func calculateBuildSettings(
         for target: Target,
         id: TargetID,
+        hostIDs: [TargetID],
         buildMode: BuildMode,
         filePathResolver: FilePathResolver
     ) throws -> [String: BuildSetting] {
@@ -247,6 +252,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         buildSettings.set("SDKROOT", to: target.platform.os.sdkRoot)
         buildSettings.set("SUPPORTED_PLATFORMS", to: target.platform.name)
         buildSettings.set("TARGET_NAME", to: target.name)
+
+        for (index, id) in hostIDs.enumerated() {
+            buildSettings.set("BAZEL_HOST_TARGET_ID_\(index)", to: id.rawValue)
+        }
 
         if target.product.type.isLaunchable {
             // We need `BUILT_PRODUCTS_DIR` to point to where the
