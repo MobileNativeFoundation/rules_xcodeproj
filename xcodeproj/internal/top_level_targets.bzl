@@ -138,10 +138,10 @@ def process_top_level_properties(
 
     return struct(
         bundle_file_path = bundle_file_path,
+        executable_name = executable_name,
         minimum_deployment_os_version = minimum_deployment_version,
         product_name = product_name,
         product_type = product_type,
-        executable_name = executable_name,
     )
 
 def process_top_level_target(
