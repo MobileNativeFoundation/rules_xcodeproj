@@ -7,12 +7,14 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         XCTFail("IMPLEMENT ME!")
     }
 
+    // Labels
     let libLabel = "//examples/multiplatform/Lib:Lib"
     let toolLabel = "//examples/multiplatform/Tool:Tool"
     let iOSAppLabel = "//examples/multiplatform/iOSApp:iOSApp"
     let tvOSAppLabel = "//examples/multiplatform/tvOSApp:tvOSApp"
     let watchOSAppLabel = "//examples/multiplatform/watchOSApp:watchOSApp"
 
+    // Configurations
     let iOSarm64Configuration = "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-2427ca916465"
     let iOSx8664Configuration = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d619bc5eae76"
     let macOSx8664Coniguration = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-7373f6dcb398"
@@ -29,6 +31,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     let applebinwatchOSwatchOSarm64Configuration = "applebin_watchos-watchos_arm64_32-dbg-ST-ffdc9fd07085"
     let applebinwatchOSwatchOSx8664Configuration = "applebin_watchos-watchos_x86_64-dbg-ST-cd006600ac60"
 
+    // Platforms
     let appletvOSPlatform = Platform(
         name: "appletvos",
         os: .tvOS,
@@ -79,12 +82,77 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         environment: Optional("Simulator")
     )
 
-    lazy var libIosarm64TargetID: TargetID = .init("\(libLabel) \(iOSarm64Configuration)")
-    // let libIosarm64Target = Target.mock(
-    //     label: libLabel,
-    //     configuration: iosarm64Configuration,
-    //     platform: iosarm64Platform
-    // )
+    lazy var libiOSarm64TargetID: TargetID = .init("\(libLabel) \(iOSarm64Configuration)")
+    lazy var libiOSarm64Target = Target.mock(
+        label: libLabel,
+        configuration: iOSarm64Configuration,
+        platform: iphoneOSPlatform,
+        product: .init(
+            type: .staticLibrary,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var libiOSx8664TargetID: TargetID = .init("\(libLabel) \(iOSx8664Configuration)")
+    lazy var libiOSx8664Target = Target.mock(
+        label: libLabel,
+        configuration: iOSx8664Configuration,
+        platform: iphoneSimulatorPlatform,
+        product: .init(
+            type: .staticLibrary,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var libtvOSarm64TargetID: TargetID = .init("\(libLabel) \(tvOSarm64Configuration)")
+    lazy var libtvOSarm64Target = Target.mock(
+        label: libLabel,
+        configuration: tvOSarm64Configuration,
+        platform: appletvOSPlatform,
+        product: .init(
+            type: .staticLibrary,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var libtvOSx8664TargetID: TargetID = .init("\(libLabel) \(tvOSx8664Configuration)")
+    lazy var libtvOSx8664Target = Target.mock(
+        label: libLabel,
+        configuration: tvOSx8664Configuration,
+        platform: appletvSimulatorPlatform,
+        product: .init(
+            type: .staticLibrary,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var libwatchOSarm64TargetID: TargetID = .init("\(libLabel) \(watchOSarm64Configuration)")
+    lazy var libwatchOSarm64Target = Target.mock(
+        label: libLabel,
+        configuration: watchOSarm64Configuration,
+        platform: watchOSPlatform,
+        product: .init(
+            type: .staticLibrary,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
+    lazy var libwatchOSx8664TargetID: TargetID = .init("\(libLabel) \(watchOSx8664Configuration)")
+    lazy var libwatchOSx8664Target = Target.mock(
+        label: libLabel,
+        configuration: watchOSx8664Configuration,
+        platform: watchSimulatorPlatform,
+        product: .init(
+            type: .staticLibrary,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
 
     let targets: [TargetID: Target] = [:]
 }
