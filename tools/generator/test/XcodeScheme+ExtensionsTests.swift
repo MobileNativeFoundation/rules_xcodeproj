@@ -34,8 +34,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     func test_resolveTargetIDs_withToolScheme() throws {
         let actual = try toolScheme.resolveTargetIDs(targets: targets)
         let expected = [
-            libLabel: [libiOSx8664TargetID],
-            iOSAppLabel: [toolmacOSx8664TargetID],
+            libLabel: [libmacOSx8664TargetID],
+            toolLabel: [toolmacOSx8664TargetID],
         ]
         XCTAssertEqual(expected, actual)
     }
@@ -77,6 +77,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     let applebintvOStvOSx8664Configuration = "applebin_tvos-tvos_x86_64-dbg-ST-9d824d5ada9f"
     let applebinwatchOSwatchOSarm64Configuration = "applebin_watchos-watchos_arm64_32-dbg-ST-ffdc9fd07085"
     let applebinwatchOSwatchOSx8664Configuration = "applebin_watchos-watchos_x86_64-dbg-ST-cd006600ac60"
+    let macOSx8664Configuration = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-7373f6dcb398"
 
     // MARK: Platforms
 
@@ -204,6 +205,18 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
+    lazy var libmacOSx8664TargetID: TargetID = .init("\(libLabel) \(macOSx8664Configuration)")
+    lazy var libmacOSx8664Target = Target.mock(
+        label: libLabel,
+        configuration: macOSx8664Configuration,
+        platform: macOSPlatform,
+        product: .init(
+            type: .staticLibrary,
+            name: "a",
+            path: .generated("z/A.a")
+        )
+    )
+
     lazy var toolmacOSx8664TargetID: TargetID = .init(
         "\(toolLabel) \(applebinMacOSDarwinx8664Configuration)")
     lazy var toolmacOSx8664Target = Target.mock(
@@ -302,6 +315,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         libtvOSx8664TargetID: libtvOSx8664Target,
         libwatchOSarm64TargetID: libwatchOSarm64Target,
         libwatchOSx8664TargetID: libwatchOSx8664Target,
+        libmacOSx8664TargetID: libmacOSx8664Target,
         toolmacOSx8664TargetID: toolmacOSx8664Target,
     ]
 

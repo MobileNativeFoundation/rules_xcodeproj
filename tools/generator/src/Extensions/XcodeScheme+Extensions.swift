@@ -43,27 +43,21 @@ extension XcodeScheme {
             // We only need target info for labels explicitly mentioned in the scheme
             .filter { _, target in allLabelValues.contains(target.label) }
             .map { id, target in TargetWithID(id: id, target: target) }
-        // DEBUG BEGIN
-        fputs("*** CHUCK =============\n", stderr)
-        fputs("*** CHUCK allLabelValues:\n", stderr)
-        for (idx, item) in allLabelValues.enumerated() {
-            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-        }
-        fputs("*** CHUCK targetWithIDs:\n", stderr)
-        for (idx, item) in targetWithIDs.enumerated() {
-            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-        }
-        // DEBUG END
 
         let targetInfoByLabelValue = collectTargetInfoByLabelValue(targetWithIDs: targetWithIDs)
 
         // Collect top-level configurations
         let topLevelLabelValues = allSchemeLabels.filter(\.isTopLevel).map(\.label)
-        let topLevelConfigurations = Set(
+        let topLevelPlatforms = Set(
             targetWithIDs
                 .filter { topLevelLabelValues.contains($0.target.label) }
-                .map(\.target.configuration)
+                .map(\.target.platform)
         )
+        // let topLevelConfigurations = Set(
+        //     targetWithIDs
+        //         .filter { topLevelLabelValues.contains($0.target.label) }
+        //         .map(\.target.configuration)
+        // )
 
         // For each schemeLabel,
         var resolvedTargetIDs = [LabelValue: [TargetID]]()
@@ -81,8 +75,10 @@ Did not find `targetInfo` for label "\(schemeLabel.label)"
             } else {
                 // If schemeLabel is not top-level, then collect all of the Target-TargetID for the
                 // top-level configurations
-                targetIDs = topLevelConfigurations
-                    .compactMap { targetInfo.byConfiguration[$0]?.id }
+                targetIDs = topLevelPlatforms
+                    .compactMap { targetInfo.byPlatform[$0]?.id }
+                // targetIDs = topLevelConfigurations
+                //     .compactMap { targetInfo.byConfiguration[$0]?.id }
             }
             resolvedTargetIDs[schemeLabel.label] = targetIDs
         }
@@ -97,7 +93,8 @@ extension XcodeScheme {
     /// Collects Target information for a LabelValue.
     struct LabelValueTargetInfo {
         let label: LabelValue
-        var byConfiguration: [Configuration: TargetWithID] = [:]
+        // var byConfiguration: [Configuration: TargetWithID] = [:]
+        var byPlatform: [Platform: TargetWithID] = [:]
         var inPlatformOrder: [TargetWithID] = []
 
         func best() throws -> TargetWithID {
@@ -121,7 +118,8 @@ Unable to find the best `TargetWithID` for "\(label)"
             var targetInfo = results[
                 target.label, default: LabelValueTargetInfo(label: target.label)
             ]
-            targetInfo.byConfiguration[target.configuration] = targetWithID
+            // targetInfo.byConfiguration[target.configuration] = targetWithID
+            targetInfo.byPlatform[target.platform] = targetWithID
             targetInfo.inPlatformOrder.append(targetWithID)
             targetInfo.inPlatformOrder.sort()
             results[target.label] = targetInfo
