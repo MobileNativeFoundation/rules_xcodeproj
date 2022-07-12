@@ -86,9 +86,10 @@ def process_top_level_properties(
         A `struct` of information about the top level target.
     """
     if bundle_info:
+        executable_name = bundle_info.executable_name
+        minimum_deployment_version = bundle_info.minimum_deployment_os_version
         product_name = bundle_info.bundle_name
         product_type = bundle_info.product_type
-        minimum_deployment_version = bundle_info.minimum_deployment_os_version
 
         if tree_artifact_enabled:
             bundle_file_path = file_path(bundle_info.archive)
@@ -108,10 +109,12 @@ def process_top_level_properties(
                 path = bundle_path,
             )
 
+        build_settings["EXECUTABLE_NAME"] = executable_name
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
-        product_name = target_name
+        executable_name = target_name
         minimum_deployment_version = None
+        product_name = target_name
 
         xctest = None
         for file in target_files:
@@ -135,6 +138,7 @@ def process_top_level_properties(
 
     return struct(
         bundle_file_path = bundle_file_path,
+        executable_name = executable_name,
         minimum_deployment_os_version = minimum_deployment_version,
         product_name = product_name,
         product_type = product_type,
