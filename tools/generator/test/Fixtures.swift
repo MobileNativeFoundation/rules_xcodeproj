@@ -37,7 +37,7 @@ enum Fixtures {
 
     static let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier] = [
         "WDKE": .widgetKitExtension,
-        "WKE": .watchKit,
+        "WKE": .unknown,
     ]
 
     static let xccurrentversions: [XCCurrentVersion] = [

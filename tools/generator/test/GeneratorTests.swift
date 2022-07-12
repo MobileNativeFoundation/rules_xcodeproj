@@ -29,7 +29,7 @@ final class GeneratorTests: XCTestCase {
             .init(container: "Xe/P.xcdatamodeld", version: "M1.xcdatamodel"),
         ]
         let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier] = [
-            "WKE": .watchKit,
+            "WKE": .unknown,
         ]
 
         let pbxProj = Fixtures.pbxProj()
