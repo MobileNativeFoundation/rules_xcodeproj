@@ -7,6 +7,27 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         XCTFail("IMPLEMENT ME!")
     }
 
+    func test_resolveTargetIDs_withToolScheme() throws {
+        let actual = try toolScheme.resolveTargetIDs(targets: targets)
+        let expected = [
+            libLabel: [libiOSx8664TargetID],
+            iOSAppLabel: [toolmacOSx8664TargetID],
+        ]
+        XCTAssertEqual(expected, actual)
+    }
+
+    func test_resolveTargetIDs_withIOSAppScheme() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_resolveTargetIDs_withTVOSAppScheme() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_resolveTargetIDs_withWatchOSAppScheme() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
     // MARK: Labels
 
     let libLabel = "//examples/multiplatform/Lib:Lib"
@@ -258,4 +279,13 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         libwatchOSarm64TargetID: libwatchOSarm64Target,
         libwatchOSx8664TargetID: libwatchOSx8664Target,
     ]
+
+    // MARK: Schemes
+
+    lazy var toolScheme = XcodeScheme(
+        name: "Tool",
+        buildAction: .init(targets: [libLabel]),
+        testAction: nil,
+        launchAction: .init(target: toolLabel, args: [], env: [:], workingDirectory: nil)
+    )
 }
