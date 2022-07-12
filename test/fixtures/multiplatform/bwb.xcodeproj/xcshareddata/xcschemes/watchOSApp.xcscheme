@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Set Bazel Build Output Groups"
-               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;echo &quot;b $BAZEL_TARGET_ID&quot; &gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
+               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;echo &quot;b $BAZEL_TARGET_ID&quot; &gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;echo &quot;b $BAZEL_HOST_TARGET_ID_0&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -35,6 +35,20 @@
                BlueprintIdentifier = "632D255CE04E97FB997EBDD7"
                BuildableName = "watchOSApp.app"
                BlueprintName = "watchOSApp"
+               ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1765D91CC168F25A5BC51603"
+               BuildableName = "iOSApp.app"
+               BlueprintName = "iOSApp"
                ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

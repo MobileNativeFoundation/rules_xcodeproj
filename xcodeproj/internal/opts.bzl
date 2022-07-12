@@ -98,6 +98,11 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
 
         # Rule level swiftcopts are included in action.argv above
         user_swiftcopts = getattr(ctx.rule.attr, "copts", [])
+        user_swiftcopts = _expand_locations(
+            ctx = ctx,
+            values = user_swiftcopts,
+            targets = getattr(ctx.rule.attr, "swiftc_inputs", []),
+        )
         user_swiftcopts = _expand_make_variables(
             ctx = ctx,
             values = user_swiftcopts,
@@ -136,6 +141,11 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
         )
 
         user_copts = getattr(ctx.rule.attr, "copts", [])
+        user_copts = _expand_locations(
+            ctx = ctx,
+            values = user_copts,
+            targets = getattr(ctx.rule.attr, "data", []),
+        )
         user_copts = _expand_make_variables(
             ctx = ctx,
             values = user_copts,
@@ -924,6 +934,21 @@ def _process_target_compiler_opts(
     )
 
 # Utility
+
+def _expand_locations(*, ctx, values, targets = []):
+    """Expands the `$(location)` placeholders in each of the given values.
+
+    Args:
+        ctx: The aspect context.
+        values: A `list` of strings, which may contain `$(location)`
+            placeholders.
+        targets: A `list` of additional targets (other than the calling rule's
+            `deps`) that should be searched for substitutable labels.
+
+    Returns:
+        A `list` of strings with any `$(location)` placeholders filled in.
+    """
+    return [ctx.expand_location(value, targets) for value in values]
 
 def _expand_make_variables(*, ctx, values, attribute_name):
     """Expands all references to Make variables in each of the given values.
