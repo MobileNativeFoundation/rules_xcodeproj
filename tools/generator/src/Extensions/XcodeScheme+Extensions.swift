@@ -1,5 +1,3 @@
-import OrderedCollections
-
 // MARK: TargetWithID
 
 extension XcodeScheme {
