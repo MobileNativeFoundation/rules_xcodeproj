@@ -41,32 +41,29 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             libLabel: libmacOSx8664TargetID,
             toolLabel: toolmacOSx8664TargetID,
         ]
-        // let expected = [
-        //     libLabel: [libmacOSx8664TargetID],
-        //     toolLabel: [toolmacOSx8664TargetID],
-        // ]
         XCTAssertEqual(expected, actual)
     }
 
     func test_resolveTargetIDs_withIOSAppScheme() throws {
+        // Both the device and simulator TargetID values are available.
+        // Prefer the TargetID values for the simulator.
         let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
         let expected = [
             libLabel: libiOSx8664TargetID,
             iOSAppLabel: iOSAppiOSx8664TargetID,
         ]
-        // let expected = [
-        //     libLabel: [libiOSarm64TargetID],
-        //     iOSAppLabel: [iOSAppiOSarm64TargetID],
-        // ]
         XCTAssertEqual(expected, actual)
     }
 
     func test_resolveTargetIDs_withTVOSAppScheme() throws {
-        XCTFail("IMPLEMENT ME!")
-    }
-
-    func test_resolveTargetIDs_withWatchOSAppScheme() throws {
-        XCTFail("IMPLEMENT ME!")
+        // Both the device and simulator TargetID values are available.
+        // Prefer the TargetID values for the simulator.
+        let actual = try tvOSAppScheme.resolveTargetIDs(targets: targets)
+        let expected = [
+            libLabel: libtvOSx8664TargetID,
+            tvOSAppLabel: tvOSApptvOSx8664TargetID,
+        ]
+        XCTAssertEqual(expected, actual)
     }
 
     // MARK: Labels
@@ -356,5 +353,12 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         buildAction: .init(targets: [libLabel]),
         testAction: nil,
         launchAction: .init(target: iOSAppLabel, args: [], env: [:], workingDirectory: nil)
+    )
+
+    lazy var tvOSAppScheme = XcodeScheme(
+        name: "tvOSApp",
+        buildAction: .init(targets: [libLabel]),
+        testAction: nil,
+        launchAction: .init(target: tvOSAppLabel, args: [], env: [:], workingDirectory: nil)
     )
 }

@@ -69,16 +69,13 @@ Did not find `targetInfo` for label "\(schemeLabel.label)"
             } else {
                 // If schemeLabel is not top-level, then collect all of the Target-TargetID for the
                 // top-level configurations
-                let targetIDs = topLevelPlatforms
-                    .compactMap { targetInfo.byPlatform[$0]?.id }
+                let targetIDs = topLevelPlatforms.compactMap { targetInfo.byPlatform[$0]?.id }
                 guard let bestTargetID = targetIDs.first else {
                     throw PreconditionError(message: """
 No `TargetID` values found for "\(schemeLabel.label)"
 """)
                 }
                  targetID = bestTargetID
-                // TODO: FIX ME!
-                // targetID = targetIDs.first!
             }
             resolvedTargetIDs[schemeLabel.label] = targetID
         }
