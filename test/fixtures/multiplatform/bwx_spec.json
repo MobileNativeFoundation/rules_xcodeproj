@@ -24,11 +24,11 @@
             "t": "e"
         },
         {
-            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework",
+            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
             "t": "e"
         },
         {
-            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
+            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework",
             "t": "e"
         },
         "examples/multiplatform/WidgetExtension/BUILD",
@@ -68,11 +68,11 @@
             "t": "e"
         },
         {
-            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework",
+            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
             "t": "e"
         },
         {
-            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
+            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework",
             "t": "e"
         },
         {
@@ -828,7 +828,29 @@
                 "type": "com.apple.product-type.tool"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -998,7 +1020,29 @@
                 "type": "com.apple.product-type.app-extension"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -1083,7 +1127,29 @@
                 "type": "com.apple.product-type.app-extension"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -1381,7 +1447,49 @@
                 "type": "com.apple.product-type.application"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    {
+                        "_": "com_google_google_maps",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_google_google_maps",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
@@ -1500,7 +1608,49 @@
                 "type": "com.apple.product-type.application"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    {
+                        "_": "com_google_google_maps",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_google_google_maps",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
@@ -1822,7 +1972,29 @@
                 "type": "com.apple.product-type.application"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -1907,7 +2079,29 @@
                 "type": "com.apple.product-type.application"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -2143,7 +2337,15 @@
                 "type": "com.apple.product-type.application.watchapp2"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -2206,7 +2408,15 @@
                 "type": "com.apple.product-type.application.watchapp2"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -2291,7 +2501,29 @@
                 "type": "com.apple.product-type.watchkit2-extension"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -2376,7 +2608,29 @@
                 "type": "com.apple.product-type.watchkit2-extension"
             },
             "resource_bundle_dependencies": [],
-            "search_paths": {},
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null

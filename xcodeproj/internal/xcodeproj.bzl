@@ -6,6 +6,7 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "uniq")
+load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
@@ -371,10 +372,12 @@ def _xcodeproj_impl(ctx):
         non_xcode_libraries = sets.make(
             linker_input_files.get_static_libraries(
                 linker_input_files.merge(
-                    transitive_linker_inputs = [
-                        (info.target, info.non_target_linker_inputs)
-                        for info in infos
-                    ],
+                    compilation_providers = comp_providers.merge(
+                        transitive_compilation_providers = [
+                            (info.target, info.compilation_providers)
+                            for info in infos
+                        ],
+                    ),
                 ),
             ),
         )

@@ -4,7 +4,6 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "set_if_true")
 load(":files.bzl", "parsed_file_path")
 load(":input_files.bzl", "input_files")
-load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "xcode_target")
 load(":product.bzl", "process_product")
@@ -32,18 +31,12 @@ def _process_resource_bundle(bundle, *, information):
         "{}.bundle".format(name),
     ))
 
-    linker_inputs = linker_input_files.collect_for_non_top_level(
-        cc_info = None,
-        objc = None,
-        is_xcode_target = True,
-    )
-
     product = process_product(
         target = None,
         product_name = name,
         product_type = "com.apple.product-type.bundle",
         bundle_file_path = bundle_file_path,
-        linker_inputs = linker_inputs,
+        linker_inputs = None,
     )
 
     outputs = output_files.collect(
@@ -70,7 +63,7 @@ def _process_resource_bundle(bundle, *, information):
         modulemaps = process_modulemaps(swift_info = None),
         swiftmodules = process_swiftmodules(swift_info = None),
         inputs = input_files.from_resource_bundle(bundle),
-        linker_inputs = linker_inputs,
+        linker_inputs = None,
         info_plist = None,
         dependencies = bundle.dependencies,
         outputs = outputs,

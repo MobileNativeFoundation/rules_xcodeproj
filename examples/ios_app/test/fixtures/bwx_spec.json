@@ -328,7 +328,26 @@
                 "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
                 "//ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54"
             ],
-            "search_paths": {},
+            "search_paths": {
+                "includes": [
+                    "CoreUtilsObjC",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": null,
             "watch_application": null
@@ -551,7 +570,26 @@
             "resource_bundle_dependencies": [
                 "//OnlyStructuredResources:OnlyStructuredResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54"
             ],
-            "search_paths": {},
+            "search_paths": {
+                "includes": [
+                    "CoreUtilsObjC",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": "//Example:Example applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
             "watch_application": null
@@ -830,7 +868,26 @@
             "resource_bundle_dependencies": [
                 "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54"
             ],
-            "search_paths": {},
+            "search_paths": {
+                "includes": [
+                    "CoreUtilsObjC",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": "//Example:Example applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
             "watch_application": null
@@ -997,7 +1054,15 @@
             "resource_bundle_dependencies": [
                 "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54"
             ],
-            "search_paths": {},
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
+                        "t": "g"
+                    }
+                ]
+            },
             "swiftmodules": [],
             "test_host": "//Example:Example applebin_ios-ios_x86_64-dbg-ST-8100579b5c54",
             "watch_application": null
