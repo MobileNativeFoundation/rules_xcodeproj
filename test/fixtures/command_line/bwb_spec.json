@@ -730,6 +730,10 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "SECRET_3=\\\"Hello\\\"",
+                    "SECRET_2=\\\"World!\\\""
+                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CODE_SIGN_FLAGS": [
                     "--digest-algorithm=sha1",

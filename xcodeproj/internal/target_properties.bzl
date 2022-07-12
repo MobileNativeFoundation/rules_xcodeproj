@@ -114,18 +114,20 @@ def process_codesignopts(*, codesignopts, build_settings):
     if codesignopts and build_settings != None:
         set_if_true(build_settings, "OTHER_CODE_SIGN_FLAGS", codesignopts)
 
-def process_defines(*, cc_info, swift_info, build_settings):
+def process_defines(*, compilation_providers, build_settings):
     """ Logic for processing defines of a module
 
     Args:
-        cc_info: The `CcInfo` provider for the target.
-        swift_info: The `SwiftInfo` provider for the target.
+        compilation_providers: A value returned by
+            `compilation_providers.collect`.
         build_settings: A mutable `dict` that will be updated with the
             `GCC_PREPROCESSOR_DEFINITIONS` build setting.
 
     Return:
         The modified build settings object
     """
+    cc_info = compilation_providers._cc_info
+    swift_info = compilation_providers._swift_info
     if not swift_info and cc_info and build_settings != None:
         # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
         # process Swift compile options already accounts for `defines`

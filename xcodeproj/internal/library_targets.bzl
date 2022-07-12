@@ -73,10 +73,13 @@ def process_library_target(
     )
 
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
+    is_swift = SwiftInfo in target
+    swift_info = target[SwiftInfo] if is_swift else None
 
     compilation_providers = comp_providers.collect(
         cc_info = target[CcInfo],
         objc = objc,
+        swift_info = swift_info,
         is_xcode_target = True,
     )
     linker_inputs = linker_input_files.collect(
@@ -116,8 +119,6 @@ def process_library_target(
 
     bundle_resources = should_bundle_resources(ctx = ctx)
 
-    is_swift = SwiftInfo in target
-    swift_info = target[SwiftInfo] if is_swift else None
     modulemaps = process_modulemaps(swift_info = swift_info)
     inputs = input_files.collect(
         ctx = ctx,
@@ -141,10 +142,8 @@ def process_library_target(
         should_produce_dto = should_include_outputs(ctx = ctx),
     )
 
-    cc_info = target[CcInfo] if CcInfo in target else None
     process_defines(
-        cc_info = cc_info,
-        swift_info = swift_info,
+        compilation_providers = compilation_providers,
         build_settings = build_settings,
     )
     search_paths = process_search_paths(

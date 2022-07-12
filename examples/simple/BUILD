@@ -5,6 +5,7 @@ load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 swift_binary(
     name = "SwiftBin",
     srcs = glob(["*.swift"]),
+    defines = ["HI"],
     module_name = "SwiftBinModuleName",
     visibility = ["//visibility:public"],
 )
