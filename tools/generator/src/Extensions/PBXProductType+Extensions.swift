@@ -172,6 +172,7 @@ extension PBXProductType {
     var hasCompilePhase: Bool {
         switch self {
         case .bundle,
+             .messagesApplication,
              .watchApp,
              .watch2App,
              .watch2AppContainer,
@@ -275,7 +276,8 @@ extension PBXProductType {
 
     var shouldCreateScheme: Bool {
         switch self {
-        case .watchExtension,
+        case .messagesApplication,
+             .watchExtension,
              .watch2AppContainer,
              .watch2Extension:
             return false
