@@ -79,12 +79,9 @@ No `TargetID` value found for "\(schemeLabel.label)"
 // MARK: LabelValueTargetInfo
 
 extension XcodeScheme {
-    // TODO: Remove byPlatform from LabelValueTargetInfo
-
     /// Collects Target information for a LabelValue.
     struct LabelValueTargetInfo {
         let label: LabelValue
-        var byPlatform: [Platform: TargetWithID] = [:]
         var inPlatformOrder: [TargetWithID] = []
 
         func best() throws -> TargetWithID {
@@ -108,7 +105,6 @@ Unable to find the best `TargetWithID` for "\(label)"
             var targetInfo = results[
                 target.label, default: LabelValueTargetInfo(label: target.label)
             ]
-            targetInfo.byPlatform[target.platform] = targetWithID
             targetInfo.inPlatformOrder.append(targetWithID)
             targetInfo.inPlatformOrder.sort()
             results[target.label] = targetInfo
