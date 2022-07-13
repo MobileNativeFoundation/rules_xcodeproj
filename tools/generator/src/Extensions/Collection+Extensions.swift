@@ -1,18 +1,20 @@
-extension Collection where Index == TargetID, Element == Target {
+// extension Collection where Index == TargetID, Element == Target {
+extension Dictionary where Key == TargetID, Value == Target {
     func firstTargetID<StartTargets: Sequence>(
         under startTargetIDs: StartTargets,
-        where predicate: (TargetID, Target) throws -> Bool
-    ) rethrows -> TargetID? where StartTargets.Element == TargetID {
+        where predicate: (Self.Value) throws -> Bool
+    ) rethrows -> Self.Key? where StartTargets.Element == Self.Key {
         // Collect the targets for the specified targetID values
-        let targetIDPairs = startTargetIDs.map { ($0, self[$0]) }
+        let targetIDPairs: [(TargetID, Target)] = startTargetIDs.compactMap {
+            if let target = self[$0] { return ($0, target) }
+            return nil
+        }
 
         // Check if any of the start targets satisfy the predicate.
         // If not, add their dependencies to the set of targetIDs to check next.
         var newStartIDs = Set<TargetID>()
         for (targetID, target) in targetIDPairs {
-            if try predicate(targetID, target) {
-                return targetID
-            }
+            if try predicate(target) { return targetID }
             newStartIDs.formUnion(target.dependencies)
         }
 

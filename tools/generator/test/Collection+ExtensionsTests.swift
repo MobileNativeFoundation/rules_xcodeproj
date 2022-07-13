@@ -3,6 +3,17 @@ import XCTest
 @testable import generator
 
 extension CollectionExtensionsTests {
+    func test_firstTargetID_aStartTargetMatches() throws {
+        let actual = targets.firstTargetID(under: [aTargetID, bTargetID]) { target in
+            target.label == barLabel
+        }
+        XCTAssertEqual(bTargetID, actual)
+    }
+
+    func test_firstTargetID_searchMultipleLevels() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
     func test_firstTargetID_breadthFirstSearch() throws {
         XCTFail("IMPLEMENT ME!")
     }
