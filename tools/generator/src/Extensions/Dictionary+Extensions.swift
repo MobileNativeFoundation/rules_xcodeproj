@@ -22,9 +22,7 @@ extension Dictionary where Key == TargetID, Value == Target {
 
         // If there are no more targetIDs to check, then we are done
         // Otherwise, keep searching
-        if newStartIDs.isEmpty {
-            return nil
-        }
+        if newStartIDs.isEmpty { return nil }
         return try firstTargetID(under: newStartIDs, where: predicate)
     }
 }
