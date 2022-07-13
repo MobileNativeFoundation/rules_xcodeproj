@@ -45,6 +45,9 @@ extension XcodeSchemeExtensionsTests {
     }
 
     func test_resolveTargetIDs_withIOSAppScheme() throws {
+        // DEBUG BEGIN
+        fputs("*** CHUCK START\n", stderr)
+        // DEBUG END
         // Both the device and simulator TargetID values are available.
         // Prefer the TargetID values for the simulator.
         let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
@@ -246,7 +249,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             type: .unitTestBundle,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [libiOSx8664TargetID]
     )
 
     lazy var toolmacOSx8664TargetID: TargetID = .init(
@@ -259,7 +263,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             type: .commandLineTool,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [libmacOSx8664TargetID]
     )
 
     lazy var iOSAppiOSarm64TargetID: TargetID = .init(
@@ -272,7 +277,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             type: .application,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [libiOSarm64TargetID]
     )
 
     lazy var iOSAppiOSx8664TargetID: TargetID = .init(
@@ -285,7 +291,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             type: .application,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [libiOSx8664TargetID]
     )
 
     lazy var tvOSApptvOSarm64TargetID: TargetID = .init(
@@ -298,7 +305,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             type: .application,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [libtvOSarm64TargetID]
     )
 
     lazy var tvOSApptvOSx8664TargetID: TargetID = .init(
@@ -311,7 +319,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             type: .application,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [libtvOSx8664TargetID]
     )
 
     lazy var watchOSAppwatchOSarm64TargetID: TargetID = .init(
@@ -324,7 +333,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             type: .watch2App,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [libwatchOSarm64TargetID]
     )
 
     lazy var watchOSAppwatchOSx8664TargetID: TargetID = .init(
@@ -337,7 +347,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             type: .watch2App,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [libwatchOSx8664TargetID]
     )
 
     lazy var targets: [TargetID: Target] = [

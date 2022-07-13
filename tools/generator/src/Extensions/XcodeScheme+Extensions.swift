@@ -1,3 +1,7 @@
+// DEBUG BEGIN
+import Darwin
+// DEBUG END
+
 // MARK: TargetWithID
 
 extension XcodeScheme {
@@ -30,50 +34,70 @@ extension XcodeScheme {
     func resolveTargetIDs(targets: [TargetID: Target]) throws -> [LabelValue: TargetID] {
         // Get all of the scheme labels
         let allSchemeLabels = allSchemeLabels
+        let topLevelSchemeLabels = allSchemeLabels.filter(\.isTopLevel)
+        let otherSchemeLabels = allSchemeLabels.subtracting(topLevelSchemeLabels)
+
+        // DEBUG BEGIN
+        fputs("*** CHUCK topLevelSchemeLabels:\n", stderr)
+        for (idx, item) in topLevelSchemeLabels.enumerated() {
+            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        }
+        fputs("*** CHUCK otherSchemeLabels:\n", stderr)
+        for (idx, item) in otherSchemeLabels.enumerated() {
+            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+        }
+        // DEBUG END
 
         // Create a list of TargetWithID values for the labels that we care about
-        let allLabelValues = Set(allSchemeLabels.map(\.label))
-        let targetWithIDs = targets
-            // We only need target info for labels explicitly mentioned in the scheme
-            .filter { _, target in allLabelValues.contains(target.label) }
+        // let allLabelValues = Set(allSchemeLabels.map(\.label))
+        // let targetWithIDs = targets
+        //     // We only need target info for labels explicitly mentioned in the scheme
+        //     .filter { _, target in allLabelValues.contains(target.label) }
+        //     .map { id, target in TargetWithID(id: id, target: target) }
+        // let targetInfoByLabelValue = collectTargetInfoByLabelValue(targetWithIDs: targetWithIDs)
+
+        let topLevelLabels = Set(topLevelSchemeLabels.map(\.label))
+        let topLevelTargetWithIDs = targets
+            .filter { _, target in topLevelLabels.contains(target.label) }
             .map { id, target in TargetWithID(id: id, target: target) }
+        let topLevelTargetInfoByLabelValue = collectTargetInfoByLabelValue(
+            targetWithIDs: topLevelTargetWithIDs
+        )
 
-        let targetInfoByLabelValue = collectTargetInfoByLabelValue(targetWithIDs: targetWithIDs)
-
-        // Collect top-level labels
-        let topLevelLabelValues = allSchemeLabels.filter(\.isTopLevel).map(\.label)
-
-        // This list of the top-level platforms is sorted with the preferred/best platform first.
-        let topLevelPlatforms = Set(
-            targetWithIDs
-                .filter { topLevelLabelValues.contains($0.target.label) }
-                .map(\.target.platform)
-        ).sorted()
-
-        // For each schemeLabel,
         var resolvedTargetIDs = [LabelValue: TargetID]()
-        for schemeLabel in allSchemeLabels {
-            guard let targetInfo = targetInfoByLabelValue[schemeLabel.label] else {
+
+        // Collect top-level targetIDs
+
+        var topLevelTargetIDs = Set<TargetID>()
+        for schemeLabel in topLevelSchemeLabels {
+            guard let targetInfo = topLevelTargetInfoByLabelValue[schemeLabel.label] else {
                 throw PreconditionError(message: """
-Did not find `targetInfo` for label "\(schemeLabel.label)"
+Did not find `targetInfo` for top-level label "\(schemeLabel.label)"
 """)
             }
+            let targetID = try targetInfo.best().id
+            topLevelTargetIDs.update(with: targetID)
+            resolvedTargetIDs[schemeLabel.label] = targetID
+        }
 
-            let targetID: TargetID
-            if schemeLabel.isTopLevel {
-                // If schemeLabel is top-level, then get the Target-TargetID with the "best"
-                // platform.
-                targetID = try targetInfo.best().id
-            } else {
-                // If schemeLabel is not top-level, then collect all of the Target-TargetID for the
-                // top-level configurations and select the first one.
-                let targetIDs = topLevelPlatforms.compactMap { targetInfo.byPlatform[$0]?.id }
-                guard let bestTargetID = targetIDs.first else {
-                    throw PreconditionError(message: """
-No `TargetID` values found for "\(schemeLabel.label)"
+        // DEBUG BEGIN
+        fputs("*** CHUCK targets:\n", stderr)
+        for (key, item) in targets {
+            fputs("*** CHUCK   \(key) : \(String(reflecting: item))\n", stderr)
+        }
+        // DEBUG END
+
+        // Collect other targetIDs
+        for schemeLabel in otherSchemeLabels {
+            // If schemeLabel is not top-level, then look for the first occurence of the label
+            // as a dependency of the top-level targets.
+            let firstDepTargetID = targets.firstTargetID(under: topLevelTargetIDs) { target in
+                return target.label == schemeLabel.label
+            }
+            guard let targetID = firstDepTargetID else {
+                throw PreconditionError(message: """
+No `TargetID` value found for "\(schemeLabel.label)"
 """)
-                }
-                 targetID = bestTargetID
             }
             resolvedTargetIDs[schemeLabel.label] = targetID
         }
@@ -85,6 +109,8 @@ No `TargetID` values found for "\(schemeLabel.label)"
 // MARK: LabelValueTargetInfo
 
 extension XcodeScheme {
+    // TODO: Remove byPlatform from LabelValueTargetInfo
+
     /// Collects Target information for a LabelValue.
     struct LabelValueTargetInfo {
         let label: LabelValue
@@ -131,7 +157,7 @@ extension XcodeScheme {
         let isTopLevel: Bool
     }
 
-    private var topLevelTargetLabels: Set<String> {
+    private var topLevelTargetLabels: Set<LabelValue> {
         var results = Set<String>()
         if let testAction = testAction {
             testAction.targets.forEach { results.update(with: $0) }
