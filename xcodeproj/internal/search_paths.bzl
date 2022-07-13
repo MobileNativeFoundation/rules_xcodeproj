@@ -4,6 +4,7 @@ load(":collections.bzl", "set_if_true")
 load(
     ":files.bzl",
     "file_path_to_dto",
+    "is_generated_file_path",
     "parsed_file_path",
 )
 
@@ -73,12 +74,18 @@ def process_search_paths(
             ],
         )
 
+        framework_file_paths = [
+            parsed_file_path(path)
+            for path in framework_paths.to_list()
+        ]
+
         set_if_true(
             search_paths,
             "framework_includes",
             [
-                file_path_to_dto(parsed_file_path(path))
-                for path in framework_paths.to_list()
+                file_path_to_dto(fp)
+                for fp in framework_file_paths
+                if not is_generated_file_path(fp)
             ],
         )
 

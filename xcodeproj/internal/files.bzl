@@ -152,6 +152,9 @@ def generated_file_path(
         force_group_creation = force_group_creation,
     )
 
+def is_generated_file_path(fp):
+    return fp.type == "g"
+
 def project_file_path(
         path,
         *,
