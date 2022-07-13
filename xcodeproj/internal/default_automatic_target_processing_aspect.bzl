@@ -73,20 +73,20 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
     if ctx.rule.kind == "cc_library":
         xcode_targets = {
-            "deps": [target_type.compile],
+            "deps": [target_type.compile, None],
             "interface_deps": [target_type.compile],
         }
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
-            "deps": [target_type.compile],
+            "deps": [target_type.compile, None],
             "runtime_deps": [target_type.compile],
         }
         non_arc_srcs = ["non_arc_srcs"]
         pch = "pch"
     elif ctx.rule.kind == "swift_library":
         xcode_targets = {
-            "deps": [target_type.compile],
-            "private_deps": [target_type.compile],
+            "deps": [target_type.compile, None],
+            "private_deps": [target_type.compile, None],
         }
     elif ctx.rule.kind == "apple_resource_bundle":
         xcode_targets = {}
@@ -97,7 +97,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         should_generate_target = False
     elif AppleBundleInfo in target:
         xcode_targets = {
-            "deps": [target_type.compile],
+            "deps": [target_type.compile, None],
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
@@ -126,7 +126,9 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             infoplists = ["infoplists"]
         if "launchdplists" in attrs:
             launchdplists = ["launchdplists"]
-        xcode_targets = {"deps": [target_type.compile]}
+        xcode_targets = {
+            "deps": [target_type.compile, None],
+        }
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile]}
         if getattr(ctx.rule.attr, "bundle_only", False):
@@ -136,7 +138,9 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
         should_generate_target = False
     else:
-        xcode_targets = {"deps": [this_target_type]}
+        xcode_targets = {
+            "deps": [this_target_type, None],
+        }
 
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
