@@ -1,7 +1,3 @@
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
-
 // MARK: TargetWithID
 
 extension XcodeScheme {
@@ -37,25 +33,7 @@ extension XcodeScheme {
         let topLevelSchemeLabels = allSchemeLabels.filter(\.isTopLevel)
         let otherSchemeLabels = allSchemeLabels.subtracting(topLevelSchemeLabels)
 
-        // DEBUG BEGIN
-        fputs("*** CHUCK topLevelSchemeLabels:\n", stderr)
-        for (idx, item) in topLevelSchemeLabels.enumerated() {
-            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-        }
-        fputs("*** CHUCK otherSchemeLabels:\n", stderr)
-        for (idx, item) in otherSchemeLabels.enumerated() {
-            fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-        }
-        // DEBUG END
-
-        // Create a list of TargetWithID values for the labels that we care about
-        // let allLabelValues = Set(allSchemeLabels.map(\.label))
-        // let targetWithIDs = targets
-        //     // We only need target info for labels explicitly mentioned in the scheme
-        //     .filter { _, target in allLabelValues.contains(target.label) }
-        //     .map { id, target in TargetWithID(id: id, target: target) }
-        // let targetInfoByLabelValue = collectTargetInfoByLabelValue(targetWithIDs: targetWithIDs)
-
+        // Gather target info for the top-level targets
         let topLevelLabels = Set(topLevelSchemeLabels.map(\.label))
         let topLevelTargetWithIDs = targets
             .filter { _, target in topLevelLabels.contains(target.label) }
@@ -67,7 +45,6 @@ extension XcodeScheme {
         var resolvedTargetIDs = [LabelValue: TargetID]()
 
         // Collect top-level targetIDs
-
         var topLevelTargetIDs = Set<TargetID>()
         for schemeLabel in topLevelSchemeLabels {
             guard let targetInfo = topLevelTargetInfoByLabelValue[schemeLabel.label] else {
@@ -79,13 +56,6 @@ Did not find `targetInfo` for top-level label "\(schemeLabel.label)"
             topLevelTargetIDs.update(with: targetID)
             resolvedTargetIDs[schemeLabel.label] = targetID
         }
-
-        // DEBUG BEGIN
-        fputs("*** CHUCK targets:\n", stderr)
-        for (key, item) in targets {
-            fputs("*** CHUCK   \(key) : \(String(reflecting: item))\n", stderr)
-        }
-        // DEBUG END
 
         // Collect other targetIDs
         for schemeLabel in otherSchemeLabels {
@@ -191,5 +161,3 @@ extension XcodeScheme {
         return .init(byLabelValue.values)
     }
 }
-
-// MARK: Collection Extension

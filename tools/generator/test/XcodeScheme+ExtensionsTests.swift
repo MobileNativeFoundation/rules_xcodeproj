@@ -45,9 +45,6 @@ extension XcodeSchemeExtensionsTests {
     }
 
     func test_resolveTargetIDs_withIOSAppScheme() throws {
-        // DEBUG BEGIN
-        fputs("*** CHUCK START\n", stderr)
-        // DEBUG END
         // Both the device and simulator TargetID values are available.
         // Prefer the TargetID values for the simulator.
         let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
