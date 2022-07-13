@@ -18,15 +18,17 @@ extension DictionaryExtensionsTests {
     }
 
     func test_firstTargetID_breadthFirstSearch() throws {
-        // let actual = targets.firstTargetID(under: [aTargetID, bTargetID]) { target in
-        //     target.label == helloLabel
-        // }
-        // XCTAssertEqual(eTargetID, actual)
-        XCTFail("IMPLEMENT ME!")
+        let actual = targets.firstTargetID(under: [aTargetID, bTargetID]) { target in
+            target.label == helloLabel
+        }
+        XCTAssertEqual(cTargetID, actual)
     }
 
     func test_firstTargetID_doesNotExist() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actual = targets.firstTargetID(under: [aTargetID, bTargetID]) { target in
+            target.label == "doesNotExist"
+        }
+        XCTAssertNil(actual)
     }
 }
 
