@@ -24,12 +24,15 @@
 /* Begin PBXBuildFile section */
 		0425CCFCCD1FE1ECEDCA1226 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FED84E16539192393AF06C /* ContentView.swift */; };
 		0AC9B1AE521C82EFADF44E61 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427A227944F4D18102ADE4F /* Lib.swift */; };
+		0D9682670712CC38E3BD6E1B /* AppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 21B075DF13D48A7176B9FD50 /* AppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0E4D91E102B2FB798BAEA5F6 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
 		0F0FF535D335E505B878A37E /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7126971C71380F35EAD51D /* Lib.swift */; };
 		1345A48101C47E242F430CD8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48754296ACA596286860C0BF /* CryptoSwift.framework */; };
 		17D28C4F6071247D8148BE16 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B79A6A845E24A1CE8611CA /* CryptoSwift.framework */; };
+		1F4FBB2FDB7D7960FCBBAD3D /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
 		20400F30EDAD70BDBAA5A5F8 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		20C5737D84060AD99B9FD176 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CA5CE0520D7058F9F5932C /* CryptoSwift.framework */; };
+		222CF0072E090136613B7D5A /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		268106B9996EDC881B2E0AA8 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3333170CE926366B0A03CBF1 /* GoogleMapsBase.framework */; };
 		31148D81297341297091BE82 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C87E1F983762D987044B07D /* GoogleMapsCore.framework */; };
 		36702025178576706C745BC5 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23E4536260379513114C6AE /* CryptoSwift.framework */; };
@@ -54,6 +57,7 @@
 		7FCCD5D790B440F97BF25CC3 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		8595E6BFF015905B33168E18 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EAAF0384D20903614054AA /* Lib.swift */; };
 		8595E830B7AC432730FD9BD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0561945EBB23E334B7EC83E3 /* main.swift */; };
+		870D5447845B486C6B63BF2B /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23E4536260379513114C6AE /* CryptoSwift.framework */; };
 		9111AE827A5939B3E1C787DC /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23E4536260379513114C6AE /* CryptoSwift.framework */; };
 		9235E3AEC14B689E7BFB5025 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E25AB0992362AE2E4F48AF2D /* GoogleMapsCore.framework */; };
 		9AF0A03D043B7204F54FAE6F /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06635567BD147220E1AF4D16 /* Intents.swift */; };
@@ -63,8 +67,10 @@
 		C0410183B2A47BD134098700 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		C3F80F355B01BEA0D54145EC /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		C61E821B3CFE0D5260A796F4 /* WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 56F16FB28F266E6AABCEA995 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CEC8CCE4C9BFFBFD0A23D07B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E842FA503EFFAF94F9B849A /* ContentView.swift */; };
 		D9ED091F2428AAE0F00A0860 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F13F50760C51CF5C96142 /* Lib.swift */; };
 		DB5E9309EC817EBBCE4249EC /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286459D2E587B2DF91067194 /* Lib.swift */; };
+		E0522FDC1C78B62C7321CA59 /* AppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD139F111FC1472A88A9CB7B /* AppClip.swift */; };
 		E0E96DF94A3CD3E134AE28B4 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		E1B4912BC76DA5478ADD8A66 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		E33B1548599BFCBE1729A977 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FBA2590E14FA946C70E605 /* Lib.swift */; };
@@ -135,6 +141,13 @@
 			remoteGlobalIDString = A4578F87C2E16998CBCB17D4;
 			remoteInfo = "Lib (macOS, iOS, tvOS)";
 		};
+		6DAAD4B2366FFB70CA5EDDAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13A68B4984727F4B3DAE6AFB;
+			remoteInfo = AppClip;
+		};
 		7257BF65ACBCED05BD50E030 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -184,6 +197,13 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		ACEB1374228556C1C9CBC69E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
 		AFABADA1B93EA6785C2D2D78 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -212,9 +232,27 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		FA8C973ADB8380F9ED4D8106 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A4578F87C2E16998CBCB17D4;
+			remoteInfo = "Lib (macOS, iOS, tvOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		35F0792A0228A41446B47AF3 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				0D9682670712CC38E3BD6E1B /* AppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		73209A42106E6D9F8C2F204A /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,11 +308,15 @@
 		0561945EBB23E334B7EC83E3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		06635567BD147220E1AF4D16 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		0AACB22E5F4B160E9CD14629 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		122ECFCAC8A6153C2396EC61 /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		17C68CB3AB068C4D32CB53C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		19C8F7CCC5F4C0A75BC6D6B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B5A0430B943510A260B7A6F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		21B075DF13D48A7176B9FD50 /* AppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		228FA03886D4CED2E8B87937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22D3E7618EB2EFFE6AA88608 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		286459D2E587B2DF91067194 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		28A2789956BBBB220E0C9AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2CF26DE3A83F5A41CBDF91F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2DBB7AE642E655A5B1FD9FC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		304835C6995FCC78B359CCBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -283,6 +325,7 @@
 		3AC69858583169F87F19CEA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3C8274B23B00FA75662E9855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		416D7556BFEC26938A62BA77 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		42FD3D0067614F143D3CEBDC /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		451AB65F903A79F644C34E4F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		48754296ACA596286860C0BF /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		49B79A6A845E24A1CE8611CA /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
@@ -303,6 +346,7 @@
 		822E2F1BC0EB1C5A15368AC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		82C7184778C265E6AF5491B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		848F13F50760C51CF5C96142 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		8E842FA503EFFAF94F9B849A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8EC039E4ABE4875858ECD261 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8F49CCC488DBF944363A76E3 /* tvOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9065B04356832B39E95AA885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -316,7 +360,9 @@
 		A4FED84E16539192393AF06C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A888E2361B64B76E81875CE1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AC3BD6C219E6E5167618EBD9 /* watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOSApp.swift; sourceTree = "<group>"; };
+		AD139F111FC1472A88A9CB7B /* AppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClip.swift; sourceTree = "<group>"; };
 		ADBEAB2C84FEA499584D9C18 /* watchOSAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = watchOSAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AED65F5A574CCDAE30035DF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AF1A1C154F7C2DB997EC29C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF2DAFB9141E941BE0B725EF /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		B3F2BB6661347D1891100734 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,6 +385,7 @@
 		D1FBA2590E14FA946C70E605 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		D6D47AB7111AD76651E98D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D7CC5CE744AFD0A5E15D6AEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DB89EC6AA61F0084A14D9450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DCAD2E3EA0F9B2B9A58A4F90 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DDD8B97AA93AE8B902A67A36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF7126971C71380F35EAD51D /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
@@ -346,7 +393,10 @@
 		E25AB0992362AE2E4F48AF2D /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		E332411DCE28305063274CDF /* iMessageAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMessageAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
+		E7CC0575EECAA039E39C8B0F /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		E89AED11EAA442900F8C9C96 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
+		E99EC9E0460C9E8B7262C039 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F2CC13B3A151FD6B7B0F6FF1 /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		F8A822259267A98E99B540D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F96A44A295CC64A6F089D2BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FC82D9B6933E423A5142FF4B /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
@@ -412,6 +462,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1A4B37998EBB24708A708B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				870D5447845B486C6B63BF2B /* CryptoSwift.framework in Frameworks */,
+				1F4FBB2FDB7D7960FCBBAD3D /* CryptoSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -464,6 +523,7 @@
 		154DCAF407AD3745175DE301 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
+				3D18530BF1770234D1E6CA1D /* AppClip */,
 				1AD23543F66639E1DF5340FC /* iMessageApp */,
 				544A76E0E2376ADB30E34FBF /* iOSApp */,
 				B2FC16DD2E52823F77C60505 /* WidgetExtension */,
@@ -655,6 +715,32 @@
 			path = GoogleMapsCore.xcframework;
 			sourceTree = "<group>";
 		};
+		3B03A3A8BC71395EA1DFED5B /* AppClip */ = {
+			isa = PBXGroup;
+			children = (
+				3E7B710DF3AD92F84DB780CB /* AppClip-intermediates */,
+				F2CC13B3A151FD6B7B0F6FF1 /* Entitlements.withbundleid.plist */,
+			);
+			path = AppClip;
+			sourceTree = "<group>";
+		};
+		3D18530BF1770234D1E6CA1D /* AppClip */ = {
+			isa = PBXGroup;
+			children = (
+				879A33AFAEF3DC02FAB3E325 /* AppClip-intermediates */,
+				122ECFCAC8A6153C2396EC61 /* Entitlements.withbundleid.plist */,
+			);
+			path = AppClip;
+			sourceTree = "<group>";
+		};
+		3E7B710DF3AD92F84DB780CB /* AppClip-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				DB89EC6AA61F0084A14D9450 /* Info.plist */,
+			);
+			path = "AppClip-intermediates";
+			sourceTree = "<group>";
+		};
 		42BE79A7BB75674833CCE1B9 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,6 +794,7 @@
 		4CB36A2B413AC6A89BA50273 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
+				D5F8EB04CB3C8DEDEA78B8A5 /* AppClip */,
 				0EC708FB4525B7F514518550 /* iMessageApp */,
 				F6928B27559A694D5F235BE6 /* iOSApp */,
 				6343005A4B9B57A35AB9894A /* Lib */,
@@ -763,6 +850,7 @@
 		593E7C82FAAD94A7E6A04318 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				21B075DF13D48A7176B9FD50 /* AppClip.app */,
 				C7820E9BA81F12DC4A75C422 /* iMessageApp.app */,
 				E332411DCE28305063274CDF /* iMessageAppExtension.appex */,
 				C9839B245FE2AD82F977E567 /* iOSApp.app */,
@@ -1004,6 +1092,14 @@
 			path = "watchOSAppExtension-intermediates";
 			sourceTree = "<group>";
 		};
+		879A33AFAEF3DC02FAB3E325 /* AppClip-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				28A2789956BBBB220E0C9AE6 /* Info.plist */,
+			);
+			path = "AppClip-intermediates";
+			sourceTree = "<group>";
+		};
 		887DB9E1AAF0059110BE927D /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -1104,6 +1200,7 @@
 		9EA22BD8EA5DD4B8B1653D1B /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
+				3B03A3A8BC71395EA1DFED5B /* AppClip */,
 				97E6F5996AC7566C3E6E61B6 /* iMessageApp */,
 				32BE63FB5A50B209720B80B2 /* iOSApp */,
 				E62F7B7BAC46706CD6D7C54E /* WidgetExtension */,
@@ -1402,6 +1499,28 @@
 			path = WidgetExtension;
 			sourceTree = "<group>";
 		};
+		D50241D657A883F04F4D837C /* PreviewContent */ = {
+			isa = PBXGroup;
+			children = (
+				E99EC9E0460C9E8B7262C039 /* Preview Assets.xcassets */,
+			);
+			path = PreviewContent;
+			sourceTree = "<group>";
+		};
+		D5F8EB04CB3C8DEDEA78B8A5 /* AppClip */ = {
+			isa = PBXGroup;
+			children = (
+				D50241D657A883F04F4D837C /* PreviewContent */,
+				AD139F111FC1472A88A9CB7B /* AppClip.swift */,
+				228FA03886D4CED2E8B87937 /* Assets.xcassets */,
+				42FD3D0067614F143D3CEBDC /* BUILD */,
+				8E842FA503EFFAF94F9B849A /* ContentView.swift */,
+				E7CC0575EECAA039E39C8B0F /* Entitlements.entitlements */,
+				AED65F5A574CCDAE30035DF6 /* Info.plist */,
+			);
+			path = AppClip;
+			sourceTree = "<group>";
+		};
 		D608FB3F9FB359A86F77A07C /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1582,6 +1701,25 @@
 			productReference = 56F16FB28F266E6AABCEA995 /* WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		13A68B4984727F4B3DAE6AFB /* AppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90F3B40579D75847186F27C6 /* Build configuration list for PBXNativeTarget "AppClip" */;
+			buildPhases = (
+				B5F59F69B53E4CD6B729C3DE /* Copy Bazel Outputs */,
+				F90AB663AB242C7317551B94 /* Sources */,
+				F1A4B37998EBB24708A708B2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				042CE1381B4CE19CAE198BC1 /* PBXTargetDependency */,
+				B7B9EAF85D3319B35CF14E7E /* PBXTargetDependency */,
+			);
+			name = AppClip;
+			productName = AppClip;
+			productReference = 21B075DF13D48A7176B9FD50 /* AppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
 		1765D91CC168F25A5BC51603 /* iOSApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8A489D2F21C3EBA9BFFC31B /* Build configuration list for PBXNativeTarget "iOSApp" */;
@@ -1591,11 +1729,13 @@
 				673AEE26CBCA5AC37617E7DD /* Frameworks */,
 				7C574200BE46B3AB33851AA4 /* Embed Watch Content */,
 				B863A176A237329225DDC850 /* Embed App Extensions */,
+				35F0792A0228A41446B47AF3 /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				588C37BAE74BD661E5366E96 /* PBXTargetDependency */,
+				BCCE3E1D985584550E4BB4DA /* PBXTargetDependency */,
 				C94C023F42EA28F45CE93ED4 /* PBXTargetDependency */,
 				5437B75F248043889B16F23E /* PBXTargetDependency */,
 				9C0C27802B5E0218C39B72F4 /* PBXTargetDependency */,
@@ -1763,6 +1903,10 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
+					13A68B4984727F4B3DAE6AFB = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
 					1765D91CC168F25A5BC51603 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -1818,6 +1962,7 @@
 			projectRoot = "";
 			targets = (
 				7E7D155EBCA520F35DEA3571 /* BazelDependencies */,
+				13A68B4984727F4B3DAE6AFB /* AppClip */,
 				343F031FB3DF1E87C3568525 /* iMessageApp */,
 				2BECDF067E07C69468ED23A3 /* iMessageAppExtension */,
 				1765D91CC168F25A5BC51603 /* iOSApp */,
@@ -1976,6 +2121,24 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B5F59F69B53E4CD6B729C3DE /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"AppClip.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C3B530109FE5F98A1693F0A1 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -2125,6 +2288,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F90AB663AB242C7317551B94 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				222CF0072E090136613B7D5A /* _BazelForcedCompile_.swift in Sources */,
+				E0522FDC1C78B62C7321CA59 /* AppClip.swift in Sources */,
+				CEC8CCE4C9BFFBFD0A23D07B /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA8942BDFBA5593578C14FAB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2142,6 +2315,12 @@
 			name = "Lib (macOS, iOS, tvOS)";
 			target = A4578F87C2E16998CBCB17D4 /* Lib (macOS, iOS, tvOS) */;
 			targetProxy = 728C13AEED714FBC7DBFEC7F /* PBXContainerItemProxy */;
+		};
+		042CE1381B4CE19CAE198BC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = ACEB1374228556C1C9CBC69E /* PBXContainerItemProxy */;
 		};
 		0B4F0EB86580D666D2540EAF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2226,6 +2405,18 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = AFABADA1B93EA6785C2D2D78 /* PBXContainerItemProxy */;
+		};
+		B7B9EAF85D3319B35CF14E7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Lib (macOS, iOS, tvOS)";
+			target = A4578F87C2E16998CBCB17D4 /* Lib (macOS, iOS, tvOS) */;
+			targetProxy = FA8C973ADB8380F9ED4D8106 /* PBXContainerItemProxy */;
+		};
+		BCCE3E1D985584550E4BB4DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AppClip;
+			target = 13A68B4984727F4B3DAE6AFB /* AppClip */;
+			targetProxy = 6DAAD4B2366FFB70CA5EDDAA /* PBXContainerItemProxy */;
 		};
 		C4897838CF03F1ED17ABBFB5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2762,6 +2953,111 @@
 			};
 			name = Debug;
 		};
+		7187F36B9AF9EB73BA807EF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/AppClip.ipa";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/AppClip.ipa";
+				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/AppClip.swiftmodule\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/AppClip.swiftdoc\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/AppClip.swiftsourceinfo";
+				"BAZEL_OUTPUTS_SWIFTMODULE[sdk=iphoneos*]" = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/AppClip.swiftmodule\n$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/AppClip.swiftdoc\n$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/AppClip.swiftsourceinfo";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip";
+				BAZEL_TARGET_ID = "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
+				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = NO;
+				DEVELOPMENT_TEAM = V82V4GQZXM;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES)";
+				EXECUTABLE_EXTENSION = app;
+				EXECUTABLE_NAME = AppClip;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INCLUDED_SOURCE_FILE_NAMES = "";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
+				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/AppClip-intermediates/Info.xcode.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/AppClip-intermediates/Info.xcode.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework $(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
+				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework $(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/AppClip.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
+					"-lc++",
+					"-filelist",
+					"$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/examples/multiplatform/AppClip/AppClip.LinkFileList",
+					"-force_load",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib/libLib.a",
+				);
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/AppClip.swiftmodule/arm64-apple-ios.swiftmodule",
+					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
+					"-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
+					"-ObjC",
+					"-L/usr/lib/swift",
+					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
+					"-Wl,-rpath,/usr/lib/swift",
+					"-headerpad_max_install_names",
+					"-no-canonical-prefixes",
+					"-lc++",
+					"-filelist",
+					"$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/examples/multiplatform/AppClip/AppClip.LinkFileList",
+					"-force_load",
+					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib/libLib.a",
+				);
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.app-clip";
+				PRODUCT_MODULE_NAME = AppClip;
+				PRODUCT_NAME = AppClip;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib";
+				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = 1;
+				TARGET_NAME = AppClip;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin",
+				);
+				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(PROJECT_DIR)",
+					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin",
+				);
+			};
+			name = Debug;
+		};
 		8CDF027C7D3DAE7432B1708E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3206,6 +3502,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBB10F64E321E5D64C8DFE11 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		90F3B40579D75847186F27C6 /* Build configuration list for PBXNativeTarget "AppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7187F36B9AF9EB73BA807EF7 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
