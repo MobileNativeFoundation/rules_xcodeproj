@@ -265,6 +265,8 @@ struct ConsolidatedTarget: Equatable {
     let appClips: Set<TargetID>
     let outputs: ConsolidatedTargetOutputs
 
+    let hasLinkerFlags: Bool
+
     /// The `Set` of `FilePath`s that each target references above the baseline.
     ///
     /// The baseline is all `FilePath`s that each target references. A reference
@@ -354,6 +356,8 @@ extension ConsolidatedTarget {
             hasSwiftOutputs: self.targets.values
                 .contains { $0.outputs.hasSwiftOutputs }
         )
+
+        hasLinkerFlags = aTarget.hasLinkerFlags
     }
 
     private static func consolidateInputs(

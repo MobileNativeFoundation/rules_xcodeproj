@@ -29,4 +29,48 @@ extension Target {
     var allDependencies: Set<TargetID> {
         return dependencies.union(resourceBundleDependencies)
     }
+
+    var hasLinkerFlags: Bool {
+        return !linkerInputs.linkopts.isEmpty
+            || !linkerInputs.staticLibraries.isEmpty
+            || !inputs.exportedSymbolsLists.isEmpty
+            || !linkerInputs.forceLoad.isEmpty
+    }
+
+    func allLinkerFlags(filePathResolver: FilePathResolver) throws -> [String] {
+        var flags = linkerInputs.linkopts
+
+        if !linkerInputs.staticLibraries.isEmpty {
+            let linkFileList = try filePathResolver
+                .resolve(try linkFileListFilePath())
+                .string
+            flags.append(contentsOf: ["-filelist", linkFileList.quoted])
+        }
+
+        let exportedSymbolsLists = inputs.exportedSymbolsLists
+        if !exportedSymbolsLists.isEmpty {
+            flags.append(
+                contentsOf: try exportedSymbolsLists.flatMap { filePath in
+                    return [
+                        "-exported_symbols_list",
+                        try filePathResolver.resolve(filePath).string.quoted,
+                    ]
+                }
+            )
+        }
+
+        let forceLoadLibraries = linkerInputs.forceLoad
+        if !forceLoadLibraries.isEmpty {
+            flags.append(
+                contentsOf: try forceLoadLibraries.flatMap { filePath in
+                    return [
+                        "-force_load",
+                        try filePathResolver.resolve(filePath).string.quoted,
+                    ]
+                }
+            )
+        }
+
+        return flags
+    }
 }

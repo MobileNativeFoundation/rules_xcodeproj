@@ -1032,6 +1032,22 @@ a/imported.a
 
 """)
 
+        // link.params
+
+        files[.internal("targets/a1b2c/A 2/A.link.params")] =
+            .nonReferencedContent("""
+-filelist
+"$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList"
+
+""")
+
+        files[.internal("targets/a1b2c/C 2/d.link.params")] =
+            .nonReferencedContent("""
+-filelist
+"$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList"
+
+""")
+
         return (files, elements)
     }
 
@@ -1502,6 +1518,21 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 createGeneratedHeaderShellScript(),
             ],
             "A 2": [
+                PBXShellScriptBuildPhase(
+                    name: "Create link.params",
+                    inputPaths: ["$(LINK_PARAMS_FILE)"],
+                    outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
+                    shellScript: #"""
+sed \
+  -e "s|^\(.*\)\$(BUILD_DIR)\(.*\)\$|\"\1${BUILD_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(DEVELOPER_DIR)\(.*\)\$|\"\1${DEVELOPER_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(INTERNAL_DIR)\(.*\)\$|\"\1${INTERNAL_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(BAZEL_EXTERNAL)\(.*\)\$|\"\1${BAZEL_EXTERNAL}\2\"|g" \
+  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+
+"""#,
+                    showEnvVarsInLog: false
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.internal("CompileStub.m")]!
@@ -1592,6 +1623,21 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 ),
             ],
             "C 2": [
+                PBXShellScriptBuildPhase(
+                    name: "Create link.params",
+                    inputPaths: ["$(LINK_PARAMS_FILE)"],
+                    outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
+                    shellScript: #"""
+sed \
+  -e "s|^\(.*\)\$(BUILD_DIR)\(.*\)\$|\"\1${BUILD_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(DEVELOPER_DIR)\(.*\)\$|\"\1${DEVELOPER_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(INTERNAL_DIR)\(.*\)\$|\"\1${INTERNAL_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(BAZEL_EXTERNAL)\(.*\)\$|\"\1${BAZEL_EXTERNAL}\2\"|g" \
+  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+
+"""#,
+                    showEnvVarsInLog: false
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([
                         PBXBuildFile(file: elements["a/b/d.m"]!),
@@ -2004,14 +2050,14 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "app",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "LINK_PARAMS_FILE": """
+$(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
+""",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/../Frameworks",
                 ],
-                "OTHER_LDFLAGS": [
-                    "-filelist",
-                    #""$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList""#,
-                ],
+                "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "A",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2107,10 +2153,10 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_LDFLAGS": [
-                    "-filelist",
-                    #""$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList""#,
-                ],
+                "LINK_PARAMS_FILE": """
+$(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
+""",
+                "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "d",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",

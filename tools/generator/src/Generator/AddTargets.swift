@@ -39,6 +39,10 @@ Product for target "\(key)" not found in `products`
                     outputs: outputs,
                     filePathResolver: filePathResolver
                 ),
+                try createLinkParamsScript(
+                    in: pbxProj,
+                    hasLinkerFlags: target.hasLinkerFlags
+                ),
                 try createHeadersPhase(
                     in: pbxProj,
                     productType: productType,
@@ -163,6 +167,34 @@ Product for target "\(key)" not found in `products`
             shellScript: copyCommand,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
+    private static func createLinkParamsScript(
+        in pbxProj: PBXProj,
+        hasLinkerFlags: Bool
+    ) throws -> PBXShellScriptBuildPhase? {
+        guard hasLinkerFlags else {
+            return nil
+        }
+
+        let script = PBXShellScriptBuildPhase(
+            name: "Create link.params",
+            inputPaths: ["$(LINK_PARAMS_FILE)"],
+            outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
+            shellScript: #"""
+sed \
+  -e "s|^\(.*\)\$(BUILD_DIR)\(.*\)\$|\"\1${BUILD_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(DEVELOPER_DIR)\(.*\)\$|\"\1${DEVELOPER_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(INTERNAL_DIR)\(.*\)\$|\"\1${INTERNAL_DIR}\2\"|g" \
+  -e "s|^\(.*\)\$(BAZEL_EXTERNAL)\(.*\)\$|\"\1${BAZEL_EXTERNAL}\2\"|g" \
+  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+
+"""#,
+            showEnvVarsInLog: false
         )
         pbxProj.add(object: script)
 
