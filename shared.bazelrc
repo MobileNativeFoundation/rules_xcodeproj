@@ -4,8 +4,8 @@ build --remote_default_exec_properties=OSFamily=darwin
 build --remote_default_exec_properties=cache_bust=macOS_11.0/1
 
 # Build with --config=cache to use BuildBuddy Remote Cache
-build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
+build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --experimental_remote_cache_async
 build:cache --experimental_remote_cache_compression
 build:cache --incompatible_remote_build_event_upload_respect_no_cache

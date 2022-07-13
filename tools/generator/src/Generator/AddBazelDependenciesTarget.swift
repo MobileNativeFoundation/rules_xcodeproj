@@ -239,6 +239,8 @@ output_path=$(\#(bazelExec) \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
+  --bes_backend= \
+  --bes_results_url= \
   output_path)
 exec_root="${output_path%/*}"
 external="${exec_root%/*/*}/external"
@@ -287,7 +289,12 @@ ln -sfn "$PROJECT_DIR" SRCROOT
         return #"""
 cd "$SRCROOT"
 
-if [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
+if [ "$ACTION" == "indexbuild" ]; then
+  index_flags=(
+    --bes_backend=
+    --bes_results_url=
+  )
+elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
   swiftui_previews_flags=(
     --swiftcopt=-Xfrontend
     --swiftcopt=-enable-implicit-dynamic
@@ -310,6 +317,7 @@ log=$(mktemp)
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
+  ${index_flags:+${index_flags[*]}} \
   ${swiftui_previews_flags:+${swiftui_previews_flags[*]}} \
   "$output_groups_flag" \
   \#(xcodeprojBazelLabel) \
