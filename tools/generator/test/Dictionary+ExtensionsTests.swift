@@ -11,10 +11,17 @@ extension DictionaryExtensionsTests {
     }
 
     func test_firstTargetID_searchMultipleLevels() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actual = targets.firstTargetID(under: [bTargetID]) { target in
+            target.label == helloLabel
+        }
+        XCTAssertEqual(eTargetID, actual)
     }
 
     func test_firstTargetID_breadthFirstSearch() throws {
+        // let actual = targets.firstTargetID(under: [aTargetID, bTargetID]) { target in
+        //     target.label == helloLabel
+        // }
+        // XCTAssertEqual(eTargetID, actual)
         XCTFail("IMPLEMENT ME!")
     }
 
@@ -47,7 +54,8 @@ class DictionaryExtensionsTests: XCTestCase {
             type: .staticLibrary,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [cTargetID]
     )
 
     lazy var bTargetID: TargetID = .init("\(barLabel) \(beefConfiguration)")
@@ -58,7 +66,8 @@ class DictionaryExtensionsTests: XCTestCase {
             type: .staticLibrary,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [dTargetID]
     )
 
     lazy var cTargetID: TargetID = .init("\(helloLabel) \(chickenConfiguration)")
@@ -80,7 +89,8 @@ class DictionaryExtensionsTests: XCTestCase {
             type: .staticLibrary,
             name: "a",
             path: .generated("z/A.a")
-        )
+        ),
+        dependencies: [eTargetID]
     )
 
     lazy var eTargetID: TargetID = .init("\(helloLabel) \(beefConfiguration)")
