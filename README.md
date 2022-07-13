@@ -23,7 +23,9 @@ on it, or [file a new issue][file-an-issue]!
   - [x] Inline warnings and errors
   - [x] Fix-its
   - [x] Tests (Unit and UI)
+  - [x] Embedded Targets (App Clips, App Extensions, and Watch Apps)
   - [x] SwiftUI Previews
+- [x] Build Bazel targets with Bazel, in Xcode
 
 **Note:** Not all rules are supported yet, and the rules that are supported
 don't have full support yet. See the
@@ -31,9 +33,9 @@ don't have full support yet. See the
 for details on progress towards the 1.0 release. Here are a few of the planned
 high level features:
 
-- [ ] [Support all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/4)
-- [ ] [Build Bazel targets with Bazel, in Xcode](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/8)
+- [ ] [Supporting all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/4)
 - [ ] [Easier target discovery and focused projects](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/12)
+- [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/9)
 
 We've also documented the [high level design](/doc/design/high-level.md) of the
 rules.
@@ -41,7 +43,7 @@ rules.
 ## Compatibility
 
 - macOS 12.0-12.4
-- Xcode 13.0-13.3.1
+- Xcode 13.0-13.4.1
 - Bazel 5.2.0
 - rules_swift 1.0.0
 - rules_apple 1.0.1
@@ -60,8 +62,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "com_github_buildbuddy_io_rules_xcodeproj",
-    sha256 = "7f617ea9f353567d6443f071391d29e0e365fae4b4c9ef2f7514437a9a3ea9e5",
-    url = "https://github.com/buildbuddy-io/rules_xcodeproj/releases/download/0.4.1/release.tar.gz",
+    sha256 = "0d53b6154c1296e5ac7885978b3b6430dcb88648c324e934f639e1f955184f41",
+    url = "https://github.com/buildbuddy-io/rules_xcodeproj/releases/download/0.6.0/release.tar.gz",
 )
 
 load(
