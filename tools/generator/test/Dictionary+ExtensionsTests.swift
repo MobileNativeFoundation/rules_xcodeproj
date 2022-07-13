@@ -2,7 +2,7 @@ import XCTest
 
 @testable import generator
 
-extension CollectionExtensionsTests {
+extension DictionaryExtensionsTests {
     func test_firstTargetID_aStartTargetMatches() throws {
         let actual = targets.firstTargetID(under: [aTargetID, bTargetID]) { target in
             target.label == barLabel
@@ -23,7 +23,7 @@ extension CollectionExtensionsTests {
     }
 }
 
-class CollectionExtensionsTests: XCTestCase {
+class DictionaryExtensionsTests: XCTestCase {
     //  A    B
     //  |    |
     //  C    D
