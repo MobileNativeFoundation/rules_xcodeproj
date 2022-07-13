@@ -41,6 +41,7 @@ ios_application(
     bundle_name = "iOSApp",
     extensions = ["//examples/multiplatform/WidgetExtension"],
     families = ["iphone"],
+    frameworks = ["//examples/multiplatform/Lib:LibFramework"],
     infoplists = [":Info.plist"],
     launch_images = glob(["launch_images_ios.xcassets/**"]),
     minimum_os_version = "15.0",
