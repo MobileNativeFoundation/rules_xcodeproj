@@ -1,0 +1,7 @@
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++
+-filelist
+$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/examples/cc/tool/tool.LinkFileList
+-force_load
+$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/liblib_impl.lo

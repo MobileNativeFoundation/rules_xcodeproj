@@ -526,7 +526,7 @@ extension Generator {
         addXCFileList(infoPlistsFileListPath, paths: infoPlistPaths)
         addXCFileList(fixedInfoPlistsFileListPath, paths: fixedInfoPlistPaths)
 
-        // Write LinkFileLists
+        // Write target internal files
 
         for target in targets.values {
             let linkFiles = try target.linkerInputs.staticLibraries
@@ -539,6 +539,14 @@ extension Generator {
             if !linkFiles.isEmpty {
                 files[try target.linkFileListFilePath()] =
                     .nonReferencedContent(linkFiles.joined())
+            }
+
+            let linkopts = try target
+                .allLinkerFlags(filePathResolver: filePathResolver)
+                .map { "\($0)\n" }
+            if !linkopts.isEmpty {
+                files[try target.linkParamsFilePath()] =
+                    .nonReferencedContent(linkopts.joined())
             }
         }
 

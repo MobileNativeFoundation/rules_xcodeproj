@@ -1418,6 +1418,7 @@
 			buildConfigurationList = 9C3B0DA5FF54217998FA354A /* Build configuration list for PBXNativeTarget "generator" */;
 			buildPhases = (
 				EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */,
+				C86F590B80722C1AB822CF3A /* Create link.params */,
 				42A070DBC30FFCFC46CB6D1F /* Sources */,
 			);
 			buildRules = (
@@ -1452,6 +1453,7 @@
 			buildConfigurationList = 2AE3F241DE7B5C62A4FBFD3F /* Build configuration list for PBXNativeTarget "tests" */;
 			buildPhases = (
 				3C2F7597AADF65DD2B4DA5CC /* Copy Bazel Outputs */,
+				8DFB0415CDA55D86F71ED5C8 /* Create link.params */,
 				90B131D058F213F9EE1D4E2A /* Sources */,
 			);
 			buildRules = (
@@ -1684,6 +1686,23 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libCustomDump.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8DFB0415CDA55D86F71ED5C8 /* Create link.params */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create link.params";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		90B04C8AB5A07A2ECF257268 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1735,6 +1754,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libgenerator.library.a\" \\\n  \"\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C86F590B80722C1AB822CF3A /* Create link.params */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create link.params";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */ = {
@@ -2428,27 +2464,9 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				EXECUTABLE_EXTENSION = xctest;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/tools/generator/test/tests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = (
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/test/tests.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
-					"-ObjC",
-					"-L/usr/lib/swift",
-					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-headerpad_max_install_names",
-					"-no-canonical-prefixes",
-					"-lc++",
-					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/tools/generator/test/tests.LinkFileList",
-				);
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = tests;
 				PRODUCT_NAME = tests;
@@ -2510,24 +2528,9 @@
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/tools/generator/generator.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = (
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/tools/generator/generator.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_tadija_aexml/AEXML.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
-					"-ObjC",
-					"-L/usr/lib/swift",
-					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-headerpad_max_install_names",
-					"-no-canonical-prefixes",
-					"-lc++",
-					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/tools/generator/generator.LinkFileList",
-				);
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_NAME = generator;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;

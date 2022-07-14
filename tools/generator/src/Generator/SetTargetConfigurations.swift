@@ -203,42 +203,15 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 .joined(separator: " ")
         )
 
-        let forceLoadLibraries = target.linkerInputs.forceLoad
-        if !forceLoadLibraries.isEmpty {
-            try buildSettings.prepend(
-                onKey: "OTHER_LDFLAGS",
-                forceLoadLibraries.flatMap { filePath in
-                    return ["-force_load", try filePathResolver.resolve(filePath).string.quoted]
-                }
-            )
-        }
-
-        let exportedSymbolsLists = target.inputs.exportedSymbolsLists
-        if !exportedSymbolsLists.isEmpty {
-            try buildSettings.prepend(
-                onKey: "OTHER_LDFLAGS",
-                exportedSymbolsLists.flatMap { filePath in
-                    return [
-                        "-exported_symbols_list",
-                        try filePathResolver.resolve(filePath).string.quoted,
-                    ]
-                }
-            )
-        }
-
-        if !target.linkerInputs.staticLibraries.isEmpty {
-            let linkFileList = try filePathResolver
-                .resolve(try target.linkFileListFilePath())
+        if target.hasLinkerFlags {
+            let linkParamsFile = try filePathResolver
+                .resolve(try target.linkParamsFilePath())
                 .string
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
-                ["-filelist", linkFileList.quoted]
+                ["@$(DERIVED_FILE_DIR)/link.params"]
             )
-        }
-
-        let linkopts = target.linkerInputs.linkopts
-        if !linkopts.isEmpty {
-            try buildSettings.prepend(onKey: "OTHER_LDFLAGS", linkopts)
+            buildSettings.set("LINK_PARAMS_FILE", to: linkParamsFile)
         }
 
         buildSettings.set("ARCHS", to: target.platform.arch)
@@ -553,7 +526,7 @@ extension Target {
         }
     }
 
-    func linkFileListFilePath() throws -> FilePath {
+    private func internalTargetFilesPath() throws -> Path {
         var components = packageBinDir.components
         guard
             components.count >= 3,
@@ -569,9 +542,17 @@ extension Target {
         // Remove "bazel-out/"
         components.remove(at: 0)
         // Add our components
-        components = ["targets"] + components + ["\(name).LinkFileList"]
+        components = ["targets"] + components
 
-        return .internal(Path(components: components))
+        return Path(components: components)
+    }
+
+    func linkFileListFilePath() throws -> FilePath {
+        return try .internal(internalTargetFilesPath() + "\(name).LinkFileList")
+    }
+
+    func linkParamsFilePath() throws -> FilePath {
+        return try .internal(internalTargetFilesPath() + "\(name).link.params")
     }
 }
 

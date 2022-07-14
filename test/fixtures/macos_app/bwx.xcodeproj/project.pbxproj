@@ -241,6 +241,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6A9520E4E640351CDDD995F /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
+				B53A70A8850ED09CF7C2348A /* Create link.params */,
 				158225A69996B833609C215D /* Sources */,
 				0BB138DF24439C6CB36F159F /* Frameworks */,
 				EC82FDE86D73A4710E6DBDE5 /* Resources */,
@@ -347,6 +348,23 @@
 			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B53A70A8850ED09CF7C2348A /* Create link.params */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create link.params";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -403,18 +421,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/examples/macos_app/Example/Example.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				OTHER_LDFLAGS = (
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/iOSApp.swiftmodule/x86_64-apple-macos.swiftmodule",
-					"-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
-					"-ObjC",
-					"-L/usr/lib/swift",
-					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-headerpad_max_install_names",
-					"-no-canonical-prefixes",
-					"-lc++",
-				);
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(PROJECT_DIR)/examples/macos_app/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/macos_app/third_party -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;

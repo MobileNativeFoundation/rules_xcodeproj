@@ -267,6 +267,7 @@
 			buildConfigurationList = D146AD00BEF0EE94F6F1E2AD /* Build configuration list for PBXNativeTarget "tool" */;
 			buildPhases = (
 				DC5C20F1CBE45FA898D3AC86 /* Copy Bazel Outputs */,
+				26791BE0095D398A817F4CFA /* Create link.params */,
 				72C6D01265A3ACBB4140607C /* Sources */,
 			);
 			buildRules = (
@@ -366,6 +367,23 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		26791BE0095D398A817F4CFA /* Create link.params */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create link.params";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -637,6 +655,7 @@
 					"SECRET_2=\\\"World!\\\"",
 					"EXTERNAL_SECRET_2=\\\"World?\\\"",
 				);
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/examples/cc/tool/tool.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-fstack-protector",
@@ -660,15 +679,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-no-canonical-prefixes",
-					"-lc++",
-					"-filelist",
-					"$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5534cb307cb8/examples/cc/tool/tool.LinkFileList",
-					"-force_load",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/liblib_impl.lo",
-				);
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_NAME = tool;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;

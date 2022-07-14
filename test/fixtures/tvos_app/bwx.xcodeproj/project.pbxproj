@@ -322,6 +322,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E81F0BC3C859DAC10F012BE /* Build configuration list for PBXNativeTarget "ExampleTests.__internal__.__test_bundle" */;
 			buildPhases = (
+				756C89B8F706948AE067F27F /* Create link.params */,
 				61B8EBE5F244F523287E4ADE /* Sources */,
 			);
 			buildRules = (
@@ -339,6 +340,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6A9520E4E640351CDDD995F /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
+				B53A70A8850ED09CF7C2348A /* Create link.params */,
 				158225A69996B833609C215D /* Sources */,
 			);
 			buildRules = (
@@ -355,6 +357,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15769C3B117D2DB921015141 /* Build configuration list for PBXNativeTarget "ExampleUITests.__internal__.__test_bundle" */;
 			buildPhases = (
+				F53740CB31670B4CD468CFED /* Create link.params */,
 				1B2202CD9344223E1FA82AC5 /* Sources */,
 			);
 			buildRules = (
@@ -419,6 +422,23 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		756C89B8F706948AE067F27F /* Create link.params */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create link.params";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -458,6 +478,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B53A70A8850ED09CF7C2348A /* Create link.params */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create link.params";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F53740CB31670B4CD468CFED /* Create link.params */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create link.params";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -543,17 +597,8 @@
 				EXECUTABLE_NAME = ExampleUITests;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
-				OTHER_LDFLAGS = (
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-					"-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
-					"-ObjC",
-					"-L/usr/lib/swift",
-					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-headerpad_max_install_names",
-					"-no-canonical-prefixes",
-					"-lc++",
-				);
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
 				PRODUCT_MODULE_NAME = ExampleUITests;
@@ -603,18 +648,8 @@
 				EXECUTABLE_NAME = ExampleTests;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
-				OTHER_LDFLAGS = (
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-					"-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
-					"-ObjC",
-					"-L/usr/lib/swift",
-					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-headerpad_max_install_names",
-					"-no-canonical-prefixes",
-					"-lc++",
-				);
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
@@ -659,17 +694,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = (
-					"-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-					"-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
-					"-ObjC",
-					"-L/usr/lib/swift",
-					"-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-					"-Wl,-rpath,/usr/lib/swift",
-					"-headerpad_max_install_names",
-					"-no-canonical-prefixes",
-					"-lc++",
-				);
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/examples/tvos_app/Example/Example.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
