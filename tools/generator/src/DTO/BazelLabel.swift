@@ -1,27 +1,48 @@
+import Foundation
+
 struct BazelLabel: Equatable, Hashable, Decodable {
     let repository: String
     let package: String
     let name: String
 }
 
-// extension BazelLabel {
-//     static func parse(_: String) -> BazelLabel? {
-//         // TODO: IMPLEMENT ME!
-//         return BazelLabel(
-//             repository: "",
-//             package: "",
-//             name: ""
-//         )
-//     }
-// }
-
 extension BazelLabel {
-    init?(_: String) {
-        // TODO: IMPLEMENT ME!
+    static let rootSeparator = "//"
+    static let nameSeparator = ":"
+    static let packageSeparator = "/"
+
+    init?(_ value: String) {
+        let rootParts = value.components(separatedBy: Self.rootSeparator)
+        guard rootParts.count == 2 else {
+            return nil
+        }
+
+        let repository = rootParts[0]
+        let packageAndNameParts = rootParts[1].components(separatedBy: Self.nameSeparator)
+
+        let package: String
+        let name: String
+        if packageAndNameParts.count == 2 {
+            package = packageAndNameParts[0]
+            name = packageAndNameParts[1]
+        } else if packageAndNameParts.count == 1 {
+            package = packageAndNameParts[0]
+            guard package != "" else {
+              return nil
+            }
+            let packageParts = package.components(separatedBy: Self.packageSeparator)
+            guard let lastPart = packageParts.last else {
+              return nil
+            }
+            name = lastPart
+        } else {
+            return nil
+        }
+
         self.init(
-            repository: "",
-            package: "",
-            name: ""
+            repository: repository,
+            package: package,
+            name: name
         )
     }
 }
@@ -43,21 +64,5 @@ extension BazelLabel: RawRepresentable {
 extension BazelLabel: ExpressibleByStringLiteral {
     init(stringLiteral value: String) {
         self.init(value)!
-        // guard let label = self.init(value) else {
-        //     fatalError("Invalid Bazel label: \(value)")
-        // }
-        // self = label
     }
 }
-
-// struct BazelLabel: Equatble, Hashable, Decodable {
-//     let rawValue: String
-
-//     init(_ labelStr: String) {
-//         self.rawValue = labelStr
-//     }
-// }
-
-// extension BazelLabel: RawRepresentable {
-//     init?
-// }
