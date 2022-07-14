@@ -48,6 +48,8 @@ extension XcodeSchemeExtensionsTests {
         // Confirm that a scheme with multiple top-level targets works.
         // Both the device and simulator TargetID values are available.
         // Prefer the TargetID values for the simulator.
+        // We are also ensuring that the watchOS app that is a dependency of this iOS app is not
+        // selected.
         let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
         let expected = [
             libLabel: libiOSx8664TargetID,
@@ -276,7 +278,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             name: "a",
             path: .generated("z/A.a")
         ),
-        dependencies: [libiOSarm64TargetID]
+        // This target has a dependency on a watchOS app
+        dependencies: [libiOSarm64TargetID, watchOSAppwatchOSarm64TargetID]
     )
 
     lazy var iOSAppiOSx8664TargetID: TargetID = .init(
@@ -290,7 +293,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             name: "a",
             path: .generated("z/A.a")
         ),
-        dependencies: [libiOSx8664TargetID]
+        // This target has a dependency on a watchOS app
+        dependencies: [libiOSx8664TargetID, watchOSAppwatchOSx8664TargetID]
     )
 
     lazy var tvOSApptvOSarm64TargetID: TargetID = .init(
