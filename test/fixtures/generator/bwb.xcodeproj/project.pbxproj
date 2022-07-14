@@ -147,6 +147,7 @@
 		804848AF97DCD0402E5B8587 /* BuildSettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD828AC8336C5A1F0C951071 /* BuildSettingsProvider.swift */; };
 		80DB1DEE41E0521C535EF842 /* PBXResourcesBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF420FAF127AC6B393E4678 /* PBXResourcesBuildPhase.swift */; };
 		81538A9DF3EE3B84C20E7C11 /* PBXObjectReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA5F81BF5F85E9032BC2014 /* PBXObjectReference.swift */; };
+		819D6A8B6B245F427CEEC1E5 /* BazelLabel+TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8169934D430D8F6CC14E5E40 /* BazelLabel+TestExtensions.swift */; };
 		81D03FFE4CE12D33C7982F23 /* OrderedDictionary+Invariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11A26366495E4A9EFBEC0B /* OrderedDictionary+Invariants.swift */; };
 		83401B70003CB4C9642FF821 /* LinkerInputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B53AF9EB4EE0D76B72A641 /* LinkerInputs.swift */; };
 		835FBBDCA423CB2040EB1F24 /* OrderedSet+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E577B87CB8E962E6110B1A0 /* OrderedSet+CustomDebugStringConvertible.swift */; };
@@ -548,6 +549,7 @@
 		7DD377ABEF6A8CECEE71C6A3 /* _HashTable+BucketIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+BucketIterator.swift"; sourceTree = "<group>"; };
 		7E6551A5EEE9CC51C5A05BD3 /* CreateXCSharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCSharedData.swift; sourceTree = "<group>"; };
 		7EFA193BCD097396D150AF96 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		8169934D430D8F6CC14E5E40 /* BazelLabel+TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BazelLabel+TestExtensions.swift"; sourceTree = "<group>"; };
 		817B04CE0868E15EFE7D8C44 /* OrderedDictionary+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Hashable.swift"; sourceTree = "<group>"; };
 		8645BE71A723C3736CCE7131 /* OrderedSet+Initializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Initializers.swift"; sourceTree = "<group>"; };
 		86549ABD234E1583AA0655DE /* XCCurrentVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCCurrentVersion.swift; sourceTree = "<group>"; };
@@ -1103,6 +1105,7 @@
 			isa = PBXGroup;
 			children = (
 				DACBE49740AB347EFAE8EC00 /* AddTargetsTests.swift */,
+				8169934D430D8F6CC14E5E40 /* BazelLabel+TestExtensions.swift */,
 				E37E1D8F0FD9F2FEEC62C2B3 /* BazelLabelTests.swift */,
 				35445591FE5C7D2FCEF9533F /* BUILD */,
 				08416B4EDA557D797F63BB4F /* BuildSettingConditionalTests.swift */,
@@ -1941,6 +1944,7 @@
 			files = (
 				F9312E0C5F409E17F509CC96 /* _BazelForcedCompile_.swift in Sources */,
 				75B34A42A3528868C8D25993 /* AddTargetsTests.swift in Sources */,
+				819D6A8B6B245F427CEEC1E5 /* BazelLabel+TestExtensions.swift in Sources */,
 				C963F445C29D4475EB4F7780 /* BazelLabelTests.swift in Sources */,
 				0A22A35B5C2350A27CA5A895 /* BuildSettingConditionalTests.swift in Sources */,
 				73237287CCC966570F78F438 /* ConsolidateTargetsTest.swift in Sources */,

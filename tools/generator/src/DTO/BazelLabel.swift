@@ -53,12 +53,6 @@ extension BazelLabel: CustomStringConvertible {
     }
 }
 
-extension BazelLabel: ExpressibleByStringLiteral {
-    init(stringLiteral value: String) {
-        self.init(value)!
-    }
-}
-
 extension BazelLabel: Encodable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
