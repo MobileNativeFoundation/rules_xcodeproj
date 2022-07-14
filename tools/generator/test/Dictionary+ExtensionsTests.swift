@@ -2,6 +2,71 @@ import XCTest
 
 @testable import generator
 
+// MARK: filterDependencyTree Tests
+
+extension DictionaryExtensionsTests {
+    func test_filterDependencyTree_includeAllDeps() throws {
+        let actual = targets.filterDependencyTree(startingWith: [bTargetID]) { _ in true }
+        let expected = [
+            bTargetID: bTarget,
+            dTargetID: dTarget,
+            eTargetID: eTarget,
+        ]
+        XCTAssertEqual(expected, actual)
+    }
+
+    func test_filterDependencyTree_filterOutMiddleOfTree() throws {
+        // Filter out a node in the middle of the tree. The result should not include the excluded
+        // node or its children.
+        let actual = targets.filterDependencyTree(startingWith: [bTargetID]) { target in
+            // The dTarget has goodbyeLabel
+            target.label != goodbyeLabel
+        }
+        let expected = [
+            bTargetID: bTarget,
+        ]
+        XCTAssertEqual(expected, actual)
+    }
+
+    func test_filterDependencyTree_filterOutBottomOfTree() throws {
+        // Filter out a leaf node. The result should not include everything except the leaf node.
+        let actual = targets.filterDependencyTree(startingWith: [bTargetID]) { target in
+            // The eTarget has helloLabel
+            target.label != helloLabel
+        }
+        let expected = [
+            bTargetID: bTarget,
+            dTargetID: dTarget,
+        ]
+        XCTAssertEqual(expected, actual)
+    }
+
+    func test_filterDependencyTree_filterOutTopOfTree() throws {
+        // Filter out the root nodes. The result should not include anything
+        let actual = targets.filterDependencyTree(startingWith: [bTargetID]) { target in
+            // The bTarget has barLabel
+            target.label != barLabel
+        }
+        let expected = [TargetID: Target]()
+        XCTAssertEqual(expected, actual)
+    }
+
+    func test_filterDependencyTree_withMultipleRoots() throws {
+        let actual = targets.filterDependencyTree(startingWith: [aTargetID, bTargetID]) { target in
+            // The cTarget and eTarget has helloLabel
+            target.label != helloLabel
+        }
+        let expected = [
+            aTargetID: aTarget,
+            bTargetID: bTarget,
+            dTargetID: dTarget,
+        ]
+        XCTAssertEqual(expected, actual)
+    }
+}
+
+// MARK: firstTargetID Tests
+
 extension DictionaryExtensionsTests {
     func test_firstTargetID_aStartTargetMatches() throws {
         let actual = targets.firstTargetID(under: [aTargetID, bTargetID]) { target in

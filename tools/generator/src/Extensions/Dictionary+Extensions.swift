@@ -1,5 +1,11 @@
 extension Dictionary where Key == TargetID, Value == Target {
-    func filterByDependencies<StartTargets: Sequence>(
+    // func filterDependencyTree<StartTargets: Sequence>(
+    //     startingWith startTargetIDs: StartTargets
+    // ) -> [Key: Value] where StartTargets.Element == Self.Key {
+    //     return filterDependencyTree(startingWith: startTargetIDs) { _ in true }
+    // }
+
+    func filterDependencyTree<StartTargets: Sequence>(
         startingWith startTargetIDs: StartTargets,
         _ isIncluded: (Self.Value) throws -> Bool
     ) rethrows -> [Key: Value] where StartTargets.Element == Self.Key {
@@ -10,16 +16,18 @@ extension Dictionary where Key == TargetID, Value == Target {
             return try isIncluded(target)
         }
 
+        // Check for dependencies
+        let depTargetIDs = Set(result.values.map(\.dependencies).flatMap { $0 })
+        if depTargetIDs.isEmpty { return result }
+
         // Collect the dependencies for the start targets
-        var depTargetIDs = Set<TargetID>()
-        for (targetID, target) in result {
-            depTargetIDs.formUnion(target.dependencies)
-        }
-        let deps = try filterByDependencies(startingWith: depTargetIDs, isIncluded)
+        let deps = try filterDependencyTree(startingWith: depTargetIDs, isIncluded)
 
         // Merge the results
         return result.merging(deps) { current, _ in current }
     }
+
+    // TODO: Remove firstTargetID if not being used
 
     /// Find the first `TargetID` that satisfies the predicate starting with the specified
     /// `TargetID` values. This function will traverse the dependency tree in a breadth-first
