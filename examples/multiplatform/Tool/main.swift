@@ -1,3 +1,1 @@
-import Lib
-
-print(greeting)
+print("Hello!")
