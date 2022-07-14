@@ -57,7 +57,7 @@ struct Environment {
         _ buildMode: BuildMode,
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
-        _ xcodeprojBazelLabel: String,
+        _ xcodeprojBazelLabel: BazelLabel,
         _ xcodeprojConfiguration: String,
         _ consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget?

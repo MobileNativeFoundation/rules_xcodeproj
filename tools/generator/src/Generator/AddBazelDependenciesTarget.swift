@@ -16,7 +16,7 @@ env -i \
         buildMode: BuildMode,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String,
+        xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String,
         consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
@@ -104,7 +104,7 @@ env -i \
         buildMode: BuildMode,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: String,
+        xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String
     ) throws -> PBXShellScriptBuildPhase {
         let hasGeneratedFiles = files.containsGeneratedFiles
@@ -132,10 +132,7 @@ env -i \
             name = "Fetch External Repositories"
         }
 
-        // TODO: Make a `BazelLabel` type and use `.name` here
-        let xcodeprojBazelTargetName = String(
-            xcodeprojBazelLabel.split(separator: ":")[1]
-        )
+        let xcodeprojBazelTargetName = xcodeprojBazelLabel.name
 
         let xcodeprojBinDir = calculateBinDir(
             xcodeprojBazelLabel: xcodeprojBazelLabel,
@@ -282,7 +279,7 @@ ln -sfn "$PROJECT_DIR" SRCROOT
     }
 
     private static func bazelBuildCommand(
-        xcodeprojBazelLabel: String,
+        xcodeprojBazelLabel: BazelLabel,
         xcodeprojBazelTargetName: String,
         xcodeprojBinDir: String
     ) -> String {
@@ -516,13 +513,10 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
     }
 
     private static func calculateBinDir(
-        xcodeprojBazelLabel: String,
+        xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String
     ) -> String {
-        var packageDirectory = xcodeprojBazelLabel.split(separator: ":")[0]
-        packageDirectory = packageDirectory[
-            packageDirectory.index(packageDirectory.startIndex, offsetBy: 2)...
-        ]
+        let packageDirectory = xcodeprojBazelLabel.package
 
         return (
             Path("\(xcodeprojConfiguration)/bin") + String(packageDirectory)
