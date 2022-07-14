@@ -119,6 +119,7 @@
 		5E86FF5B228AE32DAB9CE44A /* BuildSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9570F5DB90273906103037E /* BuildSettings.swift */; };
 		5ECED6299B24791AC2FDCE47 /* LinkerInputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C019F3F4CCAA69A6F5565C0D /* LinkerInputs.swift */; };
 		5F50664E006EE645FFC8B076 /* CreateXcodeProjTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC5B799900C53A6F581CF62 /* CreateXcodeProjTests.swift */; };
+		60356CFF6DE55ED0B3BFEB50 /* BazelLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C17B4CCC3DB3DC6D8775CE0 /* BazelLabelTests.swift */; };
 		61F25C0B5AC2A8359DCF19B2 /* _UnsafeBitset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA9BF8DE4218EEF99B853E /* _UnsafeBitset.swift */; };
 		641C7B1D35514491C48E478C /* Path+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0277C77247B53722A111757 /* Path+Extras.swift */; };
 		65267FBDE7D0B453B46A4E36 /* XCConfigurationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5909E222A81AD5E732C7A9 /* XCConfigurationList.swift */; };
@@ -164,6 +165,7 @@
 		94E03F3E14B3B7AAC5E818BE /* XCScheme+ArchiveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1B07B1780ED7297DD889B /* XCScheme+ArchiveAction.swift */; };
 		9513603529C8D34C341B74ED /* OrderedSet+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697793A0038D2FB76FD542C4 /* OrderedSet+CustomStringConvertible.swift */; };
 		95D264466C03AFDD8500E4FB /* OrderedSet+Partial SetAlgebra+Basics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A234AB51A97D97EE651298 /* OrderedSet+Partial SetAlgebra+Basics.swift */; };
+		9763B775672AC96E1AA25415 /* BazelLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAB1232C0C94C42545636DB /* BazelLabel.swift */; };
 		97DB9AA49CCEFBBCA98FC229 /* Bool+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B15315524DB56CCC1A6E5 /* Bool+Extras.swift */; };
 		9804BBA597E3344B7F9008C4 /* PBXProductTypeExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354634746D24325319B693F8 /* PBXProductTypeExtensionsTests.swift */; };
 		99CBCF0D4F483E3BC08D99AD /* Dump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4796B5647870377961BBE65A /* Dump.swift */; };
@@ -504,6 +506,7 @@
 		5AA008E08C0FBB48956C0C68 /* XCScheme+CommandLineArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+CommandLineArguments.swift"; sourceTree = "<group>"; };
 		5B3DF1F6D8B6C99E63E3211A /* Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
 		5BC9574D73D444A40C0F7116 /* OrderedDictionary+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Codable.swift"; sourceTree = "<group>"; };
+		5C17B4CCC3DB3DC6D8775CE0 /* BazelLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazelLabelTests.swift; sourceTree = "<group>"; };
 		5D2E8521610664CCE4F18220 /* KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPath.swift; sourceTree = "<group>"; };
 		5DF925DC93003F74678BEE77 /* PBXProj+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXProj+Testing.swift"; sourceTree = "<group>"; };
 		5E0508567B3931B91F6BFBF4 /* _HashTable+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+CustomStringConvertible.swift"; sourceTree = "<group>"; };
@@ -661,6 +664,7 @@
 		FA83272F166637CFAFC4C79C /* OrderedDictionary+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Hashable.swift"; sourceTree = "<group>"; };
 		FAD042334686EC625458D787 /* XCWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspace.swift; sourceTree = "<group>"; };
 		FB78F15F8AFA4FD268CBC7BD /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
+		FCAB1232C0C94C42545636DB /* BazelLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazelLabel.swift; sourceTree = "<group>"; };
 		FD37ED60DF0F25AB4A7DCE63 /* ConsolidateTargetsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidateTargetsTest.swift; sourceTree = "<group>"; };
 		FD68E5A7AC6AF524F6B2E4D3 /* WorkspaceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -799,6 +803,7 @@
 			isa = PBXGroup;
 			children = (
 				37060CBDC54D48ADDEEA0274 /* AddTargetsTests.swift */,
+				5C17B4CCC3DB3DC6D8775CE0 /* BazelLabelTests.swift */,
 				A8C917E9D54ACB73DF3F6EAA /* BUILD */,
 				F4E71029096D6AC34B84A74A /* BuildSettingConditionalTests.swift */,
 				53506B77928F8228012289D3 /* ConsolidatedTargetExtensionsTests.swift */,
@@ -888,6 +893,7 @@
 		4109211F3DD18CAE886E009A /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				FCAB1232C0C94C42545636DB /* BazelLabel.swift */,
 				A5D3AD9C0FCEA5D8F2712060 /* BuildMode.swift */,
 				6291A9D4888F94F5597DDA02 /* BuildSetting.swift */,
 				D0BCE3D30558882AC418F0B4 /* ExtensionPointIdentifier.swift */,
@@ -1707,6 +1713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1FF2A2A272865879D4B94D2 /* AddTargetsTests.swift in Sources */,
+				60356CFF6DE55ED0B3BFEB50 /* BazelLabelTests.swift in Sources */,
 				130CE1601B9654CC0320CD9C /* BuildSettingConditionalTests.swift in Sources */,
 				02DCA9635FB629EFFEB10F73 /* ConsolidateTargetsTest.swift in Sources */,
 				557BF7507A3798A7DB119838 /* ConsolidatedTargetExtensionsTests.swift in Sources */,
@@ -1761,6 +1768,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC8F414E5E27000A18EA2767 /* BuildSettingConditional.swift in Sources */,
+				9763B775672AC96E1AA25415 /* BazelLabel.swift in Sources */,
 				56B79FA316DC4D17D7633323 /* BuildMode.swift in Sources */,
 				D5FEDDFFB0D73117CB8A413E /* BuildSetting.swift in Sources */,
 				5106D7C8071619FD00716C9C /* ExtensionPointIdentifier.swift in Sources */,

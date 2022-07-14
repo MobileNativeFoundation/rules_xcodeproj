@@ -183,6 +183,7 @@
             "inputs": {
                 "srcs": [
                     "tools/generator/test/AddTargetsTests.swift",
+                    "tools/generator/test/BazelLabelTests.swift",
                     "tools/generator/test/BuildSettingConditionalTests.swift",
                     "tools/generator/test/ConsolidateTargetsTest.swift",
                     "tools/generator/test/ConsolidatedTargetExtensionsTests.swift",
@@ -414,6 +415,7 @@
             "inputs": {
                 "srcs": [
                     "tools/generator/src/BuildSettingConditional.swift",
+                    "tools/generator/src/DTO/BazelLabel.swift",
                     "tools/generator/src/DTO/BuildMode.swift",
                     "tools/generator/src/DTO/BuildSetting.swift",
                     "tools/generator/src/DTO/ExtensionPointIdentifier.swift",
