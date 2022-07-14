@@ -46,6 +46,7 @@ extension XcodeScheme {
 
         // Collect top-level targetIDs
         var topLevelTargetIDs = Set<TargetID>()
+        var topLevelPlatforms = Set<Platform>()
         for schemeLabel in topLevelSchemeLabels {
             guard let targetInfo = topLevelTargetInfoByLabelValue[schemeLabel.label] else {
                 throw PreconditionError(message: """
@@ -54,16 +55,24 @@ Did not find `targetInfo` for top-level label "\(schemeLabel.label)"
             }
             let targetID = try targetInfo.best().id
             topLevelTargetIDs.update(with: targetID)
+            topLevelPlatforms.formUnion(targetInfo.platforms)
             resolvedTargetIDs[schemeLabel.label] = targetID
+        }
+
+        // Reduce the number of targets being evaluated. Only include those that have one of the
+        // top-level platforms.
+        let targetsWithTopLevelPlatforms = targets.filterDependencyTree(
+            startingWith: topLevelTargetIDs
+        ) { target in
+            topLevelPlatforms.contains(target.platform)
         }
 
         // Collect other targetIDs
         for schemeLabel in otherSchemeLabels {
             // If schemeLabel is not top-level, then look for the first occurence of the label
             // as a dependency of the top-level targets.
-            let firstDepTargetID = targets.firstTargetID(under: topLevelTargetIDs) { target in
-                return target.label == schemeLabel.label
-            }
+            let firstDepTargetID = targetsWithTopLevelPlatforms
+                .firstTargetID(under: topLevelTargetIDs) { $0.label == schemeLabel.label }
             guard let targetID = firstDepTargetID else {
                 throw PreconditionError(message: """
 No `TargetID` value found for "\(schemeLabel.label)"
@@ -82,7 +91,8 @@ extension XcodeScheme {
     /// Collects Target information for a LabelValue.
     struct LabelValueTargetInfo {
         let label: LabelValue
-        var inPlatformOrder: [TargetWithID] = []
+        var inPlatformOrder = [TargetWithID]()
+        var platforms = Set<Platform>()
 
         func best() throws -> TargetWithID {
             guard let best = inPlatformOrder.first else {
@@ -105,6 +115,7 @@ Unable to find the best `TargetWithID` for "\(label)"
             var targetInfo = results[
                 target.label, default: LabelValueTargetInfo(label: target.label)
             ]
+            targetInfo.platforms.update(with: target.platform)
             targetInfo.inPlatformOrder.append(targetWithID)
             targetInfo.inPlatformOrder.sort()
             results[target.label] = targetInfo
