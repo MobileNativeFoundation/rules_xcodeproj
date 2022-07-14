@@ -2,6 +2,10 @@
 
 extension BazelLabel: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
-        self.init(value)!
+        do {
+          try self.init(value)
+        } catch {
+            fatalError("invalid BazelLabel value: \(value)")
+        }
     }
 }

@@ -28,7 +28,7 @@ extension Target {
     ) -> Self {
         return Target(
             name: product.name,
-            label: label ?? .init("//some/package:\(product.name)")!,
+            label: label ?? .init(nilIfInvalid: "//some/package:\(product.name)")!,
             configuration: configuration,
             packageBinDir: packageBinDir,
             platform: platform ?? .macOS(),

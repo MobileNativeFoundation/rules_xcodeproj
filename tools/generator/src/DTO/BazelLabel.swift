@@ -11,10 +11,20 @@ extension BazelLabel {
     static let nameSeparator = ":"
     static let packageSeparator = "/"
 
-    init?(_ value: String) {
+    enum ParseError: Error {
+        case missingOrTooManyRootSeparators
+        case missingNameAndPackage
+        case tooManyColons
+    }
+
+    private static func parse(
+        _ value: String
+    ) throws -> (repository: String, package: String, name: String) {
+        // swiftlint:disable:previous large_tuple
+
         let rootParts = value.components(separatedBy: Self.rootSeparator)
         guard rootParts.count == 2 else {
-            return nil
+            throw ParseError.missingOrTooManyRootSeparators
         }
 
         let repository = rootParts[0]
@@ -28,22 +38,37 @@ extension BazelLabel {
         } else if packageAndNameParts.count == 1 {
             package = packageAndNameParts[0]
             guard package != "" else {
-              return nil
+                throw ParseError.missingNameAndPackage
             }
             let packageParts = package.components(separatedBy: Self.packageSeparator)
             guard let lastPart = packageParts.last else {
-              return nil
+                throw ParseError.missingNameAndPackage
             }
             name = lastPart
         } else {
-            return nil
+            throw ParseError.tooManyColons
         }
 
-        self.init(
+        return (
             repository: repository,
             package: package,
             name: name
         )
+    }
+
+    init(_ value: String) throws {
+        let parts = try Self.parse(value)
+        repository = parts.repository
+        package = parts.package
+        name = parts.name
+    }
+
+    init?(nilIfInvalid value: String) {
+        do {
+          try self.init(value)
+        } catch {
+            return nil
+        }
     }
 }
 
@@ -63,7 +88,14 @@ extension BazelLabel: Encodable {
 extension BazelLabel: Decodable {
     init(from decoder: Decoder) throws {
         let value = try decoder.singleValueContainer().decode(String.self)
-        // TODO: Switch to throwing an error
-        self.init(value)!
+        do {
+            try self.init(value)
+        } catch {
+            throw DecodingError.dataCorrupted(.init(
+                codingPath: decoder.codingPath,
+                debugDescription: "invalid BazelLabel value: \(value)",
+                underlyingError: error
+            ))
+        }
     }
 }
