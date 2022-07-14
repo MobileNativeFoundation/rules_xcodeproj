@@ -143,10 +143,6 @@
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.plist",
             "t": "g"
         },
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework",
-            "t": "e"
-        },
         "examples/multiplatform/Tool/BUILD",
         "examples/multiplatform/Tool/Info.plist",
         "test/fixtures/multiplatform/BUILD"
@@ -823,88 +819,6 @@
             "test_host": null,
             "watch_application": null
         },
-        "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
-        {
-            "app_clips": [],
-            "build_settings": {
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "ENABLE_TESTABILITY": true,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64 -static",
-                "PRODUCT_MODULE_NAME": "Lib",
-                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5"
-            },
-            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
-            "inputs": {
-                "srcs": [
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/Lib.swift",
-                        "t": "g"
-                    }
-                ]
-            },
-            "is_swift": true,
-            "label": "//examples/multiplatform/Lib:Lib",
-            "linker_inputs": {},
-            "modulemaps": [
-                {
-                    "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework/Modules/module.modulemap",
-                    "t": "e"
-                }
-            ],
-            "name": "Lib",
-            "outputs": {},
-            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib",
-            "platform": {
-                "arch": "x86_64",
-                "minimum_os_version": "11.0",
-                "name": "macosx",
-                "os": "macos"
-            },
-            "product": {
-                "name": "Lib",
-                "path": {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/libLib.a",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.library.static"
-            },
-            "resource_bundle_dependencies": [],
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
-                        "t": "g"
-                    }
-                ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
-        },
         "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
         {
             "app_clips": [],
@@ -1257,21 +1171,8 @@
             "is_swift": false,
             "label": "//examples/multiplatform/Tool:Tool",
             "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework",
-                        "t": "e"
-                    }
-                ],
-                "force_load": [
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftmodule/x86_64-apple-macos.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-macos.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1284,10 +1185,6 @@
                 "static_libraries": [
                     {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/libTool.library.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/libLib.a",
                         "t": "g"
                     }
                 ]
@@ -1312,21 +1209,7 @@
             },
             "resource_bundle_dependencies": [],
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64",
-                        "t": "e"
-                    }
-                ],
                 "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
                     ".",
                     {
                         "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
@@ -1347,7 +1230,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64 -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "Tool",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -1355,9 +1238,7 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
-            "dependencies": [
-                "//examples/multiplatform/Lib:Lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
-            ],
+            "dependencies": [],
             "extensions": [],
             "info_plist": null,
             "inputs": {
@@ -1368,12 +1249,7 @@
             "is_swift": true,
             "label": "//examples/multiplatform/Tool:Tool.library",
             "linker_inputs": {},
-            "modulemaps": [
-                {
-                    "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework/Modules/module.modulemap",
-                    "t": "e"
-                }
-            ],
+            "modulemaps": [],
             "name": "Tool.library",
             "outputs": {},
             "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool",
@@ -1393,21 +1269,7 @@
             },
             "resource_bundle_dependencies": [],
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64",
-                        "t": "e"
-                    }
-                ],
                 "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
                     ".",
                     {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
@@ -1415,12 +1277,7 @@
                     }
                 ]
             },
-            "swiftmodules": [
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ],
+            "swiftmodules": [],
             "test_host": null,
             "watch_application": null
         },

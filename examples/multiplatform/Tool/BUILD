@@ -18,7 +18,4 @@ swift_library(
     srcs = ["main.swift"],
     module_name = "Tool",
     tags = ["manual"],
-    deps = [
-        "//examples/multiplatform/Lib",
-    ],
 )
