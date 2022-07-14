@@ -23,8 +23,6 @@ extension Dictionary where Key == TargetID, Value == Target {
         return result.merging(deps) { current, _ in current }
     }
 
-    // TODO: REMOVE ME
-
     /// Find the first `TargetID` that satisfies the predicate starting with the specified
     /// `TargetID` values. This function will traverse the dependency tree in a breadth-first
     /// search.
