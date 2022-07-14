@@ -50,11 +50,11 @@ extension Generator {
             let components: [String: TargetComponents]
             let normalizedName = target.normalizedName
             if labelsByName[normalizedName]!.count == 1 {
-                name = target.name
+                name = "\(target.name)"
                 componentKey = normalizedName
                 components = names
             } else {
-                name = target.label
+                name = "\(target.label)"
                 componentKey = target.normalizedLabel
                 components = labels
             }
@@ -481,7 +481,7 @@ extension ConsolidatedTarget {
     /// The normalized label is used during target disambiguation. It allows the
     /// logic to differentiate targets where the names only differ by case.
     var normalizedLabel: String {
-        return label.lowercased()
+        return "\(label)".lowercased()
     }
 }
 

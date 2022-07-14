@@ -2,7 +2,7 @@ import PathKit
 
 struct Target: Equatable, Decodable {
     let name: String
-    let label: String
+    let label: BazelLabel
     let configuration: String
     var packageBinDir: Path
     let platform: Platform

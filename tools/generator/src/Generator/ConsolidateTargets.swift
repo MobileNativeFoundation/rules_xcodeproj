@@ -201,7 +201,7 @@ Target "\(targetID)" not found in `consolidateTargets().targets`
 /// disqualifying properties that require further inspection (e.g conditional
 /// dependencies).
 private struct ConsolidatableKey: Equatable, Hashable {
-    let label: String
+    let label: BazelLabel
     let productType: PBXProductType
 
     /// Used to prevent watchOS from consolidating with other platforms. Xcode
@@ -254,7 +254,7 @@ struct ConsolidatedTarget: Equatable {
     }
 
     let name: String
-    let label: String
+    let label: BazelLabel
     let product: ConsolidatedTargetProduct
     let isSwift: Bool
     let inputs: ConsolidatedTargetInputs
