@@ -77,12 +77,12 @@ extension XcodeSchemeExtensionsTests {
 class XcodeSchemeExtensionsTests: XCTestCase {
     // Labels
 
-    let libLabel = "//examples/multiplatform/Lib:Lib"
-    let libTestsLabel = "//examples/multiplatform/LibTests:LibTests.__internal__.__test_bundle"
-    let toolLabel = "//examples/multiplatform/Tool:Tool"
-    let iOSAppLabel = "//examples/multiplatform/iOSApp:iOSApp"
-    let tvOSAppLabel = "//examples/multiplatform/tvOSApp:tvOSApp"
-    let watchOSAppLabel = "//examples/multiplatform/watchOSApp:watchOSApp"
+    let libLabel: BazelLabel = "//examples/multiplatform/Lib:Lib"
+    let libTestsLabel: BazelLabel = "//examples/multiplatform/LibTests:LibTests.__internal__.__test_bundle"
+    let toolLabel: BazelLabel = "//examples/multiplatform/Tool:Tool"
+    let iOSAppLabel: BazelLabel = "//examples/multiplatform/iOSApp:iOSApp"
+    let tvOSAppLabel: BazelLabel = "//examples/multiplatform/tvOSApp:tvOSApp"
+    let watchOSAppLabel: BazelLabel = "//examples/multiplatform/watchOSApp:watchOSApp"
 
     // Configurations
 
