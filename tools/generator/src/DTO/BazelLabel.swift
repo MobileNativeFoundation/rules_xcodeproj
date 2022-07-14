@@ -53,14 +53,6 @@ extension BazelLabel: CustomStringConvertible {
     }
 }
 
-extension BazelLabel: RawRepresentable {
-    init?(rawValue: String) {
-        self.init(rawValue)
-    }
-
-    var rawValue: String { "\(self)" }
-}
-
 extension BazelLabel: ExpressibleByStringLiteral {
     init(stringLiteral value: String) {
         self.init(value)!
@@ -70,7 +62,7 @@ extension BazelLabel: ExpressibleByStringLiteral {
 extension BazelLabel: Encodable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(rawValue)
+        try container.encode("\(self)")
     }
 }
 

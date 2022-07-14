@@ -42,15 +42,6 @@ class BazelLabelTests: XCTestCase {
         XCTAssertEqual("//foo/bar:bar", actual)
     }
 
-    func test_rawRepresentable() throws {
-        let rawValue = "//foo/bar:hello"
-        guard let label = BazelLabel(rawValue: rawValue) else {
-            XCTFail("Expected a label")
-            return
-        }
-        XCTAssertEqual(rawValue, label.rawValue)
-    }
-
     func test_encodingAndDecoding() throws {
         let label: BazelLabel = "//foo/bar:hello"
 
