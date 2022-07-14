@@ -50,7 +50,7 @@ extension Generator {
             let components: [String: TargetComponents]
             let normalizedName = target.normalizedName
             if labelsByName[normalizedName]!.count == 1 {
-                name = "\(target.name)"
+                name = target.name
                 componentKey = normalizedName
                 components = names
             } else {
