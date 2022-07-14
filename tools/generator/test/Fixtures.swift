@@ -1962,9 +1962,6 @@ sed \
         let (files, _) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
 
-        let internalDirectoryName = "rules_xcp"
-        let workspaceOutputPath: Path = "Project.xcodeproj"
-
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: pbxProj,
             xcodeprojBazelLabel: "//:xcodeproj",
