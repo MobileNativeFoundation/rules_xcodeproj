@@ -50,4 +50,17 @@ class BazelLabelTests: XCTestCase {
         }
         XCTAssertEqual(rawValue, label.rawValue)
     }
+
+    func test_encodingAndDecoding() throws {
+        let label: BazelLabel = "//foo/bar:hello"
+
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(label)
+        let dataStr = String(data: data, encoding: .utf8)!
+        XCTAssertEqual(dataStr, "\"\\/\\/foo\\/bar:hello\"")
+
+        let decoder = JSONDecoder()
+        let result = try decoder.decode(BazelLabel.self, from: data)
+        XCTAssertEqual(label, result)
+    }
 }

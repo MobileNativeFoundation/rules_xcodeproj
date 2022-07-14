@@ -1,6 +1,6 @@
 import Foundation
 
-struct BazelLabel: Equatable, Hashable, Decodable {
+struct BazelLabel: Equatable, Hashable {
     let repository: String
     let package: String
     let name: String
@@ -63,6 +63,21 @@ extension BazelLabel: RawRepresentable {
 
 extension BazelLabel: ExpressibleByStringLiteral {
     init(stringLiteral value: String) {
+        self.init(value)!
+    }
+}
+
+extension BazelLabel: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(rawValue)
+    }
+}
+
+extension BazelLabel: Decodable {
+    init(from decoder: Decoder) throws {
+        let value = try decoder.singleValueContainer().decode(String.self)
+        // TODO: Switch to throwing an error
         self.init(value)!
     }
 }
