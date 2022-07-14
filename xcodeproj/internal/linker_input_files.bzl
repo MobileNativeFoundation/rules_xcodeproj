@@ -307,9 +307,9 @@ def _process_linkopt(linkopt, *, triple):
         elif value and value.startswith("bazel-out/"):
             opt = flag + sep + "$(BUILD_DIR)/" + value
         elif opt.startswith("external/"):
-            opt = "$(LINKS_DIR)/" + opt
+            opt = "$(BAZEL_EXTERNAL)/" + opt[9:]
         elif value and value.startswith("external/"):
-            opt = flag + sep + "$(LINKS_DIR)/" + value
+            opt = flag + sep + "$(BAZEL_EXTERNAL)/" + value[9:]
         else:
             # Use Xcode set `DEVELOPER_DIR`
             opt = opt.replace(
