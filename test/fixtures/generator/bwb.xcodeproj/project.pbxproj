@@ -2295,7 +2295,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = PathKit;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
@@ -2337,7 +2337,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = XcodeProj;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
@@ -2367,7 +2367,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = AEXML;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
@@ -2439,7 +2439,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = XCTestDynamicOverlay;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
@@ -2470,7 +2470,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = CustomDump;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
@@ -2507,7 +2507,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = tests;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
@@ -2537,7 +2537,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = OrderedCollections;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
@@ -2567,7 +2567,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = generator;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
@@ -2598,7 +2598,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = generator.library;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};

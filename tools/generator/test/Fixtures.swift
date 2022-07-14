@@ -2043,7 +2043,7 @@ sed \
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "A 2",
                 "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION": "YES",
-                "CODE_SIGN_ENTITLEMENTS": "$(PROJECT_DIR)/app.entitlements",
+                "CODE_SIGN_ENTITLEMENTS": "app.entitlements",
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "app",
                 "GENERATE_INFOPLIST_FILE": "YES",
@@ -2086,7 +2086,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "EXECUTABLE_EXTENSION": "framework",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
--Xcc -fmodule-map-file=$(PROJECT_DIR)/a/module.modulemap
+-Xcc -fmodule-map-file=a/module.modulemap
 """,
                 "PRODUCT_NAME": "b",
                 "SDKROOT": "macosx",
@@ -2132,7 +2132,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "BAZEL_TARGET_ID": "C 1",
                 "EXECUTABLE_EXTENSION": "a",
-                "GCC_PREFIX_HEADER": "$(PROJECT_DIR)/a/b/c.pch",
+                "GCC_PREFIX_HEADER": "a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
@@ -2240,16 +2240,13 @@ $(IPHONESIMULATOR_FILES)
 $(MACOSX_FILES)
 """,
                 "IPHONEOS_FILES": """
-"$(PROJECT_DIR)/T/T 1/Ta.c" "$(PROJECT_DIR)/T/T 1/Ta.png" \
-"$(PROJECT_DIR)/T/T 1/Ta.swift"
+"T/T 1/Ta.c" "T/T 1/Ta.png" "T/T 1/Ta.swift"
 """,
                 "IPHONESIMULATOR_FILES": """
-"$(PROJECT_DIR)/T/T 2/Ta.c" "$(PROJECT_DIR)/T/T 2/Ta.png" \
-"$(PROJECT_DIR)/T/T 2/Ta.swift"
+"T/T 2/Ta.c" "T/T 2/Ta.png" "T/T 2/Ta.swift"
 """,
                 "MACOSX_FILES": """
-"$(PROJECT_DIR)/T/T 3/Ta.c" "$(PROJECT_DIR)/T/T 3/Ta.png" \
-"$(PROJECT_DIR)/T/T 3/Ta.swift"
+"T/T 3/Ta.c" "T/T 3/Ta.png" "T/T 3/Ta.swift"
 """,
                 "PRODUCT_NAME": "t",
                 "SDKROOT": "macosx",
