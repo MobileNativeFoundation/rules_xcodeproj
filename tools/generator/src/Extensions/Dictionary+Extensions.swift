@@ -1,10 +1,6 @@
 extension Dictionary where Key == TargetID, Value == Target {
-    // func filterDependencyTree<StartTargets: Sequence>(
-    //     startingWith startTargetIDs: StartTargets
-    // ) -> [Key: Value] where StartTargets.Element == Self.Key {
-    //     return filterDependencyTree(startingWith: startTargetIDs) { _ in true }
-    // }
-
+    /// Filter the dictionary to include the depdency tree for the specified target ID values that
+    /// satisfy the provided predicate.
     func filterDependencyTree<StartTargets: Sequence>(
         startingWith startTargetIDs: StartTargets,
         _ isIncluded: (Self.Value) throws -> Bool
@@ -26,8 +22,6 @@ extension Dictionary where Key == TargetID, Value == Target {
         // Merge the results
         return result.merging(deps) { current, _ in current }
     }
-
-    // TODO: Remove firstTargetID if not being used
 
     /// Find the first `TargetID` that satisfies the predicate starting with the specified
     /// `TargetID` values. This function will traverse the dependency tree in a breadth-first
