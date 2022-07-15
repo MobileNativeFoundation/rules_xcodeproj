@@ -1045,7 +1045,31 @@ $(BUILD_DIR)/bazel-out/a/c.a
 
 """)
 
-        return (files, elements, [.generated("x/y.swiftmodule")])
+        // `xcodegeneratedfiles`
+
+        let xcodeGeneratedFiles: Set<FilePath> = [
+            .generated("z/A.a"),
+            .generated("x/y.swiftmodule"),
+            .generated("z/A.app"),
+            .generated("z/AC.app"),
+            .generated("a/b.framework"),
+            .generated("B.xctest"),
+            .generated("B3.xctest"),
+            .generated("a/c.a"),
+            .generated("d"),
+            .generated("e1/E.a"),
+            .generated("e2/E.a"),
+            .generated("z/I.app"),
+            .generated("r1/R1.bundle"),
+            .generated("T/T 1/T.a"),
+            .generated("T/T 2/T.a"),
+            .generated("T/T 3/T.a"),
+            .generated("z/W.app"),
+            .generated("z/WDK.appex"),
+            .generated("z/WK.appex"),
+        ]
+
+        return (files, elements, xcodeGeneratedFiles)
     }
 
     static func products(
