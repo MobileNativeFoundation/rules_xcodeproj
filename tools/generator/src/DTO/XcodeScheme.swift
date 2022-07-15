@@ -5,18 +5,11 @@ struct XcodeScheme: Equatable, Decodable {
     let launchAction: XcodeScheme.LaunchAction?
 }
 
-// MARK: LabelValue
-
-extension XcodeScheme {
-    // The Bazel label as a string (Target.label)
-    typealias LabelValue = String
-}
-
 // MARK: BuildAction
 
 extension XcodeScheme {
     struct BuildAction: Equatable, Decodable {
-        let targets: Set<LabelValue>
+        let targets: Set<BazelLabel>
     }
 }
 
@@ -24,7 +17,7 @@ extension XcodeScheme {
 
 extension XcodeScheme {
     struct TestAction: Equatable, Decodable {
-        let targets: Set<LabelValue>
+        let targets: Set<BazelLabel>
     }
 }
 
@@ -32,7 +25,7 @@ extension XcodeScheme {
 
 extension XcodeScheme {
     struct LaunchAction: Equatable, Decodable {
-        let target: LabelValue
+        let target: BazelLabel
         let args: [String]
         let env: [String: String]
         let workingDirectory: String?

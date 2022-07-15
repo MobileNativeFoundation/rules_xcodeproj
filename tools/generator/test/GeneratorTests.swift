@@ -311,7 +311,7 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
-            let xcodeprojBazelLabel: String
+            let xcodeprojBazelLabel: BazelLabel
             let xcodeprojConfiguration: String
             let consolidatedTargets: ConsolidatedTargets
         }
@@ -323,7 +323,7 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
-            xcodeprojBazelLabel: String,
+            xcodeprojBazelLabel: BazelLabel,
             xcodeprojConfiguration: String,
             consolidatedTargets: ConsolidatedTargets
         ) throws -> PBXAggregateTarget? {

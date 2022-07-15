@@ -54,4 +54,27 @@ class BazelLabelTests: XCTestCase {
         let result = try decoder.decode(BazelLabel.self, from: data)
         XCTAssertEqual(label, result)
     }
+
+    func assertParseError(
+        value: String,
+        expectedError: BazelLabel.ParseError,
+        file: StaticString = #file, line: UInt = #line
+    ) {
+        var thrownError: Error?
+        XCTAssertThrowsError(try BazelLabel(value), file: file, line: line) {
+            thrownError = $0
+        }
+        XCTAssertEqual(
+            thrownError as? BazelLabel.ParseError,
+            expectedError,
+            file: file, line: line
+        )
+    }
+
+    func test_init_withInvalidValues() throws {
+        assertParseError(value: ":hello", expectedError: .missingOrTooManyRootSeparators)
+        assertParseError(value: "//howdy//:hello", expectedError: .missingOrTooManyRootSeparators)
+        assertParseError(value: "//", expectedError: .missingNameAndPackage)
+        assertParseError(value: "//foo:hello:bar", expectedError: .tooManyColons)
+    }
 }

@@ -25,9 +25,9 @@ extension XcodeScheme {
     /// Represents a configuration string (Target.configuration).
     typealias Configuration = String
 
-    /// Determines the mapping of `LabelValue` to the `TargetID` values based upon the scheme's
+    /// Determines the mapping of `BazelLabel` to the `TargetID` values based upon the scheme's
     /// configuration.
-    func resolveTargetIDs(targets: [TargetID: Target]) throws -> [LabelValue: TargetID] {
+    func resolveTargetIDs(targets: [TargetID: Target]) throws -> [BazelLabel: TargetID] {
         // Get all of the scheme labels
         let allSchemeLabels = allSchemeLabels
         let topLevelSchemeLabels = allSchemeLabels.filter(\.isTopLevel)
@@ -42,7 +42,7 @@ extension XcodeScheme {
             targetWithIDs: topLevelTargetWithIDs
         )
 
-        var resolvedTargetIDs = [LabelValue: TargetID]()
+        var resolvedTargetIDs = [BazelLabel: TargetID]()
 
         // Collect top-level targetIDs
         var topLevelTargetIDs = Set<TargetID>()
@@ -88,9 +88,9 @@ No `TargetID` value found for "\(schemeLabel.label)"
 // MARK: LabelValueTargetInfo
 
 extension XcodeScheme {
-    /// Collects Target information for a LabelValue.
+    /// Collects Target information for a BazelLabel.
     struct LabelValueTargetInfo {
-        let label: LabelValue
+        let label: BazelLabel
         var inPlatformOrder = [TargetWithID]()
         var platforms = Set<Platform>()
 
@@ -106,8 +106,8 @@ Unable to find the best `TargetWithID` for "\(label)"
 
     private func collectTargetInfoByLabelValue(
         targetWithIDs: [TargetWithID]
-    ) -> [LabelValue: LabelValueTargetInfo] {
-        var results = [LabelValue: LabelValueTargetInfo]()
+    ) -> [BazelLabel: LabelValueTargetInfo] {
+        var results = [BazelLabel: LabelValueTargetInfo]()
 
         // Collect the target information
         for targetWithID in targetWithIDs {
@@ -130,12 +130,12 @@ Unable to find the best `TargetWithID` for "\(label)"
 extension XcodeScheme {
     /// Represents a Bazel label from a scheme.
     struct SchemeLabel: Equatable, Hashable {
-        let label: LabelValue
+        let label: BazelLabel
         let isTopLevel: Bool
     }
 
-    private var topLevelTargetLabels: Set<LabelValue> {
-        var results = Set<String>()
+    private var topLevelTargetLabels: Set<BazelLabel> {
+        var results = Set<BazelLabel>()
         if let testAction = testAction {
             testAction.targets.forEach { results.update(with: $0) }
         }
@@ -149,7 +149,7 @@ extension XcodeScheme {
     var allSchemeLabels: Set<SchemeLabel> {
         let topLevelTargetLabels = topLevelTargetLabels
 
-        var byLabelValue = [LabelValue: SchemeLabel]()
+        var byLabelValue = [BazelLabel: SchemeLabel]()
         for label in topLevelTargetLabels {
             byLabelValue[label] = .init(label: label, isTopLevel: true)
         }
