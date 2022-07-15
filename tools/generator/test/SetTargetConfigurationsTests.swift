@@ -19,7 +19,11 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
         let consolidatedTargets = Fixtures.consolidatedTargets
 
-        let (pbxTargets, disambiguatedTargets) = Fixtures.pbxTargets(
+        let (
+            pbxTargets,
+            disambiguatedTargets,
+            xcodeGeneratedFiles
+        ) = Fixtures.pbxTargets(
             in: pbxProj,
             consolidatedTargets: consolidatedTargets
         )
@@ -36,6 +40,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: Fixtures.project.targetHosts,
+            xcodeGeneratedFiles: xcodeGeneratedFiles,
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -171,6 +176,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
+            xcodeGeneratedFiles: [],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -221,6 +227,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
+            xcodeGeneratedFiles: [],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -273,6 +280,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
+            xcodeGeneratedFiles: [],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -360,6 +368,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
+            xcodeGeneratedFiles: [],
             filePathResolver: Self.filePathResolverFixture
         )
 

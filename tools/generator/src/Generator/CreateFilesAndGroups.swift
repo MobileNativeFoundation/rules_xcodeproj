@@ -75,7 +75,8 @@ extension Generator {
         logger: Logger
     ) throws -> (
         files: [FilePath: File],
-        rootElements: [PBXFileElement]
+        rootElements: [PBXFileElement],
+        xcodeGeneratedFiles: Set<FilePath>
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
         var groups: [FilePath: PBXGroup] = [:]
@@ -573,7 +574,19 @@ extension Generator {
         knownRegions.remove("Base")
         pbxProj.rootObject!.knownRegions = knownRegions.sorted() + ["Base"]
 
-        return (files, rootElements)
+        var xcodeGeneratedFiles: Set<FilePath> = []
+        switch buildMode {
+        case .xcode:
+            for (_, target) in targets {
+                if let filePath = target.outputs.swift?.module {
+                    xcodeGeneratedFiles.insert(filePath)
+                }
+            }
+        default:
+            break
+        }
+
+        return (files, rootElements, xcodeGeneratedFiles)
     }
 
     private static func setXCCurrentVersions(

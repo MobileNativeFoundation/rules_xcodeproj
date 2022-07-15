@@ -86,7 +86,7 @@ final class GeneratorTests: XCTestCase {
                 ),
             ]
         )
-        let (files, filesAndGroups) = Fixtures.files(
+        let (files, filesAndGroups, xcodeGeneratedFiles) = Fixtures.files(
             in: pbxProj,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
@@ -208,7 +208,8 @@ final class GeneratorTests: XCTestCase {
             logger _: Logger
         ) -> (
             files: [FilePath: File],
-            rootElements: [PBXFileElement]
+            rootElements: [PBXFileElement],
+            xcodeGeneratedFiles: Set<FilePath>
         ) {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
@@ -218,7 +219,7 @@ final class GeneratorTests: XCTestCase {
                 xccurrentversions: xccurrentversions,
                 filePathResolver: filePathResolver
             ))
-            return (files, rootElements)
+            return (files, rootElements, xcodeGeneratedFiles)
         }
 
         let expectedCreateFilesAndGroupsCalled = [CreateFilesAndGroupsCalled(
@@ -408,6 +409,7 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let hostIDs: [TargetID: [TargetID]]
+            let xcodeGeneratedFiles: Set<FilePath>
             let filePathResolver: FilePathResolver
         }
 
@@ -418,6 +420,7 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
+            xcodeGeneratedFiles: Set<FilePath>,
             filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(
@@ -426,6 +429,7 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
+                xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             ))
         }
@@ -437,6 +441,7 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,
+                xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             ),
         ]

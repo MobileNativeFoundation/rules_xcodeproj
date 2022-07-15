@@ -50,7 +50,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
 
         let (
             createdFiles,
-            createdRootElements
+            createdRootElements,
+            _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .xcode,
@@ -95,7 +96,11 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             workspaceOutputPath: workspaceOutputPath
         )
 
-        let (expectedFiles, expectedElements) = Fixtures.files(
+        let (
+            expectedFiles,
+            expectedElements,
+            expectedXcodeGeneratedFiles
+        ) = Fixtures.files(
             in: expectedPBXProj,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
@@ -133,7 +138,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
 
         let (
             createdFiles,
-            createdRootElements
+            createdRootElements,
+            xcodeGeneratedFiles
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .xcode,
@@ -158,6 +164,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles.map(KeyAndValue.init).sorted(),
             expectedFiles.map(KeyAndValue.init).sorted()
         )
+        XCTAssertNoDifference(xcodeGeneratedFiles, expectedXcodeGeneratedFiles)
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }

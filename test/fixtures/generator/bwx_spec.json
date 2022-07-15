@@ -122,7 +122,12 @@
             },
             "modulemaps": [],
             "name": "tests",
-            "outputs": {},
+            "outputs": {
+                "p": {
+                    "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test/tests.xctest",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test",
             "platform": {
                 "arch": "x86_64",
@@ -216,7 +221,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "tests.library",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test/tests.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test/tests.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test/tests.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/test",
             "platform": {
                 "arch": "x86_64",
@@ -337,7 +357,12 @@
             },
             "modulemaps": [],
             "name": "generator",
-            "outputs": {},
+            "outputs": {
+                "p": {
+                    "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/generator",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator",
             "platform": {
                 "arch": "x86_64",
@@ -447,7 +472,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "generator.library",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/generator.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/generator.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator/generator.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/tools/generator",
             "platform": {
                 "arch": "x86_64",
@@ -723,7 +763,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "OrderedCollections",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_apple_swift_collections",
             "platform": {
                 "arch": "x86_64",
@@ -786,7 +841,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "PathKit",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_kylef_pathkit/PathKit.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_kylef_pathkit/PathKit.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_kylef_pathkit",
             "platform": {
                 "arch": "x86_64",
@@ -947,7 +1017,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "CustomDump",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_swift_custom_dump",
             "platform": {
                 "arch": "x86_64",
@@ -1015,7 +1100,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "XCTestDynamicOverlay",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
             "platform": {
                 "arch": "x86_64",
@@ -1094,7 +1194,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "AEXML",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tadija_aexml/AEXML.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tadija_aexml/AEXML.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tadija_aexml",
             "platform": {
                 "arch": "x86_64",
@@ -1536,7 +1651,22 @@
             "linker_inputs": {},
             "modulemaps": [],
             "name": "XcodeProj",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/com_github_tuist_xcodeproj",
             "platform": {
                 "arch": "x86_64",

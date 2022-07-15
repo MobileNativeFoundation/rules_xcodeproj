@@ -91,7 +91,12 @@
             },
             "modulemaps": [],
             "name": "Example",
-            "outputs": {},
+            "outputs": {
+                "p": {
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/Example.zip",
+                    "t": "g"
+                }
+            },
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example",
             "platform": {
                 "arch": "x86_64",
@@ -161,7 +166,22 @@
                 "examples/macos_app/third_party/ExampleFramework.framework/Modules/module.modulemap"
             ],
             "name": "Example.library",
-            "outputs": {},
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/iOSApp.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/iOSApp.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/iOSApp.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
             "package_bin_dir": "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example",
             "platform": {
                 "arch": "x86_64",

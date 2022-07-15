@@ -14,6 +14,7 @@ extension Generator {
         buildMode: BuildMode,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
+        xcodeGeneratedFiles: Set<FilePath>,
         filePathResolver: FilePathResolver
     ) throws {
         for (key, disambiguatedTarget) in disambiguatedTargets.targets {
@@ -36,6 +37,7 @@ Target "\(key)" not found in `pbxTargets`
                 for: target,
                 buildMode: buildMode,
                 hostIDs: hostIDs,
+                xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             )
 
@@ -68,6 +70,7 @@ Target "\(key)" not found in `pbxTargets`
         for consolidatedTarget: ConsolidatedTarget,
         buildMode: BuildMode,
         hostIDs: [TargetID: [TargetID]],
+        xcodeGeneratedFiles: Set<FilePath>,
         filePathResolver: FilePathResolver
     ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
         var anyBuildSettings: [String: BuildSetting] = [:]
@@ -81,6 +84,7 @@ Target "\(key)" not found in `pbxTargets`
                 id: id,
                 hostIDs: hostIDs[id, default: []],
                 buildMode: buildMode,
+                xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             )
 
@@ -138,6 +142,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         id: TargetID,
         hostIDs: [TargetID],
         buildMode: BuildMode,
+        xcodeGeneratedFiles: Set<FilePath>,
         filePathResolver: FilePathResolver
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
@@ -285,14 +290,22 @@ $(CONFIGURATION_BUILD_DIR)
                 .map { filePath -> String in
                     var dir = filePath
                     dir.path = dir.path.parent().normalize()
-                    return try filePathResolver.resolve(dir).string.quoted
+                    return try filePathResolver
+                        .resolve(
+                            dir,
+                            useOriginalGeneratedFiles:
+                                !xcodeGeneratedFiles.contains(filePath)
+                        )
+                        .string.quoted
                 }
                 .uniqued()
                 .joined(separator: " ")
             buildSettings.set("SWIFT_INCLUDE_PATHS", to: includePaths)
         }
 
-        if let swiftOutputs = target.outputs.swift {
+        if let swiftOutputs = target.outputs.swift,
+           buildMode.usesBazelModeBuildScripts
+        {
             let swiftmoduleOutputPaths = try swiftOutputs.paths(
                 filePathResolver: filePathResolver
             )
@@ -314,7 +327,9 @@ $(CONFIGURATION_BUILD_DIR)
             }
         }
 
-        if let productOutput = target.outputs.product {
+        if let productOutput = target.outputs.product,
+           buildMode.usesBazelModeBuildScripts
+        {
             buildSettings.set(
                 "BAZEL_OUTPUTS_PRODUCT",
                 to: try filePathResolver.resolve(
