@@ -15,7 +15,7 @@ SwiftUI
 -lc++
 -filelist
 $(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/examples/command_line/tool/tool.LinkFileList
--exported_symbols_list
-examples/command_line/tool/export_symbol_list.exp
 -force_load
 $(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/ExternalFramework
+-exported_symbols_list
+examples/command_line/tool/export_symbol_list.exp
