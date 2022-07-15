@@ -67,6 +67,14 @@ enum Fixtures {
                     "Assets.xcassets/some_image/Contents.json",
                     "Assets.xcassets/some_image/some_image.png",
                 ]
+            ),
+            outputs: .init(
+                product: nil,
+                swift: .init(
+                    module: .generated("x/y.swiftmodule"),
+                    doc: .generated("x/y.swiftdoc"),
+                    sourceInfo: .generated("x/y.sourceinfo")
+                )
             )
         ),
         "A 2": Target.mock(
@@ -404,7 +412,11 @@ enum Fixtures {
         parentGroup group: PBXGroup? = nil,
         internalDirectoryName: String = "rules_xcodeproj",
         workspaceOutputPath: Path = "some/Project.xcodeproj"
-    ) -> (files: [FilePath: File], elements: [FilePath: PBXFileElement]) {
+    ) -> (
+        files: [FilePath: File],
+        elements: [FilePath: PBXFileElement],
+        xcodeGeneratedFiles: Set<FilePath>
+    ) {
         var elements: [FilePath: PBXFileElement] = [:]
 
         let linksDir = workspaceOutputPath + internalDirectoryName + "links"
@@ -1049,7 +1061,7 @@ a/imported.a
 
 """)
 
-        return (files, elements)
+        return (files, elements, [.generated("x/y.swiftmodule")])
     }
 
     static func products(
@@ -1956,11 +1968,19 @@ sed \
     static func pbxTargets(
         in pbxProj: PBXProj,
         consolidatedTargets: ConsolidatedTargets
-    ) -> ([ConsolidatedTarget.Key: PBXTarget], DisambiguatedTargets) {
+    ) -> (
+        [ConsolidatedTarget.Key: PBXTarget],
+        DisambiguatedTargets,
+        Set<FilePath>
+    ) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
 
-        let (files, _) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
+        let (
+            files,
+            _,
+            xcodeGeneratedFiles
+        ) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
 
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
@@ -1980,14 +2000,14 @@ sed \
             bazelDependenciesTarget: bazelDependenciesTarget
         )
 
-        return (pbxTargets, disambiguatedTargets)
+        return (pbxTargets, disambiguatedTargets, xcodeGeneratedFiles)
     }
 
     static func pbxTargetsWithConfigurations(
         in pbxProj: PBXProj,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
-        let (pbxTargets, _) = Fixtures.pbxTargets(
+        let (pbxTargets, _, _) = Fixtures.pbxTargets(
             in: pbxProj,
             consolidatedTargets: consolidatedTargets
         )
@@ -2330,7 +2350,7 @@ $(MACOSX_FILES)
         in pbxProj: PBXProj,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
-        let (pbxTargets, _) = Fixtures.pbxTargets(
+        let (pbxTargets, _, _) = Fixtures.pbxTargets(
             in: pbxProj,
             consolidatedTargets: consolidatedTargets
         )

@@ -29,7 +29,7 @@ def should_include_outputs(ctx):
         `True` for Build with Bazel projects and portions of the build that
         need to build with Bazel (i.e. Focused Projects).
     """
-    return ctx.attr._build_mode[BuildSettingInfo].value != "xcode"
+    return ctx.attr._build_mode[BuildSettingInfo].value != "bazel_via_proxy"
 
 def process_dependencies(*, automatic_target_info, transitive_infos):
     """ Logic for processing target dependencies

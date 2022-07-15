@@ -74,7 +74,11 @@ class Generator {
             logger
         )
 
-        let (files, rootElements) = try environment.createFilesAndGroups(
+        let (
+            files,
+            rootElements,
+            xcodeGeneratedFiles
+        ) = try environment.createFilesAndGroups(
             pbxProj,
             buildMode,
             targets,
@@ -122,6 +126,7 @@ class Generator {
             buildMode,
             pbxTargets,
             project.targetHosts,
+            xcodeGeneratedFiles,
             filePathResolver
         )
         try environment.setTargetDependencies(

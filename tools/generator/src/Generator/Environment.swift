@@ -33,7 +33,8 @@ struct Environment {
         _ logger: Logger
     ) throws -> (
         files: [FilePath: File],
-        rootElements: [PBXFileElement]
+        rootElements: [PBXFileElement],
+        xcodeGeneratedFiles: Set<FilePath>
     )
 
     let createProducts: (
@@ -79,6 +80,7 @@ struct Environment {
         _ buildMode: BuildMode,
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
+        _ xcodeGeneratedFiles: Set<FilePath>,
         _ filePathResolver: FilePathResolver
     ) throws -> Void
 
