@@ -505,7 +505,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/examples/cc/lib/private",
+					examples/cc/lib/private,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -539,7 +539,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin",
 				);
 			};
@@ -639,12 +639,12 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/examples/cc/lib2/includes",
+					examples/cc/lib2/includes,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin",
 				);
 			};
@@ -704,12 +704,12 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/examples/cc/lib2/includes",
+					examples/cc/lib2/includes,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/examples_cc_external",
@@ -775,7 +775,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/examples_cc_external",
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin",
 				);
 			};

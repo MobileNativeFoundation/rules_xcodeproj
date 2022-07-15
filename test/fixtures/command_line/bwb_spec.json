@@ -743,8 +743,7 @@
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CODE_SIGN_FLAGS": [
-                    "--digest-algorithm=sha1",
-                    "--digest-algorithm=sha384"
+                    "-v"
                 ],
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",

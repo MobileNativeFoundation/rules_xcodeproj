@@ -36,7 +36,7 @@ struct FilePathResolver: Equatable {
             let projectDir: Path
             switch mode {
             case .buildSetting:
-                projectDir = "$(PROJECT_DIR)"
+                projectDir = ""
             case .script:
                 projectDir = "$PROJECT_DIR"
             case .srcRoot:

@@ -1515,7 +1515,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = TestingUtils;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
 				);
 			};
@@ -1575,7 +1575,7 @@
 				TARGET_NAME = ExampleUITests.__internal__.__test_bundle;
 				TEST_TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
 				);
 			};
@@ -1658,7 +1658,7 @@
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_EXTENSION = a;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
+				GCC_PREFIX_HEADER = CoreUtilsObjC/CoreUtils/CoreUtils.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					OS_IOS,
@@ -1666,7 +1666,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/CoreUtilsObjC",
+					CoreUtilsObjC,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1734,7 +1734,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = CoreUtilsObjC;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
 				);
 			};
@@ -1758,7 +1758,7 @@
 				EXECUTABLE_NAME = ExampleTests;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/CoreUtilsObjC",
+					CoreUtilsObjC,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
@@ -1782,7 +1782,7 @@
 				TARGET_NAME = ExampleTests.__internal__.__test_bundle;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/Example.app/Example";
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
 				);
 			};
@@ -1814,7 +1814,7 @@
 					AWESOME,
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/CoreUtilsObjC",
+					CoreUtilsObjC,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
@@ -1889,7 +1889,7 @@
 				TARGET_NAME = ExampleObjcTests.__internal__.__test_bundle;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/Example.app/Example";
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
 				);
 			};
@@ -1903,7 +1903,7 @@
 				BAZEL_TARGET_ID = "//Example:Example applebin_ios-ios_x86_64-dbg-ST-8100579b5c54";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "$(PROJECT_DIR)/Example/app.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Example/app.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
@@ -1913,7 +1913,7 @@
 				EXECUTABLE_NAME = Example_ExecutableName;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/CoreUtilsObjC",
+					CoreUtilsObjC,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/Example-intermediates/Info.xcode.plist";
@@ -1938,7 +1938,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
 				);
 			};
@@ -1998,7 +1998,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/CoreUtilsObjC",
+					CoreUtilsObjC,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -2066,7 +2066,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = Utils;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin",
 				);
 			};

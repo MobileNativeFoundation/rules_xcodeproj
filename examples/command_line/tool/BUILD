@@ -4,10 +4,7 @@ load("@rules_cc//cc:defs.bzl", "objc_library")
 macos_command_line_application(
     name = "tool",
     bundle_id = "io.buildbuddy.example",
-    codesignopts = [
-        "--digest-algorithm=sha1",
-        "--digest-algorithm=sha384",
-    ],
+    codesignopts = ["-v"],
     exported_symbols_lists = [
         "export_symbol_list.exp",
     ],
