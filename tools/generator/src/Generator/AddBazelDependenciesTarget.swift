@@ -456,7 +456,7 @@ set -euo pipefail
 
 while IFS= read -r input; do
   output="${input%.modulemap}.xcode.modulemap"
-  perl -p -e \
+  perl -pe \
     's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
     < "$input" \
     > "$output"
