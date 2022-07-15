@@ -1,4 +1,4 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example.swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift

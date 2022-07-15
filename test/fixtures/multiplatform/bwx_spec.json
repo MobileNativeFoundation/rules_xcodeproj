@@ -292,8 +292,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/AppClip/AppClip.swiftmodule/arm64-apple-ios.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/AppClip/AppClip.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -416,8 +416,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/AppClip/AppClip.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/AppClip/AppClip.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1303,7 +1303,7 @@
             "label": "//examples/multiplatform/Tool:Tool",
             "linker_inputs": {
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftmodule/x86_64-apple-macos.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1479,8 +1479,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule/arm64-apple-ios.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1598,8 +1598,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2089,8 +2089,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftmodule/arm64-apple-ios.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2209,8 +2209,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2548,8 +2548,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule/arm64-apple-ios.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2724,8 +2724,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -3156,8 +3156,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/arm64-apple-tvos.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -3275,8 +3275,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -3757,8 +3757,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/arm64_32-apple-watchos.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/WatchOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -3876,8 +3876,8 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",

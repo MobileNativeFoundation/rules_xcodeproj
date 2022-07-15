@@ -1,5 +1,5 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/Lib/Lib.swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift

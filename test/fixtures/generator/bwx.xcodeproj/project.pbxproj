@@ -83,6 +83,7 @@
 		3D01B6AFC10CED93F041478D /* BuildSettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E960E7EE6E2FD116C069453 /* BuildSettingsProvider.swift */; };
 		3D9A78660D051C58D312CA3A /* XcodeProj+CustomDump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C59FCAC898D6EE23D2CA4 /* XcodeProj+CustomDump.swift */; };
 		3DF3A8E137A26A0B4A8E6609 /* PBXObjectReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55EC3436DD504C4BA9A535A /* PBXObjectReference.swift */; };
+		3F4A202E0F23ACC4AEAE5635 /* Target+LinkerFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4392570A140F71AA49560BF /* Target+LinkerFlags.swift */; };
 		40925E098B63DCA621A05D22 /* PBXGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB74D3730A6741F0EBA95CF /* PBXGroup.swift */; };
 		42197EE31143ACFA49F3B0A6 /* CreateProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D646A224A24D4C9E2C8571F /* CreateProject.swift */; };
 		43597B68A207D3425F0F3F87 /* PBXGroup+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC31D565637D2B8358F9BB7 /* PBXGroup+Extensions.swift */; };
@@ -639,6 +640,7 @@
 		D1AC5E89AB62E41A76C6C29A /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		D2432A0EDFA23A5A28222A6E /* XCSwiftPackageProductDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCSwiftPackageProductDependency.swift; sourceTree = "<group>"; };
 		D32785C5FF661E7B65362F3B /* XCSchemeManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCSchemeManagement.swift; sourceTree = "<group>"; };
+		D4392570A140F71AA49560BF /* Target+LinkerFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Target+LinkerFlags.swift"; sourceTree = "<group>"; };
 		D55EC3436DD504C4BA9A535A /* PBXObjectReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXObjectReference.swift; sourceTree = "<group>"; };
 		D61C5D6C3C0A4507A95C4911 /* OrderedSet+SubSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+SubSequence.swift"; sourceTree = "<group>"; };
 		D7B75E96572AFED3A0BCC7CB /* JSONDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoding.swift; sourceTree = "<group>"; };
@@ -920,6 +922,7 @@
 				4B2C605A9270255AFA43DD80 /* SchemeAutogenerationMode.swift */,
 				CD9B208E7717F3D77B8335F3 /* SearchPaths.swift */,
 				7B450789447FD4495CA19F19 /* Target.swift */,
+				D4392570A140F71AA49560BF /* Target+LinkerFlags.swift */,
 				C939880AE9469811A47AFE6F /* TargetID.swift */,
 				93C0B18E2C3A64A586148442 /* XCCurrentVersion.swift */,
 				1BA9C49FC544ACD97566F1E4 /* XcodeScheme.swift */,
@@ -1799,6 +1802,7 @@
 				2BD18052028822D1FE63D914 /* Project.swift in Sources */,
 				2EF43FD3B7F4AA363B0EE6CF /* SchemeAutogenerationMode.swift in Sources */,
 				4DF343E4CE0906922B07AB23 /* SearchPaths.swift in Sources */,
+				3F4A202E0F23ACC4AEAE5635 /* Target+LinkerFlags.swift in Sources */,
 				B5BA989A1EDBB491C93A48F0 /* Target.swift in Sources */,
 				2B31FB04E965385B979B1B73 /* TargetID.swift in Sources */,
 				4F3877682063F54AD9AB43B1 /* XCCurrentVersion.swift in Sources */,

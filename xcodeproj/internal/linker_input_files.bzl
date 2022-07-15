@@ -19,16 +19,6 @@ _CC_LD_SKIP_OPTS = {
     "-framework": 2,
 }
 
-_TARGET_TRIPLE_OS = {
-    apple_common.platform.ios_device: "ios",
-    apple_common.platform.ios_simulator: "ios-simulator",
-    apple_common.platform.macos: "macos",
-    apple_common.platform.tvos_device: "tvos",
-    apple_common.platform.tvos_simulator: "tvos-simulator",
-    apple_common.platform.watchos_device: "watchos",
-    apple_common.platform.watchos_simulator: "watchos-simulator",
-}
-
 def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
     """Collects linker input files for a target.
 
@@ -222,12 +212,7 @@ def _extract_top_level_values(
         )
         raw_linkopts.extend(_process_cc_linkopts(cc_linkopts))
 
-        apple_fragment = ctx.fragments.apple
-        triple = "{}-apple-{}".format(
-            apple_fragment.single_arch_cpu,
-            _TARGET_TRIPLE_OS[apple_fragment.single_arch_platform],
-        )
-        linkopts = _process_linkopts(raw_linkopts, triple = triple)
+        linkopts = _process_linkopts(raw_linkopts)
     else:
         linkopts = None
 
@@ -270,7 +255,7 @@ def _process_cc_linkopts(linkopts):
 
     return ret
 
-def _process_linkopts(linkopts, *, triple):
+def _process_linkopts(linkopts):
     ret = []
     skip_next = 0
     for linkopt in linkopts:
@@ -282,13 +267,13 @@ def _process_linkopts(linkopts, *, triple):
             skip_next -= 1
             continue
 
-        linkopt = _process_linkopt(linkopt, triple = triple)
+        linkopt = _process_linkopt(linkopt)
         if linkopt:
             ret.append(linkopt)
 
     return ret
 
-def _process_linkopt(linkopt, *, triple):
+def _process_linkopt(linkopt):
     if linkopt == "OSO_PREFIX_MAP_PWD":
         return None
     if linkopt == "-Wl,-objc_abi_version,2":
@@ -298,31 +283,13 @@ def _process_linkopt(linkopt, *, triple):
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
         return None
 
-    opts = []
-    for opt in linkopt.split(","):
-        # Process paths in the --flag=value format, if any.
-        flag, sep, value = opt.partition("=")
-        if opt.startswith("bazel-out/"):
-            opt = "$(BUILD_DIR)/" + opt
-        elif value and value.startswith("bazel-out/"):
-            opt = flag + sep + "$(BUILD_DIR)/" + value
-        elif opt.startswith("external/"):
-            opt = "$(BAZEL_EXTERNAL)/" + opt[9:]
-        elif value and value.startswith("external/"):
-            opt = flag + sep + "$(BAZEL_EXTERNAL)/" + value[9:]
-        else:
-            # Use Xcode set `DEVELOPER_DIR`
-            opt = opt.replace(
-                "__BAZEL_XCODE_DEVELOPER_DIR__",
-                "$(DEVELOPER_DIR)",
-            )
+    # Use Xcode set `DEVELOPER_DIR`
+    linkopt = linkopt.replace(
+        "__BAZEL_XCODE_DEVELOPER_DIR__",
+        "$(DEVELOPER_DIR)",
+    )
 
-        if opt.endswith(".swiftmodule"):
-            opt = opt + "/{}.swiftmodule".format(triple)
-
-        opts.append(opt)
-
-    return ",".join(opts)
+    return linkopt
 
 def _to_dto(linker_inputs):
     """Generates a target DTO for linker inputs.
