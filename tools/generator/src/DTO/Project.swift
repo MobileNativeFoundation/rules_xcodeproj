@@ -10,4 +10,5 @@ struct Project: Equatable, Decodable {
     let extraFiles: Set<FilePath>
     let schemeAutogenerationMode: SchemeAutogenerationMode
     let customXcodeSchemes: [XcodeScheme]
+    let forceBazelDependencies: Bool
 }

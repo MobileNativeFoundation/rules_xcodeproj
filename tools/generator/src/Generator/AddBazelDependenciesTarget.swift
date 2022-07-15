@@ -14,6 +14,7 @@ env -i \
     static func addBazelDependenciesTarget(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
+        forceBazelDependencies: Bool,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: BazelLabel,
@@ -21,6 +22,7 @@ env -i \
         consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
         guard
+            forceBazelDependencies ||
             buildMode.usesBazelModeBuildScripts ||
             files.containsExternalFiles || files.containsGeneratedFiles
         else {

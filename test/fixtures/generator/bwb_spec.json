@@ -33,6 +33,7 @@
         "tools/generator/test/BUILD",
         "test/fixtures/generator/BUILD"
     ],
+    "force_bazel_dependencies": false,
     "label": "//test/fixtures/generator:xcodeproj_bwb",
     "name": "bwb",
     "scheme_autogeneration_mode": "auto",

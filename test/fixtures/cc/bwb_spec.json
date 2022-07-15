@@ -23,6 +23,7 @@
         "examples/cc/tool/BUILD",
         "test/fixtures/cc/BUILD"
     ],
+    "force_bazel_dependencies": false,
     "label": "//test/fixtures/cc:xcodeproj_bwb",
     "name": "bwb",
     "scheme_autogeneration_mode": "auto",

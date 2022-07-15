@@ -25,7 +25,14 @@ load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
 # Actions
 
-def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
+def _write_json_spec(
+        *,
+        ctx,
+        project_name,
+        configuration,
+        inputs,
+        force_bazel_dependencies,
+        infos):
     resource_bundle_informations = depset(
         transitive = [info.resource_bundle_informations for info in infos],
     ).to_list()
@@ -104,6 +111,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
 "configuration":"{configuration}",\
 "custom_xcode_schemes":{custom_xcode_schemes},\
 "extra_files":{extra_files},\
+"force_bazel_dependencies":{force_bazel_dependencies},\
 "label":"{label}",\
 "name":"{name}",\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
@@ -117,6 +125,7 @@ def _write_json_spec(*, ctx, project_name, configuration, inputs, infos):
         configuration = configuration,
         custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(extra_files),
+        force_bazel_dependencies = json.encode(force_bazel_dependencies),
         label = ctx.label,
         name = project_name,
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
@@ -401,6 +410,7 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         configuration = configuration,
         inputs = inputs,
+        force_bazel_dependencies = bool(extra_generated),
         infos = infos,
     )
     xccurrentversions_file = _write_xccurrentversions(
