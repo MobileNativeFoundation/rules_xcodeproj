@@ -1536,11 +1536,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                     inputPaths: ["$(LINK_PARAMS_FILE)"],
                     outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
                     shellScript: #"""
-sed \
-  -e "s|^\(.*\)\$(BUILD_DIR)\(.*\)\$|\"\1${BUILD_DIR}\2\"|g" \
-  -e "s|^\(.*\)\$(DEVELOPER_DIR)\(.*\)\$|\"\1${DEVELOPER_DIR}\2\"|g" \
-  -e "s|^\(.*\)\$(INTERNAL_DIR)\(.*\)\$|\"\1${INTERNAL_DIR}\2\"|g" \
-  -e "s|^\(.*\)\$(BAZEL_EXTERNAL)\(.*\)\$|\"\1${BAZEL_EXTERNAL}\2\"|g" \
+perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
 
 """#,
@@ -1641,11 +1637,7 @@ sed \
                     inputPaths: ["$(LINK_PARAMS_FILE)"],
                     outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
                     shellScript: #"""
-sed \
-  -e "s|^\(.*\)\$(BUILD_DIR)\(.*\)\$|\"\1${BUILD_DIR}\2\"|g" \
-  -e "s|^\(.*\)\$(DEVELOPER_DIR)\(.*\)\$|\"\1${DEVELOPER_DIR}\2\"|g" \
-  -e "s|^\(.*\)\$(INTERNAL_DIR)\(.*\)\$|\"\1${INTERNAL_DIR}\2\"|g" \
-  -e "s|^\(.*\)\$(BAZEL_EXTERNAL)\(.*\)\$|\"\1${BAZEL_EXTERNAL}\2\"|g" \
+perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
 
 """#,

@@ -1616,7 +1616,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		622B48F68197B4404F5C2432 /* Create link.params */ = {
@@ -1633,7 +1633,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sed \\\n  -e \"s|^\\(.*\\)\\$(BUILD_DIR)\\(.*\\)\\$|\\\"\\1${BUILD_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(DEVELOPER_DIR)\\(.*\\)\\$|\\\"\\1${DEVELOPER_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(INTERNAL_DIR)\\(.*\\)\\$|\\\"\\1${INTERNAL_DIR}\\2\\\"|g\" \\\n  -e \"s|^\\(.*\\)\\$(BAZEL_EXTERNAL)\\(.*\\)\\$|\\\"\\1${BAZEL_EXTERNAL}\\2\\\"|g\" \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		790733B6E675C2785F8020AC /* Fetch External Repositories */ = {
