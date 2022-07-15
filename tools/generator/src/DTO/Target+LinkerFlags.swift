@@ -18,15 +18,19 @@ extension Target {
             filePathResolver: filePathResolver
         )
 
-        if !linkerInputs.staticLibraries.isEmpty {
-            let linkFileList = try filePathResolver
-                .resolve(try linkFileListFilePath())
-                .string
-            flags.append(contentsOf: ["-filelist", linkFileList.quoted])
-        }
+        let forceLoad = linkerInputs.forceLoad
 
-        flags.append(
-            contentsOf: try linkerInputs.forceLoad.flatMap { filePath in
+        flags.append(contentsOf: try linkerInputs.staticLibraries
+            .compactMap { filePath in
+                guard !forceLoad.contains(filePath) else {
+                    return nil
+                }
+                return try filePathResolver.resolve(filePath).string.quoted
+            }
+        )
+
+        flags.append(contentsOf: try linkerInputs.forceLoad
+            .flatMap { filePath in
                 return [
                     "-force_load",
                     try filePathResolver.resolve(filePath).string.quoted,

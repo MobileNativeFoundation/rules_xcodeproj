@@ -1029,35 +1029,19 @@ $(GEN_DIR)/v/a.txt
 
 """)
 
-        // LinkFileLists
-
-        files[.internal("targets/a1b2c/A 2/A.LinkFileList")] =
-            .nonReferencedContent("""
-\(srcRootGenDir)/a/c.a
-\(srcRootGenDir)/z/A.a
-a/imported.a
-
-""")
-
-        files[.internal("targets/a1b2c/C 2/d.LinkFileList")] =
-            .nonReferencedContent("""
-\(srcRootGenDir)/a/c.a
-
-""")
-
         // link.params
 
         files[.internal("targets/a1b2c/A 2/A.link.params")] =
             .nonReferencedContent("""
--filelist
-"$(INTERNAL_DIR)/targets/a1b2c/A 2/A.LinkFileList"
+$(BUILD_DIR)/bazel-out/a/c.a
+$(BUILD_DIR)/bazel-out/z/A.a
+a/imported.a
 
 """)
 
         files[.internal("targets/a1b2c/C 2/d.link.params")] =
             .nonReferencedContent("""
--filelist
-"$(INTERNAL_DIR)/targets/a1b2c/C 2/d.LinkFileList"
+$(BUILD_DIR)/bazel-out/a/c.a
 
 """)
 
