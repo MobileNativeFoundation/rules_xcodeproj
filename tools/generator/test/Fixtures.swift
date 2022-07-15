@@ -32,7 +32,8 @@ enum Fixtures {
             .generated("v/a.txt", includeInNavigator: false),
         ],
         schemeAutogenerationMode: .auto,
-        customXcodeSchemes: []
+        customXcodeSchemes: [],
+        forceBazelDependencies: false
     )
 
     static let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier] = [

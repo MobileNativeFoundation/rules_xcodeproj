@@ -100,6 +100,7 @@ class Generator {
         let bazelDependencies = try environment.addBazelDependenciesTarget(
             pbxProj,
             buildMode,
+            project.forceBazelDependencies,
             files,
             filePathResolver,
             project.label,

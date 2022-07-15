@@ -22,7 +22,8 @@ final class GeneratorTests: XCTestCase {
             ],
             extraFiles: [],
             schemeAutogenerationMode: .auto,
-            customXcodeSchemes: []
+            customXcodeSchemes: [],
+            forceBazelDependencies: false
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
@@ -309,6 +310,7 @@ final class GeneratorTests: XCTestCase {
         struct AddBazelDependenciesTargetCalled: Equatable {
             let pbxProj: PBXProj
             let buildMode: BuildMode
+            let forceBazelDependencies: Bool
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
             let xcodeprojBazelLabel: BazelLabel
@@ -321,6 +323,7 @@ final class GeneratorTests: XCTestCase {
         func addBazelDependenciesTarget(
             in pbxProj: PBXProj,
             buildMode: BuildMode,
+            forceBazelDependencies: Bool,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             xcodeprojBazelLabel: BazelLabel,
@@ -330,6 +333,7 @@ final class GeneratorTests: XCTestCase {
             addBazelDependenciesTargetCalled.append(.init(
                 pbxProj: pbxProj,
                 buildMode: buildMode,
+                forceBazelDependencies: forceBazelDependencies,
                 files: files,
                 filePathResolver: filePathResolver,
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
@@ -343,6 +347,7 @@ final class GeneratorTests: XCTestCase {
             AddBazelDependenciesTargetCalled(
                 pbxProj: pbxProj,
                 buildMode: buildMode,
+                forceBazelDependencies: project.forceBazelDependencies,
                 files: files,
                 filePathResolver: filePathResolver,
                 xcodeprojBazelLabel: project.label,

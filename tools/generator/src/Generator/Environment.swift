@@ -55,6 +55,7 @@ struct Environment {
     let addBazelDependenciesTarget: (
         _ pbxProj: PBXProj,
         _ buildMode: BuildMode,
+        _ addBazelDependenciesTarget: Bool,
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
         _ xcodeprojBazelLabel: BazelLabel,
