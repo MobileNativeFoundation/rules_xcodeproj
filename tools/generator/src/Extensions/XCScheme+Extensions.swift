@@ -96,7 +96,7 @@ if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
     rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 fi
 """#,
-        title: "Clear Bazel Build Output Groups File"
+        title: "Initialize Bazel Build Output Groups File"
     )
 
     convenience init?(targetInfo: XCScheme.PBXTargetInfo, hostIndex: Int?) {
