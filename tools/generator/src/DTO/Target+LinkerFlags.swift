@@ -25,7 +25,13 @@ extension Target {
                 guard !forceLoad.contains(filePath) else {
                     return nil
                 }
-                return try filePathResolver.resolve(filePath).string.quoted
+                return try filePathResolver
+                    .resolve(
+                        filePath,
+                        useOriginalGeneratedFiles:
+                            !xcodeGeneratedFiles.contains(filePath)
+                    )
+                    .string.quoted
             }
         )
 
@@ -33,7 +39,13 @@ extension Target {
             .flatMap { filePath in
                 return [
                     "-force_load",
-                    try filePathResolver.resolve(filePath).string.quoted,
+                    try filePathResolver
+                        .resolve(
+                            filePath,
+                            useOriginalGeneratedFiles:
+                                !xcodeGeneratedFiles.contains(filePath)
+                        )
+                        .string.quoted,
                 ]
             }
         )

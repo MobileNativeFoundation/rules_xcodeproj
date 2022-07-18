@@ -533,6 +533,7 @@ extension Generator {
         switch buildMode {
         case .xcode:
             for (_, target) in targets {
+                xcodeGeneratedFiles.insert(target.product.path)
                 if let filePath = target.outputs.swift?.module {
                     xcodeGeneratedFiles.insert(filePath)
                 }
