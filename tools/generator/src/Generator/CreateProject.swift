@@ -22,7 +22,7 @@ extension Generator {
             "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
-            "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
+            "BAZEL_OUT": "$(BUILD_DIR)/bazel-exec-root/bazel-out",
             // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
             // `DEPLOYMENT_LOCATION` is set. It does prevent `DYLD_LIBRARY_PATH`
             // from being modified though.
