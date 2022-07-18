@@ -542,18 +542,6 @@ extension Generator {
         }
 
         for target in targets.values {
-            let linkFiles = try target.linkerInputs.staticLibraries
-                .map { filePath in
-                    return """
-\(try filePathResolver.resolve(filePath, useGenDir: true, mode: .srcRoot))
-
-"""
-                }
-            if !linkFiles.isEmpty {
-                files[try target.linkFileListFilePath()] =
-                    .nonReferencedContent(linkFiles.joined())
-            }
-
             let linkopts = try target
                 .allLinkerFlags(
                     xcodeGeneratedFiles: xcodeGeneratedFiles,

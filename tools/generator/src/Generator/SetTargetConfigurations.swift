@@ -562,10 +562,6 @@ extension Target {
         return Path(components: components)
     }
 
-    func linkFileListFilePath() throws -> FilePath {
-        return try .internal(internalTargetFilesPath() + "\(name).LinkFileList")
-    }
-
     func linkParamsFilePath() throws -> FilePath {
         return try .internal(internalTargetFilesPath() + "\(name).link.params")
     }

@@ -8,7 +8,5 @@
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
--filelist
-$(INTERNAL_DIR)/targets/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/examples/multiplatform/tvOSApp/tvOSApp.LinkFileList
 -force_load
 $(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/Lib/libLib.a

@@ -9,5 +9,4 @@
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
--filelist
-$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.LinkFileList
+$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/TestingUtils/libTestingUtils.a
