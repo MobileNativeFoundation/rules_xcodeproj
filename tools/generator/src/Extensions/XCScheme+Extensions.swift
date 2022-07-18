@@ -9,7 +9,7 @@ enum XCSchemeConstants {
 // MARK: XCScheme.PBXTargetInfo
 
 extension XCScheme {
-    struct PBXTargetInfo {
+    struct PBXHostInfo {
         let pbxTarget: PBXTarget
         let buildableReference: XCScheme.BuildableReference
 
@@ -19,6 +19,25 @@ extension XCScheme {
                  pbxTarget: pbxTarget,
                  referencedContainer: referencedContainer
              )
+        }
+    }
+
+    struct PBXTargetInfo {
+        let pbxTarget: PBXTarget
+        let buildableReference: XCScheme.BuildableReference
+        let hostInfos: [PBXHostInfo]
+
+        init<PBXHostInfos: Sequence>(
+            pbxTarget: PBXTarget,
+            referencedContainer: String,
+            hostInfos: PBXHostInfos
+        ) where Element == PBXHostInfo {
+             self.pbxTarget = pbxTarget
+             buildableReference = .init(
+                 pbxTarget: pbxTarget,
+                 referencedContainer: referencedContainer
+             )
+             self.hostInfos = Array(hostInfos)
         }
     }
 }
