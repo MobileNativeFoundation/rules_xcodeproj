@@ -329,6 +329,13 @@ def _collect(
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
+        has_generated_files = bool(generated) or bool([
+            True
+            for attr, info in transitive_infos
+            if (info.inputs.has_generated_files and
+                (info.target_type in
+                 automatic_target_info.xcode_targets.get(attr, [None])))
+        ]),
         extra_files = depset(
             extra_files,
             transitive = [
@@ -408,6 +415,11 @@ def _merge(*, transitive_infos, extra_generated = None):
                 for _, info in transitive_infos
             ],
         ),
+        has_generated_files = bool([
+            True
+            for _, info in transitive_infos
+            if info.inputs.has_generated_files
+        ]),
         extra_files = depset(
             transitive = [
                 info.inputs.extra_files

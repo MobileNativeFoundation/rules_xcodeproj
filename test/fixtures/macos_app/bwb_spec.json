@@ -25,7 +25,7 @@
         "examples/macos_app/Example/Assets.xcassets",
         "test/fixtures/macos_app/BUILD"
     ],
-    "force_bazel_dependencies": false,
+    "force_bazel_dependencies": true,
     "label": "//test/fixtures/macos_app:xcodeproj_bwb",
     "name": "bwb",
     "scheme_autogeneration_mode": "auto",
