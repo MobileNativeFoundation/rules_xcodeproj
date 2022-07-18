@@ -25,29 +25,23 @@ extension Target {
             flags.append(contentsOf: ["-filelist", linkFileList.quoted])
         }
 
-        let exportedSymbolsLists = inputs.exportedSymbolsLists
-        if !exportedSymbolsLists.isEmpty {
-            flags.append(
-                contentsOf: try exportedSymbolsLists.flatMap { filePath in
-                    return [
-                        "-exported_symbols_list",
-                        try filePathResolver.resolve(filePath).string.quoted,
-                    ]
-                }
-            )
-        }
+        flags.append(
+            contentsOf: try linkerInputs.forceLoad.flatMap { filePath in
+                return [
+                    "-force_load",
+                    try filePathResolver.resolve(filePath).string.quoted,
+                ]
+            }
+        )
 
-        let forceLoadLibraries = linkerInputs.forceLoad
-        if !forceLoadLibraries.isEmpty {
-            flags.append(
-                contentsOf: try forceLoadLibraries.flatMap { filePath in
-                    return [
-                        "-force_load",
-                        try filePathResolver.resolve(filePath).string.quoted,
-                    ]
-                }
-            )
-        }
+        flags.append(
+            contentsOf: try inputs.exportedSymbolsLists.flatMap { filePath in
+                return [
+                    "-exported_symbols_list",
+                    try filePathResolver.resolve(filePath).string.quoted,
+                ]
+            }
+        )
 
         return flags
     }
