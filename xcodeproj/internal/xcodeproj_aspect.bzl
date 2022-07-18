@@ -1,6 +1,7 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "use_cpp_toolchain")
 load(
     ":default_automatic_target_processing_aspect.bzl",
     "default_automatic_target_processing_aspect",
@@ -84,4 +85,5 @@ xcodeproj_aspect = aspect(
     },
     fragments = ["apple", "cpp", "objc"],
     requires = [default_automatic_target_processing_aspect],
+    toolchains = use_cpp_toolchain(),
 )
