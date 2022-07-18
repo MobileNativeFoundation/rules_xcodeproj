@@ -62,7 +62,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "Example",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -123,6 +122,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": "Example",
                 "name": "Example",
                 "path": {
                     "_": "applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example_archive-root/Payload/Example.app",
@@ -200,6 +200,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": null,
                 "name": "Example.library",
                 "path": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/libExample.library.a",
@@ -228,7 +229,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "ExampleTests",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -286,6 +286,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": "ExampleTests",
                 "name": "ExampleTests",
                 "path": {
                     "_": "applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle_archive-root/ExampleTests.xctest",
@@ -365,6 +366,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": null,
                 "name": "ExampleTests.library",
                 "path": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/libExampleTests.library.a",
@@ -398,7 +400,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "ExampleUITests",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -455,6 +456,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": "ExampleUITests",
                 "name": "ExampleUITests",
                 "path": {
                     "_": "applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle_archive-root/ExampleUITests.xctest",
@@ -533,6 +535,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": null,
                 "name": "ExampleUITests.library",
                 "path": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/libExampleUITests.library.a",

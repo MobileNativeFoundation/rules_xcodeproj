@@ -231,6 +231,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         buildSettings.set("SUPPORTED_PLATFORMS", to: target.platform.name)
         buildSettings.set("TARGET_NAME", to: target.name)
 
+        if let executableName = target.product.executableName,
+           executableName != target.product.name {
+            buildSettings.set("EXECUTABLE_NAME", to: executableName)
+        }
+
         for (index, id) in hostIDs.enumerated() {
             buildSettings.set("BAZEL_HOST_TARGET_ID_\(index)", to: id.rawValue)
         }
@@ -419,11 +424,9 @@ Test host target with id "\(testHostID)" not found in \
 `product.path` not set on test host "\(pbxTestHost.name)"
 """)
             }
-            guard let productName = pbxTestHost.productName else {
-                throw PreconditionError(message: """
-`productName` not set on test host "\(pbxTestHost.name)"
-""")
-            }
+
+            let executableName = testHost.product.executableName ??
+                testHost.product.name
 
             let conditional = target.buildSettingConditional
             buildSettings[conditional, default: [:]].set(
@@ -435,7 +438,7 @@ $(BUILD_DIR)/\(testHost.packageBinDir)$(TARGET_BUILD_SUBPATH)
             buildSettings[conditional, default: [:]].set(
                 "TEST_HOST",
                 to: """
-$(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(productName)
+$(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(executableName)
 """
             )
         }

@@ -274,7 +274,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "AppClip",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.app-clip",
@@ -352,6 +351,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "AppClip",
                 "name": "AppClip",
                 "path": {
                     "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/AppClip_archive-root/Payload/AppClip.app",
@@ -394,7 +394,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "AppClip",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.app-clip",
@@ -473,6 +472,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "AppClip",
                 "name": "AppClip",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/AppClip_archive-root/Payload/AppClip.app",
@@ -570,6 +570,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "AppClip.library",
                 "path": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/libAppClip.library.a",
@@ -673,6 +674,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "AppClip.library",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/libAppClip.library.a",
@@ -775,6 +777,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "Lib",
                 "path": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib/libLib.a",
@@ -873,6 +876,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "Lib",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib/libLib.a",
@@ -970,6 +974,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": null,
                 "name": "Lib",
                 "path": {
                     "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/Lib/libLib.a",
@@ -1068,6 +1073,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": null,
                 "name": "Lib",
                 "path": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/Lib/libLib.a",
@@ -1165,6 +1171,7 @@
                 "os": "watchos"
             },
             "product": {
+                "executable_name": null,
                 "name": "Lib",
                 "path": {
                     "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/Lib/libLib.a",
@@ -1263,6 +1270,7 @@
                 "os": "watchos"
             },
             "product": {
+                "executable_name": null,
                 "name": "Lib",
                 "path": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/Lib/libLib.a",
@@ -1354,6 +1362,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": "Tool",
                 "name": "Tool",
                 "path": {
                     "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Tool/Tool",
@@ -1429,6 +1438,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": null,
                 "name": "Tool.library",
                 "path": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Tool/libTool.library.a",
@@ -1458,7 +1468,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "WidgetExtension",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.widget-extension",
@@ -1531,6 +1540,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "WidgetExtension",
                 "name": "WidgetExtension",
                 "path": {
                     "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
@@ -1573,7 +1583,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "WidgetExtension",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.widget-extension",
@@ -1647,6 +1656,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "WidgetExtension",
                 "name": "WidgetExtension",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
@@ -1747,6 +1757,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "WidgetExtension.library",
                 "path": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/WidgetExtension/libWidgetExtension.library.a",
@@ -1853,6 +1864,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "WidgetExtension.library",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/WidgetExtension/libWidgetExtension.library.a",
@@ -1901,7 +1913,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "iMessageApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app",
@@ -1947,6 +1958,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "iMessageApp",
                 "name": "iMessageApp",
                 "path": {
                     "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/iMessageApp_archive-root/Payload/iMessageApp.app",
@@ -1975,7 +1987,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "iMessageApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app",
@@ -2022,6 +2033,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "iMessageApp",
                 "name": "iMessageApp",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/iMessageApp_archive-root/Payload/iMessageApp.app",
@@ -2051,7 +2063,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "iMessageAppExtension",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app.extension",
@@ -2124,6 +2135,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "iMessageAppExtension",
                 "name": "iMessageAppExtension",
                 "path": {
                     "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/iMessageAppExtension_archive-root/iMessageAppExtension.appex",
@@ -2166,7 +2178,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "iMessageAppExtension",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app.extension",
@@ -2240,6 +2251,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "iMessageAppExtension",
                 "name": "iMessageAppExtension",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/iMessageAppExtension_archive-root/iMessageAppExtension.appex",
@@ -2336,6 +2348,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "iMessageAppExtension.library",
                 "path": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/libiMessageAppExtension.library.a",
@@ -2438,6 +2451,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "iMessageAppExtension.library",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/libiMessageAppExtension.library.a",
@@ -2488,7 +2502,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "iOSApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
@@ -2588,6 +2601,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "iOSApp",
                 "name": "iOSApp",
                 "path": {
                     "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp/iOSApp_archive-root/Payload/iOSApp.app",
@@ -2652,7 +2666,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "iOSApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
@@ -2753,6 +2766,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "iOSApp",
                 "name": "iOSApp",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp/iOSApp_archive-root/Payload/iOSApp.app",
@@ -2882,6 +2896,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "iOSApp.library",
                 "path": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
@@ -3017,6 +3032,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "iOSApp.library",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp/libiOSApp.library.a",
@@ -3085,7 +3101,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "tvOSApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -3157,6 +3172,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": "tvOSApp",
                 "name": "tvOSApp",
                 "path": {
                     "_": "applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/tvOSApp_archive-root/Payload/tvOSApp.app",
@@ -3199,7 +3215,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "tvOSApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -3272,6 +3287,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": "tvOSApp",
                 "name": "tvOSApp",
                 "path": {
                     "_": "applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp/tvOSApp_archive-root/Payload/tvOSApp.app",
@@ -3369,6 +3385,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": null,
                 "name": "tvOSApp.library",
                 "path": {
                     "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
@@ -3472,6 +3489,7 @@
                 "os": "tvos"
             },
             "product": {
+                "executable_name": null,
                 "name": "tvOSApp.library",
                 "path": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
@@ -3520,7 +3538,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "watchOSApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -3565,6 +3582,7 @@
                 "os": "watchos"
             },
             "product": {
+                "executable_name": "watchOSApp",
                 "name": "watchOSApp",
                 "path": {
                     "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
@@ -3593,7 +3611,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "watchOSApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -3639,6 +3656,7 @@
                 "os": "watchos"
             },
             "product": {
+                "executable_name": "watchOSApp",
                 "name": "watchOSApp",
                 "path": {
                     "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
@@ -3668,7 +3686,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "watchOSAppExtension",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -3740,6 +3757,7 @@
                 "os": "watchos"
             },
             "product": {
+                "executable_name": "watchOSAppExtension",
                 "name": "watchOSAppExtension",
                 "path": {
                     "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
@@ -3782,7 +3800,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "watchOSAppExtension",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -3855,6 +3872,7 @@
                 "os": "watchos"
             },
             "product": {
+                "executable_name": "watchOSAppExtension",
                 "name": "watchOSAppExtension",
                 "path": {
                     "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
@@ -3952,6 +3970,7 @@
                 "os": "watchos"
             },
             "product": {
+                "executable_name": null,
                 "name": "watchOSAppExtension.library",
                 "path": {
                     "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
@@ -4055,6 +4074,7 @@
                 "os": "watchos"
             },
             "product": {
+                "executable_name": null,
                 "name": "watchOSAppExtension.library",
                 "path": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",

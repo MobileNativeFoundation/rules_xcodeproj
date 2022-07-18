@@ -109,7 +109,6 @@ def process_top_level_properties(
                 path = bundle_path,
             )
 
-        build_settings["EXECUTABLE_NAME"] = executable_name
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
         executable_name = target_name
@@ -393,6 +392,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         product_name = props.product_name,
         product_type = props.product_type,
         bundle_file_path = props.bundle_file_path,
+        executable_name = props.executable_name,
         linker_inputs = linker_inputs,
     )
 

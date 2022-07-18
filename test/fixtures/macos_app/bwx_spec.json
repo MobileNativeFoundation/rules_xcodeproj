@@ -42,7 +42,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "macOSApp",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
@@ -105,6 +104,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": "macOSApp",
                 "name": "macOSApp",
                 "path": {
                     "_": "applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/Example_archive-root/Payload/macOSApp.app",
@@ -190,6 +190,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": null,
                 "name": "Example.library",
                 "path": {
                     "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/libExample.library.a",

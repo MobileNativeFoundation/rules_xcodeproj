@@ -200,6 +200,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "CoreUtilsObjC",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC/libCoreUtilsObjC.a",
@@ -235,7 +236,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "Example_ExecutableName",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
@@ -326,6 +326,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "Example_ExecutableName",
                 "name": "Example",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/Example.app",
@@ -428,6 +429,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "Example.library",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/libExample.library.a",
@@ -500,6 +502,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "ExampleNestedResources",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleNestedResources/ExampleNestedResources.bundle",
@@ -520,7 +523,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "ExampleObjcTests",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "AWESOME"
@@ -596,6 +598,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "ExampleObjcTests",
                 "name": "ExampleObjcTests",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleObjcTests/ExampleObjcTests.xctest",
@@ -735,6 +738,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "ExampleObjcTests.library",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleObjcTests/libExampleObjcTests.library.a",
@@ -807,6 +811,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "ExampleResources",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleResources/ExampleResources.bundle",
@@ -829,7 +834,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "ExampleTests",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
@@ -903,6 +907,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "ExampleTests",
                 "name": "ExampleTests",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleTests/ExampleTests.xctest",
@@ -1010,6 +1015,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "ExampleTests.library",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleTests/libExampleTests.library.a",
@@ -1054,7 +1060,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "ExampleUITests",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
@@ -1112,6 +1117,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": "ExampleUITests",
                 "name": "ExampleUITests",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleUITests/ExampleUITests.xctest",
@@ -1192,6 +1198,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "ExampleUITests.library",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleUITests/libExampleUITests.library.a",
@@ -1248,6 +1255,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "OnlyStructuredResources",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/OnlyStructuredResources/OnlyStructuredResources.bundle",
@@ -1324,6 +1332,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "TestingUtils",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/TestingUtils/libTestingUtils.a",
@@ -1449,6 +1458,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "Utils",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Utils/libUtils.a",
@@ -1517,6 +1527,7 @@
                 "os": "ios"
             },
             "product": {
+                "executable_name": null,
                 "name": "ExternalResources",
                 "path": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/external/examples_ios_app_external/ExternalResources.bundle",
