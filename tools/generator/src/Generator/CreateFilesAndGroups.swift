@@ -39,8 +39,6 @@ extension Generator {
     static let externalFileListPath: Path = "external.xcfilelist"
     static let appRsyncExcludeFileListPath: Path = "app.exclude.rsynclist"
     static let copiedGeneratedFileListPath: Path = "generated.copied.xcfilelist"
-    static let modulemapsFileListPath: Path = "modulemaps.xcfilelist"
-    static let fixedModulemapsFileListPath: Path = "modulemaps.fixed.xcfilelist"
     static let infoPlistsFileListPath: Path = "infoplists.xcfilelist"
     static let fixedInfoPlistsFileListPath: Path = "infoplists.fixed.xcfilelist"
 
@@ -474,12 +472,6 @@ extension Generator {
             // referenced by `PBXBuildFile` or have specific build settings.
             return try filePathResolver.resolve(filePath, useGenDir: true)
         }
-        let modulemapPaths = try generatedFilePaths
-            .filter { $0.path.extension == "modulemap" }
-            .map { try filePathResolver.resolve($0) }
-        let fixedModulemapPaths = modulemapPaths.map { path in
-            return path.replacingExtension("xcode.modulemap")
-        }
         let infoPlistPaths = try generatedFilePaths
             .filter { $0.path.lastComponent == "Info.plist" }
             .map { filePath in
@@ -522,8 +514,6 @@ extension Generator {
 
         addXCFileList(externalFileListPath, paths: externalPaths)
         addXCFileList(copiedGeneratedFileListPath, paths: copiedGeneratedPaths)
-        addXCFileList(modulemapsFileListPath, paths: modulemapPaths)
-        addXCFileList(fixedModulemapsFileListPath, paths: fixedModulemapPaths)
         addXCFileList(infoPlistsFileListPath, paths: infoPlistPaths)
         addXCFileList(fixedInfoPlistsFileListPath, paths: fixedInfoPlistPaths)
 

@@ -2193,7 +2193,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -euo pipefail\n\noutput_groups=(\"generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1\")\n\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  # We use a different output base for SwiftUI Previews since they have\n  # different swiftcopts, preventing output trashing\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  --bes_backend= \\\n  --bes_results_url= \\\n  output_path)\nexec_root=\"${output_path%/*}\"\nexternal=\"${exec_root%/*/*}/external\"\n\nif [[ \"$ACTION\" != \"indexbuild\" && \"${ENABLE_PREVIEWS:-}\" != \"YES\" ]]; then\n  \"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh\" \"$exec_root\" > \"$BAZEL_LLDB_INIT\"\nfi\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf bazel-exec-root\n\nln -sf \"$external\" external\nln -sf \"$exec_root\" bazel-exec-root\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|^\\$(GEN_DIR)\\/\\(.*\\)\\/[^\\/]*$|\\1|' \\\n  \"$INTERNAL_DIR/generated.copied.xcfilelist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n\ncd \"$SRCROOT\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  index_flags=(\n    --bes_backend=\n    --bes_results_url=\n  )\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  swiftui_previews_flags=(\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-implicit-dynamic\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-private-imports\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-dynamic-replacement-chaining\n  )\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nbuild_marker=\"$OBJROOT/bazel_build_start\"\ntouch \"$build_marker\"\n\nlog=$(mktemp)\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  ${index_flags:+${index_flags[*]}} \\\n  ${swiftui_previews_flags:+${swiftui_previews_flags[*]}} \\\n  \"$output_groups_flag\" \\\n  //test/fixtures/multiplatform:xcodeproj_bwx \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwx-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/multiplatform/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$build_marker\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n\n\ndiff=$(comm -23 <(sed -e 's|^$(GEN_DIR)|bazel-out|' \"$INTERNAL_DIR/generated.copied.xcfilelist\" | sort) <(sort \"$BAZEL_OUT/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/multiplatform/xcodeproj_bwx-generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1.filelist\"))\nif ! [ -z \"$diff\" ]; then\n  echo \"error: The files that Bazel generated don't match what the project expects. Please regenerate the project.\" >&2\n  echo \"error: $diff\" >&2\n  echo \"error: If you still get this error after regenerating your project, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n  exit 1\nfi\n\ncd \"$BAZEL_OUT\"\n\necho\necho \"Copying generated files\"\n\n# Sync to \"$BUILD_DIR/bazel-out\". This is the same as \"$GEN_DIR\" for normal\n# builds, but is different for Index Builds. `PBXBuildFile`s will use the\n# \"$GEN_DIR\" version, so indexing might get messed up until they are normally\n# generated. It's the best we can do though as we need to use the `gen_dir`\n# symlink, because Index Build can't modify the normal build's \"$BUILD_DIR\".\nrsync \\\n  --files-from <(sed -e 's|^bazel-out/||' \"$BAZEL_OUT/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/multiplatform/xcodeproj_bwx-generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1.filelist\") \\\n  --copy-links \\\n  --update \\\n  --chmod=u+w \\\n  --out-format=\"%n%L\" \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			shellScript = "set -euo pipefail\n\noutput_groups=(\"generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1\")\n\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  # We use a different output base for SwiftUI Previews since they have\n  # different swiftcopts, preventing output trashing\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  --bes_backend= \\\n  --bes_results_url= \\\n  output_path)\nexec_root=\"${output_path%/*}\"\nexternal=\"${exec_root%/*/*}/external\"\n\nif [[ \"$ACTION\" != \"indexbuild\" && \"${ENABLE_PREVIEWS:-}\" != \"YES\" ]]; then\n  \"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh\" \"$exec_root\" > \"$BAZEL_LLDB_INIT\"\nfi\n\n# We only want to modify `$LINKS_DIR` during normal builds since Indexing can\n# run concurrent to normal builds\nif [ \"$ACTION\" != \"indexbuild\" ]; then\n  mkdir -p \"$LINKS_DIR\"\n  cd \"$LINKS_DIR\"\n\n  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n  # files to the internal links directory to prevent Bazel from recursing into\n  # it, and thus following the `external` symlink\n  touch BUILD\n  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN\n\n  # Need to remove the directories that Xcode creates as part of output prep\n  rm -rf external\n  rm -rf gen_dir\n\n  ln -sf \"$external\" external\n  ln -sf \"$BUILD_DIR/bazel-out\" gen_dir\nfi\n\n# Look up Swift generated headers in `$BUILD_DIR` first, then fall through to `$BAZEL_OUT`\ncat > \"$BUILD_DIR/xcode-overlay.yaml\" <<EOF\n{\"case-sensitive\": \"false\", \"fallthrough\": true, \"roots\": [],\"version\": 0}\nEOF\n\ncd \"$BUILD_DIR\"\n\nrm -rf external\nrm -rf bazel-exec-root\n\nln -sf \"$external\" external\nln -sf \"$exec_root\" bazel-exec-root\nln -sfn \"$PROJECT_DIR\" SRCROOT\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|^\\$(GEN_DIR)\\/\\(.*\\)\\/[^\\/]*$|\\1|' \\\n  \"$INTERNAL_DIR/generated.copied.xcfilelist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n\ncd \"$SRCROOT\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  index_flags=(\n    --bes_backend=\n    --bes_results_url=\n  )\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  swiftui_previews_flags=(\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-implicit-dynamic\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-private-imports\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-dynamic-replacement-chaining\n  )\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nbuild_marker=\"$OBJROOT/bazel_build_start\"\ntouch \"$build_marker\"\n\nlog=$(mktemp)\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  ${index_flags:+${index_flags[*]}} \\\n  ${swiftui_previews_flags:+${swiftui_previews_flags[*]}} \\\n  \"$output_groups_flag\" \\\n  //test/fixtures/multiplatform:xcodeproj_bwx \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwx-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/multiplatform/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$build_marker\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n\n\ndiff=$(comm -23 <(sed -e 's|^$(GEN_DIR)|bazel-out|' \"$INTERNAL_DIR/generated.copied.xcfilelist\" | sort) <(sort \"$BAZEL_OUT/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/multiplatform/xcodeproj_bwx-generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1.filelist\"))\nif ! [ -z \"$diff\" ]; then\n  echo \"error: The files that Bazel generated don't match what the project expects. Please regenerate the project.\" >&2\n  echo \"error: $diff\" >&2\n  echo \"error: If you still get this error after regenerating your project, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n  exit 1\nfi\n\ncd \"$BAZEL_OUT\"\n\necho\necho \"Copying generated files\"\n\n# Sync to \"$BUILD_DIR/bazel-out\". This is the same as \"$GEN_DIR\" for normal\n# builds, but is different for Index Builds. `PBXBuildFile`s will use the\n# \"$GEN_DIR\" version, so indexing might get messed up until they are normally\n# generated. It's the best we can do though as we need to use the `gen_dir`\n# symlink, because Index Build can't modify the normal build's \"$BUILD_DIR\".\nrsync \\\n  --files-from <(sed -e 's|^bazel-out/||' \"$BAZEL_OUT/darwin_x86_64-fastbuild-ST-d53d69b6b8c1/bin/test/fixtures/multiplatform/xcodeproj_bwx-generated_inputs darwin_x86_64-fastbuild-ST-d53d69b6b8c1.filelist\") \\\n  --copy-links \\\n  --update \\\n  --chmod=u+w \\\n  --out-format=\"%n%L\" \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D58F483C6020210398A015A /* Create link.params */ = {
@@ -2525,6 +2525,14 @@
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/examples/multiplatform/watchOSApp/watchOSApp.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/examples/multiplatform/watchOSApp/watchOSApp.link.params";
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(BUILD_DIR)/xcode-overlay.yaml",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(BUILD_DIR)/xcode-overlay.yaml",
+				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch;
 				PRODUCT_NAME = watchOSApp;
@@ -2536,11 +2544,11 @@
 				TARGET_NAME = watchOSApp;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
+					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					.,
-					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
+					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -2568,6 +2576,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/examples/multiplatform/iMessageApp/iMessageApp.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/examples/multiplatform/iMessageApp/iMessageApp.link.params";
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(BUILD_DIR)/xcode-overlay.yaml",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(BUILD_DIR)/xcode-overlay.yaml",
+				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.imessage-app";
 				PRODUCT_NAME = iMessageApp;
@@ -2581,11 +2597,11 @@
 				TARGET_NAME = iMessageApp;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					.,
-					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
 				);
 			};
 			name = Debug;
@@ -2647,8 +2663,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/examples/multiplatform/iOSApp/iOSApp.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/examples/multiplatform/iOSApp/iOSApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
@@ -2665,19 +2681,19 @@
 				TARGET_NAME = iOSApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_google_google_maps",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_google_google_maps",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps",
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_google_google_maps",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_google_google_maps",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
 				);
 			};
 			name = Debug;
@@ -2721,8 +2737,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/examples/multiplatform/AppClip/AppClip.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/examples/multiplatform/AppClip/AppClip.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.app-clip";
 				PRODUCT_MODULE_NAME = AppClip;
 				PRODUCT_NAME = AppClip;
@@ -2739,15 +2755,15 @@
 				TARGET_NAME = AppClip;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
 				);
 			};
 			name = Debug;
@@ -2787,8 +2803,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/examples/multiplatform/tvOSApp/tvOSApp.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(INTERNAL_DIR)/targets/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/examples/multiplatform/tvOSApp/tvOSApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = tvOSApp;
@@ -2804,15 +2820,15 @@
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin",
+					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin",
+					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin",
 				);
 			};
 			name = Debug;
@@ -2851,10 +2867,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONEOS_FILES = "$(GEN_DIR)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swift";
 				IPHONESIMULATOR_FILES = "$(GEN_DIR)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swift";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
-				"OTHER_SWIFT_FLAGS[sdk=appletvsimulator*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
+				"OTHER_SWIFT_FLAGS[sdk=appletvsimulator*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
@@ -2868,27 +2884,27 @@
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin",
+					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvsimulator*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin",
+					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
 				);
 			};
 			name = Debug;
@@ -2913,8 +2929,8 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
@@ -2926,15 +2942,15 @@
 				TARGET_NAME = Lib;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
+					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
+					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "$(GEN_DIR)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swift";
@@ -3006,7 +3022,7 @@
 				TARGET_NAME = Tool;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
 				);
 			};
 			name = Debug;
@@ -3047,8 +3063,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(INTERNAL_DIR)/targets/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch.extension;
 				PRODUCT_MODULE_NAME = watchOSAppExtension;
 				PRODUCT_NAME = watchOSAppExtension;
@@ -3063,15 +3079,15 @@
 				TARGET_NAME = watchOSAppExtension;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
+					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
+					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework";
@@ -3118,8 +3134,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/examples/multiplatform/WidgetExtension/WidgetExtension.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/examples/multiplatform/WidgetExtension/WidgetExtension.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.widget-extension";
 				PRODUCT_MODULE_NAME = WidgetExtension;
 				PRODUCT_NAME = WidgetExtension;
@@ -3136,15 +3152,15 @@
 				TARGET_NAME = WidgetExtension;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
 				);
 			};
 			name = Debug;
@@ -3188,8 +3204,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/examples/multiplatform/iMessageApp/iMessageAppExtension.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/examples/multiplatform/iMessageApp/iMessageAppExtension.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.imessage-app.extension";
 				PRODUCT_MODULE_NAME = iMessageAppExtension;
 				PRODUCT_NAME = iMessageAppExtension;
@@ -3206,15 +3222,15 @@
 				TARGET_NAME = iMessageAppExtension;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/external/com_github_krzyzanowskim_cryptoswift",
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
+					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin",
 				);
 			};
 			name = Debug;

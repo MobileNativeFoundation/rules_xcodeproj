@@ -271,7 +271,7 @@
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-f7d2792bf9e4/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-f7d2792bf9e4/bin",
 				);
 			};
 			name = Debug;

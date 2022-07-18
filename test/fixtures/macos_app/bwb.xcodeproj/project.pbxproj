@@ -480,7 +480,7 @@
 				TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68/bin",
 				);
 			};
 			name = Debug;
