@@ -549,7 +549,6 @@
 			buildPhases = (
 				CF5964970607E7A9795E2A66 /* Copy Bazel Outputs */,
 				18F25BCCAD587CF0E7BE2E95 /* Sources */,
-				7D1C1AFB1B1C40174C24CF23 /* Copy Swift Generated Header */,
 			);
 			buildRules = (
 			);
@@ -727,23 +726,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"LibSwiftTests.xctest\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7D1C1AFB1B1C40174C24CF23 /* Copy Swift Generated Header */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
-			);
-			name = "Copy Swift Generated Header";
-			outputPaths = (
-				"$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ -z \"${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}\" ]]; then\n  exit 0\nfi\n\ncp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
@@ -928,8 +910,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/LibSwift.swiftmodule\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/LibSwift.swiftdoc\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/LibSwift.swiftsourceinfo";
-				BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/private/LibSwift-Swift.h";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib";
 				BAZEL_TARGET_ID = "//examples/command_line/lib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1148,7 +1128,6 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.zip";
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTestsLib.swiftmodule\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTestsLib.swiftdoc\n$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests/LibSwiftTestsLib.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/Tests";
 				BAZEL_TARGET_ID = "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-0139d977e630";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";

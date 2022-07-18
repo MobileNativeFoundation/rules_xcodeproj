@@ -59,6 +59,7 @@ Product for target "\(key)" not found in `products`
                 ),
                 try createCopyGeneratedHeaderScript(
                     in: pbxProj,
+                    buildMode: buildMode,
                     generatesSwiftHeader: target.generatesSwiftHeader
                 ),
                 try createFrameworksPhase(
@@ -296,9 +297,10 @@ File "\(sourceFile.filePath)" not found in `files`
 
     private static func createCopyGeneratedHeaderScript(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         generatesSwiftHeader: Bool
     ) throws -> PBXShellScriptBuildPhase? {
-        guard generatesSwiftHeader else {
+        guard buildMode == .xcode && generatesSwiftHeader else {
             return nil
         }
 

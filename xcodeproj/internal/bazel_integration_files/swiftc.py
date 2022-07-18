@@ -26,12 +26,14 @@ def _main() -> None:
             raise RuntimeError("Failed to parse DEVELOPER_DIR from -sdk")
 
         # TODO: Make this work with custom toolchains
+        # We could produce this file at the start of the build?
         developer_dir = match.group(1)
         swiftc = f"{developer_dir}/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
 
         exit(subprocess.run([swiftc] + args[1:], check=False).returncode)
 
     _touch_deps_files(args)
+    _touch_swiftmodule_artifacts(args)
 
 
 def _touch_deps_files(args: List[str]) -> None:
@@ -52,9 +54,35 @@ def _touch_deps_files(args: List[str]) -> None:
         _touch(d_file)
 
 
+def _touch_swiftmodule_artifacts(args: List[str]) -> None:
+    "Touch the Xcode-required .swift{module,doc,sourceinfo} files"
+    flag = args.index("-emit-module-path")
+    swiftmodule_path = args[flag + 1]
+    swiftdoc_path = _replace_ext(swiftmodule_path, "swiftdoc")
+    swiftsourceinfo_path = _replace_ext(swiftmodule_path, "swiftsourceinfo")
+    swiftinterface_path = _replace_ext(swiftmodule_path, "swiftinterface")
+
+    _touch(swiftmodule_path)
+    _touch(swiftdoc_path)
+    _touch(swiftsourceinfo_path)
+    _touch(swiftinterface_path)
+
+    try:
+        flag = args.index("-emit-objc-header-path")
+        generated_header_path = args[flag + 1]
+        _touch(generated_header_path)
+    except ValueError:
+        pass
+
+
 def _touch(path: str) -> None:
     # Don't open with "w" mode, that truncates the file if it exists.
     open(path, "a")
+
+
+def _replace_ext(path: str, extension: str) -> str:
+    name, _ = os.path.splitext(path)
+    return ".".join((name, extension))
 
 
 if __name__ == "__main__":
