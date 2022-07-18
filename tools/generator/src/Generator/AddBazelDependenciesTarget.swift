@@ -271,10 +271,10 @@ fi
 cd "$BUILD_DIR"
 
 rm -rf external
-rm -rf real-bazel-out
+rm -rf bazel-exec-root
 
 ln -sf "$external" external
-ln -sf "$output_path" real-bazel-out
+ln -sf "$exec_root" bazel-exec-root
 ln -sfn "$PROJECT_DIR" SRCROOT
 
 """#

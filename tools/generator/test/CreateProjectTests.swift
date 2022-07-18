@@ -27,7 +27,7 @@ final class CreateProjectTests: XCTestCase {
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
-                "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
+                "BAZEL_OUT": "$(BUILD_DIR)/bazel-exec-root/bazel-out",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
@@ -128,7 +128,7 @@ $(BUILD_DIR)/bazel_build_output_groups
 """,
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
-                "BAZEL_OUT": "$(BUILD_DIR)/real-bazel-out",
+                "BAZEL_OUT": "$(BUILD_DIR)/bazel-exec-root/bazel-out",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
