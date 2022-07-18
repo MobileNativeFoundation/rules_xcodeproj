@@ -12,7 +12,6 @@
 			buildConfigurationList = 914277EC9F57B808A8817CF5 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				9A630CF63C380FAE522825A9 /* Bazel Build */,
-				FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */,
 			);
 			dependencies = (
 			);
@@ -161,17 +160,16 @@
 		0FF81727486DFB1FEF810586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1104D414730D2DC8DC9DD9E9 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		119F88A7D863C38938114348 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		1599D430F101404D8C5229CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1945E01AD98FE05054F33AE5 /* ExampleObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleObjcTests.m; sourceTree = "<group>"; };
 		1B6E86525CF42B0DBC06EF8C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		1DFA501580379A58AE2389D0 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		1F2546A475C2CA76D8E89436 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C844E9CCF398860A8F858D5 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
-		2DE79B7A21FFAD5EE7C3BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2E9AA98CF71EC1A8ADA8FC12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2EA929BD072628145C22AE36 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		3044751746014D22D03BB28E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		328731FD80DB31CAF28DA35F /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		33012125FA5113266DE79002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3E9430435031013D9579BA7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		41E087EFF7DB4B31F84CEF5F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		44C19A56FE797949930D145D /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,7 +177,7 @@
 		48F0B3D39D176B90AE9F2C8A /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		4B3E5C31FB0363AFF5007707 /* Answers.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Answers.mm; sourceTree = "<group>"; };
 		4BE5211604948E91881C4479 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
-		547A0AC489B96F39E1BD1254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		540AF29BF64C18A761572779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5510BC5BFFC471231BB2C8E0 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		55E65A7323E456CDEBA791E6 /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
 		577BC07B4F6E580BDB13B5B1 /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
@@ -192,6 +190,7 @@
 		89A9ECE837F4AC1C251945EE /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		8ADB9E176B3AB4F6354A1167 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F8B001AB6315D99F13FAC92 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/libCoreUtilsObjC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9255DFCC03A6B5C8BCB5BC7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		936C89D0AECF460936BF9489 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		9BF5CE4ADD5163F5308F8626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D61CBAFE2C78BDC7960D5A4 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -216,20 +215,20 @@
 		D47EE69A4D0CE40D8484EE52 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DC51A4085F05FC61686E7785 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		DE684C8B8336D55C43040D1E /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
+		E0C81E16EC5519BF225D8628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E470DDDC0990D96A685DB11C /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
 		E87C46A394A10BD8A57D4ED8 /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9ED685D3A056C10F6A99CCD /* Utils.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = Utils.bundle; sourceTree = "<group>"; };
 		EF7A41BCADD5C386F325375B /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
 		F7A2777E8293F6B63DA51836 /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libTestingUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/libTestingUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC2955D9470E1B14AF63D754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		0AEB406D36847C33B5AC6831 /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				885EB06E3ACB989A01EF6ADC /* ExampleUITests.__internal__.__test_bundle-intermediates */,
+				A415552F1C4C6210C820336F /* rules_xcodeproj */,
 			);
 			path = ExampleUITests;
 			sourceTree = "<group>";
@@ -247,7 +246,7 @@
 		11D9730C9A7586367BE67C1F /* ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				E406D156A0876805A2AEEC6E /* ExampleTests.__internal__.__test_bundle-intermediates */,
+				DE5D7AF283A3A6D2ED53ABC8 /* rules_xcodeproj */,
 			);
 			path = ExampleTests;
 			sourceTree = "<group>";
@@ -279,7 +278,7 @@
 		46AFB439B9C397CE0AD8269A /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				6CF7424DF05BD6606F3734CF /* Example-intermediates */,
+				9E86C80BB3B7784C2F0BDAA0 /* rules_xcodeproj */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -355,14 +354,6 @@
 			path = test;
 			sourceTree = "<group>";
 		};
-		6CF7424DF05BD6606F3734CF /* Example-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				2DE79B7A21FFAD5EE7C3BF43 /* Info.plist */,
-			);
-			path = "Example-intermediates";
-			sourceTree = "<group>";
-		};
 		8559ED6752C798E87266A14E /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,14 +365,6 @@
 			path = TestingUtils;
 			sourceTree = "<group>";
 		};
-		885EB06E3ACB989A01EF6ADC /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				FC2955D9470E1B14AF63D754 /* Info.plist */,
-			);
-			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
-			sourceTree = "<group>";
-		};
 		893B838857303F643C601213 /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,14 +374,6 @@
 				8C20F5F7A777AE2FAA4C7229 /* Utils */,
 			);
 			path = bin;
-			sourceTree = "<group>";
-		};
-		8B6B40F20EDEA3383ACD02BD /* ExampleObjcTests.__internal__.__test_bundle-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				1599D430F101404D8C5229CB /* Info.plist */,
-			);
-			path = "ExampleObjcTests.__internal__.__test_bundle-intermediates";
 			sourceTree = "<group>";
 		};
 		8C20F5F7A777AE2FAA4C7229 /* Utils */ = {
@@ -417,6 +392,14 @@
 				41E087EFF7DB4B31F84CEF5F /* BUILD */,
 			);
 			path = CoreUtilsObjC;
+			sourceTree = "<group>";
+		};
+		92153C27B3C8278F74F15CFE /* ExampleUITests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				E0C81E16EC5519BF225D8628 /* Info.plist */,
+			);
+			path = ExampleUITests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		93C53778407416F526CE86B2 /* Example */ = {
@@ -441,7 +424,7 @@
 		946073E57665949FD27E1850 /* ExampleObjcTests */ = {
 			isa = PBXGroup;
 			children = (
-				8B6B40F20EDEA3383ACD02BD /* ExampleObjcTests.__internal__.__test_bundle-intermediates */,
+				D5D2408BE5618400EACF5CDA /* rules_xcodeproj */,
 			);
 			path = ExampleObjcTests;
 			sourceTree = "<group>";
@@ -464,6 +447,14 @@
 			path = test/fixtures/bwb.xcodeproj/rules_xcodeproj/links/external;
 			sourceTree = "<group>";
 		};
+		992E5A41C7A2192EC3F14E12 /* ExampleObjcTests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				9255DFCC03A6B5C8BCB5BC7F /* Info.plist */,
+			);
+			path = ExampleObjcTests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
 		9B8FF1BA82EC92DF07BD8250 /* CoreUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,6 +473,22 @@
 				0AEB406D36847C33B5AC6831 /* ExampleUITests */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		9E86C80BB3B7784C2F0BDAA0 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				EBCD10BF70F495ADDCD2A1A5 /* Example */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		A415552F1C4C6210C820336F /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				92153C27B3C8278F74F15CFE /* ExampleUITests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		B90C93321F57509ADC051F9E /* testing */ = {
@@ -539,6 +546,22 @@
 			path = test/fixtures/bwb.xcodeproj/rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		D5D2408BE5618400EACF5CDA /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				992E5A41C7A2192EC3F14E12 /* ExampleObjcTests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		DE5D7AF283A3A6D2ED53ABC8 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				E0EC1EEFBFD864B6ACB43B2D /* ExampleTests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		DEDBB9862662A833DD5D663E /* build_bazel_rules_apple */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,12 +581,12 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		E406D156A0876805A2AEEC6E /* ExampleTests.__internal__.__test_bundle-intermediates */ = {
+		E0EC1EEFBFD864B6ACB43B2D /* ExampleTests.__internal__.__test_bundle */ = {
 			isa = PBXGroup;
 			children = (
-				547A0AC489B96F39E1BD1254 /* Info.plist */,
+				33012125FA5113266DE79002 /* Info.plist */,
 			);
-			path = "ExampleTests.__internal__.__test_bundle-intermediates";
+			path = ExampleTests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		E6A702A1A6D5D15456EEFF80 /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217 */ = {
@@ -580,6 +603,14 @@
 				9C9DAB5A5C05DA5C09138FB7 /* bin */,
 			);
 			path = "applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217";
+			sourceTree = "<group>";
+		};
+		EBCD10BF70F495ADDCD2A1A5 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				540AF29BF64C18A761572779 /* Info.plist */,
+			);
+			path = Example;
 			sourceTree = "<group>";
 		};
 		EC6FEE5AC277A3FEEA95510A = {
@@ -1018,27 +1049,6 @@
 			shellScript = "perl -pe 's/^([^\"].*\\$\\(.*\\).*)/\"$1\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(INTERNAL_DIR)/infoplists.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Fix Info.plists";
-			outputFileListPaths = (
-				"$(INTERNAL_DIR)/infoplists.fixed.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1264,7 +1274,7 @@
 					CoreUtilsObjC,
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleObjcTests/rules_xcodeproj/ExampleObjcTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.link.params";
 				OTHER_CFLAGS = (
@@ -1391,7 +1401,7 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/ExampleUITests/ExampleUITests.__internal__.__test_bundle.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -1674,7 +1684,7 @@
 					CoreUtilsObjC,
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/rules_xcodeproj/Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1723,7 +1733,7 @@
 					CoreUtilsObjC,
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/ExampleTests/ExampleTests.__internal__.__test_bundle.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";

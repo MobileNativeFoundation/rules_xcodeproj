@@ -226,7 +226,10 @@ def process_top_level_target(
     additional_files.extend(modulemaps.files)
 
     info_plist = None
-    info_plist_file = info_plists.get_file(target)
+    info_plist_file = info_plists.adjust_for_xcode(
+        info_plists.get_file(target),
+        ctx = ctx,
+    )
     extension_infoplists = None
     if info_plist_file:
         info_plist = file_path(info_plist_file)

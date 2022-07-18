@@ -12,7 +12,6 @@
 			buildConfigurationList = 914277EC9F57B808A8817CF5 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				9A630CF63C380FAE522825A9 /* Bazel Build */,
-				FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */,
 			);
 			dependencies = (
 			);
@@ -293,11 +292,12 @@
 /* Begin PBXFileReference section */
 		0107402B45842952FE70FA66 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		016704F1DDA30C21E67A425D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		02B8B6114E8B764B8E756D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		02FB7DE07A4A609D70BD0BDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		035ECE119241F21702C19D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0451EEEFF755708B88527A18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0561945EBB23E334B7EC83E3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		06635567BD147220E1AF4D16 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
+		083D72AC049B62513A2B89E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		122ECFCAC8A6153C2396EC61 /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		17C68CB3AB068C4D32CB53C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		19C8F7CCC5F4C0A75BC6D6B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -306,36 +306,36 @@
 		228FA03886D4CED2E8B87937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22D3E7618EB2EFFE6AA88608 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		286459D2E587B2DF91067194 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		28A2789956BBBB220E0C9AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2CF26DE3A83F5A41CBDF91F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2DBB7AE642E655A5B1FD9FC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		304835C6995FCC78B359CCBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3265DEC9738D7156D2A27F25 /* WidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtension.swift; sourceTree = "<group>"; };
 		3333170CE926366B0A03CBF1 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		3AC69858583169F87F19CEA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		3C8274B23B00FA75662E9855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3D3B4701477FA4E4A6F392E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3F4E1CAC6C1DF2A5384D1223 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		416D7556BFEC26938A62BA77 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		42FD3D0067614F143D3CEBDC /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		451AB65F903A79F644C34E4F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		48754296ACA596286860C0BF /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		49B79A6A845E24A1CE8611CA /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		49B8E36490692F507F01B67F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4A77BCC69B719F6848275999 /* Info.extension.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.extension.plist; sourceTree = "<group>"; };
-		4A786F148072F9F0BC9759BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4BE36A124836E53504D7932A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		4C87E1F983762D987044B07D /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
+		4D6D6C5D8A9C5A7F84BE0D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5145CBFF79C7C7D6179B1D1E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		5632C128E43CFF5BF3531D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		56F16FB28F266E6AABCEA995 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C92EF372D6603E10056CDAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EF07730968B1A693FF4B856 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		6166E71C87C80120FEFD9124 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		6289C06F2F7A8C9BAA0757C5 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		67B340F17EDBE3495213D123 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		67EF6425ED99CC56F814F4EA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		73051C293E9F673CEA1D4FD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7401FDA68482F8B5BE018478 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
-		741A70831D7F6BFA3DE1E588 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7FA2EFF37F0E421BB10930FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		822E2F1BC0EB1C5A15368AC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		82C7184778C265E6AF5491B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		848F13F50760C51CF5C96142 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		89DCA52C8B999FB0CCE1F6B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8E842FA503EFFAF94F9B849A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8EC039E4ABE4875858ECD261 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8F49CCC488DBF944363A76E3 /* tvOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,8 +346,8 @@
 		9B92DB0A68A3B511E0B4527D /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D53513CFBFCA1DD5F01CE8 /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E95D84BE74FB253E55EA07 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		A2C7C4523BE98057493140B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A4FED84E16539192393AF06C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A52C57EC25C41D7DD52AA2F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A888E2361B64B76E81875CE1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AC3BD6C219E6E5167618EBD9 /* watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOSApp.swift; sourceTree = "<group>"; };
 		AD139F111FC1472A88A9CB7B /* AppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClip.swift; sourceTree = "<group>"; };
@@ -355,10 +355,9 @@
 		AED65F5A574CCDAE30035DF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AF1A1C154F7C2DB997EC29C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF2DAFB9141E941BE0B725EF /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
+		B383CE61264B36EE275F140F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B3F2BB6661347D1891100734 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4A19A859ACA80CF493B7ADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B6195FEFFDA34D754A2A5289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		BB7A7C95A64CDF24FAF8F7C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BC5A01AF7D9AE545D0E71E50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BD306A2DBD4383E36E5618F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF108DD9E7994AE813AAFEA9 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		BF82839A39A167B3C6668EDF /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -369,12 +368,11 @@
 		C6E0BC3B7B61FC389D750674 /* ExtensionAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ExtensionAssets.xcassets; sourceTree = "<group>"; };
 		C7820E9BA81F12DC4A75C422 /* iMessageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMessageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9839B245FE2AD82F977E567 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA48A9050553966B2025597A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE14E684D82C9A8EF15D7A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CECC22A0360B6F7F39E449B5 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		D1FBA2590E14FA946C70E605 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		D6D47AB7111AD76651E98D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D7CC5CE744AFD0A5E15D6AEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		DB89EC6AA61F0084A14D9450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DCAD2E3EA0F9B2B9A58A4F90 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DDD8B97AA93AE8B902A67A36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF7126971C71380F35EAD51D /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
@@ -385,9 +383,10 @@
 		E7CC0575EECAA039E39C8B0F /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		E89AED11EAA442900F8C9C96 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
 		E99EC9E0460C9E8B7262C039 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E99FBC93C0939EEF0BD34563 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EC5AA4816531327AA4B7720B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F2CC13B3A151FD6B7B0F6FF1 /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		F8A822259267A98E99B540D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F96A44A295CC64A6F089D2BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FC82D9B6933E423A5142FF4B /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -463,6 +462,30 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		0787F0AF3FBE63BCA8C3178F /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				E6ACB4F9661BAAA11EC08813 /* WidgetExtension */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		0C285F1B47BDD84D96AB767F /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				A5C52644639A30EE8F2960C1 /* watchOSApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		0E4B1EC715DD14AC611C7A39 /* iMessageAppExtension */ = {
+			isa = PBXGroup;
+			children = (
+				3D3B4701477FA4E4A6F392E0 /* Info.plist */,
+			);
+			path = iMessageAppExtension;
+			sourceTree = "<group>";
+		};
 		0EC708FB4525B7F514518550 /* iMessageApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,7 +511,7 @@
 		11ECA68110917E9B3D52F08D /* watchOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				703A1F4497B9286207D08C3A /* watchOSApp-intermediates */,
+				0C285F1B47BDD84D96AB767F /* rules_xcodeproj */,
 			);
 			path = watchOSApp;
 			sourceTree = "<group>";
@@ -512,10 +535,18 @@
 			path = multiplatform;
 			sourceTree = "<group>";
 		};
+		156FEA6921D4852CF6E270B2 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				C50D74E76660A993F17E6947 /* watchOSApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		15A4ACFE1F5BC36C3CA95632 /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				79DDE988AAF0A1B781A7F3A3 /* tvOSApp-intermediates */,
+				193A8B8F6E9B02221DA9A94E /* rules_xcodeproj */,
 			);
 			path = tvOSApp;
 			sourceTree = "<group>";
@@ -544,11 +575,26 @@
 			path = PreviewContent;
 			sourceTree = "<group>";
 		};
+		193A8B8F6E9B02221DA9A94E /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				8BADF37F6B70EFEFEB1B2243 /* tvOSApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		1A01C89433E7C4A7DED0CE92 /* AppClip */ = {
+			isa = PBXGroup;
+			children = (
+				B383CE61264B36EE275F140F /* Info.plist */,
+			);
+			path = AppClip;
+			sourceTree = "<group>";
+		};
 		1AD23543F66639E1DF5340FC /* iMessageApp */ = {
 			isa = PBXGroup;
 			children = (
-				4B369636FE3C886B37F67B6D /* iMessageApp-intermediates */,
-				DD8BED619720A5A209A8E06D /* iMessageAppExtension-intermediates */,
+				722D9A4A72F8A8FE059DF13D /* rules_xcodeproj */,
 			);
 			path = iMessageApp;
 			sourceTree = "<group>";
@@ -614,6 +660,14 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		27616CD17FFE708572BF0CD7 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				F913FA779B5BAA61C8427A71 /* iOSApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		2A6C65B1A76A91D8B23FECAD /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,7 +703,7 @@
 		32BE63FB5A50B209720B80B2 /* iOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				CB19998FA939ECF4A2128B6F /* iOSApp-intermediates */,
+				27616CD17FFE708572BF0CD7 /* rules_xcodeproj */,
 			);
 			path = iOSApp;
 			sourceTree = "<group>";
@@ -690,27 +744,35 @@
 		3B03A3A8BC71395EA1DFED5B /* AppClip */ = {
 			isa = PBXGroup;
 			children = (
-				3E7B710DF3AD92F84DB780CB /* AppClip-intermediates */,
+				F285C662BC95E8B5F64B6F90 /* rules_xcodeproj */,
 				F2CC13B3A151FD6B7B0F6FF1 /* Entitlements.withbundleid.plist */,
 			);
 			path = AppClip;
 			sourceTree = "<group>";
 		};
+		3CC9D2F85B5057147088ACB8 /* iOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				083D72AC049B62513A2B89E2 /* Info.plist */,
+			);
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
 		3D18530BF1770234D1E6CA1D /* AppClip */ = {
 			isa = PBXGroup;
 			children = (
-				879A33AFAEF3DC02FAB3E325 /* AppClip-intermediates */,
+				57060AC2FC9526FC38B6621B /* rules_xcodeproj */,
 				122ECFCAC8A6153C2396EC61 /* Entitlements.withbundleid.plist */,
 			);
 			path = AppClip;
 			sourceTree = "<group>";
 		};
-		3E7B710DF3AD92F84DB780CB /* AppClip-intermediates */ = {
+		40C23068883F1BDAD048E324 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				DB89EC6AA61F0084A14D9450 /* Info.plist */,
+				95DCDFFBF32BC4BBF271E0CE /* tvOSApp */,
 			);
-			path = "AppClip-intermediates";
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		42BE79A7BB75674833CCE1B9 /* multiplatform */ = {
@@ -745,14 +807,6 @@
 				BF108DD9E7994AE813AAFEA9 /* GoogleMaps.framework */,
 			);
 			path = "ios-arm64_x86_64-simulator";
-			sourceTree = "<group>";
-		};
-		4B369636FE3C886B37F67B6D /* iMessageApp-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				822E2F1BC0EB1C5A15368AC5 /* Info.plist */,
-			);
-			path = "iMessageApp-intermediates";
 			sourceTree = "<group>";
 		};
 		4CA7FB73CD1E886EFC382786 /* applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2 */ = {
@@ -798,9 +852,17 @@
 		544A76E0E2376ADB30E34FBF /* iOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				82023CA698A41D87DFA8CB23 /* iOSApp-intermediates */,
+				B980265030A2D72A2E5E7590 /* rules_xcodeproj */,
 			);
 			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		57060AC2FC9526FC38B6621B /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				1A01C89433E7C4A7DED0CE92 /* AppClip */,
+			);
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		57DF5D59F7F78ACE534FCB26 /* ios-arm64_x86_64-simulator */ = {
@@ -916,20 +978,20 @@
 			path = test;
 			sourceTree = "<group>";
 		};
+		6AA5D58B14D472F1B080BB80 /* iMessageAppExtension */ = {
+			isa = PBXGroup;
+			children = (
+				A52C57EC25C41D7DD52AA2F1 /* Info.plist */,
+			);
+			path = iMessageAppExtension;
+			sourceTree = "<group>";
+		};
 		6F5F4D4F3C3E4B363E9F52FD /* examples */ = {
 			isa = PBXGroup;
 			children = (
 				9EA22BD8EA5DD4B8B1653D1B /* multiplatform */,
 			);
 			path = examples;
-			sourceTree = "<group>";
-		};
-		703A1F4497B9286207D08C3A /* watchOSApp-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				B4A19A859ACA80CF493B7ADF /* Info.plist */,
-			);
-			path = "watchOSApp-intermediates";
 			sourceTree = "<group>";
 		};
 		708BA22CCF1C48359239284F /* WidgetExtension */ = {
@@ -960,6 +1022,15 @@
 			path = "tvos-arm64_x86_64-simulator";
 			sourceTree = "<group>";
 		};
+		722D9A4A72F8A8FE059DF13D /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				7A016CF327CA19CD8EC357AE /* iMessageApp */,
+				6AA5D58B14D472F1B080BB80 /* iMessageAppExtension */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		72E26F0158A70371F369A102 /* watchos-arm64_32_armv7k */ = {
 			isa = PBXGroup;
 			children = (
@@ -968,12 +1039,21 @@
 			path = "watchos-arm64_32_armv7k";
 			sourceTree = "<group>";
 		};
-		79DDE988AAF0A1B781A7F3A3 /* tvOSApp-intermediates */ = {
+		748628FB46B8E286FF4D405C /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				B6195FEFFDA34D754A2A5289 /* Info.plist */,
+				D87CC64F3CA8C0D96D5EFFF9 /* iMessageApp */,
+				0E4B1EC715DD14AC611C7A39 /* iMessageAppExtension */,
 			);
-			path = "tvOSApp-intermediates";
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		7A016CF327CA19CD8EC357AE /* iMessageApp */ = {
+			isa = PBXGroup;
+			children = (
+				49B8E36490692F507F01B67F /* Info.plist */,
+			);
+			path = iMessageApp;
 			sourceTree = "<group>";
 		};
 		7B168A87E8814F35643D60BD /* examples */ = {
@@ -995,17 +1075,9 @@
 		7C822DC7875D109694786E4C /* watchOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				D7E46BA3C85D48ED6B99CAC6 /* watchOSApp-intermediates */,
+				156FEA6921D4852CF6E270B2 /* rules_xcodeproj */,
 			);
 			path = watchOSApp;
-			sourceTree = "<group>";
-		};
-		82023CA698A41D87DFA8CB23 /* iOSApp-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				2CF26DE3A83F5A41CBDF91F6 /* Info.plist */,
-			);
-			path = "iOSApp-intermediates";
 			sourceTree = "<group>";
 		};
 		82287C70426B7B869637A685 /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67 */ = {
@@ -1027,25 +1099,9 @@
 		85D45035AC8B4A7904B3D97A /* watchOSAppExtension */ = {
 			isa = PBXGroup;
 			children = (
-				864B53F58F52A12D2703EE9B /* watchOSAppExtension-intermediates */,
+				AE909FDED4F6821399C5F403 /* rules_xcodeproj */,
 			);
 			path = watchOSAppExtension;
-			sourceTree = "<group>";
-		};
-		864B53F58F52A12D2703EE9B /* watchOSAppExtension-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				7FA2EFF37F0E421BB10930FE /* Info.plist */,
-			);
-			path = "watchOSAppExtension-intermediates";
-			sourceTree = "<group>";
-		};
-		879A33AFAEF3DC02FAB3E325 /* AppClip-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				28A2789956BBBB220E0C9AE6 /* Info.plist */,
-			);
-			path = "AppClip-intermediates";
 			sourceTree = "<group>";
 		};
 		887DB9E1AAF0059110BE927D /* examples */ = {
@@ -1073,12 +1129,20 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
-		8EE9D0F4ED39F3577F21ED5A /* iMessageApp-intermediates */ = {
+		8BADF37F6B70EFEFEB1B2243 /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				BB7A7C95A64CDF24FAF8F7C9 /* Info.plist */,
+				EC5AA4816531327AA4B7720B /* Info.plist */,
 			);
-			path = "iMessageApp-intermediates";
+			path = tvOSApp;
+			sourceTree = "<group>";
+		};
+		8DB5D032D6D1824B66986B0A /* watchOSAppExtension */ = {
+			isa = PBXGroup;
+			children = (
+				67B340F17EDBE3495213D123 /* Info.plist */,
+			);
+			path = watchOSAppExtension;
 			sourceTree = "<group>";
 		};
 		8F991604AE9B758FA475322B /* bin */ = {
@@ -1089,19 +1153,18 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		9057AEEEC2BF61DB3684417F /* watchOSAppExtension-intermediates */ = {
+		95DCDFFBF32BC4BBF271E0CE /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				A2C7C4523BE98057493140B6 /* Info.plist */,
+				BC5A01AF7D9AE545D0E71E50 /* Info.plist */,
 			);
-			path = "watchOSAppExtension-intermediates";
+			path = tvOSApp;
 			sourceTree = "<group>";
 		};
 		97E6F5996AC7566C3E6E61B6 /* iMessageApp */ = {
 			isa = PBXGroup;
 			children = (
-				8EE9D0F4ED39F3577F21ED5A /* iMessageApp-intermediates */,
-				A82A53AEA22C51BB6A707B1A /* iMessageAppExtension-intermediates */,
+				748628FB46B8E286FF4D405C /* rules_xcodeproj */,
 			);
 			path = iMessageApp;
 			sourceTree = "<group>";
@@ -1164,20 +1227,28 @@
 			path = PreviewContent;
 			sourceTree = "<group>";
 		};
+		A51F419D0B2D066DD4B8A32A /* WidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				035ECE119241F21702C19D26 /* Info.plist */,
+			);
+			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
+		A5C52644639A30EE8F2960C1 /* watchOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				73051C293E9F673CEA1D4FD4 /* Info.plist */,
+			);
+			path = watchOSApp;
+			sourceTree = "<group>";
+		};
 		A680B5AC0DAEE179927ADA5B /* examples */ = {
 			isa = PBXGroup;
 			children = (
 				154DCAF407AD3745175DE301 /* multiplatform */,
 			);
 			path = examples;
-			sourceTree = "<group>";
-		};
-		A82A53AEA22C51BB6A707B1A /* iMessageAppExtension-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				741A70831D7F6BFA3DE1E588 /* Info.plist */,
-			);
-			path = "iMessageAppExtension-intermediates";
 			sourceTree = "<group>";
 		};
 		A8D0935D4F85AB5C1916EBC3 /* bin */ = {
@@ -1191,7 +1262,7 @@
 		A93909C94A4A4815898E7AD9 /* watchOSAppExtension */ = {
 			isa = PBXGroup;
 			children = (
-				9057AEEEC2BF61DB3684417F /* watchOSAppExtension-intermediates */,
+				C4E32E0A7D517184B1929186 /* rules_xcodeproj */,
 			);
 			path = watchOSAppExtension;
 			sourceTree = "<group>";
@@ -1210,6 +1281,14 @@
 				25A5C1FA3FB66E97D5ABB389 /* bin */,
 			);
 			path = "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a";
+			sourceTree = "<group>";
+		};
+		AE909FDED4F6821399C5F403 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				FC05C2D18658EB768ABA1EC1 /* watchOSAppExtension */,
+			);
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		AFD9956070B6C3233A61BC8B /* PreviewContent */ = {
@@ -1231,17 +1310,9 @@
 		B2FC16DD2E52823F77C60505 /* WidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
-				B7531574A23A67500FEA6525 /* WidgetExtension-intermediates */,
+				C859327FA13548133095E944 /* rules_xcodeproj */,
 			);
 			path = WidgetExtension;
-			sourceTree = "<group>";
-		};
-		B7531574A23A67500FEA6525 /* WidgetExtension-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				3C8274B23B00FA75662E9855 /* Info.plist */,
-			);
-			path = "WidgetExtension-intermediates";
 			sourceTree = "<group>";
 		};
 		B807BD3C3D4A1353289ED80E /* ios-arm64 */ = {
@@ -1251,6 +1322,14 @@
 				A1E95D84BE74FB253E55EA07 /* GoogleMaps.framework */,
 			);
 			path = "ios-arm64";
+			sourceTree = "<group>";
+		};
+		B980265030A2D72A2E5E7590 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				3CC9D2F85B5057147088ACB8 /* iOSApp */,
+			);
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		BB34C210E2A56E7B96B81F9A /* examples */ = {
@@ -1363,6 +1442,22 @@
 			path = test/fixtures/multiplatform/bwb.xcodeproj/rules_xcodeproj/links/gen_dir;
 			sourceTree = "<group>";
 		};
+		C4E32E0A7D517184B1929186 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				8DB5D032D6D1824B66986B0A /* watchOSAppExtension */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		C50D74E76660A993F17E6947 /* watchOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				4D6D6C5D8A9C5A7F84BE0D64 /* Info.plist */,
+			);
+			path = watchOSApp;
+			sourceTree = "<group>";
+		};
 		C7B098AC18156F56EB854B54 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
@@ -1380,6 +1475,14 @@
 			path = multiplatform;
 			sourceTree = "<group>";
 		};
+		C859327FA13548133095E944 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				A51F419D0B2D066DD4B8A32A /* WidgetExtension */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		C86C4A39AB40E3DFD9887813 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
@@ -1387,22 +1490,6 @@
 				3705666C022FE1D4313AB4C0 /* WidgetExtension */,
 			);
 			path = multiplatform;
-			sourceTree = "<group>";
-		};
-		C8B82A0B2637FA7A86EFE584 /* tvOSApp-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				02B8B6114E8B764B8E756D94 /* Info.plist */,
-			);
-			path = "tvOSApp-intermediates";
-			sourceTree = "<group>";
-		};
-		CB19998FA939ECF4A2128B6F /* iOSApp-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				CA48A9050553966B2025597A /* Info.plist */,
-			);
-			path = "iOSApp-intermediates";
 			sourceTree = "<group>";
 		};
 		CF799A70EE04F3764346BCDC /* applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67 */ = {
@@ -1460,20 +1547,20 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
-		D7E46BA3C85D48ED6B99CAC6 /* watchOSApp-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				F96A44A295CC64A6F089D2BC /* Info.plist */,
-			);
-			path = "watchOSApp-intermediates";
-			sourceTree = "<group>";
-		};
 		D7EAD1B8198C426DFC865DD5 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
 				848F13F50760C51CF5C96142 /* Lib.swift */,
 			);
 			path = Lib;
+			sourceTree = "<group>";
+		};
+		D87CC64F3CA8C0D96D5EFFF9 /* iMessageApp */ = {
+			isa = PBXGroup;
+			children = (
+				5632C128E43CFF5BF3531D4E /* Info.plist */,
+			);
+			path = iMessageApp;
 			sourceTree = "<group>";
 		};
 		DB9CE2AC74676BCFA567FCB5 /* bin */ = {
@@ -1492,18 +1579,10 @@
 			path = "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db";
 			sourceTree = "<group>";
 		};
-		DD8BED619720A5A209A8E06D /* iMessageAppExtension-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				304835C6995FCC78B359CCBD /* Info.plist */,
-			);
-			path = "iMessageAppExtension-intermediates";
-			sourceTree = "<group>";
-		};
 		E1AECBCCA009195AED36A465 /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				C8B82A0B2637FA7A86EFE584 /* tvOSApp-intermediates */,
+				40C23068883F1BDAD048E324 /* rules_xcodeproj */,
 			);
 			path = tvOSApp;
 			sourceTree = "<group>";
@@ -1511,7 +1590,7 @@
 		E62F7B7BAC46706CD6D7C54E /* WidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
-				F19FE494C7327BD7902262A4 /* WidgetExtension-intermediates */,
+				0787F0AF3FBE63BCA8C3178F /* rules_xcodeproj */,
 			);
 			path = WidgetExtension;
 			sourceTree = "<group>";
@@ -1522,6 +1601,14 @@
 				FC6D9C68EEB6C48488429049 /* multiplatform */,
 			);
 			path = examples;
+			sourceTree = "<group>";
+		};
+		E6ACB4F9661BAAA11EC08813 /* WidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				89DCA52C8B999FB0CCE1F6B6 /* Info.plist */,
+			);
+			path = WidgetExtension;
 			sourceTree = "<group>";
 		};
 		EC6FEE5AC277A3FEEA95510A = {
@@ -1545,12 +1632,12 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
-		F19FE494C7327BD7902262A4 /* WidgetExtension-intermediates */ = {
+		F285C662BC95E8B5F64B6F90 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				4A786F148072F9F0BC9759BE /* Info.plist */,
+				FD5E6CABA33C77C7B8D12068 /* AppClip */,
 			);
-			path = "WidgetExtension-intermediates";
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		F2ECE5AD93675CEB0E9B8831 /* multiplatform */ = {
@@ -1593,6 +1680,22 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		F913FA779B5BAA61C8427A71 /* iOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				3F4E1CAC6C1DF2A5384D1223 /* Info.plist */,
+			);
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		FC05C2D18658EB768ABA1EC1 /* watchOSAppExtension */ = {
+			isa = PBXGroup;
+			children = (
+				E99FBC93C0939EEF0BD34563 /* Info.plist */,
+			);
+			path = watchOSAppExtension;
+			sourceTree = "<group>";
+		};
 		FC6D9C68EEB6C48488429049 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
@@ -1600,6 +1703,14 @@
 				D4A49376C0EB27ECCE416C5A /* WidgetExtension */,
 			);
 			path = multiplatform;
+			sourceTree = "<group>";
+		};
+		FD5E6CABA33C77C7B8D12068 /* AppClip */ = {
+			isa = PBXGroup;
+			children = (
+				CE14E684D82C9A8EF15D7A1E /* Info.plist */,
+			);
+			path = AppClip;
 			sourceTree = "<group>";
 		};
 		FFC927AEC16AF43E0005DEDD /* multiplatform */ = {
@@ -2282,27 +2393,6 @@
 			shellScript = "perl -pe 's/^([^\"].*\\$\\(.*\\).*)/\"$1\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(INTERNAL_DIR)/infoplists.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Fix Info.plists";
-			outputFileListPaths = (
-				"$(INTERNAL_DIR)/infoplists.fixed.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2584,8 +2674,8 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp/iOSApp-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework";
@@ -2711,8 +2801,8 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2783,8 +2873,8 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvsimulator*]" = "$(APPLETVSIMULATOR_FILES)";
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=appletvos*]" = "$(GEN_DIR)/applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/tvOSApp-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist";
+				"INFOPLIST_FILE[sdk=appletvos*]" = "$(GEN_DIR)/applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2864,8 +2954,8 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/AppClip-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/AppClip-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/rules_xcodeproj/AppClip/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/rules_xcodeproj/AppClip/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework $(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework $(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
@@ -3051,8 +3141,8 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/iMessageAppExtension-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/iMessageAppExtension-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework";
@@ -3114,8 +3204,8 @@
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/iMessageApp-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/iMessageApp-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/examples/multiplatform/iMessageApp/iMessageApp.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/examples/multiplatform/iMessageApp/iMessageApp.link.params";
@@ -3213,8 +3303,8 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/WidgetExtension/WidgetExtension-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/WidgetExtension/WidgetExtension-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework $(GEN_DIR)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/WidgetExtension/Intents.swift";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework $(GEN_DIR)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/WidgetExtension/Intents.swift";
@@ -3278,8 +3368,8 @@
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp/watchOSApp-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(GEN_DIR)/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/examples/multiplatform/watchOSApp/watchOSApp.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/examples/multiplatform/watchOSApp/watchOSApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";

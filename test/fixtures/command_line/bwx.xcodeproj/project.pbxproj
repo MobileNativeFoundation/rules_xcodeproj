@@ -12,7 +12,6 @@
 			buildConfigurationList = A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				773C70B69E7F801B38FDC01C /* Generate Files */,
-				A1B677A301B894FBD0B5AB58 /* Fix Info.plists */,
 			);
 			dependencies = (
 			);
@@ -123,7 +122,6 @@
 		56E8056002B81ACFBC75E26C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		582FB43778615654FC9D8089 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		61D4E93D586B426B1BE67C73 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6885AC1784847D97FA023F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		70C5E43F5F81562B9428709C /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7703BC6D5949A71AA4B20322 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		782EFB0F35839BA9778CEB6A /* private_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = private_lib.c; sourceTree = "<group>"; };
@@ -148,6 +146,7 @@
 		F463F670F3D262716DBB039D /* c_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_lib.h; sourceTree = "<group>"; };
 		F7195ED6E5A6C3B8F36B42A6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F817551E2B0DDD61FB46AC46 /* c_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = c_lib.c; sourceTree = "<group>"; };
+		F8787487E1A9A8F0328FEBE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,14 +218,6 @@
 			path = testing;
 			sourceTree = "<group>";
 		};
-		4468D6828295CD2D5C596483 /* LibSwiftTests.__internal__.__test_bundle-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				6885AC1784847D97FA023F32 /* Info.plist */,
-			);
-			path = "LibSwiftTests.__internal__.__test_bundle-intermediates";
-			sourceTree = "<group>";
-		};
 		462C3519CA354BE1B04D4855 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,7 +270,7 @@
 		65FF3E31EBF72509F7704AED /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4468D6828295CD2D5C596483 /* LibSwiftTests.__internal__.__test_bundle-intermediates */,
+				A9480E26DDE7C45D9363F38D /* rules_xcodeproj */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -393,6 +384,14 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		A9480E26DDE7C45D9363F38D /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				D1C544D9A0EAE49FBC5DF023 /* LibSwiftTests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		AEA469E9B752E999F07AF5BE /* tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +434,14 @@
 				56E8056002B81ACFBC75E26C /* BUILD */,
 			);
 			path = command_line;
+			sourceTree = "<group>";
+		};
+		D1C544D9A0EAE49FBC5DF023 /* LibSwiftTests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				F8787487E1A9A8F0328FEBE6 /* Info.plist */,
+			);
+			path = LibSwiftTests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		D2C8CC455B9D27F28D323622 /* test */ = {
@@ -706,27 +713,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ -z \"${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}\" ]]; then\n  exit 0\nfi\n\ncp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A1B677A301B894FBD0B5AB58 /* Fix Info.plists */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(INTERNAL_DIR)/infoplists.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Fix Info.plists";
-			outputFileListPaths = (
-				"$(INTERNAL_DIR)/infoplists.fixed.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F180696BA048341BDF7BD45D /* Create link.params */ = {
@@ -1042,7 +1028,7 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/examples_command_line_external";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/Tests/rules_xcodeproj/LibSwiftTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";

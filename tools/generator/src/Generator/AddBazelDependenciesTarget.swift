@@ -69,19 +69,12 @@ env -i \
             xcodeprojConfiguration: xcodeprojConfiguration
         )
 
-        let fixInfoPlistsScript = try createFixInfoPlistsScript(
-            in: pbxProj,
-            files: files,
-            filePathResolver: filePathResolver
-        )
-
         let pbxTarget = PBXAggregateTarget(
             name: "BazelDependencies",
             buildConfigurationList: configurationList,
             buildPhases: [
                 bazelBuildScript,
-                fixInfoPlistsScript,
-            ].compactMap { $0 },
+            ],
             productName: "BazelDependencies"
         )
         pbxProj.add(object: pbxTarget)
@@ -460,50 +453,6 @@ rsync \
   "$BUILD_DIR/bazel-out"
 
 """#
-    }
-
-    private static func createFixInfoPlistsScript(
-        in pbxProj: PBXProj,
-        files: [FilePath: File],
-        filePathResolver: FilePathResolver
-    ) throws -> PBXShellScriptBuildPhase? {
-        guard files.containsInfoPlists else {
-            return nil
-        }
-
-        let script = PBXShellScriptBuildPhase(
-            name: "Fix Info.plists",
-            inputFileListPaths: [
-                try filePathResolver
-                    .resolve(.internal(infoPlistsFileListPath))
-                    .string,
-            ],
-            outputFileListPaths: [
-                try filePathResolver
-                    .resolve(.internal(fixedInfoPlistsFileListPath))
-                    .string,
-            ],
-            shellScript: #"""
-set -euo pipefail
-
-if [ "$ACTION" == "indexbuild" ]; then
-  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during
-  # Index Build
-  exit
-fi
-
-while IFS= read -r input; do
-  output="${input%.plist}.xcode.plist"
-  cp "$input" "$output"
-  plutil -remove UIDeviceFamily "$output" > /dev/null 2>&1 || true
-done < "$SCRIPT_INPUT_FILE_LIST_0"
-
-"""#,
-            showEnvVarsInLog: false
-        )
-        pbxProj.add(object: script)
-
-        return script
     }
 
     private static func calculateBinDir(

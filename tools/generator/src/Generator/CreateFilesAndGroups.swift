@@ -39,8 +39,6 @@ extension Generator {
     static let externalFileListPath: Path = "external.xcfilelist"
     static let appRsyncExcludeFileListPath: Path = "app.exclude.rsynclist"
     static let copiedGeneratedFileListPath: Path = "generated.copied.xcfilelist"
-    static let infoPlistsFileListPath: Path = "infoplists.xcfilelist"
-    static let fixedInfoPlistsFileListPath: Path = "infoplists.fixed.xcfilelist"
 
     private static let localizedGroupExtensions: Set<String> = [
         "intentdefinition",
@@ -472,17 +470,6 @@ extension Generator {
             // referenced by `PBXBuildFile` or have specific build settings.
             return try filePathResolver.resolve(filePath, useGenDir: true)
         }
-        let infoPlistPaths = try generatedFilePaths
-            .filter { $0.path.lastComponent == "Info.plist" }
-            .map { filePath in
-                // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
-                // match the project navigator. This is only needed for files
-                // referenced by `PBXBuildFile` or have specific build settings.
-                return try filePathResolver.resolve(filePath, useGenDir: true)
-            }
-        let fixedInfoPlistPaths = infoPlistPaths.map { path in
-            return path.replacingExtension("xcode.plist")
-        }
 
         if buildMode.usesBazelModeBuildScripts,
             targets.contains(where: { $1.product.type.isApplication })
@@ -514,8 +501,6 @@ extension Generator {
 
         addXCFileList(externalFileListPath, paths: externalPaths)
         addXCFileList(copiedGeneratedFileListPath, paths: copiedGeneratedPaths)
-        addXCFileList(infoPlistsFileListPath, paths: infoPlistPaths)
-        addXCFileList(fixedInfoPlistsFileListPath, paths: fixedInfoPlistPaths)
 
         // Write target internal files
 

@@ -272,18 +272,10 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let infoPlist = target.infoPlist {
-            var infoPlistPath = try filePathResolver.resolve(
-                infoPlist,
-                useGenDir: true
-            )
-
-            // If the plist is generated, use the patched version that
-            // removes a specific key that causes a warning when building
-            // with Xcode
-            if infoPlist.type == .generated {
-                infoPlistPath.replaceExtension("xcode.plist")
-            }
-            buildSettings.set("INFOPLIST_FILE", to: infoPlistPath.string.quoted)
+            let infoPlistPath = try filePathResolver
+                .resolve(infoPlist, useGenDir: true)
+                .string.quoted
+            buildSettings.set("INFOPLIST_FILE", to: infoPlistPath)
         } else if buildMode.allowsGeneratedInfoPlists {
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
         }
