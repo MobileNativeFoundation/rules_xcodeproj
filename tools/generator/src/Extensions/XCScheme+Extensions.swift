@@ -6,42 +6,6 @@ enum XCSchemeConstants {
     static let lldbInitVersion = "1.7"
 }
 
-// MARK: XCScheme.PBXTargetInfo
-
-extension XCScheme {
-    struct PBXHostInfo {
-        let pbxTarget: PBXTarget
-        let buildableReference: XCScheme.BuildableReference
-
-        init(pbxTarget: PBXTarget, referencedContainer: String) {
-             self.pbxTarget = pbxTarget
-             buildableReference = .init(
-                 pbxTarget: pbxTarget,
-                 referencedContainer: referencedContainer
-             )
-        }
-    }
-
-    struct PBXTargetInfo {
-        let pbxTarget: PBXTarget
-        let buildableReference: XCScheme.BuildableReference
-        let hostInfos: [PBXHostInfo]
-
-        init<PBXHostInfos: Sequence>(
-            pbxTarget: PBXTarget,
-            referencedContainer: String,
-            hostInfos: PBXHostInfos
-        ) where Element == PBXHostInfo {
-             self.pbxTarget = pbxTarget
-             buildableReference = .init(
-                 pbxTarget: pbxTarget,
-                 referencedContainer: referencedContainer
-             )
-             self.hostInfos = Array(hostInfos)
-        }
-    }
-}
-
 // MARK: XCScheme.BuildableReference
 
 extension XCScheme.BuildableReference {
@@ -60,28 +24,12 @@ extension XCScheme.BuildableReference {
 extension XCScheme.BuildAction {
     convenience init<PBXTargetInfos: Sequence>(
         buildMode: BuildMode,
-        targetInfos: PBXTargetInfos,
-        hostBuildableReference: XCScheme.BuildableReference?,
-        hostIndex: Int?
+        targetInfos: PBXTargetInfos
     ) where PBXTargetInfos.Element == XCScheme.PBXTargetInfo {
-        let buildableReferences = targetInfos.map(\.buildableReference)
-
-        let entries: [XCScheme.BuildAction.Entry] = (buildableReferences + [hostBuildableReference])
-            .compactMap { $0 }
-            .map { .init(withDefaults: $0) }
-
-        let preActions: [XCScheme.ExecutionAction]
-        if buildMode.usesBazelModeBuildScripts {
-            preActions = [.initBazelBuildOutputGroupsFile] + targetInfos.compactMap {
-                XCScheme.ExecutionAction(targetInfo: $0, hostIndex: hostIndex)
-            }
-        } else {
-            preActions = []
-        }
-
         self.init(
-            buildActionEntries: entries,
-            preActions: preActions,
+            buildActionEntries: targetInfos.buildActionEntries,
+            preActions: buildMode.usesBazelModeBuildScripts ?
+                targetInfos.bazelBuildPreActions : [],
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
@@ -118,11 +66,36 @@ fi
         title: "Initialize Bazel Build Output Groups File"
     )
 
-    convenience init?(targetInfo: XCScheme.PBXTargetInfo, hostIndex: Int?) {
-        guard targetInfo.pbxTarget is PBXNativeTarget else {
-          return nil
-        }
+    // convenience init?(targetInfo: XCScheme.PBXTargetInfo, hostIndex: Int?) {
+    //     guard targetInfo.pbxTarget is PBXNativeTarget else {
+    //       return nil
+    //     }
 
+    //     let hostTargetOutputGroup: String
+    //     if let hostIndex = hostIndex {
+    //         hostTargetOutputGroup = #"""
+// echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+// """#
+    //     } else {
+    //         hostTargetOutputGroup = ""
+    //     }
+
+    //     let scriptText = #"""
+// echo "b $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+// \#(hostTargetOutputGroup)
+// """#
+    //     self.init(
+    //         scriptText: scriptText,
+    //         title: "Set Bazel Build Output Groups for \(targetInfo.pbxTarget.name)",
+    //         environmentBuildable: targetInfo.buildableReference
+    //     )
+    // }
+
+    convenience init(
+        bazelBuildFor buildableReference: XCScheme.BuildableReference,
+        name: String,
+        hostIndex: Int?
+    ) {
         let hostTargetOutputGroup: String
         if let hostIndex = hostIndex {
             hostTargetOutputGroup = #"""
@@ -138,8 +111,8 @@ echo "b $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 """#
         self.init(
             scriptText: scriptText,
-            title: "Set Bazel Build Output Groups for \(targetInfo.pbxTarget.name)",
-            environmentBuildable: targetInfo.buildableReference
+            title: "Set Bazel Build Output Groups for \(name)",
+            environmentBuildable: buildableReference
         )
     }
 }

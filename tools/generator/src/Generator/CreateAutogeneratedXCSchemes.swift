@@ -61,12 +61,20 @@ Host target with key \(key) not found in `pbxTargets`.
         return try pbxTargets.flatMap { key, pbxTarget in
             try createXCSchemes(
                 buildMode: buildMode,
-                pbxTargetInfo: .init(pbxTarget: pbxTarget, referencedContainer: referencedContainer),
-                hostPBXTargetInfos: keyedHostPBXTargets[key, default: []].elements.map {
-                    .init(pbxTarget: $0, referencedContainer: referencedContainer)
-                },
-                extensionPointIdentifiers:
-                    keyedExtensionPointIdentifiers[key, default: []]
+                pbxTargetInfo: .init(
+                    pbxTarget: pbxTarget,
+                    referencedContainer: referencedContainer,
+                    hostInfos: keyedHostPBXTargets[key, default: []].elements.enumerated()
+                        .map { hostIndex, hostPBXTarget in
+                            .init(
+                                pbxTarget: hostPBXTarget,
+                                referencedContainer: referencedContainer,
+                                index: hostIndex
+                            )
+                        },
+                    extensionPointIdentifiers:
+                        keyedExtensionPointIdentifiers[key, default: []]
+                )
             )
         }
     }
@@ -78,36 +86,33 @@ Host target with key \(key) not found in `pbxTargets`.
     /// Creates an `XCScheme` for the specified target.
     private static func createXCSchemes(
         buildMode: BuildMode,
-        pbxTargetInfo: XCScheme.PBXTargetInfo,
-        hostPBXTargetInfos: [XCScheme.PBXTargetInfo],
-        extensionPointIdentifiers: Set<ExtensionPointIdentifier>
+        pbxTargetInfo: XCScheme.PBXTargetInfo
     ) throws -> [XCScheme] {
         guard pbxTargetInfo.pbxTarget.shouldCreateScheme else {
             return []
         }
 
-        guard !hostPBXTargetInfos.isEmpty else {
+        // GH573: A subesquent PR will introduce XCScheme.SchemeInfo. This will contain all of the
+        // fully resolved scheme information. This awkward flattening of the information in
+        // PBXTargetInfo will go away.
+
+        guard !pbxTargetInfo.hostInfos.isEmpty else {
             return [
                 try createXCScheme(
                     buildMode: buildMode,
                     pbxTargetInfo: pbxTargetInfo,
-                    hostPBXTargetInfo: nil,
-                    hostIndex: nil,
-                    disambiguateHost: false,
-                    extensionPointIdentifiers: extensionPointIdentifiers
+                    hostInfo: nil,
+                    disambiguateHost: pbxTargetInfo.disambiguateHost
                 ),
             ]
         }
 
-        let disambiguateHost = hostPBXTargetInfos.count > 1
-        return try hostPBXTargetInfos.enumerated().map { hostIndex, hostPBXTargetInfo in
+        return try pbxTargetInfo.hostInfos.map { hostInfo in
             try createXCScheme(
                 buildMode: buildMode,
                 pbxTargetInfo: pbxTargetInfo,
-                hostPBXTargetInfo: hostPBXTargetInfo,
-                hostIndex: hostIndex,
-                disambiguateHost: disambiguateHost,
-                extensionPointIdentifiers: extensionPointIdentifiers
+                hostInfo: hostInfo,
+                disambiguateHost: pbxTargetInfo.disambiguateHost
             )
         }
     }
@@ -115,16 +120,14 @@ Host target with key \(key) not found in `pbxTargets`.
     private static func createXCScheme(
         buildMode: BuildMode,
         pbxTargetInfo: XCScheme.PBXTargetInfo,
-        hostPBXTargetInfo: XCScheme.PBXTargetInfo?,
-        hostIndex: Int?,
-        disambiguateHost: Bool,
-        extensionPointIdentifiers: Set<ExtensionPointIdentifier>
+        hostInfo: XCScheme.PBXHostInfo?,
+        disambiguateHost: Bool
     ) throws -> XCScheme {
         let isLaunchable = pbxTargetInfo.pbxTarget.isLaunchable
         let isTestable = pbxTargetInfo.pbxTarget.isTestable
         let productType = pbxTargetInfo.pbxTarget.productType ?? .none
         let isWatchApplication = productType.isWatchApplication
-        let isWidgetKitExtension = extensionPointIdentifiers
+        let isWidgetKitExtension = pbxTargetInfo.extensionPointIdentifiers
             .contains(.widgetKitExtension)
 
         let buildConfigurationName = pbxTargetInfo.pbxTarget.defaultBuildConfigurationName
@@ -136,7 +139,7 @@ Host target with key \(key) not found in `pbxTargets`.
         )
         let macroExpansions = createMacroExpansions(
             buildableReference: pbxTargetInfo.buildableReference,
-            hostBuildableReference: hostPBXTargetInfo?.buildableReference,
+            hostBuildableReference: hostInfo?.buildableReference,
             isTestable: isTestable,
             isWatchApplication: isWatchApplication
         )
@@ -149,8 +152,8 @@ Host target with key \(key) not found in `pbxTargets`.
         let buildAction = XCScheme.BuildAction(
             buildMode: buildMode,
             targetInfos: [pbxTargetInfo],
-            hostBuildableReference: hostPBXTargetInfo?.buildableReference,
-            hostIndex: hostIndex
+            hostBuildableReference: hostInfo?.buildableReference,
+            hostIndex: hostInfo?.index
         )
         let launchAction = XCScheme.LaunchAction(
             runnable: runnables.launch,
