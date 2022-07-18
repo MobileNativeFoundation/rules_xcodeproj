@@ -82,7 +82,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "EXECUTABLE_NAME": "LibSwiftTests",
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
@@ -175,6 +174,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": "LibSwiftTests",
                 "name": "LibSwiftTests",
                 "path": {
                     "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle_archive-root/LibSwiftTests.xctest",
@@ -288,6 +288,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": null,
                 "name": "LibSwiftTestsLib",
                 "path": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/Tests/libLibSwiftTestsLib.a",
@@ -419,6 +420,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": null,
                 "name": "lib_impl",
                 "path": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/liblib_impl.a",
@@ -520,6 +522,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": null,
                 "name": "lib_swift",
                 "path": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/liblib_swift.a",
@@ -622,6 +625,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": null,
                 "name": "private_lib",
                 "path": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/libprivate_lib.a",
@@ -710,6 +714,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": null,
                 "name": "c_lib",
                 "path": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/swift_c_module/libc_lib.a",
@@ -836,6 +841,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": "tool",
                 "name": "tool",
                 "path": {
                     "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/tool/tool",
@@ -980,6 +986,7 @@
                 "os": "macos"
             },
             "product": {
+                "executable_name": null,
                 "name": "tool.library",
                 "path": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/tool/libtool.library.a",

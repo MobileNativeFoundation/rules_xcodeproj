@@ -1276,7 +1276,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				EXECUTABLE_EXTENSION = xctest;
-				EXECUTABLE_NAME = ExampleObjcTests;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
@@ -1358,7 +1357,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = ExampleObjcTests.__internal__.__test_bundle;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.app/Example";
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.app/Example_ExecutableName";
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
@@ -1416,7 +1415,6 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				EXECUTABLE_EXTENSION = xctest;
-				EXECUTABLE_NAME = ExampleUITests;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1749,7 +1747,6 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				EXECUTABLE_EXTENSION = xctest;
-				EXECUTABLE_NAME = ExampleTests;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
@@ -1774,7 +1771,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = ExampleTests.__internal__.__test_bundle;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.app/Example";
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.app/Example_ExecutableName";
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",

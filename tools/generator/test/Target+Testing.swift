@@ -1,5 +1,6 @@
 import OrderedCollections
 import PathKit
+import XcodeProj
 import XCTest
 
 @testable import generator
@@ -107,6 +108,12 @@ extension Platform {
             minimumOsVersion: minimumOsVersion,
             environment: nil
         )
+    }
+}
+
+extension Product {
+    init(type: PBXProductType, name: String, path: FilePath) {
+        self.init(type: type, name: name, path: path, executableName: nil)
     }
 }
 

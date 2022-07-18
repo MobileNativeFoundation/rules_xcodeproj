@@ -13,6 +13,7 @@ def process_product(
         product_name,
         product_type,
         bundle_file_path,
+        executable_name = None,
         linker_inputs):
     """Generates information about the target's product.
 
@@ -25,6 +26,8 @@ def process_product(
             for examples.
         bundle_file_path: If the product is a bundle, this is `file_path` to the
             bundle, otherwise `None`.
+        executable_name: If the product is a bundle, this is the executable
+            name, otherwise `None`.
         linker_inputs: A value returned by `linker_input_files.collect`.
 
     Returns:
@@ -44,6 +47,7 @@ def process_product(
         fail("Could not find product for target {}".format(target.label))
 
     return struct(
+        executable_name = executable_name,
         name = product_name,
         path = fp,
         type = product_type,
@@ -52,6 +56,7 @@ def process_product(
 # TODO: Make this into a module
 def product_to_dto(product):
     return {
+        "executable_name": product.executable_name,
         "name": product.name,
         "path": file_path_to_dto(product.path) if product.path else None,
         "type": product.type,

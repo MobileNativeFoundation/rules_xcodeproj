@@ -82,7 +82,8 @@ enum Fixtures {
             product: .init(
                 type: .application,
                 name: "A",
-                path: .generated("z/A.app")
+                path: .generated("z/A.app"),
+                executableName: "A_ExecutableName"
             ),
             buildSettings: [
                 "T": .string("43"),
@@ -2067,6 +2068,7 @@ perl -pe 's/^([^"].*\$\(.*\).*)/"$1"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}
                 "CODE_SIGN_ENTITLEMENTS": "app.entitlements",
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "app",
+                "EXECUTABLE_NAME": "A_ExecutableName",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LINK_PARAMS_FILE": """
 $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
@@ -2131,7 +2133,9 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
 $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2$(TARGET_BUILD_SUBPATH)
 """,
                 "TARGET_NAME": targets["B 2"]!.name,
-                "TEST_HOST": "$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A",
+                "TEST_HOST": """
+$(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
+""",
             ]) { $1 },
             "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
