@@ -57,10 +57,8 @@ final class TargetMergingTests: XCTestCase {
                 dynamicFrameworks: targets["A 2"]!
                     .linkerInputs.dynamicFrameworks,
                 // Removed "A 1"'s product
-                staticLibraries: [
-                    .generated("a/c.a"),
-                    .project("a/imported.a"),
-                ]
+                staticLibraries: [.project("a/imported.a")],
+                forceLoad: [.generated("a/c.lo")]
             ),
             resourceBundleDependencies: targets["A 2"]!
                 .resourceBundleDependencies,

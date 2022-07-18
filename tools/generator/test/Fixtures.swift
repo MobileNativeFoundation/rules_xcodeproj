@@ -104,10 +104,10 @@ enum Fixtures {
             linkerInputs: .init(
                 dynamicFrameworks: ["a/Fram.framework"],
                 staticLibraries: [
-                    .generated("a/c.a"),
                     .generated("z/A.a"),
                     .project("a/imported.a"),
-                ]
+                ],
+                forceLoad: [.generated("a/c.lo")]
             ),
             resourceBundleDependencies: ["R 1"],
             dependencies: ["C 1", "A 1", "R 1"]
@@ -166,7 +166,7 @@ enum Fixtures {
             product: .init(
                 type: .staticLibrary,
                 name: "c",
-                path: .generated("a/c.a")
+                path: .generated("a/c.lo")
             ),
             modulemaps: [.generated("a/b/module.modulemap")],
             inputs: .init(
@@ -184,8 +184,8 @@ enum Fixtures {
             ),
             inputs: .init(srcs: ["a/b/d.m"]),
             linkerInputs: .init(
-                staticLibraries: [
-                    .generated("a/c.a"),
+                forceLoad: [
+                    .generated("a/c.lo"),
                 ]
             ),
             dependencies: ["C 1"]
@@ -1034,15 +1034,17 @@ $(GEN_DIR)/v/a.txt
 
         files[.internal("targets/a1b2c/A 2/A.link.params")] =
             .nonReferencedContent("""
-$(BUILD_DIR)/bazel-out/a/c.a
 $(BUILD_DIR)/bazel-out/z/A.a
 a/imported.a
+-force_load
+$(BUILD_DIR)/bazel-out/a/c.lo
 
 """)
 
         files[.internal("targets/a1b2c/C 2/d.link.params")] =
             .nonReferencedContent("""
-$(BUILD_DIR)/bazel-out/a/c.a
+-force_load
+$(BUILD_DIR)/bazel-out/a/c.lo
 
 """)
 
@@ -1056,7 +1058,7 @@ $(BUILD_DIR)/bazel-out/a/c.a
             .generated("a/b.framework"),
             .generated("B.xctest"),
             .generated("B3.xctest"),
-            .generated("a/c.a"),
+            .generated("a/c.lo"),
             .generated("d"),
             .generated("e1/E.a"),
             .generated("e2/E.a"),
@@ -1136,12 +1138,12 @@ $(BUILD_DIR)/bazel-out/a/c.a
             ),
             Products.ProductKeys(
                 targetKey: "C 1",
-                filePaths: [.generated("a/c.a")]
+                filePaths: [.generated("a/c.lo")]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
-                name: "c.a",
+                name: "c.lo",
                 explicitFileType: "compiled.mach-o.dylib",
-                path: "bazel-out/a/c.a",
+                path: "bazel-out/a/c.lo",
                 includeInIndex: false
             ),
             Products.ProductKeys(
@@ -1256,7 +1258,7 @@ $(BUILD_DIR)/bazel-out/a/c.a
                 products.byFilePath[.generated("a/b.framework")]!,
                 products.byFilePath[.generated("B.xctest")]!,
                 products.byFilePath[.generated("B3.xctest")]!,
-                products.byFilePath[.generated("a/c.a")]!,
+                products.byFilePath[.generated("a/c.lo")]!,
                 products.byFilePath[.generated("d")]!,
                 products.byFilePath[.generated("e1/E.a")]!,
                 products.byFilePath[.generated("e2/E.a")]!,
@@ -2052,7 +2054,6 @@ perl -pe 's/^([^"].*\$\(.*\).*)/"$1"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "BAZEL_TARGET_ID": "A 1",
-                "EXECUTABLE_EXTENSION": "a",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "SDKROOT": "macosx",
                 "PRODUCT_NAME": "a",
@@ -2067,7 +2068,6 @@ perl -pe 's/^([^"].*\$\(.*\).*)/"$1"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}
                 "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION": "YES",
                 "CODE_SIGN_ENTITLEMENTS": "app.entitlements",
                 "DEPLOYMENT_LOCATION": "NO",
-                "EXECUTABLE_EXTENSION": "app",
                 "EXECUTABLE_NAME": "A_ExecutableName",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LINK_PARAMS_FILE": """
@@ -2090,7 +2090,6 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "AC",
                 "DEPLOYMENT_LOCATION": "NO",
-                "EXECUTABLE_EXTENSION": "app",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
@@ -2106,7 +2105,6 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "BAZEL_TARGET_ID": "B 1",
-                "EXECUTABLE_EXTENSION": "framework",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
 -Xcc -fmodule-map-file=a/module.modulemap
@@ -2124,7 +2122,6 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BAZEL_TARGET_ID": "B 2",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "DEPLOYMENT_LOCATION": "NO",
-                "EXECUTABLE_EXTENSION": "xctest",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "PRODUCT_NAME": "B",
                 "SDKROOT": "macosx",
@@ -2144,7 +2141,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "BAZEL_TARGET_ID": "B 3",
                 "CODE_SIGNING_ALLOWED": "YES",
                 "DEPLOYMENT_LOCATION": "NO",
-                "EXECUTABLE_EXTENSION": "xctest",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "PRODUCT_NAME": "B3",
                 "SDKROOT": "macosx",
@@ -2156,7 +2152,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "BAZEL_TARGET_ID": "C 1",
-                "EXECUTABLE_EXTENSION": "a",
+                "EXECUTABLE_EXTENSION": "lo",
                 "GCC_PREFIX_HEADER": "a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": """
@@ -2188,7 +2184,6 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "ARCHS": "x86_64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
                 "BAZEL_TARGET_ID": "E1",
-                "EXECUTABLE_EXTENSION": "a",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "PRODUCT_NAME": "E1",
                 "SDKROOT": "watchos",
@@ -2199,7 +2194,6 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
                 "BAZEL_TARGET_ID": "E2",
-                "EXECUTABLE_EXTENSION": "a",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "PRODUCT_NAME": "E2",
                 "SDKROOT": "appletvos",
@@ -2212,7 +2206,6 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "I",
                 "DEPLOYMENT_LOCATION": "NO",
-                "EXECUTABLE_EXTENSION": "app",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
@@ -2228,7 +2221,6 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "ARCHS": "arm64",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "BAZEL_TARGET_ID": "R 1",
-                "EXECUTABLE_EXTENSION": "bundle",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "PRODUCT_NAME": "R 1",
                 "SDKROOT": "macosx",
@@ -2252,7 +2244,6 @@ bazel-out/a1b2c/bin/T 2
                 "EXCLUDED_SOURCE_FILE_NAMES": """
 $(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) $(MACOSX_FILES)
 """,
-                "EXECUTABLE_EXTENSION": "a",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "INCLUDED_SOURCE_FILE_NAMES": "",
                 "INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]": """
@@ -2286,7 +2277,6 @@ $(MACOSX_FILES)
                 "BAZEL_TARGET_ID": "W",
                 "BAZEL_HOST_TARGET_ID_0": "I",
                 "DEPLOYMENT_LOCATION": "NO",
-                "EXECUTABLE_EXTENSION": "app",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "PRODUCT_NAME": "W",
                 "SDKROOT": "watchos",
@@ -2300,7 +2290,6 @@ $(MACOSX_FILES)
                 "BAZEL_TARGET_ID": "WDKE",
                 "BAZEL_HOST_TARGET_ID_0": "I",
                 "DEPLOYMENT_LOCATION": "NO",
-                "EXECUTABLE_EXTENSION": "appex",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
@@ -2320,7 +2309,6 @@ $(MACOSX_FILES)
                 "BAZEL_TARGET_ID": "WKE",
                 "BAZEL_HOST_TARGET_ID_0": "W",
                 "DEPLOYMENT_LOCATION": "NO",
-                "EXECUTABLE_EXTENSION": "appex",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
