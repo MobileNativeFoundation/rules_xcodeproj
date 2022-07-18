@@ -56,13 +56,11 @@ def _target_info_fields(
         hosted_targets,
         inputs,
         non_mergable_targets,
-        non_target_compilation_providers,
         outputs,
         potential_target_merges,
         resource_bundle_informations,
         search_paths,
         target,
-        target_libraries,
         target_type,
         xcode_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
@@ -79,8 +77,6 @@ def _target_info_fields(
         inputs: Maps to the `XcodeProjInfo.inputs` field.
         non_mergable_targets: Maps to the `XcodeProjInfo.non_mergable_targets`
             field.
-        non_target_compilation_providers: Maps to the
-            `XcodeProjInfo.non_target_compilation_providers` field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
@@ -88,7 +84,6 @@ def _target_info_fields(
             `XcodeProjInfo.resource_bundle_informations` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target: Maps to the `XcodeProjInfo.target` field.
-        target_libraries: Maps to the `XcodeProjInfo.target_libraries` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
 
@@ -102,13 +97,11 @@ def _target_info_fields(
         *   `hosted_targets`
         *   `inputs`
         *   `non_mergable_targets`
-        *   `non_target_compilation_providers`
         *   `outputs`
         *   `potential_target_merges`
         *   `resource_bundle_informations`
         *   `search_paths`
         *   `target`
-        *   `target_libraries`
         *   `target_type`
         *   `xcode_targets`
     """
@@ -119,13 +112,11 @@ def _target_info_fields(
         "hosted_targets": hosted_targets,
         "inputs": inputs,
         "non_mergable_targets": non_mergable_targets,
-        "non_target_compilation_providers": non_target_compilation_providers,
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
         "resource_bundle_informations": resource_bundle_informations,
         "search_paths": search_paths,
         "target": target,
-        "target_libraries": target_libraries,
         "target_type": target_type,
         "xcode_targets": xcode_targets,
     }
@@ -182,12 +173,6 @@ def _skip_target(*, deps, transitive_infos):
                 for _, info in transitive_infos
             ],
         ),
-        non_target_compilation_providers = comp_providers.merge(
-            transitive_compilation_providers = [
-                (info.target, info.non_target_compilation_providers)
-                for _, info in transitive_infos
-            ],
-        ),
         outputs = output_files.merge(
             automatic_target_info = None,
             transitive_infos = transitive_infos,
@@ -214,12 +199,6 @@ def _skip_target(*, deps, transitive_infos):
             ),
         ),
         target = None,
-        target_libraries = depset(
-            transitive = [
-                info.target_libraries
-                for _, info in transitive_infos
-            ],
-        ),
         target_type = target_type.compile,
         xcode_targets = depset(
             transitive = [info.xcode_targets for _, info in transitive_infos],
@@ -280,21 +259,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
 
     compilation_providers = processed_target.compilation_providers
 
-    if processed_target.target:
-        non_target_compilation_providers = comp_providers.merge(
-            transitive_compilation_providers = [
-                (info.target, info.non_target_compilation_providers)
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        [None],
-                    ))
-            ],
-        )
-    else:
-        non_target_compilation_providers = compilation_providers
-
     return _target_info_fields(
         compilation_providers = compilation_providers,
         dependencies = processed_target.dependencies,
@@ -335,7 +299,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                     ))
             ],
         ),
-        non_target_compilation_providers = non_target_compilation_providers,
         outputs = processed_target.outputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,
@@ -363,18 +326,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         ),
         search_paths = processed_target.search_paths,
         target = processed_target.target,
-        target_libraries = depset(
-            [processed_target.library] if processed_target.library else None,
-            transitive = [
-                info.target_libraries
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        [None],
-                    ))
-            ],
-        ),
         target_type = processed_target.automatic_target_info.target_type,
         xcode_targets = depset(
             processed_target.xcode_targets,

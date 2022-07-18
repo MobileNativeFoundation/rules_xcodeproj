@@ -6,12 +6,10 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "uniq")
-load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
-load(":linker_input_files.bzl", "linker_input_files")
 load(
     ":output_files.bzl",
     "output_files",
@@ -349,36 +347,11 @@ def _xcodeproj_impl(ctx):
     )
 
     bazel_integration_files = [ctx.file._create_lldbinit_script]
-    if ctx.attr.build_mode == "xcode":
-        xcode_outputs = sets.make(
-            depset(
-                transitive = [info.target_libraries for info in infos],
-            ).to_list(),
-        )
-        non_xcode_outputs = sets.make(
-            linker_input_files.get_static_libraries(
-                linker_input_files.merge(
-                    compilation_providers = comp_providers.merge(
-                        transitive_compilation_providers = [
-                            (info.target, info.compilation_providers)
-                            for info in infos
-                        ],
-                    ),
-                ),
-            ),
-        )
-    else:
+    if ctx.attr.build_mode != "xcode":
         bazel_integration_files.extend(ctx.files._bazel_integration_files)
-        non_xcode_outputs = sets.make()
-        xcode_outputs = sets.make()
-
-    extra_generated = sets.to_list(
-        sets.difference(non_xcode_outputs, xcode_outputs),
-    )
 
     inputs = input_files.merge(
         transitive_infos = [(None, info) for info in infos],
-        extra_generated = extra_generated,
     )
 
     spec_file = _write_json_spec(
