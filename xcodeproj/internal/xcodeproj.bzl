@@ -29,7 +29,6 @@ def _write_json_spec(
         project_name,
         configuration,
         inputs,
-        force_bazel_dependencies,
         infos):
     resource_bundle_informations = depset(
         transitive = [info.resource_bundle_informations for info in infos],
@@ -123,7 +122,7 @@ def _write_json_spec(
         configuration = configuration,
         custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(extra_files),
-        force_bazel_dependencies = json.encode(force_bazel_dependencies),
+        force_bazel_dependencies = json.encode(inputs.has_generated_files),
         label = ctx.label,
         name = project_name,
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
@@ -387,7 +386,6 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         configuration = configuration,
         inputs = inputs,
-        force_bazel_dependencies = bool(extra_generated),
         infos = infos,
     )
     xccurrentversions_file = _write_xccurrentversions(
