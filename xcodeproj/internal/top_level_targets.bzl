@@ -295,8 +295,6 @@ def process_top_level_target(
 
     if apple_common.Objc in target:
         objc = target[apple_common.Objc]
-    elif apple_common.AppleExecutableBinary in target:
-        objc = target[apple_common.AppleExecutableBinary].objc
     else:
         objc = None
 
