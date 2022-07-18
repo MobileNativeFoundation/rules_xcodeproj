@@ -1,5 +1,5 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/arm64-apple-tvos.swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/Lib/Lib.swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/AppleTVOS.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift

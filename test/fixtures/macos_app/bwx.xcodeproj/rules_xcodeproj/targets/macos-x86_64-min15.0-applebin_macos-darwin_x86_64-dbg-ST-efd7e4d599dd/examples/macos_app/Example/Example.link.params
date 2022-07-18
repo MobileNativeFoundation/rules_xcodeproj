@@ -1,4 +1,4 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/iOSApp.swiftmodule/x86_64-apple-macos.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/iOSApp.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift

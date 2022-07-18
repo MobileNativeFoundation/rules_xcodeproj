@@ -1,5 +1,5 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53/bin/examples/multiplatform/Lib/Lib.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift

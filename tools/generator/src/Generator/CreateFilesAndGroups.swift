@@ -529,6 +529,18 @@ extension Generator {
 
         // Write target internal files
 
+        var xcodeGeneratedFiles: Set<FilePath> = []
+        switch buildMode {
+        case .xcode:
+            for (_, target) in targets {
+                if let filePath = target.outputs.swift?.module {
+                    xcodeGeneratedFiles.insert(filePath)
+                }
+            }
+        default:
+            break
+        }
+
         for target in targets.values {
             let linkFiles = try target.linkerInputs.staticLibraries
                 .map { filePath in
@@ -543,7 +555,10 @@ extension Generator {
             }
 
             let linkopts = try target
-                .allLinkerFlags(filePathResolver: filePathResolver)
+                .allLinkerFlags(
+                    xcodeGeneratedFiles: xcodeGeneratedFiles,
+                    filePathResolver: filePathResolver
+                )
                 .map { "\($0)\n" }
             if !linkopts.isEmpty {
                 files[try target.linkParamsFilePath()] =
@@ -573,18 +588,6 @@ extension Generator {
         // Xcode puts "Base" last after sorting
         knownRegions.remove("Base")
         pbxProj.rootObject!.knownRegions = knownRegions.sorted() + ["Base"]
-
-        var xcodeGeneratedFiles: Set<FilePath> = []
-        switch buildMode {
-        case .xcode:
-            for (_, target) in targets {
-                if let filePath = target.outputs.swift?.module {
-                    xcodeGeneratedFiles.insert(filePath)
-                }
-            }
-        default:
-            break
-        }
 
         return (files, rootElements, xcodeGeneratedFiles)
     }

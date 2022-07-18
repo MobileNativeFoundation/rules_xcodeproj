@@ -1,5 +1,5 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/arm64_32-apple-watchos.swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib/Lib.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/WatchOS.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift

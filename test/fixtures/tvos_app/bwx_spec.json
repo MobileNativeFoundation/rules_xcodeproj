@@ -89,7 +89,7 @@
             "label": "//examples/tvos_app/Example:Example",
             "linker_inputs": {
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -251,8 +251,8 @@
             "label": "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -421,7 +421,7 @@
             "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
-                    "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",

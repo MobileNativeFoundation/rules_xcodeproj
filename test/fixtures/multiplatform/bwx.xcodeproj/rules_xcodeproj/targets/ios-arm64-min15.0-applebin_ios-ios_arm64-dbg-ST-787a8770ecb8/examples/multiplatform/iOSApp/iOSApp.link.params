@@ -1,5 +1,5 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule/arm64-apple-ios.swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib/Lib.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift
