@@ -146,11 +146,34 @@ extension XCSchemeInfo {
 // MARK: XCSchemeInfo Extensions
 
 extension XCSchemeInfo {
+    var allPBXTargets: Set<PBXTarget> {
+        var pbxTargets = [PBXTarget]()
+        if let buildActionInfo = buildActionInfo {
+            pbxTargets += buildActionInfo.targetInfos.map(\.pbxTarget)
+        }
+        if let testActionInfo = testActionInfo {
+            pbxTargets += testActionInfo.targetInfos.map(\.pbxTarget)
+        }
+        if let launchActionInfo = launchActionInfo {
+            pbxTargets.append(launchActionInfo.targetInfo.pbxTarget)
+        }
+        if let profileActionInfo = profileActionInfo {
+            pbxTargets.append(profileActionInfo.targetInfo.pbxTarget)
+        }
+        return .init(pbxTargets)
+    }
+
     var wasCreatedForAppExtension: Bool {
         // TODO(chuck): Implement by looking at all of producTypes in the scheme. If any are
         // isExtension, then true.
         // wasCreatedForAppExtension: productType.isExtension ? true : nil
-        return false
+        // return false
+
+        // if allPBXTargets.compactMap(\.productType).first(where: { $0.isExtension }) != nil {
+        //     return true
+        // }
+        // return false
+        return allPBXTargets.compactMap(\.productType).anySatisfy(\.isExtension)
     }
 }
 

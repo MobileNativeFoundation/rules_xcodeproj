@@ -223,6 +223,7 @@
 		C3C078F384218F905E374FEF /* XCScheme+PathRunnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9993D3F386DFC594BC0967A /* XCScheme+PathRunnable.swift */; };
 		C41E28F5D880E1B3B3CE23A6 /* BazelLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4642D1BB48B4523F92FBC3 /* BazelLabel.swift */; };
 		C4A4BDEEBC4DEA94A9C38B98 /* XCScheme+ProfileAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01004934C429F4A4F09C0C85 /* XCScheme+ProfileAction.swift */; };
+		C6B83DFEF26FFDB32C0C6E8B /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AD35F571168F5E29716E4 /* Sequence+Extensions.swift */; };
 		C7FE7B26776F35CE278DA25A /* OrderedDictionary+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4142BB8EF88F4DD2D5440E4 /* OrderedDictionary+CustomStringConvertible.swift */; };
 		C963F445C29D4475EB4F7780 /* BazelLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E1D8F0FD9F2FEEC62C2B3 /* BazelLabelTests.swift */; };
 		CB02C36925CC30F4843D2DD1 /* OrderedDictionary+Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1FEAE6FD7E8D74F258FD4B /* OrderedDictionary+Initializers.swift */; };
@@ -508,6 +509,7 @@
 		48AE2420614CF62AD4A8AAB1 /* String+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
 		48F07848723835EC26C2340C /* XCScheme+EnvironmentVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+EnvironmentVariable.swift"; sourceTree = "<group>"; };
 		493423CD8285C46D06C4169D /* PathExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtensionsTests.swift; sourceTree = "<group>"; };
+		496AD35F571168F5E29716E4 /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
 		4A6A84F2CC6A006E28720D2B /* XCScheme+Runnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+Runnable.swift"; sourceTree = "<group>"; };
 		4E25F4B3B5010A82A8E2A0CF /* PBXProductType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXProductType+Extensions.swift"; sourceTree = "<group>"; };
 		4E71E5D5A3ED7BDF0B859C36 /* SearchPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPaths.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 				A959229FCAA86770A69AA789 /* PBXGroup+Extensions.swift */,
 				4E25F4B3B5010A82A8E2A0CF /* PBXProductType+Extensions.swift */,
 				1074DB099E4140E5585B14CC /* PBXTarget+Extensions.swift */,
+				496AD35F571168F5E29716E4 /* Sequence+Extensions.swift */,
 				88CFB36E6D7371DC64BD3D3D /* Sorting.swift */,
 				465DE36011B6355F1ECACA1B /* XcodeScheme+Extensions.swift */,
 				DEEA3E0B3F45EF982ED29E63 /* XCScheme+Extensions.swift */,
@@ -2055,6 +2058,7 @@
 				02F6B5BD578448C1BA862967 /* PBXProductType+Extensions.swift in Sources */,
 				4F8DF48775C66E1ECAC04A65 /* PBXTarget+Extensions.swift in Sources */,
 				DFBCDDB2887295EA74E15BD4 /* Path+Extensions.swift in Sources */,
+				C6B83DFEF26FFDB32C0C6E8B /* Sequence+Extensions.swift in Sources */,
 				09CD96D6AF22F8C98E115218 /* Sorting.swift in Sources */,
 				9F01C6F99091A6BE4B4FA5EF /* XCScheme+Extensions.swift in Sources */,
 				D8302EB5E3B8A7673E600686 /* XCSchemeEnvrionmentVariables+Extensions.swift in Sources */,
