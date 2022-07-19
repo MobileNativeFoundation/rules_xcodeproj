@@ -10,7 +10,8 @@ def _create(
         direct_outputs = None,
         automatic_target_info = None,
         transitive_infos,
-        should_produce_dto = False):
+        should_produce_dto,
+        should_produce_output_groups):
     """Creates the internal data structure of the `output_files` module.
 
     Args:
@@ -21,8 +22,12 @@ def _create(
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
-            collected values. This only be `True` if the generator can use
-            the output files (e.g. Build with Bazel, or Focused Projects).
+            collected values. This will only be `True` if the generator can use
+            the output files (e.g. not Build with Bazel via Proxy).
+        should_produce_output_groups: If `True`,
+            `outputs.to_output_groups_fields` will include output groups for
+            this target. This will only be `True` for modes that build primarily
+            with Bazel.
 
     Returns:
         A `struct` representing the internal data structure of the
@@ -83,7 +88,7 @@ def _create(
         ],
     )
 
-    if direct_outputs:
+    if should_produce_output_groups and direct_outputs:
         direct_group_list = [
             ("b {}".format(direct_outputs.id), transitive_build),
             ("i {}".format(direct_outputs.id), transitive_index),
@@ -207,7 +212,8 @@ def _collect(
         swift_info,
         id,
         transitive_infos,
-        should_produce_dto):
+        should_produce_dto,
+        should_produce_output_groups):
     """Collects the outputs of a target.
 
     Args:
@@ -220,8 +226,12 @@ def _collect(
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
-            collected values. This only be `True` if the generator can use
-            the output files (e.g. Build with Bazel, or Focused Projects).
+            collected values. This will only be `True` if the generator can use
+            the output files (e.g. not Build with Bazel via Proxy).
+        should_produce_output_groups: If `True`,
+            `outputs.to_output_groups_fields` will include output groups for
+            this target. This will only be `True` for modes that build primarily
+            with Bazel.
 
     Returns:
         An opaque `struct` that should be used with `output_files.to_dto` or
@@ -238,6 +248,7 @@ def _collect(
     return _create(
         direct_outputs = outputs,
         should_produce_dto = should_produce_dto,
+        should_produce_output_groups = should_produce_output_groups,
         transitive_infos = transitive_infos,
     )
 
@@ -258,6 +269,8 @@ def _merge(*, automatic_target_info, transitive_infos):
     return _create(
         transitive_infos = transitive_infos,
         automatic_target_info = automatic_target_info,
+        should_produce_dto = False,
+        should_produce_output_groups = False,
     )
 
 def _to_dto(outputs):
