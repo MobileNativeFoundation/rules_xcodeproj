@@ -38,7 +38,7 @@ An `XCSchemeInfo` should have at a `buildActionInfo`, a `testActionInfo`, or a `
     }
 }
 
-// MARK: BuildActionInfo
+// MARK: XCSchemeInfo.BuildActionInfo
 
 extension XCSchemeInfo {
     struct BuildActionInfo {
@@ -58,7 +58,7 @@ An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.TargetI
     }
 }
 
-// MARK: TestActionInfo
+// MARK: XCSchemeInfo.TestActionInfo
 
 extension XCSchemeInfo {
     struct TestActionInfo {
@@ -86,7 +86,7 @@ An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.Targ
     }
 }
 
-// MARK: LaunchActionInfo
+// MARK: XCSchemeInfo.LaunchActionInfo
 
 extension XCSchemeInfo {
     struct LaunchActionInfo {
@@ -117,7 +117,7 @@ extension XCSchemeInfo {
     }
 }
 
-// MARK: ProfileActionInfo
+// MARK: XCSchemeInfo.ProfileActionInfo
 
 extension XCSchemeInfo {
     struct ProfileActionInfo {
@@ -126,7 +126,7 @@ extension XCSchemeInfo {
     }
 }
 
-// MARK: AnalyzeActionInfo
+// MARK: XCSchemeInfo.AnalyzeActionInfo
 
 extension XCSchemeInfo {
     struct AnalyzeActionInfo {
@@ -134,7 +134,7 @@ extension XCSchemeInfo {
     }
 }
 
-// MARK: AnalyzeActionInfo
+// MARK: XCSchemeInfo.AnalyzeActionInfo
 
 extension XCSchemeInfo {
     struct ArchiveActionInfo {
@@ -153,7 +153,7 @@ extension XCSchemeInfo {
     }
 }
 
-// MARK: LaunchActionInfo Extensions
+// MARK: XCSchemeInfo.LaunchActionInfo Extensions
 
 extension XCSchemeInfo.LaunchActionInfo {
     var runnable: XCScheme.Runnable {
