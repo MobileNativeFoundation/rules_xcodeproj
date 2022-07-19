@@ -15,20 +15,24 @@ An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.TargetI
 """)
             }
         }
+    }
+}
 
-        /// Create a copy of the build action info with host in the target infos resolved
-        init?(
-            resolveHostsFor buildActionInfo: XCSchemeInfo.BuildActionInfo?,
-            topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
-        ) throws {
-            guard let original = buildActionInfo else {
-                return nil
-            }
-            try self.init(
-                targetInfos: original.targetInfos.map {
-                    .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
-                }
-            )
+// MARK: Host Resolution Initializer
+
+extension XCSchemeInfo.BuildActionInfo {
+    /// Create a copy of the build action info with host in the target infos resolved
+    init?(
+        resolveHostsFor buildActionInfo: XCSchemeInfo.BuildActionInfo?,
+        topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
+    ) throws {
+        guard let original = buildActionInfo else {
+            return nil
         }
+        try self.init(
+            targetInfos: original.targetInfos.map {
+                .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
+            }
+        )
     }
 }

@@ -24,21 +24,25 @@ An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.Targ
 """)
             }
         }
+    }
+}
 
-        /// Create a copy of the test action info with host in the target infos resolved
-        init?(
-            resolveHostsFor testActionInfo: XCSchemeInfo.TestActionInfo?,
-            topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
-        ) throws {
-            guard let original = testActionInfo else {
-              return nil
-            }
-            try self.init(
-                buildConfigurationName: original.buildConfigurationName,
-                targetInfos: original.targetInfos.map {
-                    .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
-                }
-            )
+// MARK: Host Resolution Initializer
+
+extension XCSchemeInfo.TestActionInfo {
+    /// Create a copy of the test action info with host in the target infos resolved
+    init?(
+        resolveHostsFor testActionInfo: XCSchemeInfo.TestActionInfo?,
+        topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
+    ) throws {
+        guard let original = testActionInfo else {
+          return nil
         }
+        try self.init(
+            buildConfigurationName: original.buildConfigurationName,
+            targetInfos: original.targetInfos.map {
+                .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
+            }
+        )
     }
 }
