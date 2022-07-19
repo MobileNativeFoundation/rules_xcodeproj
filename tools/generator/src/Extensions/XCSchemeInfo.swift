@@ -59,7 +59,7 @@ An `XCSchemeInfo` (\(name)) should have at least one of the following: `buildAct
     }
 }
 
-// MARK: XCSchemeInfo Extensions
+// MARK: allPBXTargets
 
 extension XCSchemeInfo {
     var allPBXTargets: Set<PBXTarget> {
@@ -78,7 +78,11 @@ extension XCSchemeInfo {
         }
         return .init(pbxTargets)
     }
+}
 
+// MARK: wasCreatedForAppExtension
+
+extension XCSchemeInfo {
     var wasCreatedForAppExtension: Bool {
         return allPBXTargets.compactMap(\.productType).anySatisfy(\.isExtension)
     }
