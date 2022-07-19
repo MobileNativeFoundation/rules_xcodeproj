@@ -48,6 +48,13 @@ extension XCScheme {
             launchAction = nil
         }
 
+        let profileAction: XCScheme.ProfileAction?
+        if let profileActionInfo = schemeInfo.profileActionInfo {
+            profileAction = .init(profileActionInfo: profileActionInfo)
+        } else {
+            profileAction = nil
+        }
+
         self.init(
             name: schemeInfo.name,
             lastUpgradeVersion: XCSchemeConstants.defaultLastUpgradeVersion,
@@ -55,10 +62,9 @@ extension XCScheme {
             buildAction: buildAction,
             testAction: testAction,
             launchAction: launchAction,
-            // TODO: IMPLEMENT ME!
-            // profileAction: profileAction,
-            // analyzeAction: analyzeAction,
-            // archiveAction: archiveAction,
+            profileAction: profileAction,
+            analyzeAction: .init(analyzeActionInfo: schemeInfo.analyzeActionInfo),
+            archiveAction: .init(archiveActionInfo: schemeInfo.archiveActionInfo),
             wasCreatedForAppExtension: schemeInfo.wasCreatedForAppExtension ? true : nil
         )
     }
@@ -170,6 +176,36 @@ extension XCScheme.LaunchAction {
                 productType.bazelLaunchEnvironmentVariables : nil,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
             customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
+        )
+    }
+}
+
+// MARK: XCScheme.ProfileAction
+
+extension XCScheme.ProfileAction {
+    convenience init(profileActionInfo: XCSchemeInfo.ProfileActionInfo) {
+        self.init(
+            buildableProductRunnable: profileActionInfo.runnable,
+            buildConfiguration: profileActionInfo.buildConfigurationName
+        )
+    }
+}
+
+// MARK: XCScheme.AnalyzeAction
+
+extension XCScheme.AnalyzeAction {
+    convenience init(analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo) {
+        self.init(buildConfiguration: analyzeActionInfo.buildConfigurationName)
+    }
+}
+
+// MARK: XCScheme.ArchiveAction
+
+extension XCScheme.ArchiveAction {
+    convenience init(archiveActionInfo: XCSchemeInfo.ArchiveActionInfo) {
+        self.init(
+            buildConfiguration: archiveActionInfo.buildConfigurationName,
+            revealArchiveInOrganizer: true
         )
     }
 }

@@ -66,8 +66,10 @@ extension XCSchemeInfo {
         let targetInfos: [XCSchemeInfo.TargetInfo]
 
         init<TargetInfos: Sequence>(
+            buildConfigurationName: String,
             targetInfos: TargetInfos
         ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
+            self.buildConfigurationName = buildConfigurationName
             self.targetInfos = Array(targetInfos)
 
             guard !self.targetInfos.isEmpty else {
@@ -199,5 +201,11 @@ extension XCSchemeInfo.LaunchActionInfo {
             return XCScheme.defaultDebugger
         }
         return ""
+    }
+}
+
+extension XCSchemeInfo.ProfileActionInfo {
+    var runnable: XCScheme.BuildableProductRunnable {
+        return .init(buildableReference: targetInfo.buildableReference)
     }
 }
