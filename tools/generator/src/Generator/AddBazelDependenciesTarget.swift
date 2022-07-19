@@ -109,7 +109,7 @@ env -i \
         }
         if hasGeneratedFiles {
             let generatedFileList = try filePathResolver
-                .resolve(.internal(copiedGeneratedFileListPath))
+                .resolve(.internal(generatedFileListPath))
                 .string
             outputFileListPaths.append(generatedFileList)
         }
@@ -143,10 +143,6 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
                 targets: targets,
                 filePathResolver: filePathResolver
             ),
-            try createGeneratedFileDirectoriesCommand(
-                hasGeneratedFiles: hasGeneratedFiles,
-                filePathResolver: filePathResolver
-            ),
             bazelBuildCommand(
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
                 xcodeprojBazelTargetName: xcodeprojBazelTargetName,
@@ -156,9 +152,6 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
                 generatedInputsFileList: generatedInputsFileList,
                 hasGeneratedFiles: hasGeneratedFiles,
                 filePathResolver: filePathResolver
-            ),
-            try copyFilesCommand(
-                generatedInputsFileList: generatedInputsFileList
             ),
         ].compactMap { $0 }.joined(separator: "\n")
 
@@ -289,7 +282,7 @@ if [ "$ACTION" != "indexbuild" ]; then
   rm -rf gen_dir
 
   ln -sf "$external" external
-  ln -sf "$BUILD_DIR/bazel-out" gen_dir
+  ln -sf "$BAZEL_OUT" gen_dir
 fi
 
 \#(overlay)\#
@@ -370,36 +363,6 @@ done
 """#
     }
 
-    private static func createGeneratedFileDirectoriesCommand(
-        hasGeneratedFiles: Bool,
-        filePathResolver: FilePathResolver
-    ) throws -> String? {
-        guard hasGeneratedFiles else {
-            return nil
-        }
-
-        return #"""
-# Create parent directories of generated files, so the project navigator works
-# better faster
-
-mkdir -p bazel-out
-cd bazel-out
-
-sed 's|^\$(GEN_DIR)\/\(.*\)\/[^\/]*$|\1|' \
-  "\#(
-  try filePathResolver
-      .resolve(.internal(copiedGeneratedFileListPath), mode: .script)
-      .string
-)" \
-  | uniq \
-  | while IFS= read -r dir
-do
-  mkdir -p "$dir"
-done
-
-"""#
-    }
-
     private static func checkGeneratedFilesCommand(
         generatedInputsFileList: String,
         hasGeneratedFiles: Bool,
@@ -409,12 +372,12 @@ done
             return nil
         }
 
-        let copiedGeneratedFileList = try filePathResolver
-            .resolve(.internal(copiedGeneratedFileListPath), mode: .script)
+        let generatedFileList = try filePathResolver
+            .resolve(.internal(generatedFileListPath), mode: .script)
 
         return #"""
 
-diff=$(comm -23 <(sed -e 's|^$(GEN_DIR)|bazel-out|' "\#(copiedGeneratedFileList)" | sort) <(sort "\#(generatedInputsFileList)"))
+diff=$(comm -23 <(sed -e 's|^$(GEN_DIR)|bazel-out|' "\#(generatedFileList)" | sort) <(sort "\#(generatedInputsFileList)"))
 if ! [ -z "$diff" ]; then
   echo "error: The files that Bazel generated don't match what the project \#
 expects. Please regenerate the project." >&2
@@ -425,32 +388,6 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \#
 >&2
   exit 1
 fi
-
-"""#
-    }
-
-    private static func copyFilesCommand(
-        generatedInputsFileList: String
-    ) throws -> String {
-        return #"""
-cd "$BAZEL_OUT"
-
-echo
-echo "Copying generated files"
-
-# Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
-# builds, but is different for Index Builds. `PBXBuildFile`s will use the
-# "$GEN_DIR" version, so indexing might get messed up until they are normally
-# generated. It's the best we can do though as we need to use the `gen_dir`
-# symlink, because Index Build can't modify the normal build's "$BUILD_DIR".
-rsync \
-  --files-from <(sed -e 's|^bazel-out/||' "\#(generatedInputsFileList)") \
-  --copy-links \
-  --update \
-  --chmod=u+w \
-  --out-format="%n%L" \
-  . \
-  "$BUILD_DIR/bazel-out"
 
 """#
     }

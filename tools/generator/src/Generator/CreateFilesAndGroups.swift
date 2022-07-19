@@ -38,7 +38,7 @@ extension Generator {
     static let compileStubPath: Path = "CompileStub.m"
     static let externalFileListPath: Path = "external.xcfilelist"
     static let appRsyncExcludeFileListPath: Path = "app.exclude.rsynclist"
-    static let copiedGeneratedFileListPath: Path = "generated.copied.xcfilelist"
+    static let generatedFileListPath: Path = "generated.xcfilelist"
 
     private static let localizedGroupExtensions: Set<String> = [
         "intentdefinition",
@@ -464,8 +464,8 @@ extension Generator {
         let generatedFilePaths = fileListFileFilePaths
             .filter { $0.type == .generated && !$0.isFolder } + nonIncludedFiles
 
-        let copiedGeneratedPaths = try generatedFilePaths.map { filePath in
-            // We need to use `$(GEN_DIR)` instead of `$(BUILD_DIR)` here to
+        let generatedPaths = try generatedFilePaths.map { filePath in
+            // We need to use `$(GEN_DIR)` instead of `$(BAZEL_OUT)` here to
             // match the project navigator. This is only needed for files
             // referenced by `PBXBuildFile` or have specific build settings.
             return try filePathResolver.resolve(filePath, useGenDir: true)
@@ -500,7 +500,7 @@ extension Generator {
         }
 
         addXCFileList(externalFileListPath, paths: externalPaths)
-        addXCFileList(copiedGeneratedFileListPath, paths: copiedGeneratedPaths)
+        addXCFileList(generatedFileListPath, paths: generatedPaths)
 
         // Write target internal files
 

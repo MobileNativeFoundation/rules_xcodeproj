@@ -10,7 +10,6 @@ brew install github-markdown-toc
 gh-md-toc --hide-header --hide-footer --start-depth=1
 -->
 * [My Xcode project seems to be of of sync with my Bazel project\. What should I do?](#my-xcode-project-seems-to-be-of-of-sync-with-my-bazel-project-what-should-i-do)
-* [When I open my Xcode project, the Bazel Generated Files folder in the project navigator is red\. How do I fix this?](#when-i-open-my-xcode-project-the-bazel-generated-files-folder-in-the-project-navigator-is-red-how-do-i-fix-this)
 * [When I build I get warnings like "Stale file 'PROJECT\.xcodeproj/rules\_xcodeproj/gen\_dir/\.\.\.' is located outside of the allowed root paths"\. How do I fix this?](#when-i-build-i-get-warnings-like-stale-file-projectxcodeprojrules_xcodeprojgen_dir-is-located-outside-of-the-allowed-root-paths-how-do-i-fix-this)
 * [Why aren't Info\.plist details shown when Building with Bazel?](#why-arent-infoplist-details-shown-when-building-with-bazel)
 * [Why do I get an error like "Provisioning profile "PROFILE\_NAME" is Xcode managed, but signing settings require a manually managed profile\. (in target 'TARGET' from project 'PROJECT')"?](#why-do-i-get-an-error-like-provisioning-profile-profile_name-is-xcode-managed-but-signing-settings-require-a-manually-managed-profile-in-target-target-from-project-project)
@@ -32,13 +31,6 @@ synchronize these file:
 
 All targets that depend on generates files depend on the `Bazel Generated Files`
 target, so building any of those targets will also synchronize Xcode.
-
-## When I open my Xcode project, the `Bazel Generated Files` group in the Project navigator is red. How do I fix this?
-
-If Xcode shows Project navigator items in red, it usually means that they are
-not present. You merely need to synchronize the files with your Bazel project by
-following
-[these steps](#my-xcode-project-seems-to-be-of-of-sync-with-my-bazel-project-what-should-i-do).
 
 ## When I build I get warnings like "Stale file 'PROJECT.xcodeproj/rules_xcodeproj/gen_dir/...' is located outside of the allowed root paths". How do I fix this?
 
