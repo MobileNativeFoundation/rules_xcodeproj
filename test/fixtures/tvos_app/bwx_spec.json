@@ -16,7 +16,7 @@
         "examples/tvos_app/Example/BUILD",
         "examples/tvos_app/Example/Info.plist",
         {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/rules_xcodeproj/Example/Info.plist",
             "t": "g"
         },
         "examples/tvos_app/ExampleTests/BUILD",
@@ -25,12 +25,12 @@
             "t": "e"
         },
         {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
         "examples/tvos_app/ExampleUITests/BUILD",
         {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
         "test/fixtures/tvos_app/BUILD"
@@ -75,7 +75,7 @@
             ],
             "extensions": [],
             "info_plist": {
-                "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/Example-intermediates/Info.plist",
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/Example/rules_xcodeproj/Example/Info.plist",
                 "t": "g"
             },
             "inputs": {
@@ -243,7 +243,7 @@
             ],
             "extensions": [],
             "info_plist": {
-                "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.plist",
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist",
                 "t": "g"
             },
             "inputs": {},
@@ -414,7 +414,7 @@
             ],
             "extensions": [],
             "info_plist": {
-                "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.plist",
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-9b53edbb74de/bin/examples/tvos_app/ExampleUITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist",
                 "t": "g"
             },
             "inputs": {},

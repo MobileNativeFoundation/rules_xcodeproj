@@ -12,7 +12,6 @@
 			buildConfigurationList = 914277EC9F57B808A8817CF5 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				9A630CF63C380FAE522825A9 /* Bazel Build */,
-				FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */,
 			);
 			dependencies = (
 			);
@@ -72,17 +71,17 @@
 
 /* Begin PBXFileReference section */
 		1AD4E21BF05EA13F3C0E032B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		342B0D5AD074F05B17DBB52D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		39004B79217BED4A67CB9A93 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		42355FA46D7FE62183AD94CC /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		44C19A56FE797949930D145D /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D13467AC1061414CAD92AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		55E73B21A31B0275825B773B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		69D967A6F8860DAD31BCC192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		75AFCD0AE3F74ABC41475218 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
+		810AB5DECB02416FDA2F2629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8A36CA287ABB5359FEC0F830 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		9F9EB7321D15C34449277D22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA8B40F3394AF193E0043C9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		AD6FBABBE0C0A9D915CBF85B /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C5CDFF6B10E886B5B84EAB27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D227CE711F51FF221F83B7EA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E8EC5800B28DC7A5B63624 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		DB017F09DAA174C86C32DE47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -93,10 +92,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0F2842BD74F8DC92175EFC51 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				FAAF99E886FD8BDD4B1CD5B7 /* Example */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		18A2671BDD1F831FA7A9DAC3 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				DEB736E24C4BCE7BC891ED08 /* Example-intermediates */,
+				0F2842BD74F8DC92175EFC51 /* rules_xcodeproj */,
 				42355FA46D7FE62183AD94CC /* app.entitlements */,
 			);
 			path = Example;
@@ -105,7 +112,7 @@
 		1AF77EBA645BD542D4AB6B58 /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1F09FD24C340E2C5B10D9EAF /* ExampleUITests.__internal__.__test_bundle-intermediates */,
+				3037E02FB7232E4472BD13A2 /* rules_xcodeproj */,
 			);
 			path = ExampleUITests;
 			sourceTree = "<group>";
@@ -113,17 +120,9 @@
 		1C0B4B971F6615F97899D802 /* ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				CDA0B7709EB3A12D93F34F79 /* ExampleTests.__internal__.__test_bundle-intermediates */,
+				D2AC77B70DEE889999AC8897 /* rules_xcodeproj */,
 			);
 			path = ExampleTests;
-			sourceTree = "<group>";
-		};
-		1F09FD24C340E2C5B10D9EAF /* ExampleUITests.__internal__.__test_bundle-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				342B0D5AD074F05B17DBB52D /* Info.plist */,
-			);
-			path = "ExampleUITests.__internal__.__test_bundle-intermediates";
 			sourceTree = "<group>";
 		};
 		1F75B84D472E4F903E58A310 /* apple */ = {
@@ -140,6 +139,30 @@
 				8A867FE024EF721BBDC46736 /* tvos_app */,
 			);
 			path = fixtures;
+			sourceTree = "<group>";
+		};
+		3037E02FB7232E4472BD13A2 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				503C5989973F3E551C409AC1 /* ExampleUITests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		3973889832AC5B3F3332579C /* ExampleTests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				69D967A6F8860DAD31BCC192 /* Info.plist */,
+			);
+			path = ExampleTests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
+		503C5989973F3E551C409AC1 /* ExampleUITests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				9F9EB7321D15C34449277D22 /* Info.plist */,
+			);
+			path = ExampleUITests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		593E7C82FAAD94A7E6A04318 /* Products */ = {
@@ -237,14 +260,6 @@
 			path = test/fixtures/tvos_app/bwb.xcodeproj/rules_xcodeproj/links/gen_dir;
 			sourceTree = "<group>";
 		};
-		CDA0B7709EB3A12D93F34F79 /* ExampleTests.__internal__.__test_bundle-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				C5CDFF6B10E886B5B84EAB27 /* Info.plist */,
-			);
-			path = "ExampleTests.__internal__.__test_bundle-intermediates";
-			sourceTree = "<group>";
-		};
 		D182AF8E059C5832405A845F /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,12 +269,12 @@
 			path = test/fixtures/tvos_app/bwb.xcodeproj/rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		DEB736E24C4BCE7BC891ED08 /* Example-intermediates */ = {
+		D2AC77B70DEE889999AC8897 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				55E73B21A31B0275825B773B /* Info.plist */,
+				3973889832AC5B3F3332579C /* ExampleTests.__internal__.__test_bundle */,
 			);
-			path = "Example-intermediates";
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		DEDBB9862662A833DD5D663E /* build_bazel_rules_apple */ = {
@@ -309,6 +324,14 @@
 				FDA55ACFB5B1D49CCD1FE8A8 /* bin */,
 			);
 			path = "applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1";
+			sourceTree = "<group>";
+		};
+		FAAF99E886FD8BDD4B1CD5B7 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				810AB5DECB02416FDA2F2629 /* Info.plist */,
+			);
+			path = Example;
 			sourceTree = "<group>";
 		};
 		FDA55ACFB5B1D49CCD1FE8A8 /* bin */ = {
@@ -564,27 +587,6 @@
 			shellScript = "perl -pe 's/^([^\"].*\\$\\(.*\\).*)/\"$1\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(INTERNAL_DIR)/infoplists.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Fix Info.plists";
-			outputFileListPaths = (
-				"$(INTERNAL_DIR)/infoplists.fixed.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -670,7 +672,7 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/examples/tvos_app/ExampleUITests/ExampleUITests.__internal__.__test_bundle.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
@@ -763,7 +765,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/rules_xcodeproj/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -806,7 +808,7 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/examples/tvos_app/ExampleTests/ExampleTests.__internal__.__test_bundle.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
