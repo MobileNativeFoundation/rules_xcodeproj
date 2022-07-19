@@ -181,7 +181,7 @@ extension XCSchemeInfo.LaunchActionInfo {
     var macroExpansion: XCScheme.BuildableReference? {
         // TODO(chuck): Update the host selection code.
         if let hostBuildableReference = targetInfo.hostInfos.first?.buildableReference,
-            targetInfo.productType.isWatchApplication
+            !targetInfo.productType.isWatchApplication
         {
             return hostBuildableReference
         } else if targetInfo.pbxTarget.isTestable {
