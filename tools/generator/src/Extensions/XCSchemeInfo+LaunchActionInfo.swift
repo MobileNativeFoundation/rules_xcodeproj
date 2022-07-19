@@ -26,30 +26,34 @@ extension XCSchemeInfo {
             self.env = env
             self.workingDirectory = workingDirectory
         }
-
-        /// Create a copy of the launch action info with host in the target info resolved.
-        init?(
-            resolveHostsFor launchActionInfo: XCSchemeInfo.LaunchActionInfo?,
-            topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
-        ) throws {
-            guard let original = launchActionInfo else {
-              return nil
-            }
-            try self.init(
-                buildConfigurationName: original.buildConfigurationName,
-                targetInfo: .init(
-                    resolveHostFor: original.targetInfo,
-                    topLevelTargetInfos: topLevelTargetInfos
-                ),
-                args: original.args,
-                env: original.env,
-                workingDirectory: original.workingDirectory
-            )
-        }
     }
 }
 
-// MARK: XCSchemeInfo.LaunchActionInfo Extensions
+// MARK: Host Resolution Initializer
+
+extension XCSchemeInfo.LaunchActionInfo {
+    /// Create a copy of the launch action info with host in the target info resolved.
+    init?(
+        resolveHostsFor launchActionInfo: XCSchemeInfo.LaunchActionInfo?,
+        topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
+    ) throws {
+        guard let original = launchActionInfo else {
+          return nil
+        }
+        try self.init(
+            buildConfigurationName: original.buildConfigurationName,
+            targetInfo: .init(
+                resolveHostFor: original.targetInfo,
+                topLevelTargetInfos: topLevelTargetInfos
+            ),
+            args: original.args,
+            env: original.env,
+            workingDirectory: original.workingDirectory
+        )
+    }
+}
+
+// MARK: runnable
 
 extension XCSchemeInfo.LaunchActionInfo {
     var runnable: XCScheme.Runnable {
@@ -68,14 +72,21 @@ extension XCSchemeInfo.LaunchActionInfo {
             )
         }
     }
+}
 
+// MARK: askForAppToLaunch
+
+extension XCSchemeInfo.LaunchActionInfo {
     var askForAppToLaunch: Bool {
         return targetInfo.isWidgetKitExtension
     }
+}
 
+// MARK: macroExpansion
+
+extension XCSchemeInfo.LaunchActionInfo {
     var macroExpansion: XCScheme.BuildableReference? {
-        // TODO(chuck): Update the host selection code.
-        if let hostBuildableReference = targetInfo.hostInfos.first?.buildableReference,
+        if let hostBuildableReference = targetInfo.selectedHostInfo?.buildableReference,
             !targetInfo.productType.isWatchApplication
         {
             return hostBuildableReference
@@ -84,14 +95,22 @@ extension XCSchemeInfo.LaunchActionInfo {
         }
         return nil
     }
+}
 
+// MARK: launcher
+
+extension XCSchemeInfo.LaunchActionInfo {
     var launcher: String {
         if targetInfo.productType.canUseDebugLauncher {
             return XCScheme.defaultLauncher
         }
         return "Xcode.IDEFoundation.Launcher.PosixSpawn"
     }
+}
 
+// MARK: debugger
+
+extension XCSchemeInfo.LaunchActionInfo {
     var debugger: String {
         if targetInfo.productType.canUseDebugLauncher {
             return XCScheme.defaultDebugger
