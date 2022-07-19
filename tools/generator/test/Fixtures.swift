@@ -73,7 +73,7 @@ enum Fixtures {
                 swift: .init(
                     module: .generated("x/y.swiftmodule"),
                     doc: .generated("x/y.swiftdoc"),
-                    sourceInfo: .generated("x/y.sourceinfo")
+                    sourceInfo: .generated("x/y.swiftsourceinfo")
                 )
             )
         ),

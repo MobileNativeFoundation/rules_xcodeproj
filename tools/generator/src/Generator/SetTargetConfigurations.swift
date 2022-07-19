@@ -322,30 +322,6 @@ $(CONFIGURATION_BUILD_DIR)
             buildSettings.set("SWIFT_INCLUDE_PATHS", to: includePaths)
         }
 
-        if let swiftOutputs = target.outputs.swift,
-           buildMode.usesBazelModeBuildScripts
-        {
-            let swiftmoduleOutputPaths = try swiftOutputs.paths(
-                filePathResolver: filePathResolver
-            )
-            if !swiftmoduleOutputPaths.isEmpty {
-                buildSettings.set(
-                    "BAZEL_OUTPUTS_SWIFTMODULE",
-                    to: swiftmoduleOutputPaths.joined(separator: "\n")
-                )
-            }
-
-            if let generatedHeader = swiftOutputs.generatedHeader {
-                buildSettings.set(
-                    "BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER",
-                    to: try filePathResolver.resolve(
-                        generatedHeader,
-                        useOriginalGeneratedFiles: true
-                    )
-                )
-            }
-        }
-
         if let productOutput = target.outputs.product,
            buildMode.usesBazelModeBuildScripts
         {

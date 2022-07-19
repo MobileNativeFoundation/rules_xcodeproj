@@ -59,35 +59,7 @@ else
   fi
 fi
 
-mkdir -p "$OBJECT_FILE_DIR-normal/$ARCHS"
-
-# Copy swiftmodule
-if [[ -n ${BAZEL_OUTPUTS_SWIFTMODULE:-} ]]; then
-  SAVEIFS=$IFS; IFS=$'\n'
-  # shellcheck disable=2206 # `read` doesn't work correctly for this case
-  swiftmodule=($BAZEL_OUTPUTS_SWIFTMODULE)
-  IFS=$SAVEIFS
-
-  log="$(mktemp)"
-  rsync \
-    "${swiftmodule[@]}" \
-    --copy-links \
-    --times \
-    --chmod=u+w \
-    --out-format="%n%L" \
-    "$OBJECT_FILE_DIR-normal/$ARCHS" \
-    | tee -i "$log"
-  if [[ -s "$log" ]]; then
-    touch "$DERIVED_FILE_DIR/$forced_swift_compile_file"
-  fi
-fi
-
-# Copy swift generated header
-if [[ -n ${BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER:-} ]]; then
-  header="$OBJECT_FILE_DIR-normal/$ARCHS/$SWIFT_OBJC_INTERFACE_HEADER_NAME"
-  mkdir -p "${header%/*}"
-  cp \
-    "$BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER" \
-    "$header"
-  chmod u+w "$header"
-fi
+# TODO: https://github.com/buildbuddy-io/rules_xcodeproj/issues/402
+# Copy diagnostics, and on a change
+# `touch "$DERIVED_FILE_DIR/$forced_swift_compile_file"`
+# See git blame for this comment for an example

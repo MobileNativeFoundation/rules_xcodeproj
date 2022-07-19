@@ -434,7 +434,6 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68/bin/examples/macos_app/Example/Example.zip";
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68/bin/examples/macos_app/Example/iOSApp.swiftmodule\n$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68/bin/examples/macos_app/Example/iOSApp.swiftdoc\n$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68/bin/examples/macos_app/Example/iOSApp.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68/bin/examples/macos_app/Example";
 				BAZEL_TARGET_ID = "//examples/macos_app/Example:Example applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
