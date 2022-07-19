@@ -180,15 +180,9 @@ def _collect(
             # assigning to the existing variable
             pch.append(file)
         elif attr in automatic_target_info.infoplists:
-            if file.is_source:
-                # We don't need to include a generated one, as we already use
-                # the Bazel generated one, which is one step further generated
-                extra_files.append(file_path(file))
+            extra_files.append(file_path(file))
         elif attr in automatic_target_info.launchdplists:
-            if file.is_source:
-                # We don't need to include a generated one, as we already use
-                # the Bazel generated one, which is one step further generated
-                extra_files.append(file_path(file))
+            extra_files.append(file_path(file))
         elif attr == automatic_target_info.entitlements:
             # We use `append` instead of setting a single value because
             # assigning to `entitlements` creates a new local variable instead
