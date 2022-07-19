@@ -3,7 +3,7 @@
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:collections.bzl", "collections")
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load(":collections.bzl", "flatten", "set_if_true")
+load(":collections.bzl", "flatten", "set_if_true", "uniq")
 load(":files.bzl", "file_path", "file_path_to_dto")
 
 # linker flags that we don't want to propagate to Xcode.
@@ -92,11 +92,11 @@ def _extract_top_level_values(
             avoid_static_framework_files = sets.make(
                 avoid_objc.static_framework_file.to_list(),
             )
-            avoid_libraries = sets.make(
-                avoid_objc.library.to_list(),
-            )
-            avoid_imported_libraries = sets.make(
-                avoid_objc.imported_library.to_list(),
+            avoid_static_libraries = sets.make(
+                depset(transitive = [
+                    avoid_objc.library,
+                    avoid_objc.imported_library,
+                ]).to_list(),
             )
             avoid_force_load_libraries = sets.make(
                 avoid_objc.force_load_library.to_list(),
@@ -104,8 +104,7 @@ def _extract_top_level_values(
         else:
             avoid_dynamic_framework_files = sets.make()
             avoid_static_framework_files = sets.make()
-            avoid_libraries = sets.make()
-            avoid_imported_libraries = sets.make()
+            avoid_static_libraries = sets.make()
             avoid_force_load_libraries = sets.make()
 
         dynamic_frameworks = [
@@ -120,15 +119,16 @@ def _extract_top_level_values(
             if (file.is_source and
                 not sets.contains(avoid_static_framework_files, file))
         ]
-        libraries = [
+        static_libraries = [
             file
-            for file in objc.library.to_list()
-            if not sets.contains(avoid_libraries, file)
-        ]
-        imported_libraries = [
-            file
-            for file in objc.imported_library.to_list()
-            if not sets.contains(avoid_imported_libraries, file)
+            for file in depset(
+                transitive = [
+                    objc.library,
+                    objc.imported_library,
+                ],
+                order = "topological",
+            ).to_list()
+            if not sets.contains(avoid_static_libraries, file)
         ]
         force_load_libraries = [
             file
@@ -168,11 +168,10 @@ def _extract_top_level_values(
             avoid_libraries = sets.make()
 
         dynamic_frameworks = []
-        imported_libraries = []
         static_frameworks = []
 
         force_load_libraries = []
-        libraries = []
+        static_libraries = []
         raw_linkopts = []
         user_linkopts = []
         for input in cc_info.linking_context.linker_inputs.to_list():
@@ -183,7 +182,11 @@ def _extract_top_level_values(
                 if library.alwayslink:
                     force_load_libraries.append(library.static_library)
                 else:
-                    libraries.append(library.static_library)
+                    static_libraries.append(library.static_library)
+
+        # Dedup libraries
+        force_load_libraries = uniq(force_load_libraries)
+        static_libraries = uniq(static_libraries)
     else:
         return None
 
@@ -219,10 +222,9 @@ def _extract_top_level_values(
     return struct(
         dynamic_frameworks = dynamic_frameworks,
         force_load_libraries = force_load_libraries,
-        imported_libraries = imported_libraries,
-        libraries = libraries,
         linkopts = linkopts,
         static_frameworks = static_frameworks,
+        static_libraries = static_libraries,
     )
 
 def _get_static_libraries(linker_inputs):
@@ -237,7 +239,7 @@ def _get_static_libraries(linker_inputs):
     top_level_values = linker_inputs._top_level_values
     if not top_level_values:
         fail("Xcode target requires `ObjcProvider` or `CcInfo`")
-    return top_level_values.libraries
+    return top_level_values.static_libraries
 
 def _process_cc_linkopts(linkopts):
     ret = []
@@ -340,9 +342,7 @@ def _to_dto(linker_inputs):
         "static_libraries",
         [
             file_path_to_dto(file_path(file))
-            for file in (
-                top_level_values.libraries + top_level_values.imported_libraries
-            )
+            for file in top_level_values.static_libraries
         ],
     )
     set_if_true(
