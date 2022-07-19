@@ -98,14 +98,22 @@ def _extract_top_level_values(
                     avoid_objc.imported_library,
                 ]).to_list(),
             )
-            avoid_force_load_libraries = sets.make(
-                avoid_objc.force_load_library.to_list(),
-            )
         else:
             avoid_dynamic_framework_files = sets.make()
             avoid_static_framework_files = sets.make()
             avoid_static_libraries = sets.make()
-            avoid_force_load_libraries = sets.make()
+
+        force_load_libraries = [
+            file
+            for file in objc.force_load_library.to_list()
+            if not sets.contains(avoid_static_libraries, file)
+        ]
+
+        # We don't want to include force loaded libraries in `static_libraries`
+        avoid_static_libraries = sets.union(
+            avoid_static_libraries,
+            sets.make(force_load_libraries),
+        )
 
         dynamic_frameworks = [
             file
@@ -129,11 +137,6 @@ def _extract_top_level_values(
                 order = "topological",
             ).to_list()
             if not sets.contains(avoid_static_libraries, file)
-        ]
-        force_load_libraries = [
-            file
-            for file in objc.force_load_library.to_list()
-            if not sets.contains(avoid_force_load_libraries, file)
         ]
 
         user_linkopts = []
@@ -239,7 +242,8 @@ def _get_static_libraries(linker_inputs):
     top_level_values = linker_inputs._top_level_values
     if not top_level_values:
         fail("Xcode target requires `ObjcProvider` or `CcInfo`")
-    return top_level_values.static_libraries
+    return (top_level_values.static_libraries +
+            top_level_values.force_load_libraries)
 
 def _process_cc_linkopts(linkopts):
     ret = []
