@@ -2985,7 +2985,6 @@
 				BAZEL_TARGET_ID = "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "$(GEN_DIR)/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
 				CODE_SIGN_STYLE = Manual;
