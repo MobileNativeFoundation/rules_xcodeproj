@@ -72,7 +72,7 @@ extension XCSchemeInfo {
     }
 }
 
-// MARK: BuildableReferences Accessor
+// MARK: buildableReferences
 
 extension XCSchemeInfo.TargetInfo {
     /// Returns the target buildable reference along with the selected host's buildable reference,
@@ -87,26 +87,7 @@ extension XCSchemeInfo.TargetInfo {
     }
 }
 
-extension Sequence where Element == XCSchemeInfo.TargetInfo {
-    // TODO(chuck): I would prefer to return a Set<XCScheme.BuildableReference> from
-    // buildableReferences, but it is not hashable. Can we extend it to be Hashable?
-
-    /// Return all of the buildable references for all of the target infos.
-    var buildableReferences: [XCScheme.BuildableReference] {
-        return flatMap(\.buildableReferences)
-    }
-}
-
-// MARK: BuildAction.Entry Accessor
-
-extension Sequence where Element == XCSchemeInfo.TargetInfo {
-    /// Return all of the `BuildAction.Entry` values.
-    var buildActionEntries: [XCScheme.BuildAction.Entry] {
-        return buildableReferences.map { .init(withDefaults: $0) }
-    }
-}
-
-// MARK: ExecutionActions Accessors
+// MARK: bazelBuildPreActions
 
 extension XCSchemeInfo.TargetInfo {
     var bazelBuildPreActions: [XCScheme.ExecutionAction] {
@@ -119,12 +100,6 @@ extension XCSchemeInfo.TargetInfo {
         return hostInfos.map(\.index).map {
             .init(bazelBuildFor: buildableReference, name: pbxTarget.name, hostIndex: $0)
         }
-    }
-}
-
-extension Sequence where Element == XCSchemeInfo.TargetInfo {
-    var bazelBuildPreActions: [XCScheme.ExecutionAction] {
-        return [.initBazelBuildOutputGroupsFile] + flatMap(\.bazelBuildPreActions)
     }
 }
 
@@ -141,5 +116,30 @@ extension XCSchemeInfo.TargetInfo {
 extension XCSchemeInfo.TargetInfo {
     var productType: PBXProductType {
         return pbxTarget.productType ?? .none
+    }
+}
+
+// MARK: Sequence Extensions
+
+extension Sequence where Element == XCSchemeInfo.TargetInfo {
+    /// Return all of the `BuildAction.Entry` values.
+    var buildActionEntries: [XCScheme.BuildAction.Entry] {
+        return buildableReferences.map { .init(withDefaults: $0) }
+    }
+}
+
+extension Sequence where Element == XCSchemeInfo.TargetInfo {
+    // TODO(chuck): I would prefer to return a Set<XCScheme.BuildableReference> from
+    // buildableReferences, but it is not hashable. Can we extend it to be Hashable?
+
+    /// Return all of the buildable references for all of the target infos.
+    var buildableReferences: [XCScheme.BuildableReference] {
+        return flatMap(\.buildableReferences)
+    }
+}
+
+extension Sequence where Element == XCSchemeInfo.TargetInfo {
+    var bazelBuildPreActions: [XCScheme.ExecutionAction] {
+        return [.initBazelBuildOutputGroupsFile] + flatMap(\.bazelBuildPreActions)
     }
 }
