@@ -347,8 +347,8 @@ def collect_resources(
     frozen_bundles = []
     for bundle_path in parent_bundle_paths:
         bundle = resource_bundle_targets.get(bundle_path)
-        if bundle:
-            metadata = bundle_metadata.get(bundle_path)
+        metadata = bundle_metadata.get(bundle_path)
+        if bundle and metadata:
             frozen_bundles.append(
                 struct(
                     name = bundle.name,
@@ -368,8 +368,12 @@ def collect_resources(
     return struct(
         bundles = frozen_bundles,
         dependencies = [
-            bundle_metadata[bundle_path].id
-            for bundle_path in root_bundle.dependency_paths
+            bundle.id
+            for bundle in [
+                bundle_metadata.get(bundle_path)
+                for bundle_path in root_bundle.dependency_paths
+            ]
+            if bundle
         ],
         resources = root_bundle.resources,
         generated = generated,

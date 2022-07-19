@@ -854,12 +854,7 @@
             },
             "inputs": {
                 "resources": [
-                    {
-                        "_": "examples_ios_app_external/bundles/Utils.bundle",
-                        "f": true,
-                        "g": true,
-                        "t": "e"
-                    }
+                    "ExampleResources/Assets.xcassets"
                 ]
             },
             "is_swift": false,
@@ -915,9 +910,7 @@
                 },
                 "type": "com.apple.product-type.bundle.unit-test"
             },
-            "resource_bundle_dependencies": [
-                "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54"
-            ],
+            "resource_bundle_dependencies": [],
             "search_paths": {
                 "includes": [
                     "CoreUtilsObjC",

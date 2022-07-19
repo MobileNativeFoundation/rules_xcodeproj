@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		09A8BECA6A7A8B8F82445385 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C8E8CAF447D676AF42A082 /* TestingUtils.swift */; };
 		0C60B39F563ADB3B6F2D4C48 /* ExampleObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 916051C2C6E70ADF8A009197 /* ExampleObjcTests.m */; };
-		2304ED861B15664CD25BF34A /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
 		2BA9A964A54E38410EE51403 /* ExampleNestedResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6A527C6B5C64DEF9CF7DD /* ExampleNestedResources.bundle */; };
 		53F60D0388EA498C85C52E52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 181A626E7874B82CF2F6E536 /* Assets.xcassets */; };
 		5521A83EE8FAF745FA267A58 /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
@@ -45,7 +44,6 @@
 		B7C9125DADCE58A835BB950C /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD57FB206F92F73DFECE745 /* Foo.m */; };
 		BC91AB297F015170D347A734 /* Nested in Resources */ = {isa = PBXBuildFile; fileRef = 1DE29771855D745E7E9373AB /* Nested */; };
 		C424DA316D76D6DBE8E389B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69E093D72CBE082F537F10FD /* Assets.xcassets */; };
-		C7557E6AAB4DA540A0470203 /* ExampleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 087B3E45AA9A7430D1BEC9B8 /* ExampleResources.bundle */; };
 		C9CCFDD2FF4A9C615807C6CE /* ExternalResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 56019D124B91E38AF4906E11 /* ExternalResources.bundle */; };
 		CC407FC2C841E184B259D530 /* PreviewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 397892D81DF3E9D15E18C094 /* PreviewAssets.xcassets */; };
 		CD4E817DEB1ED2B9E3F6F7A8 /* Answers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 394D4062DC00EEFF51A4933F /* Answers.mm */; };
@@ -56,6 +54,7 @@
 		DFE9A6EC43175FCA538F448B /* ExampleNestedResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6A527C6B5C64DEF9CF7DD /* ExampleNestedResources.bundle */; };
 		E42FEF40785F7445F33C1307 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D76639B60E2E2CA3019CBCA /* Localizable.strings */; };
 		E622F80C56CEC483C5E577E5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF64499057F57FE175119DD /* ExampleTests.swift */; };
+		F783DF1FEC8FEB19FBBFFF46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69E093D72CBE082F537F10FD /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,13 +141,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A0257519AD63A69C6DF51958;
 			remoteInfo = CoreUtilsObjC;
-		};
-		959EFD0D4613ED0A20FEFB96 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 225701F2BB3EA192424F07FE;
-			remoteInfo = ExampleResources;
 		};
 		A2202E540FBEDC3B11423E69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -828,7 +820,6 @@
 			dependencies = (
 				14E804A128DFD5D70ABAFC40 /* PBXTargetDependency */,
 				EA5A8DB030DD28F2F1A365FE /* PBXTargetDependency */,
-				B8D1904683275B0D2D926E5F /* PBXTargetDependency */,
 				9F31E9A775F9E479436059E7 /* PBXTargetDependency */,
 				38158E0F751761A786EB0C75 /* PBXTargetDependency */,
 			);
@@ -1046,8 +1037,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7557E6AAB4DA540A0470203 /* ExampleResources.bundle in Resources */,
-				2304ED861B15664CD25BF34A /* Utils.bundle in Resources */,
+				F783DF1FEC8FEB19FBBFFF46 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1389,12 +1379,6 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = DFB6B3D768109FDA95CBEF01 /* PBXContainerItemProxy */;
-		};
-		B8D1904683275B0D2D926E5F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ExampleResources;
-			target = 225701F2BB3EA192424F07FE /* ExampleResources */;
-			targetProxy = 959EFD0D4613ED0A20FEFB96 /* PBXContainerItemProxy */;
 		};
 		BF0C8F6D0A6CA8F2C761C954 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
