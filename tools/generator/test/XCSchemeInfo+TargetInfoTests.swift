@@ -13,26 +13,26 @@ extension XCSchemeInfoTargetInfoTests {
             referencedContainer: filePathResolver.containerReference
         ))
     }
-}
 
-func test_bazelBuildPreActions() throws {
-    XCTFail("IMPLEMENT ME!")
-}
+    func test_bazelBuildPreActions() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
 
-func test_productType() throws {
-    XCTFail("IMPLEMENT ME!")
-}
+    func test_productType() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
 
-func test_Sequence_buildableReferences() throws {
-    XCTFail("IMPLEMENT ME!")
-}
+    func test_Sequence_buildableReferences() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
 
-func test_Sequence_buildActionEntries() throws {
-    XCTFail("IMPLEMENT ME!")
-}
+    func test_Sequence_buildActionEntries() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
 
-func test_Sequence_bazelBuildPreActions() throws {
-    XCTFail("IMPLEMENT ME!")
+    func test_Sequence_bazelBuildPreActions() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
 }
 
 // MARK: Test Data
@@ -51,8 +51,6 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         .0
 
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
-    // lazy var anotherLibraryTarget = pbxTargetsDict["C 1"]!
-    // lazy var appTarget = pbxTargetsDict["A 2"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryTarget,
@@ -60,12 +58,4 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         hostInfos: [],
         extensionPointIdentifiers: []
     )
-    // lazy var anotherLibraryTargetInfo = XCSchemeInfo.TargetInfo(
-    //     pbxTarget: anotherLibraryTarget,
-    //     referencedContainer: filePathResolver.containerReference
-    // )
-    // lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
-    //     pbxTarget: appTarget,
-    //     referencedContainer: filePathResolver.containerReference
-    // )
 }
