@@ -13,23 +13,33 @@ extension XCSchemeInfoTargetInfoTests {
             referencedContainer: filePathResolver.containerReference
         ))
     }
+}
 
+extension XCSchemeInfoTargetInfoTests {
     func test_bazelBuildPreActions() throws {
         XCTFail("IMPLEMENT ME!")
     }
+}
 
+extension XCSchemeInfoTargetInfoTests {
     func test_productType() throws {
         XCTFail("IMPLEMENT ME!")
     }
+}
 
+extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_buildableReferences() throws {
         XCTFail("IMPLEMENT ME!")
     }
+}
 
+extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_buildActionEntries() throws {
         XCTFail("IMPLEMENT ME!")
     }
+}
 
+extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_bazelBuildPreActions() throws {
         XCTFail("IMPLEMENT ME!")
     }
