@@ -16,15 +16,15 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for LibSwiftTests.__internal__.__test_bundle"
+               title = "Set Bazel Build Output Groups for iMessageApp"
                scriptText = "echo &quot;b $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "E56E8F91E4327755D5B09E30"
-                     BuildableName = "LibSwiftTests.xctest"
-                     BlueprintName = "LibSwiftTests.__internal__.__test_bundle"
-                     ReferencedContainer = "container:test/fixtures/command_line/bwb.xcodeproj">
+                     BlueprintIdentifier = "343F031FB3DF1E87C3568525"
+                     BuildableName = "iMessageApp.app"
+                     BlueprintName = "iMessageApp"
+                     ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -39,33 +39,14 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E56E8F91E4327755D5B09E30"
-               BuildableName = "LibSwiftTests.xctest"
-               BlueprintName = "LibSwiftTests.__internal__.__test_bundle"
-               ReferencedContainer = "container:test/fixtures/command_line/bwb.xcodeproj">
+               BlueprintIdentifier = "343F031FB3DF1E87C3568525"
+               BuildableName = "iMessageApp.app"
+               BlueprintName = "iMessageApp"
+               ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
-   <TestAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E56E8F91E4327755D5B09E30"
-               BuildableName = "LibSwiftTests.xctest"
-               BlueprintName = "LibSwiftTests.__internal__.__test_bundle"
-               ReferencedContainer = "container:test/fixtures/command_line/bwb.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
-   </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -81,21 +62,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E56E8F91E4327755D5B09E30"
-            BuildableName = "LibSwiftTests.xctest"
-            BlueprintName = "LibSwiftTests.__internal__.__test_bundle"
-            ReferencedContainer = "container:test/fixtures/command_line/bwb.xcodeproj">
+            BlueprintIdentifier = "343F031FB3DF1E87C3568525"
+            BuildableName = "iMessageApp.app"
+            BlueprintName = "iMessageApp"
+            ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E56E8F91E4327755D5B09E30"
-            BuildableName = "LibSwiftTests.xctest"
-            BlueprintName = "LibSwiftTests.__internal__.__test_bundle"
-            ReferencedContainer = "container:test/fixtures/command_line/bwb.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "BUILD_WORKSPACE_DIRECTORY"
@@ -119,10 +91,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E56E8F91E4327755D5B09E30"
-            BuildableName = "LibSwiftTests.xctest"
-            BlueprintName = "LibSwiftTests.__internal__.__test_bundle"
-            ReferencedContainer = "container:test/fixtures/command_line/bwb.xcodeproj">
+            BlueprintIdentifier = "343F031FB3DF1E87C3568525"
+            BuildableName = "iMessageApp.app"
+            BlueprintName = "iMessageApp"
+            ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

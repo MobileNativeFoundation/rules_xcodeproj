@@ -16,12 +16,14 @@
             "build_action": null,
             "launch_action": {
                 "args": [],
+                "build_configuration_name": "Debug",
                 "env": {},
                 "target": "//tools/generator:generator",
                 "working_directory": null
             },
             "name": "Generator",
             "test_action": {
+                "build_configuration_name": "Debug",
                 "targets": [
                     "//tools/generator/test:tests"
                 ]
@@ -420,6 +422,9 @@
                     "tools/generator/src/Extensions/Sorting.swift",
                     "tools/generator/src/Extensions/XCScheme+Extensions.swift",
                     "tools/generator/src/Extensions/XCSchemeEnvrionmentVariables+Extensions.swift",
+                    "tools/generator/src/Extensions/XCSchemeInfo+HostInfo.swift",
+                    "tools/generator/src/Extensions/XCSchemeInfo+TargetInfo.swift",
+                    "tools/generator/src/Extensions/XCSchemeInfo.swift",
                     "tools/generator/src/Extensions/XcodeScheme+Extensions.swift",
                     "tools/generator/src/FilePathResolver.swift",
                     "tools/generator/src/Generator/AddBazelDependenciesTarget.swift",

@@ -18,9 +18,10 @@ struct XCSchemeInfo {
         analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo? = nil,
         archiveActionInfo: XCSchemeInfo.ArchiveActionInfo? = nil
     ) throws {
-        guard buildActionInfo != nil, testActionInfo != nil, launchActionInfo != nil else {
+        guard buildActionInfo != nil || testActionInfo != nil || launchActionInfo != nil else {
             throw PreconditionError(message: """
-An `XCSchemeInfo` should have at a `buildActionInfo`, a `testActionInfo`, or a `launchActionInfo`.
+An `XCSchemeInfo` (\(name)) should have at least one of the following: `buildActionInfo`, \
+`testActionInfo`, `launchActionInfo`.
 """)
         }
 
