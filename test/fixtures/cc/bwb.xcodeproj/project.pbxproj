@@ -521,7 +521,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external/private",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -555,9 +555,9 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external",
 					.,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
 			name = Debug;
@@ -582,7 +582,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					examples/cc/lib/private,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/private",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -616,7 +616,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
 			name = Debug;
@@ -687,16 +687,16 @@
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					examples/cc/lib2/includes,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib2/includes",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/examples_cc_external",
 					"$(BAZEL_EXTERNAL)/bazel_tools",
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/bazel_tools",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/external/bazel_tools",
 				);
 			};
 			name = Debug;
@@ -748,12 +748,12 @@
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					examples/cc/lib2/includes,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib2/includes",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5534cb307cb8/bin",
 				);
 			};
 			name = Debug;

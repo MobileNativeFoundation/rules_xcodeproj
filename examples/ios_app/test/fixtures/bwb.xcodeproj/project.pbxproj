@@ -12,7 +12,6 @@
 			buildConfigurationList = 914277EC9F57B808A8817CF5 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				9A630CF63C380FAE522825A9 /* Bazel Build */,
-				FF28C25A21C1530CA1AF5318 /* Fix Modulemaps */,
 				FC6E45C2D1E2FBCFC2D1471E /* Fix Info.plists */,
 			);
 			dependencies = (
@@ -1040,27 +1039,6 @@
 			shellScript = "set -euo pipefail\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # Info.plist file paths are `GEN_DIR` based, so this isn't needed during\n  # Index Build\n  exit\nfi\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" > /dev/null 2>&1 || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF28C25A21C1530CA1AF5318 /* Fix Modulemaps */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(INTERNAL_DIR)/modulemaps.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Fix Modulemaps";
-			outputFileListPaths = (
-				"$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nwhile IFS= read -r input; do\n  output=\"${input%.modulemap}.xcode.modulemap\"\n  perl -pe \\\n    's%^(\\s*(\\w+ )?header )(?!(\"\\.\\.(\\/\\.\\.)*\\/|\")(bazel-out|external)\\/)(\"(\\.\\.\\/)*)(.*\")%\\1\\6SRCROOT/\\8%' \\\n    < \"$input\" \\\n    > \"$output\"\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1284,7 +1262,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1359,7 +1337,7 @@
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.app/Example_ExecutableName";
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
 				);
 			};
 			name = Debug;
@@ -1391,7 +1369,7 @@
 				TARGET_NAME = TestingUtils;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
 				);
 			};
 			name = Debug;
@@ -1433,7 +1411,7 @@
 				TEST_TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
 				);
 			};
 			name = Debug;
@@ -1468,7 +1446,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -1536,7 +1514,7 @@
 				TARGET_NAME = CoreUtilsObjC;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
 				);
 			};
 			name = Debug;
@@ -1559,7 +1537,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -1627,7 +1605,7 @@
 				TARGET_NAME = Utils;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
 				);
 			};
 			name = Debug;
@@ -1694,7 +1672,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1704,7 +1682,7 @@
 				);
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/Example/Example.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.xcode.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;
@@ -1719,7 +1697,7 @@
 				TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
 				);
 			};
 			name = Debug;
@@ -1743,13 +1721,13 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
 				);
 				INFOPLIST_FILE = "$(GEN_DIR)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/ExampleTests.__internal__.__test_bundle-intermediates/Info.xcode.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/ExampleTests/ExampleTests.__internal__.__test_bundle.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.xcode.modulemap -Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swift.xcode.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
@@ -1767,7 +1745,7 @@
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.app/Example_ExecutableName";
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
 				);
 			};
 			name = Debug;

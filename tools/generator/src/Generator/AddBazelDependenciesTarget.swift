@@ -61,16 +61,12 @@ env -i \
         let bazelBuildScript = try createBazelBuildScript(
             in: pbxProj,
             buildMode: buildMode,
+            targets: consolidatedTargets.targets.values
+                .flatMap { $0.sortedTargets },
             files: files,
             filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel,
             xcodeprojConfiguration: xcodeprojConfiguration
-        )
-
-        let fixModuleMapsScript = try createFixModulemapsScript(
-            in: pbxProj,
-            files: files,
-            filePathResolver: filePathResolver
         )
 
         let fixInfoPlistsScript = try createFixInfoPlistsScript(
@@ -84,7 +80,6 @@ env -i \
             buildConfigurationList: configurationList,
             buildPhases: [
                 bazelBuildScript,
-                fixModuleMapsScript,
                 fixInfoPlistsScript,
             ].compactMap { $0 },
             productName: "BazelDependencies"
@@ -104,6 +99,7 @@ env -i \
     private static func createBazelBuildScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
+        targets: [Target],
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         xcodeprojBazelLabel: BazelLabel,
@@ -148,9 +144,11 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
 """#
 
         let shellScript = [
-            bazelSetupCommand(
+            try bazelSetupCommand(
                 buildMode: buildMode,
-                generatedInputsOutputGroup: generatedInputsOutputGroup
+                generatedInputsOutputGroup: generatedInputsOutputGroup,
+                targets: targets,
+                filePathResolver: filePathResolver
             ),
             try createGeneratedFileDirectoriesCommand(
                 hasGeneratedFiles: hasGeneratedFiles,
@@ -186,9 +184,12 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
 
     private static func bazelSetupCommand(
         buildMode: BuildMode,
-        generatedInputsOutputGroup: String
-    ) -> String {
+        generatedInputsOutputGroup: String,
+        targets: [Target],
+        filePathResolver: FilePathResolver
+    ) throws -> String {
         let addAdditionalOutputGroups: String
+        let overlay: String
         switch buildMode {
         case .bazel:
             addAdditionalOutputGroups = #"""
@@ -205,8 +206,38 @@ if [ -s "$output_groups_file" ]; then
   done < "$output_groups_file"
 fi
 """#
+            overlay = ""
         case .xcode:
             addAdditionalOutputGroups = ""
+
+            let roots = try targets
+                .compactMap { $0.outputs.swift?.generatedHeader }
+                .map { filepath -> String in
+                    let bazelOut = try filePathResolver.resolve(
+                        filepath,
+                        useOriginalGeneratedFiles: true,
+                        mode: .script
+                    )
+                    let buildDir = try filePathResolver.resolve(
+                        filepath,
+                        useOriginalGeneratedFiles: false,
+                        mode: .script
+                    )
+                    return #"""
+{"external-contents": "\#(buildDir)","name": "\#(bazelOut)","type": "file"}
+"""#
+                }
+                .joined(separator: ",")
+
+            overlay = #"""
+# Look up Swift generated headers in `$BUILD_DIR` first, then fall through to \#
+`$BAZEL_OUT`
+cat > "$BUILD_DIR/xcode-overlay.yaml" <<EOF
+{"case-sensitive": "false", "fallthrough": true, "roots": [\#(roots)],"version": 0}
+EOF
+
+
+"""#
         }
 
         return #"""
@@ -268,6 +299,7 @@ if [ "$ACTION" != "indexbuild" ]; then
   ln -sf "$BUILD_DIR/bazel-out" gen_dir
 fi
 
+\#(overlay)\#
 cd "$BUILD_DIR"
 
 rm -rf external
@@ -430,46 +462,6 @@ rsync \
 """#
     }
 
-    private static func createFixModulemapsScript(
-        in pbxProj: PBXProj,
-        files: [FilePath: File],
-        filePathResolver: FilePathResolver
-    ) throws -> PBXShellScriptBuildPhase? {
-        guard files.containsModulemaps else {
-            return nil
-        }
-
-        let script = PBXShellScriptBuildPhase(
-            name: "Fix Modulemaps",
-            inputFileListPaths: [
-                try filePathResolver
-                    .resolve(.internal(modulemapsFileListPath))
-                    .string,
-            ],
-            outputFileListPaths: [
-                try filePathResolver
-                    .resolve(.internal(fixedModulemapsFileListPath))
-                    .string,
-            ],
-            shellScript: #"""
-set -euo pipefail
-
-while IFS= read -r input; do
-  output="${input%.modulemap}.xcode.modulemap"
-  perl -pe \
-    's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
-    < "$input" \
-    > "$output"
-done < "$SCRIPT_INPUT_FILE_LIST_0"
-
-"""#,
-            showEnvVarsInLog: false
-        )
-        pbxProj.add(object: script)
-
-        return script
-    }
-
     private static func createFixInfoPlistsScript(
         in pbxProj: PBXProj,
         files: [FilePath: File],
@@ -527,13 +519,6 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
 }
 
 private extension Dictionary where Key == FilePath {
-    var containsModulemaps: Bool {
-        contains(where: { filePath, _ in
-            return filePath.type == .generated
-                && filePath.path.extension == "modulemap"
-        })
-    }
-
     var containsInfoPlists: Bool {
         contains(where: { filePath, _ in
             return filePath.type == .generated

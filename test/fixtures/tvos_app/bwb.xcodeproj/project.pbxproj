@@ -688,7 +688,7 @@
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
+					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
 				);
 			};
 			name = Debug;
@@ -784,7 +784,7 @@
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
+					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
 				);
 			};
 			name = Debug;
@@ -826,7 +826,7 @@
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
+					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
 				);
 			};
 			name = Debug;

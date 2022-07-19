@@ -185,6 +185,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-ccd9595da841/examples/simple/SwiftBin.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(BUILD_DIR)/xcode-overlay.yaml",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(BUILD_DIR)/xcode-overlay.yaml",
+				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = SwiftBinModuleName;
@@ -198,7 +206,7 @@
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-ccd9595da841/bin",
 				);
 			};
 			name = Debug;

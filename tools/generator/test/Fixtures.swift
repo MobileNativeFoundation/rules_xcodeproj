@@ -235,6 +235,12 @@ enum Fixtures {
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_I"),
             ],
+            searchPaths: .init(
+                frameworkIncludes: [.generated("some/framework/parent/dir")],
+                quoteIncludes:  [.generated("some/quote/includes/parent/dir")],
+                includes: [.generated("some/includes/parent/dir")],
+                systemIncludes: [.generated("some/system/includes/parent/dir")]
+            ),
             watchApplication: "W",
             appClips: ["AC"],
             dependencies: ["AC", "W"]
@@ -1008,25 +1014,11 @@ $(BAZEL_EXTERNAL)/another_repo/b.swift
 
 """)
 
-        let genDir = "$(BUILD_DIR)/bazel-out"
-        let srcRootGenDir = "\(linksDir)/gen_dir"
-
         files[.internal("generated.copied.xcfilelist")] = .nonReferencedContent(
 """
 $(GEN_DIR)/a/b/module.modulemap
 $(GEN_DIR)/a1b2c/bin/t.c
 $(GEN_DIR)/v/a.txt
-
-""")
-
-        files[.internal("modulemaps.xcfilelist")] = .nonReferencedContent("""
-\(genDir)/a/b/module.modulemap
-
-""")
-
-        files[.internal("modulemaps.fixed.xcfilelist")] = .nonReferencedContent(
-"""
-\(genDir)/a/b/module.xcode.modulemap
 
 """)
 
@@ -1441,26 +1433,6 @@ rsync \
         )
         pbxProj.add(object: copyFilesScript)
 
-        let fixModulemapsScript = PBXShellScriptBuildPhase(
-            name: "Fix Modulemaps",
-            inputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.xcfilelist"],
-            outputFileListPaths: ["$(INTERNAL_DIR)/modulemaps.fixed.xcfilelist"],
-            shellScript: #"""
-set -euo pipefail
-
-while IFS= read -r input; do
-  output="${input%.modulemap}.xcode.modulemap"
-  perl -pe \
-    's%^(\s*(\w+ )?header )(?!("\.\.(\/\.\.)*\/|")(bazel-out|external)\/)("(\.\.\/)*)(.*")%\1\6SRCROOT/\8%' \
-    < "$input" \
-    > "$output"
-done < "$SCRIPT_INPUT_FILE_LIST_0"
-
-"""#,
-            showEnvVarsInLog: false
-        )
-        pbxProj.add(object: fixModulemapsScript)
-
         let pbxProject = pbxProj.rootObject!
 
         let target = PBXAggregateTarget(
@@ -1469,7 +1441,6 @@ done < "$SCRIPT_INPUT_FILE_LIST_0"
             buildPhases: [
                 generateFilesScript,
                 copyFilesScript,
-                fixModulemapsScript,
             ],
             productName: "BazelDependencies"
         )
@@ -2106,9 +2077,10 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "BAZEL_TARGET_ID": "B 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_SWIFT_FLAGS": """
+                "OTHER_SWIFT_FLAGS": #"""
+-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
 -Xcc -fmodule-map-file=a/module.modulemap
-""",
+"""#,
                 "PRODUCT_NAME": "b",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2155,9 +2127,10 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "EXECUTABLE_EXTENSION": "lo",
                 "GCC_PREFIX_HEADER": "a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_SWIFT_FLAGS": """
--Xcc -fmodule-map-file=$(BUILD_DIR)/bazel-out/a/b/module.xcode.modulemap
-""",
+                "OTHER_SWIFT_FLAGS": #"""
+-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
+-Xcc -fmodule-map-file=$(BAZEL_OUT)/a/b/module.modulemap
+"""#,
                 "PRODUCT_NAME": "c",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2205,8 +2178,20 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/I",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "I",
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/xcode-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/xcode-overlay.yaml",
+                ],
                 "DEPLOYMENT_LOCATION": "NO",
+                "FRAMEWORK_SEARCH_PATHS": """
+$(BAZEL_OUT)/some/framework/parent/dir
+""",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "HEADER_SEARCH_PATHS": "$(BAZEL_OUT)/some/includes/parent/dir",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/Frameworks",
@@ -2215,6 +2200,12 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "SDKROOT": "iphoneos",
                 "SUPPORTED_PLATFORMS": "iphoneos",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
+                "SYSTEM_HEADER_SEARCH_PATHS": """
+$(BAZEL_OUT)/some/system/includes/parent/dir
+""",
+                "USER_HEADER_SEARCH_PATHS": """
+$(BAZEL_OUT)/some/quote/includes/parent/dir
+""",
                 "TARGET_NAME": targets["I"]!.name,
             ]) { $1 },
             "R 1": targets["R 1"]!.buildSettings.asDictionary.merging([

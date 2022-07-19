@@ -148,44 +148,64 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         var buildSettings = target.buildSettings
 
         let frameworkIncludes = target.searchPaths.frameworkIncludes
-        if !frameworkIncludes.isEmpty {
+        let hasFrameworkIncludes = !frameworkIncludes.isEmpty
+        if hasFrameworkIncludes {
             try buildSettings.prepend(
                 onKey: "FRAMEWORK_SEARCH_PATHS",
                 frameworkIncludes.map { filePath in
-                    return try filePathResolver.resolve(filePath)
+                    return try filePathResolver
+                        .resolve(
+                            filePath,
+                            useOriginalGeneratedFiles: true
+                        )
                         .string.quoted
                 }
             )
         }
 
         let quoteIncludes = target.searchPaths.quoteIncludes
-        if !quoteIncludes.isEmpty {
+        let hasQuoteIncludes = !quoteIncludes.isEmpty
+        if hasQuoteIncludes {
             try buildSettings.prepend(
                 onKey: "USER_HEADER_SEARCH_PATHS",
                 quoteIncludes.map { filePath in
-                    return try filePathResolver.resolve(filePath)
+                    return try filePathResolver
+                        .resolve(
+                            filePath,
+                            useOriginalGeneratedFiles: true
+                        )
                         .string.quoted
                 }
             )
         }
 
         let includes = target.searchPaths.includes
-        if !includes.isEmpty {
+        let hasIncludes = !includes.isEmpty
+        if hasIncludes {
             try buildSettings.prepend(
                 onKey: "HEADER_SEARCH_PATHS",
                 includes.map { filePath in
-                    return try filePathResolver.resolve(filePath)
+                    return try filePathResolver
+                        .resolve(
+                            filePath,
+                            useOriginalGeneratedFiles: true
+                        )
                         .string.quoted
                 }
             )
         }
 
         let systemIncludes = target.searchPaths.systemIncludes
-        if !systemIncludes.isEmpty {
+        let hasSystemIncludes = !systemIncludes.isEmpty
+        if hasSystemIncludes {
             try buildSettings.prepend(
                 onKey: "SYSTEM_HEADER_SEARCH_PATHS",
                 systemIncludes.map { filePath in
-                    return try filePathResolver.resolve(filePath)
+                    return try filePathResolver
+                        .resolve(
+                            filePath,
+                            useOriginalGeneratedFiles: true
+                        )
                         .string.quoted
                 }
             )
@@ -195,15 +215,13 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             onKey: "OTHER_SWIFT_FLAGS",
             target.modulemaps
                 .map { filePath -> String in
-                    var modulemap = try filePathResolver.resolve(filePath)
-
-                    if filePath.type == .generated {
-                        modulemap.replaceExtension("xcode.modulemap")
-                    }
-
-                    return """
--Xcc -fmodule-map-file=\(modulemap.string.quoted)
-"""
+                    let modulemap = try filePathResolver
+                        .resolve(
+                            filePath,
+                            useOriginalGeneratedFiles: true
+                        )
+                        .string.quoted
+                    return "-Xcc -fmodule-map-file=\(modulemap)"
                 }
                 .joined(separator: " ")
         )
@@ -354,6 +372,34 @@ $(CONFIGURATION_BUILD_DIR)
                 to: ldRunpathSearchPaths
             )
         }
+
+        // Set VFS overlay
+
+        switch buildMode {
+        case .xcode:
+            if !target.modulemaps.isEmpty {
+                try buildSettings.prepend(
+                    onKey: "OTHER_SWIFT_FLAGS",
+                    "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml"
+                )
+            }
+
+            if !target.isSwift && (hasFrameworkIncludes || hasIncludes ||
+                hasQuoteIncludes || hasSystemIncludes)
+            {
+                try buildSettings.prepend(
+                    onKey: "OTHER_CFLAGS",
+                    ["-ivfsoverlay", "$(BUILD_DIR)/xcode-overlay.yaml"]
+                )
+
+                try buildSettings.prepend(
+                    onKey: "OTHER_CPLUSPLUSFLAGS",
+                    ["-ivfsoverlay", "$(BUILD_DIR)/xcode-overlay.yaml"]
+                )
+            }
+         default:
+            break
+         }
 
         return buildSettings
     }
