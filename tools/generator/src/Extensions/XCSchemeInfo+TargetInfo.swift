@@ -33,10 +33,17 @@ extension XCSchemeInfo {
         /// Initializer used when resolving a selected host.
         init(
             resolveHostFor original: XCSchemeInfo.TargetInfo,
-            topLevelTargetInfos _: [XCSchemeInfo.TargetInfo]
+            topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
         ) {
-            // TODO(chuck): Add the host resolution logic here!
-            var selectedHostInfo: XCSchemeInfo.HostInfo?
+            // Look for a host that is one of the top-level targets.
+            let topLevelPBXTargetInfos = Set(topLevelTargetInfos.map(\.pbxTarget))
+            var selectedHostInfo = original.hostInfos
+                .filter { topLevelPBXTargetInfos.contains($0.pbxTarget) }
+                .first
+            // If a top-level host was not found, then just pick one of the hosts.
+            if selectedHostInfo == nil {
+                selectedHostInfo = original.hostInfos.first
+            }
 
             self.init(
                 pbxTarget: original.pbxTarget,
@@ -47,6 +54,7 @@ extension XCSchemeInfo {
             )
         }
 
+        /// Low-level initializer used by the other initializers.
         private init(
             pbxTarget: PBXTarget,
             buildableReference: XCScheme.BuildableReference,
