@@ -3,18 +3,6 @@ import XCTest
 
 @testable import generator
 
-// MARK: XCScheme.PBXTargetInfo Tests
-
-extension XCSchemeExtensionsTests {
-    func test_PBXTargetInfo_init() throws {
-        XCTAssertEqual(libraryTargetInfo.pbxTarget.name, libraryTarget.name)
-        XCTAssertEqual(libraryTargetInfo.buildableReference, .init(
-            pbxTarget: libraryTarget,
-            referencedContainer: filePathResolver.containerReference
-        ))
-    }
-}
-
 // MARK: XCScheme.BuildableReference
 
 extension XCSchemeExtensionsTests {
@@ -36,60 +24,27 @@ extension XCSchemeExtensionsTests {
 // MARK: XCScheme.BuildAction
 
 extension XCSchemeExtensionsTests {
-    func test_BuildAction_init_buildModeBazel_noHost() throws {
-        let targetInfos = [libraryTargetInfo, anotherLibraryTargetInfo]
+    func test_BuildAction_init_buildModeBazel() throws {
         let buildAction = XCScheme.BuildAction(
             buildMode: .bazel,
-            targetInfos: targetInfos,
-            hostBuildableReference: nil,
-            hostIndex: nil
+            buildActionInfo: buildActionInfo
         )
         let expected = XCScheme.BuildAction(
-            buildActionEntries: targetInfos
-                .map(\.buildableReference)
-                .map { .init(withDefaults: $0) },
-            preActions: [.initBazelBuildOutputGroupsFile] +
-                targetInfos.compactMap { .init(targetInfo: $0, hostIndex: nil) },
+            buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
+            preActions: buildActionInfo.targetInfos.bazelBuildPreActions,
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
         XCTAssertEqual(buildAction, expected)
     }
 
-    func test_BuildAction_init_buildModeBazel_withHost() throws {
-        let targetInfos = [libraryTargetInfo, anotherLibraryTargetInfo]
-        let hostTargetInfo = appTargetInfo
-        let hostIndex = 1
-        let buildAction = XCScheme.BuildAction(
-            buildMode: .bazel,
-            targetInfos: targetInfos,
-            hostBuildableReference: hostTargetInfo.buildableReference,
-            hostIndex: hostIndex
-        )
-        let expected = XCScheme.BuildAction(
-            buildActionEntries: (targetInfos + [hostTargetInfo])
-                .map(\.buildableReference)
-                .map { .init(withDefaults: $0) },
-            preActions: [.initBazelBuildOutputGroupsFile] +
-                targetInfos.compactMap { .init(targetInfo: $0, hostIndex: hostIndex) },
-            parallelizeBuild: true,
-            buildImplicitDependencies: true
-        )
-        XCTAssertEqual(buildAction, expected)
-    }
-
-    func test_BuildAction_init_buildModeXcode_noHost() throws {
-        let targetInfos = [libraryTargetInfo, anotherLibraryTargetInfo]
+    func test_BuildAction_init_buildModeXcode() throws {
         let buildAction = XCScheme.BuildAction(
             buildMode: .xcode,
-            targetInfos: targetInfos,
-            hostBuildableReference: nil,
-            hostIndex: nil
+            buildActionInfo: buildActionInfo
         )
         let expected = XCScheme.BuildAction(
-            buildActionEntries: targetInfos
-                .map(\.buildableReference)
-                .map { .init(withDefaults: $0) },
+            buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
             preActions: [],
             parallelizeBuild: true,
             buildImplicitDependencies: true
@@ -121,11 +76,11 @@ extension XCSchemeExtensionsTests {
 
 extension XCSchemeExtensionsTests {
     func test_ExecutionAction_withNativeTarget_noHostIndex() throws {
-        let actual = XCScheme.ExecutionAction(targetInfo: libraryTargetInfo, hostIndex: nil)
-        guard let action = actual else {
-            XCTFail("Expected an action")
-            return
-        }
+        let action = XCScheme.ExecutionAction(
+            bazelBuildFor: libraryTargetInfo.buildableReference,
+            name: libraryTargetInfo.pbxTarget.name,
+            hostIndex: nil
+        )
         XCTAssertEqual(
             action.title,
             "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
@@ -137,11 +92,11 @@ extension XCSchemeExtensionsTests {
 
     func test_ExecutionAction_withNativeTarget_withHostIndex() throws {
         let hostIndex = 1
-        let actual = XCScheme.ExecutionAction(targetInfo: libraryTargetInfo, hostIndex: hostIndex)
-        guard let action = actual else {
-            XCTFail("Expected an action")
-            return
-        }
+        let action = XCScheme.ExecutionAction(
+            bazelBuildFor: libraryTargetInfo.buildableReference,
+            name: libraryTargetInfo.pbxTarget.name,
+            hostIndex: hostIndex
+        )
         XCTAssertEqual(
             action.title,
             "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
@@ -149,16 +104,6 @@ extension XCSchemeExtensionsTests {
         XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
         XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
         XCTAssertTrue(action.scriptText.contains("$BAZEL_HOST_TARGET_ID_\(hostIndex)"))
-    }
-
-    func test_ExecutionAction_withNonNativeTarget() throws {
-        let pbxTarget = PBXTarget(name: "Foo")
-        let targetInfo = XCScheme.PBXTargetInfo(
-            pbxTarget: pbxTarget,
-            referencedContainer: filePathResolver.containerReference
-        )
-        let actual = XCScheme.ExecutionAction(targetInfo: targetInfo, hostIndex: nil)
-        XCTAssertNil(actual)
     }
 }
 
@@ -181,16 +126,27 @@ class XCSchemeExtensionsTests: XCTestCase {
     lazy var anotherLibraryTarget = pbxTargetsDict["C 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
 
-    lazy var libraryTargetInfo = XCScheme.PBXTargetInfo(
+    lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryTarget,
-        referencedContainer: filePathResolver.containerReference
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: []
     )
-    lazy var anotherLibraryTargetInfo = XCScheme.PBXTargetInfo(
+    lazy var anotherLibraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: anotherLibraryTarget,
-        referencedContainer: filePathResolver.containerReference
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: []
     )
-    lazy var appTargetInfo = XCScheme.PBXTargetInfo(
+    lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appTarget,
-        referencedContainer: filePathResolver.containerReference
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: []
+    )
+
+    // swiftlint:disable:next force_try
+    lazy var buildActionInfo = try! XCSchemeInfo.BuildActionInfo(
+        targetInfos: [libraryTargetInfo, anotherLibraryTargetInfo]
     )
 }

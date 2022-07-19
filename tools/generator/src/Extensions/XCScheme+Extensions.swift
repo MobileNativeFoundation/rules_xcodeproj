@@ -118,6 +118,9 @@ fi
         title: "Initialize Bazel Build Output Groups File"
     )
 
+    // TODO(chuck): Should XCScheme.ExecutionAction init take a TargetInfo? It depends where I put
+    // the host selection logic.
+
     /// Create an ExecutionAction that builds with Bazel
     convenience init(
         bazelBuildFor buildableReference: XCScheme.BuildableReference,

@@ -12,7 +12,13 @@ extension XcodeSchemeExtensionsTests {
             name: "Foo",
             buildAction: .init(targets: [libLabel, toolLabel]),
             testAction: nil,
-            launchAction: .init(target: toolLabel, args: [], env: [:], workingDirectory: nil)
+            launchAction: .init(
+                buildConfigurationName: buildConfigurationName,
+                target: toolLabel,
+                args: [],
+                env: [:],
+                workingDirectory: nil
+            )
         )
         let actual = scheme.allSchemeLabels
         let expected: Set<XcodeScheme.SchemeLabel> = [
@@ -373,24 +379,44 @@ class XcodeSchemeExtensionsTests: XCTestCase {
 
     // Schemes
 
+    let buildConfigurationName = "Chicken"
+
     lazy var toolScheme = XcodeScheme(
         name: "Tool",
         buildAction: .init(targets: [libLabel]),
         testAction: nil,
-        launchAction: .init(target: toolLabel, args: [], env: [:], workingDirectory: nil)
+        launchAction: .init(
+            buildConfigurationName: buildConfigurationName,
+            target: toolLabel,
+            args: [],
+            env: [:],
+            workingDirectory: nil
+        )
     )
 
     lazy var iOSAppScheme = XcodeScheme(
         name: "iOSApp",
         buildAction: .init(targets: [libLabel]),
-        testAction: .init(targets: [libTestsLabel]),
-        launchAction: .init(target: iOSAppLabel, args: [], env: [:], workingDirectory: nil)
+        testAction: .init(buildConfigurationName: buildConfigurationName, targets: [libTestsLabel]),
+        launchAction: .init(
+            buildConfigurationName: buildConfigurationName,
+            target: iOSAppLabel,
+            args: [],
+            env: [:],
+            workingDirectory: nil
+        )
     )
 
     lazy var tvOSAppScheme = XcodeScheme(
         name: "tvOSApp",
         buildAction: .init(targets: [libLabel]),
         testAction: nil,
-        launchAction: .init(target: tvOSAppLabel, args: [], env: [:], workingDirectory: nil)
+        launchAction: .init(
+            buildConfigurationName: buildConfigurationName,
+            target: tvOSAppLabel,
+            args: [],
+            env: [:],
+            workingDirectory: nil
+        )
     )
 }
