@@ -3,7 +3,7 @@
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:collections.bzl", "collections")
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load(":collections.bzl", "flatten", "set_if_true")
+load(":collections.bzl", "flatten", "set_if_true", "uniq")
 load(":files.bzl", "file_path", "file_path_to_dto")
 
 # linker flags that we don't want to propagate to Xcode.
@@ -183,6 +183,10 @@ def _extract_top_level_values(
                     force_load_libraries.append(library.static_library)
                 else:
                     static_libraries.append(library.static_library)
+
+        # Dedup libraries
+        force_load_libraries = uniq(force_load_libraries)
+        static_libraries = uniq(static_libraries)
     else:
         return None
 
