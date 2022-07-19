@@ -128,8 +128,6 @@ enum Fixtures {
                 name: "b",
                 path: .generated("a/b.framework")
             ),
-            modulemaps: ["a/module.modulemap"],
-            swiftmodules: [.generated("x/y.swiftmodule")],
             inputs: .init(srcs: ["z.h", "z.mm"], hdrs: ["d.h"]),
             dependencies: ["A 1"]
         ),
@@ -168,7 +166,6 @@ enum Fixtures {
                 name: "c",
                 path: .generated("a/c.lo")
             ),
-            modulemaps: [.generated("a/b/module.modulemap")],
             inputs: .init(
                 srcs: ["a/b/c.m"],
                 hdrs: ["a/b/c.h"],
@@ -205,6 +202,8 @@ enum Fixtures {
                 path: .generated("e1/E.a")
             ),
             isSwift: true,
+            modulemaps: ["a/module.modulemap"],
+            swiftmodules: [.generated("x/y.swiftmodule")],
             inputs: .init(srcs: [.external("a_repo/a.swift")])
         ),
         "E2": Target.mock(
@@ -1997,8 +1996,11 @@ perl -pe 's/^([^"].*\$\(.*\).*)/"$1"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "BAZEL_TARGET_ID": "A 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "SDKROOT": "macosx",
+                "OTHER_SWIFT_FLAGS": #"""
+-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml
+"""#,
                 "PRODUCT_NAME": "a",
+                "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["A 1"]!.name,
             ]) { $1 },
@@ -2019,6 +2021,14 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                     "$(inherited)",
                     "@executable_path/../Frameworks",
                 ],
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "A",
                 "SDKROOT": "macosx",
@@ -2037,6 +2047,14 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                     "$(inherited)",
                     "@executable_path/Frameworks",
                 ],
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "PRODUCT_NAME": "AC",
                 "SDKROOT": "iphoneos",
                 "SUPPORTED_PLATFORMS": "iphoneos",
@@ -2048,14 +2066,17 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "BAZEL_TARGET_ID": "B 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_SWIFT_FLAGS": #"""
--Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
--Xcc -fmodule-map-file=a/module.modulemap
-"""#,
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "PRODUCT_NAME": "b",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["B 1"]!.name,
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
@@ -2066,6 +2087,14 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "PRODUCT_NAME": "B",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2085,6 +2114,14 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "CODE_SIGNING_ALLOWED": "YES",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "PRODUCT_NAME": "B3",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2098,10 +2135,14 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "EXECUTABLE_EXTENSION": "lo",
                 "GCC_PREFIX_HEADER": "a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_SWIFT_FLAGS": #"""
--Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
--Xcc -fmodule-map-file=$(BAZEL_OUT)/a/b/module.modulemap
-"""#,
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "PRODUCT_NAME": "c",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2118,6 +2159,14 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "LINK_PARAMS_FILE": """
 $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
 """,
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "d",
                 "SDKROOT": "macosx",
@@ -2129,9 +2178,16 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
                 "BAZEL_TARGET_ID": "E1",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "OTHER_SWIFT_FLAGS": #"""
+-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/gen_dir-overlay.yaml \#
+-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml \#
+-Xcc -fmodule-map-file=a/module.modulemap
+"""#,
                 "PRODUCT_NAME": "E1",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
+                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["E1"]!.name,
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
@@ -2139,6 +2195,9 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
                 "BAZEL_TARGET_ID": "E2",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "OTHER_SWIFT_FLAGS": #"""
+-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml
+"""#,
                 "PRODUCT_NAME": "E2",
                 "SDKROOT": "appletvos",
                 "SUPPORTED_PLATFORMS": "appletvos",
@@ -2149,14 +2208,6 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/I",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "I",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(BUILD_DIR)/xcode-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(BUILD_DIR)/xcode-overlay.yaml",
-                ],
                 "DEPLOYMENT_LOCATION": "NO",
                 "FRAMEWORK_SEARCH_PATHS": """
 $(BAZEL_OUT)/some/framework/parent/dir
@@ -2166,6 +2217,18 @@ $(BAZEL_OUT)/some/framework/parent/dir
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/Frameworks",
+                ],
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/xcode-overlay.yaml",
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/xcode-overlay.yaml",
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "I",
                 "SDKROOT": "iphoneos",
@@ -2184,6 +2247,14 @@ $(BAZEL_OUT)/some/quote/includes/parent/dir
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "BAZEL_TARGET_ID": "R 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "PRODUCT_NAME": "R 1",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2226,6 +2297,9 @@ $(MACOSX_FILES)
                 "MACOSX_FILES": """
 "T/T 3/Ta.c" "T/T 3/Ta.png" "T/T 3/Ta.swift"
 """,
+                "OTHER_SWIFT_FLAGS": #"""
+-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml
+"""#,
                 "PRODUCT_NAME": "t",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
@@ -2240,6 +2314,14 @@ $(MACOSX_FILES)
                 "BAZEL_HOST_TARGET_ID_0": "I",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
                 "PRODUCT_NAME": "W",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
@@ -2257,6 +2339,14 @@ $(MACOSX_FILES)
                     "$(inherited)",
                     "@executable_path/Frameworks",
                     "@executable_path/../../Frameworks",
+                ],
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "WDKE",
                 "SDKROOT": "iphoneos",
@@ -2276,6 +2366,14 @@ $(MACOSX_FILES)
                     "$(inherited)",
                     "@executable_path/Frameworks",
                     "@executable_path/../../Frameworks",
+                ],
+                "OTHER_CFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-ivfsoverlay",
+                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "WKE",
                 "SDKROOT": "watchos",
