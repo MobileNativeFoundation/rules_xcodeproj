@@ -7,7 +7,9 @@ extension XCSchemeInfo {
         let hostInfos: [HostInfo]
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let disambiguateHost: Bool
+        let selectedHostInfo: HostInfo?
 
+        /// Initializer used when creating a TargetInfo for the first time.
         init<HostInfos: Sequence, ExtPointIdentifiers: Sequence>(
             pbxTarget: PBXTarget,
             referencedContainer: String,
@@ -16,25 +18,71 @@ extension XCSchemeInfo {
         ) where HostInfos.Element == XCSchemeInfo.HostInfo,
             ExtPointIdentifiers.Element == ExtensionPointIdentifier
         {
-            self.pbxTarget = pbxTarget
-            buildableReference = .init(
+            self.init(
                 pbxTarget: pbxTarget,
-                referencedContainer: referencedContainer
+                buildableReference: .init(
+                    pbxTarget: pbxTarget,
+                    referencedContainer: referencedContainer
+                ),
+                hostInfos: Array(hostInfos),
+                extensionPointIdentifiers: Set(extensionPointIdentifiers),
+                selectedHostInfo: nil
             )
-            self.hostInfos = Array(hostInfos)
+        }
+
+        /// Initializer used when resolving a selected host.
+        init(
+            targetInfo: TargetInfo,
+            selectedHostInfo: HostInfo
+        ) {
+            self.init(
+                pbxTarget: targetInfo.pbxTarget,
+                buildableReference: targetInfo.buildableReference,
+                hostInfos: targetInfo.hostInfos,
+                extensionPointIdentifiers: targetInfo.extensionPointIdentifiers,
+                selectedHostInfo: selectedHostInfo
+            )
+        }
+
+        private init(
+            pbxTarget: PBXTarget,
+            buildableReference: XCScheme.BuildableReference,
+            hostInfos: [HostInfo],
+            extensionPointIdentifiers: Set<ExtensionPointIdentifier>,
+            selectedHostInfo: HostInfo?
+        ) {
+            self.pbxTarget = pbxTarget
+            self.buildableReference = buildableReference
+            self.hostInfos = hostInfos
+            self.extensionPointIdentifiers = extensionPointIdentifiers
             disambiguateHost = self.hostInfos.count > 1
-            self.extensionPointIdentifiers = Set(extensionPointIdentifiers)
+            self.selectedHostInfo = selectedHostInfo
         }
     }
 }
 
-// MARK: BuildableReference Accessor
+// MARK: BuildableReferences Accessor
+
+extension XCSchemeInfo.TargetInfo {
+    /// Returns the target buildable reference along with the selected host's buildable reference,
+    /// if applicable.
+    var buildableReferences: [XCScheme.BuildableReference] {
+        var results = [buildableReference]
+        // Only include the selected host, not all of the hosts.
+        if let selectedHostInfo = selectedHostInfo {
+            results.append(selectedHostInfo.buildableReference)
+        }
+        return results
+    }
+}
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
-    /// Return all of the buildable references.
+    // TODO(chuck): I would prefer to return a Set<XCScheme.BuildableReference> from
+    // buildableReferences, but it is not hashable. Can we extend it to be Hashable?
+
+    /// Return all of the buildable references for all of the target infos.
     var buildableReferences: [XCScheme.BuildableReference] {
-        // TODO(chuck): Only include the selected host, not all of the hosts.
-        return map(\.buildableReference) + flatMap(\.hostInfos).map(\.buildableReference)
+        return flatMap(\.buildableReferences)
     }
 }
 
