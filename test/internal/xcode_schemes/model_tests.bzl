@@ -72,9 +72,14 @@ def _test_action_test(ctx):
     env = unittest.begin(ctx)
 
     targets = ["//Tests/FooTests"]
+    build_configuration_name = "Foo"
 
-    actual = xcode_schemes.test_action(targets)
+    actual = xcode_schemes.test_action(
+        targets,
+        build_configuration_name = build_configuration_name,
+    )
     expected = struct(
+        build_configuration_name = build_configuration_name,
         targets = [bazel_labels.normalize(t) for t in targets],
     )
     asserts.equals(env, expected, actual)
@@ -87,17 +92,20 @@ def _launch_action_test(ctx):
     test_env = unittest.begin(ctx)
 
     target = "//Sources/App"
+    build_configuration_name = "Foo"
     args = ["my arg"]
     env = {"RELEASE_KRAKEN": "true"}
     working_directory = "/path/to/working/directory"
 
     actual = xcode_schemes.launch_action(
         target = target,
+        build_configuration_name = build_configuration_name,
         args = args,
         env = env,
         working_directory = working_directory,
     )
     expected = struct(
+        build_configuration_name = build_configuration_name,
         target = bazel_labels.normalize(target),
         args = args,
         env = env,

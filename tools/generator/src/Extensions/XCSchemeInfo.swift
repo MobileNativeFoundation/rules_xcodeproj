@@ -164,15 +164,6 @@ extension XCSchemeInfo {
     }
 
     var wasCreatedForAppExtension: Bool {
-        // TODO(chuck): Implement by looking at all of producTypes in the scheme. If any are
-        // isExtension, then true.
-        // wasCreatedForAppExtension: productType.isExtension ? true : nil
-        // return false
-
-        // if allPBXTargets.compactMap(\.productType).first(where: { $0.isExtension }) != nil {
-        //     return true
-        // }
-        // return false
         return allPBXTargets.compactMap(\.productType).anySatisfy(\.isExtension)
     }
 }
