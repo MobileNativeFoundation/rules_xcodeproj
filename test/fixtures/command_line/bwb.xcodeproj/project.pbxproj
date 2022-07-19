@@ -134,6 +134,7 @@
 		61606C8E4C3C583C1DE87CAE /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		70E39C0BDE73FBB3E0447A9C /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
 		7FC818A23F6CAC131654773F /* c_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_lib.h; sourceTree = "<group>"; };
+		8A16089ADBC24C0D8A2EEB42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8EA0A841B76E8C631203A851 /* c_lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = c_lib.modulemap; sourceTree = "<group>"; };
 		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BEEB36D3E48677861539C1 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
@@ -205,6 +206,14 @@
 			path = command_line;
 			sourceTree = "<group>";
 		};
+		13F95FFBB2BC6694EAF8EA5B /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				656E9280CC745A8B42324D0A /* tool */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		1CBB95DBE8A44BC1D878A3AE /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630 */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				A26D921EF2C79FCEAD39BBD7 /* Tests */,
+				703A1AAF8C78699E42633430 /* tool */,
 			);
 			path = command_line;
 			sourceTree = "<group>";
@@ -310,6 +320,14 @@
 			path = "tool.merged_launchdplists-intermediates";
 			sourceTree = "<group>";
 		};
+		656E9280CC745A8B42324D0A /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				8A16089ADBC24C0D8A2EEB42 /* Info.plist */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
 		68A1D737225E7A97337523DE /* test */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +343,14 @@
 				DBF917653F9E4EBBEDB863FD /* Library.h */,
 			);
 			path = ImportableLibrary;
+			sourceTree = "<group>";
+		};
+		703A1AAF8C78699E42633430 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				13F95FFBB2BC6694EAF8EA5B /* rules_xcodeproj */,
+			);
+			path = tool;
 			sourceTree = "<group>";
 		};
 		7F39486CE984F082D17A7720 /* command_line */ = {
@@ -1057,6 +1083,7 @@
 					examples/command_line/lib/private,
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/lib/private",
 				);
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool/rules_xcodeproj/tool/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/examples/command_line/tool/tool.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (

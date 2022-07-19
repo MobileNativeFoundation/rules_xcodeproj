@@ -23,6 +23,10 @@ def _get_file(target):
         return target[AppleBundleInfo].infoplist
     elif apple_common.Objc in target:
         return _get_file_from_objc_provider(target[apple_common.Objc])
+    elif apple_common.AppleExecutableBinary in target:
+        return _get_file_from_objc_provider(
+            target[apple_common.AppleExecutableBinary].objc,
+        )
     return None
 
 def _adjust_for_xcode(file, *, ctx):

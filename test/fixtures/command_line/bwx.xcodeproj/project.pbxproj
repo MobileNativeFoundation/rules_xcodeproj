@@ -131,6 +131,7 @@
 		85AA47D00BD6B0AF833B0617 /* export_symbol_list.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = export_symbol_list.exp; sourceTree = "<group>"; };
 		8B03B3D734122C32E07042B6 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		9D46BEBDD407F679ED938408 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
+		A7FDE84F8E9D5D2A2BF00855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B093EB1BAB8D20D1457C10D2 /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		B457072C62E4282C472889FB /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		B45E624D6CB9A25AD05AA3EB /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
@@ -240,6 +241,14 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		4AB0060AF327BE4ECCD99EB5 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				FE8D74D2FF9BA823B0DF150F /* rules_xcodeproj */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
 		502410081D92A547EC3F3479 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				65FF3E31EBF72509F7704AED /* Tests */,
+				4AB0060AF327BE4ECCD99EB5 /* tool */,
 			);
 			path = command_line;
 			sourceTree = "<group>";
@@ -481,6 +491,14 @@
 			path = examples_command_line_external;
 			sourceTree = "<group>";
 		};
+		F85A57A59E90820D732B0FD4 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				A7FDE84F8E9D5D2A2BF00855 /* Info.plist */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
 		FE5F8DA1EDE79F202DF698DA /* command_line */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +508,14 @@
 				AEA469E9B752E999F07AF5BE /* tool */,
 			);
 			path = command_line;
+			sourceTree = "<group>";
+		};
+		FE8D74D2FF9BA823B0DF150F /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				F85A57A59E90820D732B0FD4 /* tool */,
+			);
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1111,13 +1137,13 @@
 					"SECRET_3=\\\"Hello\\\"",
 					"SECRET_2=\\\"World!\\\"",
 				);
-				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"examples/command_line/lib/dir with space\"",
 					"\"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/dir with space\"",
 					examples/command_line/lib/private,
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/lib/private",
 				);
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/command_line/tool/rules_xcodeproj/tool/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/examples/command_line/tool/tool.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (

@@ -234,7 +234,7 @@ def process_top_level_target(
     if info_plist_file:
         info_plist = file_path(info_plist_file)
         additional_files.append(info_plist_file)
-        if bundle_info.bundle_extension == ".appex":
+        if bundle_info and bundle_info.bundle_extension == ".appex":
             extension_infoplists = [
                 struct(
                     id = id,

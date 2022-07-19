@@ -41,6 +41,10 @@
         "examples/command_line/tool/Info.plist",
         "examples/command_line/tool/Launchd.plist",
         {
+            "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool/rules_xcodeproj/tool/Info.plist",
+            "t": "g"
+        },
+        {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool/tool.merged_launchdplists-intermediates/Launchd.plist",
             "t": "g"
         },
@@ -760,7 +764,10 @@
                 "//examples/command_line/tool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630"
             ],
             "extensions": [],
-            "info_plist": null,
+            "info_plist": {
+                "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/command_line/tool/rules_xcodeproj/tool/Info.plist",
+                "t": "g"
+            },
             "inputs": {
                 "exported_symbols_lists": [
                     "examples/command_line/tool/export_symbol_list.exp"

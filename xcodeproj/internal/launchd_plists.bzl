@@ -23,8 +23,12 @@ def _get_file_from_objc_provider(objc_provider):
     return None
 
 def _get_file(target):
-    if apple_common.AppleExecutableBinary in target:
-        return _get_file_from_objc_provider(target[apple_common.AppleExecutableBinary].objc)
+    if apple_common.Objc in target:
+        return _get_file_from_objc_provider(target[apple_common.Objc])
+    elif apple_common.AppleExecutableBinary in target:
+        return _get_file_from_objc_provider(
+            target[apple_common.AppleExecutableBinary].objc,
+        )
     return None
 
 launchd_plists = struct(
