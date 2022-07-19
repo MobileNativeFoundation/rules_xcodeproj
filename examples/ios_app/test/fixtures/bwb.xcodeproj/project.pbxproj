@@ -772,7 +772,6 @@
 			buildPhases = (
 				74D44EF0C730EDEC6D46E69E /* Copy Bazel Outputs */,
 				58F5AB439EA84217B9B89516 /* Sources */,
-				3D4CFD8FC03BCBC4496FF968 /* Copy Swift Generated Header */,
 			);
 			buildRules = (
 			);
@@ -906,23 +905,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^([^\"].*\\$\\(.*\\).*)/\"$1\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3D4CFD8FC03BCBC4496FF968 /* Copy Swift Generated Header */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
-			);
-			name = "Copy Swift Generated Header";
-			outputPaths = (
-				"$(CONFIGURATION_BUILD_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ -z \"${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}\" ]]; then\n  exit 0\nfi\n\ncp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		74D44EF0C730EDEC6D46E69E /* Copy Bazel Outputs */ = {
@@ -1356,8 +1338,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swiftmodule\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swiftdoc\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swiftsourceinfo";
-				BAZEL_OUTPUTS_SWIFT_GENERATED_HEADER = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/SwiftAPI/TestingUtils-Swift.h";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils";
 				BAZEL_TARGET_ID = "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1389,7 +1369,6 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/ExampleUITests.xctest";
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/ExampleUITests.swiftmodule\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/ExampleUITests.swiftdoc\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/ExampleUITests.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests";
 				BAZEL_TARGET_ID = "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
@@ -1667,7 +1646,6 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.app";
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.swiftmodule\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.swiftdoc\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example";
 				BAZEL_TARGET_ID = "//Example:Example applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
@@ -1717,7 +1695,6 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/ExampleTests.xctest";
-				BAZEL_OUTPUTS_SWIFTMODULE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/ExampleTests.swiftmodule\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/ExampleTests.swiftdoc\n$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests/ExampleTests.swiftsourceinfo";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleTests";
 				BAZEL_TARGET_ID = "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
