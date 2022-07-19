@@ -59,6 +59,9 @@ Host target with key \(key) not found in `pbxTargets`.
 
         let referencedContainer = filePathResolver.containerReference
         return try pbxTargets.compactMap { key, pbxTarget in
+            guard pbxTarget.shouldCreateScheme else {
+                return nil
+            }
             let targetInfo = XCSchemeInfo.TargetInfo(
                 pbxTarget: pbxTarget,
                 referencedContainer: referencedContainer,
