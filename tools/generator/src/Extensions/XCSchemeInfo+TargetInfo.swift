@@ -33,6 +33,7 @@ extension XCSchemeInfo {
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
     /// Return all of the buildable references.
     var buildableReferences: [XCScheme.BuildableReference] {
+        // TODO(chuck): Only include the selected host, not all of the hosts.
         return map(\.buildableReference) + flatMap(\.hostInfos).map(\.buildableReference)
     }
 }
