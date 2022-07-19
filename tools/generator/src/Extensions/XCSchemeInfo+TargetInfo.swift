@@ -32,14 +32,17 @@ extension XCSchemeInfo {
 
         /// Initializer used when resolving a selected host.
         init(
-            targetInfo: TargetInfo,
-            selectedHostInfo: HostInfo
+            resolveHostFor original: XCSchemeInfo.TargetInfo,
+            topLevelTargetInfos _: [XCSchemeInfo.TargetInfo]
         ) {
+            // TODO(chuck): Add the host resolution logic here!
+            var selectedHostInfo: XCSchemeInfo.HostInfo?
+
             self.init(
-                pbxTarget: targetInfo.pbxTarget,
-                buildableReference: targetInfo.buildableReference,
-                hostInfos: targetInfo.hostInfos,
-                extensionPointIdentifiers: targetInfo.extensionPointIdentifiers,
+                pbxTarget: original.pbxTarget,
+                buildableReference: original.buildableReference,
+                hostInfos: original.hostInfos,
+                extensionPointIdentifiers: original.extensionPointIdentifiers,
                 selectedHostInfo: selectedHostInfo
             )
         }

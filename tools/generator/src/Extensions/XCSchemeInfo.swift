@@ -25,11 +25,31 @@ An `XCSchemeInfo` (\(name)) should have at least one of the following: `buildAct
 """)
         }
 
+        var topLevelTargetInfos = [XCSchemeInfo.TargetInfo]()
+        if let testActionInfo = testActionInfo {
+            topLevelTargetInfos += testActionInfo.targetInfos
+        }
+        if let launchActionInfo = launchActionInfo {
+            topLevelTargetInfos.append(launchActionInfo.targetInfo)
+        }
+
         self.name = name
-        self.buildActionInfo = buildActionInfo
-        self.testActionInfo = testActionInfo
-        self.launchActionInfo = launchActionInfo
-        self.profileActionInfo = profileActionInfo
+        self.buildActionInfo = try .init(
+            resolveHostsFor: buildActionInfo,
+            topLevelTargetInfos: topLevelTargetInfos
+        )
+        self.testActionInfo = try .init(
+            resolveHostsFor: testActionInfo,
+            topLevelTargetInfos: topLevelTargetInfos
+        )
+        self.launchActionInfo = try .init(
+            resolveHostsFor: launchActionInfo,
+            topLevelTargetInfos: topLevelTargetInfos
+        )
+        self.profileActionInfo = .init(
+            resolveHostsFor: profileActionInfo,
+            topLevelTargetInfos: topLevelTargetInfos
+        )
         self.analyzeActionInfo = analyzeActionInfo ?? .init(
             buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
         )
@@ -56,6 +76,21 @@ An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.TargetI
 """)
             }
         }
+
+        /// Create a copy of the build action info with host in the target infos resolved
+        init?(
+            resolveHostsFor buildActionInfo: XCSchemeInfo.BuildActionInfo?,
+            topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
+        ) throws {
+            guard let original = buildActionInfo else {
+                return nil
+            }
+            try self.init(
+                targetInfos: original.targetInfos.map {
+                    .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
+                }
+            )
+        }
     }
 }
 
@@ -66,6 +101,7 @@ extension XCSchemeInfo {
         let buildConfigurationName: String
         let targetInfos: [XCSchemeInfo.TargetInfo]
 
+        /// The primary initializer.
         init<TargetInfos: Sequence>(
             buildConfigurationName: String,
             targetInfos: TargetInfos
@@ -83,6 +119,22 @@ An `XCSchemeInfo.TestActionInfo` should have at least one `XCSchemeInfo.TargetIn
 An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.TargetInfo` values.
 """)
             }
+        }
+
+        /// Create a copy of the test action info with host in the target infos resolved
+        init?(
+            resolveHostsFor testActionInfo: XCSchemeInfo.TestActionInfo?,
+            topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
+        ) throws {
+            guard let original = testActionInfo else {
+              return nil
+            }
+            try self.init(
+                buildConfigurationName: original.buildConfigurationName,
+                targetInfos: original.targetInfos.map {
+                    .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
+                }
+            )
         }
     }
 }
@@ -115,6 +167,26 @@ extension XCSchemeInfo {
             self.env = env
             self.workingDirectory = workingDirectory
         }
+
+        /// Create a copy of the launch action info with host in the target info resolved.
+        init?(
+            resolveHostsFor launchActionInfo: XCSchemeInfo.LaunchActionInfo?,
+            topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
+        ) throws {
+            guard let original = launchActionInfo else {
+              return nil
+            }
+            try self.init(
+                buildConfigurationName: original.buildConfigurationName,
+                targetInfo: .init(
+                    resolveHostFor: original.targetInfo,
+                    topLevelTargetInfos: topLevelTargetInfos
+                ),
+                args: original.args,
+                env: original.env,
+                workingDirectory: original.workingDirectory
+            )
+        }
     }
 }
 
@@ -124,6 +196,25 @@ extension XCSchemeInfo {
     struct ProfileActionInfo {
         let buildConfigurationName: String
         let targetInfo: XCSchemeInfo.TargetInfo
+    }
+}
+
+extension XCSchemeInfo.ProfileActionInfo {
+    /// Create a copy of the profile action info with host in the target info resolved.
+    init?(
+        resolveHostsFor profileActionInfo: XCSchemeInfo.ProfileActionInfo?,
+        topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
+    ) {
+        guard let original = profileActionInfo else {
+          return nil
+        }
+        self.init(
+            buildConfigurationName: original.buildConfigurationName,
+            targetInfo: .init(
+                resolveHostFor: original.targetInfo,
+                topLevelTargetInfos: topLevelTargetInfos
+            )
+        )
     }
 }
 
