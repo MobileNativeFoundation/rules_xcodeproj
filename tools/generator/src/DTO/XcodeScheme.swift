@@ -29,6 +29,7 @@ extension XcodeScheme {
 
 extension XcodeScheme {
     struct TestAction: Equatable, Decodable {
+        let buildConfigurationName: String
         let targets: Set<BazelLabel>
     }
 }
@@ -37,6 +38,7 @@ extension XcodeScheme {
 
 extension XcodeScheme {
     struct LaunchAction: Equatable, Decodable {
+        let buildConfigurationName: String
         let target: BazelLabel
         let args: [String]
         let env: [String: String]

@@ -1,7 +1,7 @@
 import XcodeProj
 
-extension XCScheme {
-    struct PBXHostInfo {
+extension XCSchemeInfo {
+    struct HostInfo {
         let pbxTarget: PBXTarget
         let buildableReference: XCScheme.BuildableReference
         let index: Int

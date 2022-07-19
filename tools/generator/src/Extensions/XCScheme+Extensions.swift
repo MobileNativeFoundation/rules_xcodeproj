@@ -19,17 +19,61 @@ extension XCScheme.BuildableReference {
     }
 }
 
+// MARK: XCScheme.Scheme
+
+extension XCScheme {
+    convenience init(
+        buildMode: BuildMode,
+        schemeInfo: XCSchemeInfo
+    ) {
+        let buildAction: XCScheme.BuildAction?
+        if let buildActionInfo = schemeInfo.buildActionInfo {
+            buildAction = .init(buildMode: buildMode, buildActionInfo: buildActionInfo)
+        } else {
+            buildAction = nil
+        }
+
+        let testAction: XCScheme.TestAction?
+        if let testActionInfo = schemeInfo.testActionInfo {
+            testAction = .init(testActionInfo: testActionInfo)
+        } else {
+            testAction = nil
+        }
+
+        let launchAction: XCScheme.LaunchAction?
+        if let launchActionInfo = schemeInfo.launchActionInfo {
+            launchAction = .init(buildMode: buildMode, launchActionInfo: launchActionInfo)
+        } else {
+            launchAction = nil
+        }
+
+        self.init(
+            name: schemeInfo.name,
+            lastUpgradeVersion: XCSchemeConstants.defaultLastUpgradeVersion,
+            version: XCSchemeConstants.lldbInitVersion,
+            buildAction: buildAction,
+            testAction: testAction,
+            launchAction: launchAction,
+            // TODO: IMPLEMENT ME!
+            // profileAction: profileAction,
+            // analyzeAction: analyzeAction,
+            // archiveAction: archiveAction,
+            wasCreatedForAppExtension: schemeInfo.wasCreatedForAppExtension ? true : nil
+        )
+    }
+}
+
 // MARK: XCScheme.BuildAction
 
 extension XCScheme.BuildAction {
-    convenience init<PBXTargetInfos: Sequence>(
+    convenience init(
         buildMode: BuildMode,
-        targetInfos: PBXTargetInfos
-    ) where PBXTargetInfos.Element == XCScheme.PBXTargetInfo {
+        buildActionInfo: XCSchemeInfo.BuildActionInfo
+    ) {
         self.init(
-            buildActionEntries: targetInfos.buildActionEntries,
+            buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
             preActions: buildMode.usesBazelModeBuildScripts ?
-                targetInfos.bazelBuildPreActions : [],
+                buildActionInfo.targetInfos.bazelBuildPreActions : [],
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
@@ -56,6 +100,7 @@ extension XCScheme.BuildAction.Entry {
 // MARK: XCScheme.ExecutionAction
 
 extension XCScheme.ExecutionAction {
+    /// Initialize the output file for build with Bazel
     static let initBazelBuildOutputGroupsFile = XCScheme.ExecutionAction(
         scriptText: #"""
 mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
@@ -66,31 +111,7 @@ fi
         title: "Initialize Bazel Build Output Groups File"
     )
 
-    // convenience init?(targetInfo: XCScheme.PBXTargetInfo, hostIndex: Int?) {
-    //     guard targetInfo.pbxTarget is PBXNativeTarget else {
-    //       return nil
-    //     }
-
-    //     let hostTargetOutputGroup: String
-    //     if let hostIndex = hostIndex {
-    //         hostTargetOutputGroup = #"""
-// echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-// """#
-    //     } else {
-    //         hostTargetOutputGroup = ""
-    //     }
-
-    //     let scriptText = #"""
-// echo "b $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-// \#(hostTargetOutputGroup)
-// """#
-    //     self.init(
-    //         scriptText: scriptText,
-    //         title: "Set Bazel Build Output Groups for \(targetInfo.pbxTarget.name)",
-    //         environmentBuildable: targetInfo.buildableReference
-    //     )
-    // }
-
+    /// Create an ExecutionAction that builds with Bazel
     convenience init(
         bazelBuildFor buildableReference: XCScheme.BuildableReference,
         name: String,
@@ -113,6 +134,41 @@ echo "b $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
             scriptText: scriptText,
             title: "Set Bazel Build Output Groups for \(name)",
             environmentBuildable: buildableReference
+        )
+    }
+}
+
+// MARK: XCScheme.TestAction
+
+extension XCScheme.TestAction {
+    convenience init(testActionInfo: XCSchemeInfo.TestActionInfo) {
+        self.init(
+            buildConfiguration: testActionInfo.buildConfigurationName,
+            macroExpansion: nil,
+            testables: testActionInfo.targetInfos
+                .filter(\.pbxTarget.isTestable)
+                .map { .init(skipped: false, buildableReference: $0.buildableReference) },
+            customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
+        )
+    }
+}
+
+// MARK: XCScheme.LaunchAction
+
+extension XCScheme.LaunchAction {
+    convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) {
+        let productType = launchActionInfo.targetInfo.productType
+        self.init(
+            runnable: launchActionInfo.runnable,
+            buildConfiguration: launchActionInfo.buildConfigurationName,
+            macroExpansion: launchActionInfo.macroExpansion,
+            selectedDebuggerIdentifier: launchActionInfo.debugger,
+            selectedLauncherIdentifier: launchActionInfo.launcher,
+            askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,
+            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
+                productType.bazelLaunchEnvironmentVariables : nil,
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
+            customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
         )
     }
 }

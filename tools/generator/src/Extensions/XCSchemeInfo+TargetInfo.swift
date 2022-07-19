@@ -1,19 +1,19 @@
 import XcodeProj
 
-extension XCScheme {
-    struct PBXTargetInfo {
+extension XCSchemeInfo {
+    struct TargetInfo {
         let pbxTarget: PBXTarget
         let buildableReference: XCScheme.BuildableReference
-        let hostInfos: [PBXHostInfo]
+        let hostInfos: [HostInfo]
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let disambiguateHost: Bool
 
-        init<PBXHostInfos: Sequence, ExtPointIdentifiers: Sequence>(
+        init<HostInfos: Sequence, ExtPointIdentifiers: Sequence>(
             pbxTarget: PBXTarget,
             referencedContainer: String,
-            hostInfos: PBXHostInfos,
+            hostInfos: HostInfos,
             extensionPointIdentifiers: ExtPointIdentifiers
-        ) where PBXHostInfos.Element == XCScheme.PBXHostInfo,
+        ) where HostInfos.Element == XCSchemeInfo.HostInfo,
             ExtPointIdentifiers.Element == ExtensionPointIdentifier
         {
             self.pbxTarget = pbxTarget
@@ -30,7 +30,7 @@ extension XCScheme {
 
 // MARK: BuildableReference Accessor
 
-extension Sequence where Element == XCScheme.PBXTargetInfo {
+extension Sequence where Element == XCSchemeInfo.TargetInfo {
     /// Return all of the buildable references.
     var buildableReferences: [XCScheme.BuildableReference] {
         return map(\.buildableReference) + flatMap(\.hostInfos).map(\.buildableReference)
@@ -39,7 +39,7 @@ extension Sequence where Element == XCScheme.PBXTargetInfo {
 
 // MARK: BuildAction.Entry Accessor
 
-extension Sequence where Element == XCScheme.PBXTargetInfo {
+extension Sequence where Element == XCSchemeInfo.TargetInfo {
     /// Return all of the `BuildAction.Entry` values.
     var buildActionEntries: [XCScheme.BuildAction.Entry] {
         return buildableReferences.map { .init(withDefaults: $0) }
@@ -48,7 +48,7 @@ extension Sequence where Element == XCScheme.PBXTargetInfo {
 
 // MARK: ExecutionActions Accessors
 
-extension XCScheme.PBXTargetInfo {
+extension XCSchemeInfo.TargetInfo {
     var bazelBuildPreActions: [XCScheme.ExecutionAction] {
         guard pbxTarget is PBXNativeTarget else {
             return []
@@ -62,8 +62,24 @@ extension XCScheme.PBXTargetInfo {
     }
 }
 
-extension Sequence where Element == XCScheme.PBXTargetInfo {
+extension Sequence where Element == XCSchemeInfo.TargetInfo {
     var bazelBuildPreActions: [XCScheme.ExecutionAction] {
         return [.initBazelBuildOutputGroupsFile] + flatMap(\.bazelBuildPreActions)
+    }
+}
+
+// MARK: isWidgetKitExtension
+
+extension XCSchemeInfo.TargetInfo {
+    var isWidgetKitExtension: Bool {
+        return extensionPointIdentifiers.contains(.widgetKitExtension)
+    }
+}
+
+// MARK: productType
+
+extension XCSchemeInfo.TargetInfo {
+    var productType: PBXProductType {
+        return pbxTarget.productType ?? .none
     }
 }
