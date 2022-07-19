@@ -113,27 +113,43 @@ plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 # Prevent Xcode from prompting the user to autocreate schemes for all targets
 plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
 
-echo 'Updated project at "%output_path%"'
-
-if [[ \
-  (-f "$dest/rules_xcodeproj/external.xcfilelist" && \
-   ! -d "$dest/rules_xcodeproj/links/external") || \
-  (-f "$dest/rules_xcodeproj/generated.copied.xcfilelist" && \
-   ! -d "$dest/rules_xcodeproj/links/gen_dir") \
-]]; then
-  # If "gen_dir" doesn't exist, this is most likely a fresh project. In that
-  # case, we should create generated files to have the initial experience be
-  # better.
-  echo "Running one time setup..."
-
+# Create folder structure in bazel-out to work around Xcode red generated files
+if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
+
+  # Determine bazel-out
+  bazel_out=$(bazel info output_path 2>/dev/null)
+
+  # Determine `$BUILD_DIR`
   error_log=$(mktemp)
   exit_status=0
-  xcodebuild -project "$dest" -scheme "BazelDependencies" \
-    > "$error_log" 2>&1 \
-    || exit_status=$?
+  build_dir=$(\
+    xcodebuild -project "$dest" -showBuildSettings 2>&1 | tee -i "$error_log" \
+      | grep '\sBUILD_DIR\s=\s' \
+      | sed 's/.*= //' \
+      || exit_status=$? \
+  )
   if [ $exit_status -ne 0 ]; then
-    echo "WARNING: Failed to build \"BazelDependencies\" scheme:"
+    echo "ERROR: Failed to calculate BUILD_DIR for \"$dest\":"
     cat "$error_log" >&2
+    exit 1
   fi
+
+  # Create `$GEN_DIR`
+  mkdir -p "$build_dir"
+  cd "$build_dir"
+  rm -f "bazel-exec-root"
+  ln -s "${bazel_out%/*}" "bazel-exec-root"
+
+  # Create directory structure in `$GEN_DIR`
+  cd "$bazel_out"
+  sed 's|^\$(GEN_DIR)\/\(.*\)\/[^\/]*$|\1|' \
+    "$dest/rules_xcodeproj/generated.xcfilelist" \
+    | uniq \
+    | while IFS= read -r dir
+  do
+    mkdir -p "$dir"
+  done
 fi
+
+echo 'Updated project at "%output_path%"'

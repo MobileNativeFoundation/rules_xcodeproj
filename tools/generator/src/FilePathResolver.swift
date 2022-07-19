@@ -69,16 +69,16 @@ struct FilePathResolver: Equatable {
                 }
                 return bazelOutDir + filePath.path
             } else if useGenDir {
-                let copiedBazelOutDir: Path
+                let linkedBazelOutDir: Path
                 switch mode {
                 case .buildSetting:
-                    copiedBazelOutDir = "$(GEN_DIR)"
+                    linkedBazelOutDir = "$(GEN_DIR)"
                 case .script:
-                    copiedBazelOutDir = "$GEN_DIR"
+                    linkedBazelOutDir = "$GEN_DIR"
                 case .srcRoot:
-                    copiedBazelOutDir = linksDirectory + "gen_dir"
+                    linkedBazelOutDir = linksDirectory + "gen_dir"
                 }
-                return copiedBazelOutDir + filePath.path
+                return linkedBazelOutDir + filePath.path
             } else {
                 let buildDir: Path
                 switch mode {

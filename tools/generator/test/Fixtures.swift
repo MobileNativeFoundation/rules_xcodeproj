@@ -1014,7 +1014,7 @@ $(BAZEL_EXTERNAL)/another_repo/b.swift
 
 """)
 
-        files[.internal("generated.copied.xcfilelist")] = .nonReferencedContent(
+        files[.internal("generated.xcfilelist")] = .nonReferencedContent(
 """
 $(GEN_DIR)/a/b/module.modulemap
 $(GEN_DIR)/a1b2c/bin/t.c
@@ -1405,34 +1405,6 @@ env -i \
         )
         pbxProj.add(object: generateFilesScript)
 
-        let copyFilesScript = PBXShellScriptBuildPhase(
-            name: "Copy Files",
-            inputFileListPaths: ["$(INTERNAL_DIR)/generated.xcfilelist"],
-            outputFileListPaths: [
-                "$(INTERNAL_DIR)/generated.copied.xcfilelist",
-            ],
-            shellScript: #"""
-set -euo pipefail
-
-cd "$BAZEL_OUT"
-
-# Sync to "$BUILD_DIR/bazel-out". This is the same as "$GEN_DIR" for normal
-# builds, but is different for Index Builds. `PBXBuildFile`s will use the
-# "$GEN_DIR" version, so indexing might get messed up until they are normally
-# generated. It's the best we can do though as we need to use the `gen_dir`
-# symlink.
-rsync \
-  --files-from "$INTERNAL_DIR/generated.rsynclist" \
-  --chmod=u+w \
-  -L \
-  . \
-  "$BUILD_DIR/bazel-out"
-
-"""#,
-            showEnvVarsInLog: false
-        )
-        pbxProj.add(object: copyFilesScript)
-
         let pbxProject = pbxProj.rootObject!
 
         let target = PBXAggregateTarget(
@@ -1440,7 +1412,6 @@ rsync \
             buildConfigurationList: configurationList,
             buildPhases: [
                 generateFilesScript,
-                copyFilesScript,
             ],
             productName: "BazelDependencies"
         )
