@@ -4,6 +4,7 @@ enum XCSchemeConstants {
     // GH399: Derive the defaultLastUpgradeVersion
     static let defaultLastUpgradeVersion = "1320"
     static let lldbInitVersion = "1.7"
+    static let defaultBuildConfigurationName = "Debug"
 }
 
 // MARK: XCScheme.BuildableReference

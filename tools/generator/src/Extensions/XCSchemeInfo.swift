@@ -5,22 +5,86 @@ struct XCSchemeInfo {
     let buildActionInfo: XCSchemeInfo.BuildActionInfo?
     let testActionInfo: XCSchemeInfo.TestActionInfo?
     let launchActionInfo: XCSchemeInfo.LaunchActionInfo?
+    let profileActionInfo: XCSchemeInfo.ProfileActionInfo?
+    let analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo
+    let archiveActionInfo: XCSchemeInfo.ArchiveActionInfo
+
+    init(
+        name: String,
+        buildActionInfo: XCSchemeInfo.BuildActionInfo? = nil,
+        testActionInfo: XCSchemeInfo.TestActionInfo? = nil,
+        launchActionInfo: XCSchemeInfo.LaunchActionInfo? = nil,
+        profileActionInfo: XCSchemeInfo.ProfileActionInfo? = nil,
+        analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo? = nil,
+        archiveActionInfo: XCSchemeInfo.ArchiveActionInfo? = nil
+    ) throws {
+        guard buildActionInfo != nil, testActionInfo != nil, launchActionInfo != nil else {
+            throw PreconditionError(message: """
+An `XCSchemeInfo` should have at a `buildActionInfo`, a `testActionInfo`, or a `launchActionInfo`.
+""")
+        }
+
+        self.name = name
+        self.buildActionInfo = buildActionInfo
+        self.testActionInfo = testActionInfo
+        self.launchActionInfo = launchActionInfo
+        self.profileActionInfo = profileActionInfo
+        self.analyzeActionInfo = analyzeActionInfo ?? .init(
+            buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
+        )
+        self.archiveActionInfo = archiveActionInfo ?? .init(
+            buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
+        )
+    }
 }
+
+// MARK: BuildActionInfo
 
 extension XCSchemeInfo {
     struct BuildActionInfo {
         let targetInfos: [XCSchemeInfo.TargetInfo]
+
+        init<TargetInfos: Sequence>(
+            targetInfos: TargetInfos
+        ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
+            self.targetInfos = Array(targetInfos)
+
+            guard !self.targetInfos.isEmpty else {
+                throw PreconditionError(message: """
+An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.TargetInfo`.
+""")
+            }
+        }
     }
 }
+
+// MARK: TestActionInfo
 
 extension XCSchemeInfo {
     struct TestActionInfo {
         let buildConfigurationName: String
         let targetInfos: [XCSchemeInfo.TargetInfo]
-    }
 
-    // TODO: Add init that confirms that the targetInfos are all isTestable.
+        init<TargetInfos: Sequence>(
+            targetInfos: TargetInfos
+        ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
+            self.targetInfos = Array(targetInfos)
+
+            guard !self.targetInfos.isEmpty else {
+                throw PreconditionError(message: """
+An `XCSchemeInfo.TestActionInfo` should have at least one `XCSchemeInfo.TargetInfo`.
+""")
+            }
+            guard self.targetInfos.allSatisfy(\.pbxTarget.isTestable) else {
+                throw PreconditionError(message: """
+An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.TargetInfo` values.
+""")
+            }
+        }
+    }
 }
+
+// MARK: LaunchActionInfo
 
 extension XCSchemeInfo {
     struct LaunchActionInfo {
@@ -29,10 +93,54 @@ extension XCSchemeInfo {
         let args: [String]
         let env: [String: String]
         let workingDirectory: String?
-    }
 
-    // TODO: Add init that confirms that the targetInfo is isLaunchable.
+        init(
+            buildConfigurationName: String,
+            targetInfo: XCSchemeInfo.TargetInfo,
+            args: [String] = [],
+            env: [String: String] = [:],
+            workingDirectory: String? = nil
+        ) throws {
+            guard targetInfo.productType.isLaunchable else {
+                throw PreconditionError(message: """
+    An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.TargetInfo` value.
+    """)
+            }
+            self.buildConfigurationName = buildConfigurationName
+            self.targetInfo = targetInfo
+            self.args = args
+            self.env = env
+            self.workingDirectory = workingDirectory
+        }
+    }
 }
+
+// MARK: ProfileActionInfo
+
+extension XCSchemeInfo {
+    struct ProfileActionInfo {
+        let buildConfigurationName: String
+        let targetInfo: XCSchemeInfo.TargetInfo
+    }
+}
+
+// MARK: AnalyzeActionInfo
+
+extension XCSchemeInfo {
+    struct AnalyzeActionInfo {
+        let buildConfigurationName: String
+    }
+}
+
+// MARK: AnalyzeActionInfo
+
+extension XCSchemeInfo {
+    struct ArchiveActionInfo {
+        let buildConfigurationName: String
+    }
+}
+
+// MARK: XCSchemeInfo Extensions
 
 extension XCSchemeInfo {
     var wasCreatedForAppExtension: Bool {
@@ -42,6 +150,8 @@ extension XCSchemeInfo {
         return false
     }
 }
+
+// MARK: LaunchActionInfo Extensions
 
 extension XCSchemeInfo.LaunchActionInfo {
     var runnable: XCScheme.Runnable {
