@@ -7,6 +7,8 @@ extension XCSchemeInfo {
     }
 }
 
+// MARK: Host Resolution Initializer
+
 extension XCSchemeInfo.ProfileActionInfo {
     /// Create a copy of the profile action info with host in the target info resolved.
     init?(
@@ -25,6 +27,8 @@ extension XCSchemeInfo.ProfileActionInfo {
         )
     }
 }
+
+// MARK: runnable
 
 extension XCSchemeInfo.ProfileActionInfo {
     var runnable: XCScheme.BuildableProductRunnable {
