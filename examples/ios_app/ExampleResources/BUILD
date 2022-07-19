@@ -17,3 +17,9 @@ dep_resources_collector(
     name = "deps_txt",
     deps = ["//Utils"],
 )
+
+filegroup(
+    name = "exported_resources",
+    srcs = glob(["Assets.xcassets/**"]),
+    visibility = ["//visibility:public"],
+)
