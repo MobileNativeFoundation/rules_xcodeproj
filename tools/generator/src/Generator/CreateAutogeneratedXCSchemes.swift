@@ -87,7 +87,7 @@ Expected to find a target info in the `BuildActionInfo`.
 """)
                     }
                     let schemeName: String
-                    if let selectedHostInfo = targetInfo.selectedHostInfo,
+                    if let selectedHostInfo = try targetInfo.selectedHostInfo,
                         targetInfo.disambiguateHost
                     {
                         schemeName = """
@@ -118,7 +118,7 @@ Expected to find a target info in the `BuildActionInfo`.
                 archiveActionInfo: .init(buildConfigurationName: buildConfigurationName)
             )
 
-            return XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
+            return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
         }
     }
 }

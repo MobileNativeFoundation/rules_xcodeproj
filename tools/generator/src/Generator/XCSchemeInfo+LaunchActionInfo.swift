@@ -86,14 +86,16 @@ extension XCSchemeInfo.LaunchActionInfo {
 
 extension XCSchemeInfo.LaunchActionInfo {
     var macroExpansion: XCScheme.BuildableReference? {
-        if let hostBuildableReference = targetInfo.selectedHostInfo?.buildableReference,
-            !targetInfo.productType.isWatchApplication
-        {
-            return hostBuildableReference
-        } else if targetInfo.pbxTarget.isTestable {
-            return targetInfo.buildableReference
+        get throws {
+            if let hostBuildableReference = try targetInfo.selectedHostInfo?.buildableReference,
+                !targetInfo.productType.isWatchApplication
+            {
+                return hostBuildableReference
+            } else if targetInfo.pbxTarget.isTestable {
+                return targetInfo.buildableReference
+            }
+            return nil
         }
-        return nil
     }
 }
 

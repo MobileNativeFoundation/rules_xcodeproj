@@ -26,7 +26,7 @@ extension XCScheme {
     convenience init(
         buildMode: BuildMode,
         schemeInfo: XCSchemeInfo
-    ) {
+    ) throws {
         let buildAction: XCScheme.BuildAction?
         if let buildActionInfo = schemeInfo.buildActionInfo {
             buildAction = .init(buildMode: buildMode, buildActionInfo: buildActionInfo)
@@ -43,7 +43,7 @@ extension XCScheme {
 
         let launchAction: XCScheme.LaunchAction?
         if let launchActionInfo = schemeInfo.launchActionInfo {
-            launchAction = .init(buildMode: buildMode, launchActionInfo: launchActionInfo)
+            launchAction = try .init(buildMode: buildMode, launchActionInfo: launchActionInfo)
         } else {
             launchAction = nil
         }
@@ -163,12 +163,12 @@ extension XCScheme.TestAction {
 // MARK: XCScheme.LaunchAction
 
 extension XCScheme.LaunchAction {
-    convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) {
+    convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) throws {
         let productType = launchActionInfo.targetInfo.productType
         self.init(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
-            macroExpansion: launchActionInfo.macroExpansion,
+            macroExpansion: try launchActionInfo.macroExpansion,
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,

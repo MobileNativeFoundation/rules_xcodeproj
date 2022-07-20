@@ -1,13 +1,22 @@
 import XcodeProj
 
 extension XCSchemeInfo {
+    enum HostResolution: Equatable {
+        /// Host resolution has not occurred.
+        case unresolved
+        /// Host resoultion has occurred. No host was selected.
+        case none
+        /// Host resolution has occurred. Host was selected.
+        case selected(HostInfo)
+    }
+
     struct TargetInfo {
         let pbxTarget: PBXTarget
         let buildableReference: XCScheme.BuildableReference
         let hostInfos: [HostInfo]
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let disambiguateHost: Bool
-        let selectedHostInfo: HostInfo?
+        let hostResolution: HostResolution
 
         /// Initializer used when creating a TargetInfo for the first time.
         init<HostInfos: Sequence, ExtPointIdentifiers: Sequence>(
@@ -26,7 +35,7 @@ extension XCSchemeInfo {
                 ),
                 hostInfos: Array(hostInfos),
                 extensionPointIdentifiers: Set(extensionPointIdentifiers),
-                selectedHostInfo: nil
+                hostResolution: .unresolved
             )
         }
 
@@ -45,12 +54,19 @@ extension XCSchemeInfo {
                 selectedHostInfo = original.hostInfos.first
             }
 
+            let hostResolution: HostResolution
+            if let selectedHostInfo = selectedHostInfo {
+                hostResolution = .selected(selectedHostInfo)
+            } else {
+                hostResolution = .none
+            }
+
             self.init(
                 pbxTarget: original.pbxTarget,
                 buildableReference: original.buildableReference,
                 hostInfos: original.hostInfos,
                 extensionPointIdentifiers: original.extensionPointIdentifiers,
-                selectedHostInfo: selectedHostInfo
+                hostResolution: hostResolution
             )
         }
 
@@ -60,14 +76,31 @@ extension XCSchemeInfo {
             buildableReference: XCScheme.BuildableReference,
             hostInfos: [HostInfo],
             extensionPointIdentifiers: Set<ExtensionPointIdentifier>,
-            selectedHostInfo: HostInfo?
+            hostResolution: HostResolution
         ) {
             self.pbxTarget = pbxTarget
             self.buildableReference = buildableReference
             self.hostInfos = hostInfos
             self.extensionPointIdentifiers = extensionPointIdentifiers
             disambiguateHost = self.hostInfos.count > 1
-            self.selectedHostInfo = selectedHostInfo
+            self.hostResolution = hostResolution
+        }
+    }
+}
+
+extension XCSchemeInfo.TargetInfo {
+    var selectedHostInfo: XCSchemeInfo.HostInfo? {
+        get throws {
+            switch hostResolution {
+            case .unresolved:
+                throw PreconditionError(message: """
+Cannot access `selectedHostInfo` until host resolution has occurred.
+""")
+            case .none:
+                return nil
+            case let .selected(selectedHostInfo):
+                return selectedHostInfo
+            }
         }
     }
 }
@@ -80,7 +113,7 @@ extension XCSchemeInfo.TargetInfo {
     var buildableReferences: [XCScheme.BuildableReference] {
         var results = [buildableReference]
         // Only include the selected host, not all of the hosts.
-        if let selectedHostInfo = selectedHostInfo {
+        if case let .selected(selectedHostInfo) = hostResolution {
             results.append(selectedHostInfo.buildableReference)
         }
         return results

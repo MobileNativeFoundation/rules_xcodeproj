@@ -35,16 +35,34 @@ extension XCSchemeInfoTargetInfoTests {
             hostInfos: [appHostInfo, unitTestHostInfo],
             extensionPointIdentifiers: []
         )
-        XCTAssertNil(targetInfo.selectedHostInfo)
+        XCTAssertEqual(targetInfo.hostResolution, .unresolved)
 
         let resolvedTargetInfo = XCSchemeInfo.TargetInfo(
             resolveHostFor: targetInfo,
             topLevelTargetInfos: []
         )
-        XCTAssertEqual(resolvedTargetInfo.selectedHostInfo, appHostInfo)
+        if case let .selected(selectedHostInfo) = resolvedTargetInfo.hostResolution {
+            XCTAssertEqual(selectedHostInfo, appHostInfo)
+        } else {
+            XCTFail("Expected a selected host.")
+        }
     }
 
     func test_init_hostResolution_withHosts_withTopLevelTargets() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+}
+
+extension XCSchemeInfoTargetInfoTests {
+    func test_selectedHostInfo_unresolved() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_selectedHostInfo_none() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_selectedHostInfo_selected() throws {
         XCTFail("IMPLEMENT ME!")
     }
 }

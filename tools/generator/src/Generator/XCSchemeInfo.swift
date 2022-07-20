@@ -27,8 +27,9 @@ struct XCSchemeInfo {
         archiveActionInfo: XCSchemeInfo.ArchiveActionInfo? = nil
     ) throws {
         guard buildActionInfo != nil || testActionInfo != nil || launchActionInfo != nil else {
+            let schemeName = name ?? ""
             throw PreconditionError(message: """
-An `XCSchemeInfo` (\(name)) should have at least one of the following: `buildActionInfo`, \
+An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `buildActionInfo`, \
 `testActionInfo`, `launchActionInfo`.
 """)
         }
