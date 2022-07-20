@@ -67,17 +67,47 @@ extension XCSchemeInfoLaunchActionInfoTests {
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_runnable_whenIsWidgetKitExtension() throws {
-        XCTFail("IMPLEMENT ME!")
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfo: widgetKitExtTargetInfo
+        )
+        let runnable = launchActionInfo.runnable
+        guard let remoteRunnable = runnable as? XCScheme.RemoteRunnable else {
+            XCTFail("Expected a RemoteRunnable.")
+            return
+        }
+        XCTAssertEqual(remoteRunnable.buildableReference, widgetKitExtTargetInfo.buildableReference)
     }
 
     func test_runnable_whenIsNotWidgetKitExtension() throws {
-        XCTFail("IMPLEMENT ME!")
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfo: appTargetInfo
+        )
+        let runnable = launchActionInfo.runnable
+        guard let buildableProductRunnable = runnable as? XCScheme.BuildableProductRunnable else {
+            XCTFail("Expected a BuildableProductRunnable.")
+            return
+        }
+        XCTAssertEqual(buildableProductRunnable.buildableReference, appTargetInfo.buildableReference)
     }
 }
 
 extension XCSchemeInfoLaunchActionInfoTests {
-    func test_askForAppToLaunch() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_askForAppToLaunch_whenIsWidgetKitExtension() throws {
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfo: widgetKitExtTargetInfo
+        )
+        XCTAssertTrue(launchActionInfo.askForAppToLaunch)
+    }
+
+    func test_askForAppToLaunch_whenIsNotWidgetKitExtension() throws {
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfo: appTargetInfo
+        )
+        XCTAssertFalse(launchActionInfo.askForAppToLaunch)
     }
 }
 
@@ -136,6 +166,7 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
 
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
+    lazy var widgetKitExtTarget = pbxTargetsDict["WDKE"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryTarget,
@@ -143,11 +174,16 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
         hostInfos: [],
         extensionPointIdentifiers: []
     )
-
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appTarget,
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
+    )
+    lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: widgetKitExtTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
     )
 }
