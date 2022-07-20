@@ -174,8 +174,17 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
         targets: [Target],
         filePathResolver: FilePathResolver
     ) throws -> String {
+        var overlays: [String] = [#"""
+
+# Use actual paths for Bazel generated files
+# This also fixes Index Build to use its version of generated files
+cat > "$BUILD_DIR/gen_dir-overlay.yaml" <<EOF
+{"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$output_path","name": "$GEN_DIR","type": "directory-remap"}],"version": 0}
+EOF
+
+"""#]
+
         let addAdditionalOutputGroups: String
-        let overlay: String
         switch buildMode {
         case .bazel:
             addAdditionalOutputGroups = #"""
@@ -192,7 +201,6 @@ if [ -s "$output_groups_file" ]; then
   done < "$output_groups_file"
 fi
 """#
-            overlay = ""
         case .xcode:
             addAdditionalOutputGroups = ""
 
@@ -215,15 +223,14 @@ fi
                 }
                 .joined(separator: ",")
 
-            overlay = #"""
+            overlays.append(#"""
 # Look up Swift generated headers in `$BUILD_DIR` first, then fall through to \#
 `$BAZEL_OUT`
 cat > "$BUILD_DIR/xcode-overlay.yaml" <<EOF
 {"case-sensitive": "false", "fallthrough": true, "roots": [\#(roots)],"version": 0}
 EOF
 
-
-"""#
+"""#)
         }
 
         return #"""
@@ -284,8 +291,8 @@ if [ "$ACTION" != "indexbuild" ]; then
   ln -sf "$external" external
   ln -sf "$BAZEL_OUT" gen_dir
 fi
+\#(overlays.joined(separator: "\n"))\#
 
-\#(overlay)\#
 cd "$BUILD_DIR"
 
 rm -rf external

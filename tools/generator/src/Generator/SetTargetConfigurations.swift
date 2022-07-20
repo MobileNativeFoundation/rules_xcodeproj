@@ -349,14 +349,34 @@ $(CONFIGURATION_BUILD_DIR)
             )
         }
 
-        // Set VFS overlay
+        // Set VFS overlays
+
+        if target.isSwift {
+            try buildSettings.prepend(
+                onKey: "OTHER_SWIFT_FLAGS",
+                "-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml"
+            )
+        } else {
+            try buildSettings.prepend(
+                onKey: "OTHER_CFLAGS",
+                ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
+            )
+
+            try buildSettings.prepend(
+                onKey: "OTHER_CPLUSPLUSFLAGS",
+                ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
+            )
+        }
 
         switch buildMode {
         case .xcode:
             if !target.modulemaps.isEmpty {
                 try buildSettings.prepend(
                     onKey: "OTHER_SWIFT_FLAGS",
-                    "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml"
+                    #"""
+-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/gen_dir-overlay.yaml
+"""#
                 )
             }
 

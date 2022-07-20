@@ -188,10 +188,14 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(BUILD_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(BUILD_DIR)/gen_dir-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(BUILD_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(BUILD_DIR)/gen_dir-overlay.yaml",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
