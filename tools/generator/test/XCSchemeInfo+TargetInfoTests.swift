@@ -96,8 +96,17 @@ extension XCSchemeInfoTargetInfoTests {
 }
 
 extension XCSchemeInfoTargetInfoTests {
-    func test_buildableReferences() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_buildableReferences_noHost() throws {
+        let buildableReferences = libraryTargetInfo.buildableReferences
+        XCTAssertEqual(buildableReferences, [libraryTargetInfo.buildableReference])
+    }
+
+    func test_buildableReferences_withHost() throws {
+        let buildableReferences = libraryTargetInfoWithHosts.buildableReferences
+        XCTAssertEqual(buildableReferences, [
+            libraryTargetInfo.buildableReference,
+            try libraryTargetInfoWithHosts.selectedHostInfo!.buildableReference,
+        ])
     }
 }
 
