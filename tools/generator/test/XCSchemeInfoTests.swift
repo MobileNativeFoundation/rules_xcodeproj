@@ -85,7 +85,37 @@ An `XCSchemeInfo` should have at least one of the following: `name`, `nameClosur
 
 extension XCSchemeInfoTests {
     func test_allPBXTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+        let schemeInfo = try XCSchemeInfo(
+            name: schemeName,
+            buildActionInfo: .init(
+                targetInfos: [libraryTargetInfo]
+            ),
+            testActionInfo: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo]
+            ),
+            launchActionInfo: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: appTargetInfo
+            ),
+            profileActionInfo: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: widgetKitExtTargetInfo
+            ),
+            analyzeActionInfo: .init(
+                buildConfigurationName: buildConfigurationName
+            ),
+            archiveActionInfo: .init(
+                buildConfigurationName: buildConfigurationName
+            )
+        )
+        let pbxTargets = schemeInfo.allPBXTargets
+        XCTAssertEqual(pbxTargets, .init([
+            libraryTargetInfo.pbxTarget,
+            unitTestTargetInfo.pbxTarget,
+            appTargetInfo.pbxTarget,
+            widgetKitExtTargetInfo.pbxTarget,
+        ]))
     }
 }
 
@@ -118,6 +148,7 @@ class XCSchemeInfoTests: XCTestCase {
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
     lazy var unitTestTarget = pbxTargetsDict["B 2"]!
+    lazy var widgetKitExtTarget = pbxTargetsDict["WDKE"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: appTarget,
@@ -142,5 +173,11 @@ class XCSchemeInfoTests: XCTestCase {
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [appHostInfo],
         extensionPointIdentifiers: []
+    )
+    lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: widgetKitExtTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
     )
 }
