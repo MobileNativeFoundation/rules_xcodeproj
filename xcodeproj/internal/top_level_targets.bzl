@@ -88,7 +88,11 @@ def process_top_level_properties(
     if bundle_info:
         bundle_name = bundle_info.bundle_name
         executable_name = getattr(bundle_info, "executable_name", bundle_name)
-        minimum_deployment_version = bundle_info.minimum_deployment_os_version
+        minimum_deployment_version = getattr(
+            bundle_info,
+            "minimum_deployment_os_version",
+            getattr(bundle_info, "minimum_os_version", None),
+        )
         product_name = bundle_name
         product_type = bundle_info.product_type
 
