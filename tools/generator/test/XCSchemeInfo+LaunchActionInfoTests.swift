@@ -215,11 +215,33 @@ extension XCSchemeInfoLaunchActionInfoTests {
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_debugger_canUseDebugLauncher() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: appTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = actionInfo else {
+            XCTFail("Expected a LaunchActionInfo.")
+            return
+        }
+        XCTAssertEqual(launchActionInfo.debugger, XCScheme.defaultDebugger)
     }
 
     func test_debugger_cannotUseDebugLauncher() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: widgetKitExtTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = actionInfo else {
+            XCTFail("Expected a LaunchActionInfo.")
+            return
+        }
+        XCTAssertEqual(launchActionInfo.debugger, "")
     }
 }
 

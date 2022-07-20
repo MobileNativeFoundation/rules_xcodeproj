@@ -106,7 +106,7 @@ extension XCSchemeInfo.LaunchActionInfo {
         if targetInfo.productType.canUseDebugLauncher {
             return XCScheme.defaultLauncher
         }
-        return "Xcode.IDEFoundation.Launcher.PosixSpawn"
+        return XCSchemeConstants.posixSpawnLauncher
     }
 }
 
