@@ -292,9 +292,17 @@ $(CONFIGURATION_BUILD_DIR)
                 to: entitlementsPath.string.quoted
             )
 
-            // This is required because otherwise Xcode fails the build due
-            // the entitlements file being modified by the Bazel build script.
-            buildSettings["CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION"] = true
+            if !buildMode.usesBazelModeBuildScripts {
+                // This is required because otherwise Xcode can fails the build
+                // due to a generated entitlements file being modified by the
+                // Bazel build script.
+                // We only set this for BwB mode though, because when this is
+                // set, Xcode uses the entitlements as provided instead of
+                // modifying them, which is needed in BwX mode.
+                buildSettings[
+                    "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION"
+                ] = true
+            }
         }
 
         if let pch = target.inputs.pch {
