@@ -230,20 +230,18 @@ def process_top_level_target(
     modulemaps = process_modulemaps(swift_info = swift_info)
     additional_files.extend(modulemaps.files)
 
-    info_plist = None
-    info_plist_file = info_plists.adjust_for_xcode(
+    infoplist = info_plists.adjust_for_xcode(
         info_plists.get_file(target),
         ctx = ctx,
     )
     extension_infoplists = None
-    if info_plist_file:
-        info_plist = file_path(info_plist_file)
-        additional_files.append(info_plist_file)
+    if infoplist:
+        additional_files.append(infoplist)
         if bundle_info and bundle_info.bundle_extension == ".appex":
             extension_infoplists = [
                 struct(
                     id = id,
-                    infoplist = info_plist_file,
+                    infoplist = infoplist,
                 ),
             ]
 
@@ -323,6 +321,7 @@ def process_top_level_target(
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        id = id,
         platform = platform,
         is_bundle = is_bundle,
         linker_inputs = linker_inputs,
@@ -338,6 +337,7 @@ def process_top_level_target(
         default_info = target[DefaultInfo],
         swift_info = swift_info,
         id = id,
+        infoplist = infoplist,
         transitive_infos = transitive_infos,
         should_produce_dto = should_include_outputs(ctx = ctx),
         should_produce_output_groups = should_include_outputs_output_groups(
@@ -464,7 +464,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             swiftmodules = process_swiftmodules(swift_info = swift_info),
             inputs = inputs,
             linker_inputs = linker_inputs,
-            info_plist = info_plist,
+            infoplist = infoplist,
             watch_application = watch_application,
             extensions = extensions,
             app_clips = app_clips,

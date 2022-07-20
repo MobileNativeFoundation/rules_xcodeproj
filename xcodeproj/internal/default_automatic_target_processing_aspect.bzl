@@ -51,6 +51,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     this_target_type = _get_target_type(target = target)
 
     # Targets that don't produce outputs can't be Xcode targets
+    # TODO: Limit this to archives, bundles, executables, and swiftmodules?
     should_generate_target = target.files != depset()
 
     if CcInfo in target:

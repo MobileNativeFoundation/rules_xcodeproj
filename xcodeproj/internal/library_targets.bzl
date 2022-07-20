@@ -124,6 +124,7 @@ def process_library_target(
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        id = id,
         platform = platform,
         bundle_resources = bundle_resources,
         is_bundle = False,
@@ -184,7 +185,6 @@ def process_library_target(
             swiftmodules = process_swiftmodules(swift_info = swift_info),
             inputs = inputs,
             linker_inputs = linker_inputs,
-            info_plist = None,
             dependencies = dependencies,
             outputs = outputs,
         ),

@@ -25,6 +25,9 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
+                "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
+$(BUILD_DIR)/bazel_build_output_groups
+""",
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
                 "BAZEL_OUT": "$(BUILD_DIR)/bazel-exec-root/bazel-out",

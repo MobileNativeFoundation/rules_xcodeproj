@@ -5,6 +5,24 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Set Bazel Build Output Groups"
+               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;echo &quot;g $BAZEL_TARGET_ID&quot; &gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "5742A33EA302007E9758E24B"
+                     BuildableName = "ExampleTests.xctest"
+                     BlueprintName = "ExampleTests.__internal__.__test_bundle"
+                     ReferencedContainer = "container:test/fixtures/tvos_app/bwx.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"

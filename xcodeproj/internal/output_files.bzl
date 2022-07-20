@@ -9,6 +9,7 @@ def _create(
         *,
         direct_outputs = None,
         automatic_target_info = None,
+        infoplist = None,
         transitive_infos,
         should_produce_dto,
         should_produce_output_groups):
@@ -19,6 +20,7 @@ def _create(
             the outputs are being merged.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             the target.
+        infoplist: A `File` or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
@@ -33,8 +35,12 @@ def _create(
         A `struct` representing the internal data structure of the
         `output_files` module.
     """
+    direct_build = []
+
+    if infoplist:
+        direct_build.append(infoplist)
+
     if direct_outputs:
-        direct_build = []
         direct_index = []
 
         swift = direct_outputs.swift
@@ -47,12 +53,11 @@ def _create(
         if direct_outputs.product:
             direct_build.append(direct_outputs.product)
     else:
-        direct_build = None
         direct_index = None
         swift = None
 
     transitive_build = depset(
-        direct_build,
+        direct_build if direct_build else None,
         transitive = [
             info.outputs._transitive_build
             for attr, info in transitive_infos
@@ -211,18 +216,20 @@ def _collect(
         default_info,
         swift_info,
         id,
+        infoplist = None,
         transitive_infos,
         should_produce_dto,
         should_produce_output_groups):
     """Collects the outputs of a target.
 
     Args:
+        target_files: The `files` attribute of the target. This should be `[]`
+            if `bundle_info` is not `None`.
         bundle_info: The `AppleBundleInfo` provider for  the target, or `None`.
         default_info: The `DefaultInfo` provider for the target, or `None`.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         id: A unique identifier for the target.
-        target_files: The `files` attribute of the target. This should be `[]`
-            if `bundle_info` is not `None`.
+        infoplist: A `File` or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
@@ -247,6 +254,7 @@ def _collect(
 
     return _create(
         direct_outputs = outputs,
+        infoplist = infoplist,
         should_produce_dto = should_produce_dto,
         should_produce_output_groups = should_produce_output_groups,
         transitive_infos = transitive_infos,

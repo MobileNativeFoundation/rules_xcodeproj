@@ -1895,16 +1895,17 @@ perl -pe 's/^([^"].*\$\(.*\).*)/"$1"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}
             target: bazelDependenciesTarget
         )
 
-        // The order target are added to `PBXProject`s matter for uuid fixing.
-        for pbxTarget in pbxNativeTargets.values.sortedLocalizedStandard(\.name) {
+        // The order target are added to `PBXProject`s matter for uuid fixing
+        for pbxTarget in pbxNativeTargets.values
+            .sortedLocalizedStandard(\.name)
+        {
             pbxProj.add(object: pbxTarget)
             pbxProj.rootObject!.targets.append(pbxTarget)
         }
 
-        var pbxTargets = [ConsolidatedTarget.Key: PBXTarget](
+        let pbxTargets = [ConsolidatedTarget.Key: PBXTarget](
             uniqueKeysWithValues: pbxNativeTargets.map { $0 }
         )
-        pbxTargets[.bazelDependencies] = bazelDependenciesTarget
 
         return pbxTargets
     }

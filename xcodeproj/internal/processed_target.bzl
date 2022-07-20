@@ -1,7 +1,7 @@
 """Functions for creating data structures related to processed bazel targets."""
 
 load(":collections.bzl", "set_if_true")
-load(":files.bzl", "file_path_to_dto")
+load(":files.bzl", "file_path", "file_path_to_dto")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "output_files")
@@ -93,7 +93,7 @@ def xcode_target(
         swiftmodules,
         inputs,
         linker_inputs,
-        info_plist,
+        infoplist = None,
         watch_application = None,
         extensions = [],
         app_clips = [],
@@ -124,7 +124,7 @@ def xcode_target(
         inputs: The value returned from `input_files.collect`.
         linker_inputs: A value returned from `linker_input_files.collect` or
             `None`.
-        info_plist: A value as returned by `files.file_path` or `None`.
+        infoplist: A `File` or `None`.
         watch_application: The `id` of the watch application target that should
             be embedded in this target, or `None`.
         extensions: A `list` of `id`s of application extension targets that
@@ -181,7 +181,11 @@ def xcode_target(
         "linker_inputs",
         linker_input_files.to_dto(linker_inputs),
     )
-    set_if_true(target_json, "info_plist", file_path_to_dto(info_plist))
+    set_if_true(
+        target_json,
+        "info_plist",
+        file_path_to_dto(file_path(infoplist)),
+    )
     set_if_true(target_json, "watch_application", watch_application)
     set_if_true(target_json, "extensions", extensions)
     set_if_true(target_json, "app_clips", app_clips)

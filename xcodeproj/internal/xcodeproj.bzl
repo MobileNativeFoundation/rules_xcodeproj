@@ -6,18 +6,11 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "uniq")
-load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
-load(":linker_input_files.bzl", "linker_input_files")
-load(
-    ":output_files.bzl",
-    "output_files",
-    "parse_swift_info_module",
-    "swift_to_list",
-)
+load(":output_files.bzl", "output_files")
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":xcode_schemes.bzl", "xcode_schemes")
@@ -351,54 +344,11 @@ def _xcodeproj_impl(ctx):
     )
 
     bazel_integration_files = [ctx.file._create_lldbinit_script]
-    if ctx.attr.build_mode == "xcode":
-        non_target_swift_info_modules = depset(
-            transitive = [
-                info.non_target_swift_info_modules
-                for info in infos
-            ],
-        )
-        non_xcode_swiftmodules = sets.union(
-            *[
-                sets.make(swift_to_list(parse_swift_info_module(module)))
-                for module in non_target_swift_info_modules.to_list()
-            ]
-        )
-
-        xcode_libraries = sets.make(
-            depset(
-                transitive = [info.target_libraries for info in infos],
-            ).to_list(),
-        )
-        non_xcode_libraries = sets.make(
-            linker_input_files.get_top_level_static_libraries(
-                linker_input_files.merge(
-                    compilation_providers = comp_providers.merge(
-                        transitive_compilation_providers = [
-                            (info.target, info.compilation_providers)
-                            for info in infos
-                        ],
-                    ),
-                ),
-            ),
-        )
-
-        xcode_outputs = xcode_libraries
-        non_xcode_outputs = sets.union(
-            non_xcode_swiftmodules,
-            non_xcode_libraries,
-        )
-
-        extra_generated = sets.to_list(
-            sets.difference(non_xcode_outputs, xcode_outputs),
-        )
-    else:
+    if ctx.attr.build_mode != "xcode":
         bazel_integration_files.extend(ctx.files._bazel_integration_files)
-        extra_generated = []
 
     inputs = input_files.merge(
         transitive_infos = [(None, info) for info in infos],
-        extra_generated = extra_generated,
     )
 
     spec_file = _write_json_spec(
@@ -446,7 +396,6 @@ def _xcodeproj_impl(ctx):
                     ctx = ctx,
                     inputs = inputs,
                     toplevel_cache_buster = ctx.files.toplevel_cache_buster,
-                    configuration = configuration,
                 ),
                 output_files.to_output_groups_fields(
                     ctx = ctx,
