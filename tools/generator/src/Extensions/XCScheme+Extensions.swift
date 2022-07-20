@@ -27,6 +27,8 @@ extension XCScheme {
         buildMode: BuildMode,
         schemeInfo: XCSchemeInfo
     ) throws {
+        // TODO(chuck): Create default XXActionInfo values if one is not specified. Generate a
+        // action for all known types.
         let buildAction: XCScheme.BuildAction?
         if let buildActionInfo = schemeInfo.buildActionInfo {
             buildAction = .init(buildMode: buildMode, buildActionInfo: buildActionInfo)
