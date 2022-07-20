@@ -163,7 +163,7 @@ extension XCSchemeInfoTargetInfoTests {
 
 extension XCSchemeInfoTargetInfoTests {
     func test_productType() throws {
-        XCTFail("IMPLEMENT ME!")
+        XCTAssertEqual(libraryTargetInfo.productType, .staticLibrary)
     }
 }
 
