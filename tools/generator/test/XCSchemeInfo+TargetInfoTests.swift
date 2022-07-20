@@ -7,7 +7,7 @@ import XCTest
 
 extension XCSchemeInfoTargetInfoTests {
     func test_init() throws {
-        XCTAssertEqual(libraryTargetInfo.pbxTarget.name, libraryTarget.name)
+        XCTAssertEqual(libraryTargetInfo.pbxTarget, libraryTarget)
         XCTAssertEqual(libraryTargetInfo.buildableReference, .init(
             pbxTarget: libraryTarget,
             referencedContainer: filePathResolver.containerReference
