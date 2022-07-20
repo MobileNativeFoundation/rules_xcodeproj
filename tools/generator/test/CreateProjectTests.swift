@@ -134,6 +134,7 @@ $(BUILD_DIR)/bazel_build_output_groups
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
                 "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
+                "CXX": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
@@ -144,6 +145,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
+                "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
                 "INDEXING_BUILT_PRODUCTS_DIR__": """

@@ -67,8 +67,10 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 $(BUILD_DIR)/bazel_build_output_groups
 """,
                 "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
+                "CXX": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
+                "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
                 "SWIFT_USE_INTEGRATED_DRIVER": false,
