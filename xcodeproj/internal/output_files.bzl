@@ -275,9 +275,6 @@ def _to_dto(outputs):
 
     return dto
 
-def _to_swift_list(outputs):
-    return outputs._transitive_swift.to_list()
-
 def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
@@ -364,5 +361,4 @@ output_files = struct(
     merge = _merge,
     to_dto = _to_dto,
     to_output_groups_fields = _to_output_groups_fields,
-    to_swift_list = _to_swift_list,
 )
