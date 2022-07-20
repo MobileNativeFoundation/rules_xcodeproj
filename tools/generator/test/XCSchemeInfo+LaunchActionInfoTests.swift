@@ -113,19 +113,71 @@ extension XCSchemeInfoLaunchActionInfoTests {
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_macroExpansion_hasHostAndIsNotWatchApp() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: unitTestTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = actionInfo else {
+            XCTFail("Expected a LaunchActionInfo.")
+            return
+        }
+        guard let macroExpansion = try launchActionInfo.macroExpansion else {
+            XCTFail("Expected a macroExpansion.")
+            return
+        }
+        XCTAssertEqual(macroExpansion, appHostInfo.buildableReference)
     }
 
     func test_macroExpansion_hasHostAndIsWatchApp() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: watchAppTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = actionInfo else {
+            XCTFail("Expected a LaunchActionInfo.")
+            return
+        }
+        XCTAssertNil(try launchActionInfo.macroExpansion)
     }
 
     func test_macroExpansion_noHostIsTestable() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: unitTestNoHostTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = actionInfo else {
+            XCTFail("Expected a LaunchActionInfo.")
+            return
+        }
+        guard let macroExpansion = try launchActionInfo.macroExpansion else {
+            XCTFail("Expected a macroExpansion.")
+            return
+        }
+        XCTAssertEqual(macroExpansion, unitTestNoHostTargetInfo.buildableReference)
     }
 
     func test_macroExpansion_noHostIsNotTestable() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: appTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = actionInfo else {
+            XCTFail("Expected a LaunchActionInfo.")
+            return
+        }
+        XCTAssertNil(try launchActionInfo.macroExpansion)
     }
 }
 
@@ -166,7 +218,9 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
 
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
+    lazy var unitTestTarget = pbxTargetsDict["B 2"]!
     lazy var widgetKitExtTarget = pbxTargetsDict["WDKE"]!
+    lazy var watchAppTarget = pbxTargetsDict["W"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryTarget,
@@ -185,5 +239,29 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
+    )
+    lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: unitTestTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [appHostInfo],
+        extensionPointIdentifiers: []
+    )
+    lazy var unitTestNoHostTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: unitTestTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: []
+    )
+    lazy var watchAppTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: watchAppTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [appHostInfo],
+        extensionPointIdentifiers: []
+    )
+
+    lazy var appHostInfo = XCSchemeInfo.HostInfo(
+        pbxTarget: appTarget,
+        referencedContainer: filePathResolver.containerReference,
+        index: 0
     )
 }
