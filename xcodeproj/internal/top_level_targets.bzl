@@ -86,16 +86,17 @@ def process_top_level_properties(
         A `struct` of information about the top level target.
     """
     if bundle_info:
-        executable_name = bundle_info.executable_name
+        bundle_name = bundle_info.bundle_name
+        executable_name = getattr(bundle_info, "executable_name", bundle_name)
         minimum_deployment_version = bundle_info.minimum_deployment_os_version
-        product_name = bundle_info.bundle_name
+        product_name = bundle_name
         product_type = bundle_info.product_type
 
         if tree_artifact_enabled:
             bundle_file_path = file_path(bundle_info.archive)
         else:
             bundle_extension = bundle_info.bundle_extension
-            bundle = "{}{}".format(bundle_info.bundle_name, bundle_extension)
+            bundle = "{}{}".format(bundle_name, bundle_extension)
             if bundle_extension == ".app":
                 bundle_path = paths.join(
                     bundle_info.archive_root,
