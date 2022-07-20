@@ -240,7 +240,7 @@ def _collect(
                     _handle_dep(dep, attr = attr)
 
     # TODO: Ensure this continues to work once we support framework targets
-    additional_files = additional_files + linker_input_files.to_framework_files(
+    additional_files = additional_files + linker_input_files.to_input_files(
         linker_inputs,
     )
 
