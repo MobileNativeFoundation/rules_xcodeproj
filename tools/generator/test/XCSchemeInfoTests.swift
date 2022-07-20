@@ -121,11 +121,27 @@ extension XCSchemeInfoTests {
 
 extension XCSchemeInfoTests {
     func test_wasCreatedForAppExtension_withoutExtension() throws {
-        XCTFail("IMPLEMENT ME!")
+        let schemeInfo = try XCSchemeInfo(
+            name: schemeName,
+            buildActionInfo: .init(
+                targetInfos: [libraryTargetInfo]
+            )
+        )
+        XCTAssertFalse(schemeInfo.wasCreatedForAppExtension)
     }
 
     func test_wasCreatedForAppExtension_withExtension() throws {
-        XCTFail("IMPLEMENT ME!")
+        let schemeInfo = try XCSchemeInfo(
+            name: schemeName,
+            buildActionInfo: .init(
+                targetInfos: [libraryTargetInfo]
+            ),
+            launchActionInfo: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: widgetKitExtTargetInfo
+            )
+        )
+        XCTAssertTrue(schemeInfo.wasCreatedForAppExtension)
     }
 }
 
