@@ -131,6 +131,12 @@ def _collect(
             are in `resources`.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
+        *   `important_generated`: A `depset` of important generated `File`s
+            that are inputs to `target` or its transitive dependencies. These
+            differ from `generated` in that they will be generated as part of
+            project generation, to ensure they are created before Xcode is
+            opened. Entitlements are an example of this, as Xcode won't even
+            start a build if they are missing.
         *   `exported_symbols_lists`: A `depset` of `FilePath`s for
             `exported_symbols_lists`.
         *   `extra_files`: A `depset` of `FilePath`s that should be included in
@@ -291,6 +297,12 @@ def _collect(
             generated = generated,
         ))
 
+    important_generated = [
+        file
+        for file in entitlements
+        if not file.is_source
+    ]
+
     return struct(
         srcs = depset(srcs),
         non_arc_srcs = depset(non_arc_srcs),
@@ -324,6 +336,15 @@ def _collect(
             generated if generated else None,
             transitive = [
                 info.inputs.generated
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        ),
+        important_generated = depset(
+            important_generated if important_generated else None,
+            transitive = [
+                info.inputs.important_generated
                 for attr, info in transitive_infos
                 if (info.target_type in
                     automatic_target_info.xcode_targets.get(attr, [None]))
@@ -371,6 +392,7 @@ def _from_resource_bundle(bundle):
         exported_symbols_lists = depset(),
         xccurrentversions = depset(),
         generated = depset(),
+        important_generated = depset(),
         extra_files = depset(),
         uncategorized = depset(),
     )
@@ -412,6 +434,12 @@ def _merge(*, transitive_infos, extra_generated = None):
             extra_generated if extra_generated else None,
             transitive = [
                 info.inputs.generated
+                for _, info in transitive_infos
+            ],
+        ),
+        important_generated = depset(
+            transitive = [
+                info.inputs.important_generated
                 for _, info in transitive_infos
             ],
         ),

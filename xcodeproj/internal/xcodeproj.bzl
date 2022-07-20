@@ -434,7 +434,10 @@ def _xcodeproj_impl(ctx):
     return [
         DefaultInfo(
             executable = installer,
-            files = depset([xcodeproj]),
+            files = depset(
+                [xcodeproj],
+                transitive = [inputs.important_generated],
+            ),
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
