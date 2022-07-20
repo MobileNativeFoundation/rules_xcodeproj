@@ -169,19 +169,32 @@ extension XCSchemeInfoTargetInfoTests {
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_buildableReferences() throws {
-        XCTFail("IMPLEMENT ME!")
+        let targetInfos = [libraryTargetInfo, appTargetInfo]
+        let expected = libraryTargetInfo.buildableReferences + appTargetInfo.buildableReferences
+        XCTAssertEqual(targetInfos.buildableReferences, expected)
     }
 }
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_buildActionEntries() throws {
-        XCTFail("IMPLEMENT ME!")
+        let targetInfos = [libraryTargetInfo, appTargetInfo]
+        let expected: [XCScheme.BuildAction.Entry] = [
+            .init(withDefaults: libraryTargetInfo.buildableReference),
+            .init(withDefaults: appTargetInfo.buildableReference),
+        ]
+        XCTAssertEqual(targetInfos.buildActionEntries, expected)
     }
 }
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_bazelBuildPreActions() throws {
-        XCTFail("IMPLEMENT ME!")
+        let targetInfos = [libraryTargetInfo, appTargetInfo]
+        let expected: [XCScheme.ExecutionAction] = [
+            .initBazelBuildOutputGroupsFile,
+            try libraryTargetInfo.bazelBuildPreAction!,
+            try appTargetInfo.bazelBuildPreAction!,
+        ]
+        XCTAssertEqual(try targetInfos.bazelBuildPreActions, expected)
     }
 }
 
@@ -217,10 +230,13 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     )
 
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: appTarget,
-        referencedContainer: filePathResolver.containerReference,
-        hostInfos: [],
-        extensionPointIdentifiers: []
+        resolveHostFor: .init(
+            pbxTarget: appTarget,
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [],
+            extensionPointIdentifiers: []
+        ),
+        topLevelTargetInfos: []
     )
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: unitTestTarget,
@@ -246,7 +262,6 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         hostInfos: [appHostInfo, unitTestHostInfo],
         extensionPointIdentifiers: []
     )
-
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         resolveHostFor: unresolvedLibraryTargetInfo,
         topLevelTargetInfos: []

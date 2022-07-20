@@ -156,13 +156,6 @@ extension XCSchemeInfo.TargetInfo {
 // MARK: Sequence Extensions
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
-    /// Return all of the `BuildAction.Entry` values.
-    var buildActionEntries: [XCScheme.BuildAction.Entry] {
-        return buildableReferences.map { .init(withDefaults: $0) }
-    }
-}
-
-extension Sequence where Element == XCSchemeInfo.TargetInfo {
     /// Return all of the buildable references for all of the target infos.
     var buildableReferences: [XCScheme.BuildableReference] {
         return flatMap(\.buildableReferences)
@@ -170,13 +163,15 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
 }
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
+    /// Return all of the `BuildAction.Entry` values.
+    var buildActionEntries: [XCScheme.BuildAction.Entry] {
+        return buildableReferences.map { .init(withDefaults: $0) }
+    }
+}
+
+extension Sequence where Element == XCSchemeInfo.TargetInfo {
     var bazelBuildPreActions: [XCScheme.ExecutionAction] {
         get throws {
-            // var results: [XCScheme.ExecutionAction] = [.initBazelBuildOutputGroupsFile]
-            // if let bazelBuildPreAction = try bazelBuildPreAction {
-            //     results.append(bazelBuildPreAction)
-            // }
-            // return results
             let preActions = try compactMap { try $0.bazelBuildPreAction }
             return [.initBazelBuildOutputGroupsFile] + preActions
         }
