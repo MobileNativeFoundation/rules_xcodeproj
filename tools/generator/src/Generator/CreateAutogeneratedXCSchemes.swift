@@ -80,24 +80,6 @@ Host target with key \(key) not found in `pbxTargets`.
             let shouldCreateTestAction = pbxTarget.isTestable
             let shouldCreateLaunchAction = pbxTarget.isLaunchable && !pbxTarget.isTestable
             let schemeInfo = try XCSchemeInfo(
-                nameClosure: { buildActionInfo, _, _, _ in
-                    guard let targetInfo = buildActionInfo?.targetInfos.first else {
-                        throw PreconditionError(message: """
-Expected to find a target info in the `BuildActionInfo`.
-""")
-                    }
-                    let schemeName: String
-                    if let selectedHostInfo = try targetInfo.selectedHostInfo,
-                        targetInfo.disambiguateHost
-                    {
-                        schemeName = """
-\(targetInfo.pbxTarget.schemeName) in \(selectedHostInfo.pbxTarget.schemeName)
-"""
-                    } else {
-                        schemeName = targetInfo.pbxTarget.schemeName
-                    }
-                    return schemeName
-                },
                 buildActionInfo: .init(targetInfos: [targetInfo]),
                 testActionInfo: shouldCreateTestAction ?
                     .init(
@@ -116,7 +98,24 @@ Expected to find a target info in the `BuildActionInfo`.
                     ) : nil,
                 analyzeActionInfo: .init(buildConfigurationName: buildConfigurationName),
                 archiveActionInfo: .init(buildConfigurationName: buildConfigurationName)
-            )
+            ) { buildActionInfo, _, _, _ in
+                guard let targetInfo = buildActionInfo?.targetInfos.first else {
+                    throw PreconditionError(message: """
+Expected to find a target info in the `BuildActionInfo`.
+""")
+                }
+                let schemeName: String
+                if let selectedHostInfo = try targetInfo.selectedHostInfo,
+                    targetInfo.disambiguateHost
+                {
+                    schemeName = """
+\(targetInfo.pbxTarget.schemeName) in \(selectedHostInfo.pbxTarget.schemeName)
+"""
+                } else {
+                    schemeName = targetInfo.pbxTarget.schemeName
+                }
+                return schemeName
+            }
 
             return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
         }

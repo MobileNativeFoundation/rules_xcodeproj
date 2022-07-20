@@ -18,13 +18,13 @@ struct XCSchemeInfo {
 
     init(
         name: String? = nil,
-        nameClosure: NameClosure? = nil,
         buildActionInfo: XCSchemeInfo.BuildActionInfo? = nil,
         testActionInfo: XCSchemeInfo.TestActionInfo? = nil,
         launchActionInfo: XCSchemeInfo.LaunchActionInfo? = nil,
         profileActionInfo: XCSchemeInfo.ProfileActionInfo? = nil,
         analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo? = nil,
-        archiveActionInfo: XCSchemeInfo.ArchiveActionInfo? = nil
+        archiveActionInfo: XCSchemeInfo.ArchiveActionInfo? = nil,
+        nameClosure: NameClosure? = nil
     ) throws {
         guard buildActionInfo != nil || testActionInfo != nil || launchActionInfo != nil else {
             let schemeName = name ?? ""
