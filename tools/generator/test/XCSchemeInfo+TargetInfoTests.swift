@@ -31,16 +31,6 @@ extension XCSchemeInfoTargetInfoTests {
     }
 
     func test_init_hostResolution_withHosts_withoutTopLevelTargets() throws {
-        let appHostInfo = XCSchemeInfo.HostInfo(
-            pbxTarget: appTarget,
-            referencedContainer: filePathResolver.containerReference,
-            index: 0
-        )
-        let unitTestHostInfo = XCSchemeInfo.HostInfo(
-            pbxTarget: unitTestTarget,
-            referencedContainer: filePathResolver.containerReference,
-            index: 1
-        )
         let targetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: libraryTarget,
             referencedContainer: filePathResolver.containerReference,
@@ -61,16 +51,6 @@ extension XCSchemeInfoTargetInfoTests {
     }
 
     func test_init_hostResolution_withHosts_withTopLevelTargets() throws {
-        let appHostInfo = XCSchemeInfo.HostInfo(
-            pbxTarget: appTarget,
-            referencedContainer: filePathResolver.containerReference,
-            index: 0
-        )
-        let unitTestHostInfo = XCSchemeInfo.HostInfo(
-            pbxTarget: unitTestTarget,
-            referencedContainer: filePathResolver.containerReference,
-            index: 1
-        )
         let topLevelTargetInfos: [XCSchemeInfo.TargetInfo] = [
             .init(
                 pbxTarget: unitTestTarget,
@@ -101,15 +81,17 @@ extension XCSchemeInfoTargetInfoTests {
 
 extension XCSchemeInfoTargetInfoTests {
     func test_selectedHostInfo_unresolved() throws {
-        XCTFail("IMPLEMENT ME!")
+        XCTAssertThrowsError(try unresolvedLibraryTargetInfo.selectedHostInfo)
     }
 
     func test_selectedHostInfo_none() throws {
-        XCTFail("IMPLEMENT ME!")
+        let selectedHostInfo = try libraryTargetInfo.selectedHostInfo
+        XCTAssertNil(selectedHostInfo)
     }
 
     func test_selectedHostInfo_selected() throws {
-        XCTFail("IMPLEMENT ME!")
+        let selectedHostInfo = try libraryTargetInfoWithHosts.selectedHostInfo
+        XCTAssertNotNil(selectedHostInfo)
     }
 }
 
@@ -168,6 +150,17 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var appTarget = pbxTargetsDict["A 2"]!
     lazy var unitTestTarget = pbxTargetsDict["B 2"]!
 
+    lazy var appHostInfo = XCSchemeInfo.HostInfo(
+        pbxTarget: appTarget,
+        referencedContainer: filePathResolver.containerReference,
+        index: 0
+    )
+    lazy var unitTestHostInfo = XCSchemeInfo.HostInfo(
+        pbxTarget: unitTestTarget,
+        referencedContainer: filePathResolver.containerReference,
+        index: 1
+    )
+
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appTarget,
         referencedContainer: filePathResolver.containerReference,
@@ -180,21 +173,25 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         hostInfos: [],
         extensionPointIdentifiers: []
     )
-    lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
+    lazy var unresolvedLibraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryTarget,
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
-    // lazy var libraryTargetInfoWithHost = XCSchemeInfo.TargetInfo(
-    //     resolveHostFor: .init(
-    //         pbxTarget: libraryTarget,
-    //         referencedContainer: filePathResolver.containerReference,
-    //         hostInfos: [
-    //             .init(pbxTarget: appTarget, referencedContainer: filePathResolver.containerReference),
-    //         ],
-    //         extensionPointIdentifiers: []
-    //     ),
-    //     topLevelTargetInfos: []
-    // )
+    lazy var unresolvedLibraryTargetInfoWithHosts = XCSchemeInfo.TargetInfo(
+        pbxTarget: libraryTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [appHostInfo, unitTestHostInfo],
+        extensionPointIdentifiers: []
+    )
+
+    lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
+        resolveHostFor: unresolvedLibraryTargetInfo,
+        topLevelTargetInfos: []
+    )
+    lazy var libraryTargetInfoWithHosts = XCSchemeInfo.TargetInfo(
+        resolveHostFor: unresolvedLibraryTargetInfoWithHosts,
+        topLevelTargetInfos: []
+    )
 }
