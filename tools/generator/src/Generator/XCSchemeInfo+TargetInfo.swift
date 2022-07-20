@@ -129,9 +129,6 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
 }
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
-    // TODO(chuck): I would prefer to return a Set<XCScheme.BuildableReference> from
-    // buildableReferences, but it is not hashable. Can we extend it to be Hashable?
-
     /// Return all of the buildable references for all of the target infos.
     var buildableReferences: [XCScheme.BuildableReference] {
         return flatMap(\.buildableReferences)
