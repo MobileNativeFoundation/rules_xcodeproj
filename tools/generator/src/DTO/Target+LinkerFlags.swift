@@ -18,13 +18,8 @@ extension Target {
             filePathResolver: filePathResolver
         )
 
-        let forceLoad = linkerInputs.forceLoad
-
         flags.append(contentsOf: try linkerInputs.staticLibraries
-            .compactMap { filePath in
-                guard !forceLoad.contains(filePath) else {
-                    return nil
-                }
+            .map { filePath in
                 return try filePathResolver
                     .resolve(
                         filePath,
