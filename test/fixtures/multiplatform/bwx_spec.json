@@ -145,6 +145,10 @@
         },
         "examples/multiplatform/Tool/BUILD",
         "examples/multiplatform/Tool/Info.plist",
+        {
+            "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
+            "t": "g"
+        },
         "test/fixtures/multiplatform/BUILD"
     ],
     "force_bazel_dependencies": true,
@@ -1305,7 +1309,10 @@
                 "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
             ],
             "extensions": [],
-            "info_plist": null,
+            "info_plist": {
+                "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
+                "t": "g"
+            },
             "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/Tool:Tool",
