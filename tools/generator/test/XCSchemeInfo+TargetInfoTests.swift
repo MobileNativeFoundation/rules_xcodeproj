@@ -15,7 +15,19 @@ extension XCSchemeInfoTargetInfoTests {
     }
 
     func test_init_hostResolution_noHosts_withoutTopLevelTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+        let targetInfo = XCSchemeInfo.TargetInfo(
+            pbxTarget: libraryTarget,
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [],
+            extensionPointIdentifiers: []
+        )
+        XCTAssertEqual(targetInfo.hostResolution, .unresolved)
+
+        let resolvedTargetInfo = XCSchemeInfo.TargetInfo(
+            resolveHostFor: targetInfo,
+            topLevelTargetInfos: []
+        )
+        XCTAssertEqual(resolvedTargetInfo.hostResolution, .none)
     }
 
     func test_init_hostResolution_withHosts_withoutTopLevelTargets() throws {
@@ -49,7 +61,41 @@ extension XCSchemeInfoTargetInfoTests {
     }
 
     func test_init_hostResolution_withHosts_withTopLevelTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+        let appHostInfo = XCSchemeInfo.HostInfo(
+            pbxTarget: appTarget,
+            referencedContainer: filePathResolver.containerReference,
+            index: 0
+        )
+        let unitTestHostInfo = XCSchemeInfo.HostInfo(
+            pbxTarget: unitTestTarget,
+            referencedContainer: filePathResolver.containerReference,
+            index: 1
+        )
+        let topLevelTargetInfos: [XCSchemeInfo.TargetInfo] = [
+            .init(
+                pbxTarget: unitTestTarget,
+                referencedContainer: filePathResolver.containerReference,
+                hostInfos: [],
+                extensionPointIdentifiers: []
+            ),
+        ]
+        let targetInfo = XCSchemeInfo.TargetInfo(
+            pbxTarget: libraryTarget,
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [appHostInfo, unitTestHostInfo],
+            extensionPointIdentifiers: []
+        )
+        XCTAssertEqual(targetInfo.hostResolution, .unresolved)
+
+        let resolvedTargetInfo = XCSchemeInfo.TargetInfo(
+            resolveHostFor: targetInfo,
+            topLevelTargetInfos: topLevelTargetInfos
+        )
+        if case let .selected(selectedHostInfo) = resolvedTargetInfo.hostResolution {
+            XCTAssertEqual(selectedHostInfo, unitTestHostInfo)
+        } else {
+            XCTFail("Expected a selected host.")
+        }
     }
 }
 
