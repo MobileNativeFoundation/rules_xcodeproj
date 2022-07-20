@@ -30,7 +30,21 @@ extension XCSchemeInfoProfileActionInfoTests {
 
 extension XCSchemeInfoProfileActionInfoTests {
     func test_runnable() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = XCSchemeInfo.ProfileActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: appTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let profileActionInfo = actionInfo else {
+            XCTFail("Expected a ProfileActionInfo.")
+            return
+        }
+        XCTAssertEqual(
+            profileActionInfo.runnable.buildableReference,
+            appTargetInfo.buildableReference
+        )
     }
 }
 
