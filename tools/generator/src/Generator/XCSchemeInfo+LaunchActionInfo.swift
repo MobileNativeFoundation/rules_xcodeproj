@@ -17,8 +17,8 @@ extension XCSchemeInfo {
         ) throws {
             guard targetInfo.productType.isLaunchable else {
                 throw PreconditionError(message: """
-    An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.TargetInfo` value.
-    """)
+An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.TargetInfo` value.
+""")
             }
             self.buildConfigurationName = buildConfigurationName
             self.targetInfo = targetInfo

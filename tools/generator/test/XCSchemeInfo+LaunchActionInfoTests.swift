@@ -5,11 +5,38 @@ import XCTest
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_init_withLaunchableTarget() throws {
-        XCTFail("IMPLEMENT ME!")
+        let args = ["args"]
+        let env = ["RELEASE_KRAKEN": "true"]
+        let workingDirectory = "/path/to/working/dir"
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfo: appTargetInfo,
+            args: args,
+            env: env,
+            workingDirectory: workingDirectory
+        )
+        XCTAssertEqual(launchActionInfo.buildConfigurationName, buildConfigurationName)
+        XCTAssertEqual(launchActionInfo.targetInfo, appTargetInfo)
+        XCTAssertEqual(launchActionInfo.args, args)
+        XCTAssertEqual(launchActionInfo.env, env)
+        XCTAssertEqual(launchActionInfo.workingDirectory, workingDirectory)
     }
 
     func test_init_withoutLaunchableTarget() throws {
-        XCTFail("IMPLEMENT ME!")
+        var thrown: Error?
+        XCTAssertThrowsError(try XCSchemeInfo.LaunchActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfo: libraryTargetInfo
+        )) {
+          thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected PreconditionError.")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.TargetInfo` value.
+""")
     }
 }
 
@@ -77,4 +104,35 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
-class XCSchemeInfoLaunchActionInfoTests: XCTestCase {}
+class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
+    let buildConfigurationName = "Foo"
+
+    lazy var filePathResolver = FilePathResolver(
+        internalDirectoryName: "rules_xcodeproj",
+        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+    )
+
+    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
+        Fixtures.pbxTargets(
+            in: Fixtures.pbxProj(),
+            consolidatedTargets: Fixtures.consolidatedTargets
+        )
+        .0
+
+    lazy var libraryTarget = pbxTargetsDict["A 1"]!
+    lazy var appTarget = pbxTargetsDict["A 2"]!
+
+    lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: libraryTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: []
+    )
+
+    lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: appTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: []
+    )
+}
