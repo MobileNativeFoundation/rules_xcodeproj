@@ -42,11 +42,26 @@ An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.Target
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_hostResolution_withoutLaunchActionInfo() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: nil,
+            topLevelTargetInfos: []
+        )
+        XCTAssertNil(actionInfo)
     }
 
     func test_hostResolution_withLaunchActionInfo() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: appTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = actionInfo else {
+            XCTFail("Expected a LaunchActionInfo.")
+            return
+        }
+        XCTAssertNotEqual(launchActionInfo.targetInfo.hostResolution, .unresolved)
     }
 }
 
