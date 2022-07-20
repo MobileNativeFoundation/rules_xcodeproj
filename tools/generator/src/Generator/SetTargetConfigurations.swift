@@ -292,9 +292,17 @@ $(CONFIGURATION_BUILD_DIR)
                 to: entitlementsPath.string.quoted
             )
 
-            // This is required because otherwise Xcode fails the build due
-            // the entitlements file being modified by the Bazel build script.
-            buildSettings["CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION"] = true
+            if !buildMode.usesBazelModeBuildScripts {
+                // This is required because otherwise Xcode can fails the build
+                // due to a generated entitlements file being modified by the
+                // Bazel build script.
+                // We only set this for BwB mode though, because when this is
+                // set, Xcode uses the entitlements as provided instead of
+                // modifying them, which is needed in BwX mode.
+                buildSettings[
+                    "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION"
+                ] = true
+            }
         }
 
         if let pch = target.inputs.pch {
@@ -341,14 +349,34 @@ $(CONFIGURATION_BUILD_DIR)
             )
         }
 
-        // Set VFS overlay
+        // Set VFS overlays
+
+        if target.isSwift {
+            try buildSettings.prepend(
+                onKey: "OTHER_SWIFT_FLAGS",
+                "-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml"
+            )
+        } else {
+            try buildSettings.prepend(
+                onKey: "OTHER_CFLAGS",
+                ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
+            )
+
+            try buildSettings.prepend(
+                onKey: "OTHER_CPLUSPLUSFLAGS",
+                ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
+            )
+        }
 
         switch buildMode {
         case .xcode:
             if !target.modulemaps.isEmpty {
                 try buildSettings.prepend(
                     onKey: "OTHER_SWIFT_FLAGS",
-                    "-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml"
+                    #"""
+-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/gen_dir-overlay.yaml
+"""#
                 )
             }
 

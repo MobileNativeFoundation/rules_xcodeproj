@@ -1,7 +1,11 @@
 """Tests for `info_plists.get_file`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
-load("@build_bazel_rules_apple//apple:providers.bzl", "AppleBundleInfo")
+load(
+    "@build_bazel_rules_apple//apple:providers.bzl",
+    "AppleBinaryInfo",
+    "AppleBundleInfo",
+)
 
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:info_plists.bzl", "info_plists")
@@ -29,10 +33,26 @@ def _get_file_from_bundle_info_test(ctx):
 
     return unittest.end(env)
 
+def _get_file_from_binary_info_test(ctx):
+    env = unittest.begin(ctx)
+
+    info_plist_file = ctx.actions.declare_file("Info.plist")
+    ctx.actions.write(info_plist_file, content = "")
+
+    infoplist_info = AppleBinaryInfo(infoplist = info_plist_file)
+    target = {AppleBinaryInfo: infoplist_info}
+
+    actual = info_plists.get_file(target)
+    asserts.equals(env, info_plist_file, actual)
+
+    return unittest.end(env)
+
 get_file_from_bundle_info_test = unittest.make(_get_file_from_bundle_info_test)
+get_file_from_binary_info_test = unittest.make(_get_file_from_binary_info_test)
 
 def get_file_test_suite(name):
     return unittest.suite(
         name,
         get_file_from_bundle_info_test,
+        get_file_from_binary_info_test,
     )
