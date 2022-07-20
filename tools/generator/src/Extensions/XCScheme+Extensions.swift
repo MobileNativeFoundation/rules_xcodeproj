@@ -5,6 +5,7 @@ enum XCSchemeConstants {
     static let defaultLastUpgradeVersion = "1320"
     static let lldbInitVersion = "1.7"
     static let defaultBuildConfigurationName = "Debug"
+    static let posixSpawnLauncher = "Xcode.IDEFoundation.Launcher.PosixSpawn"
 }
 
 // MARK: XCScheme.BuildableReference
