@@ -152,8 +152,12 @@ extension XCSchemeInfoTargetInfoTests {
 }
 
 extension XCSchemeInfoTargetInfoTests {
-    func test_isWidgetKitExtension() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_isWidgetKitExtension_true() throws {
+        XCTAssertTrue(widgetKitExtTargetInfo.isWidgetKitExtension)
+    }
+
+    func test_isWidgetKitExtension_false() throws {
+        XCTAssertFalse(libraryTargetInfo.isWidgetKitExtension)
     }
 }
 
@@ -199,6 +203,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
     lazy var unitTestTarget = pbxTargetsDict["B 2"]!
+    lazy var widgetKitExtTarget = pbxTargetsDict["WDKE"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: appTarget,
@@ -222,6 +227,12 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
+    )
+    lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: widgetKitExtTarget,
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
     )
     lazy var unresolvedLibraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryTarget,
