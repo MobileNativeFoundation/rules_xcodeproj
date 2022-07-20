@@ -47,6 +47,7 @@ def _process_resource_bundle(bundle, *, information):
         id = id,
         transitive_infos = [],
         should_produce_dto = False,
+        should_produce_output_groups = False,
     )
 
     return xcode_target(

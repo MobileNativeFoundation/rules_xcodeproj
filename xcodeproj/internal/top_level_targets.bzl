@@ -34,6 +34,7 @@ load(
     "process_swiftmodules",
     "should_bundle_resources",
     "should_include_outputs",
+    "should_include_outputs_output_groups",
 )
 
 def get_tree_artifact_enabled(*, ctx, bundle_info):
@@ -344,6 +345,9 @@ def process_top_level_target(
         id = id,
         transitive_infos = transitive_infos,
         should_produce_dto = should_include_outputs(ctx = ctx),
+        should_produce_output_groups = should_include_outputs_output_groups(
+            ctx = ctx,
+        ),
     )
 
     xcode_library_targets = comp_providers.get_xcode_library_targets(
