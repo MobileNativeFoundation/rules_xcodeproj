@@ -22,6 +22,7 @@ def _collect(*, cc_info, objc, swift_info, is_xcode_target):
         _cc_info = cc_info,
         _objc = objc,
         _swift_info = swift_info,
+        _is_top_level = False,
         _is_xcode_library_target = is_xcode_library_target,
     )
 
@@ -76,6 +77,7 @@ def _merge(
 
     return struct(
         _cc_info = cc_info,
+        _is_top_level = True,
         _is_xcode_library_target = False,
         _objc = objc,
         _swift_info = swift_info,

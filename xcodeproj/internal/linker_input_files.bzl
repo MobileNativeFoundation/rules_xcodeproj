@@ -35,18 +35,21 @@ def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
         The `struct` should be passed to functions on `linker_input_files` to
         retrieve its contents.
     """
-    if compilation_providers._is_xcode_library_target:
-        primary_static_library = _compute_primary_static_library(
-            compilation_providers = compilation_providers,
-        )
-        top_level_values = None
-    else:
+    if compilation_providers._is_top_level:
         primary_static_library = None
         top_level_values = _extract_top_level_values(
             ctx = ctx,
             compilation_providers = compilation_providers,
             avoid_compilation_providers = avoid_compilation_providers,
         )
+    elif compilation_providers._is_xcode_library_target:
+        primary_static_library = _compute_primary_static_library(
+            compilation_providers = compilation_providers,
+        )
+        top_level_values = None
+    else:
+        primary_static_library = None
+        top_level_values = None
 
     return struct(
         _compilation_providers = compilation_providers,
