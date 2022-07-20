@@ -111,7 +111,48 @@ extension XCSchemeInfoTargetInfoTests {
 }
 
 extension XCSchemeInfoTargetInfoTests {
-    func test_bazelBuildPreActions() throws {
+    func test_bazelBuildPreAction_nonNativeTarget() throws {
+        let productFileReference = PBXFileReference(
+            path: "MyChicken.app"
+        )
+        let pbxTarget = PBXTarget(
+            name: "chicken",
+            productName: "MyChicken",
+            product: productFileReference
+        )
+        let targetInfo = XCSchemeInfo.TargetInfo(
+            pbxTarget: pbxTarget,
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [],
+            extensionPointIdentifiers: []
+        )
+        let preAction = try targetInfo.bazelBuildPreAction
+        XCTAssertNil(preAction)
+    }
+
+    func test_bazelBuildPreAction_nativeTarget_noHost() throws {
+        let preAction = try libraryTargetInfo.bazelBuildPreAction
+        XCTAssertEqual(preAction, .init(
+            bazelBuildFor: libraryTargetInfo.buildableReference,
+            name: libraryTargetInfo.pbxTarget.name,
+            hostIndex: nil
+        ))
+    }
+
+    func test_bazelBuildPreAction_nativeTarget_withHost() throws {
+        let preAction = try libraryTargetInfoWithHosts.bazelBuildPreAction
+        let expectedHostIndex = try libraryTargetInfoWithHosts.selectedHostInfo?.index
+        XCTAssertNotNil(expectedHostIndex)
+        XCTAssertEqual(preAction, .init(
+            bazelBuildFor: libraryTargetInfoWithHosts.buildableReference,
+            name: libraryTargetInfoWithHosts.pbxTarget.name,
+            hostIndex: expectedHostIndex
+        ))
+    }
+}
+
+extension XCSchemeInfoTargetInfoTests {
+    func test_isWidgetKitExtension() throws {
         XCTFail("IMPLEMENT ME!")
     }
 }

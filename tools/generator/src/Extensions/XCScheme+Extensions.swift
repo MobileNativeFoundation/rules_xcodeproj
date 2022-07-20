@@ -31,7 +31,7 @@ extension XCScheme {
         // action for all known types.
         let buildAction: XCScheme.BuildAction?
         if let buildActionInfo = schemeInfo.buildActionInfo {
-            buildAction = .init(buildMode: buildMode, buildActionInfo: buildActionInfo)
+            buildAction = try .init(buildMode: buildMode, buildActionInfo: buildActionInfo)
         } else {
             buildAction = nil
         }
@@ -78,11 +78,11 @@ extension XCScheme.BuildAction {
     convenience init(
         buildMode: BuildMode,
         buildActionInfo: XCSchemeInfo.BuildActionInfo
-    ) {
+    ) throws {
         self.init(
             buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
             preActions: buildMode.usesBazelModeBuildScripts ?
-                buildActionInfo.targetInfos.bazelBuildPreActions : [],
+                try buildActionInfo.targetInfos.bazelBuildPreActions : [],
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )

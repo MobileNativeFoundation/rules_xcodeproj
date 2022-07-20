@@ -25,13 +25,13 @@ extension XCSchemeExtensionsTests {
 
 extension XCSchemeExtensionsTests {
     func test_BuildAction_init_buildModeBazel() throws {
-        let buildAction = XCScheme.BuildAction(
+        let buildAction = try XCScheme.BuildAction(
             buildMode: .bazel,
             buildActionInfo: buildActionInfo
         )
         let expected = XCScheme.BuildAction(
             buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
-            preActions: buildActionInfo.targetInfos.bazelBuildPreActions,
+            preActions: try buildActionInfo.targetInfos.bazelBuildPreActions,
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
@@ -39,7 +39,7 @@ extension XCSchemeExtensionsTests {
     }
 
     func test_BuildAction_init_buildModeXcode() throws {
-        let buildAction = XCScheme.BuildAction(
+        let buildAction = try XCScheme.BuildAction(
             buildMode: .xcode,
             buildActionInfo: buildActionInfo
         )

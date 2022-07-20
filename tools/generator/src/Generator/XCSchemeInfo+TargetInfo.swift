@@ -123,15 +123,16 @@ extension XCSchemeInfo.TargetInfo {
 // MARK: bazelBuildPreActions
 
 extension XCSchemeInfo.TargetInfo {
-    var bazelBuildPreActions: [XCScheme.ExecutionAction] {
-        guard pbxTarget is PBXNativeTarget else {
-            return []
-        }
-        if hostInfos.isEmpty {
-            return [.init(bazelBuildFor: buildableReference, name: pbxTarget.name, hostIndex: nil)]
-        }
-        return hostInfos.map(\.index).map {
-            .init(bazelBuildFor: buildableReference, name: pbxTarget.name, hostIndex: $0)
+    var bazelBuildPreAction: XCScheme.ExecutionAction? {
+        get throws {
+            guard pbxTarget is PBXNativeTarget else {
+                return nil
+            }
+            return .init(
+                bazelBuildFor: buildableReference,
+                name: pbxTarget.name,
+                hostIndex: try selectedHostInfo?.index
+            )
         }
     }
 }
@@ -170,6 +171,14 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
     var bazelBuildPreActions: [XCScheme.ExecutionAction] {
-        return [.initBazelBuildOutputGroupsFile] + flatMap(\.bazelBuildPreActions)
+        get throws {
+            // var results: [XCScheme.ExecutionAction] = [.initBazelBuildOutputGroupsFile]
+            // if let bazelBuildPreAction = try bazelBuildPreAction {
+            //     results.append(bazelBuildPreAction)
+            // }
+            // return results
+            let preActions = try compactMap { try $0.bazelBuildPreAction }
+            return [.initBazelBuildOutputGroupsFile] + preActions
+        }
     }
 }
