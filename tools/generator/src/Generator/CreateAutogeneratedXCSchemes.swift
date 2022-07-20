@@ -80,8 +80,24 @@ Host target with key \(key) not found in `pbxTargets`.
             let shouldCreateTestAction = pbxTarget.isTestable
             let shouldCreateLaunchAction = pbxTarget.isLaunchable && !pbxTarget.isTestable
             let schemeInfo = try XCSchemeInfo(
-                // TODO(chuck): Implement the original schemeName logic
-                name: pbxTarget.schemeName,
+                nameClosure: { buildActionInfo, _, _, _ in
+                    guard let targetInfo = buildActionInfo?.targetInfos.first else {
+                        throw PreconditionError(message: """
+Expected to find a target info in the `BuildActionInfo`.
+""")
+                    }
+                    let schemeName: String
+                    if let selectedHostInfo = targetInfo.selectedHostInfo,
+                        targetInfo.disambiguateHost
+                    {
+                        schemeName = """
+\(targetInfo.pbxTarget.schemeName) in \(selectedHostInfo.pbxTarget.schemeName)
+"""
+                    } else {
+                        schemeName = targetInfo.pbxTarget.schemeName
+                    }
+                    return schemeName
+                },
                 buildActionInfo: .init(targetInfos: [targetInfo]),
                 testActionInfo: shouldCreateTestAction ?
                     .init(

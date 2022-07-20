@@ -9,8 +9,16 @@ struct XCSchemeInfo {
     let analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo
     let archiveActionInfo: XCSchemeInfo.ArchiveActionInfo
 
+    typealias NameClosure = (
+        XCSchemeInfo.BuildActionInfo?,
+        XCSchemeInfo.TestActionInfo?,
+        XCSchemeInfo.LaunchActionInfo?,
+        XCSchemeInfo.ProfileActionInfo?
+    ) throws -> String
+
     init(
-        name: String,
+        name: String? = nil,
+        nameClosure: NameClosure? = nil,
         buildActionInfo: XCSchemeInfo.BuildActionInfo? = nil,
         testActionInfo: XCSchemeInfo.TestActionInfo? = nil,
         launchActionInfo: XCSchemeInfo.LaunchActionInfo? = nil,
@@ -25,6 +33,12 @@ An `XCSchemeInfo` (\(name)) should have at least one of the following: `buildAct
 """)
         }
 
+        guard name != nil || nameClosure != nil else {
+            throw PreconditionError(message: """
+An `XCSchemeInfo` should have at least one of the following: `name`, `nameClosure`.
+""")
+        }
+
         var topLevelTargetInfos = [XCSchemeInfo.TargetInfo]()
         if let testActionInfo = testActionInfo {
             topLevelTargetInfos += testActionInfo.targetInfos
@@ -33,7 +47,6 @@ An `XCSchemeInfo` (\(name)) should have at least one of the following: `buildAct
             topLevelTargetInfos.append(launchActionInfo.targetInfo)
         }
 
-        self.name = name
         self.buildActionInfo = try .init(
             resolveHostsFor: buildActionInfo,
             topLevelTargetInfos: topLevelTargetInfos
@@ -56,6 +69,23 @@ An `XCSchemeInfo` (\(name)) should have at least one of the following: `buildAct
         self.archiveActionInfo = archiveActionInfo ?? .init(
             buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
         )
+
+        let schemeName: String
+        if let name = name {
+            schemeName = name
+        } else if let nameClosure = nameClosure {
+            schemeName = try nameClosure(
+                self.buildActionInfo,
+                self.testActionInfo,
+                self.launchActionInfo,
+                self.profileActionInfo
+            )
+        } else {
+            // This should never happen as we check to ensure that the client gave us a name or a
+            // name closure.
+            schemeName = ""
+        }
+        self.name = schemeName
     }
 }
 
