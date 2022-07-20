@@ -10,7 +10,7 @@ extension XCSchemeInfo {
         case selected(HostInfo)
     }
 
-    struct TargetInfo {
+    struct TargetInfo: Equatable {
         let pbxTarget: PBXTarget
         let buildableReference: XCScheme.BuildableReference
         let hostInfos: [HostInfo]

@@ -5,15 +5,46 @@ import XCTest
 
 extension XCSchemeInfoTestActionInfoTests {
     func test_init_withEmptyTargetInfos() throws {
-        XCTFail("IMPLEMENT ME!")
+        var thrown: Error?
+        XCTAssertThrowsError(try XCSchemeInfo.TestActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfos: []
+        )) {
+          thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected PreconditionError.")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+An `XCSchemeInfo.TestActionInfo` should have at least one `XCSchemeInfo.TargetInfo`.
+""")
     }
 
     func test_init_withNoTestables() throws {
-        XCTFail("IMPLEMENT ME!")
+        var thrown: Error?
+        XCTAssertThrowsError(try XCSchemeInfo.TestActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfos: [libraryTargetInfo]
+        )) {
+          thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected PreconditionError.")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.TargetInfo` values.
+""")
     }
 
     func test_init_allIsWell() throws {
-        XCTFail("IMPLEMENT ME!")
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfos: [unitTestTargetInfo]
+        )
+        XCTAssertEqual(testActionInfo.buildConfigurationName, buildConfigurationName)
+        XCTAssertEqual(testActionInfo.targetInfos, [unitTestTargetInfo])
     }
 }
 

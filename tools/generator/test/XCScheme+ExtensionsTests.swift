@@ -153,6 +153,12 @@ class XCSchemeExtensionsTests: XCTestCase {
 
     // swiftlint:disable:next force_try
     lazy var buildActionInfo = try! XCSchemeInfo.BuildActionInfo(
-        targetInfos: [libraryTargetInfo, anotherLibraryTargetInfo]
-    )
+        resolveHostsFor: .init(
+            targetInfos: [libraryTargetInfo, anotherLibraryTargetInfo]
+        ),
+        topLevelTargetInfos: []
+    )!
+    // lazy var buildActionInfo = try! XCSchemeInfo.BuildActionInfo(
+    //     targetInfos: [libraryTargetInfo, anotherLibraryTargetInfo]
+    // )
 }
