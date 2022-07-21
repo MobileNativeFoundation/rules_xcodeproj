@@ -5,15 +5,6 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Initialize Bazel Build Output Groups File"
-               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi">
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -23,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7E7D155EBCA520F35DEA3571"
+               BlueprintIdentifier = "FE59281FE487F27A37DC2EE7"
                BuildableName = "BazelDependencies"
                BlueprintName = "BazelDependencies"
-               ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+               ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

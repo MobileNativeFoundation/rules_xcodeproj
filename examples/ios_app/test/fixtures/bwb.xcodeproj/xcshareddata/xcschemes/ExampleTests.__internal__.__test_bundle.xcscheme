@@ -66,46 +66,6 @@
          </TestableReference>
       </Testables>
    </TestAction>
-   <LaunchAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
-      launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
-      ignoresPersistentStateOnLaunch = "NO"
-      debugDocumentVersioning = "YES"
-      debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D133FDFF63F008FDDB07BE99"
-            BuildableName = "ExampleTests.xctest"
-            BlueprintName = "ExampleTests.__internal__.__test_bundle"
-            ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "BUILD_WORKSPACE_DIRECTORY"
-            value = "$(SRCROOT)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "BUILD_WORKING_DIRECTORY"
-            value = "$(BUILT_PRODUCTS_DIR)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
-   </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Debug"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
-   </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
    </AnalyzeAction>
