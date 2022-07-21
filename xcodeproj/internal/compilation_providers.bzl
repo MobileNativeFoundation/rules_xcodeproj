@@ -56,11 +56,11 @@ def _merge(
     )
 
     if not objc:
-        objc_providers = [
-            providers._objc
+        maybe_objc_providers = [
+            providers._objc if providers._objc else _to_objc(providers._cc_info)
             for _, providers in transitive_compilation_providers
-            if providers._objc
         ]
+        objc_providers = [objc for objc in maybe_objc_providers if objc]
         if objc_providers:
             objc = apple_common.new_objc_provider(providers = objc_providers)
 
@@ -82,6 +82,35 @@ def _merge(
         _objc = objc,
         _swift_info = swift_info,
         _transitive_compilation_providers = transitive_compilation_providers,
+    )
+
+def _to_objc(cc_info):
+    if not cc_info:
+        return None
+
+    libraries = []
+    force_load_libraries = []
+    link_inputs = []
+    linkopts = []
+    for input in cc_info.linking_context.linker_inputs.to_list():
+        for library in input.libraries:
+            libraries.append(library.static_library)
+            link_inputs.extend(input.additional_inputs)
+            linkopts.extend(input.user_link_flags)
+            if library.alwayslink:
+                force_load_libraries.append(library.static_library)
+
+    return apple_common.new_objc_provider(
+        force_load_library = depset(
+            force_load_libraries,
+            order = "topological",
+        ),
+        library = depset(
+            libraries,
+            order = "topological",
+        ),
+        link_inputs = depset(link_inputs),
+        linkopt = depset(linkopts),
     )
 
 def _get_xcode_library_targets(*, compilation_providers):
