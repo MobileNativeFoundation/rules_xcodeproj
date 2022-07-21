@@ -38,7 +38,7 @@ extension XCSchemeInfoTargetInfoTests {
         let targetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: libraryTarget,
             referencedContainer: filePathResolver.containerReference,
-            hostInfos: [appHostInfo, unitTestHostInfo],
+            hostInfos: [appHostInfo, anotherAppHostInfo],
             extensionPointIdentifiers: []
         )
         XCTAssertEqual(targetInfo.hostResolution, .unresolved)
@@ -57,7 +57,7 @@ extension XCSchemeInfoTargetInfoTests {
     func test_init_hostResolution_withHosts_withTopLevelTargets() throws {
         let topLevelTargetInfos: [XCSchemeInfo.TargetInfo] = [
             .init(
-                pbxTarget: unitTestTarget,
+                pbxTarget: anotherAppTarget,
                 referencedContainer: filePathResolver.containerReference,
                 hostInfos: [],
                 extensionPointIdentifiers: []
@@ -66,7 +66,7 @@ extension XCSchemeInfoTargetInfoTests {
         let targetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: libraryTarget,
             referencedContainer: filePathResolver.containerReference,
-            hostInfos: [appHostInfo, unitTestHostInfo],
+            hostInfos: [appHostInfo, anotherAppHostInfo],
             extensionPointIdentifiers: []
         )
         XCTAssertEqual(targetInfo.hostResolution, .unresolved)
@@ -76,7 +76,7 @@ extension XCSchemeInfoTargetInfoTests {
             topLevelTargetInfos: topLevelTargetInfos
         )
         if case let .selected(selectedHostInfo) = resolvedTargetInfo.hostResolution {
-            XCTAssertEqual(selectedHostInfo, unitTestHostInfo)
+            XCTAssertEqual(selectedHostInfo, anotherAppHostInfo)
         } else {
             XCTFail("Expected a selected host")
         }
@@ -235,7 +235,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
 
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
-    lazy var unitTestTarget = pbxTargetsDict["B 2"]!
+    lazy var anotherAppTarget = pbxTargetsDict["I"]!
     lazy var widgetKitExtTarget = pbxTargetsDict["WDKE"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
@@ -243,8 +243,8 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         referencedContainer: filePathResolver.containerReference,
         index: 0
     )
-    lazy var unitTestHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: unitTestTarget,
+    lazy var anotherAppHostInfo = XCSchemeInfo.HostInfo(
+        pbxTarget: anotherAppTarget,
         referencedContainer: filePathResolver.containerReference,
         index: 1
     )
@@ -257,12 +257,6 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
             extensionPointIdentifiers: []
         ),
         topLevelTargetInfos: []
-    )
-    lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: unitTestTarget,
-        referencedContainer: filePathResolver.containerReference,
-        hostInfos: [],
-        extensionPointIdentifiers: []
     )
     lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: widgetKitExtTarget,
@@ -279,7 +273,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var unresolvedLibraryTargetInfoWithHosts = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryTarget,
         referencedContainer: filePathResolver.containerReference,
-        hostInfos: [appHostInfo, unitTestHostInfo],
+        hostInfos: [appHostInfo, anotherAppHostInfo],
         extensionPointIdentifiers: []
     )
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
