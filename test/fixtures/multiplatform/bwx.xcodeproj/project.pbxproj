@@ -408,11 +408,13 @@
 		4A3E6D2A0181CABE29F49A3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D15882F3881536469A76374 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4DE36E3C6C4DC98BD96BABE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5166568297CA6079DCBDF4A6 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		571673AD5562DFA4AB138EB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		57DED4191C90C7A853FF2A4E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		5808BF0F847CC0BF0E1128FB /* watchOSAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = watchOSAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA3E1F7C6E01C0C1E3D8520 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		5F99A7D79C5DEADA3086ADE2 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		5FD059D0C34446E812F2C6F6 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		60204A59A069D824C5F7C640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		62DC42CBDAE2C00476DC55EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64904A92E0E07764C4F2D3A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 		8E6227CA9560FF959269C101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		909CC2C241F4540F5E294662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90CF6E599C94E1D9A0FA5C94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		91B390FBDDEB5887FC38DED1 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		91CF2675AADEEEB1E769F8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9279CB2D3807B222C69E71C3 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		94B4E46AB654CACC5E8E5C55 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -460,6 +463,7 @@
 		CBF82757D7FDE4769AE71673 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CC801C96D3ED6985981681F9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D05F392CABFB9D136406F852 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		D0E8B9F942315318B692D2BD /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		D295FECC5CF307D463F8CBD4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D76D2C3E02897E2ED28A8958 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9C00801286B351024D0850E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -920,6 +924,7 @@
 			isa = PBXGroup;
 			children = (
 				B2B1F3BAE272CEF7D0EED380 /* rules_xcodeproj */,
+				91B390FBDDEB5887FC38DED1 /* Info.withbundleid.plist */,
 			);
 			path = watchOSApp;
 			sourceTree = "<group>";
@@ -1400,6 +1405,7 @@
 			isa = PBXGroup;
 			children = (
 				354394140F1B53481EBC47C0 /* rules_xcodeproj */,
+				5166568297CA6079DCBDF4A6 /* Info.withbundleid.plist */,
 			);
 			path = watchOSApp;
 			sourceTree = "<group>";
@@ -1645,6 +1651,7 @@
 			isa = PBXGroup;
 			children = (
 				305BC93396447895E5996DAB /* rules_xcodeproj */,
+				5FD059D0C34446E812F2C6F6 /* Info.withbundleid.plist */,
 			);
 			path = watchOSAppExtension;
 			sourceTree = "<group>";
@@ -1809,6 +1816,7 @@
 			isa = PBXGroup;
 			children = (
 				B94818A5AF5649E1BA977BD9 /* rules_xcodeproj */,
+				D0E8B9F942315318B692D2BD /* Info.withbundleid.plist */,
 			);
 			path = watchOSAppExtension;
 			sourceTree = "<group>";
