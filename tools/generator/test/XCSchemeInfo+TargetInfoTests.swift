@@ -83,7 +83,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: selectedHostInfo Tests
+// MARK: - `selectedHostInfo` Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_selectedHostInfo_unresolved() throws {
@@ -101,7 +101,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: buildableReferences Tests
+// MARK: - `buildableReferences` Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_buildableReferences_noHost() throws {
@@ -118,7 +118,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: bazelBuildPreAction Tests
+// MARK: - `bazelBuildPreAction` Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_bazelBuildPreAction_nonNativeTarget() throws {
@@ -165,7 +165,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: isWidgetKitExtension Tests
+// MARK: - `isWidgetKitExtension` Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_isWidgetKitExtension_true() throws {
@@ -177,7 +177,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: productType Tests
+// MARK: - `productType` Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_productType() throws {

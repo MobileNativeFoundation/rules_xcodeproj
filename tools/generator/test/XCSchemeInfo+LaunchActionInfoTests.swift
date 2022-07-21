@@ -69,7 +69,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
-// MARK: runnable Tests
+// MARK: - `runnable` Tests
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_runnable_whenIsWidgetKitExtension() throws {
@@ -99,7 +99,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
-// MARK: askForAppToLaunch Tests
+// MARK: `askForAppToLaunch` Tests
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_askForAppToLaunch_whenIsWidgetKitExtension() throws {
@@ -119,7 +119,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
-// MARK: macroExpansion Tests
+// MARK: - `macroExpansion` Tests
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_macroExpansion_hasHostAndIsNotWatchApp() throws {
@@ -191,7 +191,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
-// MARK: launcher Tests
+// MARK: - `launcher` Tests
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_launcher_canUseDebugLauncher() throws {
@@ -225,7 +225,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
-// MARK: debugger Tests
+// MARK: - `debugger` Tests
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_debugger_canUseDebugLauncher() throws {

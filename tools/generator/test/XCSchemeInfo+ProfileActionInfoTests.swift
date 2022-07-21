@@ -30,7 +30,7 @@ extension XCSchemeInfoProfileActionInfoTests {
     }
 }
 
-// MARK: runnable Tests
+// MARK: - `runnable` Tests
 
 extension XCSchemeInfoProfileActionInfoTests {
     func test_runnable() throws {

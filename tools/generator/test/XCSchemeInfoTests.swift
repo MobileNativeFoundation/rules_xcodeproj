@@ -85,7 +85,7 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
     }
 }
 
-// MARK: allPBXTargets Tests
+// MARK: - `allPBXTargets` Tests
 
 extension XCSchemeInfoTests {
     func test_allPBXTargets() throws {
@@ -123,7 +123,7 @@ extension XCSchemeInfoTests {
     }
 }
 
-// MARK: wasCreatedForAppExtension Tests
+// MARK: - `wasCreatedForAppExtension` Tests
 
 extension XCSchemeInfoTests {
     func test_wasCreatedForAppExtension_withoutExtension() throws {
