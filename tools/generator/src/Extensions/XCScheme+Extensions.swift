@@ -125,7 +125,7 @@ fi
         title: "Initialize Bazel Build Output Groups File"
     )
 
-    /// Create an ExecutionAction that builds with Bazel
+    /// Create an `ExecutionAction` that builds with Bazel.
     convenience init(
         bazelBuildFor buildableReference: XCScheme.BuildableReference,
         name: String,
