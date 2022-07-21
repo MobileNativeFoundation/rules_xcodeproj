@@ -152,7 +152,4 @@ class XCSchemeExtensionsTests: XCTestCase {
         ),
         topLevelTargetInfos: []
     )!
-    // lazy var buildActionInfo = try! XCSchemeInfo.BuildActionInfo(
-    //     targetInfos: [libraryTargetInfo, anotherLibraryTargetInfo]
-    // )
 }
