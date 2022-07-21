@@ -123,7 +123,7 @@ extension XCScheme.BuildAction.Entry {
 // MARK: XCScheme.ExecutionAction
 
 extension XCScheme.ExecutionAction {
-    /// Initialize the output file for build with Bazel
+    /// Initialize the output file for Build with Bazel mode.
     static let initBazelBuildOutputGroupsFile = XCScheme.ExecutionAction(
         scriptText: #"""
 mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
