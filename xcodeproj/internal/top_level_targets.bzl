@@ -368,7 +368,9 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 
     non_mergable_targets = [
         library
-        for library in linker_input_files.get_static_libraries(linker_inputs)
+        for library in linker_input_files.get_top_level_static_libraries(
+            linker_inputs,
+        )
         if mergeable_label and library.owner != mergeable_label
     ]
 
