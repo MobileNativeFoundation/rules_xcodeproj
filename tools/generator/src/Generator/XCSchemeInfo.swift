@@ -90,7 +90,7 @@ An `XCSchemeInfo` should have at least one of the following: `name`, `nameClosur
     }
 }
 
-// MARK: allPBXTargets
+// MARK: `allPBXTargets`
 
 extension XCSchemeInfo {
     var allPBXTargets: Set<PBXTarget> {
@@ -111,7 +111,7 @@ extension XCSchemeInfo {
     }
 }
 
-// MARK: wasCreatedForAppExtension
+// MARK: `wasCreatedForAppExtension`
 
 extension XCSchemeInfo {
     var wasCreatedForAppExtension: Bool {

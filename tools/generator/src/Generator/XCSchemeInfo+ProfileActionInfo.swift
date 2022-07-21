@@ -28,7 +28,7 @@ extension XCSchemeInfo.ProfileActionInfo {
     }
 }
 
-// MARK: runnable
+// MARK: `runnable`
 
 extension XCSchemeInfo.ProfileActionInfo {
     var runnable: XCScheme.BuildableProductRunnable? {

@@ -88,6 +88,8 @@ extension XCSchemeInfo {
     }
 }
 
+// MARK: `selectedHostInfo`
+
 extension XCSchemeInfo.TargetInfo {
     var selectedHostInfo: XCSchemeInfo.HostInfo? {
         get throws {
@@ -105,7 +107,7 @@ Cannot access `selectedHostInfo` until host resolution has occurred.
     }
 }
 
-// MARK: buildableReferences
+// MARK: `buildableReferences`
 
 extension XCSchemeInfo.TargetInfo {
     /// Returns the target buildable reference along with the selected host's buildable reference,
@@ -120,7 +122,7 @@ extension XCSchemeInfo.TargetInfo {
     }
 }
 
-// MARK: bazelBuildPreActions
+// MARK: `bazelBuildPreActions`
 
 extension XCSchemeInfo.TargetInfo {
     var bazelBuildPreAction: XCScheme.ExecutionAction? {
@@ -137,7 +139,7 @@ extension XCSchemeInfo.TargetInfo {
     }
 }
 
-// MARK: isWidgetKitExtension
+// MARK: `isWidgetKitExtension`
 
 extension XCSchemeInfo.TargetInfo {
     var isWidgetKitExtension: Bool {
@@ -145,7 +147,7 @@ extension XCSchemeInfo.TargetInfo {
     }
 }
 
-// MARK: productType
+// MARK: `productType`
 
 extension XCSchemeInfo.TargetInfo {
     var productType: PBXProductType {

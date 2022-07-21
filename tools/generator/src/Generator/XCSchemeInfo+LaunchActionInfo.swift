@@ -53,7 +53,7 @@ extension XCSchemeInfo.LaunchActionInfo {
     }
 }
 
-// MARK: runnable
+// MARK: `runnable`
 
 extension XCSchemeInfo.LaunchActionInfo {
     var runnable: XCScheme.Runnable? {
@@ -79,7 +79,7 @@ extension XCSchemeInfo.LaunchActionInfo {
     }
 }
 
-// MARK: askForAppToLaunch
+// MARK: `askForAppToLaunch`
 
 extension XCSchemeInfo.LaunchActionInfo {
     var askForAppToLaunch: Bool {
@@ -87,7 +87,7 @@ extension XCSchemeInfo.LaunchActionInfo {
     }
 }
 
-// MARK: macroExpansion
+// MARK: `macroExpansion`
 
 extension XCSchemeInfo.LaunchActionInfo {
     var macroExpansion: XCScheme.BuildableReference? {
@@ -104,7 +104,7 @@ extension XCSchemeInfo.LaunchActionInfo {
     }
 }
 
-// MARK: launcher
+// MARK: `launcher`
 
 extension XCSchemeInfo.LaunchActionInfo {
     var launcher: String {
@@ -115,7 +115,7 @@ extension XCSchemeInfo.LaunchActionInfo {
     }
 }
 
-// MARK: debugger
+// MARK: `debugger`
 
 extension XCSchemeInfo.LaunchActionInfo {
     var debugger: String {
