@@ -32,7 +32,7 @@ An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.Target
 // MARK: Host Resolution Initializer
 
 extension XCSchemeInfo.LaunchActionInfo {
-    /// Create a copy of the launch action info with host in the target info resolved.
+    /// Create a copy of the `LaunchActionInfo` with the host in the `TargetInfo` resolved.
     init?(
         resolveHostsFor launchActionInfo: XCSchemeInfo.LaunchActionInfo?,
         topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
