@@ -50,8 +50,9 @@ extension XCSchemeInfo {
                 .filter { topLevelPBXTargetInfos.contains($0.pbxTarget) }
                 .first
 
-            // TODO(chuck): Update best host logic
-            // Since this will cause that host to be built, ideally it's the "best" host (based on platform similar to other "best"s).
+            // GH573: Update "best" host logic to select by platform.  Since this will cause
+            // that host to be built, ideally it's the "best" host (based on platform similar to
+            // other "best"s).
 
             // If a top-level host was not found, then just pick one of the hosts.
             if selectedHostInfo == nil {
