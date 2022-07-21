@@ -83,7 +83,7 @@ An `XCSchemeInfo` should have at least one of the following: `name`, `nameClosur
             )
         } else {
             // This should never happen as we check to ensure that the client gave us a name or a
-            // name closure.
+            // name closure
             schemeName = ""
         }
         self.name = schemeName
