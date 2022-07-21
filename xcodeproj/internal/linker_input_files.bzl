@@ -43,8 +43,8 @@ def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
             providers will be excluded from the return list.
 
     Returns:
-        A mostly-opaque `struct` containing the linker input files for a target.
-        The `struct` should be passed to functions on `linker_input_files` to
+        An opaque `struct` containing the linker input files for a target. The
+        `struct` should be passed to functions on `linker_input_files` to
         retrieve its contents.
     """
     objc_libraries, cc_linker_inputs = _extract_libraries(
@@ -72,7 +72,9 @@ def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
         top_level_values = None
 
     return struct(
+        _cc_linker_inputs = cc_linker_inputs,
         _compilation_providers = compilation_providers,
+        _objc_libraries = objc_libraries,
         _primary_static_library = primary_static_library,
         _top_level_values = top_level_values,
     )
@@ -293,7 +295,7 @@ def _process_additional_inputs(files):
         if not file.is_source and file.extension not in _SKIP_INPUT_EXTENSIONS
     ]
 
-def _get_static_libraries(linker_inputs):
+def _get_top_level_static_libraries(linker_inputs):
     """Returns the static libraries needed to link the target.
 
     Args:
@@ -307,6 +309,48 @@ def _get_static_libraries(linker_inputs):
         fail("Xcode target requires `ObjcProvider` or `CcInfo`")
     return (top_level_values.static_libraries +
             top_level_values.force_load_libraries)
+
+def _collect_libraries(
+        *,
+        compilation_providers,
+        objc_libraries,
+        cc_linker_inputs):
+    libraries = []
+    if compilation_providers._objc:
+        for library in objc_libraries:
+            if library.is_source:
+                continue
+            libraries.append(library)
+    elif compilation_providers._cc_info:
+        for input in cc_linker_inputs:
+            for library in input.libraries:
+                if library.static_library.is_source:
+                    continue
+                libraries.append(library.static_library)
+    return libraries
+
+def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
+    dep_objc_libraries, dep_cc_linker_inputs = _extract_libraries(
+        compilation_providers = dep_compilation_providers,
+    )
+    non_direct_libraries = sets.make(_collect_libraries(
+        compilation_providers = dep_compilation_providers,
+        objc_libraries = dep_objc_libraries,
+        cc_linker_inputs = dep_cc_linker_inputs,
+    ))
+
+    transitive = _collect_libraries(
+        compilation_providers = linker_inputs._compilation_providers,
+        objc_libraries = linker_inputs._objc_libraries,
+        cc_linker_inputs = linker_inputs._cc_linker_inputs,
+    )
+    libraries = sets.make(transitive)
+
+    direct = sets.to_list(
+        sets.difference(libraries, non_direct_libraries),
+    )
+
+    return (direct, transitive)
 
 def _process_cc_linkopts(linkopts):
     ret = []
@@ -448,8 +492,9 @@ def _get_primary_static_library(linker_inputs):
 linker_input_files = struct(
     collect = _collect,
     merge = _merge,
+    get_library_static_libraries = _get_library_static_libraries,
     get_primary_static_library = _get_primary_static_library,
-    get_static_libraries = _get_static_libraries,
+    get_top_level_static_libraries = _get_top_level_static_libraries,
     to_dto = _to_dto,
     to_input_files = _to_input_files,
 )

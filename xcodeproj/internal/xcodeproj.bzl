@@ -371,7 +371,7 @@ def _xcodeproj_impl(ctx):
             ).to_list(),
         )
         non_xcode_libraries = sets.make(
-            linker_input_files.get_static_libraries(
+            linker_input_files.get_top_level_static_libraries(
                 linker_input_files.merge(
                     compilation_providers = comp_providers.merge(
                         transitive_compilation_providers = [
