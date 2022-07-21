@@ -32,7 +32,6 @@
     "targets": [
         "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-ccd9595da841",
         {
-            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -72,9 +71,6 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "darwin_x86_64-dbg-ST-ccd9595da841",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "hdrs": [
                     "examples/cc/lib2/includes/lib.h"
@@ -85,10 +81,7 @@
             },
             "is_swift": false,
             "label": "//examples/cc/lib2:lib_impl",
-            "linker_inputs": {},
-            "modulemaps": [],
             "name": "lib_impl",
-            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/cc/lib2",
             "platform": {
                 "arch": "x86_64",
@@ -105,7 +98,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -121,14 +113,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/cc/lib:lib_impl darwin_x86_64-dbg-ST-ccd9595da841",
         {
-            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -169,9 +157,6 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "darwin_x86_64-dbg-ST-ccd9595da841",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/cc/lib/lib.c",
@@ -180,10 +165,7 @@
             },
             "is_swift": false,
             "label": "//examples/cc/lib:lib_impl",
-            "linker_inputs": {},
-            "modulemaps": [],
             "name": "lib_impl",
-            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/examples/cc/lib",
             "platform": {
                 "arch": "x86_64",
@@ -200,7 +182,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "includes": [
                     "examples/cc/lib/private",
@@ -216,14 +197,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/cc/tool:tool darwin_x86_64-dbg-ST-ccd9595da841",
         {
-            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -270,8 +247,6 @@
                 "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-ccd9595da841",
                 "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-ccd9595da841"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/cc/tool/main.c"
@@ -302,7 +277,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "tool",
             "outputs": {
                 "p": {
@@ -326,7 +300,6 @@
                 },
                 "type": "com.apple.product-type.tool"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -358,14 +331,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-ccd9595da841",
         {
-            "app_clips": [],
             "build_settings": {
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -406,9 +375,6 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "darwin_x86_64-dbg-ST-ccd9595da841",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "hdrs": [
                     {
@@ -429,10 +395,7 @@
             },
             "is_swift": false,
             "label": "@examples_cc_external//:lib_impl",
-            "linker_inputs": {},
-            "modulemaps": [],
             "name": "lib_impl",
-            "outputs": {},
             "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ccd9595da841/bin/external/examples_cc_external",
             "platform": {
                 "arch": "x86_64",
@@ -449,7 +412,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "includes": [
                     {
@@ -476,10 +438,7 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         }
     ]
 }

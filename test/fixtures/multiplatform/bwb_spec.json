@@ -292,7 +292,6 @@
     "targets": [
         "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -310,7 +309,6 @@
             "dependencies": [
                 "//examples/multiplatform/AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip/rules_xcodeproj/AppClip/Info.plist",
                 "t": "g"
@@ -355,7 +353,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "AppClip",
             "outputs": {
                 "p": {
@@ -379,7 +376,6 @@
                 },
                 "type": "com.apple.product-type.application.on-demand-install-capable"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -402,14 +398,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -426,7 +418,6 @@
             "dependencies": [
                 "//examples/multiplatform/AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip/rules_xcodeproj/AppClip/Info.plist",
                 "t": "g"
@@ -471,7 +462,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "AppClip",
             "outputs": {
                 "p": {
@@ -496,7 +486,6 @@
                 },
                 "type": "com.apple.product-type.application.on-demand-install-capable"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -519,14 +508,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -544,17 +529,13 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/AppClip/AppClip.swift",
                     "examples/multiplatform/AppClip/ContentView.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/AppClip:AppClip.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
@@ -594,7 +575,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -623,13 +603,10 @@
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -647,17 +624,13 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/AppClip/AppClip.swift",
                     "examples/multiplatform/AppClip/ContentView.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/AppClip:AppClip.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -698,7 +671,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -727,13 +699,10 @@
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -748,9 +717,6 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -759,9 +725,7 @@
                     }
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/Lib:Lib",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
@@ -801,7 +765,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -824,14 +787,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -846,9 +805,6 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -857,9 +813,7 @@
                     }
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/Lib:Lib",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -900,7 +854,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -923,14 +876,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -945,9 +894,6 @@
                 "TVOS_DEPLOYMENT_TARGET": "15.0"
             },
             "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -956,9 +902,7 @@
                     }
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/Lib:Lib",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap",
@@ -998,7 +942,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -1021,14 +964,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1043,9 +982,6 @@
                 "TVOS_DEPLOYMENT_TARGET": "15.0"
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -1054,9 +990,7 @@
                     }
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/Lib:Lib",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -1097,7 +1031,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -1120,14 +1053,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1142,9 +1071,6 @@
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
             "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -1153,9 +1079,7 @@
                     }
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/Lib:Lib",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap",
@@ -1195,7 +1119,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -1218,14 +1141,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1240,9 +1159,6 @@
                 "WATCHOS_DEPLOYMENT_TARGET": "7.0"
             },
             "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     {
@@ -1251,9 +1167,7 @@
                     }
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/Lib:Lib",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -1294,7 +1208,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -1317,14 +1230,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1338,12 +1247,10 @@
             "dependencies": [
                 "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_macos-darwin_x86_64-dbg-ST-0139d977e630/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/Tool:Tool",
             "linker_inputs": {
@@ -1365,7 +1272,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "Tool",
             "outputs": {
                 "p": {
@@ -1389,7 +1295,6 @@
                 },
                 "type": "com.apple.product-type.tool"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -1398,14 +1303,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1420,18 +1321,12 @@
                 "SWIFT_VERSION": "5"
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630",
-            "dependencies": [],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/Tool/main.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/Tool:Tool.library",
-            "linker_inputs": {},
-            "modulemaps": [],
             "name": "Tool.library",
             "outputs": {
                 "s": {
@@ -1465,7 +1360,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -1474,14 +1368,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1499,12 +1389,10 @@
             "dependencies": [
                 "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/WidgetExtension:WidgetExtension",
             "linker_inputs": {
@@ -1539,7 +1427,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "WidgetExtension",
             "outputs": {
                 "p": {
@@ -1563,7 +1450,6 @@
                 },
                 "type": "com.apple.product-type.app-extension"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -1586,14 +1472,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1610,12 +1492,10 @@
             "dependencies": [
                 "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/WidgetExtension:WidgetExtension",
             "linker_inputs": {
@@ -1650,7 +1530,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "WidgetExtension",
             "outputs": {
                 "p": {
@@ -1675,7 +1554,6 @@
                 },
                 "type": "com.apple.product-type.app-extension"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -1698,14 +1576,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1723,8 +1597,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/WidgetExtension/WidgetExtension.swift",
@@ -1734,9 +1606,7 @@
                     }
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/WidgetExtension:WidgetExtension.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
@@ -1776,7 +1646,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -1805,13 +1674,10 @@
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -1829,8 +1695,6 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/WidgetExtension/WidgetExtension.swift",
@@ -1840,9 +1704,7 @@
                     }
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/WidgetExtension:WidgetExtension.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -1883,7 +1745,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -1912,13 +1773,10 @@
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1943,7 +1801,6 @@
                 "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/iMessageApp:iMessageApp",
             "linker_inputs": {
@@ -1953,7 +1810,6 @@
                     "-lc++"
                 ]
             },
-            "modulemaps": [],
             "name": "iMessageApp",
             "outputs": {
                 "p": {
@@ -1977,7 +1833,6 @@
                 },
                 "type": "com.apple.product-type.application.messages"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -1986,14 +1841,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -2017,7 +1868,6 @@
                 "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/iMessageApp:iMessageApp",
             "linker_inputs": {
@@ -2027,7 +1877,6 @@
                     "-lc++"
                 ]
             },
-            "modulemaps": [],
             "name": "iMessageApp",
             "outputs": {
                 "p": {
@@ -2052,7 +1901,6 @@
                 },
                 "type": "com.apple.product-type.application.messages"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -2061,14 +1909,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -2086,12 +1930,10 @@
             "dependencies": [
                 "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/iMessageApp:iMessageAppExtension",
             "linker_inputs": {
@@ -2126,7 +1968,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "iMessageAppExtension",
             "outputs": {
                 "p": {
@@ -2150,7 +1991,6 @@
                 },
                 "type": "com.apple.product-type.app-extension.messages"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -2173,14 +2013,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -2197,12 +2033,10 @@
             "dependencies": [
                 "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/iMessageApp:iMessageAppExtension",
             "linker_inputs": {
@@ -2237,7 +2071,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "iMessageAppExtension",
             "outputs": {
                 "p": {
@@ -2262,7 +2095,6 @@
                 },
                 "type": "com.apple.product-type.app-extension.messages"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -2285,14 +2117,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -2310,16 +2138,12 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/iMessageApp/MessagesViewController.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/iMessageApp:iMessageAppExtension.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
@@ -2359,7 +2183,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -2388,13 +2211,10 @@
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -2412,16 +2232,12 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/iMessageApp/MessagesViewController.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/iMessageApp:iMessageAppExtension.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -2462,7 +2278,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -2491,9 +2306,7 @@
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
@@ -2527,7 +2340,6 @@
                 "_": "applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/iOSApp:iOSApp",
             "linker_inputs": {
@@ -2584,7 +2396,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "iOSApp",
             "outputs": {
                 "p": {
@@ -2608,7 +2419,6 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -2652,8 +2462,6 @@
                     }
                 ]
             },
-            "swiftmodules": [],
-            "test_host": null,
             "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc"
         },
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
@@ -2687,7 +2495,6 @@
                 "_": "applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/iOSApp:iOSApp",
             "linker_inputs": {
@@ -2744,7 +2551,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "iOSApp",
             "outputs": {
                 "p": {
@@ -2769,7 +2575,6 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -2813,13 +2618,10 @@
                     }
                 ]
             },
-            "swiftmodules": [],
-            "test_host": null,
             "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a"
         },
         "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -2837,17 +2639,13 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/iOSApp/ContentView.swift",
                     "examples/multiplatform/iOSApp/iOSApp.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/iOSApp:iOSApp.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
@@ -2899,7 +2697,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -2948,13 +2745,10 @@
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -2972,17 +2766,13 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/iOSApp/ContentView.swift",
                     "examples/multiplatform/iOSApp/iOSApp.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/iOSApp:iOSApp.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -3035,7 +2825,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -3084,13 +2873,10 @@
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3107,12 +2893,10 @@
             "dependencies": [
                 "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/tvOSApp:tvOSApp",
             "linker_inputs": {
@@ -3147,7 +2931,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "tvOSApp",
             "outputs": {
                 "p": {
@@ -3171,7 +2954,6 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -3194,14 +2976,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3217,12 +2995,10 @@
             "dependencies": [
                 "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/tvOSApp:tvOSApp",
             "linker_inputs": {
@@ -3257,7 +3033,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "tvOSApp",
             "outputs": {
                 "p": {
@@ -3282,7 +3057,6 @@
                 },
                 "type": "com.apple.product-type.application"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -3305,14 +3079,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -3330,17 +3100,13 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/tvOSApp/ContentView.swift",
                     "examples/multiplatform/tvOSApp/tvOSApp.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/tvOSApp:tvOSApp.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap",
@@ -3380,7 +3146,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -3409,13 +3174,10 @@
                     "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -3433,17 +3195,13 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/tvOSApp/ContentView.swift",
                     "examples/multiplatform/tvOSApp/tvOSApp.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/tvOSApp:tvOSApp.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -3484,7 +3242,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -3513,13 +3270,10 @@
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3543,7 +3297,6 @@
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSApp:watchOSApp",
             "linker_inputs": {
@@ -3553,7 +3306,6 @@
                     "-lc++"
                 ]
             },
-            "modulemaps": [],
             "name": "watchOSApp",
             "outputs": {
                 "p": {
@@ -3577,7 +3329,6 @@
                 },
                 "type": "com.apple.product-type.application.watchapp2"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -3586,14 +3337,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3616,7 +3363,6 @@
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSApp:watchOSApp",
             "linker_inputs": {
@@ -3626,7 +3372,6 @@
                     "-lc++"
                 ]
             },
-            "modulemaps": [],
             "name": "watchOSApp",
             "outputs": {
                 "p": {
@@ -3651,7 +3396,6 @@
                 },
                 "type": "com.apple.product-type.application.watchapp2"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "quote_includes": [
                     ".",
@@ -3660,14 +3404,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3684,12 +3424,10 @@
             "dependencies": [
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension",
             "linker_inputs": {
@@ -3724,7 +3462,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "watchOSAppExtension",
             "outputs": {
                 "p": {
@@ -3748,7 +3485,6 @@
                 },
                 "type": "com.apple.product-type.watchkit2-extension"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -3771,14 +3507,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
-            "app_clips": [],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3794,12 +3526,10 @@
             "dependencies": [
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a"
             ],
-            "extensions": [],
             "info_plist": {
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
                 "t": "g"
             },
-            "inputs": {},
             "is_swift": false,
             "label": "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension",
             "linker_inputs": {
@@ -3834,7 +3564,6 @@
                     }
                 ]
             },
-            "modulemaps": [],
             "name": "watchOSAppExtension",
             "outputs": {
                 "p": {
@@ -3859,7 +3588,6 @@
                 },
                 "type": "com.apple.product-type.watchkit2-extension"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -3882,14 +3610,10 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [],
-            "test_host": null,
-            "watch_application": null
+            }
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -3907,17 +3631,13 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/watchOSAppExtension/ContentView.swift",
                     "examples/multiplatform/watchOSAppExtension/watchOSApp.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap",
@@ -3957,7 +3677,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -3986,13 +3705,10 @@
                     "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a",
         {
-            "app_clips": [],
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -4010,17 +3726,13 @@
             "dependencies": [
                 "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a"
             ],
-            "extensions": [],
-            "info_plist": null,
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/watchOSAppExtension/ContentView.swift",
                     "examples/multiplatform/watchOSAppExtension/watchOSApp.swift"
                 ]
             },
-            "is_swift": true,
             "label": "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library",
-            "linker_inputs": {},
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -4061,7 +3773,6 @@
                 },
                 "type": "com.apple.product-type.library.static"
             },
-            "resource_bundle_dependencies": [],
             "search_paths": {
                 "framework_includes": [
                     {
@@ -4090,9 +3801,7 @@
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
-            ],
-            "test_host": null,
-            "watch_application": null
+            ]
         }
     ]
 }

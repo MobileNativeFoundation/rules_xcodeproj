@@ -1,5 +1,6 @@
 """Functions for creating data structures related to processed bazel targets."""
 
+load(":collections.bzl", "set_if_true")
 load(":files.bzl", "file_path_to_dto")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -144,33 +145,50 @@ def xcode_target(
         build_settings = build_settings,
     )
 
-    target = json.encode(struct(
-        name = name,
-        label = str(label),
-        configuration = configuration,
-        package_bin_dir = package_bin_dir,
-        platform = platform_dto,
-        product = product_to_dto(product),
-        is_swift = is_swift,
-        test_host = test_host,
-        build_settings = build_settings,
-        search_paths = search_paths,
-        modulemaps = [file_path_to_dto(fp) for fp in modulemaps.file_paths],
-        swiftmodules = [file_path_to_dto(fp) for fp in swiftmodules],
-        resource_bundle_dependencies = (
-            inputs.resource_bundle_dependencies.to_list()
-        ),
-        inputs = input_files.to_dto(inputs),
-        linker_inputs = linker_input_files.to_dto(linker_inputs),
-        info_plist = file_path_to_dto(info_plist),
-        watch_application = watch_application,
-        extensions = extensions,
-        app_clips = app_clips,
-        dependencies = dependencies.to_list(),
-        outputs = output_files.to_dto(outputs),
-    ))
+    target_json = {
+        "name": name,
+        "label": str(label),
+        "configuration": configuration,
+        "package_bin_dir": package_bin_dir,
+        "platform": platform_dto,
+        "product": product_to_dto(product),
+    }
+
+    if not is_swift:
+        target_json["is_swift"] = False
+
+    set_if_true(target_json, "test_host", test_host)
+    set_if_true(target_json, "build_settings", build_settings)
+    set_if_true(target_json, "search_paths", search_paths)
+    set_if_true(
+        target_json,
+        "modulemaps",
+        [file_path_to_dto(fp) for fp in modulemaps.file_paths],
+    )
+    set_if_true(
+        target_json,
+        "swiftmodules",
+        [file_path_to_dto(fp) for fp in swiftmodules],
+    )
+    set_if_true(
+        target_json,
+        "resource_bundle_dependencies",
+        inputs.resource_bundle_dependencies.to_list(),
+    )
+    set_if_true(target_json, "inputs", input_files.to_dto(inputs))
+    set_if_true(
+        target_json,
+        "linker_inputs",
+        linker_input_files.to_dto(linker_inputs),
+    )
+    set_if_true(target_json, "info_plist", file_path_to_dto(info_plist))
+    set_if_true(target_json, "watch_application", watch_application)
+    set_if_true(target_json, "extensions", extensions)
+    set_if_true(target_json, "app_clips", app_clips)
+    set_if_true(target_json, "dependencies", dependencies.to_list())
+    set_if_true(target_json, "outputs", output_files.to_dto(outputs))
 
     # Since we use a custom dictionary key type in
     # `//tools/generator/src:DTO.swift`, we need to use alternating keys and
     # values to get the correct dictionary representation.
-    return '"{id}",{target}'.format(id = id, target = target)
+    return '"{id}",{target}'.format(id = id, target = json.encode(target_json))
