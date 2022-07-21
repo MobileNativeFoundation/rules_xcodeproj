@@ -5,14 +5,19 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-<<<<<<< HEAD
       <PreActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-<<<<<<< HEAD
-               title = "Set Bazel Build Output Groups"
-               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;echo &quot;g $BAZEL_TARGET_ID&quot; &gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
+               title = "Initialize Bazel Build Output Groups File"
+               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi&#10;">
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Set Bazel Build Output Groups for private_lib"
+               scriptText = "echo &quot;g $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -22,15 +27,9 @@
                      ReferencedContainer = "container:test/fixtures/command_line/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
-=======
-               title = "Clear Bazel Build Output Groups File"
-               scriptText = "if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi">
->>>>>>> 5b62807d (Ensure that clearing of the $BAZEL_BUILD_OUTPUT_GROUPS_FILE occurs for)
             </ActionContent>
          </ExecutionAction>
       </PreActions>
-=======
->>>>>>> 09a6539d (Update fixtures)
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"

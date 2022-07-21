@@ -136,27 +136,31 @@ extension XCSchemeInfoTargetInfoTests {
             hostInfos: [],
             extensionPointIdentifiers: []
         )
-        let preAction = try targetInfo.bazelBuildPreAction
+        let preAction = try targetInfo.buildPreAction(buildMode: .bazel)
         XCTAssertNil(preAction)
     }
 
     func test_bazelBuildPreAction_nativeTarget_noHost() throws {
-        let preAction = try libraryTargetInfo.bazelBuildPreAction
+        let buildMode = BuildMode.bazel
+        let preAction = try libraryTargetInfo.buildPreAction(buildMode: buildMode)
         XCTAssertEqual(preAction, .init(
-            bazelBuildFor: libraryTargetInfo.buildableReference,
+            buildFor: libraryTargetInfo.buildableReference,
             name: libraryTargetInfo.pbxTarget.name,
-            hostIndex: nil
+            hostIndex: nil,
+            buildMode: buildMode
         ))
     }
 
     func test_bazelBuildPreAction_nativeTarget_withHost() throws {
-        let preAction = try libraryTargetInfoWithHosts.bazelBuildPreAction
+        let buildMode = BuildMode.bazel
+        let preAction = try libraryTargetInfoWithHosts.buildPreAction(buildMode: buildMode)
         let expectedHostIndex = try libraryTargetInfoWithHosts.selectedHostInfo?.index
         XCTAssertNotNil(expectedHostIndex)
         XCTAssertEqual(preAction, .init(
-            bazelBuildFor: libraryTargetInfoWithHosts.buildableReference,
+            buildFor: libraryTargetInfoWithHosts.buildableReference,
             name: libraryTargetInfoWithHosts.pbxTarget.name,
-            hostIndex: expectedHostIndex
+            hostIndex: expectedHostIndex,
+            buildMode: buildMode
         ))
     }
 }
@@ -208,13 +212,14 @@ extension XCSchemeInfoTargetInfoTests {
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_bazelBuildPreActions() throws {
+        let buildMode = BuildMode.bazel
         let targetInfos = [libraryTargetInfo, appTargetInfo]
         let expected: [XCScheme.ExecutionAction] = [
             .initBazelBuildOutputGroupsFile,
-            try libraryTargetInfo.bazelBuildPreAction!,
-            try appTargetInfo.bazelBuildPreAction!,
+            try libraryTargetInfo.buildPreAction(buildMode: buildMode)!,
+            try appTargetInfo.buildPreAction(buildMode: buildMode)!,
         ]
-        XCTAssertEqual(try targetInfos.bazelBuildPreActions, expected)
+        XCTAssertEqual(try targetInfos.buildPreActions(buildMode: buildMode), expected)
     }
 }
 
