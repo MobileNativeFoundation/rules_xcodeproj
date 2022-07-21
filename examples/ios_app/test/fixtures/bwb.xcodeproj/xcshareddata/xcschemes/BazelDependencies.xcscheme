@@ -13,22 +13,6 @@
                scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi">
             </ActionContent>
          </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Set Bazel Build Output Groups for lib_impl"
-               scriptText = "echo &quot;b $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "BC691472A2BC47F8E1D5D637"
-                     BuildableName = "lib_impl"
-                     BlueprintName = "lib_impl"
-                     ReferencedContainer = "container:test/fixtures/command_line/bwb.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
       </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
@@ -39,10 +23,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BC691472A2BC47F8E1D5D637"
-               BuildableName = "lib_impl"
-               BlueprintName = "lib_impl"
-               ReferencedContainer = "container:test/fixtures/command_line/bwb.xcodeproj">
+               BlueprintIdentifier = "7E7D155EBCA520F35DEA3571"
+               BuildableName = "BazelDependencies"
+               BlueprintName = "BazelDependencies"
+               ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

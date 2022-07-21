@@ -48,7 +48,7 @@ extension XCSchemeExtensionsTests {
             buildActionEntries: targetInfos
                 .map(\.buildableReference)
                 .map { .init(withDefaults: $0) },
-            preActions: [.clearBazelBuildOutputGroupsFile] +
+            preActions: [.initBazelBuildOutputGroupsFile] +
                 targetInfos.compactMap { .init(targetInfo: $0, hostIndex: nil) },
             parallelizeBuild: true,
             buildImplicitDependencies: true
@@ -70,7 +70,7 @@ extension XCSchemeExtensionsTests {
             buildActionEntries: (targetInfos + [hostTargetInfo])
                 .map(\.buildableReference)
                 .map { .init(withDefaults: $0) },
-            preActions: [.clearBazelBuildOutputGroupsFile] +
+            preActions: [.initBazelBuildOutputGroupsFile] +
                 targetInfos.compactMap { .init(targetInfo: $0, hostIndex: hostIndex) },
             parallelizeBuild: true,
             buildImplicitDependencies: true

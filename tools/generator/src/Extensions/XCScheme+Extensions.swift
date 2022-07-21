@@ -53,7 +53,7 @@ extension XCScheme.BuildAction {
 
         let preActions: [XCScheme.ExecutionAction]
         if buildMode.usesBazelModeBuildScripts {
-            preActions = [.clearBazelBuildOutputGroupsFile] + targetInfos.compactMap {
+            preActions = [.initBazelBuildOutputGroupsFile] + targetInfos.compactMap {
                 XCScheme.ExecutionAction(targetInfo: $0, hostIndex: hostIndex)
             }
         } else {
@@ -89,8 +89,9 @@ extension XCScheme.BuildAction.Entry {
 // MARK: XCScheme.ExecutionAction
 
 extension XCScheme.ExecutionAction {
-    static let clearBazelBuildOutputGroupsFile = XCScheme.ExecutionAction(
+    static let initBazelBuildOutputGroupsFile = XCScheme.ExecutionAction(
         scriptText: #"""
+mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
 if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
     rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 fi
@@ -113,7 +114,6 @@ echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE
         }
 
         let scriptText = #"""
-mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
 echo "b $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 \#(hostTargetOutputGroup)
 """#
