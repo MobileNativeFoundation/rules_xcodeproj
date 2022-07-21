@@ -1,5 +1,6 @@
-#/usr/bin/python3
+#!/usr/bin/python3
 
+from collections import OrderedDict
 import plistlib
 import sys
 
@@ -18,9 +19,9 @@ def _main(
 ERROR: number of target ids doesn't match the number of Info.plist files""",
             file = sys.stderr,
         )
-        exit(1)
+        sys.exit(1)
 
-    results = []
+    results = OrderedDict()
     for targetid, path in zip(targetids, paths):
         with open(path, 'rb') as fp:
             plist = plistlib.load(fp)
@@ -29,18 +30,16 @@ ERROR: number of target ids doesn't match the number of Info.plist files""",
             plist.get("NSExtension", {}).get("NSExtensionPointIdentifier")
         )
         if not extension_point_identifier:
-            print(
-                f"""
-WARNING: `NSExtension.NSExtensionPointIdentifier` key not found in {path}
-""",
-                file = sys.stderr,
-            )
             continue
 
-        results.append(f'"{targetid}","{extension_point_identifier}"')
+        results[targetid] = extension_point_identifier
 
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
-        fp.write(f'[{",".join(results)}]\n')
+        results_json = [
+            f'"{targetid}","{extension_point_identifier}"'
+            for targetid, extension_point_identifier in results.items()
+        ]
+        fp.write(f'[{",".join(results_json)}]\n')
 
 
 if __name__ == "__main__":
@@ -52,6 +51,6 @@ Usage: {sys.argv[0]} <path/to/targetids> <path/to/infoplist_file_list> \
 """,
             file = sys.stderr,
         )
-        exit(1)
+        sys.exit(1)
 
     _main(sys.argv[1], sys.argv[2], sys.argv[3])
