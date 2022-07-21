@@ -107,12 +107,6 @@ extension XCSchemeExtensionsTests {
     }
 }
 
-extension XCSchemeExtensionsTests {
-    func test_XCScheme_init() throws {
-        XCTFail("IMPLEMENT ME!")
-    }
-}
-
 // MARK: Test Data
 
 class XCSchemeExtensionsTests: XCTestCase {
