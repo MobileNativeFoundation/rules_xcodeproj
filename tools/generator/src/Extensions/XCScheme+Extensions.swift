@@ -130,6 +130,7 @@ mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
 if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
     rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 fi
+
 """#,
         title: "Initialize Bazel Build Output Groups File"
     )
@@ -144,6 +145,7 @@ fi
         if let hostIndex = hostIndex {
             hostTargetOutputGroup = #"""
 echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+
 """#
         } else {
             hostTargetOutputGroup = ""
@@ -152,6 +154,7 @@ echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE
         let scriptText = #"""
 echo "b $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 \#(hostTargetOutputGroup)
+
 """#
         self.init(
             scriptText: scriptText,
