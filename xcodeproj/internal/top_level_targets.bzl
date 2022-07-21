@@ -234,16 +234,22 @@ def process_top_level_target(
         info_plists.get_file(target),
         ctx = ctx,
     )
-    extension_infoplists = None
     if infoplist:
         additional_files.append(infoplist)
-        if bundle_info and bundle_info.bundle_extension == ".appex":
-            extension_infoplists = [
-                struct(
-                    id = id,
-                    infoplist = infoplist,
-                ),
-            ]
+
+    infoplists_attrs = automatic_target_info.infoplists
+    if (infoplists_attrs and bundle_info and
+        bundle_info.bundle_extension == ".appex"):
+        extension_infoplists = [
+            struct(
+                id = id,
+                infoplist = infoplist,
+            )
+            for attr in infoplists_attrs
+            for infoplist in getattr(ctx.rule.files, attr, [])
+        ]
+    else:
+        extension_infoplists = None
 
     provisioning_profiles.process_attr(
         ctx = ctx,
