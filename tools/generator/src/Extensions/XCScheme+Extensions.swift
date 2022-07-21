@@ -6,6 +6,7 @@ enum XCSchemeConstants {
     static let lldbInitVersion = "1.7"
     static let defaultBuildConfigurationName = "Debug"
     static let posixSpawnLauncher = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+    static let customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
 }
 
 // MARK: XCScheme.BuildableReference
@@ -28,34 +29,46 @@ extension XCScheme {
         buildMode: BuildMode,
         schemeInfo: XCSchemeInfo
     ) throws {
-        // TODO(chuck): Create default XXActionInfo values if one is not specified. Generate a
-        // action for all known types.
         let buildAction: XCScheme.BuildAction?
         if let buildActionInfo = schemeInfo.buildActionInfo {
             buildAction = try .init(buildMode: buildMode, buildActionInfo: buildActionInfo)
         } else {
-            buildAction = nil
+            buildAction = .init(
+                parallelizeBuild: true,
+                buildImplicitDependencies: true
+            )
         }
 
         let testAction: XCScheme.TestAction?
         if let testActionInfo = schemeInfo.testActionInfo {
             testAction = .init(testActionInfo: testActionInfo)
         } else {
-            testAction = nil
+            testAction = .init(
+                buildConfiguration: XCSchemeConstants.defaultBuildConfigurationName,
+                macroExpansion: nil,
+                customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            )
         }
 
         let launchAction: XCScheme.LaunchAction?
         if let launchActionInfo = schemeInfo.launchActionInfo {
             launchAction = try .init(buildMode: buildMode, launchActionInfo: launchActionInfo)
         } else {
-            launchAction = nil
+            launchAction = .init(
+                runnable: nil,
+                buildConfiguration: XCSchemeConstants.defaultBuildConfigurationName,
+                customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            )
         }
 
         let profileAction: XCScheme.ProfileAction?
         if let profileActionInfo = schemeInfo.profileActionInfo {
             profileAction = .init(profileActionInfo: profileActionInfo)
         } else {
-            profileAction = nil
+            profileAction = .init(
+                buildableProductRunnable: nil,
+                buildConfiguration: XCSchemeConstants.defaultBuildConfigurationName
+            )
         }
 
         self.init(
@@ -158,7 +171,7 @@ extension XCScheme.TestAction {
             testables: testActionInfo.targetInfos
                 .filter(\.pbxTarget.isTestable)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
-            customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }
 }
@@ -178,7 +191,7 @@ extension XCScheme.LaunchAction {
             environmentVariables: buildMode.usesBazelEnvironmentVariables ?
                 productType.bazelLaunchEnvironmentVariables : nil,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
-            customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }
 }

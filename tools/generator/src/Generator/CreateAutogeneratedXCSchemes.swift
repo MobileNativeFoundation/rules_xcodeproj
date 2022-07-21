@@ -78,7 +78,7 @@ Host target with key \(key) not found in `pbxTargets`.
             let buildConfigurationName = targetInfo.pbxTarget.defaultBuildConfigurationName
 
             let shouldCreateTestAction = pbxTarget.isTestable
-            let shouldCreateLaunchAction = pbxTarget.isLaunchable && !pbxTarget.isTestable
+            let shouldCreateLaunchAction = pbxTarget.isLaunchable
             let schemeInfo = try XCSchemeInfo(
                 buildActionInfo: .init(targetInfos: [targetInfo]),
                 testActionInfo: shouldCreateTestAction ?

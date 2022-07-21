@@ -56,7 +56,12 @@ extension XCSchemeInfo.LaunchActionInfo {
 // MARK: runnable
 
 extension XCSchemeInfo.LaunchActionInfo {
-    var runnable: XCScheme.Runnable {
+    var runnable: XCScheme.Runnable? {
+        // To produce a similar result to the current generation code, we need to have a
+        // LaunchActionInfo, but we do not want to set the runnable.
+        if targetInfo.pbxTarget.isTestable {
+            return nil
+        }
         if targetInfo.isWidgetKitExtension {
             return XCScheme.RemoteRunnable(
                 buildableReference: targetInfo.buildableReference,
