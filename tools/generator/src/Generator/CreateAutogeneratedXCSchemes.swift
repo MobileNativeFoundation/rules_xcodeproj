@@ -101,7 +101,7 @@ Host target with key \(key) not found in `pbxTargets`.
             ) { buildActionInfo, _, _, _ in
                 guard let targetInfo = buildActionInfo?.targetInfos.first else {
                     throw PreconditionError(message: """
-Expected to find a target info in the `BuildActionInfo`.
+Expected to find a `TargetInfo` in the `BuildActionInfo`.
 """)
                 }
                 let schemeName: String
