@@ -91,7 +91,7 @@ extension XCSchemeExtensionsTests {
     }
 
     func test_ExecutionAction_withNativeTarget_withHostIndex() throws {
-        let hostIndex = 1
+        let hostIndex = 7
         let action = XCScheme.ExecutionAction(
             bazelBuildFor: libraryTargetInfo.buildableReference,
             name: libraryTargetInfo.pbxTarget.name,
