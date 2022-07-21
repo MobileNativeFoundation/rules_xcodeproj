@@ -22,14 +22,14 @@ extension XCSchemeInfoBuildActionInfoTests {
             topLevelTargetInfos: topLevelTargetInfos
         )
         guard let buildActionInfo = actionInfo else {
-            XCTFail("Expected a `BuildActionInfo`.")
+            XCTFail("Expected a `BuildActionInfo`")
             return
         }
         // We could check for the host resolution not equal to .unresolved. However, by checking for
         // a specific selected host, we are sure that the topLevelTargetInfos was passed along
         // correctly.
         guard let targetInfo = buildActionInfo.targetInfos.first else {
-            XCTFail("Expected a `TargetInfo`.")
+            XCTFail("Expected a `TargetInfo`")
             return
         }
         let selectedHostInfo = try targetInfo.selectedHostInfo

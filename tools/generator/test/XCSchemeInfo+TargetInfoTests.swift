@@ -50,7 +50,7 @@ extension XCSchemeInfoTargetInfoTests {
         if case let .selected(selectedHostInfo) = resolvedTargetInfo.hostResolution {
             XCTAssertEqual(selectedHostInfo, appHostInfo)
         } else {
-            XCTFail("Expected a selected host.")
+            XCTFail("Expected a selected host")
         }
     }
 
@@ -78,7 +78,7 @@ extension XCSchemeInfoTargetInfoTests {
         if case let .selected(selectedHostInfo) = resolvedTargetInfo.hostResolution {
             XCTAssertEqual(selectedHostInfo, unitTestHostInfo)
         } else {
-            XCTFail("Expected a selected host.")
+            XCTFail("Expected a selected host")
         }
     }
 }

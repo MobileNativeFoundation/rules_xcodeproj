@@ -15,7 +15,7 @@ extension XCSchemeInfoTestActionInfoTests {
           thrown = $0
         }
         guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected `PreconditionError`.")
+            XCTFail("Expected `PreconditionError`")
             return
         }
         XCTAssertEqual(preconditionError.message, """
@@ -32,7 +32,7 @@ An `XCSchemeInfo.TestActionInfo` should have at least one `XCSchemeInfo.TargetIn
           thrown = $0
         }
         guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected `PreconditionError`.")
+            XCTFail("Expected `PreconditionError`")
             return
         }
         XCTAssertEqual(preconditionError.message, """
@@ -62,7 +62,7 @@ extension XCSchemeInfoTestActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let testActionInfo = actionInfo else {
-            XCTFail("Expected a `TestActionInfo`.")
+            XCTFail("Expected a `TestActionInfo`")
             return
         }
         XCTAssertEqual(testActionInfo.buildConfigurationName, buildConfigurationName)

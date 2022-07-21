@@ -23,7 +23,7 @@ extension XCSchemeInfoProfileActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let profileActionInfo = actionInfo else {
-            XCTFail("Expected a `ProfileActionInfo`.")
+            XCTFail("Expected a `ProfileActionInfo`")
             return
         }
         XCTAssertNotEqual(profileActionInfo.targetInfo.hostResolution, .unresolved)
@@ -42,7 +42,7 @@ extension XCSchemeInfoProfileActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let profileActionInfo = actionInfo else {
-            XCTFail("Expected a `ProfileActionInfo`.")
+            XCTFail("Expected a `ProfileActionInfo`")
             return
         }
         XCTAssertEqual(

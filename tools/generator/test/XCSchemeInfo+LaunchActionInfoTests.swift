@@ -33,7 +33,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
           thrown = $0
         }
         guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected PreconditionError.")
+            XCTFail("Expected `PreconditionError`")
             return
         }
         XCTAssertEqual(preconditionError.message, """
@@ -62,7 +62,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         XCTAssertNotEqual(launchActionInfo.targetInfo.hostResolution, .unresolved)
@@ -79,7 +79,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
         )
         let runnable = launchActionInfo.runnable
         guard let remoteRunnable = runnable as? XCScheme.RemoteRunnable else {
-            XCTFail("Expected a `RemoteRunnable`.")
+            XCTFail("Expected a `RemoteRunnable`")
             return
         }
         XCTAssertEqual(remoteRunnable.buildableReference, widgetKitExtTargetInfo.buildableReference)
@@ -92,7 +92,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
         )
         let runnable = launchActionInfo.runnable
         guard let buildableProductRunnable = runnable as? XCScheme.BuildableProductRunnable else {
-            XCTFail("Expected a `BuildableProductRunnable`.")
+            XCTFail("Expected a `BuildableProductRunnable`")
             return
         }
         XCTAssertEqual(buildableProductRunnable.buildableReference, appTargetInfo.buildableReference)
@@ -131,11 +131,11 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         guard let macroExpansion = try launchActionInfo.macroExpansion else {
-            XCTFail("Expected a `macroExpansion`.")
+            XCTFail("Expected a `macroExpansion`")
             return
         }
         XCTAssertEqual(macroExpansion, appHostInfo.buildableReference)
@@ -150,7 +150,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         XCTAssertNil(try launchActionInfo.macroExpansion)
@@ -165,11 +165,11 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         guard let macroExpansion = try launchActionInfo.macroExpansion else {
-            XCTFail("Expected a `macroExpansion`.")
+            XCTFail("Expected a `macroExpansion`")
             return
         }
         XCTAssertEqual(macroExpansion, unitTestNoHostTargetInfo.buildableReference)
@@ -184,7 +184,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         XCTAssertNil(try launchActionInfo.macroExpansion)
@@ -203,7 +203,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         XCTAssertEqual(launchActionInfo.launcher, XCScheme.defaultLauncher)
@@ -218,7 +218,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         XCTAssertEqual(launchActionInfo.launcher, XCSchemeConstants.posixSpawnLauncher)
@@ -237,7 +237,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         XCTAssertEqual(launchActionInfo.debugger, XCScheme.defaultDebugger)
@@ -252,7 +252,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`.")
+            XCTFail("Expected a `LaunchActionInfo`")
             return
         }
         XCTAssertEqual(launchActionInfo.debugger, "")
