@@ -103,8 +103,6 @@ extension XCScheme.BuildAction {
     }
 }
 
-// MARK: XCScheme.BuildAction.Entry
-
 extension XCScheme.BuildAction.Entry {
     convenience init(withDefaults buildableReference: XCScheme.BuildableReference) {
         self.init(
