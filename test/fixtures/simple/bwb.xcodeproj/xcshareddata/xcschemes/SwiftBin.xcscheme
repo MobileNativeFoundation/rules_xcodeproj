@@ -9,6 +9,13 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
+               title = "Clear Bazel Build Output Groups File"
+               scriptText = "if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi">
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
                title = "Set Bazel Build Output Groups for SwiftBin"
                scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;echo &quot;b $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
                <EnvironmentBuildable>
