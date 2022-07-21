@@ -153,7 +153,7 @@ echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE
 
         let scriptText = #"""
 echo "b $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-\#(hostTargetOutputGroup)
+\#(hostTargetOutputGroup)\#
 
 """#
         self.init(
