@@ -3,6 +3,18 @@ struct XcodeScheme: Equatable, Decodable {
     let buildAction: XcodeScheme.BuildAction?
     let testAction: XcodeScheme.TestAction?
     let launchAction: XcodeScheme.LaunchAction?
+
+    init(
+        name: String,
+        buildAction: XcodeScheme.BuildAction? = nil,
+        testAction: XcodeScheme.TestAction? = nil,
+        launchAction: XcodeScheme.LaunchAction? = nil
+    ) {
+        self.name = name
+        self.buildAction = buildAction
+        self.testAction = testAction
+        self.launchAction = launchAction
+    }
 }
 
 // MARK: BuildAction

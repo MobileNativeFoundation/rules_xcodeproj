@@ -10,17 +10,6 @@ extension PBXTarget {
         return product?.path ?? name
     }
 
-    func createBuildableReference(
-        referencedContainer: String
-    ) throws -> XCScheme.BuildableReference {
-        return .init(
-            referencedContainer: referencedContainer,
-            blueprint: self,
-            buildableName: buildableName,
-            blueprintName: name
-        )
-    }
-
     var schemeName: String {
         return name
             .replacingOccurrences(of: "/", with: "_")

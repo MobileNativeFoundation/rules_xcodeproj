@@ -61,9 +61,10 @@ Host target with key \(key) not found in `pbxTargets`.
         return try pbxTargets.flatMap { key, pbxTarget in
             try createXCSchemes(
                 buildMode: buildMode,
-                referencedContainer: referencedContainer,
-                pbxTarget: pbxTarget,
-                hostPBXTargets: keyedHostPBXTargets[key, default: []].elements,
+                pbxTargetInfo: .init(pbxTarget: pbxTarget, referencedContainer: referencedContainer),
+                hostPBXTargetInfos: keyedHostPBXTargets[key, default: []].elements.map {
+                    .init(pbxTarget: $0, referencedContainer: referencedContainer)
+                },
                 extensionPointIdentifiers:
                     keyedExtensionPointIdentifiers[key, default: []]
             )
@@ -77,37 +78,35 @@ Host target with key \(key) not found in `pbxTargets`.
     /// Creates an `XCScheme` for the specified target.
     private static func createXCSchemes(
         buildMode: BuildMode,
-        referencedContainer: String,
-        pbxTarget: PBXTarget,
-        hostPBXTargets: [PBXTarget],
+        pbxTargetInfo: XCScheme.PBXTargetInfo,
+        hostPBXTargetInfos: [XCScheme.PBXTargetInfo],
         extensionPointIdentifiers: Set<ExtensionPointIdentifier>
     ) throws -> [XCScheme] {
-        guard pbxTarget.shouldCreateScheme else {
+        guard pbxTargetInfo.pbxTarget.shouldCreateScheme else {
             return []
         }
 
-        guard !hostPBXTargets.isEmpty else {
+        guard !hostPBXTargetInfos.isEmpty else {
             return [
                 try createXCScheme(
                     buildMode: buildMode,
-                    referencedContainer: referencedContainer,
-                    pbxTarget: pbxTarget,
-                    hostPBXTarget: nil,
+                    pbxTargetInfo: pbxTargetInfo,
+                    hostPBXTargetInfo: nil,
                     hostIndex: nil,
                     disambiguateHost: false,
                     extensionPointIdentifiers: extensionPointIdentifiers
-                )
+                ),
             ]
         }
 
-        return try hostPBXTargets.enumerated().map { hostIndex, hostPBXTarget in
+        let disambiguateHost = hostPBXTargetInfos.count > 1
+        return try hostPBXTargetInfos.enumerated().map { hostIndex, hostPBXTargetInfo in
             try createXCScheme(
                 buildMode: buildMode,
-                referencedContainer: referencedContainer,
-                pbxTarget: pbxTarget,
-                hostPBXTarget: hostPBXTarget,
+                pbxTargetInfo: pbxTargetInfo,
+                hostPBXTargetInfo: hostPBXTargetInfo,
                 hostIndex: hostIndex,
-                disambiguateHost: hostPBXTargets.count > 1,
+                disambiguateHost: disambiguateHost,
                 extensionPointIdentifiers: extensionPointIdentifiers
             )
         }
@@ -115,38 +114,29 @@ Host target with key \(key) not found in `pbxTargets`.
 
     private static func createXCScheme(
         buildMode: BuildMode,
-        referencedContainer: String,
-        pbxTarget: PBXTarget,
-        hostPBXTarget: PBXTarget?,
+        pbxTargetInfo: XCScheme.PBXTargetInfo,
+        hostPBXTargetInfo: XCScheme.PBXTargetInfo?,
         hostIndex: Int?,
         disambiguateHost: Bool,
         extensionPointIdentifiers: Set<ExtensionPointIdentifier>
     ) throws -> XCScheme {
-        let isLaunchable = pbxTarget.isLaunchable
-        let isTestable = pbxTarget.isTestable
-        let productType = pbxTarget.productType ?? .none
+        let isLaunchable = pbxTargetInfo.pbxTarget.isLaunchable
+        let isTestable = pbxTargetInfo.pbxTarget.isTestable
+        let productType = pbxTargetInfo.pbxTarget.productType ?? .none
         let isWatchApplication = productType.isWatchApplication
         let isWidgetKitExtension = extensionPointIdentifiers
             .contains(.widgetKitExtension)
 
-        let buildableReference = try pbxTarget.createBuildableReference(
-            referencedContainer: referencedContainer
-        )
-        let hostBuildableReference = try hostPBXTarget?
-            .createBuildableReference(
-                referencedContainer: referencedContainer
-            )
-
-        let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
+        let buildConfigurationName = pbxTargetInfo.pbxTarget.defaultBuildConfigurationName
         let runnables = createRunnables(
-            buildableReference: buildableReference,
+            buildableReference: pbxTargetInfo.buildableReference,
             isLaunchable: isLaunchable,
             isTestable: isTestable,
             isWidgetKitExtension: isWidgetKitExtension
         )
         let macroExpansions = createMacroExpansions(
-            buildableReference: buildableReference,
-            hostBuildableReference: hostBuildableReference,
+            buildableReference: pbxTargetInfo.buildableReference,
+            hostBuildableReference: hostPBXTargetInfo?.buildableReference,
             isTestable: isTestable,
             isWatchApplication: isWatchApplication
         )
@@ -157,19 +147,10 @@ Host target with key \(key) not found in `pbxTargets`.
             .launchAutomaticallySubstyle
 
         let buildAction = XCScheme.BuildAction(
-            buildActionEntries: createBuildActionEntries(
-                buildableReference: buildableReference,
-                hostBuildableReference: hostBuildableReference
-            ),
-            // swiftlint:disable:previous trailing_comma
-            preActions: createBuildPreActions(
-                buildMode: buildMode,
-                pbxTarget: pbxTarget,
-                hostIndex: hostIndex,
-                buildableReference: buildableReference
-            ),
-            parallelizeBuild: true,
-            buildImplicitDependencies: true
+            buildMode: buildMode,
+            targetInfos: [pbxTargetInfo],
+            hostBuildableReference: hostPBXTargetInfo?.buildableReference,
+            hostIndex: hostIndex
         )
         let launchAction = XCScheme.LaunchAction(
             runnable: runnables.launch,
@@ -187,7 +168,7 @@ Host target with key \(key) not found in `pbxTargets`.
             buildConfiguration: buildConfigurationName,
             macroExpansion: macroExpansions.test,
             testables: createTestables(
-                buildableReference: buildableReference,
+                buildableReference: pbxTargetInfo.buildableReference,
                 isTestable: isTestable
             ),
             customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
@@ -205,12 +186,12 @@ Host target with key \(key) not found in `pbxTargets`.
         )
 
         let schemeName: String
-        if let hostPBXTarget = hostPBXTarget, disambiguateHost {
+        if let hostPBXTarget = hostPBXTargetInfo?.pbxTarget, disambiguateHost {
             schemeName = """
-\(pbxTarget.schemeName) in \(hostPBXTarget.schemeName)
+\(pbxTargetInfo.pbxTarget.schemeName) in \(hostPBXTarget.schemeName)
 """
         } else {
-            schemeName = pbxTarget.schemeName
+            schemeName = pbxTargetInfo.pbxTarget.schemeName
         }
 
         return XCScheme(
@@ -277,7 +258,8 @@ Host target with key \(key) not found in `pbxTargets`.
         test: XCScheme.BuildableReference?
     ) {
         if let hostBuildableReference = hostBuildableReference,
-           !isWatchApplication {
+           !isWatchApplication
+        {
             return (launch: hostBuildableReference, test: nil)
         } else if isTestable {
             return (launch: buildableReference, test: nil)
@@ -314,67 +296,5 @@ Host target with key \(key) not found in `pbxTargets`.
             skipped: false,
             buildableReference: buildableReference
         )]
-    }
-
-    private static func createBuildActionEntries(
-        buildableReference: XCScheme.BuildableReference,
-        hostBuildableReference: XCScheme.BuildableReference?
-    ) -> [XCScheme.BuildAction.Entry] {
-        return [buildableReference, hostBuildableReference]
-            .compactMap { $0 }
-            .map { buildableReference in
-                return XCScheme.BuildAction.Entry(
-                    buildableReference: buildableReference,
-                    buildFor: [
-                        .running,
-                        .testing,
-                        .profiling,
-                        .archiving,
-                        .analyzing,
-                    ]
-                )
-            }
-    }
-
-    private static func createBuildPreActions(
-        buildMode: BuildMode,
-        pbxTarget: PBXTarget,
-        hostIndex: Int?,
-        buildableReference: XCScheme.BuildableReference
-    ) -> [XCScheme.ExecutionAction] {
-        let scriptText: String
-        if pbxTarget is PBXNativeTarget {
-            let prefix = buildMode.buildOutputGroupPrefix
-
-            let hostTargetOutputGroup: String
-            if let hostIndex = hostIndex {
-                hostTargetOutputGroup = #"""
-echo "\#(prefix) $BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
->> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-"""#
-            } else {
-                hostTargetOutputGroup = ""
-            }
-
-            scriptText = #"""
-mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-echo "\#(prefix) $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-\#(hostTargetOutputGroup)
-"""#
-        } else {
-            scriptText = #"""
-if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
-    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-fi
-
-"""#
-        }
-
-        return [XCScheme.ExecutionAction(
-            scriptText: scriptText,
-            title: "Set Bazel Build Output Groups",
-            environmentBuildable: buildableReference
-        )]
-        // swiftlint:disable:previous trailing_comma
     }
 }

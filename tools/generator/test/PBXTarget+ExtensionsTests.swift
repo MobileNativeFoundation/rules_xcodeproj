@@ -33,20 +33,6 @@ class PBXTargetExtensionsTests: XCTestCase {
         XCTAssertEqual(buildableName, "chicken")
     }
 
-    func test_createBuildableReference() throws {
-        let referencedContainer = "container:Foo.xcodeproj"
-        let buildableReference = try pbxTarget.createBuildableReference(
-            referencedContainer: referencedContainer
-        )
-        let expected = XCScheme.BuildableReference(
-            referencedContainer: "\(referencedContainer)",
-            blueprint: pbxTarget,
-            buildableName: pbxTarget.buildableName,
-            blueprintName: pbxTarget.name
-        )
-        XCTAssertEqual(buildableReference, expected)
-    }
-
     func test_getSchemeName_withSlashesInBuildableName() throws {
         pbxTarget.name = "//examples/chicken:smidgen"
         XCTAssertEqual(

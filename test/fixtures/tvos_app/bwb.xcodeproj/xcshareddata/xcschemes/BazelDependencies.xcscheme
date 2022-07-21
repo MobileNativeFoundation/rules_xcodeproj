@@ -5,31 +5,6 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Clear Bazel Build Output Groups File"
-               scriptText = "if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi">
-            </ActionContent>
-         </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Set Bazel Build Output Groups for Lib (iOS, tvOS)"
-               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;echo &quot;b $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "9D6BB9A04FEC771667C78F54"
-                     BuildableName = "Lib (iOS, tvOS)"
-                     BlueprintName = "Lib (iOS, tvOS)"
-                     ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -39,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9D6BB9A04FEC771667C78F54"
-               BuildableName = "Lib (iOS, tvOS)"
-               BlueprintName = "Lib (iOS, tvOS)"
-               ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
+               BlueprintIdentifier = "7E7D155EBCA520F35DEA3571"
+               BuildableName = "BazelDependencies"
+               BlueprintName = "BazelDependencies"
+               ReferencedContainer = "container:test/fixtures/tvos_app/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
