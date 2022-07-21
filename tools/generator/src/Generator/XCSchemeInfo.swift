@@ -96,10 +96,10 @@ extension XCSchemeInfo {
     var allPBXTargets: Set<PBXTarget> {
         var pbxTargets = [PBXTarget]()
         if let buildActionInfo = buildActionInfo {
-            pbxTargets += buildActionInfo.targetInfos.map(\.pbxTarget)
+            pbxTargets.append(contentsOf: buildActionInfo.targetInfos.map(\.pbxTarget))
         }
         if let testActionInfo = testActionInfo {
-            pbxTargets += testActionInfo.targetInfos.map(\.pbxTarget)
+            pbxTargets.append(contentsOf: testActionInfo.targetInfos.map(\.pbxTarget))
         }
         if let launchActionInfo = launchActionInfo {
             pbxTargets.append(launchActionInfo.targetInfo.pbxTarget)
