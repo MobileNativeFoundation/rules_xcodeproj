@@ -57,8 +57,8 @@ extension XCSchemeInfo.LaunchActionInfo {
 
 extension XCSchemeInfo.LaunchActionInfo {
     var runnable: XCScheme.Runnable? {
-        // To produce a similar result to the current generation code, we need to have a
-        // LaunchActionInfo, but we do not want to set the runnable.
+        // We want to provide a `LaunchActionInfo`, but we do not want to provide a `runnable`, if
+        // it is testable.
         if targetInfo.pbxTarget.isTestable {
             return nil
         }
