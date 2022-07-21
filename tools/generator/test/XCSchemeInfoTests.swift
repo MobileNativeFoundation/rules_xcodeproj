@@ -12,7 +12,7 @@ extension XCSchemeInfoTests {
             thrown = $0
         }
         guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected a PreconditionError")
+            XCTFail("Expected a `PreconditionError`.")
             return
         }
         XCTAssertEqual(preconditionError.message, """
@@ -31,7 +31,7 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
             thrown = $0
         }
         guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected a PreconditionError")
+            XCTFail("Expected a `PreconditionError`.")
             return
         }
         XCTAssertEqual(preconditionError.message, """

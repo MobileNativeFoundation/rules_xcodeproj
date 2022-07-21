@@ -62,7 +62,7 @@ extension XCSchemeInfoTestActionInfoTests {
             topLevelTargetInfos: []
         )
         guard let testActionInfo = actionInfo else {
-            XCTFail("Expected a TestActionInfo.")
+            XCTFail("Expected a `TestActionInfo`.")
             return
         }
         XCTAssertEqual(testActionInfo.buildConfigurationName, buildConfigurationName)
