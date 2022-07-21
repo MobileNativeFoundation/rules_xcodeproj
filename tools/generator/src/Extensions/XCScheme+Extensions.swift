@@ -9,8 +9,6 @@ enum XCSchemeConstants {
     static let customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
 }
 
-// MARK: XCScheme.BuildableReference
-
 extension XCScheme.BuildableReference {
     convenience init(pbxTarget: PBXTarget, referencedContainer: String) {
         self.init(
@@ -21,8 +19,6 @@ extension XCScheme.BuildableReference {
         )
     }
 }
-
-// MARK: XCScheme
 
 extension XCScheme {
     convenience init(
@@ -86,8 +82,6 @@ extension XCScheme {
     }
 }
 
-// MARK: XCScheme.BuildAction
-
 extension XCScheme.BuildAction {
     convenience init(
         buildMode: BuildMode,
@@ -117,8 +111,6 @@ extension XCScheme.BuildAction.Entry {
         )
     }
 }
-
-// MARK: XCScheme.ExecutionAction
 
 extension XCScheme.ExecutionAction {
     /// Initialize the output file for Build with Bazel mode.
@@ -162,8 +154,6 @@ echo "b $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
     }
 }
 
-// MARK: XCScheme.TestAction
-
 extension XCScheme.TestAction {
     convenience init(testActionInfo: XCSchemeInfo.TestActionInfo) {
         self.init(
@@ -176,8 +166,6 @@ extension XCScheme.TestAction {
         )
     }
 }
-
-// MARK: XCScheme.LaunchAction
 
 extension XCScheme.LaunchAction {
     convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) throws {
@@ -197,8 +185,6 @@ extension XCScheme.LaunchAction {
     }
 }
 
-// MARK: XCScheme.ProfileAction
-
 extension XCScheme.ProfileAction {
     convenience init(profileActionInfo: XCSchemeInfo.ProfileActionInfo) {
         self.init(
@@ -208,15 +194,11 @@ extension XCScheme.ProfileAction {
     }
 }
 
-// MARK: XCScheme.AnalyzeAction
-
 extension XCScheme.AnalyzeAction {
     convenience init(analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo) {
         self.init(buildConfiguration: analyzeActionInfo.buildConfigurationName)
     }
 }
-
-// MARK: XCScheme.ArchiveAction
 
 extension XCScheme.ArchiveAction {
     convenience init(archiveActionInfo: XCSchemeInfo.ArchiveActionInfo) {
