@@ -108,10 +108,10 @@ extension XCSchemeInfo.LaunchActionInfo {
 
 extension XCSchemeInfo.LaunchActionInfo {
     var launcher: String {
-        if targetInfo.productType.canUseDebugLauncher {
-            return XCScheme.defaultLauncher
+        guard targetInfo.productType.canUseDebugLauncher else {
+            return XCSchemeConstants.posixSpawnLauncher
         }
-        return XCSchemeConstants.posixSpawnLauncher
+        return XCScheme.defaultLauncher
     }
 }
 
@@ -119,9 +119,9 @@ extension XCSchemeInfo.LaunchActionInfo {
 
 extension XCSchemeInfo.LaunchActionInfo {
     var debugger: String {
-        if targetInfo.productType.canUseDebugLauncher {
-            return XCScheme.defaultDebugger
+        guard targetInfo.productType.canUseDebugLauncher else {
+            return ""
         }
-        return ""
+        return XCScheme.defaultDebugger
     }
 }
