@@ -32,6 +32,8 @@ def file_path(
             *   "g" for `.generated`
             *   "i" for `.internal`
     """
+    if not file:
+        return None
     if not path:
         path = file.path
     if not file.is_source:

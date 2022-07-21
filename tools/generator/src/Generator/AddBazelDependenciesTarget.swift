@@ -129,14 +129,10 @@ env -i \
             xcodeprojBazelLabel: xcodeprojBazelLabel,
             xcodeprojConfiguration: xcodeprojConfiguration
         )
-        let generatedInputsOutputGroup = #"""
-generated_inputs \#(xcodeprojConfiguration)
-"""#
 
         let shellScript = [
             try bazelSetupCommand(
                 buildMode: buildMode,
-                generatedInputsOutputGroup: generatedInputsOutputGroup,
                 targets: targets,
                 filePathResolver: filePathResolver
             ),
@@ -162,7 +158,6 @@ generated_inputs \#(xcodeprojConfiguration)
 
     private static func bazelSetupCommand(
         buildMode: BuildMode,
-        generatedInputsOutputGroup: String,
         targets: [Target],
         filePathResolver: FilePathResolver
     ) throws -> String {
@@ -176,26 +171,7 @@ EOF
 
 """#]
 
-        let addAdditionalOutputGroups: String
-        switch buildMode {
-        case .bazel:
-            addAdditionalOutputGroups = #"""
-
-# Xcode doesn't adjust `$BUILD_DIR` in scheme action scripts when building for
-# previews. So we need to look in the non-preview build directory for this file.
-output_groups_file="${BAZEL_BUILD_OUTPUT_GROUPS_FILE/\/Intermediates.noindex\/Previews\/*\/Products\///Products/}"
-
-# We need to read from this file as soon as possible, as concurrent writes to it
-# can happen during indexing, which breaks the off-by-one-by-design nature of it
-if [ -s "$output_groups_file" ]; then
-  while IFS= read -r output_group; do
-    output_groups+=("$output_group")
-  done < "$output_groups_file"
-fi
-"""#
-        case .xcode:
-            addAdditionalOutputGroups = ""
-
+        if buildMode == .xcode {
             let roots = try targets
                 .compactMap { $0.outputs.swift?.generatedHeader }
                 .map { filepath -> String in
@@ -228,8 +204,25 @@ EOF
         return #"""
 set -euo pipefail
 
-output_groups=("\#(generatedInputsOutputGroup)")
-\#(addAdditionalOutputGroups)
+# Xcode doesn't adjust `$BUILD_DIR` in scheme action scripts when building for
+# previews. So we need to look in the non-preview build directory for this file.
+output_groups_file="${BAZEL_BUILD_OUTPUT_GROUPS_FILE/\/Intermediates.noindex\/Previews\/*\/Products\///Products/}"
+
+# We need to read from this file as soon as possible, as concurrent writes to it
+# can happen during indexing, which breaks the off-by-one-by-design nature of it
+output_groups=()
+if [ -s "$output_groups_file" ]; then
+  while IFS= read -r output_group; do
+    output_groups+=("$output_group")
+  done < "$output_groups_file"
+fi
+
+if [ -z "$output_groups" ]; then
+  echo "error: BazelDependencies invoked without any output groups set. \#
+Please file a bug report here: \#
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
+  exit 1
+fi
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 
 if [ "$ACTION" == "indexbuild" ]; then

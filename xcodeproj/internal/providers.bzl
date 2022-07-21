@@ -112,14 +112,6 @@ field.
 A `depset` of all static library files that are linked into top-level targets
 besides their primary top-level targets.
 """,
-        "non_target_compilation_providers": """\
-A value returned from `compilation_providers.collect`, for targets that aren't
-generating Xcode targets.
-""",
-        "non_target_swift_info_modules": """\
-A value returned from `swift_common.create_swift_info`, for targets that aren't
-generating Xcode targets.
-""",
         "outputs": """\
 A value returned from `output_files.collect`, that contains information about
 the output files for this target and its transitive dependencies.

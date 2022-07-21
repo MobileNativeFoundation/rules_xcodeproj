@@ -11,6 +11,17 @@ extension BuildMode {
         }
     }
 
+    var buildOutputGroupPrefix: String {
+        switch self {
+        case .xcode:
+            // Generated input files output groups
+            return "g"
+        case .bazel:
+            // Output files output groups
+            return "b"
+        }
+    }
+
     /// `true` if when building with Bazel we use run scripts.
     ///
     /// Building with Bazel via a proxy doesn't use run scripts.

@@ -128,10 +128,6 @@ Product for target "\(key)" not found in `products`
             }
         }
 
-        if let bazelDependenciesTarget = bazelDependenciesTarget {
-            pbxTargets[.bazelDependencies] = bazelDependenciesTarget
-        }
-
         return pbxTargets
     }
 

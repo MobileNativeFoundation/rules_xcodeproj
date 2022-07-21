@@ -19,6 +19,9 @@ extension Generator {
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
+            "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
+$(BUILD_DIR)/bazel_build_output_groups
+""",
             "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(BUILD_DIR)/bazel.lldbinit",
@@ -63,9 +66,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 
         if buildMode.usesBazelModeBuildScripts {
             buildSettings.merge([
-                "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
-$(BUILD_DIR)/bazel_build_output_groups
-""",
                 "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CXX": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,

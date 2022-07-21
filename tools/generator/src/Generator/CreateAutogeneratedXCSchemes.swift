@@ -342,18 +342,15 @@ Host target with key \(key) not found in `pbxTargets`.
         hostIndex: Int?,
         buildableReference: XCScheme.BuildableReference
     ) -> [XCScheme.ExecutionAction] {
-        guard
-            buildMode.usesBazelModeBuildScripts
-        else {
-            return []
-        }
-
         let scriptText: String
         if pbxTarget is PBXNativeTarget {
+            let prefix = buildMode.buildOutputGroupPrefix
+
             let hostTargetOutputGroup: String
             if let hostIndex = hostIndex {
                 hostTargetOutputGroup = #"""
-echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+echo "\#(prefix) $BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
+>> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 """#
             } else {
                 hostTargetOutputGroup = ""
@@ -361,7 +358,7 @@ echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE
 
             scriptText = #"""
 mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-echo "b $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+echo "\#(prefix) $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 \#(hostTargetOutputGroup)
 """#
         } else {

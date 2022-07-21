@@ -4,7 +4,6 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
 )
-load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
@@ -57,8 +56,6 @@ def _target_info_fields(
         hosted_targets,
         inputs,
         non_mergable_targets,
-        non_target_compilation_providers,
-        non_target_swift_info_modules,
         outputs,
         potential_target_merges,
         resource_bundle_informations,
@@ -81,10 +78,6 @@ def _target_info_fields(
         inputs: Maps to the `XcodeProjInfo.inputs` field.
         non_mergable_targets: Maps to the `XcodeProjInfo.non_mergable_targets`
             field.
-        non_target_compilation_providers: Maps to the
-            `XcodeProjInfo.non_target_compilation_providers` field.
-        non_target_swift_info_modules: Maps to the
-            `XcodeProjInfo.non_target_swift_info_modules` field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
@@ -106,8 +99,6 @@ def _target_info_fields(
         *   `hosted_targets`
         *   `inputs`
         *   `non_mergable_targets`
-        *   `non_target_compilation_providers`
-        *   `non_target_swift_info_modules`
         *   `outputs`
         *   `potential_target_merges`
         *   `resource_bundle_informations`
@@ -124,8 +115,6 @@ def _target_info_fields(
         "hosted_targets": hosted_targets,
         "inputs": inputs,
         "non_mergable_targets": non_mergable_targets,
-        "non_target_compilation_providers": non_target_compilation_providers,
-        "non_target_swift_info_modules": non_target_swift_info_modules,
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
         "resource_bundle_informations": resource_bundle_informations,
@@ -185,18 +174,6 @@ def _skip_target(*, deps, transitive_infos):
         non_mergable_targets = depset(
             transitive = [
                 info.non_mergable_targets
-                for _, info in transitive_infos
-            ],
-        ),
-        non_target_compilation_providers = comp_providers.merge(
-            transitive_compilation_providers = [
-                (info.target, info.non_target_compilation_providers)
-                for _, info in transitive_infos
-            ],
-        ),
-        non_target_swift_info_modules = depset(
-            transitive = [
-                info.non_target_swift_info_modules
                 for _, info in transitive_infos
             ],
         ),
@@ -290,41 +267,8 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
             transitive_infos = transitive_infos,
         )
 
-    compilation_providers = processed_target.compilation_providers
-
-    if processed_target.target:
-        non_target_compilation_providers = comp_providers.merge(
-            transitive_compilation_providers = [
-                (info.target, info.non_target_compilation_providers)
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        [None],
-                    ))
-            ],
-        )
-        non_target_swift_info_modules = depset(
-            transitive = [
-                info.non_target_swift_info_modules
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        [None],
-                    ))
-            ],
-        )
-    else:
-        non_target_compilation_providers = compilation_providers
-        swift_info = target[SwiftInfo] if SwiftInfo in target else None
-        if swift_info:
-            non_target_swift_info_modules = swift_info.transitive_modules
-        else:
-            non_target_swift_info_modules = depset()
-
     return _target_info_fields(
-        compilation_providers = compilation_providers,
+        compilation_providers = processed_target.compilation_providers,
         dependencies = processed_target.dependencies,
         extension_infoplists = depset(
             processed_target.extension_infoplists,
@@ -363,8 +307,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                     ))
             ],
         ),
-        non_target_compilation_providers = non_target_compilation_providers,
-        non_target_swift_info_modules = non_target_swift_info_modules,
         outputs = processed_target.outputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,

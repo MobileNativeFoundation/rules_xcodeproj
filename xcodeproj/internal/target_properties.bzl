@@ -43,6 +43,19 @@ def should_include_outputs_output_groups(ctx):
     """
     return ctx.attr._build_mode[BuildSettingInfo].value != "xcode"
 
+def should_include_non_xcode_outputs(ctx):
+    """Determines whether outputs of non Xcode targets should be included in \
+    output groups.
+
+    Args:
+        ctx: The aspect context.
+
+    Returns:
+        `True` if the outputs should be included, `False` otherwise. This will
+        be `True` for modes that build primarily with Xcode.
+    """
+    return ctx.attr._build_mode[BuildSettingInfo].value == "xcode"
+
 def process_dependencies(*, automatic_target_info, transitive_infos):
     """ Logic for processing target dependencies
 

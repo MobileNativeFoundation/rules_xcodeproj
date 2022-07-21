@@ -4,7 +4,9 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceInfo",
 )
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":collections.bzl", "set_if_true")
+load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(
     ":files.bzl",
     "file_path",
@@ -13,9 +15,11 @@ load(
     "parsed_file_path",
 )
 load(":linker_input_files.bzl", "linker_input_files")
+load(":output_files.bzl", "parse_swift_info_module", "swift_to_list")
 load(":output_group_map.bzl", "output_group_map")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resources.bzl", "collect_resources")
+load(":target_properties.bzl", "should_include_non_xcode_outputs")
 
 # Utility
 
@@ -87,6 +91,8 @@ def _collect(
         *,
         ctx,
         target,
+        unfocused = False,
+        id,
         platform,
         bundle_resources,
         is_bundle,
@@ -100,6 +106,10 @@ def _collect(
     Args:
         ctx: The aspect context.
         target: The `Target` to collect inputs from.
+        unfocused: Whether the target is unfocused. If `None`, it will be
+            determined automatically (this should only be the case for
+            `non_xcode_target`s).
+        id: A unique identifier for the target.
         platform: A value returned from `platform_info.collect`.
         bundle_resources: Whether resources will be bundled in the generated
             project. If this is `False` then all resources will get added to
@@ -291,13 +301,77 @@ def _collect(
             generated = generated,
         ))
 
+    # Collect unfocused target outputs
+    if should_include_non_xcode_outputs(ctx = ctx):
+        if unfocused == None:
+            dep_compilation_providers = comp_providers.merge(
+                transitive_compilation_providers = [
+                    (info.target, info.compilation_providers)
+                    for attr, info in transitive_infos
+                    if (info.target_type in
+                        automatic_target_info.xcode_targets.get(attr, [None]))
+                ],
+            )
+            (
+                direct_libraries,
+                transitive_libraries,
+            ) = linker_input_files.get_library_static_libraries(
+                linker_inputs = linker_inputs,
+                dep_compilation_providers = dep_compilation_providers,
+            )
+
+            unfocused = bool(direct_libraries)
+            if unfocused:
+                generated.extend(transitive_libraries)
+
+        if unfocused and SwiftInfo in target:
+            non_target_swift_info_modules = target[SwiftInfo].transitive_modules
+        else:
+            non_target_swift_info_modules = depset(
+                transitive = [
+                    info.inputs._non_target_swift_info_modules
+                    for attr, info in transitive_infos
+                    if (info.target_type in
+                        automatic_target_info.xcode_targets.get(attr, [None]))
+                ],
+            )
+        for module in non_target_swift_info_modules.to_list():
+            generated.extend(swift_to_list(parse_swift_info_module(module)))
+    else:
+        non_target_swift_info_modules = depset()
+
     important_generated = [
         file
         for file in entitlements
         if not file.is_source
     ]
 
+    generated_depset = depset(
+        generated if generated else None,
+        transitive = [
+            info.inputs.generated
+            for attr, info in transitive_infos
+            if (info.target_type in
+                automatic_target_info.xcode_targets.get(attr, [None]))
+        ],
+    )
+
+    if id:
+        direct_group_list = [("g {}".format(id), generated_depset)]
+    else:
+        direct_group_list = None
+
     return struct(
+        _non_target_swift_info_modules = non_target_swift_info_modules,
+        _output_group_list = depset(
+            direct_group_list,
+            transitive = [
+                info.inputs._output_group_list
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        ),
         srcs = depset(srcs),
         non_arc_srcs = depset(non_arc_srcs),
         hdrs = depset(hdrs),
@@ -326,15 +400,7 @@ def _collect(
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
-        generated = depset(
-            generated if generated else None,
-            transitive = [
-                info.inputs.generated
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None]))
-            ],
-        ),
+        generated = generated_depset,
         important_generated = depset(
             important_generated if important_generated else None,
             transitive = [
@@ -373,6 +439,8 @@ def _collect(
 
 def _from_resource_bundle(bundle):
     return struct(
+        _non_target_swift_info_modules = depset(),
+        _output_group_list = depset(),
         srcs = depset(),
         non_arc_srcs = depset(),
         hdrs = depset(),
@@ -403,6 +471,18 @@ def _merge(*, transitive_infos, extra_generated = None):
         via `transitive_infos` (e.g. `generated` and `extra_files`).
     """
     return struct(
+        _non_target_swift_info_modules = depset(
+            transitive = [
+                info.inputs._non_target_swift_info_modules
+                for _, info in transitive_infos
+            ],
+        ),
+        _output_group_list = depset(
+            transitive = [
+                info.inputs._output_group_list
+                for _, info in transitive_infos
+            ],
+        ),
         srcs = depset(),
         non_arc_srcs = depset(),
         hdrs = depset(),
@@ -505,8 +585,7 @@ def _to_output_groups_fields(
         *,
         ctx,
         inputs,
-        toplevel_cache_buster,
-        configuration):
+        toplevel_cache_buster):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
@@ -516,21 +595,19 @@ def _to_output_groups_fields(
             and are used as inputs to the output map generation, to ensure that
             the files references by the output map are always downloaded from
             the remote cache, even when using `--remote_download_toplevel`.
-        configuration: The configuration identifier (see "configuration.bzl"'s
-            `get_configuration`) for the project.
 
     Returns:
         A `dict` where the keys are output group names and the values are
         `depset` of `File`s.
     """
-    name = "generated_inputs {}".format(configuration)
     return {
         name: depset([output_group_map.write_map(
             ctx = ctx,
-            name = name,
-            files = inputs.generated,
+            name = name.replace("/", "_"),
+            files = files,
             toplevel_cache_buster = toplevel_cache_buster,
-        )]),
+        )])
+        for name, files in inputs._output_group_list.to_list()
     }
 
 input_files = struct(

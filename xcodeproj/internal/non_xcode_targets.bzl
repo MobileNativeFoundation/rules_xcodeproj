@@ -93,6 +93,8 @@ rules_xcodeproj requires {} to have `{}` set.
         inputs = input_files.collect(
             ctx = ctx,
             target = target,
+            unfocused = None,
+            id = None,
             platform = None,
             bundle_resources = False,
             is_bundle = False,
