@@ -132,9 +132,6 @@ env -i \
         let generatedInputsOutputGroup = #"""
 generated_inputs \#(xcodeprojConfiguration)
 """#
-        let generatedInputsFileList = #"""
-$BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOutputGroup).filelist
-"""#
 
         let shellScript = [
             try bazelSetupCommand(
@@ -147,11 +144,6 @@ $BAZEL_OUT/\#(xcodeprojBinDir)/\#(xcodeprojBazelTargetName)-\#(generatedInputsOu
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
                 xcodeprojBazelTargetName: xcodeprojBazelTargetName,
                 xcodeprojBinDir: xcodeprojBinDir
-            ),
-            try checkGeneratedFilesCommand(
-                generatedInputsFileList: generatedInputsFileList,
-                hasGeneratedFiles: hasGeneratedFiles,
-                filePathResolver: filePathResolver
             ),
         ].compactMap { $0 }.joined(separator: "\n")
 
@@ -366,35 +358,6 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \#
     exit 1
   fi
 done
-
-"""#
-    }
-
-    private static func checkGeneratedFilesCommand(
-        generatedInputsFileList: String,
-        hasGeneratedFiles: Bool,
-        filePathResolver: FilePathResolver
-    ) throws -> String? {
-        guard hasGeneratedFiles else {
-            return nil
-        }
-
-        let generatedFileList = try filePathResolver
-            .resolve(.internal(generatedFileListPath), mode: .script)
-
-        return #"""
-
-diff=$(comm -23 <(sed -e 's|^$(GEN_DIR)|bazel-out|' "\#(generatedFileList)" | sort) <(sort "\#(generatedInputsFileList)"))
-if ! [ -z "$diff" ]; then
-  echo "error: The files that Bazel generated don't match what the project \#
-expects. Please regenerate the project." >&2
-  echo "error: $diff" >&2
-  echo "error: If you still get this error after regenerating your project, \#
-please file a bug report here: \#
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \#
->&2
-  exit 1
-fi
 
 """#
     }
