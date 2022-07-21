@@ -381,6 +381,7 @@
 		E25AB0992362AE2E4F48AF2D /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		E332411DCE28305063274CDF /* iMessageAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMessageAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
+		E62E7FC91CB721FEE5206A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E7CC0575EECAA039E39C8B0F /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		E89AED11EAA442900F8C9C96 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
 		E99EC9E0460C9E8B7262C039 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -619,6 +620,14 @@
 				1ECFEEB5E152C565C19373B0 /* watchos-arm64_i386_x86_64-simulator */,
 			);
 			path = CryptoSwift.xcframework;
+			sourceTree = "<group>";
+		};
+		1CBB95DBE8A44BC1D878A3AE /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630 */ = {
+			isa = PBXGroup;
+			children = (
+				99E5BF86007DDB7C651C326E /* bin */,
+			);
+			path = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630";
 			sourceTree = "<group>";
 		};
 		1CE7506B6C2685D41D70EAE6 /* examples */ = {
@@ -874,6 +883,14 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		57D237F3743058705BDBC550 /* Tool.merged_infoplist-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				E62E7FC91CB721FEE5206A21 /* Info.plist */,
+			);
+			path = "Tool.merged_infoplist-intermediates";
+			sourceTree = "<group>";
+		};
 		57DF5D59F7F78ACE534FCB26 /* ios-arm64_x86_64-simulator */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +925,14 @@
 				3AAE7C68EB52E81C7D289104 /* GoogleMapsCore.xcframework */,
 			);
 			path = com_google_google_maps;
+			sourceTree = "<group>";
+		};
+		5BA196589518BE4DDC5B941D /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				6A486C454E80F1FABC295491 /* multiplatform */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 		5BD19737D30B88DA9B2E16D9 /* multiplatform */ = {
@@ -995,6 +1020,14 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		6A486C454E80F1FABC295491 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				7B1494B49E02F157D0091FA9 /* Tool */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
 		6AA5D58B14D472F1B080BB80 /* iMessageAppExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1071,6 +1104,14 @@
 				49B8E36490692F507F01B67F /* Info.plist */,
 			);
 			path = iMessageApp;
+			sourceTree = "<group>";
+		};
+		7B1494B49E02F157D0091FA9 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				57D237F3743058705BDBC550 /* Tool.merged_infoplist-intermediates */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		7B168A87E8814F35643D60BD /* examples */ = {
@@ -1215,6 +1256,14 @@
 				E89AED11EAA442900F8C9C96 /* tvOSApp.swift */,
 			);
 			path = tvOSApp;
+			sourceTree = "<group>";
+		};
+		99E5BF86007DDB7C651C326E /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				5BA196589518BE4DDC5B941D /* examples */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		9A95A3CA6A06D389B5EA5FFD /* applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a */ = {
@@ -1467,6 +1516,7 @@
 				9A95A3CA6A06D389B5EA5FFD /* applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a */,
 				8529FA3918B9794EFAC32AA7 /* ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf */,
 				7BBAF8AFC6980E8255C0FF3E /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db */,
+				1CBB95DBE8A44BC1D878A3AE /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-0139d977e630 */,
 				B036DD7FDE205A70305A0AC8 /* tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2 */,
 				82287C70426B7B869637A685 /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67 */,
 				C2BBDA0A8DCC9AE863D70CAB /* watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc */,

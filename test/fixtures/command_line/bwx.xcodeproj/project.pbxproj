@@ -117,6 +117,7 @@
 		1E24825205C7C82ED0184DEA /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E8FDF5B64B5BB961DFACC26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F2C9A4A2948FD3A6EA210D1 /* private_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private_lib.h; sourceTree = "<group>"; };
+		37F600D089EC140B3050145C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3C8E9A0EB230F3F78D8F09F7 /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
 		50C996A94EDBE167297E6972 /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
 		56E8056002B81ACFBC75E26C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -262,6 +263,7 @@
 		64D2B5C0BE051C0CF3653C77 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				CA8BF7B50E64FCA4E5E5BB77 /* tool.merged_infoplist-intermediates */,
 				BDF82AAB3F607DFA7969DA86 /* tool.merged_launchdplists-intermediates */,
 			);
 			path = tool;
@@ -444,6 +446,14 @@
 				56E8056002B81ACFBC75E26C /* BUILD */,
 			);
 			path = command_line;
+			sourceTree = "<group>";
+		};
+		CA8BF7B50E64FCA4E5E5BB77 /* tool.merged_infoplist-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				37F600D089EC140B3050145C /* Info.plist */,
+			);
+			path = "tool.merged_infoplist-intermediates";
 			sourceTree = "<group>";
 		};
 		D1C544D9A0EAE49FBC5DF023 /* LibSwiftTests.__internal__.__test_bundle */ = {

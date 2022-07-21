@@ -139,6 +139,7 @@
 		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BEEB36D3E48677861539C1 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
 		97949DA20D6FB752D6AD72F7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		98F53F611854756353F0FAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A59B10F9022E9CC335541BDA /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
 		A87E0D1B629CCF579B579DA6 /* export_symbol_list.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = export_symbol_list.exp; sourceTree = "<group>"; };
 		AA8B40F3394AF193E0043C9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
@@ -269,6 +270,7 @@
 		41A8BFC84E25E93767A7B621 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				9933B70CF44FD956A9C03B52 /* tool.merged_infoplist-intermediates */,
 				5EC76696A9306345EC2B2A95 /* tool.merged_launchdplists-intermediates */,
 			);
 			path = tool;
@@ -396,6 +398,14 @@
 			);
 			name = "Bazel External Repositories";
 			path = test/fixtures/command_line/bwb.xcodeproj/rules_xcodeproj/links/external;
+			sourceTree = "<group>";
+		};
+		9933B70CF44FD956A9C03B52 /* tool.merged_infoplist-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				98F53F611854756353F0FAE2 /* Info.plist */,
+			);
+			path = "tool.merged_infoplist-intermediates";
 			sourceTree = "<group>";
 		};
 		99E5BF86007DDB7C651C326E /* bin */ = {

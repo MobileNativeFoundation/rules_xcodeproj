@@ -418,6 +418,7 @@
 		64904A92E0E07764C4F2D3A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		69923ABDF694376F4EF3BE9E /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		6DCA08A4902F9E9D0EECFF0E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		7058CC68B67F64D1D491895C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		714F4CDA20A0822521C3B389 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		76935A800D3BB12D829A6609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		778B9E84437F63B410B9FA65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -641,6 +642,14 @@
 			path = iMessageApp;
 			sourceTree = "<group>";
 		};
+		153513D2DFB7AFDD0CF18368 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				C0DEF11959BA3B0398FDE947 /* Tool.merged_infoplist-intermediates */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		1772A0787CC0F7566BCA20B2 /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,6 +704,14 @@
 				41F9E520AE77866C3451F1C7 /* Lib.swift */,
 			);
 			path = Lib;
+			sourceTree = "<group>";
+		};
+		1E7AC0D0170B6E2363C0686B /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60 */ = {
+			isa = PBXGroup;
+			children = (
+				49FDF5D3D0EBFDD85E4820E8 /* bin */,
+			);
+			path = "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60";
 			sourceTree = "<group>";
 		};
 		1E8B1F4E74F1BD2A8CCDAA23 /* GoogleMapsBase.xcframework */ = {
@@ -982,6 +999,14 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		49FDF5D3D0EBFDD85E4820E8 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				719A9596B7E4372336E7061D /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
 		4F398EF2B3180F288544E3B6 /* iOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1158,6 +1183,14 @@
 			path = iMessageAppExtension;
 			sourceTree = "<group>";
 		};
+		719A9596B7E4372336E7061D /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				7BF47C37073517CA8C3D17D8 /* multiplatform */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
 		721113869ECDCCA0C80232BF /* applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1220,6 +1253,14 @@
 				161FCC8E16610CC731029DF1 /* CryptoSwift.framework */,
 			);
 			path = "tvos-arm64_x86_64-simulator";
+			sourceTree = "<group>";
+		};
+		7BF47C37073517CA8C3D17D8 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				153513D2DFB7AFDD0CF18368 /* Tool */,
+			);
+			path = multiplatform;
 			sourceTree = "<group>";
 		};
 		7D3B66AC07F2DF64683118D8 /* bin */ = {
@@ -1383,6 +1424,7 @@
 				05FA3E67D4031657845E56A7 /* applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba */,
 				405D334CB919553CD1403A98 /* ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8 */,
 				AA2E21547D34DB76EE4FF98F /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01 */,
+				1E7AC0D0170B6E2363C0686B /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60 */,
 				21E00613D1DBAAC1C444138B /* tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef */,
 				364D2EE9E9819E35BB3F16D7 /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53 */,
 				09A04192AF6180095CD83444 /* watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3 */,
@@ -1513,6 +1555,14 @@
 				EF6E7274DFB75110EF841C03 /* rules_xcodeproj */,
 			);
 			path = iMessageApp;
+			sourceTree = "<group>";
+		};
+		C0DEF11959BA3B0398FDE947 /* Tool.merged_infoplist-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				7058CC68B67F64D1D491895C /* Info.plist */,
+			);
+			path = "Tool.merged_infoplist-intermediates";
 			sourceTree = "<group>";
 		};
 		C1C00FA1A9DDA1F07C54AFBD /* WidgetExtension */ = {

@@ -19,6 +19,18 @@ _CC_LD_SKIP_OPTS = {
     "-framework": 2,
 }
 
+_SKIP_INPUT_EXTENSIONS = {
+    "a": None,
+    "app": None,
+    "appex": None,
+    "dylib": None,
+    "bundle": None,
+    "framework": None,
+    "lo": None,
+    "swiftmodule": None,
+    "xctest": None,
+}
+
 def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
     """Collects linker input files for a target.
 
@@ -156,6 +168,10 @@ def _extract_top_level_values(
             "-l" + dylib
             for dylib in objc.sdk_dylib.to_list()
         ])
+
+        additional_input_files = _process_additional_inputs(
+            objc.link_inputs.to_list(),
+        )
     elif compilation_providers._cc_info:
         cc_info = compilation_providers._cc_info
         if avoid_compilation_providers:
@@ -180,7 +196,11 @@ def _extract_top_level_values(
         static_libraries = []
         raw_linkopts = []
         user_linkopts = []
+        additional_input_files = []
         for input in cc_info.linking_context.linker_inputs.to_list():
+            additional_input_files.extend(_process_additional_inputs(
+                input.additional_inputs,
+            ))
             user_linkopts.extend(input.user_link_flags)
             for library in input.libraries:
                 if sets.contains(avoid_libraries, library):
@@ -226,12 +246,20 @@ def _extract_top_level_values(
         linkopts = None
 
     return struct(
+        additional_input_files = additional_input_files,
         dynamic_frameworks = dynamic_frameworks,
         force_load_libraries = force_load_libraries,
         linkopts = linkopts,
         static_frameworks = static_frameworks,
         static_libraries = static_libraries,
     )
+
+def _process_additional_inputs(files):
+    return [
+        file
+        for file in files
+        if not file.is_source and file.extension not in _SKIP_INPUT_EXTENSIONS
+    ]
 
 def _get_static_libraries(linker_inputs):
     """Returns the static libraries needed to link the target.
@@ -363,12 +391,13 @@ def _to_dto(linker_inputs):
 
     return ret
 
-def _to_framework_files(linker_inputs):
+def _to_input_files(linker_inputs):
     top_level_values = linker_inputs._top_level_values
     if not top_level_values:
         return []
 
     return (
+        top_level_values.additional_input_files +
         top_level_values.dynamic_frameworks +
         top_level_values.static_frameworks
     )
@@ -390,5 +419,5 @@ linker_input_files = struct(
     get_primary_static_library = _get_primary_static_library,
     get_static_libraries = _get_static_libraries,
     to_dto = _to_dto,
-    to_framework_files = _to_framework_files,
+    to_input_files = _to_input_files,
 )
