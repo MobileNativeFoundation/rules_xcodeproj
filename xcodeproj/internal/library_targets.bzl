@@ -131,7 +131,6 @@ def process_library_target(
         automatic_target_info = automatic_target_info,
         additional_files = modulemaps.files,
         transitive_infos = transitive_infos,
-        avoid_deps = [],
     )
     outputs = output_files.collect(
         target_files = [],
