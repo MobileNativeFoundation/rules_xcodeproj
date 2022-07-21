@@ -115,6 +115,6 @@ extension XCSchemeInfo {
 
 extension XCSchemeInfo {
     var wasCreatedForAppExtension: Bool {
-        return allPBXTargets.compactMap(\.productType).anySatisfy(\.isExtension)
+        return allPBXTargets.compactMap(\.productType).contains(where: \.isExtension)
     }
 }
