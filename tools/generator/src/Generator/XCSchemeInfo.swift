@@ -34,12 +34,6 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
 """)
         }
 
-        guard name != nil || nameClosure != nil else {
-            throw PreconditionError(message: """
-An `XCSchemeInfo` should have at least one of the following: `name` or `nameClosure`.
-""")
-        }
-
         var topLevelTargetInfos = [XCSchemeInfo.TargetInfo]()
         if let testActionInfo = testActionInfo {
             topLevelTargetInfos += testActionInfo.targetInfos
@@ -82,9 +76,9 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
                 self.profileActionInfo
             )
         } else {
-            // This should never happen as we check to ensure that the client gave us a name or a
-            // name closure
-            schemeName = ""
+            throw PreconditionError(message: """
+An `XCSchemeInfo` should have at least one of the following: `name` or `nameClosure`.
+""")
         }
         self.name = schemeName
     }
