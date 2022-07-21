@@ -22,7 +22,7 @@ extension XCScheme.BuildableReference {
     }
 }
 
-// MARK: XCScheme.Scheme
+// MARK: XCScheme
 
 extension XCScheme {
     convenience init(
