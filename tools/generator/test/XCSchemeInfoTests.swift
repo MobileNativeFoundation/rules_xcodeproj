@@ -3,7 +3,7 @@ import XCTest
 
 @testable import generator
 
-// MARK: Initializer Tests
+// MARK: - Initializer Tests
 
 extension XCSchemeInfoTests {
     func test_init_noActionInfos() throws {
@@ -151,7 +151,7 @@ extension XCSchemeInfoTests {
     }
 }
 
-// MARK: Test Data
+// MARK: - Test Data
 
 class XCSchemeInfoTests: XCTestCase {
     let schemeName = "Foo"

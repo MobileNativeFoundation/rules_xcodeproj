@@ -3,7 +3,7 @@ import XCTest
 
 @testable import generator
 
-// MARK: Initializer Tests
+// MARK: - Initializer Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_init() throws {
@@ -15,7 +15,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: Host Resolution Tests
+// MARK: - Host Resolution Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_init_hostResolution_noHosts_withoutTopLevelTargets() throws {
@@ -181,7 +181,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: Sequence buildableReferences Tests
+// MARK: - Sequence buildableReferences Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_buildableReferences() throws {
@@ -191,7 +191,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: Sequence buildActionEntries Tests
+// MARK: - Sequence buildActionEntries Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_buildActionEntries() throws {
@@ -204,7 +204,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: Sequence bazelBuildPreActions Tests
+// MARK: - Sequence bazelBuildPreActions Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_bazelBuildPreActions() throws {
@@ -218,7 +218,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: Test Data
+// MARK: - Test Data
 
 class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var filePathResolver = FilePathResolver(

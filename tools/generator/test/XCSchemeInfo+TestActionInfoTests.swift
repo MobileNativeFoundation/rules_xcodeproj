@@ -3,7 +3,7 @@ import XCTest
 
 @testable import generator
 
-// MARK: Initializer Tests
+// MARK: - Initializer Tests
 
 extension XCSchemeInfoTestActionInfoTests {
     func test_init_withEmptyTargetInfos() throws {
@@ -50,7 +50,7 @@ An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.Targ
     }
 }
 
-// MARK: Host Resolution Tests
+// MARK: - Host Resolution Tests
 
 extension XCSchemeInfoTestActionInfoTests {
     func test_hostResolution() throws {
@@ -72,7 +72,7 @@ extension XCSchemeInfoTestActionInfoTests {
     }
 }
 
-// MARK: Test Data
+// MARK: - Test Data
 
 class XCSchemeInfoTestActionInfoTests: XCTestCase {
     let buildConfigurationName = "Foo"

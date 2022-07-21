@@ -3,7 +3,7 @@ import XCTest
 
 @testable import generator
 
-// MARK: Host Resolution Tests
+// MARK: - Host Resolution Tests
 
 extension XCSchemeInfoBuildActionInfoTests {
     func test_hostResolution_noBuildActionInfo() throws {
@@ -37,7 +37,7 @@ extension XCSchemeInfoBuildActionInfoTests {
     }
 }
 
-// MARK: Test Data
+// MARK: - Test Data
 
 class XCSchemeInfoBuildActionInfoTests: XCTestCase {
     lazy var filePathResolver = FilePathResolver(

@@ -3,7 +3,7 @@ import XCTest
 
 @testable import generator
 
-// MARK: Host Resolution Tests
+// MARK: - Host Resolution Tests
 
 extension XCSchemeInfoProfileActionInfoTests {
     func test_hostResolution_withoutProfileActionInfo() throws {
@@ -52,7 +52,7 @@ extension XCSchemeInfoProfileActionInfoTests {
     }
 }
 
-// MARK: Test Data
+// MARK: - Test Data
 
 class XCSchemeInfoProfileActionInfoTests: XCTestCase {
     let buildConfigurationName = "Foo"

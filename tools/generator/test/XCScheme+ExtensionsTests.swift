@@ -3,7 +3,7 @@ import XCTest
 
 @testable import generator
 
-// MARK: XCScheme.BuildableReference Initializer Tests
+// MARK: - XCScheme.BuildableReference Initializer Tests
 
 extension XCSchemeExtensionsTests {
     func test_BuildableReference_init() throws {
@@ -21,7 +21,7 @@ extension XCSchemeExtensionsTests {
     }
 }
 
-// MARK: XCScheme.BuildAction Initializer Tests
+// MARK: - XCScheme.BuildAction Initializer Tests
 
 extension XCSchemeExtensionsTests {
     func test_BuildAction_init_buildModeBazel() throws {
@@ -53,7 +53,7 @@ extension XCSchemeExtensionsTests {
     }
 }
 
-// MARK: XCScheme.BuildAction.Entry Initializer Tests
+// MARK: - XCScheme.BuildAction.Entry Initializer Tests
 
 extension XCSchemeExtensionsTests {
     func test_BuildAction_Entry_init() throws {
@@ -72,7 +72,7 @@ extension XCSchemeExtensionsTests {
     }
 }
 
-// MARK: XCScheme.ExecutionAction Initializer Tests
+// MARK: - XCScheme.ExecutionAction Initializer Tests
 
 extension XCSchemeExtensionsTests {
     func test_ExecutionAction_withNativeTarget_noHostIndex() throws {
@@ -107,7 +107,7 @@ extension XCSchemeExtensionsTests {
     }
 }
 
-// MARK: Test Data
+// MARK: - Test Data
 
 class XCSchemeExtensionsTests: XCTestCase {
     lazy var filePathResolver = FilePathResolver(
