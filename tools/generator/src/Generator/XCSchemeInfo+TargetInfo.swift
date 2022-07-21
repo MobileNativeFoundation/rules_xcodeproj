@@ -18,7 +18,7 @@ extension XCSchemeInfo {
         let disambiguateHost: Bool
         let hostResolution: HostResolution
 
-        /// Initializer used when creating a TargetInfo for the first time.
+        /// Initializer used when creating a `TargetInfo` for the first time.
         init<HostInfos: Sequence, ExtPointIdentifiers: Sequence>(
             pbxTarget: PBXTarget,
             referencedContainer: String,

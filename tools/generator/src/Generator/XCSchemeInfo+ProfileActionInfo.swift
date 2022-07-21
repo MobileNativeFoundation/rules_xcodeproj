@@ -33,7 +33,7 @@ extension XCSchemeInfo.ProfileActionInfo {
 extension XCSchemeInfo.ProfileActionInfo {
     var runnable: XCScheme.BuildableProductRunnable? {
         // To produce a similar result to the current generation code, we need to have a
-        // ProfileActionInfo, but we do not want to set the runnable.
+        // `ProfileActionInfo`, but we do not want to set the runnable.
         if targetInfo.pbxTarget.isTestable {
             return nil
         }
