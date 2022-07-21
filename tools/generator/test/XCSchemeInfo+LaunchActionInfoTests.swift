@@ -3,6 +3,8 @@ import XCTest
 
 @testable import generator
 
+// MARK: Initializer Tests
+
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_init_withLaunchableTarget() throws {
         let args = ["args"]
@@ -40,6 +42,8 @@ An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.Target
     }
 }
 
+// MARK: Host Resolution Tests
+
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_hostResolution_withoutLaunchActionInfo() throws {
         let actionInfo = try XCSchemeInfo.LaunchActionInfo(
@@ -64,6 +68,8 @@ extension XCSchemeInfoLaunchActionInfoTests {
         XCTAssertNotEqual(launchActionInfo.targetInfo.hostResolution, .unresolved)
     }
 }
+
+// MARK: runnable Tests
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_runnable_whenIsWidgetKitExtension() throws {
@@ -93,6 +99,8 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
+// MARK: askForAppToLaunch Tests
+
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_askForAppToLaunch_whenIsWidgetKitExtension() throws {
         let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
@@ -110,6 +118,8 @@ extension XCSchemeInfoLaunchActionInfoTests {
         XCTAssertFalse(launchActionInfo.askForAppToLaunch)
     }
 }
+
+// MARK: macroExpansion Tests
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_macroExpansion_hasHostAndIsNotWatchApp() throws {
@@ -181,6 +191,8 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
+// MARK: launcher Tests
+
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_launcher_canUseDebugLauncher() throws {
         let actionInfo = try XCSchemeInfo.LaunchActionInfo(
@@ -213,6 +225,8 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
+// MARK: debugger Tests
+
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_debugger_canUseDebugLauncher() throws {
         let actionInfo = try XCSchemeInfo.LaunchActionInfo(
@@ -244,6 +258,8 @@ extension XCSchemeInfoLaunchActionInfoTests {
         XCTAssertEqual(launchActionInfo.debugger, "")
     }
 }
+
+// MARK: Test Data
 
 class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     let buildConfigurationName = "Foo"

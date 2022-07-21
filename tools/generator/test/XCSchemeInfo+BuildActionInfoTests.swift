@@ -3,6 +3,8 @@ import XCTest
 
 @testable import generator
 
+// MARK: Host Resolution Tests
+
 extension XCSchemeInfoBuildActionInfoTests {
     func test_hostResolution_noBuildActionInfo() throws {
         let actionInfo = try XCSchemeInfo.BuildActionInfo(
@@ -34,6 +36,8 @@ extension XCSchemeInfoBuildActionInfoTests {
         XCTAssertEqual(selectedHostInfo, unitTestHostInfo)
     }
 }
+
+// MARK: Test Data
 
 class XCSchemeInfoBuildActionInfoTests: XCTestCase {
     lazy var filePathResolver = FilePathResolver(

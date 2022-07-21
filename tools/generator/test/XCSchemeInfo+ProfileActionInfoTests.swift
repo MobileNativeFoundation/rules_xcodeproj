@@ -3,6 +3,8 @@ import XCTest
 
 @testable import generator
 
+// MARK: Host Resolution Tests
+
 extension XCSchemeInfoProfileActionInfoTests {
     func test_hostResolution_withoutProfileActionInfo() throws {
         let actionInfo = XCSchemeInfo.ProfileActionInfo(
@@ -28,6 +30,8 @@ extension XCSchemeInfoProfileActionInfoTests {
     }
 }
 
+// MARK: runnable Tests
+
 extension XCSchemeInfoProfileActionInfoTests {
     func test_runnable() throws {
         let actionInfo = XCSchemeInfo.ProfileActionInfo(
@@ -47,6 +51,8 @@ extension XCSchemeInfoProfileActionInfoTests {
         )
     }
 }
+
+// MARK: Test Data
 
 class XCSchemeInfoProfileActionInfoTests: XCTestCase {
     let buildConfigurationName = "Foo"

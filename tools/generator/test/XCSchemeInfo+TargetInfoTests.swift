@@ -3,7 +3,7 @@ import XCTest
 
 @testable import generator
 
-// MARK: XCSchemeInfo.TargetInfo Tests
+// MARK: Initializer Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_init() throws {
@@ -13,7 +13,11 @@ extension XCSchemeInfoTargetInfoTests {
             referencedContainer: filePathResolver.containerReference
         ))
     }
+}
 
+// MARK: Host Resolution Tests
+
+extension XCSchemeInfoTargetInfoTests {
     func test_init_hostResolution_noHosts_withoutTopLevelTargets() throws {
         let targetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: libraryTarget,
@@ -79,6 +83,8 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
+// MARK: selectedHostInfo Tests
+
 extension XCSchemeInfoTargetInfoTests {
     func test_selectedHostInfo_unresolved() throws {
         XCTAssertThrowsError(try unresolvedLibraryTargetInfo.selectedHostInfo)
@@ -95,6 +101,8 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
+// MARK: buildableReferences Tests
+
 extension XCSchemeInfoTargetInfoTests {
     func test_buildableReferences_noHost() throws {
         let buildableReferences = libraryTargetInfo.buildableReferences
@@ -109,6 +117,8 @@ extension XCSchemeInfoTargetInfoTests {
         ])
     }
 }
+
+// MARK: bazelBuildPreAction Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_bazelBuildPreAction_nonNativeTarget() throws {
@@ -151,6 +161,8 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
+// MARK: isWidgetKitExtension Tests
+
 extension XCSchemeInfoTargetInfoTests {
     func test_isWidgetKitExtension_true() throws {
         XCTAssertTrue(widgetKitExtTargetInfo.isWidgetKitExtension)
@@ -161,11 +173,15 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
+// MARK: productType Tests
+
 extension XCSchemeInfoTargetInfoTests {
     func test_productType() throws {
         XCTAssertEqual(libraryTargetInfo.productType, .staticLibrary)
     }
 }
+
+// MARK: Sequence buildableReferences Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_buildableReferences() throws {
@@ -174,6 +190,8 @@ extension XCSchemeInfoTargetInfoTests {
         XCTAssertEqual(targetInfos.buildableReferences, expected)
     }
 }
+
+// MARK: Sequence buildActionEntries Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_buildActionEntries() throws {
@@ -185,6 +203,8 @@ extension XCSchemeInfoTargetInfoTests {
         XCTAssertEqual(targetInfos.buildActionEntries, expected)
     }
 }
+
+// MARK: Sequence bazelBuildPreActions Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_bazelBuildPreActions() throws {

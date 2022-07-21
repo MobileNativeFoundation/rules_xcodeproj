@@ -3,6 +3,8 @@ import XCTest
 
 @testable import generator
 
+// MARK: Initializer Tests
+
 extension XCSchemeInfoTests {
     func test_init_noActionInfos() throws {
         var thrown: Error?
@@ -83,6 +85,8 @@ An `XCSchemeInfo` should have at least one of the following: `name`, `nameClosur
     }
 }
 
+// MARK: allPBXTargets Tests
+
 extension XCSchemeInfoTests {
     func test_allPBXTargets() throws {
         let schemeInfo = try XCSchemeInfo(
@@ -119,6 +123,8 @@ extension XCSchemeInfoTests {
     }
 }
 
+// MARK: wasCreatedForAppExtension Tests
+
 extension XCSchemeInfoTests {
     func test_wasCreatedForAppExtension_withoutExtension() throws {
         let schemeInfo = try XCSchemeInfo(
@@ -144,6 +150,8 @@ extension XCSchemeInfoTests {
         XCTAssertTrue(schemeInfo.wasCreatedForAppExtension)
     }
 }
+
+// MARK: Test Data
 
 class XCSchemeInfoTests: XCTestCase {
     let schemeName = "Foo"
