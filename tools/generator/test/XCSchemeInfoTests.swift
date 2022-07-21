@@ -17,7 +17,7 @@ extension XCSchemeInfoTests {
         }
         XCTAssertEqual(preconditionError.message, """
 An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `buildActionInfo`, \
-`testActionInfo`, `launchActionInfo`.
+`testActionInfo`, or `launchActionInfo`.
 """)
     }
 
@@ -35,7 +35,7 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
             return
         }
         XCTAssertEqual(preconditionError.message, """
-An `XCSchemeInfo` should have at least one of the following: `name`, `nameClosure`.
+An `XCSchemeInfo` should have at least one of the following: `name` or `nameClosure`.
 """)
     }
 

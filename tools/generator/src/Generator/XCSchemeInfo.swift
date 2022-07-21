@@ -30,13 +30,13 @@ struct XCSchemeInfo {
             let schemeName = name ?? ""
             throw PreconditionError(message: """
 An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `buildActionInfo`, \
-`testActionInfo`, `launchActionInfo`.
+`testActionInfo`, or `launchActionInfo`.
 """)
         }
 
         guard name != nil || nameClosure != nil else {
             throw PreconditionError(message: """
-An `XCSchemeInfo` should have at least one of the following: `name`, `nameClosure`.
+An `XCSchemeInfo` should have at least one of the following: `name` or `nameClosure`.
 """)
         }
 
