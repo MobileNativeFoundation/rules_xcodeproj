@@ -42,7 +42,7 @@ extension XCSchemeInfoProfileActionInfoTests {
             return
         }
         XCTAssertEqual(
-            profileActionInfo.runnable.buildableReference,
+            profileActionInfo.runnable?.buildableReference,
             appTargetInfo.buildableReference
         )
     }
