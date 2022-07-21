@@ -47,16 +47,24 @@ def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
         The `struct` should be passed to functions on `linker_input_files` to
         retrieve its contents.
     """
+    objc_libraries, cc_linker_inputs = _extract_libraries(
+        compilation_providers = compilation_providers,
+    )
+
     if compilation_providers._is_top_level:
         primary_static_library = None
         top_level_values = _extract_top_level_values(
             ctx = ctx,
             compilation_providers = compilation_providers,
             avoid_compilation_providers = avoid_compilation_providers,
+            objc_libraries = objc_libraries,
+            cc_linker_inputs = cc_linker_inputs,
         )
     elif compilation_providers._is_xcode_library_target:
         primary_static_library = _compute_primary_static_library(
             compilation_providers = compilation_providers,
+            objc_libraries = objc_libraries,
+            cc_linker_inputs = cc_linker_inputs,
         )
         top_level_values = None
     else:
@@ -72,26 +80,57 @@ def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
 def _merge(*, compilation_providers):
     return _collect(ctx = None, compilation_providers = compilation_providers)
 
-def _compute_primary_static_library(*, compilation_providers):
+def _compute_primary_static_library(
+        *,
+        compilation_providers,
+        objc_libraries,
+        cc_linker_inputs):
     # Ideally we would only return the static library that is owned by this
     # target, but sometimes another rule creates the output and this rule
     # outputs it. So far the first library has always been the correct one.
     if compilation_providers._objc:
-        for library in compilation_providers._objc.library.to_list():
+        for library in objc_libraries:
+            if library.is_source:
+                continue
             return library
     elif compilation_providers._cc_info:
-        linker_inputs = (
-            compilation_providers._cc_info.linking_context.linker_inputs
-        )
-        for input in linker_inputs.to_list():
-            return input.libraries[0].static_library
+        for input in cc_linker_inputs:
+            for library in input.libraries:
+                if library.static_library.is_source:
+                    continue
+                return library.static_library
     return None
+
+def _extract_libraries(compilation_providers):
+    if compilation_providers._objc:
+        objc = compilation_providers._objc
+        objc_libraries = [
+            file
+            for file in depset(
+                transitive = [
+                    objc.library,
+                    objc.imported_library,
+                ],
+                order = "topological",
+            ).to_list()
+        ]
+        cc_linker_inputs = []
+    elif compilation_providers._cc_info:
+        cc_info = compilation_providers._cc_info
+        objc_libraries = []
+        cc_linker_inputs = cc_info.linking_context.linker_inputs.to_list()
+    else:
+        objc_libraries = []
+        cc_linker_inputs = []
+    return (objc_libraries, cc_linker_inputs)
 
 def _extract_top_level_values(
         *,
         ctx,
         compilation_providers,
-        avoid_compilation_providers):
+        avoid_compilation_providers,
+        objc_libraries,
+        cc_linker_inputs):
     if compilation_providers._objc:
         objc = compilation_providers._objc
         if avoid_compilation_providers:
@@ -144,13 +183,7 @@ def _extract_top_level_values(
         ]
         static_libraries = [
             file
-            for file in depset(
-                transitive = [
-                    objc.library,
-                    objc.imported_library,
-                ],
-                order = "topological",
-            ).to_list()
+            for file in objc_libraries
             if not sets.contains(avoid_static_libraries, file)
         ]
 
@@ -173,7 +206,6 @@ def _extract_top_level_values(
             objc.link_inputs.to_list(),
         )
     elif compilation_providers._cc_info:
-        cc_info = compilation_providers._cc_info
         if avoid_compilation_providers:
             avoid_cc_info = avoid_compilation_providers._cc_info
             if not avoid_cc_info:
@@ -197,7 +229,7 @@ def _extract_top_level_values(
         raw_linkopts = []
         user_linkopts = []
         additional_input_files = []
-        for input in cc_info.linking_context.linker_inputs.to_list():
+        for input in cc_linker_inputs:
             additional_input_files.extend(_process_additional_inputs(
                 input.additional_inputs,
             ))
