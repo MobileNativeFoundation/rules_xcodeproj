@@ -71,7 +71,7 @@ extension XCSchemeInfo.LaunchActionInfo {
         } else {
             // If targeting a device for a Watch App, Xcode modifies the scheme
             // to use a `RemoteRunnable`. It does this automatically though, so
-            // we don't have to account for it
+            // we don't have to account for it.
             return XCScheme.BuildableProductRunnable(
                 buildableReference: targetInfo.buildableReference
             )
