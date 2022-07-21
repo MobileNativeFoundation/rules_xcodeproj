@@ -386,8 +386,6 @@ def _from_resource_bundle(bundle):
         resources = bundle.resources,
         resource_bundles = depset(),
         resource_bundle_dependencies = bundle.dependencies,
-        infoplists = depset(),
-        launchdplists = depset(),
         entitlements = None,
         exported_symbols_lists = depset(),
         xccurrentversions = depset(),
