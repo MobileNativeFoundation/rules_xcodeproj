@@ -94,7 +94,7 @@ def _collect(
         automatic_target_info,
         additional_files = [],
         transitive_infos,
-        avoid_deps):
+        avoid_deps = []):
     """Collects all of the inputs of a target.
 
     Args:
@@ -113,7 +113,7 @@ def _collect(
             (e.g. modulemaps or BUILD files).
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of `target`.
-        avoid_deps: A `list` pf the targets that already consumed resources, and
+        avoid_deps: A `list` of the targets that already consumed resources, and
             their resources shouldn't be bundled with `target`.
 
     Returns:

@@ -99,7 +99,6 @@ rules_xcodeproj requires {} to have `{}` set.
             linker_inputs = linker_inputs,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
-            avoid_deps = [],
         ),
         outputs = output_files.merge(
             automatic_target_info = automatic_target_info,
