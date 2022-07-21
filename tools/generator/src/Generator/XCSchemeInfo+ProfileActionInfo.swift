@@ -10,7 +10,7 @@ extension XCSchemeInfo {
 // MARK: Host Resolution Initializer
 
 extension XCSchemeInfo.ProfileActionInfo {
-    /// Create a copy of the profile action info with host in the target info resolved.
+    /// Create a copy of the `ProfileActionInfo` with host in the `TargetInfo` resolved.
     init?(
         resolveHostsFor profileActionInfo: XCSchemeInfo.ProfileActionInfo?,
         topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
@@ -32,8 +32,8 @@ extension XCSchemeInfo.ProfileActionInfo {
 
 extension XCSchemeInfo.ProfileActionInfo {
     var runnable: XCScheme.BuildableProductRunnable? {
-        // To produce a similar result to the current generation code, we need to have a
-        // `ProfileActionInfo`, but we do not want to set the runnable.
+        // We want to provide a `ProfileActionInfo`, but we do not want to set the runnable, if it
+        // is testable.
         if targetInfo.pbxTarget.isTestable {
             return nil
         }
