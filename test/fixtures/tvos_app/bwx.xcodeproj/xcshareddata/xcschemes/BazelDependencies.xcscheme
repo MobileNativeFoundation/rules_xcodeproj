@@ -9,22 +9,8 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-<<<<<<< HEAD
-               title = "Set Bazel Build Output Groups"
-               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;echo &quot;g $BAZEL_TARGET_ID&quot; &gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "2FED647E7A6091DF616D345B"
-                     BuildableName = "generator"
-                     BlueprintName = "generator"
-                     ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-=======
                title = "Clear Bazel Build Output Groups File"
                scriptText = "if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi">
->>>>>>> 5b62807d (Ensure that clearing of the $BAZEL_BUILD_OUTPUT_GROUPS_FILE occurs for)
             </ActionContent>
          </ExecutionAction>
       </PreActions>
@@ -37,10 +23,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2FED647E7A6091DF616D345B"
-               BuildableName = "generator"
-               BlueprintName = "generator"
-               ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
+               BlueprintIdentifier = "FE59281FE487F27A37DC2EE7"
+               BuildableName = "BazelDependencies"
+               BlueprintName = "BazelDependencies"
+               ReferencedContainer = "container:test/fixtures/tvos_app/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -65,16 +51,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2FED647E7A6091DF616D345B"
-            BuildableName = "generator"
-            BlueprintName = "generator"
-            ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
@@ -82,16 +58,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2FED647E7A6091DF616D345B"
-            BuildableName = "generator"
-            BlueprintName = "generator"
-            ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

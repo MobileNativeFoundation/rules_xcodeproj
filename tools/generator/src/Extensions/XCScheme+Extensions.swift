@@ -53,10 +53,9 @@ extension XCScheme.BuildAction {
 
         let preActions: [XCScheme.ExecutionAction]
         if buildMode.usesBazelModeBuildScripts {
-            let targetInfoPreActions: [XCScheme.ExecutionAction] = targetInfos
-                .compactMap { .init(targetInfo: $0, hostIndex: hostIndex) }
-            preActions = targetInfoPreActions.isEmpty ? [] :
-                [.clearBazelBuildOutputGroupsFile] + targetInfoPreActions
+            preActions = [.clearBazelBuildOutputGroupsFile] + targetInfos.compactMap {
+                XCScheme.ExecutionAction(targetInfo: $0, hostIndex: hostIndex)
+            }
         } else {
             preActions = []
         }
