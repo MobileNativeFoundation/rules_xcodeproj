@@ -21,7 +21,7 @@ An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.TargetI
 // MARK: Host Resolution Initializer
 
 extension XCSchemeInfo.BuildActionInfo {
-    /// Create a copy of the build action info with host in the target infos resolved
+    /// Create a copy of the `BuildActionInfo` with the host in `TargetInfo` values resolved.
     init?(
         resolveHostsFor buildActionInfo: XCSchemeInfo.BuildActionInfo?,
         topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
