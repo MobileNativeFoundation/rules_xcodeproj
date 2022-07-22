@@ -2,9 +2,9 @@ import XCTest
 
 @testable import generator
 
-// MARK: filterDependencyTree Tests
+// MARK: `filterDependencyTree` Tests
 
-extension DictionaryExtensionsTests {
+extension TargetIDTargetDictionaryExtensionsTests {
     func test_filterDependencyTree_includeAllDeps() throws {
         let actual = targets.filterDependencyTree(startingWith: [bTargetID]) { _ in true }
         let expected = [
@@ -65,9 +65,9 @@ extension DictionaryExtensionsTests {
     }
 }
 
-// MARK: firstTargetID Tests
+// MARK: `firstTargetID` Tests
 
-extension DictionaryExtensionsTests {
+extension TargetIDTargetDictionaryExtensionsTests {
     func test_firstTargetID_aStartTargetMatches() throws {
         let actual = targets.firstTargetID(under: [aTargetID, bTargetID]) { target in
             target.label == barLabel
@@ -97,7 +97,9 @@ extension DictionaryExtensionsTests {
     }
 }
 
-class DictionaryExtensionsTests: XCTestCase {
+// MARK: Test Data
+
+class TargetIDTargetDictionaryExtensionsTests: XCTestCase {
     //  A    B
     //  |    |
     //  C    D
