@@ -112,3 +112,32 @@ extension XCSchemeInfo {
         return allPBXTargets.compactMap(\.productType).contains(where: \.isExtension)
     }
 }
+
+// MARK: Custom Scheme Initializer
+
+extension XCSchemeInfo {
+    init(
+        scheme: XcodeScheme,
+        targetResolver: TargetResolver
+    ) throws {
+        let targetIDsByLabel = try scheme.resolveTargetIDs(targets: targetResolver.targets)
+        try self.init(
+            name: scheme.name,
+            buildActionInfo: .init(
+                buildAction: scheme.buildAction,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            ),
+            // TODO(chuck): FIX ME!
+            testActionInfo: nil,
+            launchActionInfo: nil,
+            profileActionInfo: nil,
+            analyzeActionInfo: .init(
+                buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
+            ),
+            archiveActionInfo: .init(
+                buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
+            )
+        )
+    }
+}

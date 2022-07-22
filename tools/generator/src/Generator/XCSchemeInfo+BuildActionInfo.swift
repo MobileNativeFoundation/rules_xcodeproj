@@ -36,3 +36,27 @@ extension XCSchemeInfo.BuildActionInfo {
         )
     }
 }
+
+// MARK: Custom Scheme Initializer
+
+extension XCSchemeInfo.BuildActionInfo {
+    init?(
+        buildAction: XcodeScheme.BuildAction?,
+        targetResolver: TargetResolver,
+        targetIDsByLabel: [BazelLabel: TargetID]
+    ) throws {
+        guard let buildAction = buildAction else {
+          return nil
+        }
+        try self.init(
+            targetInfos: try buildAction.targets.map { label in
+                guard let targetID = targetIDsByLabel[label] else {
+                    throw PreconditionError(message: """
+Unable to find the `TargetID` for the BazelLabel "\(label)".
+""")
+                }
+                return try targetResolver.targetInfo(targetID: targetID)
+            }
+        )
+    }
+}
