@@ -8,7 +8,6 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":non_xcode_targets.bzl", "process_non_xcode_target")
-load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
 load(
     ":providers.bzl",
@@ -17,7 +16,7 @@ load(
     "target_type",
 )
 load(":processed_target.bzl", "processed_target")
-load(":search_paths.bzl", "process_search_paths")
+load(":target_search_paths.bzl", "target_search_paths")
 load(":targets.bzl", "targets")
 load(
     ":target_properties.bzl",
@@ -193,14 +192,9 @@ def _skip_target(*, deps, transitive_infos):
                 for _, info in transitive_infos
             ],
         ),
-        search_paths = process_search_paths(
+        search_paths = target_search_paths.make(
             compilation_providers = None,
             bin_dir_path = None,
-            opts_search_paths = create_opts_search_paths(
-                quote_includes = [],
-                includes = [],
-                system_includes = [],
-            ),
         ),
         target = None,
         target_libraries = depset(

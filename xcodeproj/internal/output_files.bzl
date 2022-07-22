@@ -32,7 +32,7 @@ def _create(
             with Bazel.
 
     Returns:
-        A `struct` representing the internal data structure of the
+        An opaque `struct` representing the internal data structure of the
         `output_files` module.
     """
     direct_build = []

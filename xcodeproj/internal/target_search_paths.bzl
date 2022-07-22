@@ -1,4 +1,4 @@
-"""Functions for processing search paths."""
+"""Module containing functions for collecting target search paths."""
 
 load(":collections.bzl", "set_if_true")
 load(
@@ -8,39 +8,58 @@ load(
     "parsed_file_path",
 )
 
-def process_search_paths(
-        *,
-        compilation_providers,
-        bin_dir_path,
-        opts_search_paths):
-    """Processes search paths.
+def _make(*, compilation_providers, bin_dir_path, opts_search_paths = None):
+    """Creates the internal data structure of the `target_search_paths` module.
 
     Args:
         compilation_providers: A value returned from
-            `compilation_providers.collect`.
+            `compilation_providers.collect`, or `None`.
         bin_dir_path: `ctx.bin_dir.path`.
-        opts_search_paths: A value returned from `create_opts_search_paths`.
+        opts_search_paths: A value returned from `create_opts_search_paths`, or
+            `None`.
 
     Returns:
-        A DTO `dict`.
+        An opaque `struct` representing the internal data structure of the
+        `target_search_paths` module.
     """
+    return struct(
+        _bin_dir_path = bin_dir_path,
+        _compilation_providers = compilation_providers,
+        _opts_search_paths = opts_search_paths,
+    )
+
+def _to_dto(search_paths):
+    if not search_paths:
+        return {}
+
+    compilation_providers = search_paths._compilation_providers
     if not compilation_providers:
         return {}
 
     cc_info = compilation_providers._cc_info
     objc = compilation_providers._objc
 
-    search_paths = {}
+    dto = {}
     if cc_info:
         compilation_context = cc_info.compilation_context
+        opts_search_paths = search_paths._opts_search_paths
+
+        if opts_search_paths:
+            opts_includes = opts_search_paths.includes
+            opts_quote_includes = opts_search_paths.quote_includes
+            opts_system_includes = opts_search_paths.system_includes
+        else:
+            opts_includes = []
+            opts_quote_includes = []
+            opts_system_includes = []
 
         quote_includes = depset(
-            [".", bin_dir_path] + opts_search_paths.quote_includes,
+            [".", search_paths._bin_dir_path] + opts_quote_includes,
             transitive = [compilation_context.quote_includes],
         )
 
         set_if_true(
-            search_paths,
+            dto,
             "quote_includes",
             [
                 file_path_to_dto(parsed_file_path(path))
@@ -48,21 +67,21 @@ def process_search_paths(
             ],
         )
         set_if_true(
-            search_paths,
+            dto,
             "includes",
             [
                 file_path_to_dto(parsed_file_path(path))
                 for path in (compilation_context.includes.to_list() +
-                             opts_search_paths.includes)
+                             opts_includes)
             ],
         )
         set_if_true(
-            search_paths,
+            dto,
             "system_includes",
             [
                 file_path_to_dto(parsed_file_path(path))
                 for path in (compilation_context.system_includes.to_list() +
-                             opts_search_paths.system_includes)
+                             opts_system_includes)
             ],
         )
 
@@ -80,7 +99,7 @@ def process_search_paths(
         ]
 
         set_if_true(
-            search_paths,
+            dto,
             "framework_includes",
             [
                 file_path_to_dto(fp)
@@ -89,4 +108,9 @@ def process_search_paths(
             ],
         )
 
-    return search_paths
+    return dto
+
+target_search_paths = struct(
+    make = _make,
+    to_dto = _to_dto,
+)
