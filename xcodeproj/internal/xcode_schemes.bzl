@@ -60,8 +60,7 @@ def make_xcode_schemes(bazel_labels):
             ],
         )
 
-    def _test_action(
-            targets):
+    def _test_action(targets):
         """Constructs a test action for an Xcode scheme.
 
         Args:
