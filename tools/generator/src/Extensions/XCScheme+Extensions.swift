@@ -134,9 +134,13 @@ fi
         let prefix = buildMode.buildOutputGroupPrefix
         let hostTargetOutputGroup: String
         if let hostIndex = hostIndex {
+            // The extra blank line at the end of this string literal is purposeful. It ensures that
+            // a newline is added to the resulting string, if the host information is added to the
+            // script.
             hostTargetOutputGroup = #"""
 echo "\#(prefix) $BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
 >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+
 """#
         } else {
             hostTargetOutputGroup = ""
