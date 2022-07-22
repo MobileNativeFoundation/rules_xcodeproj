@@ -132,7 +132,7 @@ swift_library(
     else:
         xcodeproj_patches = []
 
-    xcodeproj_git_sha = "4dccbc03047c1b82bb2091ac29df671d4d4994b8"
+    xcodeproj_git_sha = "8.8.0"
     _maybe(
         http_archive,
         name = "com_github_tuist_xcodeproj",
@@ -150,7 +150,7 @@ swift_library(
 )
 """,
         patches = xcodeproj_patches,
-        sha256 = "b49d0f1586878c3274d3201609841a6cf45011a37f3fbcdc47fb050cc6e0cb53",
+        sha256 = "fbf655731e73287b6c0dae5b083d4802152a3fcd331b24b2394ed14bd75686c2",
         strip_prefix = "XcodeProj-%s" % xcodeproj_git_sha,
         url = "https://github.com/tuist/XcodeProj/archive/%s.tar.gz" % xcodeproj_git_sha,
         ignore_version_differences = ignore_version_differences,
