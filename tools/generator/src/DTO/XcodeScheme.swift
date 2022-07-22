@@ -3,17 +3,20 @@ struct XcodeScheme: Equatable, Decodable {
     let buildAction: XcodeScheme.BuildAction?
     let testAction: XcodeScheme.TestAction?
     let launchAction: XcodeScheme.LaunchAction?
+    let profileAction: XcodeScheme.ProfileAction?
 
     init(
         name: String,
         buildAction: XcodeScheme.BuildAction? = nil,
         testAction: XcodeScheme.TestAction? = nil,
-        launchAction: XcodeScheme.LaunchAction? = nil
+        launchAction: XcodeScheme.LaunchAction? = nil,
+        profileAction: XcodeScheme.ProfileAction? = nil
     ) {
         self.name = name
         self.buildAction = buildAction
         self.testAction = testAction
         self.launchAction = launchAction
+        self.profileAction = profileAction
     }
 }
 
@@ -43,5 +46,14 @@ extension XcodeScheme {
         let args: [String]
         let env: [String: String]
         let workingDirectory: String?
+    }
+}
+
+// MARK: ProfileAction
+
+extension XcodeScheme {
+    struct ProfileAction: Equatable, Decodable {
+        let buildConfigurationName: String
+        let target: BazelLabel
     }
 }

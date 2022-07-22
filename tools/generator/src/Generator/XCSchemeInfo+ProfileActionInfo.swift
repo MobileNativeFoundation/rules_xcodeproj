@@ -40,3 +40,26 @@ extension XCSchemeInfo.ProfileActionInfo {
         return .init(buildableReference: targetInfo.buildableReference)
     }
 }
+
+// MARK: Custom Scheme Initializer
+
+extension XCSchemeInfo.ProfileActionInfo {
+    init?(
+        profileAction: XcodeScheme.ProfileAction?,
+        targetResolver: TargetResolver,
+        targetIDsByLabel: [BazelLabel: TargetID]
+    ) throws {
+        guard let profileAction = profileAction else {
+          return nil
+        }
+        try self.init(
+            buildConfigurationName: profileAction.buildConfigurationName,
+            targetInfo: try targetResolver.targetInfo(
+                targetID: try targetIDsByLabel.value(
+                    for: profileAction.target,
+                    context: "creating a `ProfileActionInfo`"
+                )
+            )
+        )
+    }
+}

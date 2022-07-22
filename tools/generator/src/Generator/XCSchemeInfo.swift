@@ -138,8 +138,11 @@ extension XCSchemeInfo {
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             ),
-            // TODO(chuck): FIX ME!
-            profileActionInfo: nil,
+            profileActionInfo: .init(
+                profileAction: scheme.profileAction,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            ),
             analyzeActionInfo: .init(
                 buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
             ),
