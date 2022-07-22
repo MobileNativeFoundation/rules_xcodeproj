@@ -50,12 +50,12 @@ extension XCSchemeInfo.BuildActionInfo {
         }
         try self.init(
             targetInfos: try buildAction.targets.map { label in
-                guard let targetID = targetIDsByLabel[label] else {
-                    throw PreconditionError(message: """
-Unable to find the `TargetID` for the BazelLabel "\(label)".
-""")
-                }
-                return try targetResolver.targetInfo(targetID: targetID)
+                return try targetResolver.targetInfo(
+                    targetID: targetIDsByLabel.targetID(
+                        for: label,
+                        context: "creating a `BuildActionInfo`"
+                    )
+                )
             }
         )
     }

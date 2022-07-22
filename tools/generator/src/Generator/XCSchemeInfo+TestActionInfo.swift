@@ -46,3 +46,28 @@ extension XCSchemeInfo.TestActionInfo {
         )
     }
 }
+
+// MARK: Custom Scheme Initializer
+
+extension XCSchemeInfo.TestActionInfo {
+    init?(
+        testAction: XcodeScheme.TestAction?,
+        targetResolver: TargetResolver,
+        targetIDsByLabel: [BazelLabel: TargetID]
+    ) throws {
+        guard let testAction = testAction else {
+          return nil
+        }
+        try self.init(
+            buildConfigurationName: testAction.buildConfigurationName,
+            targetInfos: try testAction.targets.map { label in
+                return try targetResolver.targetInfo(
+                    targetID: try targetIDsByLabel.targetID(
+                        for: label,
+                        context: "creating a `TestActionInfo`"
+                    )
+                )
+            }
+        )
+    }
+}

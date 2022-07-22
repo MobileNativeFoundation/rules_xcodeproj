@@ -128,8 +128,12 @@ extension XCSchemeInfo {
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             ),
+            testActionInfo: .init(
+                testAction: scheme.testAction,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            ),
             // TODO(chuck): FIX ME!
-            testActionInfo: nil,
             launchActionInfo: nil,
             profileActionInfo: nil,
             analyzeActionInfo: .init(
