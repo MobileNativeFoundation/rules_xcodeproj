@@ -51,7 +51,7 @@ extension XCSchemeInfo.BuildActionInfo {
         try self.init(
             targetInfos: try buildAction.targets.map { label in
                 return try targetResolver.targetInfo(
-                    targetID: targetIDsByLabel.targetID(
+                    targetID: try targetIDsByLabel.value(
                         for: label,
                         context: "creating a `BuildActionInfo`"
                     )

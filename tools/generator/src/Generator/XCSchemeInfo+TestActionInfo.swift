@@ -62,7 +62,7 @@ extension XCSchemeInfo.TestActionInfo {
             buildConfigurationName: testAction.buildConfigurationName,
             targetInfos: try testAction.targets.map { label in
                 return try targetResolver.targetInfo(
-                    targetID: try targetIDsByLabel.targetID(
+                    targetID: try targetIDsByLabel.value(
                         for: label,
                         context: "creating a `TestActionInfo`"
                     )
