@@ -75,7 +75,7 @@ extension XCSchemeExtensionsTests {
 // MARK: - XCScheme.ExecutionAction Initializer Tests
 
 extension XCSchemeExtensionsTests {
-    func test_ExecutionAction_withNativeTarget_noHostIndex() throws {
+    func test_ExecutionAction_withNativeTarget_noHostIndex_bazelBuildMode() throws {
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
             name: libraryTargetInfo.pbxTarget.name,
@@ -87,11 +87,11 @@ extension XCSchemeExtensionsTests {
             "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
         )
         XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
-        XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
-        XCTAssertFalse(action.scriptText.contains("$BAZEL_HOST_TARGET_ID_"))
+        XCTAssertTrue(action.scriptText.contains("b $BAZEL_TARGET_ID"))
+        XCTAssertFalse(action.scriptText.contains("b $BAZEL_HOST_TARGET_ID_"))
     }
 
-    func test_ExecutionAction_withNativeTarget_withHostIndex() throws {
+    func test_ExecutionAction_withNativeTarget_withHostIndex_bazelBuildMode() throws {
         let hostIndex = 7
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
@@ -104,8 +104,41 @@ extension XCSchemeExtensionsTests {
             "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
         )
         XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
-        XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
-        XCTAssertTrue(action.scriptText.contains("$BAZEL_HOST_TARGET_ID_\(hostIndex)"))
+        XCTAssertTrue(action.scriptText.contains("b $BAZEL_TARGET_ID"))
+        XCTAssertTrue(action.scriptText.contains("b $BAZEL_HOST_TARGET_ID_\(hostIndex)"))
+    }
+
+    func test_ExecutionAction_withNativeTarget_noHostIndex_xcodeBuildMode() throws {
+        let action = XCScheme.ExecutionAction(
+            buildFor: libraryTargetInfo.buildableReference,
+            name: libraryTargetInfo.pbxTarget.name,
+            hostIndex: nil,
+            buildMode: .xcode
+        )
+        XCTAssertEqual(
+            action.title,
+            "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
+        )
+        XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
+        XCTAssertTrue(action.scriptText.contains("g $BAZEL_TARGET_ID"))
+        XCTAssertFalse(action.scriptText.contains("g $BAZEL_HOST_TARGET_ID_"))
+    }
+
+    func test_ExecutionAction_withNativeTarget_withHostIndex_xcodeBuildMode() throws {
+        let hostIndex = 7
+        let action = XCScheme.ExecutionAction(
+            buildFor: libraryTargetInfo.buildableReference,
+            name: libraryTargetInfo.pbxTarget.name,
+            hostIndex: hostIndex,
+            buildMode: .xcode
+        )
+        XCTAssertEqual(
+            action.title,
+            "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
+        )
+        XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
+        XCTAssertTrue(action.scriptText.contains("g $BAZEL_TARGET_ID"))
+        XCTAssertTrue(action.scriptText.contains("g $BAZEL_HOST_TARGET_ID_\(hostIndex)"))
     }
 }
 

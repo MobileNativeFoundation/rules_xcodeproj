@@ -135,7 +135,7 @@ fi
         let hostTargetOutputGroup: String
         if let hostIndex = hostIndex {
             hostTargetOutputGroup = #"""
-echo "b $BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
+echo "\#(prefix) $BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
 >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 """#
         } else {
