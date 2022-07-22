@@ -236,7 +236,7 @@ enum Fixtures {
             ],
             searchPaths: .init(
                 frameworkIncludes: [.generated("some/framework/parent/dir")],
-                quoteIncludes:  [.generated("some/quote/includes/parent/dir")],
+                quoteIncludes: [.generated("some/quote/includes/parent/dir")],
                 includes: [.generated("some/includes/parent/dir")],
                 systemIncludes: [.generated("some/system/includes/parent/dir")]
             ),
@@ -2441,5 +2441,20 @@ $(MACOSX_FILES)
     static func xcSharedData() -> XCSharedData {
         let schemes = xcSchemes()
         return XCSharedData(schemes: schemes)
+    }
+
+    static func targetResolver(referencedContainer: String) -> TargetResolver {
+        // swiftlint:disable:next force_try
+        return try! .init(
+            referencedContainer: referencedContainer,
+            targets: Fixtures.project.targets,
+            targetHosts: Fixtures.project.targetHosts,
+            extensionPointIdentifiers: Fixtures.extensionPointIdentifiers,
+            consolidatedTargetKeys: Fixtures.consolidatedTargets.keys,
+            pbxTargets: Fixtures.pbxTargets(
+                in: Fixtures.pbxProj(),
+                consolidatedTargets: Fixtures.consolidatedTargets
+            ).0
+        )
     }
 }
