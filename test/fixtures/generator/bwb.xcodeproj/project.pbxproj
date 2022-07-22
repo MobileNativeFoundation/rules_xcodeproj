@@ -232,6 +232,7 @@
 		C3C078F384218F905E374FEF /* XCScheme+PathRunnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9993D3F386DFC594BC0967A /* XCScheme+PathRunnable.swift */; };
 		C41E28F5D880E1B3B3CE23A6 /* BazelLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4642D1BB48B4523F92FBC3 /* BazelLabel.swift */; };
 		C4A4BDEEBC4DEA94A9C38B98 /* XCScheme+ProfileAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01004934C429F4A4F09C0C85 /* XCScheme+ProfileAction.swift */; };
+		C763631072D70B6887A3037B /* TargetResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FCA54B4AC8AD7496FE5261 /* TargetResolver.swift */; };
 		C7FE7B26776F35CE278DA25A /* OrderedDictionary+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4142BB8EF88F4DD2D5440E4 /* OrderedDictionary+CustomStringConvertible.swift */; };
 		C963F445C29D4475EB4F7780 /* BazelLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E1D8F0FD9F2FEEC62C2B3 /* BazelLabelTests.swift */; };
 		CB02C36925CC30F4843D2DD1 /* OrderedDictionary+Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1FEAE6FD7E8D74F258FD4B /* OrderedDictionary+Initializers.swift */; };
@@ -697,6 +698,7 @@
 		E6E27E547A12A951FF64D0C4 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		E7C28A43616AE9FC78C05EE0 /* XCBreakpointList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCBreakpointList.swift; sourceTree = "<group>"; };
 		E93309761AF878C3D25AB9D3 /* XCSchemeInfo+OtherActionInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+OtherActionInfos.swift"; sourceTree = "<group>"; };
+		E9FCA54B4AC8AD7496FE5261 /* TargetResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetResolver.swift; sourceTree = "<group>"; };
 		EAADA80AB2FBFD1EB2A75A3D /* PBXSourcesBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXSourcesBuildPhase.swift; sourceTree = "<group>"; };
 		EB3A862371D143A0AB30A956 /* XCSchemeEnvrionmentVariables+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeEnvrionmentVariables+Extensions.swift"; sourceTree = "<group>"; };
 		EBB4BB99570B6487A866E782 /* OrderedSet+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Equatable.swift"; sourceTree = "<group>"; };
@@ -1071,6 +1073,7 @@
 				CBF0DCE8B2E461919E45E6D7 /* ProcessTargetMerges.swift */,
 				B4ED3B78E40B159DC3EEB602 /* SetTargetConfigurations.swift */,
 				079FE3313C09B3B7A4383D07 /* SetTargetDependencies.swift */,
+				E9FCA54B4AC8AD7496FE5261 /* TargetResolver.swift */,
 				F4541A6CA919F8EC829FE0B0 /* WriteXcodeProj.swift */,
 				F0B31DAEE7BDD3FB52C89121 /* XCSchemeInfo.swift */,
 				ABA91ACA2E565D0C6F88DE03 /* XCSchemeInfo+BuildActionInfo.swift */,
@@ -2116,6 +2119,7 @@
 				EBF46BD547BE8BC0C19D65CC /* ProcessTargetMerges.swift in Sources */,
 				7895225CE935D6B27E65E73C /* SetTargetConfigurations.swift in Sources */,
 				5A1AB232F984E776A2BD9AC4 /* SetTargetDependencies.swift in Sources */,
+				C763631072D70B6887A3037B /* TargetResolver.swift in Sources */,
 				FF65ADF9DB385AB43000B4AE /* WriteXcodeProj.swift in Sources */,
 				CFA993C5630012AEE5CE51C8 /* XCSchemeInfo+BuildActionInfo.swift in Sources */,
 				1DE26605A4AFBA9D044551B7 /* XCSchemeInfo+HostInfo.swift in Sources */,

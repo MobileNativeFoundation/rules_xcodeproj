@@ -52,6 +52,25 @@ final class GeneratorTests: XCTestCase {
         )
 
         let mergedTargets: [TargetID: Target] = [
+            "I 1": Target.mock(
+                label: "//:I1",
+                configuration: "1a2b3",
+                product: .init(type: .application, name: "I 1", path: "")
+            ),
+            "I 2": Target.mock(
+                label: "//:I2",
+                configuration: "1a2b3",
+                product: .init(type: .application, name: "I 2", path: "")
+            ),
+            "WKE": Target.mock(
+                label: "//:WKE",
+                platform: .device(os: .watchOS),
+                product: .init(
+                    type: .watch2Extension,
+                    name: "WKE",
+                    path: .generated("z/WK.appex")
+                )
+            ),
             "Y": Target.mock(
                 label: "//:Y",
                 configuration: "a1b2c",
@@ -65,10 +84,22 @@ final class GeneratorTests: XCTestCase {
         ]
         let consolidatedTargets = ConsolidatedTargets(
             keys: [
+                "I 1": "I 1",
+                "I 2": "I 2",
+                "WKE": "WKE",
                 "Y": "Y",
                 "Z": "Z",
             ],
             targets: [
+                "I 1": .init(
+                    targets: ["I 1": mergedTargets["I 1"]!]
+                ),
+                "I 2": .init(
+                    targets: ["I 2": mergedTargets["I 2"]!]
+                ),
+                "WKE": .init(
+                    targets: ["WKE": mergedTargets["WKE"]!]
+                ),
                 "Y": .init(
                     targets: ["Y": mergedTargets["Y"]!]
                 ),
@@ -78,11 +109,28 @@ final class GeneratorTests: XCTestCase {
             ]
         )
         let disambiguatedTargets = DisambiguatedTargets(
-            keys: ["A": "A"],
+            keys: [
+                "A": "A",
+                "I 1": "I 1",
+                "I 2": "I 2",
+                "WKE": "WKE",
+            ],
             targets: [
                 "A": .init(
                     name: "A (3456a)",
                     target: consolidatedTargets.targets["Y"]!
+                ),
+                "I 1": .init(
+                    name: "I1 (3456a)",
+                    target: consolidatedTargets.targets["I 1"]!
+                ),
+                "I 2": .init(
+                    name: "I2 (3456a)",
+                    target: consolidatedTargets.targets["I 2"]!
+                ),
+                "WKE": .init(
+                    name: "WKE (3456a)",
+                    target: consolidatedTargets.targets["WKE"]!
                 ),
             ]
         )
@@ -98,6 +146,9 @@ final class GeneratorTests: XCTestCase {
         let bazelDependenciesTarget = PBXAggregateTarget(name: "BD")
         let pbxTargets: [ConsolidatedTarget.Key: PBXTarget] = [
             "A": PBXNativeTarget(name: "A (3456a)"),
+            "I 1": PBXNativeTarget(name: "I1 (3456a)"),
+            "I 2": PBXNativeTarget(name: "I2 (3456a)"),
+            "WKE": PBXNativeTarget(name: "WKE (3456a)"),
         ]
         // TODO(chuck): FIX ME!
         let customXcodeSchemes = [XcodeScheme]()
