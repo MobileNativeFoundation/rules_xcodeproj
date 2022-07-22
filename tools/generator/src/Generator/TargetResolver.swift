@@ -1,10 +1,6 @@
 import OrderedCollections
 import XcodeProj
 
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
-
 struct TargetResolver: Equatable {
     let referencedContainer: String
     let targets: [TargetID: Target]
@@ -30,14 +26,6 @@ struct TargetResolver: Equatable {
         self.consolidatedTargetKeys = consolidatedTargetKeys
         self.pbxTargets = pbxTargets
 
-        // DEBUG BEGIN
-        fputs("*** CHUCK =============\n", stderr)
-        fputs("*** CHUCK consolidatedTargetKeys:\n", stderr)
-        for (key, item) in consolidatedTargetKeys {
-            fputs("*** CHUCK   \(key) : \(String(reflecting: item))\n", stderr)
-        }
-        // DEBUG END
-
         var keyedHostPBXTargets: [
             ConsolidatedTarget.Key: OrderedSet<PBXTarget>
         ] = [:]
@@ -47,13 +35,6 @@ struct TargetResolver: Equatable {
 `key` for hosted target target id "\(id)" not found in `consolidatedTargetKeys`.
 """)
             }
-
-            // DEBUG BEGIN
-            fputs("*** CHUCK hostIDs:\n", stderr)
-            for (idx, item) in hostIDs.enumerated() {
-                fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-            }
-            // DEBUG END
 
             for hostID in hostIDs {
                 guard let hostKey = consolidatedTargetKeys[hostID] else {
@@ -86,5 +67,29 @@ Host target, "\(hostKey)", for "\(key)" not found in `pbxTargets`.
                 .insert(extensionPointIdentifier)
         }
         self.keyedExtensionPointIdentifiers = keyedExtensionPointIdentifiers
+    }
+}
+
+extension TargetResolver {
+    /// Create `XCSchemeInfo.TargetInfo` values for all eligible targets.
+    var schemeTargetInfos: [XCSchemeInfo.TargetInfo] {
+        return pbxTargets.compactMap { key, pbxTarget in
+            guard pbxTarget.shouldCreateScheme else {
+                return nil
+            }
+            return .init(
+                pbxTarget: pbxTarget,
+                referencedContainer: referencedContainer,
+                hostInfos: keyedHostPBXTargets[key, default: []].elements.enumerated()
+                    .map { hostIndex, hostPBXTarget in
+                        .init(
+                            pbxTarget: hostPBXTarget,
+                            referencedContainer: referencedContainer,
+                            index: hostIndex
+                        )
+                    },
+                extensionPointIdentifiers: keyedExtensionPointIdentifiers[key, default: []]
+            )
+        }
     }
 }
