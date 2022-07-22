@@ -71,7 +71,7 @@ Host target, "\(hostKey)", for "\(key)" not found in `pbxTargets`.
 }
 
 extension TargetResolver {
-    /// Create `XCSchemeInfo.TargetInfo` values for all eligible targets.
+    /// Creates `XCSchemeInfo.TargetInfo` values for all eligible targets.
     var schemeTargetInfos: [XCSchemeInfo.TargetInfo] {
         return pbxTargets.compactMap { key, pbxTarget in
             guard pbxTarget.shouldCreateScheme else {
