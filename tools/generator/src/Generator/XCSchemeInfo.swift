@@ -133,8 +133,12 @@ extension XCSchemeInfo {
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             ),
+            launchActionInfo: .init(
+                launchAction: scheme.launchAction,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            ),
             // TODO(chuck): FIX ME!
-            launchActionInfo: nil,
             profileActionInfo: nil,
             analyzeActionInfo: .init(
                 buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
