@@ -78,9 +78,9 @@ extension XCSchemeExtensionsTests {
     func test_ExecutionAction_withNativeTarget_noHostIndex_bazelBuildMode() throws {
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
+            buildMode: .bazel,
             name: libraryTargetInfo.pbxTarget.name,
-            hostIndex: nil,
-            buildMode: .bazel
+            hostIndex: nil
         )
         XCTAssertEqual(
             action.title,
@@ -95,9 +95,9 @@ extension XCSchemeExtensionsTests {
         let hostIndex = 7
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
+            buildMode: .bazel,
             name: libraryTargetInfo.pbxTarget.name,
-            hostIndex: hostIndex,
-            buildMode: .bazel
+            hostIndex: hostIndex
         )
         XCTAssertEqual(
             action.title,
@@ -111,9 +111,9 @@ extension XCSchemeExtensionsTests {
     func test_ExecutionAction_withNativeTarget_noHostIndex_xcodeBuildMode() throws {
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
+            buildMode: .xcode,
             name: libraryTargetInfo.pbxTarget.name,
-            hostIndex: nil,
-            buildMode: .xcode
+            hostIndex: nil
         )
         XCTAssertEqual(
             action.title,
@@ -128,9 +128,9 @@ extension XCSchemeExtensionsTests {
         let hostIndex = 7
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
+            buildMode: .xcode,
             name: libraryTargetInfo.pbxTarget.name,
-            hostIndex: hostIndex,
-            buildMode: .xcode
+            hostIndex: hostIndex
         )
         XCTAssertEqual(
             action.title,

@@ -127,9 +127,9 @@ fi
     /// Create an `ExecutionAction` that builds with Bazel.
     convenience init(
         buildFor buildableReference: XCScheme.BuildableReference,
+        buildMode: BuildMode,
         name: String,
-        hostIndex: Int?,
-        buildMode: BuildMode
+        hostIndex: Int?
     ) {
         let prefix = buildMode.buildOutputGroupPrefix
         let hostTargetOutputGroup: String

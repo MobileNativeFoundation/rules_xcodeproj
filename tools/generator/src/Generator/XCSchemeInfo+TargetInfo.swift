@@ -136,9 +136,9 @@ extension XCSchemeInfo.TargetInfo {
         }
         return .init(
             buildFor: buildableReference,
+            buildMode: buildMode,
             name: pbxTarget.name,
-            hostIndex: try selectedHostInfo?.index,
-            buildMode: buildMode
+            hostIndex: try selectedHostInfo?.index
         )
     }
 }
