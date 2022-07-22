@@ -28,6 +28,7 @@ extension PBXProductType {
     var isAppExtension: Bool {
         switch self {
         case .appExtension,
+             .extensionKitExtension,
              .watchExtension,
              .watch2Extension,
              .tvExtension,
@@ -50,6 +51,7 @@ extension PBXProductType {
              .unitTestBundle,
              .uiTestBundle,
              .appExtension,
+             .extensionKitExtension,
              .watchApp,
              .watch2App,
              .watch2AppContainer,
@@ -81,6 +83,7 @@ extension PBXProductType {
              .unitTestBundle,
              .uiTestBundle,
              .appExtension,
+             .extensionKitExtension,
              .commandLineTool,
              .watchApp,
              .watch2App,
@@ -106,6 +109,7 @@ extension PBXProductType {
     var isExtension: Bool {
         switch self {
         case .appExtension,
+             .extensionKitExtension,
              .tvExtension,
              .watchExtension,
              .watch2Extension,
@@ -136,6 +140,7 @@ extension PBXProductType {
              .unitTestBundle,
              .uiTestBundle,
              .appExtension,
+             .extensionKitExtension,
              .commandLineTool,
              .watchApp,
              .watch2App,
@@ -195,6 +200,7 @@ extension PBXProductType {
         case .unitTestBundle: return "wrapper.cfbundle"
         case .uiTestBundle: return "wrapper.cfbundle"
         case .appExtension: return "wrapper.app-extension"
+        case .extensionKitExtension: return "wrapper.app-extension"
         case .commandLineTool: return "compiled.mach-o.executable"
         case .watchApp: return "wrapper.application"
         case .watch2App: return "wrapper.application"
@@ -230,6 +236,7 @@ extension PBXProductType {
         case .unitTestBundle: return "Unit Tests"
         case .uiTestBundle: return "UI Tests"
         case .appExtension: return "App Extension"
+        case .extensionKitExtension: return "ExtensionKit Extension"
         case .commandLineTool: return "Command Line Tool"
         case .watchApp: return "watchOS 1.0 App"
         case .watch2App: return "App"
