@@ -4,6 +4,8 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", _bazel_labels = "bazel_labels")
 load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 
+_DEFAULT_BUILD_CONFIGURATION_NAME = "Debug"
+
 def _collect_top_level_targets_from_a_scheme(scheme):
     results = sets.make()
     if scheme.test_action != None:
@@ -72,6 +74,7 @@ def make_xcode_schemes(bazel_labels):
                 bazel_labels.normalize(t)
                 for t in targets
             ],
+            build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
         )
 
     def _launch_action(
@@ -94,6 +97,7 @@ def make_xcode_schemes(bazel_labels):
             A `struct` representing a launch action.
         """
         return xcode_schemes_internal.launch_action(
+            build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
             target = bazel_labels.normalize(target),
             args = args,
             env = env,
@@ -106,6 +110,7 @@ def make_xcode_schemes(bazel_labels):
         test_action = _test_action,
         launch_action = _launch_action,
         collect_top_level_targets = _collect_top_level_targets,
+        DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
     )
 
 xcode_schemes = make_xcode_schemes(

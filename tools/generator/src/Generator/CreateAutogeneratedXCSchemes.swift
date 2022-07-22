@@ -58,323 +58,66 @@ Host target with key \(key) not found in `pbxTargets`.
         }
 
         let referencedContainer = filePathResolver.containerReference
-        return try pbxTargets.flatMap { key, pbxTarget in
-            try createXCSchemes(
-                buildMode: buildMode,
+        return try pbxTargets.compactMap { key, pbxTarget in
+            guard pbxTarget.shouldCreateScheme else {
+                return nil
+            }
+            let targetInfo = XCSchemeInfo.TargetInfo(
+                pbxTarget: pbxTarget,
                 referencedContainer: referencedContainer,
-                pbxTarget: pbxTarget,
-                hostPBXTargets: keyedHostPBXTargets[key, default: []].elements,
-                extensionPointIdentifiers:
-                    keyedExtensionPointIdentifiers[key, default: []]
+                hostInfos: keyedHostPBXTargets[key, default: []].elements.enumerated()
+                .map { hostIndex, hostPBXTarget in
+                    .init(
+                        pbxTarget: hostPBXTarget,
+                        referencedContainer: referencedContainer,
+                        index: hostIndex
+                    )
+                },
+                extensionPointIdentifiers: keyedExtensionPointIdentifiers[key, default: []]
             )
-        }
-    }
+            let buildConfigurationName = targetInfo.pbxTarget.defaultBuildConfigurationName
 
-    // GH399: Derive the defaultLastUpgradeVersion
-    private static let defaultLastUpgradeVersion = "1320"
-    private static let lldbInitVersion = "1.7"
-
-    /// Creates an `XCScheme` for the specified target.
-    private static func createXCSchemes(
-        buildMode: BuildMode,
-        referencedContainer: String,
-        pbxTarget: PBXTarget,
-        hostPBXTargets: [PBXTarget],
-        extensionPointIdentifiers: Set<ExtensionPointIdentifier>
-    ) throws -> [XCScheme] {
-        guard pbxTarget.shouldCreateScheme else {
-            return []
-        }
-
-        guard !hostPBXTargets.isEmpty else {
-            return [
-                try createXCScheme(
-                    buildMode: buildMode,
-                    referencedContainer: referencedContainer,
-                    pbxTarget: pbxTarget,
-                    hostPBXTarget: nil,
-                    hostIndex: nil,
-                    disambiguateHost: false,
-                    extensionPointIdentifiers: extensionPointIdentifiers
-                )
-            ]
-        }
-
-        return try hostPBXTargets.enumerated().map { hostIndex, hostPBXTarget in
-            try createXCScheme(
-                buildMode: buildMode,
-                referencedContainer: referencedContainer,
-                pbxTarget: pbxTarget,
-                hostPBXTarget: hostPBXTarget,
-                hostIndex: hostIndex,
-                disambiguateHost: hostPBXTargets.count > 1,
-                extensionPointIdentifiers: extensionPointIdentifiers
-            )
-        }
-    }
-
-    private static func createXCScheme(
-        buildMode: BuildMode,
-        referencedContainer: String,
-        pbxTarget: PBXTarget,
-        hostPBXTarget: PBXTarget?,
-        hostIndex: Int?,
-        disambiguateHost: Bool,
-        extensionPointIdentifiers: Set<ExtensionPointIdentifier>
-    ) throws -> XCScheme {
-        let isLaunchable = pbxTarget.isLaunchable
-        let isTestable = pbxTarget.isTestable
-        let productType = pbxTarget.productType ?? .none
-        let isWatchApplication = productType.isWatchApplication
-        let isWidgetKitExtension = extensionPointIdentifiers
-            .contains(.widgetKitExtension)
-
-        let buildableReference = try pbxTarget.createBuildableReference(
-            referencedContainer: referencedContainer
-        )
-        let hostBuildableReference = try hostPBXTarget?
-            .createBuildableReference(
-                referencedContainer: referencedContainer
-            )
-
-        let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
-        let runnables = createRunnables(
-            buildableReference: buildableReference,
-            isLaunchable: isLaunchable,
-            isTestable: isTestable,
-            isWidgetKitExtension: isWidgetKitExtension
-        )
-        let macroExpansions = createMacroExpansions(
-            buildableReference: buildableReference,
-            hostBuildableReference: hostBuildableReference,
-            isTestable: isTestable,
-            isWatchApplication: isWatchApplication
-        )
-        let selectedIdentifiers = createSelectedIdentifiers(
-            productType: productType
-        )
-        let launchAutomaticallySubstyle = productType
-            .launchAutomaticallySubstyle
-
-        let buildAction = XCScheme.BuildAction(
-            buildActionEntries: createBuildActionEntries(
-                buildableReference: buildableReference,
-                hostBuildableReference: hostBuildableReference
-            ),
-            // swiftlint:disable:previous trailing_comma
-            preActions: createBuildPreActions(
-                buildMode: buildMode,
-                pbxTarget: pbxTarget,
-                hostIndex: hostIndex,
-                buildableReference: buildableReference
-            ),
-            parallelizeBuild: true,
-            buildImplicitDependencies: true
-        )
-        let launchAction = XCScheme.LaunchAction(
-            runnable: runnables.launch,
-            buildConfiguration: buildConfigurationName,
-            macroExpansion: macroExpansions.launch,
-            selectedDebuggerIdentifier: selectedIdentifiers.debugger,
-            selectedLauncherIdentifier: selectedIdentifiers.launcher,
-            askForAppToLaunch: runnables.askForAppToLaunch,
-            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
-                productType.bazelLaunchEnvironmentVariables : nil,
-            launchAutomaticallySubstyle: launchAutomaticallySubstyle,
-            customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
-        )
-        let testAction = XCScheme.TestAction(
-            buildConfiguration: buildConfigurationName,
-            macroExpansion: macroExpansions.test,
-            testables: createTestables(
-                buildableReference: buildableReference,
-                isTestable: isTestable
-            ),
-            customLLDBInitFile: "$(BAZEL_LLDB_INIT)"
-        )
-        let profileAction = XCScheme.ProfileAction(
-            buildableProductRunnable: runnables.profile,
-            buildConfiguration: buildConfigurationName
-        )
-        let analyzeAction = XCScheme.AnalyzeAction(
-            buildConfiguration: buildConfigurationName
-        )
-        let archiveAction = XCScheme.ArchiveAction(
-            buildConfiguration: buildConfigurationName,
-            revealArchiveInOrganizer: true
-        )
-
-        let schemeName: String
-        if let hostPBXTarget = hostPBXTarget, disambiguateHost {
-            schemeName = """
-\(pbxTarget.schemeName) in \(hostPBXTarget.schemeName)
+            let shouldCreateTestAction = pbxTarget.isTestable
+            let shouldCreateLaunchAction = pbxTarget.isLaunchable
+            let schemeInfo = try XCSchemeInfo(
+                buildActionInfo: .init(targetInfos: [targetInfo]),
+                testActionInfo: shouldCreateTestAction ?
+                    .init(
+                        buildConfigurationName: buildConfigurationName,
+                        targetInfos: [targetInfo]
+                    ) : nil,
+                launchActionInfo: shouldCreateLaunchAction ?
+                    .init(
+                        buildConfigurationName: buildConfigurationName,
+                        targetInfo: targetInfo
+                    ) : nil,
+                profileActionInfo: shouldCreateLaunchAction ?
+                    .init(
+                        buildConfigurationName: buildConfigurationName,
+                        targetInfo: targetInfo
+                    ) : nil,
+                analyzeActionInfo: .init(buildConfigurationName: buildConfigurationName),
+                archiveActionInfo: .init(buildConfigurationName: buildConfigurationName)
+            ) { buildActionInfo, _, _, _ in
+                guard let targetInfo = buildActionInfo?.targetInfos.first else {
+                    throw PreconditionError(message: """
+Expected to find a `TargetInfo` in the `BuildActionInfo`.
+""")
+                }
+                let schemeName: String
+                if let selectedHostInfo = try targetInfo.selectedHostInfo,
+                    targetInfo.disambiguateHost
+                {
+                    schemeName = """
+\(targetInfo.pbxTarget.schemeName) in \(selectedHostInfo.pbxTarget.schemeName)
 """
-        } else {
-            schemeName = pbxTarget.schemeName
-        }
-
-        return XCScheme(
-            name: schemeName,
-            lastUpgradeVersion: defaultLastUpgradeVersion,
-            version: lldbInitVersion,
-            buildAction: buildAction,
-            testAction: testAction,
-            launchAction: launchAction,
-            profileAction: profileAction,
-            analyzeAction: analyzeAction,
-            archiveAction: archiveAction,
-            wasCreatedForAppExtension: productType.isExtension ? true : nil
-        )
-    }
-
-    private static func createRunnables(
-        buildableReference: XCScheme.BuildableReference,
-        isLaunchable: Bool,
-        isTestable: Bool,
-        isWidgetKitExtension: Bool
-    ) -> (
-        askForAppToLaunch: Bool?,
-        launch: XCScheme.Runnable?,
-        profile: XCScheme.BuildableProductRunnable?
-    ) {
-        guard !isTestable else {
-            return (askForAppToLaunch: nil, launch: nil, profile: nil)
-        }
-
-        let runnable: XCScheme.BuildableProductRunnable? = isLaunchable ?
-            .init(buildableReference: buildableReference) : nil
-
-        if isWidgetKitExtension {
-            let remoteRunnable = XCScheme.RemoteRunnable(
-                buildableReference: buildableReference,
-                bundleIdentifier: "com.apple.springboard",
-                runnableDebuggingMode: "2"
-            )
-            return (
-                askForAppToLaunch: true,
-                launch: remoteRunnable,
-                profile: runnable
-            )
-        } else {
-            // If targeting a device for a Watch App, Xcode modifies the scheme
-            // to use a `RemoteRunnable`. It does this automatically though, so
-            // we don't have to account for it
-            return (
-                askForAppToLaunch: nil,
-                launch: runnable,
-                profile: runnable
-            )
-        }
-    }
-
-    private static func createMacroExpansions(
-        buildableReference: XCScheme.BuildableReference,
-        hostBuildableReference: XCScheme.BuildableReference?,
-        isTestable: Bool,
-        isWatchApplication: Bool
-    ) -> (
-        launch: XCScheme.BuildableReference?,
-        test: XCScheme.BuildableReference?
-    ) {
-        if let hostBuildableReference = hostBuildableReference,
-           !isWatchApplication {
-            return (launch: hostBuildableReference, test: nil)
-        } else if isTestable {
-            return (launch: buildableReference, test: nil)
-        } else {
-            return (launch: nil, test: nil)
-        }
-    }
-
-    private static func createSelectedIdentifiers(
-        productType: PBXProductType
-    ) -> (launcher: String, debugger: String) {
-        if productType.canUseDebugLauncher {
-            return (
-                launcher: XCScheme.defaultLauncher,
-                debugger: XCScheme.defaultDebugger
-            )
-        } else {
-            return (
-                launcher: "Xcode.IDEFoundation.Launcher.PosixSpawn",
-                debugger: ""
-            )
-        }
-    }
-
-    private static func createTestables(
-        buildableReference: XCScheme.BuildableReference,
-        isTestable: Bool
-    ) -> [XCScheme.TestableReference] {
-        guard isTestable else {
-            return []
-        }
-
-        return [.init(
-            skipped: false,
-            buildableReference: buildableReference
-        )]
-    }
-
-    private static func createBuildActionEntries(
-        buildableReference: XCScheme.BuildableReference,
-        hostBuildableReference: XCScheme.BuildableReference?
-    ) -> [XCScheme.BuildAction.Entry] {
-        return [buildableReference, hostBuildableReference]
-            .compactMap { $0 }
-            .map { buildableReference in
-                return XCScheme.BuildAction.Entry(
-                    buildableReference: buildableReference,
-                    buildFor: [
-                        .running,
-                        .testing,
-                        .profiling,
-                        .archiving,
-                        .analyzing,
-                    ]
-                )
-            }
-    }
-
-    private static func createBuildPreActions(
-        buildMode: BuildMode,
-        pbxTarget: PBXTarget,
-        hostIndex: Int?,
-        buildableReference: XCScheme.BuildableReference
-    ) -> [XCScheme.ExecutionAction] {
-        let scriptText: String
-        if pbxTarget is PBXNativeTarget {
-            let prefix = buildMode.buildOutputGroupPrefix
-
-            let hostTargetOutputGroup: String
-            if let hostIndex = hostIndex {
-                hostTargetOutputGroup = #"""
-echo "\#(prefix) $BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
->> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-"""#
-            } else {
-                hostTargetOutputGroup = ""
+                } else {
+                    schemeName = targetInfo.pbxTarget.schemeName
+                }
+                return schemeName
             }
 
-            scriptText = #"""
-mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-echo "\#(prefix) $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-\#(hostTargetOutputGroup)
-"""#
-        } else {
-            scriptText = #"""
-if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
-    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
-fi
-
-"""#
+            return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
         }
-
-        return [XCScheme.ExecutionAction(
-            scriptText: scriptText,
-            title: "Set Bazel Build Output Groups",
-            environmentBuildable: buildableReference
-        )]
-        // swiftlint:disable:previous trailing_comma
     }
 }

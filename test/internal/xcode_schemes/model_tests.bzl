@@ -75,6 +75,7 @@ def _test_action_test(ctx):
 
     actual = xcode_schemes.test_action(targets)
     expected = struct(
+        build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
         targets = [bazel_labels.normalize(t) for t in targets],
     )
     asserts.equals(env, expected, actual)
@@ -98,6 +99,7 @@ def _launch_action_test(ctx):
         working_directory = working_directory,
     )
     expected = struct(
+        build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
         target = bazel_labels.normalize(target),
         args = args,
         env = env,

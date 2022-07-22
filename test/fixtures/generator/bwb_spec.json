@@ -16,12 +16,14 @@
             "build_action": null,
             "launch_action": {
                 "args": [],
+                "build_configuration_name": "Debug",
                 "env": {},
                 "target": "//tools/generator:generator",
                 "working_directory": null
             },
             "name": "Generator",
             "test_action": {
+                "build_configuration_name": "Debug",
                 "targets": [
                     "//tools/generator/test:tests"
                 ]
@@ -200,7 +202,14 @@
                     "tools/generator/test/SetTargetConfigurationsTests.swift",
                     "tools/generator/test/SetTargetDependenciesTests.swift",
                     "tools/generator/test/Target+Testing.swift",
+                    "tools/generator/test/XCScheme+ExtensionsTests.swift",
                     "tools/generator/test/XCSchemeEnvironmentVariablesExtensionsTests.swift",
+                    "tools/generator/test/XCSchemeInfo+BuildActionInfoTests.swift",
+                    "tools/generator/test/XCSchemeInfo+LaunchActionInfoTests.swift",
+                    "tools/generator/test/XCSchemeInfo+ProfileActionInfoTests.swift",
+                    "tools/generator/test/XCSchemeInfo+TargetInfoTests.swift",
+                    "tools/generator/test/XCSchemeInfo+TestActionInfoTests.swift",
+                    "tools/generator/test/XCSchemeInfoTests.swift",
                     "tools/generator/test/XcodeProj+CustomDump.swift",
                     "tools/generator/test/XcodeScheme+ExtensionsTests.swift"
                 ]
@@ -417,6 +426,7 @@
                     "tools/generator/src/Extensions/PBXTarget+Extensions.swift",
                     "tools/generator/src/Extensions/Path+Extensions.swift",
                     "tools/generator/src/Extensions/Sorting.swift",
+                    "tools/generator/src/Extensions/XCScheme+Extensions.swift",
                     "tools/generator/src/Extensions/XCSchemeEnvrionmentVariables+Extensions.swift",
                     "tools/generator/src/Extensions/XcodeScheme+Extensions.swift",
                     "tools/generator/src/FilePathResolver.swift",
@@ -438,6 +448,14 @@
                     "tools/generator/src/Generator/SetTargetConfigurations.swift",
                     "tools/generator/src/Generator/SetTargetDependencies.swift",
                     "tools/generator/src/Generator/WriteXcodeProj.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+BuildActionInfo.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+HostInfo.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+LaunchActionInfo.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+OtherActionInfos.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+ProfileActionInfo.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+TargetInfo.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+TestActionInfo.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo.swift",
                     "tools/generator/src/Logger.swift"
                 ]
             },

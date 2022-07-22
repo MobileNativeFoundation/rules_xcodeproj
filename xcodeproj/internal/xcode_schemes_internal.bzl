@@ -39,21 +39,25 @@ def _build_action(targets):
         targets = targets,
     )
 
-def _test_action(targets):
+def _test_action(targets, build_configuration_name):
     """Constructs a test action for an Xcode scheme.
 
     Args:
         targets: A `sequence` of target labels as `string` values.
+        build_configuration_name: The name of the build configuration as a
+            `string` value.
 
     Return:
         A `struct` representing a test action.
     """
     return struct(
         targets = targets,
+        build_configuration_name = build_configuration_name,
     )
 
 def _launch_action(
         target,
+        build_configuration_name,
         args = None,
         env = None,
         working_directory = None):
@@ -61,6 +65,8 @@ def _launch_action(
 
     Args:
         target: A target label as a `string` value.
+        build_configuration_name: The name of the build configuration as a
+            `string` value.
         args: Optional. A `list` of `string` arguments that should be passed to
             the target when executed.
         env: Optional. A `dict` of `string` values that will be set as
@@ -73,6 +79,7 @@ def _launch_action(
     """
     return struct(
         target = target,
+        build_configuration_name = build_configuration_name,
         args = args if args != None else [],
         env = env if env != None else {},
         working_directory = working_directory,
