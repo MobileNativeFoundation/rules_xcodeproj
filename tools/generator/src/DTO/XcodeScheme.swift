@@ -34,6 +34,14 @@ extension XcodeScheme {
     struct TestAction: Equatable, Decodable {
         let buildConfigurationName: String
         let targets: Set<BazelLabel>
+
+        init(
+            targets: Set<BazelLabel>,
+            buildConfigurationName: String = XCSchemeConstants.defaultBuildConfigurationName
+        ) {
+            self.targets = targets
+            self.buildConfigurationName = buildConfigurationName
+        }
     }
 }
 
@@ -46,6 +54,20 @@ extension XcodeScheme {
         let args: [String]
         let env: [String: String]
         let workingDirectory: String?
+
+        init(
+            target: BazelLabel,
+            buildConfigurationName: String = XCSchemeConstants.defaultBuildConfigurationName,
+            args: [String] = [],
+            env: [String: String] = [:],
+            workingDirectory: String? = nil
+        ) {
+            self.target = target
+            self.buildConfigurationName = buildConfigurationName
+            self.args = args
+            self.env = env
+            self.workingDirectory = workingDirectory
+        }
     }
 }
 
@@ -55,5 +77,13 @@ extension XcodeScheme {
     struct ProfileAction: Equatable, Decodable {
         let buildConfigurationName: String
         let target: BazelLabel
+
+        init(
+            target: BazelLabel,
+            buildConfigurationName: String = XCSchemeConstants.defaultBuildConfigurationName
+        ) {
+            self.target = target
+            self.buildConfigurationName = buildConfigurationName
+        }
     }
 }

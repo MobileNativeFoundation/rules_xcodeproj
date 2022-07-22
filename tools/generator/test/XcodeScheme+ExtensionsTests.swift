@@ -13,8 +13,8 @@ extension XcodeSchemeExtensionsTests {
             buildAction: .init(targets: [libLabel, toolLabel]),
             testAction: nil,
             launchAction: .init(
-                buildConfigurationName: buildConfigurationName,
                 target: toolLabel,
+                buildConfigurationName: buildConfigurationName,
                 args: [],
                 env: [:],
                 workingDirectory: nil
@@ -386,8 +386,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         buildAction: .init(targets: [libLabel]),
         testAction: nil,
         launchAction: .init(
-            buildConfigurationName: buildConfigurationName,
             target: toolLabel,
+            buildConfigurationName: buildConfigurationName,
             args: [],
             env: [:],
             workingDirectory: nil
@@ -397,10 +397,10 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     lazy var iOSAppScheme = XcodeScheme(
         name: "iOSApp",
         buildAction: .init(targets: [libLabel]),
-        testAction: .init(buildConfigurationName: buildConfigurationName, targets: [libTestsLabel]),
+        testAction: .init(targets: [libTestsLabel], buildConfigurationName: buildConfigurationName),
         launchAction: .init(
-            buildConfigurationName: buildConfigurationName,
             target: iOSAppLabel,
+            buildConfigurationName: buildConfigurationName,
             args: [],
             env: [:],
             workingDirectory: nil
@@ -412,8 +412,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         buildAction: .init(targets: [libLabel]),
         testAction: nil,
         launchAction: .init(
-            buildConfigurationName: buildConfigurationName,
             target: tvOSAppLabel,
+            buildConfigurationName: buildConfigurationName,
             args: [],
             env: [:],
             workingDirectory: nil

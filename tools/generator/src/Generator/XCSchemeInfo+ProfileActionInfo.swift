@@ -52,7 +52,7 @@ extension XCSchemeInfo.ProfileActionInfo {
         guard let profileAction = profileAction else {
           return nil
         }
-        try self.init(
+        self.init(
             buildConfigurationName: profileAction.buildConfigurationName,
             targetInfo: try targetResolver.targetInfo(
                 targetID: try targetIDsByLabel.value(
