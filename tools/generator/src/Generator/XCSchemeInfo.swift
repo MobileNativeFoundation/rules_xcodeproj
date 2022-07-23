@@ -59,10 +59,10 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
             topLevelTargetInfos: topLevelTargetInfos
         )
         self.analyzeActionInfo = analyzeActionInfo ?? .init(
-            buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
+            buildConfigurationName: .defaultBuildConfigurationName
         )
         self.archiveActionInfo = archiveActionInfo ?? .init(
-            buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
+            buildConfigurationName: .defaultBuildConfigurationName
         )
 
         let schemeName: String
