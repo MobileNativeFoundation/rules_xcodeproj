@@ -8,14 +8,14 @@ extension Generator {
         schemeAutogenerationMode: SchemeAutogenerationMode,
         buildMode: BuildMode,
         targetResolver: TargetResolver,
-        customSchemeNames: Set<String>
+        customSchemeNames _: Set<String>
     ) throws -> [XCScheme] {
         guard schemeAutogenerationMode != .none else {
             return []
         }
-        guard schemeAutogenerationMode != .auto, !customSchemeNames.isEmpty else {
-            return []
-        }
+        // guard schemeAutogenerationMode != .auto, !customSchemeNames.isEmpty else {
+        //     return []
+        // }
 
         return try targetResolver
             .targetInfos.filter(\.pbxTarget.shouldCreateScheme)
