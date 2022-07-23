@@ -62,7 +62,7 @@ env -i \
             in: pbxProj,
             buildMode: buildMode,
             targets: consolidatedTargets.targets.values
-                .flatMap { $0.sortedTargets },
+                .flatMap(\.sortedTargets),
             files: files,
             filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel,
@@ -161,7 +161,7 @@ env -i \
         targets: [Target],
         filePathResolver: FilePathResolver
     ) throws -> String {
-        var overlays: [String] = [#"""
+        var overlays = [#"""
 
 # Use actual paths for Bazel generated files
 # This also fixes Index Build to use its version of generated files
@@ -217,7 +217,7 @@ if [ -s "$output_groups_file" ]; then
   done < "$output_groups_file"
 fi
 
-if [ -z "$output_groups" ]; then
+if [ -z "${output_groups:-}" ]; then
   echo "error: BazelDependencies invoked without any output groups set. \#
 Please file a bug report here: \#
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
