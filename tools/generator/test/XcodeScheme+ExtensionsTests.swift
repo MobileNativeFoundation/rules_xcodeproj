@@ -77,6 +77,14 @@ extension XcodeSchemeExtensionsTests {
     }
 }
 
+// MARK: `buildActionWithAllTargets` Tests
+
+extension XcodeSchemeExtensionsTests {
+    func test_buildActionWithAllTargets() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+}
+
 // MARK: Test Data
 
 // swiftlint:disable:next type_body_length

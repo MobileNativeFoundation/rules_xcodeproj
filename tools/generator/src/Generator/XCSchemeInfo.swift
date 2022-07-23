@@ -124,7 +124,7 @@ extension XCSchemeInfo {
         try self.init(
             name: scheme.name,
             buildActionInfo: .init(
-                buildAction: scheme.buildAction,
+                buildAction: scheme.buildActionWithAllTargets,
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             ),

@@ -159,7 +159,11 @@ extension XCSchemeInfoTests {
         let expected = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: try .init(
-                targetInfos: [try targetResolver.targetInfo(targetID: "A 1")]
+                targetInfos: [
+                    try targetResolver.targetInfo(targetID: "A 1"),
+                    try targetResolver.targetInfo(targetID: "A 2"),
+                    try targetResolver.targetInfo(targetID: "B 2"),
+                ]
             ),
             testActionInfo: try .init(
                 buildConfigurationName: .defaultBuildConfigurationName,
@@ -174,6 +178,20 @@ extension XCSchemeInfoTests {
                 targetInfo: try targetResolver.targetInfo(targetID: "A 2")
             )
         )
+        // DEBUG BEGIN
+        if let buildActionInfo = actual.buildActionInfo {
+            fputs("*** CHUCK actual buildActionInfo.targetInfos:\n", stderr)
+            for (idx, item) in buildActionInfo.targetInfos.map(\.pbxTarget.name).enumerated() {
+                fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+            }
+        }
+        if let buildActionInfo = expected.buildActionInfo {
+            fputs("*** CHUCK expected buildActionInfo.targetInfos:\n", stderr)
+            for (idx, item) in buildActionInfo.targetInfos.map(\.pbxTarget.name).enumerated() {
+                fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
+            }
+        }
+        // DEBUG END
         XCTAssertEqual(actual, expected)
     }
 }
