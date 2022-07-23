@@ -16,22 +16,6 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for tests"
-               scriptText = "echo &quot;b $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "979D12680661F4B864602CE6"
-                     BuildableName = "tests.xctest"
-                     BlueprintName = "tests"
-                     ReferencedContainer = "container:test/fixtures/generator/bwb.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
                title = "Set Bazel Build Output Groups for generator"
                scriptText = "echo &quot;b $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
                <EnvironmentBuildable>
@@ -40,6 +24,22 @@
                      BlueprintIdentifier = "85C876DB90D51CD225023BB2"
                      BuildableName = "generator"
                      BlueprintName = "generator"
+                     ReferencedContainer = "container:test/fixtures/generator/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Set Bazel Build Output Groups for tests"
+               scriptText = "echo &quot;b $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "979D12680661F4B864602CE6"
+                     BuildableName = "tests.xctest"
+                     BlueprintName = "tests"
                      ReferencedContainer = "container:test/fixtures/generator/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -55,9 +55,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "979D12680661F4B864602CE6"
-               BuildableName = "tests.xctest"
-               BlueprintName = "tests"
+               BlueprintIdentifier = "85C876DB90D51CD225023BB2"
+               BuildableName = "generator"
+               BlueprintName = "generator"
                ReferencedContainer = "container:test/fixtures/generator/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -69,9 +69,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85C876DB90D51CD225023BB2"
-               BuildableName = "generator"
-               BlueprintName = "generator"
+               BlueprintIdentifier = "979D12680661F4B864602CE6"
+               BuildableName = "tests.xctest"
+               BlueprintName = "tests"
                ReferencedContainer = "container:test/fixtures/generator/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
