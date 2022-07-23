@@ -177,7 +177,9 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
     func buildPreActions(buildMode: BuildMode) throws -> [XCScheme.ExecutionAction] {
-        let preActions = try compactMap { try $0.buildPreAction(buildMode: buildMode) }
+        // We sort the list so that the actions are serialized in a consistent order.
+        let sorted = sorted { $0.pbxTarget.name < $1.pbxTarget.name }
+        let preActions = try sorted.compactMap { try $0.buildPreAction(buildMode: buildMode) }
         return [.initBazelBuildOutputGroupsFile] + preActions
     }
 }
