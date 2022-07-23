@@ -62,7 +62,7 @@ env -i \
             in: pbxProj,
             buildMode: buildMode,
             targets: consolidatedTargets.targets.values
-                .flatMap(\.sortedTargets),
+                .flatMap { $0.sortedTargets },
             files: files,
             filePathResolver: filePathResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel,
@@ -161,7 +161,7 @@ env -i \
         targets: [Target],
         filePathResolver: FilePathResolver
     ) throws -> String {
-        var overlays = [#"""
+        var overlays: [String] = [#"""
 
 # Use actual paths for Bazel generated files
 # This also fixes Index Build to use its version of generated files
