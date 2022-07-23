@@ -8,10 +8,6 @@ enum XCSchemeConstants {
     static let customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
 }
 
-extension String {
-    static let defaultBuildConfigurationName = "Debug"
-}
-
 extension XCScheme.BuildableReference {
     convenience init(pbxTarget: PBXTarget, referencedContainer: String) {
         self.init(
