@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    enum HostResolution: Equatable {
+    enum HostResolution: Equatable, Hashable {
         /// Host resolution has not occurred.
         case unresolved
         /// Host resoultion has occurred. No host was selected.
@@ -10,7 +10,7 @@ extension XCSchemeInfo {
         case selected(HostInfo)
     }
 
-    struct TargetInfo: Equatable {
+    struct TargetInfo: Equatable, Hashable {
         let pbxTarget: PBXTarget
         let buildableReference: XCScheme.BuildableReference
         let hostInfos: [HostInfo]
