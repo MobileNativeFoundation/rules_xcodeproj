@@ -4,11 +4,22 @@ import XCTest
 
 extension CreateCustomXCSchemesTests {
     func test_createCustomXCSchemes_noCustomSchemes() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actual = try Generator.createCustomXCSchemes(
+            schemes: [],
+            buildMode: .bazel,
+            targetResolver: targetResolver
+        )
+        XCTAssertEqual(actual, [])
     }
 
     func test_createCustomXCSchemes_withCustomSchemes() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actual = try Generator.createCustomXCSchemes(
+            schemes: [schemeA, schemeB],
+            buildMode: .bazel,
+            targetResolver: targetResolver
+        )
+        XCTAssertEqual(actual.count, 2)
+        XCTAssertEqual(actual.map(\.name), [schemeA.name, schemeB.name])
     }
 }
 
