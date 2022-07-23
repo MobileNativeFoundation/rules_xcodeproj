@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    struct TestActionInfo {
+    struct TestActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
 
@@ -42,6 +42,31 @@ extension XCSchemeInfo.TestActionInfo {
             buildConfigurationName: original.buildConfigurationName,
             targetInfos: original.targetInfos.map {
                 .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
+            }
+        )
+    }
+}
+
+// MARK: Custom Scheme Initializer
+
+extension XCSchemeInfo.TestActionInfo {
+    init?(
+        testAction: XcodeScheme.TestAction?,
+        targetResolver: TargetResolver,
+        targetIDsByLabel: [BazelLabel: TargetID]
+    ) throws {
+        guard let testAction = testAction else {
+          return nil
+        }
+        try self.init(
+            buildConfigurationName: testAction.buildConfigurationName,
+            targetInfos: try testAction.targets.map { label in
+                return try targetResolver.targetInfo(
+                    targetID: try targetIDsByLabel.value(
+                        for: label,
+                        context: "creating a `TestActionInfo`"
+                    )
+                )
             }
         )
     }

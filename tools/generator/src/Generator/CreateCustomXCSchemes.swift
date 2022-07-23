@@ -4,11 +4,16 @@ import XcodeProj
 extension Generator {
     /// Creates an array of `XCScheme` entries from the scheme descriptions.
     static func createCustomXCSchemes(
-        schemes _: [XcodeScheme],
-        buildMode _: BuildMode,
-        targetResolver _: TargetResolver
+        schemes: [XcodeScheme],
+        buildMode: BuildMode,
+        targetResolver: TargetResolver
     ) throws -> [XCScheme] {
-        // GH573: Implement custom scheme creation
-        return []
+        return try schemes.map { scheme in
+            let schemeInfo = try XCSchemeInfo(
+                scheme: scheme,
+                targetResolver: targetResolver
+            )
+            return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
+        }
     }
 }

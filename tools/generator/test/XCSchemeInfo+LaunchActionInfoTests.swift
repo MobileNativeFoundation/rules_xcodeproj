@@ -259,6 +259,35 @@ extension XCSchemeInfoLaunchActionInfoTests {
     }
 }
 
+// MARK: - Custom Scheme Initializer Tests
+
+extension XCSchemeInfoLaunchActionInfoTests {
+    func test_customSchemeInit_noLaunchAction() throws {
+        let actual = try XCSchemeInfo.LaunchActionInfo(
+            launchAction: nil,
+            targetResolver: targetResolver,
+            targetIDsByLabel: [:]
+        )
+        XCTAssertNil(actual)
+    }
+
+    func test_customSchemeInit_withLaunchAction() throws {
+        let actual = try XCSchemeInfo.LaunchActionInfo(
+            launchAction: xcodeScheme.launchAction,
+            targetResolver: targetResolver,
+            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targets: targetResolver.targets)
+        )
+        let expected = try XCSchemeInfo.LaunchActionInfo(
+            buildConfigurationName: .defaultBuildConfigurationName,
+            targetInfo: try targetResolver.targetInfo(targetID: "A 2"),
+            args: customArgs,
+            env: customEnv,
+            workingDirectory: customWorkingDirectory
+        )
+        XCTAssertEqual(actual, expected)
+    }
+}
+
 // MARK: - Test Data
 
 class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
@@ -269,12 +298,11 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
-        Fixtures.pbxTargets(
-            in: Fixtures.pbxProj(),
-            consolidatedTargets: Fixtures.consolidatedTargets
-        )
-        .0
+    lazy var targetResolver = Fixtures.targetResolver(
+        referencedContainer: filePathResolver.containerReference
+    )
+
+    lazy var pbxTargetsDict = targetResolver.pbxTargets
 
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
@@ -323,5 +351,19 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
         pbxTarget: appTarget,
         referencedContainer: filePathResolver.containerReference,
         index: 0
+    )
+
+    let customArgs = ["custom_args"]
+    let customEnv = ["RELEASE_KRAKEN": "TRUE"]
+    let customWorkingDirectory = "/path/to/work"
+
+    lazy var xcodeScheme = XcodeScheme(
+        name: "My Scheme",
+        launchAction: .init(
+            target: targetResolver.targets["A 2"]!.label,
+            args: customArgs,
+            env: customEnv,
+            workingDirectory: customWorkingDirectory
+        )
     )
 }

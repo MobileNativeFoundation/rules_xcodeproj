@@ -70,26 +70,39 @@ Host target, "\(hostKey)", for "\(key)" not found in `pbxTargets`.
     }
 }
 
+// MARK: XCScheme.TargetInfo Helpers
+
 extension TargetResolver {
+    private func targetInfo(
+        key: ConsolidatedTarget.Key,
+        pbxTarget: PBXTarget
+    ) -> XCSchemeInfo.TargetInfo {
+        return .init(
+            pbxTarget: pbxTarget,
+            referencedContainer: referencedContainer,
+            hostInfos: keyedHostPBXTargets[key, default: []].elements.enumerated()
+                .map { hostIndex, hostPBXTarget in
+                    .init(
+                        pbxTarget: hostPBXTarget,
+                        referencedContainer: referencedContainer,
+                        index: hostIndex
+                    )
+                },
+            extensionPointIdentifiers: keyedExtensionPointIdentifiers[key, default: []]
+        )
+    }
+
+    func targetInfo(targetID: TargetID) throws -> XCSchemeInfo.TargetInfo {
+        let context = "creating a `TargetInfo`"
+        let key = try consolidatedTargetKeys.value(for: targetID, context: context)
+        let pbxTarget = try pbxTargets.value(for: key, context: context)
+        return targetInfo(key: key, pbxTarget: pbxTarget)
+    }
+
     /// Creates `XCSchemeInfo.TargetInfo` values for all eligible targets.
-    var schemeTargetInfos: [XCSchemeInfo.TargetInfo] {
-        return pbxTargets.compactMap { key, pbxTarget in
-            guard pbxTarget.shouldCreateScheme else {
-                return nil
-            }
-            return .init(
-                pbxTarget: pbxTarget,
-                referencedContainer: referencedContainer,
-                hostInfos: keyedHostPBXTargets[key, default: []].elements.enumerated()
-                    .map { hostIndex, hostPBXTarget in
-                        .init(
-                            pbxTarget: hostPBXTarget,
-                            referencedContainer: referencedContainer,
-                            index: hostIndex
-                        )
-                    },
-                extensionPointIdentifiers: keyedExtensionPointIdentifiers[key, default: []]
-            )
+    var targetInfos: [XCSchemeInfo.TargetInfo] {
+        return pbxTargets.map { key, pbxTarget in
+            return targetInfo(key: key, pbxTarget: pbxTarget)
         }
     }
 }

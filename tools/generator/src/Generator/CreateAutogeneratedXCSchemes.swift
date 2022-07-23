@@ -13,51 +13,53 @@ extension Generator {
             return []
         }
 
-        return try targetResolver.schemeTargetInfos.map { targetInfo in
-            let pbxTarget = targetInfo.pbxTarget
-            let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
+        return try targetResolver
+            .targetInfos.filter(\.pbxTarget.shouldCreateScheme)
+            .map { targetInfo in
+                let pbxTarget = targetInfo.pbxTarget
+                let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
 
-            let shouldCreateTestAction = pbxTarget.isTestable
-            let shouldCreateLaunchAction = pbxTarget.isLaunchable
-            let schemeInfo = try XCSchemeInfo(
-                buildActionInfo: .init(targetInfos: [targetInfo]),
-                testActionInfo: shouldCreateTestAction ?
-                    .init(
-                        buildConfigurationName: buildConfigurationName,
-                        targetInfos: [targetInfo]
-                    ) : nil,
-                launchActionInfo: shouldCreateLaunchAction ?
-                    .init(
-                        buildConfigurationName: buildConfigurationName,
-                        targetInfo: targetInfo
-                    ) : nil,
-                profileActionInfo: shouldCreateLaunchAction ?
-                    .init(
-                        buildConfigurationName: buildConfigurationName,
-                        targetInfo: targetInfo
-                    ) : nil,
-                analyzeActionInfo: .init(buildConfigurationName: buildConfigurationName),
-                archiveActionInfo: .init(buildConfigurationName: buildConfigurationName)
-            ) { buildActionInfo, _, _, _ in
-                guard let targetInfo = buildActionInfo?.targetInfos.first else {
-                    throw PreconditionError(message: """
-Expected to find a `TargetInfo` in the `BuildActionInfo`.
-""")
+                let shouldCreateTestAction = pbxTarget.isTestable
+                let shouldCreateLaunchAction = pbxTarget.isLaunchable
+                let schemeInfo = try XCSchemeInfo(
+                    buildActionInfo: .init(targetInfos: [targetInfo]),
+                    testActionInfo: shouldCreateTestAction ?
+                        .init(
+                            buildConfigurationName: buildConfigurationName,
+                            targetInfos: [targetInfo]
+                        ) : nil,
+                    launchActionInfo: shouldCreateLaunchAction ?
+                        .init(
+                            buildConfigurationName: buildConfigurationName,
+                            targetInfo: targetInfo
+                        ) : nil,
+                    profileActionInfo: shouldCreateLaunchAction ?
+                        .init(
+                            buildConfigurationName: buildConfigurationName,
+                            targetInfo: targetInfo
+                        ) : nil,
+                    analyzeActionInfo: .init(buildConfigurationName: buildConfigurationName),
+                    archiveActionInfo: .init(buildConfigurationName: buildConfigurationName)
+                ) { buildActionInfo, _, _, _ in
+                    guard let targetInfo = buildActionInfo?.targetInfos.first else {
+                        throw PreconditionError(message: """
+    Expected to find a `TargetInfo` in the `BuildActionInfo`.
+    """)
+                    }
+                    let schemeName: String
+                    if let selectedHostInfo = try targetInfo.selectedHostInfo,
+                        targetInfo.disambiguateHost
+                    {
+                        schemeName = """
+    \(targetInfo.pbxTarget.schemeName) in \(selectedHostInfo.pbxTarget.schemeName)
+    """
+                    } else {
+                        schemeName = targetInfo.pbxTarget.schemeName
+                    }
+                    return schemeName
                 }
-                let schemeName: String
-                if let selectedHostInfo = try targetInfo.selectedHostInfo,
-                    targetInfo.disambiguateHost
-                {
-                    schemeName = """
-\(targetInfo.pbxTarget.schemeName) in \(selectedHostInfo.pbxTarget.schemeName)
-"""
-                } else {
-                    schemeName = targetInfo.pbxTarget.schemeName
-                }
-                return schemeName
+
+                return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
             }
-
-            return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
-        }
     }
 }

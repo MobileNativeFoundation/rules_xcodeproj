@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    struct LaunchActionInfo {
+    struct LaunchActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfo: XCSchemeInfo.TargetInfo
         let args: [String]
@@ -123,5 +123,31 @@ extension XCSchemeInfo.LaunchActionInfo {
             return ""
         }
         return XCScheme.defaultDebugger
+    }
+}
+
+// MARK: Custom Scheme Initializer
+
+extension XCSchemeInfo.LaunchActionInfo {
+    init?(
+        launchAction: XcodeScheme.LaunchAction?,
+        targetResolver: TargetResolver,
+        targetIDsByLabel: [BazelLabel: TargetID]
+    ) throws {
+        guard let launchAction = launchAction else {
+          return nil
+        }
+        try self.init(
+            buildConfigurationName: launchAction.buildConfigurationName,
+            targetInfo: try targetResolver.targetInfo(
+                targetID: try targetIDsByLabel.value(
+                    for: launchAction.target,
+                    context: "creating a `LaunchActionInfo`"
+                )
+            ),
+            args: launchAction.args,
+            env: launchAction.env,
+            workingDirectory: launchAction.workingDirectory
+        )
     }
 }

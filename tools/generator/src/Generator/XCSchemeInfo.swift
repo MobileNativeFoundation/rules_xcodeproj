@@ -1,6 +1,6 @@
 import XcodeProj
 
-struct XCSchemeInfo {
+struct XCSchemeInfo: Equatable {
     let name: String
     let buildActionInfo: XCSchemeInfo.BuildActionInfo?
     let testActionInfo: XCSchemeInfo.TestActionInfo?
@@ -110,5 +110,45 @@ extension XCSchemeInfo {
 extension XCSchemeInfo {
     var wasCreatedForAppExtension: Bool {
         return allPBXTargets.compactMap(\.productType).contains(where: \.isExtension)
+    }
+}
+
+// MARK: Custom Scheme Initializer
+
+extension XCSchemeInfo {
+    init(
+        scheme: XcodeScheme,
+        targetResolver: TargetResolver
+    ) throws {
+        let targetIDsByLabel = try scheme.resolveTargetIDs(targets: targetResolver.targets)
+        try self.init(
+            name: scheme.name,
+            buildActionInfo: .init(
+                buildAction: scheme.buildActionWithAllTargets,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            ),
+            testActionInfo: .init(
+                testAction: scheme.testAction,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            ),
+            launchActionInfo: .init(
+                launchAction: scheme.launchAction,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            ),
+            profileActionInfo: .init(
+                profileAction: scheme.profileAction,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            ),
+            analyzeActionInfo: .init(
+                buildConfigurationName: .defaultBuildConfigurationName
+            ),
+            archiveActionInfo: .init(
+                buildConfigurationName: .defaultBuildConfigurationName
+            )
+        )
     }
 }

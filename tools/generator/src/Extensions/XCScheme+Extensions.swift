@@ -4,7 +4,6 @@ enum XCSchemeConstants {
     // GH399: Derive the defaultLastUpgradeVersion
     static let defaultLastUpgradeVersion = "1320"
     static let lldbInitVersion = "1.7"
-    static let defaultBuildConfigurationName = "Debug"
     static let posixSpawnLauncher = "Xcode.IDEFoundation.Launcher.PosixSpawn"
     static let customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
 }

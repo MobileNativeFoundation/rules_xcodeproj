@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    struct BuildActionInfo {
+    struct BuildActionInfo: Equatable {
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
 
         init<TargetInfos: Sequence>(
@@ -32,6 +32,30 @@ extension XCSchemeInfo.BuildActionInfo {
         try self.init(
             targetInfos: original.targetInfos.map {
                 .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
+            }
+        )
+    }
+}
+
+// MARK: Custom Scheme Initializer
+
+extension XCSchemeInfo.BuildActionInfo {
+    init?(
+        buildAction: XcodeScheme.BuildAction?,
+        targetResolver: TargetResolver,
+        targetIDsByLabel: [BazelLabel: TargetID]
+    ) throws {
+        guard let buildAction = buildAction else {
+          return nil
+        }
+        try self.init(
+            targetInfos: try buildAction.targets.map { label in
+                return try targetResolver.targetInfo(
+                    targetID: try targetIDsByLabel.value(
+                        for: label,
+                        context: "creating a `BuildActionInfo`"
+                    )
+                )
             }
         )
     }
