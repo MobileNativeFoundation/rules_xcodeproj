@@ -1,13 +1,13 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    struct AnalyzeActionInfo {
+    struct AnalyzeActionInfo: Equatable {
         let buildConfigurationName: String
     }
 }
 
 extension XCSchemeInfo {
-    struct ArchiveActionInfo {
+    struct ArchiveActionInfo: Equatable {
         let buildConfigurationName: String
     }
 }

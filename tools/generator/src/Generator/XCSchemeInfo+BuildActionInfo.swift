@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    struct BuildActionInfo {
+    struct BuildActionInfo: Equatable {
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
 
         init<TargetInfos: Sequence>(

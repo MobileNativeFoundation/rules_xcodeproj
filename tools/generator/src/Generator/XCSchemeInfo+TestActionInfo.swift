@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    struct TestActionInfo {
+    struct TestActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
 

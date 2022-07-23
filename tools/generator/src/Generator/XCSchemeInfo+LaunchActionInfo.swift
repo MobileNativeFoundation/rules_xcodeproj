@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    struct LaunchActionInfo {
+    struct LaunchActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfo: XCSchemeInfo.TargetInfo
         let args: [String]

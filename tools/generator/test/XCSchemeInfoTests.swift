@@ -151,6 +151,33 @@ extension XCSchemeInfoTests {
     }
 }
 
+// MARK: - Custom Scheme Initializer Tests
+
+extension XCSchemeInfoTests {
+    func test_customSchemeInit() throws {
+        let actual = try XCSchemeInfo(scheme: xcodeScheme, targetResolver: targetResolver)
+        let expected = try XCSchemeInfo(
+            name: schemeName,
+            buildActionInfo: try .init(
+                targetInfos: [try targetResolver.targetInfo(targetID: "A 1")]
+            ),
+            testActionInfo: try .init(
+                buildConfigurationName: .defaultBuildConfigurationName,
+                targetInfos: [try targetResolver.targetInfo(targetID: "B 2")]
+            ),
+            launchActionInfo: try .init(
+                buildConfigurationName: .defaultBuildConfigurationName,
+                targetInfo: try targetResolver.targetInfo(targetID: "A 2")
+            ),
+            profileActionInfo: .init(
+                buildConfigurationName: .defaultBuildConfigurationName,
+                targetInfo: try targetResolver.targetInfo(targetID: "A 2")
+            )
+        )
+        XCTAssertEqual(actual, expected)
+    }
+}
+
 // MARK: - Test Data
 
 class XCSchemeInfoTests: XCTestCase {
@@ -162,12 +189,11 @@ class XCSchemeInfoTests: XCTestCase {
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
-        Fixtures.pbxTargets(
-            in: Fixtures.pbxProj(),
-            consolidatedTargets: Fixtures.consolidatedTargets
-        )
-        .0
+    lazy var targetResolver = Fixtures.targetResolver(
+        referencedContainer: filePathResolver.containerReference
+    )
+
+    lazy var pbxTargetsDict = targetResolver.pbxTargets
 
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
@@ -203,5 +229,13 @@ class XCSchemeInfoTests: XCTestCase {
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
+    )
+
+    lazy var xcodeScheme = XcodeScheme(
+        name: schemeName,
+        buildAction: .init(targets: [targetResolver.targets["A 1"]!.label]),
+        testAction: .init(targets: [targetResolver.targets["B 2"]!.label]),
+        launchAction: .init(target: targetResolver.targets["A 2"]!.label),
+        profileAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
 }

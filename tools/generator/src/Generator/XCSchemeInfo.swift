@@ -1,6 +1,6 @@
 import XcodeProj
 
-struct XCSchemeInfo {
+struct XCSchemeInfo: Equatable {
     let name: String
     let buildActionInfo: XCSchemeInfo.BuildActionInfo?
     let testActionInfo: XCSchemeInfo.TestActionInfo?
