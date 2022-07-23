@@ -37,6 +37,31 @@ extension XCSchemeInfoBuildActionInfoTests {
     }
 }
 
+// MARK: - Custom Scheme Initializer Tests
+
+extension XCSchemeInfoBuildActionInfoTests {
+    func test_customSchemeInit_noBuildAction() throws {
+        let actual = try XCSchemeInfo.BuildActionInfo(
+            buildAction: nil,
+            targetResolver: targetResolver,
+            targetIDsByLabel: [:]
+        )
+        XCTAssertNil(actual)
+    }
+
+    func test_customSchemeInit_withBuildAction() throws {
+        let actual = try XCSchemeInfo.BuildActionInfo(
+            buildAction: xcodeScheme.buildAction,
+            targetResolver: targetResolver,
+            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targets: targetResolver.targets)
+        )
+        let expected = try XCSchemeInfo.BuildActionInfo(
+            targetInfos: [try targetResolver.targetInfo(targetID: "A 1")]
+        )
+        XCTAssertEqual(actual, expected)
+    }
+}
+
 // MARK: - Test Data
 
 class XCSchemeInfoBuildActionInfoTests: XCTestCase {
@@ -45,12 +70,11 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
-        Fixtures.pbxTargets(
-            in: Fixtures.pbxProj(),
-            consolidatedTargets: Fixtures.consolidatedTargets
-        )
-        .0
+    lazy var targetResolver = Fixtures.targetResolver(
+        referencedContainer: filePathResolver.containerReference
+    )
+
+    lazy var pbxTargetsDict = targetResolver.pbxTargets
 
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var appTarget = pbxTargetsDict["A 2"]!
@@ -82,4 +106,10 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
             extensionPointIdentifiers: []
         ),
     ]
+
+    lazy var xcodeScheme = XcodeScheme(
+        name: "My Scheme",
+        buildAction: .init(targets: [targetResolver.targets["A 1"]!.label]),
+        launchAction: .init(target: targetResolver.targets["A 2"]!.label)
+    )
 }

@@ -93,16 +93,9 @@ extension TargetResolver {
     }
 
     func targetInfo(targetID: TargetID) throws -> XCSchemeInfo.TargetInfo {
-        guard let key = consolidatedTargetKeys[targetID] else {
-            throw PreconditionError(message: """
-The `ConsolidatedTarget.Key` for "\(targetID)" not found.
-""")
-        }
-        guard let pbxTarget = pbxTargets[key] else {
-            throw PreconditionError(message: """
-The `PBXTarget` for "\(key)" not found.
-""")
-        }
+        let context = "creating a `TargetInfo`"
+        let key = try consolidatedTargetKeys.value(for: targetID, context: context)
+        let pbxTarget = try pbxTargets.value(for: key, context: context)
         return targetInfo(key: key, pbxTarget: pbxTarget)
     }
 
