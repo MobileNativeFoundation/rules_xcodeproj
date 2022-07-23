@@ -144,10 +144,10 @@ extension XCSchemeInfo {
                 targetIDsByLabel: targetIDsByLabel
             ),
             analyzeActionInfo: .init(
-                buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
+                buildConfigurationName: .defaultBuildConfigurationName
             ),
             archiveActionInfo: .init(
-                buildConfigurationName: XCSchemeConstants.defaultBuildConfigurationName
+                buildConfigurationName: .defaultBuildConfigurationName
             )
         )
     }

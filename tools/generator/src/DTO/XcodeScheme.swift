@@ -37,7 +37,7 @@ extension XcodeScheme {
 
         init(
             targets: Set<BazelLabel>,
-            buildConfigurationName: String = XCSchemeConstants.defaultBuildConfigurationName
+            buildConfigurationName: String = .defaultBuildConfigurationName
         ) {
             self.targets = targets
             self.buildConfigurationName = buildConfigurationName
@@ -57,7 +57,7 @@ extension XcodeScheme {
 
         init(
             target: BazelLabel,
-            buildConfigurationName: String = XCSchemeConstants.defaultBuildConfigurationName,
+            buildConfigurationName: String = .defaultBuildConfigurationName,
             args: [String] = [],
             env: [String: String] = [:],
             workingDirectory: String? = nil
@@ -80,7 +80,7 @@ extension XcodeScheme {
 
         init(
             target: BazelLabel,
-            buildConfigurationName: String = XCSchemeConstants.defaultBuildConfigurationName
+            buildConfigurationName: String = .defaultBuildConfigurationName
         ) {
             self.target = target
             self.buildConfigurationName = buildConfigurationName
