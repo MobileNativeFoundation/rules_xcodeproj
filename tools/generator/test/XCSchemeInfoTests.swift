@@ -178,20 +178,6 @@ extension XCSchemeInfoTests {
                 targetInfo: try targetResolver.targetInfo(targetID: "A 2")
             )
         )
-        // DEBUG BEGIN
-        if let buildActionInfo = actual.buildActionInfo {
-            fputs("*** CHUCK actual buildActionInfo.targetInfos:\n", stderr)
-            for (idx, item) in buildActionInfo.targetInfos.map(\.pbxTarget.name).enumerated() {
-                fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-            }
-        }
-        if let buildActionInfo = expected.buildActionInfo {
-            fputs("*** CHUCK expected buildActionInfo.targetInfos:\n", stderr)
-            for (idx, item) in buildActionInfo.targetInfos.map(\.pbxTarget.name).enumerated() {
-                fputs("*** CHUCK   \(idx) : \(String(reflecting: item))\n", stderr)
-            }
-        }
-        // DEBUG END
         XCTAssertEqual(actual, expected)
     }
 }
