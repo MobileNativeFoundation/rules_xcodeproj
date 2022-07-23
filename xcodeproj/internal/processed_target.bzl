@@ -8,6 +8,7 @@ load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":product.bzl", "product_to_dto")
 load(":providers.bzl", "target_type")
+load(":target_search_paths.bzl", "target_search_paths")
 
 def processed_target(
         *,
@@ -50,7 +51,7 @@ def processed_target(
             the `XcodeProjInfo.potential_target_merges` `depset`.
         resource_bundle_informations: An optional `list` of `struct`s that will
             be in the `XcodeProjInfo.resource_bundle_informations` `depset`.
-        search_paths: The value returned from `_process_search_paths`.
+        search_paths: A value as returned from `target_search_paths.make`.
         target: An optional `XcodeProjInfo.target` `struct`.
         xcode_target: An optional string that will be in the
             `XcodeProjInfo.xcode_targets` `depset`.
@@ -88,7 +89,7 @@ def xcode_target(
         is_swift,
         test_host = None,
         build_settings,
-        search_paths,
+        search_paths = None,
         modulemaps,
         swiftmodules,
         inputs,
@@ -118,7 +119,8 @@ def xcode_target(
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
-        search_paths: The value returned from `_process_search_paths`.
+        search_paths: The value returned from `target_search_paths.make`,
+            or `None`.
         modulemaps: The value returned from `_process_modulemaps`.
         swiftmodules: The value returned from `_process_swiftmodules`.
         inputs: The value returned from `input_files.collect`.
@@ -159,7 +161,11 @@ def xcode_target(
 
     set_if_true(target_json, "test_host", test_host)
     set_if_true(target_json, "build_settings", build_settings)
-    set_if_true(target_json, "search_paths", search_paths)
+    set_if_true(
+        target_json,
+        "search_paths",
+        target_search_paths.to_dto(search_paths),
+    )
     set_if_true(
         target_json,
         "modulemaps",

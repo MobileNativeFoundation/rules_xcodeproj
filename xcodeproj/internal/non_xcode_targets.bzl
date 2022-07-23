@@ -10,16 +10,15 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
-load(":opts.bzl", "create_opts_search_paths")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
-load(":search_paths.bzl", "process_search_paths")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
     "process_dependencies",
     "should_bundle_resources",
 )
+load(":target_search_paths.bzl", "target_search_paths")
 
 def process_non_xcode_target(
         *,
@@ -107,14 +106,9 @@ rules_xcodeproj requires {} to have `{}` set.
             transitive_infos = transitive_infos,
         ),
         resource_bundle_informations = resource_bundle_informations,
-        search_paths = process_search_paths(
+        search_paths = target_search_paths.make(
             compilation_providers = compilation_providers,
             bin_dir_path = ctx.bin_dir.path,
-            opts_search_paths = create_opts_search_paths(
-                quote_includes = [],
-                includes = [],
-                system_includes = [],
-            ),
         ),
         target = None,
         xcode_target = None,

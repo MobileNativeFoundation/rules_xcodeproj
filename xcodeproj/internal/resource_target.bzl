@@ -60,7 +60,6 @@ def _process_resource_bundle(bundle, *, information):
         product = product,
         is_swift = False,
         build_settings = build_settings,
-        search_paths = {},
         modulemaps = process_modulemaps(swift_info = None),
         swiftmodules = process_swiftmodules(swift_info = None),
         inputs = input_files.from_resource_bundle(bundle),

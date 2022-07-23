@@ -22,7 +22,7 @@ load(":providers.bzl", "XcodeProjInfo")
 load(":processed_target.bzl", "processed_target", "xcode_target")
 load(":product.bzl", "process_product")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
-load(":search_paths.bzl", "process_search_paths")
+load(":target_search_paths.bzl", "target_search_paths")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
@@ -431,7 +431,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         compilation_providers = compilation_providers,
         build_settings = build_settings,
     )
-    search_paths = process_search_paths(
+    search_paths = target_search_paths.make(
         compilation_providers = compilation_providers,
         bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
