@@ -80,8 +80,25 @@ extension XcodeSchemeExtensionsTests {
 // MARK: `buildActionWithAllTargets` Tests
 
 extension XcodeSchemeExtensionsTests {
-    func test_buildActionWithAllTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_buildActionWithAllTargets_noOriginal() throws {
+        let scheme = XcodeScheme(
+            name: "Foo",
+            testAction: .init(targets: [libTestsLabel]),
+            launchAction: .init(target: iOSAppLabel)
+        )
+        let expected = XcodeScheme.BuildAction(targets: [iOSAppLabel, libTestsLabel])
+        XCTAssertEqual(scheme.buildActionWithAllTargets, expected)
+    }
+
+    func test_buildActionWithAllTargets_withOriginal() throws {
+        let scheme = XcodeScheme(
+            name: "Foo",
+            buildAction: .init(targets: [libLabel]),
+            testAction: .init(targets: [libTestsLabel]),
+            launchAction: .init(target: iOSAppLabel)
+        )
+        let expected = XcodeScheme.BuildAction(targets: [iOSAppLabel, libTestsLabel, libLabel])
+        XCTAssertEqual(scheme.buildActionWithAllTargets, expected)
     }
 }
 
