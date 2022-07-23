@@ -40,7 +40,7 @@ extension XCScheme {
             testAction = .init(testActionInfo: testActionInfo)
         } else {
             testAction = .init(
-                buildConfiguration: XCSchemeConstants.defaultBuildConfigurationName,
+                buildConfiguration: .defaultBuildConfigurationName,
                 macroExpansion: nil,
                 customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
             )
@@ -52,7 +52,7 @@ extension XCScheme {
         } else {
             launchAction = .init(
                 runnable: nil,
-                buildConfiguration: XCSchemeConstants.defaultBuildConfigurationName,
+                buildConfiguration: .defaultBuildConfigurationName,
                 customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
             )
         }
@@ -63,7 +63,7 @@ extension XCScheme {
         } else {
             profileAction = .init(
                 buildableProductRunnable: nil,
-                buildConfiguration: XCSchemeConstants.defaultBuildConfigurationName
+                buildConfiguration: .defaultBuildConfigurationName
             )
         }
 
