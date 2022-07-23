@@ -3,7 +3,7 @@ import XcodeProj
 extension XCSchemeInfo {
     struct TestActionInfo {
         let buildConfigurationName: String
-        let targetInfos: [XCSchemeInfo.TargetInfo]
+        let targetInfos: Set<XCSchemeInfo.TargetInfo>
 
         /// The primary initializer.
         init<TargetInfos: Sequence>(
@@ -11,7 +11,7 @@ extension XCSchemeInfo {
             targetInfos: TargetInfos
         ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
             self.buildConfigurationName = buildConfigurationName
-            self.targetInfos = Array(targetInfos)
+            self.targetInfos = Set(targetInfos)
 
             guard !self.targetInfos.isEmpty else {
                 throw PreconditionError(message: """

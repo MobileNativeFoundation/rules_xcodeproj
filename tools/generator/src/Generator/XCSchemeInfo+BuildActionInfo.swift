@@ -2,12 +2,12 @@ import XcodeProj
 
 extension XCSchemeInfo {
     struct BuildActionInfo {
-        let targetInfos: [XCSchemeInfo.TargetInfo]
+        let targetInfos: Set<XCSchemeInfo.TargetInfo>
 
         init<TargetInfos: Sequence>(
             targetInfos: TargetInfos
         ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
-            self.targetInfos = Array(targetInfos)
+            self.targetInfos = Set(targetInfos)
 
             guard !self.targetInfos.isEmpty else {
                 throw PreconditionError(message: """
