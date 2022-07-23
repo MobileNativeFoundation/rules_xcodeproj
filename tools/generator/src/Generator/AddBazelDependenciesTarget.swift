@@ -217,7 +217,7 @@ if [ -s "$output_groups_file" ]; then
   done < "$output_groups_file"
 fi
 
-if [ -z "$output_groups" ]; then
+if [ -z "${output_groups:-}" ]; then
   echo "error: BazelDependencies invoked without any output groups set. \#
 Please file a bug report here: \#
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
