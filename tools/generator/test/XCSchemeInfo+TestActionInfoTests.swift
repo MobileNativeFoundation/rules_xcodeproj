@@ -72,6 +72,32 @@ extension XCSchemeInfoTestActionInfoTests {
     }
 }
 
+// MARK: - Custom Scheme Initializer Tests
+
+extension XCSchemeInfoTestActionInfoTests {
+    func test_customSchemeInit_noTestAction() throws {
+        let actual = try XCSchemeInfo.TestActionInfo(
+            testAction: nil,
+            targetResolver: targetResolver,
+            targetIDsByLabel: [:]
+        )
+        XCTAssertNil(actual)
+    }
+
+    func test_customSchemeInit_withTestAction() throws {
+        let actual = try XCSchemeInfo.TestActionInfo(
+            testAction: xcodeScheme.testAction,
+            targetResolver: targetResolver,
+            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targets: targetResolver.targets)
+        )
+        let expected = try XCSchemeInfo.TestActionInfo(
+            buildConfigurationName: .defaultBuildConfigurationName,
+            targetInfos: [try targetResolver.targetInfo(targetID: "B 2")]
+        )
+        XCTAssertEqual(actual, expected)
+    }
+}
+
 // MARK: - Test Data
 
 class XCSchemeInfoTestActionInfoTests: XCTestCase {
@@ -82,12 +108,11 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
-        Fixtures.pbxTargets(
-            in: Fixtures.pbxProj(),
-            consolidatedTargets: Fixtures.consolidatedTargets
-        )
-        .0
+    lazy var targetResolver = Fixtures.targetResolver(
+        referencedContainer: filePathResolver.containerReference
+    )
+
+    lazy var pbxTargetsDict = targetResolver.pbxTargets
 
     lazy var libraryTarget = pbxTargetsDict["A 1"]!
     lazy var unitTestTarget = pbxTargetsDict["B 2"]!
@@ -104,5 +129,10 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
+    )
+
+    lazy var xcodeScheme = XcodeScheme(
+        name: "My Scheme",
+        testAction: .init(targets: [targetResolver.targets["B 2"]!.label])
     )
 }
