@@ -6,7 +6,7 @@ load("//xcodeproj:xcodeproj.bzl", "xcode_schemes")
 def get_xcode_schemes():
     return [
         xcode_schemes.scheme(
-            name = "Generator",
+            name = "Generator App",
             launch_action = xcode_schemes.launch_action(
                 "//tools/generator:generator",
             ),
