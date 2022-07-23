@@ -52,6 +52,32 @@ extension XCSchemeInfoProfileActionInfoTests {
     }
 }
 
+// MARK: - Custom Scheme Initializer Tests
+
+extension XCSchemeInfoProfileActionInfoTests {
+    func test_customSchemeInit_noProfileAction() throws {
+        let actual = try XCSchemeInfo.ProfileActionInfo(
+            profileAction: nil,
+            targetResolver: targetResolver,
+            targetIDsByLabel: [:]
+        )
+        XCTAssertNil(actual)
+    }
+
+    func test_customSchemeInit_withProfileAction() throws {
+        let actual = try XCSchemeInfo.ProfileActionInfo(
+            profileAction: xcodeScheme.profileAction,
+            targetResolver: targetResolver,
+            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targets: targetResolver.targets)
+        )
+        let expected = XCSchemeInfo.ProfileActionInfo(
+            buildConfigurationName: .defaultBuildConfigurationName,
+            targetInfo: try targetResolver.targetInfo(targetID: "A 2")
+        )
+        XCTAssertEqual(actual, expected)
+    }
+}
+
 // MARK: - Test Data
 
 class XCSchemeInfoProfileActionInfoTests: XCTestCase {
@@ -62,12 +88,11 @@ class XCSchemeInfoProfileActionInfoTests: XCTestCase {
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
-        Fixtures.pbxTargets(
-            in: Fixtures.pbxProj(),
-            consolidatedTargets: Fixtures.consolidatedTargets
-        )
-        .0
+    lazy var targetResolver = Fixtures.targetResolver(
+        referencedContainer: filePathResolver.containerReference
+    )
+
+    lazy var pbxTargetsDict = targetResolver.pbxTargets
 
     lazy var appTarget = pbxTargetsDict["A 2"]!
 
@@ -76,5 +101,11 @@ class XCSchemeInfoProfileActionInfoTests: XCTestCase {
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
+    )
+
+    lazy var xcodeScheme = XcodeScheme(
+        name: "My Scheme",
+        launchAction: .init(target: targetResolver.targets["A 2"]!.label),
+        profileAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
 }
