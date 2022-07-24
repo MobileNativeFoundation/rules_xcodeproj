@@ -225,3 +225,9 @@ extension XCScheme.BuildableReference: Hashable {
         hasher.combine(blueprintName)
     }
 }
+
+extension Sequence where Element == XCScheme.BuildableReference {
+    var inStableOrder: [XCScheme.BuildableReference] {
+        return sortedLocalizedStandard(\.blueprintName)
+    }
+}

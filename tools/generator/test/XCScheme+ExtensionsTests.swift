@@ -142,6 +142,25 @@ extension XCSchemeExtensionsTests {
     }
 }
 
+extension XCSchemeExtensionsTests {
+    func test_BuildableReference_Sequence_inStableOrder() throws {
+        let buildRefA = XCScheme.BuildableReference(
+            referencedContainer: "refContainer",
+            blueprintIdentifier: nil,
+            buildableName: "a",
+            blueprintName: "a"
+        )
+        let buildRefB = XCScheme.BuildableReference(
+            referencedContainer: "refContainer",
+            blueprintIdentifier: nil,
+            buildableName: "b",
+            blueprintName: "b"
+        )
+        let buildableReferences = [buildRefB, buildRefA]
+        XCTAssertEqual(buildableReferences.inStableOrder, [buildRefA, buildRefB])
+    }
+}
+
 // MARK: - Test Data
 
 class XCSchemeExtensionsTests: XCTestCase {
