@@ -8,7 +8,7 @@ GENERATOR_SCHEME_AUTOGENERATION_MODE = "all"
 def get_xcode_schemes():
     return [
         xcode_schemes.scheme(
-            name = "Generator",
+            name = "generator",
             launch_action = xcode_schemes.launch_action(
                 "//tools/generator:generator",
             ),
