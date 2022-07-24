@@ -225,3 +225,20 @@ extension XCScheme.BuildableReference: Hashable {
         hasher.combine(blueprintName)
     }
 }
+
+extension XCScheme.BuildableReference {
+    var sortValue: String {
+        return [
+            buildableName,
+            blueprintName,
+            referencedContainer,
+            buildableIdentifier,
+        ].joined(separator: "|")
+    }
+}
+
+extension Sequence where Element == XCScheme.BuildableReference {
+    var inStableOrder: [XCScheme.BuildableReference] {
+        return sorted { $0.sortValue < $1.sortValue }
+    }
+}
