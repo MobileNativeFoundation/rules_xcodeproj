@@ -23,9 +23,13 @@ extension Generator {
             return []
         }
 
+        // Scheme names collisions can occur with names that differ by case. The scheme name checks
+        // will occur using their lowercased variant.
+        let normalizedCustomSchemeNames = Set(customSchemeNames.map { $0.lowercased() })
+
         return try targetResolver
             .targetInfos.filter(\.pbxTarget.shouldCreateScheme)
-            .map { targetInfo in
+            .compactMap { targetInfo in
                 let pbxTarget = targetInfo.pbxTarget
                 let buildConfigurationName = pbxTarget.defaultBuildConfigurationName
 
@@ -67,6 +71,11 @@ extension Generator {
                         schemeName = targetInfo.pbxTarget.schemeName
                     }
                     return schemeName
+                }
+
+                // If a custom scheme exists with a colliding name, then preserve the custom scheme.
+                guard !normalizedCustomSchemeNames.contains(schemeInfo.name.lowercased()) else {
+                    return nil
                 }
 
                 return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
