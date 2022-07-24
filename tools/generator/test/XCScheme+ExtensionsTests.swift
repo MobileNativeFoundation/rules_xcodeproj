@@ -143,30 +143,18 @@ extension XCSchemeExtensionsTests {
 }
 
 extension XCSchemeExtensionsTests {
-    func test_BuildableReference_sortValue() throws {
-        let buildableReference = XCScheme.BuildableReference(
-            referencedContainer: "refContainer",
-            blueprintIdentifier: nil,
-            buildableName: "buildName",
-            blueprintName: "bpName"
-        )
-        XCTAssertEqual(buildableReference.sortValue, "buildName|bpName|refContainer|primary")
-    }
-}
-
-extension XCSchemeExtensionsTests {
     func test_BuildableReference_Sequence_inStableOrder() throws {
         let buildRefA = XCScheme.BuildableReference(
             referencedContainer: "refContainer",
             blueprintIdentifier: nil,
             buildableName: "a",
-            blueprintName: "bpName"
+            blueprintName: "a"
         )
         let buildRefB = XCScheme.BuildableReference(
             referencedContainer: "refContainer",
             blueprintIdentifier: nil,
             buildableName: "b",
-            blueprintName: "bpName"
+            blueprintName: "b"
         )
         let buildableReferences = [buildRefB, buildRefA]
         XCTAssertEqual(buildableReferences.inStableOrder, [buildRefA, buildRefB])

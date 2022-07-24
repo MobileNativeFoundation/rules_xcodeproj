@@ -163,7 +163,7 @@ extension XCSchemeInfo.TargetInfo {
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
     var inStableOrder: [XCSchemeInfo.TargetInfo] {
-        return sorted { $0.pbxTarget.name < $1.pbxTarget.name }
+        return sortedLocalizedStandard(\.pbxTarget.name)
     }
 }
 
