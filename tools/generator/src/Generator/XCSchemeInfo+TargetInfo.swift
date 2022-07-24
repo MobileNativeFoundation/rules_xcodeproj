@@ -162,9 +162,15 @@ extension XCSchemeInfo.TargetInfo {
 // MARK: Sequence Extensions
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
+    var inStableOrder: [XCSchemeInfo.TargetInfo] {
+        return sorted { $0.pbxTarget.name < $1.pbxTarget.name }
+    }
+}
+
+extension Sequence where Element == XCSchemeInfo.TargetInfo {
     /// Return all of the buildable references for all of the target infos.
     var buildableReferences: [XCScheme.BuildableReference] {
-        return flatMap(\.buildableReferences)
+        return inStableOrder.flatMap(\.buildableReferences)
     }
 }
 
@@ -177,9 +183,7 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
     func buildPreActions(buildMode: BuildMode) throws -> [XCScheme.ExecutionAction] {
-        // We sort the list so that the actions are serialized in a consistent order.
-        let sorted = sorted { $0.pbxTarget.name < $1.pbxTarget.name }
-        let preActions = try sorted.compactMap { try $0.buildPreAction(buildMode: buildMode) }
+        let preActions = try inStableOrder.compactMap { try $0.buildPreAction(buildMode: buildMode) }
         return [.initBazelBuildOutputGroupsFile] + preActions
     }
 }
