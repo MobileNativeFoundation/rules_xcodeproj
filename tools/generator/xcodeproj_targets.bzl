@@ -3,6 +3,8 @@
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("//xcodeproj:xcodeproj.bzl", "xcode_schemes")
 
+GENERATOR_SCHEME_AUTOGENERATION_MODE = "all"
+
 def get_xcode_schemes():
     return [
         xcode_schemes.scheme(

@@ -112,7 +112,8 @@ def xcodeproj_fixture(
         archived_bundles_allowed = False,
         modes_and_suffixes = [("xcode", "bwx"), ("bazel", "bwb")],
         targets,
-        schemes = None):
+        schemes = None,
+        scheme_autogeneration_mode = None):
     """Creates the fixture for an existing `xcodeproj` target.
 
     This will create an `xcodeproj` target for each `build_mode` option.
@@ -127,6 +128,8 @@ def xcodeproj_fixture(
         targets: Maps to `xcodeproj.targets`.
         schemes: Optional. A `list` of `struct` values as returned by
             `xcode_schemes.scheme`.
+        scheme_autogeneration_mode: Optional. The scheme autogeneration mode for
+            the project.
     """
     for mode, suffix in modes_and_suffixes:
         fixture_name = "{}_{}".format(name, suffix)
@@ -146,6 +149,7 @@ def xcodeproj_fixture(
             build_mode = mode,
             project_name = suffix,
             targets = targets,
+            scheme_autogeneration_mode = scheme_autogeneration_mode,
             schemes = schemes,
             xcodeproj_rule = _fixture_xcodeproj,
             visibility = ["//test:__subpackages__"],

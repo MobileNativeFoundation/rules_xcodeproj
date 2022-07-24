@@ -4,7 +4,11 @@ load(
     "swift_library",
 )
 load("//xcodeproj:xcodeproj.bzl", "xcodeproj")
-load(":xcodeproj_targets.bzl", "get_xcode_schemes")
+load(
+    ":xcodeproj_targets.bzl",
+    "GENERATOR_SCHEME_AUTOGENERATION_MODE",
+    "get_xcode_schemes",
+)
 
 swift_library(
     name = "generator.library",
@@ -30,8 +34,7 @@ xcodeproj(
     name = "xcodeproj",
     build_mode = "bazel",
     project_name = "generator",
-    # GH573: Revert to `auto` once custom schemes are implemented.
-    scheme_autogeneration_mode = "all",
+    scheme_autogeneration_mode = GENERATOR_SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
     tags = ["manual"],
 )
