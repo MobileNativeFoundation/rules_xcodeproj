@@ -112,16 +112,21 @@ extension XCScheme.BuildAction.Entry {
 
 extension XCScheme.ExecutionAction {
     /// Initialize the output file for Build with Bazel mode.
-    static let initBazelBuildOutputGroupsFile = XCScheme.ExecutionAction(
-        scriptText: #"""
+    static func initBazelBuildOutputGroupsFile(
+        buildableReference: XCScheme.BuildableReference
+    ) -> XCScheme.ExecutionAction {
+        return .init(
+            scriptText: #"""
 mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
 if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
     rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
 fi
 
 """#,
-        title: "Initialize Bazel Build Output Groups File"
-    )
+            title: "Initialize Bazel Build Output Groups File",
+            environmentBuildable: buildableReference
+        )
+    }
 
     /// Create an `ExecutionAction` that builds with Bazel.
     convenience init(

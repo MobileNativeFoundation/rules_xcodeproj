@@ -11,6 +11,15 @@
             <ActionContent
                title = "Initialize Bazel Build Output Groups File"
                scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "373A62571D2CA8826AD4F92C"
+                     BuildableName = "//examples/cc/lib2:lib_impl"
+                     BlueprintName = "//examples/cc/lib2:lib_impl"
+                     ReferencedContainer = "container:test/fixtures/cc/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
          <ExecutionAction
