@@ -63,7 +63,7 @@ def _write_json_spec(
             xcode_target,
             is_unfocused_dependency = sets.contains(
                 unfocused_libraries,
-                xcode_target.product.path
+                xcode_target.product.path,
             ),
         )
     targets_json = json.encode(

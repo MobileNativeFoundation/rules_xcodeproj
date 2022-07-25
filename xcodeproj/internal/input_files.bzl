@@ -328,7 +328,7 @@ def _collect(
                     [
                         file_path(file)
                         for file in transitive_libraries
-                    ]
+                    ],
                 )
 
         if unfocused and SwiftInfo in target:
