@@ -301,7 +301,8 @@ def _collect(
             generated = generated,
         ))
 
-    # Collect unfocused target outputs
+    # Collect unfocused target info
+    unfocused_libraries = None
     if should_include_non_xcode_outputs(ctx = ctx):
         if unfocused == None:
             dep_compilation_providers = comp_providers.merge(
@@ -323,6 +324,12 @@ def _collect(
             unfocused = bool(direct_libraries)
             if unfocused:
                 generated.extend(transitive_libraries)
+                unfocused_libraries = depset(
+                    [
+                        file_path(file)
+                        for file in transitive_libraries
+                    ]
+                )
 
         if unfocused and SwiftInfo in target:
             non_target_swift_info_modules = target[SwiftInfo].transitive_modules
@@ -360,6 +367,16 @@ def _collect(
         direct_group_list = [("g {}".format(id), generated_depset)]
     else:
         direct_group_list = None
+
+    if not unfocused_libraries:
+        unfocused_libraries = depset(
+            transitive = [
+                info.inputs.unfocused_libraries
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        )
 
     return struct(
         _non_target_swift_info_modules = non_target_swift_info_modules,
@@ -435,6 +452,7 @@ def _collect(
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
+        unfocused_libraries = unfocused_libraries,
     )
 
 def _from_resource_bundle(bundle):
@@ -455,6 +473,7 @@ def _from_resource_bundle(bundle):
         important_generated = depset(),
         extra_files = depset(),
         uncategorized = depset(),
+        unfocused_libraries = depset(),
     )
 
 def _merge(*, transitive_infos, extra_generated = None):
@@ -529,6 +548,12 @@ def _merge(*, transitive_infos, extra_generated = None):
         uncategorized = depset(
             transitive = [
                 info.inputs.uncategorized
+                for _, info in transitive_infos
+            ],
+        ),
+        unfocused_libraries = depset(
+            transitive = [
+                info.inputs.unfocused_libraries
                 for _, info in transitive_infos
             ],
         ),

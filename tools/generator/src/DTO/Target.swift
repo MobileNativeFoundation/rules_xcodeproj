@@ -23,6 +23,7 @@ struct Target: Equatable {
     let appClips: Set<TargetID>
     var dependencies: Set<TargetID>
     var outputs: Outputs
+    let isUnfocusedDependency: Bool
 }
 
 extension Target {
@@ -57,6 +58,7 @@ extension Target: Decodable {
         case appClips
         case dependencies
         case outputs
+        case isUnfocusedDependency
     }
 
     init(from decoder: Decoder) throws {
@@ -99,6 +101,8 @@ extension Target: Decodable {
         dependencies = try container.decodeTargetIDs(.dependencies)
         outputs = try container
             .decodeIfPresent(Outputs.self, forKey: .outputs) ?? .init()
+        isUnfocusedDependency = try container
+            .decodeIfPresent(Bool.self, forKey: .isUnfocusedDependency) ?? false
     }
 }
 

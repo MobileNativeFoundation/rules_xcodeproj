@@ -96,7 +96,7 @@ def _make(
         product = product,
     )
 
-def _to_dto(xcode_target):
+def _to_dto(xcode_target, *, is_unfocused_dependency = False):
     inputs = xcode_target._inputs
 
     dto = {
@@ -110,6 +110,9 @@ def _to_dto(xcode_target):
 
     if not xcode_target._is_swift:
         dto["is_swift"] = False
+
+    if is_unfocused_dependency:
+        dto["is_unfocused_dependency"] = True
 
     set_if_true(dto, "test_host", xcode_target._test_host)
     set_if_true(dto, "build_settings", xcode_target._build_settings)
