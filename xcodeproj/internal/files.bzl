@@ -38,6 +38,7 @@ def file_path(
         path = file.path
     if not file.is_source:
         return generated_file_path(
+            file = file,
             path = path,
             is_folder = is_folder,
             include_in_navigator = include_in_navigator,
@@ -45,12 +46,14 @@ def file_path(
         )
     if file.owner.workspace_name:
         return external_file_path(
+            file = file,
             path = path,
             is_folder = is_folder,
             include_in_navigator = include_in_navigator,
             force_group_creation = force_group_creation,
         )
     return project_file_path(
+        file = file,
         path = path,
         is_folder = is_folder,
         include_in_navigator = include_in_navigator,
@@ -70,11 +73,11 @@ def parsed_file_path(path):
     # These checks are less than ideal, but since it's a string we can't tell if
     # they meant something else
     if path.startswith("bazel-out/"):
-        return generated_file_path(path)
+        return generated_file_path(file = None, path = path)
     elif path.startswith("external/"):
-        return external_file_path(path)
+        return external_file_path(file = None, path = path)
     else:
-        return project_file_path(path)
+        return project_file_path(file = None, path = path)
 
 _FOLDER_TYPE_EXTENSIONS = {
     ".bundle": None,
@@ -110,11 +113,13 @@ def normalized_file_path(file):
 def _file_path(
         type,
         *,
+        file,
         path,
         is_folder,
         include_in_navigator,
         force_group_creation):
     return struct(
+        file = file,
         path = path,
         type = type,
         is_folder = is_folder,
@@ -123,12 +128,13 @@ def _file_path(
     )
 
 def external_file_path(
+        file,
         path,
-        *,
         is_folder = False,
         include_in_navigator = True,
         force_group_creation = False):
     return _file_path(
+        file = file,
         # Type: "e" == `.external`
         type = "e",
         # Path, removing `external/` prefix
@@ -139,12 +145,13 @@ def external_file_path(
     )
 
 def generated_file_path(
+        file,
         path,
-        *,
         is_folder = False,
         include_in_navigator = True,
         force_group_creation = False):
     return _file_path(
+        file = file,
         # Type: "g" == `.generated`
         type = "g",
         # Path, removing `bazel-out/` prefix
@@ -158,12 +165,13 @@ def is_generated_file_path(fp):
     return fp.type == "g"
 
 def project_file_path(
+        file,
         path,
-        *,
         is_folder = False,
         include_in_navigator = True,
         force_group_creation = False):
     return _file_path(
+        file = file,
         # Type: "p" == `.project`
         type = "p",
         path = path,
