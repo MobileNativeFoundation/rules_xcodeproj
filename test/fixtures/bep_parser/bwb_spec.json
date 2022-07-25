@@ -1,0 +1,1091 @@
+{
+    "bazel_workspace_name": "com_github_buildbuddy_io_rules_xcodeproj",
+    "build_settings": {
+        "ALWAYS_SEARCH_USER_PATHS": false,
+        "BAZEL_PATH": "bazel",
+        "CLANG_ENABLE_OBJC_ARC": true,
+        "CLANG_MODULES_AUTOLINK": false,
+        "COPY_PHASE_STRIP": false,
+        "ONLY_ACTIVE_ARCH": true,
+        "USE_HEADERMAP": false,
+        "VALIDATE_WORKSPACE": false
+    },
+    "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
+    "custom_xcode_schemes": [],
+    "extra_files": [
+        "tools/bep_parser/bep/BUILD",
+        "tools/bep_parser/BUILD",
+        "tools/bep_parser/test/BUILD",
+        "test/fixtures/bep_parser/BUILD"
+    ],
+    "force_bazel_dependencies": false,
+    "label": "//test/fixtures/bep_parser:xcodeproj_bwb",
+    "name": "bwb",
+    "scheme_autogeneration_mode": "auto",
+    "target_hosts": [],
+    "target_merges": [
+        "//tools/bep_parser/test:tests.library darwin_x86_64-dbg-ST-e86416d3a8c7",
+        [
+            "//tools/bep_parser/test:tests darwin_x86_64-dbg-ST-e86416d3a8c7"
+        ]
+    ],
+    "targets": [
+        "//tools/bep_parser/test:tests darwin_x86_64-dbg-ST-e86416d3a8c7",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
+            "dependencies": [
+                "//tools/bep_parser/test:tests.library darwin_x86_64-dbg-ST-e86416d3a8c7"
+            ],
+            "is_swift": false,
+            "label": "//tools/bep_parser/test:tests",
+            "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test/tests.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep_parser.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_build_event_stream_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_command_line_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_option_filters_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_failure_details_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_invocation_policy_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/SwiftProtobuf.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test/libtests.library.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/libbep_parser.library.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/libbuild_event_stream_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/libcommand_line_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/liboption_filters_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/libfailure_details_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/libinvocation_policy_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/libSwiftProtobuf.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "name": "tests",
+            "outputs": {
+                "p": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test/tests.xctest",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
+                "minimum_os_version": "11.0",
+                "name": "macosx",
+                "os": "macos"
+            },
+            "product": {
+                "executable_name": "tests",
+                "name": "tests",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test/tests.xctest",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.bundle.unit-test"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//tools/bep_parser/test:tests.library darwin_x86_64-dbg-ST-e86416d3a8c7",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "ENABLE_TESTING_SEARCH_PATHS": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PRODUCT_MODULE_NAME": "tests",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
+            "dependencies": [
+                "//tools/bep_parser:bep_parser.library darwin_x86_64-dbg-ST-e86416d3a8c7",
+                "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-dbg-ST-e86416d3a8c7"
+            ],
+            "inputs": {
+                "srcs": [
+                    "tools/bep_parser/test/empty.swift"
+                ]
+            },
+            "label": "//tools/bep_parser/test:tests.library",
+            "name": "tests.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test/tests.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test/tests.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test/tests.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
+                "minimum_os_version": "11.0",
+                "name": "macosx",
+                "os": "macos"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "tests.library",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/test/libtests.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/SwiftProtobuf.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_option_filters_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_command_line_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_failure_details_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_invocation_policy_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_build_event_stream_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep_parser.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
+                    "t": "g"
+                }
+            ]
+        },
+        "//tools/bep_parser:bep_parser darwin_x86_64-dbg-ST-e86416d3a8c7",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
+            "dependencies": [
+                "//tools/bep_parser:bep_parser.library darwin_x86_64-dbg-ST-e86416d3a8c7"
+            ],
+            "is_swift": false,
+            "label": "//tools/bep_parser:bep_parser",
+            "linker_inputs": {
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep_parser.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_build_event_stream_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_command_line_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_option_filters_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_failure_details_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_invocation_policy_proto.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/SwiftProtobuf.swiftmodule",
+                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/libbep_parser.library.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/libbuild_event_stream_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/libcommand_line_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/liboption_filters_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/libfailure_details_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/libinvocation_policy_proto.swift.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/libSwiftProtobuf.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "name": "bep_parser",
+            "outputs": {
+                "p": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep_parser",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
+                "minimum_os_version": "11.0",
+                "name": "macosx",
+                "os": "macos"
+            },
+            "product": {
+                "executable_name": "bep_parser",
+                "name": "bep_parser",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep_parser",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.tool"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//tools/bep_parser:bep_parser.library darwin_x86_64-dbg-ST-e86416d3a8c7",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PRODUCT_MODULE_NAME": "bep_parser",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
+            "dependencies": [
+                "@com_github_apple_swift_protobuf//:SwiftProtobuf darwin_x86_64-dbg-ST-e86416d3a8c7"
+            ],
+            "inputs": {
+                "srcs": [
+                    "tools/bep_parser/src/BuildEventSequence.swift",
+                    "tools/bep_parser/src/mainapp.swift"
+                ]
+            },
+            "label": "//tools/bep_parser:bep_parser.library",
+            "name": "bep_parser.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep_parser.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep_parser.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep_parser.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
+                "minimum_os_version": "11.0",
+                "name": "macosx",
+                "os": "macos"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "bep_parser.library",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/libbep_parser.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/SwiftProtobuf.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_option_filters_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_command_line_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_failure_details_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_invocation_policy_proto.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/bep_parser/bep/tools_bep_parser_bep_build_event_stream_proto.swiftmodule",
+                    "t": "g"
+                }
+            ]
+        },
+        "@com_github_apple_swift_protobuf//:SwiftProtobuf darwin_x86_64-dbg-ST-e86416d3a8c7",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PRODUCT_MODULE_NAME": "SwiftProtobuf",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/AnyMessageStorage.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/AnyUnpackError.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/BinaryDecoder.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/BinaryDecodingError.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/BinaryDecodingOptions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/BinaryDelimited.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/BinaryEncoder.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/BinaryEncodingError.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/BinaryEncodingSizeVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/BinaryEncodingVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/CustomJSONCodable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Data+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Decoder.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/DoubleParser.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Enum.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/ExtensibleMessage.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/ExtensionFieldValueSet.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/ExtensionFields.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/ExtensionMap.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/FieldTag.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/FieldTypes.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_Any+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_Any+Registry.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_Duration+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_FieldMask+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_ListValue+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_NullValue+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_Struct+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_Timestamp+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_Value+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Google_Protobuf_Wrappers+Extensions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/HashVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Internal.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONDecoder.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONDecodingError.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONDecodingOptions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONEncoder.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONEncodingError.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONEncodingOptions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONEncodingVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONMapEncodingVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/JSONScanner.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/MathUtils.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Message+AnyAdditions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Message+BinaryAdditions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Message+JSONAdditions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Message+JSONArrayAdditions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Message+TextFormatAdditions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Message.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/MessageExtension.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/NameMap.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/ProtoNameProviding.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/ProtobufAPIVersionCheck.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/ProtobufMap.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/SelectiveVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/SimpleExtensionMap.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/StringUtils.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/TextFormatDecoder.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/TextFormatDecodingError.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/TextFormatDecodingOptions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/TextFormatEncoder.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/TextFormatEncodingOptions.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/TextFormatEncodingVisitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/TextFormatScanner.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/TimeUtils.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/UnknownStorage.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/UnsafeBufferPointer+Shims.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/UnsafeRawPointer+Shims.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Varint.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Version.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/Visitor.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/WireFormat.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/ZigZag.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/any.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/api.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/descriptor.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/duration.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/empty.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/field_mask.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/source_context.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/struct.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/timestamp.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/type.pb.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_apple_swift_protobuf/Sources/SwiftProtobuf/wrappers.pb.swift",
+                        "t": "e"
+                    }
+                ]
+            },
+            "label": "@com_github_apple_swift_protobuf//:SwiftProtobuf",
+            "name": "SwiftProtobuf",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/SwiftProtobuf.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/SwiftProtobuf.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/SwiftProtobuf.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
+                "minimum_os_version": "11.0",
+                "name": "macosx",
+                "os": "macos"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "SwiftProtobuf",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_protobuf/libSwiftProtobuf.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-dbg-ST-e86416d3a8c7",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PRODUCT_MODULE_NAME": "CustomDump",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
+            "dependencies": [
+                "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-dbg-ST-e86416d3a8c7"
+            ],
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreImage.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreLocation.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreMotion.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Foundation.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/GameKit.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/KeyPath.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Photos.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Speech.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/StoreKit.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Swift.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/SwiftUI.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UIKit.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UserNotifications.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UserNotificationsUI.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpReflectable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpRepresentable.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpStringConvertible.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Diff.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Dump.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/AnyType.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/Box.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/CollectionDifference.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/Mirror.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/String.swift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/XCTAssertNoDifference.swift",
+                        "t": "e"
+                    }
+                ]
+            },
+            "label": "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
+            "name": "CustomDump",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
+                "minimum_os_version": "11.0",
+                "name": "macosx",
+                "os": "macos"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "CustomDump",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                    "t": "g"
+                }
+            ]
+        },
+        "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-dbg-ST-e86416d3a8c7",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "com_github_pointfreeco_xctest_dynamic_overlay/Sources/XCTestDynamicOverlay/XCTFail.swift",
+                        "t": "e"
+                    }
+                ]
+            },
+            "label": "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay",
+            "name": "XCTestDynamicOverlay",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
+                "minimum_os_version": "11.0",
+                "name": "macosx",
+                "os": "macos"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "XCTestDynamicOverlay",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        }
+    ]
+}

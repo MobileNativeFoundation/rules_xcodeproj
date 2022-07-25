@@ -1,6 +1,7 @@
 """Constants for fixture declarations."""
 
 _FIXTURE_BASENAMES = [
+    "bep_parser",
     "cc",
     "command_line",
     "generator",
