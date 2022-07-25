@@ -74,11 +74,9 @@ def _make(
     """
     return struct(
         _name = name,
-        _label = label,
         _configuration = configuration,
         _package_bin_dir = package_bin_dir,
         _platform = platform,
-        _product = product,
         _is_swift = is_swift,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
@@ -94,6 +92,8 @@ def _make(
         _dependencies = tuple(dependencies.to_list()),
         _outputs = outputs,
         id = id,
+        label = label,
+        product = product,
     )
 
 def _to_dto(xcode_target):
@@ -101,11 +101,11 @@ def _to_dto(xcode_target):
 
     dto = {
         "name": xcode_target._name,
-        "label": str(xcode_target._label),
+        "label": str(xcode_target.label),
         "configuration": xcode_target._configuration,
         "package_bin_dir": xcode_target._package_bin_dir,
         "platform": platform_info.to_dto(xcode_target._platform),
-        "product": product_to_dto(xcode_target._product),
+        "product": product_to_dto(xcode_target.product),
     }
 
     if not xcode_target._is_swift:

@@ -183,13 +183,13 @@ def process_top_level_target(
         test_host_target[XcodeProjInfo] if test_host_target else None
     )
     test_host = (
-        test_host_target_info.target.id if test_host_target_info else None
+        test_host_target_info.xcode_target.id if test_host_target_info else None
     )
     avoid_deps = [test_host_target] if test_host_target else []
 
     app_clip_targets = getattr(ctx.rule.attr, "app_clips", [])
     app_clips = [
-        extension_target[XcodeProjInfo].target.id
+        extension_target[XcodeProjInfo].xcode_target.id
         for extension_target in app_clip_targets
     ]
 
@@ -198,7 +198,7 @@ def process_top_level_target(
         watch_app_target[XcodeProjInfo] if watch_app_target else None
     )
     watch_application = (
-        watch_app_target_info.target.id if watch_app_target_info else None
+        watch_app_target_info.xcode_target.id if watch_app_target_info else None
     )
 
     extension_targets = getattr(ctx.rule.attr, "extensions", [])
@@ -209,7 +209,7 @@ def process_top_level_target(
         extension_target[XcodeProjInfo]
         for extension_target in extension_targets
     ]
-    extensions = [info.target.id for info in extension_target_infos]
+    extensions = [info.xcode_target.id for info in extension_target_infos]
 
     hosted_target_infos = extension_target_infos
     if watch_app_target_info:
@@ -217,7 +217,7 @@ def process_top_level_target(
     hosted_targets = [
         struct(
             host = id,
-            hosted = info.target.id,
+            hosted = info.xcode_target.id,
         )
         for info in hosted_target_infos
     ]
@@ -312,7 +312,7 @@ def process_top_level_target(
         swift_info = target[SwiftInfo] if SwiftInfo in target else None,
         transitive_compilation_providers = [
             (
-                dep[XcodeProjInfo].target,
+                dep[XcodeProjInfo].xcode_target,
                 dep[XcodeProjInfo].compilation_providers,
             )
             # TODO: Get attr name from `XcodeProjAutomaticTargetProcessingInfo`
@@ -361,7 +361,7 @@ def process_top_level_target(
         potential_target_merges = [struct(
             src = struct(
                 id = mergeable_target.id,
-                product_path = mergeable_target.product_path,
+                product_path = mergeable_target.product.path,
             ),
             dest = id,
         )]
@@ -449,12 +449,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         search_paths = search_paths,
-        target = struct(
-            id = id,
-            label = label,
-            is_bundle = is_bundle,
-            product_path = product.path,
-        ),
         xcode_target = xcode_targets.make(
             id = id,
             name = ctx.rule.attr.name,
