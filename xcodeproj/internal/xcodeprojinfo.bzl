@@ -60,7 +60,6 @@ def _target_info_fields(
         resource_bundle_informations,
         search_paths,
         target,
-        target_libraries,
         target_type,
         xcode_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
@@ -84,7 +83,6 @@ def _target_info_fields(
             `XcodeProjInfo.resource_bundle_informations` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target: Maps to the `XcodeProjInfo.target` field.
-        target_libraries: Maps to the `XcodeProjInfo.target_libraries` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
 
@@ -103,7 +101,6 @@ def _target_info_fields(
         *   `resource_bundle_informations`
         *   `search_paths`
         *   `target`
-        *   `target_libraries`
         *   `target_type`
         *   `xcode_targets`
     """
@@ -119,7 +116,6 @@ def _target_info_fields(
         "resource_bundle_informations": resource_bundle_informations,
         "search_paths": search_paths,
         "target": target,
-        "target_libraries": target_libraries,
         "target_type": target_type,
         "xcode_targets": xcode_targets,
     }
@@ -197,12 +193,6 @@ def _skip_target(*, deps, transitive_infos):
             bin_dir_path = None,
         ),
         target = None,
-        target_libraries = depset(
-            transitive = [
-                info.target_libraries
-                for _, info in transitive_infos
-            ],
-        ),
         target_type = target_type.compile,
         xcode_targets = depset(
             transitive = [info.xcode_targets for _, info in transitive_infos],
@@ -328,18 +318,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         ),
         search_paths = processed_target.search_paths,
         target = processed_target.target,
-        target_libraries = depset(
-            [processed_target.library] if processed_target.library else None,
-            transitive = [
-                info.target_libraries
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        [None],
-                    ))
-            ],
-        ),
         target_type = processed_target.automatic_target_info.target_type,
         xcode_targets = depset(
             processed_target.xcode_targets,

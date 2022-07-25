@@ -129,9 +129,6 @@ any target that depends on this target.
 A `struct` that contains information about the current target that is
 potentially needed by the dependent targets.
 """,
-        "target_libraries": """\
-A `depset` of library `File`s for targets that generate an Xcode target.
-""",
         "target_type": """\
 A string that categorizes the type of the current target. This will be one of
 "compile", "resources", or `None`. Even if this target doesn't produce an Xcode
