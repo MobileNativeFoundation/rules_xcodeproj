@@ -5,13 +5,13 @@ load(":collections.bzl", "set_if_true")
 load(":files.bzl", "parsed_file_path")
 load(":input_files.bzl", "input_files")
 load(":output_files.bzl", "output_files")
-load(":processed_target.bzl", "xcode_target")
 load(":product.bzl", "process_product")
 load(
     ":target_properties.bzl",
     "process_modulemaps",
     "process_swiftmodules",
 )
+load(":xcode_targets.bzl", "xcode_targets")
 
 def _process_resource_bundle(bundle, *, information):
     name = bundle.name
@@ -50,7 +50,7 @@ def _process_resource_bundle(bundle, *, information):
         should_produce_output_groups = False,
     )
 
-    return xcode_target(
+    return xcode_targets.make(
         id = id,
         name = name,
         label = bundle.label,

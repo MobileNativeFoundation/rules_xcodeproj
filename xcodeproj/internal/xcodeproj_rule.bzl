@@ -12,6 +12,7 @@ load(":input_files.bzl", "input_files")
 load(":output_files.bzl", "output_files")
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
 load(":resource_target.bzl", "process_resource_bundles")
+load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
 # Actions
@@ -39,7 +40,7 @@ def _write_json_spec(
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
     )
-    xcode_targets = depset(
+    targets_depset = depset(
         resource_bundle_xcode_targets,
         transitive = [info.xcode_targets for info in infos],
     )
@@ -54,11 +55,13 @@ def _write_json_spec(
         if not sets.contains(non_mergable_targets_set, merge.src.product_path):
             target_merges.setdefault(merge.src.id, []).append(merge.dest)
 
-    # `xcode_targets` is partial json dictionary strings. It and
-    # `potential_target_merges` are dictionaries in alternating key and value
-    # array format.
-    sorted_xcode_targets = sorted(xcode_targets.to_list())
-    targets_json = "[{}]".format(",".join(sorted_xcode_targets))
+    targets = {}
+    for xcode_target in targets_depset.to_list():
+        targets[xcode_target.id] = xcode_targets.to_dto(xcode_target)
+    targets_json = json.encode(
+        flattened_key_values.to_list(targets),
+    )
+
     target_merges_json = json.encode(
         flattened_key_values.to_list(target_merges),
     )
