@@ -25,7 +25,8 @@ extension Target {
         extensions: Set<TargetID> = [],
         appClips: Set<TargetID> = [],
         dependencies: Set<TargetID> = [],
-        outputs: Outputs = .init()
+        outputs: Outputs = .init(),
+        isUnfocusedDependency: Bool = false
     ) -> Self {
         return Target(
             name: product.name,
@@ -47,7 +48,8 @@ extension Target {
             extensions: extensions,
             appClips: appClips,
             dependencies: dependencies,
-            outputs: outputs
+            outputs: outputs,
+            isUnfocusedDependency: isUnfocusedDependency
         )
     }
 }

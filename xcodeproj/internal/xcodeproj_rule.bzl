@@ -55,9 +55,17 @@ def _write_json_spec(
         if not sets.contains(non_mergable_targets_set, merge.src.product_path):
             target_merges.setdefault(merge.src.id, []).append(merge.dest)
 
+    unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
+
     targets = {}
     for xcode_target in targets_depset.to_list():
-        targets[xcode_target.id] = xcode_targets.to_dto(xcode_target)
+        targets[xcode_target.id] = xcode_targets.to_dto(
+            xcode_target,
+            is_unfocused_dependency = sets.contains(
+                unfocused_libraries,
+                xcode_target.product.path
+            ),
+        )
     targets_json = json.encode(
         flattened_key_values.to_list(targets),
     )

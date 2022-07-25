@@ -508,6 +508,10 @@ extension Generator {
         switch buildMode {
         case .xcode:
             for (_, target) in targets {
+                guard !target.isUnfocusedDependency else {
+                    continue
+                }
+
                 xcodeGeneratedFiles.insert(target.product.path)
                 if let filePath = target.outputs.swift?.module {
                     xcodeGeneratedFiles.insert(filePath)
