@@ -22,6 +22,7 @@ def _collect(*, cc_info, objc, swift_info, is_xcode_target):
         _is_top_level = False,
         _is_xcode_library_target = is_xcode_library_target,
         _objc = objc,
+        _transitive_compilation_providers = (),
     )
 
 def _merge(
@@ -68,7 +69,9 @@ def _merge(
         _is_top_level = True,
         _is_xcode_library_target = False,
         _objc = objc,
-        _transitive_compilation_providers = transitive_compilation_providers,
+        _transitive_compilation_providers = tuple(
+            transitive_compilation_providers,
+        ),
     )
 
 def _to_objc(cc_info):

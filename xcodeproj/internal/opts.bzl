@@ -222,9 +222,9 @@ def create_opts_search_paths(quote_includes, includes, system_includes):
         provided as arguments.
     """
     return struct(
-        quote_includes = quote_includes,
-        includes = includes,
-        system_includes = system_includes,
+        quote_includes = tuple(quote_includes),
+        includes = tuple(includes),
+        system_includes = tuple(system_includes),
     )
 
 def merge_opts_search_paths(search_paths):
@@ -872,12 +872,12 @@ def _process_compiler_opts(
     set_if_true(
         build_settings,
         "OTHER_CFLAGS",
-        conlyopts,
+        tuple(conlyopts),
     )
     set_if_true(
         build_settings,
         "OTHER_CPLUSPLUSFLAGS",
-        cxxopts,
+        tuple(cxxopts),
     )
     set_if_true(
         build_settings,

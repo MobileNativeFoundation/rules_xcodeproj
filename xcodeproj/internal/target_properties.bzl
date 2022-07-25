@@ -99,8 +99,8 @@ def process_modulemaps(*, swift_info):
     """
     if not swift_info:
         return struct(
-            file_paths = [],
-            files = [],
+            file_paths = (),
+            files = (),
         )
 
     modulemap_file_paths = []
@@ -122,8 +122,8 @@ def process_modulemaps(*, swift_info):
     # Different modules might be defined in the same modulemap file, so we need
     # to deduplicate them.
     return struct(
-        file_paths = uniq(modulemap_file_paths),
-        files = uniq(modulemap_files),
+        file_paths = tuple(uniq(modulemap_file_paths)),
+        files = tuple(uniq(modulemap_files)),
     )
 
 def process_codesignopts(*, codesignopts, build_settings):
@@ -188,7 +188,11 @@ def process_defines(*, compilation_providers, build_settings):
         # Remove duplicates
         setting = reversed(uniq(reversed(setting)))
 
-        set_if_true(build_settings, "GCC_PREPROCESSOR_DEFINITIONS", setting)
+        set_if_true(
+            build_settings,
+            "GCC_PREPROCESSOR_DEFINITIONS",
+            tuple(setting),
+        )
 
 def process_swiftmodules(*, swift_info):
     """Processes swiftmodules.
