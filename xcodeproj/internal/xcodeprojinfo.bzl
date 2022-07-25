@@ -59,8 +59,8 @@ def _target_info_fields(
         potential_target_merges,
         resource_bundle_informations,
         search_paths,
-        target,
         target_type,
+        xcode_target,
         xcode_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
 
@@ -82,8 +82,8 @@ def _target_info_fields(
         resource_bundle_informations: Maps to the
             `XcodeProjInfo.resource_bundle_informations` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
-        target: Maps to the `XcodeProjInfo.target` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
+        xcode_target: Maps to the `XcodeProjInfo.xcode_target` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
 
     Returns:
@@ -100,8 +100,8 @@ def _target_info_fields(
         *   `potential_target_merges`
         *   `resource_bundle_informations`
         *   `search_paths`
-        *   `target`
         *   `target_type`
+        *   `xcode_target`
         *   `xcode_targets`
     """
     return {
@@ -115,8 +115,8 @@ def _target_info_fields(
         "potential_target_merges": potential_target_merges,
         "resource_bundle_informations": resource_bundle_informations,
         "search_paths": search_paths,
-        "target": target,
         "target_type": target_type,
+        "xcode_target": xcode_target,
         "xcode_targets": xcode_targets,
     }
 
@@ -138,7 +138,7 @@ def _skip_target(*, deps, transitive_infos):
     compilation_providers = comp_providers.merge(
         transitive_compilation_providers = [
             (
-                dep[XcodeProjInfo].target,
+                dep[XcodeProjInfo].xcode_target,
                 dep[XcodeProjInfo].compilation_providers,
             )
             for dep in deps
@@ -192,8 +192,8 @@ def _skip_target(*, deps, transitive_infos):
             compilation_providers = None,
             bin_dir_path = None,
         ),
-        target = None,
         target_type = target_type.compile,
+        xcode_target = None,
         xcode_targets = depset(
             transitive = [info.xcode_targets for _, info in transitive_infos],
         ),
@@ -317,8 +317,8 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
             ],
         ),
         search_paths = processed_target.search_paths,
-        target = processed_target.target,
         target_type = processed_target.automatic_target_info.target_type,
+        xcode_target = processed_target.xcode_target,
         xcode_targets = depset(
             processed_target.xcode_targets,
             transitive = [

@@ -125,14 +125,13 @@ A value returned from `_process_search_paths`, that contains the search paths
 needed by this target. These search paths should be added to the search paths of
 any target that depends on this target.
 """,
-        "target": """\
-A `struct` that contains information about the current target that is
-potentially needed by the dependent targets.
-""",
         "target_type": """\
 A string that categorizes the type of the current target. This will be one of
 "compile", "resources", or `None`. Even if this target doesn't produce an Xcode
 target, it can still have a non-`None` value for this field.
+""",
+        "xcode_target": """\
+An optional value returned from `xcode_targets.make`.
 """,
         "xcode_targets": """\
 A `depset` of values returned from `xcode_targets.make`, which potentially will

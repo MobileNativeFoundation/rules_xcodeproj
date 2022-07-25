@@ -110,6 +110,5 @@ rules_xcodeproj requires {} to have `{}` set.
             compilation_providers = compilation_providers,
             bin_dir_path = ctx.bin_dir.path,
         ),
-        target = None,
         xcode_target = None,
     )

@@ -75,8 +75,8 @@ def process_dependencies(*, automatic_target_info, transitive_infos):
                     [None],
                 )):
             continue
-        if info.target:
-            direct_dependencies.append(info.target.id)
+        if info.xcode_target:
+            direct_dependencies.append(info.xcode_target.id)
         else:
             # We pass on the next level of dependencies if the previous target
             # didn't create an Xcode target.

@@ -26,7 +26,7 @@ load(":target_properties.bzl", "should_include_non_xcode_outputs")
 def _collect_transitive_extra_files(info):
     inputs = info.inputs
     transitive = [inputs.extra_files]
-    if not info.target:
+    if not info.xcode_target:
         transitive.append(depset([
             normalized_file_path(file)
             for file in inputs.srcs.to_list()
@@ -43,7 +43,7 @@ def _collect_transitive_extra_files(info):
     return depset(transitive = transitive)
 
 def _collect_transitive_uncategorized(info):
-    if info.target:
+    if info.xcode_target:
         return depset()
     return info.inputs.uncategorized
 
@@ -306,7 +306,7 @@ def _collect(
         if unfocused == None:
             dep_compilation_providers = comp_providers.merge(
                 transitive_compilation_providers = [
-                    (info.target, info.compilation_providers)
+                    (info.xcode_target, info.compilation_providers)
                     for attr, info in transitive_infos
                     if (info.target_type in
                         automatic_target_info.xcode_targets.get(attr, [None]))

@@ -16,7 +16,6 @@ def processed_target(
         potential_target_merges = None,
         resource_bundle_informations = None,
         search_paths,
-        target,
         xcode_target):
     """Generates the return value for target processing functions.
 
@@ -44,9 +43,8 @@ def processed_target(
         resource_bundle_informations: An optional `list` of `struct`s that will
             be in the `XcodeProjInfo.resource_bundle_informations` `depset`.
         search_paths: A value as returned from `target_search_paths.make`.
-        target: An optional `XcodeProjInfo.target` `struct`.
-        xcode_target: An optional string that will be in the
-            `XcodeProjInfo.xcode_targets` `depset`.
+        xcode_target: An optional value returned from `xcode_targets.make` that
+            will be in the `XcodeProjInfo.xcode_targets` `depset`.
 
     Returns:
         A `struct` containing fields for each argument.
@@ -64,7 +62,7 @@ def processed_target(
         potential_target_merges = potential_target_merges,
         resource_bundle_informations = resource_bundle_informations,
         search_paths = search_paths,
-        target = target,
         target_type = target_type,
+        xcode_target = xcode_target,
         xcode_targets = [xcode_target] if xcode_target else None,
     )
