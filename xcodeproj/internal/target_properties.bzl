@@ -152,8 +152,8 @@ def process_defines(*, compilation_providers, build_settings):
         The modified build settings object
     """
     cc_info = compilation_providers._cc_info
-    swift_info = compilation_providers._swift_info
-    if not swift_info and cc_info and build_settings != None:
+    is_swift = compilation_providers._is_swift
+    if not is_swift and cc_info and build_settings != None:
         # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
         # process Swift compile options already accounts for `defines`
 

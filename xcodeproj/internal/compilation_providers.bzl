@@ -1,7 +1,5 @@
 """Module for propagating compilation providers."""
 
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_common")
-
 def _collect(*, cc_info, objc, swift_info, is_xcode_target):
     """Collects compilation providers for a non top-level target.
 
@@ -20,10 +18,10 @@ def _collect(*, cc_info, objc, swift_info, is_xcode_target):
 
     return struct(
         _cc_info = cc_info,
-        _objc = objc,
-        _swift_info = swift_info,
+        _is_swift = swift_info != None,
         _is_top_level = False,
         _is_xcode_library_target = is_xcode_library_target,
+        _objc = objc,
     )
 
 def _merge(
@@ -64,23 +62,12 @@ def _merge(
         if objc_providers:
             objc = apple_common.new_objc_provider(providers = objc_providers)
 
-    if not swift_info:
-        swift_infos = [
-            providers._swift_info
-            for _, providers in transitive_compilation_providers
-            if providers._swift_info
-        ]
-        if swift_infos:
-            swift_info = swift_common.create_swift_info(
-                swift_infos = swift_infos,
-            )
-
     return struct(
         _cc_info = cc_info,
+        _is_swift = swift_info != None,
         _is_top_level = True,
         _is_xcode_library_target = False,
         _objc = objc,
-        _swift_info = swift_info,
         _transitive_compilation_providers = transitive_compilation_providers,
     )
 
