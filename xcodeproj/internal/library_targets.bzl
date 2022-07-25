@@ -11,7 +11,7 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
-load(":processed_target.bzl", "processed_target", "xcode_target")
+load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
 load(":target_search_paths.bzl", "target_search_paths")
 load(":target_id.bzl", "get_id")
@@ -25,6 +25,7 @@ load(
     "should_include_outputs",
     "should_include_outputs_output_groups",
 )
+load(":xcode_targets.bzl", "xcode_targets")
 
 def process_library_target(
         *,
@@ -170,7 +171,7 @@ def process_library_target(
             is_bundle = False,
             product_path = product.path,
         ),
-        xcode_target = xcode_target(
+        xcode_target = xcode_targets.make(
             id = id,
             name = ctx.rule.attr.name,
             label = label,

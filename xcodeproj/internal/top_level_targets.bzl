@@ -19,7 +19,7 @@ load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":providers.bzl", "XcodeProjInfo")
-load(":processed_target.bzl", "processed_target", "xcode_target")
+load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":target_search_paths.bzl", "target_search_paths")
@@ -35,6 +35,7 @@ load(
     "should_include_outputs",
     "should_include_outputs_output_groups",
 )
+load(":xcode_targets.bzl", "xcode_targets")
 
 def get_tree_artifact_enabled(*, ctx, bundle_info):
     """Returns whether tree artifacts are enabled.
@@ -454,7 +455,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             is_bundle = is_bundle,
             product_path = product.path,
         ),
-        xcode_target = xcode_target(
+        xcode_target = xcode_targets.make(
             id = id,
             name = ctx.rule.attr.name,
             label = label,
