@@ -165,7 +165,6 @@
                     "OS_IOS",
                     "DEBUG=1"
                 ],
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
                     "-fstack-protector",
                     "-Wall",
@@ -243,6 +242,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -280,7 +280,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -340,6 +339,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -381,7 +381,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "Example",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -431,6 +430,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -471,7 +471,6 @@
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "AWESOME"
                 ],
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.objctests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -525,6 +524,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -576,7 +576,6 @@
                     "DEBUG=1",
                     "AWESOME"
                 ],
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
                     "-fstack-protector",
                     "-Wall",
@@ -654,6 +653,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -694,7 +694,6 @@
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "AWESOME"
                 ],
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -749,6 +748,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -792,7 +792,6 @@
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
@@ -847,6 +846,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -894,7 +894,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -942,6 +941,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -974,7 +974,6 @@
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1011,6 +1010,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -1042,7 +1042,6 @@
                 "ENABLE_TESTABILITY": true,
                 "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static",
                 "PRODUCT_MODULE_NAME": "TestingUtils",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
@@ -1085,6 +1084,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -1121,7 +1121,6 @@
                     "OS_IOS",
                     "DEBUG=1"
                 ],
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_CFLAGS": [
                     "-fstack-protector",
                     "-Wall",
@@ -1201,6 +1200,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"

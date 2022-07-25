@@ -65,8 +65,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
             "dependencies": [
@@ -114,6 +113,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"
@@ -149,8 +149,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
             "inputs": {
@@ -181,6 +180,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"
@@ -214,8 +214,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
             "dependencies": [
@@ -259,6 +258,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"
@@ -296,8 +296,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
             "dependencies": [
@@ -330,6 +329,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"
@@ -369,8 +369,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
             "dependencies": [
@@ -413,6 +412,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"
@@ -450,8 +450,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1",
             "inputs": {
@@ -482,6 +481,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"

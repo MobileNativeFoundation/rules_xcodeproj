@@ -9,28 +9,20 @@ load("//xcodeproj/internal:platform.bzl", "platform_info")
 def _platform_info_to_dto_test_impl(ctx):
     env = unittest.begin(ctx)
 
-    build_settings = {}
     platform = struct(
-        _platform = getattr(apple_common.platform, ctx.attr.platform_key),
         _arch = ctx.attr.arch,
-        _minimum_os_version = ctx.attr.minimum_os_version,
-        _minimum_deployment_os_version = ctx.attr.minimum_deployment_os_version,
+        _deployment_os_version = ctx.attr.minimum_deployment_os_version,
+        _os_version = ctx.attr.minimum_os_version,
+        _platform = getattr(apple_common.platform, ctx.attr.platform_key),
     )
-    dto = platform_info.to_dto(platform, build_settings = build_settings)
+    dto = platform_info.to_dto(platform)
     string_platform = stringify_dict(dto)
-    string_build_settings = stringify_dict(build_settings)
 
     asserts.equals(
         env,
         ctx.attr.expected_platform_dict,
         string_platform,
         "platform",
-    )
-    asserts.equals(
-        env,
-        ctx.attr.expected_build_settings,
-        string_build_settings,
-        "build_settings",
     )
 
     return unittest.end(env)
@@ -39,7 +31,6 @@ platform_info_to_dto_test = unittest.make(
     impl = _platform_info_to_dto_test_impl,
     attrs = {
         "arch": attr.string(mandatory = True),
-        "expected_build_settings": attr.string_dict(mandatory = True),
         "expected_platform_dict": attr.string_dict(mandatory = True),
         "minimum_deployment_os_version": attr.string(mandatory = False),
         "minimum_os_version": attr.string(mandatory = True),
@@ -63,8 +54,7 @@ def platform_info_to_dto_test_suite(name):
             arch,
             minimum_os_version,
             minimum_deployment_os_version,
-            expected_platform_dict,
-            expected_build_settings):
+            expected_platform_dict):
         test_names.append(name)
         platform_info_to_dto_test(
             name = name,
@@ -73,7 +63,6 @@ def platform_info_to_dto_test_suite(name):
             minimum_os_version = minimum_os_version,
             minimum_deployment_os_version = minimum_deployment_os_version,
             expected_platform_dict = expected_platform_dict,
-            expected_build_settings = stringify_dict(expected_build_settings),
             timeout = "short",
         )
 
@@ -88,11 +77,9 @@ def platform_info_to_dto_test_suite(name):
         expected_platform_dict = {
             "arch": "wild",
             "minimum_os_version": "12.0",
+            "minimum_deployment_os_version": "12.0",
             "name": "appletvos",
             "os": "tvos",
-        },
-        expected_build_settings = {
-            "TVOS_DEPLOYMENT_TARGET": "12.0",
         },
     )
 
@@ -107,10 +94,8 @@ def platform_info_to_dto_test_suite(name):
             "environment": "Simulator",
             "name": "iphonesimulator",
             "minimum_os_version": "11.0",
+            "minimum_deployment_os_version": "13.0",
             "os": "ios",
-        },
-        expected_build_settings = {
-            "IPHONEOS_DEPLOYMENT_TARGET": "13.0",
         },
     )
 
@@ -126,10 +111,8 @@ def platform_info_to_dto_test_suite(name):
             "arch": "arm64",
             "name": "macosx",
             "minimum_os_version": "12.1",
+            "minimum_deployment_os_version": "12.1",
             "os": "macos",
-        },
-        expected_build_settings = {
-            "MACOSX_DEPLOYMENT_TARGET": "12.1",
         },
     )
 

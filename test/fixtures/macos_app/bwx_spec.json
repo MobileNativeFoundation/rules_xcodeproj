@@ -42,7 +42,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "MACOSX_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -96,6 +95,7 @@
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example",
             "platform": {
                 "arch": "x86_64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "macosx",
                 "os": "macos"
@@ -133,7 +133,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "MACOSX_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/macos_app/third_party -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -172,6 +171,7 @@
             "package_bin_dir": "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example",
             "platform": {
                 "arch": "x86_64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "macosx",
                 "os": "macos"

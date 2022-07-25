@@ -194,6 +194,7 @@ enum Fixtures {
                 os: .watchOS,
                 arch: "x86_64",
                 minimumOsVersion: "9.1",
+                minimumDeploymentOsVersion: "9.2",
                 environment: nil
             ),
             product: .init(
@@ -213,6 +214,7 @@ enum Fixtures {
                 os: .tvOS,
                 arch: "arm64",
                 minimumOsVersion: "9.1",
+                minimumDeploymentOsVersion: "9.2",
                 environment: nil
             ),
             product: .init(
@@ -225,7 +227,7 @@ enum Fixtures {
         ),
         "I": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/I",
-            platform: .device(os: .iOS),
+            platform: .device(os: .iOS, minimumDeploymentOsVersion: "13.0"),
             product: .init(
                 type: .application,
                 name: "I",
@@ -1997,6 +1999,7 @@ perl -pe 's/^([^"].*\$\(.*\).*)/"$1"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "BAZEL_TARGET_ID": "A 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_SWIFT_FLAGS": #"""
 -vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml
 """#,
@@ -2022,6 +2025,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                     "$(inherited)",
                     "@executable_path/../Frameworks",
                 ],
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(BUILD_DIR)/gen_dir-overlay.yaml",
@@ -2044,6 +2048,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BAZEL_TARGET_ID": "AC",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/Frameworks",
@@ -2067,6 +2072,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "BAZEL_TARGET_ID": "B 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(BUILD_DIR)/gen_dir-overlay.yaml",
@@ -2088,6 +2094,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BUNDLE_LOADER": "$(TEST_HOST)",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(BUILD_DIR)/gen_dir-overlay.yaml",
@@ -2115,6 +2122,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "CODE_SIGNING_ALLOWED": "YES",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(BUILD_DIR)/gen_dir-overlay.yaml",
@@ -2136,6 +2144,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "EXECUTABLE_EXTENSION": "lo",
                 "GCC_PREFIX_HEADER": "a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(BUILD_DIR)/gen_dir-overlay.yaml",
@@ -2160,6 +2169,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "LINK_PARAMS_FILE": """
 $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
 """,
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(BUILD_DIR)/gen_dir-overlay.yaml",
@@ -2190,6 +2200,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "SUPPORTED_PLATFORMS": "watchos",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["E1"]!.name,
+                "WATCHOS_DEPLOYMENT_TARGET": "9.2",
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
@@ -2203,6 +2214,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "SDKROOT": "appletvos",
                 "SUPPORTED_PLATFORMS": "appletvos",
                 "TARGET_NAME": targets["E2"]!.name,
+                "TVOS_DEPLOYMENT_TARGET": "9.2",
             ]) { $1 },
             "I": targets["I"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
@@ -2215,6 +2227,7 @@ $(BAZEL_OUT)/some/framework/parent/dir
 """,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "HEADER_SEARCH_PATHS": "$(BAZEL_OUT)/some/includes/parent/dir",
+                "IPHONEOS_DEPLOYMENT_TARGET": "13.0",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/Frameworks",
@@ -2248,6 +2261,7 @@ $(BAZEL_OUT)/some/quote/includes/parent/dir
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "BAZEL_TARGET_ID": "R 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(BUILD_DIR)/gen_dir-overlay.yaml",
@@ -2289,12 +2303,14 @@ $(IPHONESIMULATOR_FILES)
                 "INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]": """
 $(MACOSX_FILES)
 """,
+                "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
                 "IPHONEOS_FILES": """
 "T/T 1/Ta.c" "T/T 1/Ta.png" "T/T 1/Ta.swift"
 """,
                 "IPHONESIMULATOR_FILES": """
 "T/T 2/Ta.c" "T/T 2/Ta.png" "T/T 2/Ta.swift"
 """,
+                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "MACOSX_FILES": """
 "T/T 3/Ta.c" "T/T 3/Ta.png" "T/T 3/Ta.swift"
 """,
@@ -2327,6 +2343,7 @@ $(MACOSX_FILES)
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
                 "TARGET_NAME": targets["W"]!.name,
+                "WATCHOS_DEPLOYMENT_TARGET": "11.0",
             ]) { $1 },
             "WDKE": targets["WDKE"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
@@ -2336,6 +2353,7 @@ $(MACOSX_FILES)
                 "BAZEL_HOST_TARGET_ID_0": "I",
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/Frameworks",
@@ -2380,6 +2398,7 @@ $(MACOSX_FILES)
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
                 "TARGET_NAME": targets["WKE"]!.name,
+                "WATCHOS_DEPLOYMENT_TARGET": "11.0",
             ]) { $1 },
         ]
         for (key, buildSettings) in buildSettings {
