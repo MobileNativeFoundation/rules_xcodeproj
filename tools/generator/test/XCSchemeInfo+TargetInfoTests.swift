@@ -215,7 +215,9 @@ extension XCSchemeInfoTargetInfoTests {
         let buildMode = BuildMode.bazel
         let targetInfos = [libraryTargetInfo, appTargetInfo]
         let expected: [XCScheme.ExecutionAction] = [
-            .initBazelBuildOutputGroupsFile,
+            .initBazelBuildOutputGroupsFile(
+                buildableReference: libraryTargetInfo.buildableReference
+            ),
             try libraryTargetInfo.buildPreAction(buildMode: buildMode)!,
             try appTargetInfo.buildPreAction(buildMode: buildMode)!,
         ]

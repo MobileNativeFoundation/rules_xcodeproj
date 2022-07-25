@@ -183,8 +183,19 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
     func buildPreActions(buildMode: BuildMode) throws -> [XCScheme.ExecutionAction] {
-        let preActions = try inStableOrder
+        let targetInfos = inStableOrder
+
+        guard let buildableReference =
+                targetInfos.first?.buildableReference
+        else {
+            return []
+        }
+
+        let preActions = try targetInfos
             .compactMap { try $0.buildPreAction(buildMode: buildMode) }
-        return [.initBazelBuildOutputGroupsFile] + preActions
+
+        return [.initBazelBuildOutputGroupsFile(
+            buildableReference: buildableReference
+        )] + preActions
     }
 }
