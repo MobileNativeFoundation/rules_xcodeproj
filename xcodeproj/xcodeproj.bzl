@@ -5,7 +5,7 @@ load(
     _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
 )
 load("//xcodeproj/internal:xcode_schemes.bzl", _xcode_schemes = "xcode_schemes")
-load("//xcodeproj/internal:xcodeproj.bzl", _xcodeproj = "xcodeproj")
+load("//xcodeproj/internal:xcodeproj_macro.bzl", _xcodeproj = "xcodeproj")
 
 # Re-exporting providers
 XcodeProjAutomaticTargetProcessingInfo = _XcodeProjAutomaticTargetProcessingInfo
