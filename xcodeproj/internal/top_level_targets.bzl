@@ -228,7 +228,7 @@ def process_top_level_target(
     swift_info = target[SwiftInfo] if is_swift else None
 
     modulemaps = process_modulemaps(swift_info = swift_info)
-    additional_files.extend(modulemaps.files)
+    additional_files.extend(list(modulemaps.files))
 
     infoplist = info_plists.adjust_for_xcode(
         info_plists.get_file(target),

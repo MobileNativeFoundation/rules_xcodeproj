@@ -45,9 +45,9 @@ def _to_dto(search_paths):
         opts_search_paths = search_paths._opts_search_paths
 
         if opts_search_paths:
-            opts_includes = opts_search_paths.includes
-            opts_quote_includes = opts_search_paths.quote_includes
-            opts_system_includes = opts_search_paths.system_includes
+            opts_includes = list(opts_search_paths.includes)
+            opts_quote_includes = list(opts_search_paths.quote_includes)
+            opts_system_includes = list(opts_search_paths.system_includes)
         else:
             opts_includes = []
             opts_quote_includes = []

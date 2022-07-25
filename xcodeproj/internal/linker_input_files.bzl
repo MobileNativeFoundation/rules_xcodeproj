@@ -72,9 +72,9 @@ def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
         top_level_values = None
 
     return struct(
-        _cc_linker_inputs = cc_linker_inputs,
+        _cc_linker_inputs = tuple(cc_linker_inputs),
         _compilation_providers = compilation_providers,
-        _objc_libraries = objc_libraries,
+        _objc_libraries = tuple(objc_libraries),
         _primary_static_library = primary_static_library,
         _top_level_values = top_level_values,
     )
@@ -277,15 +277,15 @@ def _extract_top_level_values(
 
         linkopts = _process_linkopts(raw_linkopts)
     else:
-        linkopts = None
+        linkopts = []
 
     return struct(
-        additional_input_files = additional_input_files,
-        dynamic_frameworks = dynamic_frameworks,
-        force_load_libraries = force_load_libraries,
-        linkopts = linkopts,
-        static_frameworks = static_frameworks,
-        static_libraries = static_libraries,
+        additional_input_files = tuple(additional_input_files),
+        dynamic_frameworks = tuple(dynamic_frameworks),
+        force_load_libraries = tuple(force_load_libraries),
+        linkopts = tuple(linkopts),
+        static_frameworks = tuple(static_frameworks),
+        static_libraries = tuple(static_libraries),
     )
 
 def _process_additional_inputs(files):
@@ -472,10 +472,10 @@ def _to_input_files(linker_inputs):
     if not top_level_values:
         return []
 
-    return (
+    return list(
         top_level_values.additional_input_files +
         top_level_values.dynamic_frameworks +
-        top_level_values.static_frameworks
+        top_level_values.static_frameworks,
     )
 
 def _get_primary_static_library(linker_inputs):
