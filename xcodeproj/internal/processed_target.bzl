@@ -142,17 +142,12 @@ def xcode_target(
         to create a json array string, possibly joining multiples of these
         strings with `","`.
     """
-    platform_dto = platform_info.to_dto(
-        platform,
-        build_settings = build_settings,
-    )
-
     target_json = {
         "name": name,
         "label": str(label),
         "configuration": configuration,
         "package_bin_dir": package_bin_dir,
-        "platform": platform_dto,
+        "platform": platform_info.to_dto(platform),
         "product": product_to_dto(product),
     }
 

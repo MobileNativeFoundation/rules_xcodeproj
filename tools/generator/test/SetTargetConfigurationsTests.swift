@@ -420,6 +420,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
                         os: os,
                         arch: "arm64",
                         minimumOsVersion: "11.0",
+                        minimumDeploymentOsVersion: "11.1",
                         environment: nil
                     ),
                     product: .init(

@@ -272,7 +272,6 @@
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.app-clip",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -341,6 +340,7 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/AppClip",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -385,7 +385,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.app-clip",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -455,6 +454,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -499,7 +499,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
                 "PRODUCT_MODULE_NAME": "AppClip",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -544,6 +543,7 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/AppClip",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -594,7 +594,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PRODUCT_MODULE_NAME": "AppClip",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -640,6 +639,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -690,7 +690,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -734,6 +733,7 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -778,7 +778,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PRODUCT_MODULE_NAME": "Lib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -823,6 +822,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -872,8 +872,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
             "inputs": {
@@ -911,6 +910,7 @@
             "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvos",
                 "os": "tvos"
@@ -960,8 +960,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
             "inputs": {
@@ -1000,6 +999,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"
@@ -1049,8 +1049,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "WATCHOS_DEPLOYMENT_TARGET": "7.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "inputs": {
@@ -1088,6 +1087,7 @@
             "package_bin_dir": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64_32",
+                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "name": "watchos",
                 "os": "watchos"
@@ -1137,8 +1137,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "WATCHOS_DEPLOYMENT_TARGET": "7.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "inputs": {
@@ -1177,6 +1176,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "name": "watchsimulator",
                 "os": "watchos"
@@ -1220,7 +1220,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -1264,6 +1263,7 @@
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
                 "minimum_os_version": "11.0",
                 "name": "macosx",
                 "os": "macos"
@@ -1294,7 +1294,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "Tool",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1329,6 +1328,7 @@
             "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
+                "minimum_deployment_os_version": "11.0",
                 "minimum_os_version": "11.0",
                 "name": "macosx",
                 "os": "macos"
@@ -1360,7 +1360,6 @@
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.widget-extension",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1424,6 +1423,7 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -1468,7 +1468,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.widget-extension",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1533,6 +1532,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -1577,7 +1577,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
                 "PRODUCT_MODULE_NAME": "WidgetExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1625,6 +1624,7 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -1675,7 +1675,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PRODUCT_MODULE_NAME": "WidgetExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -1724,6 +1723,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -1775,7 +1775,6 @@
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1817,6 +1816,7 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -1847,7 +1847,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1890,6 +1889,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -1921,7 +1921,6 @@
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app.extension",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -1986,6 +1985,7 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -2030,7 +2030,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app.extension",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -2096,6 +2095,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -2140,7 +2140,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
                 "PRODUCT_MODULE_NAME": "iMessageAppExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -2184,6 +2183,7 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -2234,7 +2234,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PRODUCT_MODULE_NAME": "iMessageAppExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -2279,6 +2278,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -2333,7 +2333,6 @@
                 "DEVELOPMENT_TEAM": "V82V4GQZXM",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -2433,6 +2432,7 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -2501,7 +2501,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -2602,6 +2601,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -2667,7 +2667,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -2724,6 +2723,7 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphoneos",
                 "os": "ios"
@@ -2794,7 +2794,6 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
@@ -2852,6 +2851,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "iphonesimulator",
                 "os": "ios"
@@ -2926,8 +2926,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
             "dependencies": [
@@ -2987,6 +2986,7 @@
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvos",
                 "os": "tvos"
@@ -3034,8 +3034,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
             "dependencies": [
@@ -3096,6 +3095,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"
@@ -3145,8 +3145,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef",
             "dependencies": [
@@ -3185,6 +3184,7 @@
             "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "arm64",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvos",
                 "os": "tvos"
@@ -3240,8 +3240,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TVOS_DEPLOYMENT_TARGET": "15.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
             "dependencies": [
@@ -3281,6 +3280,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "name": "appletvsimulator",
                 "os": "tvos"
@@ -3335,8 +3335,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "WATCHOS_DEPLOYMENT_TARGET": "7.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "dependencies": [
@@ -3373,6 +3372,7 @@
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp",
             "platform": {
                 "arch": "arm64_32",
+                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "name": "watchos",
                 "os": "watchos"
@@ -3406,8 +3406,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "WATCHOS_DEPLOYMENT_TARGET": "7.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "dependencies": [
@@ -3445,6 +3444,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "name": "watchsimulator",
                 "os": "watchos"
@@ -3479,8 +3479,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "WATCHOS_DEPLOYMENT_TARGET": "7.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "dependencies": [
@@ -3540,6 +3539,7 @@
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "arm64_32",
+                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "name": "watchos",
                 "os": "watchos"
@@ -3587,8 +3587,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "WATCHOS_DEPLOYMENT_TARGET": "7.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "dependencies": [
@@ -3649,6 +3648,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "name": "watchsimulator",
                 "os": "watchos"
@@ -3698,8 +3698,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "WATCHOS_DEPLOYMENT_TARGET": "7.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
             "dependencies": [
@@ -3738,6 +3737,7 @@
             "package_bin_dir": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "arm64_32",
+                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "name": "watchos",
                 "os": "watchos"
@@ -3793,8 +3793,7 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "WATCHOS_DEPLOYMENT_TARGET": "7.0"
+                "SWIFT_VERSION": "5"
             },
             "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
             "dependencies": [
@@ -3834,6 +3833,7 @@
             "platform": {
                 "arch": "x86_64",
                 "environment": "Simulator",
+                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "name": "watchsimulator",
                 "os": "watchos"

@@ -245,6 +245,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         buildSettings.set("SUPPORTED_PLATFORMS", to: target.platform.name)
         buildSettings.set("TARGET_NAME", to: target.name)
 
+        buildSettings.set(
+            target.platform.os.deploymentTargetBuildSettingKey,
+            to: target.platform.minimumDeploymentOsVersion
+        )
+
         let executableExtension = target.product.path.path.extension ?? ""
             if executableExtension != target.product.type.fileExtension {
             buildSettings.set(

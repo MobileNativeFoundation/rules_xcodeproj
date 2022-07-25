@@ -140,6 +140,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         os: .tvOS,
         arch: "arm64",
         minimumOsVersion: "15.0",
+        minimumDeploymentOsVersion: "15.1",
         environment: nil
     )
     let appletvSimulatorPlatform = Platform(
@@ -147,6 +148,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         os: .tvOS,
         arch: "x86_64",
         minimumOsVersion: "15.0",
+        minimumDeploymentOsVersion: "15.1",
         environment: Optional("Simulator")
     )
     let iphoneOSPlatform = Platform(
@@ -154,6 +156,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         os: .iOS,
         arch: "arm64",
         minimumOsVersion: "15.0",
+        minimumDeploymentOsVersion: "15.1",
         environment: nil
     )
     let iphoneSimulatorPlatform = Platform(
@@ -161,6 +164,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         os: .iOS,
         arch: "x86_64",
         minimumOsVersion: "15.0",
+        minimumDeploymentOsVersion: "15.1",
         environment: Optional("Simulator")
     )
     let macOSPlatform = Platform(
@@ -168,6 +172,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         os: .macOS,
         arch: "x86_64",
         minimumOsVersion: "11.0",
+        minimumDeploymentOsVersion: "11.1",
         environment: nil
     )
     let watchOSPlatform = Platform(
@@ -175,6 +180,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         os: .watchOS,
         arch: "arm64_32",
         minimumOsVersion: "7.0",
+        minimumDeploymentOsVersion: "7.1",
         environment: nil
     )
     let watchSimulatorPlatform = Platform(
@@ -182,6 +188,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         os: .watchOS,
         arch: "x86_64",
         minimumOsVersion: "7.0",
+        minimumDeploymentOsVersion: "7.1",
         environment: Optional("Simulator")
     )
 

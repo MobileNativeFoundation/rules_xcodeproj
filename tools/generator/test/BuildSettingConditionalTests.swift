@@ -10,6 +10,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             os: .macOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
+            minimumDeploymentOsVersion: "13.0",
             environment: nil
         )),
         "B": .init(platform: .init(
@@ -17,6 +18,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             os: .iOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
+            minimumDeploymentOsVersion: "13.0",
             environment: "Simulator"
         )),
         "C": .init(platform: .init(
@@ -24,6 +26,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             os: .iOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
+            minimumDeploymentOsVersion: "13.0",
             environment: nil
         )),
         "D": .init(platform: .init(
@@ -31,6 +34,7 @@ final class BuildSettingConditionalTests: XCTestCase {
             os: .iOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
+            minimumDeploymentOsVersion: "13.0",
             environment: "Device"
         )),
         "any": .any,

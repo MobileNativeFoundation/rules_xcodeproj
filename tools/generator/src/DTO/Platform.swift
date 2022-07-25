@@ -10,7 +10,19 @@ struct Platform: Equatable, Hashable, Decodable {
     let os: OS
     let arch: String
     let minimumOsVersion: String
+    let minimumDeploymentOsVersion: String
     let environment: String?
+}
+
+extension Platform.OS {
+    var deploymentTargetBuildSettingKey: String {
+        switch self {
+        case .macOS: return"MACOSX_DEPLOYMENT_TARGET"
+        case .iOS: return "IPHONEOS_DEPLOYMENT_TARGET"
+        case .tvOS: return "TVOS_DEPLOYMENT_TARGET"
+        case .watchOS: return "WATCHOS_DEPLOYMENT_TARGET"
+        }
+    }
 }
 
 // MARK: - Comparable

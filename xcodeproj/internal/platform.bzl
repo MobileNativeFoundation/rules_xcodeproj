@@ -1,12 +1,5 @@
 """Functions for processing platforms."""
 
-_DEPLOYMENT_TARGET_KEY = {
-    apple_common.platform_type.ios: "IPHONEOS_DEPLOYMENT_TARGET",
-    apple_common.platform_type.macos: "MACOSX_DEPLOYMENT_TARGET",
-    apple_common.platform_type.watchos: "WATCHOS_DEPLOYMENT_TARGET",
-    apple_common.platform_type.tvos: "TVOS_DEPLOYMENT_TARGET",
-}
-
 _PLATFORM_NAME = {
     apple_common.platform.ios_device: "iphoneos",
     apple_common.platform.ios_simulator: "iphonesimulator",
@@ -36,40 +29,34 @@ def _collect(*, ctx, minimum_deployment_os_version):
     )
 
     return struct(
-        _platform = platform,
         _arch = apple_fragment.single_arch_cpu,
-        _minimum_os_version = minimum_os_version,
-        _minimum_deployment_os_version = minimum_deployment_os_version,
+        _deployment_os_version = minimum_deployment_os_version,
+        _os_version = minimum_os_version,
+        _platform = platform,
     )
 
-def _to_dto(platform, *, build_settings):
+def _to_dto(platform):
     """Generates a target DTO value for a platform.
 
     Args:
         platform: A value returned from `platform_info.collect`.
-        build_settings: A mutable `dict` that will be updated with Xcode build
-            settings.
     """
-    arch = platform._arch
-    os_version = platform._minimum_os_version
-    deployment_os_version = platform._minimum_deployment_os_version
-    platform = platform._platform
+    apple_platform = platform._platform
+    platform_type = apple_platform.platform_type
+    is_device = apple_platform.is_device
 
-    platform_type = platform.platform_type
-    is_device = platform.is_device
+    os_version = platform._os_version
+    deployment_os_version = platform._deployment_os_version or os_version
 
     dto = {
-        "name": _PLATFORM_NAME[platform],
+        "name": _PLATFORM_NAME[apple_platform],
         "os": str(platform_type),
-        "arch": arch,
+        "arch": platform._arch,
         "minimum_os_version": os_version,
+        "minimum_deployment_os_version": deployment_os_version,
     }
     if not is_device:
         dto["environment"] = "Simulator"
-
-    build_settings[_DEPLOYMENT_TARGET_KEY[platform_type]] = (
-        deployment_os_version if deployment_os_version else os_version
-    )
 
     return dto
 
