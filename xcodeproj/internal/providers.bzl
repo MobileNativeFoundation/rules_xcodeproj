@@ -138,7 +138,7 @@ A string that categorizes the type of the current target. This will be one of
 target, it can still have a non-`None` value for this field.
 """,
         "xcode_targets": """\
-A `depset` of values returned from `xcode_target.make`, which potentially will
+A `depset` of values returned from `xcode_targets.make`, which potentially will
 become targets in the Xcode project.
 """,
     },
