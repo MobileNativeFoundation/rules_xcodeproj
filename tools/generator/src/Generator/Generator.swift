@@ -70,6 +70,13 @@ class Generator {
         var targets = project.targets
         try environment.processTargetMerges(&targets, project.targetMerges)
 
+        let isUnfocusedDependencyTargetIDs = Set(
+            targets.filter(\.value.isUnfocusedDependency).keys
+        )
+        for id in targets.keys {
+            targets[id]!.dependencies.subtract(isUnfocusedDependencyTargetIDs)
+        }
+
         let consolidatedTargets = try environment.consolidateTargets(
             targets,
             logger
