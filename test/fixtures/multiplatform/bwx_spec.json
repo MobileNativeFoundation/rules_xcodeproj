@@ -10,7 +10,7 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "configuration": "darwin_x86_64-fastbuild-ST-d53d69b6b8c1",
+    "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
     "custom_xcode_schemes": [],
     "extra_files": [
         "examples/multiplatform/AppClip/BUILD",
@@ -162,11 +162,11 @@
         "examples/multiplatform/Tool/BUILD",
         "examples/multiplatform/Tool/Info.plist",
         {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
+            "_": "applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
             "t": "g"
         },
         {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.merged_infoplist-intermediates/Info.plist",
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/Tool.merged_infoplist-intermediates/Info.plist",
             "t": "g"
         },
         "test/fixtures/multiplatform/BUILD"
@@ -218,9 +218,9 @@
         [
             "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01"
         ],
-        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
+        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c",
         [
-            "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
+            "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c"
         ],
         "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-787a8770ecb8",
         [
@@ -1214,7 +1214,7 @@
                 ]
             }
         },
-        "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
+        "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1224,19 +1224,19 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
+            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c",
             "dependencies": [
-                "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60"
+                "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c"
             ],
             "info_plist": {
-                "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
+                "_": "applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
             "label": "//examples/multiplatform/Tool:Tool",
             "linker_inputs": {
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/Tool.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1248,7 +1248,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/libTool.library.a",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/libTool.library.a",
                         "t": "g"
                     }
                 ]
@@ -1256,11 +1256,11 @@
             "name": "Tool",
             "outputs": {
                 "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/Tool",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool",
+            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
                 "minimum_deployment_os_version": "11.0",
@@ -1272,7 +1272,7 @@
                 "executable_name": "Tool",
                 "name": "Tool",
                 "path": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/Tool",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.tool"
@@ -1281,13 +1281,13 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin",
                         "t": "g"
                     }
                 ]
             }
         },
-        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
+        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1301,7 +1301,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60",
+            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c",
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/Tool/main.swift"
@@ -1312,20 +1312,20 @@
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftdoc",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/Tool.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftmodule",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/Tool.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/Tool.swiftsourceinfo",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/Tool.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool",
+            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
                 "minimum_deployment_os_version": "11.0",
@@ -1337,7 +1337,7 @@
                 "executable_name": null,
                 "name": "Tool.library",
                 "path": {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin/examples/multiplatform/Tool/libTool.library.a",
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/multiplatform/Tool/libTool.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -1346,7 +1346,7 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-59a3e2f8ef60/bin",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin",
                         "t": "g"
                     }
                 ]
