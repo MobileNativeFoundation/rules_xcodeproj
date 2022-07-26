@@ -1100,90 +1100,6 @@
                 ]
             }
         },
-        "@com_github_tadija_aexml//:AEXML darwin_x86_64-dbg-ST-e86416d3a8c7",
-        {
-            "build_settings": {
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "ENABLE_TESTABILITY": true,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
-                "PRODUCT_MODULE_NAME": "AEXML",
-                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5"
-            },
-            "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
-            "inputs": {
-                "srcs": [
-                    {
-                        "_": "com_github_tadija_aexml/Sources/AEXML/Document.swift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_tadija_aexml/Sources/AEXML/Element.swift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_tadija_aexml/Sources/AEXML/Error.swift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_tadija_aexml/Sources/AEXML/Options.swift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_tadija_aexml/Sources/AEXML/Parser.swift",
-                        "t": "e"
-                    }
-                ]
-            },
-            "label": "@com_github_tadija_aexml//:AEXML",
-            "name": "AEXML",
-            "outputs": {
-                "s": {
-                    "d": {
-                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_tadija_aexml/AEXML.swiftdoc",
-                        "t": "g"
-                    },
-                    "m": {
-                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
-                        "t": "g"
-                    },
-                    "s": {
-                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_tadija_aexml/AEXML.swiftsourceinfo",
-                        "t": "g"
-                    }
-                }
-            },
-            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_tadija_aexml",
-            "platform": {
-                "arch": "x86_64",
-                "minimum_deployment_os_version": "11.0",
-                "minimum_os_version": "11.0",
-                "name": "macosx",
-                "os": "macos"
-            },
-            "product": {
-                "executable_name": null,
-                "name": "AEXML",
-                "path": {
-                    "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_tadija_aexml/libAEXML.a",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.library.static"
-            },
-            "search_paths": {
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-e86416d3a8c7/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
         "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-dbg-ST-e86416d3a8c7",
         {
             "build_settings": {
@@ -1200,7 +1116,6 @@
             },
             "configuration": "darwin_x86_64-dbg-ST-e86416d3a8c7",
             "dependencies": [
-                "@com_github_tadija_aexml//:AEXML darwin_x86_64-dbg-ST-e86416d3a8c7",
                 "@com_github_kylef_pathkit//:PathKit darwin_x86_64-dbg-ST-e86416d3a8c7"
             ],
             "inputs": {

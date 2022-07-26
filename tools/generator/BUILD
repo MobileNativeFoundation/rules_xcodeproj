@@ -6,7 +6,8 @@ load(
 load("//xcodeproj:xcodeproj.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
-    "GENERATOR_SCHEME_AUTOGENERATION_MODE",
+    "SCHEME_AUTOGENERATION_MODE",
+    "UNFOCUSED_TARGETS",
     "get_xcode_schemes",
 )
 
@@ -34,9 +35,10 @@ xcodeproj(
     name = "xcodeproj",
     build_mode = "bazel",
     project_name = "generator",
-    scheme_autogeneration_mode = GENERATOR_SCHEME_AUTOGENERATION_MODE,
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
     tags = ["manual"],
+    unfocused_targets = UNFOCUSED_TARGETS,
 )
 
 # Integration test related targets

@@ -1,13 +1,13 @@
 load(
     "//tools/generator:xcodeproj_targets.bzl",
-    "GENERATOR_SCHEME_AUTOGENERATION_MODE",
+    "SCHEME_AUTOGENERATION_MODE",
+    "UNFOCUSED_TARGETS",
     "get_xcode_schemes",
-    "get_xcodeproj_targets",
 )
 load("//xcodeproj:testing.bzl", "xcodeproj_fixture")
 
 xcodeproj_fixture(
-    scheme_autogeneration_mode = GENERATOR_SCHEME_AUTOGENERATION_MODE,
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
-    targets = get_xcodeproj_targets(),
+    unfocused_targets = UNFOCUSED_TARGETS,
 )
