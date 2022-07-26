@@ -185,18 +185,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-02316c4eb12c/examples/simple/SwiftBin.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_CFLAGS = (
-					"-ivfsoverlay",
-					"$(BUILD_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(BUILD_DIR)/gen_dir-overlay.yaml",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(BUILD_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(BUILD_DIR)/gen_dir-overlay.yaml",
-				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = SwiftBinModuleName;

@@ -134,6 +134,7 @@ class Generator {
             buildMode,
             pbxTargets,
             project.targetHosts,
+            bazelDependencies != nil,
             xcodeGeneratedFiles,
             filePathResolver
         )

@@ -476,6 +476,7 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let hostIDs: [TargetID: [TargetID]]
+            let hasBazelDependencies: Bool
             let xcodeGeneratedFiles: Set<FilePath>
             let filePathResolver: FilePathResolver
         }
@@ -487,6 +488,7 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
+            hasBazelDependencies: Bool,
             xcodeGeneratedFiles: Set<FilePath>,
             filePathResolver: FilePathResolver
         ) {
@@ -496,6 +498,7 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
+                hasBazelDependencies: hasBazelDependencies,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             ))
@@ -508,6 +511,7 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,
+                hasBazelDependencies: true,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             ),
