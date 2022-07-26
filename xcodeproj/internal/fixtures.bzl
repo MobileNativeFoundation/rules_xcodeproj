@@ -108,7 +108,7 @@ def xcodeproj_fixture(
         name = "xcodeproj",
         archived_bundles_allowed = False,
         modes_and_suffixes = [("xcode", "bwx"), ("bazel", "bwb")],
-        targets = [],
+        top_level_targets = [],
         focused_targets = [],
         unfocused_targets = [],
         schemes = None,
@@ -124,7 +124,7 @@ def xcodeproj_fixture(
         modes_and_suffixes: A `list` of `tuple`s of `build_mode` and `suffix`.
             The `build_mode` will be pass to `xcodeproj.build_mode` and the
             `suffix` will be used as the suffix of the project and spec files.
-        targets: Maps to `xcodeproj.targets`.
+        top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
         unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
         schemes: Optional. A `list` of `struct` values as returned by
@@ -150,7 +150,7 @@ def xcodeproj_fixture(
             build_mode = mode,
             focused_targets = focused_targets,
             project_name = suffix,
-            targets = targets,
+            top_level_targets = top_level_targets,
             scheme_autogeneration_mode = scheme_autogeneration_mode,
             schemes = schemes,
             unfocused_targets = unfocused_targets,

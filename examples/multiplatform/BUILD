@@ -12,7 +12,7 @@ xcodeproj(
     name = "xcodeproj",
     project_name = "Multiplatform",
     tags = ["manual"],
-    targets = XCODEPROJ_TARGETS,
+    top_level_targets = XCODEPROJ_TARGETS,
 )
 
 device_and_simulator(

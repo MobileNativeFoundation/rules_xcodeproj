@@ -30,7 +30,10 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
     ]
 
     # Combine targets that are specified directly and implicitly via the schemes
-    targets = [bazel_labels.normalize(t) for t in kwargs.pop("targets", [])]
+    top_level_targets = [
+        bazel_labels.normalize(t)
+        for t in kwargs.pop("top_level_targets", [])
+    ]
     schemes_json = None
     if schemes != None:
         targets_from_schemes = xcode_schemes.collect_top_level_targets(schemes)
@@ -45,9 +48,9 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
                 focused_targets = focused_targets,
             )
         schemes_json = json.encode(schemes)
-        targets_set = sets.make(targets)
+        targets_set = sets.make(top_level_targets)
         targets_set = sets.union(targets_set, targets_from_schemes)
-        targets = sorted(sets.to_list(targets_set))
+        top_level_targets = sorted(sets.to_list(targets_set))
 
     if kwargs.get("toplevel_cache_buster"):
         fail("`toplevel_cache_buster` is for internal use only")
@@ -69,8 +72,8 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
         name = name,
         focused_targets = focused_targets,
         schemes_json = schemes_json,
-        targets = targets,
         testonly = testonly,
+        top_level_targets = top_level_targets,
         toplevel_cache_buster = toplevel_cache_buster,
         unfocused_targets = unfocused_targets,
         **kwargs

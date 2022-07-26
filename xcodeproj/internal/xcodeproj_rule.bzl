@@ -469,7 +469,7 @@ def _xcodeproj_impl(ctx):
     unfocused_labels = sets.make(ctx.attr.unfocused_targets)
     infos = [
         dep[XcodeProjInfo]
-        for dep in ctx.attr.targets
+        for dep in ctx.attr.top_level_targets
     ]
     configuration = get_configuration(ctx = ctx)
 
@@ -596,7 +596,7 @@ def make_xcodeproj_rule(
 A JSON string representing a list of Xcode schemes to create.\
 """,
         ),
-        "targets": attr.label_list(
+        "top_level_targets": attr.label_list(
             cfg = target_transition,
             mandatory = True,
             allow_empty = False,
