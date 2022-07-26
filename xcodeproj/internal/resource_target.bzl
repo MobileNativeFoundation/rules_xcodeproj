@@ -65,6 +65,7 @@ def _process_resource_bundle(bundle, *, information):
         inputs = input_files.from_resource_bundle(bundle),
         linker_inputs = None,
         dependencies = bundle.dependencies,
+        transitive_dependencies = bundle.dependencies,
         outputs = outputs,
     )
 

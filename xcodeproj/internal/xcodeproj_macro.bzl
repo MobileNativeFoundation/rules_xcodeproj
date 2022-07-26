@@ -20,12 +20,31 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
 
     project = kwargs.get("project_name", name)
 
+    focused_targets = [
+        bazel_labels.normalize(t)
+        for t in kwargs.pop("focused_targets", [])
+    ]
+    unfocused_targets = [
+        bazel_labels.normalize(t)
+        for t in kwargs.pop("unfocused_targets", [])
+    ]
+
     # Combine targets that are specified directly and implicitly via the schemes
     targets = [bazel_labels.normalize(t) for t in kwargs.pop("targets", [])]
     schemes_json = None
     if schemes != None:
-        schemes_json = json.encode(schemes)
         targets_from_schemes = xcode_schemes.collect_top_level_targets(schemes)
+        if unfocused_targets:
+            schemes = xcode_schemes.unfocus_schemes(
+                schemes = schemes,
+                unfocused_targets = unfocused_targets,
+            )
+        if focused_targets:
+            schemes = xcode_schemes.focus_schemes(
+                schemes = schemes,
+                focused_targets = focused_targets,
+            )
+        schemes_json = json.encode(schemes)
         targets_set = sets.make(targets)
         targets_set = sets.union(targets_set, targets_from_schemes)
         targets = sorted(sets.to_list(targets_set))
@@ -48,9 +67,11 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
 
     xcodeproj_rule(
         name = name,
-        testonly = testonly,
-        toplevel_cache_buster = toplevel_cache_buster,
+        focused_targets = focused_targets,
         schemes_json = schemes_json,
         targets = targets,
+        testonly = testonly,
+        toplevel_cache_buster = toplevel_cache_buster,
+        unfocused_targets = unfocused_targets,
         **kwargs
     )

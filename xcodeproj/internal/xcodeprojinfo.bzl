@@ -145,12 +145,14 @@ def _skip_target(*, deps, transitive_infos):
         ],
     )
 
+    dependencies, _ = process_dependencies(
+        automatic_target_info = None,
+        transitive_infos = transitive_infos,
+    )
+
     return _target_info_fields(
         compilation_providers = compilation_providers,
-        dependencies = process_dependencies(
-            automatic_target_info = None,
-            transitive_infos = transitive_infos,
-        ),
+        dependencies = dependencies,
         extension_infoplists = depset(
             transitive = [
                 info.extension_infoplists
