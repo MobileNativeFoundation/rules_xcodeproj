@@ -14,6 +14,7 @@ extension Generator {
         buildMode: BuildMode,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
+        hasBazelDependencies: Bool,
         xcodeGeneratedFiles: Set<FilePath>,
         filePathResolver: FilePathResolver
     ) throws {
@@ -37,6 +38,7 @@ Target "\(key)" not found in `pbxTargets`
                 for: target,
                 buildMode: buildMode,
                 hostIDs: hostIDs,
+                hasBazelDependencies: hasBazelDependencies,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             )
@@ -70,6 +72,7 @@ Target "\(key)" not found in `pbxTargets`
         for consolidatedTarget: ConsolidatedTarget,
         buildMode: BuildMode,
         hostIDs: [TargetID: [TargetID]],
+        hasBazelDependencies: Bool,
         xcodeGeneratedFiles: Set<FilePath>,
         filePathResolver: FilePathResolver
     ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
@@ -84,6 +87,7 @@ Target "\(key)" not found in `pbxTargets`
                 id: id,
                 hostIDs: hostIDs[id, default: []],
                 buildMode: buildMode,
+                hasBazelDependencies: hasBazelDependencies,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             )
@@ -142,6 +146,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         id: TargetID,
         hostIDs: [TargetID],
         buildMode: BuildMode,
+        hasBazelDependencies: Bool,
         xcodeGeneratedFiles: Set<FilePath>,
         filePathResolver: FilePathResolver
     ) throws -> [String: BuildSetting] {
@@ -356,51 +361,53 @@ $(CONFIGURATION_BUILD_DIR)
 
         // Set VFS overlays
 
-        if target.isSwift {
-            try buildSettings.prepend(
-                onKey: "OTHER_SWIFT_FLAGS",
-                "-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml"
-            )
-        } else {
-            try buildSettings.prepend(
-                onKey: "OTHER_CFLAGS",
-                ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
-            )
-
-            try buildSettings.prepend(
-                onKey: "OTHER_CPLUSPLUSFLAGS",
-                ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
-            )
-        }
-
-        switch buildMode {
-        case .xcode:
-            if !target.modulemaps.isEmpty {
+        if hasBazelDependencies {
+            if target.isSwift {
                 try buildSettings.prepend(
                     onKey: "OTHER_SWIFT_FLAGS",
-                    #"""
--Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
--Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/gen_dir-overlay.yaml
-"""#
+                    "-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml"
                 )
-            }
-
-            if !target.isSwift && (hasFrameworkIncludes || hasIncludes ||
-                hasQuoteIncludes || hasSystemIncludes)
-            {
+            } else {
                 try buildSettings.prepend(
                     onKey: "OTHER_CFLAGS",
-                    ["-ivfsoverlay", "$(BUILD_DIR)/xcode-overlay.yaml"]
+                    ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
                 )
 
                 try buildSettings.prepend(
                     onKey: "OTHER_CPLUSPLUSFLAGS",
-                    ["-ivfsoverlay", "$(BUILD_DIR)/xcode-overlay.yaml"]
+                    ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
                 )
             }
-         default:
-            break
-         }
+
+            switch buildMode {
+            case .xcode:
+                if !target.modulemaps.isEmpty {
+                    try buildSettings.prepend(
+                        onKey: "OTHER_SWIFT_FLAGS",
+                        #"""
+    -Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
+    -Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/gen_dir-overlay.yaml
+    """#
+                    )
+                }
+
+                if !target.isSwift && (hasFrameworkIncludes || hasIncludes ||
+                    hasQuoteIncludes || hasSystemIncludes)
+                {
+                    try buildSettings.prepend(
+                        onKey: "OTHER_CFLAGS",
+                        ["-ivfsoverlay", "$(BUILD_DIR)/xcode-overlay.yaml"]
+                    )
+
+                    try buildSettings.prepend(
+                        onKey: "OTHER_CPLUSPLUSFLAGS",
+                        ["-ivfsoverlay", "$(BUILD_DIR)/xcode-overlay.yaml"]
+                    )
+                }
+            default:
+                break
+            }
+        }
 
         return buildSettings
     }

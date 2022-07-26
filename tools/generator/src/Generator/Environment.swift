@@ -56,7 +56,7 @@ struct Environment {
     let addBazelDependenciesTarget: (
         _ pbxProj: PBXProj,
         _ buildMode: BuildMode,
-        _ addBazelDependenciesTarget: Bool,
+        _ forceBazelDependencies: Bool,
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
         _ xcodeprojBazelLabel: BazelLabel,
@@ -80,6 +80,7 @@ struct Environment {
         _ buildMode: BuildMode,
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
+        _ hasBazelDependencies: Bool,
         _ xcodeGeneratedFiles: Set<FilePath>,
         _ filePathResolver: FilePathResolver
     ) throws -> Void
