@@ -28,12 +28,21 @@ cc_library(
 )
 
 swift_library(
+    name = "private_swift_lib",
+    srcs = ["private_lib.swift"],
+    module_name = "_SwiftLib",
+)
+
+swift_library(
     name = "lib_swift",
     srcs = ["lib.swift"],
     generated_header_name = "private/LibSwift-Swift.h",
     generates_header = True,
     module_name = "LibSwift",
-    private_deps = [":private_lib"],
+    private_deps = [
+        ":private_lib",
+        ":private_swift_lib",
+    ],
     visibility = ["//examples/command_line/Tests:__subpackages__"],
     deps = [
         ":lib_impl",

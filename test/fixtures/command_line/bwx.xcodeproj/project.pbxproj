@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		69DB639F814B746736CBE9A2 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D46BEBDD407F679ED938408 /* ExternalFramework.framework */; };
+		6A8611CA7200E01B91C0A22A /* private_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF64BEFF9912188FB6776498 /* private_lib.swift */; };
 		7BC8A776D2D1C760F9C38A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B86F4542BE9E526167481 /* main.m */; };
 		8061E3DE63D96635F98C9B3A /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5E4ABAACB85A529597A95E /* lib.swift */; };
 		91FE80ADF2A640F7B0307364 /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = F817551E2B0DDD61FB46AC46 /* c_lib.c */; };
@@ -33,6 +34,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		04CE05E1F515CE5DAE03670F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
+		1B1C2595107FD780E0018188 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -73,6 +81,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
+		};
+		97299C833DD94DB243BE157B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6396BE04B02BD1C6408F61EC;
+			remoteInfo = private_swift_lib;
 		};
 		B1E5509E710AAD34090DD08E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -131,6 +146,7 @@
 		85AA47D00BD6B0AF833B0617 /* export_symbol_list.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = export_symbol_list.exp; sourceTree = "<group>"; };
 		8943792E88CD48A65933273F /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
 		9D46BEBDD407F679ED938408 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
+		A0252A7A11540E7818811565 /* libprivate_swift_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_swift_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/command_line/lib/libprivate_swift_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B093EB1BAB8D20D1457C10D2 /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		B45E624D6CB9A25AD05AA3EB /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		BB8DF92E4AE24EE8B4A09DD7 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
@@ -144,6 +160,7 @@
 		E3EF7388EBA4ACEE4E5C5A4F /* c_lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = c_lib.modulemap; sourceTree = "<group>"; };
 		E5B29EFE9E4782D578874298 /* libc_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libc_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/command_line/swift_c_module/libc_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB962A997B09BE278927734E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EF64BEFF9912188FB6776498 /* private_lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = private_lib.swift; sourceTree = "<group>"; };
 		F079AF4E09A6C7D7089DE38F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F463F670F3D262716DBB039D /* c_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_lib.h; sourceTree = "<group>"; };
 		F7195ED6E5A6C3B8F36B42A6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -236,6 +253,7 @@
 				61D4E93D586B426B1BE67C73 /* liblib_impl.a */,
 				70C5E43F5F81562B9428709C /* liblib_swift.a */,
 				D04DA2A609AD72919E00E6F6 /* libprivate_lib.a */,
+				A0252A7A11540E7818811565 /* libprivate_swift_lib.a */,
 				D4E23788130BC4E7FCB9DB99 /* LibSwiftTests.xctest */,
 				1E24825205C7C82ED0184DEA /* tool */,
 			);
@@ -487,6 +505,7 @@
 				7F5E4ABAACB85A529597A95E /* lib.swift */,
 				782EFB0F35839BA9778CEB6A /* private_lib.c */,
 				2F2C9A4A2948FD3A6EA210D1 /* private_lib.h */,
+				EF64BEFF9912188FB6776498 /* private_lib.swift */,
 				7703BC6D5949A71AA4B20322 /* private.h */,
 			);
 			path = lib;
@@ -564,9 +583,25 @@
 				5D76CE5C0FCE09DD8DFA4695 /* PBXTargetDependency */,
 				5788E50D72472F75EFAA6061 /* PBXTargetDependency */,
 				912FBD722EA10EF086198A14 /* PBXTargetDependency */,
+				D9B35108183185451F0C49E9 /* PBXTargetDependency */,
 			);
 			name = lib_swift;
 			productName = lib_swift;
+			productType = "com.apple.product-type.library.static";
+		};
+		6396BE04B02BD1C6408F61EC /* private_swift_lib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3B9EDFD629E85D0EC94F9F9 /* Build configuration list for PBXNativeTarget "private_swift_lib" */;
+			buildPhases = (
+				7F96FD3D3FAA4880374E7AA0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7EAD9A31E476B4373F76B448 /* PBXTargetDependency */,
+			);
+			name = private_swift_lib;
+			productName = private_swift_lib;
 			productType = "com.apple.product-type.library.static";
 		};
 		8329F08BE01D4CC32B819CE9 /* lib_impl */ = {
@@ -651,6 +686,10 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
+					6396BE04B02BD1C6408F61EC = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
 					8329F08BE01D4CC32B819CE9 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -691,6 +730,7 @@
 				195FCD65F4EB377830E3E996 /* lib_swift */,
 				0290E727C546D76C651A3B2D /* LibSwiftTests.__internal__.__test_bundle */,
 				BB180DABF9AB371C353A7F0D /* private_lib */,
+				6396BE04B02BD1C6408F61EC /* private_swift_lib */,
 				EC6A68AC956C60AA25485960 /* tool */,
 			);
 		};
@@ -803,6 +843,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7F96FD3D3FAA4880374E7AA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A8611CA7200E01B91C0A22A /* private_lib.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1913D8FA0D51EF49F421F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -858,6 +906,12 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 04CE05E1F515CE5DAE03670F /* PBXContainerItemProxy */;
 		};
+		7EAD9A31E476B4373F76B448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 1B1C2595107FD780E0018188 /* PBXContainerItemProxy */;
+		};
 		88BD90568A1ED6147322E6D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -887,6 +941,12 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = E6F5CC6545521EF4DBAE3D15 /* PBXContainerItemProxy */;
+		};
+		D9B35108183185451F0C49E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = private_swift_lib;
+			target = 6396BE04B02BD1C6408F61EC /* private_swift_lib */;
+			targetProxy = 97299C833DD94DB243BE157B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -983,6 +1043,7 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/command_line/lib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
@@ -1134,6 +1195,35 @@
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
+			};
+			name = Debug;
+		};
+		D1E8170AB4B1C69DBC127377 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin/examples/command_line/lib";
+				BAZEL_TARGET_ID = "//examples/command_line/lib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				PRODUCT_MODULE_NAME = _SwiftLib;
+				PRODUCT_NAME = private_swift_lib;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = private_swift_lib;
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-3e9e205cb29c/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -1392,6 +1482,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1499E80C1D9FC1A30AF3397 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F3B9EDFD629E85D0EC94F9F9 /* Build configuration list for PBXNativeTarget "private_swift_lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1E8170AB4B1C69DBC127377 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
