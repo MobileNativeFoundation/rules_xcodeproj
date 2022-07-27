@@ -31,6 +31,7 @@ def _make(
         extensions = [],
         app_clips = [],
         dependencies,
+        transitive_dependencies,
         outputs):
     """Creates the internal data structure of the `xcode_targets` module.
 
@@ -67,6 +68,8 @@ def _make(
             in this target.
         dependencies: A `depset` of `id`s of targets that this target depends
             on.
+        transitive_dependencies: A `depset` of `id`s of all transitive targets
+            that this target depends on.
         outputs: A value returned from `output_files.collect`.
 
     Returns:
@@ -83,21 +86,26 @@ def _make(
         _search_paths = search_paths,
         _modulemaps = modulemaps,
         _swiftmodules = tuple(swiftmodules),
-        _inputs = inputs,
         _linker_inputs = linker_inputs,
         _infoplist = infoplist,
         _watch_application = watch_application,
         _extensions = tuple(extensions),
         _app_clips = tuple(app_clips),
-        _dependencies = tuple(dependencies.to_list()),
+        _dependencies = dependencies,
         _outputs = outputs,
         id = id,
         label = label,
         product = product,
+        inputs = inputs,
+        transitive_dependencies = transitive_dependencies,
     )
 
-def _to_dto(xcode_target, *, is_unfocused_dependency = False):
-    inputs = xcode_target._inputs
+def _to_dto(
+        xcode_target,
+        *,
+        is_unfocused_dependency = False,
+        unfocused_targets = {}):
+    inputs = xcode_target.inputs
 
     dto = {
         "name": xcode_target._name,
@@ -114,7 +122,12 @@ def _to_dto(xcode_target, *, is_unfocused_dependency = False):
     if is_unfocused_dependency:
         dto["is_unfocused_dependency"] = True
 
-    set_if_true(dto, "test_host", xcode_target._test_host)
+    if xcode_target._test_host not in unfocused_targets:
+        set_if_true(dto, "test_host", xcode_target._test_host)
+
+    if xcode_target._watch_application not in unfocused_targets:
+        set_if_true(dto, "watch_application", xcode_target._watch_application)
+
     set_if_true(dto, "build_settings", xcode_target._build_settings)
     set_if_true(
         dto,
@@ -134,7 +147,11 @@ def _to_dto(xcode_target, *, is_unfocused_dependency = False):
     set_if_true(
         dto,
         "resource_bundle_dependencies",
-        inputs.resource_bundle_dependencies.to_list(),
+        [
+            id
+            for id in inputs.resource_bundle_dependencies.to_list()
+            if id not in unfocused_targets
+        ],
     )
     set_if_true(dto, "inputs", input_files.to_dto(inputs))
     set_if_true(
@@ -147,10 +164,33 @@ def _to_dto(xcode_target, *, is_unfocused_dependency = False):
         "info_plist",
         file_path_to_dto(file_path(xcode_target._infoplist)),
     )
-    set_if_true(dto, "watch_application", xcode_target._watch_application)
-    set_if_true(dto, "extensions", xcode_target._extensions)
-    set_if_true(dto, "app_clips", xcode_target._app_clips)
-    set_if_true(dto, "dependencies", xcode_target._dependencies)
+    set_if_true(
+        dto,
+        "extensions",
+        [
+            id
+            for id in xcode_target._extensions
+            if id not in unfocused_targets
+        ],
+    )
+    set_if_true(
+        dto,
+        "app_clips",
+        [
+            id
+            for id in xcode_target._app_clips
+            if id not in unfocused_targets
+        ],
+    )
+    set_if_true(
+        dto,
+        "dependencies",
+        [
+            id
+            for id in xcode_target._dependencies.to_list()
+            if id not in unfocused_targets
+        ],
+    )
     set_if_true(dto, "outputs", output_files.to_dto(xcode_target._outputs))
 
     return dto

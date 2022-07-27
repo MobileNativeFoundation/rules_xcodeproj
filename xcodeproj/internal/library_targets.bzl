@@ -69,7 +69,7 @@ def process_library_target(
         "PRODUCT_MODULE_NAME",
         get_product_module_name(ctx = ctx, target = target),
     )
-    dependencies = process_dependencies(
+    dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = automatic_target_info,
         transitive_infos = transitive_infos,
     )
@@ -181,6 +181,7 @@ def process_library_target(
             inputs = inputs,
             linker_inputs = linker_inputs,
             dependencies = dependencies,
+            transitive_dependencies = transitive_dependencies,
             outputs = outputs,
         ),
     )

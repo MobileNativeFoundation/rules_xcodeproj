@@ -15,6 +15,140 @@ load(":resource_target.bzl", "process_resource_bundles")
 load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
+# Utility
+
+def _calculate_unfocused_dependencies(
+        *,
+        build_mode,
+        targets,
+        unfocused_targets):
+    if not unfocused_targets or build_mode != "xcode":
+        return sets.make()
+
+    focused_dependencies = sets.make(
+        depset(
+            transitive = [
+                xcode_target.transitive_dependencies
+                for xcode_target in targets
+            ],
+        ).to_list(),
+    )
+    important_unfocused_target_ids = sets.intersection(
+        focused_dependencies,
+        sets.make(unfocused_targets.keys()),
+    )
+
+    transitive_dependencies = []
+    for xcode_target in unfocused_targets.values():
+        if sets.contains(important_unfocused_target_ids, xcode_target.id):
+            transitive_dependencies.append(
+                xcode_target.transitive_dependencies,
+            )
+
+    return sets.make(
+        depset(
+            transitive = transitive_dependencies,
+        ).to_list(),
+    )
+
+def _process_targets(
+        *,
+        build_mode,
+        focused_labels,
+        unfocused_labels,
+        inputs,
+        infos):
+    resource_bundle_xcode_targets = process_resource_bundles(
+        bundles = inputs.resource_bundles.to_list(),
+        resource_bundle_informations = depset(
+            transitive = [info.resource_bundle_informations for info in infos],
+        ).to_list(),
+    )
+
+    targets_list = depset(
+        resource_bundle_xcode_targets,
+        transitive = [info.xcode_targets for info in infos],
+    ).to_list()
+    targets_labels = sets.make([str(t.label) for t in targets_list])
+
+    invalid_focused_targets = sets.to_list(
+        sets.difference(focused_labels, targets_labels),
+    )
+    if invalid_focused_targets:
+        fail("""\
+`focused_targets` contains target(s) that are not declared through `targets` \
+or `schemes`: {}
+
+Are you using an `alias`? \
+`focused_targets` requires labels of the actual targets.
+""".format(invalid_focused_targets))
+
+    invalid_unfocused_targets = sets.to_list(
+        sets.difference(unfocused_labels, targets_labels),
+    )
+    if invalid_unfocused_targets:
+        fail("""\
+`unfocused_targets` contains target(s) that are not declared through `targets` \
+or `schemes`: {}
+
+Are you using an `alias`? \
+`unfocused_targets` requires labels of the actual targets.
+""".format(invalid_unfocused_targets))
+
+    unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
+    has_focused_labels = sets.length(focused_labels) > 0
+
+    actual_targets = []
+    unfocused_targets = {}
+    additional_generated = {}
+    for xcode_target in targets_list:
+        label_str = str(xcode_target.label)
+        if (sets.contains(unfocused_labels, label_str) or
+            (has_focused_labels and
+             not sets.contains(focused_labels, label_str))):
+            unfocused_targets[xcode_target.id] = xcode_target
+            continue
+        actual_targets.append(xcode_target)
+
+    unfocused_dependencies = _calculate_unfocused_dependencies(
+        build_mode = build_mode,
+        targets = actual_targets,
+        unfocused_targets = unfocused_targets,
+    )
+
+    targets = {}
+    for xcode_target in actual_targets:
+        unfocused_generated = []
+        for dependency in xcode_target.transitive_dependencies.to_list():
+            unfocused_dependency = unfocused_targets.get(dependency)
+            if not unfocused_dependency:
+                continue
+            unfocused_files = unfocused_dependency.inputs.unfocused_generated
+            if unfocused_files:
+                unfocused_generated.append(depset(unfocused_files))
+
+        output_group_name = xcode_target.inputs.output_group_name
+        if output_group_name and unfocused_generated:
+            additional_generated[output_group_name] = unfocused_generated
+
+        is_unfocused_dependency = (
+            sets.contains(
+                unfocused_dependencies,
+                xcode_target.id,
+            ) or sets.contains(
+                unfocused_libraries,
+                xcode_target.product.path,
+            )
+        )
+
+        targets[xcode_target.id] = xcode_targets.to_dto(
+            xcode_target,
+            is_unfocused_dependency = is_unfocused_dependency,
+            unfocused_targets = unfocused_targets,
+        )
+
+    return (targets, additional_generated)
+
 # Actions
 
 def _write_json_spec(
@@ -22,74 +156,47 @@ def _write_json_spec(
         ctx,
         project_name,
         configuration,
+        targets,
+        has_focused_targets,
         inputs,
         infos):
-    resource_bundle_informations = depset(
-        transitive = [info.resource_bundle_informations for info in infos],
-    ).to_list()
-
-    resource_bundle_xcode_targets = process_resource_bundles(
-        bundles = inputs.resource_bundles.to_list(),
-        resource_bundle_informations = resource_bundle_informations,
-    )
-
-    extra_files = inputs.extra_files
-    non_mergable_targets = depset(
-        transitive = [info.non_mergable_targets for info in infos],
-    )
+    # `target_merges`
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
-    )
-    targets_depset = depset(
-        resource_bundle_xcode_targets,
-        transitive = [info.xcode_targets for info in infos],
-    )
-
-    non_mergable_targets_set = sets.make([
+    ).to_list()
+    non_mergable_targets = sets.make([
         file_path(file)
-        for file in non_mergable_targets.to_list()
+        for file in depset(
+            transitive = [info.non_mergable_targets for info in infos],
+        ).to_list()
     ])
 
     target_merges = {}
-    for merge in potential_target_merges.to_list():
-        if not sets.contains(non_mergable_targets_set, merge.src.product_path):
-            target_merges.setdefault(merge.src.id, []).append(merge.dest)
+    for merge in potential_target_merges:
+        if merge.src.id not in targets or merge.dest not in targets:
+            continue
+        if (sets.contains(non_mergable_targets, merge.src.product_path)):
+            continue
+        target_merges.setdefault(merge.src.id, []).append(merge.dest)
 
-    unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
-
-    targets = {}
-    for xcode_target in targets_depset.to_list():
-        targets[xcode_target.id] = xcode_targets.to_dto(
-            xcode_target,
-            is_unfocused_dependency = sets.contains(
-                unfocused_libraries,
-                xcode_target.product.path,
-            ),
-        )
-    targets_json = json.encode(
-        flattened_key_values.to_list(targets),
-    )
-
-    target_merges_json = json.encode(
-        flattened_key_values.to_list(target_merges),
-    )
-
+    # `target_hosts`
     hosted_targets = depset(
         transitive = [info.hosted_targets for info in infos],
-    )
+    ).to_list()
     target_hosts = {}
-    for s in hosted_targets.to_list():
+    for s in hosted_targets:
+        if s.host not in targets or s.hosted not in targets:
+            continue
         target_hosts.setdefault(s.hosted, []).append(s.host)
-    target_hosts_json = json.encode(
-        flattened_key_values.to_list(target_hosts),
-    )
 
+    # `extra_files`
     extra_files = [
         file_path_to_dto(file)
-        for file in extra_files.to_list()
+        for file in inputs.extra_files.to_list()
     ]
     extra_files.append(file_path_to_dto(parsed_file_path(ctx.build_file_path)))
 
+    # `custom_xcode_schemes`
     if ctx.attr.schemes_json == "":
         custom_xcode_schemes_json = "[]"
     else:
@@ -126,13 +233,17 @@ def _write_json_spec(
         configuration = configuration,
         custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(extra_files),
-        force_bazel_dependencies = json.encode(inputs.has_generated_files),
+        force_bazel_dependencies = json.encode(
+            has_focused_targets or inputs.has_generated_files,
+        ),
         label = ctx.label,
         name = project_name,
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
-        target_hosts = target_hosts_json,
-        target_merges = target_merges_json,
-        targets = targets_json,
+        target_hosts = json.encode(flattened_key_values.to_list(target_hosts)),
+        target_merges = json.encode(
+            flattened_key_values.to_list(target_merges),
+        ),
+        targets = json.encode(flattened_key_values.to_list(targets)),
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))
@@ -172,7 +283,26 @@ def _write_xccurrentversions(*, ctx, xccurrentversion_files):
 
     return output
 
-def _write_extensionpointidentifiers(*, ctx, extension_infoplists):
+def _write_extensionpointidentifiers(
+        *,
+        ctx,
+        extension_infoplists,
+        focused_labels,
+        unfocused_labels):
+    has_focused_labels = sets.length(focused_labels) > 0
+    if sets.length(unfocused_labels):
+        extension_infoplists = [
+            s
+            for s in extension_infoplists
+            if not sets.contains(unfocused_labels, s.id)
+        ]
+    if has_focused_labels:
+        extension_infoplists = [
+            s
+            for s in extension_infoplists
+            if sets.contains(focused_labels, s.id)
+        ]
+
     targetids_file = ctx.actions.declare_file(
         "{}_extensionpointidentifiers_targetids".format(ctx.attr.name),
     )
@@ -333,7 +463,10 @@ def make_target_transition(
 # Rule
 
 def _xcodeproj_impl(ctx):
+    build_mode = ctx.attr.build_mode
     project_name = ctx.attr.project_name or ctx.attr.name
+    focused_labels = sets.make(ctx.attr.focused_targets)
+    unfocused_labels = sets.make(ctx.attr.unfocused_targets)
     infos = [
         dep[XcodeProjInfo]
         for dep in ctx.attr.targets
@@ -353,17 +486,27 @@ def _xcodeproj_impl(ctx):
     )
 
     bazel_integration_files = [ctx.file._create_lldbinit_script]
-    if ctx.attr.build_mode != "xcode":
+    if build_mode != "xcode":
         bazel_integration_files.extend(ctx.files._bazel_integration_files)
 
     inputs = input_files.merge(
         transitive_infos = [(None, info) for info in infos],
     )
 
+    targets, additional_generated = _process_targets(
+        build_mode = build_mode,
+        focused_labels = focused_labels,
+        unfocused_labels = unfocused_labels,
+        inputs = inputs,
+        infos = infos,
+    )
+
     spec_file = _write_json_spec(
         ctx = ctx,
         project_name = project_name,
         configuration = configuration,
+        targets = targets,
+        has_focused_targets = sets.length(focused_labels) > 0,
         inputs = inputs,
         infos = infos,
     )
@@ -374,6 +517,8 @@ def _xcodeproj_impl(ctx):
     extensionpointidentifiers_file = _write_extensionpointidentifiers(
         ctx = ctx,
         extension_infoplists = extension_infoplists.to_list(),
+        focused_labels = focused_labels,
+        unfocused_labels = unfocused_labels,
     )
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
@@ -404,6 +549,7 @@ def _xcodeproj_impl(ctx):
                 input_files.to_output_groups_fields(
                     ctx = ctx,
                     inputs = inputs,
+                    additional_generated = additional_generated,
                     toplevel_cache_buster = ctx.files.toplevel_cache_buster,
                 ),
                 output_files.to_output_groups_fields(
@@ -436,6 +582,9 @@ def make_xcodeproj_rule(
             default = "xcode",
             values = ["xcode", "bazel"],
         ),
+        "focused_targets": attr.string_list(
+            default = [],
+        ),
         "project_name": attr.string(),
         "scheme_autogeneration_mode": attr.string(
             default = "auto",
@@ -458,6 +607,9 @@ A JSON string representing a list of Xcode schemes to create.\
             allow_empty = True,
             allow_files = True,
             doc = "For internal use only. Do not set this value yourself.",
+        ),
+        "unfocused_targets": attr.string_list(
+            default = [],
         ),
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",

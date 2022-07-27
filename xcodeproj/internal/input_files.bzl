@@ -321,6 +321,8 @@ def _collect(
                 dep_compilation_providers = dep_compilation_providers,
             )
 
+            unfocused_generated = transitive_libraries
+
             unfocused = bool(direct_libraries)
             if unfocused:
                 generated.extend(transitive_libraries)
@@ -330,8 +332,16 @@ def _collect(
                         for file in transitive_libraries
                     ],
                 )
+        else:
+            unfocused_generated = (
+                linker_input_files.get_transitive_static_libraries(
+                    linker_inputs = linker_inputs,
+                )
+            )
 
-        if unfocused and SwiftInfo in target:
+        is_swift = SwiftInfo in target
+
+        if unfocused and is_swift:
             non_target_swift_info_modules = target[SwiftInfo].transitive_modules
         else:
             non_target_swift_info_modules = depset(
@@ -344,8 +354,23 @@ def _collect(
             )
         for module in non_target_swift_info_modules.to_list():
             generated.extend(swift_to_list(parse_swift_info_module(module)))
+
+        if is_swift:
+            unfocused_swift_info_modules = target[SwiftInfo].transitive_modules
+        else:
+            unfocused_swift_info_modules = non_target_swift_info_modules
+        for module in unfocused_swift_info_modules.to_list():
+            unfocused_generated.extend(
+                swift_to_list(parse_swift_info_module(module)),
+            )
+
+        if unfocused_generated:
+            unfocused_generated = tuple(unfocused_generated)
+        else:
+            unfocused_generated = None
     else:
         non_target_swift_info_modules = depset()
+        unfocused_generated = None
 
     important_generated = [
         file
@@ -364,8 +389,10 @@ def _collect(
     )
 
     if id:
-        direct_group_list = [("g {}".format(id), generated_depset)]
+        output_group_name = "g {}".format(id)
+        direct_group_list = [(output_group_name, generated_depset)]
     else:
+        output_group_name = None
         direct_group_list = None
 
     if not unfocused_libraries:
@@ -427,6 +454,7 @@ def _collect(
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
+        unfocused_generated = unfocused_generated,
         has_generated_files = bool(generated) or bool([
             True
             for attr, info in transitive_infos
@@ -453,6 +481,7 @@ def _collect(
             ],
         ),
         unfocused_libraries = unfocused_libraries,
+        output_group_name = output_group_name,
     )
 
 def _from_resource_bundle(bundle):
@@ -471,9 +500,11 @@ def _from_resource_bundle(bundle):
         xccurrentversions = depset(),
         generated = depset(),
         important_generated = depset(),
+        unfocused_generated = None,
         extra_files = depset(),
         uncategorized = depset(),
         unfocused_libraries = depset(),
+        output_group_name = None,
     )
 
 def _merge(*, transitive_infos, extra_generated = None):
@@ -534,6 +565,7 @@ def _merge(*, transitive_infos, extra_generated = None):
                 for _, info in transitive_infos
             ],
         ),
+        unfocused_generated = None,
         has_generated_files = bool([
             True
             for _, info in transitive_infos
@@ -557,6 +589,7 @@ def _merge(*, transitive_infos, extra_generated = None):
                 for _, info in transitive_infos
             ],
         ),
+        output_group_name = None,
     )
 
 def _to_dto(inputs):
@@ -606,16 +639,30 @@ def _to_dto(inputs):
 
     return ret
 
+def _process_output_group_files(
+        files,
+        *,
+        output_group_name,
+        additional_generated):
+    generated_depsets = additional_generated.get(output_group_name)
+    if generated_depsets:
+        return depset(transitive = [files] + generated_depsets)
+    return files
+
 def _to_output_groups_fields(
         *,
         ctx,
         inputs,
+        additional_generated = {},
         toplevel_cache_buster):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
         ctx: The rule context.
         inputs: A value returned from `input_files.collect`.
+        additional_generated: A `dict` that maps the output group name of
+            targets to a `list` of `depset`s of `File`s that should be merged
+            into the output group map for that output group name.
         toplevel_cache_buster: A `list` of `File`s that change with each build,
             and are used as inputs to the output map generation, to ensure that
             the files references by the output map are always downloaded from
@@ -629,7 +676,11 @@ def _to_output_groups_fields(
         name: depset([output_group_map.write_map(
             ctx = ctx,
             name = name.replace("/", "_"),
-            files = files,
+            files = _process_output_group_files(
+                files = files,
+                output_group_name = name,
+                additional_generated = additional_generated,
+            ),
             toplevel_cache_buster = toplevel_cache_buster,
         )])
         for name, files in inputs._output_group_list.to_list()

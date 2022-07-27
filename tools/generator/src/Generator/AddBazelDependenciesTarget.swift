@@ -22,9 +22,11 @@ env -i \
         consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
         guard
-            forceBazelDependencies ||
-            buildMode.usesBazelModeBuildScripts ||
-            files.containsExternalFiles || files.containsGeneratedFiles
+            !consolidatedTargets.targets.isEmpty &&
+            (forceBazelDependencies ||
+             buildMode.usesBazelModeBuildScripts ||
+             files.containsExternalFiles ||
+             files.containsGeneratedFiles)
         else {
             return nil
         }

@@ -34,6 +34,145 @@ def _collect_top_level_targets(schemes):
         )
     return results
 
+def _focus_schemes(schemes, focused_targets):
+    """Filter/adjust a `sequence` of schemes to only include focused targets.
+
+    Args:
+        schemes: A `sequence` of `struct` values as returned by
+            `xcode_schemes.scheme`.
+        focused_targets: A `sequence` of `string` values representing Bazel
+            labels of focused targets.
+
+    Returns:
+        A `sequence` of `struct` values as returned by `xcode_schemes.scheme`.
+        Will only include schemes that have at least one target in
+        `focused_targets`. Some actions might be removed if they reference
+        unfocused targets.
+    """
+    focused_targets = sets.make(focused_targets)
+
+    focused_schemes = []
+    for scheme in schemes:
+        build_action = scheme.build_action
+        if build_action:
+            build_targets = [
+                label
+                for label in build_action.targets
+                if sets.contains(focused_targets, label)
+            ]
+            if build_targets:
+                build_action = xcode_schemes_internal.build_action(
+                    targets = build_targets,
+                )
+            else:
+                build_action = None
+        else:
+            build_action = None
+
+        test_action = scheme.test_action
+        if test_action:
+            test_targets = [
+                label
+                for label in test_action.targets
+                if sets.contains(focused_targets, label)
+            ]
+            if test_targets:
+                build_configuration_name = test_action.build_configuration_name
+                test_action = xcode_schemes_internal.test_action(
+                    targets = test_targets,
+                    build_configuration_name = build_configuration_name,
+                )
+            else:
+                test_action = None
+        else:
+            test_action = None
+
+        launch_action = scheme.launch_action
+        if (launch_action and
+            sets.contains(focused_targets, launch_action.target)):
+            launch_action = scheme.launch_action
+        else:
+            launch_action = None
+
+        if build_action or test_action or launch_action:
+            focused_schemes.append(xcode_schemes_internal.scheme(
+                name = scheme.name,
+                build_action = build_action,
+                test_action = test_action,
+                launch_action = launch_action,
+            ))
+
+    return focused_schemes
+
+def _unfocus_schemes(schemes, unfocused_targets):
+    """Filter/adjust a `sequence` of schemes to exclude unfocused targets.
+
+    Args:
+        schemes: A `sequence` of `struct` values as returned by
+            `xcode_schemes.scheme`.
+        unfocused_targets: A `sequence` of `string` values representing Bazel
+            labels of unfocused targets.
+
+    Returns:
+        A `sequence` of `struct` values as returned by `xcode_schemes.scheme`.
+        Will only include schemes that have at least one target not in
+        `unfocused_targets`. Some actions might be removed if they reference
+        unfocused targets.
+    """
+    unfocused_targets = sets.make(unfocused_targets)
+
+    focused_schemes = []
+    for scheme in schemes:
+        build_action = scheme.build_action
+        if build_action:
+            build_targets = [
+                label
+                for label in build_action.targets
+                if not sets.contains(unfocused_targets, label)
+            ]
+            if build_targets:
+                build_action = xcode_schemes_internal.build_action(
+                    targets = build_targets,
+                )
+            else:
+                build_action = None
+        else:
+            build_action = None
+
+        test_action = scheme.test_action
+        if test_action:
+            test_targets = [
+                label
+                for label in test_action.targets
+                if not sets.contains(unfocused_targets, label)
+            ]
+            if test_targets:
+                build_configuration_name = test_action.build_configuration_name
+                test_action = xcode_schemes_internal.test_action(
+                    targets = test_targets,
+                    build_configuration_name = build_configuration_name,
+                )
+            else:
+                test_action = None
+        else:
+            test_action = None
+
+        launch_action = scheme.launch_action
+        if (launch_action and
+            not sets.contains(unfocused_targets, launch_action.target)):
+            launch_action = scheme.launch_action
+        else:
+            launch_action = None
+
+        focused_schemes.append(xcode_schemes_internal.scheme(
+            name = scheme.name,
+            build_action = build_action,
+            test_action = test_action,
+            launch_action = launch_action,
+        ))
+
+    return focused_schemes
+
 def make_xcode_schemes(bazel_labels):
     """Create an `xcode_schemes` module.
 
@@ -110,6 +249,8 @@ def make_xcode_schemes(bazel_labels):
         test_action = _test_action,
         launch_action = _launch_action,
         collect_top_level_targets = _collect_top_level_targets,
+        focus_schemes = _focus_schemes,
+        unfocus_schemes = _unfocus_schemes,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
     )
 

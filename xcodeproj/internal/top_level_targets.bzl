@@ -173,7 +173,7 @@ def process_top_level_target(
     configuration = get_configuration(ctx)
     label = target.label
     id = get_id(label = label, configuration = configuration)
-    dependencies = process_dependencies(
+    dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = automatic_target_info,
         transitive_infos = transitive_infos,
     )
@@ -470,6 +470,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             extensions = extensions,
             app_clips = app_clips,
             dependencies = dependencies,
+            transitive_dependencies = transitive_dependencies,
             outputs = outputs,
         ),
     )

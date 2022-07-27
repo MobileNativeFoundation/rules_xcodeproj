@@ -329,6 +329,13 @@ def _collect_libraries(
                 libraries.append(library.static_library)
     return libraries
 
+def _get_transitive_static_libraries(linker_inputs):
+    return _collect_libraries(
+        compilation_providers = linker_inputs._compilation_providers,
+        objc_libraries = linker_inputs._objc_libraries,
+        cc_linker_inputs = linker_inputs._cc_linker_inputs,
+    )
+
 def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
     dep_objc_libraries, dep_cc_linker_inputs = _extract_libraries(
         compilation_providers = dep_compilation_providers,
@@ -495,6 +502,7 @@ linker_input_files = struct(
     get_library_static_libraries = _get_library_static_libraries,
     get_primary_static_library = _get_primary_static_library,
     get_top_level_static_libraries = _get_top_level_static_libraries,
+    get_transitive_static_libraries = _get_transitive_static_libraries,
     to_dto = _to_dto,
     to_input_files = _to_input_files,
 )

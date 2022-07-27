@@ -82,13 +82,15 @@ rules_xcodeproj requires {} to have `{}` set.
         compilation_providers = compilation_providers,
     )
 
+    dependencies, _ = process_dependencies(
+        automatic_target_info = automatic_target_info,
+        transitive_infos = transitive_infos,
+    )
+
     return processed_target(
         automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
-        dependencies = process_dependencies(
-            automatic_target_info = automatic_target_info,
-            transitive_infos = transitive_infos,
-        ),
+        dependencies = dependencies,
         inputs = input_files.collect(
             ctx = ctx,
             target = target,
