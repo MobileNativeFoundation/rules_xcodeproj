@@ -118,7 +118,7 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
 
   # Determine bazel-out
-  bazel_out=$(bazel info output_path 2>/dev/null)
+  bazel_out=$(%bazel_path% info output_path 2>/dev/null)
 
   # Determine `$BUILD_DIR`
   error_log=$(mktemp)
