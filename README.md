@@ -131,10 +131,10 @@ ios_application(
 xcodeproj(
     name = "xcodeproj",
     project_name = "App",
-    targets = [
+    tags = ["manual"],
+    top_level_targets = [
         ":App",
     ],
-    tags = ["manual"],
 )
 ```
 
