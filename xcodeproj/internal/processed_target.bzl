@@ -16,6 +16,7 @@ def processed_target(
         potential_target_merges = None,
         resource_bundle_informations = None,
         search_paths,
+        transitive_dependencies,
         xcode_target):
     """Generates the return value for target processing functions.
 
@@ -24,7 +25,7 @@ def processed_target(
             the target.
         compilation_providers: A value returned from
             `compilation_providers.collect`.
-        dependencies: A `list` of target ids of direct dependencies of this
+        dependencies: A `depset` of target ids of direct dependencies of this
             target.
         extension_infoplists: A `list` of `File` for the Info.plist's of an
             application extension target, or `None`.
@@ -43,6 +44,8 @@ def processed_target(
         resource_bundle_informations: An optional `list` of `struct`s that will
             be in the `XcodeProjInfo.resource_bundle_informations` `depset`.
         search_paths: A value as returned from `target_search_paths.make`.
+        transitive_dependencies: A `depset` of target ids of transitive
+            dependencies of this target.
         xcode_target: An optional value returned from `xcode_targets.make` that
             will be in the `XcodeProjInfo.xcode_targets` `depset`.
 
@@ -63,6 +66,7 @@ def processed_target(
         resource_bundle_informations = resource_bundle_informations,
         search_paths = search_paths,
         target_type = target_type,
+        transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,
         xcode_targets = [xcode_target] if xcode_target else None,
     )

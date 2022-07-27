@@ -84,7 +84,7 @@ XcodeProjInfo = provider(
 A value returned from `compilation_providers.collect_for_{non_,}top_level`.
 """,
         "dependencies": """\
-A `list` of target ids (see the `target` `struct`) that this target directly
+A `depset` of target ids (see the `target` `struct`) that this target directly
 depends on.
 """,
         "extension_infoplists": """\
@@ -129,6 +129,10 @@ any target that depends on this target.
 A string that categorizes the type of the current target. This will be one of
 "compile", "resources", or `None`. Even if this target doesn't produce an Xcode
 target, it can still have a non-`None` value for this field.
+""",
+        "transitive_dependencies": """\
+A `depset` of target ids (see the `target` `struct`) that this target
+transitively depends on.
 """,
         "xcode_target": """\
 An optional value returned from `xcode_targets.make`.
