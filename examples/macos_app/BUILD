@@ -5,5 +5,5 @@ xcodeproj(
     name = "xcodeproj",
     project_name = "macOS App",
     tags = ["manual"],
-    targets = XCODEPROJ_TARGETS,
+    top_level_targets = XCODEPROJ_TARGETS,
 )

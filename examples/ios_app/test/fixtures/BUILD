@@ -9,7 +9,7 @@ load("//:xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 xcodeproj_fixture(
     name = "fixture",
-    targets = XCODEPROJ_TARGETS,
+    top_level_targets = XCODEPROJ_TARGETS,
 )
 
 update_fixtures(
