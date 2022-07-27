@@ -60,6 +60,7 @@ def _target_info_fields(
         resource_bundle_informations,
         search_paths,
         target_type,
+        transitive_dependencies,
         xcode_target,
         xcode_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
@@ -83,6 +84,8 @@ def _target_info_fields(
             `XcodeProjInfo.resource_bundle_informations` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
+        transitive_dependencies: Maps to the
+            `XcodeProjInfo.transitive_dependencies` field.
         xcode_target: Maps to the `XcodeProjInfo.xcode_target` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
 
@@ -101,6 +104,7 @@ def _target_info_fields(
         *   `resource_bundle_informations`
         *   `search_paths`
         *   `target_type`
+        *   `transitive_dependencies`
         *   `xcode_target`
         *   `xcode_targets`
     """
@@ -116,6 +120,7 @@ def _target_info_fields(
         "resource_bundle_informations": resource_bundle_informations,
         "search_paths": search_paths,
         "target_type": target_type,
+        "transitive_dependencies": transitive_dependencies,
         "xcode_target": xcode_target,
         "xcode_targets": xcode_targets,
     }
@@ -145,7 +150,7 @@ def _skip_target(*, deps, transitive_infos):
         ],
     )
 
-    dependencies, _ = process_dependencies(
+    dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = None,
         transitive_infos = transitive_infos,
     )
@@ -195,6 +200,7 @@ def _skip_target(*, deps, transitive_infos):
             bin_dir_path = None,
         ),
         target_type = target_type.compile,
+        transitive_dependencies = transitive_dependencies,
         xcode_target = None,
         xcode_targets = depset(
             transitive = [info.xcode_targets for _, info in transitive_infos],
@@ -320,6 +326,7 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         ),
         search_paths = processed_target.search_paths,
         target_type = processed_target.automatic_target_info.target_type,
+        transitive_dependencies = processed_target.transitive_dependencies,
         xcode_target = processed_target.xcode_target,
         xcode_targets = depset(
             processed_target.xcode_targets,

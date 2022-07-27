@@ -79,7 +79,7 @@ def process_dependencies(*, automatic_target_info, transitive_infos):
                     [None],
                 )):
             continue
-        all_transitive_dependencies.append(info.dependencies)
+        all_transitive_dependencies.append(info.transitive_dependencies)
         if info.xcode_target:
             direct_dependencies.append(info.xcode_target.id)
         else:

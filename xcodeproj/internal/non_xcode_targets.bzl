@@ -82,7 +82,7 @@ rules_xcodeproj requires {} to have `{}` set.
         compilation_providers = compilation_providers,
     )
 
-    dependencies, _ = process_dependencies(
+    dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = automatic_target_info,
         transitive_infos = transitive_infos,
     )
@@ -112,5 +112,6 @@ rules_xcodeproj requires {} to have `{}` set.
             compilation_providers = compilation_providers,
             bin_dir_path = ctx.bin_dir.path,
         ),
+        transitive_dependencies = transitive_dependencies,
         xcode_target = None,
     )

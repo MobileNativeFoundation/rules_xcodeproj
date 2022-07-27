@@ -165,6 +165,7 @@ def process_library_target(
         library = linker_input_files.get_primary_static_library(linker_inputs),
         outputs = outputs,
         search_paths = search_paths,
+        transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_targets.make(
             id = id,
             name = ctx.rule.attr.name,

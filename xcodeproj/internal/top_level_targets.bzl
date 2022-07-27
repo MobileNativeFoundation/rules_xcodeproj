@@ -449,6 +449,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         search_paths = search_paths,
+        transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_targets.make(
             id = id,
             name = ctx.rule.attr.name,
