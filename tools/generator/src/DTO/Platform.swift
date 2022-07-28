@@ -6,12 +6,21 @@ struct Platform: Equatable, Hashable, Decodable {
         case watchOS = "watchos"
     }
 
-    let name: String
+    enum Variant: String, Decodable {
+        case macOS = "macosx"
+        case iOSDevice = "iphoneos"
+        case iOSSimulator = "iphonesimulator"
+        case tvOSDevice = "appletvos"
+        case tvOSSimulator = "appletvsimulator"
+        case watchOSDevice = "watchos"
+        case watchOSSimulator = "watchsimulator"
+    }
+
     let os: OS
+    let variant: Variant
     let arch: String
     let minimumOsVersion: String
     let minimumDeploymentOsVersion: String
-    let environment: String?
 }
 
 extension Platform.OS {
@@ -21,6 +30,23 @@ extension Platform.OS {
         case .iOS: return "IPHONEOS_DEPLOYMENT_TARGET"
         case .tvOS: return "TVOS_DEPLOYMENT_TARGET"
         case .watchOS: return "WATCHOS_DEPLOYMENT_TARGET"
+        }
+    }
+}
+
+extension Platform.Variant {
+    private static let deviceEnvironment = "Device"
+    private static let simulatorEnvironment = "Simulator"
+
+    var environment: String {
+        switch self {
+        case .macOS: return Self.deviceEnvironment
+        case .iOSDevice: return Self.deviceEnvironment
+        case .iOSSimulator: return Self.simulatorEnvironment
+        case .tvOSDevice: return Self.deviceEnvironment
+        case .tvOSSimulator: return Self.simulatorEnvironment
+        case .watchOSDevice: return Self.deviceEnvironment
+        case .watchOSSimulator: return Self.simulatorEnvironment
         }
     }
 }
@@ -39,17 +65,8 @@ extension Platform: Comparable {
                 == .orderedAscending
         }
 
-        guard lhs.environment == rhs.environment else {
-            // Sort simulator first
-            switch (lhs.environment, rhs.environment) {
-            case ("Simulator", _): return true
-            case (_, "Simulator"): return false
-            case (nil, _): return true
-            case (_, nil): return false
-            case ("Device", _): return true
-            case (_, "Device"): return false
-            default: return false
-            }
+        guard lhs.variant == rhs.variant else {
+            return lhs.variant < rhs.variant
         }
 
         guard lhs.arch != "arm64" else {
@@ -72,6 +89,28 @@ extension Platform.OS: Comparable {
         case (_, .tvOS): return false
         case (.watchOS, _): return true
         case (_, .watchOS): return false
+        }
+    }
+}
+
+extension Platform.Variant: Comparable {
+    static func < (lhs: Platform.Variant, rhs: Platform.Variant) -> Bool {
+        // Sort simulator first
+        switch (lhs, rhs) {
+        case (.macOS, _): return true
+        case (_, .macOS): return false
+        case (.iOSSimulator, _): return true
+        case (_, .iOSSimulator): return false
+        case (.iOSDevice, _): return true
+        case (_, .iOSDevice): return false
+        case (.tvOSSimulator, _): return true
+        case (_, .tvOSSimulator): return false
+        case (.tvOSDevice, _): return true
+        case (_, .tvOSDevice): return false
+        case (.watchOSSimulator, _): return true
+        case (_, .watchOSSimulator): return false
+        case (.watchOSDevice, _): return true
+        case (_, .watchOSDevice): return false
         }
     }
 }

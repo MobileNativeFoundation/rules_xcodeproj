@@ -190,12 +190,11 @@ enum Fixtures {
         "E1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/E1",
             platform: .init(
-                name: "watchos",
                 os: .watchOS,
+                variant: .watchOSDevice,
                 arch: "x86_64",
                 minimumOsVersion: "9.1",
-                minimumDeploymentOsVersion: "9.2",
-                environment: nil
+                minimumDeploymentOsVersion: "9.2"
             ),
             product: .init(
                 type: .staticLibrary,
@@ -210,12 +209,11 @@ enum Fixtures {
         "E2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/E2",
             platform: .init(
-                name: "appletvos",
                 os: .tvOS,
+                variant: .tvOSDevice,
                 arch: "arm64",
                 minimumOsVersion: "9.1",
-                minimumDeploymentOsVersion: "9.2",
-                environment: nil
+                minimumDeploymentOsVersion: "9.2"
             ),
             product: .init(
                 type: .staticLibrary,

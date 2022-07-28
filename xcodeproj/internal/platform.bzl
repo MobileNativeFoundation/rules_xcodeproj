@@ -43,20 +43,17 @@ def _to_dto(platform):
     """
     apple_platform = platform._platform
     platform_type = apple_platform.platform_type
-    is_device = apple_platform.is_device
 
     os_version = platform._os_version
     deployment_os_version = platform._deployment_os_version or os_version
 
     dto = {
-        "name": _PLATFORM_NAME[apple_platform],
         "os": str(platform_type),
+        "variant": _PLATFORM_NAME[apple_platform],
         "arch": platform._arch,
         "minimum_os_version": os_version,
         "minimum_deployment_os_version": deployment_os_version,
     }
-    if not is_device:
-        dto["environment"] = "Simulator"
 
     return dto
 

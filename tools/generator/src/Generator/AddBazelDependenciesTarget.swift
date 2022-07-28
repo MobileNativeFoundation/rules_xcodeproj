@@ -48,7 +48,8 @@ env -i \
                 // with duplicated outputs during Index Build, but it also
                 // has to be a platform that one of the targets uses, otherwise
                 // it's not invoked at all. Index Build is so weird...
-                "SUPPORTED_PLATFORMS": projectPlatforms.sorted().first!.name,
+                "SUPPORTED_PLATFORMS": projectPlatforms.sorted()
+                    .first!.variant.rawValue,
                 "SUPPORTS_MACCATALYST": true,
                 "TARGET_NAME": "BazelDependencies",
             ]

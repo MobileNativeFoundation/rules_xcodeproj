@@ -6,36 +6,32 @@ import XCTest
 final class BuildSettingConditionalTests: XCTestCase {
     static let conditionals: [String: BuildSettingConditional] = [
         "A": .init(platform: .init(
-            name: "A",
             os: .macOS,
+            variant: .macOS,
             arch: "arm64",
             minimumOsVersion: "11.0",
-            minimumDeploymentOsVersion: "13.0",
-            environment: nil
+            minimumDeploymentOsVersion: "13.0"
         )),
         "B": .init(platform: .init(
-            name: "B",
             os: .iOS,
+            variant: .iOSSimulator,
             arch: "arm64",
             minimumOsVersion: "11.0",
-            minimumDeploymentOsVersion: "13.0",
-            environment: "Simulator"
+            minimumDeploymentOsVersion: "13.0"
         )),
         "C": .init(platform: .init(
-            name: "C",
             os: .iOS,
+            variant: .iOSDevice,
             arch: "arm64",
             minimumOsVersion: "11.0",
-            minimumDeploymentOsVersion: "13.0",
-            environment: nil
+            minimumDeploymentOsVersion: "13.0"
         )),
         "D": .init(platform: .init(
-            name: "D",
             os: .iOS,
+            variant: .iOSSimulator,
             arch: "arm64",
             minimumOsVersion: "11.0",
-            minimumDeploymentOsVersion: "13.0",
-            environment: "Device"
+            minimumDeploymentOsVersion: "13.0"
         )),
         "any": .any,
     ]
@@ -65,8 +61,8 @@ final class BuildSettingConditionalTests: XCTestCase {
             conditionals["any"]!,
             conditionals["A"]!,
             conditionals["B"]!,
-            conditionals["C"]!,
             conditionals["D"]!,
+            conditionals["C"]!,
         ]
 
         // Act
@@ -85,10 +81,10 @@ final class BuildSettingConditionalTests: XCTestCase {
         let conditionals = Self.conditionals
         let expectedConditionalizedKeys = [
             "SOME_SETTING",
-            "SOME_SETTING[sdk=A*]",
-            "SOME_SETTING[sdk=B*]",
-            "SOME_SETTING[sdk=C*]",
-            "SOME_SETTING[sdk=D*]",
+            "SOME_SETTING[sdk=macosx*]",
+            "SOME_SETTING[sdk=iphonesimulator*]",
+            "SOME_SETTING[sdk=iphoneos*]",
+            "SOME_SETTING[sdk=iphonesimulator*]",
         ]
 
         // Act
@@ -113,10 +109,10 @@ final class BuildSettingConditionalTests: XCTestCase {
         let conditionals = Self.conditionals
         let expectedConditionalizedKeys = [
             "ARCHS",
-            "ARCHS[sdk=A*]",
-            "ARCHS[sdk=B*]",
-            "ARCHS[sdk=C*]",
-            "ARCHS[sdk=D*]",
+            "ARCHS[sdk=macosx*]",
+            "ARCHS[sdk=iphonesimulator*]",
+            "ARCHS[sdk=iphoneos*]",
+            "ARCHS[sdk=iphonesimulator*]",
         ]
 
         // Act

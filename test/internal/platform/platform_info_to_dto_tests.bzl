@@ -78,8 +78,8 @@ def platform_info_to_dto_test_suite(name):
             "arch": "wild",
             "minimum_os_version": "12.0",
             "minimum_deployment_os_version": "12.0",
-            "name": "appletvos",
             "os": "tvos",
+            "variant": "appletvos",
         },
     )
 
@@ -91,11 +91,10 @@ def platform_info_to_dto_test_suite(name):
         minimum_deployment_os_version = "13.0",
         expected_platform_dict = {
             "arch": "x86_64",
-            "environment": "Simulator",
-            "name": "iphonesimulator",
             "minimum_os_version": "11.0",
             "minimum_deployment_os_version": "13.0",
             "os": "ios",
+            "variant": "iphonesimulator",
         },
     )
 
@@ -109,10 +108,10 @@ def platform_info_to_dto_test_suite(name):
         minimum_deployment_os_version = None,
         expected_platform_dict = {
             "arch": "arm64",
-            "name": "macosx",
             "minimum_os_version": "12.1",
             "minimum_deployment_os_version": "12.1",
             "os": "macos",
+            "variant": "macosx",
         },
     )
 
