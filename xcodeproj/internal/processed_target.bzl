@@ -11,6 +11,7 @@ def processed_target(
         hosted_targets = None,
         inputs,
         library = None,
+        lldb_context,
         non_mergable_targets = None,
         outputs,
         potential_target_merges = None,
@@ -35,6 +36,7 @@ def processed_target(
             provide values for the `XcodeProjInfo.inputs` field.
         library: A `File` for the static library produced by this target, or
             `None`.
+        lldb_context: A value as returned from `lldb_context.collect`.
         non_mergable_targets: An optional `list` of strings that will be in the
             `XcodeProjInfo.non_mergable_targets` `depset`.
         outputs: A value as returned from `output_files.collect` that will
@@ -60,6 +62,7 @@ def processed_target(
         hosted_targets = hosted_targets,
         inputs = inputs,
         library = library,
+        lldb_context = lldb_context,
         non_mergable_targets = non_mergable_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,

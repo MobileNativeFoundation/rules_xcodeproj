@@ -648,7 +648,7 @@ under {}""".format(opt, package_bin_dir))
     if opts:
         unhandled_opts = collections.before_each(
             "-Xcc",
-            _swift_pcm_copts(
+            swift_pcm_copts(
                 compilation_mode = compilation_mode,
                 objc_fragment = objc_fragment,
                 cc_info = cc_info,
@@ -723,7 +723,7 @@ def _process_user_swiftcopts(opts):
 
     return search_paths, has_debug_info
 
-def _swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
+def swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
     base_pcm_flags = _swift_command_line_objc_copts(
         compilation_mode = compilation_mode,
         objc_fragment = objc_fragment,

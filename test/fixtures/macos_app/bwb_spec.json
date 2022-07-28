@@ -81,6 +81,26 @@
                     }
                 ]
             },
+            "lldb_context": {
+                "c": [
+                    {
+                        "m": [
+                            "examples/macos_app/third_party/ExampleFramework.framework/Modules/module.modulemap"
+                        ],
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-f078ed151a68/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "f": [
+                    "examples/macos_app/third_party"
+                ]
+            },
             "name": "Example",
             "outputs": {
                 "p": {

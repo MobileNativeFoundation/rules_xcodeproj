@@ -10,12 +10,15 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
+load(":lldb_contexts.bzl", "lldb_contexts")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
     "process_dependencies",
+    "process_modulemaps",
+    "process_swiftmodules",
     "should_bundle_resources",
 )
 load(":target_search_paths.bzl", "target_search_paths")
@@ -41,7 +44,8 @@ def process_non_xcode_target(
     """
     cc_info = target[CcInfo] if CcInfo in target else None
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
-    swift_info = target[SwiftInfo] if SwiftInfo in target else None
+    is_swift = SwiftInfo in target
+    swift_info = target[SwiftInfo] if is_swift else None
 
     if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
         # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
@@ -81,6 +85,11 @@ rules_xcodeproj requires {} to have `{}` set.
         ctx = ctx,
         compilation_providers = compilation_providers,
     )
+    search_paths = target_search_paths.make(
+        compilation_providers = compilation_providers,
+        bin_dir_path = ctx.bin_dir.path,
+    )
+    swiftmodules = process_swiftmodules(swift_info = swift_info)
 
     dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = automatic_target_info,
@@ -103,15 +112,27 @@ rules_xcodeproj requires {} to have `{}` set.
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         ),
+        lldb_context = lldb_contexts.collect(
+            compilation_mode = ctx.var["COMPILATION_MODE"],
+            objc_fragment = ctx.fragments.objc,
+            id = None,
+            is_swift = is_swift,
+            search_paths = search_paths,
+            modulemaps = process_modulemaps(swift_info = swift_info),
+            swiftmodules = swiftmodules,
+            transitive_infos = [
+                info
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        ),
         outputs = output_files.merge(
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         ),
         resource_bundle_informations = resource_bundle_informations,
-        search_paths = target_search_paths.make(
-            compilation_providers = compilation_providers,
-            bin_dir_path = ctx.bin_dir.path,
-        ),
+        search_paths = search_paths,
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
     )

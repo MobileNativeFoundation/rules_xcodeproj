@@ -12,6 +12,7 @@
 			buildConfigurationList = A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				790733B6E675C2785F8020AC /* Fetch External Repositories */,
+				2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */,
 			);
 			dependencies = (
 			);
@@ -141,6 +142,7 @@
 		68A371646C2B0DB2E26FBDBE /* XCSchemeInfo+OtherActionInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E9B9019409A4B799BF4E8 /* XCSchemeInfo+OtherActionInfos.swift */; };
 		69F20613E945D04313E4C5AE /* Path+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34470E90F69D7ED48ABEC831 /* Path+Extensions.swift */; };
 		6B508F325A109B724C7DF650 /* PBXResourcesBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD10545E43D4098F65BF1B /* PBXResourcesBuildPhase.swift */; };
+		6BD9A192D0DD98964D796656 /* LLDBContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F864B729FC2C55DF15D2009F /* LLDBContext.swift */; };
 		6C0F21DFD137550450A0509F /* BuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF08408AA24ED19A83FA6BD /* BuildPhase.swift */; };
 		6CFA2C81CE43D952A35D3574 /* XCScheme+AditionalOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFADB50BD68C503E0DF38007 /* XCScheme+AditionalOption.swift */; };
 		6D90EE9AA1D0A96B9089B21E /* ProcessTargetMergesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F43A51D4C138E626542CF2C /* ProcessTargetMergesTests.swift */; };
@@ -693,6 +695,7 @@
 		F1E252313444698DA3574515 /* OrderedSet+RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+RandomAccessCollection.swift"; sourceTree = "<group>"; };
 		F4E71029096D6AC34B84A74A /* BuildSettingConditionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildSettingConditionalTests.swift; sourceTree = "<group>"; };
 		F558A7D953A3C20394B3D8D0 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		F864B729FC2C55DF15D2009F /* LLDBContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLDBContext.swift; sourceTree = "<group>"; };
 		F989E51F5A4A6F6C61A92D70 /* _HashTable+Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Bucket.swift"; sourceTree = "<group>"; };
 		FA0FEDB45F02638177A108FC /* ConsolidatedTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidatedTargetTests.swift; sourceTree = "<group>"; };
 		FA83272F166637CFAFC4C79C /* OrderedDictionary+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Hashable.swift"; sourceTree = "<group>"; };
@@ -948,6 +951,7 @@
 				14F770CF5035EED0B12C3D5E /* FilePath.swift */,
 				5A50CE6E3E953B2F9187B002 /* Inputs.swift */,
 				C019F3F4CCAA69A6F5565C0D /* LinkerInputs.swift */,
+				F864B729FC2C55DF15D2009F /* LLDBContext.swift */,
 				CC96161706C3865948E383F4 /* Outputs.swift */,
 				374062F4D95CF3BB823766C7 /* Platform.swift */,
 				1D4ACDF966B98589F92E7A9B /* Product.swift */,
@@ -1618,6 +1622,23 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/swift_debug_settings.py",
+			);
+			name = "Create swift_debug_settings.py";
+			outputPaths = (
+				"$(BUILD_DIR)/swift_debug_settings.py",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		622B48F68197B4404F5C2432 /* Create link.params */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1789,6 +1810,7 @@
 				5106D7C8071619FD00716C9C /* ExtensionPointIdentifier.swift in Sources */,
 				2450EF1FE18130D9D0FFA51A /* FilePath.swift in Sources */,
 				D7B28561F18BA62588284779 /* Inputs.swift in Sources */,
+				6BD9A192D0DD98964D796656 /* LLDBContext.swift in Sources */,
 				5ECED6299B24791AC2FDCE47 /* LinkerInputs.swift in Sources */,
 				F7F5AA2F9A629D2B0EAD99CC /* Outputs.swift in Sources */,
 				3C4D30A3FE92DC35C432D1DC /* Platform.swift in Sources */,

@@ -65,7 +65,7 @@ extension Path {
 }
 
 extension String {
-    /// Wraps the path in quotes if it needs it
+    /// Wraps the path in quotes if it needs it.
     var quoted: String {
         guard rangeOfCharacter(from: .whitespaces) != nil else {
             return self

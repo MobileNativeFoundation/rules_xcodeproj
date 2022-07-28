@@ -7,6 +7,7 @@ load(
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
+load(":lldb_contexts.bzl", "lldb_contexts")
 load(":non_xcode_targets.bzl", "process_non_xcode_target")
 load(":output_files.bzl", "output_files")
 load(
@@ -54,6 +55,7 @@ def _target_info_fields(
         extension_infoplists,
         hosted_targets,
         inputs,
+        lldb_context,
         non_mergable_targets,
         outputs,
         potential_target_merges,
@@ -75,6 +77,7 @@ def _target_info_fields(
             field.
         hosted_targets: Maps to the `XcodeProjInfo.hosted_targets` field.
         inputs: Maps to the `XcodeProjInfo.inputs` field.
+        lldb_context: Maps to the `XcodeProjInfo.lldb_context` field.
         non_mergable_targets: Maps to the `XcodeProjInfo.non_mergable_targets`
             field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
@@ -98,6 +101,7 @@ def _target_info_fields(
         *   `generated_inputs`
         *   `hosted_targets`
         *   `inputs`
+        *   `lldb_context`
         *   `non_mergable_targets`
         *   `outputs`
         *   `potential_target_merges`
@@ -114,6 +118,7 @@ def _target_info_fields(
         "extension_infoplists": extension_infoplists,
         "hosted_targets": hosted_targets,
         "inputs": inputs,
+        "lldb_context": lldb_context,
         "non_mergable_targets": non_mergable_targets,
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
@@ -149,6 +154,10 @@ def _skip_target(*, deps, transitive_infos):
             for dep in deps
         ],
     )
+    search_paths = target_search_paths.make(
+        compilation_providers = None,
+        bin_dir_path = None,
+    )
 
     dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = None,
@@ -173,6 +182,15 @@ def _skip_target(*, deps, transitive_infos):
         inputs = input_files.merge(
             transitive_infos = transitive_infos,
         ),
+        lldb_context = lldb_contexts.collect(
+            id = None,
+            is_swift = False,
+            search_paths = search_paths,
+            transitive_infos = [
+                info
+                for _, info in transitive_infos
+            ],
+        ),
         non_mergable_targets = depset(
             transitive = [
                 info.non_mergable_targets
@@ -195,10 +213,7 @@ def _skip_target(*, deps, transitive_infos):
                 for _, info in transitive_infos
             ],
         ),
-        search_paths = target_search_paths.make(
-            compilation_providers = None,
-            bin_dir_path = None,
-        ),
+        search_paths = search_paths,
         target_type = target_type.compile,
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
@@ -287,6 +302,7 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
             ],
         ),
         inputs = processed_target.inputs,
+        lldb_context = processed_target.lldb_context,
         non_mergable_targets = depset(
             processed_target.non_mergable_targets,
             transitive = [
