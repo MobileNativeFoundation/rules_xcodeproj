@@ -102,7 +102,9 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 // This key needs to not have `-` in it
                 // TODO: If we ever add support for Universal targets this needs
                 //   to include more than just the platform name
-                let key = "\(target.platform.name.uppercased())_FILES"
+                let key = """
+\(target.platform.variant.rawValue.uppercased())_FILES
+"""
                 conditionalFileNames[key] = try uniqueFiles
                     .map { filePath in
                         try filePathResolver.resolve(filePath, useGenDir: true)
@@ -247,7 +249,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         buildSettings.set("BAZEL_TARGET_ID", to: id.rawValue)
         buildSettings.set("PRODUCT_NAME", to: target.product.name)
         buildSettings.set("SDKROOT", to: target.platform.os.sdkRoot)
-        buildSettings.set("SUPPORTED_PLATFORMS", to: target.platform.name)
+        buildSettings.set(
+            "SUPPORTED_PLATFORMS",
+            to: target.platform.variant.rawValue
+        )
         buildSettings.set("TARGET_NAME", to: target.name)
 
         buildSettings.set(

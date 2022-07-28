@@ -61,22 +61,22 @@ extension Platform {
         minimumOsVersion: String = "11.0",
         minimumDeploymentOsVersion: String? = nil
     ) -> Self {
-        let name: String
-        switch os {
-        case .macOS: preconditionFailure("use `.macOS`")
-        case .iOS: name = "iphonesimulator"
-        case .tvOS: name = "appletvsimulator"
-        case .watchOS: name = "watchsimulator"
+        var variant: Variant {
+            switch os {
+            case .macOS: preconditionFailure("use `.macOS`")
+            case .iOS: return .iOSSimulator
+            case .tvOS: return .tvOSSimulator
+            case .watchOS: return .watchOSSimulator
+            }
         }
 
         return Platform(
-            name: name,
             os: os,
+            variant: variant,
             arch: arch,
             minimumOsVersion: minimumOsVersion,
             minimumDeploymentOsVersion:
-                minimumDeploymentOsVersion ?? minimumOsVersion,
-            environment: "Simulator"
+                minimumDeploymentOsVersion ?? minimumOsVersion
         )
     }
 
@@ -86,22 +86,22 @@ extension Platform {
         minimumOsVersion: String = "11.0",
         minimumDeploymentOsVersion: String? = nil
     ) -> Self {
-        let name: String
-        switch os {
-        case .macOS: preconditionFailure("use `.macOS`")
-        case .iOS: name = "iphoneos"
-        case .tvOS: name = "appletvos"
-        case .watchOS: name = "watchos"
+        var variant: Variant {
+            switch os {
+            case .macOS: preconditionFailure("use `.macOS`")
+            case .iOS: return .iOSDevice
+            case .tvOS: return.tvOSDevice
+            case .watchOS: return .watchOSDevice
+            }
         }
 
         return Platform(
-            name: name,
             os: os,
+            variant: variant,
             arch: arch,
             minimumOsVersion: minimumOsVersion,
             minimumDeploymentOsVersion:
-                minimumDeploymentOsVersion ?? minimumOsVersion,
-            environment: nil
+                minimumDeploymentOsVersion ?? minimumOsVersion
         )
     }
 
@@ -111,13 +111,12 @@ extension Platform {
         minimumDeploymentOsVersion: String? = nil
     ) -> Self {
         return Platform(
-            name: "macosx",
             os: .macOS,
+            variant: .macOS,
             arch: arch,
             minimumOsVersion: minimumOsVersion,
             minimumDeploymentOsVersion:
-                minimumDeploymentOsVersion ?? minimumOsVersion,
-            environment: nil
+                minimumDeploymentOsVersion ?? minimumOsVersion
         )
     }
 }

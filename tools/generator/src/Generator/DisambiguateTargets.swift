@@ -361,7 +361,7 @@ struct VersionedOperatingSystemComponents {
     /// Adds another `Target` into consideration for `distinguisher()`.
     mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
         consolidatedKeys.insert(consolidatedKey)
-        environments[target.platform.environment ?? "Device", default: .init()]
+        environments[target.platform.variant.environment, default: .init()]
             .add(target: target, consolidatedKey: consolidatedKey)
     }
 
@@ -393,7 +393,7 @@ struct VersionedOperatingSystemComponents {
         let environmentDistinguisher: EnvironmentSystemComponents.Distinguisher?
         if needsSubcomponents {
             environmentDistinguisher = environments[
-                platform.environment ?? "Device"
+                platform.variant.environment
             ]!.distinguisher(
                 target: target,
                 includeEnvironment: forceIncludeEnvironment ||
@@ -465,7 +465,7 @@ struct EnvironmentSystemComponents {
         let needsSubcomponents = consolidatedKeys.count > 1
 
         let prefix = needsSubcomponents && archs.count > 1 ? platform.arch : nil
-        let suffix = includeEnvironment ? platform.environment ?? "Device" : nil
+        let suffix = includeEnvironment ? platform.variant.environment : nil
 
         return Distinguisher(prefix: prefix, suffix: suffix)
     }
@@ -494,7 +494,7 @@ private extension Target {
             platform.arch,
             platform.os.rawValue,
             platform.minimumOsVersion,
-            platform.environment ?? "Device",
+            platform.variant.environment,
         ].joined(separator: "-")
     }
 }

@@ -26,8 +26,9 @@ extension Generator {
         //   directory related build settings, so it's non-trivial to support.
         var consolidateGroups: [Set<TargetID>] = []
         for ids in consolidatable.values {
-            var configurations: [String: [PlatformAndConfiguration: TargetID]] =
-                [:]
+            var configurations: [
+                Platform.Variant: [PlatformAndConfiguration: TargetID]
+            ] = [:]
             for id in ids {
                 let target = targets[id]!
                 let platform = target.platform
@@ -35,7 +36,8 @@ extension Generator {
                     platform: platform,
                     configuration: target.configuration
                 )
-                configurations[platform.name, default: [:]][configuration] = id
+                configurations[platform.variant, default: [:]][configuration] =
+                    id
             }
 
             var buckets: [Int: Set<TargetID>] = [:]

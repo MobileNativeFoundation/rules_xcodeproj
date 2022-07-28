@@ -410,23 +410,22 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for os in input.oses {
                 let targetID = TargetID("\(os)-\(input.productType)")
 
-                var platformName: String {
+                var variant: Platform.Variant {
                     switch os {
-                    case .macOS: return "macosx"
-                    case .iOS: return "iphoneos"
-                    case .tvOS: return "appletvos"
-                    case .watchOS: return "watchos"
+                    case .macOS: return .macOS
+                    case .iOS: return .iOSDevice
+                    case .tvOS: return .tvOSDevice
+                    case .watchOS: return .watchOSDevice
                     }
                 }
 
                 let target = Target.mock(
                     platform: .init(
-                        name: platformName,
                         os: os,
+                        variant: variant,
                         arch: "arm64",
                         minimumOsVersion: "11.0",
-                        minimumDeploymentOsVersion: "11.1",
-                        environment: nil
+                        minimumDeploymentOsVersion: "11.1"
                     ),
                     product: .init(
                         type: input.productType,

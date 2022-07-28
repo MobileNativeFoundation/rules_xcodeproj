@@ -136,60 +136,53 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     // Platforms
 
     let appletvOSPlatform = Platform(
-        name: "appletvos",
         os: .tvOS,
+        variant: .tvOSDevice,
         arch: "arm64",
         minimumOsVersion: "15.0",
-        minimumDeploymentOsVersion: "15.1",
-        environment: nil
+        minimumDeploymentOsVersion: "15.1"
     )
     let appletvSimulatorPlatform = Platform(
-        name: "appletvsimulator",
         os: .tvOS,
+        variant: .tvOSSimulator,
         arch: "x86_64",
         minimumOsVersion: "15.0",
-        minimumDeploymentOsVersion: "15.1",
-        environment: Optional("Simulator")
+        minimumDeploymentOsVersion: "15.1"
     )
     let iphoneOSPlatform = Platform(
-        name: "iphoneos",
         os: .iOS,
+        variant: .iOSDevice,
         arch: "arm64",
         minimumOsVersion: "15.0",
-        minimumDeploymentOsVersion: "15.1",
-        environment: nil
+        minimumDeploymentOsVersion: "15.1"
     )
     let iphoneSimulatorPlatform = Platform(
-        name: "iphonesimulator",
         os: .iOS,
+        variant: .iOSSimulator,
         arch: "x86_64",
         minimumOsVersion: "15.0",
-        minimumDeploymentOsVersion: "15.1",
-        environment: Optional("Simulator")
+        minimumDeploymentOsVersion: "15.1"
     )
     let macOSPlatform = Platform(
-        name: "macosx",
         os: .macOS,
+        variant: .macOS,
         arch: "x86_64",
         minimumOsVersion: "11.0",
-        minimumDeploymentOsVersion: "11.1",
-        environment: nil
+        minimumDeploymentOsVersion: "11.1"
     )
     let watchOSPlatform = Platform(
-        name: "watchos",
         os: .watchOS,
+        variant: .watchOSDevice,
         arch: "arm64_32",
         minimumOsVersion: "7.0",
-        minimumDeploymentOsVersion: "7.1",
-        environment: nil
+        minimumDeploymentOsVersion: "7.1"
     )
     let watchSimulatorPlatform = Platform(
-        name: "watchsimulator",
         os: .watchOS,
+        variant: .watchOSSimulator,
         arch: "x86_64",
         minimumOsVersion: "7.0",
-        minimumDeploymentOsVersion: "7.1",
-        environment: Optional("Simulator")
+        minimumDeploymentOsVersion: "7.1"
     )
 
     // Targets and TargetIDs

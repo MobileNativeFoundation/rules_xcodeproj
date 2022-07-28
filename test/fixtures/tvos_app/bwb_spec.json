@@ -112,11 +112,10 @@
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example",
             "platform": {
                 "arch": "x86_64",
-                "environment": "Simulator",
                 "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
-                "name": "appletvsimulator",
-                "os": "tvos"
+                "os": "tvos",
+                "variant": "appletvsimulator"
             },
             "product": {
                 "executable_name": "Example",
@@ -179,11 +178,10 @@
             "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example",
             "platform": {
                 "arch": "x86_64",
-                "environment": "Simulator",
                 "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
-                "name": "appletvsimulator",
-                "os": "tvos"
+                "os": "tvos",
+                "variant": "appletvsimulator"
             },
             "product": {
                 "executable_name": null,
@@ -257,11 +255,10 @@
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests",
             "platform": {
                 "arch": "x86_64",
-                "environment": "Simulator",
                 "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
-                "name": "appletvsimulator",
-                "os": "tvos"
+                "os": "tvos",
+                "variant": "appletvsimulator"
             },
             "product": {
                 "executable_name": "ExampleTests",
@@ -328,11 +325,10 @@
             "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests",
             "platform": {
                 "arch": "x86_64",
-                "environment": "Simulator",
                 "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
-                "name": "appletvsimulator",
-                "os": "tvos"
+                "os": "tvos",
+                "variant": "appletvsimulator"
             },
             "product": {
                 "executable_name": null,
@@ -411,11 +407,10 @@
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests",
             "platform": {
                 "arch": "x86_64",
-                "environment": "Simulator",
                 "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
-                "name": "appletvsimulator",
-                "os": "tvos"
+                "os": "tvos",
+                "variant": "appletvsimulator"
             },
             "product": {
                 "executable_name": "ExampleUITests",
@@ -480,11 +475,10 @@
             "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests",
             "platform": {
                 "arch": "x86_64",
-                "environment": "Simulator",
                 "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
-                "name": "appletvsimulator",
-                "os": "tvos"
+                "os": "tvos",
+                "variant": "appletvsimulator"
             },
             "product": {
                 "executable_name": null,
