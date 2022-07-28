@@ -23,10 +23,16 @@ struct Platform: Equatable, Hashable, Decodable {
     let minimumDeploymentOsVersion: String
 }
 
+extension Platform {
+    var triple: String {
+        return "\(arch)-apple-\(variant.triple)"
+    }
+}
+
 extension Platform.OS {
     var deploymentTargetBuildSettingKey: String {
         switch self {
-        case .macOS: return"MACOSX_DEPLOYMENT_TARGET"
+        case .macOS: return "MACOSX_DEPLOYMENT_TARGET"
         case .iOS: return "IPHONEOS_DEPLOYMENT_TARGET"
         case .tvOS: return "TVOS_DEPLOYMENT_TARGET"
         case .watchOS: return "WATCHOS_DEPLOYMENT_TARGET"
@@ -47,6 +53,18 @@ extension Platform.Variant {
         case .tvOSSimulator: return Self.simulatorEnvironment
         case .watchOSDevice: return Self.deviceEnvironment
         case .watchOSSimulator: return Self.simulatorEnvironment
+        }
+    }
+
+    var triple: String {
+        switch self {
+        case .macOS: return "macosx"
+        case .iOSDevice: return "ios"
+        case .iOSSimulator: return "ios-simulator"
+        case .tvOSDevice: return "tvos"
+        case .tvOSSimulator: return "tvos-simulator"
+        case .watchOSDevice: return "watchos"
+        case .watchOSSimulator: return "watchos-simulator"
         }
     }
 }

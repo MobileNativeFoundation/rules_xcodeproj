@@ -14,6 +14,7 @@ extension Target {
     ) throws -> [String] {
         var flags = try processLinkopts(
             linkerInputs.linkopts,
+            triple: platform.triple,
             xcodeGeneratedFiles: xcodeGeneratedFiles,
             filePathResolver: filePathResolver
         )
@@ -60,6 +61,7 @@ extension Target {
 
 private func processLinkopts(
     _ linkopts: [String],
+    triple: String,
     xcodeGeneratedFiles: Set<FilePath>,
     filePathResolver: FilePathResolver
 ) throws -> [String] {
@@ -67,6 +69,7 @@ private func processLinkopts(
         .map { linkopt in
             return try processLinkopt(
                 linkopt,
+                triple: triple,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             )
@@ -75,6 +78,7 @@ private func processLinkopts(
 
 private func processLinkopt(
     _ linkopt: String,
+    triple: String,
     xcodeGeneratedFiles: Set<FilePath>,
     filePathResolver: FilePathResolver
 ) throws -> String {
@@ -84,6 +88,7 @@ private func processLinkopt(
         .map { opt in
             return try processLinkoptComponent(
                 opt,
+                triple: triple,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             )
@@ -93,6 +98,7 @@ private func processLinkopt(
 
 private func processLinkoptComponent(
     _ opt: String,
+    triple: String,
     xcodeGeneratedFiles: Set<FilePath>,
     filePathResolver: FilePathResolver
 ) throws -> String {
@@ -119,9 +125,7 @@ private func processLinkoptComponent(
             if let `extension` = filePath.path.extension,
                `extension` == "swiftmodule"
             {
-                filePath = filePath + """
-$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
-"""
+                filePath = filePath + "\(triple).swiftmodule"
             }
         }
 

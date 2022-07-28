@@ -1,5 +1,5 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift

@@ -1,8 +1,8 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/tools/generator/generator.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/tools/generator/generator.swiftmodule/x86_64-apple-macosx.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/x86_64-apple-macosx.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule/x86_64-apple-macosx.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin/external/com_github_tadija_aexml/AEXML.swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule/$(ARCHS)-$(LLVM_TARGET_TRIPLE_VENDOR)-$(SWIFT_PLATFORM_TARGET_PREFIX)$(LLVM_TARGET_TRIPLE_SUFFIX).swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule/x86_64-apple-macosx.swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift
