@@ -25,7 +25,7 @@ def _make(
         modulemaps,
         swiftmodules,
         inputs,
-        linker_inputs,
+        linker_inputs = None,
         infoplist = None,
         watch_application = None,
         extensions = [],

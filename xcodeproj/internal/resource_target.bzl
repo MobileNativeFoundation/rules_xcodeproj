@@ -63,7 +63,6 @@ def _process_resource_bundle(bundle, *, information):
         modulemaps = process_modulemaps(swift_info = None),
         swiftmodules = process_swiftmodules(swift_info = None),
         inputs = input_files.from_resource_bundle(bundle),
-        linker_inputs = None,
         dependencies = bundle.dependencies,
         transitive_dependencies = bundle.dependencies,
         outputs = outputs,
