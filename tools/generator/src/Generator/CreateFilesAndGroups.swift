@@ -617,13 +617,3 @@ private extension Outputs {
 private extension Path {
     var sourceTree: PBXSourceTree { isAbsolute ? .absolute : .group }
 }
-
-extension Sequence where Element == FilePath {
-    var containsExternalFiles: Bool { contains { $0.type == .external } }
-    var containsGeneratedFiles: Bool { contains { $0.type == .generated } }
-}
-
-extension Dictionary where Key == FilePath {
-    var containsExternalFiles: Bool { keys.containsExternalFiles }
-    var containsGeneratedFiles: Bool { keys.containsGeneratedFiles }
-}
