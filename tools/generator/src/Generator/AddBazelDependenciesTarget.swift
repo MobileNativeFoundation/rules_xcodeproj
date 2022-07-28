@@ -370,10 +370,18 @@ done
 }
 
 private extension Dictionary where Key == FilePath {
+    var containsExternalFiles: Bool { keys.containsExternalFiles }
+    var containsGeneratedFiles: Bool { keys.containsGeneratedFiles }
+
     var containsInfoPlists: Bool {
         contains(where: { filePath, _ in
             return filePath.type == .generated
                 && filePath.path.lastComponent == "Info.plist"
         })
     }
+}
+
+private extension Sequence where Element == FilePath {
+    var containsExternalFiles: Bool { contains { $0.type == .external } }
+    var containsGeneratedFiles: Bool { contains { $0.type == .generated } }
 }
