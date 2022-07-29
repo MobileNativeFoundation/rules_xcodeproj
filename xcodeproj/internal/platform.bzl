@@ -10,13 +10,11 @@ _PLATFORM_NAME = {
     apple_common.platform.watchos_simulator: "watchsimulator",
 }
 
-def _collect(*, ctx, minimum_deployment_os_version):
+def _collect(*, ctx):
     """Collects information about a target's platform.
 
     Args:
         ctx: The aspect context.
-        minimum_deployment_os_version: The minimum deployment OS version for the
-            target.
 
     Returns:
         An opaque `struct` to be used with `platform_info.to_dto`.
@@ -30,7 +28,6 @@ def _collect(*, ctx, minimum_deployment_os_version):
 
     return struct(
         _arch = apple_fragment.single_arch_cpu,
-        _deployment_os_version = minimum_deployment_os_version,
         _os_version = minimum_os_version,
         _platform = platform,
     )
@@ -44,15 +41,11 @@ def _to_dto(platform):
     apple_platform = platform._platform
     platform_type = apple_platform.platform_type
 
-    os_version = platform._os_version
-    deployment_os_version = platform._deployment_os_version or os_version
-
     dto = {
         "os": str(platform_type),
         "variant": _PLATFORM_NAME[apple_platform],
         "arch": platform._arch,
-        "minimum_os_version": os_version,
-        "minimum_deployment_os_version": deployment_os_version,
+        "minimum_os_version": platform._os_version,
     }
 
     return dto

@@ -11,7 +11,6 @@ def _platform_info_to_dto_test_impl(ctx):
 
     platform = struct(
         _arch = ctx.attr.arch,
-        _deployment_os_version = ctx.attr.minimum_deployment_os_version,
         _os_version = ctx.attr.minimum_os_version,
         _platform = getattr(apple_common.platform, ctx.attr.platform_key),
     )
@@ -32,7 +31,6 @@ platform_info_to_dto_test = unittest.make(
     attrs = {
         "arch": attr.string(mandatory = True),
         "expected_platform_dict": attr.string_dict(mandatory = True),
-        "minimum_deployment_os_version": attr.string(mandatory = False),
         "minimum_os_version": attr.string(mandatory = True),
         "platform_key": attr.string(mandatory = True),
     },
@@ -53,7 +51,6 @@ def platform_info_to_dto_test_suite(name):
             platform_key,
             arch,
             minimum_os_version,
-            minimum_deployment_os_version,
             expected_platform_dict):
         test_names.append(name)
         platform_info_to_dto_test(
@@ -61,7 +58,6 @@ def platform_info_to_dto_test_suite(name):
             platform_key = platform_key,
             arch = arch,
             minimum_os_version = minimum_os_version,
-            minimum_deployment_os_version = minimum_deployment_os_version,
             expected_platform_dict = expected_platform_dict,
             timeout = "short",
         )
@@ -73,28 +69,11 @@ def platform_info_to_dto_test_suite(name):
         platform_key = "tvos_device",
         arch = "wild",
         minimum_os_version = "12.0",
-        minimum_deployment_os_version = None,
         expected_platform_dict = {
             "arch": "wild",
             "minimum_os_version": "12.0",
-            "minimum_deployment_os_version": "12.0",
             "os": "tvos",
             "variant": "appletvos",
-        },
-    )
-
-    _add_test(
-        name = "{}_deployment_os_version".format(name),
-        platform_key = "ios_simulator",
-        arch = "x86_64",
-        minimum_os_version = "11.0",
-        minimum_deployment_os_version = "13.0",
-        expected_platform_dict = {
-            "arch": "x86_64",
-            "minimum_os_version": "11.0",
-            "minimum_deployment_os_version": "13.0",
-            "os": "ios",
-            "variant": "iphonesimulator",
         },
     )
 
@@ -105,11 +84,9 @@ def platform_info_to_dto_test_suite(name):
         platform_key = "macos",
         arch = "arm64",
         minimum_os_version = "12.1",
-        minimum_deployment_os_version = None,
         expected_platform_dict = {
             "arch": "arm64",
             "minimum_os_version": "12.1",
-            "minimum_deployment_os_version": "12.1",
             "os": "macos",
             "variant": "macosx",
         },

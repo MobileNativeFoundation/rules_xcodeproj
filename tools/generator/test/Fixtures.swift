@@ -193,8 +193,7 @@ enum Fixtures {
                 os: .watchOS,
                 variant: .watchOSDevice,
                 arch: "x86_64",
-                minimumOsVersion: "9.1",
-                minimumDeploymentOsVersion: "9.2"
+                minimumOsVersion: "9.1"
             ),
             product: .init(
                 type: .staticLibrary,
@@ -212,8 +211,7 @@ enum Fixtures {
                 os: .tvOS,
                 variant: .tvOSDevice,
                 arch: "arm64",
-                minimumOsVersion: "9.1",
-                minimumDeploymentOsVersion: "9.2"
+                minimumOsVersion: "9.1"
             ),
             product: .init(
                 type: .staticLibrary,
@@ -225,7 +223,7 @@ enum Fixtures {
         ),
         "I": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/I",
-            platform: .device(os: .iOS, minimumDeploymentOsVersion: "13.0"),
+            platform: .device(os: .iOS, minimumOsVersion: "12.0"),
             product: .init(
                 type: .application,
                 name: "I",
@@ -2198,7 +2196,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "SUPPORTED_PLATFORMS": "watchos",
                 "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["E1"]!.name,
-                "WATCHOS_DEPLOYMENT_TARGET": "9.2",
+                "WATCHOS_DEPLOYMENT_TARGET": "9.1",
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
@@ -2212,7 +2210,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "SDKROOT": "appletvos",
                 "SUPPORTED_PLATFORMS": "appletvos",
                 "TARGET_NAME": targets["E2"]!.name,
-                "TVOS_DEPLOYMENT_TARGET": "9.2",
+                "TVOS_DEPLOYMENT_TARGET": "9.1",
             ]) { $1 },
             "I": targets["I"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
@@ -2225,7 +2223,7 @@ $(BAZEL_OUT)/some/framework/parent/dir
 """,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "HEADER_SEARCH_PATHS": "$(BAZEL_OUT)/some/includes/parent/dir",
-                "IPHONEOS_DEPLOYMENT_TARGET": "13.0",
+                "IPHONEOS_DEPLOYMENT_TARGET": "12.0",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/Frameworks",

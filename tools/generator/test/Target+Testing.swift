@@ -58,8 +58,7 @@ extension Platform {
     static func simulator(
         os: Platform.OS = .iOS,
         arch: String = "arm64",
-        minimumOsVersion: Platform.OSVersion = "11.0",
-        minimumDeploymentOsVersion: Platform.OSVersion? = nil
+        minimumOsVersion: Platform.OSVersion = "11.0"
     ) -> Self {
         var variant: Variant {
             switch os {
@@ -74,17 +73,14 @@ extension Platform {
             os: os,
             variant: variant,
             arch: arch,
-            minimumOsVersion: minimumOsVersion,
-            minimumDeploymentOsVersion:
-                minimumDeploymentOsVersion ?? minimumOsVersion
+            minimumOsVersion: minimumOsVersion
         )
     }
 
     static func device(
         os: Platform.OS = .iOS,
         arch: String = "arm64",
-        minimumOsVersion: Platform.OSVersion = "11.0",
-        minimumDeploymentOsVersion: Platform.OSVersion? = nil
+        minimumOsVersion: Platform.OSVersion = "11.0"
     ) -> Self {
         var variant: Variant {
             switch os {
@@ -99,24 +95,19 @@ extension Platform {
             os: os,
             variant: variant,
             arch: arch,
-            minimumOsVersion: minimumOsVersion,
-            minimumDeploymentOsVersion:
-                minimumDeploymentOsVersion ?? minimumOsVersion
+            minimumOsVersion: minimumOsVersion
         )
     }
 
     static func macOS(
         arch: String = "arm64",
-        minimumOsVersion: Platform.OSVersion = "11.0",
-        minimumDeploymentOsVersion: Platform.OSVersion? = nil
+        minimumOsVersion: Platform.OSVersion = "11.0"
     ) -> Self {
         return Platform(
             os: .macOS,
             variant: .macOS,
             arch: arch,
-            minimumOsVersion: minimumOsVersion,
-            minimumDeploymentOsVersion:
-                minimumDeploymentOsVersion ?? minimumOsVersion
+            minimumOsVersion: minimumOsVersion
         )
     }
 }

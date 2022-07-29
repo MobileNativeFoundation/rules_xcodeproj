@@ -362,7 +362,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -471,7 +470,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -560,7 +558,6 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/AppClip",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -655,7 +652,6 @@
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/AppClip",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -749,7 +745,6 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -837,7 +832,6 @@
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -925,7 +919,6 @@
             "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "tvos",
                 "variant": "appletvos"
@@ -1013,7 +1006,6 @@
             "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "tvos",
                 "variant": "appletvsimulator"
@@ -1101,7 +1093,6 @@
             "package_bin_dir": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "arm64_32",
-                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchos"
@@ -1189,7 +1180,6 @@
             "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/Lib",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchsimulator"
@@ -1276,7 +1266,6 @@
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-01f14ffe769b/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "11.0",
                 "minimum_os_version": "11.0",
                 "os": "macos",
                 "variant": "macosx"
@@ -1341,7 +1330,6 @@
             "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-01f14ffe769b/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "11.0",
                 "minimum_os_version": "11.0",
                 "os": "macos",
                 "variant": "macosx"
@@ -1431,7 +1419,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/WidgetExtension",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -1534,7 +1521,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/WidgetExtension",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -1626,7 +1612,6 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/WidgetExtension",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -1724,7 +1709,6 @@
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/WidgetExtension",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -1812,7 +1796,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -1879,7 +1862,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -1969,7 +1951,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -2072,7 +2053,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -2160,7 +2140,6 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -2254,7 +2233,6 @@
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iMessageApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -2395,7 +2373,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -2550,7 +2527,6 @@
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -2672,7 +2648,6 @@
             "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-28ac48b4d0bf/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphoneos"
@@ -2799,7 +2774,6 @@
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-e7c08a7bb9db/bin/examples/multiplatform/iOSApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "ios",
                 "variant": "iphonesimulator"
@@ -2928,7 +2902,6 @@
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "tvos",
                 "variant": "appletvos"
@@ -3030,7 +3003,6 @@
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "tvos",
                 "variant": "appletvsimulator"
@@ -3119,7 +3091,6 @@
             "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d6d3bf2233f2/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "arm64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "tvos",
                 "variant": "appletvos"
@@ -3214,7 +3185,6 @@
             "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67/bin/examples/multiplatform/tvOSApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "15.0",
                 "minimum_os_version": "15.0",
                 "os": "tvos",
                 "variant": "appletvsimulator"
@@ -3301,7 +3271,6 @@
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSApp",
             "platform": {
                 "arch": "arm64_32",
-                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchos"
@@ -3367,7 +3336,6 @@
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchsimulator"
@@ -3456,7 +3424,6 @@
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "arm64_32",
-                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchos"
@@ -3558,7 +3525,6 @@
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchsimulator"
@@ -3647,7 +3613,6 @@
             "package_bin_dir": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-01fecab27ffc/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "arm64_32",
-                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchos"
@@ -3742,7 +3707,6 @@
             "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "7.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchsimulator"
