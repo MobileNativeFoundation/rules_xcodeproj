@@ -13,19 +13,19 @@
     "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
     "custom_xcode_schemes": [],
     "extra_files": [
-        "examples/multiplatform/AppClip/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
             "t": "e"
         },
         "examples/multiplatform/Lib/BUILD",
-        "examples/multiplatform/iOSApp/BUILD",
+        "examples/multiplatform/AppClip/BUILD",
         "examples/multiplatform/AppClip/Entitlements.entitlements",
         "examples/multiplatform/AppClip/Info.plist",
         {
             "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/iOSApp/BUILD",
         {
             "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
             "t": "e"
@@ -38,19 +38,18 @@
             "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
             "t": "e"
         },
-        "examples/multiplatform/WidgetExtension/BUILD",
         "examples/multiplatform/WidgetExtension/WidgetExtension.intentdefinition",
+        "examples/multiplatform/WidgetExtension/BUILD",
         "examples/multiplatform/WidgetExtension/Info.plist",
         {
             "_": "applebin_ios-ios_arm64-dbg-ST-787a8770ecb8/bin/examples/multiplatform/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "t": "g"
         },
-        "examples/multiplatform/watchOSApp/BUILD",
-        "examples/multiplatform/watchOSAppExtension/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
             "t": "e"
         },
+        "examples/multiplatform/watchOSAppExtension/BUILD",
         "examples/multiplatform/watchOSAppExtension/Info.plist",
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
@@ -61,6 +60,7 @@
             "t": "g"
         },
         "examples/multiplatform/watchOSApp/Info.plist",
+        "examples/multiplatform/watchOSApp/BUILD",
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
             "t": "g"
@@ -141,11 +141,11 @@
             "_": "applebin_ios-ios_x86_64-dbg-ST-6fabcb83ef01/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
             "t": "g"
         },
-        "examples/multiplatform/tvOSApp/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
             "t": "e"
         },
+        "examples/multiplatform/tvOSApp/BUILD",
         "examples/multiplatform/tvOSApp/Info.plist",
         {
             "_": "applebin_tvos-tvos_arm64-dbg-ST-eb2e402285ef/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",

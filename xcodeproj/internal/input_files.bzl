@@ -23,22 +23,30 @@ load(":target_properties.bzl", "should_include_non_xcode_outputs")
 
 # Utility
 
-def _collect_transitive_extra_files(info):
-    inputs = info.inputs
+def _transitive_extra_files(*, id, files):
+    return depset(
+        [(
+            id,
+            tuple([
+                normalized_file_path(file)
+                for file in files.to_list()
+            ]),
+        )],
+    )
+
+def _collect_transitive_extra_files(id, transitive_info):
+    inputs = transitive_info.inputs
     transitive = [inputs.extra_files]
-    if not info.xcode_target:
-        transitive.append(depset([
-            normalized_file_path(file)
-            for file in inputs.srcs.to_list()
-        ]))
-        transitive.append(depset([
-            normalized_file_path(file)
-            for file in inputs.non_arc_srcs.to_list()
-        ]))
-        transitive.append(depset([
-            normalized_file_path(file)
-            for file in inputs.hdrs.to_list()
-        ]))
+    if not transitive_info.xcode_target:
+        transitive.append(
+            _transitive_extra_files(id = id, files = inputs.srcs),
+        )
+        transitive.append(
+            _transitive_extra_files(id = id, files = inputs.non_arc_srcs),
+        )
+        transitive.append(
+            _transitive_extra_files(id = id, files = inputs.hdrs),
+        )
 
     return depset(transitive = transitive)
 
@@ -279,7 +287,10 @@ def _collect(
         else:
             extra_files.extend(resources_result.resources)
             transitive_extra_files.extend([
-                bundle.resources
+                # TODO: Use bundle.id here
+                # We need to adjust BwB to show resource bundle targets
+                # as unfocused dependency targets.
+                depset([(id, bundle.resources)])
                 for bundle in resources_result.bundles
             ])
 
@@ -405,6 +416,29 @@ def _collect(
             ],
         )
 
+    if id:
+        extra_files.extend(
+            depset(
+                transitive = [
+                    info.inputs._unowned_extra_files
+                    for attr, info in transitive_infos
+                    if (info.target_type in
+                        automatic_target_info.xcode_targets.get(attr, [None]))
+                ],
+            ).to_list(),
+        )
+        unowned_extra_files = depset()
+    else:
+        unowned_extra_files = depset(
+            extra_files if extra_files else None,
+            transitive = [
+                info.inputs._unowned_extra_files
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        )
+
     return struct(
         _non_target_swift_info_modules = non_target_swift_info_modules,
         _output_group_list = depset(
@@ -416,6 +450,7 @@ def _collect(
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
+        _unowned_extra_files = unowned_extra_files,
         srcs = depset(srcs),
         non_arc_srcs = depset(non_arc_srcs),
         hdrs = depset(hdrs),
@@ -463,16 +498,16 @@ def _collect(
                  automatic_target_info.xcode_targets.get(attr, [None])))
         ]),
         extra_files = depset(
-            extra_files,
+            [(id, tuple(extra_files))] if (id and extra_files) else None,
             transitive = [
-                _collect_transitive_extra_files(info)
+                _collect_transitive_extra_files(id, info)
                 for attr, info in transitive_infos
                 if (info.target_type in
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ] + transitive_extra_files,
         ),
         uncategorized = depset(
-            uncategorized,
+            [(id, tuple(uncategorized))] if uncategorized else None,
             transitive = [
                 _collect_transitive_uncategorized(info)
                 for attr, info in transitive_infos
@@ -488,11 +523,12 @@ def _from_resource_bundle(bundle):
     return struct(
         _non_target_swift_info_modules = depset(),
         _output_group_list = depset(),
+        _unowned_extra_files = depset(),
         srcs = depset(),
         non_arc_srcs = depset(),
         hdrs = depset(),
         pch = None,
-        resources = bundle.resources,
+        resources = depset(bundle.resources),
         resource_bundles = depset(),
         resource_bundle_dependencies = bundle.dependencies,
         entitlements = None,
@@ -530,6 +566,12 @@ def _merge(*, transitive_infos, extra_generated = None):
         _output_group_list = depset(
             transitive = [
                 info.inputs._output_group_list
+                for _, info in transitive_infos
+            ],
+        ),
+        _unowned_extra_files = depset(
+            transitive = [
+                info.inputs._unowned_extra_files
                 for _, info in transitive_infos
             ],
         ),
