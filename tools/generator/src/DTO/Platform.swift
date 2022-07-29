@@ -16,11 +16,35 @@ struct Platform: Equatable, Hashable, Decodable {
         case watchOSSimulator = "watchsimulator"
     }
 
+    struct OSVersion: RawRepresentable, Hashable, Decodable {
+        let rawValue: String
+        let fullVersion: String
+
+        init?(rawValue: String) {
+            self.rawValue = rawValue
+
+            var components = rawValue.split(separator: ".")
+            let componentCount = components.count
+            guard componentCount < 3 else {
+                self.fullVersion = rawValue
+                return
+            }
+
+            if componentCount == 2 {
+                components.append("0")
+            } else if componentCount == 1 {
+                components.append(contentsOf: ["0", "0"])
+            }
+
+            self.fullVersion = components.joined(separator: ".")
+        }
+    }
+
     let os: OS
     let variant: Variant
     let arch: String
-    let minimumOsVersion: String
-    let minimumDeploymentOsVersion: String
+    let minimumOsVersion: OSVersion
+    let minimumDeploymentOsVersion: OSVersion
 }
 
 extension Platform {
@@ -69,6 +93,13 @@ extension Platform.Variant {
     }
 }
 
+extension Platform.OSVersion: Comparable {
+    static func < (lhs: Platform.OSVersion, rhs: Platform.OSVersion) -> Bool {
+        return lhs.rawValue.compare(rhs.rawValue, options: .numeric)
+            == .orderedAscending
+    }
+}
+
 // MARK: - Comparable
 
 extension Platform: Comparable {
@@ -78,9 +109,7 @@ extension Platform: Comparable {
         }
 
         guard lhs.minimumOsVersion == rhs.minimumOsVersion else {
-            return lhs.minimumOsVersion
-                .compare(rhs.minimumOsVersion, options: .numeric)
-                == .orderedAscending
+            return lhs.minimumOsVersion < rhs.minimumOsVersion
         }
 
         guard lhs.variant == rhs.variant else {
