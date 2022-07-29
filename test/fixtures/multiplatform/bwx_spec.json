@@ -253,14 +253,6 @@
         "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53",
         [
             "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-37edb098dc53"
-        ],
-        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3",
-        [
-            "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3"
-        ],
-        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba",
-        [
-            "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba"
         ]
     ],
     "targets": [
@@ -3524,7 +3516,7 @@
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-934faf172fd3/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "arm64_32",
-                "minimum_deployment_os_version": "7.0",
+                "minimum_deployment_os_version": "8.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchos"
@@ -3632,7 +3624,7 @@
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-07c4a284aeba/bin/examples/multiplatform/watchOSAppExtension",
             "platform": {
                 "arch": "x86_64",
-                "minimum_deployment_os_version": "7.0",
+                "minimum_deployment_os_version": "8.0",
                 "minimum_os_version": "7.0",
                 "os": "watchos",
                 "variant": "watchsimulator"

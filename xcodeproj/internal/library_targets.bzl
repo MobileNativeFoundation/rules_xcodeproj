@@ -109,7 +109,6 @@ def process_library_target(
 
     platform = platform_info.collect(
         ctx = ctx,
-        minimum_deployment_os_version = None,
     )
     product = process_product(
         target = target,

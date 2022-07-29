@@ -8,5 +8,6 @@
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
+$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a
 -force_load
 $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-2fd25852cc8a/bin/examples/multiplatform/Lib/libLib.a

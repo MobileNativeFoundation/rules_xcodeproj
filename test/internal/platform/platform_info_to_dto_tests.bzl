@@ -11,9 +11,10 @@ def _platform_info_to_dto_test_impl(ctx):
 
     platform = struct(
         _arch = ctx.attr.arch,
-        _deployment_os_version = ctx.attr.minimum_deployment_os_version,
         _os_version = ctx.attr.minimum_os_version,
         _platform = getattr(apple_common.platform, ctx.attr.platform_key),
+        deployment_os_version = (ctx.attr.minimum_deployment_os_version or
+                                 ctx.attr.minimum_os_version),
     )
     dto = platform_info.to_dto(platform)
     string_platform = stringify_dict(dto)

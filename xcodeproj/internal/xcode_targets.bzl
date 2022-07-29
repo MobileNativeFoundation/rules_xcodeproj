@@ -79,7 +79,6 @@ def _make(
         _name = name,
         _configuration = configuration,
         _package_bin_dir = package_bin_dir,
-        _platform = platform,
         _is_swift = is_swift,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
@@ -95,6 +94,7 @@ def _make(
         _outputs = outputs,
         id = id,
         label = label,
+        platform = platform,
         product = product,
         inputs = inputs,
         transitive_dependencies = transitive_dependencies,
@@ -112,7 +112,7 @@ def _to_dto(
         "label": str(xcode_target.label),
         "configuration": xcode_target._configuration,
         "package_bin_dir": xcode_target._package_bin_dir,
-        "platform": platform_info.to_dto(xcode_target._platform),
+        "platform": platform_info.to_dto(xcode_target.platform),
         "product": product_to_dto(xcode_target.product),
     }
 

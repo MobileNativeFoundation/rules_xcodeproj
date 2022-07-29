@@ -30,6 +30,7 @@ watchos_extension(
     name = "watchOSAppExtension",
     bundle_id = "{}.extension".format(WATCHOS_BUNDLE_ID),
     infoplists = [":infoplist"],
+    minimum_deployment_os_version = "8.0",
     minimum_os_version = "7.0",
     provisioning_profile = select({
         ":device_build": ":xcode_profile",

@@ -355,7 +355,18 @@ def process_top_level_target(
     xcode_library_targets = comp_providers.get_xcode_library_targets(
         compilation_providers = compilation_providers,
     )
-    if len(xcode_library_targets) == 1 and not inputs.srcs:
+
+    def _can_merge_target():
+        if len(xcode_library_targets) != 1:
+            return False
+        if inputs.srcs:
+            return False
+        if (platform.deployment_os_version !=
+            xcode_library_targets[0].platform.deployment_os_version):
+            return False
+        return True
+
+    if _can_merge_target():
         mergeable_target = xcode_library_targets[0]
         mergeable_label = mergeable_target.label
         potential_target_merges = [struct(
