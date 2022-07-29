@@ -139,50 +139,43 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         os: .tvOS,
         variant: .tvOSDevice,
         arch: "arm64",
-        minimumOsVersion: "15.0",
-        minimumDeploymentOsVersion: "15.1"
+        minimumOsVersion: "15.0"
     )
     let appletvSimulatorPlatform = Platform(
         os: .tvOS,
         variant: .tvOSSimulator,
         arch: "x86_64",
-        minimumOsVersion: "15.0",
-        minimumDeploymentOsVersion: "15.1"
+        minimumOsVersion: "15.0"
     )
     let iphoneOSPlatform = Platform(
         os: .iOS,
         variant: .iOSDevice,
         arch: "arm64",
-        minimumOsVersion: "15.0",
-        minimumDeploymentOsVersion: "15.1"
+        minimumOsVersion: "15.0"
     )
     let iphoneSimulatorPlatform = Platform(
         os: .iOS,
         variant: .iOSSimulator,
         arch: "x86_64",
-        minimumOsVersion: "15.0",
-        minimumDeploymentOsVersion: "15.1"
+        minimumOsVersion: "15.0"
     )
     let macOSPlatform = Platform(
         os: .macOS,
         variant: .macOS,
         arch: "x86_64",
-        minimumOsVersion: "11.0",
-        minimumDeploymentOsVersion: "11.1"
+        minimumOsVersion: "11.0"
     )
     let watchOSPlatform = Platform(
         os: .watchOS,
         variant: .watchOSDevice,
         arch: "arm64_32",
-        minimumOsVersion: "7.0",
-        minimumDeploymentOsVersion: "7.1"
+        minimumOsVersion: "7.0"
     )
     let watchSimulatorPlatform = Platform(
         os: .watchOS,
         variant: .watchOSSimulator,
         arch: "x86_64",
-        minimumOsVersion: "7.0",
-        minimumDeploymentOsVersion: "7.1"
+        minimumOsVersion: "7.0"
     )
 
     // Targets and TargetIDs

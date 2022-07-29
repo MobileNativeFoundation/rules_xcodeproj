@@ -107,10 +107,7 @@ def process_library_target(
         getattr(ctx.rule.attr, "testonly", False),
     )
 
-    platform = platform_info.collect(
-        ctx = ctx,
-        minimum_deployment_os_version = None,
-    )
+    platform = platform_info.collect(ctx = ctx)
     product = process_product(
         target = target,
         product_name = product_name,

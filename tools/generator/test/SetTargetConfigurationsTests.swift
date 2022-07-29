@@ -424,8 +424,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
                         os: os,
                         variant: variant,
                         arch: "arm64",
-                        minimumOsVersion: "11.0",
-                        minimumDeploymentOsVersion: "11.1"
+                        minimumOsVersion: "11.0"
                     ),
                     product: .init(
                         type: input.productType,

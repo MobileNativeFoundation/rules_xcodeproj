@@ -89,11 +89,6 @@ def process_top_level_properties(
     if bundle_info:
         bundle_name = bundle_info.bundle_name
         executable_name = getattr(bundle_info, "executable_name", bundle_name)
-        minimum_deployment_version = getattr(
-            bundle_info,
-            "minimum_deployment_os_version",
-            getattr(bundle_info, "minimum_os_version", None),
-        )
         product_name = bundle_name
         product_type = bundle_info.product_type
 
@@ -118,7 +113,6 @@ def process_top_level_properties(
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
     else:
         executable_name = target_name
-        minimum_deployment_version = None
         product_name = target_name
 
         xctest = None
@@ -144,7 +138,6 @@ def process_top_level_properties(
     return struct(
         bundle_file_path = bundle_file_path,
         executable_name = executable_name,
-        minimum_deployment_os_version = minimum_deployment_version,
         product_name = product_name,
         product_type = product_type,
     )
@@ -276,10 +269,7 @@ def process_top_level_target(
         tree_artifact_enabled = tree_artifact_enabled,
         build_settings = build_settings,
     )
-    platform = platform_info.collect(
-        ctx = ctx,
-        minimum_deployment_os_version = props.minimum_deployment_os_version,
-    )
+    platform = platform_info.collect(ctx = ctx)
 
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,

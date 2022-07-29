@@ -44,7 +44,6 @@ struct Platform: Equatable, Hashable, Decodable {
     let variant: Variant
     let arch: String
     let minimumOsVersion: OSVersion
-    let minimumDeploymentOsVersion: OSVersion
 }
 
 extension Platform {

@@ -9,29 +9,25 @@ final class BuildSettingConditionalTests: XCTestCase {
             os: .macOS,
             variant: .macOS,
             arch: "arm64",
-            minimumOsVersion: "11.0",
-            minimumDeploymentOsVersion: "13.0"
+            minimumOsVersion: "11.0"
         )),
         "B": .init(platform: .init(
             os: .iOS,
             variant: .iOSSimulator,
             arch: "arm64",
-            minimumOsVersion: "11.0",
-            minimumDeploymentOsVersion: "13.0"
+            minimumOsVersion: "11.0"
         )),
         "C": .init(platform: .init(
             os: .iOS,
             variant: .iOSDevice,
             arch: "arm64",
-            minimumOsVersion: "11.0",
-            minimumDeploymentOsVersion: "13.0"
+            minimumOsVersion: "11.0"
         )),
         "D": .init(platform: .init(
             os: .iOS,
             variant: .iOSSimulator,
             arch: "arm64",
-            minimumOsVersion: "11.0",
-            minimumDeploymentOsVersion: "13.0"
+            minimumOsVersion: "11.0"
         )),
         "any": .any,
     ]
