@@ -357,7 +357,7 @@ def collect_resources(
                     id = metadata.id,
                     package_bin_dir = metadata.package_bin_dir,
                     platform = platform,
-                    resources = depset(bundle.resources),
+                    resources = tuple(bundle.resources),
                     dependencies = depset([
                         bundle_metadata[bundle_path].id
                         for bundle_path in bundle.dependency_paths

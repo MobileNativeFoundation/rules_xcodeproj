@@ -13,13 +13,9 @@
     "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
     "custom_xcode_schemes": [],
     "extra_files": [
-        "ExampleNestedResources/BUILD",
-        "ExampleNestedResources/Info.plist",
-        "ExampleResources/BUILD",
-        "ExampleResources/Info.plist",
-        "Example/BUILD",
         "CoreUtilsObjC/BUILD",
         "Utils/BUILD",
+        "Example/BUILD",
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
             "t": "g"
@@ -28,6 +24,10 @@
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Utils/Utils.swift.modulemap",
             "t": "g"
         },
+        "ExampleNestedResources/BUILD",
+        "ExampleNestedResources/Info.plist",
+        "ExampleResources/BUILD",
+        "ExampleResources/Info.plist",
         "Example/Info.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/Example/rules_xcodeproj/Example/Info.plist",
@@ -38,10 +38,10 @@
             "i": false,
             "t": "g"
         },
-        "TestingUtils/BUILD",
         "TestingUtils/Greeting.swift.stencil",
         "TestingUtils/Answer.swift.stencil",
         "TestingUtils/merge.sh",
+        "TestingUtils/BUILD",
         "ExampleTests/BUILD",
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/TestingUtils/TestingUtils.swift.modulemap",
@@ -55,18 +55,18 @@
             "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
+        "ExampleObjcTests/BUILD",
         "OnlyStructuredResources/BUILD",
         "OnlyStructuredResources/Info.plist",
-        "ExampleObjcTests/BUILD",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleObjcTests/rules_xcodeproj/ExampleObjcTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
+        "ExampleUITests/BUILD",
         {
             "_": "examples_ios_app_external/Info.plist",
             "t": "e"
         },
-        "ExampleUITests/BUILD",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-8100579b5c54/bin/ExampleUITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist",
             "t": "g"

@@ -190,11 +190,16 @@ def _write_json_spec(
         target_hosts.setdefault(s.hosted, []).append(s.host)
 
     # `extra_files`
+    extra_files = inputs.extra_files.to_list()
+    extra_files.append((None, [parsed_file_path(ctx.build_file_path)]))
     extra_files = [
-        file_path_to_dto(file)
-        for file in inputs.extra_files.to_list()
+        file
+        for id, files in extra_files
+        for file in files
+        if not id or id in targets
     ]
-    extra_files.append(file_path_to_dto(parsed_file_path(ctx.build_file_path)))
+    extra_files = uniq(extra_files)
+    extra_files_dto = [file_path_to_dto(file) for file in extra_files]
 
     # `custom_xcode_schemes`
     if ctx.attr.schemes_json == "":
@@ -232,7 +237,7 @@ def _write_json_spec(
         bazel_workspace_name = ctx.workspace_name,
         configuration = configuration,
         custom_xcode_schemes = custom_xcode_schemes_json,
-        extra_files = json.encode(extra_files),
+        extra_files = json.encode(extra_files_dto),
         force_bazel_dependencies = json.encode(
             has_focused_targets or inputs.has_generated_files,
         ),
