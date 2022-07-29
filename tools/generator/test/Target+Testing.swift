@@ -58,8 +58,8 @@ extension Platform {
     static func simulator(
         os: Platform.OS = .iOS,
         arch: String = "arm64",
-        minimumOsVersion: String = "11.0",
-        minimumDeploymentOsVersion: String? = nil
+        minimumOsVersion: Platform.OSVersion = "11.0",
+        minimumDeploymentOsVersion: Platform.OSVersion? = nil
     ) -> Self {
         var variant: Variant {
             switch os {
@@ -83,8 +83,8 @@ extension Platform {
     static func device(
         os: Platform.OS = .iOS,
         arch: String = "arm64",
-        minimumOsVersion: String = "11.0",
-        minimumDeploymentOsVersion: String? = nil
+        minimumOsVersion: Platform.OSVersion = "11.0",
+        minimumDeploymentOsVersion: Platform.OSVersion? = nil
     ) -> Self {
         var variant: Variant {
             switch os {
@@ -107,8 +107,8 @@ extension Platform {
 
     static func macOS(
         arch: String = "arm64",
-        minimumOsVersion: String = "11.0",
-        minimumDeploymentOsVersion: String? = nil
+        minimumOsVersion: Platform.OSVersion = "11.0",
+        minimumDeploymentOsVersion: Platform.OSVersion? = nil
     ) -> Self {
         return Platform(
             os: .macOS,
@@ -220,5 +220,22 @@ extension FilePath: ExpressibleByStringLiteral {
 
     public init(stringLiteral value: StringLiteralType) {
         self = .project(Path(value))
+    }
+}
+
+extension Platform.OSVersion: ExpressibleByStringLiteral {
+    public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
+    public typealias UnicodeScalarLiteralType = StringLiteralType
+
+    public init(extendedGraphemeClusterLiteral id: StringLiteralType) {
+        self.init(stringLiteral: id)
+    }
+
+    public init(unicodeScalarLiteral id: StringLiteralType) {
+        self.init(stringLiteral: id)
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(rawValue: value)!
     }
 }
