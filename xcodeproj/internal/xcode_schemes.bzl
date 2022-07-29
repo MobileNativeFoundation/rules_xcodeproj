@@ -6,34 +6,6 @@ load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 
 _DEFAULT_BUILD_CONFIGURATION_NAME = "Debug"
 
-def _collect_top_level_targets_from_a_scheme(scheme):
-    results = sets.make()
-    if scheme.test_action != None:
-        for target in scheme.test_action.targets:
-            sets.insert(results, target)
-    if scheme.launch_action != None:
-        sets.insert(results, scheme.launch_action.target)
-    return results
-
-def _collect_top_level_targets(schemes):
-    """Collect the top-level targets from a `sequence` of schemes.
-
-    Args:
-        schemes: A `sequence` of `struct` values as returned by
-            `xcode_schemes.scheme`.
-
-    Returns:
-        A  `set` of `string` values representing Bazel labels that are top-level
-        targets.
-    """
-    results = sets.make()
-    for scheme in schemes:
-        results = sets.union(
-            results,
-            _collect_top_level_targets_from_a_scheme(scheme),
-        )
-    return results
-
 def _focus_schemes(schemes, focused_targets):
     """Filter/adjust a `sequence` of schemes to only include focused targets.
 
@@ -248,7 +220,6 @@ def make_xcode_schemes(bazel_labels):
         build_action = _build_action,
         test_action = _test_action,
         launch_action = _launch_action,
-        collect_top_level_targets = _collect_top_level_targets,
         focus_schemes = _focus_schemes,
         unfocus_schemes = _unfocus_schemes,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
