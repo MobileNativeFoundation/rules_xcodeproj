@@ -25,6 +25,11 @@ extension XcodeScheme {
     /// Represents a configuration string (Target.configuration).
     typealias Configuration = String
 
+    static let aliasErrorMessage = """
+
+Are you using an `alias`? Custom scheme definitions require labels of actual targets.
+"""
+
     /// Determines the mapping of `BazelLabel` to the `TargetID` values based upon the scheme's
     /// configuration.
     func resolveTargetIDs(targets: [TargetID: Target]) throws -> [BazelLabel: TargetID] {
@@ -51,6 +56,7 @@ extension XcodeScheme {
             guard let targetInfo = topLevelTargetInfoByLabelValue[schemeLabel.label] else {
                 throw PreconditionError(message: """
 Did not find `targetInfo` for top-level label "\(schemeLabel.label)"
+\(Self.aliasErrorMessage)
 """)
             }
             let targetID = try targetInfo.best().id
@@ -76,6 +82,7 @@ Did not find `targetInfo` for top-level label "\(schemeLabel.label)"
             guard let targetID = firstDepTargetID else {
                 throw PreconditionError(message: """
 No `TargetID` value found for "\(schemeLabel.label)"
+\(Self.aliasErrorMessage)
 """)
             }
             resolvedTargetIDs[schemeLabel.label] = targetID
