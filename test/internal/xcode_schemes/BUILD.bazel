@@ -1,9 +1,3 @@
-load(
-    ":collect_top_level_targets_tests.bzl",
-    "collect_top_level_targets_test_suite",
-)
 load(":model_tests.bzl", "model_test_suite")
 
 model_test_suite(name = "model_tests")
-
-collect_top_level_targets_test_suite(name = "collect_top_level_targets_tests")

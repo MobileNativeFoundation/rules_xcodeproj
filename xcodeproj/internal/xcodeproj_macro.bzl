@@ -1,6 +1,5 @@
 """Macro wrapper for the `xcodeproj` rule."""
 
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":xcode_schemes.bzl", "xcode_schemes")
 load(":xcodeproj_rule.bzl", _xcodeproj = "xcodeproj")
@@ -36,7 +35,6 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
     ]
     schemes_json = None
     if schemes != None:
-        targets_from_schemes = xcode_schemes.collect_top_level_targets(schemes)
         if unfocused_targets:
             schemes = xcode_schemes.unfocus_schemes(
                 schemes = schemes,
@@ -48,9 +46,6 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
                 focused_targets = focused_targets,
             )
         schemes_json = json.encode(schemes)
-        targets_set = sets.make(top_level_targets)
-        targets_set = sets.union(targets_set, targets_from_schemes)
-        top_level_targets = sorted(sets.to_list(targets_set))
 
     if kwargs.get("toplevel_cache_buster"):
         fail("`toplevel_cache_buster` is for internal use only")
