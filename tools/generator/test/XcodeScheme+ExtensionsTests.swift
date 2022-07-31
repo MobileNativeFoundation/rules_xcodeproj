@@ -2,10 +2,10 @@ import XCTest
 
 @testable import generator
 
-// MARK: allSchemeLabels Tests
+// MARK: allBazelLabels Tests
 
 extension XcodeSchemeExtensionsTests {
-    func test_allSchemeLabels_doNotOverwriteTopLevel() throws {
+    func test_allBazelLabels_doNotOverwriteTopLevel() throws {
         // Ensure that toolLabel comes through as top-level even though it
         // is specified in build action as well.
         let scheme = XcodeScheme(
@@ -20,20 +20,14 @@ extension XcodeSchemeExtensionsTests {
                 workingDirectory: nil
             )
         )
-        let actual = scheme.allSchemeLabels
-        let expected: Set<XcodeScheme.SchemeLabel> = [
-            .init(label: libLabel, isTopLevel: false),
-            .init(label: toolLabel, isTopLevel: true),
-        ]
+        let actual = scheme.allBazelLabels
+        let expected: Set<BazelLabel> = [libLabel, toolLabel]
         XCTAssertEqual(expected, actual)
     }
 
-    func test_allSchemeLabels_forToolScheme() throws {
-        let actual = toolScheme.allSchemeLabels
-        let expected: Set<XcodeScheme.SchemeLabel> = [
-            .init(label: libLabel, isTopLevel: false),
-            .init(label: toolLabel, isTopLevel: true),
-        ]
+    func test_allBazelLabels_forToolScheme() throws {
+        let actual = toolScheme.allBazelLabels
+        let expected: Set<BazelLabel> = [libLabel, toolLabel]
         XCTAssertEqual(expected, actual)
     }
 }
