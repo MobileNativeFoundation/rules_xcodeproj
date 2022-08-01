@@ -714,19 +714,32 @@ def _to_output_groups_fields(
         A `dict` where the keys are output group names and the values are
         `depset` of `File`s.
     """
-    return {
+    all_files = {
+        name: _process_output_group_files(
+            files = files,
+            output_group_name = name,
+            additional_generated = additional_generated,
+        )
+        for name, files in inputs._output_group_list.to_list()
+    }
+
+    output_groups = {
         name: depset([output_group_map.write_map(
             ctx = ctx,
             name = name.replace("/", "_"),
-            files = _process_output_group_files(
-                files = files,
-                output_group_name = name,
-                additional_generated = additional_generated,
-            ),
+            files = files,
             toplevel_cache_buster = toplevel_cache_buster,
         )])
-        for name, files in inputs._output_group_list.to_list()
+        for name, files in all_files.items()
     }
+    output_groups["all_generated_inputs"] = depset([output_group_map.write_map(
+        ctx = ctx,
+        name = "all_generated_inputs",
+        files = depset(transitive = all_files.values()),
+        toplevel_cache_buster = toplevel_cache_buster,
+    )])
+
+    return output_groups
 
 input_files = struct(
     collect = _collect,

@@ -174,7 +174,12 @@ EOF
 
 """#]
 
+        let indexBuildNoOutputGroups: String
         if buildMode == .xcode {
+            indexBuildNoOutputGroups = #"""
+    output_groups=("all_generated_inputs")
+"""#
+
             let roots = try targets
                 .compactMap { $0.outputs.swift?.generatedHeader }
                 .map { filepath -> String in
@@ -202,6 +207,13 @@ cat > "$BUILD_DIR/xcode-overlay.yaml" <<EOF
 EOF
 
 """#)
+        } else {
+            indexBuildNoOutputGroups = #"""
+    echo "error: Can't yet determine Index Build output group. \#
+Next build should succeed. If not, please file a bug report here: \#
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
+    exit 1
+"""#
         }
 
         return #"""
@@ -221,10 +233,14 @@ if [ -s "$output_groups_file" ]; then
 fi
 
 if [ -z "${output_groups:-}" ]; then
-  echo "error: BazelDependencies invoked without any output groups set. \#
+  if [ "$ACTION" == "indexbuild" ]; then
+\#(indexBuildNoOutputGroups)
+  else
+    echo "error: BazelDependencies invoked without any output groups set. \#
 Please file a bug report here: \#
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
-  exit 1
+    exit 1
+  fi
 fi
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 
