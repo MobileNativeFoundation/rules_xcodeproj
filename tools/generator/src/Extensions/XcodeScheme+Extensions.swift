@@ -152,12 +152,9 @@ extension XcodeScheme.LabelTargetInfo {
 extension XcodeScheme.LabelTargetInfo {
     var best: XcodeScheme.TargetWithID {
         get throws {
-            guard let best = inPlatformOrder.first else {
-                throw PreconditionError(message: """
+            return try inPlatformOrder.first.orThrow("""
 Unable to find the best `TargetWithID` for "\(label)"
 """)
-            }
-            return best
         }
     }
 }
