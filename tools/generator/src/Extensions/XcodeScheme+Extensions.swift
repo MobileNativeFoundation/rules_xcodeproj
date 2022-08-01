@@ -31,14 +31,21 @@ extension XcodeScheme {
     /// Represents a configuration string (Target.configuration).
     typealias Configuration = String
 
-    static let aliasErrorMessage = """
-
-Are you using an `alias`? Custom scheme definitions require labels of actual targets.
+    func aliasErrorMessage(xcodeprojBazelLabel: BazelLabel, missingLabel: BazelLabel) -> String {
+        return """
+Target \(missingLabel) was not found in the transitive dependencies of \(xcodeprojBazelLabel)'s \
+`top_level_targets` attribute. Did you reference an alias (only actual target labels are \
+supported in Scheme definitions)? Check that \(missingLabel) is spelled correctly, and if it is, \
+add it or a target that depends on it to \(xcodeprojBazelLabel)'s `top_level_targets` attribute.
 """
+    }
 
     /// Determines the mapping of `BazelLabel` to the `TargetID` values based upon the scheme's
     /// configuration.
-    func resolveTargetIDs(targetResolver: TargetResolver) throws -> [BazelLabel: TargetID] {
+    func resolveTargetIDs(
+        targetResolver: TargetResolver,
+        xcodeprojBazelLabel: BazelLabel
+    ) throws -> [BazelLabel: TargetID] {
         var resolvedTargetIDs = [BazelLabel: TargetID]()
 
         let targets = targetResolver.targets
@@ -53,8 +60,10 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
         for label in allBazelLabels {
             let labelTargetInfo = try labelTargetInfos.value(
                 for: label,
-                context: "resolving top-level targets in scheme, \(name)"
-                // TODO(chuck): Add aliasErrorMessage
+                message: aliasErrorMessage(
+                    xcodeprojBazelLabel: xcodeprojBazelLabel,
+                    missingLabel: label
+                )
             )
             guard labelTargetInfo.isTopLevel else {
                 continue
@@ -70,8 +79,10 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
         for label in otherLabels {
             let labelTargetInfo = try labelTargetInfos.value(
                 for: label,
-                context: "resolving other targets in scheme, \(name)"
-                // TODO(chuck): Add aliasErrorMessage
+                message: aliasErrorMessage(
+                    xcodeprojBazelLabel: xcodeprojBazelLabel,
+                    missingLabel: label
+                )
             )
 
             // Check for depedency of a top-level target that matches the label.

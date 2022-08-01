@@ -37,7 +37,10 @@ extension XcodeSchemeExtensionsTests {
 
 extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withToolScheme() throws {
-        let actual = try toolScheme.resolveTargetIDs(targetResolver: targetResolver)
+        let actual = try toolScheme.resolveTargetIDs(
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
         let expected = [
             libLabel: libmacOSx8664TargetID,
             toolLabel: toolmacOSx8664TargetID,
@@ -51,7 +54,10 @@ extension XcodeSchemeExtensionsTests {
         // Prefer the TargetID values for the simulator.
         // We are also ensuring that the watchOS app that is a dependency of this iOS app is not
         // selected.
-        let actual = try iOSAppScheme.resolveTargetIDs(targetResolver: targetResolver)
+        let actual = try iOSAppScheme.resolveTargetIDs(
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
         let expected = [
             libLabel: libiOSx8664TargetID,
             libTestsLabel: libTestsiOSx8664TargetID,
@@ -63,7 +69,10 @@ extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withTVOSAppScheme() throws {
         // Both the device and simulator TargetID values are available.
         // Prefer the TargetID values for the simulator.
-        let actual = try tvOSAppScheme.resolveTargetIDs(targetResolver: targetResolver)
+        let actual = try tvOSAppScheme.resolveTargetIDs(
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
         let expected = [
             libLabel: libtvOSx8664TargetID,
             tvOSAppLabel: tvOSApptvOSx8664TargetID,
@@ -137,6 +146,8 @@ extension XcodeSchemeExtensionsTests {
 
 // swiftlint:disable:next type_body_length
 class XcodeSchemeExtensionsTests: XCTestCase {
+    let xcodeprojBazelLabel = BazelLabel("//foo")
+
     // Labels
 
     let libLabel: BazelLabel = "//examples/multiplatform/Lib:Lib"

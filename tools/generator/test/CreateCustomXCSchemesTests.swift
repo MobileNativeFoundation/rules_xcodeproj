@@ -7,7 +7,8 @@ extension CreateCustomXCSchemesTests {
         let actual = try Generator.createCustomXCSchemes(
             schemes: [],
             buildMode: .bazel,
-            targetResolver: targetResolver
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
         )
         XCTAssertEqual(actual, [])
     }
@@ -16,7 +17,8 @@ extension CreateCustomXCSchemesTests {
         let actual = try Generator.createCustomXCSchemes(
             schemes: [schemeA, schemeB],
             buildMode: .bazel,
-            targetResolver: targetResolver
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
         )
         XCTAssertEqual(actual.count, 2)
         XCTAssertEqual(actual.map(\.name), [schemeA.name, schemeB.name])
@@ -24,6 +26,8 @@ extension CreateCustomXCSchemesTests {
 }
 
 class CreateCustomXCSchemesTests: XCTestCase {
+    let xcodeprojBazelLabel = BazelLabel("//foo")
+
     let filePathResolver = FilePathResolver(
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
