@@ -50,3 +50,13 @@ extension Platform {
         return .compatible
     }
 }
+
+// MARK: `Platform.compatibleWith`
+
+extension Platform {
+    func compatibleWith<Platforms: Sequence>(
+        anyOf platforms: Platforms
+    ) -> Bool where Platforms.Element == Platform {
+        return platforms.contains { self.compatibility(with: $0).isCompatible }
+    }
+}

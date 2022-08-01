@@ -52,6 +52,8 @@ extension PlatformExtensionsTests {
     }
 }
 
+// MARK: `isCompatible` Tests
+
 extension PlatformExtensionsTests {
     func test_Compatibility_isCompatible_compatible() throws {
         XCTAssertTrue(Platform.Compatibility.compatible.isCompatible)
@@ -59,6 +61,20 @@ extension PlatformExtensionsTests {
 
     func test_Compatibility_isCompatible_notCompatible() throws {
         XCTAssertFalse(Platform.Compatibility.osNotEqual.isCompatible)
+    }
+}
+
+extension PlatformExtensionsTests {
+    func test_compatibleWith_compatible() throws {
+        let platforms: [Platform] = [.macOS(), other]
+        let platform = other
+        XCTAssertTrue(platform.compatibleWith(anyOf: platforms))
+    }
+
+    func test_compatibleWith_notCompatible() throws {
+        let platforms: [Platform] = [.macOS(), .device(os: .tvOS)]
+        let platform = other
+        XCTAssertFalse(platform.compatibleWith(anyOf: platforms))
     }
 }
 
