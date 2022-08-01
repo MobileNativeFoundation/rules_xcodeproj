@@ -68,7 +68,7 @@ extension XCSchemeInfoProfileActionInfoTests {
         let actual = try XCSchemeInfo.ProfileActionInfo(
             profileAction: xcodeScheme.profileAction,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targets: targetResolver.targets)
+            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targetResolver: targetResolver)
         )
         let expected = XCSchemeInfo.ProfileActionInfo(
             buildConfigurationName: .defaultBuildConfigurationName,

@@ -24,6 +24,10 @@ extension PBXTarget {
         return productType?.isLaunchable ?? false
     }
 
+    var isTopLevel: Bool {
+        return productType?.isTopLevel ?? false
+    }
+
     var defaultBuildConfigurationName: String {
         return buildConfigurationList?.buildConfigurations.first?.name ??
             "Debug"

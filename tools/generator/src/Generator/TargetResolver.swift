@@ -70,6 +70,16 @@ Host target, "\(hostKey)", for "\(key)" not found in `pbxTargets`.
     }
 }
 
+extension TargetResolver {
+    func pbxTargetAndKey(
+        for targetID: TargetID
+    ) throws -> (key: ConsolidatedTarget.Key, pbxTarget: PBXTarget) {
+        let context = "finding a `PBXTarget` and `ConsolidatedTarget.Key`"
+        let key = try consolidatedTargetKeys.value(for: targetID, context: context)
+        return (key, try pbxTargets.value(for: key, context: context))
+    }
+}
+
 // MARK: XCScheme.TargetInfo Helpers
 
 extension TargetResolver {

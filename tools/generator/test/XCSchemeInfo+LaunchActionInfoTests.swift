@@ -275,7 +275,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
         let actual = try XCSchemeInfo.LaunchActionInfo(
             launchAction: xcodeScheme.launchAction,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targets: targetResolver.targets)
+            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targetResolver: targetResolver)
         )
         let expected = try XCSchemeInfo.LaunchActionInfo(
             buildConfigurationName: .defaultBuildConfigurationName,

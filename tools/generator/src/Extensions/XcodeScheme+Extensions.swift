@@ -38,10 +38,13 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
 
     /// Determines the mapping of `BazelLabel` to the `TargetID` values based upon the scheme's
     /// configuration.
-    func resolveTargetIDs(targets: [TargetID: Target]) throws -> [BazelLabel: TargetID] {
+    func resolveTargetIDs(targetResolver: TargetResolver) throws -> [BazelLabel: TargetID] {
+    // func resolveTargetIDs(targets: [TargetID: Target]) throws -> [BazelLabel: TargetID] {
         var resolvedTargetIDs = [BazelLabel: TargetID]()
 
-        let labelTargetInfos = targets.asTargetWithIDs.collectedByLabelTargetInfo
+        let targets = targetResolver.targets
+
+        let labelTargetInfos = try targetResolver.labelTargetInfos
         let allBazelLabels = allBazelLabels
 
         // Identify the top-level targets
@@ -76,7 +79,7 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
             // Check for target that has a matching top-level platform
             // Pick the default "best" target
             let resolvedTargetID: TargetID
-            if let targetID = try targets.firstTargetID(
+            if let targetID = targets.firstTargetID(
                 under: topLevelTargetIDs,
                 where: { $0.label == label }
             ) {
@@ -95,21 +98,42 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
     }
 }
 
-extension Sequence where Element == XcodeScheme.TargetWithID {
-    var collectedByLabelTargetInfo: [BazelLabel: XcodeScheme.LabelTargetInfo] {
-        var results = [BazelLabel: XcodeScheme.LabelTargetInfo]()
+// extension Sequence where Element == XcodeScheme.TargetWithID {
+//     var collectedByLabelTargetInfo: [BazelLabel: XcodeScheme.LabelTargetInfo] {
+//         var results = [BazelLabel: XcodeScheme.LabelTargetInfo]()
+//         // Collect the target information
+//         for targetWithID in self {
+//             let target = targetWithID.target
+//             var targetInfo = results[target.label, default: .init(label: target.label)]
+//             targetInfo.platforms.update(with: target.platform)
+//             targetInfo.inPlatformOrder.append(targetWithID)
+//             targetInfo.inPlatformOrder.sort()
+//             results[target.label] = targetInfo
+//         }
+//         return results
+//     }
+// }
 
-        // Collect the target information
-        for targetWithID in self {
-            let target = targetWithID.target
-            var targetInfo = results[target.label, default: .init(label: target.label)]
-            targetInfo.platforms.update(with: target.platform)
-            targetInfo.inPlatformOrder.append(targetWithID)
-            targetInfo.inPlatformOrder.sort()
-            results[target.label] = targetInfo
+extension TargetResolver {
+    var labelTargetInfos: [BazelLabel: XcodeScheme.LabelTargetInfo] {
+        get throws {
+            var results = [BazelLabel: XcodeScheme.LabelTargetInfo]()
+
+            // Collect the target information
+            for (targetID, target) in targets {
+                let targetWithID = XcodeScheme.TargetWithID(id: targetID, target: target)
+                var targetInfo = try results[target.label] ?? .init(
+                    label: target.label,
+                    isTopLevel: try pbxTargetAndKey(for: targetID).pbxTarget.isTopLevel
+                )
+                targetInfo.platforms.update(with: target.platform)
+                targetInfo.inPlatformOrder.append(targetWithID)
+                targetInfo.inPlatformOrder.sort()
+                results[target.label] = targetInfo
+            }
+
+            return results
         }
-
-        return results
     }
 }
 
@@ -119,6 +143,7 @@ extension XcodeScheme {
     /// Collects Target information for a BazelLabel.
     struct LabelTargetInfo {
         let label: BazelLabel
+        let isTopLevel: Bool
         var inPlatformOrder = [TargetWithID]()
         var platforms = Set<Platform>()
     }
@@ -139,6 +164,7 @@ extension XcodeScheme.LabelTargetInfo {
     func firstCompatibleWith<Platforms: Sequence>(
         anyOf platforms: Platforms
     ) -> XcodeScheme.TargetWithID? where Platforms.Element == Platform {
+        // TODO(chuck): Simplify me!
         let uniquePlatforms = Set(platforms)
         for targetWithID in inPlatformOrder {
             if uniquePlatforms.contains(targetWithID.target.platform) {
@@ -146,13 +172,6 @@ extension XcodeScheme.LabelTargetInfo {
             }
         }
         return nil
-    }
-}
-
-extension XcodeScheme.LabelTargetInfo {
-    var isTopLevel: Bool {
-        // TODO(chuck): IMPLEMENT ME!
-        return false
     }
 }
 

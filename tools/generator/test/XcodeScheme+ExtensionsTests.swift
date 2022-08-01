@@ -1,3 +1,4 @@
+import XcodeProj
 import XCTest
 
 @testable import generator
@@ -36,7 +37,7 @@ extension XcodeSchemeExtensionsTests {
 
 extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withToolScheme() throws {
-        let actual = try toolScheme.resolveTargetIDs(targets: targets)
+        let actual = try toolScheme.resolveTargetIDs(targetResolver: targetResolver)
         let expected = [
             libLabel: libmacOSx8664TargetID,
             toolLabel: toolmacOSx8664TargetID,
@@ -50,7 +51,7 @@ extension XcodeSchemeExtensionsTests {
         // Prefer the TargetID values for the simulator.
         // We are also ensuring that the watchOS app that is a dependency of this iOS app is not
         // selected.
-        let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
+        let actual = try iOSAppScheme.resolveTargetIDs(targetResolver: targetResolver)
         let expected = [
             libLabel: libiOSx8664TargetID,
             libTestsLabel: libTestsiOSx8664TargetID,
@@ -62,7 +63,7 @@ extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withTVOSAppScheme() throws {
         // Both the device and simulator TargetID values are available.
         // Prefer the TargetID values for the simulator.
-        let actual = try tvOSAppScheme.resolveTargetIDs(targets: targets)
+        let actual = try tvOSAppScheme.resolveTargetIDs(targetResolver: targetResolver)
         let expected = [
             libLabel: libtvOSx8664TargetID,
             tvOSAppLabel: tvOSApptvOSx8664TargetID,
@@ -93,6 +94,28 @@ extension XcodeSchemeExtensionsTests {
         )
         let expected = XcodeScheme.BuildAction(targets: [iOSAppLabel, libTestsLabel, libLabel])
         XCTAssertEqual(scheme.buildActionWithAllTargets, expected)
+    }
+}
+
+// MARK: `LabelTargetInfo` Tests
+
+extension XcodeSchemeExtensionsTests {
+    func test_LabelTargetInfo_best_noTargets() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_LabelTargetInfo_best_withTargets() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+}
+
+extension XcodeSchemeExtensionsTests {
+    func test_LabelTargetInfo_firstCompatibleWith_withCompatibleTarget() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_LabelTargetInfo_firstCompatibleWith_noCompatibleTarget() throws {
+        XCTFail("IMPLEMENT ME!")
     }
 }
 
@@ -388,6 +411,75 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         watchOSAppwatchOSarm64TargetID: watchOSAppwatchOSarm64Target,
         watchOSAppwatchOSx8664TargetID: watchOSAppwatchOSx8664Target,
     ]
+
+    lazy var iOSAppConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [iOSAppiOSarm64TargetID, iOSAppiOSx8664TargetID])
+
+    lazy var libTestsConsolidatedTargetKey = ConsolidatedTarget.Key([libTestsiOSx8664TargetID])
+
+    lazy var libiOSConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [libiOSarm64TargetID, libiOSx8664TargetID])
+
+    lazy var libmacOSConsolidatedTargetKey = ConsolidatedTarget.Key([libmacOSx8664TargetID])
+
+    lazy var libtvOSConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [libtvOSarm64TargetID, libtvOSx8664TargetID])
+
+    lazy var libwatchOSConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [libwatchOSarm64TargetID, libwatchOSx8664TargetID])
+
+    lazy var toolmacOSConsolidatedTargetKey = ConsolidatedTarget.Key([toolmacOSx8664TargetID])
+
+    lazy var tvOSAppConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [tvOSApptvOSarm64TargetID, tvOSApptvOSx8664TargetID])
+
+    lazy var watchOSAppConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [watchOSAppwatchOSarm64TargetID, watchOSAppwatchOSx8664TargetID])
+
+    lazy var consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key] = [
+        iOSAppiOSarm64TargetID: iOSAppConsolidatedTargetKey,
+        iOSAppiOSx8664TargetID: iOSAppConsolidatedTargetKey,
+        libTestsiOSx8664TargetID: libTestsConsolidatedTargetKey,
+        libiOSarm64TargetID: libiOSConsolidatedTargetKey,
+        libiOSx8664TargetID: libiOSConsolidatedTargetKey,
+        libmacOSx8664TargetID: libmacOSConsolidatedTargetKey,
+        libtvOSarm64TargetID: libtvOSConsolidatedTargetKey,
+        libtvOSx8664TargetID: libtvOSConsolidatedTargetKey,
+        libwatchOSarm64TargetID: libwatchOSConsolidatedTargetKey,
+        libwatchOSx8664TargetID: libwatchOSConsolidatedTargetKey,
+        toolmacOSx8664TargetID: toolmacOSConsolidatedTargetKey,
+        tvOSApptvOSarm64TargetID: tvOSAppConsolidatedTargetKey,
+        tvOSApptvOSx8664TargetID: tvOSAppConsolidatedTargetKey,
+        watchOSAppwatchOSarm64TargetID: watchOSAppConsolidatedTargetKey,
+        watchOSAppwatchOSx8664TargetID: watchOSAppConsolidatedTargetKey,
+    ]
+
+    lazy var pbxTargets: [ConsolidatedTarget.Key: PBXTarget] = [
+        iOSAppConsolidatedTargetKey: .init(name: "iOSApp", productType: .application),
+        libTestsConsolidatedTargetKey: .init(name: "libTests", productType: .unitTestBundle),
+        libiOSConsolidatedTargetKey: .init(name: "libiOS", productType: .staticLibrary),
+        libmacOSConsolidatedTargetKey: .init(name: "libmacOS", productType: .staticLibrary),
+        libtvOSConsolidatedTargetKey: .init(name: "libtvOS", productType: .staticLibrary),
+        libwatchOSConsolidatedTargetKey: .init(name: "libwatchOS", productType: .staticLibrary),
+        toolmacOSConsolidatedTargetKey: .init(name: "toolmacOS", productType: .commandLineTool),
+        tvOSAppConsolidatedTargetKey: .init(name: "tvOSApp", productType: .application),
+        watchOSAppConsolidatedTargetKey: .init(name: "watchOSApp", productType: .watch2App),
+    ]
+
+    lazy var filePathResolver = FilePathResolver(
+        internalDirectoryName: "rules_xcodeproj",
+        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+    )
+
+    // swiftlint:disable:next force_try
+    lazy var targetResolver = try! TargetResolver(
+        referencedContainer: filePathResolver.containerReference,
+        targets: targets,
+        targetHosts: [:],
+        extensionPointIdentifiers: [:],
+        consolidatedTargetKeys: consolidatedTargetKeys,
+        pbxTargets: pbxTargets
+    )
 
     // Schemes
 

@@ -53,7 +53,7 @@ extension XCSchemeInfoBuildActionInfoTests {
         let actual = try XCSchemeInfo.BuildActionInfo(
             buildAction: xcodeScheme.buildAction,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targets: targetResolver.targets)
+            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(targetResolver: targetResolver)
         )
         let expected = try XCSchemeInfo.BuildActionInfo(
             targetInfos: [try targetResolver.targetInfo(targetID: "A 1")]

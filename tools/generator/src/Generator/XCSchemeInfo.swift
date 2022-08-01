@@ -120,7 +120,7 @@ extension XCSchemeInfo {
         scheme: XcodeScheme,
         targetResolver: TargetResolver
     ) throws {
-        let targetIDsByLabel = try scheme.resolveTargetIDs(targets: targetResolver.targets)
+        let targetIDsByLabel = try scheme.resolveTargetIDs(targetResolver: targetResolver)
         try self.init(
             name: scheme.name,
             buildActionInfo: .init(
