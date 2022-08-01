@@ -61,7 +61,7 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
             }
             topLevelLabels.update(with: label)
             topLevelPlatforms.formUnion(labelTargetInfo.platforms)
-            let targetID = try labelTargetInfo.best().id
+            let targetID = try labelTargetInfo.best.id
             topLevelTargetIDs.update(with: targetID)
             resolvedTargetIDs[label] = targetID
         }
@@ -88,7 +88,7 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
             ) {
                 resolvedTargetID = targetWithID.id
             } else {
-                resolvedTargetID = try labelTargetInfo.best().id
+                resolvedTargetID = try labelTargetInfo.best.id
             }
             resolvedTargetIDs[label] = resolvedTargetID
         }
@@ -109,9 +109,7 @@ extension TargetResolver {
                     label: target.label,
                     isTopLevel: try pbxTargetAndKey(for: targetID).pbxTarget.isTopLevel
                 )
-                targetInfo.platforms.update(with: target.platform)
-                targetInfo.inPlatformOrder.append(targetWithID)
-                targetInfo.inPlatformOrder.sort()
+                targetInfo.add(targetWithID)
                 results[target.label] = targetInfo
             }
 
@@ -133,13 +131,23 @@ extension XcodeScheme {
 }
 
 extension XcodeScheme.LabelTargetInfo {
-    func best() throws -> XcodeScheme.TargetWithID {
-        guard let best = inPlatformOrder.first else {
-            throw PreconditionError(message: """
+    mutating func add(_ targetWithID: XcodeScheme.TargetWithID) {
+        inPlatformOrder.append(targetWithID)
+        inPlatformOrder.sort()
+        platforms.update(with: targetWithID.target.platform)
+    }
+}
+
+extension XcodeScheme.LabelTargetInfo {
+    var best: XcodeScheme.TargetWithID {
+        get throws {
+            guard let best = inPlatformOrder.first else {
+                throw PreconditionError(message: """
 Unable to find the best `TargetWithID` for "\(label)"
 """)
+            }
+            return best
         }
-        return best
     }
 }
 

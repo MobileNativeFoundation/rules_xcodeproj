@@ -101,7 +101,7 @@ extension XcodeSchemeExtensionsTests {
 
 extension XcodeSchemeExtensionsTests {
     func test_LabelTargetInfo_best_noTargets() throws {
-        let targetInfo = XcodeScheme.LabelTargetInfo(label: "foo", isTopLevel: false)
+        let targetInfo = XcodeScheme.LabelTargetInfo(label: "//foo", isTopLevel: false)
 
         var thrown: Error?
         XCTAssertThrowsError(try targetInfo.best) {
@@ -112,12 +112,24 @@ extension XcodeSchemeExtensionsTests {
             return
         }
         XCTAssertEqual(preconditionError.message, """
-Unable to find the best `TargetWithID` for "foo"
+Unable to find the best `TargetWithID` for "//foo:foo"
 """)
     }
 
     func test_LabelTargetInfo_best_withTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+        let iOSAppiOSarm64TargetWithID = XcodeScheme.TargetWithID(
+            id: iOSAppiOSarm64TargetID,
+            target: iOSAppiOSarm64Target
+        )
+        let iOSAppiOSx8664TargetWithID = XcodeScheme.TargetWithID(
+            id: iOSAppiOSx8664TargetID,
+            target: iOSAppiOSx8664Target
+        )
+
+        var targetInfo = XcodeScheme.LabelTargetInfo(label: iOSAppLabel, isTopLevel: false)
+        targetInfo.add(iOSAppiOSarm64TargetWithID)
+        targetInfo.add(iOSAppiOSx8664TargetWithID)
+        XCTAssertEqual(try targetInfo.best, iOSAppiOSx8664TargetWithID)
     }
 }
 
