@@ -19,12 +19,6 @@ extension XcodeScheme.TargetWithID: Comparable {
     }
 }
 
-extension Dictionary where Key == TargetID, Value == Target {
-    var asTargetWithIDs: [XcodeScheme.TargetWithID] {
-        return map { id, target in .init(id: id, target: target) }
-    }
-}
-
 // MARK: Resolve TargetIDs
 
 extension XcodeScheme {
