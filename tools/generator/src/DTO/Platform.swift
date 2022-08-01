@@ -26,7 +26,7 @@ struct Platform: Equatable, Hashable, Decodable {
             var components = rawValue.split(separator: ".")
             let componentCount = components.count
             guard componentCount < 3 else {
-                self.fullVersion = rawValue
+                fullVersion = rawValue
                 return
             }
 
@@ -36,7 +36,7 @@ struct Platform: Equatable, Hashable, Decodable {
                 components.append(contentsOf: ["0", "0"])
             }
 
-            self.fullVersion = components.joined(separator: ".")
+            fullVersion = components.joined(separator: ".")
         }
     }
 
@@ -182,5 +182,45 @@ extension Platform.Variant: Comparable {
         case (.watchOSDevice, _): return true
         case (_, .watchOSDevice): return false
         }
+    }
+}
+
+extension Platform.OSVersion {
+    var semanticVersion: SemanticVersion? {
+        return .init(fullVersion)
+    }
+}
+
+extension Platform {
+    enum Compatibility: Equatable {
+        case compatible
+        case osNotEqual
+        case variantNotEqual
+        case archNotEqual
+        case noMinimumOsSemanticVersionForSelf
+        case noMinimumOsSemanticVersionForOther
+        case minimumOsVersionGreaterThan
+    }
+
+    func compatibility(with other: Platform) -> Compatibility {
+        guard os == other.os else {
+            return .osNotEqual
+        }
+        guard variant == other.variant else {
+            return .variantNotEqual
+        }
+        guard arch == other.arch else {
+            return .archNotEqual
+        }
+        guard let minOsVersion = minimumOsVersion.semanticVersion else {
+            return .noMinimumOsSemanticVersionForSelf
+        }
+        guard let otherMinOsVersion = other.minimumOsVersion.semanticVersion else {
+            return .noMinimumOsSemanticVersionForOther
+        }
+        guard minOsVersion <= otherMinOsVersion else {
+            return .minimumOsVersionGreaterThan
+        }
+        return .compatible
     }
 }
