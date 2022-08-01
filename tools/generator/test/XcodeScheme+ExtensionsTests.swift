@@ -101,7 +101,19 @@ extension XcodeSchemeExtensionsTests {
 
 extension XcodeSchemeExtensionsTests {
     func test_LabelTargetInfo_best_noTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+        let targetInfo = XcodeScheme.LabelTargetInfo(label: "foo", isTopLevel: false)
+
+        var thrown: Error?
+        XCTAssertThrowsError(try targetInfo.best) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected `PreconditionError`.")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+Unable to find the best `TargetWithID` for "foo"
+""")
     }
 
     func test_LabelTargetInfo_best_withTargets() throws {
