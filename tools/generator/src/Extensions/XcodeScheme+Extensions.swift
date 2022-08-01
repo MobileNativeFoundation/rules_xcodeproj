@@ -157,8 +157,7 @@ extension XcodeScheme.LabelTargetInfo {
     func firstCompatibleWith<Platforms: Sequence>(
         anyOf platforms: Platforms
     ) -> XcodeScheme.TargetWithID? where Platforms.Element == Platform {
-        let uniquePlatforms = Set(platforms)
-        return inPlatformOrder.first { uniquePlatforms.contains($0.target.platform) }
+        return inPlatformOrder.first { $0.target.platform.compatibleWith(anyOf: platforms) }
     }
 }
 
