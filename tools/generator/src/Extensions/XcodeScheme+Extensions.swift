@@ -39,7 +39,6 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
     /// Determines the mapping of `BazelLabel` to the `TargetID` values based upon the scheme's
     /// configuration.
     func resolveTargetIDs(targetResolver: TargetResolver) throws -> [BazelLabel: TargetID] {
-    // func resolveTargetIDs(targets: [TargetID: Target]) throws -> [BazelLabel: TargetID] {
         var resolvedTargetIDs = [BazelLabel: TargetID]()
 
         let targets = targetResolver.targets
@@ -98,22 +97,6 @@ Are you using an `alias`? Custom scheme definitions require labels of actual tar
     }
 }
 
-// extension Sequence where Element == XcodeScheme.TargetWithID {
-//     var collectedByLabelTargetInfo: [BazelLabel: XcodeScheme.LabelTargetInfo] {
-//         var results = [BazelLabel: XcodeScheme.LabelTargetInfo]()
-//         // Collect the target information
-//         for targetWithID in self {
-//             let target = targetWithID.target
-//             var targetInfo = results[target.label, default: .init(label: target.label)]
-//             targetInfo.platforms.update(with: target.platform)
-//             targetInfo.inPlatformOrder.append(targetWithID)
-//             targetInfo.inPlatformOrder.sort()
-//             results[target.label] = targetInfo
-//         }
-//         return results
-//     }
-// }
-
 extension TargetResolver {
     var labelTargetInfos: [BazelLabel: XcodeScheme.LabelTargetInfo] {
         get throws {
@@ -164,14 +147,8 @@ extension XcodeScheme.LabelTargetInfo {
     func firstCompatibleWith<Platforms: Sequence>(
         anyOf platforms: Platforms
     ) -> XcodeScheme.TargetWithID? where Platforms.Element == Platform {
-        // TODO(chuck): Simplify me!
         let uniquePlatforms = Set(platforms)
-        for targetWithID in inPlatformOrder {
-            if uniquePlatforms.contains(targetWithID.target.platform) {
-                return targetWithID
-            }
-        }
-        return nil
+        return inPlatformOrder.first { uniquePlatforms.contains($0.target.platform) }
     }
 }
 
