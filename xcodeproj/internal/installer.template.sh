@@ -120,7 +120,7 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   # Determine bazel-out
   bazel_out=$(%bazel_path% info output_path 2>/dev/null)
   exec_root="${bazel_out%/*}"
-  external="${bazel_out%/*/*}/external"
+  external="${exec_root%/*/*}/external"
 
   # Determine `$BUILD_DIR`
   error_log=$(mktemp)
@@ -144,8 +144,8 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   rm -rf external
   rm -rf gen_dir
 
-  ln -sf "$external" external
-  ln -sf "$build_dir/bazel-exec-root/bazel-out" gen_dir
+  ln -s "$external" external
+  ln -s "$build_dir/bazel-exec-root/bazel-out" gen_dir
 
   # Create `$GEN_DIR`
   mkdir -p "$build_dir"
