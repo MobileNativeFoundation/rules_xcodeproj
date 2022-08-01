@@ -117,29 +117,19 @@ Unable to find the best `TargetWithID` for "//foo:foo"
     }
 
     func test_LabelTargetInfo_best_withTargets() throws {
-        let iOSAppiOSarm64TargetWithID = XcodeScheme.TargetWithID(
-            id: iOSAppiOSarm64TargetID,
-            target: iOSAppiOSarm64Target
-        )
-        let iOSAppiOSx8664TargetWithID = XcodeScheme.TargetWithID(
-            id: iOSAppiOSx8664TargetID,
-            target: iOSAppiOSx8664Target
-        )
-
-        var targetInfo = XcodeScheme.LabelTargetInfo(label: iOSAppLabel, isTopLevel: false)
-        targetInfo.add(iOSAppiOSarm64TargetWithID)
-        targetInfo.add(iOSAppiOSx8664TargetWithID)
-        XCTAssertEqual(try targetInfo.best, iOSAppiOSx8664TargetWithID)
+        XCTAssertEqual(try iOSAppLabelTargetInfo.best, iOSAppiOSx8664TargetWithID)
     }
 }
 
 extension XcodeSchemeExtensionsTests {
     func test_LabelTargetInfo_firstCompatibleWith_withCompatibleTarget() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actual = iOSAppLabelTargetInfo.firstCompatibleWith(anyOf: [iphoneOSPlatform])
+        XCTAssertEqual(actual, iOSAppiOSarm64TargetWithID)
     }
 
     func test_LabelTargetInfo_firstCompatibleWith_noCompatibleTarget() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actual = iOSAppLabelTargetInfo.firstCompatibleWith(anyOf: [appletvOSPlatform])
+        XCTAssertNil(actual)
     }
 }
 
@@ -547,4 +537,19 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             workingDirectory: nil
         )
     )
+
+    lazy var iOSAppiOSarm64TargetWithID = XcodeScheme.TargetWithID(
+        id: iOSAppiOSarm64TargetID,
+        target: iOSAppiOSarm64Target
+    )
+    lazy var iOSAppiOSx8664TargetWithID = XcodeScheme.TargetWithID(
+        id: iOSAppiOSx8664TargetID,
+        target: iOSAppiOSx8664Target
+    )
+    lazy var iOSAppLabelTargetInfo: XcodeScheme.LabelTargetInfo = {
+        var targetInfo = XcodeScheme.LabelTargetInfo(label: iOSAppLabel, isTopLevel: false)
+        targetInfo.add(iOSAppiOSarm64TargetWithID)
+        targetInfo.add(iOSAppiOSx8664TargetWithID)
+        return targetInfo
+    }()
 }
