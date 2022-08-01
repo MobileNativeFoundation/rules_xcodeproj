@@ -2,12 +2,12 @@
 
 set -euo pipefail
 
-readonly forced_swift_compile_file="$1"
+# readonly forced_swift_compile_file="$1"
 readonly product_basename="$2"
 readonly exclude_list="$3"
 
-# Touching this file on an error allows indexing to work better
-trap 'touch "$DERIVED_FILE_DIR/$forced_swift_compile_file"' ERR
+# # Touching this file on an error allows indexing to work better
+# trap 'echo "private let touch = \"$(date +%s)\"" > "$DERIVED_FILE_DIR/$forced_swift_compile_file"' ERR
 
 if [[ "$ACTION" == indexbuild ]]; then
   # Write to "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" to allow next index to catch up
@@ -61,5 +61,5 @@ fi
 
 # TODO: https://github.com/buildbuddy-io/rules_xcodeproj/issues/402
 # Copy diagnostics, and on a change
-# `touch "$DERIVED_FILE_DIR/$forced_swift_compile_file"`
+# `echo "private let touch = \"$(date +%s)\"" > $DERIVED_FILE_DIR/$forced_swift_compile_file"`
 # See git blame for this comment for an example
