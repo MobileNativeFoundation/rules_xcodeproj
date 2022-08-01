@@ -302,9 +302,8 @@ cd "$BUILD_DIR"
 rm -rf external
 rm -rf bazel-exec-root
 
-ln -sf "$external" external
-ln -sf "$exec_root" bazel-exec-root
-ln -sfn "$PROJECT_DIR" SRCROOT
+ln -s "$external" external
+ln -s "$exec_root" bazel-exec-root
 
 """#
     }
