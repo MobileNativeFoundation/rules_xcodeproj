@@ -141,6 +141,12 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   mkdir -p "$dest/rules_xcodeproj/links"
   cd "$dest/rules_xcodeproj/links"
 
+  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+  # files to the internal links directory to prevent Bazel from recursing into
+  # it, and thus following the `external` symlink
+  touch BUILD
+  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
+
   rm -rf external
   rm -rf gen_dir
 
