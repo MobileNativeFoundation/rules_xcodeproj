@@ -42,6 +42,21 @@ Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist".
 Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist", while performing a test.
 """)
     }
+
+    func test_value_keyDoesNotExist_withMessage() throws {
+        let customErrorMessage = "Custom error message."
+        var thrown: Error?
+        XCTAssertThrowsError(
+            try targetIDsByLabel.value(for: "//:does_not_exist", message: customErrorMessage)
+        ) {
+            thrown = $0
+        }
+        guard let error = thrown as? PreconditionError else {
+            XCTFail("Expected a `PreconditionError`.")
+            return
+        }
+        XCTAssertEqual(error.message, customErrorMessage)
+    }
 }
 
 class DictionaryExtensionTests: XCTestCase {
