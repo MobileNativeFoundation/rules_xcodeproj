@@ -1,7 +1,7 @@
 import Foundation
 
 // Inspired by https://gist.github.com/mjdescy/a805b5b4c49ed79fb240d3886815d5a2
-struct SemanticVersion: Equatable {
+struct SemanticVersion: Equatable, Hashable {
     static let maximumVersionPartCount = 3
 
     public let major: Int
@@ -70,5 +70,25 @@ extension SemanticVersion {
 extension SemanticVersion: CustomStringConvertible {
     public var description: String {
         return full
+    }
+}
+
+extension SemanticVersion: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(full)
+    }
+}
+
+extension SemanticVersion: Decodable {
+    init(from decoder: Decoder) throws {
+        let value = try decoder.singleValueContainer().decode(String.self)
+        guard let self0 = SemanticVersion(version: value) else {
+            throw DecodingError.dataCorrupted(.init(
+                codingPath: decoder.codingPath,
+                debugDescription: "invalid SemanticValue value: \(value)"
+            ))
+        }
+        self = self0
     }
 }

@@ -81,4 +81,17 @@ public class SemanticVersionNumberTests: XCTestCase {
         let rhs = SemanticVersion(major: 2, minor: 0, patch: 4)
         XCTAssertGreaterThan(lhs, rhs)
     }
+
+    func test_encodingAndDecoding() throws {
+        let sver: SemanticVersion = "2.11.3"
+
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(sver)
+        let dataStr = String(data: data, encoding: .utf8)!
+        XCTAssertEqual(dataStr, "\"2.11.3\"")
+
+        let decoder = JSONDecoder()
+        let result = try decoder.decode(SemanticVersion.self, from: data)
+        XCTAssertEqual(sver, result)
+    }
 }

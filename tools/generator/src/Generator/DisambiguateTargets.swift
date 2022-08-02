@@ -251,7 +251,7 @@ struct ProductTypeComponents {
 struct OperatingSystemComponents {
     /// Collects which minimum versions each `ConsolidatedTarget` contains.
     private var minimumVersionsByKeys: [
-        ConsolidatedTarget.Key: Set<Platform.OSVersion>
+        ConsolidatedTarget.Key: Set<SemanticVersion>
     ] = [:]
 
     /// Maps operating system minimum versions to
@@ -263,7 +263,7 @@ struct OperatingSystemComponents {
     /// `VersionedOperatingSystemComponents.add(target:consolidatedKey:)` will
     /// have been called for each `Target`.
     private var minimumVersions: [
-        Platform.OSVersion: VersionedOperatingSystemComponents
+        SemanticVersion: VersionedOperatingSystemComponents
     ] = [:]
 
     /// Adds another `Target` into consideration for `distinguisher()`.
@@ -410,7 +410,7 @@ struct VersionedOperatingSystemComponents {
         var suffix: [String] = []
 
         if includeVersion {
-            suffix.append(platform.minimumOsVersion.rawValue)
+            suffix.append(platform.minimumOsVersion.pretty)
         }
         if let environmentSuffix = environmentDistinguisher?.suffix {
             suffix.append(environmentSuffix)
@@ -495,7 +495,7 @@ private extension Target {
         return [
             platform.arch,
             platform.os.rawValue,
-            platform.minimumOsVersion.rawValue,
+            platform.minimumOsVersion.pretty,
             platform.variant.environment,
         ].joined(separator: "-")
     }

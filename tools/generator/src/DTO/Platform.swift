@@ -16,23 +16,10 @@ struct Platform: Equatable, Hashable, Decodable {
         case watchOSSimulator = "watchsimulator"
     }
 
-    struct OSVersion: RawRepresentable, Hashable, Decodable {
-        let rawValue: String
-        let semanticVersion: SemanticVersion
-
-        init?(rawValue: String) {
-            self.rawValue = rawValue
-            guard let semanticVersion = SemanticVersion(version: rawValue) else {
-                return nil
-            }
-            self.semanticVersion = semanticVersion
-        }
-    }
-
     let os: OS
     let variant: Variant
     let arch: String
-    let minimumOsVersion: OSVersion
+    let minimumOsVersion: SemanticVersion
 }
 
 extension Platform {
@@ -41,7 +28,7 @@ extension Platform {
     }
 
     var fullTriple: String {
-        let osVersion = "\(minimumOsVersion.semanticVersion)"
+        let osVersion = minimumOsVersion.full
 
         return """
 \(arch)-apple-\(variant.triplePrefix)\(osVersion)\(variant.tripleSuffix)
@@ -102,18 +89,6 @@ extension Platform.Variant {
         case .watchOSDevice: return ""
         case .watchOSSimulator: return "-simulator"
         }
-    }
-}
-
-extension Platform.OSVersion: Comparable {
-    static func < (lhs: Platform.OSVersion, rhs: Platform.OSVersion) -> Bool {
-        return lhs.semanticVersion < rhs.semanticVersion
-    }
-}
-
-extension Platform.OSVersion: Equatable {
-    static func == (lhs: Platform.OSVersion, rhs: Platform.OSVersion) -> Bool {
-        return lhs.semanticVersion == rhs.semanticVersion
     }
 }
 
