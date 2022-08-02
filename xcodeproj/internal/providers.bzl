@@ -103,6 +103,7 @@ this target. It also includes the two extra fields that collect all of the
 generated `Files` and all of the `Files` that should be added to the Xcode
 project, but are not associated with any targets.
 """,
+        "lldb_context": "A value returned from `lldb_context.collect`.",
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
 of the target that can be merged into the target with the id of the 'dest'

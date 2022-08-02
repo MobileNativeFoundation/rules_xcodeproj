@@ -326,6 +326,37 @@
                     }
                 ]
             },
+            "lldb_context": {
+                "c": [
+                    {
+                        "i": [
+                            "CoreUtilsObjC",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+                                "t": "g"
+                            }
+                        ],
+                        "m": [
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                                "t": "g"
+                            },
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap",
+                                "t": "g"
+                            }
+                        ],
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ]
+            },
             "name": "Example",
             "outputs": {
                 "p": {
@@ -504,6 +535,47 @@
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/libTestingUtils.a",
                         "t": "g"
+                    }
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DAWESOME",
+                        "q": [
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
+                    {
+                        "i": [
+                            "CoreUtilsObjC",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+                                "t": "g"
+                            }
+                        ],
+                        "m": [
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                                "t": "g"
+                            },
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap",
+                                "t": "g"
+                            }
+                        ],
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                                "t": "g"
+                            }
+                        ]
                     }
                 ]
             },
@@ -727,6 +799,88 @@
                     }
                 ]
             },
+            "lldb_context": {
+                "c": [
+                    {
+                        "i": [
+                            "CoreUtilsObjC",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+                                "t": "g"
+                            }
+                        ],
+                        "m": [
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                                "t": "g"
+                            },
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap",
+                                "t": "g"
+                            },
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swift.modulemap",
+                                "t": "g"
+                            }
+                        ],
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DAWESOME",
+                        "q": [
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
+                    {
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DAWESOME",
+                        "q": [
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
+                    {
+                        "i": [
+                            "CoreUtilsObjC",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+                                "t": "g"
+                            }
+                        ],
+                        "m": [
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                                "t": "g"
+                            },
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap",
+                                "t": "g"
+                            }
+                        ],
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "s": [
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example/Example.swiftmodule",
+                        "t": "g"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils/TestingUtils.swiftmodule",
+                        "t": "g"
+                    }
+                ]
+            },
             "name": "ExampleTests.__internal__.__test_bundle",
             "outputs": {
                 "p": {
@@ -913,6 +1067,47 @@
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleUITests/libExampleUITests.library.a",
                         "t": "g"
+                    }
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
+                    {
+                        "i": [
+                            "CoreUtilsObjC",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC",
+                                "t": "g"
+                            }
+                        ],
+                        "m": [
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                                "t": "g"
+                            },
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Utils/Utils.swift.modulemap",
+                                "t": "g"
+                            }
+                        ],
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin",
+                                "t": "g"
+                            }
+                        ]
                     }
                 ]
             },

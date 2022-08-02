@@ -116,6 +116,9 @@ Are you using an `alias`? \
         unfocused_targets = unfocused_targets,
     )
 
+    has_unfocused_libraries = sets.length(unfocused_libraries) > 0
+    has_unfocused_targets = bool(unfocused_targets)
+
     targets = {}
     for xcode_target in actual_targets:
         unfocused_generated = []
@@ -142,7 +145,12 @@ Are you using an `alias`? \
         )
 
         targets[xcode_target.id] = xcode_targets.to_dto(
-            xcode_target,
+            xcode_target = xcode_target,
+            include_lldb_context = (
+                has_unfocused_targets or
+                has_unfocused_libraries or
+                build_mode != "xcode"
+            ),
             is_unfocused_dependency = is_unfocused_dependency,
             unfocused_targets = unfocused_targets,
         )

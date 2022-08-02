@@ -102,6 +102,20 @@
                     }
                 ]
             },
+            "lldb_context": {
+                "c": [
+                    {
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ]
+            },
             "name": "Example",
             "outputs": {
                 "p": {
@@ -239,6 +253,36 @@
                 "static_libraries": [
                     {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleTests/libExampleTests.library.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
+                    {
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "s": [
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example/Example.swiftmodule",
                         "t": "g"
                     }
                 ]
@@ -390,6 +434,30 @@
                     {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/ExampleUITests/libExampleUITests.library.a",
                         "t": "g"
+                    }
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
+                    {
+                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "q": [
+                            ".",
+                            {
+                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin",
+                                "t": "g"
+                            }
+                        ]
                     }
                 ]
             },

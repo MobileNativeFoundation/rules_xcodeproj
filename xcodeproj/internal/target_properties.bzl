@@ -211,7 +211,7 @@ def process_swiftmodules(*, swift_info):
         swift_info: The `SwiftInfo` provider for the target.
 
     Returns:
-        The `file_path`s of all direct module swiftmodules.
+        A `list` of `file_path`s of dependent swiftmodules.
     """
     if not swift_info:
         return []

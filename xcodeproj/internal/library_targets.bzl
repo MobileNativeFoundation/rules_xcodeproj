@@ -8,6 +8,7 @@ load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "join_paths_ignoring_empty")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
+load(":lldb_contexts.bzl", "lldb_contexts")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
@@ -153,6 +154,22 @@ def process_library_target(
         bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
     )
+    swiftmodules = process_swiftmodules(swift_info = swift_info)
+    lldb_context = lldb_contexts.collect(
+        compilation_mode = ctx.var["COMPILATION_MODE"],
+        objc_fragment = ctx.fragments.objc,
+        id = id,
+        is_swift = is_swift,
+        search_paths = search_paths,
+        modulemaps = modulemaps,
+        swiftmodules = swiftmodules,
+        transitive_infos = [
+            info
+            for attr, info in transitive_infos
+            if (info.target_type in
+                automatic_target_info.xcode_targets.get(attr, [None]))
+        ],
+    )
 
     return processed_target(
         automatic_target_info = automatic_target_info,
@@ -160,6 +177,7 @@ def process_library_target(
         dependencies = dependencies,
         inputs = inputs,
         library = linker_input_files.get_primary_static_library(linker_inputs),
+        lldb_context = lldb_context,
         outputs = outputs,
         search_paths = search_paths,
         transitive_dependencies = transitive_dependencies,
@@ -175,7 +193,7 @@ def process_library_target(
             build_settings = build_settings,
             search_paths = search_paths,
             modulemaps = modulemaps,
-            swiftmodules = process_swiftmodules(swift_info = swift_info),
+            swiftmodules = swiftmodules,
             inputs = inputs,
             linker_inputs = linker_inputs,
             dependencies = dependencies,

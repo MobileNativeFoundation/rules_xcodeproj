@@ -38,7 +38,7 @@ def _merge(
         objc: The `ObjcProvider` of the target, or `None`.
         swift_info: The `SwiftInfo` of the target, or `None`.
         transitive_compilation_providers: A `list` of
-            `(target(), XcodeProjInfo)` tuples of transitive dependencies that
+            `(xcode_target, XcodeProjInfo)` tuples of transitive dependencies that
             should have compilation providers merged.
 
     Returns:

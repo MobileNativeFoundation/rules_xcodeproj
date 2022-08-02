@@ -72,11 +72,18 @@ env -i \
             xcodeprojConfiguration: xcodeprojConfiguration
         )
 
+        let createLLDBSettingsModuleScript =
+            try createCreateLLDBSettingsModuleScript(
+                in: pbxProj,
+                filePathResolver: filePathResolver
+            )
+
         let pbxTarget = PBXAggregateTarget(
             name: "BazelDependencies",
             buildConfigurationList: configurationList,
             buildPhases: [
                 bazelBuildScript,
+                createLLDBSettingsModuleScript,
             ],
             productName: "BazelDependencies"
         )
@@ -153,6 +160,30 @@ env -i \
             shellScript: shellScript,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
+    private static func createCreateLLDBSettingsModuleScript(
+        in pbxProj: PBXProj,
+        filePathResolver: FilePathResolver
+    ) throws -> PBXShellScriptBuildPhase {
+        let script = PBXShellScriptBuildPhase(
+            name: "Create swift_debug_settings.py",
+            inputPaths: [
+                try filePathResolver
+                    .resolve(.internal(lldbSwiftSettingsModulePath))
+                    .string
+            ],
+            outputPaths: ["$(BUILD_DIR)/swift_debug_settings.py"],
+            shellScript: #"""
+perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
+  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+
+"""#,
+            showEnvVarsInLog: false
         )
         pbxProj.add(object: script)
 

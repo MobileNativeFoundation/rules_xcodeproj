@@ -15,6 +15,7 @@ load(":files.bzl", "file_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
+load(":lldb_contexts.bzl", "lldb_contexts")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
@@ -427,6 +428,22 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
     )
+    swiftmodules = process_swiftmodules(swift_info = swift_info)
+    lldb_context = lldb_contexts.collect(
+        compilation_mode = ctx.var["COMPILATION_MODE"],
+        objc_fragment = ctx.fragments.objc,
+        id = id,
+        is_swift = is_swift,
+        search_paths = search_paths,
+        modulemaps = modulemaps,
+        swiftmodules = swiftmodules,
+        transitive_infos = [
+            info
+            for attr, info in transitive_infos
+            if (info.target_type in
+                automatic_target_info.xcode_targets.get(attr, [None]))
+        ],
+    )
 
     return processed_target(
         automatic_target_info = automatic_target_info,
@@ -435,6 +452,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         extension_infoplists = extension_infoplists,
         hosted_targets = hosted_targets,
         inputs = inputs,
+        lldb_context = lldb_context,
         non_mergable_targets = non_mergable_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
@@ -453,7 +471,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             build_settings = build_settings,
             search_paths = search_paths,
             modulemaps = modulemaps,
-            swiftmodules = process_swiftmodules(swift_info = swift_info),
+            swiftmodules = swiftmodules,
             inputs = inputs,
             linker_inputs = linker_inputs,
             infoplist = infoplist,
@@ -463,5 +481,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             dependencies = dependencies,
             transitive_dependencies = transitive_dependencies,
             outputs = outputs,
+            lldb_context = lldb_context,
         ),
     )

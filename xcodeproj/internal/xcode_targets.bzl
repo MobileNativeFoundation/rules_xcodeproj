@@ -4,6 +4,7 @@ load(":collections.bzl", "set_if_true")
 load(":files.bzl", "file_path", "file_path_to_dto")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
+load(":lldb_contexts.bzl", "lldb_contexts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":product.bzl", "product_to_dto")
@@ -32,7 +33,8 @@ def _make(
         app_clips = [],
         dependencies,
         transitive_dependencies,
-        outputs):
+        outputs,
+        lldb_context = None):
     """Creates the internal data structure of the `xcode_targets` module.
 
     Args:
@@ -54,8 +56,8 @@ def _make(
         build_settings: A `dict` of Xcode build settings for the target.
         search_paths: A value returned from `target_search_paths.make`, or
             `None`.
-        modulemaps: The value returned from `_process_modulemaps`.
-        swiftmodules: The value returned from `_process_swiftmodules`.
+        modulemaps: The value returned from `process_modulemaps`.
+        swiftmodules: The value returned from `process_swiftmodules`.
         inputs: The value returned from `input_files.collect`.
         linker_inputs: A value returned from `linker_input_files.collect` or
             `None`.
@@ -71,6 +73,7 @@ def _make(
         transitive_dependencies: A `depset` of `id`s of all transitive targets
             that this target depends on.
         outputs: A value returned from `output_files.collect`.
+        lldb_context: A value returned from `lldb_contexts.collect`.
 
     Returns:
         A mostly opaque `struct` that can be passed to `xcode_targets.to_dto`.
@@ -93,6 +96,7 @@ def _make(
         _app_clips = tuple(app_clips),
         _dependencies = dependencies,
         _outputs = outputs,
+        _lldb_context = lldb_context,
         id = id,
         label = label,
         product = product,
@@ -103,6 +107,7 @@ def _make(
 def _to_dto(
         xcode_target,
         *,
+        include_lldb_context,
         is_unfocused_dependency = False,
         unfocused_targets = {}):
     inputs = xcode_target.inputs
@@ -127,6 +132,13 @@ def _to_dto(
 
     if xcode_target._watch_application not in unfocused_targets:
         set_if_true(dto, "watch_application", xcode_target._watch_application)
+
+    if include_lldb_context:
+        set_if_true(
+            dto,
+            "lldb_context",
+            lldb_contexts.to_dto(xcode_target._lldb_context),
+        )
 
     set_if_true(dto, "build_settings", xcode_target._build_settings)
     set_if_true(

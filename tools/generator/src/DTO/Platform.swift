@@ -50,6 +50,14 @@ extension Platform {
     var triple: String {
         return "\(arch)-apple-\(variant.triple)"
     }
+
+    var fullTriple: String {
+        let osVersion = minimumOsVersion.fullVersion
+
+        return """
+\(arch)-apple-\(variant.triplePrefix)\(osVersion)\(variant.tripleSuffix)
+"""
+    }
 }
 
 extension Platform.OS {
@@ -80,14 +88,30 @@ extension Platform.Variant {
     }
 
     var triple: String {
+        return "\(triplePrefix)\(tripleSuffix)"
+    }
+
+    var triplePrefix: String {
         switch self {
         case .macOS: return "macosx"
         case .iOSDevice: return "ios"
-        case .iOSSimulator: return "ios-simulator"
+        case .iOSSimulator: return "ios"
         case .tvOSDevice: return "tvos"
-        case .tvOSSimulator: return "tvos-simulator"
+        case .tvOSSimulator: return "tvos"
         case .watchOSDevice: return "watchos"
-        case .watchOSSimulator: return "watchos-simulator"
+        case .watchOSSimulator: return "watchos"
+        }
+    }
+
+    var tripleSuffix: String {
+        switch self {
+        case .macOS: return ""
+        case .iOSDevice: return ""
+        case .iOSSimulator: return "-simulator"
+        case .tvOSDevice: return ""
+        case .tvOSSimulator: return "-simulator"
+        case .watchOSDevice: return ""
+        case .watchOSSimulator: return "-simulator"
         }
     }
 }

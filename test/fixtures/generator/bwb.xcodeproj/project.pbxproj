@@ -12,6 +12,7 @@
 			buildConfigurationList = 914277EC9F57B808A8817CF5 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				9A630CF63C380FAE522825A9 /* Bazel Build */,
+				20BEB4AE7798C11A8A904F5E /* Create swift_debug_settings.py */,
 			);
 			dependencies = (
 			);
@@ -298,6 +299,7 @@
 		F7E6FDDF50AAB650480FB900 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		F87890E59D29431994A8AD60 /* XCBuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9354E6340A0B10BEB1FDEE /* XCBuildConfiguration.swift */; };
 		F8DAB8FCE71E293402C101A7 /* OrderedSet+Invariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2062B3E1312EAF079BC5E26C /* OrderedSet+Invariants.swift */; };
+		F8ED6A8FFAE1FC9C86D48897 /* LLDBContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BC73B37056313056FED47E /* LLDBContext.swift */; };
 		F9312E0C5F409E17F509CC96 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		FD2B9E3F88E7E36B11EBE9C9 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		FD83242BF95B2ED90590668A /* PBXShellScriptBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133D091B34B3EB60A9400C02 /* PBXShellScriptBuildPhase.swift */; };
@@ -673,6 +675,7 @@
 		DFD9A9F50CD3972B0F674265 /* XCSchemeInfo+ProfileActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+ProfileActionInfoTests.swift"; sourceTree = "<group>"; };
 		E0413D918157ADBE8DAEA92D /* Mirror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mirror.swift; sourceTree = "<group>"; };
 		E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompileStub.m; sourceTree = "<group>"; };
+		E2BC73B37056313056FED47E /* LLDBContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLDBContext.swift; sourceTree = "<group>"; };
 		E37E1D8F0FD9F2FEEC62C2B3 /* BazelLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazelLabelTests.swift; sourceTree = "<group>"; };
 		E4142BB8EF88F4DD2D5440E4 /* OrderedDictionary+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		E43EBF1E6F26B25BB157D396 /* PBXBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXBuildPhase.swift; sourceTree = "<group>"; };
@@ -1322,6 +1325,7 @@
 				742FB8D5E3AD34B60B65B2A9 /* FilePath.swift */,
 				0EB9D00963E3FECF87A050AA /* Inputs.swift */,
 				05B53AF9EB4EE0D76B72A641 /* LinkerInputs.swift */,
+				E2BC73B37056313056FED47E /* LLDBContext.swift */,
 				50E1D04A9DAAEC9FAC5461AF /* Outputs.swift */,
 				CCAD7D38A6606771FA4A7436 /* Platform.swift */,
 				963808B2F3A1F2B83E6AE6DF /* Product.swift */,
@@ -1618,6 +1622,23 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		20BEB4AE7798C11A8A904F5E /* Create swift_debug_settings.py */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/swift_debug_settings.py",
+			);
+			name = "Create swift_debug_settings.py";
+			outputPaths = (
+				"$(BUILD_DIR)/swift_debug_settings.py",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3B581A2D7C1575EF22D8ECDA /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1991,6 +2012,7 @@
 				8FCC7D3937EEC9B1D3C1D237 /* ExtensionPointIdentifier.swift in Sources */,
 				F4721D1F8FF6BFDF701622EB /* FilePath.swift in Sources */,
 				D75E4FF718EDB764C615241B /* Inputs.swift in Sources */,
+				F8ED6A8FFAE1FC9C86D48897 /* LLDBContext.swift in Sources */,
 				83401B70003CB4C9642FF821 /* LinkerInputs.swift in Sources */,
 				F446405A297DF486D5E599C9 /* Outputs.swift in Sources */,
 				1532FA28D9B68BDD436146B2 /* Platform.swift in Sources */,
