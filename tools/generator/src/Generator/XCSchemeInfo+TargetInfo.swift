@@ -40,10 +40,10 @@ extension XCSchemeInfo {
         }
 
         /// Initializer used when resolving a selected host.
-        init(
+        init<TargetInfos: Sequence>(
             resolveHostFor original: XCSchemeInfo.TargetInfo,
-            topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
-        ) {
+            topLevelTargetInfos: TargetInfos
+        ) where TargetInfos.Element == XCSchemeInfo.TargetInfo {
             // Look for a host that is one of the top-level targets.
             let topLevelPBXTargetInfos = Set(topLevelTargetInfos.map(\.pbxTarget))
             var selectedHostInfo = original.hostInfos

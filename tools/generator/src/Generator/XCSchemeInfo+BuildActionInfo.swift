@@ -22,10 +22,10 @@ An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.TargetI
 
 extension XCSchemeInfo.BuildActionInfo {
     /// Create a copy of the `BuildActionInfo` with the host in `TargetInfo` values resolved.
-    init?(
+    init?<TargetInfos: Sequence>(
         resolveHostsFor buildActionInfo: XCSchemeInfo.BuildActionInfo?,
-        topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
-    ) throws {
+        topLevelTargetInfos: TargetInfos
+    ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         guard let original = buildActionInfo else {
             return nil
         }

@@ -31,10 +31,10 @@ An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.Targ
 
 extension XCSchemeInfo.TestActionInfo {
     /// Create a copy of the test action info with host in the target infos resolved
-    init?(
+    init?<TargetInfos: Sequence>(
         resolveHostsFor testActionInfo: XCSchemeInfo.TestActionInfo?,
-        topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
-    ) throws {
+        topLevelTargetInfos: TargetInfos
+    ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         guard let original = testActionInfo else {
           return nil
         }

@@ -34,13 +34,14 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
 """)
         }
 
-        var topLevelTargetInfos = [XCSchemeInfo.TargetInfo]()
-        if let testActionInfo = testActionInfo {
-            topLevelTargetInfos += testActionInfo.targetInfos
-        }
-        if let launchActionInfo = launchActionInfo {
-            topLevelTargetInfos.append(launchActionInfo.targetInfo)
-        }
+        let allTargetInfos = [
+            buildActionInfo?.targetInfos,
+            testActionInfo?.targetInfos,
+            launchActionInfo.map { [$0.targetInfo] },
+            profileActionInfo.map { [$0.targetInfo] },
+        ].compactMap { $0 }.flatMap { $0 }
+
+        let topLevelTargetInfos = Set(allTargetInfos.filter(\.pbxTarget.isTopLevel))
 
         self.buildActionInfo = try .init(
             resolveHostsFor: buildActionInfo,

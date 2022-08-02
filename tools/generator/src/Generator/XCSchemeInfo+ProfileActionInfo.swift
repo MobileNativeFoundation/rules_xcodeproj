@@ -11,10 +11,10 @@ extension XCSchemeInfo {
 
 extension XCSchemeInfo.ProfileActionInfo {
     /// Create a copy of the `ProfileActionInfo` with host in the `TargetInfo` resolved.
-    init?(
+    init?<TargetInfos: Sequence>(
         resolveHostsFor profileActionInfo: XCSchemeInfo.ProfileActionInfo?,
-        topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
-    ) {
+        topLevelTargetInfos: TargetInfos
+    ) where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         guard let original = profileActionInfo else {
           return nil
         }
