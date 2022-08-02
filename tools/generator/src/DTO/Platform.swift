@@ -41,7 +41,7 @@ extension Platform {
     }
 
     var fullTriple: String {
-        let osVersion = minimumOsVersion.fullVersion
+        let osVersion = "\(minimumOsVersion.semanticVersion)"
 
         return """
 \(arch)-apple-\(variant.triplePrefix)\(osVersion)\(variant.tripleSuffix)
