@@ -28,7 +28,7 @@ extension Platform {
         guard arch == other.arch else {
             return .archNotEqual
         }
-        guard minimumOsVersion.semanticVersion <= other.minimumOsVersion.semanticVersion else {
+        guard minimumOsVersion <= other.minimumOsVersion else {
             return .minimumOsVersionGreaterThanOther
         }
         return .compatible

@@ -60,7 +60,7 @@ extension Platform {
     static func simulator(
         os: Platform.OS = .iOS,
         arch: String = "arm64",
-        minimumOsVersion: Platform.OSVersion = "11.0"
+        minimumOsVersion: SemanticVersion = "11.0"
     ) -> Self {
         var variant: Variant {
             switch os {
@@ -82,13 +82,13 @@ extension Platform {
     static func device(
         os: Platform.OS = .iOS,
         arch: String = "arm64",
-        minimumOsVersion: Platform.OSVersion = "11.0"
+        minimumOsVersion: SemanticVersion = "11.0"
     ) -> Self {
         var variant: Variant {
             switch os {
             case .macOS: preconditionFailure("use `.macOS`")
             case .iOS: return .iOSDevice
-            case .tvOS: return.tvOSDevice
+            case .tvOS: return .tvOSDevice
             case .watchOS: return .watchOSDevice
             }
         }
@@ -103,7 +103,7 @@ extension Platform {
 
     static func macOS(
         arch: String = "arm64",
-        minimumOsVersion: Platform.OSVersion = "11.0"
+        minimumOsVersion: SemanticVersion = "11.0"
     ) -> Self {
         return Platform(
             os: .macOS,
@@ -216,7 +216,7 @@ extension FilePath: ExpressibleByStringLiteral {
     }
 }
 
-extension Platform.OSVersion: ExpressibleByStringLiteral {
+extension SemanticVersion: ExpressibleByStringLiteral {
     public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
     public typealias UnicodeScalarLiteralType = StringLiteralType
 
@@ -229,6 +229,6 @@ extension Platform.OSVersion: ExpressibleByStringLiteral {
     }
 
     public init(stringLiteral value: StringLiteralType) {
-        self.init(rawValue: value)!
+        self.init(version: value)!
     }
 }
