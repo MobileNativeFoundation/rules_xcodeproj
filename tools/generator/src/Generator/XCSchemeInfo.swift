@@ -41,8 +41,11 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
         if let testActionInfo = testActionInfo {
             topLevelTargetInfos.formUnion(testActionInfo.targetInfos.filter(\.pbxTarget.isTopLevel))
         }
-        if let launchActionInfo = launchActionInfo, launchActionInfo.targetInfo.pbxTarget.isTopLevel {
-            topLevelTargetInfos.update(with: launchActionInfo.targetInfo)
+        if let targetInfo = launchActionInfo?.targetInfo, targetInfo.pbxTarget.isTopLevel {
+            topLevelTargetInfos.update(with: targetInfo)
+        }
+        if let targetInfo = profileActionInfo?.targetInfo, targetInfo.pbxTarget.isTopLevel {
+            topLevelTargetInfos.update(with: targetInfo)
         }
 
         self.buildActionInfo = try .init(
