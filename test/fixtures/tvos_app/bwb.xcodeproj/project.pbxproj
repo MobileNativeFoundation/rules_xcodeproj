@@ -22,14 +22,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		36BA4FBB2BD9C8A3A8CE20C9 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		39BF0A575DB868D507469F87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D13467AC1061414CAD92AA /* ContentView.swift */; };
 		89A8B99F685895EF23E51FD7 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6FBABBE0C0A9D915CBF85B /* ExampleUITestsLaunchTests.swift */; };
 		9CD5A0199DE49FB72FBBEE5B /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFCD0AE3F74ABC41475218 /* ExampleTests.swift */; };
 		AB903A67D5E295F09FE79F90 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E59FF263E41FFE42D58A1 /* ExampleApp.swift */; };
 		AF930B17065972D8E2AF26D7 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E8EC5800B28DC7A5B63624 /* ExampleUITests.swift */; };
-		B9F1B2EA1F682CDC63CA17BC /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		C35F652B550BB76721075171 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +85,6 @@
 		DB017F09DAA174C86C32DE47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E18F10CFF85D8830CA170107 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E470DDDC0990D96A685DB11C /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
 		FA0E59FF263E41FFE42D58A1 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,15 +257,6 @@
 			path = test/fixtures/tvos_app/bwb.xcodeproj/rules_xcodeproj/links/gen_dir;
 			sourceTree = "<group>";
 		};
-		D182AF8E059C5832405A845F /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */,
-			);
-			name = rules_xcodeproj;
-			path = test/fixtures/tvos_app/bwb.xcodeproj/rules_xcodeproj;
-			sourceTree = "<group>";
-		};
 		D2AC77B70DEE889999AC8897 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,7 +300,6 @@
 				68A1D737225E7A97337523DE /* test */,
 				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
 				C407A8E68D8C611448A3E699 /* Bazel Generated Files */,
-				D182AF8E059C5832405A845F /* rules_xcodeproj */,
 				593E7C82FAAD94A7E6A04318 /* Products */,
 				C047AF1D451C7E165914273D /* Frameworks */,
 			);
@@ -491,7 +477,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -526,7 +511,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -544,7 +528,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -612,7 +595,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36BA4FBB2BD9C8A3A8CE20C9 /* _BazelForcedCompile_.swift in Sources */,
 				AF930B17065972D8E2AF26D7 /* ExampleUITests.swift in Sources */,
 				89A8B99F685895EF23E51FD7 /* ExampleUITestsLaunchTests.swift in Sources */,
 			);
@@ -622,7 +604,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C35F652B550BB76721075171 /* _BazelForcedCompile_.swift in Sources */,
 				9CD5A0199DE49FB72FBBEE5B /* ExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,7 +612,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9F1B2EA1F682CDC63CA17BC /* _BazelForcedCompile_.swift in Sources */,
 				39BF0A575DB868D507469F87 /* ContentView.swift in Sources */,
 				AB903A67D5E295F09FE79F90 /* ExampleApp.swift in Sources */,
 			);

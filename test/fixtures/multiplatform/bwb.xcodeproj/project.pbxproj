@@ -24,18 +24,15 @@
 /* Begin PBXBuildFile section */
 		0425CCFCCD1FE1ECEDCA1226 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FED84E16539192393AF06C /* ContentView.swift */; };
 		0D9682670712CC38E3BD6E1B /* AppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 21B075DF13D48A7176B9FD50 /* AppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		0E472ADDE684404767B5483B /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		0E4D91E102B2FB798BAEA5F6 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
 		1248EC5A979ED17920292A65 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FBA2590E14FA946C70E605 /* Lib.swift */; };
 		1345A48101C47E242F430CD8 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48754296ACA596286860C0BF /* CryptoSwift.framework */; };
 		17D28C4F6071247D8148BE16 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B79A6A845E24A1CE8611CA /* CryptoSwift.framework */; };
 		1F4FBB2FDB7D7960FCBBAD3D /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
-		222CF0072E090136613B7D5A /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		268106B9996EDC881B2E0AA8 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3333170CE926366B0A03CBF1 /* GoogleMapsBase.framework */; };
 		31148D81297341297091BE82 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C87E1F983762D987044B07D /* GoogleMapsCore.framework */; };
 		36702025178576706C745BC5 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23E4536260379513114C6AE /* CryptoSwift.framework */; };
 		372EED2D54B8F28680FA119F /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3E7618EB2EFFE6AA88608 /* Intents.swift */; };
-		4026DA28A4B2DCB480467C8F /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		4119529014BB6FAC2E9AA1C1 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
 		41731BDC24BE872323FEA0E3 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416D7556BFEC26938A62BA77 /* iOSApp.swift */; };
 		425BFCDFB51767F26D8E88F9 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23E4536260379513114C6AE /* CryptoSwift.framework */; };
@@ -45,14 +42,12 @@
 		526815DB742350C83EB04495 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
 		57990DB9189C856D000061EE /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2DAFB9141E941BE0B725EF /* GoogleMapsBase.framework */; };
 		6307FC4C85FBC17C3061A235 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6289C06F2F7A8C9BAA0757C5 /* MessagesViewController.swift */; };
-		6360FF396B49E1B6632C1FD0 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		6B2C69A66B14D4AE3F6B725D /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF108DD9E7994AE813AAFEA9 /* GoogleMaps.framework */; };
 		6C89B018AC1296F321FE0E77 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89AED11EAA442900F8C9C96 /* tvOSApp.swift */; };
 		73964D0D4DBB333AD3E2CD15 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286459D2E587B2DF91067194 /* Lib.swift */; };
 		75B1B268CC2B58566ECB9678 /* watchOSApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B3F2BB6661347D1891100734 /* watchOSApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7BD877C49FD76A8E2622EA3D /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BD6C219E6E5167618EBD9 /* watchOSApp.swift */; };
 		7D26E11446EB516BD1E38C94 /* WidgetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265DEC9738D7156D2A27F25 /* WidgetExtension.swift */; };
-		7FCCD5D790B440F97BF25CC3 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		8595E6BFF015905B33168E18 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EAAF0384D20903614054AA /* Lib.swift */; };
 		8595E830B7AC432730FD9BD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0561945EBB23E334B7EC83E3 /* main.swift */; };
 		870D5447845B486C6B63BF2B /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23E4536260379513114C6AE /* CryptoSwift.framework */; };
@@ -62,15 +57,11 @@
 		A43DE244478F33F52C535852 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECC22A0360B6F7F39E449B5 /* CryptoSwift.framework */; };
 		A5CE64A318CB5BFD4B52FDE0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E95D84BE74FB253E55EA07 /* GoogleMaps.framework */; };
 		A6269C02FE150BA5AF5127C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7184778C265E6AF5491B6 /* ContentView.swift */; };
-		C0410183B2A47BD134098700 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		C3F80F355B01BEA0D54145EC /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		C61E821B3CFE0D5260A796F4 /* WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 56F16FB28F266E6AABCEA995 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C872C7106B117D99B8E329E9 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7126971C71380F35EAD51D /* Lib.swift */; };
 		CEC8CCE4C9BFFBFD0A23D07B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E842FA503EFFAF94F9B849A /* ContentView.swift */; };
 		D9ED091F2428AAE0F00A0860 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F13F50760C51CF5C96142 /* Lib.swift */; };
 		E0522FDC1C78B62C7321CA59 /* AppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD139F111FC1472A88A9CB7B /* AppClip.swift */; };
-		E0E96DF94A3CD3E134AE28B4 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		E1B4912BC76DA5478ADD8A66 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		EE9F5B4D26AB372CFF138798 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427A227944F4D18102ADE4F /* Lib.swift */; };
 		F8DD5EE78EAADB26E27E5BC5 /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ADBEAB2C84FEA499584D9C18 /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -385,7 +376,6 @@
 		E25AB0992362AE2E4F48AF2D /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		E332411DCE28305063274CDF /* iMessageAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMessageAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43D1ECAB0B256A61D4B65CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
 		E6907279EB458676B4EE324A /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		E7CC0575EECAA039E39C8B0F /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		E89AED11EAA442900F8C9C96 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
@@ -1585,15 +1575,6 @@
 			path = "applebin_tvos-tvos_x86_64-dbg-ST-ae85ff5caa67";
 			sourceTree = "<group>";
 		};
-		D182AF8E059C5832405A845F /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */,
-			);
-			name = rules_xcodeproj;
-			path = test/fixtures/multiplatform/bwb.xcodeproj/rules_xcodeproj;
-			sourceTree = "<group>";
-		};
 		D4A49376C0EB27ECCE416C5A /* WidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1727,7 +1708,6 @@
 				68A1D737225E7A97337523DE /* test */,
 				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
 				C407A8E68D8C611448A3E699 /* Bazel Generated Files */,
-				D182AF8E059C5832405A845F /* rules_xcodeproj */,
 				593E7C82FAAD94A7E6A04318 /* Products */,
 				C047AF1D451C7E165914273D /* Frameworks */,
 			);
@@ -2154,7 +2134,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2206,7 +2185,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2224,7 +2202,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2241,7 +2218,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2258,7 +2234,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2310,7 +2285,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2382,7 +2356,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2417,7 +2390,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2452,7 +2424,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2534,7 +2505,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E472ADDE684404767B5483B /* _BazelForcedCompile_.swift in Sources */,
 				73964D0D4DBB333AD3E2CD15 /* Lib.swift in Sources */,
 				EE9F5B4D26AB372CFF138798 /* Lib.swift in Sources */,
 				1248EC5A979ED17920292A65 /* Lib.swift in Sources */,
@@ -2546,7 +2516,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FCCD5D790B440F97BF25CC3 /* _BazelForcedCompile_.swift in Sources */,
 				7D26E11446EB516BD1E38C94 /* WidgetExtension.swift in Sources */,
 				9AF0A03D043B7204F54FAE6F /* Intents.swift in Sources */,
 				372EED2D54B8F28680FA119F /* Intents.swift in Sources */,
@@ -2557,7 +2526,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4026DA28A4B2DCB480467C8F /* _BazelForcedCompile_.swift in Sources */,
 				A6269C02FE150BA5AF5127C6 /* ContentView.swift in Sources */,
 				7BD877C49FD76A8E2622EA3D /* watchOSApp.swift in Sources */,
 			);
@@ -2567,7 +2535,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0E96DF94A3CD3E134AE28B4 /* _BazelForcedCompile_.swift in Sources */,
 				0425CCFCCD1FE1ECEDCA1226 /* ContentView.swift in Sources */,
 				41731BDC24BE872323FEA0E3 /* iOSApp.swift in Sources */,
 			);
@@ -2577,7 +2544,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6360FF396B49E1B6632C1FD0 /* _BazelForcedCompile_.swift in Sources */,
 				8595E6BFF015905B33168E18 /* Lib.swift in Sources */,
 				D9ED091F2428AAE0F00A0860 /* Lib.swift in Sources */,
 			);
@@ -2587,7 +2553,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1B4912BC76DA5478ADD8A66 /* _BazelForcedCompile_.swift in Sources */,
 				6307FC4C85FBC17C3061A235 /* MessagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2596,7 +2561,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0410183B2A47BD134098700 /* _BazelForcedCompile_.swift in Sources */,
 				4E214A0EB55985D3ED1C80F2 /* ContentView.swift in Sources */,
 				6C89B018AC1296F321FE0E77 /* tvOSApp.swift in Sources */,
 			);
@@ -2606,7 +2570,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				222CF0072E090136613B7D5A /* _BazelForcedCompile_.swift in Sources */,
 				E0522FDC1C78B62C7321CA59 /* AppClip.swift in Sources */,
 				CEC8CCE4C9BFFBFD0A23D07B /* ContentView.swift in Sources */,
 			);
@@ -2616,7 +2579,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3F80F355B01BEA0D54145EC /* _BazelForcedCompile_.swift in Sources */,
 				8595E830B7AC432730FD9BD6 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
