@@ -155,7 +155,11 @@ extension XCSchemeInfoTests {
 
 extension XCSchemeInfoTests {
     func test_customSchemeInit() throws {
-        let actual = try XCSchemeInfo(scheme: xcodeScheme, targetResolver: targetResolver)
+        let actual = try XCSchemeInfo(
+            scheme: xcodeScheme,
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
         let expected = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: try .init(
@@ -187,6 +191,8 @@ extension XCSchemeInfoTests {
 class XCSchemeInfoTests: XCTestCase {
     let schemeName = "Foo"
     let buildConfigurationName = "Bar"
+
+    let xcodeprojBazelLabel = BazelLabel("//foo")
 
     lazy var filePathResolver = FilePathResolver(
         internalDirectoryName: "rules_xcodeproj",

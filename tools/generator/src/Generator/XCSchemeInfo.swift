@@ -118,9 +118,13 @@ extension XCSchemeInfo {
 extension XCSchemeInfo {
     init(
         scheme: XcodeScheme,
-        targetResolver: TargetResolver
+        targetResolver: TargetResolver,
+        xcodeprojBazelLabel: BazelLabel
     ) throws {
-        let targetIDsByLabel = try scheme.resolveTargetIDs(targets: targetResolver.targets)
+        let targetIDsByLabel = try scheme.resolveTargetIDs(
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
         try self.init(
             name: scheme.name,
             buildActionInfo: .init(

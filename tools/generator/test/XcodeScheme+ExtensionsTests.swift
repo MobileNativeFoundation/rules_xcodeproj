@@ -1,11 +1,12 @@
+import XcodeProj
 import XCTest
 
 @testable import generator
 
-// MARK: allSchemeLabels Tests
+// MARK: allBazelLabels Tests
 
 extension XcodeSchemeExtensionsTests {
-    func test_allSchemeLabels_doNotOverwriteTopLevel() throws {
+    func test_allBazelLabels_doNotOverwriteTopLevel() throws {
         // Ensure that toolLabel comes through as top-level even though it
         // is specified in build action as well.
         let scheme = XcodeScheme(
@@ -20,20 +21,14 @@ extension XcodeSchemeExtensionsTests {
                 workingDirectory: nil
             )
         )
-        let actual = scheme.allSchemeLabels
-        let expected: Set<XcodeScheme.SchemeLabel> = [
-            .init(label: libLabel, isTopLevel: false),
-            .init(label: toolLabel, isTopLevel: true),
-        ]
+        let actual = scheme.allBazelLabels
+        let expected: Set<BazelLabel> = [libLabel, toolLabel]
         XCTAssertEqual(expected, actual)
     }
 
-    func test_allSchemeLabels_forToolScheme() throws {
-        let actual = toolScheme.allSchemeLabels
-        let expected: Set<XcodeScheme.SchemeLabel> = [
-            .init(label: libLabel, isTopLevel: false),
-            .init(label: toolLabel, isTopLevel: true),
-        ]
+    func test_allBazelLabels_forToolScheme() throws {
+        let actual = toolScheme.allBazelLabels
+        let expected: Set<BazelLabel> = [libLabel, toolLabel]
         XCTAssertEqual(expected, actual)
     }
 }
@@ -42,7 +37,10 @@ extension XcodeSchemeExtensionsTests {
 
 extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withToolScheme() throws {
-        let actual = try toolScheme.resolveTargetIDs(targets: targets)
+        let actual = try toolScheme.resolveTargetIDs(
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
         let expected = [
             libLabel: libmacOSx8664TargetID,
             toolLabel: toolmacOSx8664TargetID,
@@ -56,7 +54,10 @@ extension XcodeSchemeExtensionsTests {
         // Prefer the TargetID values for the simulator.
         // We are also ensuring that the watchOS app that is a dependency of this iOS app is not
         // selected.
-        let actual = try iOSAppScheme.resolveTargetIDs(targets: targets)
+        let actual = try iOSAppScheme.resolveTargetIDs(
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
         let expected = [
             libLabel: libiOSx8664TargetID,
             libTestsLabel: libTestsiOSx8664TargetID,
@@ -68,7 +69,10 @@ extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withTVOSAppScheme() throws {
         // Both the device and simulator TargetID values are available.
         // Prefer the TargetID values for the simulator.
-        let actual = try tvOSAppScheme.resolveTargetIDs(targets: targets)
+        let actual = try tvOSAppScheme.resolveTargetIDs(
+            targetResolver: targetResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel
+        )
         let expected = [
             libLabel: libtvOSx8664TargetID,
             tvOSAppLabel: tvOSApptvOSx8664TargetID,
@@ -102,10 +106,48 @@ extension XcodeSchemeExtensionsTests {
     }
 }
 
+// MARK: `LabelTargetInfo` Tests
+
+extension XcodeSchemeExtensionsTests {
+    func test_LabelTargetInfo_best_noTargets() throws {
+        let targetInfo = XcodeScheme.LabelTargetInfo(label: "//foo", isTopLevel: false)
+
+        var thrown: Error?
+        XCTAssertThrowsError(try targetInfo.best) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected `PreconditionError`.")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+Unable to find the best `TargetWithID` for "//foo:foo"
+""")
+    }
+
+    func test_LabelTargetInfo_best_withTargets() throws {
+        XCTAssertEqual(try iOSAppLabelTargetInfo.best, iOSAppiOSx8664TargetWithID)
+    }
+}
+
+extension XcodeSchemeExtensionsTests {
+    func test_LabelTargetInfo_firstCompatibleWith_withCompatibleTarget() throws {
+        let actual = iOSAppLabelTargetInfo.firstCompatibleWith(anyOf: [iphoneOSPlatform])
+        XCTAssertEqual(actual, iOSAppiOSarm64TargetWithID)
+    }
+
+    func test_LabelTargetInfo_firstCompatibleWith_noCompatibleTarget() throws {
+        let actual = iOSAppLabelTargetInfo.firstCompatibleWith(anyOf: [appletvOSPlatform])
+        XCTAssertNil(actual)
+    }
+}
+
 // MARK: Test Data
 
 // swiftlint:disable:next type_body_length
 class XcodeSchemeExtensionsTests: XCTestCase {
+    let xcodeprojBazelLabel = BazelLabel("//foo")
+
     // Labels
 
     let libLabel: BazelLabel = "//examples/multiplatform/Lib:Lib"
@@ -395,6 +437,75 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         watchOSAppwatchOSx8664TargetID: watchOSAppwatchOSx8664Target,
     ]
 
+    lazy var iOSAppConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [iOSAppiOSarm64TargetID, iOSAppiOSx8664TargetID])
+
+    lazy var libTestsConsolidatedTargetKey = ConsolidatedTarget.Key([libTestsiOSx8664TargetID])
+
+    lazy var libiOSConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [libiOSarm64TargetID, libiOSx8664TargetID])
+
+    lazy var libmacOSConsolidatedTargetKey = ConsolidatedTarget.Key([libmacOSx8664TargetID])
+
+    lazy var libtvOSConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [libtvOSarm64TargetID, libtvOSx8664TargetID])
+
+    lazy var libwatchOSConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [libwatchOSarm64TargetID, libwatchOSx8664TargetID])
+
+    lazy var toolmacOSConsolidatedTargetKey = ConsolidatedTarget.Key([toolmacOSx8664TargetID])
+
+    lazy var tvOSAppConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [tvOSApptvOSarm64TargetID, tvOSApptvOSx8664TargetID])
+
+    lazy var watchOSAppConsolidatedTargetKey = ConsolidatedTarget.Key(
+        [watchOSAppwatchOSarm64TargetID, watchOSAppwatchOSx8664TargetID])
+
+    lazy var consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key] = [
+        iOSAppiOSarm64TargetID: iOSAppConsolidatedTargetKey,
+        iOSAppiOSx8664TargetID: iOSAppConsolidatedTargetKey,
+        libTestsiOSx8664TargetID: libTestsConsolidatedTargetKey,
+        libiOSarm64TargetID: libiOSConsolidatedTargetKey,
+        libiOSx8664TargetID: libiOSConsolidatedTargetKey,
+        libmacOSx8664TargetID: libmacOSConsolidatedTargetKey,
+        libtvOSarm64TargetID: libtvOSConsolidatedTargetKey,
+        libtvOSx8664TargetID: libtvOSConsolidatedTargetKey,
+        libwatchOSarm64TargetID: libwatchOSConsolidatedTargetKey,
+        libwatchOSx8664TargetID: libwatchOSConsolidatedTargetKey,
+        toolmacOSx8664TargetID: toolmacOSConsolidatedTargetKey,
+        tvOSApptvOSarm64TargetID: tvOSAppConsolidatedTargetKey,
+        tvOSApptvOSx8664TargetID: tvOSAppConsolidatedTargetKey,
+        watchOSAppwatchOSarm64TargetID: watchOSAppConsolidatedTargetKey,
+        watchOSAppwatchOSx8664TargetID: watchOSAppConsolidatedTargetKey,
+    ]
+
+    lazy var pbxTargets: [ConsolidatedTarget.Key: PBXTarget] = [
+        iOSAppConsolidatedTargetKey: .init(name: "iOSApp", productType: .application),
+        libTestsConsolidatedTargetKey: .init(name: "libTests", productType: .unitTestBundle),
+        libiOSConsolidatedTargetKey: .init(name: "libiOS", productType: .staticLibrary),
+        libmacOSConsolidatedTargetKey: .init(name: "libmacOS", productType: .staticLibrary),
+        libtvOSConsolidatedTargetKey: .init(name: "libtvOS", productType: .staticLibrary),
+        libwatchOSConsolidatedTargetKey: .init(name: "libwatchOS", productType: .staticLibrary),
+        toolmacOSConsolidatedTargetKey: .init(name: "toolmacOS", productType: .commandLineTool),
+        tvOSAppConsolidatedTargetKey: .init(name: "tvOSApp", productType: .application),
+        watchOSAppConsolidatedTargetKey: .init(name: "watchOSApp", productType: .watch2App),
+    ]
+
+    lazy var filePathResolver = FilePathResolver(
+        internalDirectoryName: "rules_xcodeproj",
+        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+    )
+
+    // swiftlint:disable:next force_try
+    lazy var targetResolver = try! TargetResolver(
+        referencedContainer: filePathResolver.containerReference,
+        targets: targets,
+        targetHosts: [:],
+        extensionPointIdentifiers: [:],
+        consolidatedTargetKeys: consolidatedTargetKeys,
+        pbxTargets: pbxTargets
+    )
+
     // Schemes
 
     let buildConfigurationName = "Chicken"
@@ -437,4 +548,19 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             workingDirectory: nil
         )
     )
+
+    lazy var iOSAppiOSarm64TargetWithID = XcodeScheme.TargetWithID(
+        id: iOSAppiOSarm64TargetID,
+        target: iOSAppiOSarm64Target
+    )
+    lazy var iOSAppiOSx8664TargetWithID = XcodeScheme.TargetWithID(
+        id: iOSAppiOSx8664TargetID,
+        target: iOSAppiOSx8664Target
+    )
+    lazy var iOSAppLabelTargetInfo: XcodeScheme.LabelTargetInfo = {
+        var targetInfo = XcodeScheme.LabelTargetInfo(label: iOSAppLabel, isTopLevel: false)
+        targetInfo.add(iOSAppiOSarm64TargetWithID)
+        targetInfo.add(iOSAppiOSx8664TargetWithID)
+        return targetInfo
+    }()
 }
