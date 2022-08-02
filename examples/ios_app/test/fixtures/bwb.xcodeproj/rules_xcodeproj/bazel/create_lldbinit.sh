@@ -41,7 +41,7 @@ echo "settings set target.source-map ./bazel-out/ \"$GEN_DIR\""
 # Generated when set from indexing opened file
 echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
 # Generated when set from swiftsourcefile
-echo "settings append target.source-map ./external/ \"$build_bazel_out\""
+echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
 
 # External when set from Project navigator
 echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
