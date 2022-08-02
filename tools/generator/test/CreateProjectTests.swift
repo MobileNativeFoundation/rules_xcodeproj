@@ -44,6 +44,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
+                "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,
@@ -151,6 +152,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
                 "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
+                "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,
