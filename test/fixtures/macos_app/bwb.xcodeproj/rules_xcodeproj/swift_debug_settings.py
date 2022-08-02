@@ -24,27 +24,23 @@ _SETTINGS = {
   }
 }
 
-_FALLBACK_KEYS = {
-  "x86_64-apple-macosx macOSApp.app/Contents/MacOS/macOSApp" : "x86_64-apple-macosx15.0.0 macOSApp.app/Contents/MacOS/macOSApp"
-}
-
 def __lldb_init_module(debugger, _internal_dict):
     # Register the stop hook when this module is loaded in lldb
     ci = debugger.GetCommandInterpreter()
-        res = lldb.SBCommandReturnObject()
-        ci.HandleCommand(
-            "target stop-hook add -P swift_debug_settings.StopHook",
-            res,
-        )
-        if not res.Succeeded():
-            print(f"""\
-    Failed to register Swift debug options stop hook:
+    res = lldb.SBCommandReturnObject()
+    ci.HandleCommand(
+        "target stop-hook add -P swift_debug_settings.StopHook",
+        res,
+    )
+    if not res.Succeeded():
+        print(f"""\
+Failed to register Swift debug options stop hook:
 
-    {res.GetError()}
-    Please file a bug report here: \
-    https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.
-    """)
-            return
+{res.GetError()}
+Please file a bug report here: \
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.
+""")
+        return
 
 def _get_relative_executable_path(module):
     for extension in _BUNDLE_EXTENSIONS:
@@ -68,10 +64,6 @@ class StopHook:
         key = f"{target_triple} {executable_path}"
 
         settings = _SETTINGS.get(key)
-        if not settings:
-            fallback_key = _FALLBACK_KEYS.get(key)
-            if fallback_key:
-                settings = _SETTINGS.get(fallback_key)
 
         if settings:
             frameworks = " ".join([
