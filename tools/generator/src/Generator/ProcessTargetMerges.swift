@@ -51,6 +51,9 @@ exist
                 // but that currently seems like too much work.
                 merged.packageBinDir = merging.packageBinDir
 
+                // Update platform
+                merged.platform = merging.platform
+
                 // Update isSwift
                 merged.isSwift = merging.isSwift
 
