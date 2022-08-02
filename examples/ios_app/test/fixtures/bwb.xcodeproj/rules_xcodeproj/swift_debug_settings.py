@@ -52,30 +52,23 @@ _SETTINGS = {
   }
 }
 
-_FALLBACK_KEYS = {
-  "x86_64-apple-ios-simulator Example.app/Example_ExecutableName" : "x86_64-apple-ios15.0.0-simulator Example.app/Example_ExecutableName",
-  "x86_64-apple-ios-simulator ExampleObjcTests.xctest/ExampleObjcTests" : "x86_64-apple-ios15.0.0-simulator ExampleObjcTests.xctest/ExampleObjcTests",
-  "x86_64-apple-ios-simulator ExampleTests.xctest/ExampleTests" : "x86_64-apple-ios15.0.0-simulator ExampleTests.xctest/ExampleTests",
-  "x86_64-apple-ios-simulator ExampleUITests.xctest/ExampleUITests" : "x86_64-apple-ios15.0.0-simulator ExampleUITests.xctest/ExampleUITests"
-}
-
 def __lldb_init_module(debugger, _internal_dict):
     # Register the stop hook when this module is loaded in lldb
     ci = debugger.GetCommandInterpreter()
-        res = lldb.SBCommandReturnObject()
-        ci.HandleCommand(
-            "target stop-hook add -P swift_debug_settings.StopHook",
-            res,
-        )
-        if not res.Succeeded():
-            print(f"""\
-    Failed to register Swift debug options stop hook:
+    res = lldb.SBCommandReturnObject()
+    ci.HandleCommand(
+        "target stop-hook add -P swift_debug_settings.StopHook",
+        res,
+    )
+    if not res.Succeeded():
+        print(f"""\
+Failed to register Swift debug options stop hook:
 
-    {res.GetError()}
-    Please file a bug report here: \
-    https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.
-    """)
-            return
+{res.GetError()}
+Please file a bug report here: \
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.
+""")
+        return
 
 def _get_relative_executable_path(module):
     for extension in _BUNDLE_EXTENSIONS:
@@ -99,10 +92,6 @@ class StopHook:
         key = f"{target_triple} {executable_path}"
 
         settings = _SETTINGS.get(key)
-        if not settings:
-            fallback_key = _FALLBACK_KEYS.get(key)
-            if fallback_key:
-                settings = _SETTINGS.get(fallback_key)
 
         if settings:
             frameworks = " ".join([

@@ -178,43 +178,23 @@ _SETTINGS = {
   }
 }
 
-_FALLBACK_KEYS = {
-  "arm64_32-apple-watchos watchOSApp.app/watchOSApp" : "arm64_32-apple-watchos7.0.0 watchOSApp.app/watchOSApp",
-  "arm64_32-apple-watchos watchOSAppExtension.appex/watchOSAppExtension" : "arm64_32-apple-watchos7.0.0 watchOSAppExtension.appex/watchOSAppExtension",
-  "arm64-apple-ios AppClip.app/AppClip" : "arm64-apple-ios15.0.0 AppClip.app/AppClip",
-  "arm64-apple-ios iMessageApp.app/iMessageApp" : "arm64-apple-ios15.0.0 iMessageApp.app/iMessageApp",
-  "arm64-apple-ios iMessageAppExtension.appex/iMessageAppExtension" : "arm64-apple-ios15.0.0 iMessageAppExtension.appex/iMessageAppExtension",
-  "arm64-apple-ios iOSApp.app/iOSApp" : "arm64-apple-ios15.0.0 iOSApp.app/iOSApp",
-  "arm64-apple-ios WidgetExtension.appex/WidgetExtension" : "arm64-apple-ios15.0.0 WidgetExtension.appex/WidgetExtension",
-  "arm64-apple-tvos tvOSApp.app/tvOSApp" : "arm64-apple-tvos15.0.0 tvOSApp.app/tvOSApp",
-  "x86_64-apple-ios-simulator AppClip.app/AppClip" : "x86_64-apple-ios15.0.0-simulator AppClip.app/AppClip",
-  "x86_64-apple-ios-simulator iMessageApp.app/iMessageApp" : "x86_64-apple-ios15.0.0-simulator iMessageApp.app/iMessageApp",
-  "x86_64-apple-ios-simulator iMessageAppExtension.appex/iMessageAppExtension" : "x86_64-apple-ios15.0.0-simulator iMessageAppExtension.appex/iMessageAppExtension",
-  "x86_64-apple-ios-simulator iOSApp.app/iOSApp" : "x86_64-apple-ios15.0.0-simulator iOSApp.app/iOSApp",
-  "x86_64-apple-ios-simulator WidgetExtension.appex/WidgetExtension" : "x86_64-apple-ios15.0.0-simulator WidgetExtension.appex/WidgetExtension",
-  "x86_64-apple-macosx Tool" : "x86_64-apple-macosx11.0.0 Tool",
-  "x86_64-apple-tvos-simulator tvOSApp.app/tvOSApp" : "x86_64-apple-tvos15.0.0-simulator tvOSApp.app/tvOSApp",
-  "x86_64-apple-watchos-simulator watchOSApp.app/watchOSApp" : "x86_64-apple-watchos7.0.0-simulator watchOSApp.app/watchOSApp",
-  "x86_64-apple-watchos-simulator watchOSAppExtension.appex/watchOSAppExtension" : "x86_64-apple-watchos7.0.0-simulator watchOSAppExtension.appex/watchOSAppExtension"
-}
-
 def __lldb_init_module(debugger, _internal_dict):
     # Register the stop hook when this module is loaded in lldb
     ci = debugger.GetCommandInterpreter()
-        res = lldb.SBCommandReturnObject()
-        ci.HandleCommand(
-            "target stop-hook add -P swift_debug_settings.StopHook",
-            res,
-        )
-        if not res.Succeeded():
-            print(f"""\
-    Failed to register Swift debug options stop hook:
+    res = lldb.SBCommandReturnObject()
+    ci.HandleCommand(
+        "target stop-hook add -P swift_debug_settings.StopHook",
+        res,
+    )
+    if not res.Succeeded():
+        print(f"""\
+Failed to register Swift debug options stop hook:
 
-    {res.GetError()}
-    Please file a bug report here: \
-    https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.
-    """)
-            return
+{res.GetError()}
+Please file a bug report here: \
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.
+""")
+        return
 
 def _get_relative_executable_path(module):
     for extension in _BUNDLE_EXTENSIONS:
@@ -238,10 +218,6 @@ class StopHook:
         key = f"{target_triple} {executable_path}"
 
         settings = _SETTINGS.get(key)
-        if not settings:
-            fallback_key = _FALLBACK_KEYS.get(key)
-            if fallback_key:
-                settings = _SETTINGS.get(fallback_key)
 
         if settings:
             frameworks = " ".join([
