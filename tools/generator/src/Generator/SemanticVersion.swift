@@ -51,8 +51,24 @@ extension SemanticVersion: Comparable {
     }
 }
 
+extension SemanticVersion {
+    /// Fully qualified version string.
+    var full: String {
+        return "\(major).\(minor).\(patch)"
+    }
+
+    /// Output a version string that inlucdes the major and minor values if the patch is 0.
+    /// Otherwise, output the fully qualified version string.
+    var pretty: String {
+        if patch == 0 {
+            return "\(major).\(minor)"
+        }
+        return full
+    }
+}
+
 extension SemanticVersion: CustomStringConvertible {
     public var description: String {
-        return "\(major).\(minor).\(patch)"
+        return full
     }
 }
