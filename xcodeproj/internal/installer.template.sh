@@ -122,17 +122,17 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   exec_root="${bazel_out%/*}"
   external="${exec_root%/*/*}/external"
 
-  # Determine `$BUILD_DIR`
+  # Determine `$OBJROOT`
   error_log=$(mktemp)
   exit_status=0
-  build_dir=$(\
+  objroot=$(\
     xcodebuild -project "$dest" -showBuildSettings 2>&1 | tee -i "$error_log" \
-      | grep '\sBUILD_DIR\s=\s' \
+      | grep '\OBJROOT\s=\s' \
       | sed 's/.*= //' \
       || exit_status=$? \
   )
   if [ $exit_status -ne 0 ]; then
-    echo "ERROR: Failed to calculate BUILD_DIR for \"$dest\":"
+    echo "ERROR: Failed to calculate OBJROOT for \"$dest\":"
     cat "$error_log" >&2
     exit 1
   fi
@@ -151,11 +151,11 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   rm -rf gen_dir
 
   ln -s "$external" external
-  ln -s "$build_dir/bazel-exec-root/bazel-out" gen_dir
+  ln -s "$objroot/bazel-exec-root/bazel-out" gen_dir
 
   # Create `$GEN_DIR`
-  mkdir -p "$build_dir"
-  cd "$build_dir"
+  mkdir -p "$objroot"
+  cd "$objroot"
   rm -f "bazel-exec-root"
   ln -s "$exec_root" "bazel-exec-root"
 

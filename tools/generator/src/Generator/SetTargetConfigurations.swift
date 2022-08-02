@@ -370,17 +370,17 @@ $(CONFIGURATION_BUILD_DIR)
             if target.isSwift {
                 try buildSettings.prepend(
                     onKey: "OTHER_SWIFT_FLAGS",
-                    "-vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml"
+                    "-vfsoverlay $(OBJROOT)/gen_dir-overlay.yaml"
                 )
             } else {
                 try buildSettings.prepend(
                     onKey: "OTHER_CFLAGS",
-                    ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
+                    ["-ivfsoverlay", "$(OBJROOT)/gen_dir-overlay.yaml"]
                 )
 
                 try buildSettings.prepend(
                     onKey: "OTHER_CPLUSPLUSFLAGS",
-                    ["-ivfsoverlay", "$(BUILD_DIR)/gen_dir-overlay.yaml"]
+                    ["-ivfsoverlay", "$(OBJROOT)/gen_dir-overlay.yaml"]
                 )
             }
 
@@ -390,8 +390,8 @@ $(CONFIGURATION_BUILD_DIR)
                     try buildSettings.prepend(
                         onKey: "OTHER_SWIFT_FLAGS",
                         #"""
-    -Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
-    -Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/gen_dir-overlay.yaml
+    -Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
+    -Xcc -ivfsoverlay -Xcc $(OBJROOT)/gen_dir-overlay.yaml
     """#
                     )
                 }
@@ -401,12 +401,12 @@ $(CONFIGURATION_BUILD_DIR)
                 {
                     try buildSettings.prepend(
                         onKey: "OTHER_CFLAGS",
-                        ["-ivfsoverlay", "$(BUILD_DIR)/xcode-overlay.yaml"]
+                        ["-ivfsoverlay", "$(OBJROOT)/xcode-overlay.yaml"]
                     )
 
                     try buildSettings.prepend(
                         onKey: "OTHER_CPLUSPLUSFLAGS",
-                        ["-ivfsoverlay", "$(BUILD_DIR)/xcode-overlay.yaml"]
+                        ["-ivfsoverlay", "$(OBJROOT)/xcode-overlay.yaml"]
                     )
                 }
             default:

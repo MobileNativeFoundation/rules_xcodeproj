@@ -177,7 +177,7 @@ env -i \
                     .resolve(.internal(lldbSwiftSettingsModulePath))
                     .string
             ],
-            outputPaths: ["$(BUILD_DIR)/swift_debug_settings.py"],
+            outputPaths: ["$(OBJROOT)/swift_debug_settings.py"],
             shellScript: #"""
 perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
@@ -199,7 +199,7 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
 
 # Use actual paths for Bazel generated files
 # This also fixes Index Build to use its version of generated files
-cat > "$BUILD_DIR/gen_dir-overlay.yaml" <<EOF
+cat > "$OBJROOT/gen_dir-overlay.yaml" <<EOF
 {"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$output_path","name": "$GEN_DIR","type": "directory-remap"}],"version": 0}
 EOF
 
@@ -233,7 +233,7 @@ EOF
             overlays.append(#"""
 # Look up Swift generated headers in `$BUILD_DIR` first, then fall through to \#
 `$BAZEL_OUT`
-cat > "$BUILD_DIR/xcode-overlay.yaml" <<EOF
+cat > "$OBJROOT/xcode-overlay.yaml" <<EOF
 {"case-sensitive": "false", "fallthrough": true, "roots": [\#(roots)],"version": 0}
 EOF
 
@@ -250,9 +250,9 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&
         return #"""
 set -euo pipefail
 
-# Xcode doesn't adjust `$BUILD_DIR` in scheme action scripts when building for
+# Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for
 # previews. So we need to look in the non-preview build directory for this file.
-output_groups_file="${BAZEL_BUILD_OUTPUT_GROUPS_FILE/\/Intermediates.noindex\/Previews\/*\/Products\///Products/}"
+output_groups_file="${BAZEL_BUILD_OUTPUT_GROUPS_FILE/\/Intermediates.noindex\/Previews\/*\///Intermediates.noindex/}"
 
 # We need to read from this file as soon as possible, as concurrent writes to it
 # can happen during indexing, which breaks the off-by-one-by-design nature of it
@@ -328,7 +328,7 @@ if [ "$ACTION" != "indexbuild" ]; then
 fi
 \#(overlays.joined(separator: "\n"))\#
 
-cd "$BUILD_DIR"
+cd "$OBJROOT"
 
 rm -rf external
 rm -rf bazel-exec-root

@@ -1464,10 +1464,10 @@ if [ "$ACTION" != "indexbuild" ]; then
   rm -rf gen_dir
 
   ln -sf "$external" external
-  ln -sf "$BUILD_DIR/bazel-out" gen_dir
+  ln -sf "$BAZEL_OUT" gen_dir
 fi
 
-cd "$BUILD_DIR"
+cd "$OBJROOT"
 
 rm -rf external
 rm -rf bazel-exec-root
@@ -2108,7 +2108,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml
+-vfsoverlay $(OBJROOT)/gen_dir-overlay.yaml
 """#,
                 "PRODUCT_NAME": "a",
                 "SDKROOT": "macosx",
@@ -2135,11 +2135,11 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "A",
@@ -2162,11 +2162,11 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "AC",
                 "SDKROOT": "iphoneos",
@@ -2182,11 +2182,11 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "b",
                 "SDKROOT": "macosx",
@@ -2204,11 +2204,11 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "B",
                 "SDKROOT": "macosx",
@@ -2232,11 +2232,11 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "B3",
                 "SDKROOT": "macosx",
@@ -2254,11 +2254,11 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "c",
                 "SDKROOT": "macosx",
@@ -2279,11 +2279,11 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "d",
@@ -2297,9 +2297,9 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_TARGET_ID": "E1",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": #"""
--Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/xcode-overlay.yaml \#
--Xcc -ivfsoverlay -Xcc $(BUILD_DIR)/gen_dir-overlay.yaml \#
--vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(OBJROOT)/gen_dir-overlay.yaml \#
+-vfsoverlay $(OBJROOT)/gen_dir-overlay.yaml \#
 -Xcc -fmodule-map-file=a/module.modulemap
 """#,
                 "PRODUCT_NAME": "E1",
@@ -2315,7 +2315,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_TARGET_ID": "E2",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml
+-vfsoverlay $(OBJROOT)/gen_dir-overlay.yaml
 """#,
                 "PRODUCT_NAME": "E2",
                 "SDKROOT": "appletvos",
@@ -2341,15 +2341,15 @@ $(BAZEL_OUT)/some/framework/parent/dir
                 ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/xcode-overlay.yaml",
+                    "$(OBJROOT)/xcode-overlay.yaml",
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/xcode-overlay.yaml",
+                    "$(OBJROOT)/xcode-overlay.yaml",
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "I",
                 "SDKROOT": "iphoneos",
@@ -2371,11 +2371,11 @@ $(BAZEL_OUT)/some/quote/includes/parent/dir
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "R 1",
                 "SDKROOT": "macosx",
@@ -2422,7 +2422,7 @@ $(MACOSX_FILES)
 "T/T 3/Ta.c" "T/T 3/Ta.png" "T/T 3/Ta.swift"
 """,
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(BUILD_DIR)/gen_dir-overlay.yaml
+-vfsoverlay $(OBJROOT)/gen_dir-overlay.yaml
 """#,
                 "PRODUCT_NAME": "t",
                 "SDKROOT": "macosx",
@@ -2440,11 +2440,11 @@ $(MACOSX_FILES)
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "W",
                 "SDKROOT": "watchos",
@@ -2468,11 +2468,11 @@ $(MACOSX_FILES)
                 ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "WDKE",
                 "SDKROOT": "iphoneos",
@@ -2495,11 +2495,11 @@ $(MACOSX_FILES)
                 ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(BUILD_DIR)/gen_dir-overlay.yaml",
+                    "$(OBJROOT)/gen_dir-overlay.yaml",
                 ],
                 "PRODUCT_NAME": "WKE",
                 "SDKROOT": "watchos",
