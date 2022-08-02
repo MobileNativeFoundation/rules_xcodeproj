@@ -23,7 +23,6 @@
 
 /* Begin PBXBuildFile section */
 		30C8A97AD6424D0CEE418C13 /* macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BD39E40436194BD7493E47 /* macOSApp.swift */; };
-		B9F1B2EA1F682CDC63CA17BC /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		E5D745C49A3ECC46B9B96B19 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6962FF4763079A73B20C68BF /* ExampleFramework.framework */; };
 		E99AC4A22EBD2857E1B3BAB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F110B9B46CA02EC8B5D2D /* ContentView.swift */; };
 /* End PBXBuildFile section */
@@ -50,7 +49,6 @@
 		A6D2339680FEF6849778735A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B28790441A2C90C7FEA3E8DC /* macOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D965834BE49207294852D02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,15 +190,6 @@
 			path = test/fixtures/macos_app/bwb.xcodeproj/rules_xcodeproj/links/gen_dir;
 			sourceTree = "<group>";
 		};
-		D182AF8E059C5832405A845F /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */,
-			);
-			name = rules_xcodeproj;
-			path = test/fixtures/macos_app/bwb.xcodeproj/rules_xcodeproj;
-			sourceTree = "<group>";
-		};
 		D6489F0BDF23532FD1CD7A98 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,7 +220,6 @@
 				BB34C210E2A56E7B96B81F9A /* examples */,
 				68A1D737225E7A97337523DE /* test */,
 				C407A8E68D8C611448A3E699 /* Bazel Generated Files */,
-				D182AF8E059C5832405A845F /* rules_xcodeproj */,
 				593E7C82FAAD94A7E6A04318 /* Products */,
 				C047AF1D451C7E165914273D /* Frameworks */,
 			);
@@ -343,7 +331,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -376,7 +363,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9F1B2EA1F682CDC63CA17BC /* _BazelForcedCompile_.swift in Sources */,
 				E99AC4A22EBD2857E1B3BAB4 /* ContentView.swift in Sources */,
 				30C8A97AD6424D0CEE418C13 /* macOSApp.swift in Sources */,
 			);

@@ -22,16 +22,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0132077EDF28E0BA3B4DD0CA /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		36BA4FBB2BD9C8A3A8CE20C9 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		4BFD859F1371C86D02DB25A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB9E176B3AB4F6354A1167 /* ContentView.swift */; };
 		6A97C8EA8F4607A20FA6E3C2 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027F83636D3D6C6ABBF375F /* ExampleTests.swift */; };
 		8490D2560B037FDA913FA479 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFA501580379A58AE2389D0 /* TestingUtils.swift */; };
 		8827E174961A52D2C88CF0C9 /* ExampleObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1945E01AD98FE05054F33AE5 /* ExampleObjcTests.m */; };
 		A29169FF12586786795BC72E /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDA5C3FF5C9611B6DF55D3C /* ExampleUITests.swift */; };
 		B054C3F6BAFAFA0604A3B413 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE684C8B8336D55C43040D1E /* Foo.m */; };
-		B9F1B2EA1F682CDC63CA17BC /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
-		C35F652B550BB76721075171 /* _BazelForcedCompile_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */; };
 		C908762178E1810512145D56 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51A4085F05FC61686E7785 /* ExampleApp.swift */; };
 		D184C3C5A13941F3D1470F16 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6FAB2FF4A94053E4D470E /* ExampleUITestsLaunchTests.swift */; };
 		EF069547E19BA1AA74D9E906 /* Answers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E5C31FB0363AFF5007707 /* Answers.mm */; };
@@ -218,7 +214,6 @@
 		DE684C8B8336D55C43040D1E /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 		E0C81E16EC5519BF225D8628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E470DDDC0990D96A685DB11C /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BazelForcedCompile_.swift; sourceTree = DERIVED_FILE_DIR; };
 		E87C46A394A10BD8A57D4ED8 /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9ED685D3A056C10F6A99CCD /* Utils.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = Utils.bundle; sourceTree = "<group>"; };
 		EF7A41BCADD5C386F325375B /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
@@ -538,15 +533,6 @@
 			path = OnlyStructuredResources;
 			sourceTree = "<group>";
 		};
-		D182AF8E059C5832405A845F /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				E61C1B860E7015FBB3750A95 /* _BazelForcedCompile_.swift */,
-			);
-			name = rules_xcodeproj;
-			path = test/fixtures/bwb.xcodeproj/rules_xcodeproj;
-			sourceTree = "<group>";
-		};
 		D5D2408BE5618400EACF5CDA /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,7 +616,6 @@
 				E0A6E74E3EC30503D4296461 /* Utils */,
 				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
 				C407A8E68D8C611448A3E699 /* Bazel Generated Files */,
-				D182AF8E059C5832405A845F /* rules_xcodeproj */,
 				593E7C82FAAD94A7E6A04318 /* Products */,
 				C047AF1D451C7E165914273D /* Frameworks */,
 			);
@@ -901,7 +886,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -935,7 +919,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -970,7 +953,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -988,7 +970,6 @@
 			);
 			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/_BazelForcedCompile_.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1064,7 +1045,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0132077EDF28E0BA3B4DD0CA /* _BazelForcedCompile_.swift in Sources */,
 				8490D2560B037FDA913FA479 /* TestingUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1073,7 +1053,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36BA4FBB2BD9C8A3A8CE20C9 /* _BazelForcedCompile_.swift in Sources */,
 				A29169FF12586786795BC72E /* ExampleUITests.swift in Sources */,
 				D184C3C5A13941F3D1470F16 /* ExampleUITestsLaunchTests.swift in Sources */,
 			);
@@ -1083,7 +1062,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C35F652B550BB76721075171 /* _BazelForcedCompile_.swift in Sources */,
 				6A97C8EA8F4607A20FA6E3C2 /* ExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1108,7 +1086,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9F1B2EA1F682CDC63CA17BC /* _BazelForcedCompile_.swift in Sources */,
 				4BFD859F1371C86D02DB25A1 /* ContentView.swift in Sources */,
 				C908762178E1810512145D56 /* ExampleApp.swift in Sources */,
 			);
