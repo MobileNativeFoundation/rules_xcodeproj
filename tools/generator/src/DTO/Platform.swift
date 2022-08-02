@@ -18,28 +18,14 @@ struct Platform: Equatable, Hashable, Decodable {
 
     struct OSVersion: RawRepresentable, Hashable, Decodable {
         let rawValue: String
-        let fullVersion: String
-        let semanticVersion: SemanticVersion?
+        let semanticVersion: SemanticVersion
 
         init?(rawValue: String) {
             self.rawValue = rawValue
-
-            var components = rawValue.split(separator: ".")
-            let componentCount = components.count
-            guard componentCount < 3 else {
-                fullVersion = rawValue
-                semanticVersion = nil
-                return
+            guard let semanticVersion = SemanticVersion(version: rawValue) else {
+                return nil
             }
-
-            if componentCount == 2 {
-                components.append("0")
-            } else if componentCount == 1 {
-                components.append(contentsOf: ["0", "0"])
-            }
-
-            fullVersion = components.joined(separator: ".")
-            semanticVersion = .init(version: fullVersion)
+            self.semanticVersion = semanticVersion
         }
     }
 
@@ -121,8 +107,13 @@ extension Platform.Variant {
 
 extension Platform.OSVersion: Comparable {
     static func < (lhs: Platform.OSVersion, rhs: Platform.OSVersion) -> Bool {
-        return lhs.rawValue.compare(rhs.rawValue, options: .numeric)
-            == .orderedAscending
+        return lhs.semanticVersion < rhs.semanticVersion
+    }
+}
+
+extension Platform.OSVersion: Equatable {
+    static func == (lhs: Platform.OSVersion, rhs: Platform.OSVersion) -> Bool {
+        return lhs.semanticVersion == rhs.semanticVersion
     }
 }
 

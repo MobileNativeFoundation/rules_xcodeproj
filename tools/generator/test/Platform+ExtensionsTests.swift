@@ -39,17 +39,6 @@ extension PlatformExtensionsTests {
         let platform = Platform.device(os: .iOS, minimumOsVersion: "10.0")
         XCTAssertEqual(platform.compatibility(with: other), .compatible)
     }
-
-    func test_compatibility_selfNoMinOsVer() throws {
-        let platform = Platform.device(os: .iOS, minimumOsVersion: "unrecognizable")
-        XCTAssertEqual(platform.compatibility(with: other), .noMinimumOsSemanticVersionForSelf)
-    }
-
-    func test_compatibility_otherNoMinOsVer() throws {
-        let platform = Platform.device(os: .iOS)
-        let other = Platform.device(os: .iOS, minimumOsVersion: "unrecognizable")
-        XCTAssertEqual(platform.compatibility(with: other), .noMinimumOsSemanticVersionForOther)
-    }
 }
 
 // MARK: `isCompatible` Tests
@@ -63,6 +52,8 @@ extension PlatformExtensionsTests {
         XCTAssertFalse(Platform.Compatibility.osNotEqual.isCompatible)
     }
 }
+
+// MARK: `compatibleWith(anyOf:)` Tests
 
 extension PlatformExtensionsTests {
     func test_compatibleWith_compatible() throws {

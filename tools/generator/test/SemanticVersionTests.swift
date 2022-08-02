@@ -12,7 +12,8 @@ public class SemanticVersionNumberTests: XCTestCase {
 
     func testInitFromStringWhenStringIsMalformedVerionNumberWithLessThanThreeNumbers() {
         let value = SemanticVersion(version: "1.2")
-        XCTAssertNil(value)
+        let expected = SemanticVersion(major: 1, minor: 2, patch: 0)
+        XCTAssertEqual(value, expected)
     }
 
     func testInitFromStringWhenStringIsMalformedVerionNumberWithNonNumbers() {

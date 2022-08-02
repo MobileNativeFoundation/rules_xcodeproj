@@ -6,8 +6,6 @@ extension Platform {
         case osNotEqual
         case variantNotEqual
         case archNotEqual
-        case noMinimumOsSemanticVersionForSelf
-        case noMinimumOsSemanticVersionForOther
         case minimumOsVersionGreaterThanOther
 
         var isCompatible: Bool {
@@ -30,13 +28,7 @@ extension Platform {
         guard arch == other.arch else {
             return .archNotEqual
         }
-        guard let minOsVersion = minimumOsVersion.semanticVersion else {
-            return .noMinimumOsSemanticVersionForSelf
-        }
-        guard let otherMinOsVersion = other.minimumOsVersion.semanticVersion else {
-            return .noMinimumOsSemanticVersionForOther
-        }
-        guard minOsVersion <= otherMinOsVersion else {
+        guard minimumOsVersion.semanticVersion <= other.minimumOsVersion.semanticVersion else {
             return .minimumOsVersionGreaterThanOther
         }
         return .compatible

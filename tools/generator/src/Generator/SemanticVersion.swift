@@ -2,17 +2,24 @@ import Foundation
 
 // Inspired by https://gist.github.com/mjdescy/a805b5b4c49ed79fb240d3886815d5a2
 struct SemanticVersion: Equatable {
+    static let maximumVersionPartCount = 3
+
     public let major: Int
     public let minor: Int
     public let patch: Int
 
     public init?(version: String) {
-        let components = version.split(separator: ".")
-        guard components.count == 3 else { return nil }
+        var components = version.split(separator: ".").map { String($0) }
+        let componentCount = components.count
+        guard componentCount <= Self.maximumVersionPartCount else {
+            return nil
+        }
 
-        self.init(major: String(components[0]),
-                  minor: String(components[1]),
-                  patch: String(components[2]))
+        let missingPartsCount = Self.maximumVersionPartCount - componentCount
+        let missingParts = Array(repeating: "0", count: missingPartsCount)
+        components.append(contentsOf: missingParts)
+
+        self.init(major: components[0], minor: components[1], patch: components[2])
     }
 
     public init?(major: String, minor: String, patch: String) {
