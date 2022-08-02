@@ -294,6 +294,6 @@ extension PBXProductType {
     }
 
     var isTopLevel: Bool {
-        return isApplication || isTestBundle
+        return isLaunchable || isTestBundle
     }
 }

@@ -15,6 +15,10 @@ class PBXProductTypeExtensionsTests: XCTestCase {
         XCTAssertNil(PBXProductType.framework.bazelLaunchEnvironmentVariables)
     }
 
+    func test_isTopLevel_whenIsCommanLine() throws {
+        XCTAssertTrue(PBXProductType.commandLineTool.isTopLevel)
+    }
+
     func test_isTopLevel_whenIsApplication() throws {
         XCTAssertTrue(PBXProductType.application.isTopLevel)
     }
