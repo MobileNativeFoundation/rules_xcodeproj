@@ -34,13 +34,15 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
 """)
         }
 
-        // TODO(chuck): Switch to Set
-        var topLevelTargetInfos = [XCSchemeInfo.TargetInfo]()
-        if let testActionInfo = testActionInfo {
-            topLevelTargetInfos += testActionInfo.targetInfos
+        var topLevelTargetInfos = Set<XCSchemeInfo.TargetInfo>()
+        if let buildActionInfo = buildActionInfo {
+            topLevelTargetInfos.formUnion(buildActionInfo.targetInfos.filter(\.pbxTarget.isTopLevel))
         }
-        if let launchActionInfo = launchActionInfo {
-            topLevelTargetInfos.append(launchActionInfo.targetInfo)
+        if let testActionInfo = testActionInfo {
+            topLevelTargetInfos.formUnion(testActionInfo.targetInfos.filter(\.pbxTarget.isTopLevel))
+        }
+        if let launchActionInfo = launchActionInfo, launchActionInfo.targetInfo.pbxTarget.isTopLevel {
+            topLevelTargetInfos.update(with: launchActionInfo.targetInfo)
         }
 
         self.buildActionInfo = try .init(
