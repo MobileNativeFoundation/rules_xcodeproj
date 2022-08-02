@@ -33,10 +33,10 @@ An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.Target
 
 extension XCSchemeInfo.LaunchActionInfo {
     /// Create a copy of the `LaunchActionInfo` with the host in the `TargetInfo` resolved.
-    init?(
+    init?<TargetInfos: Sequence>(
         resolveHostsFor launchActionInfo: XCSchemeInfo.LaunchActionInfo?,
-        topLevelTargetInfos: [XCSchemeInfo.TargetInfo]
-    ) throws {
+        topLevelTargetInfos: TargetInfos
+    ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         guard let original = launchActionInfo else {
           return nil
         }
