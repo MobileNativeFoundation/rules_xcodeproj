@@ -1,7 +1,7 @@
 import Foundation
 
 // Inspired by https://gist.github.com/mjdescy/a805b5b4c49ed79fb240d3886815d5a2
-public struct SemanticVersion: Equatable {
+struct SemanticVersion: Equatable {
     public let major: Int
     public let minor: Int
     public let patch: Int
