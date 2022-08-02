@@ -1,11 +1,3 @@
-// MARK: `Platform.OSVersion.semanticVersion`
-
-extension Platform.OSVersion {
-    var semanticVersion: SemanticVersion? {
-        return .init(version: fullVersion)
-    }
-}
-
 // MARK: `Platform.compatibility`
 
 extension Platform {

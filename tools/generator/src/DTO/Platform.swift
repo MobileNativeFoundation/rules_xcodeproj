@@ -19,6 +19,7 @@ struct Platform: Equatable, Hashable, Decodable {
     struct OSVersion: RawRepresentable, Hashable, Decodable {
         let rawValue: String
         let fullVersion: String
+        let semanticVersion: SemanticVersion?
 
         init?(rawValue: String) {
             self.rawValue = rawValue
@@ -26,7 +27,8 @@ struct Platform: Equatable, Hashable, Decodable {
             var components = rawValue.split(separator: ".")
             let componentCount = components.count
             guard componentCount < 3 else {
-                self.fullVersion = rawValue
+                fullVersion = rawValue
+                semanticVersion = nil
                 return
             }
 
@@ -36,7 +38,8 @@ struct Platform: Equatable, Hashable, Decodable {
                 components.append(contentsOf: ["0", "0"])
             }
 
-            self.fullVersion = components.joined(separator: ".")
+            fullVersion = components.joined(separator: ".")
+            semanticVersion = .init(version: fullVersion)
         }
     }
 
