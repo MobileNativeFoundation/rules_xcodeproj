@@ -499,7 +499,7 @@ def _xcodeproj_impl(ctx):
         ],
     )
 
-    bazel_integration_files = [ctx.file._create_lldbinit_script]
+    bazel_integration_files = list(ctx.files._base_integration_files)
     if build_mode != "xcode":
         bazel_integration_files.extend(ctx.files._bazel_integration_files)
 
@@ -628,13 +628,13 @@ A JSON string representing a list of Xcode schemes to create.\
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
+        "_base_integration_files": attr.label(
+            allow_files = True,
+            default = Label("//xcodeproj/internal/bazel_integration_files:base_integration_files"),
+        ),
         "_bazel_integration_files": attr.label(
             allow_files = True,
             default = Label("//xcodeproj/internal/bazel_integration_files"),
-        ),
-        "_create_lldbinit_script": attr.label(
-            allow_single_file = True,
-            default = Label("//xcodeproj/internal/bazel_integration_files:create_lldbinit.sh"),
         ),
         "_extensionpointidentifiers_parser": attr.label(
             cfg = "exec",

@@ -10,8 +10,8 @@ readonly exclude_list="$3"
 # trap 'echo "private let touch = \"$(date +%s)\"" > "$DERIVED_FILE_DIR/$forced_swift_compile_file"' ERR
 
 if [[ "$ACTION" == indexbuild ]]; then
-  # Write to "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" to allow next index to catch up
-  echo "i $BAZEL_TARGET_ID" > "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+  # Write to "$SCHEME_TARGET_IDS_FILE" to allow next index to catch up
+  echo "$BAZEL_TARGET_ID" > "$SCHEME_TARGET_IDS_FILE"
 else
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
