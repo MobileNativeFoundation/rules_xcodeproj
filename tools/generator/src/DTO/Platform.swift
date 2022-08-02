@@ -26,7 +26,7 @@ struct Platform: Equatable, Hashable, Decodable {
             var components = rawValue.split(separator: ".")
             let componentCount = components.count
             guard componentCount < 3 else {
-                fullVersion = rawValue
+                self.fullVersion = rawValue
                 return
             }
 
@@ -36,7 +36,7 @@ struct Platform: Equatable, Hashable, Decodable {
                 components.append(contentsOf: ["0", "0"])
             }
 
-            fullVersion = components.joined(separator: ".")
+            self.fullVersion = components.joined(separator: ".")
         }
     }
 
