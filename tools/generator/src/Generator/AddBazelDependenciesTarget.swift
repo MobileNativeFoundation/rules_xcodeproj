@@ -43,7 +43,6 @@ env -i \
             name: "Debug",
             buildSettings: [
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
-                "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 // We have to support only a single platform to prevent issues
                 // with duplicated outputs during Index Build, but it also
                 // has to be a platform that one of the targets uses, otherwise
