@@ -34,6 +34,7 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
 """)
         }
 
+        // TODO(chuck): Switch to Set
         var topLevelTargetInfos = [XCSchemeInfo.TargetInfo]()
         if let testActionInfo = testActionInfo {
             topLevelTargetInfos += testActionInfo.targetInfos
