@@ -19,9 +19,6 @@ extension Generator {
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
-            "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
-$(OBJROOT)/bazel_build_output_groups
-""",
             "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
@@ -31,6 +28,9 @@ $(OBJROOT)/bazel_build_output_groups
             // from being modified though.
             "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
+            "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
+$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
             "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)",
             "DEPLOYMENT_LOCATION": """
@@ -55,6 +55,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
+""",
+            "SCHEME_TARGET_IDS_FILE": """
+$(OBJROOT)/scheme_target_ids
 """,
             // Bazel currently doesn't support Catalyst
             "SUPPORTS_MACCATALYST": false,

@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Initialize Bazel Build Output Groups File"
-               scriptText = "mkdir -p &quot;${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}&quot;&#10;if [[ -s &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot; ]]; then&#10;    rm &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;fi&#10;">
+               scriptText = "mkdir -p &quot;${SCHEME_TARGET_IDS_FILE%/*}&quot;&#10;if [[ -s &quot;$SCHEME_TARGET_IDS_FILE&quot; ]]; then&#10;    rm &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;fi&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -26,7 +26,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Set Bazel Build Output Groups for CoreUtilsObjC"
-               scriptText = "echo &quot;b $BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$BAZEL_BUILD_OUTPUT_GROUPS_FILE&quot;&#10;">
+               scriptText = "echo &quot;$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

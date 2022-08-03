@@ -117,9 +117,9 @@ extension XCScheme.ExecutionAction {
     ) -> XCScheme.ExecutionAction {
         return .init(
             scriptText: #"""
-mkdir -p "${BAZEL_BUILD_OUTPUT_GROUPS_FILE%/*}"
-if [[ -s "$BAZEL_BUILD_OUTPUT_GROUPS_FILE" ]]; then
-    rm "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+mkdir -p "${SCHEME_TARGET_IDS_FILE%/*}"
+if [[ -s "$SCHEME_TARGET_IDS_FILE" ]]; then
+    rm "$SCHEME_TARGET_IDS_FILE"
 fi
 
 """#,
@@ -135,15 +135,14 @@ fi
         name: String,
         hostIndex: Int?
     ) {
-        let prefix = buildMode.buildOutputGroupPrefix
         let hostTargetOutputGroup: String
         if let hostIndex = hostIndex {
             // The extra blank line at the end of this string literal is purposeful. It ensures that
             // a newline is added to the resulting string, if the host information is added to the
             // script.
             hostTargetOutputGroup = #"""
-echo "\#(prefix) $BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
->> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+echo "$BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
+>> "$SCHEME_TARGET_IDS_FILE"
 
 """#
         } else {
@@ -151,7 +150,7 @@ echo "\#(prefix) $BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
         }
 
         let scriptText = #"""
-echo "\#(prefix) $BAZEL_TARGET_ID" >> "$BAZEL_BUILD_OUTPUT_GROUPS_FILE"
+echo "$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
 \#(hostTargetOutputGroup)
 """#
         self.init(

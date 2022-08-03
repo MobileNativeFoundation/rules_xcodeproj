@@ -266,16 +266,26 @@ set -euo pipefail
 
 # Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for
 # previews. So we need to look in the non-preview build directory for this file.
-output_groups_file="${BAZEL_BUILD_OUTPUT_GROUPS_FILE/\/Intermediates.noindex\/Previews\/*\///Intermediates.noindex/}"
+non_preview_objroot="${OBJROOT/\/Intermediates.noindex\/Previews\/*//Intermediates.noindex}"
+base_objroot="${non_preview_objroot/\/Index\/Build\/Intermediates.noindex//Build/Intermediates.noindex}"
+scheme_target_ids_file="$non_preview_objroot/scheme_target_ids"
 
-# We need to read from this file as soon as possible, as concurrent writes to it
-# can happen during indexing, which breaks the off-by-one-by-design nature of it
-output_groups=()
-if [ -s "$output_groups_file" ]; then
-  while IFS= read -r output_group; do
-    output_groups+=("$output_group")
-  done < "$output_groups_file"
+if [ "$ACTION" == "indexbuild" ]; then
+  output_group_prefix=i
+else
+  output_group_prefix=\#(buildMode.buildOutputGroupPrefix)
 fi
+
+# We need to read from `$output_groups_file` as soon as possible, as concurrent
+# writes to it can happen during indexing, which breaks the off-by-one-by-design
+# nature of it
+IFS=$'\n' read -r -d '' -a output_groups < \
+  <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
+       "$non_preview_objroot" \
+       "$base_objroot" \
+       "$scheme_target_ids_file" \
+       $output_group_prefix \
+       && printf '\0' )
 
 if [ -z "${output_groups:-}" ]; then
   if [ "$ACTION" == "indexbuild" ]; then

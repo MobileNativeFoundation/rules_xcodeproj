@@ -25,15 +25,15 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
-                "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
-$(OBJROOT)/bazel_build_output_groups
-""",
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": "$(OBJROOT)/bazel-exec-root/bazel-out",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
+                "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
+$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
@@ -59,6 +59,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "SCHEME_TARGET_IDS_FILE": """
+$(OBJROOT)/scheme_target_ids
+""",
                 "SUPPORTS_MACCATALYST": false,
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "TARGET_TEMP_DIR": """
@@ -127,9 +130,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
-                "BAZEL_BUILD_OUTPUT_GROUPS_FILE": """
-$(OBJROOT)/bazel_build_output_groups
-""",
                 "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": "$(OBJROOT)/bazel-exec-root/bazel-out",
@@ -140,6 +140,9 @@ $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
                 "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CXX": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
+                "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
+$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
+""",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
@@ -167,6 +170,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "SCHEME_TARGET_IDS_FILE": """
+$(OBJROOT)/scheme_target_ids
+""",
                 "SUPPORTS_MACCATALYST": false,
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
