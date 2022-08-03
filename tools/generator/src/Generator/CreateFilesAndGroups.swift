@@ -544,6 +544,14 @@ extension Generator {
             }
 
             if let lldbContext = target.lldbContext {
+                // Since `testonly` is viral, we only need to check the target
+                let testingFrameworks = target.isTestonly ?
+                    [
+                        "$(PLATFORM_DIR)/Developer/Library/Frameworks",
+                        // This one is set by Bazel, but not Xcode
+                        "$(SDKROOT)/Developer/Library/Frameworks",
+                    ] : []
+
                 let frameworks = try lldbContext.frameworkSearchPaths
                     .map { filePath -> String in
                         return try filePathResolver
@@ -585,7 +593,7 @@ extension Generator {
                 let clang = clangOtherArgs.joined(separator: " ")
 
                 lldbSettingsMap[target.lldbSettingsKey] = LLDBSettings(
-                    frameworks: frameworks,
+                    frameworks: testingFrameworks + frameworks,
                     includes: includes,
                     clang: clang
                 )
