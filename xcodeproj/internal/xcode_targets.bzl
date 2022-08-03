@@ -19,6 +19,7 @@ def _make(
         package_bin_dir,
         platform,
         product,
+        is_testonly = False,
         is_swift,
         test_host = None,
         build_settings,
@@ -50,6 +51,7 @@ def _make(
             `ctx.bin_dir`.
         platform: The value returned from `process_platform`.
         product: The value returned from `process_product`.
+        is_testonly: Whether the `Target` has `testonly = True` set.
         is_swift: Whether the target compiles Swift code.
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
@@ -83,6 +85,7 @@ def _make(
         _configuration = configuration,
         _package_bin_dir = package_bin_dir,
         _platform = platform,
+        _is_testonly = is_testonly,
         _is_swift = is_swift,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
@@ -120,6 +123,9 @@ def _to_dto(
         "platform": platform_info.to_dto(xcode_target._platform),
         "product": product_to_dto(xcode_target.product),
     }
+
+    if xcode_target._is_testonly:
+        dto["is_testonly"] = True
 
     if not xcode_target._is_swift:
         dto["is_swift"] = False

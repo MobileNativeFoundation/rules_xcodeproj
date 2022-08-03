@@ -225,7 +225,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -242,6 +241,7 @@
                 "t": "g"
             },
             "is_swift": false,
+            "is_testonly": true,
             "label": "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
@@ -343,7 +343,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
@@ -361,6 +360,7 @@
                     "examples/tvos_app/ExampleTests/ExampleTests.swift"
                 ]
             },
+            "is_testonly": true,
             "label": "//examples/tvos_app/ExampleTests:ExampleTests.library",
             "name": "ExampleTests.library",
             "outputs": {
@@ -417,7 +417,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -434,6 +433,7 @@
                 "t": "g"
             },
             "is_swift": false,
+            "is_testonly": true,
             "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
@@ -528,7 +528,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
@@ -544,6 +543,7 @@
                     "examples/tvos_app/ExampleUITests/ExampleUITestsLaunchTests.swift"
                 ]
             },
+            "is_testonly": true,
             "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.library",
             "name": "ExampleUITests.library",
             "outputs": {

@@ -497,7 +497,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "AWESOME"
@@ -518,6 +517,7 @@
                 "t": "g"
             },
             "is_swift": false,
+            "is_testonly": true,
             "label": "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
@@ -649,7 +649,6 @@
                 "CLANG_ENABLE_MODULES": true,
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "_FORTIFY_SOURCE=1",
@@ -728,6 +727,7 @@
                 ]
             },
             "is_swift": false,
+            "is_testonly": true,
             "label": "//ExampleObjcTests:ExampleObjcTests.library",
             "name": "ExampleObjcTests.library",
             "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/ExampleObjcTests",
@@ -769,7 +769,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "AWESOME"
@@ -790,6 +789,7 @@
                 "t": "g"
             },
             "is_swift": false,
+            "is_testonly": true,
             "label": "//ExampleTests:ExampleTests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
@@ -967,7 +967,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static",
                 "PRODUCT_MODULE_NAME": "ExampleTests",
@@ -987,6 +986,7 @@
                     "ExampleTests/ExampleTests.swift"
                 ]
             },
+            "is_testonly": true,
             "label": "//ExampleTests:ExampleTests.library",
             "modulemaps": [
                 {
@@ -1068,7 +1068,6 @@
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -1086,6 +1085,7 @@
                 "t": "g"
             },
             "is_swift": false,
+            "is_testonly": true,
             "label": "//ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
@@ -1197,7 +1197,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "ExampleUITests",
@@ -1213,6 +1212,7 @@
                     "ExampleUITests/ExampleUITestsLaunchTests.swift"
                 ]
             },
+            "is_testonly": true,
             "label": "//ExampleUITests:ExampleUITests.library",
             "name": "ExampleUITests.library",
             "outputs": {
@@ -1263,7 +1263,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static",
                 "PRODUCT_MODULE_NAME": "TestingUtils",
@@ -1281,6 +1280,7 @@
                     }
                 ]
             },
+            "is_testonly": true,
             "label": "//TestingUtils:TestingUtils",
             "name": "TestingUtils",
             "outputs": {
