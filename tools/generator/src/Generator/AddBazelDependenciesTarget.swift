@@ -11,6 +11,22 @@ env -i \
   "$BAZEL_PATH"
 """#
 
+    static func needsBazelDependenciesTarget(
+        buildMode: BuildMode,
+        forceBazelDependencies: Bool,
+        files: [FilePath: File],
+        hasTargets: Bool
+    ) -> Bool {
+        guard hasTargets else {
+            return false
+        }
+
+        return (forceBazelDependencies ||
+                buildMode.usesBazelModeBuildScripts ||
+                files.containsExternalFiles ||
+                files.containsGeneratedFiles)
+    }
+
     static func addBazelDependenciesTarget(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
@@ -21,13 +37,12 @@ env -i \
         xcodeprojConfiguration: String,
         consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
-        guard
-            !consolidatedTargets.targets.isEmpty &&
-            (forceBazelDependencies ||
-             buildMode.usesBazelModeBuildScripts ||
-             files.containsExternalFiles ||
-             files.containsGeneratedFiles)
-        else {
+        guard needsBazelDependenciesTarget(
+            buildMode: buildMode,
+            forceBazelDependencies: forceBazelDependencies,
+            files: files,
+            hasTargets: !consolidatedTargets.targets.isEmpty
+        ) else {
             return nil
         }
 

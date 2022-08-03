@@ -89,6 +89,7 @@ class Generator {
         ) = try environment.createFilesAndGroups(
             pbxProj,
             buildMode,
+            project.forceBazelDependencies,
             targets,
             project.extraFiles,
             xccurrentversions,

@@ -390,9 +390,9 @@ $(CONFIGURATION_BUILD_DIR)
                     try buildSettings.prepend(
                         onKey: "OTHER_SWIFT_FLAGS",
                         #"""
-    -Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
-    -Xcc -ivfsoverlay -Xcc $(OBJROOT)/gen_dir-overlay.yaml
-    """#
+-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(OBJROOT)/gen_dir-overlay.yaml
+"""#
                     )
                 }
 
