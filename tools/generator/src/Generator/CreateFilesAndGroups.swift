@@ -873,7 +873,7 @@ private extension LLDBContext.Clang {
             includesArgs +
             systemIncludesArgs +
             modulemapArgs +
-            (opts.map { [$0] } ?? [])
+            opts
         )
             .joined(separator: " ")
     }

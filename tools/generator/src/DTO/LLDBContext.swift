@@ -6,14 +6,14 @@ struct LLDBContext: Equatable {
         let includes: [FilePath]
         let systemIncludes: [FilePath]
         let modulemaps: [FilePath]
-        let opts: String?
+        let opts: [String]
 
         init(
             quoteIncludes: [FilePath] = [],
             includes: [FilePath] = [],
             systemIncludes: [FilePath] = [],
             modulemaps: [FilePath] = [],
-            opts: String? = nil
+            opts: [String] = []
         ) {
             self.quoteIncludes = quoteIncludes
             self.includes = includes
@@ -74,7 +74,7 @@ extension LLDBContext.Clang: Decodable {
         includes = try container.decodeFilePaths(.includes)
         systemIncludes = try container.decodeFilePaths(.systemIncludes)
         modulemaps = try container.decodeFilePaths(.modulemaps)
-        opts = try container.decodeIfPresent(String.self, forKey: .opts)
+        opts = try container.decodeIfPresent([String].self, forKey: .opts) ?? []
     }
 }
 

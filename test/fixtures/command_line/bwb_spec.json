@@ -193,7 +193,14 @@
                                 "t": "g"
                             }
                         ],
-                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\"",
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all",
+                            "-DSECRET_3=\"Hello\"",
+                            "-DSECRET_2=\"World!\""
+                        ],
                         "q": [
                             ".",
                             {
@@ -230,7 +237,14 @@
                                 "t": "g"
                             }
                         ],
-                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\"",
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all",
+                            "-DSECRET_3=\"Hello\"",
+                            "-DSECRET_2=\"World!\""
+                        ],
                         "q": [
                             ".",
                             {
@@ -248,7 +262,12 @@
                         ]
                     },
                     {
-                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
                         "q": [
                             ".",
                             {
@@ -980,7 +999,14 @@
                                 "t": "g"
                             }
                         ],
-                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\"",
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all",
+                            "-DSECRET_3=\"Hello\"",
+                            "-DSECRET_2=\"World!\""
+                        ],
                         "q": [
                             ".",
                             {
@@ -998,7 +1024,12 @@
                         ]
                     },
                     {
-                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
                         "q": [
                             ".",
                             {
