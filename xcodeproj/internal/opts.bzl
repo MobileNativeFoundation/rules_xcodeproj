@@ -25,7 +25,7 @@ _CC_SKIP_OPTS = {
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _SWIFTC_SKIP_OPTS = {
-    # TODO: Make sure we should skip _all_ of these
+    # TODO: Handle this better. We probably don't need to skip it at all (though probably `-Xcc -Fsomething` should still be skipped)
     "-Xcc": 2,
     # TODO: Make sure we should skip _all_ of these
     "-Xfrontend": 2,
