@@ -38,18 +38,19 @@ def _collect(
     framework_paths = []
     clang = []
     if id and is_swift and search_paths and search_paths._compilation_providers:
-        clang_opts = " ".join(swift_pcm_copts(
+        # TODO: Include any user specified `-Xcc` flags
+        clang_opts = swift_pcm_copts(
             compilation_mode = compilation_mode,
             objc_fragment = objc_fragment,
             cc_info = search_paths._compilation_providers._cc_info,
-        ))
+        )
 
         clang = [(
             id,
             struct(
                 search_paths = search_paths,
                 modulemaps = modulemaps,
-                opts = clang_opts,
+                opts = tuple(clang_opts),
             ),
         )]
 

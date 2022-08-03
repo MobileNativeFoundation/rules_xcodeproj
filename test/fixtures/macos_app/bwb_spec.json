@@ -87,7 +87,12 @@
                         "m": [
                             "examples/macos_app/third_party/ExampleFramework.framework/Modules/module.modulemap"
                         ],
-                        "o": "-O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
                         "q": [
                             ".",
                             {
