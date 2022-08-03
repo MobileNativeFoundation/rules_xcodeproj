@@ -21,6 +21,7 @@ _SETTINGS = {
       "$(BAZEL_EXTERNAL)/examples_command_line_external"
     ],
     "includes" : [
+      "$(PLATFORM_DIR)/Developer/usr/lib",
       "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-01f14ffe769b/bin/examples/command_line/lib"
     ]
   },

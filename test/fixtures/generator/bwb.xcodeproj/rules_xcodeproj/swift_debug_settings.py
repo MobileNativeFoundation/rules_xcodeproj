@@ -32,6 +32,7 @@ _SETTINGS = {
       "$(SDKROOT)/Developer/Library/Frameworks"
     ],
     "includes" : [
+      "$(PLATFORM_DIR)/Developer/usr/lib",
       "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/tools/generator",
       "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_pointfreeco_swift_custom_dump",
       "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e86416d3a8c7/bin/external/com_github_apple_swift_collections",
