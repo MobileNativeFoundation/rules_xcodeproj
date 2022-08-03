@@ -549,7 +549,8 @@ extension Generator {
                         return try filePathResolver
                             .resolve(
                                 filePath,
-                                useOriginalGeneratedFiles: true
+                                useOriginalGeneratedFiles: true,
+                                forceAbsoluteProjectPath: true
                             )
                             .string
                     }
@@ -562,7 +563,8 @@ extension Generator {
                             .resolve(
                                 dir,
                                 useOriginalGeneratedFiles:
-                                    !xcodeGeneratedFiles.contains(filePath)
+                                    !xcodeGeneratedFiles.contains(filePath),
+                                forceAbsoluteProjectPath: true
                             )
                             .string
                     }
@@ -828,7 +830,8 @@ private extension LLDBContext.Clang {
             let path = try filePathResolver
                 .resolve(
                     filePath,
-                    useOriginalGeneratedFiles: true
+                    useOriginalGeneratedFiles: true,
+                    forceAbsoluteProjectPath: true
                 )
                 .string
             return #"-iquote "\#(path)""#
@@ -844,7 +847,8 @@ private extension LLDBContext.Clang {
             let path = try filePathResolver
                 .resolve(
                     filePath,
-                    useOriginalGeneratedFiles: true
+                    useOriginalGeneratedFiles: true,
+                    forceAbsoluteProjectPath: true
                 )
                 .string
             includesArgs.append(#"-I "\#(path)""#)
@@ -854,7 +858,8 @@ private extension LLDBContext.Clang {
             let path = try filePathResolver
                 .resolve(
                     filePath,
-                    useOriginalGeneratedFiles: true
+                    useOriginalGeneratedFiles: true,
+                    forceAbsoluteProjectPath: true
                 )
                 .string
             return #"-isystem "\#(path)""#
@@ -882,7 +887,8 @@ private extension LLDBContext.Clang {
             let modulemap = try filePathResolver
                 .resolve(
                     filePath,
-                    useOriginalGeneratedFiles: true
+                    useOriginalGeneratedFiles: true,
+                    forceAbsoluteProjectPath: true
                 )
                 .string
             modulemapArgs.append(#"-fmodule-map-file="\#(modulemap)""#)
