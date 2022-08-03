@@ -29,6 +29,7 @@ struct FilePathResolver: Equatable {
         _ filePath: FilePath,
         useGenDir: Bool = false,
         useOriginalGeneratedFiles: Bool = false,
+        forceAbsoluteProjectPath: Bool = false,
         mode: Mode = .buildSetting
     ) throws -> Path {
         switch filePath.type {
@@ -36,7 +37,7 @@ struct FilePathResolver: Equatable {
             let projectDir: Path
             switch mode {
             case .buildSetting:
-                projectDir = ""
+                projectDir = forceAbsoluteProjectPath ? "$(PROJECT_DIR)" : ""
             case .script:
                 projectDir = "$PROJECT_DIR"
             case .srcRoot:
