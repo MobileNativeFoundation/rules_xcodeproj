@@ -39,6 +39,7 @@ final class TargetMergingTests: XCTestCase {
         expectedTargets.removeValue(forKey: "B 1")
         expectedTargets["A 2"] = Target.mock(
             packageBinDir: targets["A 1"]!.packageBinDir,
+            platform: targets["A 1"]!.platform,
             product: targets["A 2"]!.product,
             isSwift: targets["A 1"]!.isSwift,
             buildSettings: [
@@ -68,6 +69,7 @@ final class TargetMergingTests: XCTestCase {
         )
         expectedTargets["B 2"] = Target.mock(
             packageBinDir: targets["B 1"]!.packageBinDir,
+            platform: targets["B 1"]!.platform,
             product: targets["B 2"]!.product,
             isSwift: targets["A 2"]!.isSwift,
             testHost: "A 2",
@@ -89,6 +91,7 @@ final class TargetMergingTests: XCTestCase {
         )
         expectedTargets["B 3"] = Target.mock(
             packageBinDir: targets["B 1"]!.packageBinDir,
+            platform: targets["B 1"]!.platform,
             product: targets["B 3"]!.product,
             isSwift: targets["B 1"]!.isSwift,
             testHost: "A 2",

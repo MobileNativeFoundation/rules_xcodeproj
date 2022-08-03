@@ -48,6 +48,7 @@ enum Fixtures {
     static let targets: [TargetID: Target] = [
         "A 1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/A 1",
+            platform: .macOS(minimumOsVersion: "10.0"),
             product: .init(
                 type: .staticLibrary,
                 name: "a",
@@ -79,6 +80,7 @@ enum Fixtures {
         ),
         "A 2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/A 2",
+            platform: .macOS(minimumOsVersion: "11.0"),
             product: .init(
                 type: .application,
                 name: "A",
@@ -2097,7 +2099,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "BAZEL_TARGET_ID": "A 1",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "MACOSX_DEPLOYMENT_TARGET": "11.0",
+                "MACOSX_DEPLOYMENT_TARGET": "10.0",
                 "OTHER_SWIFT_FLAGS": #"""
 -vfsoverlay $(OBJROOT)/gen_dir-overlay.yaml
 """#,
