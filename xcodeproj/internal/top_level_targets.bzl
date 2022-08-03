@@ -297,17 +297,19 @@ def process_top_level_target(
     else:
         objc = None
 
+    deps_infos = [
+        dep[XcodeProjInfo]
+        # TODO: Get attr name from `XcodeProjAutomaticTargetProcessingInfo`
+        for dep in getattr(ctx.rule.attr, "deps", [])
+    ]
+
     compilation_providers = comp_providers.merge(
         cc_info = target[CcInfo] if CcInfo in target else None,
         objc = objc,
         swift_info = target[SwiftInfo] if SwiftInfo in target else None,
         transitive_compilation_providers = [
-            (
-                dep[XcodeProjInfo].xcode_target,
-                dep[XcodeProjInfo].compilation_providers,
-            )
-            # TODO: Get attr name from `XcodeProjAutomaticTargetProcessingInfo`
-            for dep in getattr(ctx.rule.attr, "deps", [])
+            (info.xcode_target, info.compilation_providers)
+            for info in deps_infos
         ],
     )
     linker_inputs = linker_input_files.collect(
@@ -443,12 +445,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         search_paths = search_paths,
         modulemaps = modulemaps,
         swiftmodules = swiftmodules,
-        transitive_infos = [
-            info
-            for attr, info in transitive_infos
-            if (info.target_type in
-                automatic_target_info.xcode_targets.get(attr, [None]))
-        ],
+        transitive_infos = deps_infos,
     )
 
     return processed_target(
