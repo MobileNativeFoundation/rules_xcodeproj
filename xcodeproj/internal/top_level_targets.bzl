@@ -390,12 +390,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         getattr(ctx.rule.attr, "enable_modules", False),
     )
 
-    set_if_true(
-        build_settings,
-        "ENABLE_TESTING_SEARCH_PATHS",
-        getattr(ctx.rule.attr, "testonly", False),
-    )
-
     # We don't have access to `CcInfo`/`SwiftInfo` here, so we have to make
     # a best guess at `-g` being used
     # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf"-with-dsym",
@@ -478,6 +472,7 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
             package_bin_dir = package_bin_dir,
             platform = platform,
             product = product,
+            is_testonly = getattr(ctx.rule.attr, "testonly", False),
             is_swift = is_swift,
             test_host = test_host,
             build_settings = build_settings,

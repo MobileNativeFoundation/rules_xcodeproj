@@ -52,7 +52,6 @@
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -63,6 +62,7 @@
                 "//tools/generator/test:tests.library darwin_x86_64-dbg-ST-02316c4eb12c"
             ],
             "is_swift": false,
+            "is_testonly": true,
             "label": "//tools/generator/test:tests",
             "linker_inputs": {
                 "linkopts": [
@@ -311,7 +311,6 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
-                "ENABLE_TESTING_SEARCH_PATHS": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
                 "PRODUCT_MODULE_NAME": "tests",
@@ -372,6 +371,7 @@
                     "tools/generator/test/XcodeScheme+ExtensionsTests.swift"
                 ]
             },
+            "is_testonly": true,
             "label": "//tools/generator/test:tests.library",
             "name": "tests.library",
             "outputs": {

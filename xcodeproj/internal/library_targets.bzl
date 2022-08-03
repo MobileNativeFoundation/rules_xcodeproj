@@ -102,12 +102,6 @@ def process_library_target(
         getattr(ctx.rule.attr, "enable_modules", False),
     )
 
-    set_if_true(
-        build_settings,
-        "ENABLE_TESTING_SEARCH_PATHS",
-        getattr(ctx.rule.attr, "testonly", False),
-    )
-
     platform = platform_info.collect(ctx = ctx)
     product = process_product(
         target = target,
@@ -189,6 +183,7 @@ def process_library_target(
             package_bin_dir = package_bin_dir,
             platform = platform,
             product = product,
+            is_testonly = getattr(ctx.rule.attr, "testonly", False),
             is_swift = is_swift,
             build_settings = build_settings,
             search_paths = search_paths,
