@@ -23,15 +23,17 @@ struct Platform: Equatable, Hashable, Decodable {
 }
 
 extension Platform {
-    var triple: String {
-        return "\(arch)-apple-\(variant.triple)"
+    var swiftTriple: String {
+        return """
+\(arch)-apple-\(variant.swiftTriplePrefix)\(variant.tripleSuffix)
+"""
     }
 
-    var fullTriple: String {
+    var targetTriple: String {
         let osVersion = minimumOsVersion.full
 
         return """
-\(arch)-apple-\(variant.triplePrefix)\(osVersion)\(variant.tripleSuffix)
+\(arch)-apple-\(variant.targetTriplePrefix)\(osVersion)\(variant.tripleSuffix)
 """
     }
 }
@@ -63,11 +65,19 @@ extension Platform.Variant {
         }
     }
 
-    var triple: String {
-        return "\(triplePrefix)\(tripleSuffix)"
+    var swiftTriplePrefix: String {
+        switch self {
+        case .macOS: return "macos"
+        case .iOSDevice: return "ios"
+        case .iOSSimulator: return "ios"
+        case .tvOSDevice: return "tvos"
+        case .tvOSSimulator: return "tvos"
+        case .watchOSDevice: return "watchos"
+        case .watchOSSimulator: return "watchos"
+        }
     }
 
-    var triplePrefix: String {
+    var targetTriplePrefix: String {
         switch self {
         case .macOS: return "macosx"
         case .iOSDevice: return "ios"

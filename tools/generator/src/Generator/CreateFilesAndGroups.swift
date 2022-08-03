@@ -800,14 +800,7 @@ private extension Target {
 
     var lldbSettingsKey: String {
         let baseKey = """
-\(platform.fullTriple) \(product.path.path.lastComponent)
-"""
-        return lldbSettingsKey(baseKey: baseKey)
-    }
-
-    var lldbSettingsFallbackKey: String {
-        let baseKey = """
-\(platform.triple) \(product.path.path.lastComponent)
+\(platform.targetTriple) \(product.path.path.lastComponent)
 """
         return lldbSettingsKey(baseKey: baseKey)
     }
