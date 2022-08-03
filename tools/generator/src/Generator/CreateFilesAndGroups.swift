@@ -568,7 +568,6 @@ extension Generator {
                     }
                     .uniqued()
 
-                let clangFrameworkArgs = frameworks.map { #""-F\#($0)""# }
                 let clangOtherArgs = try lldbContext.clang.map { clang in
                     return try clang.toClangExtraArgs(
                         buildMode: buildMode,
@@ -577,8 +576,7 @@ extension Generator {
                     )
                 }
 
-                let clang = (clangFrameworkArgs + clangOtherArgs)
-                    .joined(separator: " ")
+                let clang = clangOtherArgs.joined(separator: " ")
 
                 lldbSettingsMap[target.lldbSettingsKey] = LLDBSettings(
                     frameworks: frameworks,
