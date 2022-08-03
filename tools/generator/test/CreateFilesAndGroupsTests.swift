@@ -55,6 +55,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .xcode,
+            forceBazelDependencies: false,
             targets: targets,
             extraFiles: extraFiles,
             xccurrentversions: xccurrentversions,
@@ -146,6 +147,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .xcode,
+            forceBazelDependencies: false,
             targets: targets,
             extraFiles: extraFiles,
             xccurrentversions: xccurrentversions,

@@ -65,6 +65,7 @@ extension Generator {
     static func createFilesAndGroups(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
+        forceBazelDependencies: Bool,
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
         xccurrentversions: [XCCurrentVersion],
@@ -522,6 +523,13 @@ extension Generator {
             break
         }
 
+        let hasBazelDependencies = needsBazelDependenciesTarget(
+            buildMode: buildMode,
+            forceBazelDependencies: forceBazelDependencies,
+            files: files,
+            hasTargets: !targets.isEmpty
+        )
+
         var lldbSettingsMap: [String: LLDBSettings] = [:]
         for target in targets.values {
             let linkopts = try target
@@ -563,6 +571,8 @@ extension Generator {
                 let clangFrameworkArgs = frameworks.map { #""-F\#($0)""# }
                 let clangOtherArgs = try lldbContext.clang.map { clang in
                     return try clang.toClangExtraArgs(
+                        buildMode: buildMode,
+                        hasBazelDependencies: hasBazelDependencies,
                         filePathResolver: filePathResolver
                     )
                 }
@@ -800,7 +810,11 @@ private extension Target {
 }
 
 private extension LLDBContext.Clang {
-    func toClangExtraArgs(filePathResolver: FilePathResolver) throws -> String {
+    func toClangExtraArgs(
+        buildMode: BuildMode,
+        hasBazelDependencies: Bool,
+        filePathResolver: FilePathResolver
+    ) throws -> String {
         let quoteIncludesArgs: [String] = try quoteIncludes.map { filePath in
             let path = try filePathResolver
                 .resolve(
@@ -831,6 +845,17 @@ private extension LLDBContext.Clang {
             return #"-isystem "\#(path)""#
         }
 
+        let overlayArgs: [String]
+        if hasBazelDependencies && buildMode == .xcode && !modulemaps.isEmpty {
+            overlayArgs = [
+                "-ivfsoverlay",
+                "$(OBJROOT)/xcode-overlay.yaml",
+                "-ivfsoverlay",
+                "$(OBJROOT)/gen_dir-overlay.yaml",
+            ]
+        } else {
+            overlayArgs = []
+        }
 
         let modulemapArgs: [String] = try modulemaps.map { filePath in
             let modulemap = try filePathResolver
@@ -843,6 +868,7 @@ private extension LLDBContext.Clang {
         }
 
         return (
+            overlayArgs +
             quoteIncludesArgs +
             includesArgs +
             systemIncludesArgs +

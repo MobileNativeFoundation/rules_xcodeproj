@@ -26,6 +26,7 @@ struct Environment {
     let createFilesAndGroups: (
         _ pbxProj: PBXProj,
         _ buildMode: BuildMode,
+        _ forceBazelDependencies: Bool,
         _ targets: [TargetID: Target],
         _ extraFiles: Set<FilePath>,
         _ xccurrentversions: [XCCurrentVersion],
