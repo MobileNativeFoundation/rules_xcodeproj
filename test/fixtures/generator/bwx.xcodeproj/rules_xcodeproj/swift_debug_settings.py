@@ -28,7 +28,8 @@ _SETTINGS = {
   "x86_64-apple-macosx11.0.0 tests.xctest/Contents/MacOS/tests" : {
     "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-02316c4eb12c/bin\" -O0 -fstack-protector -fstack-protector-all",
     "frameworks" : [
-
+      "$(PLATFORM_DIR)/Developer/Library/Frameworks",
+      "$(SDKROOT)/Developer/Library/Frameworks"
     ],
     "includes" : [
       "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-02316c4eb12c/bin/tools/generator",
