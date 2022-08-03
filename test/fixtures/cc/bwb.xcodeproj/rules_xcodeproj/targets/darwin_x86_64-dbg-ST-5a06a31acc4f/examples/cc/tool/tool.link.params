@@ -1,0 +1,7 @@
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++
+$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib2/liblib_impl.a
+$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/examples_cc_external/liblib_impl.a
+-force_load
+$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib/liblib_impl.lo

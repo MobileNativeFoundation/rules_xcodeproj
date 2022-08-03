@@ -1,0 +1,9 @@
+-Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/Example/Example.swiftmodule
+-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib
+-ObjC
+-L/usr/lib/swift
+-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator
+-Wl,-rpath,/usr/lib/swift
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++
