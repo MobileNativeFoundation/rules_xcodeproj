@@ -29,7 +29,7 @@ _SETTINGS = {
       "$(SDKROOT)/Developer/Library/Frameworks"
     ],
     "includes" : [
-
+      "$(PLATFORM_DIR)/Developer/usr/lib"
     ]
   },
   "x86_64-apple-ios15.0.0-simulator ExampleTests.xctest/ExampleTests" : {
@@ -39,6 +39,7 @@ _SETTINGS = {
       "$(SDKROOT)/Developer/Library/Frameworks"
     ],
     "includes" : [
+      "$(PLATFORM_DIR)/Developer/usr/lib",
       "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/Example",
       "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-a0d0e3b8f217/bin/TestingUtils"
     ]
@@ -50,7 +51,7 @@ _SETTINGS = {
       "$(SDKROOT)/Developer/Library/Frameworks"
     ],
     "includes" : [
-
+      "$(PLATFORM_DIR)/Developer/usr/lib"
     ]
   }
 }

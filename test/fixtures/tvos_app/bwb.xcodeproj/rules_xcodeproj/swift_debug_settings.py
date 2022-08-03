@@ -29,6 +29,7 @@ _SETTINGS = {
       "$(SDKROOT)/Developer/Library/Frameworks"
     ],
     "includes" : [
+      "$(PLATFORM_DIR)/Developer/usr/lib",
       "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-d2947f5560a1/bin/examples/tvos_app/Example"
     ]
   },
@@ -39,7 +40,7 @@ _SETTINGS = {
       "$(SDKROOT)/Developer/Library/Frameworks"
     ],
     "includes" : [
-
+      "$(PLATFORM_DIR)/Developer/usr/lib"
     ]
   }
 }
