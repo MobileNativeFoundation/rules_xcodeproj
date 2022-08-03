@@ -39,42 +39,6 @@ extension XCSchemeInfo {
             )
         }
 
-        /// Initializer used when resolving a selected host.
-        init<TargetInfos: Sequence>(
-            resolveHostFor original: XCSchemeInfo.TargetInfo,
-            topLevelTargetInfos: TargetInfos
-        ) where TargetInfos.Element == XCSchemeInfo.TargetInfo {
-            // Look for a host that is one of the top-level targets.
-            let topLevelPBXTargetInfos = Set(topLevelTargetInfos.map(\.pbxTarget))
-            var selectedHostInfo = original.hostInfos
-                .filter { topLevelPBXTargetInfos.contains($0.pbxTarget) }
-                .first
-
-            // GH573: Update "best" host logic to select by platform.  Since this will cause
-            // that host to be built, ideally it's the "best" host (based on platform similar to
-            // other "best"s).
-
-            // If a top-level host was not found, then just pick one of the hosts.
-            if selectedHostInfo == nil {
-                selectedHostInfo = original.hostInfos.first
-            }
-
-            let hostResolution: HostResolution
-            if let selectedHostInfo = selectedHostInfo {
-                hostResolution = .selected(selectedHostInfo)
-            } else {
-                hostResolution = .none
-            }
-
-            self.init(
-                pbxTarget: original.pbxTarget,
-                buildableReference: original.buildableReference,
-                hostInfos: original.hostInfos,
-                extensionPointIdentifiers: original.extensionPointIdentifiers,
-                hostResolution: hostResolution
-            )
-        }
-
         /// Low-level initializer used by the other initializers.
         private init(
             pbxTarget: PBXTarget,
@@ -90,6 +54,49 @@ extension XCSchemeInfo {
             disambiguateHost = self.hostInfos.count > 1
             self.hostResolution = hostResolution
         }
+    }
+}
+
+extension Collection where Element == XCSchemeInfo.HostInfo {
+    func resolve<TargetInfos: Sequence>(
+        topLevelTargetInfos: TargetInfos
+    ) -> XCSchemeInfo.HostResolution where TargetInfos.Element == XCSchemeInfo.TargetInfo {
+        guard !isEmpty else {
+            return .none
+        }
+
+        // Look for a host that is one of the top-level targets.
+        let topLevelPBXTargetInfos = Set(topLevelTargetInfos.map(\.pbxTarget))
+        if let selected = filter({ topLevelPBXTargetInfos.contains($0.pbxTarget) }).first {
+            return .selected(selected)
+        }
+
+        // TODO(chuck): Implement top-level platform check
+
+        // Find the first host that has a top-level platform
+
+        // Just pick one of the hosts.
+        if let selected = first {
+            return .selected(selected)
+        }
+
+        return .none
+    }
+}
+
+extension XCSchemeInfo.TargetInfo {
+    /// Initializer used when resolving a selected host.
+    init<TargetInfos: Sequence>(
+        resolveHostFor original: XCSchemeInfo.TargetInfo,
+        topLevelTargetInfos: TargetInfos
+    ) where TargetInfos.Element == XCSchemeInfo.TargetInfo {
+        self.init(
+            pbxTarget: original.pbxTarget,
+            buildableReference: original.buildableReference,
+            hostInfos: original.hostInfos,
+            extensionPointIdentifiers: original.extensionPointIdentifiers,
+            hostResolution: original.hostInfos.resolve(topLevelTargetInfos: topLevelTargetInfos)
+        )
     }
 }
 
