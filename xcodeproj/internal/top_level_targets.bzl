@@ -384,6 +384,18 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
     # device, as Xcode only uses this value for device builds
     build_settings["ENABLE_BITCODE"] = str(cpp.apple_bitcode_mode) != "none"
 
+    set_if_true(
+        build_settings,
+        "CLANG_ENABLE_MODULES",
+        getattr(ctx.rule.attr, "enable_modules", False),
+    )
+
+    set_if_true(
+        build_settings,
+        "ENABLE_TESTING_SEARCH_PATHS",
+        getattr(ctx.rule.attr, "testonly", False),
+    )
+
     # We don't have access to `CcInfo`/`SwiftInfo` here, so we have to make
     # a best guess at `-g` being used
     # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf"-with-dsym",
