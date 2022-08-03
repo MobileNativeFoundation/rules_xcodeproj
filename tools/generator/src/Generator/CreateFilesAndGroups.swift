@@ -568,11 +568,15 @@ extension Generator {
                     }
                     .uniqued()
 
+                var onceFilePaths: Set<FilePath> = []
+                var onceOtherFlags: Set<String> = []
                 let clangOtherArgs = try lldbContext.clang.map { clang in
                     return try clang.toClangExtraArgs(
                         buildMode: buildMode,
                         hasBazelDependencies: hasBazelDependencies,
-                        filePathResolver: filePathResolver
+                        filePathResolver: filePathResolver,
+                        onceFilePaths: &onceFilePaths,
+                        onceOtherFlags: &onceOtherFlags
                     )
                 }
 
@@ -808,10 +812,17 @@ private extension Target {
 }
 
 private extension LLDBContext.Clang {
+    private static let overlayFlags = #"""
+-ivfsoverlay $(OBJROOT)/xcode-overlay.yaml \#
+-ivfsoverlay $(OBJROOT)/gen_dir-overlay.yaml
+"""#
+
     func toClangExtraArgs(
         buildMode: BuildMode,
         hasBazelDependencies: Bool,
-        filePathResolver: FilePathResolver
+        filePathResolver: FilePathResolver,
+        onceFilePaths: inout Set<FilePath>,
+        onceOtherFlags: inout Set<String>
     ) throws -> String {
         let quoteIncludesArgs: [String] = try quoteIncludes.map { filePath in
             let path = try filePathResolver
@@ -823,14 +834,20 @@ private extension LLDBContext.Clang {
             return #"-iquote "\#(path)""#
         }
 
-        let includesArgs: [String] = try includes.map { filePath in
+        var includesArgs: [String] = []
+        for filePath in includes {
+            guard !onceFilePaths.contains(filePath) else {
+                continue
+            }
+            onceFilePaths.insert(filePath)
+
             let path = try filePathResolver
                 .resolve(
                     filePath,
                     useOriginalGeneratedFiles: true
                 )
                 .string
-            return #"-I "\#(path)""#
+            includesArgs.append(#"-I "\#(path)""#)
         }
 
         let systemIncludesArgs: [String] = try systemIncludes.map { filePath in
@@ -844,25 +861,47 @@ private extension LLDBContext.Clang {
         }
 
         let overlayArgs: [String]
-        if hasBazelDependencies && buildMode == .xcode && !modulemaps.isEmpty {
-            overlayArgs = [
-                "-ivfsoverlay",
-                "$(OBJROOT)/xcode-overlay.yaml",
-                "-ivfsoverlay",
-                "$(OBJROOT)/gen_dir-overlay.yaml",
-            ]
+        if hasBazelDependencies &&
+            buildMode == .xcode &&
+            !modulemaps.isEmpty &&
+            !onceOtherFlags.contains(Self.overlayFlags)
+            {
+            onceOtherFlags.insert(Self.overlayFlags)
+            overlayArgs = [Self.overlayFlags]
         } else {
             overlayArgs = []
         }
 
-        let modulemapArgs: [String] = try modulemaps.map { filePath in
+        var modulemapArgs: [String] = []
+        for filePath in modulemaps {
+            guard !onceFilePaths.contains(filePath) else {
+                continue
+            }
+            onceFilePaths.insert(filePath)
+
             let modulemap = try filePathResolver
                 .resolve(
                     filePath,
                     useOriginalGeneratedFiles: true
                 )
                 .string
-            return #"-fmodule-map-file="\#(modulemap)""#
+            modulemapArgs.append(#"-fmodule-map-file="\#(modulemap)""#)
+        }
+
+        var filteredOpts: [String] = []
+        for opt in opts {
+            guard !onceOtherFlags.contains(opt) else {
+                continue
+            }
+            // This can lead to correctness issues if the value of a define
+            // is specified multiple times, and different on different targets,
+            // but it's how lldb currently handles it. Ideally it should use
+            // a dictionary for the key of the define and only filter ones that
+            // have the same value as the last time the key was used.
+            if opt.starts(with: "-D") {
+                onceOtherFlags.insert(opt)
+            }
+            filteredOpts.append(opt)
         }
 
         return (
@@ -871,7 +910,7 @@ private extension LLDBContext.Clang {
             includesArgs +
             systemIncludesArgs +
             modulemapArgs +
-            opts
+            filteredOpts
         )
             .joined(separator: " ")
     }
