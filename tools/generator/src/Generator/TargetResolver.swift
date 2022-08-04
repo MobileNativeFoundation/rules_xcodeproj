@@ -35,9 +35,6 @@ struct TargetResolver: Equatable {
             },
             uniquingKeysWith: { $0.union($1) }
         )
-        // let platformsByKey = try targets.collectPlatformsByKey(
-        //     consolidatedTargetKeys: consolidatedTargetKeys
-        // )
         let platformsByKey = try consolidatedTargetKeys.collectPlatformsByKey(targets: targets)
         var keyedExtensionPointIdentifiers: [
             ConsolidatedTarget.Key: Set<ExtensionPointIdentifier>
