@@ -1,0 +1,13 @@
+-Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cdd2ed13d150/bin/ExampleTests/ExampleTests.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cdd2ed13d150/bin/Example/Example.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cdd2ed13d150/bin/TestingUtils/TestingUtils.swiftmodule
+-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib
+-ObjC
+-L/usr/lib/swift
+-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator
+-Wl,-rpath,/usr/lib/swift
+-lc++
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++
+$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cdd2ed13d150/bin/TestingUtils/libTestingUtils.a

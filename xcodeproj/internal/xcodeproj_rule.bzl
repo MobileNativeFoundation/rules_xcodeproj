@@ -416,6 +416,7 @@ def _base_target_transition_impl(settings, attr):
     features = [
         "oso_prefix_is_pwd",
         "relative_ast_path",
+        "swift.cacheable_swiftmodules",
     ] + settings.get("//command_line_option:features")
 
     if attr.build_mode == "bazel":

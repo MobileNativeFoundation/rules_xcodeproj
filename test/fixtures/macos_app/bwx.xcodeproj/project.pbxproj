@@ -56,10 +56,10 @@
 
 /* Begin PBXFileReference section */
 		064F4BD4543FEAF27507ABED /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
+		0BCBECEE8FDE754050A92BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		30C48FC7C131C94F65F8BC29 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		3DD45C53E5DCAC15BCF5764D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4E0183A010067D0E90916009 /* macOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B56E1CE5D89C5DC196A539D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE97F6D6D5995C0DE3C23E17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B941DEAA3E5A30BDF158E57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C68B74CE26786DEFFE645D3C /* macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSApp.swift; sourceTree = "<group>"; };
@@ -80,28 +80,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07D255CDCF63DF2F0869E1F1 /* bin */ = {
+		1A8E941C03551B660EEA8D12 /* macos_app */ = {
 			isa = PBXGroup;
 			children = (
-				F58A662731948D584076951C /* examples */,
+				D90505E96BDF38BB4EAB2F15 /* Example */,
 			);
-			path = bin;
-			sourceTree = "<group>";
-		};
-		11E11B4E92642F4C4803709A /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				5B56E1CE5D89C5DC196A539D /* Info.plist */,
-			);
-			path = Example;
-			sourceTree = "<group>";
-		};
-		236A49F168736F137E869049 /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				ABC4FD6DD1015FA14A46C469 /* rules_xcodeproj */,
-			);
-			path = Example;
+			path = macos_app;
 			sourceTree = "<group>";
 		};
 		34EEB3D407F10261A42BB9F7 /* fixtures */ = {
@@ -121,6 +105,14 @@
 			path = macos_app;
 			sourceTree = "<group>";
 		};
+		36E509FB25A031B90372BDAF /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				A595CD0197313B2B28A34BE2 /* Example */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		462C3519CA354BE1B04D4855 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,12 +130,12 @@
 			path = third_party;
 			sourceTree = "<group>";
 		};
-		6932C5FE08977DC3DA62415C /* applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd */ = {
+		61943CDCABE4981FFBF47B13 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				07D255CDCF63DF2F0869E1F1 /* bin */,
+				FAC60335AE0BA5821F598BD5 /* examples */,
 			);
-			path = "applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd";
+			path = bin;
 			sourceTree = "<group>";
 		};
 		77E0714FDD425211EBA209DF = {
@@ -178,29 +170,21 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
-		91FB923D6E09BBE73158C8F5 /* macos_app */ = {
+		A595CD0197313B2B28A34BE2 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				236A49F168736F137E869049 /* Example */,
+				0BCBECEE8FDE754050A92BEE /* Info.plist */,
 			);
-			path = macos_app;
+			path = Example;
 			sourceTree = "<group>";
 		};
 		A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
-				6932C5FE08977DC3DA62415C /* applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd */,
+				D91B22EAFDB1C41F10BF6131 /* applebin_macos-darwin_x86_64-dbg-ST-804117482b23 */,
 			);
 			name = "Bazel Generated Files";
 			path = test/fixtures/macos_app/bwx.xcodeproj/rules_xcodeproj/links/gen_dir;
-			sourceTree = "<group>";
-		};
-		ABC4FD6DD1015FA14A46C469 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				11E11B4E92642F4C4803709A /* Example */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		D2C8CC455B9D27F28D323622 /* test */ = {
@@ -227,6 +211,22 @@
 			path = PreviewContent;
 			sourceTree = "<group>";
 		};
+		D90505E96BDF38BB4EAB2F15 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				36E509FB25A031B90372BDAF /* rules_xcodeproj */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		D91B22EAFDB1C41F10BF6131 /* applebin_macos-darwin_x86_64-dbg-ST-804117482b23 */ = {
+			isa = PBXGroup;
+			children = (
+				61943CDCABE4981FFBF47B13 /* bin */,
+			);
+			path = "applebin_macos-darwin_x86_64-dbg-ST-804117482b23";
+			sourceTree = "<group>";
+		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,10 +234,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F58A662731948D584076951C /* examples */ = {
+		FAC60335AE0BA5821F598BD5 /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				91FB923D6E09BBE73158C8F5 /* macos_app */,
+				1A8E941C03551B660EEA8D12 /* macos_app */,
 			);
 			path = examples;
 			sourceTree = "<group>";
@@ -407,8 +407,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example";
-				BAZEL_TARGET_ID = "//examples/macos_app/Example:Example applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-804117482b23/bin/examples/macos_app/Example";
+				BAZEL_TARGET_ID = "//examples/macos_app/Example:Example applebin_macos-darwin_x86_64-dbg-ST-804117482b23";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -417,12 +417,12 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = examples/macos_app/third_party;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin/examples/macos_app/Example/rules_xcodeproj/Example/Info.plist";
+				INFOPLIST_FILE = "$(GEN_DIR)/applebin_macos-darwin_x86_64-dbg-ST-804117482b23/bin/examples/macos_app/Example/rules_xcodeproj/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/examples/macos_app/Example/Example.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-804117482b23/examples/macos_app/Example/Example.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/gen_dir-overlay.yaml -vfsoverlay $(OBJROOT)/gen_dir-overlay.yaml -Xcc -fmodule-map-file=examples/macos_app/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/macos_app/third_party -static";
@@ -438,7 +438,7 @@
 				TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-efd7e4d599dd/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-804117482b23/bin",
 				);
 			};
 			name = Debug;

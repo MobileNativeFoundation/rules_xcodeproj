@@ -264,9 +264,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-166905362225/bin/examples/simple/SwiftBin";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-166905362225/bin/examples/simple";
-				BAZEL_TARGET_ID = "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-166905362225";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-4168748aa221/bin/examples/simple/SwiftBin";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-4168748aa221/bin/examples/simple";
+				BAZEL_TARGET_ID = "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-4168748aa221";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
@@ -274,7 +274,7 @@
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-166905362225/examples/simple/SwiftBin.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-4168748aa221/examples/simple/SwiftBin.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -297,7 +297,7 @@
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-166905362225/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-4168748aa221/bin",
 				);
 			};
 			name = Debug;
