@@ -1,5 +1,3 @@
-// MARK: `firstTargetID`
-
 extension Dictionary where Key == TargetID, Value == Target {
     /// Filter the dictionary to include the depdency tree for the specified target ID values that
     /// satisfy the provided predicate.
