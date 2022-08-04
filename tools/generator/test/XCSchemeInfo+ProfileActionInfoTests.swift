@@ -99,10 +99,13 @@ class XCSchemeInfoProfileActionInfoTests: XCTestCase {
 
     lazy var pbxTargetsDict = targetResolver.pbxTargets
 
+    lazy var appPlatform = Fixtures.targets["A 2"]!.platform
+
     lazy var appTarget = pbxTargetsDict["A 2"]!
 
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appTarget,
+        platforms: [appPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []

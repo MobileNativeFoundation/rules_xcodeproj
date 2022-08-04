@@ -1,3 +1,5 @@
+// MARK: `firstTargetID`
+
 extension Dictionary where Key == TargetID, Value == Target {
     /// Filter the dictionary to include the depdency tree for the specified target ID values that
     /// satisfy the provided predicate.
@@ -48,5 +50,20 @@ extension Dictionary where Key == TargetID, Value == Target {
         // Otherwise, keep searching
         if newStartIDs.isEmpty { return nil }
         return try firstTargetID(under: newStartIDs, where: predicate)
+    }
+}
+
+// MARK: `collectPlatformsByKey`
+
+extension Dictionary where Key == TargetID, Value == Target {
+    func collectPlatformsByKey(
+        consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key]
+    ) throws -> [ConsolidatedTarget.Key: Set<Platform>] {
+        var result = [ConsolidatedTarget.Key: Set<Platform>]()
+        for (targetID, target) in self {
+            let key = try consolidatedTargetKeys.value(for: targetID)
+            result[key, default: []].insert(target.platform)
+        }
+        return result
     }
 }

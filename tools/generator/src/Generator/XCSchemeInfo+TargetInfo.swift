@@ -12,48 +12,88 @@ extension XCSchemeInfo {
 
     struct TargetInfo: Equatable, Hashable {
         let pbxTarget: PBXTarget
+        let platforms: Set<Platform>
         let buildableReference: XCScheme.BuildableReference
         let hostInfos: [HostInfo]
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let disambiguateHost: Bool
         let hostResolution: HostResolution
 
-        /// Initializer used when creating a `TargetInfo` for the first time.
-        init<HostInfos: Sequence, ExtPointIdentifiers: Sequence>(
+        private init<HIs: Sequence, EPIs: Sequence, Platforms: Sequence>(
             pbxTarget: PBXTarget,
-            referencedContainer: String,
-            hostInfos: HostInfos,
-            extensionPointIdentifiers: ExtPointIdentifiers
-        ) where HostInfos.Element == XCSchemeInfo.HostInfo,
-            ExtPointIdentifiers.Element == ExtensionPointIdentifier
-        {
-            self.init(
-                pbxTarget: pbxTarget,
-                buildableReference: .init(
-                    pbxTarget: pbxTarget,
-                    referencedContainer: referencedContainer
-                ),
-                hostInfos: Array(hostInfos),
-                extensionPointIdentifiers: Set(extensionPointIdentifiers),
-                hostResolution: .unresolved
-            )
-        }
-
-        /// Low-level initializer used by the other initializers.
-        private init(
-            pbxTarget: PBXTarget,
+            platforms: Platforms,
             buildableReference: XCScheme.BuildableReference,
-            hostInfos: [HostInfo],
-            extensionPointIdentifiers: Set<ExtensionPointIdentifier>,
-            hostResolution: HostResolution
-        ) {
+            hostInfos: HIs,
+            extensionPointIdentifiers: EPIs,
+            hostResolution: HostResolution = .unresolved
+        ) where HIs.Element == XCSchemeInfo.HostInfo,
+            EPIs.Element == ExtensionPointIdentifier,
+            Platforms.Element == Platform
+        {
             self.pbxTarget = pbxTarget
+            self.platforms = Set(platforms)
             self.buildableReference = buildableReference
-            self.hostInfos = hostInfos
-            self.extensionPointIdentifiers = extensionPointIdentifiers
+            self.hostInfos = Array(hostInfos)
+            self.extensionPointIdentifiers = Set(extensionPointIdentifiers)
             disambiguateHost = self.hostInfos.count > 1
             self.hostResolution = hostResolution
         }
+    }
+}
+
+extension XCSchemeInfo.TargetInfo {
+    init<HIs: Sequence, EPIs: Sequence, Platforms: Sequence>(
+        pbxTarget: PBXTarget,
+        platforms: Platforms,
+        referencedContainer: String,
+        hostInfos: HIs,
+        extensionPointIdentifiers: EPIs
+    ) where HIs.Element == XCSchemeInfo.HostInfo,
+        EPIs.Element == ExtensionPointIdentifier,
+        Platforms.Element == Platform
+    {
+        self.init(
+            pbxTarget: pbxTarget,
+            platforms: platforms,
+            buildableReference: .init(
+                pbxTarget: pbxTarget,
+                referencedContainer: referencedContainer
+            ),
+            hostInfos: hostInfos,
+            extensionPointIdentifiers: extensionPointIdentifiers
+        )
+    }
+}
+
+extension XCSchemeInfo.TargetInfo {
+    init<HIs: Sequence>(
+        pbxTargetInfo: TargetResolver.PBXTargetInfo,
+        hostInfos: HIs
+    ) where HIs.Element == XCSchemeInfo.HostInfo {
+        self.init(
+            pbxTarget: pbxTargetInfo.pbxTarget,
+            platforms: pbxTargetInfo.platforms,
+            buildableReference: pbxTargetInfo.buildableReference,
+            hostInfos: Array(hostInfos),
+            extensionPointIdentifiers: pbxTargetInfo.extensionPointIdentifiers
+        )
+    }
+}
+
+extension XCSchemeInfo.TargetInfo {
+    /// Initializer used when resolving a selected host.
+    init<TargetInfos: Sequence>(
+        resolveHostFor original: XCSchemeInfo.TargetInfo,
+        topLevelTargetInfos: TargetInfos
+    ) where TargetInfos.Element == XCSchemeInfo.TargetInfo {
+        self.init(
+            pbxTarget: original.pbxTarget,
+            platforms: original.platforms,
+            buildableReference: original.buildableReference,
+            hostInfos: original.hostInfos,
+            extensionPointIdentifiers: original.extensionPointIdentifiers,
+            hostResolution: original.hostInfos.resolve(topLevelTargetInfos: topLevelTargetInfos)
+        )
     }
 }
 
@@ -81,22 +121,6 @@ extension Collection where Element == XCSchemeInfo.HostInfo {
         }
 
         return .none
-    }
-}
-
-extension XCSchemeInfo.TargetInfo {
-    /// Initializer used when resolving a selected host.
-    init<TargetInfos: Sequence>(
-        resolveHostFor original: XCSchemeInfo.TargetInfo,
-        topLevelTargetInfos: TargetInfos
-    ) where TargetInfos.Element == XCSchemeInfo.TargetInfo {
-        self.init(
-            pbxTarget: original.pbxTarget,
-            buildableReference: original.buildableReference,
-            hostInfos: original.hostInfos,
-            extensionPointIdentifiers: original.extensionPointIdentifiers,
-            hostResolution: original.hostInfos.resolve(topLevelTargetInfos: topLevelTargetInfos)
-        )
     }
 }
 
