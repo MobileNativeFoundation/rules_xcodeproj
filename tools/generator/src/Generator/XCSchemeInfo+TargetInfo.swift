@@ -111,9 +111,8 @@ extension Collection where Element == XCSchemeInfo.HostInfo {
             return .selected(selected)
         }
 
-        // TODO(chuck): Implement top-level platform check
-
         // Find the first host that has a top-level platform
+        // GH573: Implement top-level platform check
 
         // Just pick one of the hosts.
         if let selected = first {
