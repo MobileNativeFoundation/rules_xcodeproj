@@ -283,6 +283,7 @@
 		E8E1F83DD47BE39D09BD645B /* OrderedSet+RandomAccessCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65CEDAB3A773DDC13F7BFE7 /* OrderedSet+RandomAccessCollection.swift */; };
 		EB4A452EE958D49C8D481FC8 /* XCScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1A9C414C17FC0CB546CCF5 /* XCScheme.swift */; };
 		EBF46BD547BE8BC0C19D65CC /* ProcessTargetMerges.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0DCE8B2E461919E45E6D7 /* ProcessTargetMerges.swift */; };
+		EC95F63F4042536A21DBA804 /* XCSchemeInfo+HostInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68742A2FE4F0B23F0786BC76 /* XCSchemeInfo+HostInfoTests.swift */; };
 		ECBD008947BBD15AB1A35FF1 /* OrderedDictionary+Partial RangeReplaceableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C88EE3AA908B93ADC7B8F /* OrderedDictionary+Partial RangeReplaceableCollection.swift */; };
 		ECCA99D11A5C71FF33FFA4B0 /* SearchPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71E5D5A3ED7BDF0B859C36 /* SearchPaths.swift */; };
 		ED5453D41C0823C5AD74357E /* CreateCustomXCSchemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C67F66BD1DCF607668ADDC /* CreateCustomXCSchemes.swift */; };
@@ -544,6 +545,7 @@
 		6715701A6A75A2BFF85172AD /* XCTFail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTFail.swift; sourceTree = "<group>"; };
 		67D085A4397A412E35122016 /* XCWorkspaceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspaceData.swift; sourceTree = "<group>"; };
 		68733F62C401C1AA84617E96 /* KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPath.swift; sourceTree = "<group>"; };
+		68742A2FE4F0B23F0786BC76 /* XCSchemeInfo+HostInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+HostInfoTests.swift"; sourceTree = "<group>"; };
 		6A9607F1AB28FE727DED4651 /* CreateProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectTests.swift; sourceTree = "<group>"; };
 		6B175666DC0102DE35EBD173 /* XCRemoteSwiftPackageReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCRemoteSwiftPackageReference.swift; sourceTree = "<group>"; };
 		6BC2AE826C4EDD1E4BADB41F /* DisambiguateTargets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisambiguateTargets.swift; sourceTree = "<group>"; };
@@ -1172,6 +1174,7 @@
 				7C55220CE7606CF936497C6E /* XCScheme+ExtensionsTests.swift */,
 				E68F397DBABDC12E41113B99 /* XCSchemeEnvironmentVariablesExtensionsTests.swift */,
 				7CC88A1EC5D00732D7576F9A /* XCSchemeInfo+BuildActionInfoTests.swift */,
+				68742A2FE4F0B23F0786BC76 /* XCSchemeInfo+HostInfoTests.swift */,
 				49B3B73668D297F26F66A5E7 /* XCSchemeInfo+LaunchActionInfoTests.swift */,
 				DFD9A9F50CD3972B0F674265 /* XCSchemeInfo+ProfileActionInfoTests.swift */,
 				6C0B189B25267181F6563FE8 /* XCSchemeInfo+TargetInfoTests.swift */,
@@ -1992,6 +1995,7 @@
 				0A72F10D9138B4C857C3B358 /* XCScheme+ExtensionsTests.swift in Sources */,
 				42EFDAABD5E997C0347FFE60 /* XCSchemeEnvironmentVariablesExtensionsTests.swift in Sources */,
 				9884BFE5F8802125BBD695CC /* XCSchemeInfo+BuildActionInfoTests.swift in Sources */,
+				EC95F63F4042536A21DBA804 /* XCSchemeInfo+HostInfoTests.swift in Sources */,
 				829C2ECE601D6E6F30288D04 /* XCSchemeInfo+LaunchActionInfoTests.swift in Sources */,
 				BF65912DF533222FBFA38112 /* XCSchemeInfo+ProfileActionInfoTests.swift in Sources */,
 				B94E786140EF5D646741F635 /* XCSchemeInfo+TargetInfoTests.swift in Sources */,
