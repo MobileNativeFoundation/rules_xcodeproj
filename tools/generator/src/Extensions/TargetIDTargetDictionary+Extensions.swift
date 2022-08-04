@@ -55,15 +55,30 @@ extension Dictionary where Key == TargetID, Value == Target {
 
 // MARK: `collectPlatformsByKey`
 
-extension Dictionary where Key == TargetID, Value == Target {
+// TODO(chuck): MOVE ME!
+
+extension Dictionary where Key == TargetID, Value == ConsolidatedTarget.Key {
     func collectPlatformsByKey(
-        consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key]
+        targets: [TargetID: Target]
     ) throws -> [ConsolidatedTarget.Key: Set<Platform>] {
         var result = [ConsolidatedTarget.Key: Set<Platform>]()
-        for (targetID, target) in self {
-            let key = try consolidatedTargetKeys.value(for: targetID)
+        for (targetID, key) in self {
+            let target = try targets.value(for: targetID)
             result[key, default: []].insert(target.platform)
         }
         return result
     }
 }
+
+// extension Dictionary where Key == TargetID, Value == Target {
+//     func collectPlatformsByKey(
+//         consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key]
+//     ) throws -> [ConsolidatedTarget.Key: Set<Platform>] {
+//         var result = [ConsolidatedTarget.Key: Set<Platform>]()
+//         for (targetID, target) in self {
+//             let key = try consolidatedTargetKeys.value(for: targetID)
+//             result[key, default: []].insert(target.platform)
+//         }
+//         return result
+//     }
+// }
