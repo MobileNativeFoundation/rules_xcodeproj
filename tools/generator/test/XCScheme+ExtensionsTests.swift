@@ -8,14 +8,14 @@ import XCTest
 extension XCSchemeExtensionsTests {
     func test_BuildableReference_init() throws {
         let buildableReference = XCScheme.BuildableReference(
-            pbxTarget: libraryTarget,
+            pbxTarget: libraryPBXTarget,
             referencedContainer: filePathResolver.containerReference
         )
         let expected = XCScheme.BuildableReference(
             referencedContainer: filePathResolver.containerReference,
-            blueprint: libraryTarget,
-            buildableName: libraryTarget.buildableName,
-            blueprintName: libraryTarget.name
+            blueprint: libraryPBXTarget,
+            buildableName: libraryPBXTarget.buildableName,
+            blueprintName: libraryPBXTarget.name
         )
         XCTAssertEqual(buildableReference, expected)
     }
@@ -176,24 +176,31 @@ class XCSchemeExtensionsTests: XCTestCase {
         )
         .0
 
-    lazy var libraryTarget = pbxTargetsDict["A 1"]!
-    lazy var anotherLibraryTarget = pbxTargetsDict["C 1"]!
-    lazy var appTarget = pbxTargetsDict["A 2"]!
+    lazy var libraryPlatform = Fixtures.targets["A 1"]!.platform
+    lazy var anotherLibraryPlatform = Fixtures.targets["C 1"]!.platform
+    lazy var appPlatform = Fixtures.targets["A 2"]!.platform
+
+    lazy var libraryPBXTarget = pbxTargetsDict["A 1"]!
+    lazy var anotherLibraryPBXTarget = pbxTargetsDict["C 1"]!
+    lazy var appPBXTarget = pbxTargetsDict["A 2"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryTarget,
+        pbxTarget: libraryPBXTarget,
+        platforms: [libraryPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var anotherLibraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: anotherLibraryTarget,
+        pbxTarget: anotherLibraryPBXTarget,
+        platforms: [anotherLibraryPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: appTarget,
+        pbxTarget: appPBXTarget,
+        platforms: [appPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []

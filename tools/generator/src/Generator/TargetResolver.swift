@@ -8,8 +8,7 @@ struct TargetResolver: Equatable {
     let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier]
     let consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key]
     let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
-    let keyedHostPBXTargets: [ConsolidatedTarget.Key: OrderedSet<PBXTarget>]
-    let keyedExtensionPointIdentifiers: [ConsolidatedTarget.Key: Set<ExtensionPointIdentifier>]
+    let pbxTargetInfos: [ConsolidatedTarget.Key: PBXTargetInfo]
 
     init(
         referencedContainer: String,
@@ -26,91 +25,93 @@ struct TargetResolver: Equatable {
         self.consolidatedTargetKeys = consolidatedTargetKeys
         self.pbxTargets = pbxTargets
 
-        var keyedHostPBXTargets: [
-            ConsolidatedTarget.Key: OrderedSet<PBXTarget>
-        ] = [:]
-        for (id, hostIDs) in targetHosts {
-            guard let key = consolidatedTargetKeys[id] else {
-                throw PreconditionError(message: """
-`key` for hosted target target id "\(id)" not found in `consolidatedTargetKeys`.
-""")
-            }
-
-            for hostID in hostIDs {
-                guard let hostKey = consolidatedTargetKeys[hostID] else {
-                    throw PreconditionError(message: """
-`key` "\(hostID)" for host target target id "\(id)" not found in `consolidatedTargetKeys`.
-""")
-                }
-                guard let hostPBXTarget = pbxTargets[hostKey] else {
-                    throw PreconditionError(message: """
-Host target, "\(hostKey)", for "\(key)" not found in `pbxTargets`.
-""")
-                }
-
-                keyedHostPBXTargets[key, default: []].append(hostPBXTarget)
-            }
-        }
-        self.keyedHostPBXTargets = keyedHostPBXTargets
-
+        let hostKeys: [ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>] = Dictionary(
+            try targetHosts.map { targetID, hostIDs in
+                let key = try consolidatedTargetKeys.value(for: targetID)
+                let hostKeys = try hostIDs
+                    .map { try consolidatedTargetKeys.value(for: $0) }
+                    .reduce(into: Set()) { hostKeys, hostKey in hostKeys.insert(hostKey) }
+                return (key, hostKeys)
+            },
+            uniquingKeysWith: { $0.union($1) }
+        )
+        let platformsByKey = try consolidatedTargetKeys.collectPlatformsByKey(targets: targets)
         var keyedExtensionPointIdentifiers: [
             ConsolidatedTarget.Key: Set<ExtensionPointIdentifier>
         ] = [:]
         for (id, extensionPointIdentifier) in extensionPointIdentifiers {
-            guard let key = consolidatedTargetKeys[id] else {
-                throw PreconditionError(message: """
+            let key = try consolidatedTargetKeys.value(for: id, message: """
 `key` for extension point identifier target id "\(id)" not found in \
 `consolidatedTargetKeys`.
 """)
-            }
             keyedExtensionPointIdentifiers[key, default: []]
                 .insert(extensionPointIdentifier)
         }
-        self.keyedExtensionPointIdentifiers = keyedExtensionPointIdentifiers
+
+        let pbxTargetInfoList: [PBXTargetInfo] = try pbxTargets.map { key, pbxTarget in
+            PBXTargetInfo(
+                key: key,
+                pbxTarget: pbxTarget,
+                platforms: try platformsByKey.value(for: key),
+                extensionPointIdentifiers: keyedExtensionPointIdentifiers[key, default: []],
+                buildableReference: .init(
+                    pbxTarget: pbxTarget,
+                    referencedContainer: referencedContainer
+                ),
+                hostKeys: hostKeys[key, default: []]
+            )
+        }
+        pbxTargetInfos = .init(uniqueKeysWithValues: pbxTargetInfoList.map { ($0.key, $0) })
     }
 }
 
 extension TargetResolver {
-    func pbxTargetAndKey(
-        for targetID: TargetID
-    ) throws -> (key: ConsolidatedTarget.Key, pbxTarget: PBXTarget) {
-        let context = "finding a `PBXTarget` and `ConsolidatedTarget.Key`"
-        let key = try consolidatedTargetKeys.value(for: targetID, context: context)
-        return (key: key, pbxTarget: try pbxTargets.value(for: key, context: context))
+    static let pbxTargetInfoCtx = "finding a `PBXTargetInfo`"
+
+    func pbxTargetInfo(for targetID: TargetID) throws -> PBXTargetInfo {
+        let key = try consolidatedTargetKeys.value(for: targetID, context: Self.pbxTargetInfoCtx)
+        return try pbxTargetInfos.value(for: key, context: Self.pbxTargetInfoCtx)
     }
 }
 
 // MARK: XCScheme.TargetInfo Helpers
 
 extension TargetResolver {
-    private func targetInfo(
-        key: ConsolidatedTarget.Key,
-        pbxTarget: PBXTarget
-    ) -> XCSchemeInfo.TargetInfo {
+    private func targetInfo(pbxTargetInfo: PBXTargetInfo) throws -> XCSchemeInfo.TargetInfo {
         return .init(
-            pbxTarget: pbxTarget,
-            referencedContainer: referencedContainer,
-            hostInfos: keyedHostPBXTargets[key, default: []].elements.enumerated()
-                .map { hostIndex, hostPBXTarget in
-                    .init(
-                        pbxTarget: hostPBXTarget,
-                        referencedContainer: referencedContainer,
-                        index: hostIndex
-                    )
-                },
-            extensionPointIdentifiers: keyedExtensionPointIdentifiers[key, default: []]
+            pbxTargetInfo: pbxTargetInfo,
+            hostInfos: try pbxTargetInfo.hostKeys.enumerated().map { hostIndex, hostKey in
+                .init(
+                    pbxTargetInfo: try pbxTargetInfos.value(for: hostKey),
+                    index: hostIndex
+                )
+            }
         )
     }
 
     func targetInfo(targetID: TargetID) throws -> XCSchemeInfo.TargetInfo {
-        let pbxTargetAndKey = try pbxTargetAndKey(for: targetID)
-        return targetInfo(key: pbxTargetAndKey.key, pbxTarget: pbxTargetAndKey.pbxTarget)
+        let pbxTargetInfo = try pbxTargetInfo(for: targetID)
+        return try targetInfo(pbxTargetInfo: pbxTargetInfo)
     }
 
     /// Creates `XCSchemeInfo.TargetInfo` values for all eligible targets.
-    var targetInfos: [XCSchemeInfo.TargetInfo] {
-        return pbxTargets.map { key, pbxTarget in
-            return targetInfo(key: key, pbxTarget: pbxTarget)
+    var targetInfos: Set<XCSchemeInfo.TargetInfo> {
+        get throws {
+            let targetInfoList = try pbxTargetInfos.values.map { try targetInfo(pbxTargetInfo: $0) }
+            return .init(targetInfoList)
         }
+    }
+}
+
+// MARK: `PBXTargetInfo`
+
+extension TargetResolver {
+    struct PBXTargetInfo: Equatable, Hashable {
+        let key: ConsolidatedTarget.Key
+        let pbxTarget: PBXTarget
+        let platforms: Set<Platform>
+        let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
+        let buildableReference: XCScheme.BuildableReference
+        let hostKeys: Set<ConsolidatedTarget.Key>
     }
 }

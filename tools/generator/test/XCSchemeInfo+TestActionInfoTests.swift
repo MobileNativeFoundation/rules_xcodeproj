@@ -119,18 +119,23 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
 
     lazy var pbxTargetsDict = targetResolver.pbxTargets
 
-    lazy var libraryTarget = pbxTargetsDict["A 1"]!
-    lazy var unitTestTarget = pbxTargetsDict["B 2"]!
+    lazy var libraryPlatform = Fixtures.targets["A 1"]!.platform
+    lazy var unitTestPlatform = Fixtures.targets["B 2"]!.platform
+
+    lazy var libraryPBXTarget = pbxTargetsDict["A 1"]!
+    lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryTarget,
+        pbxTarget: libraryPBXTarget,
+        platforms: [libraryPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
 
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: unitTestTarget,
+        pbxTarget: unitTestPBXTarget,
+        platforms: [unitTestPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []

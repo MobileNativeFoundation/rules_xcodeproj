@@ -81,23 +81,30 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
 
     lazy var pbxTargetsDict = targetResolver.pbxTargets
 
-    lazy var libraryTarget = pbxTargetsDict["A 1"]!
-    lazy var appTarget = pbxTargetsDict["A 2"]!
-    lazy var unitTestTarget = pbxTargetsDict["B 2"]!
+    lazy var libraryPlatform = Fixtures.targets["A 1"]!.platform
+    lazy var appPlatform = Fixtures.targets["A 2"]!.platform
+    lazy var unitTestPlatform = Fixtures.targets["B 2"]!.platform
+
+    lazy var libraryPBXTarget = pbxTargetsDict["A 1"]!
+    lazy var appPBXTarget = pbxTargetsDict["A 2"]!
+    lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: appTarget,
+        pbxTarget: appPBXTarget,
+        platforms: [appPlatform],
         referencedContainer: filePathResolver.containerReference,
         index: 0
     )
     lazy var unitTestHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: unitTestTarget,
+        pbxTarget: unitTestPBXTarget,
+        platforms: [unitTestPlatform],
         referencedContainer: filePathResolver.containerReference,
         index: 1
     )
 
     lazy var unresolvedLibraryTargetInfoWithHosts = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryTarget,
+        pbxTarget: libraryPBXTarget,
+        platforms: [libraryPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [appHostInfo, unitTestHostInfo],
         extensionPointIdentifiers: []
@@ -105,7 +112,8 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
 
     lazy var topLevelTargetInfos: [XCSchemeInfo.TargetInfo] = [
         .init(
-            pbxTarget: unitTestTarget,
+            pbxTarget: unitTestPBXTarget,
+            platforms: [unitTestPlatform],
             referencedContainer: filePathResolver.containerReference,
             hostInfos: [],
             extensionPointIdentifiers: []

@@ -112,7 +112,7 @@ extension TargetResolver {
                 let targetWithID = XcodeScheme.TargetWithID(id: targetID, target: target)
                 var targetInfo = try results[target.label] ?? .init(
                     label: target.label,
-                    isTopLevel: try pbxTargetAndKey(for: targetID).pbxTarget.isTopLevel
+                    isTopLevel: try pbxTargetInfo(for: targetID).pbxTarget.isTopLevel
                 )
                 targetInfo.add(targetWithID)
                 results[target.label] = targetInfo
