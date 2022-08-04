@@ -110,14 +110,14 @@ final class GeneratorTests: XCTestCase {
         )
         let disambiguatedTargets = DisambiguatedTargets(
             keys: [
-                "A": "A",
+                "Y": "Y",
                 "I 1": "I 1",
                 "I 2": "I 2",
                 "WKE": "WKE",
             ],
             targets: [
-                "A": .init(
-                    name: "A (3456a)",
+                "Y": .init(
+                    name: "Y (3456a)",
                     target: consolidatedTargets.targets["Y"]!
                 ),
                 "I 1": .init(
@@ -145,7 +145,7 @@ final class GeneratorTests: XCTestCase {
         let productsGroup = PBXGroup(name: "42")
         let bazelDependenciesTarget = PBXAggregateTarget(name: "BD")
         let pbxTargets: [ConsolidatedTarget.Key: PBXTarget] = [
-            "A": PBXNativeTarget(name: "A (3456a)"),
+            "Y": PBXNativeTarget(name: "Y (3456a)"),
             "I 1": PBXNativeTarget(name: "I1 (3456a)"),
             "I 2": PBXNativeTarget(name: "I2 (3456a)"),
             "WKE": PBXNativeTarget(name: "WKE (3456a)"),
