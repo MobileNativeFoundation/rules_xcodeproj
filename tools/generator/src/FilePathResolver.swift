@@ -7,6 +7,9 @@ struct FilePathResolver: Equatable {
         case srcRoot
     }
 
+    let externalDirectory: Path
+    let bazelOutDirectory: Path
+
     let internalDirectoryName: String
     private let workspaceOutputPath: Path
     let internalDirectory: Path
@@ -17,7 +20,14 @@ struct FilePathResolver: Equatable {
     /// property provides the value.
     let containerReference: String
 
-    init(internalDirectoryName: String, workspaceOutputPath: Path) {
+    init(
+        externalDirectory: Path,
+        bazelOutDirectory: Path,
+        internalDirectoryName: String,
+        workspaceOutputPath: Path
+    ) {
+        self.externalDirectory = externalDirectory
+        self.bazelOutDirectory = bazelOutDirectory
         self.internalDirectoryName = internalDirectoryName
         self.workspaceOutputPath = workspaceOutputPath
         internalDirectory = workspaceOutputPath + internalDirectoryName
@@ -27,8 +37,7 @@ struct FilePathResolver: Equatable {
 
     func resolve(
         _ filePath: FilePath,
-        useGenDir: Bool = false,
-        useOriginalGeneratedFiles: Bool = false,
+        useBazelOut: Bool = false,
         forceAbsoluteProjectPath: Bool = false,
         mode: Mode = .buildSetting
     ) throws -> Path {
@@ -52,11 +61,11 @@ struct FilePathResolver: Equatable {
             case .script:
                 externalDir = "$BAZEL_EXTERNAL"
             case .srcRoot:
-                externalDir = linksDirectory + "external"
+                externalDir = externalDirectory
             }
             return externalDir + filePath.path
         case .generated:
-            if useOriginalGeneratedFiles {
+            if useBazelOut {
                 let bazelOutDir: Path
                 switch mode {
                 case .buildSetting:
@@ -64,22 +73,9 @@ struct FilePathResolver: Equatable {
                 case .script:
                     bazelOutDir = "$BAZEL_OUT"
                 case .srcRoot:
-                    throw PreconditionError(message: """
-`useOriginalGeneratedFiles = true` and `mode` == `.srcRoot`
-""")
+                    bazelOutDir = bazelOutDirectory
                 }
                 return bazelOutDir + filePath.path
-            } else if useGenDir {
-                let linkedBazelOutDir: Path
-                switch mode {
-                case .buildSetting:
-                    linkedBazelOutDir = "$(GEN_DIR)"
-                case .script:
-                    linkedBazelOutDir = "$GEN_DIR"
-                case .srcRoot:
-                    linkedBazelOutDir = linksDirectory + "gen_dir"
-                }
-                return linkedBazelOutDir + filePath.path
             } else {
                 let buildDir: Path
                 switch mode {

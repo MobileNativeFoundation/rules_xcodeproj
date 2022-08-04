@@ -107,7 +107,8 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
 """
                 conditionalFileNames[key] = try uniqueFiles
                     .map { filePath in
-                        try filePathResolver.resolve(filePath, useGenDir: true)
+                        return try filePathResolver
+                            .resolve(filePath, useBazelOut: true)
                             .string.quoted
                     }
                     .sortedLocalizedStandard()
@@ -161,10 +162,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 onKey: "FRAMEWORK_SEARCH_PATHS",
                 frameworkIncludes.map { filePath in
                     return try filePathResolver
-                        .resolve(
-                            filePath,
-                            useOriginalGeneratedFiles: true
-                        )
+                        .resolve(filePath, useBazelOut: true)
                         .string.quoted
                 }
             )
@@ -177,10 +175,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 onKey: "USER_HEADER_SEARCH_PATHS",
                 quoteIncludes.map { filePath in
                     return try filePathResolver
-                        .resolve(
-                            filePath,
-                            useOriginalGeneratedFiles: true
-                        )
+                        .resolve(filePath, useBazelOut: true)
                         .string.quoted
                 }
             )
@@ -193,10 +188,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 onKey: "HEADER_SEARCH_PATHS",
                 includes.map { filePath in
                     return try filePathResolver
-                        .resolve(
-                            filePath,
-                            useOriginalGeneratedFiles: true
-                        )
+                        .resolve(filePath, useBazelOut: true)
                         .string.quoted
                 }
             )
@@ -209,10 +201,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 onKey: "SYSTEM_HEADER_SEARCH_PATHS",
                 systemIncludes.map { filePath in
                     return try filePathResolver
-                        .resolve(
-                            filePath,
-                            useOriginalGeneratedFiles: true
-                        )
+                        .resolve(filePath, useBazelOut: true)
                         .string.quoted
                 }
             )
@@ -223,10 +212,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             target.modulemaps
                 .map { filePath -> String in
                     let modulemap = try filePathResolver
-                        .resolve(
-                            filePath,
-                            useOriginalGeneratedFiles: true
-                        )
+                        .resolve(filePath, useBazelOut: true)
                         .string.quoted
                     return "-Xcc -fmodule-map-file=\(modulemap)"
                 }
@@ -292,23 +278,18 @@ $(CONFIGURATION_BUILD_DIR)
 
         if let infoPlist = target.infoPlist {
             let infoPlistPath = try filePathResolver
-                .resolve(infoPlist, useGenDir: true)
-                .string.quoted
+                .resolve(infoPlist, useBazelOut: true).string.quoted
             buildSettings.set("INFOPLIST_FILE", to: infoPlistPath)
         } else if buildMode.allowsGeneratedInfoPlists {
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
         }
 
         if let entitlements = target.inputs.entitlements {
-            let entitlementsPath = try filePathResolver.resolve(
-                entitlements,
-                // Path needs to use `$(GEN_DIR)` to ensure XCBuild picks it
-                // up on first generation
-                useGenDir: true
-            )
+            let entitlementsPath = try filePathResolver
+                .resolve(entitlements, useBazelOut: true).string.quoted
             buildSettings.set(
                 "CODE_SIGN_ENTITLEMENTS",
-                to: entitlementsPath.string.quoted
+                to: entitlementsPath
             )
 
             if !buildMode.usesBazelModeBuildScripts {
@@ -325,9 +306,9 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let pch = target.inputs.pch {
-            let pchPath = try filePathResolver.resolve(pch, useGenDir: true)
-
-            buildSettings.set("GCC_PREFIX_HEADER", to: pchPath.string.quoted)
+            let pchPath = try filePathResolver
+                .resolve(pch, useBazelOut: true).string.quoted
+            buildSettings.set("GCC_PREFIX_HEADER", to: pchPath)
         }
 
         let swiftmodules = target.swiftmodules
@@ -339,8 +320,7 @@ $(CONFIGURATION_BUILD_DIR)
                     return try filePathResolver
                         .resolve(
                             dir,
-                            useOriginalGeneratedFiles:
-                                !xcodeGeneratedFiles.contains(filePath)
+                            useBazelOut: !xcodeGeneratedFiles.contains(filePath)
                         )
                         .string.quoted
                 }
@@ -356,7 +336,7 @@ $(CONFIGURATION_BUILD_DIR)
                 "BAZEL_OUTPUTS_PRODUCT",
                 to: try filePathResolver.resolve(
                     productOutput,
-                    useOriginalGeneratedFiles: true
+                    useBazelOut: true
                 )
             )
         }
@@ -374,17 +354,17 @@ $(CONFIGURATION_BUILD_DIR)
             if target.isSwift {
                 try buildSettings.prepend(
                     onKey: "OTHER_SWIFT_FLAGS",
-                    "-vfsoverlay $(OBJROOT)/gen_dir-overlay.yaml"
+                    "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml"
                 )
             } else {
                 try buildSettings.prepend(
                     onKey: "OTHER_CFLAGS",
-                    ["-ivfsoverlay", "$(OBJROOT)/gen_dir-overlay.yaml"]
+                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
                 )
 
                 try buildSettings.prepend(
                     onKey: "OTHER_CPLUSPLUSFLAGS",
-                    ["-ivfsoverlay", "$(OBJROOT)/gen_dir-overlay.yaml"]
+                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
                 )
             }
 
@@ -395,7 +375,7 @@ $(CONFIGURATION_BUILD_DIR)
                         onKey: "OTHER_SWIFT_FLAGS",
                         #"""
 -Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
--Xcc -ivfsoverlay -Xcc $(OBJROOT)/gen_dir-overlay.yaml
+-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml
 """#
                     )
                 }
@@ -663,12 +643,7 @@ private extension Outputs.Swift {
             interface,
         ]
             .compactMap { $0 }
-            .map { filePath in
-                return try filePathResolver.resolve(
-                    filePath,
-                    useOriginalGeneratedFiles: true
-                ).string
-            }
+            .map { try filePathResolver.resolve($0, useBazelOut: true).string }
     }
 }
 

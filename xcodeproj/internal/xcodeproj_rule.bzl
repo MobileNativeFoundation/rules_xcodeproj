@@ -344,11 +344,44 @@ def _write_extensionpointidentifiers(
 
     return output
 
+def _write_root_dirs(*, ctx):
+    output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
+
+    ctx.actions.run_shell(
+        outputs = [output],
+        command = """\
+project_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{project_full}";)"
+workspace_dir="${{project_full_path%/{project_full}}}"
+
+bazel_out_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bazel_out_full}";)"
+bazel_out_full_path="${{bazel_out_full_path#/private}}"
+bazel_out="${{bazel_out_full_path%/{bazel_out_full}}}/bazel-out"
+external="${{bazel_out%/*/*/*}}/external"
+
+echo "${{external#$workspace_dir/}}" >> "{out_full}"
+echo "${{bazel_out#$workspace_dir/}}" >> "{out_full}"
+""".format(
+            project_full = ctx.build_file_path,
+            bazel_out_full = ctx.bin_dir.path,
+            out_full = output.path,
+        ),
+        mnemonic = "CalculateXcodeProjRootDirs",
+        # This has to run locally
+        execution_requirements = {
+            "local": "1",
+            "no-remote": "1",
+            "no-sandbox": "1",
+        },
+    )
+
+    return output
+
 def _write_xcodeproj(
         *,
         ctx,
         project_name,
         spec_file,
+        root_dirs_file,
         bazel_integration_files,
         xccurrentversions_file,
         extensionpointidentifiers_file,
@@ -366,6 +399,7 @@ def _write_xcodeproj(
 
     args = ctx.actions.args()
     args.add(spec_file.path)
+    args.add(root_dirs_file.path)
     args.add(xccurrentversions_file.path)
     args.add(extensionpointidentifiers_file.path)
     args.add(bazel_integration_files[0].dirname)
@@ -379,6 +413,7 @@ def _write_xcodeproj(
         arguments = [args],
         inputs = [
             spec_file,
+            root_dirs_file,
             xccurrentversions_file,
             extensionpointidentifiers_file,
         ] + bazel_integration_files,
@@ -525,6 +560,7 @@ def _xcodeproj_impl(ctx):
         inputs = inputs,
         infos = infos,
     )
+    root_dirs_file = _write_root_dirs(ctx = ctx)
     xccurrentversions_file = _write_xccurrentversions(
         ctx = ctx,
         xccurrentversion_files = inputs.xccurrentversions.to_list(),
@@ -539,6 +575,7 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         project_name = project_name,
         spec_file = spec_file,
+        root_dirs_file = root_dirs_file,
         xccurrentversions_file = xccurrentversions_file,
         extensionpointidentifiers_file = extensionpointidentifiers_file,
         bazel_integration_files = bazel_integration_files,
@@ -641,13 +678,6 @@ A JSON string representing a list of Xcode schemes to create.\
             cfg = "exec",
             default = Label("//tools/extensionpointidentifiers_parser"),
             executable = True,
-        ),
-        "_external_file_marker": attr.label(
-            allow_single_file = True,
-            # This just has to point to a source file in an external repo. It is
-            # only used by a local action, so it doesn't matter what it points
-            # to.
-            default = "@build_bazel_rules_apple//:LICENSE",
         ),
         "_generator": attr.label(
             cfg = "exec",

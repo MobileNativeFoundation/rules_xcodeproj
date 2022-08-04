@@ -44,12 +44,16 @@ class Generator {
         xccurrentversions: [XCCurrentVersion],
         extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
         projectRootDirectory: Path,
+        externalDirectory: Path,
+        bazelOutDirectory: Path,
         internalDirectoryName: String,
         bazelIntegrationDirectory: Path,
         workspaceOutputPath: Path,
         outputPath: Path
     ) throws {
         let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )

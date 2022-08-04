@@ -36,19 +36,37 @@ mkdir -p "$index_external"
 # on the way you opened a file. If you open a file via the Project navigator,
 # or indexing (e.g. Jump to Definition), it will use the paths specified below.
 
-# Generated when set from Project navigator
-echo "settings set target.source-map ./bazel-out/ \"$GEN_DIR\""
-# Generated when set from indexing opened file
-echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
-# Generated when set from swiftsourcefile
-echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
+if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
+    absolute_bazel_out="$BAZEL_OUT"
+else
+    absolute_bazel_out="$SRCROOT/$BAZEL_OUT"
+fi
 
-# External when set from Project navigator
-echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
-# External when set from indexing opened file
+# `bazel-out` when set from Project navigator
+echo "settings set target.source-map ./bazel-out/ \"$absolute_bazel_out\""
+# `bazel-out` when set from indexing opened file
+echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
+
+if [[ "$absolute_bazel_out" != "$build_bazel_out" ]]; then
+  # `bazel-out` when set from swiftsourcefile
+  echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
+fi
+
+if [[ "${BAZEL_EXTERNAL:0:1}" == '/' ]]; then
+    absolute_external="$BAZEL_EXTERNAL"
+else
+    absolute_external="$SRCROOT/$BAZEL_EXTERNAL"
+fi
+
+# `external` when set from Project navigator
+echo "settings append target.source-map ./external/ \"$absolute_external\""
+# `external` when set from indexing opened file
 echo "settings append target.source-map ./external/ \"$index_external\""
-# External when set from swiftsourcefile
-echo "settings append target.source-map ./external/ \"$build_external\""
+
+if [[ "$absolute_external" != "$build_external" ]]; then
+  # `external` when set from swiftsourcefile
+  echo "settings append target.source-map ./external/ \"$build_external\""
+fi
 
 # Project files
 echo "settings append target.source-map ./ \"$SRCROOT\""

@@ -165,6 +165,8 @@ extension XCSchemeExtensionsTests {
 
 class XCSchemeExtensionsTests: XCTestCase {
     lazy var filePathResolver = FilePathResolver(
+        externalDirectory: "/some/bazel3/external",
+        bazelOutDirectory: "/some/bazel3/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )

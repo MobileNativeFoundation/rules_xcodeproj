@@ -24,8 +24,7 @@ extension Target {
                 return try filePathResolver
                     .resolve(
                         filePath,
-                        useOriginalGeneratedFiles:
-                            !xcodeGeneratedFiles.contains(filePath)
+                        useBazelOut: !xcodeGeneratedFiles.contains(filePath)
                     )
                     .string.quoted
             }
@@ -38,8 +37,7 @@ extension Target {
                     try filePathResolver
                         .resolve(
                             filePath,
-                            useOriginalGeneratedFiles:
-                                !xcodeGeneratedFiles.contains(filePath)
+                            useBazelOut: !xcodeGeneratedFiles.contains(filePath)
                         )
                         .string.quoted,
                 ]
@@ -130,10 +128,7 @@ private func processLinkoptComponent(
         }
 
         value = try filePathResolver
-            .resolve(
-                filePath,
-                useOriginalGeneratedFiles:!xcodeGenerated
-            )
+            .resolve(filePath, useBazelOut: !xcodeGenerated)
             .string.quoted
     }
 

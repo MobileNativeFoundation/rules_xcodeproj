@@ -119,49 +119,10 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
 
   # Determine bazel-out
   bazel_out=$(%bazel_path% info output_path 2>/dev/null)
-  exec_root="${bazel_out%/*}"
-  external="${exec_root%/*/*}/external"
 
-  # Determine `$OBJROOT`
-  error_log=$(mktemp)
-  exit_status=0
-  objroot=$(\
-    xcodebuild -project "$dest" -showBuildSettings 2>&1 | tee -i "$error_log" \
-      | grep '\OBJROOT\s=\s' \
-      | sed 's/.*= //' \
-      || exit_status=$? \
-  )
-  if [ $exit_status -ne 0 ]; then
-    echo "ERROR: Failed to calculate OBJROOT for \"$dest\":"
-    cat "$error_log" >&2
-    exit 1
-  fi
-
-  # Create links directory
-  mkdir -p "$dest/rules_xcodeproj/links"
-  cd "$dest/rules_xcodeproj/links"
-
-  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-  # files to the internal links directory to prevent Bazel from recursing into
-  # it, and thus following the `external` symlink
-  touch BUILD
-  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-
-  rm -rf external
-  rm -rf gen_dir
-
-  ln -s "$external" external
-  ln -s "$objroot/bazel-exec-root/bazel-out" gen_dir
-
-  # Create `$GEN_DIR`
-  mkdir -p "$objroot"
-  cd "$objroot"
-  rm -f "bazel-exec-root"
-  ln -s "$exec_root" "bazel-exec-root"
-
-  # Create directory structure in `$GEN_DIR`
+  # Create directory structure in bazel-out
   cd "$bazel_out"
-  sed 's|^\$(GEN_DIR)\/\(.*\)\/[^\/]*$|\1|' \
+  sed 's|^\$(BAZEL_OUT)\/\(.*\)\/[^\/]*$|\1|' \
     "$dest/rules_xcodeproj/generated.xcfilelist" \
     | uniq \
     | while IFS= read -r dir

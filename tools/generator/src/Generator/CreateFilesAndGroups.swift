@@ -267,10 +267,10 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: .group,
+                sourceTree: filePathResolver.externalDirectory.isAbsolute ?
+                    .absolute : .group,
                 name: "Bazel External Repositories",
-                path: (filePathResolver.internalDirectory + "links/external")
-                    .string
+                path: filePathResolver.externalDirectory.string
             )
             pbxProj.add(object: group)
             groups[.external("")] = group
@@ -286,10 +286,10 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: .group,
+                sourceTree: filePathResolver.bazelOutDirectory.isAbsolute ?
+                    .absolute : .group,
                 name: "Bazel Generated Files",
-                path: (filePathResolver.internalDirectory + "links/gen_dir")
-                    .string
+                path: filePathResolver.bazelOutDirectory.string
             )
             pbxProj.add(object: group)
             groups[.generated("")] = group
@@ -467,10 +467,7 @@ extension Generator {
             .filter { $0.type == .generated && !$0.isFolder } + nonIncludedFiles
 
         let generatedPaths = try generatedFilePaths.map { filePath in
-            // We need to use `$(GEN_DIR)` instead of `$(BAZEL_OUT)` here to
-            // match the project navigator. This is only needed for files
-            // referenced by `PBXBuildFile` or have specific build settings.
-            return try filePathResolver.resolve(filePath, useGenDir: true)
+            return try filePathResolver.resolve(filePath, useBazelOut: true)
         }
 
         if buildMode.usesBazelModeBuildScripts,
@@ -566,7 +563,7 @@ extension Generator {
                         return try filePathResolver
                             .resolve(
                                 filePath,
-                                useOriginalGeneratedFiles: true,
+                                useBazelOut: true,
                                 forceAbsoluteProjectPath: true
                             )
                             .string
@@ -579,7 +576,7 @@ extension Generator {
                         return try filePathResolver
                             .resolve(
                                 dir,
-                                useOriginalGeneratedFiles:
+                                useBazelOut:
                                     !xcodeGeneratedFiles.contains(filePath),
                                 forceAbsoluteProjectPath: true
                             )
@@ -826,7 +823,7 @@ private extension Target {
 private extension LLDBContext.Clang {
     private static let overlayFlags = #"""
 -ivfsoverlay $(OBJROOT)/xcode-overlay.yaml \#
--ivfsoverlay $(OBJROOT)/gen_dir-overlay.yaml
+-ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
 """#
 
     func toClangExtraArgs(
@@ -840,7 +837,7 @@ private extension LLDBContext.Clang {
             let path = try filePathResolver
                 .resolve(
                     filePath,
-                    useOriginalGeneratedFiles: true,
+                    useBazelOut: true,
                     forceAbsoluteProjectPath: true
                 )
                 .string
@@ -857,7 +854,7 @@ private extension LLDBContext.Clang {
             let path = try filePathResolver
                 .resolve(
                     filePath,
-                    useOriginalGeneratedFiles: true,
+                    useBazelOut: true,
                     forceAbsoluteProjectPath: true
                 )
                 .string
@@ -868,7 +865,7 @@ private extension LLDBContext.Clang {
             let path = try filePathResolver
                 .resolve(
                     filePath,
-                    useOriginalGeneratedFiles: true,
+                    useBazelOut: true,
                     forceAbsoluteProjectPath: true
                 )
                 .string
@@ -897,7 +894,7 @@ private extension LLDBContext.Clang {
             let modulemap = try filePathResolver
                 .resolve(
                     filePath,
-                    useOriginalGeneratedFiles: true,
+                    useBazelOut: true,
                     forceAbsoluteProjectPath: true
                 )
                 .string

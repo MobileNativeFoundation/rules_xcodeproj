@@ -207,10 +207,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BAZEL_EXTERNAL = "$(LINKS_DIR)/external";
+				BAZEL_EXTERNAL = "bazel-output-base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(OBJROOT)/bazel-exec-root/bazel-out";
+				BAZEL_OUT = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 				BAZEL_PATH = bazel;
 				BUILT_PRODUCTS_DIR = "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
@@ -220,7 +220,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
-				GEN_DIR = "$(LINKS_DIR)/gen_dir";
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
 				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";

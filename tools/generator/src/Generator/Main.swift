@@ -11,6 +11,7 @@ extension Generator {
         do {
             let arguments = try parseArguments(CommandLine.arguments)
             let project = try readProject(path: arguments.specPath)
+            let rootDirs = try readRootDirectories(path: arguments.rootDirsPath)
             let xccurrentversions = try readXCCurrentVersions(
                 path: arguments.xccurrentversionsPath
             )
@@ -24,6 +25,8 @@ extension Generator {
                 xccurrentversions: xccurrentversions,
                 extensionPointIdentifiers: extensionPointIdentifiers,
                 projectRootDirectory: arguments.projectRootDirectory,
+                externalDirectory: rootDirs.externalDirectory,
+                bazelOutDirectory: rootDirs.bazelOutDirectory,
                 internalDirectoryName: "rules_xcodeproj",
                 bazelIntegrationDirectory: arguments.bazelIntegrationDirectory,
                 workspaceOutputPath: arguments.workspaceOutputPath,
@@ -37,6 +40,7 @@ extension Generator {
 
     struct Arguments {
         let specPath: Path
+        let rootDirsPath: Path
         let xccurrentversionsPath: Path
         let extensionPointIdentifiersPath: Path
         let bazelIntegrationDirectory: Path
@@ -47,16 +51,16 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count == 8 else {
+        guard arguments.count == 9 else {
             throw UsageError(message: """
-Usage: \(arguments[0]) <path/to/project.json> \
+Usage: \(arguments[0]) <path/to/project.json> <path/to/root_dirs> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/bazel/integration/dir> <path/to/output/project.xcodeproj> \
 <workspace/relative/output/path> (xcode|bazel)
 """)
         }
 
-        let workspaceOutput = arguments[6]
+        let workspaceOutput = arguments[7]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
@@ -67,7 +71,7 @@ Usage: \(arguments[0]) <path/to/project.json> \
             .joined(separator: "/")
 
         guard
-            let buildMode = BuildMode(rawValue: arguments[7])
+            let buildMode = BuildMode(rawValue: arguments[8])
         else {
             throw UsageError(message: """
 ERROR: build_mode wasn't one of the supported values: xcode, bazel
@@ -76,10 +80,11 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
 
         return Arguments(
             specPath: Path(arguments[1]),
-            xccurrentversionsPath: Path(arguments[2]),
-            extensionPointIdentifiersPath: Path(arguments[3]),
-            bazelIntegrationDirectory: Path(arguments[4]),
-            outputPath: Path(arguments[5]),
+            rootDirsPath: Path(arguments[2]),
+            xccurrentversionsPath: Path(arguments[3]),
+            extensionPointIdentifiersPath: Path(arguments[4]),
+            bazelIntegrationDirectory: Path(arguments[5]),
+            outputPath: Path(arguments[6]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode
@@ -96,6 +101,29 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             // Return a more detailed error message
             throw PreconditionError(message: error.message)
         }
+    }
+
+    struct RootDirectories {
+        let externalDirectory: Path
+        let bazelOutDirectory: Path
+    }
+
+    static func readRootDirectories(path: Path) throws -> RootDirectories {
+        let rootDirs = try path.read(.utf8)
+            .split(separator: "\n")
+            .map(String.init)
+
+        guard rootDirs.count == 2 else {
+            throw UsageError(message: """
+The root_dirs_file must contain two lines: one for the external repositories \
+directory, and one for the bazel-out directory.
+""")
+        }
+
+        return RootDirectories(
+            externalDirectory: Path(rootDirs[0]),
+            bazelOutDirectory: Path(rootDirs[1])
+        )
     }
 
     static func readXCCurrentVersions(path: Path) throws -> [XCCurrentVersion] {

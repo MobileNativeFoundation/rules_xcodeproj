@@ -492,6 +492,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     ]
 
     lazy var filePathResolver = FilePathResolver(
+        externalDirectory: "/some/bazel10/external",
+        bazelOutDirectory: "/some/bazel10/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
