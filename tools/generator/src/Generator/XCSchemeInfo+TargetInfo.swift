@@ -12,9 +12,11 @@ extension XCSchemeInfo {
 
     struct TargetInfo: Equatable, Hashable {
         let pbxTarget: PBXTarget
-        let platforms: Set<Platform>
+        // The platforms property is a sorted list of unique platforms.
+        let platforms: [Platform]
         let buildableReference: XCScheme.BuildableReference
-        let hostInfos: Set<HostInfo>
+        // The hostInfos property is a sorted list of unique HostInfo.
+        let hostInfos: [HostInfo]
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let disambiguateHost: Bool
         let hostResolution: HostResolution
@@ -31,9 +33,9 @@ extension XCSchemeInfo {
             Platforms.Element == Platform
         {
             self.pbxTarget = pbxTarget
-            self.platforms = Set(platforms)
+            self.platforms = Set(platforms).sorted()
             self.buildableReference = buildableReference
-            self.hostInfos = Set(hostInfos)
+            self.hostInfos = Set(hostInfos).sorted()
             self.extensionPointIdentifiers = Set(extensionPointIdentifiers)
             disambiguateHost = self.hostInfos.count > 1
             self.hostResolution = hostResolution

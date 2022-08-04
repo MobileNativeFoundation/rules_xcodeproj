@@ -12,6 +12,11 @@ extension XCSchemeInfoTargetInfoTests {
             pbxTarget: libraryPBXTarget,
             referencedContainer: filePathResolver.containerReference
         ))
+        XCTAssertEqual(
+            libraryTargetInfoWithHosts.hostInfos,
+            [appHostInfo, anotherAppHostInfo],
+            "the hostInfos should be sorted and unique"
+        )
     }
 }
 
@@ -296,7 +301,8 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         pbxTarget: libraryPBXTarget,
         platforms: [libraryPlatform],
         referencedContainer: filePathResolver.containerReference,
-        hostInfos: [appHostInfo, anotherAppHostInfo],
+        // Puprposefully specified appHostInfo twice
+        hostInfos: [appHostInfo, anotherAppHostInfo, appHostInfo],
         extensionPointIdentifiers: []
     )
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
