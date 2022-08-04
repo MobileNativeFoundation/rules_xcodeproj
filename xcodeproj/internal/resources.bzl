@@ -355,7 +355,7 @@ def collect_resources(
             frozen_bundles.append(
                 struct(
                     name = bundle.name,
-                    label = str(metadata.label),
+                    label = metadata.label,
                     configuration = metadata.configuration,
                     id = metadata.id,
                     package_bin_dir = metadata.package_bin_dir,
