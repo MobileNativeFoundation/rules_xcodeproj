@@ -70,8 +70,8 @@
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/tools/generator/generator.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
-                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
@@ -101,11 +101,11 @@
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/libAEXML.a",
+                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/libPathKit.a",
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/libAEXML.a",
                         "t": "g"
                     },
                     {
@@ -259,11 +259,11 @@
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
                         "t": "g"
                     },
                     {
@@ -469,8 +469,8 @@
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/tools/generator/generator.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
-                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -494,11 +494,11 @@
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/libAEXML.a",
+                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/libPathKit.a",
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/libPathKit.a",
+                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/libAEXML.a",
                         "t": "g"
                     }
                 ]
@@ -591,11 +591,11 @@
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
                         "t": "g"
                     },
                     {
-                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                        "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
                         "t": "g"
                     }
                 ]
@@ -1801,11 +1801,11 @@
             },
             "swiftmodules": [
                 {
-                    "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
+                    "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
                     "t": "g"
                 },
                 {
-                    "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
+                    "_": "darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
                     "t": "g"
                 }
             ]
