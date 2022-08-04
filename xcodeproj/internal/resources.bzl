@@ -116,6 +116,9 @@ def _add_structured_resources_to_bundle(
         else:
             dir = file.dirname
 
+        if not dir.endswith(nested_path):
+            continue
+
         fp = file_path(
             file,
             path = paths.join(dir[:-(1 + len(nested_path))], inner_dir),
