@@ -14,7 +14,7 @@ extension XCSchemeInfo {
         let pbxTarget: PBXTarget
         let platforms: Set<Platform>
         let buildableReference: XCScheme.BuildableReference
-        let hostInfos: [HostInfo]
+        let hostInfos: Set<HostInfo>
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let disambiguateHost: Bool
         let hostResolution: HostResolution
@@ -33,7 +33,7 @@ extension XCSchemeInfo {
             self.pbxTarget = pbxTarget
             self.platforms = Set(platforms)
             self.buildableReference = buildableReference
-            self.hostInfos = Array(hostInfos)
+            self.hostInfos = Set(hostInfos)
             self.extensionPointIdentifiers = Set(extensionPointIdentifiers)
             disambiguateHost = self.hostInfos.count > 1
             self.hostResolution = hostResolution
