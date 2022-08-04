@@ -19,9 +19,12 @@ extension DictionaryExtensionTests {
             XCTFail("Expected a `PreconditionError`.")
             return
         }
-        XCTAssertEqual(error.message, """
+        let expectedMainMsg = """
 Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist".
-""")
+"""
+        XCTAssertTrue(error.message.contains(expectedMainMsg))
+        let expectedPostMsgFragment = "function: test_value_keyDoesNotExist_noContext()"
+        XCTAssertTrue(error.message.contains(expectedPostMsgFragment))
     }
 
     func test_value_keyDoesNotExist_withContext() throws {
