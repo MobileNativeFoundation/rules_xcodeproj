@@ -110,14 +110,14 @@ final class GeneratorTests: XCTestCase {
         )
         let disambiguatedTargets = DisambiguatedTargets(
             keys: [
-                "A": "A",
+                "Y": "Y",
                 "I 1": "I 1",
                 "I 2": "I 2",
                 "WKE": "WKE",
             ],
             targets: [
-                "A": .init(
-                    name: "A (3456a)",
+                "Y": .init(
+                    name: "Y (3456a)",
                     target: consolidatedTargets.targets["Y"]!
                 ),
                 "I 1": .init(
