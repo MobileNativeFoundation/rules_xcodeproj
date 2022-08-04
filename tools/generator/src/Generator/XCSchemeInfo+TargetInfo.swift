@@ -76,7 +76,7 @@ extension XCSchemeInfo.TargetInfo {
             pbxTarget: pbxTargetInfo.pbxTarget,
             platforms: pbxTargetInfo.platforms,
             buildableReference: pbxTargetInfo.buildableReference,
-            hostInfos: Array(hostInfos),
+            hostInfos: hostInfos,
             extensionPointIdentifiers: pbxTargetInfo.extensionPointIdentifiers
         )
     }
