@@ -2,9 +2,11 @@
 
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
+    "AppleResourceBundleInfo",
     "AppleResourceInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(
@@ -222,6 +224,8 @@ def _collect(
 
     # buildifier: disable=uninitialized
     def _handle_dep(dep, *, attr):
+        # This allows the transitive uncategorized files for target of a
+        # categorized attribute to be included in the project
         if (XcodeProjInfo not in dep or
             not _is_categorized_attr(
                 attr,
@@ -264,11 +268,13 @@ def _collect(
     for file in additional_files:
         extra_files.append(normalized_file_path(file))
 
+    is_resource_bundle_consuming = is_bundle and AppleResourceInfo in target
+
     resources = None
     resource_bundles = None
     resource_bundle_dependencies = None
     xccurrentversions = None
-    if is_bundle and AppleResourceInfo in target:
+    if is_resource_bundle_consuming:
         resources_result = collect_resources(
             platform = platform,
             resource_info = target[AppleResourceInfo],
@@ -280,6 +286,33 @@ def _collect(
 
         generated.extend(resources_result.generated)
         xccurrentversions = resources_result.xccurrentversions
+
+        bundle_labels_list = [
+            bundle.label
+            for bundle in resources_result.bundles
+        ]
+        resource_bundle_labels = depset(
+            bundle_labels_list if bundle_labels_list else None,
+            transitive = [
+                dep[XcodeProjInfo].inputs._resource_bundle_labels
+                for dep in avoid_deps
+            ],
+        )
+        bundle_labels = sets.make(resource_bundle_labels.to_list())
+
+        extra_files.extend([
+            file
+            for label, files in depset(
+                transitive = [
+                    info.inputs._resource_bundle_uncategorized
+                    for attr, info in transitive_infos
+                    if (info.target_type in
+                        automatic_target_info.xcode_targets.get(attr, [None]))
+                ],
+            ).to_list()
+            for file in files
+            if not sets.contains(bundle_labels, label)
+        ])
 
         extra_files.extend(resources_result.extra_files)
         if bundle_resources:
@@ -297,6 +330,13 @@ def _collect(
                 depset([(id, bundle.resources)])
                 for bundle in resources_result.bundles
             ])
+    else:
+        resource_bundle_labels = depset(
+            transitive = [
+                dep[XcodeProjInfo].inputs._resource_bundle_labels
+                for dep in avoid_deps
+            ],
+        )
 
     # Generically handle CcInfo providing rules. This allows us to pick up
     # headers from `objc_import` and the like.
@@ -420,6 +460,35 @@ def _collect(
             ],
         )
 
+    if is_resource_bundle_consuming:
+        # We've consumed them above
+        resource_bundle_uncategorized = depset()
+    else:
+        # TODO: Remove hard-coded "apple_bundle_import" check
+        if (AppleResourceBundleInfo in target and
+            ctx.rule.kind != "apple_bundle_import"):
+            resource_bundle_uncategorized = uncategorized
+            uncategorized = []
+        else:
+            resource_bundle_uncategorized = None
+
+        if resource_bundle_uncategorized:
+            resource_bundle_uncategorized_direct = [
+                (target.label, tuple(resource_bundle_uncategorized)),
+            ]
+        else:
+            resource_bundle_uncategorized_direct = None
+
+        resource_bundle_uncategorized = depset(
+            resource_bundle_uncategorized_direct,
+            transitive = [
+                info.inputs._resource_bundle_uncategorized
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        )
+
     if id:
         extra_files.extend(
             depset(
@@ -474,6 +543,8 @@ def _collect(
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
+        _resource_bundle_labels = resource_bundle_labels,
+        _resource_bundle_uncategorized = resource_bundle_uncategorized,
         _unowned_extra_files = unowned_extra_files,
         _unowned_uncategorized = unowned_uncategorized,
         srcs = depset(srcs),
@@ -548,6 +619,8 @@ def _from_resource_bundle(bundle):
     return struct(
         _non_target_swift_info_modules = depset(),
         _output_group_list = depset(),
+        _resource_bundle_labels = depset(),
+        _resource_bundle_uncategorized = depset(),
         _unowned_extra_files = depset(),
         _unowned_uncategorized = depset(),
         srcs = depset(),
@@ -592,6 +665,18 @@ def _merge(*, transitive_infos, extra_generated = None):
         _output_group_list = depset(
             transitive = [
                 info.inputs._output_group_list
+                for _, info in transitive_infos
+            ],
+        ),
+        _resource_bundle_labels = depset(
+            transitive = [
+                info.inputs._resource_bundle_labels
+                for _, info in transitive_infos
+            ],
+        ),
+        _resource_bundle_uncategorized = depset(
+            transitive = [
+                info.inputs._resource_bundle_uncategorized
                 for _, info in transitive_infos
             ],
         ),
