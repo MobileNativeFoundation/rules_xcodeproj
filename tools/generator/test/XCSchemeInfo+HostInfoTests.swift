@@ -2,6 +2,8 @@ import XCTest
 
 @testable import generator
 
+// MARK: Initializer Tests
+
 extension XCSchemeInfoHostInfoTests {
     func test_init_storesUniqSortedPlatforms() throws {
         let hostInfo = XCSchemeInfo.HostInfo(
@@ -14,6 +16,8 @@ extension XCSchemeInfoHostInfoTests {
         XCTAssertEqual(hostInfo.platforms, [iOSSimulatorPlatform, iOSDevicePlatform])
     }
 }
+
+// MARK: Comparable Tests
 
 extension XCSchemeInfoHostInfoTests {
     func test_Comparable() throws {
@@ -29,6 +33,16 @@ extension XCSchemeInfoHostInfoTests {
         XCTAssertTrue(macApp < iOSApp, "macApp should be less than iOSApp")
     }
 }
+
+// MARK: Host Resolution Tests
+
+extension XCSchemeInfoHostInfoTests {
+    func test_resolve() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+}
+
+// MARK: Test Data
 
 class XCSchemeInfoHostInfoTests: XCTestCase {
     let iOSDevicePlatform = Platform.device(os: .iOS)
