@@ -375,10 +375,10 @@ build_marker="$OBJROOT/bazel_build_start"
 touch "$build_marker"
 
 log=$(mktemp)
-\#(bazelExec) \
+"$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \#(bazelExec) \
   ${output_base:+--output_base "$output_base"} \
   build \
-  --color="$color" \
+  --color="yes" \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
   ${index_flags:+${index_flags[*]}} \
