@@ -38,9 +38,18 @@ extension Platform {
 // MARK: `Platform.compatibleWith`
 
 extension Platform {
+    /// Determines whether the `Platform` is compatible with any of the specified `Platform` values.
     func compatibleWith<Platforms: Sequence>(
         anyOf platforms: Platforms
     ) -> Bool where Platforms.Element == Platform {
         return platforms.contains { self.compatibility(with: $0).isCompatible }
+    }
+}
+
+extension Sequence where Element == Platform {
+    /// Determines whether any of the `Platform` values are compatible with the specified `Platform`
+    /// value.
+    func compatibleWith(_ platform: Platform) -> Bool {
+        return contains { $0.compatibility(with: platform).isCompatible }
     }
 }
