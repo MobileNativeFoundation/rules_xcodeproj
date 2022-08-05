@@ -2189,7 +2189,7 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit $(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tadija_aexml";
+				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;

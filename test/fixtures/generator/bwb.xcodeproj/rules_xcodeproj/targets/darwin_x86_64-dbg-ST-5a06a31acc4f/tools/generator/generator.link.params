@@ -1,8 +1,8 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/tools/generator/generator.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule
--Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift
@@ -14,5 +14,5 @@
 $(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/tools/generator/libgenerator.library.a
 $(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_apple_swift_collections/libOrderedCollections.a
 $(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a
-$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/libPathKit.a
 $(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/libAEXML.a
+$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/libPathKit.a

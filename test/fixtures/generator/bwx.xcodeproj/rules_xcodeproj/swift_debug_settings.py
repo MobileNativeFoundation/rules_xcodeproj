@@ -21,8 +21,8 @@ _SETTINGS = {
     "includes" : [
       "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_apple_swift_collections",
       "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tuist_xcodeproj",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit",
-      "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tadija_aexml"
+      "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tadija_aexml",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit"
     ]
   },
   "x86_64-apple-macosx11.0.0 tests.xctest/Contents/MacOS/tests" : {
@@ -37,8 +37,8 @@ _SETTINGS = {
       "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_pointfreeco_swift_custom_dump",
       "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_apple_swift_collections",
       "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tuist_xcodeproj",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit",
       "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tadija_aexml",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit",
       "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay"
     ]
   }
