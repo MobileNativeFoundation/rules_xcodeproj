@@ -8,7 +8,13 @@ readonly output_base="${exec_root%/*/*}"
 readonly build_bazel_out="$exec_root/bazel-out"
 readonly build_external="$output_base/external"
 
-readonly index_objroot="${OBJROOT%/Build/Intermediates.noindex}/Index/Build/Intermediates.noindex"
+# In Xcode 14 the "Index" directory was renamed to "Index.noindex".
+# `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can
+# use it to determine the name of the directory regardless of Xcode version.
+readonly index_dir="${INDEX_DATA_STORE_DIR%/*}"
+readonly index_dir_name="${index_dir##*/}"
+
+readonly index_objroot="${OBJROOT%/Build/Intermediates.noindex}/$index_dir_name/Build/Intermediates.noindex"
 readonly workspace_name="${exec_root##*/}"
 readonly index_exec_root="$index_objroot/bazel_output_base/execroot/$workspace_name"
 

@@ -269,16 +269,22 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&
         return #"""
 set -euo pipefail
 
+# In Xcode 14 the "Index" directory was renamed to "Index.noindex".
+# `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can
+# use it to determine the name of the directory regardless of Xcode version.
+readonly index_dir="${INDEX_DATA_STORE_DIR%/*}"
+readonly index_dir_name="${index_dir##*/}"
+
 # Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for
 # previews. So we need to look in the non-preview build directory for this file.
-non_preview_objroot="${OBJROOT/\/Intermediates.noindex\/Previews\/*//Intermediates.noindex}"
-base_objroot="${non_preview_objroot/\/Index\/Build\/Intermediates.noindex//Build/Intermediates.noindex}"
-scheme_target_ids_file="$non_preview_objroot/scheme_target_ids"
+readonly non_preview_objroot="${OBJROOT/\/Intermediates.noindex\/Previews\/*//Intermediates.noindex}"
+readonly base_objroot="${non_preview_objroot/\/$index_dir_name\/Build\/Intermediates.noindex//Build/Intermediates.noindex}"
+readonly scheme_target_ids_file="$non_preview_objroot/scheme_target_ids"
 
 if [ "$ACTION" == "indexbuild" ]; then
-  output_group_prefix=i
+  readonly output_group_prefix=i
 else
-  output_group_prefix=\#(buildMode.buildOutputGroupPrefix)
+  readonly output_group_prefix=\#(buildMode.buildOutputGroupPrefix)
 fi
 
 # We need to read from `$output_groups_file` as soon as possible, as concurrent
