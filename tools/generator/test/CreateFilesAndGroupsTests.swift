@@ -22,10 +22,14 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ]
         let extraFiles: Set<FilePath> = []
         let xccurrentversions: [XCCurrentVersion] = []
+        let externalDirectory: Path = "/some/bazel12/external"
+        let bazelOutDirectory: Path = "/some/bazel12/bazel-out"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -92,10 +96,14 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let targets = Fixtures.targets
         let extraFiles = Fixtures.project.extraFiles
         let xccurrentversions = Fixtures.xccurrentversions
+        let externalDirectory: Path = "/some/bazel15/external"
+        let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -106,6 +114,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedXcodeGeneratedFiles
         ) = Fixtures.files(
             in: expectedPBXProj,
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )

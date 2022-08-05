@@ -41,12 +41,16 @@ final class GeneratorTests: XCTestCase {
         let buildMode: BuildMode = .bazel
         let schemeAutogenerationMode: SchemeAutogenerationMode = .auto
         let projectRootDirectory: Path = "~/project"
+        let externalDirectory: Path = "/some/bazel/external"
+        let bazelOutDirectory: Path = "/some/bazel/bazel-out"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
         let bazelIntegrationDirectory: Path = "stubs"
         let outputPath: Path = "P.xcodeproj"
 
         let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -717,6 +721,8 @@ final class GeneratorTests: XCTestCase {
             xccurrentversions: xccurrentversions,
             extensionPointIdentifiers: extensionPointIdentifiers,
             projectRootDirectory: projectRootDirectory,
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
             bazelIntegrationDirectory: bazelIntegrationDirectory,
             workspaceOutputPath: workspaceOutputPath,

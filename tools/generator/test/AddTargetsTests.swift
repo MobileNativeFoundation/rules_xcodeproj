@@ -17,10 +17,14 @@ final class AddTargetsTests: XCTestCase {
         let xcodeprojBazelLabel = "//:project"
         let xcodeprojConfiguration = "1234zyx"
         let consolidatedTargets = Fixtures.consolidatedTargets
+        let externalDirectory: Path = "/some/bazel11/external"
+        let bazelOutDirectory: Path = "/some/bazel11/bazel-out"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let filePathResolver = FilePathResolver(
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )

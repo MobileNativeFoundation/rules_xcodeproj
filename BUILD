@@ -42,7 +42,10 @@ package_group(
 
 filegroup(
     name = "all_files",
-    srcs = glob(["*"]),
+    srcs = glob(
+        ["*"],
+        exclude = ["bazel-*"],
+    ),
 )
 
 filegroup(

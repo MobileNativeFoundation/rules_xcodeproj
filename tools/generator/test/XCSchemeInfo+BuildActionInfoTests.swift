@@ -71,6 +71,8 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
     let xcodeprojBazelLabel = BazelLabel("//foo")
 
     lazy var filePathResolver = FilePathResolver(
+        externalDirectory: "/some/bazel4/external",
+        bazelOutDirectory: "/some/bazel4/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )

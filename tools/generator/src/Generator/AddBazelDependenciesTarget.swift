@@ -211,10 +211,15 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
     ) throws -> String {
         var overlays: [String] = [#"""
 
-# Use actual paths for Bazel generated files
-# This also fixes Index Build to use its version of generated files
-cat > "$OBJROOT/gen_dir-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$output_path","name": "$GEN_DIR","type": "directory-remap"}],"version": 0}
+# Use current path for bazel-out
+# This fixes Index Build to use its version of generated files
+if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
+    absolute_bazel_out="$BAZEL_OUT"
+else
+    absolute_bazel_out="$SRCROOT/$BAZEL_OUT"
+fi
+cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
+{"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$output_path","name": "$absolute_bazel_out","type": "directory-remap"}],"version": 0}
 EOF
 
 """#]
@@ -230,12 +235,12 @@ EOF
                 .map { filepath -> String in
                     let bazelOut = try filePathResolver.resolve(
                         filepath,
-                        useOriginalGeneratedFiles: true,
+                        useBazelOut: true,
                         mode: .script
                     )
                     let buildDir = try filePathResolver.resolve(
                         filepath,
-                        useOriginalGeneratedFiles: false,
+                        useBazelOut: false,
                         mode: .script
                     )
                     return #"""
@@ -325,40 +330,11 @@ output_path=$(\#(bazelExec) \
   --bes_results_url= \
   output_path)
 exec_root="${output_path%/*}"
-external="${exec_root%/*/*}/external"
 
 if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
   "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" > "$BAZEL_LLDB_INIT"
 fi
-
-# We only want to modify `$LINKS_DIR` during normal builds since Indexing can
-# run concurrent to normal builds
-if [ "$ACTION" != "indexbuild" ]; then
-  mkdir -p "$LINKS_DIR"
-  cd "$LINKS_DIR"
-
-  # Add BUILD and DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-  # files to the internal links directory to prevent Bazel from recursing into
-  # it, and thus following the `external` symlink
-  touch BUILD
-  touch DONT_FOLLOW_SYMLINKS_WHEN_TRAVERSING_THIS_DIRECTORY_VIA_A_RECURSIVE_TARGET_PATTERN
-
-  # Need to remove the directories that Xcode creates as part of output prep
-  rm -rf external
-  rm -rf gen_dir
-
-  ln -sf "$external" external
-  ln -sf "$BAZEL_OUT" gen_dir
-fi
 \#(overlays.joined(separator: "\n"))\#
-
-cd "$OBJROOT"
-
-rm -rf external
-rm -rf bazel-exec-root
-
-ln -s "$external" external
-ln -s "$exec_root" bazel-exec-root
 
 """#
     }

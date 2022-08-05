@@ -29,6 +29,8 @@ class CreateCustomXCSchemesTests: XCTestCase {
     let xcodeprojBazelLabel = BazelLabel("//foo")
 
     let filePathResolver = FilePathResolver(
+        externalDirectory: "/private/var/tmp/_bazel_rx/H/execroot/R2/external",
+        bazelOutDirectory: "/private/var/tmp/_bazel_rx/H/execroot/R2/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )

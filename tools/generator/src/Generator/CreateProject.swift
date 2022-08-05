@@ -19,10 +19,10 @@ extension Generator {
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
-            "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
+            "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-            "BAZEL_OUT": "$(OBJROOT)/bazel-exec-root/bazel-out",
+            "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
             // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
             // `DEPLOYMENT_LOCATION` is set. It does prevent `DYLD_LIBRARY_PATH`
             // from being modified though.
@@ -37,7 +37,6 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
-            "GEN_DIR": "$(LINKS_DIR)/gen_dir",
             "LINKS_DIR": "$(INTERNAL_DIR)/links",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEXING_BUILT_PRODUCTS_DIR__": """

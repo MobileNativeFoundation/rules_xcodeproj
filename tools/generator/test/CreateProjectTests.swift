@@ -13,6 +13,8 @@ final class CreateProjectTests: XCTestCase {
         let projectRootDirectory: Path = "~/Developer/project"
 
         let filePathResolver = FilePathResolver(
+            externalDirectory: "/some/bazel13/external",
+            bazelOutDirectory: "/some/bazel13/bazel-out",
             internalDirectoryName: "r_xcp",
             workspaceOutputPath: "X.xcodeproj"
         )
@@ -25,9 +27,9 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
-                "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
+                "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-                "BAZEL_OUT": "$(OBJROOT)/bazel-exec-root/bazel-out",
+                "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
@@ -42,7 +44,6 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
-                "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "INDEXING_BUILT_PRODUCTS_DIR__": """
@@ -118,6 +119,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
         let projectRootDirectory: Path = "~/Developer/project"
 
         let filePathResolver = FilePathResolver(
+            externalDirectory: "/some/bazel16/external",
+            bazelOutDirectory: "/some/bazel16/bazel-out",
             internalDirectoryName: "r_xcp",
             workspaceOutputPath: "X.xcodeproj"
         )
@@ -130,9 +133,9 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
-                "BAZEL_EXTERNAL": "$(LINKS_DIR)/external",
+                "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-                "BAZEL_OUT": "$(OBJROOT)/bazel-exec-root/bazel-out",
+                "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
@@ -150,7 +153,6 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
-                "GEN_DIR": "$(LINKS_DIR)/gen_dir",
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
