@@ -163,9 +163,9 @@ swift_library(
         # Custom for our tests
         "//third_party/com_github_pointfreeco_swift_custom_dump:type_name.patch",
     ],
-    sha256 = "2e55a6c40ddf4d0401514ef3fa29eb07c395d2f4a1844c6c22cdc2c54dcb71f9",
-    strip_prefix = "swift-custom-dump-15fae98653ab3573b458bdb416cbba06e95348a4",
-    url = "https://github.com/pointfreeco/swift-custom-dump/archive/15fae98653ab3573b458bdb416cbba06e95348a4.tar.gz",
+    sha256 = "a45e8f275794960651043623e23abb8365f0455b4ad5976bc56a4fa00c5efb31",
+    strip_prefix = "swift-custom-dump-0.5.0",
+    url = "https://github.com/pointfreeco/swift-custom-dump/archive/refs/tags/0.5.0.tar.gz",
 )
 
 # Setup the Skylib dependency, this is required to use the Starlark unittest
