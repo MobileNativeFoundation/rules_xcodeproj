@@ -82,14 +82,21 @@ extension Collection where Element == XCSchemeInfo.HostInfo {
 
         // Look for a host that is one of the top-level targets.
         let topLevelPBXTargetInfos = Set(topLevelTargetInfos.map(\.pbxTarget))
-        if let selected = filter({ topLevelPBXTargetInfos.contains($0.pbxTarget) }).first {
+        if let selected = first(where: { topLevelPBXTargetInfos.contains($0.pbxTarget) }) {
             return .selected(selected)
         }
 
-        // Find the first host that has a top-level platform
-        // GH573: Implement top-level platform check
+        // Find the first host that has the best top-level platform
+        let topLevelPlatforms = Set(topLevelTargetInfos.flatMap(\.platforms)).sorted()
+        for topLevelPlatform in topLevelPlatforms {
+            if let selected = first(where: { $0.platforms.compatibleWith(topLevelPlatform) }) {
+                return .selected(selected)
+            }
+        }
 
-        // Just pick one of the hosts.
+        // Pick the first host. If the host infos collection is from a `XCSchemeInfo.TargetInfo`,
+        // the hosts are sorted by best `Platform`. Hence, the first `HostInfo` is the best one to
+        // select.
         if let selected = first {
             return .selected(selected)
         }
