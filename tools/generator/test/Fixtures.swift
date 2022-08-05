@@ -427,8 +427,6 @@ enum Fixtures {
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
 
-        let linksDir = workspaceOutputPath + internalDirectoryName + "links"
-
         // bazel-out/a1b2c/bin/t.c
 
         elements[.generated("a1b2c/bin/t.c")] = PBXFileReference(

@@ -354,10 +354,9 @@ project_full="{project_full}"
 remove_suffix="/${{project_full#*/*}}"
 workspace_root_element="${{project_full%$remove_suffix}}"
 
-project_full_path="$(perl -MCwd -e 'print Cwd::abs_path' "{project_full}";)"
-execroot_workspace_dir="${{project_full_path%/{project_full}}}"
+execroot_workspace_dir="$(perl -MCwd -e 'print Cwd::abs_path' "{project_full}";)"
 workspace_root_element="$(readlink $execroot_workspace_dir/$workspace_root_element)"
-workspace_dir="${{workspace_root_element%/$workspace_root_element}}"
+workspace_dir="${{workspace_root_element%/*}}"
 
 bazel_out_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bazel_out_full}";)"
 bazel_out_full_path="${{bazel_out_full_path#/private}}"

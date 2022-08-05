@@ -35,6 +35,8 @@ class XCSchemeInfoHostInfoTests: XCTestCase {
     let iOSSimulatorPlatform = Platform.simulator(os: .iOS)
 
     lazy var filePathResolver = FilePathResolver(
+        externalDirectory: "/some/bazel17/external",
+        bazelOutDirectory: "/some/bazel17/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutputPath: "examples/foo/Foo.xcodeproj"
     )
