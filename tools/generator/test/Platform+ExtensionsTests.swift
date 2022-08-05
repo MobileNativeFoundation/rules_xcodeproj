@@ -13,7 +13,7 @@ extension PlatformExtensionsTests {
     func test_compatibility_variantMismatch() throws {
         let platform = Platform(
             os: iOSarm64Platform.os,
-            variant: .tvOSDevice,
+            variant: .iOSSimulator,
             arch: iOSarm64Platform.arch,
             minimumOsVersion: iOSarm64Platform.minimumOsVersion
         )
