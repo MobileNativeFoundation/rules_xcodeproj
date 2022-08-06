@@ -30,8 +30,9 @@ extension XCSchemeExtensionsTests {
             buildActionInfo: buildActionInfo
         )
         let expected = XCScheme.BuildAction(
-            buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
-            preActions: try buildActionInfo.targetInfos.buildPreActions(buildMode: .bazel),
+            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            preActions: try buildActionInfo.targets.map(\.targetInfo)
+                .buildPreActions(buildMode: .bazel),
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
@@ -44,8 +45,9 @@ extension XCSchemeExtensionsTests {
             buildActionInfo: buildActionInfo
         )
         let expected = XCScheme.BuildAction(
-            buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
-            preActions: try buildActionInfo.targetInfos.buildPreActions(buildMode: .xcode),
+            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            preActions: try buildActionInfo.targets.map(\.targetInfo)
+                .buildPreActions(buildMode: .xcode),
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
@@ -211,7 +213,7 @@ class XCSchemeExtensionsTests: XCTestCase {
     // swiftlint:disable:next force_try
     lazy var buildActionInfo = try! XCSchemeInfo.BuildActionInfo(
         resolveHostsFor: .init(
-            targetInfos: [libraryTargetInfo, anotherLibraryTargetInfo]
+            targets: [libraryTargetInfo, anotherLibraryTargetInfo].map { .init(targetInfo: $0) }
         ),
         topLevelTargetInfos: []
     )!

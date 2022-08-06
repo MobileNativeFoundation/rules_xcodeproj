@@ -87,8 +87,10 @@ extension XCScheme.BuildAction {
         buildActionInfo: XCSchemeInfo.BuildActionInfo
     ) throws {
         self.init(
-            buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
-            preActions: try buildActionInfo.targetInfos.buildPreActions(buildMode: buildMode),
+            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(
+                buildMode: buildMode
+            ),
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
@@ -131,7 +133,7 @@ fi
     /// Create an `ExecutionAction` that builds with Bazel.
     convenience init(
         buildFor buildableReference: XCScheme.BuildableReference,
-        buildMode: BuildMode,
+        buildMode _: BuildMode,
         name: String,
         hostIndex: Int?
     ) {
