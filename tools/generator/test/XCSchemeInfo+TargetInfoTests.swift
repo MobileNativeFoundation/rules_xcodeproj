@@ -146,13 +146,12 @@ extension XCSchemeInfoTargetInfoTests {
             hostInfos: [],
             extensionPointIdentifiers: []
         )
-        let preAction = try targetInfo.buildPreAction(buildMode: .bazel)
+        let preAction = try targetInfo.buildPreAction()
         XCTAssertNil(preAction)
     }
 
     func test_bazelBuildPreAction_nativeTarget_noHost() throws {
-        let buildMode = BuildMode.bazel
-        let preAction = try libraryTargetInfo.buildPreAction(buildMode: buildMode)
+        let preAction = try libraryTargetInfo.buildPreAction()
         XCTAssertEqual(preAction, .init(
             buildFor: libraryTargetInfo.buildableReference,
             name: libraryTargetInfo.pbxTarget.name,
@@ -161,8 +160,7 @@ extension XCSchemeInfoTargetInfoTests {
     }
 
     func test_bazelBuildPreAction_nativeTarget_withHost() throws {
-        let buildMode = BuildMode.bazel
-        let preAction = try libraryTargetInfoWithHosts.buildPreAction(buildMode: buildMode)
+        let preAction = try libraryTargetInfoWithHosts.buildPreAction()
         let expectedHostIndex = try libraryTargetInfoWithHosts.selectedHostInfo?.index
         XCTAssertNotNil(expectedHostIndex)
         XCTAssertEqual(preAction, .init(
@@ -197,16 +195,15 @@ extension XCSchemeInfoTargetInfoTests {
 
 extension XCSchemeInfoTargetInfoTests {
     func test_Sequence_bazelBuildPreActions() throws {
-        let buildMode = BuildMode.bazel
         let targetInfos = [libraryTargetInfo, appTargetInfo]
         let expected: [XCScheme.ExecutionAction] = [
             .initBazelBuildOutputGroupsFile(
                 buildableReference: libraryTargetInfo.buildableReference
             ),
-            try libraryTargetInfo.buildPreAction(buildMode: buildMode)!,
-            try appTargetInfo.buildPreAction(buildMode: buildMode)!,
+            try libraryTargetInfo.buildPreAction()!,
+            try appTargetInfo.buildPreAction()!,
         ]
-        XCTAssertEqual(try targetInfos.buildPreActions(buildMode: buildMode), expected)
+        XCTAssertEqual(try targetInfos.buildPreActions(), expected)
     }
 }
 

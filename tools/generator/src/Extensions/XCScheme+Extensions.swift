@@ -26,7 +26,7 @@ extension XCScheme {
     ) throws {
         let buildAction: XCScheme.BuildAction?
         if let buildActionInfo = schemeInfo.buildActionInfo {
-            buildAction = try .init(buildMode: buildMode, buildActionInfo: buildActionInfo)
+            buildAction = try .init(buildActionInfo: buildActionInfo)
         } else {
             buildAction = .init(
                 parallelizeBuild: true,
@@ -83,14 +83,11 @@ extension XCScheme {
 
 extension XCScheme.BuildAction {
     convenience init(
-        buildMode: BuildMode,
         buildActionInfo: XCSchemeInfo.BuildActionInfo
     ) throws {
         self.init(
             buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(
-                buildMode: buildMode
-            ),
+            preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
