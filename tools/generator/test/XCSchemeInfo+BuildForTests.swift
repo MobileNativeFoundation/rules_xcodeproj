@@ -71,23 +71,9 @@ Expected `ValueError`. value: \(value), other: \(other), expected: \(expected)
 
 extension XCSchemeInfoBuildForTests {
     func test_BuildFor_xcSchemeValue() throws {
-        var buildFor = XCSchemeInfo.BuildFor(
-            running: .disabled,
-            testing: .disabled,
-            profiling: .disabled,
-            archiving: .disabled,
-            analyzing: .disabled
-        )
-        XCTAssertEqual(buildFor.xcSchemeValue, [])
+        XCTAssertEqual(allDisabledBuildFor.xcSchemeValue, [])
 
-        buildFor = XCSchemeInfo.BuildFor(
-            running: .enabled,
-            testing: .enabled,
-            profiling: .enabled,
-            archiving: .enabled,
-            analyzing: .enabled
-        )
-        XCTAssertEqual(buildFor.xcSchemeValue, [
+        XCTAssertEqual(allEnabledBuildFor.xcSchemeValue, [
             .running,
             .testing,
             .profiling,
@@ -95,7 +81,7 @@ extension XCSchemeInfoBuildForTests {
             .analyzing,
         ])
 
-        buildFor = XCSchemeInfo.BuildFor(
+        let buildFor = XCSchemeInfo.BuildFor(
             running: .enabled,
             testing: .disabled,
             profiling: .enabled,
@@ -110,10 +96,56 @@ extension XCSchemeInfoBuildForTests {
 
 extension XCSchemeInfoBuildForTests {
     func test_BuildFor_merge_with() throws {
-        XCTFail("IMPLEMENT ME!")
+        var buildFor = XCSchemeInfo.BuildFor()
+        try buildFor.merge(with: allDisabledBuildFor)
+        XCTAssertEqual(buildFor, allDisabledBuildFor)
+
+        buildFor = XCSchemeInfo.BuildFor()
+        try buildFor.merge(with: allEnabledBuildFor)
+        XCTAssertEqual(buildFor, allEnabledBuildFor)
+
+        buildFor = XCSchemeInfo.BuildFor()
+        try buildFor.merge(with: allUnspecifiedBuildFor)
+        XCTAssertEqual(buildFor, allUnspecifiedBuildFor)
+
+        // Since these are all Value properties, make sure that we have mapped them properly
+        let propertyKeyPaths: [
+            WritableKeyPath<XCSchemeInfo.BuildFor, XCSchemeInfo.BuildFor.Value>
+        ] = [
+            \.running,
+            \.testing,
+            \.profiling,
+            \.archiving,
+            \.analyzing,
+        ]
+        for keyPath in propertyKeyPaths {
+            buildFor = XCSchemeInfo.BuildFor()
+            buildFor[keyPath: keyPath] = .enabled
+            try buildFor.merge(with: allUnspecifiedBuildFor)
+
+            var expected = XCSchemeInfo.BuildFor()
+            expected[keyPath: keyPath] = .enabled
+            XCTAssertEqual(buildFor, expected)
+        }
     }
 }
 
 // MARK: Test Data
 
-class XCSchemeInfoBuildForTests: XCTestCase {}
+class XCSchemeInfoBuildForTests: XCTestCase {
+    let allUnspecifiedBuildFor = XCSchemeInfo.BuildFor()
+    let allDisabledBuildFor = XCSchemeInfo.BuildFor(
+        running: .disabled,
+        testing: .disabled,
+        profiling: .disabled,
+        archiving: .disabled,
+        analyzing: .disabled
+    )
+    let allEnabledBuildFor = XCSchemeInfo.BuildFor(
+        running: .enabled,
+        testing: .enabled,
+        profiling: .enabled,
+        archiving: .enabled,
+        analyzing: .enabled
+    )
+}
