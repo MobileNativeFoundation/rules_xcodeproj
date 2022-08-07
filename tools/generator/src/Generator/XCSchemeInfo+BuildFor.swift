@@ -32,7 +32,7 @@ extension XCSchemeInfo.BuildFor.Value {
 }
 
 extension XCSchemeInfo.BuildFor.Value {
-    enum ValueError: Error {
+    enum ValueError: Error, Equatable {
         case incompatibleMerge
     }
 
@@ -40,8 +40,12 @@ extension XCSchemeInfo.BuildFor.Value {
         switch (self, other) {
         case (.enabled, .disabled), (.disabled, .enabled):
             throw ValueError.incompatibleMerge
-        default:
-            return other
+        case (.enabled, .unspecified), (.unspecified, .enabled), (.enabled, .enabled):
+            return .enabled
+        case (.disabled, .unspecified), (.unspecified, .disabled), (.disabled, .disabled):
+            return .disabled
+        case (.unspecified, .unspecified):
+            return .unspecified
         }
     }
 }
