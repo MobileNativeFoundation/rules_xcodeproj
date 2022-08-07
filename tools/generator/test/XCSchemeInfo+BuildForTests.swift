@@ -130,6 +130,25 @@ extension XCSchemeInfoBuildForTests {
     }
 }
 
+// MARK: `BuildFor` Sequence `merged()` Tests
+
+extension XCSchemeInfoBuildForTests {
+    func test_BuildFor_Sequence_merged_notEmpty() throws {
+        let buildFors: [XCSchemeInfo.BuildFor] = [
+            .init(running: .enabled),
+            .init(profiling: .disabled),
+        ]
+        let result = try buildFors.merged()
+        XCTAssertEqual(result, .init(running: .enabled, profiling: .disabled))
+    }
+
+    func test_BuildFor_Sequence_merged_empty() throws {
+        let buildFors: [XCSchemeInfo.BuildFor] = []
+        let result = try buildFors.merged()
+        XCTAssertEqual(result, .init())
+    }
+}
+
 // MARK: Test Data
 
 class XCSchemeInfoBuildForTests: XCTestCase {
