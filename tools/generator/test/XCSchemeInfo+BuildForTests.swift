@@ -5,7 +5,7 @@ import XCTest
 // MARK: `Value.xcSchemeValue` Tests
 
 extension XCSchemeInfoBuildForTests {
-    func test_xcSchemeValue() throws {
+    func test_Value_xcSchemeValue() throws {
         XCTAssertNil(XCSchemeInfo.BuildFor.Value.disabled.xcSchemeValue(.running))
         XCTAssertEqual(XCSchemeInfo.BuildFor.Value.unspecified.xcSchemeValue(.running), .running)
         XCTAssertEqual(XCSchemeInfo.BuildFor.Value.enabled.xcSchemeValue(.running), .running)
@@ -20,7 +20,7 @@ extension XCSchemeInfoBuildForTests {
         case error(XCSchemeInfo.BuildFor.Value.ValueError)
     }
 
-    func test_merged_with() throws {
+    func test_Value_merged_with() throws {
         let testData: [(
             value: XCSchemeInfo.BuildFor.Value,
             other: XCSchemeInfo.BuildFor.Value,
@@ -64,6 +64,41 @@ Expected `ValueError`. value: \(value), other: \(other), expected: \(expected)
                 )
             }
         }
+    }
+}
+
+// MARK: `BuildFor.xcSchemeValue` Tests
+
+extension XCSchemeInfoBuildForTests {
+    func test_BuildFor_xcSchemeValue() throws {
+        var buildFor = XCSchemeInfo.BuildFor()
+
+        buildFor.running = .disabled
+        buildFor.testing = .disabled
+        buildFor.profiling = .disabled
+        buildFor.archiving = .disabled
+        buildFor.analyzing = .disabled
+        XCTAssertEqual(buildFor.xcSchemeValue, [])
+
+        buildFor.running = .enabled
+        buildFor.testing = .enabled
+        buildFor.profiling = .enabled
+        buildFor.archiving = .enabled
+        buildFor.analyzing = .enabled
+        XCTAssertEqual(buildFor.xcSchemeValue, [
+            .running,
+            .testing,
+            .profiling,
+            .archiving,
+            .analyzing,
+        ])
+
+        buildFor.running = .enabled
+        buildFor.testing = .disabled
+        buildFor.profiling = .enabled
+        buildFor.archiving = .disabled
+        buildFor.analyzing = .disabled
+        XCTAssertEqual(buildFor.xcSchemeValue, [.running, .profiling])
     }
 }
 

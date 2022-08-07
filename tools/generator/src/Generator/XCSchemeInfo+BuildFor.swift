@@ -51,7 +51,7 @@ extension XCSchemeInfo.BuildFor.Value {
 }
 
 extension XCSchemeInfo.BuildFor {
-    var asXCSchemeBuildFor: [XCScheme.BuildAction.Entry.BuildFor] {
+    var xcSchemeValue: [XCScheme.BuildAction.Entry.BuildFor] {
         return [
             running.xcSchemeValue(.running),
             testing.xcSchemeValue(.testing),

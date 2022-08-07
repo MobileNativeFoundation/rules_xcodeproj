@@ -30,7 +30,7 @@ extension Sequence where Element == XCSchemeInfo.BuildTarget {
                 .map { buildableReference, buildRefAndBuildFors in
                     return XCScheme.BuildAction.Entry(
                         buildableReference: buildableReference,
-                        buildFor: try buildRefAndBuildFors.map(\.1).merged().asXCSchemeBuildFor
+                        buildFor: try buildRefAndBuildFors.map(\.1).merged().xcSchemeValue
                     )
                 }
                 // Sort by in stable order by blueprint name
