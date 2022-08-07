@@ -80,11 +80,6 @@ Unable to merge `BuildFor` values for \(keyPath). current: \(currentValue), othe
         try mergeValue(\.profiling, with: other)
         try mergeValue(\.archiving, with: other)
         try mergeValue(\.analyzing, with: other)
-        // try running.merge(other.running)
-        // try testing.merge(other.testing)
-        // try profiling.merge(other.profiling)
-        // try archiving.merge(other.archiving)
-        // try analyzing.merge(other.analyzing)
     }
 }
 
