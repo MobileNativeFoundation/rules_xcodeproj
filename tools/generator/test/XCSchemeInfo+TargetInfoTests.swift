@@ -155,7 +155,6 @@ extension XCSchemeInfoTargetInfoTests {
         let preAction = try libraryTargetInfo.buildPreAction(buildMode: buildMode)
         XCTAssertEqual(preAction, .init(
             buildFor: libraryTargetInfo.buildableReference,
-            buildMode: buildMode,
             name: libraryTargetInfo.pbxTarget.name,
             hostIndex: nil
         ))
@@ -168,7 +167,6 @@ extension XCSchemeInfoTargetInfoTests {
         XCTAssertNotNil(expectedHostIndex)
         XCTAssertEqual(preAction, .init(
             buildFor: libraryTargetInfoWithHosts.buildableReference,
-            buildMode: buildMode,
             name: libraryTargetInfoWithHosts.pbxTarget.name,
             hostIndex: expectedHostIndex
         ))

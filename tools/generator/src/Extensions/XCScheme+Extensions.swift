@@ -118,8 +118,6 @@ fi
     /// Create an `ExecutionAction` that builds with Bazel.
     convenience init(
         buildFor buildableReference: XCScheme.BuildableReference,
-        // GH895: Remove unused argument.
-        buildMode _: BuildMode,
         name: String,
         hostIndex: Int?
     ) {

@@ -136,13 +136,12 @@ extension XCSchemeInfo.TargetInfo {
 // MARK: `bazelBuildPreActions`
 
 extension XCSchemeInfo.TargetInfo {
-    func buildPreAction(buildMode: BuildMode) throws -> XCScheme.ExecutionAction? {
+    func buildPreAction(buildMode _: BuildMode) throws -> XCScheme.ExecutionAction? {
         guard pbxTarget is PBXNativeTarget else {
             return nil
         }
         return .init(
             buildFor: buildableReference,
-            buildMode: buildMode,
             name: pbxTarget.name,
             hostIndex: try selectedHostInfo?.index
         )

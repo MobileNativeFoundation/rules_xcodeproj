@@ -83,7 +83,6 @@ extension XCSchemeExtensionsTests {
     func test_ExecutionAction_withNativeTarget_noHostIndex_bazelBuildMode() throws {
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
-            buildMode: .bazel,
             name: libraryTargetInfo.pbxTarget.name,
             hostIndex: nil
         )
@@ -100,7 +99,6 @@ extension XCSchemeExtensionsTests {
         let hostIndex = 7
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
-            buildMode: .bazel,
             name: libraryTargetInfo.pbxTarget.name,
             hostIndex: hostIndex
         )
@@ -116,7 +114,6 @@ extension XCSchemeExtensionsTests {
     func test_ExecutionAction_withNativeTarget_noHostIndex_xcodeBuildMode() throws {
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
-            buildMode: .xcode,
             name: libraryTargetInfo.pbxTarget.name,
             hostIndex: nil
         )
@@ -133,7 +130,6 @@ extension XCSchemeExtensionsTests {
         let hostIndex = 7
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
-            buildMode: .xcode,
             name: libraryTargetInfo.pbxTarget.name,
             hostIndex: hostIndex
         )
