@@ -34,12 +34,11 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
 """)
         }
 
-        let allTargetInfos = [
-            buildActionInfo?.targetInfos,
-            testActionInfo?.targetInfos,
-            launchActionInfo.map { [$0.targetInfo] },
-            profileActionInfo.map { [$0.targetInfo] },
-        ].compactMap { $0 }.flatMap { $0 }
+        var allTargetInfos = [XCSchemeInfo.TargetInfo]()
+        (buildActionInfo?.targets.map(\.targetInfo)).map { allTargetInfos.append(contentsOf: $0) }
+        (testActionInfo?.targetInfos).map { allTargetInfos.append(contentsOf: $0) }
+        launchActionInfo.map { allTargetInfos.append($0.targetInfo) }
+        profileActionInfo.map { allTargetInfos.append($0.targetInfo) }
 
         let topLevelTargetInfos = Set(allTargetInfos.filter(\.pbxTarget.isTopLevel))
 
@@ -91,7 +90,7 @@ extension XCSchemeInfo {
     var allPBXTargets: Set<PBXTarget> {
         var pbxTargets = [PBXTarget]()
         if let buildActionInfo = buildActionInfo {
-            pbxTargets.append(contentsOf: buildActionInfo.targetInfos.map(\.pbxTarget))
+            pbxTargets.append(contentsOf: buildActionInfo.targets.map(\.targetInfo.pbxTarget))
         }
         if let testActionInfo = testActionInfo {
             pbxTargets.append(contentsOf: testActionInfo.targetInfos.map(\.pbxTarget))

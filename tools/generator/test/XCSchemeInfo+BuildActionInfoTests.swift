@@ -17,7 +17,7 @@ extension XCSchemeInfoBuildActionInfoTests {
     func test_hostResolution_withBuildActionInfo() throws {
         let actionInfo = try XCSchemeInfo.BuildActionInfo(
             resolveHostsFor: .init(
-                targetInfos: [unresolvedLibraryTargetInfoWithHosts]
+                targets: [unresolvedLibraryTargetInfoWithHosts].map { .init(targetInfo: $0) }
             ),
             topLevelTargetInfos: topLevelTargetInfos
         )
@@ -28,7 +28,7 @@ extension XCSchemeInfoBuildActionInfoTests {
         // We could check for the host resolution not equal to .unresolved. However, by checking for
         // a specific selected host, we are sure that the topLevelTargetInfos was passed along
         // correctly.
-        guard let targetInfo = buildActionInfo.targetInfos.first else {
+        guard let targetInfo = buildActionInfo.targets.first?.targetInfo else {
             XCTFail("Expected a `TargetInfo`")
             return
         }
@@ -59,7 +59,7 @@ extension XCSchemeInfoBuildActionInfoTests {
             )
         )
         let expected = try XCSchemeInfo.BuildActionInfo(
-            targetInfos: [try targetResolver.targetInfo(targetID: "A 1")]
+            targets: [try targetResolver.targetInfo(targetID: "A 1")].map { .init(targetInfo: $0) }
         )
         XCTAssertEqual(actual, expected)
     }

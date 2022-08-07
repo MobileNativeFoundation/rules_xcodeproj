@@ -195,29 +195,6 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: - Sequence buildableReferences Tests
-
-extension XCSchemeInfoTargetInfoTests {
-    func test_Sequence_buildableReferences() throws {
-        let targetInfos = [libraryTargetInfo, appTargetInfo]
-        let expected = libraryTargetInfo.buildableReferences + appTargetInfo.buildableReferences
-        XCTAssertEqual(targetInfos.buildableReferences, expected)
-    }
-}
-
-// MARK: - Sequence buildActionEntries Tests
-
-extension XCSchemeInfoTargetInfoTests {
-    func test_Sequence_buildActionEntries() throws {
-        let targetInfos = [libraryTargetInfo, appTargetInfo]
-        let expected: [XCScheme.BuildAction.Entry] = [
-            .init(withDefaults: libraryTargetInfo.buildableReference),
-            .init(withDefaults: appTargetInfo.buildableReference),
-        ]
-        XCTAssertEqual(targetInfos.buildActionEntries, expected)
-    }
-}
-
 // MARK: - Sequence bazelBuildPreActions Tests
 
 extension XCSchemeInfoTargetInfoTests {

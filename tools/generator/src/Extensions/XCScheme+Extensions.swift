@@ -87,25 +87,12 @@ extension XCScheme.BuildAction {
         buildActionInfo: XCSchemeInfo.BuildActionInfo
     ) throws {
         self.init(
-            buildActionEntries: buildActionInfo.targetInfos.buildActionEntries,
-            preActions: try buildActionInfo.targetInfos.buildPreActions(buildMode: buildMode),
+            buildActionEntries: try buildActionInfo.targets.buildActionEntries,
+            preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(
+                buildMode: buildMode
+            ),
             parallelizeBuild: true,
             buildImplicitDependencies: true
-        )
-    }
-}
-
-extension XCScheme.BuildAction.Entry {
-    convenience init(withDefaults buildableReference: XCScheme.BuildableReference) {
-        self.init(
-            buildableReference: buildableReference,
-            buildFor: [
-                .running,
-                .testing,
-                .profiling,
-                .archiving,
-                .analyzing,
-            ]
         )
     }
 }
@@ -131,7 +118,8 @@ fi
     /// Create an `ExecutionAction` that builds with Bazel.
     convenience init(
         buildFor buildableReference: XCScheme.BuildableReference,
-        buildMode: BuildMode,
+        // GH895: Remove unused argument.
+        buildMode _: BuildMode,
         name: String,
         hostIndex: Int?
     ) {
@@ -233,5 +221,11 @@ extension XCScheme.BuildableReference: Hashable {
 extension Sequence where Element == XCScheme.BuildableReference {
     var inStableOrder: [XCScheme.BuildableReference] {
         return sortedLocalizedStandard(\.blueprintName)
+    }
+}
+
+extension Sequence where Element == XCScheme.BuildAction.Entry.BuildFor {
+    static var `default`: [XCScheme.BuildAction.Entry.BuildFor] {
+        return [.running, .testing, .profiling, .archiving, .analyzing]
     }
 }

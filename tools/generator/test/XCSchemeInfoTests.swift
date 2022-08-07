@@ -25,7 +25,7 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
         var thrown: Error?
         XCTAssertThrowsError(try XCSchemeInfo(
             buildActionInfo: .init(
-                targetInfos: [libraryTargetInfo]
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
             )
         )) {
             thrown = $0
@@ -43,7 +43,7 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: .init(
-                targetInfos: [libraryTargetInfo]
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
             ),
             testActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -76,7 +76,7 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
         let customName = "Sally"
         let schemeInfo = try XCSchemeInfo(
             buildActionInfo: .init(
-                targetInfos: [libraryTargetInfo]
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
             )
         ) { _, _, _, _ in
             return customName
@@ -92,7 +92,7 @@ extension XCSchemeInfoTests {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: .init(
-                targetInfos: [libraryTargetInfo]
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
             ),
             testActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -130,7 +130,7 @@ extension XCSchemeInfoTests {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: .init(
-                targetInfos: [libraryTargetInfo]
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
             )
         )
         XCTAssertFalse(schemeInfo.wasCreatedForAppExtension)
@@ -140,7 +140,7 @@ extension XCSchemeInfoTests {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: .init(
-                targetInfos: [libraryTargetInfo]
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
             ),
             launchActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -163,11 +163,11 @@ extension XCSchemeInfoTests {
         let expected = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: try .init(
-                targetInfos: [
+                targets: [
                     try targetResolver.targetInfo(targetID: "A 1"),
                     try targetResolver.targetInfo(targetID: "A 2"),
                     try targetResolver.targetInfo(targetID: "B 2"),
-                ]
+                ].map { .init(targetInfo: $0) }
             ),
             testActionInfo: try .init(
                 buildConfigurationName: .defaultBuildConfigurationName,

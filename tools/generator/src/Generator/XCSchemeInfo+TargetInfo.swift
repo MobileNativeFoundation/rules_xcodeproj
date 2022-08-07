@@ -174,20 +174,6 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
 }
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
-    /// Return all of the buildable references for all of the target infos.
-    var buildableReferences: [XCScheme.BuildableReference] {
-        return flatMap(\.buildableReferences).inStableOrder
-    }
-}
-
-extension Sequence where Element == XCSchemeInfo.TargetInfo {
-    /// Return all of the `BuildAction.Entry` values.
-    var buildActionEntries: [XCScheme.BuildAction.Entry] {
-        return buildableReferences.map { .init(withDefaults: $0) }
-    }
-}
-
-extension Sequence where Element == XCSchemeInfo.TargetInfo {
     func buildPreActions(buildMode: BuildMode) throws -> [XCScheme.ExecutionAction] {
         let targetInfos = inStableOrder
 

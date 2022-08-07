@@ -36,7 +36,7 @@ extension Generator {
                 let shouldCreateTestAction = pbxTarget.isTestable
                 let shouldCreateLaunchAction = pbxTarget.isLaunchable
                 let schemeInfo = try XCSchemeInfo(
-                    buildActionInfo: .init(targetInfos: [targetInfo]),
+                    buildActionInfo: .init(targets: [.init(targetInfo: targetInfo)]),
                     testActionInfo: shouldCreateTestAction ?
                         .init(
                             buildConfigurationName: buildConfigurationName,
@@ -55,7 +55,7 @@ extension Generator {
                     analyzeActionInfo: .init(buildConfigurationName: buildConfigurationName),
                     archiveActionInfo: .init(buildConfigurationName: buildConfigurationName)
                 ) { buildActionInfo, _, _, _ in
-                    guard let targetInfo = buildActionInfo?.targetInfos.first else {
+                    guard let targetInfo = buildActionInfo?.targets.first?.targetInfo else {
                         throw PreconditionError(message: """
     Expected to find a `TargetInfo` in the `BuildActionInfo`.
     """)

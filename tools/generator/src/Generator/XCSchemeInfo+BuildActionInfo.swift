@@ -2,16 +2,16 @@ import XcodeProj
 
 extension XCSchemeInfo {
     struct BuildActionInfo: Equatable {
-        let targetInfos: Set<XCSchemeInfo.TargetInfo>
+        let targets: Set<XCSchemeInfo.BuildTarget>
 
-        init<TargetInfos: Sequence>(
-            targetInfos: TargetInfos
-        ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
-            self.targetInfos = Set(targetInfos)
+        init<BuildTargets: Sequence>(
+            targets: BuildTargets
+        ) throws where BuildTargets.Element == XCSchemeInfo.BuildTarget {
+            self.targets = Set(targets)
 
-            guard !self.targetInfos.isEmpty else {
+            guard !self.targets.isEmpty else {
                 throw PreconditionError(message: """
-An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.TargetInfo`.
+An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.BuildTarget`.
 """)
             }
         }
@@ -30,8 +30,14 @@ extension XCSchemeInfo.BuildActionInfo {
             return nil
         }
         try self.init(
-            targetInfos: original.targetInfos.map {
-                .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
+            targets: original.targets.map { buildTarget in
+                .init(
+                    targetInfo: .init(
+                        resolveHostFor: buildTarget.targetInfo,
+                        topLevelTargetInfos: topLevelTargetInfos
+                    ),
+                    buildFor: buildTarget.buildFor
+                )
             }
         )
     }
@@ -48,14 +54,18 @@ extension XCSchemeInfo.BuildActionInfo {
         guard let buildAction = buildAction else {
           return nil
         }
-        try self.init(
-            targetInfos: try buildAction.targets.map { label in
-                return try targetResolver.targetInfo(
-                    targetID: try targetIDsByLabel.value(
-                        for: label,
-                        context: "creating a `BuildActionInfo`"
-                    )
+        let targetInfos = try buildAction.targets.map { label in
+            return try targetResolver.targetInfo(
+                targetID: try targetIDsByLabel.value(
+                    for: label,
+                    context: "creating a `BuildActionInfo`"
                 )
+            )
+        }
+        // GH573: Map buildFor from XcodeScheme to XCSchemeInfo here.
+        try self.init(
+            targets: targetInfos.map {
+                .init(targetInfo: $0)
             }
         )
     }
