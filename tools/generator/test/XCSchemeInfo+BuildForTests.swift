@@ -71,20 +71,22 @@ Expected `ValueError`. value: \(value), other: \(other), expected: \(expected)
 
 extension XCSchemeInfoBuildForTests {
     func test_BuildFor_xcSchemeValue() throws {
-        var buildFor = XCSchemeInfo.BuildFor()
-
-        buildFor.running = .disabled
-        buildFor.testing = .disabled
-        buildFor.profiling = .disabled
-        buildFor.archiving = .disabled
-        buildFor.analyzing = .disabled
+        var buildFor = XCSchemeInfo.BuildFor(
+            running: .disabled,
+            testing: .disabled,
+            profiling: .disabled,
+            archiving: .disabled,
+            analyzing: .disabled
+        )
         XCTAssertEqual(buildFor.xcSchemeValue, [])
 
-        buildFor.running = .enabled
-        buildFor.testing = .enabled
-        buildFor.profiling = .enabled
-        buildFor.archiving = .enabled
-        buildFor.analyzing = .enabled
+        buildFor = XCSchemeInfo.BuildFor(
+            running: .enabled,
+            testing: .enabled,
+            profiling: .enabled,
+            archiving: .enabled,
+            analyzing: .enabled
+        )
         XCTAssertEqual(buildFor.xcSchemeValue, [
             .running,
             .testing,
@@ -93,12 +95,22 @@ extension XCSchemeInfoBuildForTests {
             .analyzing,
         ])
 
-        buildFor.running = .enabled
-        buildFor.testing = .disabled
-        buildFor.profiling = .enabled
-        buildFor.archiving = .disabled
-        buildFor.analyzing = .disabled
+        buildFor = XCSchemeInfo.BuildFor(
+            running: .enabled,
+            testing: .disabled,
+            profiling: .enabled,
+            archiving: .disabled,
+            analyzing: .disabled
+        )
         XCTAssertEqual(buildFor.xcSchemeValue, [.running, .profiling])
+    }
+}
+
+// MARK: `BuildFor.merge(with:)` Tests
+
+extension XCSchemeInfoBuildForTests {
+    func test_BuildFor_merge_with() throws {
+        XCTFail("IMPLEMENT ME!")
     }
 }
 
