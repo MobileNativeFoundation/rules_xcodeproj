@@ -2,11 +2,25 @@ import XcodeProj
 
 extension XCSchemeInfo {
     struct BuildFor: Equatable, Hashable {
-        var running = Value.unspecified
-        var testing = Value.unspecified
-        var profiling = Value.unspecified
-        var archiving = Value.unspecified
-        var analyzing = Value.unspecified
+        var running: Value
+        var testing: Value
+        var profiling: Value
+        var archiving: Value
+        var analyzing: Value
+
+        init(
+            running: Value = .unspecified,
+            testing: Value = .unspecified,
+            profiling: Value = .unspecified,
+            archiving: Value = .unspecified,
+            analyzing: Value = .unspecified
+        ) {
+            self.running = running
+            self.testing = testing
+            self.profiling = profiling
+            self.archiving = archiving
+            self.analyzing = analyzing
+        }
     }
 }
 
@@ -63,7 +77,7 @@ extension XCSchemeInfo.BuildFor {
 }
 
 extension XCSchemeInfo.BuildFor {
-    mutating func mergeValue(
+    private mutating func mergeValue(
         _ keyPath: WritableKeyPath<XCSchemeInfo.BuildFor, XCSchemeInfo.BuildFor.Value>,
         with other: XCSchemeInfo.BuildFor
     ) throws {
