@@ -30,7 +30,7 @@ extension XCSchemeExtensionsTests {
             buildActionInfo: buildActionInfo
         )
         let expected = XCScheme.BuildAction(
-            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            buildActionEntries: try buildActionInfo.targets.buildActionEntries,
             preActions: try buildActionInfo.targets.map(\.targetInfo)
                 .buildPreActions(buildMode: .bazel),
             parallelizeBuild: true,
@@ -45,7 +45,7 @@ extension XCSchemeExtensionsTests {
             buildActionInfo: buildActionInfo
         )
         let expected = XCScheme.BuildAction(
-            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            buildActionEntries: try buildActionInfo.targets.buildActionEntries,
             preActions: try buildActionInfo.targets.map(\.targetInfo)
                 .buildPreActions(buildMode: .xcode),
             parallelizeBuild: true,
@@ -59,7 +59,10 @@ extension XCSchemeExtensionsTests {
 
 extension XCSchemeExtensionsTests {
     func test_BuildAction_Entry_init() throws {
-        let entry = XCScheme.BuildAction.Entry(withDefaults: libraryTargetInfo.buildableReference)
+        let entry = XCScheme.BuildAction.Entry(
+            buildableReference: libraryTargetInfo.buildableReference,
+            buildFor: .default
+        )
         let expected = XCScheme.BuildAction.Entry(
             buildableReference: libraryTargetInfo.buildableReference,
             buildFor: [

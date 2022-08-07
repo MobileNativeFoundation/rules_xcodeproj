@@ -10,10 +10,10 @@ extension XCSchemeInfoBuildTargetTests {
         let buildTargets = [libraryTargetInfo, appTargetInfo]
             .map { XCSchemeInfo.BuildTarget(targetInfo: $0) }
         let expected: [XCScheme.BuildAction.Entry] = [
-            .init(withDefaults: libraryTargetInfo.buildableReference),
-            .init(withDefaults: appTargetInfo.buildableReference),
-        ]
-        XCTAssertEqual(buildTargets.buildActionEntries, expected)
+            libraryTargetInfo.buildableReference,
+            appTargetInfo.buildableReference,
+        ].map { .init(buildableReference: $0, buildFor: .default) }
+        XCTAssertEqual(try buildTargets.buildActionEntries, expected)
     }
 }
 
