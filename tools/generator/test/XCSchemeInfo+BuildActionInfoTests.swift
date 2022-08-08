@@ -116,7 +116,8 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
 
     lazy var xcodeScheme = XcodeScheme(
         name: "My Scheme",
-        buildAction: .init(targets: [.init(label: targetResolver.targets["A 1"]!.label)]),
+        // swiftlint:disable:next force_try
+        buildAction: try! .init(targets: [.init(label: targetResolver.targets["A 1"]!.label)]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
 }

@@ -41,8 +41,17 @@ extension XcodeScheme {
 
         init<BuildTargets: Sequence>(
             targets: BuildTargets
-        ) where BuildTargets.Element == XcodeScheme.BuildTarget {
-            // TODO(chuck): Add check to ensure that a label is only specified once
+        ) throws where BuildTargets.Element == XcodeScheme.BuildTarget {
+            var labels = Set<BazelLabel>()
+            for target in targets {
+                let (inserted, _) = labels.insert(target.label)
+                guard inserted else {
+                    throw PreconditionError(message: """
+Found a duplicate label \(target.label) in provided `XcodeScheme.BuildTarget` values.
+""")
+                }
+            }
+
             self.targets = Set(targets)
         }
     }

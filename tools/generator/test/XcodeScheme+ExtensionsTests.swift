@@ -11,7 +11,7 @@ extension XcodeSchemeExtensionsTests {
         // is specified in build action as well.
         let scheme = XcodeScheme(
             name: "Foo",
-            buildAction: .init(targets: [libLabel, toolLabel].map {
+            buildAction: try .init(targets: [libLabel, toolLabel].map {
                 XcodeScheme.BuildTarget(label: $0)
             }),
             testAction: nil,
@@ -521,7 +521,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
 
     lazy var toolScheme = XcodeScheme(
         name: "Tool",
-        buildAction: .init(targets: [.init(label: libLabel)]),
+        buildAction: try! .init(targets: [.init(label: libLabel)]),
         testAction: nil,
         launchAction: .init(
             target: toolLabel,
@@ -534,7 +534,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
 
     lazy var iOSAppScheme = XcodeScheme(
         name: "iOSApp",
-        buildAction: .init(targets: [.init(label: libLabel)]),
+        buildAction: try! .init(targets: [.init(label: libLabel)]),
         testAction: .init(targets: [libTestsLabel], buildConfigurationName: buildConfigurationName),
         launchAction: .init(
             target: iOSAppLabel,
@@ -547,7 +547,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
 
     lazy var tvOSAppScheme = XcodeScheme(
         name: "tvOSApp",
-        buildAction: .init(targets: [.init(label: libLabel)]),
+        buildAction: try! .init(targets: [.init(label: libLabel)]),
         testAction: nil,
         launchAction: .init(
             target: tvOSAppLabel,
