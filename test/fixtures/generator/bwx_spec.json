@@ -363,8 +363,7 @@
                     "tools/generator/test/XCScheme+ExtensionsTests.swift",
                     "tools/generator/test/XCSchemeEnvironmentVariablesExtensionsTests.swift",
                     "tools/generator/test/XCSchemeInfo+BuildActionInfoTests.swift",
-                    "tools/generator/test/XCSchemeInfo+BuildForTests.swift",
-                    "tools/generator/test/XCSchemeInfo+BuildTargetTests.swift",
+                    "tools/generator/test/XCSchemeInfo+BuildTargetInfoTests.swift",
                     "tools/generator/test/XCSchemeInfo+HostInfoTests.swift",
                     "tools/generator/test/XCSchemeInfo+LaunchActionInfoTests.swift",
                     "tools/generator/test/XCSchemeInfo+ProfileActionInfoTests.swift",
@@ -372,6 +371,7 @@
                     "tools/generator/test/XCSchemeInfo+TestActionInfoTests.swift",
                     "tools/generator/test/XCSchemeInfoTests.swift",
                     "tools/generator/test/XcodeProj+CustomDump.swift",
+                    "tools/generator/test/XcodeScheme+BuildForTests.swift",
                     "tools/generator/test/XcodeScheme+ExtensionsTests.swift"
                 ]
             },
@@ -715,8 +715,7 @@
                     "tools/generator/src/Generator/TargetResolver.swift",
                     "tools/generator/src/Generator/WriteXcodeProj.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+BuildActionInfo.swift",
-                    "tools/generator/src/Generator/XCSchemeInfo+BuildFor.swift",
-                    "tools/generator/src/Generator/XCSchemeInfo+BuildTarget.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+BuildTargetInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+HostInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+LaunchActionInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+OtherActionInfos.swift",
@@ -724,6 +723,7 @@
                     "tools/generator/src/Generator/XCSchemeInfo+TargetInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+TestActionInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo.swift",
+                    "tools/generator/src/Generator/XcodeScheme+BuildFor.swift",
                     "tools/generator/src/Logger.swift"
                 ]
             },

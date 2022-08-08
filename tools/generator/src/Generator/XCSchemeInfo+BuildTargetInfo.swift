@@ -1,13 +1,13 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    struct BuildTarget: Equatable, Hashable {
+    struct BuildTargetInfo: Equatable, Hashable {
         let targetInfo: XCSchemeInfo.TargetInfo
-        let buildFor: BuildFor
+        let buildFor: XcodeScheme.BuildFor
 
         init(
             targetInfo: XCSchemeInfo.TargetInfo,
-            buildFor: BuildFor = .init()
+            buildFor: XcodeScheme.BuildFor = .init()
         ) {
             self.targetInfo = targetInfo
             self.buildFor = buildFor
@@ -15,13 +15,15 @@ extension XCSchemeInfo {
     }
 }
 
-extension Sequence where Element == XCSchemeInfo.BuildTarget {
+extension Sequence where Element == XCSchemeInfo.BuildTargetInfo {
     /// Return all of the `BuildAction.Entry` values.
     var buildActionEntries: [XCScheme.BuildAction.Entry] {
         get throws {
             // Create a (BuildableReference, BuildFor) for all buildable references
-            let buildRefAndBuildFors = flatMap { buildTarget in
-                return buildTarget.targetInfo.buildableReferences.map { ($0, buildTarget.buildFor) }
+            let buildRefAndBuildFors = flatMap { buildTargetInfo in
+                return buildTargetInfo.targetInfo.buildableReferences.map {
+                    ($0, buildTargetInfo.buildFor)
+                }
             }
 
             // Collect the buildFors by BuildableReference, create the BuildAction.Entry values, and
