@@ -54,17 +54,11 @@ extension XCSchemeInfo.BuildActionInfo {
         let context = "creating a `BuildActionInfo`"
         var buildTargetInfos = [BazelLabel: XCSchemeInfo.BuildTarget]()
 
-        // func getBuildTargetInfo(
-        //     _ label: BazelLabel,
-        //     defaultBuildFor: @autoclosure () -> XCSchemeInfo.BuildFor
-        // ) throws -> XCSchemeInfo.BuildTarget {
-        //     return buildTargetInfos[label, default: .init(
-        //         targetInfo: try targetResolver.targetInfo(
-        //             targetID: try targetIDsByLabel.value(for: label, context: context)
-        //         ),
-        //         buildFor: defaultBuildFor()
-        //     )]
-        // }
+        func createTargetInfo(_ label: BazelLabel) throws -> XCSchemeInfo.TargetInfo {
+            return try targetResolver.targetInfo(
+                targetID: try targetIDsByLabel.value(for: label, context: context)
+            )
+        }
 
         func getBuildTargetInfo(
             _ label: BazelLabel,
@@ -73,39 +67,34 @@ extension XCSchemeInfo.BuildActionInfo {
             if let existing = buildTargetInfos[label] {
                 return existing
             }
-            return .init(
-                targetInfo: try targetResolver.targetInfo(
-                    targetID: try targetIDsByLabel.value(for: label, context: context)
-                ),
+            let new = XCSchemeInfo.BuildTarget(
+                targetInfo: try createTargetInfo(label),
                 buildFor: defaultBuildFor()
             )
+            buildTargetInfos[label] = new
+            return new
         }
 
         func enableBuildForValue(
             _ label: BazelLabel,
-            _ keyPath: WritableKeyPath<XCSchemeInfo.BuildFor, XCSchemeInfo.BuildFor.Value>,
-            defaultBuildFor: @autoclosure () -> XCSchemeInfo.BuildFor
+            _ keyPath: WritableKeyPath<XCSchemeInfo.BuildFor, XCSchemeInfo.BuildFor.Value>
         ) throws {
-            var buildTargetInfo = try getBuildTargetInfo(label, defaultBuildFor: defaultBuildFor())
+            var buildTargetInfo = try getBuildTargetInfo(label, defaultBuildFor: .init())
             try buildTargetInfo.buildFor[keyPath: keyPath].merge(with: .enabled)
             buildTargetInfos[label] = buildTargetInfo
         }
 
-        try scheme.testAction?.targets.forEach { label in
-            try enableBuildForValue(label, \.testing, defaultBuildFor: .init())
+        try scheme.buildAction?.targets.forEach { buildTarget in
+            // We are guaranteed not to have build targets with duplicate labels. So, we can just
+            // create build target infos for these.
+            buildTargetInfos[buildTarget.label] = XCSchemeInfo.BuildTarget(
+                targetInfo: try createTargetInfo(buildTarget.label),
+                buildFor: buildTarget.buildFor
+            )
         }
-
-        // try scheme.buildAction?.targets.map { buildTarget in
-        //     let targetInfo = try targetResolver.targetInfo(
-        //         targetID: try targetIDsByLabel.value(for: buildTarget.label, context: context)
-        //     )
-        //     buildTargetInfos[label] = .init(
-        //         targetInfo: targetInfo,
-        //         buildFor: buildTarget.buildFor
-        //     )
-        // }
-
-        // TODO(chuck): FINISH ME
+        try scheme.testAction?.targets.forEach { try enableBuildForValue($0, \.testing) }
+        try scheme.launchAction.map { try enableBuildForValue($0.target, \.running) }
+        try scheme.profileAction.map { try enableBuildForValue($0.target, \.profiling) }
 
         try self.init(targets: buildTargetInfos.values)
     }

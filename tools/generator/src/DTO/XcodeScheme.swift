@@ -62,7 +62,7 @@ extension XcodeScheme {
 
         init(
             label: BazelLabel,
-            buildFor: XCSchemeInfo.BuildFor = .init()
+            buildFor: XCSchemeInfo.BuildFor = .allEnabled
         ) {
             self.label = label
             self.buildFor = buildFor
@@ -77,6 +77,7 @@ extension XcodeScheme {
         init<BuildTargets: Sequence>(
             targets: BuildTargets
         ) where BuildTargets.Element == XcodeScheme.BuildTarget {
+            // TODO(chuck): Add check to ensure that a label is only specified once
             self.targets = Set(targets)
         }
     }

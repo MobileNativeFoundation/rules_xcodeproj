@@ -114,3 +114,13 @@ extension Sequence where Element == XcodeScheme.BuildFor {
         return result
     }
 }
+
+extension XCSchemeInfo.BuildFor {
+    static let allEnabled = XCSchemeInfo.BuildFor(
+        running: .enabled,
+        testing: .enabled,
+        profiling: .enabled,
+        archiving: .enabled,
+        analyzing: .enabled
+    )
+}
