@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XcodeScheme {
-    struct BuildFor: Equatable, Hashable {
+    struct BuildFor: Equatable, Hashable, Decodable {
         var running: Value
         var testing: Value
         var profiling: Value
@@ -63,7 +63,7 @@ extension XcodeScheme.BuildFor.Value {
         }
     }
 
-    mutating func merge(with other: XCSchemeInfo.BuildFor.Value) throws {
+    mutating func merge(with other: XcodeScheme.BuildFor.Value) throws {
         self = try merged(with: other)
     }
 }
@@ -115,8 +115,8 @@ extension Sequence where Element == XcodeScheme.BuildFor {
     }
 }
 
-extension XCSchemeInfo.BuildFor {
-    static let allEnabled = XCSchemeInfo.BuildFor(
+extension XcodeScheme.BuildFor {
+    static let allEnabled = XcodeScheme.BuildFor(
         running: .enabled,
         testing: .enabled,
         profiling: .enabled,

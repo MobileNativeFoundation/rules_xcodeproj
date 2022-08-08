@@ -20,49 +20,14 @@ struct XcodeScheme: Equatable, Decodable {
     }
 }
 
-// MARK: BuildAction
-
-// extension XcodeScheme.BuildFor {
-//     enum Value: Equatable, Hashable, Decodable {
-//         case unspecified
-//         case enabled
-//         case disabled
-//     }
-// }
-
-// extension XcodeScheme {
-//     struct BuildFor: Equatable, Hashable, Decodable {
-//         var running: Value
-//         var testing: Value
-//         var profiling: Value
-//         var archiving: Value
-//         var analyzing: Value
-
-//         init(
-//             running: Value = .unspecified,
-//             testing: Value = .unspecified,
-//             profiling: Value = .unspecified,
-//             archiving: Value = .unspecified,
-//             analyzing: Value = .unspecified
-//         ) {
-//             self.running = running
-//             self.testing = testing
-//             self.profiling = profiling
-//             self.archiving = archiving
-//             self.analyzing = analyzing
-//         }
-//     }
-// }
-
 extension XcodeScheme {
     struct BuildTarget: Equatable, Hashable, Decodable {
         let label: BazelLabel
-        // TODO(chuck): Decide if we are moving BuildFor to XcodeScheme.
-        let buildFor: XCSchemeInfo.BuildFor
+        let buildFor: XcodeScheme.BuildFor
 
         init(
             label: BazelLabel,
-            buildFor: XCSchemeInfo.BuildFor = .allEnabled
+            buildFor: XcodeScheme.BuildFor = .allEnabled
         ) {
             self.label = label
             self.buildFor = buildFor

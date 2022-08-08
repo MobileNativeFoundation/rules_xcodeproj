@@ -52,7 +52,7 @@ extension XCSchemeInfo.BuildActionInfo {
         targetIDsByLabel: [BazelLabel: TargetID]
     ) throws {
         let context = "creating a `BuildActionInfo`"
-        var buildTargetInfos = [BazelLabel: XCSchemeInfo.BuildTarget]()
+        var buildTargetInfos = [BazelLabel: XCSchemeInfo.BuildTargetInfo]()
 
         func createTargetInfo(_ label: BazelLabel) throws -> XCSchemeInfo.TargetInfo {
             return try targetResolver.targetInfo(
@@ -62,12 +62,12 @@ extension XCSchemeInfo.BuildActionInfo {
 
         func getBuildTargetInfo(
             _ label: BazelLabel,
-            defaultBuildFor: @autoclosure () -> XCSchemeInfo.BuildFor
-        ) throws -> XCSchemeInfo.BuildTarget {
+            defaultBuildFor: @autoclosure () -> XcodeScheme.BuildFor
+        ) throws -> XCSchemeInfo.BuildTargetInfo {
             if let existing = buildTargetInfos[label] {
                 return existing
             }
-            let new = XCSchemeInfo.BuildTarget(
+            let new = XCSchemeInfo.BuildTargetInfo(
                 targetInfo: try createTargetInfo(label),
                 buildFor: defaultBuildFor()
             )
@@ -77,7 +77,7 @@ extension XCSchemeInfo.BuildActionInfo {
 
         func enableBuildForValue(
             _ label: BazelLabel,
-            _ keyPath: WritableKeyPath<XCSchemeInfo.BuildFor, XCSchemeInfo.BuildFor.Value>
+            _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
         ) throws {
             var buildTargetInfo = try getBuildTargetInfo(label, defaultBuildFor: .init())
             try buildTargetInfo.buildFor[keyPath: keyPath].merge(with: .enabled)
@@ -87,7 +87,7 @@ extension XCSchemeInfo.BuildActionInfo {
         try scheme.buildAction?.targets.forEach { buildTarget in
             // We are guaranteed not to have build targets with duplicate labels. So, we can just
             // create build target infos for these.
-            buildTargetInfos[buildTarget.label] = XCSchemeInfo.BuildTarget(
+            buildTargetInfos[buildTarget.label] = XCSchemeInfo.BuildTargetInfo(
                 targetInfo: try createTargetInfo(buildTarget.label),
                 buildFor: buildTarget.buildFor
             )

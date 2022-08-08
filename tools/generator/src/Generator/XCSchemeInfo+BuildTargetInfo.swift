@@ -5,7 +5,7 @@ import XcodeProj
 extension XCSchemeInfo {
     struct BuildTargetInfo: Equatable, Hashable {
         let targetInfo: XCSchemeInfo.TargetInfo
-        let buildFor: XcodeScheme.BuildFor
+        var buildFor: XcodeScheme.BuildFor
 
         init(
             targetInfo: XCSchemeInfo.TargetInfo,
