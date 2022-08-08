@@ -74,11 +74,13 @@ extension Generator {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
-        xcodeGeneratedFiles: Set<FilePath>
+        xcodeGeneratedFiles: Set<FilePath>,
+        resolvedExternalRepositories: [(String, Path)]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
         var groups: [FilePath: PBXGroup] = [:]
         var knownRegions: Set<String> = []
+        var resolvedExternalRepositories: [(String, Path)] = []
 
         func createElement(
             in pbxProj: PBXProj,
@@ -152,7 +154,46 @@ extension Generator {
             filePath: FilePath,
             pathComponent: String
         ) -> PBXGroup {
-            let group = PBXGroup(sourceTree: .group, path: pathComponent)
+            let group: PBXGroup
+            if filePath.type == .external &&
+                pathComponent == filePath.path.string,
+               let symlinkDest = try? (
+                filePathResolver.absoluteExternalDirectory + filePath.path
+               ).symlinkDestination()
+            {
+                resolvedExternalRepositories.append(
+                    (pathComponent, symlinkDest)
+                )
+
+                let workspaceDirectoryComponents = filePathResolver
+                    .workspaceDirectoryComponents
+                let symlinkComponents = symlinkDest.components
+                if symlinkComponents.starts(
+                    with: filePathResolver.workspaceDirectoryComponents
+                ) {
+                    let relativeComponents = symlinkComponents.suffix(
+                        from: workspaceDirectoryComponents.count
+                    )
+                    let relativeExternalRepository = Path(
+                        components: relativeComponents
+                    )
+
+                    group = PBXGroup(
+                        sourceTree: .sourceRoot,
+                        name: pathComponent,
+                        path: relativeExternalRepository.string
+                    )
+                } else {
+                    group = PBXGroup(
+                        sourceTree: .absolute,
+                        name: pathComponent,
+                        path: symlinkDest.string
+                    )
+                }
+            } else {
+                group = PBXGroup(sourceTree: .group, path: pathComponent)
+            }
+
             pbxProj.add(object: group)
             groups[filePath] = group
 
@@ -743,7 +784,12 @@ class StopHook:
         knownRegions.remove("Base")
         pbxProj.rootObject!.knownRegions = knownRegions.sorted() + ["Base"]
 
-        return (files, rootElements, xcodeGeneratedFiles)
+        return (
+            files,
+            rootElements,
+            xcodeGeneratedFiles,
+            resolvedExternalRepositories
+        )
     }
 
     private static func setXCCurrentVersions(

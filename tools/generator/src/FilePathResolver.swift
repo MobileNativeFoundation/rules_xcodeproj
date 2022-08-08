@@ -7,7 +7,10 @@ struct FilePathResolver: Equatable {
         case srcRoot
     }
 
+    let workspaceDirectoryComponents: [String]
+    
     let externalDirectory: Path
+    let absoluteExternalDirectory: Path
     let bazelOutDirectory: Path
 
     let internalDirectoryName: String
@@ -21,11 +24,13 @@ struct FilePathResolver: Equatable {
     let containerReference: String
 
     init(
+        workspaceDirectory: Path,
         externalDirectory: Path,
         bazelOutDirectory: Path,
         internalDirectoryName: String,
         workspaceOutputPath: Path
     ) {
+        self.workspaceDirectoryComponents = workspaceDirectory.components
         self.externalDirectory = externalDirectory
         self.bazelOutDirectory = bazelOutDirectory
         self.internalDirectoryName = internalDirectoryName
@@ -33,6 +38,13 @@ struct FilePathResolver: Equatable {
         internalDirectory = workspaceOutputPath + internalDirectoryName
         linksDirectory = internalDirectory + "links"
         containerReference = "container:\(workspaceOutputPath)"
+
+        if externalDirectory.isRelative {
+            self.absoluteExternalDirectory = workspaceDirectory +
+                externalDirectory
+        } else {
+            self.absoluteExternalDirectory = externalDirectory
+        }
     }
 
     func resolve(

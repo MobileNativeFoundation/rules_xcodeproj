@@ -22,12 +22,14 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ]
         let extraFiles: Set<FilePath> = []
         let xccurrentversions: [XCCurrentVersion] = []
+        let workspaceDirectory: Path = "/app-project"
         let externalDirectory: Path = "/some/bazel12/external"
         let bazelOutDirectory: Path = "/some/bazel12/bazel-out"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let filePathResolver = FilePathResolver(
+            workspaceDirectory: workspaceDirectory,
             externalDirectory: externalDirectory,
             bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
@@ -55,6 +57,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         var (
             createdFiles,
             createdRootElements,
+            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -96,12 +99,14 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let targets = Fixtures.targets
         let extraFiles = Fixtures.project.extraFiles
         let xccurrentversions = Fixtures.xccurrentversions
+        let workspaceDirectory: Path = "/Users/TimApple/app"
         let externalDirectory: Path = "/some/bazel15/external"
         let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let filePathResolver = FilePathResolver(
+            workspaceDirectory: workspaceDirectory,
             externalDirectory: externalDirectory,
             bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
@@ -111,7 +116,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            expectedXcodeGeneratedFiles
+            expectedXcodeGeneratedFiles,
+            _
         ) = Fixtures.files(
             in: expectedPBXProj,
             externalDirectory: externalDirectory,
@@ -153,7 +159,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
-            xcodeGeneratedFiles
+            xcodeGeneratedFiles,
+            _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .xcode,

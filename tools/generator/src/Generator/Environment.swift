@@ -35,7 +35,8 @@ struct Environment {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
-        xcodeGeneratedFiles: Set<FilePath>
+        xcodeGeneratedFiles: Set<FilePath>,
+        resolvedExternalRepositories: [(String, Path)]
     )
 
     let createProducts: (
@@ -60,6 +61,7 @@ struct Environment {
         _ forceBazelDependencies: Bool,
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
+        _ resolvedExternalRepositories: [(String, Path)],
         _ xcodeprojBazelLabel: BazelLabel,
         _ xcodeprojConfiguration: String,
         _ consolidatedTargets: ConsolidatedTargets

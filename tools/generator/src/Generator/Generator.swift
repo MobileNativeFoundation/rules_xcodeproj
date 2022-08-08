@@ -43,6 +43,7 @@ class Generator {
         project: Project,
         xccurrentversions: [XCCurrentVersion],
         extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
+        workspaceDirectory: Path,
         projectRootDirectory: Path,
         externalDirectory: Path,
         bazelOutDirectory: Path,
@@ -52,6 +53,7 @@ class Generator {
         outputPath: Path
     ) throws {
         let filePathResolver = FilePathResolver(
+            workspaceDirectory: workspaceDirectory,
             externalDirectory: externalDirectory,
             bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
@@ -89,7 +91,8 @@ class Generator {
         let (
             files,
             rootElements,
-            xcodeGeneratedFiles
+            xcodeGeneratedFiles,
+            resolvedExternalRepositories
         ) = try environment.createFilesAndGroups(
             pbxProj,
             buildMode,
@@ -120,6 +123,7 @@ class Generator {
             project.forceBazelDependencies,
             files,
             filePathResolver,
+            resolvedExternalRepositories,
             project.label,
             project.configuration,
             consolidatedTargets

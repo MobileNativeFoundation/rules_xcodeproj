@@ -423,7 +423,8 @@ enum Fixtures {
     ) -> (
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
-        xcodeGeneratedFiles: Set<FilePath>
+        xcodeGeneratedFiles: Set<FilePath>,
+        resolvedExternalRepositories: [(String, Path)]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
 
@@ -1167,7 +1168,7 @@ class StopHook:
             .generated("z/WK.appex"),
         ]
 
-        return (files, elements, xcodeGeneratedFiles)
+        return (files, elements, xcodeGeneratedFiles, [])
     }
 
     static func products(
@@ -1998,7 +1999,8 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
         let (
             files,
             _,
-            xcodeGeneratedFiles
+            xcodeGeneratedFiles,
+            _
         ) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
 

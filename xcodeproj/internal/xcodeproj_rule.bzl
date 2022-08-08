@@ -363,6 +363,7 @@ bazel_out_full_path="${{bazel_out_full_path#/private}}"
 bazel_out="${{bazel_out_full_path%/{bazel_out_full}}}/bazel-out"
 external="${{bazel_out%/*/*/*}}/external"
 
+echo "$workspace_dir" > "{out_full}"
 echo "${{external#$workspace_dir/}}" >> "{out_full}"
 echo "${{bazel_out#$workspace_dir/}}" >> "{out_full}"
 """.format(
