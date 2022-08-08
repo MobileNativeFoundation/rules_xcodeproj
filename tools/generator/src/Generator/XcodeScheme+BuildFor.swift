@@ -25,7 +25,7 @@ extension XcodeScheme {
 }
 
 extension XcodeScheme.BuildFor {
-    enum Value: Equatable {
+    enum Value: Equatable, Hashable, Decodable {
         case unspecified
         case enabled
         case disabled
@@ -61,6 +61,10 @@ extension XcodeScheme.BuildFor.Value {
         case (.unspecified, .unspecified):
             return .unspecified
         }
+    }
+
+    mutating func merge(with other: XCSchemeInfo.BuildFor.Value) throws {
+        self = try merged(with: other)
     }
 }
 

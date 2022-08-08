@@ -46,27 +46,67 @@ extension XCSchemeInfo.BuildActionInfo {
 // MARK: Custom Scheme Initializer
 
 extension XCSchemeInfo.BuildActionInfo {
-    init?(
-        buildAction: XcodeScheme.BuildAction?,
+    init(
+        scheme: XcodeScheme,
         targetResolver: TargetResolver,
         targetIDsByLabel: [BazelLabel: TargetID]
     ) throws {
-        guard let buildAction = buildAction else {
-          return nil
-        }
-        let targetInfos = try buildAction.targets.map { label in
-            return try targetResolver.targetInfo(
-                targetID: try targetIDsByLabel.value(
-                    for: label,
-                    context: "creating a `BuildActionInfo`"
-                )
+        let context = "creating a `BuildActionInfo`"
+        var buildTargetInfos = [BazelLabel: XCSchemeInfo.BuildTarget]()
+
+        // func getBuildTargetInfo(
+        //     _ label: BazelLabel,
+        //     defaultBuildFor: @autoclosure () -> XCSchemeInfo.BuildFor
+        // ) throws -> XCSchemeInfo.BuildTarget {
+        //     return buildTargetInfos[label, default: .init(
+        //         targetInfo: try targetResolver.targetInfo(
+        //             targetID: try targetIDsByLabel.value(for: label, context: context)
+        //         ),
+        //         buildFor: defaultBuildFor()
+        //     )]
+        // }
+
+        func getBuildTargetInfo(
+            _ label: BazelLabel,
+            defaultBuildFor: @autoclosure () -> XCSchemeInfo.BuildFor
+        ) throws -> XCSchemeInfo.BuildTarget {
+            if let existing = buildTargetInfos[label] {
+                return existing
+            }
+            return .init(
+                targetInfo: try targetResolver.targetInfo(
+                    targetID: try targetIDsByLabel.value(for: label, context: context)
+                ),
+                buildFor: defaultBuildFor()
             )
         }
-        // GH573: Map buildFor from XcodeScheme to XCSchemeInfo here.
-        try self.init(
-            targets: targetInfos.map {
-                .init(targetInfo: $0)
-            }
-        )
+
+        func enableBuildForValue(
+            _ label: BazelLabel,
+            _ keyPath: WritableKeyPath<XCSchemeInfo.BuildFor, XCSchemeInfo.BuildFor.Value>,
+            defaultBuildFor: @autoclosure () -> XCSchemeInfo.BuildFor
+        ) throws {
+            var buildTargetInfo = try getBuildTargetInfo(label, defaultBuildFor: defaultBuildFor())
+            try buildTargetInfo.buildFor[keyPath: keyPath].merge(with: .enabled)
+            buildTargetInfos[label] = buildTargetInfo
+        }
+
+        try scheme.testAction?.targets.forEach { label in
+            try enableBuildForValue(label, \.testing, defaultBuildFor: .init())
+        }
+
+        // try scheme.buildAction?.targets.map { buildTarget in
+        //     let targetInfo = try targetResolver.targetInfo(
+        //         targetID: try targetIDsByLabel.value(for: buildTarget.label, context: context)
+        //     )
+        //     buildTargetInfos[label] = .init(
+        //         targetInfo: targetInfo,
+        //         buildFor: buildTarget.buildFor
+        //     )
+        // }
+
+        // TODO(chuck): FINISH ME
+
+        try self.init(targets: buildTargetInfos.values)
     }
 }

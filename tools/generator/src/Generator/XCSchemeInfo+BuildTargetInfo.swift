@@ -1,5 +1,7 @@
 import XcodeProj
 
+// TODO(chuck): Rename to BuildTargetInfo?
+
 extension XCSchemeInfo {
     struct BuildTargetInfo: Equatable, Hashable {
         let targetInfo: XCSchemeInfo.TargetInfo

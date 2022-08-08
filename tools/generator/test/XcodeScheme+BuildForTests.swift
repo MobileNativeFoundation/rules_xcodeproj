@@ -65,6 +65,12 @@ Expected `ValueError`. value: \(value), other: \(other), expected: \(expected)
             }
         }
     }
+
+    func test_Value_merge_with() throws {
+        var value = XCSchemeInfo.BuildFor.Value.unspecified
+        try value.merge(with: .enabled)
+        XCTAssertEqual(value, .enabled)
+    }
 }
 
 // MARK: `BuildFor.xcSchemeValue` Tests

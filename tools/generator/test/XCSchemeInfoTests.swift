@@ -256,7 +256,7 @@ class XCSchemeInfoTests: XCTestCase {
 
     lazy var xcodeScheme = XcodeScheme(
         name: schemeName,
-        buildAction: .init(targets: [targetResolver.targets["A 1"]!.label]),
+        buildAction: .init(targets: [.init(label: targetResolver.targets["A 1"]!.label)]),
         testAction: .init(targets: [targetResolver.targets["B 2"]!.label]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label),
         profileAction: .init(target: targetResolver.targets["A 2"]!.label)

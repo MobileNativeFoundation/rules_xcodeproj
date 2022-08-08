@@ -40,18 +40,9 @@ extension XCSchemeInfoBuildActionInfoTests {
 // MARK: - Custom Scheme Initializer Tests
 
 extension XCSchemeInfoBuildActionInfoTests {
-    func test_customSchemeInit_noBuildAction() throws {
-        let actual = try XCSchemeInfo.BuildActionInfo(
-            buildAction: nil,
-            targetResolver: targetResolver,
-            targetIDsByLabel: [:]
-        )
-        XCTAssertNil(actual)
-    }
-
     func test_customSchemeInit_withBuildAction() throws {
         let actual = try XCSchemeInfo.BuildActionInfo(
-            buildAction: xcodeScheme.buildAction,
+            scheme: xcodeScheme,
             targetResolver: targetResolver,
             targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
@@ -125,7 +116,7 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
 
     lazy var xcodeScheme = XcodeScheme(
         name: "My Scheme",
-        buildAction: .init(targets: [targetResolver.targets["A 1"]!.label]),
+        buildAction: .init(targets: [.init(label: targetResolver.targets["A 1"]!.label)]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
 }
