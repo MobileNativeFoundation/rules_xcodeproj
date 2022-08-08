@@ -2,16 +2,16 @@ import XcodeProj
 
 extension XCSchemeInfo {
     struct BuildActionInfo: Equatable {
-        let targets: Set<XCSchemeInfo.BuildTarget>
+        let targets: Set<XCSchemeInfo.BuildTargetInfo>
 
-        init<BuildTargets: Sequence>(
-            targets: BuildTargets
-        ) throws where BuildTargets.Element == XCSchemeInfo.BuildTarget {
+        init<BuildTargetInfos: Sequence>(
+            targets: BuildTargetInfos
+        ) throws where BuildTargetInfos.Element == XCSchemeInfo.BuildTargetInfo {
             self.targets = Set(targets)
 
             guard !self.targets.isEmpty else {
                 throw PreconditionError(message: """
-An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.BuildTarget`.
+An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.BuildTargetInfo`.
 """)
             }
         }

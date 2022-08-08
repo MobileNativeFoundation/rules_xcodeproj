@@ -1,6 +1,6 @@
 import XcodeProj
 
-extension XCSchemeInfo {
+extension XcodeScheme {
     struct BuildFor: Equatable, Hashable {
         var running: Value
         var testing: Value
@@ -24,7 +24,7 @@ extension XCSchemeInfo {
     }
 }
 
-extension XCSchemeInfo.BuildFor {
+extension XcodeScheme.BuildFor {
     enum Value: Equatable {
         case unspecified
         case enabled
@@ -32,7 +32,7 @@ extension XCSchemeInfo.BuildFor {
     }
 }
 
-extension XCSchemeInfo.BuildFor.Value {
+extension XcodeScheme.BuildFor.Value {
     func xcSchemeValue(
         _ value: XCScheme.BuildAction.Entry.BuildFor
     ) -> XCScheme.BuildAction.Entry.BuildFor? {
@@ -45,12 +45,12 @@ extension XCSchemeInfo.BuildFor.Value {
     }
 }
 
-extension XCSchemeInfo.BuildFor.Value {
+extension XcodeScheme.BuildFor.Value {
     enum ValueError: Error, Equatable {
         case incompatibleMerge
     }
 
-    func merged(with other: XCSchemeInfo.BuildFor.Value) throws -> XCSchemeInfo.BuildFor.Value {
+    func merged(with other: XcodeScheme.BuildFor.Value) throws -> XcodeScheme.BuildFor.Value {
         switch (self, other) {
         case (.enabled, .disabled), (.disabled, .enabled):
             throw ValueError.incompatibleMerge
@@ -64,7 +64,7 @@ extension XCSchemeInfo.BuildFor.Value {
     }
 }
 
-extension XCSchemeInfo.BuildFor {
+extension XcodeScheme.BuildFor {
     var xcSchemeValue: [XCScheme.BuildAction.Entry.BuildFor] {
         return [
             running.xcSchemeValue(.running),
@@ -76,10 +76,10 @@ extension XCSchemeInfo.BuildFor {
     }
 }
 
-extension XCSchemeInfo.BuildFor {
+extension XcodeScheme.BuildFor {
     private mutating func mergeValue(
-        _ keyPath: WritableKeyPath<XCSchemeInfo.BuildFor, XCSchemeInfo.BuildFor.Value>,
-        with other: XCSchemeInfo.BuildFor
+        _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>,
+        with other: XcodeScheme.BuildFor
     ) throws {
         let currentValue = self[keyPath: keyPath]
         let otherValue = other[keyPath: keyPath]
@@ -92,7 +92,7 @@ Unable to merge `BuildFor` values for \(keyPath). current: \(currentValue), othe
         }
     }
 
-    mutating func merge(with other: XCSchemeInfo.BuildFor) throws {
+    mutating func merge(with other: XcodeScheme.BuildFor) throws {
         try mergeValue(\.running, with: other)
         try mergeValue(\.testing, with: other)
         try mergeValue(\.profiling, with: other)
@@ -101,9 +101,9 @@ Unable to merge `BuildFor` values for \(keyPath). current: \(currentValue), othe
     }
 }
 
-extension Sequence where Element == XCSchemeInfo.BuildFor {
-    func merged() throws -> XCSchemeInfo.BuildFor {
-        var result = XCSchemeInfo.BuildFor()
+extension Sequence where Element == XcodeScheme.BuildFor {
+    func merged() throws -> XcodeScheme.BuildFor {
+        var result = XcodeScheme.BuildFor()
         for buildFor in self {
             try result.merge(with: buildFor)
         }

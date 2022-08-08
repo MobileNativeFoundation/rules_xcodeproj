@@ -5,21 +5,21 @@ import XCTest
 
 // MARK: - Sequence buildActionEntries Tests
 
-extension XCSchemeInfoBuildTargetTests {
+extension XCSchemeInfoBuildTargetInfoTests {
     func test_Sequence_buildActionEntries() throws {
-        let buildTargets = [libraryTargetInfo, appTargetInfo]
-            .map { XCSchemeInfo.BuildTarget(targetInfo: $0) }
+        let buildTargetInfos = [libraryTargetInfo, appTargetInfo]
+            .map { XCSchemeInfo.BuildTargetInfo(targetInfo: $0) }
         let expected: [XCScheme.BuildAction.Entry] = [
             libraryTargetInfo.buildableReference,
             appTargetInfo.buildableReference,
         ].map { .init(buildableReference: $0, buildFor: .default) }
-        XCTAssertEqual(try buildTargets.buildActionEntries, expected)
+        XCTAssertEqual(try buildTargetInfos.buildActionEntries, expected)
     }
 }
 
 // MARK: Test Data
 
-class XCSchemeInfoBuildTargetTests: XCTestCase {
+class XCSchemeInfoBuildTargetInfoTests: XCTestCase {
     lazy var filePathResolver = FilePathResolver(
         externalDirectory: "/some/bazel4/external",
         bazelOutDirectory: "/some/bazel4/bazel-out",

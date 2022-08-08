@@ -4,26 +4,26 @@ import XCTest
 
 // MARK: `Value.xcSchemeValue` Tests
 
-extension XCSchemeInfoBuildForTests {
+extension XcodeSchemeBuildForTests {
     func test_Value_xcSchemeValue() throws {
-        XCTAssertNil(XCSchemeInfo.BuildFor.Value.disabled.xcSchemeValue(.running))
-        XCTAssertEqual(XCSchemeInfo.BuildFor.Value.unspecified.xcSchemeValue(.running), .running)
-        XCTAssertEqual(XCSchemeInfo.BuildFor.Value.enabled.xcSchemeValue(.running), .running)
+        XCTAssertNil(XcodeScheme.BuildFor.Value.disabled.xcSchemeValue(.running))
+        XCTAssertEqual(XcodeScheme.BuildFor.Value.unspecified.xcSchemeValue(.running), .running)
+        XCTAssertEqual(XcodeScheme.BuildFor.Value.enabled.xcSchemeValue(.running), .running)
     }
 }
 
 // MARK: `Value.merged(with:)` Tests
 
-extension XCSchemeInfoBuildForTests {
+extension XcodeSchemeBuildForTests {
     enum ExpectedMergeOutput {
-        case value(XCSchemeInfo.BuildFor.Value)
-        case error(XCSchemeInfo.BuildFor.Value.ValueError)
+        case value(XcodeScheme.BuildFor.Value)
+        case error(XcodeScheme.BuildFor.Value.ValueError)
     }
 
     func test_Value_merged_with() throws {
         let testData: [(
-            value: XCSchemeInfo.BuildFor.Value,
-            other: XCSchemeInfo.BuildFor.Value,
+            value: XcodeScheme.BuildFor.Value,
+            other: XcodeScheme.BuildFor.Value,
             expected: ExpectedMergeOutput
         )] = [
             (value: .unspecified, other: .unspecified, expected: .value(.unspecified)),
@@ -51,7 +51,7 @@ extension XCSchemeInfoBuildForTests {
                 XCTAssertThrowsError(try value.merged(with: other)) {
                     thrown = $0
                 }
-                guard let valueError = thrown as? XCSchemeInfo.BuildFor.Value.ValueError else {
+                guard let valueError = thrown as? XcodeScheme.BuildFor.Value.ValueError else {
                     XCTFail("""
 Expected `ValueError`. value: \(value), other: \(other), expected: \(expected)
 """)
@@ -69,7 +69,7 @@ Expected `ValueError`. value: \(value), other: \(other), expected: \(expected)
 
 // MARK: `BuildFor.xcSchemeValue` Tests
 
-extension XCSchemeInfoBuildForTests {
+extension XcodeSchemeBuildForTests {
     func test_BuildFor_xcSchemeValue() throws {
         XCTAssertEqual(allDisabledBuildFor.xcSchemeValue, [])
 
@@ -81,7 +81,7 @@ extension XCSchemeInfoBuildForTests {
             .analyzing,
         ])
 
-        let buildFor = XCSchemeInfo.BuildFor(
+        let buildFor = XcodeScheme.BuildFor(
             running: .enabled,
             testing: .disabled,
             profiling: .enabled,
@@ -94,23 +94,23 @@ extension XCSchemeInfoBuildForTests {
 
 // MARK: `BuildFor.merge(with:)` Tests
 
-extension XCSchemeInfoBuildForTests {
+extension XcodeSchemeBuildForTests {
     func test_BuildFor_merge_with() throws {
-        var buildFor = XCSchemeInfo.BuildFor()
+        var buildFor = XcodeScheme.BuildFor()
         try buildFor.merge(with: allDisabledBuildFor)
         XCTAssertEqual(buildFor, allDisabledBuildFor)
 
-        buildFor = XCSchemeInfo.BuildFor()
+        buildFor = XcodeScheme.BuildFor()
         try buildFor.merge(with: allEnabledBuildFor)
         XCTAssertEqual(buildFor, allEnabledBuildFor)
 
-        buildFor = XCSchemeInfo.BuildFor()
+        buildFor = XcodeScheme.BuildFor()
         try buildFor.merge(with: allUnspecifiedBuildFor)
         XCTAssertEqual(buildFor, allUnspecifiedBuildFor)
 
         // Since these are all Value properties, make sure that we have mapped them properly
         let propertyKeyPaths: [
-            WritableKeyPath<XCSchemeInfo.BuildFor, XCSchemeInfo.BuildFor.Value>
+            WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
         ] = [
             \.running,
             \.testing,
@@ -119,11 +119,11 @@ extension XCSchemeInfoBuildForTests {
             \.analyzing,
         ]
         for keyPath in propertyKeyPaths {
-            buildFor = XCSchemeInfo.BuildFor()
+            buildFor = XcodeScheme.BuildFor()
             buildFor[keyPath: keyPath] = .enabled
             try buildFor.merge(with: allUnspecifiedBuildFor)
 
-            var expected = XCSchemeInfo.BuildFor()
+            var expected = XcodeScheme.BuildFor()
             expected[keyPath: keyPath] = .enabled
             XCTAssertEqual(buildFor, expected)
         }
@@ -132,9 +132,9 @@ extension XCSchemeInfoBuildForTests {
 
 // MARK: `BuildFor` Sequence `merged()` Tests
 
-extension XCSchemeInfoBuildForTests {
+extension XcodeSchemeBuildForTests {
     func test_BuildFor_Sequence_merged_notEmpty() throws {
-        let buildFors: [XCSchemeInfo.BuildFor] = [
+        let buildFors: [XcodeScheme.BuildFor] = [
             .init(running: .enabled),
             .init(profiling: .disabled),
         ]
@@ -143,7 +143,7 @@ extension XCSchemeInfoBuildForTests {
     }
 
     func test_BuildFor_Sequence_merged_empty() throws {
-        let buildFors: [XCSchemeInfo.BuildFor] = []
+        let buildFors: [XcodeScheme.BuildFor] = []
         let result = try buildFors.merged()
         XCTAssertEqual(result, .init())
     }
@@ -151,16 +151,16 @@ extension XCSchemeInfoBuildForTests {
 
 // MARK: Test Data
 
-class XCSchemeInfoBuildForTests: XCTestCase {
-    let allUnspecifiedBuildFor = XCSchemeInfo.BuildFor()
-    let allDisabledBuildFor = XCSchemeInfo.BuildFor(
+class XcodeSchemeBuildForTests: XCTestCase {
+    let allUnspecifiedBuildFor = XcodeScheme.BuildFor()
+    let allDisabledBuildFor = XcodeScheme.BuildFor(
         running: .disabled,
         testing: .disabled,
         profiling: .disabled,
         archiving: .disabled,
         analyzing: .disabled
     )
-    let allEnabledBuildFor = XCSchemeInfo.BuildFor(
+    let allEnabledBuildFor = XcodeScheme.BuildFor(
         running: .enabled,
         testing: .enabled,
         profiling: .enabled,
