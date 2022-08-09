@@ -156,7 +156,7 @@ extension XCSchemeInfoTests {
 extension XCSchemeInfoTests {
     func test_customSchemeInit() throws {
         let actual = try XCSchemeInfo(
-            scheme: xcodeScheme,
+            scheme: try xcodeScheme.withDefaults,
             targetResolver: targetResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
         )
