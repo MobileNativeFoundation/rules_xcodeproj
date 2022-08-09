@@ -56,6 +56,8 @@ extension XcodeScheme {
                     target: launchAction.target,
                     buildConfigurationName: launchAction.buildConfigurationName
                 )
+            } else if let profileAction = profileAction {
+                newProfileAction = profileAction
             } else {
                 newProfileAction = nil
             }
@@ -66,6 +68,7 @@ extension XcodeScheme {
             try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
 
             // Create a new build action which includes all of the referenced labels as build targets
+            // We must do this after processing all of the other actions.
             let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values)
 
             return .init(

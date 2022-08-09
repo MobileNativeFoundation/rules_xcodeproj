@@ -56,15 +56,38 @@ extension XcodeSchemeTests {
         XCTAssertEqual(actual, expected)
     }
 
+    func test_XcodeScheme_withDefaults_noBuild_withLaunch_withProfile() throws {
+        let xcodeScheme = XcodeScheme(
+            name: schemeName,
+            launchAction: .init(target: macOSAppLabel),
+            profileAction: .init(target: iOSAppLabel)
+        )
+        let actual = try xcodeScheme.withDefaults
+        let expected = XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(
+                targets: [
+                    .init(
+                        label: macOSAppLabel,
+                        buildFor: .init(running: .enabled)
+                    ),
+                    .init(
+                        label: iOSAppLabel,
+                        buildFor: .init(profiling: .enabled)
+                    ),
+                ]
+            ),
+            launchAction: .init(target: macOSAppLabel),
+            profileAction: .init(target: iOSAppLabel)
+        )
+        XCTAssertEqual(actual, expected)
+    }
+
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_withProfile_profilingEnabled() throws {
         XCTFail("IMPLEMENT ME!")
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_withProfile_profilingDisabled() throws {
-        XCTFail("IMPLEMENT ME!")
-    }
-
-    func test_XcodeScheme_withDefaults_noBuild_withLaunch_withProfile() throws {
         XCTFail("IMPLEMENT ME!")
     }
 }
@@ -86,4 +109,5 @@ class XcodeSchemeTests: XCTestCase {
     )
 
     lazy var macOSAppLabel = targetResolver.targets["A 2"]!.label
+    lazy var iOSAppLabel = targetResolver.targets["AC"]!.label
 }
