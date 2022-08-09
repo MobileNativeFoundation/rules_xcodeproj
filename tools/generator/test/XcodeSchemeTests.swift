@@ -83,12 +83,54 @@ extension XcodeSchemeTests {
         XCTAssertEqual(actual, expected)
     }
 
-    func test_XcodeScheme_withDefaults_withBuild_withLaunch_withProfile_profilingEnabled() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_XcodeScheme_withDefaults_withBuild_withLaunch_noProfile_profilingEnabled() throws {
+        // Ensure that we respect manually specified profiling setting
+        let xcodeScheme = XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(targets: [
+                // Purposefully not using .allEnabled as it is a default.
+                .init(label: macOSAppLabel, buildFor: .init(
+                    running: .enabled, profiling: .enabled, archiving: .enabled
+                )),
+            ]),
+            launchAction: .init(target: macOSAppLabel)
+        )
+        let actual = try xcodeScheme.withDefaults
+        let expected = XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(targets: [
+                .init(label: macOSAppLabel, buildFor: .init(
+                    running: .enabled, profiling: .enabled, archiving: .enabled
+                )),
+            ]),
+            launchAction: .init(target: macOSAppLabel),
+            profileAction: .init(target: macOSAppLabel)
+        )
+        XCTAssertEqual(actual, expected)
     }
 
-    func test_XcodeScheme_withDefaults_withBuild_withLaunch_withProfile_profilingDisabled() throws {
-        XCTFail("IMPLEMENT ME!")
+    func test_XcodeScheme_withDefaults_withBuild_withLaunch_noProfile_profilingDisabled() throws {
+        // Ensure that we respect manually specified profiling setting
+        let xcodeScheme = XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(targets: [
+                .init(label: macOSAppLabel, buildFor: .init(
+                    running: .enabled, profiling: .disabled, archiving: .enabled
+                )),
+            ]),
+            launchAction: .init(target: macOSAppLabel)
+        )
+        let actual = try xcodeScheme.withDefaults
+        let expected = XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(targets: [
+                .init(label: macOSAppLabel, buildFor: .init(
+                    running: .enabled, profiling: .disabled, archiving: .enabled
+                )),
+            ]),
+            launchAction: .init(target: macOSAppLabel)
+        )
+        XCTAssertEqual(actual, expected)
     }
 }
 
