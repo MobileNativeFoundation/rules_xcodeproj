@@ -161,10 +161,6 @@ extension Generator {
                 filePathResolver.absoluteExternalDirectory + filePath.path
                ).symlinkDestination()
             {
-                resolvedExternalRepositories.append(
-                    (pathComponent, symlinkDest)
-                )
-
                 let workspaceDirectoryComponents = filePathResolver
                     .workspaceDirectoryComponents
                 let symlinkComponents = symlinkDest.components
@@ -183,11 +179,19 @@ extension Generator {
                         name: pathComponent,
                         path: relativeExternalRepository.string
                     )
+
+                    resolvedExternalRepositories.append(
+                        (pathComponent, "$SRCROOT" + relativeExternalRepository)
+                    )
                 } else {
                     group = PBXGroup(
                         sourceTree: .absolute,
                         name: pathComponent,
                         path: symlinkDest.string
+                    )
+
+                    resolvedExternalRepositories.append(
+                        (pathComponent, symlinkDest)
                     )
                 }
             } else {
