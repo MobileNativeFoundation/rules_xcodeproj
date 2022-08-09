@@ -17,7 +17,9 @@ extension XCSchemeInfoBuildActionInfoTests {
     func test_hostResolution_withBuildActionInfo() throws {
         let actionInfo = try XCSchemeInfo.BuildActionInfo(
             resolveHostsFor: .init(
-                targets: [unresolvedLibraryTargetInfoWithHosts].map { .init(targetInfo: $0) }
+                targets: [unresolvedLibraryTargetInfoWithHosts].map {
+                    .init(targetInfo: $0, buildFor: .allEnabled)
+                }
             ),
             topLevelTargetInfos: topLevelTargetInfos
         )
@@ -50,7 +52,16 @@ extension XCSchemeInfoBuildActionInfoTests {
             )
         )
         let expected = try XCSchemeInfo.BuildActionInfo(
-            targets: [try targetResolver.targetInfo(targetID: "A 1")].map { .init(targetInfo: $0) }
+            targets: [
+                .init(
+                    targetInfo: try targetResolver.targetInfo(targetID: "A 1"),
+                    buildFor: .allEnabled
+                ),
+                .init(
+                    targetInfo: try targetResolver.targetInfo(targetID: "A 2"),
+                    buildFor: .init(running: .enabled)
+                ),
+            ]
         )
         XCTAssertEqual(actual, expected)
     }

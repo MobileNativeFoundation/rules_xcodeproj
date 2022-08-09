@@ -37,10 +37,10 @@ extension XcodeScheme.BuildFor.Value {
         _ value: XCScheme.BuildAction.Entry.BuildFor
     ) -> XCScheme.BuildAction.Entry.BuildFor? {
         switch self {
-        case .disabled:
-            return nil
-        default:
+        case .enabled:
             return value
+        default:
+            return nil
         }
     }
 }

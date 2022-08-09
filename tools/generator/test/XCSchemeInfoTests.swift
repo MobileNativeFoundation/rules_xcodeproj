@@ -25,7 +25,7 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
         var thrown: Error?
         XCTAssertThrowsError(try XCSchemeInfo(
             buildActionInfo: .init(
-                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             )
         )) {
             thrown = $0
@@ -43,7 +43,7 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: .init(
-                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             ),
             testActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -76,7 +76,7 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
         let customName = "Sally"
         let schemeInfo = try XCSchemeInfo(
             buildActionInfo: .init(
-                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             )
         ) { _, _, _, _ in
             return customName
@@ -92,7 +92,7 @@ extension XCSchemeInfoTests {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: .init(
-                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             ),
             testActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -130,7 +130,7 @@ extension XCSchemeInfoTests {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: .init(
-                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             )
         )
         XCTAssertFalse(schemeInfo.wasCreatedForAppExtension)
@@ -140,7 +140,7 @@ extension XCSchemeInfoTests {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
             buildActionInfo: .init(
-                targets: [libraryTargetInfo].map { .init(targetInfo: $0) }
+                targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             ),
             launchActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -164,10 +164,19 @@ extension XCSchemeInfoTests {
             name: schemeName,
             buildActionInfo: try .init(
                 targets: [
-                    try targetResolver.targetInfo(targetID: "A 1"),
-                    try targetResolver.targetInfo(targetID: "A 2"),
-                    try targetResolver.targetInfo(targetID: "B 2"),
-                ].map { .init(targetInfo: $0) }
+                    .init(
+                        targetInfo: try targetResolver.targetInfo(targetID: "A 1"),
+                        buildFor: .allEnabled
+                    ),
+                    .init(
+                        targetInfo: try targetResolver.targetInfo(targetID: "A 2"),
+                        buildFor: .init(running: .enabled, profiling: .enabled)
+                    ),
+                    .init(
+                        targetInfo: try targetResolver.targetInfo(targetID: "B 2"),
+                        buildFor: .init(testing: .enabled)
+                    ),
+                ]
             ),
             testActionInfo: try .init(
                 buildConfigurationName: .defaultBuildConfigurationName,
@@ -256,6 +265,7 @@ class XCSchemeInfoTests: XCTestCase {
 
     lazy var xcodeScheme = XcodeScheme(
         name: schemeName,
+        // swiftlint:disable:next force_try
         buildAction: try! .init(targets: [.init(label: targetResolver.targets["A 1"]!.label)]),
         testAction: .init(targets: [targetResolver.targets["B 2"]!.label]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label),

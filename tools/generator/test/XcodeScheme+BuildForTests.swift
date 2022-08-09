@@ -7,7 +7,7 @@ import XCTest
 extension XcodeSchemeBuildForTests {
     func test_Value_xcSchemeValue() throws {
         XCTAssertNil(XcodeScheme.BuildFor.Value.disabled.xcSchemeValue(.running))
-        XCTAssertEqual(XcodeScheme.BuildFor.Value.unspecified.xcSchemeValue(.running), .running)
+        XCTAssertNil(XcodeScheme.BuildFor.Value.unspecified.xcSchemeValue(.running))
         XCTAssertEqual(XcodeScheme.BuildFor.Value.enabled.xcSchemeValue(.running), .running)
     }
 }
