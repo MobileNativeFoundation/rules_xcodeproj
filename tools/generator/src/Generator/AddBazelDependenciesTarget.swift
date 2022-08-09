@@ -211,15 +211,16 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
     ) throws -> String {
         var overlays: [String] = [#"""
 
+if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
+  bazel_out_prefix=
+else
+  bazel_out_prefix="$SRCROOT/"
+fi
+
 # Use current path for bazel-out
 # This fixes Index Build to use its version of generated files
-if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-    absolute_bazel_out="$BAZEL_OUT"
-else
-    absolute_bazel_out="$SRCROOT/$BAZEL_OUT"
-fi
 cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$output_path","name": "$absolute_bazel_out","type": "directory-remap"}],"version": 0}
+{"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$output_path","name": "${bazel_out_prefix}$BAZEL_OUT","type": "directory-remap"}],"version": 0}
 EOF
 
 """#]
@@ -244,7 +245,7 @@ EOF
                         mode: .script
                     )
                     return #"""
-{"external-contents": "\#(buildDir)","name": "\#(bazelOut)","type": "file"}
+{"external-contents": "\#(buildDir)","name": "${bazel_out_prefix}\#(bazelOut)","type": "file"}
 """#
                 }
                 .joined(separator: ",")
