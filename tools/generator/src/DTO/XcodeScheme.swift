@@ -30,12 +30,6 @@ extension XcodeScheme {
                 _ label: BazelLabel,
                 _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
             ) throws {
-                // var buildTarget = buildTargets[
-                //     label,
-                //     default: .init(label: label, buildFor: .init())
-                // ]
-                // try buildTarget.buildFor[keyPath: keyPath].merge(with: .enabled)
-                // buildTargets[label] = buildTargetInfo
                 try buildTargets[label, default: .init(label: label, buildFor: .init())]
                     .buildFor[keyPath: keyPath]
                     .merge(with: .enabled)
@@ -48,16 +42,15 @@ extension XcodeScheme {
 
             // Default ProfileAction
             let newProfileAction: XcodeScheme.ProfileAction?
-            if let launchAction = launchAction,
-                profileAction == nil,
+            if let profileAction = profileAction {
+                newProfileAction = profileAction
+            } else if let launchAction = launchAction,
                 buildTargets[launchAction.target]?.buildFor.profiling != .disabled
             {
                 newProfileAction = .init(
                     target: launchAction.target,
                     buildConfigurationName: launchAction.buildConfigurationName
                 )
-            } else if let profileAction = profileAction {
-                newProfileAction = profileAction
             } else {
                 newProfileAction = nil
             }
