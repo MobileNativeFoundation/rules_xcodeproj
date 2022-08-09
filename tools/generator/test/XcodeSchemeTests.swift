@@ -31,7 +31,17 @@ Found a duplicate label //foo:foo in provided `XcodeScheme.BuildTarget` values.
     }
 
     func test_BuildAction_init_noTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+        var thrown: Error?
+        XCTAssertThrowsError(try XcodeScheme.BuildAction(targets: [])) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected , but was \(String(describing: thrown)).")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
+""")
     }
 }
 
