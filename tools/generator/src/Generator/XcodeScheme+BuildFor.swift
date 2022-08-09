@@ -105,6 +105,21 @@ Unable to merge `BuildFor` values for \(keyPath). current: \(currentValue), othe
     }
 }
 
+// WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
+// extension WritableKeyPath where Root == XcodeScheme.BuildFor,
+extension PartialKeyPath where Root == XcodeScheme.BuildFor {
+    var stringValue: String {
+        switch self {
+        case \XcodeScheme.BuildFor.running: return "running"
+        case \XcodeScheme.BuildFor.testing: return "testing"
+        case \XcodeScheme.BuildFor.profiling: return "profiling"
+        case \XcodeScheme.BuildFor.archiving: return "archiving"
+        case \XcodeScheme.BuildFor.analyzing: return "analyzing"
+        default: return "<unknown>"
+        }
+    }
+}
+
 extension Sequence where Element == XcodeScheme.BuildFor {
     func merged() throws -> XcodeScheme.BuildFor {
         var result = XcodeScheme.BuildFor()

@@ -162,27 +162,25 @@ extension XcodeSchemeTests {
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_runningDisabled() throws {
-        // // Ensure that we respect manually specified profiling setting
-        // let xcodeScheme = try XcodeScheme(
-        //     name: schemeName,
-        //     buildAction: try .init(targets: [
-        //         .init(label: macOSAppLabel, buildFor: .init(
-        //             running: .enabled, profiling: .disabled, archiving: .enabled
-        //         )),
-        //     ]),
-        //     launchAction: .init(target: macOSAppLabel)
-        // )
-        // var thrown: Error?
-        // XCTAssertThrowsError(try xcodeScheme.withDefaults) {
-        //     thrown = $0
-        // }
-        // guard let preconditionError = thrown as? PreconditionError else {
-        //     XCTFail("Expected `PreconditionError`")
-        //     return
-        // }
-        // XCTAssertEqual(preconditionError.message, """
-// """)
-        XCTFail("IMPLEMENT ME!")
+        let xcodeScheme = try XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(targets: [
+                .init(label: macOSAppLabel, buildFor: .init(running: .disabled)),
+            ]),
+            launchAction: .init(target: macOSAppLabel)
+        )
+        var thrown: Error?
+        XCTAssertThrowsError(try xcodeScheme.withDefaults) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+Failed to merge `running` value with `.enabled`. Hint: This usually means the other value is \
+`.disabled`.
+""")
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withProifle_profilingDisabled() throws {

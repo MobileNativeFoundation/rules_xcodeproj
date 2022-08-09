@@ -38,9 +38,16 @@ extension XcodeScheme {
                 _ label: BazelLabel,
                 _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
             ) throws {
-                try buildTargets[label, default: .init(label: label, buildFor: .init())]
-                    .buildFor[keyPath: keyPath]
-                    .merge(with: .enabled)
+                do {
+                    try buildTargets[label, default: .init(label: label, buildFor: .init())]
+                        .buildFor[keyPath: keyPath]
+                        .merge(with: .enabled)
+                } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
+                    throw PreconditionError(message: """
+Failed to merge `\(keyPath.stringValue)` value with `.enabled`. Hint: This usually means the other \
+value is `.disabled`.
+""")
+                }
             }
 
             // Popuate the dictionary with any build targets that were explicitly specified.
