@@ -226,6 +226,23 @@ Failed to merge `testing` value for "\(unitTestLabel)" with `.enabled`. Hint: Th
 the other value is `.disabled`.
 """)
     }
+
+    func test_XcodeScheme_withDefaults_noTargetsWithRunningEnabled() throws {
+        let xcodeScheme = try XcodeScheme(
+            name: schemeName,
+            testAction: .init(targets: [unitTestLabel, uiTestLabel])
+        )
+        let actual = try xcodeScheme.withDefaults
+        let expected = try XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(targets: [
+                .init(label: unitTestLabel, buildFor: .init(running: .enabled, testing: .enabled)),
+                .init(label: uiTestLabel, buildFor: .init(running: .enabled, testing: .enabled)),
+            ]),
+            testAction: .init(targets: [unitTestLabel, uiTestLabel])
+        )
+        XCTAssertEqual(actual, expected)
+    }
 }
 
 // MARK: `BuildAction.init` Tests
@@ -247,4 +264,5 @@ class XcodeSchemeTests: XCTestCase {
     lazy var macOSAppLabel = targetResolver.targets["A 2"]!.label
     lazy var iOSAppLabel = targetResolver.targets["AC"]!.label
     lazy var unitTestLabel = targetResolver.targets["B 2"]!.label
+    lazy var uiTestLabel = targetResolver.targets["B 3"]!.label
 }

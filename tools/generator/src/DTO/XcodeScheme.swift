@@ -75,6 +75,11 @@ means the other value is `.disabled`.
             try launchAction.map { try enableBuildForValue($0.target, \.running) }
             try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
 
+            // If no build targets have running enabled, then enable it for all targets
+            if !buildTargets.values.contains(where: { $0.buildFor.running == .enabled }) {
+                try buildTargets.keys.forEach { try enableBuildForValue($0, \.running) }
+            }
+
             // Create a new build action which includes all of the referenced labels as build targets
             // We must do this after processing all of the other actions.
             let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values)
