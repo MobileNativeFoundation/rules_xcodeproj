@@ -29,33 +29,46 @@ extension XcodeSchemeTests {
 Found a duplicate label //foo:foo in provided `XcodeScheme.BuildTarget` values.
 """)
     }
+
+    func test_BuildAction_init_noTargets() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+}
+
+// MARK: `TestAction.init` Tests
+
+extension XcodeSchemeTests {
+    func test_TestAction_init_noTargets() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_TestAction_init_withTargets() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+}
+
+// MARK: `XcodeScheme.init` Tests
+
+extension XcodeSchemeTests {
+    func test_XcodeScheme_init_noActions() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_XcodeScheme_init_withActions() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
 }
 
 // MARK: `XcodeScheme.withDefaults` Tests
 
 extension XcodeSchemeTests {
-    func test_XcodeScheme_withDefaults_noActions() throws {
-        let xcodeScheme = XcodeScheme(name: schemeName)
-        var thrown: Error?
-        XCTAssertThrowsError(try xcodeScheme.withDefaults) {
-            thrown = $0
-        }
-        guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected `PreconditionError`.")
-            return
-        }
-        XCTAssertEqual(preconditionError.message, """
-No labels were specified in any of the scheme actions.
-""")
-    }
-
     func test_XcodeScheme_withDefaults_noBuild_withLaunch_noProfile() throws {
-        let xcodeScheme = XcodeScheme(
+        let xcodeScheme = try XcodeScheme(
             name: schemeName,
             launchAction: .init(target: macOSAppLabel)
         )
         let actual = try xcodeScheme.withDefaults
-        let expected = XcodeScheme(
+        let expected = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(
                 targets: [
@@ -72,13 +85,13 @@ No labels were specified in any of the scheme actions.
     }
 
     func test_XcodeScheme_withDefaults_noBuild_withLaunch_withProfile() throws {
-        let xcodeScheme = XcodeScheme(
+        let xcodeScheme = try XcodeScheme(
             name: schemeName,
             launchAction: .init(target: macOSAppLabel),
             profileAction: .init(target: iOSAppLabel)
         )
         let actual = try xcodeScheme.withDefaults
-        let expected = XcodeScheme(
+        let expected = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(
                 targets: [
@@ -100,7 +113,7 @@ No labels were specified in any of the scheme actions.
 
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_noProfile_profilingEnabled() throws {
         // Ensure that we respect manually specified profiling setting
-        let xcodeScheme = XcodeScheme(
+        let xcodeScheme = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
                 // Purposefully not using .allEnabled as it is a default.
@@ -111,7 +124,7 @@ No labels were specified in any of the scheme actions.
             launchAction: .init(target: macOSAppLabel)
         )
         let actual = try xcodeScheme.withDefaults
-        let expected = XcodeScheme(
+        let expected = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(
@@ -126,7 +139,7 @@ No labels were specified in any of the scheme actions.
 
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_noProfile_profilingDisabled() throws {
         // Ensure that we respect manually specified profiling setting
-        let xcodeScheme = XcodeScheme(
+        let xcodeScheme = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(
@@ -136,7 +149,7 @@ No labels were specified in any of the scheme actions.
             launchAction: .init(target: macOSAppLabel)
         )
         let actual = try xcodeScheme.withDefaults
-        let expected = XcodeScheme(
+        let expected = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(

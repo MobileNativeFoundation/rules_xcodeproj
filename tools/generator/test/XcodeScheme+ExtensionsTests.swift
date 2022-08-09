@@ -9,7 +9,7 @@ extension XcodeSchemeExtensionsTests {
     func test_allBazelLabels_doNotOverwriteTopLevel() throws {
         // Ensure that toolLabel comes through as top-level even though it
         // is specified in build action as well.
-        let scheme = XcodeScheme(
+        let scheme = try XcodeScheme(
             name: "Foo",
             buildAction: try .init(targets: [libLabel, toolLabel].map {
                 XcodeScheme.BuildTarget(label: $0)
@@ -519,7 +519,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
 
     let buildConfigurationName = "Chicken"
 
-    lazy var toolScheme = XcodeScheme(
+    lazy var toolScheme = try! XcodeScheme(
         name: "Tool",
         buildAction: try! .init(targets: [.init(label: libLabel)]),
         testAction: nil,
@@ -532,10 +532,10 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var iOSAppScheme = XcodeScheme(
+    lazy var iOSAppScheme = try! XcodeScheme(
         name: "iOSApp",
         buildAction: try! .init(targets: [.init(label: libLabel)]),
-        testAction: .init(targets: [libTestsLabel], buildConfigurationName: buildConfigurationName),
+        testAction: try! .init(targets: [libTestsLabel], buildConfigurationName: buildConfigurationName),
         launchAction: .init(
             target: iOSAppLabel,
             buildConfigurationName: buildConfigurationName,
@@ -545,7 +545,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var tvOSAppScheme = XcodeScheme(
+    lazy var tvOSAppScheme = try! XcodeScheme(
         name: "tvOSApp",
         buildAction: try! .init(targets: [.init(label: libLabel)]),
         testAction: nil,

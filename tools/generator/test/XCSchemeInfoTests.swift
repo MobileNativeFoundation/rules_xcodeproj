@@ -263,11 +263,11 @@ class XCSchemeInfoTests: XCTestCase {
         extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
     )
 
-    lazy var xcodeScheme = XcodeScheme(
+    lazy var xcodeScheme = try! XcodeScheme(
         name: schemeName,
         // swiftlint:disable:next force_try
         buildAction: try! .init(targets: [.init(label: targetResolver.targets["A 1"]!.label)]),
-        testAction: .init(targets: [targetResolver.targets["B 2"]!.label]),
+        testAction: try! .init(targets: [targetResolver.targets["B 2"]!.label]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label),
         profileAction: .init(target: targetResolver.targets["A 2"]!.label)
     )

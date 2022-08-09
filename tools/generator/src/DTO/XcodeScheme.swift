@@ -12,7 +12,14 @@ struct XcodeScheme: Equatable, Decodable {
         testAction: XcodeScheme.TestAction? = nil,
         launchAction: XcodeScheme.LaunchAction? = nil,
         profileAction: XcodeScheme.ProfileAction? = nil
-    ) {
+    ) throws {
+        guard buildAction != nil || testAction != nil || launchAction != nil ||
+            profileAction != nil
+        else {
+            throw PreconditionError(message: """
+No actions were provided for the scheme \(name).
+""")
+        }
         self.name = name
         self.buildAction = buildAction
         self.testAction = testAction
@@ -61,17 +68,11 @@ extension XcodeScheme {
             try launchAction.map { try enableBuildForValue($0.target, \.running) }
             try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
 
-            guard !buildTargets.isEmpty else {
-                throw PreconditionError(message: """
-No labels were specified in any of the scheme actions.
-""")
-            }
-
             // Create a new build action which includes all of the referenced labels as build targets
             // We must do this after processing all of the other actions.
             let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values)
 
-            return .init(
+            return try .init(
                 name: name,
                 buildAction: newBuildAction,
                 testAction: testAction,
@@ -106,16 +107,19 @@ extension XcodeScheme {
         init<BuildTargets: Sequence>(
             targets: BuildTargets
         ) throws where BuildTargets.Element == XcodeScheme.BuildTarget {
-            var labels = Set<BazelLabel>()
-            for target in targets {
-                let (inserted, _) = labels.insert(target.label)
-                guard inserted else {
+            let targetsByLabel = Dictionary(grouping: targets, by: \.label)
+            guard !targetsByLabel.isEmpty else {
+                throw PreconditionError(message: """
+No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
+""")
+            }
+            for (label, targets) in targetsByLabel {
+                guard targets.count == 1 else {
                     throw PreconditionError(message: """
-Found a duplicate label \(target.label) in provided `XcodeScheme.BuildTarget` values.
+Found a duplicate label \(label) in provided `XcodeScheme.BuildTarget` values.
 """)
                 }
             }
-
             self.targets = Set(targets)
         }
     }
@@ -128,12 +132,18 @@ extension XcodeScheme {
         let buildConfigurationName: String
         let targets: Set<BazelLabel>
 
-        init(
-            targets: Set<BazelLabel>,
+        init<Targets: Sequence>(
+            targets: Targets,
             buildConfigurationName: String = .defaultBuildConfigurationName
-        ) {
-            self.targets = targets
+        ) throws where Targets.Element == BazelLabel {
+            self.targets = Set(targets)
             self.buildConfigurationName = buildConfigurationName
+
+            guard !self.targets.isEmpty else {
+                throw PreconditionError(message: """
+No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
+""")
+            }
         }
     }
 }

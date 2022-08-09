@@ -378,7 +378,7 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     let customEnv = ["RELEASE_KRAKEN": "TRUE"]
     let customWorkingDirectory = "/path/to/work"
 
-    lazy var xcodeScheme = XcodeScheme(
+    lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
         launchAction: .init(
             target: targetResolver.targets["A 2"]!.label,

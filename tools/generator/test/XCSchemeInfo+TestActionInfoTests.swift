@@ -144,8 +144,8 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
         extensionPointIdentifiers: []
     )
 
-    lazy var xcodeScheme = XcodeScheme(
+    lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
-        testAction: .init(targets: [targetResolver.targets["B 2"]!.label])
+        testAction: try! .init(targets: [targetResolver.targets["B 2"]!.label])
     )
 }
