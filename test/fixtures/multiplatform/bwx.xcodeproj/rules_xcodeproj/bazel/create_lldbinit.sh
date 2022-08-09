@@ -3,6 +3,7 @@
 set -euo pipefail
 
 readonly exec_root="$1"
+shift
 
 readonly output_base="${exec_root%/*/*}"
 readonly build_bazel_out="$exec_root/bazel-out"
@@ -57,6 +58,14 @@ if [[ "$absolute_bazel_out" != "$build_bazel_out" ]]; then
   # `bazel-out` when set from swiftsourcefile
   echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
 fi
+
+# `external` for local repositories when set from Project navigator
+while [[ $# -gt 0 ]]; do
+  dir_name="$1"
+  path="$2"
+  shift 2
+  echo "settings append target.source-map \"./external/$dir_name\" \"$path\""
+done
 
 if [[ "${BAZEL_EXTERNAL:0:1}" == '/' ]]; then
     absolute_external="$BAZEL_EXTERNAL"

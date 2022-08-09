@@ -33,6 +33,7 @@ env -i \
         forceBazelDependencies: Bool,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
+        resolvedExternalRepositories: [(String, Path)],
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String,
         consolidatedTargets: ConsolidatedTargets
@@ -82,6 +83,7 @@ env -i \
                 .flatMap { $0.sortedTargets },
             files: files,
             filePathResolver: filePathResolver,
+            resolvedExternalRepositories: resolvedExternalRepositories,
             xcodeprojBazelLabel: xcodeprojBazelLabel,
             xcodeprojConfiguration: xcodeprojConfiguration
         )
@@ -119,6 +121,7 @@ env -i \
         targets: [Target],
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
+        resolvedExternalRepositories: [(String, Path)],
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String
     ) throws -> PBXShellScriptBuildPhase {
@@ -158,7 +161,8 @@ env -i \
             try bazelSetupCommand(
                 buildMode: buildMode,
                 targets: targets,
-                filePathResolver: filePathResolver
+                filePathResolver: filePathResolver,
+                resolvedExternalRepositories: resolvedExternalRepositories
             ),
             bazelBuildCommand(
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
@@ -207,7 +211,8 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
     private static func bazelSetupCommand(
         buildMode: BuildMode,
         targets: [Target],
-        filePathResolver: FilePathResolver
+        filePathResolver: FilePathResolver,
+        resolvedExternalRepositories: [(String, Path)]
     ) throws -> String {
         var overlays: [String] = [#"""
 
@@ -266,6 +271,10 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&
     exit 1
 """#
         }
+
+        let resolvedExternalRepositoriesArguments = resolvedExternalRepositories
+            .map { #""\#($0)" "\#($1)""# }
+            .joined(separator: " ")
 
         return #"""
 set -euo pipefail
@@ -339,7 +348,7 @@ output_path=$(\#(bazelExec) \
 exec_root="${output_path%/*}"
 
 if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
-  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" > "$BAZEL_LLDB_INIT"
+  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" \#(resolvedExternalRepositoriesArguments) > "$BAZEL_LLDB_INIT"
 fi
 \#(overlays.joined(separator: "\n"))\#
 

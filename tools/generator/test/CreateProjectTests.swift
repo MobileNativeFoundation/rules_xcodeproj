@@ -13,6 +13,7 @@ final class CreateProjectTests: XCTestCase {
         let projectRootDirectory: Path = "~/Developer/project"
 
         let filePathResolver = FilePathResolver(
+            workspaceDirectory: "/Users/TimApple/app",
             externalDirectory: "/some/bazel13/external",
             bazelOutDirectory: "/some/bazel13/bazel-out",
             internalDirectoryName: "r_xcp",
@@ -120,6 +121,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
         let projectRootDirectory: Path = "~/Developer/project"
 
         let filePathResolver = FilePathResolver(
+            workspaceDirectory: "/Users/TimApple/app",
             externalDirectory: "/some/bazel16/external",
             bazelOutDirectory: "/some/bazel16/bazel-out",
             internalDirectoryName: "r_xcp",

@@ -40,7 +40,8 @@ final class GeneratorTests: XCTestCase {
 
         let buildMode: BuildMode = .bazel
         let schemeAutogenerationMode: SchemeAutogenerationMode = .auto
-        let projectRootDirectory: Path = "~/project"
+        let workspaceDirectory: Path = "/Users/TimApple/project"
+        let projectRootDirectory: Path = "/Users/TimApple/project/subdir"
         let externalDirectory: Path = "/some/bazel/external"
         let bazelOutDirectory: Path = "/some/bazel/bazel-out"
         let internalDirectoryName = "rules_xcodeproj"
@@ -49,6 +50,7 @@ final class GeneratorTests: XCTestCase {
         let outputPath: Path = "P.xcodeproj"
 
         let filePathResolver = FilePathResolver(
+            workspaceDirectory: workspaceDirectory,
             externalDirectory: externalDirectory,
             bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
@@ -138,7 +140,12 @@ final class GeneratorTests: XCTestCase {
                 ),
             ]
         )
-        let (files, filesAndGroups, xcodeGeneratedFiles) = Fixtures.files(
+        let (
+            files,
+            filesAndGroups,
+            xcodeGeneratedFiles,
+            resolvedExternalRepositories
+        ) = Fixtures.files(
             in: pbxProj,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
@@ -282,7 +289,8 @@ final class GeneratorTests: XCTestCase {
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement],
-            xcodeGeneratedFiles: Set<FilePath>
+            xcodeGeneratedFiles: Set<FilePath>,
+            resolvedExternalRepositories: [(String, Path)]
         ) {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
@@ -293,7 +301,12 @@ final class GeneratorTests: XCTestCase {
                 xccurrentversions: xccurrentversions,
                 filePathResolver: filePathResolver
             ))
-            return (files, rootElements, xcodeGeneratedFiles)
+            return (
+                files,
+                rootElements,
+                xcodeGeneratedFiles,
+                resolvedExternalRepositories
+            )
         }
 
         let expectedCreateFilesAndGroupsCalled = [CreateFilesAndGroupsCalled(
@@ -402,6 +415,7 @@ final class GeneratorTests: XCTestCase {
             forceBazelDependencies: Bool,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
+            resolvedExternalRepositories: [(String, Path)],
             xcodeprojBazelLabel: BazelLabel,
             xcodeprojConfiguration: String,
             consolidatedTargets: ConsolidatedTargets
@@ -720,6 +734,7 @@ final class GeneratorTests: XCTestCase {
             project: project,
             xccurrentversions: xccurrentversions,
             extensionPointIdentifiers: extensionPointIdentifiers,
+            workspaceDirectory: workspaceDirectory,
             projectRootDirectory: projectRootDirectory,
             externalDirectory: externalDirectory,
             bazelOutDirectory: bazelOutDirectory,

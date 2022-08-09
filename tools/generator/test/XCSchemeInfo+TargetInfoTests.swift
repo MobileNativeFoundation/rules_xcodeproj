@@ -211,6 +211,7 @@ extension XCSchemeInfoTargetInfoTests {
 
 class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var filePathResolver = FilePathResolver(
+        workspaceDirectory: "/Users/TimApple/app",
         externalDirectory: "/some/bazel7/external",
         bazelOutDirectory: "/some/bazel7/bazel-out",
         internalDirectoryName: "rules_xcodeproj",

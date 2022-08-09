@@ -24,6 +24,7 @@ extension Generator {
                 project: project,
                 xccurrentversions: xccurrentversions,
                 extensionPointIdentifiers: extensionPointIdentifiers,
+                workspaceDirectory: rootDirs.workspaceDirectory,
                 projectRootDirectory: arguments.projectRootDirectory,
                 externalDirectory: rootDirs.externalDirectory,
                 bazelOutDirectory: rootDirs.bazelOutDirectory,
@@ -104,6 +105,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
     }
 
     struct RootDirectories {
+        let workspaceDirectory: Path
         let externalDirectory: Path
         let bazelOutDirectory: Path
     }
@@ -113,16 +115,18 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             .split(separator: "\n")
             .map(String.init)
 
-        guard rootDirs.count == 2 else {
+        guard rootDirs.count == 3 else {
             throw UsageError(message: """
-The root_dirs_file must contain two lines: one for the external repositories \
-directory, and one for the bazel-out directory.
+The root_dirs_file must contain three lines: one for the workspace directory, \
+one for the external repositories directory, and one for the bazel-out \
+directory.
 """)
         }
 
         return RootDirectories(
-            externalDirectory: Path(rootDirs[0]),
-            bazelOutDirectory: Path(rootDirs[1])
+            workspaceDirectory: Path(rootDirs[0]),
+            externalDirectory: Path(rootDirs[1]),
+            bazelOutDirectory: Path(rootDirs[2])
         )
     }
 
