@@ -43,9 +43,9 @@ extension XcodeScheme {
                         .buildFor[keyPath: keyPath]
                         .merge(with: .enabled)
                 } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
-                    throw PreconditionError(message: """
-Failed to merge `\(keyPath.stringValue)` value for "\(label)" with `.enabled`. Hint: This usually \
-means the other value is `.disabled`.
+                    throw UsageError(message: """
+The buildFor value, "\(keyPath.stringValue)", for "\(label)" in the "\(name)" Xcode scheme was \
+disabled, but the target is referenced in the scheme's \(keyPath.actionType) action.
 """)
                 }
             }

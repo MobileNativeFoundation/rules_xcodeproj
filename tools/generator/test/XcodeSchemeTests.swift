@@ -188,6 +188,27 @@ extension XcodeSchemeTests {
         XCTAssertEqual(actual, expected)
     }
 
+    func assertUsageError<T>(
+        _ closure: @autoclosure () throws -> T,
+        expectedMessage: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        var thrown: Error?
+        XCTAssertThrowsError(try closure(), file: file, line: line) {
+            thrown = $0
+        }
+        guard let usageError = thrown as? UsageError else {
+            XCTFail(
+                "Expected `UsageError`, but was \(String(describing: thrown)).",
+                file: file,
+                line: line
+            )
+            return
+        }
+        XCTAssertEqual(usageError.message, expectedMessage, file: file, line: line)
+    }
+
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_runningDisabled() throws {
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
@@ -196,17 +217,9 @@ extension XcodeSchemeTests {
             ]),
             launchAction: .init(target: macOSAppLabel)
         )
-        var thrown: Error?
-        XCTAssertThrowsError(try xcodeScheme.withDefaults) {
-            thrown = $0
-        }
-        guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
-            return
-        }
-        XCTAssertEqual(preconditionError.message, """
-Failed to merge `running` value for "\(macOSAppLabel)" with `.enabled`. Hint: This usually means \
-the other value is `.disabled`.
+        assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
+The buildFor value, "running", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
+disabled, but the target is referenced in the scheme's launch action.
 """)
     }
 
@@ -218,18 +231,22 @@ the other value is `.disabled`.
             ]),
             profileAction: .init(target: macOSAppLabel)
         )
-        var thrown: Error?
-        XCTAssertThrowsError(try xcodeScheme.withDefaults) {
-            thrown = $0
-        }
-        guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
-            return
-        }
-        XCTAssertEqual(preconditionError.message, """
-Failed to merge `profiling` value for "\(macOSAppLabel)" with `.enabled`. Hint: This usually means \
-the other value is `.disabled`.
+        assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
+The buildFor value, "profiling", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
+disabled, but the target is referenced in the scheme's profile action.
 """)
+        // var thrown: Error?
+        // XCTAssertThrowsError(try xcodeScheme.withDefaults) {
+        //     thrown = $0
+        // }
+        // guard let preconditionError = thrown as? PreconditionError else {
+        //     XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
+        //     return
+        // }
+        // XCTAssertEqual(preconditionError.message, """
+// Failed to merge `profiling` value for "\(macOSAppLabel)" with `.enabled`. Hint: This usually means \
+// the other value is `.disabled`.
+// """)
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withTest_testingDisabled() throws {
@@ -240,18 +257,22 @@ the other value is `.disabled`.
             ]),
             testAction: .init(targets: [unitTestLabel])
         )
-        var thrown: Error?
-        XCTAssertThrowsError(try xcodeScheme.withDefaults) {
-            thrown = $0
-        }
-        guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
-            return
-        }
-        XCTAssertEqual(preconditionError.message, """
-Failed to merge `testing` value for "\(unitTestLabel)" with `.enabled`. Hint: This usually means \
-the other value is `.disabled`.
+        assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
+The buildFor value, "testing", for "\(unitTestLabel)" in the "\(schemeName)" Xcode scheme was \
+disabled, but the target is referenced in the scheme's test action.
 """)
+        // var thrown: Error?
+        // XCTAssertThrowsError(try xcodeScheme.withDefaults) {
+        //     thrown = $0
+        // }
+        // guard let preconditionError = thrown as? PreconditionError else {
+        //     XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
+        //     return
+        // }
+        // XCTAssertEqual(preconditionError.message, """
+// Failed to merge `testing` value for "\(unitTestLabel)" with `.enabled`. Hint: This usually means \
+// the other value is `.disabled`.
+// """)
     }
 
     func test_XcodeScheme_withDefaults_noTargetsWithRunningEnabled() throws {

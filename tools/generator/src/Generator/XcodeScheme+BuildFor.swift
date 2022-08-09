@@ -118,6 +118,19 @@ extension PartialKeyPath where Root == XcodeScheme.BuildFor {
     }
 }
 
+extension PartialKeyPath where Root == XcodeScheme.BuildFor {
+    var actionType: String {
+        switch self {
+        case \XcodeScheme.BuildFor.running: return "launch"
+        case \XcodeScheme.BuildFor.testing: return "test"
+        case \XcodeScheme.BuildFor.profiling: return "profile"
+        case \XcodeScheme.BuildFor.archiving: return "archive"
+        case \XcodeScheme.BuildFor.analyzing: return "analyze"
+        default: return "<unknown>"
+        }
+    }
+}
+
 extension Sequence where Element == XcodeScheme.BuildFor {
     func merged() throws -> XcodeScheme.BuildFor {
         var result = XcodeScheme.BuildFor()
