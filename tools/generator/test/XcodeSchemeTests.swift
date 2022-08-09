@@ -143,7 +143,7 @@ extension XcodeSchemeTests {
             name: schemeName,
             buildAction: try .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(
-                    running: .enabled, profiling: .disabled, archiving: .enabled
+                    running: .enabled, profiling: .disabled
                 )),
             ]),
             launchAction: .init(target: macOSAppLabel)
@@ -153,7 +153,7 @@ extension XcodeSchemeTests {
             name: schemeName,
             buildAction: try .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(
-                    running: .enabled, profiling: .disabled, archiving: .enabled
+                    running: .enabled, profiling: .disabled
                 )),
             ]),
             launchAction: .init(target: macOSAppLabel)
@@ -162,6 +162,26 @@ extension XcodeSchemeTests {
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_runningDisabled() throws {
+        // // Ensure that we respect manually specified profiling setting
+        // let xcodeScheme = try XcodeScheme(
+        //     name: schemeName,
+        //     buildAction: try .init(targets: [
+        //         .init(label: macOSAppLabel, buildFor: .init(
+        //             running: .enabled, profiling: .disabled, archiving: .enabled
+        //         )),
+        //     ]),
+        //     launchAction: .init(target: macOSAppLabel)
+        // )
+        // var thrown: Error?
+        // XCTAssertThrowsError(try xcodeScheme.withDefaults) {
+        //     thrown = $0
+        // }
+        // guard let preconditionError = thrown as? PreconditionError else {
+        //     XCTFail("Expected `PreconditionError`")
+        //     return
+        // }
+        // XCTAssertEqual(preconditionError.message, """
+// """)
         XCTFail("IMPLEMENT ME!")
     }
 
