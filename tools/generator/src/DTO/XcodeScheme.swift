@@ -44,8 +44,8 @@ extension XcodeScheme {
                         .merge(with: .enabled)
                 } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
                     throw PreconditionError(message: """
-Failed to merge `\(keyPath.stringValue)` value with `.enabled`. Hint: This usually means the other \
-value is `.disabled`.
+Failed to merge `\(keyPath.stringValue)` value for "\(label)" with `.enabled`. Hint: This usually \
+means the other value is `.disabled`.
 """)
                 }
             }

@@ -178,17 +178,53 @@ extension XcodeSchemeTests {
             return
         }
         XCTAssertEqual(preconditionError.message, """
-Failed to merge `running` value with `.enabled`. Hint: This usually means the other value is \
-`.disabled`.
+Failed to merge `running` value for "\(macOSAppLabel)" with `.enabled`. Hint: This usually means \
+the other value is `.disabled`.
 """)
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withProifle_profilingDisabled() throws {
-        XCTFail("IMPLEMENT ME!")
+        let xcodeScheme = try XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(targets: [
+                .init(label: macOSAppLabel, buildFor: .init(profiling: .disabled)),
+            ]),
+            profileAction: .init(target: macOSAppLabel)
+        )
+        var thrown: Error?
+        XCTAssertThrowsError(try xcodeScheme.withDefaults) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+Failed to merge `profiling` value for "\(macOSAppLabel)" with `.enabled`. Hint: This usually means \
+the other value is `.disabled`.
+""")
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withTest_testingDisabled() throws {
-        XCTFail("IMPLEMENT ME!")
+        let xcodeScheme = try XcodeScheme(
+            name: schemeName,
+            buildAction: try .init(targets: [
+                .init(label: unitTestLabel, buildFor: .init(testing: .disabled)),
+            ]),
+            testAction: .init(targets: [unitTestLabel])
+        )
+        var thrown: Error?
+        XCTAssertThrowsError(try xcodeScheme.withDefaults) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+Failed to merge `testing` value for "\(unitTestLabel)" with `.enabled`. Hint: This usually means \
+the other value is `.disabled`.
+""")
     }
 }
 
@@ -210,4 +246,5 @@ class XcodeSchemeTests: XCTestCase {
 
     lazy var macOSAppLabel = targetResolver.targets["A 2"]!.label
     lazy var iOSAppLabel = targetResolver.targets["AC"]!.label
+    lazy var unitTestLabel = targetResolver.targets["B 2"]!.label
 }
