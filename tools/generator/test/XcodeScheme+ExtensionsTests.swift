@@ -83,35 +83,6 @@ extension XcodeSchemeExtensionsTests {
     }
 }
 
-// // MARK: `buildActionWithAllTargets` Tests
-
-// extension XcodeSchemeExtensionsTests {
-//     func test_buildActionWithAllTargets_noOriginal() throws {
-//         let scheme = XcodeScheme(
-//             name: "Foo",
-//             testAction: .init(targets: [libTestsLabel]),
-//             launchAction: .init(target: iOSAppLabel)
-//         )
-//         let expected = XcodeScheme.BuildAction(targets: [iOSAppLabel, libTestsLabel].map {
-//             XCSchemeInfo.BuildTarget(label: $0)
-//         })
-//         XCTAssertEqual(scheme.buildActionWithAllTargets, expected)
-//     }
-
-//     func test_buildActionWithAllTargets_withOriginal() throws {
-//         let scheme = XcodeScheme(
-//             name: "Foo",
-//             buildAction: .init(targets: [libLabel].map {
-//                 XCSchemeInfo.BuildTarget(label: $0)
-//             }),
-//             testAction: .init(targets: [libTestsLabel]),
-//             launchAction: .init(target: iOSAppLabel)
-//         )
-//         let expected = XcodeScheme.BuildAction(targets: [iOSAppLabel, libTestsLabel, libLabel])
-//         XCTAssertEqual(scheme.buildActionWithAllTargets, expected)
-//     }
-// }
-
 // MARK: `LabelTargetInfo` Tests
 
 extension XcodeSchemeExtensionsTests {

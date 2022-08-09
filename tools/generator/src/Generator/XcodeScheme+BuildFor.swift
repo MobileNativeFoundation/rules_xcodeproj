@@ -105,8 +105,6 @@ Unable to merge `BuildFor` values for \(keyPath). current: \(currentValue), othe
     }
 }
 
-// WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
-// extension WritableKeyPath where Root == XcodeScheme.BuildFor,
 extension PartialKeyPath where Root == XcodeScheme.BuildFor {
     var stringValue: String {
         switch self {
