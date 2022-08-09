@@ -43,6 +43,8 @@ extension XCSchemeInfoBuildActionInfoTests {
 
 extension XCSchemeInfoBuildActionInfoTests {
     func test_customSchemeInit_withBuildAction() throws {
+        // To keep this test simple, we are passing in the pre-defaults version of `BuildAction`.
+        // Hence, the "A 2" target from the scheme will not appear in the `BuildAction`.
         let actual = try XCSchemeInfo.BuildActionInfo(
             buildAction: xcodeScheme.buildAction,
             targetResolver: targetResolver,
@@ -56,10 +58,6 @@ extension XCSchemeInfoBuildActionInfoTests {
                 .init(
                     targetInfo: try targetResolver.targetInfo(targetID: "A 1"),
                     buildFor: .allEnabled
-                ),
-                .init(
-                    targetInfo: try targetResolver.targetInfo(targetID: "A 2"),
-                    buildFor: .init(running: .enabled)
                 ),
             ]
         )
