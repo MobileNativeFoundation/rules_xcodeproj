@@ -49,11 +49,22 @@ No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
 
 extension XcodeSchemeTests {
     func test_TestAction_init_noTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+        var thrown: Error?
+        XCTAssertThrowsError(try XcodeScheme.TestAction(targets: [])) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected , but was \(String(describing: thrown)).")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
+""")
     }
 
     func test_TestAction_init_withTargets() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actual = try XcodeScheme.TestAction(targets: [unitTestLabel, uiTestLabel])
+        XCTAssertEqual(actual.targets, [unitTestLabel, uiTestLabel])
     }
 }
 
@@ -61,11 +72,17 @@ extension XcodeSchemeTests {
 
 extension XcodeSchemeTests {
     func test_XcodeScheme_init_noActions() throws {
-        XCTFail("IMPLEMENT ME!")
-    }
-
-    func test_XcodeScheme_init_withActions() throws {
-        XCTFail("IMPLEMENT ME!")
+        var thrown: Error?
+        XCTAssertThrowsError(try XcodeScheme(name: "Foo")) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected , but was \(String(describing: thrown)).")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+No actions were provided for the scheme "Foo".
+""")
     }
 }
 

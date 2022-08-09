@@ -17,7 +17,7 @@ struct XcodeScheme: Equatable, Decodable {
             profileAction != nil
         else {
             throw PreconditionError(message: """
-No actions were provided for the scheme \(name).
+No actions were provided for the scheme "\(name)".
 """)
         }
         self.name = name
