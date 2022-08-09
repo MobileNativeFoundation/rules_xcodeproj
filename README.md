@@ -16,16 +16,23 @@ on it, or [file a new issue][file-an-issue]!
 
 ## Features
 
-- [x] Build Bazel targets with Xcode (_not_ Bazel), with full support for:
+- [x] Multiple ways of building your project with Xcode
+  - [x] Build your Bazel targets with Xcode, _not_ Bazel
+    (a.k.a. Build with Xcode or BwX mode)
+  - [x] Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
+- [x] Full support for Xcode features:
   - [x] Indexing (i.e. autocomplete, syntax highlighting, jump to
     definition)
   - [x] Debugging
   - [x] Inline warnings and errors
-  - [x] Fix-its
-  - [x] Tests (Unit and UI)
+  - [x] Fix-its (currently only BwX)
+  - [x] Test selection and running
   - [x] Embedded Targets (App Clips, App Extensions, and Watch Apps)
   - [x] SwiftUI Previews
-- [x] Build Bazel targets with Bazel, in Xcode
+- [x] Focused Projects
+  - [x] Include a subset of your targets in Xcode
+  - [x] Unfocused targets are built with Bazel
+  - [x] Works in BwX mode as well!
 
 **Note:** Not all rules are supported yet, and the rules that are supported
 don't have full support yet. See the
@@ -34,7 +41,6 @@ for details on progress towards the 1.0 release. Here are a few of the planned
 high level features:
 
 - [ ] [Supporting all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/4)
-- [ ] [Easier target discovery and focused projects](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/12)
 - [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/9)
 
 We've also documented the [high level design](/doc/design/high-level.md) of the
