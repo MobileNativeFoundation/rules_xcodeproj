@@ -278,6 +278,7 @@ class XcodeSchemeTests: XCTestCase {
     let schemeName = "Foo"
 
     lazy var filePathResolver = FilePathResolver(
+        workspaceDirectory: "/Users/TimApple/app",
         externalDirectory: "/some/bazel9/external",
         bazelOutDirectory: "/some/bazel9/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
