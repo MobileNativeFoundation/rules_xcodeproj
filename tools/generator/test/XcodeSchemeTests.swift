@@ -13,33 +13,18 @@ extension XcodeSchemeTests {
     }
 
     func test_BuildAction_init_withDuplicateLabels() throws {
-        var thrown: Error?
-        XCTAssertThrowsError(
+        assertPreconditionError(
             try XcodeScheme.BuildAction(
                 targets: [.init(label: "//foo"), .init(label: "//foo")]
-            )
-        ) {
-            thrown = $0
-        }
-        guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected `PreconditionError`.")
-            return
-        }
-        XCTAssertEqual(preconditionError.message, """
+            ),
+            expectedMessage: """
 Found a duplicate label //foo:foo in provided `XcodeScheme.BuildTarget` values.
-""")
+"""
+        )
     }
 
     func test_BuildAction_init_noTargets() throws {
-        var thrown: Error?
-        XCTAssertThrowsError(try XcodeScheme.BuildAction(targets: [])) {
-            thrown = $0
-        }
-        guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected , but was \(String(describing: thrown)).")
-            return
-        }
-        XCTAssertEqual(preconditionError.message, """
+        assertPreconditionError(try XcodeScheme.BuildAction(targets: []), expectedMessage: """
 No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
 """)
     }
@@ -49,15 +34,7 @@ No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
 
 extension XcodeSchemeTests {
     func test_TestAction_init_noTargets() throws {
-        var thrown: Error?
-        XCTAssertThrowsError(try XcodeScheme.TestAction(targets: [])) {
-            thrown = $0
-        }
-        guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected , but was \(String(describing: thrown)).")
-            return
-        }
-        XCTAssertEqual(preconditionError.message, """
+        assertPreconditionError(try XcodeScheme.TestAction(targets: []), expectedMessage: """
 No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 """)
     }
@@ -72,15 +49,7 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 
 extension XcodeSchemeTests {
     func test_XcodeScheme_init_noActions() throws {
-        var thrown: Error?
-        XCTAssertThrowsError(try XcodeScheme(name: "Foo")) {
-            thrown = $0
-        }
-        guard let preconditionError = thrown as? PreconditionError else {
-            XCTFail("Expected , but was \(String(describing: thrown)).")
-            return
-        }
-        XCTAssertEqual(preconditionError.message, """
+        assertPreconditionError(try XcodeScheme(name: "Foo"), expectedMessage: """
 No actions were provided for the scheme "Foo".
 """)
     }
@@ -188,27 +157,6 @@ extension XcodeSchemeTests {
         XCTAssertEqual(actual, expected)
     }
 
-    func assertUsageError<T>(
-        _ closure: @autoclosure () throws -> T,
-        expectedMessage: String,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        var thrown: Error?
-        XCTAssertThrowsError(try closure(), file: file, line: line) {
-            thrown = $0
-        }
-        guard let usageError = thrown as? UsageError else {
-            XCTFail(
-                "Expected `UsageError`, but was \(String(describing: thrown)).",
-                file: file,
-                line: line
-            )
-            return
-        }
-        XCTAssertEqual(usageError.message, expectedMessage, file: file, line: line)
-    }
-
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_runningDisabled() throws {
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
@@ -235,18 +183,6 @@ disabled, but the target is referenced in the scheme's launch action.
 The buildFor value, "profiling", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
 disabled, but the target is referenced in the scheme's profile action.
 """)
-        // var thrown: Error?
-        // XCTAssertThrowsError(try xcodeScheme.withDefaults) {
-        //     thrown = $0
-        // }
-        // guard let preconditionError = thrown as? PreconditionError else {
-        //     XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
-        //     return
-        // }
-        // XCTAssertEqual(preconditionError.message, """
-// Failed to merge `profiling` value for "\(macOSAppLabel)" with `.enabled`. Hint: This usually means \
-// the other value is `.disabled`.
-// """)
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withTest_testingDisabled() throws {
@@ -261,18 +197,6 @@ disabled, but the target is referenced in the scheme's profile action.
 The buildFor value, "testing", for "\(unitTestLabel)" in the "\(schemeName)" Xcode scheme was \
 disabled, but the target is referenced in the scheme's test action.
 """)
-        // var thrown: Error?
-        // XCTAssertThrowsError(try xcodeScheme.withDefaults) {
-        //     thrown = $0
-        // }
-        // guard let preconditionError = thrown as? PreconditionError else {
-        //     XCTFail("Expected `PreconditionError`, but was \(String(describing: thrown)).")
-        //     return
-        // }
-        // XCTAssertEqual(preconditionError.message, """
-// Failed to merge `testing` value for "\(unitTestLabel)" with `.enabled`. Hint: This usually means \
-// the other value is `.disabled`.
-// """)
     }
 
     func test_XcodeScheme_withDefaults_noTargetsWithRunningEnabled() throws {
@@ -290,6 +214,52 @@ disabled, but the target is referenced in the scheme's test action.
             testAction: .init(targets: [unitTestLabel, uiTestLabel])
         )
         XCTAssertEqual(actual, expected)
+    }
+}
+
+// MARK: Assertions
+
+extension XcodeSchemeTests {
+    func assertUsageError<T>(
+        _ closure: @autoclosure () throws -> T,
+        expectedMessage: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        var thrown: Error?
+        XCTAssertThrowsError(try closure(), file: file, line: line) {
+            thrown = $0
+        }
+        guard let usageError = thrown as? UsageError else {
+            XCTFail(
+                "Expected `UsageError`, but was \(String(describing: thrown)).",
+                file: file,
+                line: line
+            )
+            return
+        }
+        XCTAssertEqual(usageError.message, expectedMessage, file: file, line: line)
+    }
+
+    func assertPreconditionError<T>(
+        _ closure: @autoclosure () throws -> T,
+        expectedMessage: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        var thrown: Error?
+        XCTAssertThrowsError(try closure(), file: file, line: line) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail(
+                "Expected `PreconditionError`, but was \(String(describing: thrown)).",
+                file: file,
+                line: line
+            )
+            return
+        }
+        XCTAssertEqual(preconditionError.message, expectedMessage, file: file, line: line)
     }
 }
 
