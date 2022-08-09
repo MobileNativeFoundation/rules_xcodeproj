@@ -34,6 +34,21 @@ Found a duplicate label //foo:foo in provided `XcodeScheme.BuildTarget` values.
 // MARK: `XcodeScheme.withDefaults` Tests
 
 extension XcodeSchemeTests {
+    func test_XcodeScheme_withDefaults_noActions() throws {
+        let xcodeScheme = XcodeScheme(name: schemeName)
+        var thrown: Error?
+        XCTAssertThrowsError(try xcodeScheme.withDefaults) {
+            thrown = $0
+        }
+        guard let preconditionError = thrown as? PreconditionError else {
+            XCTFail("Expected `PreconditionError`.")
+            return
+        }
+        XCTAssertEqual(preconditionError.message, """
+No labels were specified in any of the scheme actions.
+""")
+    }
+
     func test_XcodeScheme_withDefaults_noBuild_withLaunch_noProfile() throws {
         let xcodeScheme = XcodeScheme(
             name: schemeName,

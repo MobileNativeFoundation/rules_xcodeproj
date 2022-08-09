@@ -1,3 +1,4 @@
+
 struct XcodeScheme: Equatable, Decodable {
     let name: String
     let buildAction: XcodeScheme.BuildAction?
@@ -59,6 +60,12 @@ extension XcodeScheme {
             try testAction?.targets.forEach { try enableBuildForValue($0, \.testing) }
             try launchAction.map { try enableBuildForValue($0.target, \.running) }
             try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
+
+            guard !buildTargets.isEmpty else {
+                throw PreconditionError(message: """
+No labels were specified in any of the scheme actions.
+""")
+            }
 
             // Create a new build action which includes all of the referenced labels as build targets
             // We must do this after processing all of the other actions.
