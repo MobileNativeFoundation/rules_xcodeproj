@@ -21,9 +21,70 @@ struct XcodeScheme: Equatable, Decodable {
 }
 
 extension XcodeScheme {
+    /// Create a new scheme applying any default actions based upon the current scheme.
+    var withDefaults: XcodeScheme {
+        get throws {
+            var buildTargets = [BazelLabel: XcodeScheme.BuildTarget]()
+
+            func enableBuildForValue(
+                _ label: BazelLabel,
+                _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
+            ) throws {
+                // var buildTarget = buildTargets[
+                //     label,
+                //     default: .init(label: label, buildFor: .init())
+                // ]
+                // try buildTarget.buildFor[keyPath: keyPath].merge(with: .enabled)
+                // buildTargets[label] = buildTargetInfo
+                try buildTargets[label, default: .init(label: label, buildFor: .init())]
+                    .buildFor[keyPath: keyPath]
+                    .merge(with: .enabled)
+            }
+
+            // Popuate the dictionary with any build targets that were explicitly specified.
+            // We are guaranteed not to have build targets with duplicate labels. So, we can just
+            // add these.
+            buildAction?.targets.forEach { buildTargets[$0.label] = $0 }
+
+            // Default ProfileAction
+            let newProfileAction: XcodeScheme.ProfileAction?
+            if let launchAction = launchAction,
+                profileAction == nil,
+                buildTargets[launchAction.target]?.buildFor.profiling != .disabled
+            {
+                newProfileAction = .init(
+                    target: launchAction.target,
+                    buildConfigurationName: launchAction.buildConfigurationName
+                )
+            } else {
+                newProfileAction = nil
+            }
+
+            // Update the buildFor for the build targets
+            try testAction?.targets.forEach { try enableBuildForValue($0, \.testing) }
+            try launchAction.map { try enableBuildForValue($0.target, \.running) }
+            try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
+
+            // Create a new build action which includes all of the referenced labels as build targets
+            let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values)
+
+            return .init(
+                name: name,
+                buildAction: newBuildAction,
+                testAction: testAction,
+                launchAction: launchAction,
+                profileAction: newProfileAction
+            )
+        }
+    }
+}
+
+// MARK: BuildAction
+
+extension XcodeScheme {
     struct BuildTarget: Equatable, Hashable, Decodable {
         let label: BazelLabel
-        let buildFor: XcodeScheme.BuildFor
+        var buildFor: XcodeScheme.BuildFor
 
         init(
             label: BazelLabel,

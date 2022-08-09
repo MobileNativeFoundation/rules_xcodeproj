@@ -44,7 +44,7 @@ extension XCSchemeInfoBuildActionInfoTests {
 extension XCSchemeInfoBuildActionInfoTests {
     func test_customSchemeInit_withBuildAction() throws {
         let actual = try XCSchemeInfo.BuildActionInfo(
-            scheme: xcodeScheme,
+            buildAction: xcodeScheme.buildAction,
             targetResolver: targetResolver,
             targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
