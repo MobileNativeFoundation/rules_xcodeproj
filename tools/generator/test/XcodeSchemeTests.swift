@@ -160,6 +160,18 @@ extension XcodeSchemeTests {
         )
         XCTAssertEqual(actual, expected)
     }
+
+    func test_XcodeScheme_withDefaults_withBuild_withLaunch_runningDisabled() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_XcodeScheme_withDefaults_withBuild_withProifle_profilingDisabled() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+
+    func test_XcodeScheme_withDefaults_withBuild_withTest_testingDisabled() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
 }
 
 // MARK: `BuildAction.init` Tests
