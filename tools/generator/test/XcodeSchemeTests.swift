@@ -166,7 +166,7 @@ extension XcodeSchemeTests {
             launchAction: .init(target: macOSAppLabel)
         )
         assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
-The buildFor value, "running", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
+The `build_for` value, "running", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
 disabled, but the target is referenced in the scheme's launch action.
 """)
     }
@@ -180,7 +180,7 @@ disabled, but the target is referenced in the scheme's launch action.
             profileAction: .init(target: macOSAppLabel)
         )
         assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
-The buildFor value, "profiling", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
+The `build_for` value, "profiling", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
 disabled, but the target is referenced in the scheme's profile action.
 """)
     }
@@ -194,7 +194,7 @@ disabled, but the target is referenced in the scheme's profile action.
             testAction: .init(targets: [unitTestLabel])
         )
         assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
-The buildFor value, "testing", for "\(unitTestLabel)" in the "\(schemeName)" Xcode scheme was \
+The `build_for` value, "testing", for "\(unitTestLabel)" in the "\(schemeName)" Xcode scheme was \
 disabled, but the target is referenced in the scheme's test action.
 """)
     }
