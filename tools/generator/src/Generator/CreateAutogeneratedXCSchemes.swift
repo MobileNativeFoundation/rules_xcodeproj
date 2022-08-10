@@ -36,7 +36,9 @@ extension Generator {
                 let shouldCreateTestAction = pbxTarget.isTestable
                 let shouldCreateLaunchAction = pbxTarget.isLaunchable
                 let schemeInfo = try XCSchemeInfo(
-                    buildActionInfo: .init(targets: [.init(targetInfo: targetInfo)]),
+                    buildActionInfo: .init(targets: [
+                        .init(targetInfo: targetInfo, buildFor: .allEnabled),
+                    ]),
                     testActionInfo: shouldCreateTestAction ?
                         .init(
                             buildConfigurationName: buildConfigurationName,

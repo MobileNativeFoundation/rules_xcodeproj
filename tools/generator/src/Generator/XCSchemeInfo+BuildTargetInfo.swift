@@ -3,11 +3,11 @@ import XcodeProj
 extension XCSchemeInfo {
     struct BuildTargetInfo: Equatable, Hashable {
         let targetInfo: XCSchemeInfo.TargetInfo
-        let buildFor: XcodeScheme.BuildFor
+        var buildFor: XcodeScheme.BuildFor
 
         init(
             targetInfo: XCSchemeInfo.TargetInfo,
-            buildFor: XcodeScheme.BuildFor = .init()
+            buildFor: XcodeScheme.BuildFor
         ) {
             self.targetInfo = targetInfo
             self.buildFor = buildFor

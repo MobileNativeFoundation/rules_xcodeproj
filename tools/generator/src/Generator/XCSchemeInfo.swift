@@ -125,25 +125,26 @@ extension XCSchemeInfo {
             targetResolver: targetResolver,
             xcodeprojBazelLabel: xcodeprojBazelLabel
         )
+        let schemeWithDefaults = try scheme.withDefaults
         try self.init(
-            name: scheme.name,
+            name: schemeWithDefaults.name,
             buildActionInfo: .init(
-                buildAction: scheme.buildActionWithAllTargets,
+                buildAction: schemeWithDefaults.buildAction,
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             ),
             testActionInfo: .init(
-                testAction: scheme.testAction,
+                testAction: schemeWithDefaults.testAction,
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             ),
             launchActionInfo: .init(
-                launchAction: scheme.launchAction,
+                launchAction: schemeWithDefaults.launchAction,
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             ),
             profileActionInfo: .init(
-                profileAction: scheme.profileAction,
+                profileAction: schemeWithDefaults.profileAction,
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             ),

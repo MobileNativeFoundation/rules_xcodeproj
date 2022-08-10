@@ -17,7 +17,9 @@ extension XCSchemeInfoBuildActionInfoTests {
     func test_hostResolution_withBuildActionInfo() throws {
         let actionInfo = try XCSchemeInfo.BuildActionInfo(
             resolveHostsFor: .init(
-                targets: [unresolvedLibraryTargetInfoWithHosts].map { .init(targetInfo: $0) }
+                targets: [unresolvedLibraryTargetInfoWithHosts].map {
+                    .init(targetInfo: $0, buildFor: .allEnabled)
+                }
             ),
             topLevelTargetInfos: topLevelTargetInfos
         )
@@ -40,16 +42,9 @@ extension XCSchemeInfoBuildActionInfoTests {
 // MARK: - Custom Scheme Initializer Tests
 
 extension XCSchemeInfoBuildActionInfoTests {
-    func test_customSchemeInit_noBuildAction() throws {
-        let actual = try XCSchemeInfo.BuildActionInfo(
-            buildAction: nil,
-            targetResolver: targetResolver,
-            targetIDsByLabel: [:]
-        )
-        XCTAssertNil(actual)
-    }
-
     func test_customSchemeInit_withBuildAction() throws {
+        // To keep this test simple, we are passing in the pre-defaults version of `BuildAction`.
+        // Hence, the "A 2" target from the scheme will not appear in the `BuildAction`.
         let actual = try XCSchemeInfo.BuildActionInfo(
             buildAction: xcodeScheme.buildAction,
             targetResolver: targetResolver,
@@ -59,7 +54,12 @@ extension XCSchemeInfoBuildActionInfoTests {
             )
         )
         let expected = try XCSchemeInfo.BuildActionInfo(
-            targets: [try targetResolver.targetInfo(targetID: "A 1")].map { .init(targetInfo: $0) }
+            targets: [
+                .init(
+                    targetInfo: try targetResolver.targetInfo(targetID: "A 1"),
+                    buildFor: .allEnabled
+                ),
+            ]
         )
         XCTAssertEqual(actual, expected)
     }
@@ -123,9 +123,10 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
         ),
     ]
 
-    lazy var xcodeScheme = XcodeScheme(
+    lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
-        buildAction: .init(targets: [targetResolver.targets["A 1"]!.label]),
+        // swiftlint:disable:next force_try
+        buildAction: try! .init(targets: [.init(label: targetResolver.targets["A 1"]!.label)]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
 }

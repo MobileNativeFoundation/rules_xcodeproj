@@ -1,3 +1,4 @@
+
 struct XcodeScheme: Equatable, Decodable {
     let name: String
     let buildAction: XcodeScheme.BuildAction?
@@ -11,7 +12,14 @@ struct XcodeScheme: Equatable, Decodable {
         testAction: XcodeScheme.TestAction? = nil,
         launchAction: XcodeScheme.LaunchAction? = nil,
         profileAction: XcodeScheme.ProfileAction? = nil
-    ) {
+    ) throws {
+        guard buildAction != nil || testAction != nil || launchAction != nil ||
+            profileAction != nil
+        else {
+            throw PreconditionError(message: """
+No actions were provided for the scheme "\(name)".
+""")
+        }
         self.name = name
         self.buildAction = buildAction
         self.testAction = testAction
@@ -20,11 +28,112 @@ struct XcodeScheme: Equatable, Decodable {
     }
 }
 
+extension XcodeScheme {
+    /// Create a new scheme applying any default actions based upon the current scheme.
+    var withDefaults: XcodeScheme {
+        get throws {
+            var buildTargets = [BazelLabel: XcodeScheme.BuildTarget]()
+
+            func enableBuildForValue(
+                _ label: BazelLabel,
+                _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
+            ) throws {
+                do {
+                    try buildTargets[label, default: .init(label: label, buildFor: .init())]
+                        .buildFor[keyPath: keyPath]
+                        .merge(with: .enabled)
+                } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
+                    throw UsageError(message: """
+The `build_for` value, "\(keyPath.stringValue)", for "\(label)" in the "\(name)" Xcode scheme was \
+disabled, but the target is referenced in the scheme's \(keyPath.actionType) action.
+""")
+                }
+            }
+
+            // Popuate the dictionary with any build targets that were explicitly specified.
+            // We are guaranteed not to have build targets with duplicate labels. So, we can just
+            // add these.
+            buildAction?.targets.forEach { buildTargets[$0.label] = $0 }
+
+            // Default ProfileAction
+            let newProfileAction: XcodeScheme.ProfileAction?
+            if let profileAction = profileAction {
+                newProfileAction = profileAction
+            } else if let launchAction = launchAction,
+                buildTargets[launchAction.target]?.buildFor.profiling != .disabled
+            {
+                newProfileAction = .init(
+                    target: launchAction.target,
+                    buildConfigurationName: launchAction.buildConfigurationName
+                )
+            } else {
+                newProfileAction = nil
+            }
+
+            // Update the buildFor for the build targets
+            try testAction?.targets.forEach { try enableBuildForValue($0, \.testing) }
+            try launchAction.map { try enableBuildForValue($0.target, \.running) }
+            try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
+
+            // If no build targets have running enabled, then enable it for all targets
+            if !buildTargets.values.contains(where: { $0.buildFor.running == .enabled }) {
+                try buildTargets.keys.forEach { try enableBuildForValue($0, \.running) }
+            }
+
+            // Create a new build action which includes all of the referenced labels as build targets
+            // We must do this after processing all of the other actions.
+            let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values)
+
+            return try .init(
+                name: name,
+                buildAction: newBuildAction,
+                testAction: testAction,
+                launchAction: launchAction,
+                profileAction: newProfileAction
+            )
+        }
+    }
+}
+
 // MARK: BuildAction
 
 extension XcodeScheme {
+    struct BuildTarget: Equatable, Hashable, Decodable {
+        let label: BazelLabel
+        var buildFor: XcodeScheme.BuildFor
+
+        init(
+            label: BazelLabel,
+            buildFor: XcodeScheme.BuildFor = .allEnabled
+        ) {
+            self.label = label
+            self.buildFor = buildFor
+        }
+    }
+}
+
+extension XcodeScheme {
     struct BuildAction: Equatable, Decodable {
-        let targets: Set<BazelLabel>
+        let targets: Set<XcodeScheme.BuildTarget>
+
+        init<BuildTargets: Sequence>(
+            targets: BuildTargets
+        ) throws where BuildTargets.Element == XcodeScheme.BuildTarget {
+            let targetsByLabel = Dictionary(grouping: targets, by: \.label)
+            guard !targetsByLabel.isEmpty else {
+                throw PreconditionError(message: """
+No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
+""")
+            }
+            for (label, targets) in targetsByLabel {
+                guard targets.count == 1 else {
+                    throw PreconditionError(message: """
+Found a duplicate label \(label) in provided `XcodeScheme.BuildTarget` values.
+""")
+                }
+            }
+            self.targets = Set(targets)
+        }
     }
 }
 
@@ -35,12 +144,18 @@ extension XcodeScheme {
         let buildConfigurationName: String
         let targets: Set<BazelLabel>
 
-        init(
-            targets: Set<BazelLabel>,
+        init<Targets: Sequence>(
+            targets: Targets,
             buildConfigurationName: String = .defaultBuildConfigurationName
-        ) {
-            self.targets = targets
+        ) throws where Targets.Element == BazelLabel {
+            self.targets = Set(targets)
             self.buildConfigurationName = buildConfigurationName
+
+            guard !self.targets.isEmpty else {
+                throw PreconditionError(message: """
+No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
+""")
+            }
         }
     }
 }

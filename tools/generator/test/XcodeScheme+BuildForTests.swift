@@ -7,7 +7,7 @@ import XCTest
 extension XcodeSchemeBuildForTests {
     func test_Value_xcSchemeValue() throws {
         XCTAssertNil(XcodeScheme.BuildFor.Value.disabled.xcSchemeValue(.running))
-        XCTAssertEqual(XcodeScheme.BuildFor.Value.unspecified.xcSchemeValue(.running), .running)
+        XCTAssertNil(XcodeScheme.BuildFor.Value.unspecified.xcSchemeValue(.running))
         XCTAssertEqual(XcodeScheme.BuildFor.Value.enabled.xcSchemeValue(.running), .running)
     }
 }
@@ -64,6 +64,12 @@ Expected `ValueError`. value: \(value), other: \(other), expected: \(expected)
                 )
             }
         }
+    }
+
+    func test_Value_merge_with() throws {
+        var value = XcodeScheme.BuildFor.Value.unspecified
+        try value.merge(with: .enabled)
+        XCTAssertEqual(value, .enabled)
     }
 }
 

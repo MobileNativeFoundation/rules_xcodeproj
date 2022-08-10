@@ -40,12 +40,12 @@ class CreateCustomXCSchemesTests: XCTestCase {
         referencedContainer: filePathResolver.containerReference
     )
 
-    lazy var schemeA = XcodeScheme(
+    lazy var schemeA = try! XcodeScheme(
         name: "Scheme A",
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
 
-    lazy var schemeB = XcodeScheme(
+    lazy var schemeB = try! XcodeScheme(
         name: "Scheme B",
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )

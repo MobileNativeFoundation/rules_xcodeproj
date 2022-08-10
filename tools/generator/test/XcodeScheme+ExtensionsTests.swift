@@ -9,9 +9,11 @@ extension XcodeSchemeExtensionsTests {
     func test_allBazelLabels_doNotOverwriteTopLevel() throws {
         // Ensure that toolLabel comes through as top-level even though it
         // is specified in build action as well.
-        let scheme = XcodeScheme(
+        let scheme = try XcodeScheme(
             name: "Foo",
-            buildAction: .init(targets: [libLabel, toolLabel]),
+            buildAction: try .init(targets: [libLabel, toolLabel].map {
+                XcodeScheme.BuildTarget(label: $0)
+            }),
             testAction: nil,
             launchAction: .init(
                 target: toolLabel,
@@ -78,31 +80,6 @@ extension XcodeSchemeExtensionsTests {
             tvOSAppLabel: tvOSApptvOSx8664TargetID,
         ]
         XCTAssertEqual(expected, actual)
-    }
-}
-
-// MARK: `buildActionWithAllTargets` Tests
-
-extension XcodeSchemeExtensionsTests {
-    func test_buildActionWithAllTargets_noOriginal() throws {
-        let scheme = XcodeScheme(
-            name: "Foo",
-            testAction: .init(targets: [libTestsLabel]),
-            launchAction: .init(target: iOSAppLabel)
-        )
-        let expected = XcodeScheme.BuildAction(targets: [iOSAppLabel, libTestsLabel])
-        XCTAssertEqual(scheme.buildActionWithAllTargets, expected)
-    }
-
-    func test_buildActionWithAllTargets_withOriginal() throws {
-        let scheme = XcodeScheme(
-            name: "Foo",
-            buildAction: .init(targets: [libLabel]),
-            testAction: .init(targets: [libTestsLabel]),
-            launchAction: .init(target: iOSAppLabel)
-        )
-        let expected = XcodeScheme.BuildAction(targets: [iOSAppLabel, libTestsLabel, libLabel])
-        XCTAssertEqual(scheme.buildActionWithAllTargets, expected)
     }
 }
 
@@ -513,9 +490,9 @@ class XcodeSchemeExtensionsTests: XCTestCase {
 
     let buildConfigurationName = "Chicken"
 
-    lazy var toolScheme = XcodeScheme(
+    lazy var toolScheme = try! XcodeScheme(
         name: "Tool",
-        buildAction: .init(targets: [libLabel]),
+        buildAction: try! .init(targets: [.init(label: libLabel)]),
         testAction: nil,
         launchAction: .init(
             target: toolLabel,
@@ -526,10 +503,10 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var iOSAppScheme = XcodeScheme(
+    lazy var iOSAppScheme = try! XcodeScheme(
         name: "iOSApp",
-        buildAction: .init(targets: [libLabel]),
-        testAction: .init(targets: [libTestsLabel], buildConfigurationName: buildConfigurationName),
+        buildAction: try! .init(targets: [.init(label: libLabel)]),
+        testAction: try! .init(targets: [libTestsLabel], buildConfigurationName: buildConfigurationName),
         launchAction: .init(
             target: iOSAppLabel,
             buildConfigurationName: buildConfigurationName,
@@ -539,9 +516,9 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var tvOSAppScheme = XcodeScheme(
+    lazy var tvOSAppScheme = try! XcodeScheme(
         name: "tvOSApp",
-        buildAction: .init(targets: [libLabel]),
+        buildAction: try! .init(targets: [.init(label: libLabel)]),
         testAction: nil,
         launchAction: .init(
             target: tvOSAppLabel,

@@ -168,7 +168,7 @@ extension XcodeScheme {
     var allBazelLabels: Set<BazelLabel> {
         var labels = Set<BazelLabel>()
         if let buildAction = buildAction {
-            labels.formUnion(buildAction.targets)
+            labels.formUnion(buildAction.targets.map(\.label))
         }
         if let testAction = testAction {
             labels.formUnion(testAction.targets)
@@ -177,31 +177,5 @@ extension XcodeScheme {
             labels.update(with: launchAction.target)
         }
         return labels
-    }
-}
-
-// MARK: Create a BuildAction with All Targets
-
-extension XcodeScheme.BuildAction {
-    init<Targets: Sequence>(
-        original: XcodeScheme.BuildAction?,
-        otherTargets: Targets
-    ) where Targets.Element == BazelLabel {
-        var allTargets = Set<BazelLabel>()
-        allTargets.formUnion(otherTargets)
-        if let original = original {
-            // Once we add other attributes to BuildAction, these should be copied to the new
-            // instance.
-
-            // Gather any targets from the client's description.
-            allTargets.formUnion(original.targets)
-        }
-        self.init(targets: allTargets)
-    }
-}
-
-extension XcodeScheme {
-    var buildActionWithAllTargets: XcodeScheme.BuildAction {
-        return .init(original: buildAction, otherTargets: allBazelLabels)
     }
 }

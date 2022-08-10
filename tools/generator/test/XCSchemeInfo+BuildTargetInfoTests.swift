@@ -8,7 +8,7 @@ import XCTest
 extension XCSchemeInfoBuildTargetInfoTests {
     func test_Sequence_buildActionEntries() throws {
         let buildTargetInfos = [libraryTargetInfo, appTargetInfo]
-            .map { XCSchemeInfo.BuildTargetInfo(targetInfo: $0) }
+            .map { XCSchemeInfo.BuildTargetInfo(targetInfo: $0, buildFor: .allEnabled) }
         let expected: [XCScheme.BuildAction.Entry] = [
             libraryTargetInfo.buildableReference,
             appTargetInfo.buildableReference,

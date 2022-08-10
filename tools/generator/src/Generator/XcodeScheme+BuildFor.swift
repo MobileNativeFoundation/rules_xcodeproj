@@ -1,7 +1,7 @@
 import XcodeProj
 
 extension XcodeScheme {
-    struct BuildFor: Equatable, Hashable {
+    struct BuildFor: Equatable, Hashable, Decodable {
         var running: Value
         var testing: Value
         var profiling: Value
@@ -25,7 +25,7 @@ extension XcodeScheme {
 }
 
 extension XcodeScheme.BuildFor {
-    enum Value: Equatable {
+    enum Value: Equatable, Hashable, Decodable {
         case unspecified
         case enabled
         case disabled
@@ -37,10 +37,10 @@ extension XcodeScheme.BuildFor.Value {
         _ value: XCScheme.BuildAction.Entry.BuildFor
     ) -> XCScheme.BuildAction.Entry.BuildFor? {
         switch self {
-        case .disabled:
-            return nil
-        default:
+        case .enabled:
             return value
+        default:
+            return nil
         }
     }
 }
@@ -61,6 +61,10 @@ extension XcodeScheme.BuildFor.Value {
         case (.unspecified, .unspecified):
             return .unspecified
         }
+    }
+
+    mutating func merge(with other: XcodeScheme.BuildFor.Value) throws {
+        self = try merged(with: other)
     }
 }
 
@@ -101,6 +105,32 @@ Unable to merge `BuildFor` values for \(keyPath). current: \(currentValue), othe
     }
 }
 
+extension PartialKeyPath where Root == XcodeScheme.BuildFor {
+    var stringValue: String {
+        switch self {
+        case \XcodeScheme.BuildFor.running: return "running"
+        case \XcodeScheme.BuildFor.testing: return "testing"
+        case \XcodeScheme.BuildFor.profiling: return "profiling"
+        case \XcodeScheme.BuildFor.archiving: return "archiving"
+        case \XcodeScheme.BuildFor.analyzing: return "analyzing"
+        default: return "<unknown>"
+        }
+    }
+}
+
+extension PartialKeyPath where Root == XcodeScheme.BuildFor {
+    var actionType: String {
+        switch self {
+        case \XcodeScheme.BuildFor.running: return "launch"
+        case \XcodeScheme.BuildFor.testing: return "test"
+        case \XcodeScheme.BuildFor.profiling: return "profile"
+        case \XcodeScheme.BuildFor.archiving: return "archive"
+        case \XcodeScheme.BuildFor.analyzing: return "analyze"
+        default: return "<unknown>"
+        }
+    }
+}
+
 extension Sequence where Element == XcodeScheme.BuildFor {
     func merged() throws -> XcodeScheme.BuildFor {
         var result = XcodeScheme.BuildFor()
@@ -109,4 +139,14 @@ extension Sequence where Element == XcodeScheme.BuildFor {
         }
         return result
     }
+}
+
+extension XcodeScheme.BuildFor {
+    static let allEnabled = XcodeScheme.BuildFor(
+        running: .enabled,
+        testing: .enabled,
+        profiling: .enabled,
+        archiving: .enabled,
+        analyzing: .enabled
+    )
 }
