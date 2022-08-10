@@ -16,7 +16,7 @@ on it, or [file a new issue][file-an-issue]!
 
 ## Features
 
-- [x] Multiple ways of building your project with Xcode
+- [x] Multiple ways of building your project in Xcode
   - [x] Build your Bazel targets with Xcode, _not_ Bazel
     (a.k.a. Build with Xcode or BwX mode)
   - [x] Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
@@ -37,11 +37,12 @@ on it, or [file a new issue][file-an-issue]!
 **Note:** Not all rules are supported yet, and the rules that are supported
 don't have full support yet. See the
 [1.0 Project](https://github.com/orgs/buildbuddy-io/projects/2/views/3)
-for details on progress towards the 1.0 release. Here are a few of the planned
-high level features:
+for details on progress towards the 1.0 release. Here are a few of the remaining
+planned high level features:
 
 - [ ] [Supporting all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/4)
 - [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/9)
+- [ ] [Frameworks](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/14)
 
 We've also documented the [high level design](/doc/design/high-level.md) of the
 rules.
