@@ -155,20 +155,21 @@ def make_xcode_schemes(bazel_labels):
         A `struct` that can be used as a `bazel_labels` module.
     """
 
-    def _build_action(targets):
-        """Constructs a build action for an Xcode scheme.
+    def _build_target(label, build_for = None):
+        """Constructs a build target for an Xcode scheme's build action.
 
         Args:
-            targets: A `sequence` of target labels as `string` values.
+            label: A target label as a `string` value.
+            build_for: Optional. The settings that dictate when Xcode will build
+                the target. It is a `struct` as returned by
+                `xcode_schemes.build_for`.
 
-        Return:
-            A `struct` representing a build action.
+        Returns:
+            A `struct` representing a build target.
         """
-        return xcode_schemes_internal.build_action(
-            targets = [
-                bazel_labels.normalize(t)
-                for t in targets
-            ],
+        return xcode_schemes_internal.build_target(
+            label = bazel_labels.normalize(label),
+            build_for = build_for,
         )
 
     def _test_action(targets):
@@ -217,7 +218,9 @@ def make_xcode_schemes(bazel_labels):
 
     return struct(
         scheme = xcode_schemes_internal.scheme,
-        build_action = _build_action,
+        build_action = xcode_schemes_internal.build_action,
+        build_target = _build_target,
+        build_for = xcode_schemes_internal.build_for,
         test_action = _test_action,
         launch_action = _launch_action,
         focus_schemes = _focus_schemes,

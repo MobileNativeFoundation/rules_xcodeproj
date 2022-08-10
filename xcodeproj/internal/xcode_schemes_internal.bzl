@@ -30,13 +30,63 @@ def _build_action(targets):
     """Constructs a build action for an Xcode scheme.
 
     Args:
-        targets: A `sequence` of target labels as `string` values.
+        targets: A `sequence` of `struct` values as created by
+            `xcode_schemes.build_target`.
 
     Return:
         A `struct` representing a build action.
     """
     return struct(
         targets = targets,
+    )
+
+def _build_target(label, build_for = None):
+    """Constructs a build target for an Xcode scheme's build action.
+
+    Args:
+        label: A target label as a `string` value.
+        build_for: Optional. The settings that dictate when Xcode will build
+            the target. It is a `struct` as returned by
+            `xcode_schemes.build_for`.
+
+    Returns:
+        A `struct` representing a build target.
+    """
+    return struct(
+        label = label,
+        build_for = build_for,
+    )
+
+def _build_for(
+        running = None,
+        testing = None,
+        profiling = None,
+        archiving = None,
+        analyzing = None):
+    """Construct a `struct` representing the settings that dictate when Xcode \
+    will build a target.
+
+    Args:
+        running: Optional. A `bool` specifying whether to build for the running
+            phase.
+        testing: Optional. A `bool` specifying whether to build for the testing
+            phase.
+        profiling: Optional. A `bool` specifying whether to build for the
+            profiling phase.
+        archiving: Optional. A `bool` specifying whether to build for the
+            archiving phase.
+        analyzing: Optional. A `bool` specifying whether to build for the
+            analyzing phase.
+
+    Returns:
+        A `struct`.
+    """
+    return struct(
+        running = running,
+        testing = testing,
+        profiling = profiling,
+        archiving = archiving,
+        analyzing = analyzing,
     )
 
 def _test_action(targets, build_configuration_name):
@@ -88,6 +138,8 @@ def _launch_action(
 xcode_schemes_internal = struct(
     scheme = _scheme,
     build_action = _build_action,
+    build_target = _build_target,
+    build_for = _build_for,
     test_action = _test_action,
     launch_action = _launch_action,
 )
