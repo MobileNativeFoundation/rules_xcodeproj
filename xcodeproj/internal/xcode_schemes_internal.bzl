@@ -57,6 +57,25 @@ def _build_target(label, build_for = None):
         build_for = build_for,
     )
 
+def _build_for_value(bool_value):
+    """Converts an optional `bool` value to an appropriate `build_for` setting.
+
+    Args:
+        bool_value: Optional. A `bool` value.
+
+    Returns:
+        A `string` value representing the `build_for` value to use.
+    """
+    if bool_value == None:
+        return build_for_values.UNSPECIFIED
+    elif bool_value == True:
+        return build_for_values.ENABLED
+    elif bool_value == False:
+        return build_for_values.DISABLED
+    fail("Unrecognized build_for value: {bool_value}".format(
+        bool_value = bool_value,
+    ))
+
 def _build_for(
         running = None,
         testing = None,
@@ -82,11 +101,11 @@ def _build_for(
         A `struct`.
     """
     return struct(
-        running = running,
-        testing = testing,
-        profiling = profiling,
-        archiving = archiving,
-        analyzing = analyzing,
+        running = _build_for_value(running),
+        testing = _build_for_value(testing),
+        profiling = _build_for_value(profiling),
+        archiving = _build_for_value(archiving),
+        analyzing = _build_for_value(analyzing),
     )
 
 def _test_action(targets, build_configuration_name):
@@ -135,11 +154,18 @@ def _launch_action(
         working_directory = working_directory,
     )
 
+build_for_values = struct(
+    UNSPECIFIED = "unspecified",
+    ENABLED = "enabled",
+    DISABLED = "disabled",
+)
+
 xcode_schemes_internal = struct(
     scheme = _scheme,
     build_action = _build_action,
     build_target = _build_target,
     build_for = _build_for,
+    build_for_values = build_for_values,
     test_action = _test_action,
     launch_action = _launch_action,
 )

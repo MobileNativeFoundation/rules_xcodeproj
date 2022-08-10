@@ -82,11 +82,11 @@ def _build_for_test(ctx):
 
     actual = xcode_schemes.build_for()
     expected = struct(
-        running = None,
-        testing = None,
-        profiling = None,
-        archiving = None,
-        analyzing = None,
+        running = xcode_schemes.build_for_values.UNSPECIFIED,
+        testing = xcode_schemes.build_for_values.UNSPECIFIED,
+        profiling = xcode_schemes.build_for_values.UNSPECIFIED,
+        archiving = xcode_schemes.build_for_values.UNSPECIFIED,
+        analyzing = xcode_schemes.build_for_values.UNSPECIFIED,
     )
     asserts.equals(env, expected, actual, "default")
 
@@ -98,11 +98,11 @@ def _build_for_test(ctx):
         analyzing = True,
     )
     expected = struct(
-        running = True,
-        testing = True,
-        profiling = True,
-        archiving = True,
-        analyzing = True,
+        running = xcode_schemes.build_for_values.ENABLED,
+        testing = xcode_schemes.build_for_values.ENABLED,
+        profiling = xcode_schemes.build_for_values.ENABLED,
+        archiving = xcode_schemes.build_for_values.ENABLED,
+        analyzing = xcode_schemes.build_for_values.ENABLED,
     )
     asserts.equals(env, expected, actual, "all true")
 
@@ -114,11 +114,11 @@ def _build_for_test(ctx):
         analyzing = False,
     )
     expected = struct(
-        running = False,
-        testing = True,
-        profiling = False,
-        archiving = True,
-        analyzing = False,
+        running = xcode_schemes.build_for_values.DISABLED,
+        testing = xcode_schemes.build_for_values.ENABLED,
+        profiling = xcode_schemes.build_for_values.DISABLED,
+        archiving = xcode_schemes.build_for_values.ENABLED,
+        analyzing = xcode_schemes.build_for_values.DISABLED,
     )
     asserts.equals(env, expected, actual, "mix it up")
 
