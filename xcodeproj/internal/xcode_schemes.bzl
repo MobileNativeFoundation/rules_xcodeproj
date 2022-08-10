@@ -28,9 +28,9 @@ def _focus_schemes(schemes, focused_targets):
         build_action = scheme.build_action
         if build_action:
             build_targets = [
-                label
-                for label in build_action.targets
-                if sets.contains(focused_targets, label)
+                build_target.label
+                for build_target in build_action.targets
+                if sets.contains(focused_targets, build_target.label)
             ]
             if build_targets:
                 build_action = xcode_schemes_internal.build_action(
@@ -98,9 +98,9 @@ def _unfocus_schemes(schemes, unfocused_targets):
         build_action = scheme.build_action
         if build_action:
             build_targets = [
-                label
-                for label in build_action.targets
-                if not sets.contains(unfocused_targets, label)
+                build_target.label
+                for build_target in build_action.targets
+                if not sets.contains(unfocused_targets, build_target.label)
             ]
             if build_targets:
                 build_action = xcode_schemes_internal.build_action(
