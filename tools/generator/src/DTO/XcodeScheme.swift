@@ -103,7 +103,7 @@ extension XcodeScheme {
             try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
 
             // If no build targets have running enabled, then enable it for all targets
-            if !buildTargets.values.contains(where: { $0.buildFor.running == .enabled }) {
+            if !buildTargets.values.contains(where: \.buildFor.running.isEnabled) {
                 try buildTargets.keys.forEach { try enableBuildForValue($0, \.running) }
             }
 
