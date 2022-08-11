@@ -30,13 +30,82 @@ def _build_action(targets):
     """Constructs a build action for an Xcode scheme.
 
     Args:
-        targets: A `sequence` of target labels as `string` values.
+        targets: A `sequence` of `struct` values as created by
+            `xcode_schemes.build_target`.
 
     Return:
         A `struct` representing a build action.
     """
     return struct(
         targets = targets,
+    )
+
+def _build_target(label, build_for = None):
+    """Constructs a build target for an Xcode scheme's build action.
+
+    Args:
+        label: A target label as a `string` value.
+        build_for: Optional. The settings that dictate when Xcode will build
+            the target. It is a `struct` as returned by
+            `xcode_schemes.build_for`.
+
+    Returns:
+        A `struct` representing a build target.
+    """
+    return struct(
+        label = label,
+        build_for = build_for,
+    )
+
+def _build_for_value(bool_value):
+    """Converts an optional `bool` value to an appropriate `build_for` setting.
+
+    Args:
+        bool_value: Optional. A `bool` value.
+
+    Returns:
+        A `string` value representing the `build_for` value to use.
+    """
+    if bool_value == None:
+        return build_for_values.UNSPECIFIED
+    elif bool_value == True:
+        return build_for_values.ENABLED
+    elif bool_value == False:
+        return build_for_values.DISABLED
+    fail("Unrecognized build_for value: {bool_value}".format(
+        bool_value = bool_value,
+    ))
+
+def _build_for(
+        running = None,
+        testing = None,
+        profiling = None,
+        archiving = None,
+        analyzing = None):
+    """Construct a `struct` representing the settings that dictate when Xcode \
+    will build a target.
+
+    Args:
+        running: Optional. A `bool` specifying whether to build for the running
+            phase.
+        testing: Optional. A `bool` specifying whether to build for the testing
+            phase.
+        profiling: Optional. A `bool` specifying whether to build for the
+            profiling phase.
+        archiving: Optional. A `bool` specifying whether to build for the
+            archiving phase.
+        analyzing: Optional. A `bool` specifying whether to build for the
+            analyzing phase.
+
+    Returns:
+        A `struct`.
+    """
+    return struct(
+        running = _build_for_value(running),
+        testing = _build_for_value(testing),
+        profiling = _build_for_value(profiling),
+        archiving = _build_for_value(archiving),
+        analyzing = _build_for_value(analyzing),
     )
 
 def _test_action(targets, build_configuration_name):
@@ -85,9 +154,18 @@ def _launch_action(
         working_directory = working_directory,
     )
 
+build_for_values = struct(
+    UNSPECIFIED = "unspecified",
+    ENABLED = "enabled",
+    DISABLED = "disabled",
+)
+
 xcode_schemes_internal = struct(
     scheme = _scheme,
     build_action = _build_action,
+    build_target = _build_target,
+    build_for = _build_for,
+    build_for_values = build_for_values,
     test_action = _test_action,
     launch_action = _launch_action,
 )

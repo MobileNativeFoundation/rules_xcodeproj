@@ -53,14 +53,91 @@ def _scheme_test(ctx):
 
 scheme_test = unittest.make(_scheme_test)
 
+def _build_target_test(ctx):
+    env = unittest.begin(ctx)
+
+    actual = xcode_schemes.build_target("//Sources/Foo")
+    expected = struct(
+        label = bazel_labels.normalize("//Sources/Foo"),
+        build_for = None,
+    )
+    asserts.equals(env, expected, actual, "no build_for")
+
+    actual = xcode_schemes.build_target(
+        "//Sources/Foo",
+        xcode_schemes.build_for(),
+    )
+    expected = struct(
+        label = bazel_labels.normalize("//Sources/Foo"),
+        build_for = xcode_schemes.build_for(),
+    )
+    asserts.equals(env, expected, actual, "with build_for")
+
+    return unittest.end(env)
+
+build_target_test = unittest.make(_build_target_test)
+
+def _build_for_test(ctx):
+    env = unittest.begin(ctx)
+
+    actual = xcode_schemes.build_for()
+    expected = struct(
+        running = xcode_schemes.build_for_values.UNSPECIFIED,
+        testing = xcode_schemes.build_for_values.UNSPECIFIED,
+        profiling = xcode_schemes.build_for_values.UNSPECIFIED,
+        archiving = xcode_schemes.build_for_values.UNSPECIFIED,
+        analyzing = xcode_schemes.build_for_values.UNSPECIFIED,
+    )
+    asserts.equals(env, expected, actual, "default")
+
+    actual = xcode_schemes.build_for(
+        running = True,
+        testing = True,
+        profiling = True,
+        archiving = True,
+        analyzing = True,
+    )
+    expected = struct(
+        running = xcode_schemes.build_for_values.ENABLED,
+        testing = xcode_schemes.build_for_values.ENABLED,
+        profiling = xcode_schemes.build_for_values.ENABLED,
+        archiving = xcode_schemes.build_for_values.ENABLED,
+        analyzing = xcode_schemes.build_for_values.ENABLED,
+    )
+    asserts.equals(env, expected, actual, "all true")
+
+    actual = xcode_schemes.build_for(
+        running = False,
+        testing = True,
+        profiling = False,
+        archiving = True,
+        analyzing = False,
+    )
+    expected = struct(
+        running = xcode_schemes.build_for_values.DISABLED,
+        testing = xcode_schemes.build_for_values.ENABLED,
+        profiling = xcode_schemes.build_for_values.DISABLED,
+        archiving = xcode_schemes.build_for_values.ENABLED,
+        analyzing = xcode_schemes.build_for_values.DISABLED,
+    )
+    asserts.equals(env, expected, actual, "mix it up")
+
+    return unittest.end(env)
+
+build_for_test = unittest.make(_build_for_test)
+
 def _build_action_test(ctx):
     env = unittest.begin(ctx)
 
-    targets = ["//Sources/Foo"]
-
+    targets = [
+        xcode_schemes.build_target("//Sources/Foo"),
+    ]
     actual = xcode_schemes.build_action(targets)
+
     expected = struct(
-        targets = [bazel_labels.normalize(t) for t in targets],
+        targets = [
+            xcode_schemes.build_target(bazel_labels.normalize("//Sources/Foo")),
+        ],
     )
     asserts.equals(env, expected, actual)
 
@@ -115,6 +192,8 @@ def model_test_suite(name):
     return unittest.suite(
         name,
         scheme_test,
+        build_target_test,
+        build_for_test,
         build_action_test,
         test_action_test,
         launch_action_test,

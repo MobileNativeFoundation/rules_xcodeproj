@@ -25,7 +25,7 @@ extension XcodeScheme {
 }
 
 extension XcodeScheme.BuildFor {
-    enum Value: Equatable, Hashable, Decodable {
+    enum Value: String, Equatable, Hashable, Decodable {
         case unspecified
         case enabled
         case disabled

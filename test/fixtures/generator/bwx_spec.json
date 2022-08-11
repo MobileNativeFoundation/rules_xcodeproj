@@ -13,7 +13,20 @@
     "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
     "custom_xcode_schemes": [
         {
-            "build_action": null,
+            "build_action": {
+                "targets": [
+                    {
+                        "build_for": {
+                            "analyzing": "unspecified",
+                            "archiving": "enabled",
+                            "profiling": "unspecified",
+                            "running": "unspecified",
+                            "testing": "unspecified"
+                        },
+                        "label": "//tools/generator:generator"
+                    }
+                ]
+            },
             "launch_action": {
                 "args": [],
                 "build_configuration_name": "Debug",

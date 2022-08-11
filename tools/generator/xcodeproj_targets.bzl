@@ -17,6 +17,15 @@ def get_xcode_schemes():
     return [
         xcode_schemes.scheme(
             name = "generator",
+            # The build_action in this example is not necessary for the scheme
+            # to work. It is here to test that customized build_for settings
+            # propagate properly.
+            build_action = xcode_schemes.build_action([
+                xcode_schemes.build_target(
+                    _APP_TARGET,
+                    xcode_schemes.build_for(archiving = True),
+                ),
+            ]),
             launch_action = xcode_schemes.launch_action(_APP_TARGET),
             test_action = xcode_schemes.test_action([_TEST_TARGET]),
         ),
