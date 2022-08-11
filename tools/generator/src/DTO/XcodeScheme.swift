@@ -29,25 +29,52 @@ No actions were provided for the scheme "\(name)".
 }
 
 extension XcodeScheme {
+    enum EnableBuildForValueMode {
+        case merge
+        case setIfAble
+    }
+
     /// Create a new scheme applying any default actions based upon the current scheme.
     var withDefaults: XcodeScheme {
         get throws {
             var buildTargets = [BazelLabel: XcodeScheme.BuildTarget]()
 
+            // func enableBuildForValue(
+            //     _ label: BazelLabel,
+            //     _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
+            // ) throws {
+            //     do {
+            //         try buildTargets[label, default: .init(label: label, buildFor: .init())]
+            //             .buildFor[keyPath: keyPath]
+            //             .merge(with: .enabled)
+            //     } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
+            //         throw UsageError(message: """
+// The `build_for` value, "\(keyPath.stringValue)", for "\(label)" in the "\(name)" Xcode scheme was \
+// disabled, but the target is referenced in the scheme's \(keyPath.actionType) action.
+// """)
+            //     }
+            // }
+
             func enableBuildForValue(
                 _ label: BazelLabel,
-                _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
+                _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>,
+                _ mode: EnableBuildForValueMode = .merge
             ) throws {
-                do {
-                    try buildTargets[label, default: .init(label: label, buildFor: .init())]
-                        .buildFor[keyPath: keyPath]
-                        .merge(with: .enabled)
-                } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
-                    throw UsageError(message: """
-The `build_for` value, "\(keyPath.stringValue)", for "\(label)" in the "\(name)" Xcode scheme was \
-disabled, but the target is referenced in the scheme's \(keyPath.actionType) action.
-""")
+                var buildTarget = buildTargets[label, default: .init(label: label, buildFor: .init())]
+                switch mode {
+                case .merge:
+                    do {
+                        try buildTarget.buildFor[keyPath: keyPath].merge(with: .enabled)
+                    } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
+                        throw UsageError(message: """
+    The `build_for` value, "\(keyPath.stringValue)", for "\(label)" in the "\(name)" Xcode scheme was \
+    disabled, but the target is referenced in the scheme's \(keyPath.actionType) action.
+    """)
+                    }
+                case .setIfAble:
+                    buildTarget.buildFor[keyPath: keyPath].enableIfNotDisabled()
                 }
+                buildTargets[label] = buildTarget
             }
 
             // Popuate the dictionary with any build targets that were explicitly specified.
@@ -79,6 +106,14 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
             if !buildTargets.values.contains(where: { $0.buildFor.running == .enabled }) {
                 try buildTargets.keys.forEach { try enableBuildForValue($0, \.running) }
             }
+
+            // Enable archiving for any targets that have running enabled
+            try buildTargets.values.filter(\.buildFor.running.isEnabled).map(\.label).forEach {
+                try enableBuildForValue($0, \.archiving, .setIfAble)
+            }
+
+            // Enable analyze for all targets
+            try buildTargets.keys.forEach { try enableBuildForValue($0, \.analyzing, .setIfAble) }
 
             // Create a new build action which includes all of the referenced labels as build targets
             // We must do this after processing all of the other actions.

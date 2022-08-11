@@ -73,6 +73,44 @@ Expected `ValueError`. value: \(value), other: \(other), expected: \(expected)
     }
 }
 
+// MARK: `Value.isEnabled` Tests
+
+extension XcodeSchemeBuildForTests {
+    func test_Value_isEnabled() throws {
+        XCTAssertTrue(XcodeScheme.BuildFor.Value.enabled.isEnabled)
+        XCTAssertFalse(XcodeScheme.BuildFor.Value.disabled.isEnabled)
+        XCTAssertFalse(XcodeScheme.BuildFor.Value.unspecified.isEnabled)
+    }
+}
+
+// MARK: `Value.isDisabled` Tests
+
+extension XcodeSchemeBuildForTests {
+    func test_Value_isDisabled() throws {
+        XCTAssertTrue(XcodeScheme.BuildFor.Value.disabled.isDisabled)
+        XCTAssertFalse(XcodeScheme.BuildFor.Value.enabled.isDisabled)
+        XCTAssertFalse(XcodeScheme.BuildFor.Value.unspecified.isDisabled)
+    }
+}
+
+// MARK: `Value.enableIfNotDisabled()` Tests
+
+extension XcodeSchemeBuildForTests {
+    func test_Value_enableIfNotDisabled() throws {
+        var value = XcodeScheme.BuildFor.Value.unspecified
+        value.enableIfNotDisabled()
+        XCTAssertEqual(value, .enabled)
+
+        value = XcodeScheme.BuildFor.Value.enabled
+        value.enableIfNotDisabled()
+        XCTAssertEqual(value, .enabled)
+
+        value = XcodeScheme.BuildFor.Value.disabled
+        value.enableIfNotDisabled()
+        XCTAssertEqual(value, .disabled)
+    }
+}
+
 // MARK: `BuildFor.xcSchemeValue` Tests
 
 extension XcodeSchemeBuildForTests {

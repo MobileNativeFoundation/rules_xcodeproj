@@ -170,11 +170,16 @@ extension XCSchemeInfoTests {
                     ),
                     .init(
                         targetInfo: try targetResolver.targetInfo(targetID: "A 2"),
-                        buildFor: .init(running: .enabled, profiling: .enabled)
+                        buildFor: .init(
+                            running: .enabled,
+                            profiling: .enabled,
+                            archiving: .enabled,
+                            analyzing: .enabled
+                        )
                     ),
                     .init(
                         targetInfo: try targetResolver.targetInfo(targetID: "B 2"),
-                        buildFor: .init(testing: .enabled)
+                        buildFor: .init(testing: .enabled, analyzing: .enabled)
                     ),
                 ]
             ),
