@@ -39,22 +39,6 @@ extension XcodeScheme {
         get throws {
             var buildTargets = [BazelLabel: XcodeScheme.BuildTarget]()
 
-            // func enableBuildForValue(
-            //     _ label: BazelLabel,
-            //     _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>
-            // ) throws {
-            //     do {
-            //         try buildTargets[label, default: .init(label: label, buildFor: .init())]
-            //             .buildFor[keyPath: keyPath]
-            //             .merge(with: .enabled)
-            //     } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
-            //         throw UsageError(message: """
-// The `build_for` value, "\(keyPath.stringValue)", for "\(label)" in the "\(name)" Xcode scheme was \
-// disabled, but the target is referenced in the scheme's \(keyPath.actionType) action.
-// """)
-            //     }
-            // }
-
             func enableBuildForValue(
                 _ label: BazelLabel,
                 _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>,
