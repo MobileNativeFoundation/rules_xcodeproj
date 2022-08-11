@@ -32,9 +32,9 @@ actions:
       pull_request:
         branches:
           - "*"
+    bazel_workspace_dir: examples/ios_app
     bazel_commands:
-      - "--output_base=bazel-output-base clean"
-      - "--output_base=bazel-output-base test --config=workflows //:all_integration_tests"
+      - "--output_base=bazel-output-base test --config=workflows //test/..."
 
   - name: Buildifier Lint
     triggers:
