@@ -33,7 +33,7 @@ actions:
         branches:
           - "*"
     bazel_commands:
-      - "clean"
+      - "--output_base=bazel-output-base clean"
       - "--output_base=bazel-output-base test --config=workflows //:all_integration_tests"
 
   - name: Buildifier Lint
