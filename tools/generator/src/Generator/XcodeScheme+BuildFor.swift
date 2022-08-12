@@ -46,6 +46,22 @@ extension XcodeScheme.BuildFor.Value {
 }
 
 extension XcodeScheme.BuildFor.Value {
+    var isEnabled: Bool {
+        guard self == .enabled else {
+            return false
+        }
+        return true
+    }
+
+    var isDisabled: Bool {
+        guard self == .disabled else {
+            return false
+        }
+        return true
+    }
+}
+
+extension XcodeScheme.BuildFor.Value {
     enum ValueError: Error, Equatable {
         case incompatibleMerge
     }
@@ -65,6 +81,15 @@ extension XcodeScheme.BuildFor.Value {
 
     mutating func merge(with other: XcodeScheme.BuildFor.Value) throws {
         self = try merged(with: other)
+    }
+}
+
+extension XcodeScheme.BuildFor.Value {
+    mutating func enableIfNotDisabled() {
+        guard self != .disabled else {
+            return
+        }
+        self = .enabled
     }
 }
 

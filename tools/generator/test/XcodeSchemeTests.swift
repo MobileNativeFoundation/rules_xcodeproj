@@ -70,7 +70,12 @@ extension XcodeSchemeTests {
                 targets: [
                     .init(
                         label: macOSAppLabel,
-                        buildFor: .init(running: .enabled, profiling: .enabled)
+                        buildFor: .init(
+                            running: .enabled,
+                            profiling: .enabled,
+                            archiving: .enabled,
+                            analyzing: .enabled
+                        )
                     ),
                 ]
             ),
@@ -93,11 +98,11 @@ extension XcodeSchemeTests {
                 targets: [
                     .init(
                         label: macOSAppLabel,
-                        buildFor: .init(running: .enabled)
+                        buildFor: .init(running: .enabled, archiving: .enabled, analyzing: .enabled)
                     ),
                     .init(
                         label: iOSAppLabel,
-                        buildFor: .init(profiling: .enabled)
+                        buildFor: .init(profiling: .enabled, analyzing: .enabled)
                     ),
                 ]
             ),
@@ -124,7 +129,7 @@ extension XcodeSchemeTests {
             name: schemeName,
             buildAction: try .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(
-                    running: .enabled, profiling: .enabled, archiving: .enabled
+                    running: .enabled, profiling: .enabled, archiving: .enabled, analyzing: .enabled
                 )),
             ]),
             launchAction: .init(target: macOSAppLabel),
@@ -149,7 +154,10 @@ extension XcodeSchemeTests {
             name: schemeName,
             buildAction: try .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(
-                    running: .enabled, profiling: .disabled
+                    running: .enabled,
+                    profiling: .disabled,
+                    archiving: .enabled,
+                    analyzing: .enabled
                 )),
             ]),
             launchAction: .init(target: macOSAppLabel)
@@ -208,8 +216,24 @@ disabled, but the target is referenced in the scheme's test action.
         let expected = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
-                .init(label: unitTestLabel, buildFor: .init(running: .enabled, testing: .enabled)),
-                .init(label: uiTestLabel, buildFor: .init(running: .enabled, testing: .enabled)),
+                .init(
+                    label: unitTestLabel,
+                    buildFor: .init(
+                        running: .enabled,
+                        testing: .enabled,
+                        archiving: .enabled,
+                        analyzing: .enabled
+                    )
+                ),
+                .init(
+                    label: uiTestLabel,
+                    buildFor: .init(
+                        running: .enabled,
+                        testing: .enabled,
+                        archiving: .enabled,
+                        analyzing: .enabled
+                    )
+                ),
             ]),
             testAction: .init(targets: [unitTestLabel, uiTestLabel])
         )
