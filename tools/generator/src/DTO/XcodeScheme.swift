@@ -51,9 +51,9 @@ extension XcodeScheme {
                         try buildTarget.buildFor[keyPath: keyPath].merge(with: .enabled)
                     } catch XcodeScheme.BuildFor.Value.ValueError.incompatibleMerge {
                         throw UsageError(message: """
-    The `build_for` value, "\(keyPath.stringValue)", for "\(label)" in the "\(name)" Xcode scheme was \
-    disabled, but the target is referenced in the scheme's \(keyPath.actionType) action.
-    """)
+The `build_for` value, "\(keyPath.stringValue)", for "\(label)" in the "\(name)" Xcode scheme was \
+disabled, but the target is referenced in the scheme's \(keyPath.actionType) action.
+""")
                     }
                 case .setIfAble:
                     buildTarget.buildFor[keyPath: keyPath].enableIfNotDisabled()
