@@ -24,11 +24,11 @@ SCHEME_AUTOGENERATION_MODE = "none"
 # functions. It is the `workspace_name_resolvers` functions that must be called
 # on a BUILD file thread.
 #
-# Most rules_xcodeproj clients will not need to wrap their custom scheme
-# declarations in a function. They should be able to declare them directly in
-# their BUILD files. Wrapping the declarations in a function is only necessary
-# when sharing a set of custom schemes as is done with the fixture tests in
-# this repository.
+# Most `rules_xcodeproj` clients should not need to wrap their custom scheme
+# declarations in a function. They should be declared in a BUILD file alongside
+# or inline with their `xcodeproj` target. Wrapping the declarations in a
+# function is only necessary when sharing a set of custom schemes as is done
+# with the fixture tests in this repository.
 
 def get_xcode_schemes():
     return [
