@@ -14,8 +14,8 @@ gh-md-toc --hide-header --hide-footer --start-depth=1
 * [Why do I get an error like "Provisioning profile "PROFILE\_NAME" is Xcode managed, but signing settings require a manually managed profile\. (in target 'TARGET' from project 'PROJECT')"?](#why-do-i-get-an-error-like-provisioning-profile-profile_name-is-xcode-managed-but-signing-settings-require-a-manually-managed-profile-in-target-target-from-project-project)
 * [Why do I get an error like "No profile for team 'TEAM' matching 'PROFILE\_NAME' found: Xcode couldn't find any provisioning profiles matching 'TEAM\_ID/PROFILE\_NAME'\. Install the profile (by dragging and dropping it onto Xcode's dock item) or select a different one in the Signing &amp; Capabilities tab of the target editor\."?](#why-do-i-get-an-error-like-no-profile-for-team-team-matching-profile_name-found-xcode-couldnt-find-any-provisioning-profiles-matching-team_idprofile_name-install-the-profile-by-dragging-and-dropping-it-onto-xcodes-dock-item-or-select-a-different-one-in-the-signing--capabilities-tab-of-the-target-editor)
 * [What is CompileStub\.m?](#what-is-compilestubm)
-* [Do I need to place my custom Xcode scheme declarations in a function like `tools/generator`?](#do-i-need-to-place-my-custom-xcode-scheme-declarations-in-a-function-like-tools/generator)
-* [Why-does-`tools/generator`-declare-its-custom-Xcode-schemes-in-a-function?](#why-does-tools/generator-declare-its-custom-xcode-schemes-in-a-function)
+* [Do I need to place my custom Xcode scheme declarations in a function like `tools/generator`?](#do-i-need-to-place-my-custom-xcode-scheme-declarations-in-a-function-like-toolsgenerator)
+* [Why-does-`tools/generator`-declare-its-custom-Xcode-schemes-in-a-function?](#why-does-toolsgenerator-declare-its-custom-xcode-schemes-in-a-function)
 
 ## My Xcode project seems to be of of sync with my Bazel project. What should I do?
 
