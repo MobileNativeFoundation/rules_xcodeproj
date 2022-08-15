@@ -199,20 +199,6 @@ extension XCScheme.ArchiveAction {
     }
 }
 
-extension XCScheme.BuildableReference: Hashable {
-    public func hash(into hasher: inout Hasher) {
-        // This should match the Equatable conformance for XCScheme.BuildableReference.
-        // NOTE: The equality check in XCScheme.BuildableReference checks the `blueprint` property
-        // in addition to the `blueprintName`. The `blueprint` property is private. The
-        // `blueprintName` and `blueprintIdentifier` should be sufficient to include in the hashable
-        // calculation.
-        hasher.combine(referencedContainer)
-        hasher.combine(blueprintIdentifier)
-        hasher.combine(buildableName)
-        hasher.combine(blueprintName)
-    }
-}
-
 extension Sequence where Element == XCScheme.BuildableReference {
     var inStableOrder: [XCScheme.BuildableReference] {
         return sortedLocalizedStandard(\.blueprintName)
