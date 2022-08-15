@@ -132,7 +132,9 @@ swift_library(
     else:
         xcodeproj_patches = []
 
-    xcodeproj_git_sha = "8.8.0"
+    # Main branch as of 2022-08-15. Contains Hashable implementation for
+    # XCScheme.BuildableReference
+    xcodeproj_git_sha = "2ad4d413f6f381b57001b77d64a41194481aa14d"
     _maybe(
         http_archive,
         name = "com_github_tuist_xcodeproj",
@@ -150,7 +152,7 @@ swift_library(
 )
 """,
         patches = xcodeproj_patches,
-        sha256 = "fbf655731e73287b6c0dae5b083d4802152a3fcd331b24b2394ed14bd75686c2",
+        sha256 = "76e10404c0ff5c3ef6b80439002efb28bc5dd907ab5c9d2702b6dde26275a425",
         strip_prefix = "XcodeProj-%s" % xcodeproj_git_sha,
         url = "https://github.com/tuist/XcodeProj/archive/%s.tar.gz" % xcodeproj_git_sha,
         ignore_version_differences = ignore_version_differences,
