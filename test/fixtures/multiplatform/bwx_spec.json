@@ -2920,7 +2920,7 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVOS.platform/Developer/usr/lib",
                     "-ObjC",
@@ -3027,7 +3027,7 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-ObjC",
@@ -3100,7 +3100,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static",
-                "PRODUCT_MODULE_NAME": "iOSApp",
+                "PRODUCT_MODULE_NAME": "tvOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -3127,15 +3127,15 @@
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/iOSApp.swiftdoc",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/iOSApp.swiftsourceinfo",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftsourceinfo",
                         "t": "g"
                     }
                 }
@@ -3194,7 +3194,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
-                "PRODUCT_MODULE_NAME": "iOSApp",
+                "PRODUCT_MODULE_NAME": "tvOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -3221,15 +3221,15 @@
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/iOSApp.swiftdoc",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/iOSApp.swiftmodule",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/iOSApp.swiftsourceinfo",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftsourceinfo",
                         "t": "g"
                     }
                 }

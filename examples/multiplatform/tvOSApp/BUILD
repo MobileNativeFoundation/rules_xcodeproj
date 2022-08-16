@@ -67,7 +67,7 @@ swift_library(
         ":release_build": [],
         "//conditions:default": [":PreviewContent"],
     }),
-    module_name = "iOSApp",
+    module_name = "tvOSApp",
     tags = ["manual"],
     deps = [
         "//examples/multiplatform/Lib",
