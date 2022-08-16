@@ -59,3 +59,21 @@ local_repository(
     name = "examples_ios_app_external",
     path = "external",
 )
+
+http_archive(
+    name = "FXPageControl",
+    url = "https://github.com/nicklockwood/FXPageControl/archive/refs/tags/1.5.tar.gz",
+    sha256 = "1610603d6ccfbc80b17aa2944c2587f4800c06a4e229303f431091e4e2e7a6d1",
+    build_file_content = """
+objc_library(
+    name = "FXPageControl",
+    module_name = "FXPageControl",
+    hdrs = ["FXPageControl/FXPageControl.h"],
+    srcs = ["FXPageControl/FXPageControl.m"],
+    visibility = [
+        "//visibility:public",
+    ]
+)
+""",
+    strip_prefix = "FXPageControl-1.5",
+)

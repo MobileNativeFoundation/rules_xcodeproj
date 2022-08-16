@@ -1,4 +1,5 @@
 #import "Foo.h"
+#import "external/FXPageControl/FXPageControl/FXPageControl.h"
 
 @implementation Foo
 

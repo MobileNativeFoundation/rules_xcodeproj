@@ -10,5 +10,5 @@ objc_library(
     module_name = "Utils",
     tags = ["manual"],
     visibility = ["//visibility:public"],
-    deps = ["//CoreUtilsObjC"],
+    deps = ["//CoreUtilsObjC", "@FXPageControl//:FXPageControl"],
 )
