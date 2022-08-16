@@ -350,10 +350,6 @@ if [ "$ACTION" == "indexbuild" ]; then
   # We use a different output base for Index Build to prevent normal builds and
   # indexing waiting on bazel locks from the other
   output_base="$OBJROOT/bazel_output_base"
-elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
-  # We use a different output base for SwiftUI Previews since they have
-  # different swiftcopts, preventing output trashing
-  output_base="$OBJROOT/bazel_output_base"
 fi
 
 if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
