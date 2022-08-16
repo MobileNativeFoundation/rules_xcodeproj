@@ -217,10 +217,12 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
         var overlays: [String] = [#"""
 
 if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-  absolute_bazel_out="$BAZEL_OUT"
+  bazel_out_prefix=
 else
-  absolute_bazel_out="$SRCROOT/$BAZEL_OUT"
+  bazel_out_prefix="$SRCROOT/"
 fi
+
+absolute_bazel_out="${bazel_out_prefix}$BAZEL_OUT"
 
 if [[ "$output_path" != "$absolute_bazel_out" ]]; then
   roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"},"
