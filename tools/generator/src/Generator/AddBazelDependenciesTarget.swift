@@ -217,15 +217,23 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
         var overlays: [String] = [#"""
 
 if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-  bazel_out_prefix=
+  absolute_bazel_out="$BAZEL_OUT"
 else
-  bazel_out_prefix="$SRCROOT/"
+  absolute_bazel_out="$SRCROOT/$BAZEL_OUT"
 fi
+
+if [[ "$output_path" != "$absolute_bazel_out" ]]; then
+  roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"},"
+else
+  roots=
+fi
+roots="$roots{\"external-contents\": \"$output_path\",\"name\": \"$BUILD_DIR/bazel-out\",\"type\": \"directory-remap\"}"
 
 # Use current path for bazel-out
 # This fixes Index Build to use its version of generated files
+# Also map `$BUILD_DIR` to bazel-out, to fix SwiftUI Previews
 cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$output_path","name": "${bazel_out_prefix}$BAZEL_OUT","type": "directory-remap"}],"version": 0}
+{"case-sensitive": "false", "fallthrough": true, "roots": [$roots],"version": 0}
 EOF
 
 """#]
