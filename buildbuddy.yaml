@@ -20,6 +20,8 @@ actions:
       pull_request:
         branches:
           - "*"
+    git_clean_exclude:
+      - bazel-output-base
     bazel_commands:
       - "--output_base=bazel-output-base test --config=workflows //examples/... //tools/... //test/..."
 
@@ -32,6 +34,8 @@ actions:
       pull_request:
         branches:
           - "*"
+    git_clean_exclude:
+      - examples/ios_app/bazel-output-base
     bazel_workspace_dir: examples/ios_app
     bazel_commands:
       - "--output_base=bazel-output-base test --config=workflows //test/..."
