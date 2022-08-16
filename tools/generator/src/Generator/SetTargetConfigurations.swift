@@ -155,16 +155,22 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
 
+        func handleSearchPath(filePath: FilePath) throws -> String {
+            let path = try filePathResolver
+                .resolve(filePath, useBazelOut: true)
+                .string.quoted
+            guard !hasBazelDependencies || path != "." else {
+                return "$(BAZEL_EXEC_ROOT)"
+            }
+            return path
+        }
+
         let frameworkIncludes = target.searchPaths.frameworkIncludes
         let hasFrameworkIncludes = !frameworkIncludes.isEmpty
         if hasFrameworkIncludes {
             try buildSettings.prepend(
                 onKey: "FRAMEWORK_SEARCH_PATHS",
-                frameworkIncludes.map { filePath in
-                    return try filePathResolver
-                        .resolve(filePath, useBazelOut: true)
-                        .string.quoted
-                }
+                frameworkIncludes.map(handleSearchPath)
             )
         }
 
@@ -173,11 +179,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         if hasQuoteIncludes {
             try buildSettings.prepend(
                 onKey: "USER_HEADER_SEARCH_PATHS",
-                quoteIncludes.map { filePath in
-                    return try filePathResolver
-                        .resolve(filePath, useBazelOut: true)
-                        .string.quoted
-                }
+                quoteIncludes.map(handleSearchPath)
             )
         }
 
@@ -186,11 +188,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         if hasIncludes {
             try buildSettings.prepend(
                 onKey: "HEADER_SEARCH_PATHS",
-                includes.map { filePath in
-                    return try filePathResolver
-                        .resolve(filePath, useBazelOut: true)
-                        .string.quoted
-                }
+                includes.map(handleSearchPath)
             )
         }
 
@@ -199,11 +197,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         if hasSystemIncludes {
             try buildSettings.prepend(
                 onKey: "SYSTEM_HEADER_SEARCH_PATHS",
-                systemIncludes.map { filePath in
-                    return try filePathResolver
-                        .resolve(filePath, useBazelOut: true)
-                        .string.quoted
-                }
+                systemIncludes.map(handleSearchPath)
             )
         }
 

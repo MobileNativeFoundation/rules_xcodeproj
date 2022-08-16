@@ -21,6 +21,10 @@
             "t": "g"
         },
         {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl/FXPageControl.swift.modulemap",
+            "t": "g"
+        },
+        {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/Utils/Utils.swift.modulemap",
             "t": "g"
         },
@@ -290,6 +294,10 @@
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/CoreUtilsObjC/libCoreUtilsObjC.a",
                         "t": "g"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl/libFXPageControl.a",
+                        "t": "g"
                     }
                 ]
             },
@@ -335,6 +343,14 @@
                         "t": "g"
                     },
                     {
+                        "_": "FXPageControl",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
+                        "t": "g"
+                    },
+                    {
                         "_": "applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin",
                         "t": "g"
                     }
@@ -369,6 +385,10 @@
             "modulemaps": [
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl/FXPageControl.swift.modulemap",
                     "t": "g"
                 },
                 {
@@ -421,6 +441,14 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "FXPageControl",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
                         "t": "g"
                     }
                 ]
@@ -574,6 +602,14 @@
                         "t": "g"
                     },
                     {
+                        "_": "FXPageControl",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
+                        "t": "g"
+                    },
+                    {
                         "_": "applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin",
                         "t": "g"
                     }
@@ -698,6 +734,14 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "FXPageControl",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
                         "t": "g"
                     }
                 ]
@@ -848,6 +892,14 @@
                         "t": "g"
                     },
                     {
+                        "_": "FXPageControl",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
+                        "t": "g"
+                    },
+                    {
                         "_": "applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin",
                         "t": "g"
                     }
@@ -885,6 +937,10 @@
             "modulemaps": [
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl/FXPageControl.swift.modulemap",
                     "t": "g"
                 },
                 {
@@ -941,6 +997,14 @@
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "FXPageControl",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
                         "t": "g"
                     }
                 ]
@@ -1284,7 +1348,8 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e",
             "dependencies": [
-                "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e"
+                "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e",
+                "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e"
             ],
             "inputs": {
                 "hdrs": [
@@ -1323,6 +1388,138 @@
                     }
                 ],
                 "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "FXPageControl",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+                "CLANG_CXX_LIBRARY": "libc++",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "OS_IOS",
+                    "DEBUG=1"
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fexceptions",
+                    "-fasm-blocks",
+                    "-fobjc-abi-version=2",
+                    "-fobjc-legacy-dispatch",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fexceptions",
+                    "-fasm-blocks",
+                    "-fobjc-abi-version=2",
+                    "-fobjc-legacy-dispatch",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "PRODUCT_MODULE_NAME": "FXPageControl",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e",
+            "inputs": {
+                "hdrs": [
+                    {
+                        "_": "FXPageControl/FXPageControl/FXPageControl.h",
+                        "t": "e"
+                    }
+                ],
+                "srcs": [
+                    {
+                        "_": "FXPageControl/FXPageControl/FXPageControl.m",
+                        "t": "e"
+                    }
+                ]
+            },
+            "is_swift": false,
+            "label": "@FXPageControl//:FXPageControl",
+            "name": "FXPageControl",
+            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphonesimulator"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "FXPageControl",
+                "path": {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl/libFXPageControl.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    {
+                        "_": "FXPageControl",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/external/FXPageControl",
+                        "t": "g"
+                    },
                     ".",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin",
