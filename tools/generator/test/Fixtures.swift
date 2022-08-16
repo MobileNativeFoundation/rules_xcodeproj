@@ -2075,7 +2075,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "10.0",
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
+-vfsoverlay $(OBJROOT)/swift-bazel-out-overlay.yaml
 """#,
                 "PRODUCT_NAME": "a",
                 "SDKROOT": "macosx",
@@ -2266,7 +2266,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "OTHER_SWIFT_FLAGS": #"""
 -Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
 -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml \#
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
+-vfsoverlay $(OBJROOT)/swift-bazel-out-overlay.yaml \#
 -Xcc -fmodule-map-file=a/module.modulemap
 """#,
                 "PRODUCT_NAME": "E1",
@@ -2282,7 +2282,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_TARGET_ID": "E2",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
+-vfsoverlay $(OBJROOT)/swift-bazel-out-overlay.yaml
 """#,
                 "PRODUCT_NAME": "E2",
                 "SDKROOT": "appletvos",
@@ -2389,7 +2389,7 @@ $(MACOSX_FILES)
 "T/T 3/Ta.c" "T/T 3/Ta.png" "T/T 3/Ta.swift"
 """,
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
+-vfsoverlay $(OBJROOT)/swift-bazel-out-overlay.yaml
 """#,
                 "PRODUCT_NAME": "t",
                 "SDKROOT": "macosx",
