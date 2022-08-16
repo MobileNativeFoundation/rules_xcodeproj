@@ -354,7 +354,7 @@ $(CONFIGURATION_BUILD_DIR)
             if target.isSwift {
                 try buildSettings.prepend(
                     onKey: "OTHER_SWIFT_FLAGS",
-                    "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml"
+                    "-vfsoverlay $(OBJROOT)/swift-bazel-out-overlay.yaml"
                 )
             } else {
                 try buildSettings.prepend(

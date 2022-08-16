@@ -214,6 +214,19 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
         filePathResolver: FilePathResolver,
         resolvedExternalRepositories: [(String, Path)]
     ) throws -> String {
+        let swiftRoots: String
+        if buildMode != .xcode {
+            swiftRoots = #"""
+if [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
+  swift_roots="${roots:+${roots},}{\"external-contents\": \"$output_path\",\"name\": \"$BUILD_DIR/bazel-out\",\"type\": \"directory-remap\"}"
+else
+  swift_roots="$roots"
+fi
+"""#
+        } else {
+            swiftRoots = #"swift_roots="$roots""#
+        }
+
         var overlays: [String] = [#"""
 
 if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
@@ -225,17 +238,20 @@ fi
 absolute_bazel_out="${bazel_out_prefix}$BAZEL_OUT"
 
 if [[ "$output_path" != "$absolute_bazel_out" ]]; then
-  roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"},"
+  roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"}"
 else
   roots=
 fi
-roots="$roots{\"external-contents\": \"$output_path\",\"name\": \"$BUILD_DIR/bazel-out\",\"type\": \"directory-remap\"}"
+\#(swiftRoots)
 
 # Use current path for bazel-out
 # This fixes Index Build to use its version of generated files
 # Also map `$BUILD_DIR` to bazel-out, to fix SwiftUI Previews
 cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
 {"case-sensitive": "false", "fallthrough": true, "roots": [$roots],"version": 0}
+EOF
+cat > "$OBJROOT/swift-bazel-out-overlay.yaml" <<EOF
+{"case-sensitive": "false", "fallthrough": true, "roots": [$swift_roots],"version": 0}
 EOF
 
 """#]
