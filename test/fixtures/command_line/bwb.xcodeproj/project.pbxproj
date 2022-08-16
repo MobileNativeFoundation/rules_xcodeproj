@@ -1279,7 +1279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/command_line/Tests/LibSwiftTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/command_line/Tests";
 				BAZEL_TARGET_ID = "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
