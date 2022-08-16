@@ -2737,8 +2737,8 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iOSApp/iOSApp.app";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iOSApp/iOSApp.app";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iOSApp/iOSApp.ipa";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iOSApp/iOSApp.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iOSApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iOSApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487";
@@ -2870,8 +2870,8 @@
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_HOST_TARGET_ID_0 = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316";
 				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.appex";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.appex";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.zip";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSAppExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSAppExtension";
 				BAZEL_TARGET_ID = "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316";
@@ -2940,8 +2940,8 @@
 				APPLETVSIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework";
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-cfa16e91da16/bin/examples/multiplatform/tvOSApp/tvOSApp.app";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-6a7afd7f07f3/bin/examples/multiplatform/tvOSApp/tvOSApp.app";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-cfa16e91da16/bin/examples/multiplatform/tvOSApp/tvOSApp.ipa";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-6a7afd7f07f3/bin/examples/multiplatform/tvOSApp/tvOSApp.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-cfa16e91da16/bin/examples/multiplatform/tvOSApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-6a7afd7f07f3/bin/examples/multiplatform/tvOSApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-cfa16e91da16";
@@ -3015,8 +3015,8 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/AppClip/AppClip.app";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/AppClip/AppClip.app";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/AppClip/AppClip.ipa";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/AppClip/AppClip.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/AppClip";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/AppClip";
 				BAZEL_TARGET_ID = "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-b0487734b487";
@@ -3198,8 +3198,8 @@
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_HOST_TARGET_ID_0 = "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487";
 				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_arm64-dbg-ST-11143c310cbd";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.appex";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.appex";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.zip";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-ST-b0487734b487";
@@ -3268,8 +3268,8 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/iMessageApp.app";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageApp.app";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/iMessageApp.ipa";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageApp.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487";
@@ -3370,8 +3370,8 @@
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_HOST_TARGET_ID_0 = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487";
 				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-11143c310cbd";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/WidgetExtension/WidgetExtension.appex";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/WidgetExtension/WidgetExtension.appex";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/WidgetExtension/WidgetExtension.zip";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/WidgetExtension/WidgetExtension.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/WidgetExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/WidgetExtension";
 				BAZEL_TARGET_ID = "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-b0487734b487";
@@ -3442,8 +3442,8 @@
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_HOST_TARGET_ID_0 = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487";
 				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-11143c310cbd";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp/watchOSApp.app";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp/watchOSApp.app";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp/watchOSApp.zip";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp/watchOSApp.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316";
