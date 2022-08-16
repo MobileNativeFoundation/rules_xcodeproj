@@ -229,7 +229,7 @@ if [[ "$output_path" != "$absolute_bazel_out" ]]; then
 else
   roots=
 fi
-roots="$roots{\"external-contents\": \"$output_path\",\"name\": \"$BUILD_DIR/bazel-out\",\"type\": \"directory-remap\"}"
+roots="$roots{\"external-contents\": \"$output_path\",\"name\": \"$BUILD_DIR/bazel-out\",\"type\": \"directory-remap\"},{\"external-contents\": \"$exec_root\",\"name\": \"$SRCROOT\",\"type\": \"directory-remap\"}"
 
 # Use current path for bazel-out
 # This fixes Index Build to use its version of generated files
@@ -356,6 +356,7 @@ output_path=$(\#(bazelExec) \
   --bes_results_url= \
   output_path)
 exec_root="${output_path%/*}"
+external="${exec_root%/*/*}/external"
 
 if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
   "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" \#(resolvedExternalRepositoriesArguments) > "$BAZEL_LLDB_INIT"
