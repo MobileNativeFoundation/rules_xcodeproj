@@ -42,11 +42,3 @@ xcodeproj(
     top_level_targets = TOP_LEVEL_TARGETS,
     unfocused_targets = UNFOCUSED_TARGETS,
 )
-
-# Integration test related targets
-
-filegroup(
-    name = "all_files",
-    srcs = glob(["**/*"]),
-    visibility = ["//:__subpackages__"],
-)
