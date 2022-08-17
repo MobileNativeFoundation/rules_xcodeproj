@@ -3,6 +3,10 @@ import XCTest
 
 @testable import generator
 
+// DEBUG BEGIN
+import Darwin
+// DEBUG END
+
 // MARK: - XCScheme.BuildableReference Initializer Tests
 
 extension XCSchemeExtensionsTests {
@@ -66,6 +70,52 @@ extension XCSchemeExtensionsTests {
             ]
         )
         XCTAssertEqual(entry, expected)
+    }
+}
+
+// MARK: XCScheme.LaunchAction Initializer Tests
+
+extension XCSchemeExtensionsTests {
+    func test_LaunchAction_init_noCustomEnvArgsWorkingDir() throws {
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfo: appTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = launchActionInfo else {
+            XCTFail("Expected a `LaunchActionInfo`")
+            return
+        }
+
+        let productType = launchActionInfo.targetInfo.productType
+        let launchAction = try XCScheme.LaunchAction(
+            buildMode: .bazel,
+            launchActionInfo: launchActionInfo
+        )
+        let expected = XCScheme.LaunchAction(
+            runnable: launchActionInfo.runnable,
+            buildConfiguration: launchActionInfo.buildConfigurationName,
+            macroExpansion: try launchActionInfo.macroExpansion,
+            selectedDebuggerIdentifier: launchActionInfo.debugger,
+            selectedLauncherIdentifier: launchActionInfo.launcher,
+            askForAppToLaunch: nil,
+            environmentVariables: productType.bazelLaunchEnvironmentVariables,
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        // DEBUG BEGIN
+        fputs("*** CHUCK launchAction.askForAppToLaunch: \(String(reflecting: launchAction.askForAppToLaunch))\n", stderr)
+        fputs("*** CHUCK expected.askForAppToLaunch: \(String(reflecting: expected.askForAppToLaunch))\n", stderr)
+        fputs("*** CHUCK launchAction.environmentVariables: \(String(reflecting: launchAction.environmentVariables))\n", stderr)
+        fputs("*** CHUCK expected.environmentVariables: \(String(reflecting: expected.environmentVariables))\n", stderr)
+        // DEBUG END
+        XCTAssertEqual(launchAction, expected)
+    }
+
+    func test_LaunchAction_init_customEnvArgsWorkingDir() throws {
+        XCTFail("IMPLEMENT ME!")
     }
 }
 
