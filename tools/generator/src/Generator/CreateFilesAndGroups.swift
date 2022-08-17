@@ -75,12 +75,71 @@ extension Generator {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         xcodeGeneratedFiles: Set<FilePath>,
-        resolvedExternalRepositories: [(String, Path)]
+        resolvedExternalRepositories: [(Path, Path)]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
         var groups: [FilePath: PBXGroup] = [:]
         var knownRegions: Set<String> = []
-        var resolvedExternalRepositories: [(String, Path)] = []
+        var resolvedExternalRepositories: [(Path, Path)] = []
+
+        func resolveFilePath(
+            _ filePath: FilePath,
+            pathComponent: String,
+            isGroup: Bool
+        ) -> (
+            sourceTree: PBXSourceTree,
+            name: String?,
+            path: String
+        ) {
+            if filePath.type == .external &&
+                filePath.path.components.count <= 2,
+               let symlinkDest = try? (
+                filePathResolver.absoluteExternalDirectory + filePath.path
+               ).symlinkDestination()
+            {
+                let workspaceDirectoryComponents = filePathResolver
+                    .workspaceDirectoryComponents
+                let symlinkComponents = symlinkDest.components
+                if symlinkComponents.starts(
+                    with: filePathResolver.workspaceDirectoryComponents
+                ) {
+                    let relativeComponents = symlinkComponents.suffix(
+                        from: workspaceDirectoryComponents.count
+                    )
+                    let relativePath = Path(components: relativeComponents)
+
+                    if isGroup {
+                        resolvedExternalRepositories.append(
+                            (filePath.path, "$SRCROOT" + relativePath)
+                        )
+                    }
+
+                    return (
+                        sourceTree: .sourceRoot,
+                        name: pathComponent,
+                        path: relativePath.string
+                    )
+                } else {
+                    if isGroup {
+                        resolvedExternalRepositories.append(
+                            (filePath.path, symlinkDest)
+                        )
+                    }
+
+                    return (
+                        sourceTree: .absolute,
+                        name: pathComponent,
+                        path: symlinkDest.string
+                    )
+                }
+            } else {
+                return (
+                    sourceTree: .group,
+                    name: nil,
+                    path: pathComponent
+                )
+            }
+        }
 
         func createElement(
             in pbxProj: PBXProj,
@@ -105,9 +164,16 @@ extension Generator {
                     return (group, false)
                 }
 
+                let (sourceTree, name, path) = resolveFilePath(
+                    filePath,
+                    pathComponent: pathComponent,
+                    isGroup: true
+                )
+
                 let group = XCVersionGroup(
-                    path: pathComponent,
-                    sourceTree: .group,
+                    path: path,
+                    name: name,
+                    sourceTree: sourceTree,
                     versionGroupType: filePath.path.versionGroupType
                 )
                 pbxProj.add(object: group)
@@ -130,6 +196,12 @@ extension Generator {
                     return (fileReference, false)
                 }
 
+                let (sourceTree, name, path) = resolveFilePath(
+                    filePath,
+                    pathComponent: pathComponent,
+                    isGroup: false
+                )
+
                 let lastKnownFileType: String?
                 if filePath.isFolder, !filePath.path.isFolderTypeFileSource {
                     lastKnownFileType = "folder"
@@ -137,10 +209,11 @@ extension Generator {
                     lastKnownFileType = filePath.path.lastKnownFileType
                 }
                 let file = PBXFileReference(
-                    sourceTree: .group,
+                    sourceTree: sourceTree,
+                    name: name,
                     explicitFileType: filePath.path.explicitFileType,
                     lastKnownFileType: lastKnownFileType,
-                    path: pathComponent
+                    path: path
                 )
                 pbxProj.add(object: file)
 
@@ -154,50 +227,17 @@ extension Generator {
             filePath: FilePath,
             pathComponent: String
         ) -> PBXGroup {
-            let group: PBXGroup
-            if filePath.type == .external &&
-                pathComponent == filePath.path.string,
-               let symlinkDest = try? (
-                filePathResolver.absoluteExternalDirectory + filePath.path
-               ).symlinkDestination()
-            {
-                let workspaceDirectoryComponents = filePathResolver
-                    .workspaceDirectoryComponents
-                let symlinkComponents = symlinkDest.components
-                if symlinkComponents.starts(
-                    with: filePathResolver.workspaceDirectoryComponents
-                ) {
-                    let relativeComponents = symlinkComponents.suffix(
-                        from: workspaceDirectoryComponents.count
-                    )
-                    let relativeExternalRepository = Path(
-                        components: relativeComponents
-                    )
+            let (sourceTree, name, path) = resolveFilePath(
+                filePath,
+                pathComponent: pathComponent,
+                isGroup: true
+            )
 
-                    group = PBXGroup(
-                        sourceTree: .sourceRoot,
-                        name: pathComponent,
-                        path: relativeExternalRepository.string
-                    )
-
-                    resolvedExternalRepositories.append(
-                        (pathComponent, "$SRCROOT" + relativeExternalRepository)
-                    )
-                } else {
-                    group = PBXGroup(
-                        sourceTree: .absolute,
-                        name: pathComponent,
-                        path: symlinkDest.string
-                    )
-
-                    resolvedExternalRepositories.append(
-                        (pathComponent, symlinkDest)
-                    )
-                }
-            } else {
-                group = PBXGroup(sourceTree: .group, path: pathComponent)
-            }
-
+            let group = PBXGroup(
+                sourceTree: sourceTree,
+                name: name,
+                path: path
+            )
             pbxProj.add(object: group)
             groups[filePath] = group
 
@@ -213,6 +253,8 @@ extension Generator {
             let localizedContainerFilePath = filePath.parent()
             // e.g. resources/App.strings
             let groupFilePath = localizedContainerFilePath.parent() + fileName
+
+            // TODO: Use `resolveFilePath`?
 
             // Variant group
             let group: PBXVariantGroup
@@ -312,8 +354,7 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: filePathResolver.externalDirectory.isAbsolute ?
-                    .absolute : .group,
+                sourceTree: filePathResolver.externalDirectory.sourceTree,
                 name: "Bazel External Repositories",
                 path: filePathResolver.externalDirectory.string
             )
@@ -331,8 +372,7 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: filePathResolver.bazelOutDirectory.isAbsolute ?
-                    .absolute : .group,
+                sourceTree: filePathResolver.bazelOutDirectory.sourceTree,
                 name: "Bazel Generated Files",
                 path: filePathResolver.bazelOutDirectory.string
             )

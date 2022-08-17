@@ -33,7 +33,7 @@ env -i \
         forceBazelDependencies: Bool,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        resolvedExternalRepositories: [(String, Path)],
+        resolvedExternalRepositories: [(Path, Path)],
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String,
         consolidatedTargets: ConsolidatedTargets
@@ -121,7 +121,7 @@ env -i \
         targets: [Target],
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        resolvedExternalRepositories: [(String, Path)],
+        resolvedExternalRepositories: [(Path, Path)],
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String
     ) throws -> PBXShellScriptBuildPhase {
@@ -212,7 +212,7 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
         buildMode: BuildMode,
         targets: [Target],
         filePathResolver: FilePathResolver,
-        resolvedExternalRepositories: [(String, Path)]
+        resolvedExternalRepositories: [(Path, Path)]
     ) throws -> String {
         let swiftRoots: String
         if buildMode != .xcode {
@@ -299,6 +299,8 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&
         }
 
         let resolvedExternalRepositoriesArguments = resolvedExternalRepositories
+            // Sorted by length to ensure that subdirectories are listed first
+            .sorted { $0.0.string.count > $1.0.string.count }
             .map { #""\#($0)" "\#($1)""# }
             .joined(separator: " ")
 

@@ -424,7 +424,7 @@ enum Fixtures {
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
         xcodeGeneratedFiles: Set<FilePath>,
-        resolvedExternalRepositories: [(String, Path)]
+        resolvedExternalRepositories: [(Path, Path)]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
 

@@ -290,7 +290,7 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             rootElements: [PBXFileElement],
             xcodeGeneratedFiles: Set<FilePath>,
-            resolvedExternalRepositories: [(String, Path)]
+            resolvedExternalRepositories: [(Path, Path)]
         ) {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
@@ -415,7 +415,7 @@ final class GeneratorTests: XCTestCase {
             forceBazelDependencies: Bool,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
-            resolvedExternalRepositories: [(String, Path)],
+            resolvedExternalRepositories: [(Path, Path)],
             xcodeprojBazelLabel: BazelLabel,
             xcodeprojConfiguration: String,
             consolidatedTargets: ConsolidatedTargets
