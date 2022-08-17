@@ -2,6 +2,7 @@
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
     ":build_settings.bzl",
@@ -350,7 +351,6 @@ def process_top_level_target(
     )
     if len(xcode_library_targets) == 1 and not inputs.srcs:
         mergeable_target = xcode_library_targets[0]
-        mergeable_label = mergeable_target.label
         potential_target_merges = [struct(
             src = struct(
                 id = mergeable_target.id,
@@ -364,15 +364,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
 """.format(ctx.rule.kind, label, len(xcode_library_targets)))
     else:
         potential_target_merges = None
-        mergeable_label = None
-
-    non_mergable_targets = [
-        library
-        for library in linker_input_files.get_top_level_static_libraries(
-            linker_inputs,
-        )
-        if mergeable_label and library.owner != mergeable_label
-    ]
 
     set_if_true(
         build_settings,
@@ -456,7 +447,6 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         hosted_targets = hosted_targets,
         inputs = inputs,
         lldb_context = lldb_context,
-        non_mergable_targets = non_mergable_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         search_paths = search_paths,

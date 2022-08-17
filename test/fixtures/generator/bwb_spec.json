@@ -59,6 +59,10 @@
         "//tools/generator/test:tests.library darwin_x86_64-dbg-ST-5a06a31acc4f",
         [
             "//tools/generator/test:tests darwin_x86_64-dbg-ST-5a06a31acc4f"
+        ],
+        "//tools/generator:generator.library darwin_x86_64-dbg-ST-5a06a31acc4f",
+        [
+            "//tools/generator:generator darwin_x86_64-dbg-ST-5a06a31acc4f"
         ]
     ],
     "targets": [

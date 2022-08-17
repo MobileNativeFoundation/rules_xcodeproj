@@ -25,7 +25,7 @@ final class TargetMergingTests: XCTestCase {
         XCTAssertNoDifference(targets, expectedTargets)
     }
 
-    func test_merges_without_required_links() throws {
+    func test_merges() throws {
         // Arrange
 
         var targets = Fixtures.targets
