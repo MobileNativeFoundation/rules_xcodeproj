@@ -566,7 +566,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -586,6 +586,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BAZEL_EXEC_ROOT = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
 				BAZEL_EXTERNAL = "bazel-output-base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
@@ -680,7 +681,7 @@
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -753,7 +754,7 @@
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/examples_cc_external",
@@ -826,7 +827,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/examples_cc_external",
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};

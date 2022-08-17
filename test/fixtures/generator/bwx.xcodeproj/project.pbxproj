@@ -2185,7 +2185,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = CustomDump;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -2215,7 +2215,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = XcodeProj;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -2245,7 +2245,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = generator.library;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -2287,7 +2287,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = generator;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -2326,7 +2326,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = XCTestDynamicOverlay;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -2361,7 +2361,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = tests;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -2390,7 +2390,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = PathKit;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -2419,7 +2419,7 @@
 				SWIFT_VERSION = 5;
 				TARGET_NAME = OrderedCollections;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
 				);
 			};
@@ -2429,6 +2429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BAZEL_EXEC_ROOT = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
 				BAZEL_EXTERNAL = "bazel-output-base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";

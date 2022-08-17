@@ -28,6 +28,8 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
+                "BAZEL_EXEC_ROOT": filePathResolver.externalDirectory
+                    .parent().normalize().string,
                 "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
@@ -136,6 +138,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
+                "BAZEL_EXEC_ROOT": filePathResolver.externalDirectory
+                    .parent().normalize().string,
                 "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,

@@ -19,6 +19,8 @@ extension Generator {
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
+            "BAZEL_EXEC_ROOT": filePathResolver.bazelOutDirectory
+                .parent().normalize().string,
             "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
