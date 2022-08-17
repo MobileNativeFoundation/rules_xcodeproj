@@ -17,10 +17,15 @@ xcodeproj(
 
 device_and_simulator(
     name = "device_targets",
+    device_only_targets = [
+        "//examples/multiplatform/Tool",
+    ],
+    simulator_only_targets = [
+        "//examples/multiplatform/iMessageApp",
+    ],
     tags = ["manual"],
     targets = [
         "//examples/multiplatform/iOSApp",
-        "//examples/multiplatform/iMessageApp",
         "//examples/multiplatform/tvOSApp",
     ],
     visibility = ["//visibility:public"],

@@ -143,28 +143,6 @@
             "g": true,
             "t": "e"
         },
-        "examples/multiplatform/iMessageApp/BUILD",
-        "examples/multiplatform/iMessageApp/Info.extension.plist",
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
-            "t": "g"
-        },
-        "examples/multiplatform/iMessageApp/ExtensionAssets.xcassets",
-        "examples/multiplatform/iMessageApp/Base.lproj/MainInterface.storyboard",
-        "examples/multiplatform/iMessageApp/Info.plist",
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
-            "t": "g"
-        },
-        "examples/multiplatform/iMessageApp/Assets.xcassets",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
-            "t": "g"
-        },
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
             "t": "e"
@@ -185,14 +163,28 @@
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-cfa16e91da16/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/iMessageApp/BUILD",
+        "examples/multiplatform/iMessageApp/Info.extension.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
+            "t": "g"
+        },
+        "examples/multiplatform/iMessageApp/ExtensionAssets.xcassets",
+        "examples/multiplatform/iMessageApp/Base.lproj/MainInterface.storyboard",
+        "examples/multiplatform/iMessageApp/Info.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
+            "t": "g"
+        },
+        "examples/multiplatform/iMessageApp/Assets.xcassets",
         "examples/multiplatform/Tool/BUILD",
         "examples/multiplatform/Tool/Info.plist",
         {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
+            "_": "applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
             "t": "g"
         },
         {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/Tool.merged_infoplist-intermediates/Info.plist",
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool.merged_infoplist-intermediates/Info.plist",
             "t": "g"
         },
         "test/fixtures/multiplatform/BUILD"
@@ -209,10 +201,6 @@
         "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
         [
             "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487"
-        ],
-        "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-        [
-            "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_arm64-dbg-ST-11143c310cbd"
         ],
         "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
         [
@@ -244,9 +232,9 @@
         [
             "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-b0487734b487"
         ],
-        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3",
+        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e",
         [
-            "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3"
+            "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e"
         ],
         "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
         [
@@ -255,10 +243,6 @@
         "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
         [
             "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-b0487734b487"
-        ],
-        "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-        [
-            "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_arm64-dbg-ST-11143c310cbd"
         ],
         "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
         [
@@ -1365,7 +1349,7 @@
                 ]
             }
         },
-        "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3",
+        "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1375,19 +1359,19 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3",
+            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e",
             "dependencies": [
-                "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3"
+                "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e"
             ],
             "info_plist": {
-                "_": "applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
+                "_": "applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/rules_xcodeproj/Tool/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
             "label": "//examples/multiplatform/Tool:Tool",
             "linker_inputs": {
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/Tool.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1399,7 +1383,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/libTool.library.a",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/libTool.library.a",
                         "t": "g"
                     }
                 ]
@@ -1416,7 +1400,7 @@
                         "q": [
                             ".",
                             {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin",
+                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin",
                                 "t": "g"
                             }
                         ]
@@ -1426,11 +1410,11 @@
             "name": "Tool",
             "outputs": {
                 "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/Tool",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool",
+            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -1441,7 +1425,7 @@
                 "executable_name": "Tool",
                 "name": "Tool",
                 "path": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/Tool",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.tool"
@@ -1450,13 +1434,13 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin",
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin",
                         "t": "g"
                     }
                 ]
             }
         },
-        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3",
+        "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -1470,7 +1454,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3",
+            "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e",
             "inputs": {
                 "srcs": [
                     "examples/multiplatform/Tool/main.swift"
@@ -1481,20 +1465,20 @@
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/Tool.swiftdoc",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/Tool.swiftmodule",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/Tool.swiftsourceinfo",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool",
+            "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -1505,7 +1489,7 @@
                 "executable_name": null,
                 "name": "Tool.library",
                 "path": {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin/examples/multiplatform/Tool/libTool.library.a",
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/libTool.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -1514,7 +1498,7 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-4cefed781fd3/bin",
+                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin",
                         "t": "g"
                     }
                 ]
@@ -2067,73 +2051,6 @@
                 }
             ]
         },
-        "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-        {
-            "build_settings": {
-                "CODE_SIGN_STYLE": "Automatic",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "DEVELOPMENT_TEAM": "V82V4GQZXM",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TARGETED_DEVICE_FAMILY": "1"
-            },
-            "configuration": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-            "dependencies": [
-                "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_arm64-dbg-ST-11143c310cbd"
-            ],
-            "extensions": [
-                "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_arm64-dbg-ST-11143c310cbd"
-            ],
-            "info_plist": {
-                "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
-                "t": "g"
-            },
-            "is_swift": false,
-            "label": "//examples/multiplatform/iMessageApp:iMessageApp",
-            "linker_inputs": {
-                "linkopts": [
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ]
-            },
-            "name": "iMessageApp",
-            "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageApp.ipa",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp",
-            "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "15.0",
-                "os": "ios",
-                "variant": "iphoneos"
-            },
-            "product": {
-                "executable_name": "iMessageApp",
-                "name": "iMessageApp",
-                "path": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageApp_archive-root/Payload/iMessageApp.app",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.application.messages"
-            },
-            "search_paths": {
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
         "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
         {
             "build_settings": {
@@ -2195,183 +2112,6 @@
                     ".",
                     {
                         "_": "applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
-        "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-        {
-            "build_settings": {
-                "CODE_SIGN_STYLE": "Automatic",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "DEVELOPMENT_TEAM": "V82V4GQZXM",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app.extension",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5",
-                "TARGETED_DEVICE_FAMILY": "1"
-            },
-            "configuration": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-            "dependencies": [
-                "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd"
-            ],
-            "info_plist": {
-                "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
-                "t": "g"
-            },
-            "is_swift": false,
-            "label": "//examples/multiplatform/iMessageApp:iMessageAppExtension",
-            "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
-                        "t": "e"
-                    }
-                ],
-                "force_load": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
-                "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftmodule",
-                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
-                    "-ObjC",
-                    "-L/usr/lib/swift",
-                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
-                    "-Wl,-rpath,/usr/lib/swift",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ],
-                "static_libraries": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/libiMessageAppExtension.library.a",
-                        "t": "g"
-                    }
-                ]
-            },
-            "lldb_context": {
-                "c": [
-                    {
-                        "m": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
-                                "t": "e"
-                            }
-                        ],
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin",
-                                "t": "g"
-                            }
-                        ]
-                    },
-                    {
-                        "m": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
-                                "t": "e"
-                            }
-                        ],
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ],
-                "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ],
-                "s": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                        "t": "g"
-                    }
-                ]
-            },
-            "name": "iMessageAppExtension",
-            "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.zip",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp",
-            "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "15.0",
-                "os": "ios",
-                "variant": "iphoneos"
-            },
-            "product": {
-                "executable_name": "iMessageAppExtension",
-                "name": "iMessageAppExtension",
-                "path": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageAppExtension_archive-root/iMessageAppExtension.appex",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.app-extension.messages"
-            },
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin",
                         "t": "g"
                     }
                 ]
@@ -2552,99 +2292,6 @@
                     }
                 ]
             }
-        },
-        "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-        {
-            "build_settings": {
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "ENABLE_TESTABILITY": true,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
-                "PRODUCT_MODULE_NAME": "iMessageAppExtension",
-                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5"
-            },
-            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-            "dependencies": [
-                "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd"
-            ],
-            "inputs": {
-                "srcs": [
-                    "examples/multiplatform/iMessageApp/MessagesViewController.swift"
-                ]
-            },
-            "label": "//examples/multiplatform/iMessageApp:iMessageAppExtension.library",
-            "modulemaps": [
-                {
-                    "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
-                    "t": "e"
-                }
-            ],
-            "name": "iMessageAppExtension.library",
-            "outputs": {
-                "s": {
-                    "d": {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftdoc",
-                        "t": "g"
-                    },
-                    "m": {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftmodule",
-                        "t": "g"
-                    },
-                    "s": {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftsourceinfo",
-                        "t": "g"
-                    }
-                }
-            },
-            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp",
-            "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "15.0",
-                "os": "ios",
-                "variant": "iphoneos"
-            },
-            "product": {
-                "executable_name": null,
-                "name": "iMessageAppExtension.library",
-                "path": {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iMessageApp/libiMessageAppExtension.library.a",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.library.static"
-            },
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin",
-                        "t": "g"
-                    }
-                ]
-            },
-            "swiftmodules": [
-                {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
         },
         "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
         {
