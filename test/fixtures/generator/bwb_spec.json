@@ -30,7 +30,9 @@
             "launch_action": {
                 "args": [],
                 "build_configuration_name": "Debug",
-                "env": {},
+                "env": {
+                    "CUSTOM_ENV_VAR": "hello"
+                },
                 "target": "//tools/generator:generator",
                 "working_directory": null
             },

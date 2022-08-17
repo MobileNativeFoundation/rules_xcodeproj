@@ -43,7 +43,12 @@ def get_xcode_schemes():
                     xcode_schemes.build_for(archiving = True),
                 ),
             ]),
-            launch_action = xcode_schemes.launch_action(_APP_TARGET),
+            launch_action = xcode_schemes.launch_action(
+                _APP_TARGET,
+                # This is not necessary for the generator. It is here to help
+                # verify that custom environment variables are passed along.
+                env = {"CUSTOM_ENV_VAR": "hello"},
+            ),
             test_action = xcode_schemes.test_action([_TEST_TARGET]),
         ),
     ]
