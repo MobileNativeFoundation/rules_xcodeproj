@@ -345,22 +345,20 @@ def process_top_level_target(
         ),
     )
 
-    xcode_library_targets = comp_providers.get_xcode_library_targets(
-        compilation_providers = compilation_providers,
-    )
-    if len(xcode_library_targets) == 1 and not inputs.srcs:
-        mergeable_target = xcode_library_targets[0]
-        potential_target_merges = [struct(
-            src = struct(
-                id = mergeable_target.id,
-                product_path = mergeable_target.product.path,
-            ),
-            dest = id,
-        )]
-    elif bundle_info and len(xcode_library_targets) > 1:
-        fail("""\
-The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
-""".format(ctx.rule.kind, label, len(xcode_library_targets)))
+    if not inputs.srcs:
+        xcode_library_targets = comp_providers.get_xcode_library_targets(
+            compilation_providers = compilation_providers,
+        )
+        potential_target_merges = [
+            struct(
+                src = struct(
+                    id = mergeable_target.id,
+                    product_path = mergeable_target.product.path,
+                ),
+                dest = id,
+            )
+            for mergeable_target in xcode_library_targets
+        ]
     else:
         potential_target_merges = None
 

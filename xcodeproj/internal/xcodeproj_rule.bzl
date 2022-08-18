@@ -161,11 +161,18 @@ def _write_json_spec(
         transitive = [info.potential_target_merges for info in infos],
     ).to_list()
 
-    target_merges = {}
+    target_merge_dests = {}
     for merge in potential_target_merges:
         if merge.src.id not in targets or merge.dest not in targets:
             continue
-        target_merges.setdefault(merge.src.id, []).append(merge.dest)
+        target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
+
+    target_merges = {}
+    for dest, src_ids in target_merge_dests.items():
+        if len(src_ids) > 1:
+            # We can only merge targets with a single library dependency
+            continue
+        target_merges.setdefault(src_ids[0], []).append(dest)
 
     # `target_hosts`
     hosted_targets = depset(
