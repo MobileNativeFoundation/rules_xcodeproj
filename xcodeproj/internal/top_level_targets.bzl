@@ -2,14 +2,6 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
-
-# DEBUG BEGIN
-load(
-    "@build_bazel_rules_apple//apple:providers.bzl",
-    "AppleResourceInfo",
-)
-# DEBUG END
-
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
     ":build_settings.bzl",
@@ -237,12 +229,12 @@ def process_top_level_target(
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
 
-    # DEBUG BEGIN
-    if AppleResourceInfo in target:
-        apple_resource_info = target[AppleResourceInfo]
-        build_settings["ASSETCATALOG_COMPILER_APPICON_NAME"] = "AppIcon"
+    # # DEBUG BEGIN
+    # if AppleResourceInfo in target:
+    #     apple_resource_info = target[AppleResourceInfo]
+    #     build_settings["ASSETCATALOG_COMPILER_APPICON_NAME"] = "AppIcon"
 
-    # DEBUG END
+    # # DEBUG END
 
     modulemaps = process_modulemaps(swift_info = swift_info)
     additional_files.extend(list(modulemaps.files))

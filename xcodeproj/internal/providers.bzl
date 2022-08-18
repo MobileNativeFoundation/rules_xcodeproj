@@ -17,6 +17,9 @@ If you need more control over how a target or it's dependencies are processed,
 return a `XcodeProjInfo` provider instance instead.
 """,
     fields = {
+        "app_icons": """\
+An attribute name (or `None`) to collect the application icons.
+""",
         "bazel_build_mode_error": """\
 If `build_mode = "bazel"`, then if this is non-`None`, it will be raised as an
 error during analysis.
@@ -104,14 +107,14 @@ generated `Files` and all of the `Files` that should be added to the Xcode
 project, but are not associated with any targets.
 """,
         "lldb_context": "A value returned from `lldb_context.collect`.",
+        "outputs": """\
+A value returned from `output_files.collect`, that contains information about
+the output files for this target and its transitive dependencies.
+""",
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
 of the target that can be merged into the target with the id of the 'dest'
 field.
-""",
-        "outputs": """\
-A value returned from `output_files.collect`, that contains information about
-the output files for this target and its transitive dependencies.
 """,
         "resource_bundle_informations": """\
 A `depset` of `struct`s with information used to generate resource bundles,
@@ -154,12 +157,12 @@ XcodeProjOutputInfo = provider(
 XcodeProjProvisioningProfileInfo = provider(
     "Provides information about a provisioning profile.",
     fields = {
+        "is_xcode_managed": "Whether the profile is managed by Xcode.",
         "profile_name": """\
 The profile name (e.g. "iOS Team Provisioning Profile: com.example.app").
 """,
         "team_id": """\
 The Team ID the profile is associated with (e.g. "V82V4GQZXM").
 """,
-        "is_xcode_managed": "Whether the profile is managed by Xcode.",
     },
 )

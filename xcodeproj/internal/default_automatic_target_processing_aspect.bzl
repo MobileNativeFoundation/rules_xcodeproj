@@ -13,8 +13,8 @@ load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 _UNSUPPORTED_SRCS_EXTENSIONS = {
     "a": True,
     "lo": True,
-    "so": True,
     "o": True,
+    "so": True,
 }
 
 def _get_target_type(*, target):
@@ -59,6 +59,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     else:
         srcs = []
 
+    app_icons = None
     bundle_id = None
     codesignopts = None
     entitlements = None
@@ -104,6 +105,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             xcode_targets["test_host"] = [target_type.compile]
         if "app_clips" in attrs:
             xcode_targets["app_clips"] = [target_type.compile]
+        if "app_icons" in attrs:
+            app_icons = "app_icons"
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"
         if "entitlements" in attrs:
@@ -174,6 +177,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             launchdplists = launchdplists,
             entitlements = entitlements,
             bazel_build_mode_error = bazel_build_mode_error,
+            app_icons = app_icons,
         ),
     ]
 
