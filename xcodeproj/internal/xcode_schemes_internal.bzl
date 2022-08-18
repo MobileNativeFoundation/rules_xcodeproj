@@ -33,7 +33,7 @@ def _build_action(targets):
         targets: A `sequence` of `struct` values as created by
             `xcode_schemes.build_target`.
 
-    Return:
+    Returns:
         A `struct` representing a build action.
     """
     return struct(
@@ -116,7 +116,7 @@ def _test_action(targets, build_configuration_name):
         build_configuration_name: The name of the build configuration as a
             `string` value.
 
-    Return:
+    Returns:
         A `struct` representing a test action.
     """
     return struct(
@@ -143,7 +143,7 @@ def _launch_action(
         working_directory: Optional. A `string` that will be set as the custom
             working directory in the Xcode scheme's launch action.
 
-    Return:
+    Returns:
         A `struct` representing a launch action.
     """
     return struct(

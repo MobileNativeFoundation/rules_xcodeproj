@@ -178,7 +178,7 @@ def make_xcode_schemes(bazel_labels):
         Args:
             targets: A `sequence` of target labels as `string` values.
 
-        Return:
+        Returns:
             A `struct` representing a test action.
         """
         return xcode_schemes_internal.test_action(
@@ -202,7 +202,7 @@ def make_xcode_schemes(bazel_labels):
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
 
-        Return:
+        Returns:
             A `struct` representing a launch action.
         """
         return xcode_schemes_internal.launch_action(
