@@ -126,6 +126,13 @@
             ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "CUSTOM_ENV_VAR"
+            value = "hello"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
