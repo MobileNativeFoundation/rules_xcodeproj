@@ -160,6 +160,16 @@ extension XCScheme.TestAction {
 extension XCScheme.LaunchAction {
     convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) throws {
         let productType = launchActionInfo.targetInfo.productType
+
+        var envVars: [XCScheme.EnvironmentVariable] = launchActionInfo.env.map { name, value in
+            .init(variable: name, value: value, enabled: true)
+        }
+        if buildMode.usesBazelEnvironmentVariables,
+            let productTypeEnvVars = productType.bazelLaunchEnvironmentVariables
+        {
+            envVars.append(contentsOf: productTypeEnvVars)
+        }
+
         self.init(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
@@ -167,8 +177,9 @@ extension XCScheme.LaunchAction {
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,
-            environmentVariables: buildMode.usesBazelEnvironmentVariables ?
-                productType.bazelLaunchEnvironmentVariables : nil,
+            commandlineArguments: launchActionInfo.args.isEmpty ? nil :
+                .init(arguments: launchActionInfo.args.map { .init(name: $0, enabled: true) }),
+            environmentVariables: envVars.isEmpty ? nil : envVars,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )

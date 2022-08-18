@@ -101,21 +101,58 @@ extension XCSchemeExtensionsTests {
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
-            environmentVariables: productType.bazelLaunchEnvironmentVariables,
+            environmentVariables: .bazelLaunchVariables,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
-        // DEBUG BEGIN
-        fputs("*** CHUCK launchAction.askForAppToLaunch: \(String(reflecting: launchAction.askForAppToLaunch))\n", stderr)
-        fputs("*** CHUCK expected.askForAppToLaunch: \(String(reflecting: expected.askForAppToLaunch))\n", stderr)
-        fputs("*** CHUCK launchAction.environmentVariables: \(String(reflecting: launchAction.environmentVariables))\n", stderr)
-        fputs("*** CHUCK expected.environmentVariables: \(String(reflecting: expected.environmentVariables))\n", stderr)
-        // DEBUG END
         XCTAssertEqual(launchAction, expected)
     }
 
     func test_LaunchAction_init_customEnvArgsWorkingDir() throws {
-        XCTFail("IMPLEMENT ME!")
+        let args = ["--hello"]
+        let env = ["CUSTOM_ENV_VAR": "goodbye"]
+        // TODO(chuck): Figure out how to pass the workingDirectory
+        // let workingDirectory = "path/to/direcotry"
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfo: appTargetInfo,
+                args: args,
+                env: env
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = launchActionInfo else {
+            XCTFail("Expected a `LaunchActionInfo`")
+            return
+        }
+
+        let productType = launchActionInfo.targetInfo.productType
+        let launchAction = try XCScheme.LaunchAction(
+            buildMode: .bazel,
+            launchActionInfo: launchActionInfo
+        )
+        let expected = XCScheme.LaunchAction(
+            runnable: launchActionInfo.runnable,
+            buildConfiguration: launchActionInfo.buildConfigurationName,
+            macroExpansion: try launchActionInfo.macroExpansion,
+            selectedDebuggerIdentifier: launchActionInfo.debugger,
+            selectedLauncherIdentifier: launchActionInfo.launcher,
+            askForAppToLaunch: nil,
+            commandlineArguments: .init(arguments: [.init(name: args[0], enabled: true)]),
+            environmentVariables: [
+                .init(variable: "CUSTOM_ENV_VAR", value: env["CUSTOM_ENV_VAR"]!, enabled: true),
+            ] + .bazelLaunchVariables,
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        // DEBUG BEGIN
+        fputs("*** CHUCK launchAction.environmentVariables: \(String(reflecting: launchAction.environmentVariables))\n", stderr)
+        fputs("*** CHUCK expected.environmentVariables: \(String(reflecting: expected.environmentVariables))\n", stderr)
+        fputs("*** CHUCK launchAction.commandlineArguments: \(String(reflecting: launchAction.commandlineArguments))\n", stderr)
+        fputs("*** CHUCK expected.commandlineArguments: \(String(reflecting: expected.commandlineArguments))\n", stderr)
+        // DEBUG END
+        XCTAssertEqual(launchAction, expected)
     }
 }
 
