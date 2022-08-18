@@ -143,7 +143,7 @@ def process_codesignopts(*, codesignopts, build_settings):
         codesignopts: A `list` of code sign options
         build_settings: A mutable `dict` that will be updated with code signing
             flag build settings that are processed.
-    Return:
+    Returns:
         The modified build settings object
     """
     if codesignopts and build_settings != None:
@@ -158,7 +158,7 @@ def process_defines(*, compilation_providers, build_settings):
         build_settings: A mutable `dict` that will be updated with the
             `GCC_PREPROCESSOR_DEFINITIONS` build setting.
 
-    Return:
+    Returns:
         The modified build settings object
     """
     cc_info = compilation_providers._cc_info
