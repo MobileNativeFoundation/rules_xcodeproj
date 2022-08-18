@@ -1,7 +1,7 @@
 """ Functions for processing top level targets """
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
     ":build_settings.bzl",
@@ -19,10 +19,11 @@ load(":lldb_contexts.bzl", "lldb_contexts")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
+load(":providers.bzl", "XcodeProjInfo")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
-load(":providers.bzl", "XcodeProjInfo")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
+load(":target_search_paths.bzl", "target_search_paths")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
@@ -35,7 +36,6 @@ load(
     "should_include_outputs",
     "should_include_outputs_output_groups",
 )
-load(":target_search_paths.bzl", "target_search_paths")
 load(":xcode_targets.bzl", "xcode_targets")
 
 def get_tree_artifact_enabled(*, ctx, bundle_info):
@@ -437,7 +437,6 @@ def process_top_level_target(
     )
 
     app_icon_name = _get_app_icon_name(ctx, automatic_target_info)
-
     if app_icon_name != None:
         build_settings["ASSETCATALOG_COMPILER_APPICON_NAME"] = app_icon_name
 
