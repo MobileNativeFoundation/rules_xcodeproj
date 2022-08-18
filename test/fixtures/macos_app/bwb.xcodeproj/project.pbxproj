@@ -441,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-e2b2f145e00a/bin/examples/macos_app/Example/Example.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e2b2f145e00a/bin/examples/macos_app/Example";
 				BAZEL_TARGET_ID = "//examples/macos_app/Example:Example applebin_macos-darwin_x86_64-dbg-ST-e2b2f145e00a";
