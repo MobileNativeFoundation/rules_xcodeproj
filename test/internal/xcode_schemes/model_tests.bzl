@@ -154,8 +154,8 @@ def _test_action_test(ctx):
     expected = struct(
         build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
         targets = [bazel_labels.normalize(t) for t in targets],
-        args = None,
-        env = None,
+        args = [],
+        env = {},
     )
     asserts.equals(env, expected, actual, "no custom values")
 

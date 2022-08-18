@@ -130,8 +130,8 @@ def _test_action(
     return struct(
         targets = targets,
         build_configuration_name = build_configuration_name,
-        args = args,
-        env = env,
+        args = args if args != None else [],
+        env = env if env != None else {},
     )
 
 def _launch_action(

@@ -162,13 +162,19 @@ extension XcodeScheme {
     struct TestAction: Equatable, Decodable {
         let buildConfigurationName: String
         let targets: Set<BazelLabel>
+        let args: [String]
+        let env: [String: String]
 
         init<Targets: Sequence>(
             targets: Targets,
-            buildConfigurationName: String = .defaultBuildConfigurationName
+            buildConfigurationName: String = .defaultBuildConfigurationName,
+            args: [String] = [],
+            env: [String: String] = [:]
         ) throws where Targets.Element == BazelLabel {
             self.targets = Set(targets)
             self.buildConfigurationName = buildConfigurationName
+            self.args = args
+            self.env = env
 
             guard !self.targets.isEmpty else {
                 throw PreconditionError(message: """
