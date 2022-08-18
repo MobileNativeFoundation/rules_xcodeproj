@@ -167,20 +167,18 @@ def _launch_action_test(ctx):
     target = "//Sources/App"
     args = ["my arg"]
     env = {"RELEASE_KRAKEN": "true"}
-    working_directory = "/path/to/working/directory"
 
     actual = xcode_schemes.launch_action(
         target = target,
         args = args,
         env = env,
-        working_directory = working_directory,
     )
     expected = struct(
         build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
         target = bazel_labels.normalize(target),
         args = args,
         env = env,
-        working_directory = working_directory,
+        working_directory = None,
     )
     asserts.equals(test_env, expected, actual)
 

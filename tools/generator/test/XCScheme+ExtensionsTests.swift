@@ -69,6 +69,81 @@ extension XCSchemeExtensionsTests {
     }
 }
 
+// MARK: XCScheme.LaunchAction Initializer Tests
+
+extension XCSchemeExtensionsTests {
+    func test_LaunchAction_init_noCustomEnvArgsWorkingDir() throws {
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfo: appTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = launchActionInfo else {
+            XCTFail("Expected a `LaunchActionInfo`")
+            return
+        }
+
+        let productType = launchActionInfo.targetInfo.productType
+        let launchAction = try XCScheme.LaunchAction(
+            buildMode: .bazel,
+            launchActionInfo: launchActionInfo
+        )
+        let expected = XCScheme.LaunchAction(
+            runnable: launchActionInfo.runnable,
+            buildConfiguration: launchActionInfo.buildConfigurationName,
+            macroExpansion: try launchActionInfo.macroExpansion,
+            selectedDebuggerIdentifier: launchActionInfo.debugger,
+            selectedLauncherIdentifier: launchActionInfo.launcher,
+            askForAppToLaunch: nil,
+            environmentVariables: .bazelLaunchVariables,
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        XCTAssertEqual(launchAction, expected)
+    }
+
+    func test_LaunchAction_init_customEnvArgsWorkingDir() throws {
+        let args = ["--hello"]
+        let env = ["CUSTOM_ENV_VAR": "goodbye"]
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfo: appTargetInfo,
+                args: args,
+                env: env
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = launchActionInfo else {
+            XCTFail("Expected a `LaunchActionInfo`")
+            return
+        }
+
+        let productType = launchActionInfo.targetInfo.productType
+        let launchAction = try XCScheme.LaunchAction(
+            buildMode: .bazel,
+            launchActionInfo: launchActionInfo
+        )
+        let expected = XCScheme.LaunchAction(
+            runnable: launchActionInfo.runnable,
+            buildConfiguration: launchActionInfo.buildConfigurationName,
+            macroExpansion: try launchActionInfo.macroExpansion,
+            selectedDebuggerIdentifier: launchActionInfo.debugger,
+            selectedLauncherIdentifier: launchActionInfo.launcher,
+            askForAppToLaunch: nil,
+            commandlineArguments: .init(arguments: [.init(name: args[0], enabled: true)]),
+            environmentVariables: [
+                .init(variable: "CUSTOM_ENV_VAR", value: env["CUSTOM_ENV_VAR"]!, enabled: true),
+            ] + .bazelLaunchVariables,
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        XCTAssertEqual(launchAction, expected)
+    }
+}
+
 // MARK: - XCScheme.ExecutionAction Initializer Tests
 
 extension XCSchemeExtensionsTests {
