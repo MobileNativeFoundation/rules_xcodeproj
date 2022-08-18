@@ -40,7 +40,9 @@
             "test_action": {
                 "args": [],
                 "build_configuration_name": "Debug",
-                "env": {},
+                "env": {
+                    "CUSTOM_ENV_VAR": "goodbye"
+                },
                 "targets": [
                     "//tools/generator/test:tests"
                 ]

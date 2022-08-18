@@ -53,6 +53,8 @@ def _focus_schemes(schemes, focused_targets):
                 test_action = xcode_schemes_internal.test_action(
                     targets = test_targets,
                     build_configuration_name = build_configuration_name,
+                    args = test_action.args,
+                    env = test_action.env,
                 )
             else:
                 test_action = None
@@ -123,6 +125,8 @@ def _unfocus_schemes(schemes, unfocused_targets):
                 test_action = xcode_schemes_internal.test_action(
                     targets = test_targets,
                     build_configuration_name = build_configuration_name,
+                    args = test_action.args,
+                    env = test_action.env,
                 )
             else:
                 test_action = None

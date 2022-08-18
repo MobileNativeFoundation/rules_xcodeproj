@@ -127,6 +127,7 @@ def _test_action(
     Returns:
         A `struct` representing a test action.
     """
+
     return struct(
         targets = targets,
         build_configuration_name = build_configuration_name,
