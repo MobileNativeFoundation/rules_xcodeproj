@@ -142,7 +142,7 @@ A `struct`.
 ## xcode_schemes.test_action
 
 <pre>
-xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>)
+xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-env">env</a>)
 </pre>
 
 Constructs a test action for an Xcode scheme.
@@ -153,6 +153,8 @@ Constructs a test action for an Xcode scheme.
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.test_action-targets"></a>targets |  A <code>sequence</code> of target labels as <code>string</code> values.   |  none |
+| <a id="xcode_schemes.test_action-args"></a>args |  Optional. A <code>list</code> of <code>string</code> arguments that should be passed to the target when executed.   |  <code>None</code> |
+| <a id="xcode_schemes.test_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed.   |  <code>None</code> |
 
 **RETURNS**
 
