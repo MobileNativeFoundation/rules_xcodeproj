@@ -3,12 +3,12 @@ workspace(name = "com_github_buildbuddy_io_rules_xcodeproj")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # TODO: Remove override and bump `xcodeproj_rules_dependencies` once
-# rules_apple 1.1.0 is released. Needed for `apple_intent_library`.
+# rules_apple 1.1.0 is released. Needed for `apple_intent_library` and stardoc fixes.
 http_archive(
     name = "build_bazel_rules_apple",
-    sha256 = "5620fcaf237444ba088b2c1669c81ff14a7746357487d7a58ea7d90deb21a82d",
-    strip_prefix = "rules_apple-22c292e70cf7169038de9ef25d4b1b25f411c89f",
-    url = "https://github.com/bazelbuild/rules_apple/archive/22c292e70cf7169038de9ef25d4b1b25f411c89f.tar.gz",
+    sha256 = "3167a6e91e57c9ae03c742159dfb1c8f77ada1456413e55642cbd15a4c6a7d9c",
+    strip_prefix = "rules_apple-5bf66848b0bbf902a042595d6adfbabbd7e30357",
+    url = "https://github.com/bazelbuild/rules_apple/archive/5bf66848b0bbf902a042595d6adfbabbd7e30357.tar.gz",
 )
 
 load("//xcodeproj:repositories.bzl", "xcodeproj_rules_dependencies")
@@ -197,3 +197,18 @@ buildifier_prebuilt_deps()
 load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
 
 buildifier_prebuilt_register_toolchains()
+
+# Stardoc
+
+http_archive(
+    name = "io_bazel_stardoc",
+    sha256 = "05fb57bb4ad68a360470420a3b6f5317e4f722839abc5b17ec4ef8ed465aaa47",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/stardoc/releases/download/0.5.2/stardoc-0.5.2.tar.gz",
+        "https://github.com/bazelbuild/stardoc/releases/download/0.5.2/stardoc-0.5.2.tar.gz",
+    ],
+)
+
+load("@io_bazel_stardoc//:setup.bzl", "stardoc_repositories")
+
+stardoc_repositories()
