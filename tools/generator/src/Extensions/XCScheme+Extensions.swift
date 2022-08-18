@@ -146,6 +146,17 @@ echo "$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
 
 extension XCScheme.TestAction {
     convenience init(testActionInfo: XCSchemeInfo.TestActionInfo) {
+        let commandlineArguments = testActionInfo.args.isEmpty ? nil :
+            XCScheme.CommandLineArguments(
+                arguments: testActionInfo.args.map { .init(name: $0, enabled: true) }
+            )
+        let environmentVariables = testActionInfo.env.isEmpty ? nil :
+            testActionInfo.env.map {
+                XCScheme.EnvironmentVariable(variable: $0, value: $1, enabled: true)
+            }.sortedLocalizedStandard(\.variable)
+        let shouldUseLaunchSchemeArgsEnv = (
+            commandlineArguments == nil && environmentVariables == nil
+        )
         self.init(
             buildConfiguration: testActionInfo.buildConfigurationName,
             macroExpansion: nil,
@@ -153,11 +164,9 @@ extension XCScheme.TestAction {
                 .filter(\.pbxTarget.isTestable)
                 .sortedLocalizedStandard(\.pbxTarget.name)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
-            commandlineArguments: testActionInfo.args.isEmpty ? nil :
-                .init(arguments: testActionInfo.args.map { .init(name: $0, enabled: true) }),
-            environmentVariables: testActionInfo.env.isEmpty ? nil : testActionInfo.env.map {
-                XCScheme.EnvironmentVariable(variable: $0, value: $1, enabled: true)
-            }.sortedLocalizedStandard(\.variable),
+            shouldUseLaunchSchemeArgsEnv: shouldUseLaunchSchemeArgsEnv,
+            commandlineArguments: commandlineArguments,
+            environmentVariables: environmentVariables,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }

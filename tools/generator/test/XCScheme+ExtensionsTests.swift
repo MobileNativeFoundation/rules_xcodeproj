@@ -86,6 +86,7 @@ extension XCSchemeExtensionsTests {
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
             ],
+            shouldUseLaunchSchemeArgsEnv: true,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
         XCTAssertEqual(actual, expected)
@@ -107,6 +108,7 @@ extension XCSchemeExtensionsTests {
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
             ],
+            shouldUseLaunchSchemeArgsEnv: false,
             commandlineArguments: .init(arguments: [.init(name: "--hello", enabled: true)]),
             environmentVariables: [
                 .init(variable: "CUSTOM_ENV_VAR", value: "goodbye", enabled: true),
