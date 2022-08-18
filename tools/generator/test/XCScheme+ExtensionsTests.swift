@@ -3,10 +3,6 @@ import XCTest
 
 @testable import generator
 
-// DEBUG BEGIN
-import Darwin
-// DEBUG END
-
 // MARK: - XCScheme.BuildableReference Initializer Tests
 
 extension XCSchemeExtensionsTests {
@@ -146,12 +142,6 @@ extension XCSchemeExtensionsTests {
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
-        // DEBUG BEGIN
-        fputs("*** CHUCK launchAction.environmentVariables: \(String(reflecting: launchAction.environmentVariables))\n", stderr)
-        fputs("*** CHUCK expected.environmentVariables: \(String(reflecting: expected.environmentVariables))\n", stderr)
-        fputs("*** CHUCK launchAction.commandlineArguments: \(String(reflecting: launchAction.commandlineArguments))\n", stderr)
-        fputs("*** CHUCK expected.commandlineArguments: \(String(reflecting: expected.commandlineArguments))\n", stderr)
-        // DEBUG END
         XCTAssertEqual(launchAction, expected)
     }
 }
