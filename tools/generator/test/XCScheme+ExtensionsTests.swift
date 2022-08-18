@@ -107,8 +107,6 @@ extension XCSchemeExtensionsTests {
     func test_LaunchAction_init_customEnvArgsWorkingDir() throws {
         let args = ["--hello"]
         let env = ["CUSTOM_ENV_VAR": "goodbye"]
-        // TODO(chuck): Figure out how to pass the workingDirectory
-        // let workingDirectory = "path/to/direcotry"
         let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
             resolveHostsFor: .init(
                 buildConfigurationName: "Foo",

@@ -170,6 +170,7 @@ extension XCScheme.LaunchAction {
             envVars.append(contentsOf: productTypeEnvVars)
         }
 
+        // GH933: Add support for custom working directory once it is available in tuist/XcodeProj.
         self.init(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
