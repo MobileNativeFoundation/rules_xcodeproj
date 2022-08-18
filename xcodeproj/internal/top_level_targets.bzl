@@ -2,7 +2,6 @@
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
     ":build_settings.bzl",
