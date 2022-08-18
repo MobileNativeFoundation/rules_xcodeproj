@@ -49,6 +49,11 @@ def get_xcode_schemes():
                 # verify that custom environment variables are passed along.
                 env = {"CUSTOM_ENV_VAR": "hello"},
             ),
-            test_action = xcode_schemes.test_action([_TEST_TARGET]),
+            test_action = xcode_schemes.test_action(
+                [_TEST_TARGET],
+                # This is not necessary for the generator tests. It is here to help
+                # verify that custom environment variables are passed along.
+                env = {"CUSTOM_ENV_VAR": "goodbye"},
+            ),
         ),
     ]

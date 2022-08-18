@@ -108,20 +108,31 @@ def _build_for(
         analyzing = _build_for_value(analyzing),
     )
 
-def _test_action(targets, build_configuration_name):
+def _test_action(
+        targets,
+        build_configuration_name,
+        args = None,
+        env = None):
     """Constructs a test action for an Xcode scheme.
 
     Args:
         targets: A `sequence` of target labels as `string` values.
         build_configuration_name: The name of the build configuration as a
             `string` value.
+        args: Optional. A `list` of `string` arguments that should be passed to
+            the target when executed.
+        env: Optional. A `dict` of `string` values that will be set as
+            environment variables when the target is executed.
 
     Returns:
         A `struct` representing a test action.
     """
+
     return struct(
         targets = targets,
         build_configuration_name = build_configuration_name,
+        args = args if args != None else [],
+        env = env if env != None else {},
     )
 
 def _launch_action(

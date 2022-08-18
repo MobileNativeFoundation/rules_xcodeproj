@@ -69,6 +69,54 @@ extension XCSchemeExtensionsTests {
     }
 }
 
+// MARK: XCScheme.TestAction Initializer Tests
+
+extension XCSchemeExtensionsTests {
+    func test_TestAction_init_noCustomEnvArgs() throws {
+        let buildConfigurationName = "Foo"
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
+        )
+        let actual = XCScheme.TestAction(testActionInfo: testActionInfo)
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: nil,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        XCTAssertEqual(actual, expected)
+    }
+
+    func test_TestAction_init_withCustomEnvArgs() throws {
+        let buildConfigurationName = "Foo"
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
+            args: ["--hello"],
+            env: ["CUSTOM_ENV_VAR": "goodbye"]
+        )
+        let actual = XCScheme.TestAction(testActionInfo: testActionInfo)
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: nil,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            commandlineArguments: .init(arguments: [.init(name: "--hello", enabled: true)]),
+            environmentVariables: [
+                .init(variable: "CUSTOM_ENV_VAR", value: "goodbye", enabled: true),
+            ],
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        XCTAssertEqual(actual, expected)
+    }
+}
+
 // MARK: XCScheme.LaunchAction Initializer Tests
 
 extension XCSchemeExtensionsTests {
@@ -250,10 +298,14 @@ class XCSchemeExtensionsTests: XCTestCase {
     lazy var libraryPlatform = Fixtures.targets["A 1"]!.platform
     lazy var anotherLibraryPlatform = Fixtures.targets["C 1"]!.platform
     lazy var appPlatform = Fixtures.targets["A 2"]!.platform
+    lazy var unitTestPlatform = Fixtures.targets["B 2"]!.platform
+    lazy var uiTestPlatform = Fixtures.targets["B 3"]!.platform
 
     lazy var libraryPBXTarget = pbxTargetsDict["A 1"]!
     lazy var anotherLibraryPBXTarget = pbxTargetsDict["C 1"]!
     lazy var appPBXTarget = pbxTargetsDict["A 2"]!
+    lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
+    lazy var uiTestPBXTarget = pbxTargetsDict["B 3"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
@@ -272,6 +324,20 @@ class XCSchemeExtensionsTests: XCTestCase {
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appPBXTarget,
         platforms: [appPlatform],
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: []
+    )
+    lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: unitTestPBXTarget,
+        platforms: [unitTestPlatform],
+        referencedContainer: filePathResolver.containerReference,
+        hostInfos: [],
+        extensionPointIdentifiers: []
+    )
+    lazy var uiTestTargetInfo = XCSchemeInfo.TargetInfo(
+        pbxTarget: uiTestPBXTarget,
+        platforms: [uiTestPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []

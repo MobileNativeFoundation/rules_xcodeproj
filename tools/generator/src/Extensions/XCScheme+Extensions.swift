@@ -151,7 +151,13 @@ extension XCScheme.TestAction {
             macroExpansion: nil,
             testables: testActionInfo.targetInfos
                 .filter(\.pbxTarget.isTestable)
+                .sortedLocalizedStandard(\.pbxTarget.name)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
+            commandlineArguments: testActionInfo.args.isEmpty ? nil :
+                .init(arguments: testActionInfo.args.map { .init(name: $0, enabled: true) }),
+            environmentVariables: testActionInfo.env.isEmpty ? nil : testActionInfo.env.map {
+                XCScheme.EnvironmentVariable(variable: $0, value: $1, enabled: true)
+            }.sortedLocalizedStandard(\.variable),
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }

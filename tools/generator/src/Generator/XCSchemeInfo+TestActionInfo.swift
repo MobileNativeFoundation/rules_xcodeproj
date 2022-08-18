@@ -4,14 +4,20 @@ extension XCSchemeInfo {
     struct TestActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
+        let args: [String]
+        let env: [String: String]
 
         /// The primary initializer.
         init<TargetInfos: Sequence>(
             buildConfigurationName: String,
-            targetInfos: TargetInfos
+            targetInfos: TargetInfos,
+            args: [String] = [],
+            env: [String: String] = [:]
         ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
             self.buildConfigurationName = buildConfigurationName
             self.targetInfos = Set(targetInfos)
+            self.args = args
+            self.env = env
 
             guard !self.targetInfos.isEmpty else {
                 throw PreconditionError(message: """
@@ -42,7 +48,9 @@ extension XCSchemeInfo.TestActionInfo {
             buildConfigurationName: original.buildConfigurationName,
             targetInfos: original.targetInfos.map {
                 .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
-            }
+            },
+            args: original.args,
+            env: original.env
         )
     }
 }
@@ -67,7 +75,9 @@ extension XCSchemeInfo.TestActionInfo {
                         context: "creating a `TestActionInfo`"
                     )
                 )
-            }
+            },
+            args: testAction.args,
+            env: testAction.env
         )
     }
 }

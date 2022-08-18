@@ -41,12 +41,18 @@ An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.Targ
     }
 
     func test_init_allIsWell() throws {
+        let args = ["--hello"]
+        let env = ["CUSTOM_ENV_VAR": "goodbye"]
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
             buildConfigurationName: buildConfigurationName,
-            targetInfos: [unitTestTargetInfo]
+            targetInfos: [unitTestTargetInfo],
+            args: args,
+            env: env
         )
         XCTAssertEqual(testActionInfo.buildConfigurationName, buildConfigurationName)
         XCTAssertEqual(testActionInfo.targetInfos, [unitTestTargetInfo])
+        XCTAssertEqual(testActionInfo.args, args)
+        XCTAssertEqual(testActionInfo.env, env)
     }
 }
 
