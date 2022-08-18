@@ -152,6 +152,11 @@ extension XCScheme.TestAction {
             testables: testActionInfo.targetInfos
                 .filter(\.pbxTarget.isTestable)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
+            commandlineArguments: testActionInfo.args.isEmpty ? nil :
+                .init(arguments: testActionInfo.args.map { .init(name: $0, enabled: true) }),
+            environmentVariables: testActionInfo.env.isEmpty ? nil : testActionInfo.env.map {
+                .init(variable: $0, value: $1, enabled: true)
+            },
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }
