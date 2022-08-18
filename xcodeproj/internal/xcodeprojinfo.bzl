@@ -56,7 +56,6 @@ def _target_info_fields(
         hosted_targets,
         inputs,
         lldb_context,
-        non_mergable_targets,
         outputs,
         potential_target_merges,
         resource_bundle_informations,
@@ -78,8 +77,6 @@ def _target_info_fields(
         hosted_targets: Maps to the `XcodeProjInfo.hosted_targets` field.
         inputs: Maps to the `XcodeProjInfo.inputs` field.
         lldb_context: Maps to the `XcodeProjInfo.lldb_context` field.
-        non_mergable_targets: Maps to the `XcodeProjInfo.non_mergable_targets`
-            field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
@@ -102,7 +99,6 @@ def _target_info_fields(
         *   `hosted_targets`
         *   `inputs`
         *   `lldb_context`
-        *   `non_mergable_targets`
         *   `outputs`
         *   `potential_target_merges`
         *   `resource_bundle_informations`
@@ -119,7 +115,6 @@ def _target_info_fields(
         "hosted_targets": hosted_targets,
         "inputs": inputs,
         "lldb_context": lldb_context,
-        "non_mergable_targets": non_mergable_targets,
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
         "resource_bundle_informations": resource_bundle_informations,
@@ -188,12 +183,6 @@ def _skip_target(*, deps, transitive_infos):
             search_paths = search_paths,
             transitive_infos = [
                 info
-                for _, info in transitive_infos
-            ],
-        ),
-        non_mergable_targets = depset(
-            transitive = [
-                info.non_mergable_targets
                 for _, info in transitive_infos
             ],
         ),
@@ -303,18 +292,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         ),
         inputs = processed_target.inputs,
         lldb_context = processed_target.lldb_context,
-        non_mergable_targets = depset(
-            processed_target.non_mergable_targets,
-            transitive = [
-                info.non_mergable_targets
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        [None],
-                    ))
-            ],
-        ),
         outputs = processed_target.outputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,

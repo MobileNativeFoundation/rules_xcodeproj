@@ -160,18 +160,10 @@ def _write_json_spec(
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
     ).to_list()
-    non_mergable_targets = sets.make([
-        file_path(file)
-        for file in depset(
-            transitive = [info.non_mergable_targets for info in infos],
-        ).to_list()
-    ])
 
     target_merges = {}
     for merge in potential_target_merges:
         if merge.src.id not in targets or merge.dest not in targets:
-            continue
-        if (sets.contains(non_mergable_targets, merge.src.product_path)):
             continue
         target_merges.setdefault(merge.src.id, []).append(merge.dest)
 
