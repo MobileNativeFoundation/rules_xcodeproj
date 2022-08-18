@@ -51,7 +51,7 @@ actions:
     bazel_commands:
       - "run --config=workflows //:buildifier.check"
 
-  - name: Docs Diff Test
+  - name: Docs
     triggers:
       push:
         branches:
