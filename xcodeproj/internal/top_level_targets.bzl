@@ -438,12 +438,6 @@ def process_top_level_target(
 
     app_icon_name = _get_app_icon_name(ctx, automatic_target_info)
 
-    # DEBUG BEGIN
-    print("*** CHUCK =====================")
-    print("*** CHUCK target.label: ", target.label)
-    print("*** CHUCK app_icon_name: ", app_icon_name)
-
-    # DEBUG END
     if app_icon_name != None:
         build_settings["ASSETCATALOG_COMPILER_APPICON_NAME"] = app_icon_name
 
@@ -488,6 +482,16 @@ def process_top_level_target(
     )
 
 def _get_app_icon_name(ctx, automatic_target_info):
+    """Attempts to find the applicaiton icon name.
+
+    Args:
+        ctx: The aspect context.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
+
+    Returns:
+        The application icon name, if found. Otherwise, None.
+    """
     if automatic_target_info.app_icons == None:
         return None
 
