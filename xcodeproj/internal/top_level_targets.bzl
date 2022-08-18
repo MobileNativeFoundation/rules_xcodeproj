@@ -494,11 +494,7 @@ def _get_app_icon_name(ctx, automatic_target_info):
     if automatic_target_info.app_icons == None:
         return None
 
-    app_icons = getattr(
-        ctx.rule.attr,
-        automatic_target_info.app_icons,
-        None,
-    )
+    app_icons = getattr(ctx.rule.attr, automatic_target_info.app_icons, None)
     if app_icons == None:
         return None
 
