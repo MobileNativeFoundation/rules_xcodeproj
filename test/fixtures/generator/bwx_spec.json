@@ -38,7 +38,9 @@
             },
             "name": "generator",
             "test_action": {
+                "args": null,
                 "build_configuration_name": "Debug",
+                "env": null,
                 "targets": [
                     "//tools/generator/test:tests"
                 ]

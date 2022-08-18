@@ -172,11 +172,18 @@ def make_xcode_schemes(bazel_labels):
             build_for = build_for,
         )
 
-    def _test_action(targets):
+    def _test_action(
+            targets,
+            args = None,
+            env = None):
         """Constructs a test action for an Xcode scheme.
 
         Args:
             targets: A `sequence` of target labels as `string` values.
+            args: Optional. A `list` of `string` arguments that should be passed to
+                the target when executed.
+            env: Optional. A `dict` of `string` values that will be set as
+                environment variables when the target is executed.
 
         Returns:
             A `struct` representing a test action.
@@ -187,6 +194,8 @@ def make_xcode_schemes(bazel_labels):
                 for t in targets
             ],
             build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
+            args = args,
+            env = env,
         )
 
     def _launch_action(

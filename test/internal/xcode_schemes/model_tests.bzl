@@ -154,8 +154,21 @@ def _test_action_test(ctx):
     expected = struct(
         build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
         targets = [bazel_labels.normalize(t) for t in targets],
+        args = None,
+        env = None,
     )
-    asserts.equals(env, expected, actual)
+    asserts.equals(env, expected, actual, "no custom values")
+
+    args = ["--hello"]
+    custom_env = {"CUSTOM_ENV_VAR": "goodbye"}
+    actual = xcode_schemes.test_action(targets, args = args, env = custom_env)
+    expected = struct(
+        build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
+        targets = [bazel_labels.normalize(t) for t in targets],
+        args = args,
+        env = custom_env,
+    )
+    asserts.equals(env, expected, actual, "with custom values")
 
     return unittest.end(env)
 
