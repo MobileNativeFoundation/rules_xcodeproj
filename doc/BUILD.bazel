@@ -31,6 +31,11 @@ _failure_message = "\nPlease update the docs by running\n    bazel run //doc:upd
     for file in _DOC_SRCS
 ]
 
+test_suite(
+    name = "diff_test",
+    tests = ["check_" + file for file in _DOC_SRCS],
+)
+
 write_file(
     name = "gen_update",
     out = "update.sh",
