@@ -76,24 +76,12 @@ def _process_targets(
     )
     if invalid_focused_targets:
         fail("""\
-`focused_targets` contains target(s) that are not declared through `targets` \
-or `schemes`: {}
+`focused_targets` contains target(s) that are not transitive dependencies of \
+the targets listed in `top_level_targets`: {}
 
-Are you using an `alias`? \
-`focused_targets` requires labels of the actual targets.
+Are you using an `alias`? `focused_targets` requires labels of the actual \
+targets.
 """.format(invalid_focused_targets))
-
-    invalid_unfocused_targets = sets.to_list(
-        sets.difference(unfocused_labels, targets_labels),
-    )
-    if invalid_unfocused_targets:
-        fail("""\
-`unfocused_targets` contains target(s) that are not declared through `targets` \
-or `schemes`: {}
-
-Are you using an `alias`? \
-`unfocused_targets` requires labels of the actual targets.
-""".format(invalid_unfocused_targets))
 
     unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
     has_focused_labels = sets.length(focused_labels) > 0
