@@ -3,7 +3,7 @@ startup --output_base=bazel-output-base
 build --incompatible_disallow_empty_glob
 
 build --remote_default_exec_properties=OSFamily=darwin
-build --remote_default_exec_properties=cache_bust=macOS_12.0/1
+build --remote_default_exec_properties=cache_bust=macOS_12.0/2
 
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
