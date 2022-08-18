@@ -27,7 +27,7 @@ build:workflows --remote_download_toplevel
 build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
 build:workflows --color=yes
 build:workflows --terminal_columns=120
-build:workflows --disk_cache=
+# build:workflows --disk_cache=
 
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed
