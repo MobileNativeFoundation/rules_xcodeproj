@@ -172,13 +172,6 @@ def process_top_level_target(
         transitive_infos = transitive_infos,
     )
 
-    # DEBUG BEGIN
-    print("*** CHUCK =====================")
-    print("*** CHUCK target.label: ", target.label)
-    print("*** CHUCK bundle_info: ", bundle_info)
-
-    # DEBUG END
-
     test_host_target = getattr(ctx.rule.attr, "test_host", None)
     test_host_target_info = (
         test_host_target[XcodeProjInfo] if test_host_target else None
@@ -228,13 +221,6 @@ def process_top_level_target(
     is_bundle = bundle_info != None
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
-
-    # # DEBUG BEGIN
-    # if AppleResourceInfo in target:
-    #     apple_resource_info = target[AppleResourceInfo]
-    #     build_settings["ASSETCATALOG_COMPILER_APPICON_NAME"] = "AppIcon"
-
-    # # DEBUG END
 
     modulemaps = process_modulemaps(swift_info = swift_info)
     additional_files.extend(list(modulemaps.files))
@@ -450,6 +436,17 @@ def process_top_level_target(
         transitive_infos = deps_infos,
     )
 
+    app_icon_name = _get_app_icon_name(ctx, automatic_target_info)
+
+    # DEBUG BEGIN
+    print("*** CHUCK =====================")
+    print("*** CHUCK target.label: ", target.label)
+    print("*** CHUCK app_icon_name: ", app_icon_name)
+
+    # DEBUG END
+    if app_icon_name != None:
+        build_settings["ASSETCATALOG_COMPILER_APPICON_NAME"] = app_icon_name
+
     return processed_target(
         automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
@@ -489,3 +486,29 @@ def process_top_level_target(
             lldb_context = lldb_context,
         ),
     )
+
+def _get_app_icon_name(ctx, automatic_target_info):
+    if automatic_target_info.app_icons == None:
+        return None
+
+    app_icons = getattr(
+        ctx.rule.attr,
+        automatic_target_info.app_icons,
+        None,
+    )
+    if app_icons == None:
+        return None
+
+    for target in app_icons:
+        for file in target.files.to_list():
+            suffix_idx = file.short_path.find(".appiconset")
+            if suffix_idx == -1:
+                continue
+            prev_delimiter_idx = file.short_path[:suffix_idx].rfind("/")
+            if prev_delimiter_idx == -1:
+                name_start_idx = 0
+            else:
+                name_start_idx = prev_delimiter_idx + 1
+            return file.short_path[name_start_idx:suffix_idx]
+
+    return None
