@@ -99,8 +99,14 @@ def _to_objc(cc_info):
             libraries,
             order = "topological",
         ),
-        link_inputs = depset(link_inputs),
-        linkopt = depset(linkopts),
+        link_inputs = depset(
+            link_inputs,
+            order = "topological",
+        ),
+        linkopt = depset(
+            linkopts,
+            order = "topological",
+        ),
     )
 
 def _get_xcode_library_targets(*, compilation_providers):
