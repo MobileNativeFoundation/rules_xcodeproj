@@ -493,11 +493,11 @@ def _get_app_icon_name(ctx, automatic_target_info):
     Returns:
         The application icon name, if found. Otherwise, None.
     """
-    if automatic_target_info.app_icons == None:
+    if not automatic_target_info.app_icons:
         return None
 
     app_icons = getattr(ctx.rule.attr, automatic_target_info.app_icons, None)
-    if app_icons == None:
+    if not app_icons:
         return None
 
     for target in app_icons:
