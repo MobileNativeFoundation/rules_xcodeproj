@@ -78,7 +78,7 @@ extension XCSchemeExtensionsTests {
             buildConfigurationName: buildConfigurationName,
             targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
         )
-        let actual = XCScheme.TestAction(testActionInfo: testActionInfo)
+        let actual = XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
@@ -100,7 +100,7 @@ extension XCSchemeExtensionsTests {
             args: ["--hello"],
             env: ["CUSTOM_ENV_VAR": "goodbye"]
         )
-        let actual = XCScheme.TestAction(testActionInfo: testActionInfo)
+        let actual = XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
@@ -147,7 +147,7 @@ extension XCSchemeExtensionsTests {
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
-            environmentVariables: .bazelLaunchVariables,
+            environmentVariables: .bazelLaunchEnvironmentVariables,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
@@ -184,9 +184,10 @@ extension XCSchemeExtensionsTests {
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
             commandlineArguments: .init(arguments: [.init(name: args[0], enabled: true)]),
-            environmentVariables: [
-                .init(variable: "CUSTOM_ENV_VAR", value: env["CUSTOM_ENV_VAR"]!, enabled: true),
-            ] + .bazelLaunchVariables,
+            environmentVariables: (
+                [.init(variable: "CUSTOM_ENV_VAR", value: env["CUSTOM_ENV_VAR"]!, enabled: true)] +
+                    .bazelLaunchEnvironmentVariables
+            ).sortedLocalizedStandard(),
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )

@@ -106,6 +106,16 @@
       </Testables>
       <EnvironmentVariables>
          <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(BUILT_PRODUCTS_DIR)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "CUSTOM_ENV_VAR"
             value = "goodbye"
             isEnabled = "YES">
@@ -135,8 +145,8 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "CUSTOM_ENV_VAR"
-            value = "hello"
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(BUILT_PRODUCTS_DIR)"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
@@ -145,8 +155,8 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "BUILD_WORKING_DIRECTORY"
-            value = "$(BUILT_PRODUCTS_DIR)"
+            key = "CUSTOM_ENV_VAR"
+            value = "hello"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

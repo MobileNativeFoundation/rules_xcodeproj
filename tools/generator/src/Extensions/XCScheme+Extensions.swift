@@ -36,7 +36,7 @@ extension XCScheme {
 
         let testAction: XCScheme.TestAction?
         if let testActionInfo = schemeInfo.testActionInfo {
-            testAction = .init(testActionInfo: testActionInfo)
+            testAction = .init(buildMode: buildMode, testActionInfo: testActionInfo)
         } else {
             testAction = .init(
                 buildConfiguration: .defaultBuildConfigurationName,
@@ -145,18 +145,17 @@ echo "$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
 }
 
 extension XCScheme.TestAction {
-    convenience init(testActionInfo: XCSchemeInfo.TestActionInfo) {
-        let commandlineArguments = testActionInfo.args.isEmpty ? nil :
+    convenience init(buildMode: BuildMode, testActionInfo: XCSchemeInfo.TestActionInfo) {
+        let customArgs = testActionInfo.args.isEmpty ? nil :
             XCScheme.CommandLineArguments(
                 arguments: testActionInfo.args.map { .init(name: $0, enabled: true) }
             )
-        let environmentVariables = testActionInfo.env.isEmpty ? nil :
-            testActionInfo.env.map {
-                XCScheme.EnvironmentVariable(variable: $0, value: $1, enabled: true)
-            }.sortedLocalizedStandard(\.variable)
-        let shouldUseLaunchSchemeArgsEnv = (
-            commandlineArguments == nil && environmentVariables == nil
-        )
+        let customEnvVars = testActionInfo.env.isEmpty ? nil :
+            buildMode.launchEnvironmentVariables.merged(
+                with: testActionInfo.env.asLaunchEnvironmentVariables()
+            )
+        let shouldUseLaunchSchemeArgsEnv = (customArgs == nil && customEnvVars == nil)
+
         self.init(
             buildConfiguration: testActionInfo.buildConfigurationName,
             macroExpansion: nil,
@@ -165,8 +164,8 @@ extension XCScheme.TestAction {
                 .sortedLocalizedStandard(\.pbxTarget.name)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
             shouldUseLaunchSchemeArgsEnv: shouldUseLaunchSchemeArgsEnv,
-            commandlineArguments: commandlineArguments,
-            environmentVariables: environmentVariables,
+            commandlineArguments: customArgs,
+            environmentVariables: customEnvVars,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }
@@ -174,17 +173,9 @@ extension XCScheme.TestAction {
 
 extension XCScheme.LaunchAction {
     convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) throws {
-        let productType = launchActionInfo.targetInfo.productType
-
-        var envVars: [XCScheme.EnvironmentVariable] = launchActionInfo.env.map { name, value in
-            .init(variable: name, value: value, enabled: true)
-        }
-        if buildMode.usesBazelEnvironmentVariables,
-            let productTypeEnvVars = productType.bazelLaunchEnvironmentVariables
-        {
-            envVars.append(contentsOf: productTypeEnvVars)
-        }
-
+        let environmentVariables = buildMode.launchEnvironmentVariables.merged(
+            with: launchActionInfo.env.asLaunchEnvironmentVariables()
+        )
         // GH933: Add support for custom working directory once it is available in tuist/XcodeProj.
         self.init(
             runnable: launchActionInfo.runnable,
@@ -195,8 +186,9 @@ extension XCScheme.LaunchAction {
             askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,
             commandlineArguments: launchActionInfo.args.isEmpty ? nil :
                 .init(arguments: launchActionInfo.args.map { .init(name: $0, enabled: true) }),
-            environmentVariables: envVars.isEmpty ? nil : envVars,
-            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
+            environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
+            launchAutomaticallySubstyle: launchActionInfo.targetInfo.productType
+                .launchAutomaticallySubstyle,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }

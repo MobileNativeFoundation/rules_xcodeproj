@@ -268,10 +268,6 @@ extension PBXProductType {
 
     // MARK: Schemes
 
-    var bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable]? {
-        return isLaunchable ? .bazelLaunchVariables : nil
-    }
-
     var canUseDebugLauncher: Bool {
         // Extensions don't use the lldb launcher
         return !isExtension

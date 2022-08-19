@@ -1,3 +1,5 @@
+import XcodeProj
+
 enum BuildMode: String {
     case xcode
     case bazel
@@ -32,10 +34,10 @@ extension BuildMode {
         }
     }
 
-    var usesBazelEnvironmentVariables: Bool {
+    var launchEnvironmentVariables: [XCScheme.EnvironmentVariable] {
         switch self {
-        case .xcode: return false
-        case .bazel: return true
+        case .xcode: return []
+        case .bazel: return .bazelLaunchEnvironmentVariables
         }
     }
 }
