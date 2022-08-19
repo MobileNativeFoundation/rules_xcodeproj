@@ -2,6 +2,36 @@
 
 Public rules, macros, and libraries.
 
+<a id="xcodeproj"></a>
+
+## xcodeproj
+
+<pre>
+xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-archived_bundles_allowed">archived_bundles_allowed</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-build_mode">build_mode</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>, <a href="#xcodeproj-project_name">project_name</a>,
+          <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>, <a href="#xcodeproj-schemes_json">schemes_json</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>, <a href="#xcodeproj-toplevel_cache_buster">toplevel_cache_buster</a>,
+          <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>)
+</pre>
+
+
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| <a id="xcodeproj-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
+| <a id="xcodeproj-archived_bundles_allowed"></a>archived_bundles_allowed |  -   | Boolean | optional | False |
+| <a id="xcodeproj-bazel_path"></a>bazel_path |  -   | String | optional | "bazel" |
+| <a id="xcodeproj-build_mode"></a>build_mode |  -   | String | optional | "xcode" |
+| <a id="xcodeproj-focused_targets"></a>focused_targets |  -   | List of strings | optional | [] |
+| <a id="xcodeproj-project_name"></a>project_name |  -   | String | optional | "" |
+| <a id="xcodeproj-scheme_autogeneration_mode"></a>scheme_autogeneration_mode |  Specifies how Xcode schemes are automatically generated.   | String | optional | "auto" |
+| <a id="xcodeproj-schemes_json"></a>schemes_json |  A JSON string representing a list of Xcode schemes to create.   | String | optional | "" |
+| <a id="xcodeproj-top_level_targets"></a>top_level_targets |  -   | <a href="https://bazel.build/concepts/labels">List of labels</a> | required |  |
+| <a id="xcodeproj-toplevel_cache_buster"></a>toplevel_cache_buster |  For internal use only. Do not set this value yourself.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional | [] |
+| <a id="xcodeproj-unfocused_targets"></a>unfocused_targets |  -   | List of strings | optional | [] |
+
+
 <a id="XcodeProjAutomaticTargetProcessingInfo"></a>
 
 ## XcodeProjAutomaticTargetProcessingInfo
@@ -235,26 +265,5 @@ A `sequence` of `struct` values as returned by `xcode_schemes.scheme`.
   Will only include schemes that have at least one target not in
   `unfocused_targets`. Some actions might be removed if they reference
   unfocused targets.
-
-
-<a id="xcodeproj"></a>
-
-## xcodeproj
-
-<pre>
-xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-xcodeproj_rule">xcodeproj_rule</a>, <a href="#xcodeproj-schemes">schemes</a>, <a href="#xcodeproj-kwargs">kwargs</a>)
-</pre>
-
-Creates an .xcodeproj file in the workspace when run.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcodeproj-name"></a>name |  The name of the target.   |  none |
-| <a id="xcodeproj-xcodeproj_rule"></a>xcodeproj_rule |  The actual <code>xcodeproj</code> rule. This is overridden during fixture testing. You shouldn't need to set it yourself.   |  <code><unknown object com.google.devtools.build.skydoc.fakebuildapi.FakeStarlarkRuleFunctionsApi$RuleDefinitionIdentifier></code> |
-| <a id="xcodeproj-schemes"></a>schemes |  Optional. A <code>list</code> of <code>struct</code> values as returned by <code>xcode_schemes.scheme</code>.   |  <code>None</code> |
-| <a id="xcodeproj-kwargs"></a>kwargs |  Additional arguments to pass to <code>xcodeproj_rule</code>.   |  none |
 
 
