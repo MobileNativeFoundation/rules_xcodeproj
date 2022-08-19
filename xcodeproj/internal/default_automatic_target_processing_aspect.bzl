@@ -163,21 +163,21 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
     return [
         XcodeProjAutomaticTargetProcessingInfo(
-            codesignopts = codesignopts,
-            exported_symbols_lists = exported_symbols_lists,
-            should_generate_target = should_generate_target,
-            target_type = this_target_type,
-            xcode_targets = xcode_targets,
-            non_arc_srcs = non_arc_srcs,
-            srcs = srcs,
-            pch = pch,
+            app_icons = app_icons,
+            bazel_build_mode_error = bazel_build_mode_error,
             bundle_id = bundle_id,
-            provisioning_profile = provisioning_profile,
+            codesignopts = codesignopts,
+            entitlements = entitlements,
+            exported_symbols_lists = exported_symbols_lists,
             infoplists = infoplists,
             launchdplists = launchdplists,
-            entitlements = entitlements,
-            bazel_build_mode_error = bazel_build_mode_error,
-            app_icons = app_icons,
+            non_arc_srcs = non_arc_srcs,
+            pch = pch,
+            provisioning_profile = provisioning_profile,
+            should_generate_target = should_generate_target,
+            srcs = srcs,
+            target_type = this_target_type,
+            xcode_targets = xcode_targets,
         ),
     ]
 
