@@ -55,3 +55,21 @@ string_setting(
     # This is made public for internal use only. Do not depend on this setting.
     visibility = ["//visibility:public"],
 )
+
+# Release
+
+filegroup(
+    name = "release_files",
+    srcs = glob(
+        ["**"],
+        exclude = [
+            "fixtures.bzl",
+            "updater.template.sh",
+            "xcodeproj_tests.bzl",
+            "validator.template.sh",
+        ],
+    ) + [
+        "//" + package_name() + "/bazel_integration_files:release_files",
+    ],
+    visibility = ["//visibility:public"],
+)
