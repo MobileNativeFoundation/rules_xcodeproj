@@ -72,26 +72,24 @@ extension XCSchemeExtensionsTests {
 // MARK: XCScheme.TestAction Initializer Tests
 
 extension XCSchemeExtensionsTests {
-    func test_TestAction_init_noCustomEnvArgs() throws {
-        for buildMode in [BuildMode.xcode, BuildMode.bazel] {
-            let buildConfigurationName = "Foo"
-            let testActionInfo = try XCSchemeInfo.TestActionInfo(
-                buildConfigurationName: buildConfigurationName,
-                targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
-            )
-            let actual = XCScheme.TestAction(buildMode: buildMode, testActionInfo: testActionInfo)
-            let expected = XCScheme.TestAction(
-                buildConfiguration: buildConfigurationName,
-                macroExpansion: nil,
-                testables: [
-                    .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
-                    .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
-                ],
-                shouldUseLaunchSchemeArgsEnv: true,
-                customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
-            )
-            XCTAssertEqual(actual, expected, "for build mode \(buildMode)")
-        }
+    func test_TestAction_init_noCustomEnvArgs_xcode() throws {
+        let buildConfigurationName = "Foo"
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
+        )
+        let actual = XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: nil,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            shouldUseLaunchSchemeArgsEnv: true,
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        XCTAssertEqual(actual, expected)
     }
 
     func test_TestAction_init_withCustomEnvArgs_xcode() throws {
@@ -115,6 +113,27 @@ extension XCSchemeExtensionsTests {
             environmentVariables: [
                 .init(variable: "CUSTOM_ENV_VAR", value: "goodbye", enabled: true),
             ],
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        XCTAssertEqual(actual, expected)
+    }
+
+    func test_TestAction_init_noCustomEnvArgs_bazel() throws {
+        let buildConfigurationName = "Foo"
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            buildConfigurationName: buildConfigurationName,
+            targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
+        )
+        let actual = XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: nil,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            shouldUseLaunchSchemeArgsEnv: false,
+            environmentVariables: .bazelLaunchEnvironmentVariables,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
         XCTAssertEqual(actual, expected)
