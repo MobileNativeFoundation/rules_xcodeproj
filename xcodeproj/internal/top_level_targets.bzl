@@ -436,9 +436,11 @@ def process_top_level_target(
         transitive_infos = deps_infos,
     )
 
-    app_icon_name = _get_app_icon_name(ctx, automatic_target_info)
-    if app_icon_name != None:
-        build_settings["ASSETCATALOG_COMPILER_APPICON_NAME"] = app_icon_name
+    set_if_true(
+        build_settings,
+        "ASSETCATALOG_COMPILER_APPICON_NAME",
+         _get_app_icon_name(ctx, automatic_target_info),
+    )
 
     return processed_target(
         automatic_target_info = automatic_target_info,
