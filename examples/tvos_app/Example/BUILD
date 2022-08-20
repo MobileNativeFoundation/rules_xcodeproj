@@ -9,13 +9,20 @@ swift_library(
     visibility = ["//visibility:public"],
 )
 
+_APP_ICONS_GLOB = "Assets.xcassets/App Icon & Top Shelf Image.brandassets/**"
+
 tvos_application(
     name = "Example",
+    app_icons = glob([_APP_ICONS_GLOB]),
     bundle_id = "io.buildbuddy.example",
     bundle_name = "Example",
     entitlements = ":entitlements",
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
+    resources = glob(
+        ["Assets.xcassets/**"],
+        exclude = [_APP_ICONS_GLOB],
+    ),
     visibility = ["//visibility:public"],
     deps = [":Example.library"],
 )

@@ -98,6 +98,9 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         infoplists = ["infoplists"]
         should_generate_target = False
     elif AppleBundleInfo in target:
+        # DEBUG BEGIN
+        print("*** CHUCK AppleBundleInfo target.label: ", target.label)
+        # DEBUG END
         xcode_targets = {
             "deps": [target_type.compile, None],
         }
@@ -106,6 +109,9 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if "app_clips" in attrs:
             xcode_targets["app_clips"] = [target_type.compile]
         if "app_icons" in attrs:
+            # DEBUG BEGIN
+            print("*** CHUCK Has app_icons")
+            # DEBUG END
             app_icons = "app_icons"
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"

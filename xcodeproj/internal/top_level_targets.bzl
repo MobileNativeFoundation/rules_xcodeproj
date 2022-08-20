@@ -436,6 +436,10 @@ def process_top_level_target(
         transitive_infos = deps_infos,
     )
 
+    # DEBUG BEGIN
+    print("*** CHUCK top_level_targets ctx.label: ", ctx.label)
+    print("*** CHUCK top_level_targets automatic_target_info.app_icons: ", automatic_target_info.app_icons)
+    # DEBUG END
     set_if_true(
         build_settings,
         "ASSETCATALOG_COMPILER_APPICON_NAME",
@@ -482,6 +486,19 @@ def process_top_level_target(
         ),
     )
 
+def _get_resource_set_name(path, suffix):
+    suffix_idx = path.find(suffix)
+    if suffix_idx == -1:
+        return None
+    prev_delimiter_idx = path[:suffix_idx].rfind("/")
+    if prev_delimiter_idx == -1:
+        name_start_idx = 0
+    else:
+        name_start_idx = prev_delimiter_idx + 1
+    return path[name_start_idx:suffix_idx]
+    
+_RESOURCE_SET_SUFFIXES = [".appiconset", ".brandassets"]
+
 def _get_app_icon_name(ctx, automatic_target_info):
     """Attempts to find the applicaiton icon name.
 
@@ -497,19 +514,27 @@ def _get_app_icon_name(ctx, automatic_target_info):
         return None
 
     app_icons = getattr(ctx.rule.attr, automatic_target_info.app_icons, None)
+    # DEBUG BEGIN
+    print("*** CHUCK ==================")
+    print("*** CHUCK _get_app_icon_name ctx.label: ", ctx.label)
+    print("*** CHUCK _get_app_icon_name app_icons: ", app_icons)
+    # DEBUG END
     if not app_icons:
         return None
 
-    for target in app_icons:
-        for file in target.files.to_list():
-            suffix_idx = file.short_path.find(".appiconset")
-            if suffix_idx == -1:
-                continue
-            prev_delimiter_idx = file.short_path[:suffix_idx].rfind("/")
-            if prev_delimiter_idx == -1:
-                name_start_idx = 0
-            else:
-                name_start_idx = prev_delimiter_idx + 1
-            return file.short_path[name_start_idx:suffix_idx]
+    resource_files = [
+        file
+        for target in app_icons
+        for file in target.files.to_list()
+    ]
+    for file in resource_files:
+        for suffix in _RESOURCE_SET_SUFFIXES:
+            resource_name = _get_resource_set_name(file.short_path, suffix)
+            # DEBUG BEGIN
+            print("*** CHUCK file.short_path: ", file.short_path)
+            print("*** CHUCK resource_name: ", resource_name)
+            # DEBUG END
+            if resource_name:
+                return resource_name
 
     return None
