@@ -36,7 +36,7 @@ extension XCScheme {
 
         let testAction: XCScheme.TestAction?
         if let testActionInfo = schemeInfo.testActionInfo {
-            testAction = .init(testActionInfo: testActionInfo)
+            testAction = .init(buildMode: buildMode, testActionInfo: testActionInfo)
         } else {
             testAction = .init(
                 buildConfiguration: .defaultBuildConfigurationName,
@@ -144,8 +144,29 @@ echo "$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
     }
 }
 
+extension XCScheme.CommandLineArguments {
+    convenience init?(xcSchemeInfoArgs args: [String]) {
+        guard !args.isEmpty else {
+            return nil
+        }
+        self.init(
+            arguments: args.map { .init(name: $0, enabled: true) }
+        )
+    }
+}
+
 extension XCScheme.TestAction {
-    convenience init(testActionInfo: XCSchemeInfo.TestActionInfo) {
+    convenience init(buildMode: BuildMode, testActionInfo: XCSchemeInfo.TestActionInfo) {
+        let commandlineArguments = XCScheme.CommandLineArguments(
+            xcSchemeInfoArgs: testActionInfo.args
+        )
+        let environmentVariables = buildMode.launchEnvironmentVariables.merged(
+            with: testActionInfo.env.asLaunchEnvironmentVariables()
+        )
+        let shouldUseLaunchSchemeArgsEnv = (
+            commandlineArguments == nil && environmentVariables.isEmpty
+        )
+
         self.init(
             buildConfiguration: testActionInfo.buildConfigurationName,
             macroExpansion: nil,
@@ -153,11 +174,9 @@ extension XCScheme.TestAction {
                 .filter(\.pbxTarget.isTestable)
                 .sortedLocalizedStandard(\.pbxTarget.name)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
-            commandlineArguments: testActionInfo.args.isEmpty ? nil :
-                .init(arguments: testActionInfo.args.map { .init(name: $0, enabled: true) }),
-            environmentVariables: testActionInfo.env.isEmpty ? nil : testActionInfo.env.map {
-                XCScheme.EnvironmentVariable(variable: $0, value: $1, enabled: true)
-            }.sortedLocalizedStandard(\.variable),
+            shouldUseLaunchSchemeArgsEnv: shouldUseLaunchSchemeArgsEnv,
+            commandlineArguments: commandlineArguments,
+            environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }
@@ -165,16 +184,12 @@ extension XCScheme.TestAction {
 
 extension XCScheme.LaunchAction {
     convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) throws {
-        let productType = launchActionInfo.targetInfo.productType
-
-        var envVars: [XCScheme.EnvironmentVariable] = launchActionInfo.env.map { name, value in
-            .init(variable: name, value: value, enabled: true)
-        }
-        if buildMode.usesBazelEnvironmentVariables,
-            let productTypeEnvVars = productType.bazelLaunchEnvironmentVariables
-        {
-            envVars.append(contentsOf: productTypeEnvVars)
-        }
+        let commandlineArguments = XCScheme.CommandLineArguments(
+            xcSchemeInfoArgs: launchActionInfo.args
+        )
+        let environmentVariables = buildMode.launchEnvironmentVariables.merged(
+            with: launchActionInfo.env.asLaunchEnvironmentVariables()
+        )
 
         // GH933: Add support for custom working directory once it is available in tuist/XcodeProj.
         self.init(
@@ -184,10 +199,10 @@ extension XCScheme.LaunchAction {
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,
-            commandlineArguments: launchActionInfo.args.isEmpty ? nil :
-                .init(arguments: launchActionInfo.args.map { .init(name: $0, enabled: true) }),
-            environmentVariables: envVars.isEmpty ? nil : envVars,
-            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
+            commandlineArguments: commandlineArguments,
+            environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
+            launchAutomaticallySubstyle: launchActionInfo.targetInfo.productType
+                .launchAutomaticallySubstyle,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
     }

@@ -4,18 +4,7 @@ import XCTest
 @testable import generator
 
 class PBXProductTypeExtensionsTests: XCTestCase {
-    func test_bazelLaunchEnvironmentVariables_WhenIsLaunchable() throws {
-        XCTAssertEqual(
-            PBXProductType.application.bazelLaunchEnvironmentVariables,
-            .bazelLaunchVariables
-        )
-    }
-
-    func test_bazelLaunchEnvironmentVariables_WhenIsNotLaunchable() throws {
-        XCTAssertNil(PBXProductType.framework.bazelLaunchEnvironmentVariables)
-    }
-
-    func test_isTopLevel_whenIsCommanLine() throws {
+    func test_isTopLevel_whenIsCommandLine() throws {
         XCTAssertTrue(PBXProductType.commandLineTool.isTopLevel)
     }
 
