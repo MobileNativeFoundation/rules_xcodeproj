@@ -58,6 +58,7 @@
         "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-93b70069dc11",
         {
             "build_settings": {
+                "ASSETCATALOG_COMPILER_APPICON_NAME": "App Icon & Top Shelf Image",
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -79,7 +80,10 @@
                 "entitlements": {
                     "_": "applebin_tvos-tvos_x86_64-dbg-ST-93b70069dc11/bin/examples/tvos_app/Example/app.entitlements",
                     "t": "g"
-                }
+                },
+                "resources": [
+                    "examples/tvos_app/Example/Assets.xcassets"
+                ]
             },
             "is_swift": false,
             "label": "//examples/tvos_app/Example:Example",

@@ -72,6 +72,7 @@
 		22E09E2F209B63781257371E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		39004B79217BED4A67CB9A93 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		44C19A56FE797949930D145D /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E2E287D3B9BA9E6E4FC9C03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50D13467AC1061414CAD92AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		75AFCD0AE3F74ABC41475218 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		7AA5099693507C637AF512F2 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
@@ -190,6 +191,7 @@
 		8A4520AA26B6158FA29DFA58 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				4E2E287D3B9BA9E6E4FC9C03 /* Assets.xcassets */,
 				39004B79217BED4A67CB9A93 /* BUILD */,
 				50D13467AC1061414CAD92AA /* ContentView.swift */,
 				FA0E59FF263E41FFE42D58A1 /* ExampleApp.swift */,
@@ -753,6 +755,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/Example/Example.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/Example";
 				BAZEL_TARGET_ID = "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d";
