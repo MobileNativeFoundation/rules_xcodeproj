@@ -3,6 +3,11 @@ import XcodeProj
 // MARK: Build with Bazel Specific Environment Variables
 
 extension Array where Element == XCScheme.EnvironmentVariable {
+    /// Provides the Bazel-specific environment variables for Build with Bazel
+    /// launch action.
+    ///
+    /// For more information:
+    /// https://docs.bazel.build/versions/main/user-manual.html#run
     static let bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable] = [
         .init(
             variable: "BUILD_WORKSPACE_DIRECTORY",
