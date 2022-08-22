@@ -39,6 +39,8 @@ filegroup(
 
 _BUILDIFIER_EXCLUDE_PATTERNS = [
     "./.git/*",
+    "**/bazel-output-base/*",
+    "**/*.xcodeproj/*",
 ]
 
 _BUILDIFIER_WARNINGS = [
