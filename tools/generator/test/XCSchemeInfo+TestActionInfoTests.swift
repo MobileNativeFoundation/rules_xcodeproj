@@ -150,8 +150,10 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
         extensionPointIdentifiers: []
     )
 
+    // swiftlint:disable:next force_try
     lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
+        // swiftlint:disable:next force_try
         testAction: try! .init(targets: [targetResolver.targets["B 2"]!.label])
     )
 }

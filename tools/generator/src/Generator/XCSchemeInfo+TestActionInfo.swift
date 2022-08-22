@@ -1,13 +1,6 @@
 import XcodeProj
 
 extension XCSchemeInfo {
-    enum VariableExpansionContextInfo: Equatable {
-        case none
-        case target(TargetInfo)
-    }
-}
-
-extension XCSchemeInfo {
     struct TestActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
@@ -54,17 +47,6 @@ extension XCSchemeInfo.TestActionInfo {
         guard let original = testActionInfo else {
           return nil
         }
-
-        let expandVariablesBasedOn: XCSchemeInfo.VariableExpansionContextInfo
-        switch original.expandVariablesBasedOn {
-        case .none:
-            expandVariablesBasedOn = .none
-        case let .target(targetInfo):
-            expandVariablesBasedOn = .target(
-                .init(resolveHostFor: targetInfo, topLevelTargetInfos: topLevelTargetInfos)
-            )
-        }
-
         try self.init(
             buildConfigurationName: original.buildConfigurationName,
             targetInfos: original.targetInfos.map {
@@ -72,7 +54,10 @@ extension XCSchemeInfo.TestActionInfo {
             },
             args: original.args,
             env: original.env,
-            expandVariablesBasedOn: expandVariablesBasedOn
+            expandVariablesBasedOn: .init(
+                resolveHostsFor: original.expandVariablesBasedOn,
+                topLevelTargetInfos: topLevelTargetInfos
+            )
         )
     }
 }
@@ -88,22 +73,6 @@ extension XCSchemeInfo.TestActionInfo {
         guard let testAction = testAction else {
           return nil
         }
-
-        let expandVariablesBasedOn: XCSchemeInfo.VariableExpansionContextInfo
-        switch testAction.expandVariablesBasedOn {
-        case .none:
-            expandVariablesBasedOn = .none
-        case let .target(label):
-            expandVariablesBasedOn = .target(
-                try targetResolver.targetInfo(
-                    targetID: try targetIDsByLabel.value(
-                        for: label,
-                        context: "creating a `TestActionInfo`"
-                    )
-                )
-            )
-        }
-
         try self.init(
             buildConfigurationName: testAction.buildConfigurationName,
             targetInfos: try testAction.targets.map { label in
@@ -116,7 +85,11 @@ extension XCSchemeInfo.TestActionInfo {
             },
             args: testAction.args,
             env: testAction.env,
-            expandVariablesBasedOn: expandVariablesBasedOn
+            expandVariablesBasedOn: try .init(
+                context: testAction.expandVariablesBasedOn,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            )
         )
     }
 }
