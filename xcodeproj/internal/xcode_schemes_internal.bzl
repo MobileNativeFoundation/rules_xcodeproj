@@ -115,7 +115,7 @@ def _test_action(
         build_configuration_name,
         args = None,
         env = None,
-        expand_vars_based_on = None):
+        expand_variables_based_on = None):
     """Constructs a test action for an Xcode scheme.
 
     Args:
@@ -126,7 +126,7 @@ def _test_action(
             the target when executed.
         env: Optional. A `dict` of `string` values that will be set as
             environment variables when the target is executed.
-        expand_vars_based_on: Optional. One of the specified test target labels.
+        expand_variables_based_on: Optional. One of the specified test target labels.
             If no value is provided, one of the test targets will be selected.
             If no expansion context is desired, use the `string` value `none`.
 
@@ -134,11 +134,16 @@ def _test_action(
         A `struct` representing a test action.
     """
 
-    if expand_vars_based_on and expand_vars_based_on != "none":
+    if targets == []:
+        fail("At least one test target must be specified for a test action.")
+
+    if not expand_variables_based_on:
+        expand_variables_based_on = targets[0]
+    elif expand_variables_based_on and expand_variables_based_on != "none":
         test_target_labels = sets.make(targets)
-        if not sets.contains(test_target_labels, expand_vars_based_on):
+        if not sets.contains(test_target_labels, expand_variables_based_on):
             fail("""\
-The `expand_vars_based_on` value must be 'none' or one of the test targets.
+The `expand_variables_based_on` value must be 'none' or one of the test targets.
 """)
 
     return struct(
@@ -146,7 +151,7 @@ The `expand_vars_based_on` value must be 'none' or one of the test targets.
         build_configuration_name = build_configuration_name,
         args = args if args != None else [],
         env = env if env != None else {},
-        expand_vars_based_on = expand_vars_based_on,
+        expand_variables_based_on = expand_variables_based_on,
     )
 
 def _launch_action(

@@ -43,7 +43,7 @@
                 "env": {
                     "CUSTOM_ENV_VAR": "goodbye"
                 },
-                "expand_vars_based_on": null,
+                "expand_variables_based_on": "//tools/generator/test:tests",
                 "targets": [
                     "//tools/generator/test:tests"
                 ]

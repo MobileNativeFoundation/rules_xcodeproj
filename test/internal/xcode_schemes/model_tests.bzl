@@ -156,7 +156,7 @@ def _test_action_test(ctx):
         targets = [bazel_labels.normalize(t) for t in targets],
         args = [],
         env = {},
-        expand_vars_based_on = None,
+        expand_variables_based_on = bazel_labels.normalize(targets[0]),
     )
     asserts.equals(env, expected, actual, "no custom values")
 
@@ -168,29 +168,29 @@ def _test_action_test(ctx):
         targets = [bazel_labels.normalize(t) for t in targets],
         args = args,
         env = custom_env,
-        expand_vars_based_on = None,
+        expand_variables_based_on = bazel_labels.normalize(targets[0]),
     )
     asserts.equals(env, expected, actual, "with custom values")
 
-    actual = xcode_schemes.test_action(targets, expand_vars_based_on = "None")
+    actual = xcode_schemes.test_action(targets, expand_variables_based_on = "None")
     expected = struct(
         build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
         targets = [bazel_labels.normalize(t) for t in targets],
         args = [],
         env = {},
-        expand_vars_based_on = "none",
+        expand_variables_based_on = "none",
     )
-    asserts.equals(env, expected, actual, "expand_vars_based_on set to 'none'")
+    asserts.equals(env, expected, actual, "expand_variables_based_on set to 'none'")
 
-    actual = xcode_schemes.test_action(targets, expand_vars_based_on = targets[0])
+    actual = xcode_schemes.test_action(targets, expand_variables_based_on = targets[0])
     expected = struct(
         build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
         targets = [bazel_labels.normalize(t) for t in targets],
         args = [],
         env = {},
-        expand_vars_based_on = bazel_labels.normalize(targets[0]),
+        expand_variables_based_on = bazel_labels.normalize(targets[0]),
     )
-    asserts.equals(env, expected, actual, "expand_vars_based_on set to 'none'")
+    asserts.equals(env, expected, actual, "expand_variables_based_on set to test target")
 
     return unittest.end(env)
 

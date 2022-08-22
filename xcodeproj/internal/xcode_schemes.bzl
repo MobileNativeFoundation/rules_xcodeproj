@@ -180,7 +180,7 @@ def make_xcode_schemes(bazel_labels):
             targets,
             args = None,
             env = None,
-            expand_vars_based_on = None):
+            expand_variables_based_on = None):
         """Constructs a test action for an Xcode scheme.
 
         Args:
@@ -189,7 +189,7 @@ def make_xcode_schemes(bazel_labels):
                 the target when executed.
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
-            expand_vars_based_on: Optional. One of the specified test target labels.
+            expand_variables_based_on: Optional. One of the specified test target labels.
                 If no value is provided, one of the test targets will be selected.
                 If no expansion context is desired, use the `string` value `none`.
 
@@ -197,13 +197,13 @@ def make_xcode_schemes(bazel_labels):
             A `struct` representing a test action.
         """
 
-        # Normalize the value for `expand_vars_based_on`
-        if expand_vars_based_on:
-            if expand_vars_based_on.lower() == "none":
-                expand_vars_based_on = "none"
+        # Normalize the value for `expand_variables_based_on`
+        if expand_variables_based_on:
+            if expand_variables_based_on.lower() == "none":
+                expand_variables_based_on = "none"
             else:
-                expand_vars_based_on = bazel_labels.normalize(
-                    expand_vars_based_on,
+                expand_variables_based_on = bazel_labels.normalize(
+                    expand_variables_based_on,
                 )
 
         return xcode_schemes_internal.test_action(
@@ -214,7 +214,7 @@ def make_xcode_schemes(bazel_labels):
             build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
             args = args,
             env = env,
-            expand_vars_based_on = expand_vars_based_on,
+            expand_variables_based_on = expand_variables_based_on,
         )
 
     def _launch_action(

@@ -156,6 +156,40 @@ Found a duplicate label \(label) in provided `XcodeScheme.BuildTarget` values.
     }
 }
 
+// MARK: VariableExpansionContext
+
+extension XcodeScheme {
+    enum VariableExpansionContext: Equatable, Decodable {
+        case none
+        case target(BazelLabel)
+    }
+}
+
+extension XcodeScheme.VariableExpansionContext: RawRepresentable {
+    init?(rawValue: String) {
+        switch rawValue {
+        case "":
+            return nil
+        case "none":
+            self = .none
+        default:
+            guard let label = try? BazelLabel(rawValue) else {
+                return nil
+            }
+            self = .target(label)
+        }
+    }
+
+    var rawValue: String {
+        switch self {
+        case .none:
+            return "none"
+        case let .target(label):
+            return "\(label)"
+        }
+    }
+}
+
 // MARK: TestAction
 
 extension XcodeScheme {
@@ -164,17 +198,20 @@ extension XcodeScheme {
         let targets: Set<BazelLabel>
         let args: [String]
         let env: [String: String]
+        let expandVariablesBasedOn: VariableExpansionContext
 
         init<Targets: Sequence>(
             targets: Targets,
             buildConfigurationName: String = .defaultBuildConfigurationName,
             args: [String] = [],
-            env: [String: String] = [:]
+            env: [String: String] = [:],
+            expandVariablesBasedOn: VariableExpansionContext = .none
         ) throws where Targets.Element == BazelLabel {
             self.targets = Set(targets)
             self.buildConfigurationName = buildConfigurationName
             self.args = args
             self.env = env
+            self.expandVariablesBasedOn = expandVariablesBasedOn
 
             guard !self.targets.isEmpty else {
                 throw PreconditionError(message: """
