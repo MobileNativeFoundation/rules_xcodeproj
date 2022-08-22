@@ -199,8 +199,8 @@
                             "-DDEBUG=1",
                             "-fstack-protector",
                             "-fstack-protector-all",
-                            "-DSECRET_3=\"Hello\"",
-                            "-DSECRET_2=\"World!\""
+                            "-DSECRET_3=\\\"Hello\\\"",
+                            "-DSECRET_2=\\\"World!\\\""
                         ],
                         "q": [
                             ".",
@@ -243,8 +243,8 @@
                             "-DDEBUG=1",
                             "-fstack-protector",
                             "-fstack-protector-all",
-                            "-DSECRET_3=\"Hello\"",
-                            "-DSECRET_2=\"World!\""
+                            "-DSECRET_3=\\\"Hello\\\"",
+                            "-DSECRET_2=\\\"World!\\\""
                         ],
                         "q": [
                             ".",
@@ -353,7 +353,7 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Fexternal/examples_command_line_external -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwiftTestsLib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -369,6 +369,7 @@
                     "examples/command_line/Tests/SwiftGreetingsTests.swift"
                 ]
             },
+            "is_testonly": true,
             "label": "//examples/command_line/Tests:LibSwiftTestsLib",
             "modulemaps": [
                 {
@@ -560,7 +561,7 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Fexternal/examples_command_line_external -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwift",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h",
@@ -1005,8 +1006,8 @@
                             "-DDEBUG=1",
                             "-fstack-protector",
                             "-fstack-protector-all",
-                            "-DSECRET_3=\"Hello\"",
-                            "-DSECRET_2=\"World!\""
+                            "-DSECRET_3=\\\"Hello\\\"",
+                            "-DSECRET_2=\\\"World!\\\""
                         ],
                         "q": [
                             ".",
