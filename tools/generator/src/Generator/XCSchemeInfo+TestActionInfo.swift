@@ -93,3 +93,16 @@ extension XCSchemeInfo.TestActionInfo {
         )
     }
 }
+
+// MARK: `macroExpansion`
+
+extension XCSchemeInfo.TestActionInfo {
+    var macroExpansion: XCScheme.BuildableReference? {
+        get throws {
+            guard let targetInfo = targetInfos.first else {
+                return nil
+            }
+            return try targetInfo.macroExpansion
+        }
+    }
+}

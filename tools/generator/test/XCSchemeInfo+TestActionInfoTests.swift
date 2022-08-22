@@ -107,6 +107,14 @@ extension XCSchemeInfoTestActionInfoTests {
     }
 }
 
+// MARK: `macroExpansion` Tests
+
+extension XCSchemeInfoTestActionInfoTests {
+    func test_macroExpansion() throws {
+        XCTFail("IMPLEMENT ME!")
+    }
+}
+
 // MARK: - Test Data
 
 class XCSchemeInfoTestActionInfoTests: XCTestCase {

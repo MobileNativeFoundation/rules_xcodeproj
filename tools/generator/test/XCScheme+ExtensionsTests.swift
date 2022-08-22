@@ -78,7 +78,7 @@ extension XCSchemeExtensionsTests {
             buildConfigurationName: buildConfigurationName,
             targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
         )
-        let actual = XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
+        let actual = try XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
@@ -100,7 +100,7 @@ extension XCSchemeExtensionsTests {
             args: ["--hello"],
             env: ["CUSTOM_ENV_VAR": "goodbye"]
         )
-        let actual = XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
+        let actual = try XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
@@ -124,7 +124,7 @@ extension XCSchemeExtensionsTests {
             buildConfigurationName: buildConfigurationName,
             targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
         )
-        let actual = XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
+        let actual = try XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
@@ -147,7 +147,7 @@ extension XCSchemeExtensionsTests {
             args: ["--hello"],
             env: ["CUSTOM_ENV_VAR": "goodbye"]
         )
-        let actual = XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
+        let actual = try XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: nil,
