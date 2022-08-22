@@ -3,6 +3,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "LibSwiftTestsLib",
+    testonly = True,
     srcs = glob(["*.swift"]),
     module_name = "LibSwiftTestsLib",
     deps = [
