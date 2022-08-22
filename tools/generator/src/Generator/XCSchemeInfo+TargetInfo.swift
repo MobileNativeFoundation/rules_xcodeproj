@@ -164,6 +164,23 @@ extension XCSchemeInfo.TargetInfo {
     }
 }
 
+// MARK: `macroExpansion`
+
+extension XCSchemeInfo.TargetInfo {
+    var macroExpansion: XCScheme.BuildableReference? {
+        get throws {
+            if let hostBuildableReference = try selectedHostInfo?.buildableReference,
+                !productType.isWatchApplication
+            {
+                return hostBuildableReference
+            } else if pbxTarget.isTestable {
+                return buildableReference
+            }
+            return nil
+        }
+    }
+}
+
 // MARK: Sequence Extensions
 
 extension Sequence where Element == XCSchemeInfo.TargetInfo {
