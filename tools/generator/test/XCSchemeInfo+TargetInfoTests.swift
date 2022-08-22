@@ -131,17 +131,6 @@ extension XCSchemeInfoTargetInfoTests {
 
 extension XCSchemeInfoTargetInfoTests {
     func test_macroExpansion_hasHostAndIsNotWatchApp() throws {
-        // let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-        //     resolveHostsFor: .init(
-        //         buildConfigurationName: buildConfigurationName,
-        //         targetInfo: unitTestTargetInfo
-        //     ),
-        //     topLevelTargetInfos: []
-        // )
-        // guard let launchActionInfo = actionInfo else {
-        //     XCTFail("Expected a `LaunchActionInfo`")
-        //     return
-        // }
         guard let macroExpansion = try unitTestTargetInfo.macroExpansion else {
             XCTFail("Expected a `macroExpansion`")
             return
@@ -150,32 +139,10 @@ extension XCSchemeInfoTargetInfoTests {
     }
 
     func test_macroExpansion_hasHostAndIsWatchApp() throws {
-        // let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-        //     resolveHostsFor: .init(
-        //         buildConfigurationName: buildConfigurationName,
-        //         targetInfo: watchAppTargetInfo
-        //     ),
-        //     topLevelTargetInfos: []
-        // )
-        // guard let launchActionInfo = actionInfo else {
-        //     XCTFail("Expected a `LaunchActionInfo`")
-        //     return
-        // }
         XCTAssertNil(try watchAppTargetInfo.macroExpansion)
     }
 
     func test_macroExpansion_noHostIsTestable() throws {
-        // let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-        //     resolveHostsFor: .init(
-        //         buildConfigurationName: buildConfigurationName,
-        //         targetInfo: unitTestNoHostTargetInfo
-        //     ),
-        //     topLevelTargetInfos: []
-        // )
-        // guard let launchActionInfo = actionInfo else {
-        //     XCTFail("Expected a `LaunchActionInfo`")
-        //     return
-        // }
         guard let macroExpansion = try unitTestNoHostTargetInfo.macroExpansion else {
             XCTFail("Expected a `macroExpansion`")
             return
@@ -184,17 +151,6 @@ extension XCSchemeInfoTargetInfoTests {
     }
 
     func test_macroExpansion_noHostIsNotTestable() throws {
-        // let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-        //     resolveHostsFor: .init(
-        //         buildConfigurationName: buildConfigurationName,
-        //         targetInfo: appTargetInfo
-        //     ),
-        //     topLevelTargetInfos: []
-        // )
-        // guard let launchActionInfo = actionInfo else {
-        //     XCTFail("Expected a `LaunchActionInfo`")
-        //     return
-        // }
         XCTAssertNil(try appTargetInfo.macroExpansion)
     }
 }
