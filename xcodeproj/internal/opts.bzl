@@ -729,7 +729,7 @@ def swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
         objc_fragment = objc_fragment,
     )
     pcm_defines = [
-        "-D{}".format(define)
+        "-D{}".format(define.replace("\\", "\\\\").replace('"', '\\"'))
         for define in (
             cc_info.compilation_context.defines.to_list() if cc_info else []
         )
