@@ -19,6 +19,7 @@
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/Example/rules_xcodeproj/Example/Info.plist",
             "t": "g"
         },
+        "examples/tvos_app/Example/Assets.xcassets",
         "examples/tvos_app/ExampleTests/BUILD",
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
@@ -58,6 +59,7 @@
         "//examples/tvos_app/Example:Example applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d",
         {
             "build_settings": {
+                "ASSETCATALOG_COMPILER_APPICON_NAME": "App Icon & Top Shelf Image",
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,

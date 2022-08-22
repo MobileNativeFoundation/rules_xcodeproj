@@ -40,6 +40,7 @@
         "//examples/macos_app/Example:Example applebin_macos-darwin_x86_64-dbg-ST-e2b2f145e00a",
         {
             "build_settings": {
+                "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,

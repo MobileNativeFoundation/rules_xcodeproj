@@ -1,7 +1,7 @@
 """ Functions for processing top level targets """
 
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
     ":build_settings.bzl",
@@ -19,11 +19,10 @@ load(":lldb_contexts.bzl", "lldb_contexts")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
-load(":providers.bzl", "XcodeProjInfo")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
+load(":providers.bzl", "XcodeProjInfo")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
-load(":target_search_paths.bzl", "target_search_paths")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
@@ -36,6 +35,7 @@ load(
     "should_include_outputs",
     "should_include_outputs_output_groups",
 )
+load(":target_search_paths.bzl", "target_search_paths")
 load(":xcode_targets.bzl", "xcode_targets")
 
 def get_tree_artifact_enabled(*, ctx, bundle_info):
@@ -436,6 +436,12 @@ def process_top_level_target(
         transitive_infos = deps_infos,
     )
 
+    set_if_true(
+        build_settings,
+        "ASSETCATALOG_COMPILER_APPICON_NAME",
+        _get_app_icon_name(ctx, automatic_target_info),
+    )
+
     return processed_target(
         automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
@@ -475,3 +481,47 @@ def process_top_level_target(
             lldb_context = lldb_context,
         ),
     )
+
+def _get_resource_set_name(path, suffix):
+    suffix_idx = path.find(suffix)
+    if suffix_idx == -1:
+        return None
+    prev_delimiter_idx = path[:suffix_idx].rfind("/")
+    if prev_delimiter_idx == -1:
+        name_start_idx = 0
+    else:
+        name_start_idx = prev_delimiter_idx + 1
+    return path[name_start_idx:suffix_idx]
+
+_RESOURCE_SET_SUFFIXES = [".appiconset", ".brandassets"]
+
+def _get_app_icon_name(ctx, automatic_target_info):
+    """Attempts to find the applicaiton icon name.
+
+    Args:
+        ctx: The aspect context.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
+
+    Returns:
+        The application icon name, if found. Otherwise, None.
+    """
+    if not automatic_target_info.app_icons:
+        return None
+
+    app_icons = getattr(ctx.rule.attr, automatic_target_info.app_icons, None)
+    if not app_icons:
+        return None
+
+    resource_files = [
+        file
+        for target in app_icons
+        for file in target.files.to_list()
+    ]
+    for file in resource_files:
+        for suffix in _RESOURCE_SET_SUFFIXES:
+            resource_name = _get_resource_set_name(file.short_path, suffix)
+            if resource_name:
+                return resource_name
+
+    return None

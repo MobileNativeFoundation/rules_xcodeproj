@@ -17,6 +17,9 @@ If you need more control over how a target or it's dependencies are processed,
 return a `XcodeProjInfo` provider instance instead.
 """,
     fields = {
+        "app_icons": """\
+An attribute name (or `None`) to collect the application icons.
+""",
         "bazel_build_mode_error": """\
 If `build_mode = "bazel"`, then if this is non-`None`, it will be raised as an
 error during analysis.
