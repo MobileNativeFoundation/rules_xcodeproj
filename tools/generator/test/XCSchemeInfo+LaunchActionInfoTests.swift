@@ -123,7 +123,22 @@ extension XCSchemeInfoLaunchActionInfoTests {
 
 extension XCSchemeInfoLaunchActionInfoTests {
     func test_macroExpansion() throws {
-        XCTFail("IMPLEMENT ME!")
+        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfo: unitTestTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = actionInfo else {
+            XCTFail("Expected a `LaunchActionInfo`")
+            return
+        }
+        guard let macroExpansion = try launchActionInfo.macroExpansion else {
+            XCTFail("Expected a `macroExpansion`")
+            return
+        }
+        XCTAssertEqual(macroExpansion, appHostInfo.buildableReference)
     }
 }
 
@@ -314,6 +329,7 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     let customEnv = ["RELEASE_KRAKEN": "TRUE"]
     let customWorkingDirectory = "/path/to/work"
 
+    // swiftlint:disable:next force_try
     lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
         launchAction: .init(
