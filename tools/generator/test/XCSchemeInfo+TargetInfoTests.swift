@@ -149,54 +149,54 @@ extension XCSchemeInfoTargetInfoTests {
         XCTAssertEqual(macroExpansion, appHostInfo.buildableReference)
     }
 
-    // func test_macroExpansion_hasHostAndIsWatchApp() throws {
-    //     let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-    //         resolveHostsFor: .init(
-    //             buildConfigurationName: buildConfigurationName,
-    //             targetInfo: watchAppTargetInfo
-    //         ),
-    //         topLevelTargetInfos: []
-    //     )
-    //     guard let launchActionInfo = actionInfo else {
-    //         XCTFail("Expected a `LaunchActionInfo`")
-    //         return
-    //     }
-    //     XCTAssertNil(try launchActionInfo.macroExpansion)
-    // }
+    func test_macroExpansion_hasHostAndIsWatchApp() throws {
+        // let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+        //     resolveHostsFor: .init(
+        //         buildConfigurationName: buildConfigurationName,
+        //         targetInfo: watchAppTargetInfo
+        //     ),
+        //     topLevelTargetInfos: []
+        // )
+        // guard let launchActionInfo = actionInfo else {
+        //     XCTFail("Expected a `LaunchActionInfo`")
+        //     return
+        // }
+        XCTAssertNil(try watchAppTargetInfo.macroExpansion)
+    }
 
-    // func test_macroExpansion_noHostIsTestable() throws {
-    //     let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-    //         resolveHostsFor: .init(
-    //             buildConfigurationName: buildConfigurationName,
-    //             targetInfo: unitTestNoHostTargetInfo
-    //         ),
-    //         topLevelTargetInfos: []
-    //     )
-    //     guard let launchActionInfo = actionInfo else {
-    //         XCTFail("Expected a `LaunchActionInfo`")
-    //         return
-    //     }
-    //     guard let macroExpansion = try launchActionInfo.macroExpansion else {
-    //         XCTFail("Expected a `macroExpansion`")
-    //         return
-    //     }
-    //     XCTAssertEqual(macroExpansion, unitTestNoHostTargetInfo.buildableReference)
-    // }
+    func test_macroExpansion_noHostIsTestable() throws {
+        // let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+        //     resolveHostsFor: .init(
+        //         buildConfigurationName: buildConfigurationName,
+        //         targetInfo: unitTestNoHostTargetInfo
+        //     ),
+        //     topLevelTargetInfos: []
+        // )
+        // guard let launchActionInfo = actionInfo else {
+        //     XCTFail("Expected a `LaunchActionInfo`")
+        //     return
+        // }
+        guard let macroExpansion = try unitTestNoHostTargetInfo.macroExpansion else {
+            XCTFail("Expected a `macroExpansion`")
+            return
+        }
+        XCTAssertEqual(macroExpansion, unitTestNoHostTargetInfo.buildableReference)
+    }
 
-    // func test_macroExpansion_noHostIsNotTestable() throws {
-    //     let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-    //         resolveHostsFor: .init(
-    //             buildConfigurationName: buildConfigurationName,
-    //             targetInfo: appTargetInfo
-    //         ),
-    //         topLevelTargetInfos: []
-    //     )
-    //     guard let launchActionInfo = actionInfo else {
-    //         XCTFail("Expected a `LaunchActionInfo`")
-    //         return
-    //     }
-    //     XCTAssertNil(try launchActionInfo.macroExpansion)
-    // }
+    func test_macroExpansion_noHostIsNotTestable() throws {
+        // let actionInfo = try XCSchemeInfo.LaunchActionInfo(
+        //     resolveHostsFor: .init(
+        //         buildConfigurationName: buildConfigurationName,
+        //         targetInfo: appTargetInfo
+        //     ),
+        //     topLevelTargetInfos: []
+        // )
+        // guard let launchActionInfo = actionInfo else {
+        //     XCTFail("Expected a `LaunchActionInfo`")
+        //     return
+        // }
+        XCTAssertNil(try appTargetInfo.macroExpansion)
+    }
 }
 
 // MARK: - `bazelBuildPreAction` Tests
@@ -302,12 +302,14 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var anotherAppPlatform = Fixtures.targets["I"]!.platform
     lazy var widgetKitExtPlatform = Fixtures.targets["WDKE"]!.platform
     lazy var unitTestPlatform = Fixtures.targets["B 2"]!.platform
+    lazy var watchAppPlatform = Fixtures.targets["W"]!.platform
 
     lazy var libraryPBXTarget = pbxTargetsDict["A 1"]!
     lazy var appPBXTarget = pbxTargetsDict["A 2"]!
     lazy var anotherAppPBXTarget = pbxTargetsDict["I"]!
     lazy var widgetKitExtPBXTarget = pbxTargetsDict["WDKE"]!
     lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
+    lazy var watchAppPBXTarget = pbxTargetsDict["W"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: appPBXTarget,
@@ -370,6 +372,26 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
             hostInfos: [appHostInfo],
             extensionPointIdentifiers: []
         ),
-        topLevelTargetInfos: [appTargetInfo]
+        topLevelTargetInfos: []
+    )
+    lazy var unitTestNoHostTargetInfo = XCSchemeInfo.TargetInfo(
+        resolveHostFor: .init(
+            pbxTarget: unitTestPBXTarget,
+            platforms: [unitTestPlatform],
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [],
+            extensionPointIdentifiers: []
+        ),
+        topLevelTargetInfos: []
+    )
+    lazy var watchAppTargetInfo = XCSchemeInfo.TargetInfo(
+        resolveHostFor: .init(
+            pbxTarget: watchAppPBXTarget,
+            platforms: [watchAppPlatform],
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [appHostInfo],
+            extensionPointIdentifiers: []
+        ),
+        topLevelTargetInfos: []
     )
 }
