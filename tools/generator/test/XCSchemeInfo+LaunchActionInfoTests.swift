@@ -267,13 +267,11 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     lazy var appPlatform = Fixtures.targets["A 2"]!.platform
     lazy var unitTestPlatform = Fixtures.targets["B 2"]!.platform
     lazy var widgetKitExtPlatform = Fixtures.targets["WDKE"]!.platform
-    lazy var watchAppPlatform = Fixtures.targets["W"]!.platform
 
     lazy var libraryPBXTarget = pbxTargetsDict["A 1"]!
     lazy var appPBXTarget = pbxTargetsDict["A 2"]!
     lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
     lazy var widgetKitExtPBXTarget = pbxTargetsDict["WDKE"]!
-    lazy var watchAppPBXTarget = pbxTargetsDict["W"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
@@ -299,20 +297,6 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: unitTestPBXTarget,
         platforms: [unitTestPlatform],
-        referencedContainer: filePathResolver.containerReference,
-        hostInfos: [appHostInfo],
-        extensionPointIdentifiers: []
-    )
-    lazy var unitTestNoHostTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: unitTestPBXTarget,
-        platforms: [unitTestPlatform],
-        referencedContainer: filePathResolver.containerReference,
-        hostInfos: [],
-        extensionPointIdentifiers: []
-    )
-    lazy var watchAppTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: watchAppPBXTarget,
-        platforms: [watchAppPlatform],
         referencedContainer: filePathResolver.containerReference,
         hostInfos: [appHostInfo],
         extensionPointIdentifiers: []
