@@ -20,3 +20,11 @@ filegroup(
     # This is made public for internal use only
     visibility = ["//visibility:public"],
 )
+
+# Release
+
+filegroup(
+    name = "release_files",
+    srcs = glob(["**"]),
+    visibility = ["//visibility:public"],
+)

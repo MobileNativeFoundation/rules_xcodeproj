@@ -6,3 +6,11 @@ py_binary(
     # TODO: Restrict visibility
     visibility = ["//visibility:public"],
 )
+
+# Release
+
+filegroup(
+    name = "release_files",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)

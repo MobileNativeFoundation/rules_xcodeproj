@@ -42,3 +42,14 @@ xcodeproj(
     top_level_targets = TOP_LEVEL_TARGETS,
     unfocused_targets = UNFOCUSED_TARGETS,
 )
+
+# Release
+
+filegroup(
+    name = "release_files",
+    srcs = glob(
+        ["**"],
+        exclude = ["test/**"],
+    ),
+    visibility = ["//visibility:public"],
+)
