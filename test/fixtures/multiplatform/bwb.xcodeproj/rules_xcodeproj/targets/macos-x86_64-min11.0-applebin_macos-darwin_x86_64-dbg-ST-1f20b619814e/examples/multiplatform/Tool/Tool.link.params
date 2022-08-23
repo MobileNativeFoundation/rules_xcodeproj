@@ -1,5 +1,4 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool.swiftmodule
--L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx

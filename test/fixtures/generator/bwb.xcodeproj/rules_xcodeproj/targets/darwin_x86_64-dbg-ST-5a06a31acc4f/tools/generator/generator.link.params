@@ -3,7 +3,6 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_tadija_aexml/AEXML.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule
--L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx

@@ -321,7 +321,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/AppClip/AppClip.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
@@ -504,7 +503,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/AppClip/AppClip.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
@@ -1374,7 +1372,6 @@
             "linker_inputs": {
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-1f20b619814e/bin/examples/multiplatform/Tool/Tool.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
@@ -1546,7 +1543,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
@@ -1722,7 +1718,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/WidgetExtension/WidgetExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
@@ -2159,7 +2154,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iMessageApp/iMessageAppExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
@@ -2439,7 +2433,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
@@ -2700,7 +2693,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/iOSApp/iOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
@@ -3203,7 +3195,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-6a7afd7f07f3/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-6a7afd7f07f3/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
@@ -3378,7 +3369,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-cfa16e91da16/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-cfa16e91da16/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
@@ -3875,7 +3865,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/WatchOS.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
@@ -4050,7 +4039,6 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/Lib/Lib.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",

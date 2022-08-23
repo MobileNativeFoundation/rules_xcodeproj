@@ -1,6 +1,6 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cdd2ed13d150/bin/Example/Example.swiftmodule
--Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cdd2ed13d150/bin/TestingUtils/TestingUtils.swiftmodule
 -L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib
+-Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-cdd2ed13d150/bin/TestingUtils/TestingUtils.swiftmodule
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator

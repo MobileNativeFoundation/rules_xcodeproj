@@ -276,16 +276,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-4168748aa221/examples/simple/SwiftBin.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_CFLAGS = (
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = SwiftBinModuleName;
 				PRODUCT_NAME = SwiftBin;
 				SDKROOT = macosx;
