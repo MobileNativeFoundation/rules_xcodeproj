@@ -5,6 +5,7 @@ load(
     "AppleBinaryInfo",
     "AppleBundleInfo",
     "AppleFrameworkImportInfo",
+    "AppleResourceBundleInfo",
 )
 load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 
@@ -21,6 +22,10 @@ def _get_target_type(*, target):
     # Top-level bundles
     if AppleBundleInfo in target:
         return target_type.compile
+
+    # Resource bundles
+    if AppleResourceBundleInfo in target:
+        return None
 
     # Libraries
     if CcInfo in target:
