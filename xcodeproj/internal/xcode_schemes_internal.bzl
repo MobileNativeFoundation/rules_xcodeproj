@@ -137,9 +137,7 @@ def _test_action(
     if targets == []:
         fail("At least one test target must be specified for a test action.")
 
-    if not expand_variables_based_on:
-        expand_variables_based_on = targets[0]
-    elif expand_variables_based_on and expand_variables_based_on != "none":
+    if expand_variables_based_on and expand_variables_based_on != "none":
         test_target_labels = sets.make(targets)
         if not sets.contains(test_target_labels, expand_variables_based_on):
             fail("""\

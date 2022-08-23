@@ -98,10 +98,12 @@ extension XCSchemeInfoTestActionInfoTests {
                 targetResolver: targetResolver,
                 xcodeprojBazelLabel: xcodeprojBazelLabel
             )
-        )
+        ).orThrow("Expected a `TestActionInfo`")
+        let testTargetInfo = try targetResolver.targetInfo(targetID: "B 2")
         let expected = try XCSchemeInfo.TestActionInfo(
             buildConfigurationName: .defaultBuildConfigurationName,
-            targetInfos: [try targetResolver.targetInfo(targetID: "B 2")]
+            targetInfos: [testTargetInfo],
+            expandVariablesBasedOn: .target(testTargetInfo)
         )
         XCTAssertEqual(actual, expected)
     }

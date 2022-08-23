@@ -198,14 +198,14 @@ extension XcodeScheme {
         let targets: Set<BazelLabel>
         let args: [String]
         let env: [String: String]
-        let expandVariablesBasedOn: VariableExpansionContext
+        let expandVariablesBasedOn: VariableExpansionContext?
 
         init<Targets: Sequence>(
             targets: Targets,
             buildConfigurationName: String = .defaultBuildConfigurationName,
             args: [String] = [],
             env: [String: String] = [:],
-            expandVariablesBasedOn: VariableExpansionContext = .none
+            expandVariablesBasedOn: VariableExpansionContext? = nil
         ) throws where Targets.Element == BazelLabel {
             self.targets = Set(targets)
             self.buildConfigurationName = buildConfigurationName

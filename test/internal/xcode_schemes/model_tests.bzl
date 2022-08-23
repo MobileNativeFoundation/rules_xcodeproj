@@ -156,7 +156,7 @@ def _test_action_test(ctx):
         targets = [bazel_labels.normalize(t) for t in targets],
         args = [],
         env = {},
-        expand_variables_based_on = bazel_labels.normalize(targets[0]),
+        expand_variables_based_on = None,
     )
     asserts.equals(env, expected, actual, "no custom values")
 
@@ -168,7 +168,7 @@ def _test_action_test(ctx):
         targets = [bazel_labels.normalize(t) for t in targets],
         args = args,
         env = custom_env,
-        expand_variables_based_on = bazel_labels.normalize(targets[0]),
+        expand_variables_based_on = None,
     )
     asserts.equals(env, expected, actual, "with custom values")
 

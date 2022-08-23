@@ -73,6 +73,12 @@ extension XCSchemeInfo.TestActionInfo {
         guard let testAction = testAction else {
           return nil
         }
+        let expandVariablesBasedOn = try testAction.expandVariablesBasedOn ??
+            .target(
+                testAction.targets.sortedLocalizedStandard().first
+                    .orThrow("Expected at least one target in `TestAction.targets`")
+            )
+
         try self.init(
             buildConfigurationName: testAction.buildConfigurationName,
             targetInfos: try testAction.targets.map { label in
@@ -86,7 +92,7 @@ extension XCSchemeInfo.TestActionInfo {
             args: testAction.args,
             env: testAction.env,
             expandVariablesBasedOn: try .init(
-                context: testAction.expandVariablesBasedOn,
+                context: expandVariablesBasedOn,
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel
             )
