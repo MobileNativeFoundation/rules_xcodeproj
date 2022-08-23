@@ -99,7 +99,9 @@ extension XCSchemeInfo.TestActionInfo {
 extension XCSchemeInfo.TestActionInfo {
     var macroExpansion: XCScheme.BuildableReference? {
         get throws {
-            guard let targetInfo = targetInfos.first else {
+            // Sort the target infos so that we receive a consistent value
+            let sortedTargetInfos = targetInfos.sortedLocalizedStandard(\.pbxTarget.name)
+            guard let targetInfo = sortedTargetInfos.first else {
                 return nil
             }
             return try targetInfo.macroExpansion

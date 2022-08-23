@@ -75,13 +75,16 @@ extension XCSchemeExtensionsTests {
     func test_TestAction_init_noCustomEnvArgs_xcode() throws {
         let buildConfigurationName = "Foo"
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
-            buildConfigurationName: buildConfigurationName,
-            targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
-        )
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
+            ),
+            topLevelTargetInfos: []
+        )!
         let actual = try XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
-            macroExpansion: nil,
+            macroExpansion: unitTestTargetInfo.buildableReference,
             testables: [
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
@@ -95,15 +98,18 @@ extension XCSchemeExtensionsTests {
     func test_TestAction_init_withCustomEnvArgs_xcode() throws {
         let buildConfigurationName = "Foo"
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
-            buildConfigurationName: buildConfigurationName,
-            targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
-            args: ["--hello"],
-            env: ["CUSTOM_ENV_VAR": "goodbye"]
-        )
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
+                args: ["--hello"],
+                env: ["CUSTOM_ENV_VAR": "goodbye"]
+            ),
+            topLevelTargetInfos: []
+        )!
         let actual = try XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
-            macroExpansion: nil,
+            macroExpansion: unitTestTargetInfo.buildableReference,
             testables: [
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
@@ -121,13 +127,16 @@ extension XCSchemeExtensionsTests {
     func test_TestAction_init_noCustomEnvArgs_bazel() throws {
         let buildConfigurationName = "Foo"
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
-            buildConfigurationName: buildConfigurationName,
-            targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
-        )
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
+            ),
+            topLevelTargetInfos: []
+        )!
         let actual = try XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
-            macroExpansion: nil,
+            macroExpansion: unitTestTargetInfo.buildableReference,
             testables: [
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
@@ -142,15 +151,18 @@ extension XCSchemeExtensionsTests {
     func test_TestAction_init_withCustomEnvArgs_bazel() throws {
         let buildConfigurationName = "Foo"
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
-            buildConfigurationName: buildConfigurationName,
-            targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
-            args: ["--hello"],
-            env: ["CUSTOM_ENV_VAR": "goodbye"]
-        )
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
+                args: ["--hello"],
+                env: ["CUSTOM_ENV_VAR": "goodbye"]
+            ),
+            topLevelTargetInfos: []
+        )!
         let actual = try XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
-            macroExpansion: nil,
+            macroExpansion: unitTestTargetInfo.buildableReference,
             testables: [
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),

@@ -111,7 +111,22 @@ extension XCSchemeInfoTestActionInfoTests {
 
 extension XCSchemeInfoTestActionInfoTests {
     func test_macroExpansion() throws {
-        XCTFail("IMPLEMENT ME!")
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo]
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let testActionInfo = testActionInfo else {
+            XCTFail("Expected `testActionInfo`")
+            return
+        }
+        guard let macroExpansion = try testActionInfo.macroExpansion else {
+            XCTFail("Expected `macroExpansion`")
+            return
+        }
+        XCTAssertEqual(macroExpansion, unitTestTargetInfo.buildableReference)
     }
 }
 
