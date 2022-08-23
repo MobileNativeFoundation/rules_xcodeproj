@@ -1,5 +1,4 @@
 import XCTest
-
 @testable import generator
 
 // MARK: `BuildAction.init` Tests
@@ -27,6 +26,28 @@ Found a duplicate label //foo:foo in provided `XcodeScheme.BuildTarget` values.
         assertPreconditionError(try XcodeScheme.BuildAction(targets: []), expectedMessage: """
 No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
 """)
+    }
+}
+
+// MARK: `XcodeScheme.VariableExpansionContext` Tests
+
+extension XcodeSchemeTests {
+    func test_VariableExpansionContext_rawValue_noneString() throws {
+        let context = XcodeScheme.VariableExpansionContext(rawValue: "none")
+        XCTAssertEqual(context, XcodeScheme.VariableExpansionContext.none)
+    }
+
+    func test_VariableExpansionContext_rawValue_emptyString() throws {
+        let context = XcodeScheme.VariableExpansionContext(rawValue: "")
+        XCTAssertNil(context)
+    }
+
+    func test_VariableExpansionContext_rawValue_labelString() throws {
+        let labelString = "//path/to/target:target"
+        let context = XcodeScheme.VariableExpansionContext(rawValue: labelString)
+        XCTAssertEqual(context, XcodeScheme.VariableExpansionContext.target(
+            try BazelLabel(labelString)
+        ))
     }
 }
 

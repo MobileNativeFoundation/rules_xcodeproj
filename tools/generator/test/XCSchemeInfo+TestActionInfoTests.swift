@@ -98,12 +98,31 @@ extension XCSchemeInfoTestActionInfoTests {
                 targetResolver: targetResolver,
                 xcodeprojBazelLabel: xcodeprojBazelLabel
             )
-        )
+        ).orThrow("Expected a `TestActionInfo`")
+        let testTargetInfo = try targetResolver.targetInfo(targetID: "B 2")
         let expected = try XCSchemeInfo.TestActionInfo(
             buildConfigurationName: .defaultBuildConfigurationName,
-            targetInfos: [try targetResolver.targetInfo(targetID: "B 2")]
+            targetInfos: [testTargetInfo],
+            expandVariablesBasedOn: .target(testTargetInfo)
         )
         XCTAssertEqual(actual, expected)
+    }
+}
+
+// MARK: `macroExpansion` Tests
+
+extension XCSchemeInfoTestActionInfoTests {
+    func test_macroExpansion() throws {
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo]
+            ),
+            topLevelTargetInfos: []
+        ).orThrow("Expected `testActionInfo`")
+        let macroExpansion = try testActionInfo.macroExpansion
+            .orThrow("Expected `macroExpansion`")
+        XCTAssertEqual(macroExpansion, unitTestTargetInfo.buildableReference)
     }
 }
 
@@ -150,8 +169,10 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
         extensionPointIdentifiers: []
     )
 
+    // swiftlint:disable:next force_try
     lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
+        // swiftlint:disable:next force_try
         testAction: try! .init(targets: [targetResolver.targets["B 2"]!.label])
     )
 }

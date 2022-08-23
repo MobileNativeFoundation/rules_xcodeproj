@@ -62,6 +62,15 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5742A33EA302007E9758E24B"
+            BuildableName = "ExampleTests.xctest"
+            BlueprintName = "ExampleTests.__internal__.__test_bundle"
+            ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">

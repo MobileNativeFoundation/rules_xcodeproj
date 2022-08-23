@@ -99,3 +99,9 @@ extension BazelLabel: Decodable {
         }
     }
 }
+
+extension Sequence where Element == BazelLabel {
+    func sortedLocalizedStandard() -> [Element] {
+        return sortedLocalizedStandard(\.description)
+    }
+}

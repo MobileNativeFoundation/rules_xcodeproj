@@ -36,7 +36,7 @@ extension XCScheme {
 
         let testAction: XCScheme.TestAction?
         if let testActionInfo = schemeInfo.testActionInfo {
-            testAction = .init(buildMode: buildMode, testActionInfo: testActionInfo)
+            testAction = try .init(buildMode: buildMode, testActionInfo: testActionInfo)
         } else {
             testAction = .init(
                 buildConfiguration: .defaultBuildConfigurationName,
@@ -156,7 +156,7 @@ extension XCScheme.CommandLineArguments {
 }
 
 extension XCScheme.TestAction {
-    convenience init(buildMode: BuildMode, testActionInfo: XCSchemeInfo.TestActionInfo) {
+    convenience init(buildMode: BuildMode, testActionInfo: XCSchemeInfo.TestActionInfo) throws {
         let commandlineArguments = XCScheme.CommandLineArguments(
             xcSchemeInfoArgs: testActionInfo.args
         )
@@ -169,7 +169,7 @@ extension XCScheme.TestAction {
 
         self.init(
             buildConfiguration: testActionInfo.buildConfigurationName,
-            macroExpansion: nil,
+            macroExpansion: try testActionInfo.macroExpansion,
             testables: testActionInfo.targetInfos
                 .filter(\.pbxTarget.isTestable)
                 .sortedLocalizedStandard(\.pbxTarget.name)

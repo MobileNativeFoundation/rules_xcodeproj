@@ -1,5 +1,7 @@
 """Internal API for creating and manipulating Xcode schemes."""
 
+load("@bazel_skylib//lib:sets.bzl", "sets")
+
 def _scheme(
         name,
         build_action = None,
@@ -112,7 +114,8 @@ def _test_action(
         targets,
         build_configuration_name,
         args = None,
-        env = None):
+        env = None,
+        expand_variables_based_on = None):
     """Constructs a test action for an Xcode scheme.
 
     Args:
@@ -123,16 +126,31 @@ def _test_action(
             the target when executed.
         env: Optional. A `dict` of `string` values that will be set as
             environment variables when the target is executed.
+        expand_variables_based_on: Optional. One of the specified test target labels.
+            If no value is provided, one of the test targets will be selected.
+            If no expansion context is desired, use the `string` value `none`.
 
     Returns:
         A `struct` representing a test action.
     """
+
+    if targets == []:
+        fail("At least one test target must be specified for a test action.")
+
+    if expand_variables_based_on and expand_variables_based_on != "none":
+        test_target_labels = sets.make(targets)
+        if not sets.contains(test_target_labels, expand_variables_based_on):
+            fail("""\
+The `expand_variables_based_on` value must be `None`, the string value 'none', \
+or one of the test targets.
+""")
 
     return struct(
         targets = targets,
         build_configuration_name = build_configuration_name,
         args = args if args != None else [],
         env = env if env != None else {},
+        expand_variables_based_on = expand_variables_based_on,
     )
 
 def _launch_action(

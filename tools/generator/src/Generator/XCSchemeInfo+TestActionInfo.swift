@@ -6,18 +6,21 @@ extension XCSchemeInfo {
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
         let args: [String]
         let env: [String: String]
+        let expandVariablesBasedOn: VariableExpansionContextInfo
 
         /// The primary initializer.
         init<TargetInfos: Sequence>(
             buildConfigurationName: String,
             targetInfos: TargetInfos,
             args: [String] = [],
-            env: [String: String] = [:]
+            env: [String: String] = [:],
+            expandVariablesBasedOn: XCSchemeInfo.VariableExpansionContextInfo = .none
         ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
             self.buildConfigurationName = buildConfigurationName
             self.targetInfos = Set(targetInfos)
             self.args = args
             self.env = env
+            self.expandVariablesBasedOn = expandVariablesBasedOn
 
             guard !self.targetInfos.isEmpty else {
                 throw PreconditionError(message: """
@@ -50,7 +53,11 @@ extension XCSchemeInfo.TestActionInfo {
                 .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
             },
             args: original.args,
-            env: original.env
+            env: original.env,
+            expandVariablesBasedOn: .init(
+                resolveHostsFor: original.expandVariablesBasedOn,
+                topLevelTargetInfos: topLevelTargetInfos
+            )
         )
     }
 }
@@ -66,6 +73,12 @@ extension XCSchemeInfo.TestActionInfo {
         guard let testAction = testAction else {
           return nil
         }
+        let expandVariablesBasedOn = try testAction.expandVariablesBasedOn ??
+            .target(
+                testAction.targets.sortedLocalizedStandard().first
+                    .orThrow("Expected at least one target in `TestAction.targets`")
+            )
+
         try self.init(
             buildConfigurationName: testAction.buildConfigurationName,
             targetInfos: try testAction.targets.map { label in
@@ -77,7 +90,27 @@ extension XCSchemeInfo.TestActionInfo {
                 )
             },
             args: testAction.args,
-            env: testAction.env
+            env: testAction.env,
+            expandVariablesBasedOn: try .init(
+                context: expandVariablesBasedOn,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel
+            )
         )
+    }
+}
+
+// MARK: `macroExpansion`
+
+extension XCSchemeInfo.TestActionInfo {
+    var macroExpansion: XCScheme.BuildableReference? {
+        get throws {
+            // Sort the target infos so that we receive a consistent value
+            let sortedTargetInfos = targetInfos.sortedLocalizedStandard(\.pbxTarget.name)
+            guard let targetInfo = sortedTargetInfos.first else {
+                return nil
+            }
+            return try targetInfo.macroExpansion
+        }
     }
 }
