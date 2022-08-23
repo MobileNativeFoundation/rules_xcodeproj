@@ -17,11 +17,11 @@
                 "targets": [
                     {
                         "build_for": {
-                            "analyzing": "unspecified",
+                            "analyzing": "enabled",
                             "archiving": "enabled",
-                            "profiling": "unspecified",
-                            "running": "unspecified",
-                            "testing": "unspecified"
+                            "profiling": "enabled",
+                            "running": "enabled",
+                            "testing": "enabled"
                         },
                         "label": "//tools/generator:generator"
                     }
