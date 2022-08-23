@@ -122,7 +122,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
 // MARK: - `macroExpansion` Tests
 
 extension XCSchemeInfoLaunchActionInfoTests {
-    func test_macroExpansion_hasHostAndIsNotWatchApp() throws {
+    func test_macroExpansion() throws {
         let actionInfo = try XCSchemeInfo.LaunchActionInfo(
             resolveHostsFor: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -139,55 +139,6 @@ extension XCSchemeInfoLaunchActionInfoTests {
             return
         }
         XCTAssertEqual(macroExpansion, appHostInfo.buildableReference)
-    }
-
-    func test_macroExpansion_hasHostAndIsWatchApp() throws {
-        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-            resolveHostsFor: .init(
-                buildConfigurationName: buildConfigurationName,
-                targetInfo: watchAppTargetInfo
-            ),
-            topLevelTargetInfos: []
-        )
-        guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`")
-            return
-        }
-        XCTAssertNil(try launchActionInfo.macroExpansion)
-    }
-
-    func test_macroExpansion_noHostIsTestable() throws {
-        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-            resolveHostsFor: .init(
-                buildConfigurationName: buildConfigurationName,
-                targetInfo: unitTestNoHostTargetInfo
-            ),
-            topLevelTargetInfos: []
-        )
-        guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`")
-            return
-        }
-        guard let macroExpansion = try launchActionInfo.macroExpansion else {
-            XCTFail("Expected a `macroExpansion`")
-            return
-        }
-        XCTAssertEqual(macroExpansion, unitTestNoHostTargetInfo.buildableReference)
-    }
-
-    func test_macroExpansion_noHostIsNotTestable() throws {
-        let actionInfo = try XCSchemeInfo.LaunchActionInfo(
-            resolveHostsFor: .init(
-                buildConfigurationName: buildConfigurationName,
-                targetInfo: appTargetInfo
-            ),
-            topLevelTargetInfos: []
-        )
-        guard let launchActionInfo = actionInfo else {
-            XCTFail("Expected a `LaunchActionInfo`")
-            return
-        }
-        XCTAssertNil(try launchActionInfo.macroExpansion)
     }
 }
 
@@ -316,13 +267,11 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     lazy var appPlatform = Fixtures.targets["A 2"]!.platform
     lazy var unitTestPlatform = Fixtures.targets["B 2"]!.platform
     lazy var widgetKitExtPlatform = Fixtures.targets["WDKE"]!.platform
-    lazy var watchAppPlatform = Fixtures.targets["W"]!.platform
 
     lazy var libraryPBXTarget = pbxTargetsDict["A 1"]!
     lazy var appPBXTarget = pbxTargetsDict["A 2"]!
     lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
     lazy var widgetKitExtPBXTarget = pbxTargetsDict["WDKE"]!
-    lazy var watchAppPBXTarget = pbxTargetsDict["W"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
@@ -352,20 +301,6 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
         hostInfos: [appHostInfo],
         extensionPointIdentifiers: []
     )
-    lazy var unitTestNoHostTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: unitTestPBXTarget,
-        platforms: [unitTestPlatform],
-        referencedContainer: filePathResolver.containerReference,
-        hostInfos: [],
-        extensionPointIdentifiers: []
-    )
-    lazy var watchAppTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: watchAppPBXTarget,
-        platforms: [watchAppPlatform],
-        referencedContainer: filePathResolver.containerReference,
-        hostInfos: [appHostInfo],
-        extensionPointIdentifiers: []
-    )
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: appPBXTarget,
@@ -378,6 +313,7 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     let customEnv = ["RELEASE_KRAKEN": "TRUE"]
     let customWorkingDirectory = "/path/to/work"
 
+    // swiftlint:disable:next force_try
     lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
         launchAction: .init(

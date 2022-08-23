@@ -92,14 +92,7 @@ extension XCSchemeInfo.LaunchActionInfo {
 extension XCSchemeInfo.LaunchActionInfo {
     var macroExpansion: XCScheme.BuildableReference? {
         get throws {
-            if let hostBuildableReference = try targetInfo.selectedHostInfo?.buildableReference,
-                !targetInfo.productType.isWatchApplication
-            {
-                return hostBuildableReference
-            } else if targetInfo.pbxTarget.isTestable {
-                return targetInfo.buildableReference
-            }
-            return nil
+            try targetInfo.macroExpansion
         }
     }
 }

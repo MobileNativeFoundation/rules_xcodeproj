@@ -127,6 +127,34 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
+// MARK: - `macroExpansion` Tests
+
+extension XCSchemeInfoTargetInfoTests {
+    func test_macroExpansion_hasHostAndIsNotWatchApp() throws {
+        guard let macroExpansion = try unitTestTargetInfo.macroExpansion else {
+            XCTFail("Expected a `macroExpansion`")
+            return
+        }
+        XCTAssertEqual(macroExpansion, appHostInfo.buildableReference)
+    }
+
+    func test_macroExpansion_hasHostAndIsWatchApp() throws {
+        XCTAssertNil(try watchAppTargetInfo.macroExpansion)
+    }
+
+    func test_macroExpansion_noHostIsTestable() throws {
+        guard let macroExpansion = try unitTestNoHostTargetInfo.macroExpansion else {
+            XCTFail("Expected a `macroExpansion`")
+            return
+        }
+        XCTAssertEqual(macroExpansion, unitTestNoHostTargetInfo.buildableReference)
+    }
+
+    func test_macroExpansion_noHostIsNotTestable() throws {
+        XCTAssertNil(try appTargetInfo.macroExpansion)
+    }
+}
+
 // MARK: - `bazelBuildPreAction` Tests
 
 extension XCSchemeInfoTargetInfoTests {
@@ -229,11 +257,15 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var appPlatform = Fixtures.targets["A 2"]!.platform
     lazy var anotherAppPlatform = Fixtures.targets["I"]!.platform
     lazy var widgetKitExtPlatform = Fixtures.targets["WDKE"]!.platform
+    lazy var unitTestPlatform = Fixtures.targets["B 2"]!.platform
+    lazy var watchAppPlatform = Fixtures.targets["W"]!.platform
 
     lazy var libraryPBXTarget = pbxTargetsDict["A 1"]!
     lazy var appPBXTarget = pbxTargetsDict["A 2"]!
     lazy var anotherAppPBXTarget = pbxTargetsDict["I"]!
     lazy var widgetKitExtPBXTarget = pbxTargetsDict["WDKE"]!
+    lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
+    lazy var watchAppPBXTarget = pbxTargetsDict["W"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: appPBXTarget,
@@ -286,6 +318,36 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     )
     lazy var libraryTargetInfoWithHosts = XCSchemeInfo.TargetInfo(
         resolveHostFor: unresolvedLibraryTargetInfoWithHosts,
+        topLevelTargetInfos: []
+    )
+    lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
+        resolveHostFor: .init(
+            pbxTarget: unitTestPBXTarget,
+            platforms: [unitTestPlatform],
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [appHostInfo],
+            extensionPointIdentifiers: []
+        ),
+        topLevelTargetInfos: []
+    )
+    lazy var unitTestNoHostTargetInfo = XCSchemeInfo.TargetInfo(
+        resolveHostFor: .init(
+            pbxTarget: unitTestPBXTarget,
+            platforms: [unitTestPlatform],
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [],
+            extensionPointIdentifiers: []
+        ),
+        topLevelTargetInfos: []
+    )
+    lazy var watchAppTargetInfo = XCSchemeInfo.TargetInfo(
+        resolveHostFor: .init(
+            pbxTarget: watchAppPBXTarget,
+            platforms: [watchAppPlatform],
+            referencedContainer: filePathResolver.containerReference,
+            hostInfos: [appHostInfo],
+            extensionPointIdentifiers: []
+        ),
         topLevelTargetInfos: []
     )
 }
