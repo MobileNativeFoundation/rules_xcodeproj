@@ -80,7 +80,7 @@ extension XCSchemeExtensionsTests {
                 targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
             ),
             topLevelTargetInfos: []
-        )!
+        ).orThrow()
         let actual = try XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
@@ -105,7 +105,7 @@ extension XCSchemeExtensionsTests {
                 env: ["CUSTOM_ENV_VAR": "goodbye"]
             ),
             topLevelTargetInfos: []
-        )!
+        ).orThrow()
         let actual = try XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
@@ -132,7 +132,7 @@ extension XCSchemeExtensionsTests {
                 targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
             ),
             topLevelTargetInfos: []
-        )!
+        ).orThrow()
         let actual = try XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
@@ -158,7 +158,7 @@ extension XCSchemeExtensionsTests {
                 env: ["CUSTOM_ENV_VAR": "goodbye"]
             ),
             topLevelTargetInfos: []
-        )!
+        ).orThrow()
         let actual = try XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
@@ -446,5 +446,5 @@ class XCSchemeExtensionsTests: XCTestCase {
             }
         ),
         topLevelTargetInfos: []
-    )!
+    ).orThrow()
 }
