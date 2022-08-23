@@ -117,15 +117,9 @@ extension XCSchemeInfoTestActionInfoTests {
                 targetInfos: [unitTestTargetInfo]
             ),
             topLevelTargetInfos: []
-        )
-        guard let testActionInfo = testActionInfo else {
-            XCTFail("Expected `testActionInfo`")
-            return
-        }
-        guard let macroExpansion = try testActionInfo.macroExpansion else {
-            XCTFail("Expected `macroExpansion`")
-            return
-        }
+        ).orThrow("Expected `testActionInfo`")
+        let macroExpansion = try testActionInfo.macroExpansion
+            .orThrow("Expected `macroExpansion`")
         XCTAssertEqual(macroExpansion, unitTestTargetInfo.buildableReference)
     }
 }
