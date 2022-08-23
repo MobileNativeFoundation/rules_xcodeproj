@@ -11,6 +11,9 @@ common:rules_xcodeproj --verbose_failures
 # We default to `dbg` since debugging is broken otherwise
 build:rules_xcodeproj --compilation_mode=dbg
 
+# Fix Test Issue navigation
+build:rules_xcodeproj --features=apple.swizzle_absolute_xcttestsourcelocation
+
 # `oso_prefix_is_pwd` removes absolute paths in debug info, which increases
 # cache hit rates. We "undo" this in `bazel.lldbinit`, so debugging still works.
 build:rules_xcodeproj --features=oso_prefix_is_pwd
