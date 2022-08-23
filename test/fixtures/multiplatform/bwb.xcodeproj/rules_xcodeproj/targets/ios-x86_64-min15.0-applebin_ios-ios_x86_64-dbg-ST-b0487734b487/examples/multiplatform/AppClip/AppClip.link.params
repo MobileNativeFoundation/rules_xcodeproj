@@ -1,6 +1,5 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/AppClip/AppClip.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487/bin/examples/multiplatform/Lib/Lib.swiftmodule
--L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator

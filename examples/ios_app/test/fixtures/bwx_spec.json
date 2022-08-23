@@ -272,7 +272,6 @@
             "linker_inputs": {
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/Example/Example.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
@@ -540,8 +539,8 @@
             "linker_inputs": {
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/Example/Example.swiftmodule",
-                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/TestingUtils/TestingUtils.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/TestingUtils/TestingUtils.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
@@ -833,8 +832,8 @@
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/ExampleTests/ExampleTests.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/Example/Example.swiftmodule",
-                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/TestingUtils/TestingUtils.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/TestingUtils/TestingUtils.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
@@ -1048,8 +1047,8 @@
             "label": "//ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/ExampleUITests/ExampleUITests.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5d7979fe7f9e/bin/ExampleUITests/ExampleUITests.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",

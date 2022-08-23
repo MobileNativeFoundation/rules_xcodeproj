@@ -13,7 +13,15 @@ _BUNDLE_EXTENSIONS = [
 ]
 
 _SETTINGS = {
+  "x86_64-apple-macosx11.0.0 SwiftBin" : {
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-4168748aa221/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "frameworks" : [
 
+    ],
+    "includes" : [
+
+    ]
+  }
 }
 
 def __lldb_init_module(debugger, _internal_dict):

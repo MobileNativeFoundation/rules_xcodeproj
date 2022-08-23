@@ -88,7 +88,6 @@
             "linker_inputs": {
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/Example/Example.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
@@ -247,9 +246,9 @@
             "label": "//examples/tvos_app/ExampleTests:ExampleTests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
+                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/ExampleTests/ExampleTests.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/Example/Example.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
@@ -439,8 +438,8 @@
             "label": "//examples/tvos_app/ExampleUITests:ExampleUITests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule",
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b75970214d2d/bin/examples/tvos_app/ExampleUITests/ExampleUITests.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",

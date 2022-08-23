@@ -1,3 +1,4 @@
+-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/tools/generator/test/tests.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/tools/generator/generator.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule
@@ -6,7 +7,6 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule
--L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx

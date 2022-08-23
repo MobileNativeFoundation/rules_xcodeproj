@@ -77,6 +77,7 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_MODULE_NAME": "tools_generator_test_tests",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -85,11 +86,11 @@
             "dependencies": [
                 "//tools/generator/test:tests.library darwin_x86_64-dbg-ST-e7deb5c809c7"
             ],
-            "is_swift": false,
             "is_testonly": true,
             "label": "//tools/generator/test:tests",
             "linker_inputs": {
                 "linkopts": [
+                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/tools/generator/test/tests.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/tools/generator/generator.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
@@ -98,7 +99,6 @@
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
@@ -144,6 +144,21 @@
             },
             "lldb_context": {
                 "c": [
+                    {
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            ".",
+                            {
+                                "_": "darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
                     {
                         "o": [
                             "-O0",
@@ -482,6 +497,7 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_MODULE_NAME": "tools_generator_generator",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
@@ -490,7 +506,6 @@
             "dependencies": [
                 "//tools/generator:generator.library darwin_x86_64-dbg-ST-e7deb5c809c7"
             ],
-            "is_swift": false,
             "label": "//tools/generator:generator",
             "linker_inputs": {
                 "linkopts": [
@@ -499,7 +514,6 @@
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tadija_aexml/AEXML.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
-                    "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
@@ -533,6 +547,21 @@
             },
             "lldb_context": {
                 "c": [
+                    {
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            ".",
+                            {
+                                "_": "darwin_x86_64-dbg-ST-e7deb5c809c7/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
                     {
                         "o": [
                             "-O0",
