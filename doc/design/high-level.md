@@ -1,5 +1,7 @@
 # High Level Design
 
+> **Last Updated: April 23, 2022**
+
 rules_xcodeproj has a few high level design goals:
 
 - Only the `xcodeproj` rule is necessary to create a working project

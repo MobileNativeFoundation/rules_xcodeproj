@@ -1,5 +1,7 @@
 # Custom Xcode Schemes
 
+> **Last Updated: July 29, 2022**
+
 This document is a proposal for how custom Xcode schemes can be defined and implemented in
 `rules_xcodeproj`.
 
@@ -229,14 +231,14 @@ custom working directory value.
 It appears that `tuist/XcodeProj` supports
 [`useCustomWorkingDirectory`](https://github.com/tuist/XcodeProj/blob/3a93b47a34860a4d7dbcd9cc0ae8e9543c179c61/Sources/XcodeProj/Scheme/XCScheme%2BLaunchAction.swift#L45)
 but does not support [`customWorkingDirectory` in the data
-model](https://github.com/tuist/XcodeProj/search?q=customWorkingDirectory). 
+model](https://github.com/tuist/XcodeProj/search?q=customWorkingDirectory).
 
 It looks like we will need to put up a PR to `tuist/XcodeProj` to add `customWorkingDirectory`.
 
 ## Introduction of Scheme Autogeneration Mode
 
 With this proposal, it is now possible to control how Xcode scheme autogeneration works using
-the `scheme_autogeneration_mode` attribute on `_xcodeproj`. 
+the `scheme_autogeneration_mode` attribute on `_xcodeproj`.
 
 __Values__
 - `auto`: If no custom schemes are provided, an Xcode scheme will be created for every buildable
@@ -244,7 +246,7 @@ __Values__
 - `none`: No schemes are automatically generated.
 - `all`: A scheme is generated for every buildable target even if custom schemes are provided.
 - `top_level_only`: A scheme is generated for every top-level target even if custom schemes are
-  provided. A top-level target in this context is one that is not depended upon by any other target 
+  provided. A top-level target in this context is one that is not depended upon by any other target
   in the Xcode project.
 
 The default value for `scheme_autogeneration_mode` is `auto`.
@@ -255,21 +257,21 @@ The default value for `scheme_autogeneration_mode` is `auto`.
 
 ```python
 def _scheme(
-    name, 
-    build_action = None, 
-    test_action = None, 
+    name,
+    build_action = None,
+    test_action = None,
     launch_action = None):
     """Returns a `struct` representing an Xcode scheme.
 
     Args:
         name: The user-visible name for the scheme as a `string`.
-        build_action: Optional. A `struct` as returned by 
+        build_action: Optional. A `struct` as returned by
             `xcode_schemes.build_action`.
-        test_action: Optional. A `struct` as returned by 
+        test_action: Optional. A `struct` as returned by
             `xcode_schemes.test_action`.
-        launch_action: Optional. A `struct` as returned by 
+        launch_action: Optional. A `struct` as returned by
             `xcode_schemes.launch_action`.
-  
+
     Returns:
         A `struct` representing an Xcode scheme.
     """
@@ -302,11 +304,11 @@ def _launch_action(target, args = None, env = None, working_directory = None):
 
     Args:
         target: A target label as a `string` value.
-        args: Optional. A `list` of `string` arguments that should be passed to 
+        args: Optional. A `list` of `string` arguments that should be passed to
             the target when executed.
-        env: Optional. A `dict` of `string` values that will be set as 
+        env: Optional. A `dict` of `string` values that will be set as
             environment variables when the target is executed.
-        working_directory: Optional. A `string` that will be set as the custom 
+        working_directory: Optional. A `string` that will be set as the custom
             working directory in the Xcode scheme's launch action.
 
     Return:
@@ -337,16 +339,16 @@ The `schemes` attribute accepts a `sequence` of JSON `string` values as returned
 `xcode_schemes.scheme`. The values are parsed and passed along to the scheme generation code in
 `rules_xcodeproj`. An Xcode scheme is generated for each entry in the list.
 
-### Changes to `xcodeproj` Macro 
+### Changes to `xcodeproj` Macro
 
 The `xcodeproj` macro will gain two parameters: `targets` and `schemes`.
 
 ```python
-def xcodeproj(*, 
-    name, 
-    xcodeproj_rule = _xcodeproj, 
-    targets = [], 
-    schemes = None, 
+def xcodeproj(*,
+    name,
+    xcodeproj_rule = _xcodeproj,
+    targets = [],
+    schemes = None,
     **kwargs):
     """Creates an .xcodeproj file in the workspace when run.
 
@@ -354,7 +356,7 @@ def xcodeproj(*,
         name: The name of the target.
         xcodeproj_rule: The actual `xcodeproj` rule. This is overridden during
             fixture testing. You shouldn't need to set it yourself.
-        targets: Optional. A `list` of targets to be included in the Xcode 
+        targets: Optional. A `list` of targets to be included in the Xcode
             project.
         schemes: Optional. A `list` of `struct` values as returned by
             `xcode_schemes.scheme`.
@@ -366,7 +368,7 @@ def xcodeproj(*,
 In addition to what the `xcodeproj` macro does today, if a value is provided for the `schemes`
 parameter, the macro will:
 1. Collect all of the targets listed in the test and launch actions (not the
-   build action) and add them to the overall targets list. 
+   build action) and add them to the overall targets list.
 2. Serialize the scheme `struct` values to JSON and set those values in the `schemes` attribute of
    `_xcodeproj`.
 
@@ -462,7 +464,7 @@ _xcodeproj(
         "{...}", # JSON representation of Foo Module scheme
         "{...}", # JSON representation of My Application scheme
     ],
-    # Only the top-level or leaf node targets were added to the overall targets 
+    # Only the top-level or leaf node targets were added to the overall targets
     # list.
     targets = [
         "//Sources/App",
@@ -516,7 +518,7 @@ The JSON representation of `My Application` will look like the following:
 ## Configuration and Target Selection in Schemes
 
 Throughout this proposal, the syntax for listing targets in the schemes shows simple Bazel target
-syntax. However, underneath the covers, there is some magic that occurs. 
+syntax. However, underneath the covers, there is some magic that occurs.
 
 Every Bazel target can map to one or more buildable targets inside `rules_xcodeproj`. These
 buildable targets consist of the Bazel target along with any configuration variations that are
