@@ -141,7 +141,8 @@ def _test_action(
         test_target_labels = sets.make(targets)
         if not sets.contains(test_target_labels, expand_variables_based_on):
             fail("""\
-The `expand_variables_based_on` value must be 'none' or one of the test targets.
+The `expand_variables_based_on` value must be `None`, the string value 'none', \
+or one of the test targets.
 """)
 
     return struct(
