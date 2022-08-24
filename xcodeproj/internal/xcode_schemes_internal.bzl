@@ -11,11 +11,11 @@ def _scheme(
 
     Args:
         name: The user-visible name for the scheme as a `string`.
-        build_action: Optional. A `struct` as returned by
+        build_action: Optional. A value returned by
             `xcode_schemes.build_action`.
-        test_action: Optional. A `struct` as returned by
+        test_action: Optional. A value returned by
             `xcode_schemes.test_action`.
-        launch_action: Optional. A `struct` as returned by
+        launch_action: Optional. A value returned by
             `xcode_schemes.launch_action`.
 
     Returns:
@@ -48,8 +48,7 @@ def _build_target(label, build_for = None):
     Args:
         label: A target label as a `string` value.
         build_for: Optional. The settings that dictate when Xcode will build
-            the target. It is a `struct` as returned by
-            `xcode_schemes.build_for`.
+            the target. It is a value returned by `xcode_schemes.build_for`.
 
     Returns:
         A `struct` representing a build target.

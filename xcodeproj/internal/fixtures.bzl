@@ -127,7 +127,7 @@ def xcodeproj_fixture(
         top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
         unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
-        schemes: Optional. A `list` of `struct` values as returned by
+        schemes: Optional. A `list` of values returned by
             `xcode_schemes.scheme`.
         scheme_autogeneration_mode: Optional. The scheme autogeneration mode for
             the project.

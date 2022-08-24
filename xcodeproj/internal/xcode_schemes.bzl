@@ -10,13 +10,12 @@ def _focus_schemes(schemes, focused_targets):
     """Filter/adjust a `sequence` of schemes to only include focused targets.
 
     Args:
-        schemes: A `sequence` of `struct` values as returned by
-            `xcode_schemes.scheme`.
+        schemes: A `sequence` of values returned by `xcode_schemes.scheme`.
         focused_targets: A `sequence` of `string` values representing Bazel
             labels of focused targets.
 
     Returns:
-        A `sequence` of `struct` values as returned by `xcode_schemes.scheme`.
+        A `sequence` of values returned by `xcode_schemes.scheme`.
         Will only include schemes that have at least one target in
         `focused_targets`. Some actions might be removed if they reference
         unfocused targets.
@@ -82,13 +81,12 @@ def _unfocus_schemes(schemes, unfocused_targets):
     """Filter/adjust a `sequence` of schemes to exclude unfocused targets.
 
     Args:
-        schemes: A `sequence` of `struct` values as returned by
-            `xcode_schemes.scheme`.
+        schemes: A `sequence` of values returned by `xcode_schemes.scheme`.
         unfocused_targets: A `sequence` of `string` values representing Bazel
             labels of unfocused targets.
 
     Returns:
-        A `sequence` of `struct` values as returned by `xcode_schemes.scheme`.
+        A `sequence` of values returned by `xcode_schemes.scheme`.
         Will only include schemes that have at least one target not in
         `unfocused_targets`. Some actions might be removed if they reference
         unfocused targets.
@@ -183,8 +181,7 @@ def make_xcode_schemes(bazel_labels):
         Args:
             label: A target label as a `string` value.
             build_for: Optional. The settings that dictate when Xcode will build
-                the target. It is a `struct` as returned by
-                `xcode_schemes.build_for`.
+                the target. It is a value returned by `xcode_schemes.build_for`.
 
         Returns:
             A `struct` representing a build target.

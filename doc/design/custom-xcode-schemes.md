@@ -265,11 +265,11 @@ def _scheme(
 
     Args:
         name: The user-visible name for the scheme as a `string`.
-        build_action: Optional. A `struct` as returned by
+        build_action: Optional. A value returned by
             `xcode_schemes.build_action`.
-        test_action: Optional. A `struct` as returned by
+        test_action: Optional. A value returned by
             `xcode_schemes.test_action`.
-        launch_action: Optional. A `struct` as returned by
+        launch_action: Optional. A value returned by
             `xcode_schemes.launch_action`.
 
     Returns:
@@ -335,7 +335,7 @@ Mode](#introduction-of-scheme-autogeneration-mode).
 
 #### `schemes` Attribute
 
-The `schemes` attribute accepts a `sequence` of JSON `string` values as returned by
+The `schemes` attribute accepts a `sequence` of JSON `string` values returned by
 `xcode_schemes.scheme`. The values are parsed and passed along to the scheme generation code in
 `rules_xcodeproj`. An Xcode scheme is generated for each entry in the list.
 
@@ -358,7 +358,7 @@ def xcodeproj(*,
             fixture testing. You shouldn't need to set it yourself.
         targets: Optional. A `list` of targets to be included in the Xcode
             project.
-        schemes: Optional. A `list` of `struct` values as returned by
+        schemes: Optional. A `list` of values returned by
             `xcode_schemes.scheme`.
         **kwargs: Additional arguments to pass to `xcodeproj_rule`.
     """
