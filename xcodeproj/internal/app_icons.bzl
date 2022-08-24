@@ -2,12 +2,13 @@ def _get_resource_set_name(path, suffix):
     suffix_idx = path.find(suffix)
     if suffix_idx == -1:
         return None
+    suffix_end_idx = suffix_idx + len(suffix)
     prev_delimiter_idx = path[:suffix_idx].rfind("/")
     if prev_delimiter_idx == -1:
         name_start_idx = 0
     else:
         name_start_idx = prev_delimiter_idx + 1
-    return path[name_start_idx:suffix_idx]
+    return path[name_start_idx:suffix_idx], path[:suffix_end_idx]
 
 _RESOURCE_SET_SUFFIXES = [".appiconset", ".brandassets"]
 
@@ -36,20 +37,22 @@ def _get_app_icon_info(ctx, automatic_target_info):
     ]
     for file in resource_files:
         for suffix in _RESOURCE_SET_SUFFIXES:
-            set_name = _get_resource_set_name(file.short_path, suffix)
+            set_name, set_path = _get_resource_set_name(file.short_path, suffix)
             if not set_name:
                 continue
             return _create(
                 set_name = set_name,
+                set_path = set_path,
                 # TODO(chuck): FIX ME!
                 default_icon_name = None,
             )
 
     return None
 
-def _create(set_name, default_icon_name):
+def _create(set_name, set_path, default_icon_name):
     return struct(
         set_name = set_name,
+        set_path = set_path,
         default_icon_name = default_icon_name,
     )
 
