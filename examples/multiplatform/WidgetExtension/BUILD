@@ -48,7 +48,7 @@ xcode_provisioning_profile(
 
 local_provisioning_profile(
     name = "xcode_managed_profile",
-    profile_name = "iOS Team Provisioning Profile: {}.widget_extension".format(IOS_BUNDLE_ID),
+    profile_name = "iOS Team Provisioning Profile: {}.widget-extension".format(IOS_BUNDLE_ID),
     tags = ["manual"],
     team_id = TEAMID,
 )
