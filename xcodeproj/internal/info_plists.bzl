@@ -35,17 +35,6 @@ plutil -insert CFBundleIconFile -string \"{app_icon_path}\" \"{output}\" > /dev/
         inputs = [file],
         outputs = [output],
         command = command,
-        # command = """\
-        # cp "{input}" "{output}"
-        # chmod u+w "{output}"
-        # plutil -remove UIDeviceFamily \"{output}\" > /dev/null 2>&1 || true
-        # """.format(input = file.path, output = output.path),
-        # command = """\
-        # cp "{input}" "{output}"
-        # chmod u+w "{output}"
-        # plutil -remove UIDeviceFamily \"{output}\" > /dev/null 2>&1 || true
-        # plutil -insert CFBundleIconFile -string \"Example/Assets.xcassets/AppIcon.appiconset/ios_store_icon.png\" \"{output}\" > /dev/null 2>&1 || true
-        # """.format(input = file.path, output = output.path),
     )
 
     return output
