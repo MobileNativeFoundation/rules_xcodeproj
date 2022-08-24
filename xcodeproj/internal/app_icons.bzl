@@ -93,5 +93,5 @@ def _create(set_name, set_path, default_icon_path):
 
 app_icons = struct(
     create = _create,
-    get_app_icon_info = _get_app_icon_info,
+    get_info = _get_app_icon_info,
 )

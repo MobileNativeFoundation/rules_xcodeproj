@@ -226,12 +226,7 @@ def process_top_level_target(
     modulemaps = process_modulemaps(swift_info = swift_info)
     additional_files.extend(list(modulemaps.files))
 
-    app_icon_info = app_icons.get_app_icon_info(ctx, automatic_target_info)
-
-    # DEBUG BEGIN
-    print("*** CHUCK app_icon_info: ", app_icon_info)
-
-    # DEBUG END
+    app_icon_info = app_icons.get_info(ctx, automatic_target_info)
 
     infoplist = info_plists.adjust_for_xcode(
         info_plists.get_file(target),
