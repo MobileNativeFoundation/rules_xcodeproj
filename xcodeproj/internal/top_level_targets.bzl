@@ -226,8 +226,16 @@ def process_top_level_target(
     modulemaps = process_modulemaps(swift_info = swift_info)
     additional_files.extend(list(modulemaps.files))
 
+    app_icon_info = app_icons.get_app_icon_info(ctx, automatic_target_info)
+
+    # DEBUG BEGIN
+    print("*** CHUCK app_icon_info: ", app_icon_info)
+
+    # DEBUG END
+
     infoplist = info_plists.adjust_for_xcode(
         info_plists.get_file(target),
+        app_icon_info.default_icon_path if app_icon_info else None,
         ctx = ctx,
     )
     if infoplist:
@@ -437,7 +445,6 @@ def process_top_level_target(
         transitive_infos = deps_infos,
     )
 
-    app_icon_info = app_icons.get_app_icon_info(ctx, automatic_target_info)
     set_if_true(
         build_settings,
         "ASSETCATALOG_COMPILER_APPICON_NAME",
