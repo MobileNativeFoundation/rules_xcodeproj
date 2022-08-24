@@ -24,7 +24,7 @@ watchos_application(
     bundle_id = WATCHOS_BUNDLE_ID,
     extension = "//examples/multiplatform/watchOSAppExtension",
     infoplists = [":infoplist"],
-    minimum_os_version = "7.0",
+    minimum_os_version = "8.0",
     provisioning_profile = select({
         ":device_build": ":xcode_profile",
         "//conditions:default": None,
