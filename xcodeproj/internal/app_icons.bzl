@@ -34,6 +34,8 @@ def _should_find_default_icon_path(ctx):
 _IMAGE_EXTS = sets.make([".png", ".jpg", ".jpeg"])
 
 def _find_default_icon_path(set_path, app_icon_files):
+    # GH949: Update the file selection logic to use the contents of the resource
+    # set's `Contents.json`.
     for file in app_icon_files:
         file_path = file.short_path
         if not file_path.startswith(set_path):
@@ -85,6 +87,18 @@ def _get_app_icon_info(ctx, automatic_target_info):
     )
 
 def _create(set_name, set_path, default_icon_path):
+    """Create a `struct` representing informaiton about a target's application \
+    icons.
+
+    Args:
+      set_name: The name of the resource set as a `string` value.
+      set_path: The path of the resource set as a `string` value.
+      default_icon_path: If a default icon should be identified, the path to
+          the icon file will be set as a `string` value.
+
+    Returns:
+        A `struct` representing application icon information.
+    """
     return struct(
         set_name = set_name,
         set_path = set_path,
