@@ -59,7 +59,7 @@ def _build_target_test(ctx):
     actual = xcode_schemes.build_target("//Sources/Foo")
     expected = struct(
         label = bazel_labels.normalize("//Sources/Foo"),
-        build_for = None,
+        build_for = xcode_schemes.BUILD_FOR_ALL_ENABLED,
     )
     asserts.equals(env, expected, actual, "no build_for")
 

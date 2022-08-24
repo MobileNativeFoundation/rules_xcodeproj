@@ -171,6 +171,8 @@ def make_xcode_schemes(bazel_labels):
         Returns:
             A `struct` representing a build target.
         """
+        if not build_for:
+            build_for = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED
         return xcode_schemes_internal.build_target(
             label = bazel_labels.normalize(label),
             build_for = build_for,
@@ -251,6 +253,7 @@ def make_xcode_schemes(bazel_labels):
         focus_schemes = _focus_schemes,
         unfocus_schemes = _unfocus_schemes,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
+        BUILD_FOR_ALL_ENABLED = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED,
     )
 
 xcode_schemes = make_xcode_schemes(

@@ -197,4 +197,11 @@ xcode_schemes_internal = struct(
     build_for_values = build_for_values,
     test_action = _test_action,
     launch_action = _launch_action,
+    BUILD_FOR_ALL_ENABLED = _build_for(
+        running = True,
+        testing = True,
+        profiling = True,
+        archiving = True,
+        analyzing = True,
+    ),
 )
