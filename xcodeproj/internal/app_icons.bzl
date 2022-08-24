@@ -40,7 +40,7 @@ def _find_default_icon_path(set_path, app_icon_files):
         file_path = file.short_path
         if not file_path.startswith(set_path):
             continue
-        root, ext = paths.split_extension(file_path)
+        _, ext = paths.split_extension(file_path)
         if not sets.contains(_IMAGE_EXTS, ext):
             continue
         return file_path
