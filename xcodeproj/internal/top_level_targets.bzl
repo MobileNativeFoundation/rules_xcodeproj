@@ -3,6 +3,7 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load(":app_icons.bzl", "app_icons")
 load(
     ":build_settings.bzl",
     "get_product_module_name",
@@ -436,10 +437,11 @@ def process_top_level_target(
         transitive_infos = deps_infos,
     )
 
+    app_icon_info = app_icons.get_app_icon_info(ctx, automatic_target_info)
     set_if_true(
         build_settings,
         "ASSETCATALOG_COMPILER_APPICON_NAME",
-        _get_app_icon_name(ctx, automatic_target_info),
+        app_icon_info.set_name if app_icon_info else None,
     )
 
     return processed_target(
@@ -481,47 +483,3 @@ def process_top_level_target(
             lldb_context = lldb_context,
         ),
     )
-
-def _get_resource_set_name(path, suffix):
-    suffix_idx = path.find(suffix)
-    if suffix_idx == -1:
-        return None
-    prev_delimiter_idx = path[:suffix_idx].rfind("/")
-    if prev_delimiter_idx == -1:
-        name_start_idx = 0
-    else:
-        name_start_idx = prev_delimiter_idx + 1
-    return path[name_start_idx:suffix_idx]
-
-_RESOURCE_SET_SUFFIXES = [".appiconset", ".brandassets"]
-
-def _get_app_icon_name(ctx, automatic_target_info):
-    """Attempts to find the applicaiton icon name.
-
-    Args:
-        ctx: The aspect context.
-        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
-            `target`.
-
-    Returns:
-        The application icon name, if found. Otherwise, None.
-    """
-    if not automatic_target_info.app_icons:
-        return None
-
-    app_icons = getattr(ctx.rule.attr, automatic_target_info.app_icons, None)
-    if not app_icons:
-        return None
-
-    resource_files = [
-        file
-        for target in app_icons
-        for file in target.files.to_list()
-    ]
-    for file in resource_files:
-        for suffix in _RESOURCE_SET_SUFFIXES:
-            resource_name = _get_resource_set_name(file.short_path, suffix)
-            if resource_name:
-                return resource_name
-
-    return None
