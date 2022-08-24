@@ -112,7 +112,7 @@ Constructs a build action for an Xcode scheme.
 
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.build_action-targets"></a>targets |  A <code>sequence</code> of <code>struct</code> values as created by <code>xcode_schemes.build_target</code>.   |  none |
+| <a id="xcode_schemes.build_action-targets"></a>targets |  A <code>sequence</code> of elements that are either <code>struct</code> values as created by <code>xcode_schemes.build_target</code>, or a target label as a <code>string</code> value.   |  none |
 
 **RETURNS**
 

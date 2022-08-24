@@ -130,12 +130,14 @@ def _build_action_test(ctx):
     env = unittest.begin(ctx)
 
     targets = [
+        "//Sources/Bar",
         xcode_schemes.build_target("//Sources/Foo"),
     ]
     actual = xcode_schemes.build_action(targets)
 
     expected = struct(
         targets = [
+            xcode_schemes.build_target(bazel_labels.normalize("//Sources/Bar")),
             xcode_schemes.build_target(bazel_labels.normalize("//Sources/Foo")),
         ],
     )
