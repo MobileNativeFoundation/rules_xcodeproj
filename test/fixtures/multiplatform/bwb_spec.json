@@ -66,11 +66,11 @@
         "examples/multiplatform/watchOSAppExtension/Info.plist",
         "examples/multiplatform/watchOSApp/BUILD",
         {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/watchOSApp/Assets.xcassets",
@@ -126,11 +126,11 @@
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "t": "g"
         },
         {
@@ -206,21 +206,21 @@
         [
             "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487"
         ],
-        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f",
+        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13",
         [
             "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-11143c310cbd"
         ],
-        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316",
+        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91",
         [
             "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487"
         ],
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f",
         [
-            "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f"
+            "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13"
         ],
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316",
         [
-            "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316"
+            "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91"
         ]
     ],
     "target_merges": [
@@ -2406,7 +2406,7 @@
                 "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
                 "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
                 "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
-                "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f"
+                "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13"
             ],
             "extensions": [
                 "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-11143c310cbd"
@@ -2642,7 +2642,7 @@
                     }
                 ]
             },
-            "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f"
+            "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13"
         },
         "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
         {
@@ -2666,7 +2666,7 @@
                 "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
                 "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
                 "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-b0487734b487",
-                "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316"
+                "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91"
             ],
             "extensions": [
                 "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-b0487734b487"
@@ -2902,7 +2902,7 @@
                     }
                 ]
             },
-            "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316"
+            "watch_application": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91"
         },
         "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-11143c310cbd",
         {
@@ -3693,7 +3693,7 @@
                 }
             ]
         },
-        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f",
+        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13",
         {
             "build_settings": {
                 "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
@@ -3707,7 +3707,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f",
+            "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13",
             "dependencies": [
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f"
             ],
@@ -3715,7 +3715,7 @@
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f"
             ],
             "info_plist": {
-                "_": "applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
+                "_": "applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
@@ -3730,14 +3730,14 @@
             "name": "watchOSApp",
             "outputs": {
                 "p": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp/watchOSApp.zip",
+                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13/bin/examples/multiplatform/watchOSApp/watchOSApp.zip",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp",
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13/bin/examples/multiplatform/watchOSApp",
             "platform": {
                 "arch": "arm64_32",
-                "minimum_os_version": "7.0",
+                "minimum_os_version": "8.0",
                 "os": "watchos",
                 "variant": "watchos"
             },
@@ -3745,7 +3745,7 @@
                 "executable_name": "watchOSApp",
                 "name": "watchOSApp",
                 "path": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
+                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application.watchapp2"
@@ -3754,13 +3754,13 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-342d62bd0d8f/bin",
+                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-2c07d94fcd13/bin",
                         "t": "g"
                     }
                 ]
             }
         },
-        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316",
+        "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91",
         {
             "build_settings": {
                 "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
@@ -3773,7 +3773,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316",
+            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91",
             "dependencies": [
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316"
             ],
@@ -3781,7 +3781,7 @@
                 "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316"
             ],
             "info_plist": {
-                "_": "applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
@@ -3796,14 +3796,14 @@
             "name": "watchOSApp",
             "outputs": {
                 "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp/watchOSApp.zip",
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91/bin/examples/multiplatform/watchOSApp/watchOSApp.zip",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp",
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91/bin/examples/multiplatform/watchOSApp",
             "platform": {
                 "arch": "x86_64",
-                "minimum_os_version": "7.0",
+                "minimum_os_version": "8.0",
                 "os": "watchos",
                 "variant": "watchsimulator"
             },
@@ -3811,7 +3811,7 @@
                 "executable_name": "watchOSApp",
                 "name": "watchOSApp",
                 "path": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91/bin/examples/multiplatform/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application.watchapp2"
@@ -3820,7 +3820,7 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-fce54d0d8316/bin",
+                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-3ff532259e91/bin",
                         "t": "g"
                     }
                 ]
