@@ -88,9 +88,9 @@ Returns a `struct` representing an Xcode scheme.
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.scheme-name"></a>name |  The user-visible name for the scheme as a <code>string</code>.   |  none |
-| <a id="xcode_schemes.scheme-build_action"></a>build_action |  Optional. A <code>struct</code> as returned by <code>xcode_schemes.build_action</code>.   |  <code>None</code> |
-| <a id="xcode_schemes.scheme-test_action"></a>test_action |  Optional. A <code>struct</code> as returned by <code>xcode_schemes.test_action</code>.   |  <code>None</code> |
-| <a id="xcode_schemes.scheme-launch_action"></a>launch_action |  Optional. A <code>struct</code> as returned by <code>xcode_schemes.launch_action</code>.   |  <code>None</code> |
+| <a id="xcode_schemes.scheme-build_action"></a>build_action |  Optional. A value returned by <code>xcode_schemes.build_action</code>.   |  <code>None</code> |
+| <a id="xcode_schemes.scheme-test_action"></a>test_action |  Optional. A value returned by <code>xcode_schemes.test_action</code>.   |  <code>None</code> |
+| <a id="xcode_schemes.scheme-launch_action"></a>launch_action |  Optional. A value returned by <code>xcode_schemes.launch_action</code>.   |  <code>None</code> |
 
 **RETURNS**
 
@@ -135,7 +135,7 @@ Constructs a build target for an Xcode scheme's build action.
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.build_target-label"></a>label |  A target label as a <code>string</code> value.   |  none |
-| <a id="xcode_schemes.build_target-build_for"></a>build_for |  Optional. The settings that dictate when Xcode will build the target. It is a <code>struct</code> as returned by <code>xcode_schemes.build_for</code>.   |  <code>None</code> |
+| <a id="xcode_schemes.build_target-build_for"></a>build_for |  Optional. The settings that dictate when Xcode will build the target. It is a value returned by <code>xcode_schemes.build_for</code>.   |  <code>None</code> |
 
 **RETURNS**
 
@@ -232,12 +232,12 @@ Filter/adjust a `sequence` of schemes to only include focused targets.
 
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.focus_schemes-schemes"></a>schemes |  A <code>sequence</code> of <code>struct</code> values as returned by <code>xcode_schemes.scheme</code>.   |  none |
+| <a id="xcode_schemes.focus_schemes-schemes"></a>schemes |  A <code>sequence</code> of values returned by <code>xcode_schemes.scheme</code>.   |  none |
 | <a id="xcode_schemes.focus_schemes-focused_targets"></a>focused_targets |  A <code>sequence</code> of <code>string</code> values representing Bazel labels of focused targets.   |  none |
 
 **RETURNS**
 
-A `sequence` of `struct` values as returned by `xcode_schemes.scheme`.
+A `sequence` of values returned by `xcode_schemes.scheme`.
   Will only include schemes that have at least one target in
   `focused_targets`. Some actions might be removed if they reference
   unfocused targets.
@@ -258,12 +258,12 @@ Filter/adjust a `sequence` of schemes to exclude unfocused targets.
 
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.unfocus_schemes-schemes"></a>schemes |  A <code>sequence</code> of <code>struct</code> values as returned by <code>xcode_schemes.scheme</code>.   |  none |
+| <a id="xcode_schemes.unfocus_schemes-schemes"></a>schemes |  A <code>sequence</code> of values returned by <code>xcode_schemes.scheme</code>.   |  none |
 | <a id="xcode_schemes.unfocus_schemes-unfocused_targets"></a>unfocused_targets |  A <code>sequence</code> of <code>string</code> values representing Bazel labels of unfocused targets.   |  none |
 
 **RETURNS**
 
-A `sequence` of `struct` values as returned by `xcode_schemes.scheme`.
+A `sequence` of values returned by `xcode_schemes.scheme`.
   Will only include schemes that have at least one target not in
   `unfocused_targets`. Some actions might be removed if they reference
   unfocused targets.

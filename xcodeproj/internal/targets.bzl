@@ -19,7 +19,7 @@ def _is_test_bundle_with_provider(target, deps, bundle_provider):
 
     Args:
         target: The `Target` to evaluate.
-        deps: The `list` of dependencies for the target as returned by
+        deps: The `list` of dependencies for the target returned by
             `ctx.rule.attr.deps`.
         bundle_provider: A bundle provider type (e.g
             `IosXcTestBundleInfo`, `MacosXcTestBundleInfo`).
@@ -39,7 +39,7 @@ def _is_test_bundle(target, deps):
 
     Args:
         target: The `Target` to evaluate.
-        deps: The `list` of dependencies for the target as returned by
+        deps: The `list` of dependencies for the target returned by
             `ctx.rule.attr.deps`.
 
     Returns:

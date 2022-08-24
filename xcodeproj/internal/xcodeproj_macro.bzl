@@ -11,7 +11,7 @@ def xcodeproj(*, name, xcodeproj_rule = _xcodeproj, schemes = None, **kwargs):
         name: The name of the target.
         xcodeproj_rule: The actual `xcodeproj` rule. This is overridden during
             fixture testing. You shouldn't need to set it yourself.
-        schemes: Optional. A `list` of `struct` values as returned by
+        schemes: Optional. A `list` of values returned by
             `xcode_schemes.scheme`.
         **kwargs: Additional arguments to pass to `xcodeproj_rule`.
     """
