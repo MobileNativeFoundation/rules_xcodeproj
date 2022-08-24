@@ -56,7 +56,7 @@ def _get_app_icon_info(ctx, automatic_target_info):
             `target`.
 
     Returns:
-        The application icon name, if found. Otherwise, None.
+        The application icon name, if found. Otherwise, `None`.
     """
     if not automatic_target_info.app_icons:
         return None
@@ -87,14 +87,14 @@ def _get_app_icon_info(ctx, automatic_target_info):
     )
 
 def _create(set_name, set_path, default_icon_path):
-    """Create a `struct` representing informaiton about a target's application \
+    """Creates a `struct` representing information about a target's application \
     icons.
 
     Args:
-      set_name: The name of the resource set as a `string` value.
-      set_path: The path of the resource set as a `string` value.
+      set_name: The name of the resource set as a `string`.
+      set_path: The path of the resource set as a `string`.
       default_icon_path: If a default icon should be identified, the path to
-          the icon file will be set as a `string` value.
+          the icon file will be set as a `string`.
 
     Returns:
         A `struct` representing application icon information.
