@@ -621,24 +621,54 @@ def make_xcodeproj_rule(
             default = False,
         ),
         "bazel_path": attr.string(
+            doc = """\
+The path to the `bazel` binary or wrapper script. If the path is relative it
+will be resolved using the `PATH` environment variable (which is set to
+`/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin` in Xcode). If
+you wan to specify a path to a workspace-relative binary, you must prepend the
+path with `./` (e.g. `"./bazelw"`).
+""",
             default = "bazel",
         ),
         "build_mode": attr.string(
+            doc = """\
+The build mode the generated project should use.
+
+If this is set to `"xcode"`, the project will use the Xcode build system to
+build targets. Generated files and unfocused targets (see the `focused_targets`
+and `unfocused_targets` attributes) will be built with Bazel.
+
+If this is set to `"bazel"`, the project will use Bazel to build targets, inside
+of Xcode. The Xcode build system still unavoidably orchestrates some things at a
+high level.
+""",
             default = "xcode",
             values = ["xcode", "bazel"],
         ),
         "focused_targets": attr.string_list(
+            doc = """\
+A `list` of target labels as `string` values. If specified, only these targets
+will be included in the generated project; all other targets will be excluded,
+as if they were listed explicitly in the `unfocused_targets` attribute. The
+labels must match transitive dependencies of the targets specified in the
+`top_level_targets` attribute.
+""",
             default = [],
         ),
-        "project_name": attr.string(),
+        "project_name": attr.string(
+            doc = """\
+The name to use for the `.xcodeproj` file. If not specified, the value of the
+`name` attribute is used.
+""",
+        ),
         "scheme_autogeneration_mode": attr.string(
-            default = "auto",
             doc = "Specifies how Xcode schemes are automatically generated.",
+            default = "auto",
             values = ["auto", "none", "all"],
         ),
         "schemes_json": attr.string(
             doc = """\
-A JSON string representing a list of Xcode schemes to create.\
+A JSON string representing a list of Xcode schemes to create.
 """,
         ),
         "top_level_targets": attr.label_list(
@@ -649,19 +679,29 @@ A JSON string representing a list of Xcode schemes to create.\
             providers = [XcodeProjInfo],
         ),
         "toplevel_cache_buster": attr.label_list(
+            doc = "For internal use only. Do not set this value yourself.",
             allow_empty = True,
             allow_files = True,
-            doc = "For internal use only. Do not set this value yourself.",
         ),
         "unfocused_targets": attr.string_list(
+            doc = """\
+A `list` of target labels as `string` values. Any targets in the transitive
+dependencies of the targets specified in the `top_level_targets` attribute with
+a matching label will be excluded from the generated project. This overrides any
+targets specified in the `focused_targets` attribute.
+""",
             default = [],
         ),
         "_allowlist_function_transition": attr.label(
-            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+            default = Label(
+                "@bazel_tools//tools/allowlists/function_transition_allowlist",
+            ),
         ),
         "_base_integration_files": attr.label(
             allow_files = True,
-            default = Label("//xcodeproj/internal/bazel_integration_files:base_integration_files"),
+            default = Label(
+                "//xcodeproj/internal/bazel_integration_files:base_integration_files",
+            ),
         ),
         "_bazel_integration_files": attr.label(
             allow_files = True,
@@ -694,6 +734,7 @@ A JSON string representing a list of Xcode schemes to create.\
     }
 
     return rule(
+        doc = "Creates an `.xcodeproj` file in the workspace when run.",
         cfg = xcodeproj_transition,
         implementation = _xcodeproj_impl,
         attrs = attrs,

@@ -12,7 +12,7 @@ xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-archived_bundl
           <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>)
 </pre>
 
-
+Creates an `.xcodeproj` file in the workspace when run.
 
 **ATTRIBUTES**
 
@@ -21,15 +21,15 @@ xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-archived_bundl
 | :------------- | :------------- | :------------- | :------------- | :------------- |
 | <a id="xcodeproj-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
 | <a id="xcodeproj-archived_bundles_allowed"></a>archived_bundles_allowed |  -   | Boolean | optional | False |
-| <a id="xcodeproj-bazel_path"></a>bazel_path |  -   | String | optional | "bazel" |
-| <a id="xcodeproj-build_mode"></a>build_mode |  -   | String | optional | "xcode" |
-| <a id="xcodeproj-focused_targets"></a>focused_targets |  -   | List of strings | optional | [] |
-| <a id="xcodeproj-project_name"></a>project_name |  -   | String | optional | "" |
+| <a id="xcodeproj-bazel_path"></a>bazel_path |  The path to the <code>bazel</code> binary or wrapper script. If the path is relative it will be resolved using the <code>PATH</code> environment variable (which is set to <code>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</code> in Xcode). If you wan to specify a path to a workspace-relative binary, you must prepend the path with <code>./</code> (e.g. <code>"./bazelw"</code>).   | String | optional | "bazel" |
+| <a id="xcodeproj-build_mode"></a>build_mode |  The build mode the generated project should use.<br><br>If this is set to <code>"xcode"</code>, the project will use the Xcode build system to build targets. Generated files and unfocused targets (see the <code>focused_targets</code> and <code>unfocused_targets</code> attributes) will be built with Bazel.<br><br>If this is set to <code>"bazel"</code>, the project will use Bazel to build targets, inside of Xcode. The Xcode build system still unavoidably orchestrates some things at a high level.   | String | optional | "xcode" |
+| <a id="xcodeproj-focused_targets"></a>focused_targets |  A <code>list</code> of target labels as <code>string</code> values. If specified, only these targets will be included in the generated project; all other targets will be excluded, as if they were listed explicitly in the <code>unfocused_targets</code> attribute. The labels must match transitive dependencies of the targets specified in the <code>top_level_targets</code> attribute.   | List of strings | optional | [] |
+| <a id="xcodeproj-project_name"></a>project_name |  The name to use for the <code>.xcodeproj</code> file. If not specified, the value of the <code>name</code> attribute is used.   | String | optional | "" |
 | <a id="xcodeproj-scheme_autogeneration_mode"></a>scheme_autogeneration_mode |  Specifies how Xcode schemes are automatically generated.   | String | optional | "auto" |
 | <a id="xcodeproj-schemes_json"></a>schemes_json |  A JSON string representing a list of Xcode schemes to create.   | String | optional | "" |
 | <a id="xcodeproj-top_level_targets"></a>top_level_targets |  -   | <a href="https://bazel.build/concepts/labels">List of labels</a> | required |  |
 | <a id="xcodeproj-toplevel_cache_buster"></a>toplevel_cache_buster |  For internal use only. Do not set this value yourself.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional | [] |
-| <a id="xcodeproj-unfocused_targets"></a>unfocused_targets |  -   | List of strings | optional | [] |
+| <a id="xcodeproj-unfocused_targets"></a>unfocused_targets |  A <code>list</code> of target labels as <code>string</code> values. Any targets in the transitive dependencies of the targets specified in the <code>top_level_targets</code> attribute with a matching label will be excluded from the generated project. This overrides any targets specified in the <code>focused_targets</code> attribute.   | List of strings | optional | [] |
 
 
 <a id="XcodeProjAutomaticTargetProcessingInfo"></a>
