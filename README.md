@@ -114,16 +114,26 @@ apple_support_dependencies()
 Minimal example:
 
 ```python
-load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
+load(
+  "@build_bazel_rules_apple//apple:ios.bzl",
+  "ios_application",
+  "ios_unit_test",
+)
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "top_level_target",
     "xcodeproj",
 )
 
-swift_library(
-    name = "Lib",
-    srcs = glob(["**/*.swift"]),
+xcodeproj(
+    name = "xcodeproj",
+    project_name = "App",
+    tags = ["manual"],
+    top_level_targets = [
+        top_level_target(":App", target_environments = ["device", "simulator"]),
+        ":Tests",
+    ],
 )
 
 ios_application(
@@ -135,13 +145,23 @@ ios_application(
     deps = [":Lib"],
 )
 
-xcodeproj(
-    name = "xcodeproj",
-    project_name = "App",
-    tags = ["manual"],
-    top_level_targets = [
-        ":App",
-    ],
+swift_library(
+    name = "Lib",
+    srcs = glob(["src/*.swift"]),
+)
+
+ios_unit_test(
+    name = "Tests",
+    bundle_id = "com.example.tests",
+    minimum_os_version = "15.0",
+    test_host = "//App",
+    visibility = ["//visibility:public"],
+    deps = [":TestLib"],
+)
+
+swift_library(
+    name = "TestLib",
+    srcs = glob(["test/*.swift"]),
 )
 ```
 

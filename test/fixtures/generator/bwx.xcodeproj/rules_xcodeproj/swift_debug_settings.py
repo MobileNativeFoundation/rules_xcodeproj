@@ -14,32 +14,32 @@ _BUNDLE_EXTENSIONS = [
 
 _SETTINGS = {
   "x86_64-apple-macosx11.0.0 generator" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all",
     "frameworks" : [
 
     ],
     "includes" : [
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_apple_swift_collections",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tuist_xcodeproj",
-      "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tadija_aexml",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit"
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_apple_swift_collections",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_tuist_xcodeproj",
+      "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_tadija_aexml",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_kylef_pathkit"
     ]
   },
   "x86_64-apple-macosx11.0.0 tests.xctest/Contents/MacOS/tests" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin\" -O0 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin\" -O0 -fstack-protector -fstack-protector-all",
     "frameworks" : [
       "$(PLATFORM_DIR)/Developer/Library/Frameworks",
       "$(SDKROOT)/Developer/Library/Frameworks"
     ],
     "includes" : [
       "$(PLATFORM_DIR)/Developer/usr/lib",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/tools/generator",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_pointfreeco_swift_custom_dump",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_apple_swift_collections",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tuist_xcodeproj",
-      "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_tadija_aexml",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_kylef_pathkit",
-      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-e7deb5c809c7/bin/external/com_github_pointfreeco_xctest_dynamic_overlay"
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/tools/generator",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_pointfreeco_swift_custom_dump",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_apple_swift_collections",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_tuist_xcodeproj",
+      "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_tadija_aexml",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_kylef_pathkit",
+      "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-b5a312aadc0a/bin/external/com_github_pointfreeco_xctest_dynamic_overlay"
     ]
   }
 }

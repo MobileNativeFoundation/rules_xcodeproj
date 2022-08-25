@@ -1,7 +1,8 @@
 """Public evolving/experimental rules, macros, and libraries."""
 
+# buildifier: disable=deprecated-function
 load(
-    "//xcodeproj/internal:device_and_simulator.bzl",
+    "//xcodeproj/internal:device_and_simulator_macro.bzl",
     _device_and_simulator = "device_and_simulator",
 )
 load(

@@ -467,47 +467,80 @@ def _base_target_transition_impl(settings, attr):
         "//xcodeproj/internal:build_mode": attr.build_mode,
     }
 
-def make_target_transition(
-        implementation = None,
-        inputs = [],
-        outputs = []):
-    def _target_transition_impl(settings, attr):
-        """Transition that applies command-line settings for `xcodeproj` targets."""
+def _device_transition_impl(settings, attr):
+    outputs = {
+        "//command_line_option:ios_multi_cpus": attr.ios_device_cpus,
+        "//command_line_option:tvos_cpus": attr.tvos_device_cpus,
+        "//command_line_option:watchos_cpus": attr.watchos_device_cpus,
+    }
 
-        # Apply the other transition first
-        if implementation:
-            computed_outputs = implementation(settings, attr)
+    outputs.update(_base_target_transition_impl(settings, attr))
+
+    return outputs
+
+def _simulator_transition_impl(settings, attr):
+    cpu_value = settings["//command_line_option:cpu"]
+
+    ios_cpus = attr.ios_simulator_cpus
+    if not ios_cpus:
+        if cpu_value == "darwin_arm64":
+            ios_cpus = "sim_arm64"
         else:
-            computed_outputs = {}
+            ios_cpus = "x86_64"
 
-        settings = dict(settings)
-        settings.update(computed_outputs)
+    tvos_cpus = attr.tvos_simulator_cpus
+    if not tvos_cpus:
+        if cpu_value == "darwin_arm64":
+            tvos_cpus = "sim_arm64"
+        else:
+            tvos_cpus = "x86_64"
 
-        # Then apply our transition
-        computed_outputs.update(_base_target_transition_impl(settings, attr))
+    watchos_cpus = attr.watchos_simulator_cpus
+    if not watchos_cpus:
+        if cpu_value == "darwin_arm64":
+            watchos_cpus = "arm64"
+        else:
+            # rules_apple defaults to i386, but Xcode 13 requires x86_64
+            watchos_cpus = "x86_64"
 
-        return computed_outputs
+    outputs = {
+        "//command_line_option:ios_multi_cpus": ios_cpus,
+        "//command_line_option:tvos_cpus": tvos_cpus,
+        "//command_line_option:watchos_cpus": watchos_cpus,
+    }
 
-    merged_inputs = uniq(
-        inputs + [
-            "//command_line_option:compilation_mode",
-            "//command_line_option:features",
-        ],
-    )
-    merged_outputs = uniq(
-        outputs + [
-            "//command_line_option:compilation_mode",
-            "//command_line_option:features",
-            "//xcodeproj/internal:archived_bundles_allowed",
-            "//xcodeproj/internal:build_mode",
-        ],
-    )
+    outputs.update(_base_target_transition_impl(settings, attr))
 
-    return transition(
-        implementation = _target_transition_impl,
-        inputs = merged_inputs,
-        outputs = merged_outputs,
-    )
+    return outputs
+
+_TRANSITION_ATTR = {
+    "inputs": [
+        "//command_line_option:compilation_mode",
+        "//command_line_option:features",
+        # Simulator and Device support
+        "//command_line_option:cpu",
+    ],
+    "outputs": [
+        "//command_line_option:compilation_mode",
+        "//command_line_option:features",
+        "//xcodeproj/internal:archived_bundles_allowed",
+        "//xcodeproj/internal:build_mode",
+        # Simulator and Device support
+        "//command_line_option:ios_multi_cpus",
+        "//command_line_option:tvos_cpus",
+        "//command_line_option:watchos_cpus",
+    ],
+}
+
+_simulator_transition = transition(
+    implementation = _simulator_transition_impl,
+    **_TRANSITION_ATTR
+)
+
+_device_transition = transition(
+    implementation = _device_transition_impl,
+    **_TRANSITION_ATTR
+)
 
 # Rule
 
@@ -518,7 +551,10 @@ def _xcodeproj_impl(ctx):
     unfocused_labels = sets.make(ctx.attr.unfocused_targets)
     infos = [
         dep[XcodeProjInfo]
-        for dep in ctx.attr.top_level_targets
+        for dep in (
+            ctx.attr.top_level_simulator_targets +
+            ctx.attr.top_level_device_targets
+        )
     ]
     configuration = get_configuration(ctx = ctx)
 
@@ -618,10 +654,7 @@ def _xcodeproj_impl(ctx):
         ),
     ]
 
-def make_xcodeproj_rule(
-        *,
-        xcodeproj_transition = None,
-        target_transition = make_target_transition()):
+def make_xcodeproj_rule(*, xcodeproj_transition = None):
     attrs = {
         "archived_bundles_allowed": attr.bool(
             default = False,
@@ -677,10 +710,47 @@ The name to use for the `.xcodeproj` file.
 A JSON string representing a list of Xcode schemes to create.
 """,
         ),
-        "top_level_targets": attr.label_list(
-            cfg = target_transition,
-            mandatory = True,
-            allow_empty = False,
+        "top_level_device_targets": attr.label_list(
+            doc = """\
+A list of top-level targets that should have Xcode targets, with device
+target environments, generated for them and their transitive dependencies.
+
+Only targets that you want to build for device and be code signed should be
+listed here.
+
+If a target listed here has different device and simulator deployment targets
+(e.g. iOS targets), then the Xcode target generated will target devices,
+otherwise it will be unaffected (i.e. macOS targets). To have a simulator
+deployment target, list the target in the `top_level_simulator_targets`
+attribute instead. Listing a target both here and in the
+`top_level_simulator_targets` attribute will result in a single Xcode target
+that can be built for both device and simulator. Targets that don't have
+different device and simulator deployment targets (i.e. macOS targets) should
+only be listed in one of `top_level_device_targets` or
+`top_level_simulator_targets`, or they will appear as two separate but similar
+Xcode targets.
+""",
+            cfg = _device_transition,
+            aspects = [xcodeproj_aspect],
+            providers = [XcodeProjInfo],
+        ),
+        "top_level_simulator_targets": attr.label_list(
+            doc = """\
+A list of top-level targets that should have Xcode targets, with simulator
+target environments, generated for them and their transitive dependencies.
+
+If a target listed here has different device and simulator deployment targets
+(e.g. iOS targets), then the Xcode target generated will target the simulator,
+otherwise it will be unaffected (i.e. macOS targets). To have a device
+deployment target, list the target in the `top_level_device_targets` attribute
+instead. Listing a target both here and in the `top_level_device_targets`
+attribute will result in a single Xcode target that can be built for both device
+and simulator. Targets that don't have different device and simulator deployment
+targets (i.e. macOS targets) should only be listed in one of
+`top_level_device_targets` or `top_level_simulator_targets`, or they will appear
+as two separate but similar Xcode targets.
+""",
+            cfg = _simulator_transition,
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
         ),
@@ -697,6 +767,80 @@ a matching label will be excluded from the generated project. This overrides any
 targets specified in the `focused_targets` attribute.
 """,
             default = [],
+        ),
+        "ios_device_cpus": attr.string(
+            doc = """\
+The value to use for `--ios_multi_cpus` when building the transitive
+dependencies of the targets specified in the `top_level_device_targets`
+attribute.
+
+**Warning:** Changing this value will affect the Starlark transition hash of all
+transitive dependencies of the targets specified in the
+`top_level_device_targets` attribute, even if they aren't iOS targets.
+""",
+            mandatory = True,
+        ),
+        "ios_simulator_cpus": attr.string(
+            doc = """\
+The value to use for `--ios_multi_cpus` when building the transitive
+dependencies of the targets specified in the `top_level_simulator_targets`
+attribute.
+
+If no value is specified, it defaults to the simulator cpu that goes with
+`--host_cpu` (i.e. `sim_arm64` on Apple Silicon and `x86_64` on Intel).
+
+**Warning:** Changing this value will affect the Starlark transition hash of all
+transitive dependencies of the targets specified in the
+`top_level_simulator_targets` attribute, even if they aren't iOS targets.
+""",
+        ),
+        "tvos_device_cpus": attr.string(
+            doc = """\
+The value to use for `--tvos_cpus` when building the transitive dependencies of
+the targets specified in the `top_level_device_targets` attribute.
+
+**Warning:** Changing this value will affect the Starlark transition hash of all
+transitive dependencies of the targets specified in the
+`top_level_device_targets` attribute, even if they aren't tvOS targets.
+""",
+            mandatory = True,
+        ),
+        "tvos_simulator_cpus": attr.string(
+            doc = """\
+The value to use for `--tvos_cpus` when building the transitive dependencies of
+the targets specified in the `top_level_simulator_targets` attribute.
+
+If no value is specified, it defaults to the simulator cpu that goes with
+`--host_cpu` (i.e. `sim_arm64` on Apple Silicon and `x86_64` on Intel).
+
+**Warning:** Changing this value will affect the Starlark transition hash of all
+transitive dependencies of the targets specified in the
+`top_level_simulator_targets` attribute, even if they aren't tvOS targets.
+""",
+        ),
+        "watchos_device_cpus": attr.string(
+            doc = """\
+The value to use for `--watchos_cpus` when building the transitive dependencies
+of the targets specified in the `top_level_device_targets` attribute.
+
+**Warning:** Changing this value will affect the Starlark transition hash of all
+transitive dependencies of the targets specified in the
+`top_level_device_targets` attribute, even if they aren't watchOS targets.
+""",
+            mandatory = True,
+        ),
+        "watchos_simulator_cpus": attr.string(
+            doc = """\
+The value to use for `--watchos_cpus` when building the transitive dependencies
+of the targets specified in the `top_level_simulator_targets` attribute.
+
+If no value is specified, it defaults to the simulator cpu that goes with
+`--host_cpu` (i.e. `arm64` on Apple Silicon and `x86_64` on Intel).
+
+**Warning:** Changing this value will affect the Starlark transition hash of all
+transitive dependencies of the targets specified in the
+`top_level_simulator_targets` attribute, even if they aren't watchOS targets.
+""",
         ),
         "_allowlist_function_transition": attr.label(
             default = Label(
