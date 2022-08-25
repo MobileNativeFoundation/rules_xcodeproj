@@ -14,74 +14,29 @@
     "custom_xcode_schemes": [],
     "extra_files": [
         {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
-            "t": "e"
-        },
-        "examples/multiplatform/Lib/BUILD",
-        "examples/multiplatform/AppClip/BUILD",
-        "examples/multiplatform/AppClip/Info.plist",
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-448892de289e/bin/examples/multiplatform/AppClip/rules_xcodeproj/AppClip/Info.plist",
-            "t": "g"
-        },
-        "examples/multiplatform/iOSApp/BUILD",
-        "examples/multiplatform/AppClip/Entitlements.entitlements",
-        {
-            "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
-            "t": "e"
-        },
-        {
-            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework",
-            "t": "e"
-        },
-        {
-            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
-            "t": "e"
-        },
-        "examples/multiplatform/WidgetExtension/BUILD",
-        "examples/multiplatform/WidgetExtension/WidgetExtension.intentdefinition",
-        "examples/multiplatform/WidgetExtension/Info.plist",
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-448892de289e/bin/examples/multiplatform/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
-            "t": "e"
-        },
-        "examples/multiplatform/watchOSAppExtension/BUILD",
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-5960e51a8876/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-5960e51a8876/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
-            "t": "g"
-        },
-        "examples/multiplatform/watchOSAppExtension/Info.plist",
-        "examples/multiplatform/watchOSApp/BUILD",
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-d5f0d8f86e47/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-d5f0d8f86e47/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
-            "t": "g"
-        },
-        "examples/multiplatform/watchOSApp/Info.plist",
-        "examples/multiplatform/iOSApp/Info.plist",
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-448892de289e/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist",
-            "t": "g"
-        },
-        {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
+        "examples/multiplatform/Lib/BUILD",
+        "examples/multiplatform/iMessageApp/BUILD",
+        "examples/multiplatform/iMessageApp/Info.extension.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-2ad05e4ea665/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
+            "t": "g"
+        },
+        "examples/multiplatform/iOSApp/BUILD",
+        "examples/multiplatform/iMessageApp/Info.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-2ad05e4ea665/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
+            "t": "g"
+        },
+        "examples/multiplatform/AppClip/BUILD",
+        "examples/multiplatform/AppClip/Info.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-2ad05e4ea665/bin/examples/multiplatform/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/AppClip/Entitlements.entitlements",
         {
             "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework",
             "t": "e"
@@ -94,6 +49,9 @@
             "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
             "t": "e"
         },
+        "examples/multiplatform/WidgetExtension/BUILD",
+        "examples/multiplatform/WidgetExtension/WidgetExtension.intentdefinition",
+        "examples/multiplatform/WidgetExtension/Info.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-2ad05e4ea665/bin/examples/multiplatform/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "t": "g"
@@ -102,6 +60,7 @@
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
+        "examples/multiplatform/watchOSAppExtension/BUILD",
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-fc1b06e257b9/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
@@ -110,6 +69,8 @@
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-fc1b06e257b9/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/watchOSAppExtension/Info.plist",
+        "examples/multiplatform/watchOSApp/BUILD",
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-fd9d107ce354/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
             "t": "g"
@@ -118,37 +79,76 @@
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-fd9d107ce354/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/watchOSApp/Info.plist",
+        "examples/multiplatform/iOSApp/Info.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-2ad05e4ea665/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
-            "t": "e"
-        },
-        "examples/multiplatform/tvOSApp/BUILD",
-        "examples/multiplatform/tvOSApp/Info.plist",
-        {
-            "_": "applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
             "t": "g"
         },
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
+        "examples/multiplatform/tvOSApp/BUILD",
+        "examples/multiplatform/tvOSApp/Info.plist",
         {
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-1ba70fb8861a/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
             "t": "g"
         },
-        "examples/multiplatform/iMessageApp/BUILD",
-        "examples/multiplatform/iMessageApp/Info.extension.plist",
         {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-2ad05e4ea665/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
+            "t": "e"
+        },
+        {
+            "_": "applebin_ios-ios_arm64-dbg-ST-448892de289e/bin/examples/multiplatform/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "t": "g"
         },
-        "examples/multiplatform/iMessageApp/Info.plist",
         {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-2ad05e4ea665/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
+            "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
+            "t": "e"
+        },
+        {
+            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework",
+            "t": "e"
+        },
+        {
+            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
+            "t": "e"
+        },
+        {
+            "_": "applebin_ios-ios_arm64-dbg-ST-448892de289e/bin/examples/multiplatform/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
+            "t": "e"
+        },
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-5960e51a8876/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-5960e51a8876/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-d5f0d8f86e47/bin/examples/multiplatform/watchOSApp/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-d5f0d8f86e47/bin/examples/multiplatform/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_ios-ios_arm64-dbg-ST-448892de289e/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
+            "t": "e"
+        },
+        {
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-de5991bc24bf/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/Tool/BUILD",

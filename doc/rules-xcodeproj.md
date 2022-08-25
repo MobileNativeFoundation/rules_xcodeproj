@@ -42,6 +42,29 @@ return a `XcodeProjInfo` provider instance instead.
 | <a id="XcodeProjAutomaticTargetProcessingInfo-xcode_targets"></a>xcode_targets |  A <code>dict</code> mapping attribute names to target type strings (i.e. "resource" or "compile"). Only Xcode targets from the specified attributes with the specified target type are allowed to propagate.    |
 
 
+<a id="top_level_target"></a>
+
+## top_level_target
+
+<pre>
+top_level_target(<a href="#top_level_target-label">label</a>, <a href="#top_level_target-target_environments">target_environments</a>)
+</pre>
+
+Constructs a top-level target for use in `xcodeproj.top_level_targets`.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="top_level_target-label"></a>label |  A <code>Label</code> or label-like string for the target.   |  none |
+| <a id="top_level_target-target_environments"></a>target_environments |  Optional. A <code>list</code> of target environment strings (see <code>@build_bazel_apple_support//constraints:target_environment</code>; <code>"catalyst"</code> is not currently supported). The target will be configured for each environment.<br><br>If multiple environments are specified, then a single combined Xcode target will be created if possible. If the configured targets are the same for each environment (e.g. macOS for <code>["device", "simulator"]</code>), they will appear as separate but similar Xcode targets. If no environments are specified, the <code>"simulator"</code> environment will be used.   |  <code>["simulator"]</code> |
+
+**RETURNS**
+
+A `struct` containing fields for the provided arguments.
+
+
 <a id="xcode_schemes.scheme"></a>
 
 ## xcode_schemes.scheme
@@ -244,13 +267,14 @@ A `sequence` of values returned by `xcode_schemes.scheme`.
 ## xcodeproj
 
 <pre>
-xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-build_mode">build_mode</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>, <a href="#xcodeproj-project_name">project_name</a>, <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>,
-          <a href="#xcodeproj-schemes">schemes</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>, <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>, <a href="#xcodeproj-kwargs">kwargs</a>)
+xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-build_mode">build_mode</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>, <a href="#xcodeproj-ios_device_cpus">ios_device_cpus</a>, <a href="#xcodeproj-ios_simulator_cpus">ios_simulator_cpus</a>,
+          <a href="#xcodeproj-project_name">project_name</a>, <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>, <a href="#xcodeproj-schemes">schemes</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>, <a href="#xcodeproj-tvos_device_cpus">tvos_device_cpus</a>,
+          <a href="#xcodeproj-tvos_simulator_cpus">tvos_simulator_cpus</a>, <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>, <a href="#xcodeproj-watchos_device_cpus">watchos_device_cpus</a>, <a href="#xcodeproj-watchos_simulator_cpus">watchos_simulator_cpus</a>, <a href="#xcodeproj-kwargs">kwargs</a>)
 </pre>
 
 Creates an `.xcodeproj` file in the workspace when run.
 
-The is a wrapper macro for the
+This is a wrapper macro for the
 [actual `xcodeproj` rule](../xcodeproj/internal/xcodeproj_rule.bzl), which
 can't be used directly. All public API is documented below. The `kwargs`
 argument will pass forward values for globally available attributes (e.g.
@@ -266,11 +290,17 @@ argument will pass forward values for globally available attributes (e.g.
 | <a id="xcodeproj-bazel_path"></a>bazel_path |  Optional. The path the <code>bazel</code> binary or wrapper script. If the path is relative it will be resolved using the <code>PATH</code> environment variable (which is set to <code>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</code> in Xcode). If you want to specify a path to a workspace-relative binary, you must prepend the path with <code>./</code> (e.g. <code>"./bazelw"</code>).   |  <code>"bazel"</code> |
 | <a id="xcodeproj-build_mode"></a>build_mode |  Optional. The build mode the generated project should use.<br><br>If this is set to <code>"xcode"</code>, the project will use the Xcode build system to build targets. Generated files and unfocused targets (see the <code>focused_targets</code> and <code>unfocused_targets</code> arguments) will be built with Bazel.<br><br>If this is set to <code>"bazel"</code>, the project will use Bazel to build targets, inside of Xcode. The Xcode build system still unavoidably orchestrates some things at a high level.   |  <code>"xcode"</code> |
 | <a id="xcodeproj-focused_targets"></a>focused_targets |  Optional. A <code>list</code> of target labels as <code>string</code> values. If specified, only these targets will be included in the generated project; all other targets will be excluded, as if they were listed explicitly in the <code>unfocused_targets</code> argument. The labels must match transitive dependencies of the targets specified in the <code>top_level_targets</code> argument.   |  <code>[]</code> |
+| <a id="xcodeproj-ios_device_cpus"></a>ios_device_cpus |  Optional. The value to use for <code>--ios_multi_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>.<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>, even if they aren't iOS targets.   |  <code>"arm64"</code> |
+| <a id="xcodeproj-ios_simulator_cpus"></a>ios_simulator_cpus |  Optional. The value to use for <code>--ios_multi_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>.<br><br>If no value is specified, it defaults to the simulator cpu that goes with <code>--host_cpu</code> (i.e. <code>sim_arm64</code> on Apple Silicon and <code>x86_64</code> on Intel).<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>, even if they aren't iOS targets.   |  <code>None</code> |
 | <a id="xcodeproj-project_name"></a>project_name |  Optional. The name to use for the <code>.xcodeproj</code> file. If not specified, the value of the <code>name</code> argument is used.   |  <code>None</code> |
 | <a id="xcodeproj-scheme_autogeneration_mode"></a>scheme_autogeneration_mode |  Optional. Specifies how Xcode schemes are automatically generated.   |  <code>"auto"</code> |
 | <a id="xcodeproj-schemes"></a>schemes |  Optional. A <code>list</code> of values returned by <code>xcode_schemes.scheme</code>.   |  <code>[]</code> |
-| <a id="xcodeproj-top_level_targets"></a>top_level_targets |  A <code>list</code> of top-level targets labels.   |  none |
+| <a id="xcodeproj-top_level_targets"></a>top_level_targets |  A <code>list</code> of a list of top-level targets. Each target can be specified as either a <code>Label</code> (or label-like <code>string</code>), or a value returned by <code>top_level_target</code>.   |  none |
+| <a id="xcodeproj-tvos_device_cpus"></a>tvos_device_cpus |  Optional. The value to use for <code>--tvos_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>.<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>, even if they aren't tvOS targets.   |  <code>"arm64"</code> |
+| <a id="xcodeproj-tvos_simulator_cpus"></a>tvos_simulator_cpus |  Optional. The value to use for <code>--tvos_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>.<br><br>If no value is specified, it defaults to the simulator cpu that goes with <code>--host_cpu</code> (i.e. <code>sim_arm64</code> on Apple Silicon and <code>x86_64</code> on Intel).<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>, even if they aren't tvOS targets.   |  <code>None</code> |
 | <a id="xcodeproj-unfocused_targets"></a>unfocused_targets |  Optional. A <code>list</code> of target labels as <code>string</code> values. Any targets in the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with a matching label will be excluded from the generated project. This overrides any targets specified in the <code>focused_targets</code> argument.   |  <code>[]</code> |
+| <a id="xcodeproj-watchos_device_cpus"></a>watchos_device_cpus |  Optional. The value to use for <code>--watchos_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>.<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>, even if they aren't watchOS targets.   |  <code>"arm64_32"</code> |
+| <a id="xcodeproj-watchos_simulator_cpus"></a>watchos_simulator_cpus |  Optional. The value to use for <code>--watchos_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>.<br><br>If no value is specified, it defaults to the simulator cpu that goes with <code>--host_cpu</code> (i.e. <code>arm64</code> on Apple Silicon and <code>x86_64</code> on Intel).<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>, even if they aren't watchOS targets.   |  <code>None</code> |
 | <a id="xcodeproj-kwargs"></a>kwargs |  Additional arguments to pass to the underlying <code>xcodeproj</code> rule specified by <code>xcodeproj_rule</code>.   |  none |
 
 

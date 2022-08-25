@@ -14,7 +14,7 @@ _BUNDLE_EXTENSIONS = [
 
 _SETTINGS = {
   "x86_64-apple-macosx15.0.0 macOSApp.app/Contents/MacOS/macOSApp" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e2b2f145e00a/bin\" -fmodule-map-file=\"$(PROJECT_DIR)/examples/macos_app/third_party/ExampleFramework.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-9679316c8181/bin\" -fmodule-map-file=\"$(PROJECT_DIR)/examples/macos_app/third_party/ExampleFramework.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
       "$(PROJECT_DIR)/examples/macos_app/third_party"
     ],

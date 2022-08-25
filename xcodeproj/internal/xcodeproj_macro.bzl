@@ -1,5 +1,6 @@
 """Macro wrapper for the `xcodeproj` rule."""
 
+load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":xcode_schemes.bzl", "xcode_schemes")
 load(":xcodeproj_rule.bzl", _xcodeproj = "xcodeproj")
@@ -10,15 +11,21 @@ def xcodeproj(
         bazel_path = "bazel",
         build_mode = "xcode",
         focused_targets = [],
+        ios_device_cpus = "arm64",
+        ios_simulator_cpus = None,
         project_name = None,
         scheme_autogeneration_mode = "auto",
         schemes = [],
         top_level_targets,
+        tvos_device_cpus = "arm64",
+        tvos_simulator_cpus = None,
         unfocused_targets = [],
+        watchos_device_cpus = "arm64_32",
+        watchos_simulator_cpus = None,
         **kwargs):
     """Creates an `.xcodeproj` file in the workspace when run.
 
-    The is a wrapper macro for the
+    This is a wrapper macro for the
     [actual `xcodeproj` rule](../xcodeproj/internal/xcodeproj_rule.bzl), which
     can't be used directly. All public API is documented below. The `kwargs`
     argument will pass forward values for globally available attributes (e.g.
@@ -48,18 +55,86 @@ def xcodeproj(
             listed explicitly in the `unfocused_targets` argument. The labels
             must match transitive dependencies of the targets specified in the
             `top_level_targets` argument.
+        ios_device_cpus: Optional. The value to use for `--ios_multi_cpus` when
+            building the transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"device"`
+            `target_environment`.
+
+            **Warning:** Changing this value will affect the Starlark transition
+            hash of all transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"device"`
+            `target_environment`, even if they aren't iOS targets.
+        ios_simulator_cpus: Optional. The value to use for `--ios_multi_cpus`
+            when building the transitive dependencies of the targets specified
+            in the `top_level_targets` argument with the `"simulator"`
+            `target_environment`.
+
+            If no value is specified, it defaults to the simulator cpu that goes
+            with `--host_cpu` (i.e. `sim_arm64` on Apple Silicon and `x86_64` on
+            Intel).
+
+            **Warning:** Changing this value will affect the Starlark transition
+            hash of all transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"simulator"`
+            `target_environment`, even if they aren't iOS targets.
         project_name: Optional. The name to use for the `.xcodeproj` file. If
             not specified, the value of the `name` argument is used.
         scheme_autogeneration_mode: Optional. Specifies how Xcode schemes are
             automatically generated.
         schemes: Optional. A `list` of values returned by
             `xcode_schemes.scheme`.
-        top_level_targets: A `list` of top-level targets labels.
+        top_level_targets: A `list` of a list of top-level targets. Each target
+            can be specified as either a `Label` (or label-like `string`), or a
+            value returned by `top_level_target`.
+        tvos_device_cpus: Optional. The value to use for `--tvos_cpus` when
+            building the transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"device"`
+            `target_environment`.
+
+            **Warning:** Changing this value will affect the Starlark transition
+            hash of all transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"device"`
+            `target_environment`, even if they aren't tvOS targets.
+        tvos_simulator_cpus: Optional. The value to use for `--tvos_cpus` when
+            building the transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"simulator"`
+            `target_environment`.
+
+            If no value is specified, it defaults to the simulator cpu that goes
+            with `--host_cpu` (i.e. `sim_arm64` on Apple Silicon and `x86_64` on
+            Intel).
+
+            **Warning:** Changing this value will affect the Starlark transition
+            hash of all transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"simulator"`
+            `target_environment`, even if they aren't tvOS targets.
         unfocused_targets: Optional. A `list` of target labels as `string`
             values. Any targets in the transitive dependencies of the targets
             specified in the `top_level_targets` argument with a matching
             label will be excluded from the generated project. This overrides
             any targets specified in the `focused_targets` argument.
+        watchos_device_cpus: Optional. The value to use for `--watchos_cpus`
+            when building the transitive dependencies of the targets specified
+            in the `top_level_targets` argument with the `"device"`
+            `target_environment`.
+
+            **Warning:** Changing this value will affect the Starlark transition
+            hash of all transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"device"`
+            `target_environment`, even if they aren't watchOS targets.
+        watchos_simulator_cpus: Optional. The value to use for `--watchos_cpus`
+            when building the transitive dependencies of the targets specified
+            in the `top_level_targets` argument with the `"simulator"`
+            `target_environment`.
+
+            If no value is specified, it defaults to the simulator cpu that goes
+            with `--host_cpu` (i.e. `arm64` on Apple Silicon and `x86_64` on
+            Intel).
+
+            **Warning:** Changing this value will affect the Starlark transition
+            hash of all transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"simulator"`
+            `target_environment`, even if they aren't watchOS targets.
         **kwargs: Additional arguments to pass to the underlying `xcodeproj`
             rule specified by `xcodeproj_rule`.
     """
@@ -75,6 +150,21 @@ def xcodeproj(
 
     if not top_level_targets:
         fail("`top_level_targets` cannot be empty.")
+
+    top_level_targets = [
+        top_level_target(target) if type(target) == "string" else target
+        for target in top_level_targets
+    ]
+    top_level_device_targets = [
+        top_level_target.label
+        for top_level_target in top_level_targets
+        if sets.contains(top_level_target.target_environments, "device")
+    ]
+    top_level_simulator_targets = [
+        top_level_target.label
+        for top_level_target in top_level_targets
+        if sets.contains(top_level_target.target_environments, "simulator")
+    ]
 
     focused_targets = [
         bazel_labels.normalize(t)
@@ -122,12 +212,59 @@ def xcodeproj(
         build_mode = build_mode,
         bazel_path = bazel_path,
         focused_targets = focused_targets,
+        ios_device_cpus = ios_device_cpus,
+        ios_simulator_cpus = ios_simulator_cpus,
         project_name = project_name,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
         testonly = testonly,
-        top_level_targets = top_level_targets,
+        top_level_device_targets = top_level_device_targets,
+        top_level_simulator_targets = top_level_simulator_targets,
         toplevel_cache_buster = toplevel_cache_buster,
+        tvos_device_cpus = tvos_device_cpus,
+        tvos_simulator_cpus = tvos_simulator_cpus,
         unfocused_targets = unfocused_targets,
+        watchos_device_cpus = watchos_device_cpus,
+        watchos_simulator_cpus = watchos_simulator_cpus,
         **kwargs
+    )
+
+_VALID_TARGET_ENVIRONMENTS = sets.make(["device", "simulator"])
+
+def top_level_target(label, *, target_environments = ["simulator"]):
+    """Constructs a top-level target for use in `xcodeproj.top_level_targets`.
+
+    Args:
+        label: A `Label` or label-like string for the target.
+        target_environments: Optional. A `list` of target environment strings
+            (see `@build_bazel_apple_support//constraints:target_environment`;
+            `"catalyst"` is not currently supported). The target will be
+            configured for each environment.
+
+            If multiple environments are specified, then a single combined Xcode
+            target will be created if possible. If the configured targets are
+            the same for each environment (e.g. macOS for
+            `["device", "simulator"]`), they will appear as separate but similar
+            Xcode targets. If no environments are specified, the `"simulator"`
+            environment will be used.
+
+    Returns:
+        A `struct` containing fields for the provided arguments.
+    """
+    if not target_environments:
+        target_environments = ["simulator"]
+
+    target_environments = sets.make(target_environments)
+
+    invalid_target_environments = sets.to_list(
+        sets.difference(target_environments, _VALID_TARGET_ENVIRONMENTS),
+    )
+    if invalid_target_environments:
+        fail("`target_environments` contains invalid elements: {}".format(
+            invalid_target_environments,
+        ))
+
+    return struct(
+        label = label,
+        target_environments = target_environments,
     )

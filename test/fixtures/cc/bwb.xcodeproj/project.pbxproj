@@ -83,17 +83,17 @@
 /* Begin PBXFileReference section */
 		1FA9CAC061B4F491CEBDF60A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		26866FEDF67CD3FA66FFAB17 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		295286D1006239978AF51215 /* liblib_impl.lo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.lo; path = "bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib/liblib_impl.lo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		295286D1006239978AF51215 /* liblib_impl.lo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.lo; path = "bazel-out/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/lib/liblib_impl.lo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F2B12BDC30B75C3CD2012BD /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		3C80F439DD6B6A9F76C8BCC6 /* private.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.inc; sourceTree = "<group>"; };
-		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CB090CE80B33F7C6C1C7F6 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		5F5A15B1B3110ED9696BD6FB /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		82E8E5D354CD9B769C1DD508 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		8D73636373B8CDD4BE62C0A5 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		9411DCDC5C6F92122299107F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		CDA701F96A5177E4188BEA69 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA701F96A5177E4188BEA69 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E179886B32A8D20BA0FD517F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F360F9D030E464AA774319E0 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		FB0F020B344E60F89B31265D /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
@@ -525,8 +525,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/examples_cc_external";
-				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-5a06a31acc4f";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/external/examples_cc_external";
+				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-fb70b4c94c6b";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -540,7 +540,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/examples_cc_external/private",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/external/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -578,9 +578,9 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/examples_cc_external",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/external/examples_cc_external",
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin",
 				);
 			};
 			name = Debug;
@@ -589,8 +589,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib";
-				BAZEL_TARGET_ID = "//examples/cc/lib:lib_impl darwin_x86_64-dbg-ST-5a06a31acc4f";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/lib";
+				BAZEL_TARGET_ID = "//examples/cc/lib:lib_impl darwin_x86_64-dbg-ST-fb70b4c94c6b";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -605,7 +605,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					examples/cc/lib/private,
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib/private",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -643,7 +643,7 @@
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin",
 				);
 			};
 			name = Debug;
@@ -662,9 +662,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/tool/tool";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/tool";
-				BAZEL_TARGET_ID = "//examples/cc/tool:tool darwin_x86_64-dbg-ST-5a06a31acc4f";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/tool/tool";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/tool";
+				BAZEL_TARGET_ID = "//examples/cc/tool:tool darwin_x86_64-dbg-ST-fb70b4c94c6b";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -680,7 +680,7 @@
 					"SECRET_2=\\\"World!\\\"",
 					"EXTERNAL_SECRET_2=\\\"World?\\\"",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-5a06a31acc4f/examples/cc/tool/tool.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-fb70b4c94c6b/examples/cc/tool/tool.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -717,16 +717,16 @@
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					examples/cc/lib2/includes,
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib2/includes",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/examples_cc_external",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/external/examples_cc_external",
 					"$(BAZEL_EXTERNAL)/bazel_tools",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/external/bazel_tools",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/external/bazel_tools",
 				);
 			};
 			name = Debug;
@@ -735,8 +735,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib2";
-				BAZEL_TARGET_ID = "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-5a06a31acc4f";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/lib2";
+				BAZEL_TARGET_ID = "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-fb70b4c94c6b";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -782,12 +782,12 @@
 				SWIFT_VERSION = 5;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					examples/cc/lib2/includes,
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin/examples/cc/lib2/includes",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin/examples/cc/lib2/includes",
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-5a06a31acc4f/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-fb70b4c94c6b/bin",
 				);
 			};
 			name = Debug;
