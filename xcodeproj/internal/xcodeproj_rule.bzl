@@ -513,7 +513,7 @@ def make_target_transition(
 
 def _xcodeproj_impl(ctx):
     build_mode = ctx.attr.build_mode
-    project_name = ctx.attr.project_name or ctx.attr.name
+    project_name = ctx.attr.project_name
     focused_labels = sets.make(ctx.attr.focused_targets)
     unfocused_labels = sets.make(ctx.attr.unfocused_targets)
     infos = [
@@ -634,7 +634,7 @@ will be resolved using the `PATH` environment variable (which is set to
 you wan to specify a path to a workspace-relative binary, you must prepend the
 path with `./` (e.g. `"./bazelw"`).
 """,
-            default = "bazel",
+            mandatory = True,
         ),
         "build_mode": attr.string(
             doc = """\
@@ -648,7 +648,7 @@ If this is set to `"bazel"`, the project will use Bazel to build targets, inside
 of Xcode. The Xcode build system still unavoidably orchestrates some things at a
 high level.
 """,
-            default = "xcode",
+            mandatory = True,
             values = ["xcode", "bazel"],
         ),
         "focused_targets": attr.string_list(
@@ -663,9 +663,9 @@ labels must match transitive dependencies of the targets specified in the
         ),
         "project_name": attr.string(
             doc = """\
-The name to use for the `.xcodeproj` file. If not specified, the value of the
-`name` attribute is used.
+The name to use for the `.xcodeproj` file.
 """,
+            mandatory = True,
         ),
         "scheme_autogeneration_mode": attr.string(
             doc = "Specifies how Xcode schemes are automatically generated.",
