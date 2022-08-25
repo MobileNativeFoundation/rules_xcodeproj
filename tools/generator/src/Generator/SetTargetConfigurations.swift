@@ -31,7 +31,7 @@ Target "\(key)" not found in `pbxTargets`
                 // TODO: Generate this value
                 "CreatedOnToolsVersion": "13.2.1",
                 // TODO: Only include properties that make sense for the target
-                "LastSwiftMigration": 1320,
+                "LastSwiftMigration": 9999,
             ]
 
             var buildSettings = try calculateBuildSettings(
