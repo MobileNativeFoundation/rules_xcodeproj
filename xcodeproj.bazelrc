@@ -1,0 +1,6 @@
+# In-repo output_base makes fixtures relative
+# Having a separate output_base also reduces analysis cache thrashing
+startup --output_base=bazel-output-base
+
+# For debugging purposes we want to see the full logs when generating
+build:rules_xcodeproj_generator --ui_event_filters=+INFO,+WARNING

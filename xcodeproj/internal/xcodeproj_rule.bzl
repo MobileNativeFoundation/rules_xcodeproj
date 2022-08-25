@@ -10,7 +10,7 @@ load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":output_files.bzl", "output_files")
-load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
+load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
@@ -645,12 +645,6 @@ def _xcodeproj_impl(ctx):
                     toplevel_cache_buster = ctx.files.toplevel_cache_buster,
                 ),
             )
-        ),
-        XcodeProjOutputInfo(
-            installer = installer,
-            project_name = project_name,
-            spec = spec_file,
-            xcodeproj = xcodeproj,
         ),
     ]
 

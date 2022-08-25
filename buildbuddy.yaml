@@ -23,7 +23,8 @@ actions:
     git_clean_exclude:
       - bazel-output-base
     bazel_commands:
-      - "--output_base=bazel-output-base test --config=workflows //examples/... //tools/... //test/..."
+      - "test --config=workflows //examples/... //tools/... //test/..."
+      - "run --config=workflows //test/fixtures:validate"
 
   - name: Integration Test
     os: "darwin"
@@ -38,7 +39,7 @@ actions:
       - examples/ios_app/bazel-output-base
     bazel_workspace_dir: examples/ios_app
     bazel_commands:
-      - "--output_base=bazel-output-base test --config=workflows //test/..."
+      - "run --config=workflows //test/fixtures:validate"
 
   - name: Buildifier Lint
     triggers:

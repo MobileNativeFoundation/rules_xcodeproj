@@ -24,10 +24,6 @@ while (("$#")); do
       dest="${2}"
       shift 2
       ;;
-    "--remove_spaces")
-      remove_spaces=true
-      shift 1
-      ;;
     *)
       fail "Unrecognized argument: ${1}"
       ;;
@@ -59,14 +55,6 @@ rsync \
   --exclude=rules_xcodeproj/links \
   --delete \
   "$src/" "$dest/"
-
-# Remove spaces from filenames if needed
-if [[ -n "${remove_spaces:-}" ]]; then
-  find "$dest/xcshareddata/xcschemes" \
-    -type f \
-    -name "* *" \
-    -exec bash -c 'mv "$0" "${0// /_}"' {} \;
-fi
 
 # Make scripts runnable
 if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
@@ -118,7 +106,16 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
 
   # Determine bazel-out
-  bazel_out=$(%bazel_path% info output_path 2>/dev/null)
+  bazelrcs=(
+    --noworkspace_rc
+    "--bazelrc=$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
+  )
+  if [[ -s ".bazelrc" ]]; then
+    bazelrcs+=("--bazelrc=.bazelrc")
+  fi
+
+  bazel_out=$("%bazel_path%" "${bazelrcs[@]}" \
+    info --config=rules_xcodeproj_info output_path)
 
   # Create directory structure in bazel-out
   cd "$bazel_out"

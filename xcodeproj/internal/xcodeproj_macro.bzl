@@ -4,6 +4,7 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":xcode_schemes.bzl", "xcode_schemes")
 load(":xcodeproj_rule.bzl", _xcodeproj = "xcodeproj")
+load(":xcodeproj_runner.bzl", "xcodeproj_runner")
 
 def xcodeproj(
         *,
@@ -205,10 +206,12 @@ def xcodeproj(
         allow_empty = True,
     )
 
+    generator_name = "{}.generator".format(name)
+
     xcodeproj_rule = kwargs.pop("xcodeproj_rule", _xcodeproj)
 
     xcodeproj_rule(
-        name = name,
+        name = generator_name,
         build_mode = build_mode,
         bazel_path = bazel_path,
         focused_targets = focused_targets,
@@ -227,6 +230,15 @@ def xcodeproj(
         watchos_device_cpus = watchos_device_cpus,
         watchos_simulator_cpus = watchos_simulator_cpus,
         **kwargs
+    )
+
+    xcodeproj_runner(
+        name = name,
+        bazel_path = bazel_path,
+        project_name = project_name,
+        testonly = testonly,
+        xcodeproj_target = bazel_labels.normalize(generator_name),
+        visibility = kwargs.get("visibility"),
     )
 
 _VALID_TARGET_ENVIRONMENTS = sets.make(["device", "simulator"])

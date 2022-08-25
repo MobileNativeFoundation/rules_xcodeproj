@@ -149,8 +149,14 @@ XcodeProjOutputInfo = provider(
     fields = {
         "installer": "The xcodeproj installer.",
         "project_name": "The installed project name.",
-        "spec": "The json spec.",
-        "xcodeproj": "The xcodeproj file.",
+    },
+)
+
+XcodeProjRunnerOutputInfo = provider(
+    "Provides information about the outputs of the `xcodeproj_runner` rule.",
+    fields = {
+        "project_name": "The installed project name.",
+        "runner": "The xcodeproj runner.",
     },
 )
 
