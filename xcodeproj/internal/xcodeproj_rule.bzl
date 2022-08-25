@@ -411,6 +411,12 @@ def _write_xcodeproj(
             extensionpointidentifiers_file,
         ] + bazel_integration_files,
         outputs = [xcodeproj],
+        execution_requirements = {
+            # Projects can be rather large, and take almost no time to generate
+            # This also works around any RBC tree artifact issues
+            # (e.g. https://github.com/bazelbuild/bazel/issues/15010)
+            "no-remote": "1",
+        },
     )
 
     return xcodeproj, install_path
