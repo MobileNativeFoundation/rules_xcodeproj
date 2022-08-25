@@ -10,7 +10,7 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "configuration": "darwin_x86_64-fastbuild-ST-1b9bd654f600",
+    "configuration": "darwin_x86_64-dbg-ST-1b9bd654f600",
     "custom_xcode_schemes": [],
     "extra_files": [
         "examples/simple/BUILD",
@@ -23,7 +23,7 @@
     "target_hosts": [],
     "target_merges": [],
     "targets": [
-        "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-5e84f724df92",
+        "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-aedfd39dd677",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -37,7 +37,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-dbg-ST-5e84f724df92",
+            "configuration": "darwin_x86_64-dbg-ST-aedfd39dd677",
             "inputs": {
                 "srcs": [
                     "examples/simple/main.swift"
@@ -63,7 +63,7 @@
                         "q": [
                             ".",
                             {
-                                "_": "darwin_x86_64-dbg-ST-5e84f724df92/bin",
+                                "_": "darwin_x86_64-dbg-ST-aedfd39dd677/bin",
                                 "t": "g"
                             }
                         ]
@@ -73,11 +73,11 @@
             "name": "SwiftBin",
             "outputs": {
                 "p": {
-                    "_": "darwin_x86_64-dbg-ST-5e84f724df92/bin/examples/simple/SwiftBin",
+                    "_": "darwin_x86_64-dbg-ST-aedfd39dd677/bin/examples/simple/SwiftBin",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-5e84f724df92/bin/examples/simple",
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-aedfd39dd677/bin/examples/simple",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -88,7 +88,7 @@
                 "executable_name": "SwiftBin",
                 "name": "SwiftBin",
                 "path": {
-                    "_": "darwin_x86_64-dbg-ST-5e84f724df92/bin/examples/simple/SwiftBin",
+                    "_": "darwin_x86_64-dbg-ST-aedfd39dd677/bin/examples/simple/SwiftBin",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.tool"
@@ -97,7 +97,7 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "darwin_x86_64-dbg-ST-5e84f724df92/bin",
+                        "_": "darwin_x86_64-dbg-ST-aedfd39dd677/bin",
                         "t": "g"
                     }
                 ]

@@ -397,20 +397,8 @@ cd "$SRCROOT"
 
 if [ "$ACTION" == "indexbuild" ]; then
   config=rules_xcodeproj_indexbuild
-  index_flags=(
-    --bes_backend=
-    --bes_results_url=
-  )
 elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
   config=rules_xcodeproj_swiftuipreviews
-  swiftui_previews_flags=(
-    --swiftcopt=-Xfrontend
-    --swiftcopt=-enable-implicit-dynamic
-    --swiftcopt=-Xfrontend
-    --swiftcopt=-enable-private-imports
-    --swiftcopt=-Xfrontend
-    --swiftcopt=-enable-dynamic-replacement-chaining
-  )
 else
   config=rules_xcodeproj_build
 fi
@@ -429,8 +417,6 @@ log=$(mktemp)
   --color=yes \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
-  ${index_flags:+"${index_flags[*]}"} \
-  ${swiftui_previews_flags:+"${swiftui_previews_flags[*]}"} \
   "$output_groups_flag" \
   \#(xcodeprojBazelLabel) \
   2>&1 | tee -i "$log"

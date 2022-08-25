@@ -446,21 +446,13 @@ def _write_installer(
 
 # Transition
 
-def _base_target_transition_impl(settings, attr):
-    features = [
-        "oso_prefix_is_pwd",
-        "relative_ast_path",
-        "swift.cacheable_swiftmodules",
-    ] + settings.get("//command_line_option:features")
-
+def _base_target_transition_impl(_settings, attr):
     if attr.build_mode == "bazel":
         archived_bundles_allowed = attr.archived_bundles_allowed
     else:
         archived_bundles_allowed = True
 
     return {
-        "//command_line_option:compilation_mode": "dbg",
-        "//command_line_option:features": features,
         "//xcodeproj/internal:archived_bundles_allowed": (
             archived_bundles_allowed
         ),
@@ -515,14 +507,10 @@ def _simulator_transition_impl(settings, attr):
 
 _TRANSITION_ATTR = {
     "inputs": [
-        "//command_line_option:compilation_mode",
-        "//command_line_option:features",
         # Simulator and Device support
         "//command_line_option:cpu",
     ],
     "outputs": [
-        "//command_line_option:compilation_mode",
-        "//command_line_option:features",
         "//xcodeproj/internal:archived_bundles_allowed",
         "//xcodeproj/internal:build_mode",
         # Simulator and Device support
