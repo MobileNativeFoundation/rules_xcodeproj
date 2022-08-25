@@ -45,6 +45,16 @@ def get_xcode_schemes():
             ]),
             launch_action = xcode_schemes.launch_action(
                 _APP_TARGET,
+                args = [
+                    "/tmp/spec.json",
+                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_root_dirs",
+                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_xccurrentversions",
+                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_extensionpointidentifiers",
+                    "xcodeproj/internal/bazel_integration_files",
+                    "/tmp/out.xcodeproj",
+                    "/tmp/out.final.xcodeproj",
+                    "bazel",
+                ],
                 # This is not necessary for the generator. It is here to help
                 # verify that custom environment variables are passed along.
                 env = {"CUSTOM_ENV_VAR": "hello"},

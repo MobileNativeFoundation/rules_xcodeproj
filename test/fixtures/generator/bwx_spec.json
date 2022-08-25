@@ -28,7 +28,16 @@
                 ]
             },
             "launch_action": {
-                "args": [],
+                "args": [
+                    "/tmp/spec.json",
+                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_root_dirs",
+                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_xccurrentversions",
+                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_extensionpointidentifiers",
+                    "xcodeproj/internal/bazel_integration_files",
+                    "/tmp/out.xcodeproj",
+                    "/tmp/out.final.xcodeproj",
+                    "bazel"
+                ],
                 "build_configuration_name": "Debug",
                 "env": {
                     "CUSTOM_ENV_VAR": "hello"
