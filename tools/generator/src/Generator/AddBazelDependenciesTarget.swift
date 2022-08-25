@@ -355,9 +355,19 @@ else
   color=no
 fi
 
+bazelrcs=(
+  --noworkspace_rc
+  "--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj.bazelrc"
+)
+if [[ -s ".bazelrc" ]]; then
+  bazelrcs+=("--bazelrc=.bazelrc")
+fi
+
 output_path=$(\#(bazelExec) \
+  "${bazelrcs[@]}" \
   ${output_base:+--output_base "$output_base"} \
   info \
+  --config=rules_xcodeproj_info \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
@@ -383,11 +393,13 @@ fi
 cd "$SRCROOT"
 
 if [ "$ACTION" == "indexbuild" ]; then
+  config=rules_xcodeproj_indexbuild
   index_flags=(
     --bes_backend=
     --bes_results_url=
   )
 elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
+  config=rules_xcodeproj_swiftuipreviews
   swiftui_previews_flags=(
     --swiftcopt=-Xfrontend
     --swiftcopt=-enable-implicit-dynamic
@@ -396,6 +408,8 @@ elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
     --swiftcopt=-Xfrontend
     --swiftcopt=-enable-dynamic-replacement-chaining
   )
+else
+  config=rules_xcodeproj_build
 fi
 
 date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
@@ -405,9 +419,11 @@ touch "$build_marker"
 
 log=$(mktemp)
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \#(bazelExec) \
+  "${bazelrcs[@]}" \
   ${output_base:+--output_base "$output_base"} \
   build \
-  --color="yes" \
+  --config=$config \
+  --color=yes \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
   ${index_flags:+${index_flags[*]}} \

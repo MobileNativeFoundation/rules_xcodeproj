@@ -1,0 +1,51 @@
+### `--config=rules_xcodeproj`
+#
+# `rules_xcodeproj` is the base config of `rules_xcodeproj_*` configs.
+# Add to this config if you want something to apply to all builds (which should
+# be most settings), as the various configs (e.g. `rules_xcodeproj_indexbuild`)
+# don't inherit from `rules_xcodeproj_build`. This allows
+# `rules_xcodeproj_build` to strictly apply to the normal build.
+
+common:rules_xcodeproj --verbose_failures
+
+### `--config=rules_xcodeproj_generator`
+#
+# Used when generating a project.
+
+build:rules_xcodeproj_generator --config=rules_xcodeproj
+
+# `--show_result=0` prevents intermediate outputs from displaying in the logs
+build:rules_xcodeproj_generator --show_result=0
+
+# Filter out extra noise
+build:rules_xcodeproj_generator --ui_event_filters=-INFO,-WARNING
+
+### `--config=rules_xcodeproj_info`
+#
+# Used when querying `bazel info`.
+
+info:rules_xcodeproj_info --config=rules_xcodeproj
+
+# Filter out extra noise
+info:rules_xcodeproj_info --ui_event_filters=-INFO,-WARNING
+
+### `--config=rules_xcodeproj_build`
+#
+# Used when doing a normal build.
+
+build:rules_xcodeproj_build --config=rules_xcodeproj
+
+### `--config=rules_xcodeproj_indexbuild`
+#
+# Used when doing an Index build.
+
+build:rules_xcodeproj_indexbuild --config=rules_xcodeproj
+
+### `--config=rules_xcodeproj_swiftuipreviews`
+#
+# Used when doing a SwiftUI Previews build.
+
+build:rules_xcodeproj_swiftuipreviews --config=rules_xcodeproj
+
+# Import `xcodeproj.bazelrc` if it exists
+try-import %workspace%/xcodeproj.bazelrc

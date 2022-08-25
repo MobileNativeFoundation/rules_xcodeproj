@@ -1,6 +1,6 @@
 """Functions for updating test fixtures."""
 
-load(":providers.bzl", "XcodeProjOutputInfo")
+load(":providers.bzl", "XcodeProjRunnerOutputInfo")
 load(":xcodeproj_macro.bzl", "xcodeproj")
 load(":xcodeproj_rule.bzl", "make_xcodeproj_rule")
 
@@ -33,41 +33,48 @@ _fixtures_transition = transition(
 # Rule
 
 def _update_fixtures_impl(ctx):
-    specs = [target[XcodeProjOutputInfo].spec for target in ctx.attr.targets]
-    installers = [
-        target[XcodeProjOutputInfo].installer
+    runner_infos = [
+        target[XcodeProjRunnerOutputInfo]
         for target in ctx.attr.targets
     ]
-    xcodeprojs = [
-        target[XcodeProjOutputInfo].xcodeproj
-        for target in ctx.attr.targets
-    ]
-    project_names = [
-        target[XcodeProjOutputInfo].project_name
-        for target in ctx.attr.targets
-    ]
+
+    project_names = [info.project_name for info in runner_infos]
+    runners = [info.runner for info in runner_infos]
 
     updater = ctx.actions.declare_file(
         "{}-updater.sh".format(ctx.label.name),
     )
+
+    if runners:
+        runners_str = "\n{}\n".format(
+            "  \n".join([runner.short_path for runner in runners]),
+        )
+    else:
+        runners_str = ""
+
+    if project_names:
+        project_names_str = "\n{}\n".format("  \n".join(project_names))
+    else:
+        project_names_str = ""
 
     ctx.actions.expand_template(
         template = ctx.file._updater_template,
         output = updater,
         is_executable = True,
         substitutions = {
-            "%installers%": "  \n".join(
-                [installer.short_path for installer in installers],
-            ),
-            "%project_names%": "  \n".join(project_names),
-            "%specs%": "  \n".join([spec.short_path for spec in specs]),
+            "%project_names%": project_names_str,
+            "%runners%": runners_str,
+            "%validate%": json.encode(ctx.attr._validate),
         },
     )
 
     return [
         DefaultInfo(
             executable = updater,
-            runfiles = ctx.runfiles(files = specs + xcodeprojs + installers),
+            runfiles = ctx.runfiles().merge_all([
+                target[DefaultInfo].default_runfiles
+                for target in ctx.attr.targets
+            ]),
         ),
     ]
 
@@ -76,11 +83,14 @@ _update_fixtures = rule(
     attrs = {
         "targets": attr.label_list(
             mandatory = True,
-            providers = [XcodeProjOutputInfo],
+            providers = [XcodeProjRunnerOutputInfo],
         ),
         "_updater_template": attr.label(
             allow_single_file = True,
             default = ":updater.template.sh",
+        ),
+        "_validate": attr.bool(
+            default = False,
         ),
     },
     executable = True,
@@ -89,6 +99,31 @@ _update_fixtures = rule(
 def update_fixtures(**kwargs):
     testonly = kwargs.pop("testonly", True)
     _update_fixtures(
+        testonly = testonly,
+        **kwargs
+    )
+
+_validate_fixtures = rule(
+    implementation = _update_fixtures_impl,
+    attrs = {
+        "targets": attr.label_list(
+            mandatory = True,
+            providers = [XcodeProjRunnerOutputInfo],
+        ),
+        "_updater_template": attr.label(
+            allow_single_file = True,
+            default = ":updater.template.sh",
+        ),
+        "_validate": attr.bool(
+            default = True,
+        ),
+    },
+    executable = True,
+)
+
+def validate_fixtures(**kwargs):
+    testonly = kwargs.pop("testonly", True)
+    _validate_fixtures(
         testonly = testonly,
         **kwargs
     )

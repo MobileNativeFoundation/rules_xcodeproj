@@ -1,30 +1,28 @@
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:testing.bzl",
     "update_fixtures",
+    "validate_fixtures",
     "xcodeproj_fixture",
-    "xcodeproj_test_suite",
-    "xcodeproj_tests",
 )
 load("//:xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 xcodeproj_fixture(
-    name = "fixture",
     top_level_targets = XCODEPROJ_TARGETS,
 )
+
+_FIXTURES = [
+    ":xcodeproj_bwb",
+    ":xcodeproj_bwx",
+]
 
 update_fixtures(
     name = "update",
     tags = ["manual"],
-    targets = [
-        ":fixture_bwb",
-        ":fixture_bwx",
-    ],
+    targets = _FIXTURES,
 )
 
-xcodeproj_test_suite(
-    name = "xcodeproj",
-    fixture_tests = [
-        xcodeproj_tests.from_fixture("//test/fixtures:fixture_bwb"),
-        xcodeproj_tests.from_fixture("//test/fixtures:fixture_bwx"),
-    ],
+validate_fixtures(
+    name = "validate",
+    tags = ["manual"],
+    targets = _FIXTURES,
 )

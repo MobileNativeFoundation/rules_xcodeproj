@@ -31,8 +31,9 @@ bzl_library(
 
 exports_files([
     "installer.template.sh",
+    "runner.template.sh",
     "updater.template.sh",
-    "validator.template.sh",
+    "xcodeproj.bazelrc",
 ])
 
 string_setting(

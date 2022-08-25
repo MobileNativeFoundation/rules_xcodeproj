@@ -2,7 +2,12 @@ _BASE_FILES = [
     "calculate_output_groups.py",
     "create_lldbinit.sh",
     "process_bazel_build_log.py",
+    "xcodeproj.bazelrc",
 ]
+
+exports_files([
+    "xcodeproj.bazelrc",
+])
 
 filegroup(
     name = "base_integration_files",
