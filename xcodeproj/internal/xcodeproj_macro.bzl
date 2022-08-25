@@ -44,6 +44,9 @@ def xcodeproj(
     """
     testonly = kwargs.pop("testonly", True)
 
+    if not project_name:
+        project_name = name
+
     if not top_level_targets:
         fail("`top_level_targets` cannot be empty.")
 
