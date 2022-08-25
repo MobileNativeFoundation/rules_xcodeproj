@@ -96,9 +96,9 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 
         let attributes = [
             "BuildIndependentTargetsInParallel": 1,
-            // TODO: Generate these. Hardcoded to Xcode 13.2.0 for now.
-            "LastSwiftUpdateCheck": 1320,
-            "LastUpgradeCheck": 1320,
+            // TODO: Make these an option? Hardcoded to never warn for now.
+            "LastSwiftUpdateCheck": 9999,
+            "LastUpgradeCheck": 9999,
         ]
 
         let pbxProject = PBXProject(

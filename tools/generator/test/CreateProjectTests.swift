@@ -83,8 +83,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 
         let attributes: [String: Any] = [
             "BuildIndependentTargetsInParallel": 1,
-            "LastSwiftUpdateCheck": 1320,
-            "LastUpgradeCheck": 1320,
+            "LastSwiftUpdateCheck": 9999,
+            "LastUpgradeCheck": 9999,
         ]
 
         let expectedPBXProject = PBXProject(
@@ -201,8 +201,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
 
         let attributes: [String: Any] = [
             "BuildIndependentTargetsInParallel": 1,
-            "LastSwiftUpdateCheck": 1320,
-            "LastUpgradeCheck": 1320,
+            "LastSwiftUpdateCheck": 9999,
+            "LastUpgradeCheck": 9999,
         ]
 
         let expectedPBXProject = PBXProject(

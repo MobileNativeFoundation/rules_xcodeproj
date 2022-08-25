@@ -2034,7 +2034,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
 
         let baseAttributes: [String: Any] = [
             "CreatedOnToolsVersion": "13.2.1",
-            "LastSwiftMigration": 1320,
+            "LastSwiftMigration": 9999,
         ]
 
         let attributes: [ConsolidatedTarget.Key: [String: Any]] = [
