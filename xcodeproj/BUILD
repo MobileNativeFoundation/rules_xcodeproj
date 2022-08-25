@@ -2,7 +2,7 @@
 
 exports_files([
     "experimental.bzl",
-    "xcodeproj.doc.bzl",
+    "xcodeproj.bzl",
 ])
 
 # Release
