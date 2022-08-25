@@ -24,6 +24,10 @@ while (("$#")); do
       dest="${2}"
       shift 2
       ;;
+    "--extra_flags_bazelrc")
+      extra_flags_bazelrc="${2}"
+      shift 2
+      ;;
     *)
       fail "Unrecognized argument: ${1}"
       ;;
@@ -60,6 +64,15 @@ rsync \
 if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
   shopt -s nullglob
   chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
+fi
+
+# Copy over xcodeproj_extra_flags.bazelrc if it exists
+# We can't include this file as an input to the generator, because it would
+# require setting ` --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_*_flags`
+# flags, which thrashes the analysis cache
+if [[ -s "${extra_flags_bazelrc:-}" ]]; then
+  cp "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/"
+  chmod u+w "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
 fi
 
 # Copy over project.xcworkspace/contents.xcworkspacedata if needed

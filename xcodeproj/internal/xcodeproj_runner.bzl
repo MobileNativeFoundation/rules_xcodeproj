@@ -1,5 +1,6 @@
 """Implementation of the `xcodeproj_runner` rule."""
 
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":providers.bzl", "XcodeProjRunnerOutputInfo")
 
 def _xcodeproj_runner_impl(ctx):
@@ -15,7 +16,11 @@ def _xcodeproj_runner_impl(ctx):
         is_executable = True,
         substitutions = {
             "%bazel_path%": ctx.attr.bazel_path,
-            "%bazelrc%": ctx.file._bazelrc.path,
+            "%bazelrc%": ctx.file._bazelrc.short_path,
+            "%extra_flags_bazelrc%": ctx.file._extra_flags_bazelrc.short_path,
+            "%extra_generator_flags%": (
+                ctx.attr._extra_generator_flags[BuildSettingInfo].value
+            ),
             "%generator_label%": ctx.attr.xcodeproj_target,
             "%project_name%": project_name,
         },
@@ -24,7 +29,12 @@ def _xcodeproj_runner_impl(ctx):
     return [
         DefaultInfo(
             executable = runner,
-            runfiles = ctx.runfiles(files = [ctx.file._bazelrc]),
+            runfiles = ctx.runfiles(
+                files = [
+                    ctx.file._bazelrc,
+                    ctx.file._extra_flags_bazelrc,
+                ],
+            ),
         ),
         XcodeProjRunnerOutputInfo(
             project_name = project_name,
@@ -47,6 +57,14 @@ xcodeproj_runner = rule(
         "_bazelrc": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/bazel_integration_files:xcodeproj.bazelrc"),
+        ),
+        "_extra_flags_bazelrc": attr.label(
+            allow_single_file = True,
+            default = Label("//xcodeproj/internal:extra_flags_bazelrc"),
+        ),
+        "_extra_generator_flags": attr.label(
+            default = Label("//xcodeproj:extra_generator_flags"),
+            providers = [BuildSettingInfo],
         ),
         "_runner_template": attr.label(
             allow_single_file = True,

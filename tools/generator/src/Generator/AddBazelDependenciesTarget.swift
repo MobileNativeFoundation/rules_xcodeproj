@@ -362,6 +362,9 @@ bazelrcs=(
 if [[ -s ".bazelrc" ]]; then
   bazelrcs+=("--bazelrc=.bazelrc")
 fi
+if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
+  bazelrcs+=("--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc")
+fi
 
 output_path=$(\#(bazelExec) \
   "${bazelrcs[@]}" \
@@ -426,8 +429,8 @@ log=$(mktemp)
   --color=yes \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
-  ${index_flags:+${index_flags[*]}} \
-  ${swiftui_previews_flags:+${swiftui_previews_flags[*]}} \
+  ${index_flags:+"${index_flags[*]}"} \
+  ${swiftui_previews_flags:+"${swiftui_previews_flags[*]}"} \
   "$output_groups_flag" \
   \#(xcodeprojBazelLabel) \
   2>&1 | tee -i "$log"
