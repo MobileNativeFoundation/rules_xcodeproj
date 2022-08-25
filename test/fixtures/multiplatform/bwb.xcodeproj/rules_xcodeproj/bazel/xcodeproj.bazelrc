@@ -8,6 +8,23 @@
 
 common:rules_xcodeproj --verbose_failures
 
+# We default to `dbg` since debugging is broken otherwise
+build:rules_xcodeproj --compilation_mode=dbg
+
+# `oso_prefix_is_pwd` removes absolute paths in debug info, which increases
+# cache hit rates. We "undo" this in `bazel.lldbinit`, so debugging still works.
+build:rules_xcodeproj --features=oso_prefix_is_pwd
+
+# `relative_ast_path` uses relative paths when passing `--add_ast_path` to the
+# linker, which increases cache hit rates. We "undo" this in `bazel.lldbinit`,
+# so debugging still works.
+build:rules_xcodeproj --features=relative_ast_path
+
+# `swift.cacheable_swiftmodules` passes `-no-serialize-debugging-options` to
+# `swiftc`, which fixes lldb crashes and increases cache hit rates. We "undo"
+# this in `swift_debug_settings.py`, so debugging still works.
+build:rules_xcodeproj --features=swift.cacheable_swiftmodules
+
 ### `--config=rules_xcodeproj_generator`
 #
 # Used when generating a project.
@@ -41,11 +58,19 @@ build:rules_xcodeproj_build --config=rules_xcodeproj
 
 build:rules_xcodeproj_indexbuild --config=rules_xcodeproj
 
+# Disable BES for Index Builds, as it runs a lot, and isn't user invoked
+build:rules_xcodeproj_indexbuild --bes_backend= --bes_results_url=
+
 ### `--config=rules_xcodeproj_swiftuipreviews`
 #
 # Used when doing a SwiftUI Previews build.
 
 build:rules_xcodeproj_swiftuipreviews --config=rules_xcodeproj
+
+# `swiftc` flags needed for SwiftUI Previews
+build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-implicit-dynamic
+build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-private-imports
+build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-dynamic-replacement-chaining
 
 # Import `xcodeproj.bazelrc` if it exists
 try-import %workspace%/xcodeproj.bazelrc

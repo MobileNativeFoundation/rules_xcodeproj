@@ -1,0 +1,11 @@
+-Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f36cb6fd42a0/bin/examples/multiplatform/AppClip/AppClip.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f36cb6fd42a0/bin/examples/multiplatform/Lib/Lib.swiftmodule
+-ObjC
+-L/usr/lib/swift
+-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator
+-Wl,-rpath,/usr/lib/swift
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++
+-force_load
+$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f36cb6fd42a0/bin/examples/multiplatform/Lib/libLib.a

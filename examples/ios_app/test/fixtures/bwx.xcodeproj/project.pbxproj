@@ -23,13 +23,13 @@
 
 /* Begin PBXBuildFile section */
 		0C60B39F563ADB3B6F2D4C48 /* ExampleObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 916051C2C6E70ADF8A009197 /* ExampleObjcTests.m */; };
-		242AC171144ACCAEA7CB9386 /* bucket in Resources */ = {isa = PBXBuildFile; fileRef = 18ACC31B6339BC945F57537C /* bucket */; };
 		2BA9A964A54E38410EE51403 /* ExampleNestedResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6A527C6B5C64DEF9CF7DD /* ExampleNestedResources.bundle */; };
-		2FA785A5B2D4D728ED7E2388 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF14B01C198885EAEC1D4643 /* TestingUtils.swift */; };
 		2FF046F2A9D5AD258ADFD767 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4161E5994991B9FAB271730C /* FXPageControl.m */; };
 		53F60D0388EA498C85C52E52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 181A626E7874B82CF2F6E536 /* Assets.xcassets */; };
 		5521A83EE8FAF745FA267A58 /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
 		60456255EE960BBA7DA9C36C /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 4EFD481E747FFE235872FEBE /* nested */; };
+		611BD0BC2137D5DA278F8B33 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2F83476198A4C688887542 /* TestingUtils.swift */; };
+		614A2C52BD62732FA26EDABB /* bucket in Resources */ = {isa = PBXBuildFile; fileRef = 4CD6D33DA09640F242F1F782 /* bucket */; };
 		6D552130FB4BD68BEB76B354 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45CBAB497FEF8A6E097D4E3 /* ExampleUITestsLaunchTests.swift */; };
 		6E7797C8420DCE5BC3DB6ECD /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF687E5CFDD353365469C4A0 /* ExampleUITests.swift */; };
 		7625634D7DE6E7761F56878E /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 404E7E43544B7F938886B554 /* Model.xcdatamodeld */; };
@@ -260,15 +260,14 @@
 		104ECD97B1C1B9C4DF3F9949 /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1114222EF47A93F0F39BC416 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		147E33BBAF4F6DCF2F01C37A /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		17D965CB0E693999C61B2E1F /* FXPageControl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = FXPageControl.swift.modulemap; sourceTree = "<group>"; };
 		181A626E7874B82CF2F6E536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		18ACC31B6339BC945F57537C /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		1D174B1D4C25E9FD21719679 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC6A527C6B5C64DEF9CF7DD /* ExampleNestedResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleNestedResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE29771855D745E7E9373AB /* Nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Nested; sourceTree = "<group>"; };
 		1FD92C95D6623911CFD690F3 /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
 		20F5652D5E2B14049EC02195 /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
 		213259970531EA32B992572A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		261B65840BBD0D0792AA4003 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		278AD99F013B50CFC3F19259 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29691CB96A710DC0E6138EEA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		2BF64499057F57FE175119DD /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
@@ -276,7 +275,7 @@
 		31723EF5E0284C55FFB08C40 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		337B4B24AF48D74E2EBE2E27 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		36ADEE0564C8CDF14759480E /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
-		3887A2E9D023A33BBE7B90E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		36BB5B98CC0C6DC1F114FD0F /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
 		38BD32BE9785D3F743FCDE9E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		394D4062DC00EEFF51A4933F /* Answers.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Answers.mm; sourceTree = "<group>"; };
 		397892D81DF3E9D15E18C094 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
@@ -284,26 +283,28 @@
 		4161E5994991B9FAB271730C /* FXPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		44BB25020D8FACC865B72D37 /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		450DDFA2991ACF0EBEF5E70A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = es; path = es.lproj/unprocessed.json; sourceTree = "<group>"; };
+		4CD6D33DA09640F242F1F782 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
+		4DAEE944D0CB54B8806223E1 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		4EFD481E747FFE235872FEBE /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		56019D124B91E38AF4906E11 /* ExternalResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExternalResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CABDA09B231335D1A65F54 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		5C2D4A62829A12CF82C8CAFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		655B62DBBF60F1233B5EB42E /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
 		66FD903A85D9EC8C1EBDC3C2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		69E093D72CBE082F537F10FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6CAEE76DBF5BCED0823C20FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		72ADA2EDE061878484810ED9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		74F51B18FC43746502BFDBD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		79AFD512EEA35F6B5E384B71 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
+		7B2F83476198A4C688887542 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		7DC9208516B89B092C7DF137 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FD57FB206F92F73DFECE745 /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 		84CCF54BD973A6569DF6295D /* dir */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dir; sourceTree = "<group>"; };
-		855B57E6A840C5FD57009B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		916051C2C6E70ADF8A009197 /* ExampleObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleObjcTests.m; sourceTree = "<group>"; };
 		9316517AE659EC3FD3542664 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		97ADB761BAE21D828622D393 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		9CCFE0475F8087F7C37113A2 /* libFXPageControl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libFXPageControl.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl/libFXPageControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CCFE0475F8087F7C37113A2 /* libFXPageControl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libFXPageControl.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl/libFXPageControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C3B1CF0B717C99A8F574E2 /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		A45CBAB497FEF8A6E097D4E3 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A525E652E56C71457B9CEF6A /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
 		A6F89F28CB6CFCADEC31B05F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A890FF7B719F233595AEE73E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE960EFF7013DD45F88383CC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -316,28 +317,27 @@
 		D1A77D43C2AC29495314BE08 /* Utils.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = Utils.bundle; sourceTree = "<group>"; };
 		D56500D4BDA570832AE3734D /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
 		D71EB598E6B4BE7F35063F30 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
+		D7D626863B35C2A5C7EDF68B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DBB838F4F4AEFA64C6A9EEDB /* FXPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		DE4E55DA7325F65B7598D64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DF687E5CFDD353365469C4A0 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		E02EF42C9564EDD88CEA447D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E788B1C7B112FB6941BD4C12 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Utils/libUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAF5266CEED74181763FBB1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E242F7F289CBC7A85FDEF159 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E788B1C7B112FB6941BD4C12 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Utils/libUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB4BDA1CCC753490CD8BD79F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EC7CDEE9BB4DCF113F3A632C /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
-		F0C6F70E20391113754D1FA5 /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libTestingUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/TestingUtils/libTestingUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F51A6A6B64AC5DED77FED79D /* FXPageControl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = FXPageControl.swift.modulemap; sourceTree = "<group>"; };
-		F60D674BE245D212764DAC25 /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
-		FD0A412F6FD34BAD4615ACB5 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC/libCoreUtilsObjC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0C6F70E20391113754D1FA5 /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libTestingUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/TestingUtils/libTestingUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD0A412F6FD34BAD4615ACB5 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC/libCoreUtilsObjC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD77A7581EB9FE587EF12A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FF14B01C198885EAEC1D4643 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		00508C805056728D3AC5BFCB /* Example */ = {
+		0D6F8EDDA9DF42B8448F40F1 /* ExampleObjcTests */ = {
 			isa = PBXGroup;
 			children = (
-				EAF5266CEED74181763FBB1C /* Info.plist */,
+				F454E3CC2BE8085CED2FA94A /* rules_xcodeproj */,
 			);
-			path = Example;
+			path = ExampleObjcTests;
 			sourceTree = "<group>";
 		};
 		186AF177B04E538A9509A7EF /* ExampleObjcTests */ = {
@@ -349,12 +349,20 @@
 			path = ExampleObjcTests;
 			sourceTree = "<group>";
 		};
-		1EB3C487CB9079392314EFE9 /* ExampleResources */ = {
+		1E2583F6DEDDA1C56B5C64D9 /* applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8 */ = {
 			isa = PBXGroup;
 			children = (
-				18ACC31B6339BC945F57537C /* bucket */,
+				BBE8C18252FE8600E33DAF5A /* bin */,
 			);
-			path = ExampleResources;
+			path = "applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
+			sourceTree = "<group>";
+		};
+		25FBF7268BD43A0AB65F9A31 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				6CAEE76DBF5BCED0823C20FF /* Info.plist */,
+			);
+			path = Example;
 			sourceTree = "<group>";
 		};
 		28F380E32F8FC5DCB5AFFD45 /* ExampleResources */ = {
@@ -386,14 +394,6 @@
 			path = fixtures;
 			sourceTree = "<group>";
 		};
-		36F2B9B141D374FC8A00AC2C /* ExampleUITests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				855B57E6A840C5FD57009B1E /* Info.plist */,
-			);
-			path = ExampleUITests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
 		38D97FD37FF97351A84386D5 /* build_bazel_rules_apple */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,22 +408,6 @@
 				BE5F89CF78F0E7C26F1539FC /* DefaultTestBundle.plist */,
 			);
 			path = testing;
-			sourceTree = "<group>";
-		};
-		3B46E13EC6A50E8BEEC77D02 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				49D88308B93847DAA2DA53AD /* ExampleObjcTests.__internal__.__test_bundle */,
-			);
-			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		3ECAE92478B99A668493F831 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				00508C805056728D3AC5BFCB /* Example */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		462C3519CA354BE1B04D4855 /* Products */ = {
@@ -445,22 +429,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		49D88308B93847DAA2DA53AD /* ExampleObjcTests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				74F51B18FC43746502BFDBD4 /* Info.plist */,
-			);
-			path = ExampleObjcTests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
-		4F466F470356AF0A2562A882 /* applebin_ios-ios_x86_64-dbg-ST-9fd37e348944 */ = {
-			isa = PBXGroup;
-			children = (
-				91D1244134836CB3B2404390 /* bin */,
-			);
-			path = "applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
-			sourceTree = "<group>";
-		};
 		4FEAD0F887AEB1BB707A8054 /* bundles */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,12 +437,32 @@
 			path = bundles;
 			sourceTree = "<group>";
 		};
-		53B5E1CC648231BCCF8D0A79 /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944 */ = {
+		54407E8CED2EF68BA464212B /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				C2DB196EA8A1413E78192D0C /* bin */,
+				C7B2FBF7FA3FBD0EF74C8B8C /* rules_xcodeproj */,
 			);
-			path = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+			path = Example;
+			sourceTree = "<group>";
+		};
+		54ABE8A603FA9C679962769A /* ExampleResources */ = {
+			isa = PBXGroup;
+			children = (
+				4CD6D33DA09640F242F1F782 /* bucket */,
+			);
+			path = ExampleResources;
+			sourceTree = "<group>";
+		};
+		54E12CABA8F5CB1B4E33FE0D /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				BF8BB6E595ACCE20D85BCFCE /* CoreUtilsObjC */,
+				54ABE8A603FA9C679962769A /* ExampleResources */,
+				F1D3C09B2FF9441639E7F9A6 /* external */,
+				D435152F7334F7676092ADF6 /* TestingUtils */,
+				ECF44E00EB4FC7F8AA7366D2 /* Utils */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		56574692F5ACDED2EE10E84A /* examples_ios_app_external */ = {
@@ -489,21 +477,36 @@
 			path = external;
 			sourceTree = SOURCE_ROOT;
 		};
-		5A02AB189F2AADFE88F0C987 /* TestingUtils */ = {
+		57B47115BE483AF121422788 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				FF14B01C198885EAEC1D4643 /* TestingUtils.swift */,
-				261B65840BBD0D0792AA4003 /* TestingUtils.swift.modulemap */,
+				75E0080790C49C7F36C4F93F /* ExampleTests.__internal__.__test_bundle */,
 			);
-			path = TestingUtils;
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		60C28C92250874C209327D3F /* ExampleObjcTests */ = {
+		59AA498567568FA4B3CFCCBF /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8 */ = {
 			isa = PBXGroup;
 			children = (
-				3B46E13EC6A50E8BEEC77D02 /* rules_xcodeproj */,
+				54E12CABA8F5CB1B4E33FE0D /* bin */,
 			);
-			path = ExampleObjcTests;
+			path = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
+			sourceTree = "<group>";
+		};
+		65E6210FF6306CB0268A2750 /* ExampleUITests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				EB4BDA1CCC753490CD8BD79F /* Info.plist */,
+			);
+			path = ExampleUITests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
+		66E59B4D965DFBFEA691DE05 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				65E6210FF6306CB0268A2750 /* ExampleUITests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		6C003771DDE5A65074FAB6BE /* ExampleNestedResources */ = {
@@ -516,6 +519,14 @@
 				3F10117E7E50E4002C433A03 /* Localizable.strings */,
 			);
 			path = ExampleNestedResources;
+			sourceTree = "<group>";
+		};
+		75E0080790C49C7F36C4F93F /* ExampleTests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				D7D626863B35C2A5C7EDF68B /* Info.plist */,
+			);
+			path = ExampleTests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		768C0B6FBEA15B86DF2C38DC /* apple */ = {
@@ -547,20 +558,12 @@
 			);
 			sourceTree = "<group>";
 		};
-		7E8C9459A81CA8ED51A4626A /* CoreUtilsObjC */ = {
+		7B498F2DB426E1BA18DDD0EE /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				655B62DBBF60F1233B5EB42E /* CoreUtilsObjC.swift.modulemap */,
+				66E59B4D965DFBFEA691DE05 /* rules_xcodeproj */,
 			);
-			path = CoreUtilsObjC;
-			sourceTree = "<group>";
-		};
-		83DE74BE510A1D4F5FE9BB22 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				F60D674BE245D212764DAC25 /* Utils.swift.modulemap */,
-			);
-			path = Utils;
+			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
 		85F708DD1F5484A0D5558108 /* Bazel External Repositories */ = {
@@ -583,25 +586,6 @@
 			path = ExampleTests;
 			sourceTree = "<group>";
 		};
-		91D1244134836CB3B2404390 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				E9D4AD4FEDBD0091E760D65F /* Example */,
-				60C28C92250874C209327D3F /* ExampleObjcTests */,
-				EA4E9D360229CA5090702D2F /* ExampleTests */,
-				94F2D1E234C89174AF04C57C /* ExampleUITests */,
-			);
-			path = bin;
-			sourceTree = "<group>";
-		};
-		94F2D1E234C89174AF04C57C /* ExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A79BF09E146A39B46E9EBB54 /* rules_xcodeproj */,
-			);
-			path = ExampleUITests;
-			sourceTree = "<group>";
-		};
 		991FBDAE4D70ED3DB91FA3D7 /* CoreUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,14 +593,6 @@
 				20F5652D5E2B14049EC02195 /* CoreUtils.pch */,
 			);
 			path = CoreUtils;
-			sourceTree = "<group>";
-		};
-		99E9A0416BA48C7FD1E244E6 /* FXPageControl */ = {
-			isa = PBXGroup;
-			children = (
-				F51A6A6B64AC5DED77FED79D /* FXPageControl.swift.modulemap */,
-			);
-			path = FXPageControl;
 			sourceTree = "<group>";
 		};
 		9D5281A770F4829FFC8EA622 /* FXPageControl */ = {
@@ -630,27 +606,11 @@
 		A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
-				4F466F470356AF0A2562A882 /* applebin_ios-ios_x86_64-dbg-ST-9fd37e348944 */,
-				53B5E1CC648231BCCF8D0A79 /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944 */,
+				1E2583F6DEDDA1C56B5C64D9 /* applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8 */,
+				59AA498567568FA4B3CFCCBF /* ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-output-base/execroot/__main__/bazel-out";
-			sourceTree = "<group>";
-		};
-		A79BF09E146A39B46E9EBB54 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				36F2B9B141D374FC8A00AC2C /* ExampleUITests.__internal__.__test_bundle */,
-			);
-			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		ADA2B806EF0D04FA36DEBC4F /* external */ = {
-			isa = PBXGroup;
-			children = (
-				99E9A0416BA48C7FD1E244E6 /* FXPageControl */,
-			);
-			path = external;
 			sourceTree = "<group>";
 		};
 		B213C913052591DD93B17599 /* Utils */ = {
@@ -683,22 +643,37 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
-		C2DB196EA8A1413E78192D0C /* bin */ = {
+		BBE8C18252FE8600E33DAF5A /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				7E8C9459A81CA8ED51A4626A /* CoreUtilsObjC */,
-				1EB3C487CB9079392314EFE9 /* ExampleResources */,
-				ADA2B806EF0D04FA36DEBC4F /* external */,
-				5A02AB189F2AADFE88F0C987 /* TestingUtils */,
-				83DE74BE510A1D4F5FE9BB22 /* Utils */,
+				54407E8CED2EF68BA464212B /* Example */,
+				0D6F8EDDA9DF42B8448F40F1 /* ExampleObjcTests */,
+				C58E5E19378339B71CE62417 /* ExampleTests */,
+				7B498F2DB426E1BA18DDD0EE /* ExampleUITests */,
 			);
 			path = bin;
 			sourceTree = "<group>";
 		};
-		C45DED87875FEA5279D3B33E /* rules_xcodeproj */ = {
+		BF8BB6E595ACCE20D85BCFCE /* CoreUtilsObjC */ = {
 			isa = PBXGroup;
 			children = (
-				EACD4304FC696810B375ABD8 /* ExampleTests.__internal__.__test_bundle */,
+				A525E652E56C71457B9CEF6A /* CoreUtilsObjC.swift.modulemap */,
+			);
+			path = CoreUtilsObjC;
+			sourceTree = "<group>";
+		};
+		C58E5E19378339B71CE62417 /* ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				57B47115BE483AF121422788 /* rules_xcodeproj */,
+			);
+			path = ExampleTests;
+			sourceTree = "<group>";
+		};
+		C7B2FBF7FA3FBD0EF74C8B8C /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				25FBF7268BD43A0AB65F9A31 /* Example */,
 			);
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
@@ -720,6 +695,23 @@
 				34EEB3D407F10261A42BB9F7 /* fixtures */,
 			);
 			path = test;
+			sourceTree = "<group>";
+		};
+		D435152F7334F7676092ADF6 /* TestingUtils */ = {
+			isa = PBXGroup;
+			children = (
+				7B2F83476198A4C688887542 /* TestingUtils.swift */,
+				4DAEE944D0CB54B8806223E1 /* TestingUtils.swift.modulemap */,
+			);
+			path = TestingUtils;
+			sourceTree = "<group>";
+		};
+		D67EDF7222C3BEC8B1C8B67F /* FXPageControl */ = {
+			isa = PBXGroup;
+			children = (
+				17D965CB0E693999C61B2E1F /* FXPageControl.swift.modulemap */,
+			);
+			path = FXPageControl;
 			sourceTree = "<group>";
 		};
 		D9AAB93A5135F69103554470 /* Frameworks */ = {
@@ -746,28 +738,36 @@
 			path = PreviewContent;
 			sourceTree = "<group>";
 		};
-		E9D4AD4FEDBD0091E760D65F /* Example */ = {
+		E8BEB9E637A1E6ECE3DE3E9F /* ExampleObjcTests.__internal__.__test_bundle */ = {
 			isa = PBXGroup;
 			children = (
-				3ECAE92478B99A668493F831 /* rules_xcodeproj */,
+				E242F7F289CBC7A85FDEF159 /* Info.plist */,
 			);
-			path = Example;
+			path = ExampleObjcTests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
-		EA4E9D360229CA5090702D2F /* ExampleTests */ = {
+		ECF44E00EB4FC7F8AA7366D2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C45DED87875FEA5279D3B33E /* rules_xcodeproj */,
+				36BB5B98CC0C6DC1F114FD0F /* Utils.swift.modulemap */,
 			);
-			path = ExampleTests;
+			path = Utils;
 			sourceTree = "<group>";
 		};
-		EACD4304FC696810B375ABD8 /* ExampleTests.__internal__.__test_bundle */ = {
+		F1D3C09B2FF9441639E7F9A6 /* external */ = {
 			isa = PBXGroup;
 			children = (
-				3887A2E9D023A33BBE7B90E2 /* Info.plist */,
+				D67EDF7222C3BEC8B1C8B67F /* FXPageControl */,
 			);
-			path = ExampleTests.__internal__.__test_bundle;
+			path = external;
+			sourceTree = "<group>";
+		};
+		F454E3CC2BE8085CED2FA94A /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				E8BEB9E637A1E6ECE3DE3E9F /* ExampleObjcTests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		F724A5F34AC8F468AB767487 /* ExampleUITests */ = {
@@ -1124,7 +1124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C424DA316D76D6DBE8E389B3 /* Assets.xcassets in Resources */,
-				242AC171144ACCAEA7CB9386 /* bucket in Resources */,
+				614A2C52BD62732FA26EDABB /* bucket in Resources */,
 				DFE9A6EC43175FCA538F448B /* ExampleNestedResources.bundle in Resources */,
 				60456255EE960BBA7DA9C36C /* nested in Resources */,
 			);
@@ -1255,7 +1255,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -euo pipefail\n\n# In Xcode 14 the \"Index\" directory was renamed to \"Index.noindex\".\n# `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can\n# use it to determine the name of the directory regardless of Xcode version.\nreadonly index_dir=\"${INDEX_DATA_STORE_DIR%/*}\"\nreadonly index_dir_name=\"${index_dir##*/}\"\n\n# Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for\n# previews. So we need to look in the non-preview build directory for this file.\nreadonly non_preview_objroot=\"${OBJROOT/\\/Intermediates.noindex\\/Previews\\/*//Intermediates.noindex}\"\nreadonly base_objroot=\"${non_preview_objroot/\\/$index_dir_name\\/Build\\/Intermediates.noindex//Build/Intermediates.noindex}\"\nreadonly scheme_target_ids_file=\"$non_preview_objroot/scheme_target_ids\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  readonly output_group_prefix=i\nelse\n  readonly output_group_prefix=g\nfi\n\n# We need to read from `$output_groups_file` as soon as possible, as concurrent\n# writes to it can happen during indexing, which breaks the off-by-one-by-design\n# nature of it\nIFS=$'\\n' read -r -d '' -a output_groups < \\\n  <( \"$CALCULATE_OUTPUT_GROUPS_SCRIPT\" \\\n       \"$non_preview_objroot\" \\\n       \"$base_objroot\" \\\n       \"$scheme_target_ids_file\" \\\n       $output_group_prefix \\\n       && printf '\\0' )\n\nif [ -z \"${output_groups:-}\" ]; then\n  if [ \"$ACTION\" == \"indexbuild\" ]; then\n    output_groups=(\"all_generated_inputs\")\n  else\n    echo \"error: BazelDependencies invoked without any output groups set. Please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\nfi\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\nbazelrcs=(\n  --noworkspace_rc\n  \"--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj.bazelrc\"\n)\nif [[ -s \".bazelrc\" ]]; then\n  bazelrcs+=(\"--bazelrc=.bazelrc\")\nfi\nif [[ -s \"$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc\" ]]; then\n  bazelrcs+=(\"--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc\")\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  \"${bazelrcs[@]}\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --config=rules_xcodeproj_info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  --bes_backend= \\\n  --bes_results_url= \\\n  output_path)\nexec_root=\"${output_path%/*}\"\n\nif [[ \"$ACTION\" != \"indexbuild\" && \"${ENABLE_PREVIEWS:-}\" != \"YES\" ]]; then\n  \"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh\" \"$exec_root\" \"examples_ios_app_external\" \"$SRCROOT/external\" > \"$BAZEL_LLDB_INIT\"\nfi\n\nif [[ \"${BAZEL_OUT:0:1}\" == '/' ]]; then\n  bazel_out_prefix=\nelse\n  bazel_out_prefix=\"$SRCROOT/\"\nfi\n\nabsolute_bazel_out=\"${bazel_out_prefix}$BAZEL_OUT\"\n\nif [[ \"$output_path\" != \"$absolute_bazel_out\" ]]; then\n  # Use current path for bazel-out\n  # This fixes Index Build to use its version of generated files\n  roots=\"{\\\"external-contents\\\": \\\"$output_path\\\",\\\"name\\\": \\\"$absolute_bazel_out\\\",\\\"type\\\": \\\"directory-remap\\\"}\"\nelse\n  roots=\nfi\n\ncat > \"$OBJROOT/bazel-out-overlay.yaml\" <<EOF\n{\"case-sensitive\": \"false\", \"fallthrough\": true, \"roots\": [$roots],\"version\": 0}\nEOF\n\n# Look up Swift generated headers in `$BUILD_DIR` first, then fall through to `$BAZEL_OUT`\ncat > \"$OBJROOT/xcode-overlay.yaml\" <<EOF\n{\"case-sensitive\": \"false\", \"fallthrough\": true, \"roots\": [{\"external-contents\": \"$BUILD_DIR/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/TestingUtils/SwiftAPI/TestingUtils-Swift.h\",\"name\": \"${bazel_out_prefix}$BAZEL_OUT/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/TestingUtils/SwiftAPI/TestingUtils-Swift.h\",\"type\": \"file\"}],\"version\": 0}\nEOF\n\ncd \"$SRCROOT\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  config=rules_xcodeproj_indexbuild\n  index_flags=(\n    --bes_backend=\n    --bes_results_url=\n  )\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  config=rules_xcodeproj_swiftuipreviews\n  swiftui_previews_flags=(\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-implicit-dynamic\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-private-imports\n    --swiftcopt=-Xfrontend\n    --swiftcopt=-enable-dynamic-replacement-chaining\n  )\nelse\n  config=rules_xcodeproj_build\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nbuild_marker=\"$OBJROOT/bazel_build_start\"\ntouch \"$build_marker\"\n\nlog=$(mktemp)\n\"$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py\" env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  \"${bazelrcs[@]}\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --config=$config \\\n  --color=yes \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  ${index_flags:+\"${index_flags[*]}\"} \\\n  ${swiftui_previews_flags:+\"${swiftui_previews_flags[*]}\"} \\\n  \"$output_groups_flag\" \\\n  //test/fixtures:xcodeproj_bwx.generator \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwx.generator-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-fastbuild-ST-1b9bd654f600/bin/test/fixtures/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$build_marker\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n";
+			shellScript = "set -euo pipefail\n\n# In Xcode 14 the \"Index\" directory was renamed to \"Index.noindex\".\n# `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can\n# use it to determine the name of the directory regardless of Xcode version.\nreadonly index_dir=\"${INDEX_DATA_STORE_DIR%/*}\"\nreadonly index_dir_name=\"${index_dir##*/}\"\n\n# Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for\n# previews. So we need to look in the non-preview build directory for this file.\nreadonly non_preview_objroot=\"${OBJROOT/\\/Intermediates.noindex\\/Previews\\/*//Intermediates.noindex}\"\nreadonly base_objroot=\"${non_preview_objroot/\\/$index_dir_name\\/Build\\/Intermediates.noindex//Build/Intermediates.noindex}\"\nreadonly scheme_target_ids_file=\"$non_preview_objroot/scheme_target_ids\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  readonly output_group_prefix=i\nelse\n  readonly output_group_prefix=g\nfi\n\n# We need to read from `$output_groups_file` as soon as possible, as concurrent\n# writes to it can happen during indexing, which breaks the off-by-one-by-design\n# nature of it\nIFS=$'\\n' read -r -d '' -a output_groups < \\\n  <( \"$CALCULATE_OUTPUT_GROUPS_SCRIPT\" \\\n       \"$non_preview_objroot\" \\\n       \"$base_objroot\" \\\n       \"$scheme_target_ids_file\" \\\n       $output_group_prefix \\\n       && printf '\\0' )\n\nif [ -z \"${output_groups:-}\" ]; then\n  if [ \"$ACTION\" == \"indexbuild\" ]; then\n    output_groups=(\"all_generated_inputs\")\n  else\n    echo \"error: BazelDependencies invoked without any output groups set. Please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\nfi\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\nbazelrcs=(\n  --noworkspace_rc\n  \"--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj.bazelrc\"\n)\nif [[ -s \".bazelrc\" ]]; then\n  bazelrcs+=(\"--bazelrc=.bazelrc\")\nfi\nif [[ -s \"$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc\" ]]; then\n  bazelrcs+=(\"--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc\")\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  \"${bazelrcs[@]}\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --config=rules_xcodeproj_info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  --bes_backend= \\\n  --bes_results_url= \\\n  output_path)\nexec_root=\"${output_path%/*}\"\n\nif [[ \"$ACTION\" != \"indexbuild\" && \"${ENABLE_PREVIEWS:-}\" != \"YES\" ]]; then\n  \"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh\" \"$exec_root\" \"examples_ios_app_external\" \"$SRCROOT/external\" > \"$BAZEL_LLDB_INIT\"\nfi\n\nif [[ \"${BAZEL_OUT:0:1}\" == '/' ]]; then\n  bazel_out_prefix=\nelse\n  bazel_out_prefix=\"$SRCROOT/\"\nfi\n\nabsolute_bazel_out=\"${bazel_out_prefix}$BAZEL_OUT\"\n\nif [[ \"$output_path\" != \"$absolute_bazel_out\" ]]; then\n  # Use current path for bazel-out\n  # This fixes Index Build to use its version of generated files\n  roots=\"{\\\"external-contents\\\": \\\"$output_path\\\",\\\"name\\\": \\\"$absolute_bazel_out\\\",\\\"type\\\": \\\"directory-remap\\\"}\"\nelse\n  roots=\nfi\n\ncat > \"$OBJROOT/bazel-out-overlay.yaml\" <<EOF\n{\"case-sensitive\": \"false\", \"fallthrough\": true, \"roots\": [$roots],\"version\": 0}\nEOF\n\n# Look up Swift generated headers in `$BUILD_DIR` first, then fall through to `$BAZEL_OUT`\ncat > \"$OBJROOT/xcode-overlay.yaml\" <<EOF\n{\"case-sensitive\": \"false\", \"fallthrough\": true, \"roots\": [{\"external-contents\": \"$BUILD_DIR/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/TestingUtils/SwiftAPI/TestingUtils-Swift.h\",\"name\": \"${bazel_out_prefix}$BAZEL_OUT/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/TestingUtils/SwiftAPI/TestingUtils-Swift.h\",\"type\": \"file\"}],\"version\": 0}\nEOF\n\ncd \"$SRCROOT\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  config=rules_xcodeproj_indexbuild\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  config=rules_xcodeproj_swiftuipreviews\nelse\n  config=rules_xcodeproj_build\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nbuild_marker=\"$OBJROOT/bazel_build_start\"\ntouch \"$build_marker\"\n\nlog=$(mktemp)\n\"$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py\" env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  \"${bazelrcs[@]}\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --config=$config \\\n  --color=yes \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  \"$output_groups_flag\" \\\n  //test/fixtures:xcodeproj_bwx.generator \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwx.generator-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-dbg-ST-1b9bd654f600/bin/test/fixtures/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$build_marker\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n";
 			showEnvVarsInLog = 0;
 		};
 		B53A70A8850ED09CF7C2348A /* Create link.params */ = {
@@ -1366,7 +1366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FA785A5B2D4D728ED7E2388 /* TestingUtils.swift in Sources */,
+				611BD0BC2137D5DA278F8B33 /* TestingUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1580,8 +1580,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/TestingUtils";
-				BAZEL_TARGET_ID = "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/TestingUtils";
+				BAZEL_TARGET_ID = "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -1602,7 +1602,7 @@
 				TARGET_NAME = TestingUtils;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin",
 				);
 			};
 			name = Debug;
@@ -1611,8 +1611,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/examples_ios_app_external";
-				BAZEL_TARGET_ID = "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/examples_ios_app_external";
+				BAZEL_TARGET_ID = "@examples_ios_app_external//:ExternalResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -1636,8 +1636,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/ExampleUITests";
-				BAZEL_TARGET_ID = "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/ExampleUITests";
+				BAZEL_TARGET_ID = "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
@@ -1647,9 +1647,9 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/ExampleUITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/ExampleUITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/ExampleUITests/ExampleUITests.__internal__.__test_bundle.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/ExampleUITests/ExampleUITests.__internal__.__test_bundle.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
@@ -1667,7 +1667,7 @@
 				TEST_TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin",
 				);
 			};
 			name = Debug;
@@ -1676,8 +1676,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/OnlyStructuredResources";
-				BAZEL_TARGET_ID = "//OnlyStructuredResources:OnlyStructuredResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/OnlyStructuredResources";
+				BAZEL_TARGET_ID = "//OnlyStructuredResources:OnlyStructuredResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -1701,8 +1701,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/ExampleNestedResources";
-				BAZEL_TARGET_ID = "//ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/ExampleNestedResources";
+				BAZEL_TARGET_ID = "//ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -1726,8 +1726,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl";
-				BAZEL_TARGET_ID = "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl";
+				BAZEL_TARGET_ID = "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1813,9 +1813,9 @@
 				TARGET_NAME = FXPageControl;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/FXPageControl",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl",
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin",
 				);
 			};
 			name = Debug;
@@ -1824,8 +1824,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/ExampleResources";
-				BAZEL_TARGET_ID = "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/ExampleResources";
+				BAZEL_TARGET_ID = "//ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -1859,8 +1859,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC";
-				BAZEL_TARGET_ID = "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC";
+				BAZEL_TARGET_ID = "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1875,7 +1875,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -1951,7 +1951,7 @@
 				TARGET_NAME = CoreUtilsObjC;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin",
 				);
 			};
 			name = Debug;
@@ -1960,8 +1960,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/ExampleTests";
-				BAZEL_TARGET_ID = "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/ExampleTests";
+				BAZEL_TARGET_ID = "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -1974,13 +1974,13 @@
 				GCC_PREPROCESSOR_DEFINITIONS = AWESOME;
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/ExampleTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/ExampleTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/ExampleTests/ExampleTests.__internal__.__test_bundle.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/ExampleTests/ExampleTests.__internal__.__test_bundle.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
 				PRODUCT_MODULE_NAME = ExampleTests;
 				PRODUCT_NAME = ExampleTests;
@@ -1988,19 +1988,19 @@
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AWESOME";
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Example $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/TestingUtils";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Example $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/TestingUtils";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Example$(TARGET_BUILD_SUBPATH)";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Example$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = ExampleTests.__internal__.__test_bundle;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Example/Example.app/Example_ExecutableName";
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Example/Example.app/Example_ExecutableName";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin",
 					"$(BAZEL_EXTERNAL)/FXPageControl",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl",
 				);
 			};
 			name = Debug;
@@ -2009,8 +2009,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/ExampleObjcTests";
-				BAZEL_TARGET_ID = "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/ExampleObjcTests";
+				BAZEL_TARGET_ID = "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2030,11 +2030,11 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/ExampleObjcTests/rules_xcodeproj/ExampleObjcTests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/ExampleObjcTests/rules_xcodeproj/ExampleObjcTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/ExampleObjcTests/ExampleObjcTests.__internal__.__test_bundle.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/xcode-overlay.yaml",
@@ -2108,14 +2108,14 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Example$(TARGET_BUILD_SUBPATH)";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Example$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = ExampleObjcTests.__internal__.__test_bundle;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Example/Example.app/Example_ExecutableName";
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Example/Example.app/Example_ExecutableName";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin",
 					"$(BAZEL_EXTERNAL)/FXPageControl",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl",
 				);
 			};
 			name = Debug;
@@ -2125,8 +2125,8 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Example";
-				BAZEL_TARGET_ID = "//Example:Example applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Example";
+				BAZEL_TARGET_ID = "//Example:Example applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = Example/app.entitlements;
@@ -2139,17 +2139,17 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Example/rules_xcodeproj/Example/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Example/rules_xcodeproj/Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/Example/Example.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/Example/Example.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Utils/Utils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Utils/Utils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = Example;
 				PRODUCT_NAME = Example;
@@ -2164,9 +2164,9 @@
 				TARGET_NAME = Example;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin",
 					"$(BAZEL_EXTERNAL)/FXPageControl",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl",
 				);
 			};
 			name = Debug;
@@ -2214,8 +2214,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/Utils";
-				BAZEL_TARGET_ID = "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/Utils";
+				BAZEL_TARGET_ID = "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2229,7 +2229,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					CoreUtilsObjC,
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/CoreUtilsObjC",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/CoreUtilsObjC",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
@@ -2305,9 +2305,9 @@
 				TARGET_NAME = Utils;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin",
 					"$(BAZEL_EXTERNAL)/FXPageControl",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fd37e348944/bin/external/FXPageControl",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8/bin/external/FXPageControl",
 				);
 			};
 			name = Debug;
