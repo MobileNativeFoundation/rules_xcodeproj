@@ -3320,6 +3320,8 @@
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
 				BAZEL_OUT = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 				BAZEL_PATH = bazel;
+				BAZEL_WORKSPACE_DIRECTORY = "$(SRCROOT)";
+				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILT_PRODUCTS_DIR = "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				CC = "$(BAZEL_INTEGRATION_DIR)/cc.sh";
