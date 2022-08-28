@@ -1,4 +1,9 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "xcodeproj",
+)
+load("//examples/multiplatform:xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 # Release
 
@@ -62,4 +67,17 @@ buildifier(
     lint_mode = "fix",
     lint_warnings = _BUILDIFIER_WARNINGS,
     mode = "fix",
+)
+
+# TODO(chuck): FIX ME!
+
+# CHUCK DEBUG
+
+xcodeproj(
+    name = "xcodeproj",
+    # TODO(chuck): REVERT ME!
+    build_mode = "bazel",
+    project_name = "Multiplatform",
+    tags = ["manual"],
+    top_level_targets = XCODEPROJ_TARGETS,
 )
