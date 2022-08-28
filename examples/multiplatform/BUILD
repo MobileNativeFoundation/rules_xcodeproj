@@ -6,6 +6,8 @@ load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
 
 xcodeproj(
     name = "xcodeproj",
+    # TODO(chuck): REVERT ME!
+    build_mode = "bazel",
     project_name = "Multiplatform",
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,
