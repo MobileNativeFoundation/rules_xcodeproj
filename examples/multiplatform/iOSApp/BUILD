@@ -34,13 +34,16 @@ apple_bundle_version(
     visibility = ["//examples/multiplatform:__subpackages__"],
 )
 
+CHUCK_BUNDLE_ID = IOS_BUNDLE_ID + ".chuck"
+
 ios_application(
     name = "iOSApp",
-    app_clips = ["//examples/multiplatform/AppClip"],
+    # app_clips = ["//examples/multiplatform/AppClip"],
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
-    bundle_id = IOS_BUNDLE_ID,
+    # bundle_id = IOS_BUNDLE_ID,
+    bundle_id = CHUCK_BUNDLE_ID,
     bundle_name = "iOSApp",
-    extensions = ["//examples/multiplatform/WidgetExtension"],
+    # extensions = ["//examples/multiplatform/WidgetExtension"],
     families = ["iphone"],
     frameworks = ["//examples/multiplatform/Lib:LibFramework"],
     infoplists = [":Info.plist"],
@@ -53,7 +56,7 @@ ios_application(
     resources = [":ResourceGroup"],
     version = ":Version",
     visibility = ["//visibility:public"],
-    watch_application = "//examples/multiplatform/watchOSApp",
+    # watch_application = "//examples/multiplatform/watchOSApp",
     deps = [":iOSApp.library"],
 )
 
@@ -66,7 +69,8 @@ xcode_provisioning_profile(
 
 local_provisioning_profile(
     name = "xcode_managed_profile",
-    profile_name = "iOS Team Provisioning Profile: {}".format(IOS_BUNDLE_ID),
+    # profile_name = "iOS Team Provisioning Profile: {}".format(IOS_BUNDLE_ID),
+    profile_name = "iOS Team Provisioning Profile: {}".format(CHUCK_BUNDLE_ID),
     tags = ["manual"],
     team_id = TEAMID,
 )
