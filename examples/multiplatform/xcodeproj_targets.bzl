@@ -7,8 +7,6 @@ load(
 
 XCODEPROJ_TARGETS = [
     "//examples/multiplatform/iMessageApp",
-    "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests",
-    "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests",
     top_level_target(
         label = "//examples/multiplatform/iOSApp",
         target_environments = ["device", "simulator"],
@@ -17,6 +15,8 @@ XCODEPROJ_TARGETS = [
         label = "//examples/multiplatform/tvOSApp",
         target_environments = ["device", "simulator"],
     ),
+    "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests",
+    "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests",
     top_level_target(
         label = "//examples/multiplatform/Tool",
         target_environments = ["device"],

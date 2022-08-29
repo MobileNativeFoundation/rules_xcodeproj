@@ -15,7 +15,7 @@ tvos_unit_test(
 swift_library(
     name = "ExampleTests.library",
     testonly = True,
-    srcs = glob(["*.swift"]),
+    srcs = glob(["**/*.swift"]),
     module_name = "ExampleTests",
     tags = ["manual"],
     deps = [
