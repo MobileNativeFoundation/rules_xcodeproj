@@ -204,7 +204,7 @@ def _skip_target(*, target, deps, transitive_infos):
             [
                 struct(id = info.xcode_target.id, label = target.label)
                 for attr, info in transitive_infos
-                if attr == "deps" and info.xcode_target
+                if target and attr == "deps" and info.xcode_target
             ],
             transitive = [
                 info.replacement_labels
@@ -398,6 +398,7 @@ def merge_xcodeprojinfos(infos):
         An `XcodeProjInfo` populated with information from `infos`.
     """
     info_fields = _skip_target(
+        target = None,
         deps = [],
         transitive_infos = [(None, info) for info in infos],
     )
