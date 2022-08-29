@@ -311,15 +311,28 @@ def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
         A `dict` where the keys are output group names and the values are
         `depset` of `File`s.
     """
-    return {
+    all_files = {
+        name: files
+        for name, files in outputs._output_group_list.to_list()
+    }
+
+    output_groups = {
         name: depset([output_group_map.write_map(
             ctx = ctx,
             name = name.replace("/", "_"),
             files = files,
             toplevel_cache_buster = toplevel_cache_buster,
         )])
-        for name, files in outputs._output_group_list.to_list()
+        for name, files in all_files.items()
     }
+    output_groups["all_output_files"] = depset([output_group_map.write_map(
+        ctx = ctx,
+        name = "all_output_files",
+        files = depset(transitive = all_files.values()),
+        toplevel_cache_buster = toplevel_cache_buster,
+    )])
+
+    return output_groups
 
 def parse_swift_info_module(module):
     """Collects outputs from a rules_swift module.
