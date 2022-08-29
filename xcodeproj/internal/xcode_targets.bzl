@@ -93,17 +93,17 @@ def _make(
         _modulemaps = modulemaps,
         _swiftmodules = tuple(swiftmodules),
         _linker_inputs = linker_inputs,
-        _infoplist = infoplist,
         _watch_application = watch_application,
         _extensions = tuple(extensions),
         _app_clips = tuple(app_clips),
         _dependencies = dependencies,
-        _outputs = outputs,
         _lldb_context = lldb_context,
         id = id,
         label = label,
         product = product,
         inputs = inputs,
+        outputs = outputs,
+        infoplist = infoplist,
         transitive_dependencies = transitive_dependencies,
     )
 
@@ -180,7 +180,7 @@ def _to_dto(
     set_if_true(
         dto,
         "info_plist",
-        file_path_to_dto(file_path(xcode_target._infoplist)),
+        file_path_to_dto(file_path(xcode_target.infoplist)),
     )
     set_if_true(
         dto,
@@ -209,7 +209,7 @@ def _to_dto(
             if id not in unfocused_targets
         ],
     )
-    set_if_true(dto, "outputs", output_files.to_dto(xcode_target._outputs))
+    set_if_true(dto, "outputs", output_files.to_dto(xcode_target.outputs))
 
     return dto
 

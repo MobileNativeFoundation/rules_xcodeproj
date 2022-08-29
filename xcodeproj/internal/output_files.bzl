@@ -94,11 +94,13 @@ def _create(
     )
 
     if should_produce_output_groups and direct_outputs:
+        build_output_group_name = "b {}".format(direct_outputs.id)
         direct_group_list = [
-            ("b {}".format(direct_outputs.id), transitive_build),
+            (build_output_group_name, transitive_build),
             ("i {}".format(direct_outputs.id), transitive_index),
         ]
     else:
+        build_output_group_name = None
         direct_group_list = None
 
     output_group_list = depset(
@@ -120,6 +122,7 @@ def _create(
         _transitive_build = transitive_build,
         _transitive_index = transitive_index,
         _transitive_swift = transitive_swift,
+        build_output_group_name = build_output_group_name,
     )
 
 def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
@@ -296,12 +299,30 @@ def _to_dto(outputs):
 
     return dto
 
-def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
+def _process_output_group_files(
+        files,
+        *,
+        output_group_name,
+        additional_outputs):
+    outputs_depsets = additional_outputs.get(output_group_name)
+    if outputs_depsets:
+        return depset(transitive = [files] + outputs_depsets)
+    return files
+
+def _to_output_groups_fields(
+        *,
+        ctx,
+        outputs,
+        additional_outputs = {},
+        toplevel_cache_buster):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
         ctx: The rule context.
         outputs: A value returned from `output_files.collect()`.
+        additional_outputs: A `dict` that maps the output group name of
+            targets to a `list` of `depset`s of `File`s that should be merged
+            into the output group map for that output group name.
         toplevel_cache_buster: A `list` of `File`s that change with each build,
             and are used as inputs to the output map generation, to ensure that
             the files references by the output map are always downloaded from
@@ -312,7 +333,11 @@ def _to_output_groups_fields(*, ctx, outputs, toplevel_cache_buster):
         `depset` of `File`s.
     """
     all_files = {
-        name: files
+        name: _process_output_group_files(
+            files = files,
+            output_group_name = name,
+            additional_outputs = additional_outputs,
+        )
         for name, files in outputs._output_group_list.to_list()
     }
 
