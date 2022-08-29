@@ -47,6 +47,9 @@ def _is_test_bundle(target, deps):
     """
     if deps == None:
         return False
+
+    # TODO: Once we have a minimum version of Bazel 5.3+, we can check for
+    # `RunEnvironmentInfo` and `*XcTestBundleInfo` instead
     return (
         _is_test_bundle_with_provider(target, deps, IosXcTestBundleInfo) or
         _is_test_bundle_with_provider(target, deps, MacosXcTestBundleInfo) or

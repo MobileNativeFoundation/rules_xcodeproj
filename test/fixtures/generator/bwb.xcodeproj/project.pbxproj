@@ -53,6 +53,7 @@
 		0F68017F5891C6AD18732F80 /* XCSchemeInfo+TestActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39F1225A116FA6831750914 /* XCSchemeInfo+TestActionInfo.swift */; };
 		0F988C99D14D5314D5DE55AE /* CoreMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41944A58347442213CC45E6 /* CoreMotion.swift */; };
 		0FC3C2B36EE048DFFDA71CD8 /* Inputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB9D00963E3FECF87A050AA /* Inputs.swift */; };
+		10D5AB76441FDACB75040173 /* ProcessReplacementLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A60F1554A78D3570898B3 /* ProcessReplacementLabels.swift */; };
 		122C541CB4789FD47C478AD9 /* BuildMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61886AE6F5D2C1864AFB163E /* BuildMode.swift */; };
 		1288BFDB7D8BDA0DE5F90F78 /* OrderedDictionary+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850474D28DB907CF28F2410 /* OrderedDictionary+Sequence.swift */; };
 		13C6DF44016DCB53AD3798F0 /* WorkspaceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ABCD1903D2A2F3FAE064BC /* WorkspaceSettings.swift */; };
@@ -255,6 +256,7 @@
 		A30CF32F21CDF7FE5B477341 /* PBXTargets+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB622F4E8EA478F6C3D642F6 /* PBXTargets+ExtensionsTests.swift */; };
 		A34F10BEBBC9CABA7EFE3D62 /* OrderedSet+Partial SetAlgebra+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FF7F282D79BCC8C890152C /* OrderedSet+Partial SetAlgebra+Operations.swift */; };
 		A4A23349B22F60B10EDF6D9A /* Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74842CED67D00EEEC35928F3 /* Diff.swift */; };
+		A5F43E9AE30CAAB212EA79CA /* ProcessReplacementLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A60F1554A78D3570898B3 /* ProcessReplacementLabels.swift */; };
 		A675EA535B032CEB7C29D343 /* PBXFileElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D486D370E6E28447869688 /* PBXFileElement.swift */; };
 		A68D64FB246101C57F8011AA /* CreateXcodeProjTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025166F1EB392F463C551D2 /* CreateXcodeProjTests.swift */; };
 		A7B2AC8B32D47FDA97CDFB51 /* BuildSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F8C4C7C2081CE4ED3E6131 /* BuildSetting.swift */; };
@@ -727,6 +729,7 @@
 		AD653DE8BB96227EDAAE9B28 /* AddBazelDependenciesTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBazelDependenciesTarget.swift; sourceTree = "<group>"; };
 		AF072F61E054955564EECDA2 /* CustomDumpStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDumpStringConvertible.swift; sourceTree = "<group>"; };
 		AFE5F2E4FC573D27FCB8DF34 /* CreateXCSharedDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCSharedDataTests.swift; sourceTree = "<group>"; };
+		B02A60F1554A78D3570898B3 /* ProcessReplacementLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessReplacementLabels.swift; sourceTree = "<group>"; };
 		B09218BC66E9AB080FC139E6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B2F851023E4F4913D1E369CE /* JSONDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoding.swift; sourceTree = "<group>"; };
 		B379DE01A53B895F83E8846C /* AEXML+XcodeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AEXML+XcodeFormat.swift"; sourceTree = "<group>"; };
@@ -1136,6 +1139,7 @@
 				1F62C432E8BE7AB82AA78D1A /* Generator.swift */,
 				E6BFD6BE9106FF1721637C0B /* Main.swift */,
 				D69926E3303EC6DCEFF83DE3 /* PopulateMainGroup.swift */,
+				B02A60F1554A78D3570898B3 /* ProcessReplacementLabels.swift */,
 				CBF0DCE8B2E461919E45E6D7 /* ProcessTargetMerges.swift */,
 				31BC151B9FAB4522262F43A7 /* SemanticVersion.swift */,
 				B4ED3B78E40B159DC3EEB602 /* SetTargetConfigurations.swift */,
@@ -1993,6 +1997,7 @@
 				D676630F1620BAC0223F6A96 /* Generator.swift in Sources */,
 				B0662ED0FA83DE84A57B93FF /* Main.swift in Sources */,
 				094FC88B62E8888251AC426F /* PopulateMainGroup.swift in Sources */,
+				10D5AB76441FDACB75040173 /* ProcessReplacementLabels.swift in Sources */,
 				2164512385B75D2A11B9D81D /* ProcessTargetMerges.swift in Sources */,
 				CE633D8966137D9C4F82B916 /* SemanticVersion.swift in Sources */,
 				C572F7558C1A5C73EFEC7507 /* SetTargetConfigurations.swift in Sources */,
@@ -2227,6 +2232,7 @@
 				D396361E6B167F11155EF472 /* Generator.swift in Sources */,
 				AAB0514FC68BB58F07579F02 /* Main.swift in Sources */,
 				5ECD0DB0994205C603166004 /* PopulateMainGroup.swift in Sources */,
+				A5F43E9AE30CAAB212EA79CA /* ProcessReplacementLabels.swift in Sources */,
 				EBF46BD547BE8BC0C19D65CC /* ProcessTargetMerges.swift in Sources */,
 				3E7E07BFCDBA1A5BB01FD38D /* SemanticVersion.swift in Sources */,
 				7895225CE935D6B27E65E73C /* SetTargetConfigurations.swift in Sources */,

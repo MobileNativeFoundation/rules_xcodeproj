@@ -9,6 +9,7 @@ import XcodeProj
 class Generator {
     static let defaultEnvironment = Environment(
         createProject: Generator.createProject,
+        processReplacementLabels: Generator.processReplacementLabels,
         processTargetMerges: Generator.processTargetMerges,
         consolidateTargets: Generator.consolidateTargets,
         createFilesAndGroups: Generator.createFilesAndGroups,
@@ -74,6 +75,10 @@ class Generator {
         let mainGroup: PBXGroup = pbxProject.mainGroup
 
         var targets = project.targets
+        try environment.processReplacementLabels(
+            &targets,
+            project.replacementLabels
+        )
         try environment.processTargetMerges(&targets, project.targetMerges)
 
         let isUnfocusedDependencyTargetIDs = Set(

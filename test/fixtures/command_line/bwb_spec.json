@@ -70,6 +70,10 @@
     "force_bazel_dependencies": true,
     "label": "//test/fixtures/command_line:xcodeproj_bwb.generator",
     "name": "bwb",
+    "replacement_labels": [
+        "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-757525382804",
+        "//examples/command_line/Tests:LibSwiftTests"
+    ],
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [],
     "target_merges": [

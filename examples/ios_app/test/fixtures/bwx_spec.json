@@ -80,6 +80,14 @@
     "force_bazel_dependencies": true,
     "label": "//test/fixtures:xcodeproj_bwx.generator",
     "name": "bwx",
+    "replacement_labels": [
+        "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8",
+        "//ExampleObjcTests:ExampleObjcTests",
+        "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8",
+        "//ExampleTests:ExampleTests",
+        "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-2b4014b1fbe8",
+        "//ExampleUITests:ExampleUITests"
+    ],
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [],
     "target_merges": [

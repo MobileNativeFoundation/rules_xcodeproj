@@ -16,6 +16,7 @@ final class GeneratorTests: XCTestCase {
             configuration: "abc123",
             buildSettings: [:],
             targets: Fixtures.targets,
+            replacementLabels: [:],
             targetMerges: [:],
             targetHosts: [
                 "WKE": ["I 1", "I 2"],
@@ -57,6 +58,42 @@ final class GeneratorTests: XCTestCase {
             workspaceOutputPath: workspaceOutputPath
         )
 
+        let replacedLabelsTargets: [TargetID: Target] = [
+            "I 0": Target.mock(
+                label: "//:I0",
+                configuration: "1a2b3",
+                product: .init(type: .staticLibrary, name: "I 0", path: "")
+            ),
+            "I 1": Target.mock(
+                label: "//:I1",
+                configuration: "1a2b3",
+                product: .init(type: .application, name: "I 1", path: "")
+            ),
+            "I 2": Target.mock(
+                label: "//:I2",
+                configuration: "1a2b3",
+                product: .init(type: .application, name: "I 2", path: "")
+            ),
+            "WKE": Target.mock(
+                label: "//:WKE",
+                platform: .device(os: .watchOS),
+                product: .init(
+                    type: .watch2Extension,
+                    name: "WKE",
+                    path: .generated("z/WK.appex")
+                )
+            ),
+            "Y": Target.mock(
+                label: "//:Y",
+                configuration: "a1b2c",
+                product: .init(type: .staticLibrary, name: "Y", path: "")
+            ),
+            "Z": Target.mock(
+                label: "//:Z",
+                configuration: "1a2b3",
+                product: .init(type: .application, name: "Z", path: "")
+            ),
+        ]
         let mergedTargets: [TargetID: Target] = [
             "I 1": Target.mock(
                 label: "//:I1",
@@ -219,6 +256,33 @@ final class GeneratorTests: XCTestCase {
             filePathResolver: filePathResolver
         )]
 
+        // MARK: processReplacementLabels()
+
+        struct ProcessReplacementLabelsCalled: Equatable {
+            let targets: [TargetID: Target]
+            let replacementLabels: [TargetID: BazelLabel]
+        }
+
+        var processReplacementLabelsCalled: [ProcessReplacementLabelsCalled] =
+            []
+        func processReplacementLabels(
+            targets: inout [TargetID: Target],
+            replacementLabels: [TargetID: BazelLabel]
+        ) throws {
+            processReplacementLabelsCalled.append(.init(
+                targets: targets,
+                replacementLabels: replacementLabels
+            ))
+            targets = replacedLabelsTargets
+        }
+
+        let expectedProcessReplacementLabelsCalled = [
+            ProcessReplacementLabelsCalled(
+                targets: project.targets,
+                replacementLabels: project.replacementLabels
+            )
+        ]
+
         // MARK: processTargetMerges()
 
         struct ProcessTargetMergesCalled: Equatable {
@@ -239,7 +303,7 @@ final class GeneratorTests: XCTestCase {
         }
 
         let expectedProcessTargetMergesCalled = [ProcessTargetMergesCalled(
-            targets: project.targets,
+            targets: replacedLabelsTargets,
             targetMerges: project.targetMerges
         )]
 
@@ -706,6 +770,7 @@ final class GeneratorTests: XCTestCase {
         let logger = StubLogger()
         let environment = Environment(
             createProject: createProject,
+            processReplacementLabels: processReplacementLabels,
             processTargetMerges: processTargetMerges,
             consolidateTargets: consolidateTargets,
             createFilesAndGroups: createFilesAndGroups,
@@ -751,6 +816,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             createProjectCalled,
             expectedCreateProjectCalled
+        )
+        XCTAssertNoDifference(
+            processReplacementLabelsCalled,
+            expectedProcessReplacementLabelsCalled
         )
         XCTAssertNoDifference(
             processTargetMergesCalled,

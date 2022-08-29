@@ -5,6 +5,7 @@ struct Project: Equatable, Decodable {
     let configuration: String
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
+    let replacementLabels: [TargetID: BazelLabel]
     let targetMerges: [TargetID: Set<TargetID>]
     let targetHosts: [TargetID: [TargetID]]
     let extraFiles: Set<FilePath>

@@ -24,13 +24,13 @@
 /* Begin PBXBuildFile section */
 		25605E8E5912BBF468A910D4 /* private_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F18976D8538975B332CAC08 /* private_lib.c */; };
 		2565B0E6AC6DB939D6A8209E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C06A565663AED0899589F574 /* main.m */; };
-		2848C0B211EE176A3865CF72 /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE87466AFFDC6606F8518F8 /* SwiftGreetingsTests.swift */; };
 		385EAE4CC885B9E86D699D48 /* private_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AD4F814170CAD94F651562 /* private_lib.swift */; };
+		4029BB5D275177003CBA4B43 /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE87466AFFDC6606F8518F8 /* SwiftGreetingsTests.swift */; };
 		79B8305AFF7844F1C8F569ED /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 331147AAE77477BF2E210C00 /* c_lib.c */; };
-		A01C6C6B96A9DD78BF99BEAA /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BEEB36D3E48677861539C1 /* ExternalFramework.framework */; };
 		C2856E1EDD6B2C68FB87FD2D /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BEEB36D3E48677861539C1 /* ExternalFramework.framework */; };
 		D339677D7D46139DE6887FAB /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59B10F9022E9CC335541BDA /* lib.swift */; };
 		E88BD8A7C61237C9DA4A3253 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A44BF8F252A4102EA584307 /* lib.m */; };
+		F59D36392AB5643AFCF3D365 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BEEB36D3E48677861539C1 /* ExternalFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +40,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = BC691472A2BC47F8E1D5D637;
 			remoteInfo = lib_impl;
+		};
+		0E133FB6B6B9C5263ED337AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E3B6C47A6106921076BC573;
+			remoteInfo = lib_swift;
 		};
 		2FC9D90BBC92B51DCC9FDAD6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -55,14 +62,14 @@
 			remoteGlobalIDString = 48A1FAB71CA4985ACB147363;
 			remoteInfo = c_lib;
 		};
-		4E427150188B59D55AA8579B /* PBXContainerItemProxy */ = {
+		4EE0B41522461A6BD9642C81 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		4EE0B41522461A6BD9642C81 /* PBXContainerItemProxy */ = {
+		55CDFFC593A6CD403A056FDE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -110,13 +117,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = EAFF1E96A87B75E6BA080719;
 			remoteInfo = private_lib;
-		};
-		C0AE6AA9FC08390DB1932DDD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E3B6C47A6106921076BC573;
-			remoteInfo = lib_swift;
 		};
 		F10B737FD8EF7635F4DC2CBA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -178,11 +178,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD2A00D7C382383B40D14A18 /* Frameworks */ = {
+		F7A6C05EA96A558549B71F52 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A01C6C6B96A9DD78BF99BEAA /* ExternalFramework.framework in Frameworks */,
+				F59D36392AB5643AFCF3D365 /* ExternalFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,22 +622,22 @@
 			productName = lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
-		E56E8F91E4327755D5B09E30 /* LibSwiftTests.__internal__.__test_bundle */ = {
+		BD2C5A578E5A06CB7CF3706D /* LibSwiftTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 74DA3612C32497D21458CAA4 /* Build configuration list for PBXNativeTarget "LibSwiftTests.__internal__.__test_bundle" */;
+			buildConfigurationList = 971DACC988C09D651A406805 /* Build configuration list for PBXNativeTarget "LibSwiftTests" */;
 			buildPhases = (
-				5D464CEFA2342A850E65DD3F /* Copy Bazel Outputs */,
-				25FF47201EFF86EC5EE22D7D /* Create link.params */,
-				DCB7EC09ACE7D73B9BDD7F0D /* Sources */,
-				CD2A00D7C382383B40D14A18 /* Frameworks */,
+				23B41ED28AC078F2878BCD42 /* Copy Bazel Outputs */,
+				6D3D0F0B206EF39AA0FB11C7 /* Create link.params */,
+				4803D9CFF3B0DEAEE9CA6C77 /* Sources */,
+				F7A6C05EA96A558549B71F52 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B9C9FDEED488D7E33209540A /* PBXTargetDependency */,
-				2CF2586B0B0366E350C5E6BF /* PBXTargetDependency */,
+				10CB9479028CC945F8FF2FA9 /* PBXTargetDependency */,
+				6E3DC57E62BA78E5EEA29165 /* PBXTargetDependency */,
 			);
-			name = LibSwiftTests.__internal__.__test_bundle;
+			name = LibSwiftTests;
 			productName = LibSwiftTests;
 			productReference = 12C3BFE593A8E590FD298519 /* LibSwiftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -702,7 +702,7 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
-					E56E8F91E4327755D5B09E30 = {
+					BD2C5A578E5A06CB7CF3706D = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
@@ -733,7 +733,7 @@
 				48A1FAB71CA4985ACB147363 /* c_lib */,
 				BC691472A2BC47F8E1D5D637 /* lib_impl */,
 				8E3B6C47A6106921076BC573 /* lib_swift */,
-				E56E8F91E4327755D5B09E30 /* LibSwiftTests.__internal__.__test_bundle */,
+				BD2C5A578E5A06CB7CF3706D /* LibSwiftTests */,
 				EAFF1E96A87B75E6BA080719 /* private_lib */,
 				FB5A7F9FB506F44F296BDD73 /* private_swift_lib */,
 				27EDD304E889980DC176FF62 /* tool */,
@@ -759,21 +759,21 @@
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		25FF47201EFF86EC5EE22D7D /* Create link.params */ = {
+		23B41ED28AC078F2878BCD42 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Create link.params";
+			name = "Copy Bazel Outputs";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"LibSwiftTests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		26791BE0095D398A817F4CFA /* Create link.params */ = {
@@ -809,21 +809,21 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libprivate_swift_lib.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5D464CEFA2342A850E65DD3F /* Copy Bazel Outputs */ = {
+		6D3D0F0B206EF39AA0FB11C7 /* Create link.params */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Create link.params";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"LibSwiftTests.xctest\" \\\n  \"\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
@@ -897,6 +897,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4803D9CFF3B0DEAEE9CA6C77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4029BB5D275177003CBA4B43 /* SwiftGreetingsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		481A5BE8481DD1BD3CF39B15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -921,14 +929,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCB7EC09ACE7D73B9BDD7F0D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2848C0B211EE176A3865CF72 /* SwiftGreetingsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EB382A674406F86F441C20BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -946,6 +946,12 @@
 			target = 8E3B6C47A6106921076BC573 /* lib_swift */;
 			targetProxy = 941CFFB87F4F5822EFA8B01D /* PBXContainerItemProxy */;
 		};
+		10CB9479028CC945F8FF2FA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 55CDFFC593A6CD403A056FDE /* PBXContainerItemProxy */;
+		};
 		1BB14BD319203CF277CB7228 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -957,12 +963,6 @@
 			name = lib_impl;
 			target = BC691472A2BC47F8E1D5D637 /* lib_impl */;
 			targetProxy = 0D08B1B3E78FD0DCDACFB09C /* PBXContainerItemProxy */;
-		};
-		2CF2586B0B0366E350C5E6BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = lib_swift;
-			target = 8E3B6C47A6106921076BC573 /* lib_swift */;
-			targetProxy = C0AE6AA9FC08390DB1932DDD /* PBXContainerItemProxy */;
 		};
 		324C87B64295C8B3697A2481 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -982,6 +982,12 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 7FFB42E8194119A9015D30B8 /* PBXContainerItemProxy */;
 		};
+		6E3DC57E62BA78E5EEA29165 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = lib_swift;
+			target = 8E3B6C47A6106921076BC573 /* lib_swift */;
+			targetProxy = 0E133FB6B6B9C5263ED337AA /* PBXContainerItemProxy */;
+		};
 		7176C357250A109C7B9B42E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -993,12 +999,6 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = F10B737FD8EF7635F4DC2CBA /* PBXContainerItemProxy */;
-		};
-		B9C9FDEED488D7E33209540A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 4E427150188B59D55AA8579B /* PBXContainerItemProxy */;
 		};
 		D96519F774F29A2A95CA6327 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1021,6 +1021,51 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0D3C9D8EC5EB25604DAC40EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/Tests";
+				BAZEL_TARGET_ID = "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = NO;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/examples_command_line_external";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SECRET_3=\\\"Hello\\\"",
+					"SECRET_2=\\\"World!\\\"",
+				);
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/Tests/rules_xcodeproj/LibSwiftTests.__internal__.__test_bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/examples/command_line/Tests/LibSwiftTests.link.params";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=examples/command_line/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib/lib_swift.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
+				PRODUCT_MODULE_NAME = LibSwiftTestsLib;
+				PRODUCT_NAME = LibSwiftTests;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = LibSwiftTests;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXEC_ROOT)",
+					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin",
+					"$(BAZEL_EXTERNAL)/examples_command_line_external",
+					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/external/examples_command_line_external",
+				);
+			};
+			name = Debug;
+		};
 		3CBE6BAD16FF3388FF68E3B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1275,51 +1320,6 @@
 			};
 			name = Debug;
 		};
-		903631A5EF23335FBA66FC3F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.zip";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/Tests";
-				BAZEL_TARGET_ID = "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-757525382804";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGN_STYLE = Manual;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEPLOYMENT_LOCATION = NO;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/examples_command_line_external";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/Tests/rules_xcodeproj/LibSwiftTests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.link.params";
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=examples/command_line/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib/lib_swift.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
-				PRODUCT_MODULE_NAME = LibSwiftTestsLib;
-				PRODUCT_NAME = LibSwiftTests;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5;
-				TARGET_NAME = LibSwiftTests.__internal__.__test_bundle;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin",
-					"$(BAZEL_EXTERNAL)/examples_command_line_external",
-					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/external/examples_command_line_external",
-				);
-			};
-			name = Debug;
-		};
 		B0892EE2AB907B40AA4EB960 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1510,18 +1510,18 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		74DA3612C32497D21458CAA4 /* Build configuration list for PBXNativeTarget "LibSwiftTests.__internal__.__test_bundle" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				903631A5EF23335FBA66FC3F /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		914277EC9F57B808A8817CF5 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5AFD85147E5F7EEA259481C2 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		971DACC988C09D651A406805 /* Build configuration list for PBXNativeTarget "LibSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D3C9D8EC5EB25604DAC40EA /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

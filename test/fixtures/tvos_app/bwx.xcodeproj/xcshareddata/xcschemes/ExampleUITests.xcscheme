@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D133FDFF63F008FDDB07BE99"
-                     BuildableName = "ExampleTests.xctest"
-                     BlueprintName = "ExampleTests.__internal__.__test_bundle"
-                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+                     BlueprintIdentifier = "9F806AD4E93B4D1D569E9D2B"
+                     BuildableName = "ExampleUITests.xctest"
+                     BlueprintName = "ExampleUITests"
+                     ReferencedContainer = "container:test/fixtures/tvos_app/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -25,15 +25,15 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for ExampleTests.__internal__.__test_bundle"
+               title = "Set Bazel Build Output Groups for ExampleUITests"
                scriptText = "echo &quot;$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D133FDFF63F008FDDB07BE99"
-                     BuildableName = "ExampleTests.xctest"
-                     BlueprintName = "ExampleTests.__internal__.__test_bundle"
-                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+                     BlueprintIdentifier = "9F806AD4E93B4D1D569E9D2B"
+                     BuildableName = "ExampleUITests.xctest"
+                     BlueprintName = "ExampleUITests"
+                     ReferencedContainer = "container:test/fixtures/tvos_app/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -48,10 +48,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D133FDFF63F008FDDB07BE99"
-               BuildableName = "ExampleTests.xctest"
-               BlueprintName = "ExampleTests.__internal__.__test_bundle"
-               ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+               BlueprintIdentifier = "9F806AD4E93B4D1D569E9D2B"
+               BuildableName = "ExampleUITests.xctest"
+               BlueprintName = "ExampleUITests"
+               ReferencedContainer = "container:test/fixtures/tvos_app/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,14 +61,14 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
-      shouldUseLaunchSchemeArgsEnv = "NO">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D133FDFF63F008FDDB07BE99"
-            BuildableName = "ExampleTests.xctest"
-            BlueprintName = "ExampleTests.__internal__.__test_bundle"
-            ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+            BlueprintIdentifier = "9F806AD4E93B4D1D569E9D2B"
+            BuildableName = "ExampleUITests.xctest"
+            BlueprintName = "ExampleUITests"
+            ReferencedContainer = "container:test/fixtures/tvos_app/bwx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -76,25 +76,13 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D133FDFF63F008FDDB07BE99"
-               BuildableName = "ExampleTests.xctest"
-               BlueprintName = "ExampleTests.__internal__.__test_bundle"
-               ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+               BlueprintIdentifier = "9F806AD4E93B4D1D569E9D2B"
+               BuildableName = "ExampleUITests.xctest"
+               BlueprintName = "ExampleUITests"
+               ReferencedContainer = "container:test/fixtures/tvos_app/bwx.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "BUILD_WORKING_DIRECTORY"
-            value = "$(BUILT_PRODUCTS_DIR)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "BUILD_WORKSPACE_DIRECTORY"
-            value = "$(SRCROOT)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -110,24 +98,12 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D133FDFF63F008FDDB07BE99"
-            BuildableName = "ExampleTests.xctest"
-            BlueprintName = "ExampleTests.__internal__.__test_bundle"
-            ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+            BlueprintIdentifier = "9F806AD4E93B4D1D569E9D2B"
+            BuildableName = "ExampleUITests.xctest"
+            BlueprintName = "ExampleUITests"
+            ReferencedContainer = "container:test/fixtures/tvos_app/bwx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "BUILD_WORKING_DIRECTORY"
-            value = "$(BUILT_PRODUCTS_DIR)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "BUILD_WORKSPACE_DIRECTORY"
-            value = "$(SRCROOT)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
