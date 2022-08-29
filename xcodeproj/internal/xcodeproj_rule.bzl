@@ -138,7 +138,7 @@ targets.
             set_if_true(
                 additional_generated,
                 g_output_group_name,
-                target_additional_generated
+                target_additional_generated,
             )
 
         is_unfocused_dependency = (
