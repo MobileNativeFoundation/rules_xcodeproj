@@ -83,7 +83,11 @@ def xcodeproj(
         scheme_autogeneration_mode: Optional. Specifies how Xcode schemes are
             automatically generated.
         schemes: Optional. A `list` of values returned by
-            `xcode_schemes.scheme`.
+            `xcode_schemes.scheme`. Target labels listed in the schemes need to
+            be from the transitive dependencies of the targets specified in the
+            `top_level_targets` argument. This and the
+            `scheme_autogeneration_mode` argument together customize how
+            schemes for those targets are generated.
         top_level_targets: A `list` of a list of top-level targets. Each target
             can be specified as either a `Label` (or label-like `string`), or a
             value returned by `top_level_target`.
