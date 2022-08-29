@@ -63,9 +63,8 @@ swift_library(
     }),
     module_name = "tvOSApp",
     tags = ["manual"],
+    visibility = ["//visibility:public"],
     deps = [
         "//examples/multiplatform/Lib",
     ],
-    visibility = ["//visibility:public"]
 )
-
