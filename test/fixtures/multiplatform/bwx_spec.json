@@ -30,31 +30,6 @@
             "_": "applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
             "t": "g"
         },
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
-            "t": "e"
-        },
-        "examples/multiplatform/tvOSApp/Source/BUILD",
-        "examples/multiplatform/tvOSApp/Resources/BUILD",
-        "examples/multiplatform/tvOSApp/Test/UnitTests/BUILD",
-        "examples/multiplatform/tvOSApp/Source/Info.plist",
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
-            "t": "e"
-        },
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Test/UnitTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
-        "examples/multiplatform/tvOSApp/Test/UITests/BUILD",
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Test/UITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
         "examples/multiplatform/AppClip/BUILD",
         "examples/multiplatform/AppClip/Info.plist",
         {
@@ -108,6 +83,31 @@
         "examples/multiplatform/iOSApp/Info.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
+            "t": "e"
+        },
+        "examples/multiplatform/tvOSApp/Source/BUILD",
+        "examples/multiplatform/tvOSApp/Resources/BUILD",
+        "examples/multiplatform/tvOSApp/Source/Info.plist",
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
+            "t": "g"
+        },
+        "examples/multiplatform/tvOSApp/Test/UITests/BUILD",
+        {
+            "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
+            "t": "e"
+        },
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Test/UITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist",
+            "t": "g"
+        },
+        "examples/multiplatform/tvOSApp/Test/UnitTests/BUILD",
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Test/UnitTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
         {
