@@ -37,9 +37,6 @@ build:rules_xcodeproj_generator --config=rules_xcodeproj
 # `--show_result=0` prevents intermediate outputs from displaying in the logs
 build:rules_xcodeproj_generator --show_result=0
 
-# Filter out extra noise
-build:rules_xcodeproj_generator --ui_event_filters=-INFO,-WARNING
-
 ### `--config=rules_xcodeproj_info`
 #
 # Used when querying `bazel info`.
