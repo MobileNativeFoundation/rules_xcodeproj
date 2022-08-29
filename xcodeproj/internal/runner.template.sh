@@ -54,6 +54,7 @@ if [[ -s "$extra_flags_bazelrc" ]]; then
 fi
 
 if [[ -z "${build_output_groups:-}" ]]; then
+  echo
   echo 'Generating "%project_name%.xcodeproj"'
 
   "%bazel_path%" \
