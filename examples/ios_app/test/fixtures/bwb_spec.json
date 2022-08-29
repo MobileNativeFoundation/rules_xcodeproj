@@ -135,6 +135,14 @@
     "force_bazel_dependencies": true,
     "label": "//test/fixtures:xcodeproj_bwb.generator",
     "name": "bwb",
+    "replacement_labels": [
+        "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-80b7926e333b",
+        "//ExampleObjcTests:ExampleObjcTests",
+        "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-80b7926e333b",
+        "//ExampleTests:ExampleTests",
+        "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-80b7926e333b",
+        "//ExampleUITests:ExampleUITests"
+    ],
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [],
     "target_merges": [

@@ -67,6 +67,7 @@
     "force_bazel_dependencies": false,
     "label": "//test/fixtures/generator:xcodeproj_bwb.generator",
     "name": "bwb",
+    "replacement_labels": [],
     "scheme_autogeneration_mode": "none",
     "target_hosts": [],
     "target_merges": [
@@ -772,6 +773,7 @@
                     "tools/generator/src/Generator/Generator.swift",
                     "tools/generator/src/Generator/Main.swift",
                     "tools/generator/src/Generator/PopulateMainGroup.swift",
+                    "tools/generator/src/Generator/ProcessReplacementLabels.swift",
                     "tools/generator/src/Generator/ProcessTargetMerges.swift",
                     "tools/generator/src/Generator/SemanticVersion.swift",
                     "tools/generator/src/Generator/SetTargetConfigurations.swift",

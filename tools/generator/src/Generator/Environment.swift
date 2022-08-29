@@ -13,6 +13,11 @@ struct Environment {
         _ filePathResolver: FilePathResolver
     ) -> PBXProj
 
+    let processReplacementLabels: (
+        _ targets: inout [TargetID: Target],
+        _ replacementLabels: [TargetID: BazelLabel]
+    ) throws -> Void
+
     let processTargetMerges: (
         _ targets: inout [TargetID: Target],
         _ targetMerges: [TargetID: Set<TargetID>]

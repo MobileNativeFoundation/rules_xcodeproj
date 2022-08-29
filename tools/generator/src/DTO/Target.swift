@@ -1,8 +1,8 @@
 import PathKit
 
 struct Target: Equatable {
-    let name: String
-    let label: BazelLabel
+    var name: String
+    var label: BazelLabel
     let configuration: String
     var packageBinDir: Path
     var platform: Platform

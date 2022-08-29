@@ -156,6 +156,15 @@ def _write_json_spec(
         has_focused_targets,
         inputs,
         infos):
+    # `replacement_labels`
+    replacement_labels = {
+        r.id: str(r.label)
+        for r in depset(
+            transitive = [info.replacement_labels for info in infos],
+        ).to_list()
+        if r.id in targets
+    }
+
     # `target_merges`
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
@@ -222,6 +231,7 @@ def _write_json_spec(
 "force_bazel_dependencies":{force_bazel_dependencies},\
 "label":"{label}",\
 "name":"{name}",\
+"replacement_labels":{replacement_labels},\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
 "target_hosts":{target_hosts},\
 "target_merges":{target_merges},\
@@ -238,6 +248,9 @@ def _write_json_spec(
         ),
         label = ctx.label,
         name = project_name,
+        replacement_labels = json.encode(
+            flattened_key_values.to_list(replacement_labels),
+        ),
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
         target_hosts = json.encode(flattened_key_values.to_list(target_hosts)),
         target_merges = json.encode(

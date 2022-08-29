@@ -16,6 +16,7 @@ enum Fixtures {
             "ONLY_ACTIVE_ARCH": .bool(true),
         ],
         targets: targets,
+        replacementLabels: [:],
         targetMerges: [:],
         targetHosts: [
             "W": ["I"],

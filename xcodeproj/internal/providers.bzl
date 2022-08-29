@@ -116,6 +116,11 @@ field.
 A value returned from `output_files.collect`, that contains information about
 the output files for this target and its transitive dependencies.
 """,
+        "replacement_labels": """\
+A `depset` of `struct`s with `id` and `label` fields. The `id` field is the
+target id of the target that have its label (and name) be replaced with the
+label in the `label` field.
+""",
         "resource_bundle_informations": """\
 A `depset` of `struct`s with information used to generate resource bundles,
 which couldn't be collected from `AppleResourceInfo` alone.

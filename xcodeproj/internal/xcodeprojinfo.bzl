@@ -41,8 +41,6 @@ def _should_skip_target(*, ctx, target):
     Returns:
         `True` if `target` should be skipped for target generation.
     """
-
-    # TODO: Find a way to detect TestEnvironment instead
     return targets.is_test_bundle(
         target = target,
         deps = getattr(ctx.rule.attr, "deps", None),
@@ -58,6 +56,7 @@ def _target_info_fields(
         lldb_context,
         outputs,
         potential_target_merges,
+        replacement_labels,
         resource_bundle_informations,
         search_paths,
         target_type,
@@ -80,6 +79,8 @@ def _target_info_fields(
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
+        replacement_labels: Maps to the `XcodeProjInfo.replacement_labels`
+            field.
         resource_bundle_informations: Maps to the
             `XcodeProjInfo.resource_bundle_informations` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
@@ -101,6 +102,7 @@ def _target_info_fields(
         *   `lldb_context`
         *   `outputs`
         *   `potential_target_merges`
+        *   `replacement_labels`
         *   `resource_bundle_informations`
         *   `search_paths`
         *   `target_type`
@@ -117,6 +119,7 @@ def _target_info_fields(
         "lldb_context": lldb_context,
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
+        "replacement_labels": replacement_labels,
         "resource_bundle_informations": resource_bundle_informations,
         "search_paths": search_paths,
         "target_type": target_type,
@@ -125,13 +128,14 @@ def _target_info_fields(
         "xcode_targets": xcode_targets,
     }
 
-def _skip_target(*, deps, transitive_infos):
+def _skip_target(*, target, deps, transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
     forwards them on, not collecting any information for the current target.
 
     Args:
+        target: The `Target` to skip.
         deps: `ctx.attr.deps` for the target.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of the target.
@@ -193,6 +197,17 @@ def _skip_target(*, deps, transitive_infos):
         potential_target_merges = depset(
             transitive = [
                 info.potential_target_merges
+                for _, info in transitive_infos
+            ],
+        ),
+        replacement_labels = depset(
+            [
+                struct(id = info.xcode_target.id, label = target.label)
+                for attr, info in transitive_infos
+                if target and attr == "deps" and info.xcode_target
+            ],
+            transitive = [
+                info.replacement_labels
                 for _, info in transitive_infos
             ],
         ),
@@ -305,6 +320,12 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
                     ))
             ],
         ),
+        replacement_labels = depset(
+            transitive = [
+                info.replacement_labels
+                for _, info in transitive_infos
+            ],
+        ),
         resource_bundle_informations = depset(
             processed_target.resource_bundle_informations,
             transitive = [
@@ -352,6 +373,7 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
     """
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(
+            target = target,
             deps = getattr(ctx.rule.attr, "deps", []),
             transitive_infos = transitive_infos,
         )
@@ -376,6 +398,7 @@ def merge_xcodeprojinfos(infos):
         An `XcodeProjInfo` populated with information from `infos`.
     """
     info_fields = _skip_target(
+        target = None,
         deps = [],
         transitive_infos = [(None, info) for info in infos],
     )
