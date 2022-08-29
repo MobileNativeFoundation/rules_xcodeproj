@@ -1,0 +1,11 @@
+-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib
+-Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/ExampleTests.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/Lib/Lib.swiftmodule
+-ObjC
+-L/usr/lib/swift
+-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator
+-Wl,-rpath,/usr/lib/swift
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++

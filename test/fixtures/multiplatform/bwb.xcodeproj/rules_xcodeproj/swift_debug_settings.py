@@ -109,6 +109,29 @@ _SETTINGS = {
 
     ]
   },
+  "x86_64-apple-tvos15.0.0-simulator ExampleTests.xctest/ExampleTests" : {
+    "clang" : "-iquote \"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/external/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin\" -fmodule-map-file=\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/external/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/external/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin\" -O0 -fstack-protector -fstack-protector-all",
+    "frameworks" : [
+      "$(PLATFORM_DIR)/Developer/Library/Frameworks",
+      "$(SDKROOT)/Developer/Library/Frameworks",
+      "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
+    ],
+    "includes" : [
+      "$(PLATFORM_DIR)/Developer/usr/lib",
+      "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source",
+      "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/Lib"
+    ]
+  },
+  "x86_64-apple-tvos15.0.0-simulator ExampleUITests.xctest/ExampleUITests" : {
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "frameworks" : [
+      "$(PLATFORM_DIR)/Developer/Library/Frameworks",
+      "$(SDKROOT)/Developer/Library/Frameworks"
+    ],
+    "includes" : [
+      "$(PLATFORM_DIR)/Developer/usr/lib"
+    ]
+  },
   "x86_64-apple-tvos15.0.0-simulator tvOSApp.app/tvOSApp" : {
     "clang" : "-iquote \"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/external/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin\" -fmodule-map-file=\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/external/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin\" -O0 -fstack-protector -fstack-protector-all",
     "frameworks" : [
