@@ -107,14 +107,15 @@
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
-        "examples/multiplatform/tvOSApp/BUILD",
-        "examples/multiplatform/tvOSApp/Info.plist",
+        "examples/multiplatform/tvOSApp/Source/BUILD",
+        "examples/multiplatform/tvOSApp/Resources/BUILD",
+        "examples/multiplatform/tvOSApp/Source/Info.plist",
         {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "t": "g"
         },
-        "examples/multiplatform/tvOSApp/PreviewContent/Preview Assets.xcassets",
-        "examples/multiplatform/tvOSApp/Assets.xcassets",
+        "examples/multiplatform/tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
+        "examples/multiplatform/tvOSApp/Resources/Assets.xcassets",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
             "t": "e"
@@ -174,7 +175,7 @@
             "t": "e"
         },
         {
-            "_": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/Tool/BUILD",
@@ -257,13 +258,13 @@
         [
             "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-f36cb6fd42a0"
         ],
-        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c",
+        "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c",
         [
-            "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-357261695a5c"
+            "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-357261695a5c"
         ],
-        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         [
-            "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
+            "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
         ],
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-87378d9c7973",
         [
@@ -3157,7 +3158,7 @@
                 }
             ]
         },
-        "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-357261695a5c",
+        "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-357261695a5c",
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
@@ -3172,14 +3173,14 @@
             },
             "configuration": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c",
             "dependencies": [
-                "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c"
+                "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c"
             ],
             "info_plist": {
-                "_": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
+                "_": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
-            "label": "//examples/multiplatform/tvOSApp:tvOSApp",
+            "label": "//examples/multiplatform/tvOSApp/Source:tvOSApp",
             "linker_inputs": {
                 "dynamic_frameworks": [
                     {
@@ -3194,7 +3195,7 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -3206,7 +3207,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/libtvOSApp.library.a",
                         "t": "g"
                     }
                 ]
@@ -3288,11 +3289,11 @@
             "name": "tvOSApp",
             "outputs": {
                 "p": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/tvOSApp.ipa",
+                    "_": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.ipa",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp",
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source",
             "platform": {
                 "arch": "arm64",
                 "minimum_os_version": "15.0",
@@ -3303,7 +3304,7 @@
                 "executable_name": "tvOSApp",
                 "name": "tvOSApp",
                 "path": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/tvOSApp_archive-root/Payload/tvOSApp.app",
+                    "_": "applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp_archive-root/Payload/tvOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application"
@@ -3332,7 +3333,7 @@
                 ]
             }
         },
-        "//examples/multiplatform/tvOSApp:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
@@ -3346,14 +3347,14 @@
             },
             "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
             "dependencies": [
-                "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
+                "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
             ],
             "info_plist": {
-                "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/rules_xcodeproj/tvOSApp/Info.plist",
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
-            "label": "//examples/multiplatform/tvOSApp:tvOSApp",
+            "label": "//examples/multiplatform/tvOSApp/Source:tvOSApp",
             "linker_inputs": {
                 "dynamic_frameworks": [
                     {
@@ -3368,7 +3369,7 @@
                     }
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -3380,7 +3381,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/libtvOSApp.library.a",
                         "t": "g"
                     }
                 ]
@@ -3462,11 +3463,11 @@
             "name": "tvOSApp",
             "outputs": {
                 "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/tvOSApp.ipa",
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.ipa",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp",
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "15.0",
@@ -3477,7 +3478,7 @@
                 "executable_name": "tvOSApp",
                 "name": "tvOSApp",
                 "path": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/tvOSApp_archive-root/Payload/tvOSApp.app",
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp_archive-root/Payload/tvOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application"
@@ -3506,7 +3507,7 @@
                 ]
             }
         },
-        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c",
+        "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3526,11 +3527,11 @@
             ],
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/tvOSApp/ContentView.swift",
-                    "examples/multiplatform/tvOSApp/tvOSApp.swift"
+                    "examples/multiplatform/tvOSApp/Source/ContentView.swift",
+                    "examples/multiplatform/tvOSApp/Source/tvOSApp.swift"
                 ]
             },
-            "label": "//examples/multiplatform/tvOSApp:tvOSApp.library",
+            "label": "//examples/multiplatform/tvOSApp/Source:tvOSApp.library",
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap",
@@ -3541,20 +3542,20 @@
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftdoc",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftsourceinfo",
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp",
+            "package_bin_dir": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source",
             "platform": {
                 "arch": "arm64",
                 "minimum_os_version": "15.0",
@@ -3565,7 +3566,7 @@
                 "executable_name": null,
                 "name": "tvOSApp.library",
                 "path": {
-                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
+                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c/bin/examples/multiplatform/tvOSApp/Source/libtvOSApp.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -3600,7 +3601,7 @@
                 }
             ]
         },
-        "//examples/multiplatform/tvOSApp:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3620,11 +3621,11 @@
             ],
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/tvOSApp/ContentView.swift",
-                    "examples/multiplatform/tvOSApp/tvOSApp.swift"
+                    "examples/multiplatform/tvOSApp/Source/ContentView.swift",
+                    "examples/multiplatform/tvOSApp/Source/tvOSApp.swift"
                 ]
             },
-            "label": "//examples/multiplatform/tvOSApp:tvOSApp.library",
+            "label": "//examples/multiplatform/tvOSApp/Source:tvOSApp.library",
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
@@ -3635,20 +3636,20 @@
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftdoc",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftmodule",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/tvOSApp.swiftsourceinfo",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp",
+            "package_bin_dir": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "15.0",
@@ -3659,7 +3660,7 @@
                 "executable_name": null,
                 "name": "tvOSApp.library",
                 "path": {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/libtvOSApp.library.a",
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/libtvOSApp.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
