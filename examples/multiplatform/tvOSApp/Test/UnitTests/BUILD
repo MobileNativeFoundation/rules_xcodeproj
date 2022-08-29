@@ -7,7 +7,7 @@ tvos_unit_test(
     minimum_os_version = "15.0",
     # xctestrunner does not support tvOS. So, don't try to run this.
     tags = ["manual"],
-    test_host = "//examples/tvos_app/Example",
+    test_host = "//examples/multiplatform/tvOSApp/Source:tvOSApp",
     visibility = ["//visibility:public"],
     deps = [":ExampleTests.library"],
 )
@@ -15,10 +15,10 @@ tvos_unit_test(
 swift_library(
     name = "ExampleTests.library",
     testonly = True,
-    srcs = glob(["**/*.swift"]),
+    srcs = glob(["*.swift"]),
     module_name = "ExampleTests",
     tags = ["manual"],
     deps = [
-        "//examples/tvos_app/Example:Example.library",
+        "//examples/multiplatform/tvOSApp/Source:tvOSApp.library",
     ],
 )

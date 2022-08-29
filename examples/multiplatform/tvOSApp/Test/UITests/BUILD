@@ -7,7 +7,7 @@ tvos_ui_test(
     minimum_os_version = "15.0",
     # xctestrunner does not support tvOS. So, don't try to run this.
     tags = ["manual"],
-    test_host = "//examples/tvos_app/Example",
+    test_host = "//examples/multiplatform/tvOSApp/Source:tvOSApp",
     visibility = ["//visibility:public"],
     deps = [":ExampleUITests.library"],
 )
@@ -22,5 +22,5 @@ swift_library(
 
 filegroup(
     name = "Sources",
-    srcs = glob(["**/*.swift"]),
+    srcs = glob(["*.swift"]),
 )
