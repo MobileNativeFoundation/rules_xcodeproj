@@ -7,7 +7,6 @@ _FIXTURE_BASENAMES = [
     "macos_app",
     "multiplatform",
     "simple",
-    "tvos_app",
 ]
 
 _FIXTURE_SUFFIXES = ["bwx", "bwb"]

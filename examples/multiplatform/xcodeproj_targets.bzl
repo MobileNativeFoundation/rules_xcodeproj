@@ -7,6 +7,8 @@ load(
 
 XCODEPROJ_TARGETS = [
     "//examples/multiplatform/iMessageApp",
+    "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests",
+    "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests",
     top_level_target(
         label = "//examples/multiplatform/iOSApp",
         target_environments = ["device", "simulator"],
