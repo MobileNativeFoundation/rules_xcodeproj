@@ -610,6 +610,23 @@ def _xcodeproj_impl(ctx):
         xcodeproj = xcodeproj,
     )
 
+    input_files_output_groups = input_files.to_output_groups_fields(
+        ctx = ctx,
+        inputs = inputs,
+        additional_generated = additional_generated,
+        toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+    )
+    output_files_output_groups = output_files.to_output_groups_fields(
+        ctx = ctx,
+        outputs = outputs,
+        toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+    )
+
+    if build_mode == "xcode":
+        all_targets_files = input_files_output_groups["all_generated_inputs"]
+    else:
+        all_targets_files = output_files_output_groups["all_output_files"]
+
     return [
         DefaultInfo(
             executable = installer,
@@ -620,18 +637,10 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
+            all_targets = all_targets_files,
             **dicts.add(
-                input_files.to_output_groups_fields(
-                    ctx = ctx,
-                    inputs = inputs,
-                    additional_generated = additional_generated,
-                    toplevel_cache_buster = ctx.files.toplevel_cache_buster,
-                ),
-                output_files.to_output_groups_fields(
-                    ctx = ctx,
-                    outputs = outputs,
-                    toplevel_cache_buster = ctx.files.toplevel_cache_buster,
-                ),
+                input_files_output_groups,
+                output_files_output_groups,
             )
         ),
     ]
