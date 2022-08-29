@@ -20,7 +20,7 @@ class FilePathResolverTests: XCTestCase {
     func test_containerReference() throws {
         XCTAssertEqual(
             resolver.containerReference,
-            "container:\(workspaceOutputPath)"
+            "container:\(workspaceOutputPath)TEST"
         )
     }
 }
