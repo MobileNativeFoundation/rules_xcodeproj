@@ -7,3 +7,8 @@ xcodeproj(
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,
 )
+
+alias(
+    name = "tvOSApp",
+    actual = "//examples/multiplatform/tvOSApp/Source:tvOSApp"
+)
