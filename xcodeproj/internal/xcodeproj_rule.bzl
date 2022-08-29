@@ -4,7 +4,7 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
-load(":collections.bzl", "uniq")
+load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
@@ -88,7 +88,7 @@ targets.
 
     actual_targets = []
     unfocused_targets = {}
-    additional_generated = {}
+    infoplists = {}
     for xcode_target in targets_list:
         label_str = str(xcode_target.label)
         if (sets.contains(unfocused_labels, label_str) or
@@ -96,7 +96,12 @@ targets.
              not sets.contains(focused_labels, label_str))):
             unfocused_targets[xcode_target.id] = xcode_target
             continue
+
         actual_targets.append(xcode_target)
+
+        infoplist = xcode_target.infoplist
+        if infoplist:
+            infoplists.setdefault(xcode_target.label, []).append(infoplist)
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
@@ -108,19 +113,33 @@ targets.
     has_unfocused_targets = bool(unfocused_targets)
 
     targets = {}
+    additional_generated = {}
+    additional_outputs = {}
     for xcode_target in actual_targets:
-        unfocused_generated = []
+        target_additional_generated = []
         for dependency in xcode_target.transitive_dependencies.to_list():
             unfocused_dependency = unfocused_targets.get(dependency)
             if not unfocused_dependency:
                 continue
             unfocused_files = unfocused_dependency.inputs.unfocused_generated
             if unfocused_files:
-                unfocused_generated.append(depset(unfocused_files))
+                target_additional_generated.append(depset(unfocused_files))
 
-        output_group_name = xcode_target.inputs.output_group_name
-        if output_group_name and unfocused_generated:
-            additional_generated[output_group_name] = unfocused_generated
+        target_infoplists = infoplists.get(xcode_target.label)
+        if target_infoplists:
+            infoplists_depset = depset(target_infoplists)
+            target_additional_generated.append(infoplists_depset)
+            b_output_group_name = xcode_target.outputs.build_output_group_name
+            if b_output_group_name:
+                additional_outputs[b_output_group_name] = [infoplists_depset]
+
+        g_output_group_name = xcode_target.inputs.output_group_name
+        if g_output_group_name:
+            set_if_true(
+                additional_generated,
+                g_output_group_name,
+                target_additional_generated
+            )
 
         is_unfocused_dependency = (
             sets.contains(
@@ -143,7 +162,7 @@ targets.
             unfocused_targets = unfocused_targets,
         )
 
-    return (targets, additional_generated)
+    return (targets, additional_generated, additional_outputs)
 
 # Actions
 
@@ -579,7 +598,7 @@ def _xcodeproj_impl(ctx):
         transitive_infos = [(None, info) for info in infos],
     )
 
-    targets, additional_generated = _process_targets(
+    targets, additional_generated, additional_outputs = _process_targets(
         build_mode = build_mode,
         focused_labels = focused_labels,
         unfocused_labels = unfocused_labels,
@@ -632,6 +651,7 @@ def _xcodeproj_impl(ctx):
     output_files_output_groups = output_files.to_output_groups_fields(
         ctx = ctx,
         outputs = outputs,
+        additional_outputs = additional_outputs,
         toplevel_cache_buster = ctx.files.toplevel_cache_buster,
     )
 
