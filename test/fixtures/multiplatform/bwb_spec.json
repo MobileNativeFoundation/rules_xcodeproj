@@ -104,15 +104,15 @@
             "t": "e"
         },
         "examples/multiplatform/macOSApp/third_party/ExampleFramework.framework",
-        "examples/multiplatform/macOSApp/Example/BUILD",
+        "examples/multiplatform/macOSApp/Source/BUILD",
         "examples/multiplatform/macOSApp/third_party/BUILD",
-        "examples/multiplatform/macOSApp/Example/Info.plist",
+        "examples/multiplatform/macOSApp/Source/Info.plist",
         {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/rules_xcodeproj/Example/Info.plist",
+            "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
             "t": "g"
         },
-        "examples/multiplatform/macOSApp/Example/PreviewContent/Preview Assets.xcassets",
-        "examples/multiplatform/macOSApp/Example/Assets.xcassets",
+        "examples/multiplatform/macOSApp/Source/PreviewContent/Preview Assets.xcassets",
+        "examples/multiplatform/macOSApp/Source/Assets.xcassets",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
@@ -132,22 +132,22 @@
             "t": "e"
         },
         {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
         "examples/multiplatform/tvOSApp/Test/UnitTests/BUILD",
         {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
-        "examples/multiplatform/watchOSApp/Tests/UITests/BUILD",
+        "examples/multiplatform/watchOSApp/Test/UITests/BUILD",
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/rules_xcodeproj/UITests.__internal__.__test_bundle/Info.plist",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
-        "examples/multiplatform/watchOSAppExtension/Tests/UnitTests/BUILD",
+        "examples/multiplatform/watchOSAppExtension/Test/UnitTests/BUILD",
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/rules_xcodeproj/UnitTests.__internal__.__test_bundle/Info.plist",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
         {
@@ -228,14 +228,14 @@
     "label": "//test/fixtures/multiplatform:xcodeproj_bwb.generator",
     "name": "bwb",
     "replacement_labels": [
-        "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
-        "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests",
-        "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
-        "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests",
-        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
-        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests",
-        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
-        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests"
+        "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests",
+        "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests",
+        "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+        "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests",
+        "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+        "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests"
     ],
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [
@@ -301,9 +301,9 @@
         [
             "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-f36cb6fd42a0"
         ],
-        "//examples/multiplatform/macOSApp/Example:Example.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c",
+        "//examples/multiplatform/macOSApp/Source:macOSApp.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c",
         [
-            "//examples/multiplatform/macOSApp/Example:Example applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c"
+            "//examples/multiplatform/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c"
         ],
         "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-357261695a5c",
         [
@@ -313,21 +313,21 @@
         [
             "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
         ],
-        "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         [
-            "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
+            "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
         ],
-        "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         [
-            "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
+            "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
         ],
-        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+        "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
         [
-            "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd"
+            "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd"
         ],
-        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+        "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
         [
-            "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd"
+            "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd"
         ],
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-87378d9c7973",
         [
@@ -3221,7 +3221,7 @@
                 }
             ]
         },
-        "//examples/multiplatform/macOSApp/Example:Example applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c",
+        "//examples/multiplatform/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c",
         {
             "build_settings": {
                 "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
@@ -3229,27 +3229,27 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.macOSApp",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
             "configuration": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c",
             "dependencies": [
-                "//examples/multiplatform/macOSApp/Example:Example.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c"
+                "//examples/multiplatform/macOSApp/Source:macOSApp.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c"
             ],
             "info_plist": {
-                "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/rules_xcodeproj/Example/Info.plist",
+                "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
-            "label": "//examples/multiplatform/macOSApp/Example:Example",
+            "label": "//examples/multiplatform/macOSApp/Source:macOSApp",
             "linker_inputs": {
                 "dynamic_frameworks": [
                     "examples/multiplatform/macOSApp/third_party/ExampleFramework.framework"
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/macOSApp.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
@@ -3260,7 +3260,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/libExample.library.a",
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/libmacOSApp.library.a",
                         "t": "g"
                     }
                 ]
@@ -3290,14 +3290,14 @@
                     "examples/multiplatform/macOSApp/third_party"
                 ]
             },
-            "name": "Example",
+            "name": "macOSApp",
             "outputs": {
                 "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/Example.zip",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/macOSApp.zip",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example",
+            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "15.0",
@@ -3308,7 +3308,7 @@
                 "executable_name": "macOSApp",
                 "name": "macOSApp",
                 "path": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/Example_archive-root/Payload/macOSApp.app",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/macOSApp_archive-root/Payload/macOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application"
@@ -3330,7 +3330,7 @@
                 ]
             }
         },
-        "//examples/multiplatform/macOSApp/Example:Example.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c",
+        "//examples/multiplatform/macOSApp/Source:macOSApp.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -3338,7 +3338,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/macOSApp/third_party -static",
-                "PRODUCT_MODULE_NAME": "iOSApp",
+                "PRODUCT_MODULE_NAME": "macOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -3347,32 +3347,32 @@
             "configuration": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c",
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/macOSApp/Example/ContentView.swift",
-                    "examples/multiplatform/macOSApp/Example/macOSApp.swift"
+                    "examples/multiplatform/macOSApp/Source/ContentView.swift",
+                    "examples/multiplatform/macOSApp/Source/macOSApp.swift"
                 ]
             },
-            "label": "//examples/multiplatform/macOSApp/Example:Example.library",
+            "label": "//examples/multiplatform/macOSApp/Source:macOSApp.library",
             "modulemaps": [
                 "examples/multiplatform/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap"
             ],
-            "name": "Example.library",
+            "name": "macOSApp.library",
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/iOSApp.swiftdoc",
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/macOSApp.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/iOSApp.swiftmodule",
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/macOSApp.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/iOSApp.swiftsourceinfo",
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/macOSApp.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example",
+            "package_bin_dir": "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "15.0",
@@ -3381,9 +3381,9 @@
             },
             "product": {
                 "executable_name": null,
-                "name": "Example.library",
+                "name": "macOSApp.library",
                 "path": {
-                    "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/libExample.library.a",
+                    "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Source/libmacOSApp.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -3938,7 +3938,7 @@
                 }
             ]
         },
-        "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
@@ -3952,20 +3952,20 @@
             },
             "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
             "dependencies": [
-                "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+                "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
                 "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
             ],
             "info_plist": {
-                "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/rules_xcodeproj/ExampleUITests.__internal__.__test_bundle/Info.plist",
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
             "is_testonly": true,
-            "label": "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.__internal__.__test_bundle",
+            "label": "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
-                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/ExampleUITests.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/tvOSAppUITests.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
@@ -3976,7 +3976,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/libExampleUITests.library.a",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/libtvOSAppUITests.library.a",
                         "t": "g"
                     }
                 ]
@@ -4000,10 +4000,10 @@
                     }
                 ]
             },
-            "name": "ExampleUITests.__internal__.__test_bundle",
+            "name": "tvOSAppUITests.__internal__.__test_bundle",
             "outputs": {
                 "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/ExampleUITests.__internal__.__test_bundle.zip",
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/tvOSAppUITests.__internal__.__test_bundle.zip",
                     "t": "g"
                 }
             },
@@ -4015,10 +4015,10 @@
                 "variant": "appletvsimulator"
             },
             "product": {
-                "executable_name": "ExampleUITests",
-                "name": "ExampleUITests",
+                "executable_name": "tvOSAppUITests",
+                "name": "tvOSAppUITests",
                 "path": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/ExampleUITests.__internal__.__test_bundle_archive-root/ExampleUITests.xctest",
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/tvOSAppUITests.__internal__.__test_bundle_archive-root/tvOSAppUITests.xctest",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.bundle.ui-testing"
@@ -4034,7 +4034,7 @@
             },
             "test_host": "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
         },
-        "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -4042,7 +4042,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
-                "PRODUCT_MODULE_NAME": "ExampleUITests",
+                "PRODUCT_MODULE_NAME": "tvOSAppUITests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -4051,25 +4051,25 @@
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/tvOSApp/Test/UITests/ExampleUITests.swift",
-                    "examples/multiplatform/tvOSApp/Test/UITests/ExampleUITestsLaunchTests.swift"
+                    "examples/multiplatform/tvOSApp/Test/UITests/UITests.swift",
+                    "examples/multiplatform/tvOSApp/Test/UITests/UITestsLaunchTests.swift"
                 ]
             },
             "is_testonly": true,
-            "label": "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.library",
-            "name": "ExampleUITests.library",
+            "label": "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests.library",
+            "name": "tvOSAppUITests.library",
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/ExampleUITests.swiftdoc",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/tvOSAppUITests.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/ExampleUITests.swiftmodule",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/tvOSAppUITests.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/ExampleUITests.swiftsourceinfo",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/tvOSAppUITests.swiftsourceinfo",
                         "t": "g"
                     }
                 }
@@ -4083,9 +4083,9 @@
             },
             "product": {
                 "executable_name": null,
-                "name": "ExampleUITests.library",
+                "name": "tvOSAppUITests.library",
                 "path": {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/libExampleUITests.library.a",
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UITests/libtvOSAppUITests.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -4100,7 +4100,7 @@
                 ]
             }
         },
-        "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
@@ -4114,20 +4114,20 @@
             },
             "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
             "dependencies": [
-                "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+                "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
                 "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
             ],
             "info_plist": {
-                "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist",
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
             "is_testonly": true,
-            "label": "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.__internal__.__test_bundle",
+            "label": "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
-                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/ExampleTests.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Source/tvOSApp.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-ObjC",
@@ -4140,7 +4140,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/libExampleTests.library.a",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/libtvOSAppUnitTests.library.a",
                         "t": "g"
                     }
                 ]
@@ -4252,10 +4252,10 @@
                     }
                 ]
             },
-            "name": "ExampleTests.__internal__.__test_bundle",
+            "name": "tvOSAppUnitTests.__internal__.__test_bundle",
             "outputs": {
                 "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/ExampleTests.__internal__.__test_bundle.zip",
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/tvOSAppUnitTests.__internal__.__test_bundle.zip",
                     "t": "g"
                 }
             },
@@ -4267,10 +4267,10 @@
                 "variant": "appletvsimulator"
             },
             "product": {
-                "executable_name": "ExampleTests",
-                "name": "ExampleTests",
+                "executable_name": "tvOSAppUnitTests",
+                "name": "tvOSAppUnitTests",
                 "path": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/ExampleTests.__internal__.__test_bundle_archive-root/ExampleTests.xctest",
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/tvOSAppUnitTests.__internal__.__test_bundle_archive-root/tvOSAppUnitTests.xctest",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.bundle.unit-test"
@@ -4300,7 +4300,7 @@
             },
             "test_host": "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c"
         },
-        "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
+        "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -4308,7 +4308,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
-                "PRODUCT_MODULE_NAME": "ExampleTests",
+                "PRODUCT_MODULE_NAME": "tvOSAppUnitTests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -4320,30 +4320,30 @@
             ],
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/tvOSApp/Test/UnitTests/ExampleTests.swift"
+                    "examples/multiplatform/tvOSApp/Test/UnitTests/UnitTests.swift"
                 ]
             },
             "is_testonly": true,
-            "label": "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.library",
+            "label": "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests.library",
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
                     "t": "e"
                 }
             ],
-            "name": "ExampleTests.library",
+            "name": "tvOSAppUnitTests.library",
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/ExampleTests.swiftdoc",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/ExampleTests.swiftmodule",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/ExampleTests.swiftsourceinfo",
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftsourceinfo",
                         "t": "g"
                     }
                 }
@@ -4357,9 +4357,9 @@
             },
             "product": {
                 "executable_name": null,
-                "name": "ExampleTests.library",
+                "name": "tvOSAppUnitTests.library",
                 "path": {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/libExampleTests.library.a",
+                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c/bin/examples/multiplatform/tvOSApp/Test/UnitTests/libtvOSAppUnitTests.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -4398,7 +4398,7 @@
                 }
             ]
         },
-        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+        "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
@@ -4412,20 +4412,20 @@
             },
             "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
             "dependencies": [
-                "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+                "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
                 "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-03bb1c387590"
             ],
             "info_plist": {
-                "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/rules_xcodeproj/UITests.__internal__.__test_bundle/Info.plist",
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
             "is_testonly": true,
-            "label": "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.__internal__.__test_bundle",
+            "label": "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
                     "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
-                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITestsLibrary.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
@@ -4436,7 +4436,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/libUITests.library.a",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/libwatchOSAppUITests.library.a",
                         "t": "g"
                     }
                 ]
@@ -4460,14 +4460,14 @@
                     }
                 ]
             },
-            "name": "UITests.__internal__.__test_bundle",
+            "name": "watchOSAppUITests.__internal__.__test_bundle",
             "outputs": {
                 "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITests.__internal__.__test_bundle.zip",
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/watchOSAppUITests.__internal__.__test_bundle.zip",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests",
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "7.0",
@@ -4475,10 +4475,10 @@
                 "variant": "watchsimulator"
             },
             "product": {
-                "executable_name": "UITests",
-                "name": "UITests",
+                "executable_name": "watchOSAppUITests",
+                "name": "watchOSAppUITests",
                 "path": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITests.__internal__.__test_bundle_archive-root/UITests.xctest",
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/watchOSAppUITests.__internal__.__test_bundle_archive-root/watchOSAppUITests.xctest",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.bundle.ui-testing"
@@ -4494,7 +4494,7 @@
             },
             "test_host": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-03bb1c387590"
         },
-        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+        "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -4502,7 +4502,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
-                "PRODUCT_MODULE_NAME": "UITestsLibrary",
+                "PRODUCT_MODULE_NAME": "watchOSAppUITestsLibrary",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -4511,30 +4511,30 @@
             "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/watchOSApp/Tests/UITests/WatchOSAppUITests.swift",
-                    "examples/multiplatform/watchOSApp/Tests/UITests/WatchOSAppUITestsLaunchTests.swift"
+                    "examples/multiplatform/watchOSApp/Test/UITests/WatchOSAppUITests.swift",
+                    "examples/multiplatform/watchOSApp/Test/UITests/WatchOSAppUITestsLaunchTests.swift"
                 ]
             },
             "is_testonly": true,
-            "label": "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.library",
-            "name": "UITests.library",
+            "label": "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests.library",
+            "name": "watchOSAppUITests.library",
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITestsLibrary.swiftdoc",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITestsLibrary.swiftmodule",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITestsLibrary.swiftsourceinfo",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests",
+            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "7.0",
@@ -4543,9 +4543,9 @@
             },
             "product": {
                 "executable_name": null,
-                "name": "UITests.library",
+                "name": "watchOSAppUITests.library",
                 "path": {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Tests/UITests/libUITests.library.a",
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSApp/Test/UITests/libwatchOSAppUITests.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -4693,7 +4693,7 @@
                 ]
             }
         },
-        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+        "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
@@ -4707,15 +4707,15 @@
             },
             "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
             "dependencies": [
-                "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd"
+                "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd"
             ],
             "info_plist": {
-                "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/rules_xcodeproj/UnitTests.__internal__.__test_bundle/Info.plist",
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
             "is_testonly": true,
-            "label": "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.__internal__.__test_bundle",
+            "label": "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle",
             "linker_inputs": {
                 "dynamic_frameworks": [
                     {
@@ -4731,7 +4731,7 @@
                 ],
                 "linkopts": [
                     "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
-                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTestsLibrary.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTestsLibrary.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "-ObjC",
@@ -4744,7 +4744,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/libUnitTests.library.a",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/libwatchOSAppExtensionUnitTests.library.a",
                         "t": "g"
                     },
                     {
@@ -4860,14 +4860,14 @@
                     }
                 ]
             },
-            "name": "UnitTests.__internal__.__test_bundle",
+            "name": "watchOSAppExtensionUnitTests.__internal__.__test_bundle",
             "outputs": {
                 "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTests.__internal__.__test_bundle.zip",
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.__internal__.__test_bundle.zip",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests",
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "7.0",
@@ -4875,10 +4875,10 @@
                 "variant": "watchsimulator"
             },
             "product": {
-                "executable_name": "UnitTests",
-                "name": "UnitTests",
+                "executable_name": "watchOSAppExtensionUnitTests",
+                "name": "watchOSAppExtensionUnitTests",
                 "path": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTests.__internal__.__test_bundle_archive-root/UnitTests.xctest",
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.__internal__.__test_bundle_archive-root/watchOSAppExtensionUnitTests.xctest",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.bundle.unit-test"
@@ -4907,7 +4907,7 @@
                 ]
             }
         },
-        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
+        "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -4915,7 +4915,7 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
-                "PRODUCT_MODULE_NAME": "UnitTestsLibrary",
+                "PRODUCT_MODULE_NAME": "watchOSAppExtensionUnitTestsLibrary",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -4927,35 +4927,35 @@
             ],
             "inputs": {
                 "srcs": [
-                    "examples/multiplatform/watchOSAppExtension/Tests/UnitTests/WatchOSAppExtensionTests.swift"
+                    "examples/multiplatform/watchOSAppExtension/Test/UnitTests/WatchOSAppExtensionTests.swift"
                 ]
             },
             "is_testonly": true,
-            "label": "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.library",
+            "label": "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library",
             "modulemaps": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
                     "t": "e"
                 }
             ],
-            "name": "UnitTests.library",
+            "name": "watchOSAppExtensionUnitTests.library",
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTestsLibrary.swiftdoc",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTestsLibrary.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTestsLibrary.swiftmodule",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTestsLibrary.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTestsLibrary.swiftsourceinfo",
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTestsLibrary.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests",
+            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "7.0",
@@ -4964,9 +4964,9 @@
             },
             "product": {
                 "executable_name": null,
-                "name": "UnitTests.library",
+                "name": "watchOSAppExtensionUnitTests.library",
                 "path": {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/libUnitTests.library.a",
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd/bin/examples/multiplatform/watchOSAppExtension/Test/UnitTests/libwatchOSAppExtensionUnitTests.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"

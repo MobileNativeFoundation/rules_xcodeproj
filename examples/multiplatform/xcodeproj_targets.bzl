@@ -11,19 +11,19 @@ XCODEPROJ_TARGETS = [
         label = "//examples/multiplatform/iOSApp",
         target_environments = ["device", "simulator"],
     ),
-    "//examples/multiplatform/macOSApp/Example:Example",
+    "//examples/multiplatform/macOSApp/Source:macOSApp",
     top_level_target(
         label = "//examples/multiplatform/tvOSApp",
         target_environments = ["device", "simulator"],
     ),
-    "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests",
-    "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests",
+    "//examples/multiplatform/tvOSApp/Test/UITests:tvOSAppUITests",
+    "//examples/multiplatform/tvOSApp/Test/UnitTests:tvOSAppUnitTests",
     top_level_target(
         label = "//examples/multiplatform/Tool",
         target_environments = ["device"],
     ),
-    "//examples/multiplatform/watchOSApp/Tests/UITests",
-    "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests",
+    "//examples/multiplatform/watchOSApp/Test/UITests:watchOSAppUITests",
+    "//examples/multiplatform/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
 ]
 
 IOS_BUNDLE_ID = "io.buildbuddy.example"
