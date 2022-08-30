@@ -307,7 +307,9 @@ def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     )
     ctx.actions.run(
         arguments = [containers_file.path, files_list, output.path],
-        executable = ctx.executable._xccurrentversions_parser,
+        executable = (
+            ctx.attr._xccurrentversions_parser[DefaultInfo].files_to_run
+        ),
         inputs = [containers_file] + xccurrentversion_files,
         outputs = [output],
         mnemonic = "CalculateXcodeProjXCCurrentVersions",
@@ -353,9 +355,11 @@ def _write_extensionpointidentifiers(
     output = ctx.actions.declare_file(
         "{}_extensionpointidentifiers".format(ctx.attr.name),
     )
+
+    tool = ctx.attr._extensionpointidentifiers_parser[DefaultInfo].files_to_run
     ctx.actions.run(
         arguments = [targetids_file.path, files_list, output.path],
-        executable = ctx.executable._extensionpointidentifiers_parser,
+        executable = tool,
         inputs = [targetids_file] + infoplist_files,
         outputs = [output],
         mnemonic = "CalculateXcodeProjExtensionPointIdentifiers",
@@ -433,7 +437,7 @@ def _write_xcodeproj(
     args.add(build_mode)
 
     ctx.actions.run(
-        executable = ctx.executable._generator,
+        executable = ctx.attr._generator[DefaultInfo].files_to_run,
         mnemonic = "GenerateXcodeProj",
         arguments = [args],
         inputs = [
