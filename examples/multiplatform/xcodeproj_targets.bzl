@@ -11,6 +11,7 @@ XCODEPROJ_TARGETS = [
         label = "//examples/multiplatform/iOSApp",
         target_environments = ["device", "simulator"],
     ),
+    "//examples/multiplatform/macOSApp/Example:Example",
     top_level_target(
         label = "//examples/multiplatform/tvOSApp",
         target_environments = ["device", "simulator"],
