@@ -575,6 +575,7 @@
 		75E6A7B72DA2040CF71E49F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		765B3440DA62486508223C8B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		77D4014E6E168A7A0230CDF2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		7FC0A9EC92C359AE31EDA539 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		817083E1BC966D4B6909CA0E /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		8259EA7E905FBEF07C07E2FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84D2483892E8EF0354DF0D4E /* Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -630,7 +631,6 @@
 		D505FD2382216B171E84468D /* watchOSAppExtensionUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watchOSAppExtensionUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D632B7FA5241FA8F757E2832 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D76D2C3E02897E2ED28A8958 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D99E79832F38DF3CD05A0FC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DAC460B229A3B755654E6996 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DD729F2D4E3ECEAD315E3DAC /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		DF6B19942FFCDD1E094D4AC5 /* WatchOSAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -882,7 +882,6 @@
 		0F2E66600E8E937B4066DF8D /* macOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				B9408BE71AD4F4DE6BF47FDD /* Source */,
 				6DFD37806DD7D498B5307BB7 /* Test */,
 			);
 			path = macOSApp;
@@ -1030,6 +1029,14 @@
 			path = integration;
 			sourceTree = "<group>";
 		};
+		29AF7A7C885C0D917D9430F0 /* macOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				7FC0A9EC92C359AE31EDA539 /* Info.plist */,
+			);
+			path = macOSApp;
+			sourceTree = "<group>";
+		};
 		2A002DF981717F463F2EC68A /* tvos-arm64 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1042,14 +1049,6 @@
 			isa = PBXGroup;
 			children = (
 				ABDE0BDBB980628E3919B61C /* iOSApp */,
-			);
-			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		2F10BD1DE4471210D952CB12 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				7B096F6B5590140ED1D2E7CE /* macOSApp */,
 			);
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
@@ -1087,6 +1086,14 @@
 				6DA5D18C0A403C641B7E64B7 /* watchOSAppExtension */,
 			);
 			path = integration;
+			sourceTree = "<group>";
+		};
+		32804DCC4BF7E3C9BE9E3DF2 /* macOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				AFAE576447B7A42CA3DDBDFC /* Source */,
+			);
+			path = macOSApp;
 			sourceTree = "<group>";
 		};
 		3399EBB532E102E7716A5CAE /* rules_xcodeproj */ = {
@@ -1284,6 +1291,14 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		48709303C5632946A88FF696 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				B785C1903884A75F03ED630D /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
 		494B6FAA4606ADE95E9DD95F /* integration */ = {
 			isa = PBXGroup;
 			children = (
@@ -1298,6 +1313,14 @@
 				6623D8260E7BBC748890E1D1 /* rules_xcodeproj */,
 			);
 			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		4BD606DDA91046410BD4A697 /* applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2 */ = {
+			isa = PBXGroup;
+			children = (
+				48709303C5632946A88FF696 /* bin */,
+			);
+			path = "applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2";
 			sourceTree = "<group>";
 		};
 		4C29FC038F6D774038A1257D /* examples */ = {
@@ -1531,6 +1554,14 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		7044B8807E0979EF35957266 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				29AF7A7C885C0D917D9430F0 /* macOSApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		721E3236AADE7DA8A1E0A8A6 /* ios-arm64_x86_64-simulator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1630,14 +1661,6 @@
 				D30917DAE5BF6483DFA4F5F2 /* Tool.merged_infoplist-intermediates */,
 			);
 			path = Tool;
-			sourceTree = "<group>";
-		};
-		7B096F6B5590140ED1D2E7CE /* macOSApp */ = {
-			isa = PBXGroup;
-			children = (
-				D99E79832F38DF3CD05A0FC7 /* Info.plist */,
-			);
-			path = macOSApp;
 			sourceTree = "<group>";
 		};
 		7C8D0B29E8C3E0C2F4A23360 /* UITests */ = {
@@ -1879,6 +1902,7 @@
 				6377AA73DA72F8EA76A4FB58 /* applebin_ios-ios_x86_64-dbg-ST-132246d86df4 */,
 				312154ADF562D71E3AE9FCE0 /* applebin_macos-darwin_x86_64-dbg-ST-8143dd6ed004 */,
 				A59C5D74181A3DDCE0ACFE7C /* applebin_macos-darwin_x86_64-dbg-ST-450091386d5c */,
+				4BD606DDA91046410BD4A697 /* applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2 */,
 				51B8254979CF60C5C169DA4F /* applebin_tvos-tvos_arm64-dbg-ST-7839a2751710 */,
 				8C8F133759A9643C6958B72F /* applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb */,
 				65C1AC9E5A818C73AA281B6A /* applebin_watchos-watchos_arm64_32-dbg-ST-6ed25bb2f15f */,
@@ -1986,6 +2010,14 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
+		AFAE576447B7A42CA3DDBDFC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7044B8807E0979EF35957266 /* rules_xcodeproj */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		B00CF609E6521CEF1D452E61 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -2002,12 +2034,12 @@
 			path = "applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08";
 			sourceTree = "<group>";
 		};
-		B9408BE71AD4F4DE6BF47FDD /* Source */ = {
+		B785C1903884A75F03ED630D /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				2F10BD1DE4471210D952CB12 /* rules_xcodeproj */,
+				BC26EC32F69364981BFFB221 /* integration */,
 			);
-			path = Source;
+			path = examples;
 			sourceTree = "<group>";
 		};
 		BBBE4C83092C3C0F82D469C5 /* UnitTests */ = {
@@ -2017,6 +2049,14 @@
 				A6687C495AE6652B49BD91DF /* UnitTests.swift */,
 			);
 			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		BC26EC32F69364981BFFB221 /* integration */ = {
+			isa = PBXGroup;
+			children = (
+				32804DCC4BF7E3C9BE9E3DF2 /* macOSApp */,
+			);
+			path = integration;
 			sourceTree = "<group>";
 		};
 		BE30BAD8C3568289DE59BE84 /* integration */ = {
@@ -4681,10 +4721,10 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c";
+				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/integration/macOSApp/Source";
-				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-450091386d5c";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2/bin/examples/integration/macOSApp/Source";
+				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -4694,13 +4734,13 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = examples/integration/macOSApp/third_party;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/integration/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2/bin/examples/integration/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/examples/integration/macOSApp/Source/macOSApp.link.params";
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2/examples/integration/macOSApp/Source/macOSApp.link.params";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=examples/integration/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/integration/macOSApp/third_party -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.macOSApp;
@@ -4715,7 +4755,7 @@
 				TARGET_NAME = macOSApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2/bin",
 				);
 			};
 			name = Debug;
