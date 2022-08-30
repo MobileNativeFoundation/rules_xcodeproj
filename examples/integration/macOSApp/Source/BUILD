@@ -23,7 +23,7 @@ macos_application(
     bundle_id = "io.buildbuddy.macOSApp",
     bundle_name = "macOSApp",
     infoplists = [":Info.plist"],
-    minimum_os_version = "15.0",
+    minimum_os_version = "12.0",
     resources = [":ResourceGroup"],
     version = ":Version",
     visibility = ["//visibility:public"],
