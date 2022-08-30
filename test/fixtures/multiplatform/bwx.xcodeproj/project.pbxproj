@@ -26,6 +26,7 @@
 		0164DA506F6AFFE8D9484E5B /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DED4191C90C7A853FF2A4E /* iOSApp.swift */; };
 		05551BC9A4382313D9D42C76 /* ExampleFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39594CD191A016EB67C5F012 /* ExampleFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A5B4B1401EBA0F452D83036 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D71C4BEDCDCB107460E90 /* main.swift */; };
+		0FB96922668B0BDBC0603E2F /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5808BF0F847CC0BF0E1128FB /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		10FA24724CE86AE5100003E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AF8405DFFAC776130ECFE17 /* Assets.xcassets */; };
 		11F3CA8F80B0BB2597AF76E1 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 161FCC8E16610CC731029DF1 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13A6B947448B36A004253831 /* watchOSApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D76D2C3E02897E2ED28A8958 /* watchOSApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -84,7 +85,6 @@
 		AD8CB3F135FC58FE12FEA34C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A77985FD9CE60E96B50A340 /* MessagesViewController.swift */; };
 		B0C99CF475161A840337FA46 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 714F4CDA20A0822521C3B389 /* CryptoSwift.framework */; };
 		B371F0882DDF6FB8561832BF /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916C9F7550D22C04F335CD4 /* Lib.swift */; };
-		B6DFE1843CA5769B84DBBB21 /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EFCC97B2BBE2853FC51FC3AB /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BE062DC135EA6D425AB99847 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D9DF05FB8EA38EB78AFBB /* Lib.swift */; };
 		C16B1D03864C51CBAF529839 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161FCC8E16610CC731029DF1 /* CryptoSwift.framework */; };
 		C511839B6000D8B06676FC93 /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF973F3635AEB0E5B3101EA8 /* watchOSApp.swift */; };
@@ -361,7 +361,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				B6DFE1843CA5769B84DBBB21 /* watchOSAppExtension.appex in Embed App Extensions */,
+				0FB96922668B0BDBC0603E2F /* watchOSAppExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2608,7 +2608,7 @@
 			);
 			name = "watchOSAppExtension (44a9d)";
 			productName = watchOSAppExtension;
-			productReference = 5808BF0F847CC0BF0E1128FB /* watchOSAppExtension.appex */;
+			productReference = EFCC97B2BBE2853FC51FC3AB /* watchOSAppExtension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		182B42EFE70A5561F1C023E5 /* watchOSApp */ = {
@@ -2810,7 +2810,7 @@
 			);
 			name = "watchOSAppExtension (782d4)";
 			productName = watchOSAppExtension;
-			productReference = EFCC97B2BBE2853FC51FC3AB /* watchOSAppExtension.appex */;
+			productReference = 5808BF0F847CC0BF0E1128FB /* watchOSAppExtension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		A6969986F4330BE56701A5EC /* iOSApp */ = {
