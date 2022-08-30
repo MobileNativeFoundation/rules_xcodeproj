@@ -24,6 +24,7 @@
 /* Begin PBXBuildFile section */
 		00FA2BB7FC302E681E1692F3 /* iMessageAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A64E82DCF9CD209DC5E8DA47 /* iMessageAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0164DA506F6AFFE8D9484E5B /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DED4191C90C7A853FF2A4E /* iOSApp.swift */; };
+		05551BC9A4382313D9D42C76 /* ExampleFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39594CD191A016EB67C5F012 /* ExampleFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A5B4B1401EBA0F452D83036 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D71C4BEDCDCB107460E90 /* main.swift */; };
 		0FB96922668B0BDBC0603E2F /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5808BF0F847CC0BF0E1128FB /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		10FA24724CE86AE5100003E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AF8405DFFAC776130ECFE17 /* Assets.xcassets */; };
@@ -48,10 +49,10 @@
 		3E5F6986BB6A5BEB0D699875 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 714F4CDA20A0822521C3B389 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EDEA087B050FC27DFB83A75 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A35CE44DD8C9A9320F0FF7F1 /* Preview Assets.xcassets */; };
 		492DBD0487A4A24DBF30E098 /* launch_images_ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F64E9922884087CB16660702 /* launch_images_ios.xcassets */; };
-		4EDB7BD65847AE10DF5FADC7 /* ExampleFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3935E225E902C7CA87D5CBBF /* ExampleFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F1FD2B820497A6AFE6B313C /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7460163239595E240435120 /* GoogleMapsBase.framework */; };
 		62CFF6C7D0DCE936662E389C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D295FECC5CF307D463F8CBD4 /* Preview Assets.xcassets */; };
 		672612624F95412422292B68 /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF973F3635AEB0E5B3101EA8 /* watchOSApp.swift */; };
+		692F47C3AB96D3669CFBCFBA /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39594CD191A016EB67C5F012 /* ExampleFramework.framework */; };
 		6BB33EE1FF138449161F329C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E47A83139A3569C6FA232A95 /* Assets.xcassets */; };
 		6F8BA77279C5AF23466EA221 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF698145077BF95041B2E6C /* Preview Assets.xcassets */; };
 		70DC393F308A98F43AD5FFA6 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F99A7D79C5DEADA3086ADE2 /* CryptoSwift.framework */; };
@@ -92,7 +93,6 @@
 		E8B3605DB78F38F7CFF33469 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12200A389D1ACE33A9160B97 /* GoogleMapsBase.framework */; };
 		EA92CB15E5B88ACB72D7C78A /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F99A7D79C5DEADA3086ADE2 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB0EA62D36D260BE9EB41188 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C60CBDE37CBC3B529E1E6 /* ExampleTests.swift */; };
-		F205580483616B201200C095 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3935E225E902C7CA87D5CBBF /* ExampleFramework.framework */; };
 		F24DE2F8FC1078649A631E57 /* ExtensionAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA82E9B1EB47C510C3831476 /* ExtensionAssets.xcassets */; };
 		F90291C258A2E4C680738DD7 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A53EF5016942CED7679A5D /* ExampleUITestsLaunchTests.swift */; };
 		FA2386224ACA600205984EBB /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F99A7D79C5DEADA3086ADE2 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -370,7 +370,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4EDB7BD65847AE10DF5FADC7 /* ExampleFramework.framework in Embed Frameworks */,
+				05551BC9A4382313D9D42C76 /* ExampleFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,7 +458,7 @@
 		2CC294F18473B4B7357EB8BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EFA3468424313A1A9573A0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		301920FC4AA3691CDC2070D7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		3935E225E902C7CA87D5CBBF /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
+		39594CD191A016EB67C5F012 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		3A781E3B712BF40DA6286815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3C9B2965C6CEB81D4BC5AC0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3C9CD943C6B5015DA79A0638 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -511,6 +511,7 @@
 		A55936D0B572746D0704E8FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A64E82DCF9CD209DC5E8DA47 /* iMessageAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMessageAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A916C9F7550D22C04F335CD4 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		AB942C7C978DBBAAF2838236 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		AD481B8E4D32C4EA682B3721 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AF245A8592DA3D7085FCC028 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B30A5059F17AE5BD27D82C40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -555,7 +556,6 @@
 		F6D3E8AC19CA682EDEFC131C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F7236558248DFAF574606B6F /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		F72560F90067FC50B6A372BC /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		F74F1D95900E778DF4CE72FA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,7 +563,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F205580483616B201200C095 /* ExampleFramework.framework in Frameworks */,
+				692F47C3AB96D3669CFBCFBA /* ExampleFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,7 +1002,6 @@
 				F823FA05032576486D2A52A5 /* iOSApp */,
 				A57288DAB6FF2B4F50A97F79 /* Lib */,
 				9AB787673C13FA4F672CB968 /* macOSApp */,
-				3EBAE8C6EF1D1754EFB8B716 /* MacOSApp */,
 				C6F8F557FC3B88FD72E0575B /* Tool */,
 				97D37ED8A4B325E33973A8E0 /* tvOSApp */,
 				B1C22B953DFF3FAC69F93BC4 /* watchOSApp */,
@@ -1074,14 +1073,6 @@
 				A193A46C8AD1D44BD7BF6332 /* multiplatform */,
 			);
 			path = examples;
-			sourceTree = "<group>";
-		};
-		3EBAE8C6EF1D1754EFB8B716 /* MacOSApp */ = {
-			isa = PBXGroup;
-			children = (
-				D3A36E3B9E14A345BF8FC0A5 /* third_party */,
-			);
-			path = MacOSApp;
 			sourceTree = "<group>";
 		};
 		3FC3C3D9DB560D326ADFA4D9 /* PreviewContent */ = {
@@ -1679,6 +1670,7 @@
 			isa = PBXGroup;
 			children = (
 				E9A5EC43E781F209D5165EBB /* Example */,
+				AB0F8AEF0D20143F1E9FBFC5 /* third_party */,
 			);
 			path = macOSApp;
 			sourceTree = "<group>";
@@ -1791,6 +1783,15 @@
 				07DD99A9668C4F39F42E98A1 /* ios-arm64_x86_64-simulator */,
 			);
 			path = GoogleMapsCore.xcframework;
+			sourceTree = "<group>";
+		};
+		AB0F8AEF0D20143F1E9FBFC5 /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				AB942C7C978DBBAAF2838236 /* BUILD */,
+				39594CD191A016EB67C5F012 /* ExampleFramework.framework */,
+			);
+			path = third_party;
 			sourceTree = "<group>";
 		};
 		ABD996A64F8B6450D584ED92 /* bin */ = {
@@ -1983,15 +1984,6 @@
 				34EEB3D407F10261A42BB9F7 /* fixtures */,
 			);
 			path = test;
-			sourceTree = "<group>";
-		};
-		D3A36E3B9E14A345BF8FC0A5 /* third_party */ = {
-			isa = PBXGroup;
-			children = (
-				F74F1D95900E778DF4CE72FA /* BUILD */,
-				3935E225E902C7CA87D5CBBF /* ExampleFramework.framework */,
-			);
-			path = third_party;
 			sourceTree = "<group>";
 		};
 		D922D342D574334AA3C0A0BA /* bin */ = {
@@ -3796,7 +3788,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = examples/multiplatform/MacOSApp/third_party;
+				FRAMEWORK_SEARCH_PATHS = examples/multiplatform/macOSApp/third_party;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/macOSApp/Example/rules_xcodeproj/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3806,7 +3798,7 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/examples/multiplatform/macOSApp/Example/Example.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/MacOSApp/third_party -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=examples/multiplatform/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/macOSApp/third_party -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = macOSApp;

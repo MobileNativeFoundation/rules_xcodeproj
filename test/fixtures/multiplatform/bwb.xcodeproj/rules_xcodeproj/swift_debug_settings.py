@@ -110,9 +110,9 @@ _SETTINGS = {
     ]
   },
   "x86_64-apple-macosx15.0.0 macOSApp.app/Contents/MacOS/macOSApp" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin\" -fmodule-map-file=\"$(PROJECT_DIR)/examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin\" -fmodule-map-file=\"$(PROJECT_DIR)/examples/multiplatform/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
-      "$(PROJECT_DIR)/examples/multiplatform/MacOSApp/third_party"
+      "$(PROJECT_DIR)/examples/multiplatform/macOSApp/third_party"
     ],
     "includes" : [
 

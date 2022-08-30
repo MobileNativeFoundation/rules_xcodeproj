@@ -103,9 +103,9 @@
             "g": true,
             "t": "e"
         },
-        "examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework",
+        "examples/multiplatform/macOSApp/third_party/ExampleFramework.framework",
         "examples/multiplatform/macOSApp/Example/BUILD",
-        "examples/multiplatform/MacOSApp/third_party/BUILD",
+        "examples/multiplatform/macOSApp/third_party/BUILD",
         "examples/multiplatform/macOSApp/Example/Info.plist",
         {
             "_": "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/rules_xcodeproj/Example/Info.plist",
@@ -3224,7 +3224,7 @@
             "label": "//examples/multiplatform/macOSApp/Example:Example",
             "linker_inputs": {
                 "dynamic_frameworks": [
-                    "examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework"
+                    "examples/multiplatform/macOSApp/third_party/ExampleFramework.framework"
                 ],
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/iOSApp.swiftmodule",
@@ -3247,7 +3247,7 @@
                 "c": [
                     {
                         "m": [
-                            "examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap"
+                            "examples/multiplatform/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap"
                         ],
                         "o": [
                             "-O0",
@@ -3265,7 +3265,7 @@
                     }
                 ],
                 "f": [
-                    "examples/multiplatform/MacOSApp/third_party"
+                    "examples/multiplatform/macOSApp/third_party"
                 ]
             },
             "name": "Example",
@@ -3293,7 +3293,7 @@
             },
             "search_paths": {
                 "framework_includes": [
-                    "examples/multiplatform/MacOSApp/third_party"
+                    "examples/multiplatform/macOSApp/third_party"
                 ],
                 "quote_includes": [
                     ".",
@@ -3315,7 +3315,7 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/MacOSApp/third_party -static",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/macOSApp/third_party -static",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -3331,7 +3331,7 @@
             },
             "label": "//examples/multiplatform/macOSApp/Example:Example.library",
             "modulemaps": [
-                "examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap"
+                "examples/multiplatform/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap"
             ],
             "name": "Example.library",
             "outputs": {
@@ -3368,7 +3368,7 @@
             },
             "search_paths": {
                 "framework_includes": [
-                    "examples/multiplatform/MacOSApp/third_party"
+                    "examples/multiplatform/macOSApp/third_party"
                 ],
                 "quote_includes": [
                     ".",

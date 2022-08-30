@@ -37,7 +37,6 @@
 		41731BDC24BE872323FEA0E3 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416D7556BFEC26938A62BA77 /* iOSApp.swift */; };
 		425BFCDFB51767F26D8E88F9 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23E4536260379513114C6AE /* CryptoSwift.framework */; };
 		47BBA9797DCC4E826C506F50 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6166E71C87C80120FEFD9124 /* CryptoSwift.framework */; };
-		49B98B09B12DFA327222CFDF /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DD7F7F52455D6F2C5FCC88 /* ExampleFramework.framework */; };
 		5003A996FFB25A6D500F8312 /* iMessageAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E332411DCE28305063274CDF /* iMessageAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		526815DB742350C83EB04495 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
 		57990DB9189C856D000061EE /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2DAFB9141E941BE0B725EF /* GoogleMapsBase.framework */; };
@@ -67,6 +66,7 @@
 		DF4A5D9EC444A98628A7D242 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD66F4A9773631B818C1C0A2 /* ExampleUITestsLaunchTests.swift */; };
 		E0522FDC1C78B62C7321CA59 /* AppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD139F111FC1472A88A9CB7B /* AppClip.swift */; };
 		E17EA6B509A3AEAC83C52BD8 /* macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B147C712C871FF6A8D423F54 /* macOSApp.swift */; };
+		E8F759CA14C6E4057D7C614A /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F6C01855072982628CBF0 /* ExampleFramework.framework */; };
 		F65685BB949BFE7038426A12 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17113BCD73D43B52DB945855 /* tvOSApp.swift */; };
 		F8DD5EE78EAADB26E27E5BC5 /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ADBEAB2C84FEA499584D9C18 /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -332,12 +332,12 @@
 		0561945EBB23E334B7EC83E3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		059F1979DADF08A072C6D2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0FD0B61D80E3AA3E8B8C4DF7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		113F6C01855072982628CBF0 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		149AB08AA2AFE401FD3941AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		17113BCD73D43B52DB945855 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
 		17719B0E70890ABC1D30CD7E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		19C8F7CCC5F4C0A75BC6D6B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B5A0430B943510A260B7A6F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		1E3E0F0BA567089975339568 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		2173162844C98250D9FA99D1 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		21B075DF13D48A7176B9FD50 /* AppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228FA03886D4CED2E8B87937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -369,7 +369,6 @@
 		5145CBFF79C7C7D6179B1D1E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		54CD2F482C417A43E593623E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		551C8C00E138A06015F8414C /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		56DD7F7F52455D6F2C5FCC88 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		56E84612DD970A9B2B2E56AB /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		56F16FB28F266E6AABCEA995 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C2ECD1CF0C8604BFE8844E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -424,6 +423,7 @@
 		C9FC41A0FFBE1C244855415F /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		CA1035AC61541685E7C0DF31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CECC22A0360B6F7F39E449B5 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		CF2F7FE1D60F100D83ECC86F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		CF77C9CC9C52E1BAB5C9B509 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D6D47AB7111AD76651E98D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		DACC287F6CDE17E0D43B07F9 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
@@ -484,7 +484,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49B98B09B12DFA327222CFDF /* ExampleFramework.framework in Frameworks */,
+				E8F759CA14C6E4057D7C614A /* ExampleFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,14 +919,6 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		4002510197E09FD369753053 /* MacOSApp */ = {
-			isa = PBXGroup;
-			children = (
-				BC3981D85D366BAB4FDA2EF6 /* third_party */,
-			);
-			path = MacOSApp;
-			sourceTree = "<group>";
-		};
 		461FE4FD4EDC5822600140E1 /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -968,7 +960,6 @@
 				F6928B27559A694D5F235BE6 /* iOSApp */,
 				6343005A4B9B57A35AB9894A /* Lib */,
 				A015B25746F0D895B434FBCD /* macOSApp */,
-				4002510197E09FD369753053 /* MacOSApp */,
 				F80C79195ACE0038DF912F06 /* Tool */,
 				985410D8C298A478783BA59B /* tvOSApp */,
 				BB6DFF75E2D341D056A455CA /* watchOSApp */,
@@ -1426,6 +1417,15 @@
 			path = multiplatform;
 			sourceTree = "<group>";
 		};
+		86C717ED28A9E30587A98B8F /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				CF2F7FE1D60F100D83ECC86F /* BUILD */,
+				113F6C01855072982628CBF0 /* ExampleFramework.framework */,
+			);
+			path = third_party;
+			sourceTree = "<group>";
+		};
 		87F44F8D2F540A50DCCD88FE /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1580,6 +1580,7 @@
 			isa = PBXGroup;
 			children = (
 				65EE3A2C2B9AD44C3A66B369 /* Example */,
+				86C717ED28A9E30587A98B8F /* third_party */,
 			);
 			path = macOSApp;
 			sourceTree = "<group>";
@@ -1745,15 +1746,6 @@
 				3AC69858583169F87F19CEA0 /* Info.plist */,
 			);
 			path = watchOSApp;
-			sourceTree = "<group>";
-		};
-		BC3981D85D366BAB4FDA2EF6 /* third_party */ = {
-			isa = PBXGroup;
-			children = (
-				1E3E0F0BA567089975339568 /* BUILD */,
-				56DD7F7F52455D6F2C5FCC88 /* ExampleFramework.framework */,
-			);
-			path = third_party;
 			sourceTree = "<group>";
 		};
 		BD28C1FC199DD0952DD06323 /* iMessageApp */ = {
@@ -4146,7 +4138,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = examples/multiplatform/MacOSApp/third_party;
+				FRAMEWORK_SEARCH_PATHS = examples/multiplatform/macOSApp/third_party;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/macOSApp/Example/rules_xcodeproj/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4156,7 +4148,7 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/examples/multiplatform/macOSApp/Example/Example.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/MacOSApp/third_party -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=examples/multiplatform/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/macOSApp/third_party -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = macOSApp;
