@@ -4,7 +4,7 @@ _FIXTURE_BASENAMES = [
     "cc",
     "command_line",
     "generator",
-    "multiplatform",
+    "integration",
     "simple",
 ]
 
