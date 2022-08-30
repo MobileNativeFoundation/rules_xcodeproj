@@ -16,6 +16,6 @@ swift_library(
     module_name = "ExampleWatchKitAppTests",
     tags = ["manual"],
     deps = [
-        "//examples/watchos_app/ExampleWatchKitExtension:ExampleWatchKitExtension.library",
+        "//examples/multiplatform/watchOSApp/ExampleWatchKitExtension:ExampleWatchKitExtension.library",
     ],
 )

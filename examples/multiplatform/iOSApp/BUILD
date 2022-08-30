@@ -53,7 +53,7 @@ ios_application(
     resources = [":ResourceGroup"],
     version = ":Version",
     visibility = ["//visibility:public"],
-    watch_application = "//examples/multiplatform/watchOSApp",
+    watch_application = "//examples/multiplatform/watchOSApp/Example",
     deps = [":iOSApp.library"],
 )
 

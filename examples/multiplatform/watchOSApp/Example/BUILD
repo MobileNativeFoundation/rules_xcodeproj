@@ -14,7 +14,7 @@ apple_bundle_version(
     name = "Version",
     build_version = "123.4.5",
     short_version_string = "123.4",
-    visibility = ["//examples/watchos_app:__subpackages__"],
+    visibility = ["//examples/multiplatform/watchOSApp:__subpackages__"],
 )
 
 ios_application(
@@ -28,7 +28,7 @@ ios_application(
     resources = [":ExampleResourceGroup"],
     version = ":Version",
     visibility = ["//visibility:public"],
-    watch_application = "//examples/watchos_app/ExampleWatchKitApp",
+    watch_application = "//examples/multiplatform/watchOSApp/ExampleWatchKitApp",
     deps = [":Example.library"],
 )
 

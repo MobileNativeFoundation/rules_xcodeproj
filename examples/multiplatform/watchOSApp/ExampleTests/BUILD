@@ -5,7 +5,7 @@ ios_unit_test(
     name = "ExampleTests",
     bundle_id = "io.buildbuddy.example.tests",
     minimum_os_version = "15.0",
-    test_host = "//examples/watchos_app/Example",
+    test_host = "//examples/multiplatform/watchOSApp/Example",
     visibility = ["//visibility:public"],
     deps = [":ExampleTests.library"],
 )
@@ -17,6 +17,6 @@ swift_library(
     module_name = "ExampleTests",
     tags = ["manual"],
     deps = [
-        "//examples/watchos_app/Example:Example.library",
+        "//examples/multiplatform/watchOSApp/Example:Example.library",
     ],
 )

@@ -5,7 +5,7 @@ watchos_ui_test(
     name = "ExampleWatchKitAppUITests",
     minimum_os_version = "7.0",
     tags = ["manual"],
-    test_host = "//examples/watchos_app/ExampleWatchKitApp",
+    test_host = "//examples/multiplatform/watchOSApp/ExampleWatchKitApp",
     visibility = ["//visibility:public"],
     deps = [":ExampleWatchKitAppUITests.library"],
 )

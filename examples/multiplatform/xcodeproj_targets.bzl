@@ -22,6 +22,13 @@ XCODEPROJ_TARGETS = [
         label = "//examples/multiplatform/Tool",
         target_environments = ["device"],
     ),
+    "//examples/multiplatform/watchOSApp/Example",
+    "//examples/multiplatform/watchOSApp/ExampleTests",
+    "//examples/multiplatform/watchOSApp/ExampleUITests",
+    "//examples/multiplatform/watchOSApp/ExampleWatchKitApp",
+    "//examples/multiplatform/watchOSApp/ExampleWatchKitAppTests",
+    "//examples/multiplatform/watchOSApp/ExampleWatchKitAppUITests",
+    "//examples/multiplatform/watchOSApp/ExampleWatchKitExtension",
 ]
 
 IOS_BUNDLE_ID = "io.buildbuddy.example"
