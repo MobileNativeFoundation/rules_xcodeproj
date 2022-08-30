@@ -16,6 +16,6 @@ swift_library(
     module_name = "UnitTestsLibrary",
     tags = ["manual"],
     deps = [
-        "//examples/multiplatform/watchOSAppExtension",
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library",
     ],
 )
