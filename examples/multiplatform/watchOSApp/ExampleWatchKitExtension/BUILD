@@ -25,11 +25,11 @@ watchos_extension(
     bundle_id = "io.buildbuddy.example.watch.extension",
     infoplists = [":Info.plist"],
     minimum_os_version = "7.0",
-    resources = [":ResourceGroup"],
     provisioning_profile = select({
         ":device_build": ":xcode_profile",
         "//conditions:default": None,
     }),
+    resources = [":ResourceGroup"],
     version = "//examples/multiplatform/watchOSApp/Example:Version",
     visibility = ["//visibility:public"],
     deps = [":ExampleWatchKitExtension.library"],
