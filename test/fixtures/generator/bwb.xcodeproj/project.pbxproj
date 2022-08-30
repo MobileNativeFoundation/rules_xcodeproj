@@ -2471,6 +2471,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/external/com_github_kylef_pathkit";
 				BAZEL_TARGET_ID = "@com_github_kylef_pathkit//:PathKit darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -2509,6 +2510,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/external/com_github_tuist_xcodeproj";
 				BAZEL_TARGET_ID = "@com_github_tuist_xcodeproj//:XcodeProj darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -2587,6 +2589,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -2615,6 +2618,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/external/com_github_pointfreeco_swift_custom_dump";
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -2642,9 +2646,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//tools/generator/test:tests.library darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/tools/generator/test/tests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/tools/generator/test";
 				BAZEL_TARGET_ID = "//tools/generator/test:tests darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
@@ -2679,6 +2686,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/external/com_github_apple_swift_collections";
 				BAZEL_TARGET_ID = "@com_github_apple_swift_collections//:OrderedCollections darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -2705,9 +2713,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//tools/generator:generator.library darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/tools/generator/generator";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/tools/generator";
 				BAZEL_TARGET_ID = "//tools/generator:generator darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
@@ -2742,6 +2753,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3e0dd315ada8/bin/tools/generator";
 				BAZEL_TARGET_ID = "//tools/generator:generator.library darwin_x86_64-dbg-ST-3e0dd315ada8";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;

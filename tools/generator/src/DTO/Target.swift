@@ -4,6 +4,7 @@ struct Target: Equatable {
     var name: String
     var label: BazelLabel
     let configuration: String
+    var compileTargetID: TargetID? = nil
     var packageBinDir: Path
     var platform: Platform
     let product: Product

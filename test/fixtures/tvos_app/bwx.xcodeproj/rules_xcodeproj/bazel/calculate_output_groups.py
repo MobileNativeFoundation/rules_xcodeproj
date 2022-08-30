@@ -51,10 +51,10 @@ def _calculate_output_group_target_ids(
             # Parse the build-request.json file
             build_request = json.load(f)
 
-        # Xcode gets "stuck" in the `buildFiles` or `build` command for
-        # top-level targets, so we can't reliably change commands here. Leaving
-        # the code in place in case this is fixed in the future, or we want to
-        # do something similar in an XCBBuildService proxy.
+        # Xcode gets "suck" in the `buildFiles` or `build` command for top-level
+        # targets, so we can't reliably change commands here. Leaving the code
+        # in place in case this is fixed in the future, or we want to do
+        # something similar in an XCBBuildService proxy.
         #
         # command = (
         #     build_request.get("_buildCommand2", {}).get("command", "build")
@@ -197,7 +197,7 @@ def _main(objroot, base_objroot, scheme_target_id_file, prefix):
 
     if prefix == "i":
         # buildRequest for Index Build includes all targets, so we have to
-        # fall back to the scheme target ids (which are actually set by the
+        # fallback to the scheme target ids (which are actually set by the
         # "Copy Bazel Outputs" script)
         target_ids = scheme_target_ids
     else:

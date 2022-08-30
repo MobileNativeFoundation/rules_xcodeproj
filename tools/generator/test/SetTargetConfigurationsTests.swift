@@ -305,65 +305,101 @@ final class SetTargetConfigurationsTests: XCTestCase {
     func test_conditionals() throws {
         // Arrange
 
-        let key = "BAZEL_TARGET_ID"
+        let targetIDKey = "BAZEL_TARGET_ID"
+        let packageBinDirKey = "BAZEL_PACKAGE_BIN_DIR"
         let pbxProj = Fixtures.pbxProj()
 
         let (
             disambiguatedTargets,
             pbxTargets,
-            expectedSupportedPlatforms
+            expectedBuildSettings
         ) = Self.createFixtures([
             ([.macOS, .iOS, .tvOS, .watchOS], .staticLibrary,
              [
-                 key: "macOS-staticLibrary",
-                 "\(key)[sdk=iphoneos*]": "iOS-staticLibrary",
-                 "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
-                 "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                targetIDKey: "macOS-staticLibrary",
+                "\(targetIDKey)[sdk=iphoneos*]": "iOS-staticLibrary",
+                "\(targetIDKey)[sdk=appletvos*]": "tvOS-staticLibrary",
+                "\(targetIDKey)[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                "\(targetIDKey)[sdk=watchos*]": "watchOS-staticLibrary",
+                packageBinDirKey: "b/macOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=iphoneos*]": "b/iOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=appletvos*]": "b/tvOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=watchos*]": "b/watchOS-staticLibrary",
              ]),
             ([.macOS, .iOS], .staticLibrary, [
-                key: "macOS-staticLibrary",
-                "\(key)[sdk=iphoneos*]": "iOS-staticLibrary",
+                targetIDKey: "macOS-staticLibrary",
+                "\(targetIDKey)[sdk=iphoneos*]": "iOS-staticLibrary",
+                "\(targetIDKey)[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                packageBinDirKey: "b/macOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=iphoneos*]": "b/iOS-staticLibrary",
             ]),
             ([.macOS, .tvOS], .staticLibrary, [
-                key: "macOS-staticLibrary",
-                "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
+                targetIDKey: "macOS-staticLibrary",
+                "\(targetIDKey)[sdk=appletvos*]": "tvOS-staticLibrary",
+                "\(targetIDKey)[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                packageBinDirKey: "b/macOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=appletvos*]": "b/tvOS-staticLibrary",
             ]),
             ([.macOS, .watchOS], .staticLibrary, [
-                key: "macOS-staticLibrary",
-                "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                targetIDKey: "macOS-staticLibrary",
+                "\(targetIDKey)[sdk=watchos*]": "watchOS-staticLibrary",
+                "\(targetIDKey)[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                packageBinDirKey: "b/macOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=watchos*]": "b/watchOS-staticLibrary",
             ]),
             ([.macOS], .staticLibrary, [
-                key: "macOS-staticLibrary",
+                targetIDKey: "macOS-staticLibrary",
+                "\(targetIDKey)[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                packageBinDirKey: "b/macOS-staticLibrary",
             ]),
 
             ([.iOS, .tvOS, .watchOS], .staticLibrary,
              [
-                 key: "iOS-staticLibrary",
-                 "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
-                 "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                targetIDKey: "iOS-staticLibrary",
+                 "\(targetIDKey)[sdk=appletvos*]": "tvOS-staticLibrary",
+                "\(targetIDKey)[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
+                 "\(targetIDKey)[sdk=watchos*]": "watchOS-staticLibrary",
+                packageBinDirKey: "b/iOS-staticLibrary",
+                 "\(packageBinDirKey)[sdk=appletvos*]": "b/tvOS-staticLibrary",
+                 "\(packageBinDirKey)[sdk=watchos*]": "b/watchOS-staticLibrary",
              ]),
             ([.iOS, .tvOS], .staticLibrary, [
-                key: "iOS-staticLibrary",
-                "\(key)[sdk=appletvos*]": "tvOS-staticLibrary",
+                targetIDKey: "iOS-staticLibrary",
+                "\(targetIDKey)[sdk=appletvos*]": "tvOS-staticLibrary",
+                "\(targetIDKey)[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
+                packageBinDirKey: "b/iOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=appletvos*]": "b/tvOS-staticLibrary",
             ]),
             ([.iOS, .watchOS], .staticLibrary, [
-                key: "iOS-staticLibrary",
-                "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                targetIDKey: "iOS-staticLibrary",
+                "\(targetIDKey)[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
+                "\(targetIDKey)[sdk=watchos*]": "watchOS-staticLibrary",
+                packageBinDirKey: "b/iOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=watchos*]": "b/watchOS-staticLibrary",
             ]),
             ([.iOS], .staticLibrary, [
-                key: "iOS-staticLibrary",
+                targetIDKey: "iOS-staticLibrary",
+                "\(targetIDKey)[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
+                packageBinDirKey: "b/iOS-staticLibrary",
             ]),
 
             ([.tvOS, .watchOS], .staticLibrary, [
-                key: "tvOS-staticLibrary",
-                "\(key)[sdk=watchos*]": "watchOS-staticLibrary",
+                targetIDKey: "tvOS-staticLibrary",
+                "\(targetIDKey)[sdk=appletvos*]": "$(BAZEL_TARGET_ID)",
+                "\(targetIDKey)[sdk=watchos*]": "watchOS-staticLibrary",
+                packageBinDirKey: "b/tvOS-staticLibrary",
+                "\(packageBinDirKey)[sdk=watchos*]": "b/watchOS-staticLibrary",
             ]),
             ([.tvOS], .staticLibrary, [
-                key: "tvOS-staticLibrary",
+                targetIDKey: "tvOS-staticLibrary",
+                "\(targetIDKey)[sdk=appletvos*]": "$(BAZEL_TARGET_ID)",
+                packageBinDirKey: "b/tvOS-staticLibrary",
             ]),
 
             ([.watchOS], .staticLibrary, [
-                key: "watchOS-staticLibrary",
+                targetIDKey: "watchOS-staticLibrary",
+                "\(targetIDKey)[sdk=watchos*]": "$(BAZEL_TARGET_ID)",
+                packageBinDirKey: "b/watchOS-staticLibrary",
             ]),
         ])
 
@@ -380,14 +416,19 @@ final class SetTargetConfigurationsTests: XCTestCase {
             filePathResolver: Self.filePathResolverFixture
         )
 
-        let supportedPlatforms: [ConsolidatedTarget.Key: [String: String]] =
-            try Self.getBuildSettings(key, from: pbxTargets)
+        var buildSettings: [ConsolidatedTarget.Key: [String: String]] = [:]
+        buildSettings.merge(
+            try Self.getBuildSettings(targetIDKey, from: pbxTargets)
+        ) { old, new in old.merging(new) { _, new in new } }
+        buildSettings.merge(
+            try Self.getBuildSettings(packageBinDirKey, from: pbxTargets)
+        ) { old, new in old.merging(new) { _, new in new } }
 
         // Assert
 
         XCTAssertNoDifference(
-            supportedPlatforms,
-            expectedSupportedPlatforms
+            buildSettings,
+            expectedBuildSettings
         )
     }
 
@@ -423,6 +464,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
                 }
 
                 let target = Target.mock(
+                    packageBinDir: Path("b/\(targetID.rawValue)"),
                     platform: .init(
                         os: os,
                         variant: variant,
