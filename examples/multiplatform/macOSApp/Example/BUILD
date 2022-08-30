@@ -50,7 +50,7 @@ swift_library(
     module_name = "iOSApp",
     tags = ["manual"],
     deps = [
-        "//examples/multiplatform/MacOSApp/third_party:ExampleFramework",
+        "//examples/multiplatform/macOSApp/third_party:ExampleFramework",
     ],
 )
 
