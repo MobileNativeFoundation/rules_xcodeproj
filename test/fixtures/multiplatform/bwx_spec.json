@@ -85,6 +85,14 @@
             "_": "applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/iOSApp/rules_xcodeproj/iOSApp/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework",
+        "examples/multiplatform/MacOSApp/Example/BUILD",
+        "examples/multiplatform/MacOSApp/third_party/BUILD",
+        "examples/multiplatform/MacOSApp/Example/Info.plist",
+        {
+            "_": "applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/rules_xcodeproj/Example/Info.plist",
+            "t": "g"
+        },
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
@@ -226,6 +234,10 @@
         "//examples/multiplatform/AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4",
         [
             "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-132246d86df4"
+        ],
+        "//examples/multiplatform/MacOSApp/Example:Example.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c",
+        [
+            "//examples/multiplatform/MacOSApp/Example:Example applebin_macos-darwin_x86_64-dbg-ST-450091386d5c"
         ],
         "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-8143dd6ed004",
         [
@@ -1207,6 +1219,167 @@
                     ".",
                     {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//examples/multiplatform/MacOSApp/Example:Example applebin_macos-darwin_x86_64-dbg-ST-450091386d5c",
+        {
+            "build_settings": {
+                "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-450091386d5c",
+            "dependencies": [
+                "//examples/multiplatform/MacOSApp/Example:Example.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c"
+            ],
+            "info_plist": {
+                "_": "applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/rules_xcodeproj/Example/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "examples/multiplatform/MacOSApp/Example/PreviewContent/Preview Assets.xcassets",
+                    "examples/multiplatform/MacOSApp/Example/Assets.xcassets"
+                ]
+            },
+            "is_swift": false,
+            "label": "//examples/multiplatform/MacOSApp/Example:Example",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    "examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework"
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/iOSApp.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/libExample.library.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "name": "Example",
+            "outputs": {
+                "p": {
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/Example.zip",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "macos",
+                "variant": "macosx"
+            },
+            "product": {
+                "executable_name": "macOSApp",
+                "name": "macOSApp",
+                "path": {
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/Example_archive-root/Payload/macOSApp.app",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.application"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    "examples/multiplatform/MacOSApp/third_party"
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//examples/multiplatform/MacOSApp/Example:Example.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/MacOSApp/third_party -static",
+                "PRODUCT_MODULE_NAME": "iOSApp",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c",
+            "inputs": {
+                "srcs": [
+                    "examples/multiplatform/MacOSApp/Example/ContentView.swift",
+                    "examples/multiplatform/MacOSApp/Example/macOSApp.swift"
+                ]
+            },
+            "label": "//examples/multiplatform/MacOSApp/Example:Example.library",
+            "modulemaps": [
+                "examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap"
+            ],
+            "name": "Example.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/iOSApp.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/iOSApp.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/iOSApp.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "macos",
+                "variant": "macosx"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "Example.library",
+                "path": {
+                    "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/MacOSApp/Example/libExample.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    "examples/multiplatform/MacOSApp/third_party"
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin",
                         "t": "g"
                     }
                 ]

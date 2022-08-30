@@ -29,6 +29,7 @@
 		16B81E935D2A7D26D19DBFF1 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D3B0B0C26EF2FF917D092F /* ExampleUITests.swift */; };
 		17D28C4F6071247D8148BE16 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B79A6A845E24A1CE8611CA /* CryptoSwift.framework */; };
 		1F4FBB2FDB7D7960FCBBAD3D /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
+		2196DDED7EEA63FE2919318E /* macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218B8E7E62ADE75982AC5B /* macOSApp.swift */; };
 		261B9EBFDDE366BD4D6DE631 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E84612DD970A9B2B2E56AB /* Lib.swift */; };
 		268106B9996EDC881B2E0AA8 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3333170CE926366B0A03CBF1 /* GoogleMapsBase.framework */; };
 		31148D81297341297091BE82 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C87E1F983762D987044B07D /* GoogleMapsCore.framework */; };
@@ -37,6 +38,7 @@
 		41731BDC24BE872323FEA0E3 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416D7556BFEC26938A62BA77 /* iOSApp.swift */; };
 		425BFCDFB51767F26D8E88F9 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23E4536260379513114C6AE /* CryptoSwift.framework */; };
 		47BBA9797DCC4E826C506F50 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6166E71C87C80120FEFD9124 /* CryptoSwift.framework */; };
+		49B98B09B12DFA327222CFDF /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DD7F7F52455D6F2C5FCC88 /* ExampleFramework.framework */; };
 		5003A996FFB25A6D500F8312 /* iMessageAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E332411DCE28305063274CDF /* iMessageAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		526815DB742350C83EB04495 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
 		57990DB9189C856D000061EE /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2DAFB9141E941BE0B725EF /* GoogleMapsBase.framework */; };
@@ -64,6 +66,7 @@
 		CEC8CCE4C9BFFBFD0A23D07B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E842FA503EFFAF94F9B849A /* ContentView.swift */; };
 		DF4A5D9EC444A98628A7D242 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD66F4A9773631B818C1C0A2 /* ExampleUITestsLaunchTests.swift */; };
 		E0522FDC1C78B62C7321CA59 /* AppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD139F111FC1472A88A9CB7B /* AppClip.swift */; };
+		E7580DECA80F2D1A8E42ABF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72850657CE3E09532FD0CC6F /* ContentView.swift */; };
 		F65685BB949BFE7038426A12 /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17113BCD73D43B52DB945855 /* tvOSApp.swift */; };
 		F8DD5EE78EAADB26E27E5BC5 /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ADBEAB2C84FEA499584D9C18 /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -244,6 +247,13 @@
 			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
 			remoteInfo = "Lib (iOS, tvOS)";
 		};
+		DDD61C8C1CFA249BBE0E369C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
 		F690C1C1C0C458108C2CC74A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -320,11 +330,14 @@
 		0512E3C445303A31D8C5D45A /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		0561945EBB23E334B7EC83E3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		059F1979DADF08A072C6D2CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0DD8FF02046D05EF21509741 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		149AB08AA2AFE401FD3941AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1536C5C823C71F54DD6E9D45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		17113BCD73D43B52DB945855 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
 		17719B0E70890ABC1D30CD7E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		19C8F7CCC5F4C0A75BC6D6B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B5A0430B943510A260B7A6F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		1E3E0F0BA567089975339568 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		2173162844C98250D9FA99D1 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		21B075DF13D48A7176B9FD50 /* AppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228FA03886D4CED2E8B87937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -353,6 +366,7 @@
 		5145CBFF79C7C7D6179B1D1E /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		54CD2F482C417A43E593623E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		551C8C00E138A06015F8414C /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
+		56DD7F7F52455D6F2C5FCC88 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		56E84612DD970A9B2B2E56AB /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		56F16FB28F266E6AABCEA995 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C2ECD1CF0C8604BFE8844E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -362,6 +376,8 @@
 		6166E71C87C80120FEFD9124 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		6289C06F2F7A8C9BAA0757C5 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		67EF6425ED99CC56F814F4EA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		6FA0F6DF862F64FB4E9DCC69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		72850657CE3E09532FD0CC6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7401FDA68482F8B5BE018478 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		77D3B0B0C26EF2FF917D092F /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		82C7184778C265E6AF5491B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -388,8 +404,10 @@
 		AED65F5A574CCDAE30035DF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AF1A1C154F7C2DB997EC29C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF2DAFB9141E941BE0B725EF /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
+		B28790441A2C90C7FEA3E8DC /* macOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D05F812542CBDB2B42555C /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		B3F2BB6661347D1891100734 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A19340391C9E256A1396C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B7497063B369EE0617A742B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BD306A2DBD4383E36E5618F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF108DD9E7994AE813AAFEA9 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
@@ -415,8 +433,10 @@
 		E366F2F944290C68B719DDD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E470DDDC0990D96A685DB11C /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CC0575EECAA039E39C8B0F /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		E90CC5771CC76F65776C9E57 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E99EC9E0460C9E8B7262C039 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EF7E0F2ABC9D6E0EFB12994E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F2218B8E7E62ADE75982AC5B /* macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSApp.swift; sourceTree = "<group>"; };
 		F8A822259267A98E99B540D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F9CD73470077CB85555CD640 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		F9FFD7C0617697DF9B49BD6B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -457,6 +477,14 @@
 				268106B9996EDC881B2E0AA8 /* GoogleMapsBase.framework in Frameworks */,
 				9111AE827A5939B3E1C787DC /* CryptoSwift.framework in Frameworks */,
 				526815DB742350C83EB04495 /* CryptoSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E426D209568E509FBE28076 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49B98B09B12DFA327222CFDF /* ExampleFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +797,14 @@
 			path = fixtures;
 			sourceTree = "<group>";
 		};
+		30275FB54EEC071FD710B75B /* PreviewContent */ = {
+			isa = PBXGroup;
+			children = (
+				B5A19340391C9E256A1396C6 /* Preview Assets.xcassets */,
+			);
+			path = PreviewContent;
+			sourceTree = "<group>";
+		};
 		31832B480BFF5C85C4359530 /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -875,6 +911,15 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		4002510197E09FD369753053 /* MacOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				4AE7FFD9F861D458409DFCEB /* Example */,
+				BC3981D85D366BAB4FDA2EF6 /* third_party */,
+			);
+			path = MacOSApp;
+			sourceTree = "<group>";
+		};
 		461FE4FD4EDC5822600140E1 /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,6 +945,19 @@
 			path = "ios-arm64_x86_64-simulator";
 			sourceTree = "<group>";
 		};
+		4AE7FFD9F861D458409DFCEB /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				30275FB54EEC071FD710B75B /* PreviewContent */,
+				0DD8FF02046D05EF21509741 /* Assets.xcassets */,
+				E90CC5771CC76F65776C9E57 /* BUILD */,
+				72850657CE3E09532FD0CC6F /* ContentView.swift */,
+				6FA0F6DF862F64FB4E9DCC69 /* Info.plist */,
+				F2218B8E7E62ADE75982AC5B /* macOSApp.swift */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		4C80934495D4903E2D6959CB /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,6 +973,7 @@
 				0EC708FB4525B7F514518550 /* iMessageApp */,
 				F6928B27559A694D5F235BE6 /* iOSApp */,
 				6343005A4B9B57A35AB9894A /* Lib */,
+				4002510197E09FD369753053 /* MacOSApp */,
 				F80C79195ACE0038DF912F06 /* Tool */,
 				985410D8C298A478783BA59B /* tvOSApp */,
 				BB6DFF75E2D341D056A455CA /* watchOSApp */,
@@ -967,6 +1026,14 @@
 			path = watchOSAppExtension;
 			sourceTree = "<group>";
 		};
+		531E3F605293918B734E0295 /* multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				BA23ED2CC9627FE6C9320885 /* MacOSApp */,
+			);
+			path = multiplatform;
+			sourceTree = "<group>";
+		};
 		536416CE78AA7B48388D1A9A /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -1010,6 +1077,7 @@
 				C9839B245FE2AD82F977E567 /* iOSApp.app */,
 				9B92DB0A68A3B511E0B4527D /* libLib.a */,
 				A0D53513CFBFCA1DD5F01CE8 /* libLib.a */,
+				B28790441A2C90C7FEA3E8DC /* macOSApp.app */,
 				C2A152505C080E82E6F2D44A /* Tool */,
 				8F49CCC488DBF944363A76E3 /* tvOSApp.app */,
 				B3F2BB6661347D1891100734 /* watchOSApp.app */,
@@ -1218,6 +1286,14 @@
 			path = AppClip;
 			sourceTree = "<group>";
 		};
+		71D82769EE01BCE5B24C81DD /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				AEDCED7B9BEBAE6CB668D95D /* rules_xcodeproj */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		7208BAD0D42A2354F66612BF /* AppClip */ = {
 			isa = PBXGroup;
 			children = (
@@ -1240,6 +1316,14 @@
 				7CCA7EB0361CCAC14010FE6F /* rules_xcodeproj */,
 			);
 			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		778247E92388349743FB292D /* applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c */ = {
+			isa = PBXGroup;
+			children = (
+				887960979D9C7A3819E029DC /* bin */,
+			);
+			path = "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c";
 			sourceTree = "<group>";
 		};
 		79370BF3493A96525BE36311 /* Source */ = {
@@ -1332,6 +1416,22 @@
 				31832B480BFF5C85C4359530 /* tvOSApp */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		887960979D9C7A3819E029DC /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				896EAA92C75EEA3E61431FA6 /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		896EAA92C75EEA3E61431FA6 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				531E3F605293918B734E0295 /* multiplatform */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 		8A6F31DCABAEC8B5DEF4CC4A /* rules_xcodeproj */ = {
@@ -1460,6 +1560,14 @@
 			path = GoogleMaps.framework;
 			sourceTree = "<group>";
 		};
+		9FFFB1B9F19AA8C7742200A7 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				1536C5C823C71F54DD6E9D45 /* Info.plist */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		A3917F5C9FCDC23A276EA500 /* multiplatform */ = {
 			isa = PBXGroup;
 			children = (
@@ -1498,6 +1606,14 @@
 				2AAEB9692C1FD824D868B4AD /* Preview Assets.xcassets */,
 			);
 			path = PreviewContent;
+			sourceTree = "<group>";
+		};
+		AEDCED7B9BEBAE6CB668D95D /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				9FFFB1B9F19AA8C7742200A7 /* Example */,
+			);
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		AF38C9B6442705B61D0713D6 /* bin */ = {
@@ -1597,6 +1713,14 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		BA23ED2CC9627FE6C9320885 /* MacOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				71D82769EE01BCE5B24C81DD /* Example */,
+			);
+			path = MacOSApp;
+			sourceTree = "<group>";
+		};
 		BA60D1436B8DBFB00167E84D /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1621,6 +1745,15 @@
 				3AC69858583169F87F19CEA0 /* Info.plist */,
 			);
 			path = watchOSApp;
+			sourceTree = "<group>";
+		};
+		BC3981D85D366BAB4FDA2EF6 /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				1E3E0F0BA567089975339568 /* BUILD */,
+				56DD7F7F52455D6F2C5FCC88 /* ExampleFramework.framework */,
+			);
+			path = third_party;
 			sourceTree = "<group>";
 		};
 		BD28C1FC199DD0952DD06323 /* iMessageApp */ = {
@@ -1693,6 +1826,7 @@
 				CF2E5F8D6C3660181D394F07 /* applebin_ios-ios_arm64-dbg-ST-ec1fe2b9cd5b */,
 				5A5A811BF5F66F76E15F0F48 /* applebin_ios-ios_x86_64-dbg-ST-f36cb6fd42a0 */,
 				27F41C7D4288937843D6E3E5 /* applebin_macos-darwin_x86_64-dbg-ST-0ee56dce8f77 */,
+				778247E92388349743FB292D /* applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c */,
 				0E7AF432E5EA4647E5D85754 /* applebin_tvos-tvos_arm64-dbg-ST-357261695a5c */,
 				8CED760FDF5D60548A6C1292 /* applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c */,
 				8562B717AE0A338980475C2D /* applebin_watchos-watchos_arm64_32-dbg-ST-9a4c12e75ccd */,
@@ -2288,6 +2422,25 @@
 			productReference = 8F49CCC488DBF944363A76E3 /* tvOSApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DEF15AA97EC0FE28A9A97CAA /* Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E80458017EA17FB5B672FEB /* Build configuration list for PBXNativeTarget "Example" */;
+			buildPhases = (
+				91A249C04A86079A36A5303D /* Copy Bazel Outputs */,
+				3C5F7018A60EE40574F4CDA0 /* Create link.params */,
+				F94B766A6F00B6427D27F290 /* Sources */,
+				6E426D209568E509FBE28076 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F96E438EF4C12858E3D604D /* PBXTargetDependency */,
+			);
+			name = Example;
+			productName = macOSApp;
+			productReference = B28790441A2C90C7FEA3E8DC /* macOSApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2355,6 +2508,10 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
+					DEF15AA97EC0FE28A9A97CAA = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 9999;
+					};
 				};
 			};
 			buildConfigurationList = 669B787A5412989389D7BAD5 /* Build configuration list for PBXProject "bwb" */;
@@ -2372,6 +2529,7 @@
 			targets = (
 				7E7D155EBCA520F35DEA3571 /* BazelDependencies */,
 				13A68B4984727F4B3DAE6AFB /* AppClip */,
+				DEF15AA97EC0FE28A9A97CAA /* Example */,
 				7A9D2A8E0409057861AEEA70 /* ExampleTests */,
 				1BE9F5CAE42CA37A7C4A53DB /* ExampleUITests */,
 				343F031FB3DF1E87C3568525 /* iMessageApp */,
@@ -2423,6 +2581,23 @@
 			showEnvVarsInLog = 0;
 		};
 		3814AF42FEC0097CAA68D5F7 /* Create link.params */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create link.params";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C5F7018A60EE40574F4CDA0 /* Create link.params */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2622,6 +2797,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91A249C04A86079A36A5303D /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"macOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
 			showEnvVarsInLog = 0;
 		};
 		933EA64A7FEF431404FA9A84 /* Create link.params */ = {
@@ -2925,6 +3117,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F94B766A6F00B6427D27F290 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7580DECA80F2D1A8E42ABF6 /* ContentView.swift in Sources */,
+				2196DDED7EEA63FE2919318E /* macOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA8942BDFBA5593578C14FAB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2995,6 +3196,12 @@
 			name = iMessageAppExtension;
 			target = 2BECDF067E07C69468ED23A3 /* iMessageAppExtension */;
 			targetProxy = A40CAEC89666382F3511FF88 /* PBXContainerItemProxy */;
+		};
+		5F96E438EF4C12858E3D604D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = DDD61C8C1CFA249BBE0E369C /* PBXContainerItemProxy */;
 		};
 		5FBF95324D58B98BB7A85AF5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3917,6 +4124,48 @@
 			};
 			name = Debug;
 		};
+		ED022D7827FA072088152A34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/MacOSApp/Example/Example.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/MacOSApp/Example";
+				BAZEL_TARGET_ID = "//examples/multiplatform/MacOSApp/Example:Example applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = NO;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = examples/multiplatform/MacOSApp/third_party;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/multiplatform/MacOSApp/Example/rules_xcodeproj/Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/examples/multiplatform/MacOSApp/Example/Example.link.params";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=examples/multiplatform/MacOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/multiplatform/MacOSApp/third_party -static";
+				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
+				PRODUCT_MODULE_NAME = iOSApp;
+				PRODUCT_NAME = macOSApp;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5;
+				TARGET_NAME = Example;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXEC_ROOT)",
+					"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin",
+				);
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3940,6 +4189,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DDF249A875A0AF7B6AB3D85 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4E80458017EA17FB5B672FEB /* Build configuration list for PBXNativeTarget "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED022D7827FA072088152A34 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
