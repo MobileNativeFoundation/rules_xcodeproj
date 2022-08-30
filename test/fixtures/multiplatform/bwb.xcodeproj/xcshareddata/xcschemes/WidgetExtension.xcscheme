@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "9999"
+   wasCreatedForAppExtension = "YES"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +15,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7240F14FDC7D44F04763E3E9"
-                     BuildableName = "watchOSApp.app"
-                     BlueprintName = "watchOSApp (Simulator)"
+                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
+                     BuildableName = "WidgetExtension.appex"
+                     BlueprintName = "WidgetExtension"
                      ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +26,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for watchOSApp (Simulator)"
+               title = "Set Bazel Build Output Groups for WidgetExtension"
                scriptText = "echo &quot;$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;echo &quot;$BAZEL_HOST_TARGET_ID_0&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7240F14FDC7D44F04763E3E9"
-                     BuildableName = "watchOSApp.app"
-                     BlueprintName = "watchOSApp (Simulator)"
+                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
+                     BuildableName = "WidgetExtension.appex"
+                     BlueprintName = "WidgetExtension"
                      ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +49,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "93A52EE4A33621501A177768"
+               BlueprintIdentifier = "1765D91CC168F25A5BC51603"
                BuildableName = "iOSApp.app"
-               BlueprintName = "iOSApp (Simulator)"
+               BlueprintName = "iOSApp"
                ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -62,9 +63,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7240F14FDC7D44F04763E3E9"
-               BuildableName = "watchOSApp.app"
-               BlueprintName = "watchOSApp (Simulator)"
+               BlueprintIdentifier = "06E3C912B8DE52D274641347"
+               BuildableName = "WidgetExtension.appex"
+               BlueprintName = "WidgetExtension"
                ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -81,25 +82,37 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
       launchStyle = "0"
+      askForAppToLaunch = "YES"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "2">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.springboard">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7240F14FDC7D44F04763E3E9"
-            BuildableName = "watchOSApp.app"
-            BlueprintName = "watchOSApp (Simulator)"
+            BlueprintIdentifier = "06E3C912B8DE52D274641347"
+            BuildableName = "WidgetExtension.appex"
+            BlueprintName = "WidgetExtension"
             ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1765D91CC168F25A5BC51603"
+            BuildableName = "iOSApp.app"
+            BlueprintName = "iOSApp"
+            ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "BUILD_WORKING_DIRECTORY"
@@ -123,9 +136,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7240F14FDC7D44F04763E3E9"
-            BuildableName = "watchOSApp.app"
-            BlueprintName = "watchOSApp (Simulator)"
+            BlueprintIdentifier = "06E3C912B8DE52D274641347"
+            BuildableName = "WidgetExtension.appex"
+            BlueprintName = "WidgetExtension"
             ReferencedContainer = "container:test/fixtures/multiplatform/bwb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
