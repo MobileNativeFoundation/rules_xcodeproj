@@ -116,29 +116,57 @@ targets.
     additional_generated = {}
     additional_outputs = {}
     for xcode_target in actual_targets:
-        target_additional_generated = []
+        additional_compiling_files = []
+        additional_linking_files = []
         for dependency in xcode_target.transitive_dependencies.to_list():
             unfocused_dependency = unfocused_targets.get(dependency)
             if not unfocused_dependency:
                 continue
-            unfocused_files = unfocused_dependency.inputs.unfocused_generated
-            if unfocused_files:
-                target_additional_generated.append(depset(unfocused_files))
+            unfocused_compiling_files = (
+                unfocused_dependency.inputs.unfocused_generated_compiling
+            )
+            unfocused_linking_files = (
+                unfocused_dependency.inputs.unfocused_generated_linking
+            )
+            if unfocused_compiling_files:
+                additional_compiling_files.append(
+                    depset(unfocused_compiling_files),
+                )
+            if additional_linking_files:
+                additional_compiling_files.append(
+                    depset(unfocused_linking_files),
+                )
+
+        coompiling_output_group_name = (
+            xcode_target.inputs.compiling_output_group_name
+        )
+        if coompiling_output_group_name:
+            set_if_true(
+                additional_generated,
+                coompiling_output_group_name,
+                additional_compiling_files,
+            )
 
         target_infoplists = infoplists.get(xcode_target.label)
         if target_infoplists:
             infoplists_depset = depset(target_infoplists)
-            target_additional_generated.append(infoplists_depset)
-            b_output_group_name = xcode_target.outputs.build_output_group_name
-            if b_output_group_name:
-                additional_outputs[b_output_group_name] = [infoplists_depset]
+            additional_linking_files.append(infoplists_depset)
+            products_output_group_name = (
+                xcode_target.outputs.products_output_group_name
+            )
+            if products_output_group_name:
+                additional_outputs[products_output_group_name] = (
+                    [infoplists_depset]
+                )
 
-        g_output_group_name = xcode_target.inputs.output_group_name
-        if g_output_group_name:
+        linking_output_group_name = (
+            xcode_target.inputs.linking_output_group_name
+        )
+        if linking_output_group_name:
             set_if_true(
                 additional_generated,
-                g_output_group_name,
-                target_additional_generated,
+                linking_output_group_name,
+                additional_linking_files,
             )
 
         is_unfocused_dependency = (
@@ -651,9 +679,12 @@ def _xcodeproj_impl(ctx):
     )
 
     if build_mode == "xcode":
-        all_targets_files = input_files_output_groups["all_generated_inputs"]
+        all_targets_files = [
+            input_files_output_groups["all_xc"],
+            input_files_output_groups["all_xl"],
+        ]
     else:
-        all_targets_files = output_files_output_groups["all_output_files"]
+        all_targets_files = [output_files_output_groups["all_b"]]
 
     return [
         DefaultInfo(
@@ -665,7 +696,9 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
-            all_targets = all_targets_files,
+            all_targets = depset(
+                transitive = all_targets_files,
+            ),
             **dicts.add(
                 input_files_output_groups,
                 output_files_output_groups,

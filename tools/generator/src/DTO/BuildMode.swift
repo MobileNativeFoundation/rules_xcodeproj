@@ -13,14 +13,25 @@ extension BuildMode {
         }
     }
 
-    var buildOutputGroupPrefix: String {
+    var buildOutputGroupPrefixes: String {
         switch self {
         case .xcode:
-            // Generated input files output groups
-            return "g"
+            // Inputs for compiling, inputs for linking
+            return "xc,xl"
         case .bazel:
-            // Output files output groups
-            return "b"
+            // Compiled outputs (i.e. swiftmodules) and products (i.e. bundles)
+            return "bc,bp"
+        }
+    }
+
+    var indexBuildOutputGroupPrefixes: String {
+        switch self {
+        case .xcode:
+            // Inputs for compiling
+            return "xc"
+        case .bazel:
+            // Compiled outputs (i.e. swiftmodules)
+            return "bc"
         }
     }
 

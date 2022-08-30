@@ -254,7 +254,7 @@ EOF
         let indexBuildNoOutputGroups: String
         if buildMode == .xcode {
             indexBuildNoOutputGroups = #"""
-    output_groups=("all_generated_inputs")
+    output_groups=("all_xc")
 """#
 
             let roots = try targets
@@ -315,9 +315,9 @@ readonly base_objroot="${non_preview_objroot/\/$index_dir_name\/Build\/Intermedi
 readonly scheme_target_ids_file="$non_preview_objroot/scheme_target_ids"
 
 if [ "$ACTION" == "indexbuild" ]; then
-  readonly output_group_prefix=i
+  readonly output_group_prefixes=\#(buildMode.indexBuildOutputGroupPrefixes)
 else
-  readonly output_group_prefix=\#(buildMode.buildOutputGroupPrefix)
+  readonly output_group_prefixes=\#(buildMode.buildOutputGroupPrefixes)
 fi
 
 # We need to read from `$output_groups_file` as soon as possible, as concurrent
@@ -325,10 +325,11 @@ fi
 # nature of it
 IFS=$'\n' read -r -d '' -a output_groups < \
   <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
+       "$ACTION" \
        "$non_preview_objroot" \
        "$base_objroot" \
        "$scheme_target_ids_file" \
-       $output_group_prefix \
+       $output_group_prefixes \
        && printf '\0' )
 
 if [ -z "${output_groups:-}" ]; then
