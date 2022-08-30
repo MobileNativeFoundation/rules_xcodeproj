@@ -90,6 +90,7 @@ swift_library(
     }),
     module_name = "iOSApp",
     tags = ["manual"],
+    visibility = ["//visibility:public"],
     deps = [
         "//examples/multiplatform/Lib",
         "@com_google_google_maps//:GoogleMaps",

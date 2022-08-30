@@ -118,6 +118,24 @@
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Test/UnitTests/rules_xcodeproj/ExampleTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
+        "examples/multiplatform/watchOSApp/Tests/UITests/BUILD",
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/rules_xcodeproj/UITests.__internal__.__test_bundle/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256/bin/examples/multiplatform/watchOSAppExtension/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
+            "t": "g"
+        },
+        "examples/multiplatform/watchOSAppExtension/Tests/UnitTests/BUILD",
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/rules_xcodeproj/UnitTests.__internal__.__test_bundle/Info.plist",
+            "t": "g"
+        },
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
             "t": "e"
@@ -193,7 +211,11 @@
         "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb",
         "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests",
         "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb",
-        "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests"
+        "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests",
+        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests",
+        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests"
     ],
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [
@@ -279,6 +301,14 @@
         [
             "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb"
         ],
+        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+        [
+            "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420"
+        ],
+        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+        [
+            "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420"
+        ],
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08",
         [
             "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08"
@@ -286,6 +316,10 @@
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
         [
             "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420"
+        ],
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434",
+        [
+            "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256"
         ]
     ],
     "targets": [
@@ -1219,6 +1253,93 @@
                     ".",
                     {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
+                "PRODUCT_MODULE_NAME": "Lib",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434",
+            "inputs": {
+                "srcs": [
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/Lib.swift",
+                        "t": "g"
+                    }
+                ]
+            },
+            "label": "//examples/multiplatform/Lib:Lib",
+            "modulemaps": [
+                {
+                    "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
+                    "t": "e"
+                }
+            ],
+            "name": "Lib",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/Lib.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/Lib.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchsimulator"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "Lib",
+                "path": {
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/libLib.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin",
                         "t": "g"
                     }
                 ]
@@ -3521,6 +3642,149 @@
                 }
             ]
         },
+        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+        {
+            "build_settings": {
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watchTests",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+            "dependencies": [
+                "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+                "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-6c26b30d77f4"
+            ],
+            "info_plist": {
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/rules_xcodeproj/UITests.__internal__.__test_bundle/Info.plist",
+                "t": "g"
+            },
+            "is_swift": false,
+            "is_testonly": true,
+            "label": "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.__internal__.__test_bundle",
+            "linker_inputs": {
+                "linkopts": [
+                    "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITestsLibrary.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/libUITests.library.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "name": "UITests.__internal__.__test_bundle",
+            "outputs": {
+                "p": {
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITests.__internal__.__test_bundle.zip",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchsimulator"
+            },
+            "product": {
+                "executable_name": "UITests",
+                "name": "UITests",
+                "path": {
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITests.__internal__.__test_bundle_archive-root/UITests.xctest",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.bundle.ui-testing"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "test_host": "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-6c26b30d77f4"
+        },
+        "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PRODUCT_MODULE_NAME": "UITestsLibrary",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+            "inputs": {
+                "srcs": [
+                    "examples/multiplatform/watchOSApp/Tests/UITests/WatchOSAppUITests.swift",
+                    "examples/multiplatform/watchOSApp/Tests/UITests/WatchOSAppUITestsLaunchTests.swift"
+                ]
+            },
+            "is_testonly": true,
+            "label": "//examples/multiplatform/watchOSApp/Tests/UITests:UITests.library",
+            "name": "UITests.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITestsLibrary.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITestsLibrary.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/UITestsLibrary.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchsimulator"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "UITests.library",
+                "path": {
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSApp/Tests/UITests/libUITests.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
         "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-6ed25bb2f15f",
         {
             "build_settings": {
@@ -3663,6 +3927,171 @@
                     }
                 ]
             }
+        },
+        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+        {
+            "build_settings": {
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+            "dependencies": [
+                "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420"
+            ],
+            "info_plist": {
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/rules_xcodeproj/UnitTests.__internal__.__test_bundle/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "examples/multiplatform/watchOSAppExtension/PreviewContent/Preview Assets.xcassets",
+                    "examples/multiplatform/watchOSAppExtension/Assets.xcassets"
+                ]
+            },
+            "is_swift": false,
+            "is_testonly": true,
+            "label": "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.__internal__.__test_bundle",
+            "linker_inputs": {
+                "linkopts": [
+                    "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTestsLibrary.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/libUnitTests.library.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "name": "UnitTests.__internal__.__test_bundle",
+            "outputs": {
+                "p": {
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTests.__internal__.__test_bundle.zip",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchsimulator"
+            },
+            "product": {
+                "executable_name": "UnitTests",
+                "name": "UnitTests",
+                "path": {
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTests.__internal__.__test_bundle_archive-root/UnitTests.xctest",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.bundle.unit-test"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PRODUCT_MODULE_NAME": "UnitTestsLibrary",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420",
+            "dependencies": [
+                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256"
+            ],
+            "inputs": {
+                "srcs": [
+                    "examples/multiplatform/watchOSAppExtension/Tests/UnitTests/WatchOSAppExtensionTests.swift"
+                ]
+            },
+            "is_testonly": true,
+            "label": "//examples/multiplatform/watchOSAppExtension/Tests/UnitTests:UnitTests.library",
+            "modulemaps": [
+                {
+                    "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
+                    "t": "e"
+                }
+            ],
+            "name": "UnitTests.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTestsLibrary.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTestsLibrary.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/UnitTestsLibrary.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchsimulator"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "UnitTests.library",
+                "path": {
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension/Tests/UnitTests/libUnitTests.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule",
+                    "t": "g"
+                }
+            ]
         },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08",
         {
@@ -3877,6 +4306,112 @@
                 ]
             }
         },
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256",
+        {
+            "build_settings": {
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256",
+            "dependencies": [
+                "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434"
+            ],
+            "info_plist": {
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256/bin/examples/multiplatform/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "examples/multiplatform/watchOSAppExtension/PreviewContent/Preview Assets.xcassets",
+                    "examples/multiplatform/watchOSAppExtension/Assets.xcassets"
+                ]
+            },
+            "is_swift": false,
+            "label": "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "force_load": [
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "name": "watchOSAppExtension",
+            "outputs": {
+                "p": {
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.zip",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256/bin/examples/multiplatform/watchOSAppExtension",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchsimulator"
+            },
+            "product": {
+                "executable_name": "watchOSAppExtension",
+                "name": "watchOSAppExtension",
+                "path": {
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.watchkit2-extension"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-53c47268a256/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
         "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08",
         {
             "build_settings": {
@@ -4061,6 +4596,100 @@
             "swiftmodules": [
                 {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/Lib/Lib.swiftmodule",
+                    "t": "g"
+                }
+            ]
+        },
+        "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
+                "PRODUCT_MODULE_NAME": "watchOSAppExtension",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434",
+            "dependencies": [
+                "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434"
+            ],
+            "inputs": {
+                "srcs": [
+                    "examples/multiplatform/watchOSAppExtension/ContentView.swift",
+                    "examples/multiplatform/watchOSAppExtension/watchOSApp.swift"
+                ]
+            },
+            "label": "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library",
+            "modulemaps": [
+                {
+                    "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
+                    "t": "e"
+                }
+            ],
+            "name": "watchOSAppExtension.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/watchOSAppExtension/watchOSAppExtension.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/watchOSAppExtension",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchsimulator"
+            },
+            "product": {
+                "executable_name": null,
+                "name": "watchOSAppExtension.library",
+                "path": {
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/watchOSAppExtension/libwatchOSAppExtension.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-4b45690dd434/bin/examples/multiplatform/Lib/Lib.swiftmodule",
                     "t": "g"
                 }
             ]
