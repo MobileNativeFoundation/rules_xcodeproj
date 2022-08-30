@@ -33,9 +33,9 @@ final class CreateProjectTests: XCTestCase {
                 "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
-                "BAZEL_WORKSPACE_DIRECTORY": "$(SRCROOT)",
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
+                "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
@@ -145,8 +145,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
                 "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
-                "BAZEL_WORKSPACE_DIRECTORY": "$(SRCROOT)",
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
+                "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
