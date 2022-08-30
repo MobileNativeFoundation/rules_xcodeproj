@@ -3288,6 +3288,7 @@
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-6ed25bb2f15f/bin/examples/multiplatform/watchOSApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-6c26b30d77f4";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-6ed25bb2f15f";
+				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
@@ -3340,6 +3341,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/iMessageApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -3383,8 +3385,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb";
+				"BAZEL_COMPILE_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Test/UnitTests";
 				BAZEL_TARGET_ID = "//examples/multiplatform/tvOSApp/Test/UnitTests:ExampleTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb";
+				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -3438,10 +3443,14 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/iOSApp:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/iOSApp:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-1b4223f3338c";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/iOSApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-1b4223f3338c/bin/examples/multiplatform/iOSApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-1b4223f3338c";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
@@ -3520,10 +3529,14 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-1b4223f3338c";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/AppClip";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-1b4223f3338c/bin/examples/multiplatform/AppClip";
 				BAZEL_TARGET_ID = "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/AppClip:AppClip applebin_ios-ios_arm64-dbg-ST-1b4223f3338c";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/AppClip/Entitlements.withbundleid.plist";
@@ -3592,10 +3605,14 @@
 				APPLETVSIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework";
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb";
+				"BAZEL_COMPILE_TARGET_ID[sdk=appletvos*]" = "//examples/multiplatform/tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-7839a2751710";
+				"BAZEL_COMPILE_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-7839a2751710/bin/examples/multiplatform/tvOSApp/Source";
 				BAZEL_TARGET_ID = "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb";
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//examples/multiplatform/tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-7839a2751710";
+				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=appletvos*]" = Automatic;
@@ -3666,6 +3683,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//examples/multiplatform/Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-7839a2751710";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "//examples/multiplatform/Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-1b4223f3338c";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -3735,6 +3753,7 @@
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08/bin/examples/multiplatform/Lib";
 				BAZEL_TARGET_ID = "//examples/multiplatform/Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "//examples/multiplatform/Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08";
+				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -3780,8 +3799,11 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/macOSApp/Example:Example.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c";
+				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/multiplatform/macOSApp/Example";
 				BAZEL_TARGET_ID = "//examples/multiplatform/macOSApp/Example:Example applebin_macos-darwin_x86_64-dbg-ST-450091386d5c";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -3861,8 +3883,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/Tool:Tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-8143dd6ed004";
+				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-8143dd6ed004/bin/examples/multiplatform/Tool";
 				BAZEL_TARGET_ID = "//examples/multiplatform/Tool:Tool applebin_macos-darwin_x86_64-dbg-ST-8143dd6ed004";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
@@ -3896,12 +3921,16 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420";
+				"BAZEL_COMPILE_TARGET_ID[sdk=watchos*]" = "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08";
+				"BAZEL_COMPILE_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_HOST_TARGET_ID_0 = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-6c26b30d77f4";
 				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "//examples/multiplatform/watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-6ed25bb2f15f";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/multiplatform/watchOSAppExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08/bin/examples/multiplatform/watchOSAppExtension";
 				BAZEL_TARGET_ID = "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "//examples/multiplatform/watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08";
+				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
@@ -3963,8 +3992,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb";
+				"BAZEL_COMPILE_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb/bin/examples/multiplatform/tvOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "//examples/multiplatform/tvOSApp/Test/UITests:ExampleUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb";
+				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
@@ -4002,12 +4034,16 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-1b4223f3338c";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_HOST_TARGET_ID_0 = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
 				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//examples/multiplatform/iOSApp:iOSApp applebin_ios-ios_arm64-dbg-ST-1b4223f3338c";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/WidgetExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-1b4223f3338c/bin/examples/multiplatform/WidgetExtension";
 				BAZEL_TARGET_ID = "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//examples/multiplatform/WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-1b4223f3338c";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
@@ -4071,9 +4107,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//examples/multiplatform/iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_HOST_TARGET_ID_0 = "//examples/multiplatform/iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-132246d86df4/bin/examples/multiplatform/iMessageApp";
 				BAZEL_TARGET_ID = "//examples/multiplatform/iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-ST-132246d86df4";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;

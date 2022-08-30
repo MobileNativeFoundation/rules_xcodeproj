@@ -225,7 +225,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         buildSettings.set("ARCHS", to: target.platform.arch)
-        buildSettings.set("BAZEL_PACKAGE_BIN_DIR", to: target.packageBinDir.string)
+        buildSettings.set(
+            "BAZEL_PACKAGE_BIN_DIR",
+            to: target.packageBinDir.string
+        )
         buildSettings.set("BAZEL_TARGET_ID", to: id.rawValue)
         buildSettings.set("PRODUCT_NAME", to: target.product.name)
         buildSettings.set("SDKROOT", to: target.platform.os.sdkRoot)
@@ -234,6 +237,13 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             to: target.platform.variant.rawValue
         )
         buildSettings.set("TARGET_NAME", to: target.name)
+
+        if let compileTargetID = target.compileTargetID {
+            buildSettings.set(
+                "BAZEL_COMPILE_TARGET_ID",
+                to: compileTargetID.rawValue
+            )
+        }
 
         buildSettings.set(
             target.platform.os.deploymentTargetBuildSettingKey,
@@ -744,7 +754,8 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
                 ]
 
             guard
-                let (_, first) = remainingConditionalBuildSettings.popFirst()
+                let (firstCondition, first) = remainingConditionalBuildSettings
+                    .popFirst()
             else {
                 continue
             }
@@ -752,6 +763,17 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
             // Set the base value to `.any` or the most preferable condition
             // (i.e. Simulator or Apple Silicon)
             buildSettings[key] = first
+
+            // Set `BAZEL_{COMPILE_,}TARGET_ID` for first condition, for
+            // buildRequest handling
+            if Set(["BAZEL_TARGET_ID", "BAZEL_COMPILE_TARGET_ID"])
+                .contains(key)
+            {
+                buildSettings.set(
+                    firstCondition.conditionalize(key),
+                    to: "$(\(key))"
+                )
+            }
 
             for (condition, buildSetting) in remainingConditionalBuildSettings {
                 guard buildSetting != first else {

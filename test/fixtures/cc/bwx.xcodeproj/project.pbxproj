@@ -510,6 +510,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a93f0e642138/bin/examples/cc/lib";
 				BAZEL_TARGET_ID = "//examples/cc/lib:lib_impl darwin_x86_64-dbg-ST-a93f0e642138";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -629,6 +630,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a93f0e642138/bin/examples/cc/lib2";
 				BAZEL_TARGET_ID = "//examples/cc/lib2:lib_impl darwin_x86_64-dbg-ST-a93f0e642138";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -695,6 +697,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a93f0e642138/bin/examples/cc/tool";
 				BAZEL_TARGET_ID = "//examples/cc/tool:tool darwin_x86_64-dbg-ST-a93f0e642138";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -772,6 +775,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a93f0e642138/bin/external/examples_cc_external";
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-a93f0e642138";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;

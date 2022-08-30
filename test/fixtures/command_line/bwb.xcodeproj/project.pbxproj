@@ -1025,9 +1025,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//examples/command_line/Tests:LibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/Tests/LibSwiftTests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/Tests";
 				BAZEL_TARGET_ID = "//examples/command_line/Tests:LibSwiftTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1072,6 +1075,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib";
 				BAZEL_TARGET_ID = "//examples/command_line/lib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -1100,6 +1104,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib";
 				BAZEL_TARGET_ID = "//examples/command_line/lib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -1142,6 +1147,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib";
 				BAZEL_TARGET_ID = "//examples/command_line/lib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1223,9 +1229,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//examples/command_line/tool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/tool/tool";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/tool";
 				BAZEL_TARGET_ID = "//examples/command_line/tool:tool applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1375,6 +1384,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/swift_c_module";
 				BAZEL_TARGET_ID = "//examples/command_line/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1432,6 +1442,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804/bin/examples/command_line/lib";
 				BAZEL_TARGET_ID = "//examples/command_line/lib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-757525382804";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;

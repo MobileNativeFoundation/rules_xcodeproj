@@ -9,6 +9,7 @@ extension Target {
     static func mock(
         label: BazelLabel? = nil,
         configuration: String = "a1b2c",
+        compileTargetID: TargetID? = nil,
         packageBinDir: Path = "bazel-out/a1b2c/some/package",
         platform: Platform? = nil,
         product: Product,
@@ -34,6 +35,7 @@ extension Target {
             name: product.name,
             label: label ?? .init(nilIfInvalid: "//some/package:\(product.name)")!,
             configuration: configuration,
+            compileTargetID: compileTargetID,
             packageBinDir: packageBinDir,
             platform: platform ?? .macOS(),
             product: product,

@@ -175,6 +175,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a93f0e642138/bin/examples/simple";
 				BAZEL_TARGET_ID = "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-a93f0e642138";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;

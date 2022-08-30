@@ -1326,6 +1326,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/TestingUtils";
 				BAZEL_TARGET_ID = "//TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -1354,9 +1355,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//ExampleObjcTests:ExampleObjcTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/ExampleObjcTests/ExampleObjcTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/ExampleObjcTests";
 				BAZEL_TARGET_ID = "//ExampleObjcTests:ExampleObjcTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1476,9 +1480,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//ExampleUITests:ExampleUITests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/ExampleUITests/ExampleUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/ExampleUITests";
 				BAZEL_TARGET_ID = "//ExampleUITests:ExampleUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
@@ -1517,9 +1524,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//ExampleTests:ExampleTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/ExampleTests/ExampleTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/ExampleTests";
 				BAZEL_TARGET_ID = "//ExampleTests:ExampleTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -1569,6 +1579,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/CoreUtilsObjC";
 				BAZEL_TARGET_ID = "//CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1665,6 +1676,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/Utils";
 				BAZEL_TARGET_ID = "//Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1811,6 +1823,7 @@
 				ARCHS = x86_64;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/external/FXPageControl";
 				BAZEL_TARGET_ID = "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1903,9 +1916,12 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BAZEL_COMPILE_TARGET_ID = "//Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/Example/Example.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-80b7926e333b/bin/Example";
 				BAZEL_TARGET_ID = "//Example:Example applebin_ios-ios_x86_64-dbg-ST-80b7926e333b";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ENTITLEMENTS = Example/app.entitlements;
 				CODE_SIGN_STYLE = Manual;
