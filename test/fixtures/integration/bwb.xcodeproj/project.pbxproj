@@ -472,7 +472,6 @@
 		A67D05E20727DC46E8FA4A1B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		A7A9E9B9B4B299161719D17D /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
 		A932896928FD2AE23803E120 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AA058F8F0278F162A7DF81F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA619991C2376C7B4810B780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA8B40F3394AF193E0043C9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		AD7B1E2294A1539647E04002 /* tvOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -510,6 +509,7 @@
 		D92D6B1D89C449CD0E42B11B /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		DE9465742C07DE3246869620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DF03F737A788368DEB36E53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E0600491B672467EFC98D231 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E10745F09232675D63BD0CBF /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
 		E25AB0992362AE2E4F48AF2D /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		E332411DCE28305063274CDF /* iMessageAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMessageAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1019,14 +1019,6 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
-		40D8A5D90C9C26C92E87DB06 /* macOSApp */ = {
-			isa = PBXGroup;
-			children = (
-				9D3DA5B4976CD79AF4EA23E1 /* Test */,
-			);
-			path = macOSApp;
-			sourceTree = "<group>";
-		};
 		43015743B215F51F0CA257FD /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1266,6 +1258,14 @@
 			path = "ios-arm64_i386_x86_64-simulator";
 			sourceTree = "<group>";
 		};
+		60E457D4EB1E041E893881E2 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				E18459F01071A2D808A6137F /* macOSAppUITests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		61857F185390B577E57CD42A /* integration */ = {
 			isa = PBXGroup;
 			children = (
@@ -1297,14 +1297,6 @@
 				0229FF45F5E1334B9B190452 /* Info.plist */,
 			);
 			path = watchOSApp;
-			sourceTree = "<group>";
-		};
-		62DBEBDB25292EC9BF9BAFB3 /* macOSAppUITests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				AA058F8F0278F162A7DF81F1 /* Info.plist */,
-			);
-			path = macOSAppUITests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		64BBB27A5AD7DFDCDB01AA97 /* tvos-arm64 */ = {
@@ -1365,14 +1357,6 @@
 				7B0C4B4B4881922567680444 /* Info.plist */,
 			);
 			path = iMessageApp;
-			sourceTree = "<group>";
-		};
-		6C52BE6AA03FFBA889217D92 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				62DBEBDB25292EC9BF9BAFB3 /* macOSAppUITests.__internal__.__test_bundle */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		6C88E07E88D234597BB1FAEA /* Test */ = {
@@ -1475,14 +1459,6 @@
 			path = UITests;
 			sourceTree = "<group>";
 		};
-		778247E92388349743FB292D /* applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c */ = {
-			isa = PBXGroup;
-			children = (
-				887960979D9C7A3819E029DC /* bin */,
-			);
-			path = "applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c";
-			sourceTree = "<group>";
-		};
 		7948C28D9EADC4FA76F8D460 /* WidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1556,22 +1532,6 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
-		887960979D9C7A3819E029DC /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				896EAA92C75EEA3E61431FA6 /* examples */,
-			);
-			path = bin;
-			sourceTree = "<group>";
-		};
-		896EAA92C75EEA3E61431FA6 /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				C75FDCACFE12E0533A6EB56C /* integration */,
-			);
-			path = examples;
-			sourceTree = "<group>";
-		};
 		8A3FD8E1B1D71E8AE6521F6E /* integration */ = {
 			isa = PBXGroup;
 			children = (
@@ -1612,6 +1572,14 @@
 				01FB9360D1AACB8E95693C95 /* Tool */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		8C32ECD706E90EC0744B4895 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				E1B591D8E15069158FAB407D /* UITests */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		8C8DADAE97FBA2E049CD1A49 /* rules_xcodeproj */ = {
@@ -1737,14 +1705,6 @@
 				8EC75FBA73E9671DF59450E2 /* BUILD */,
 			);
 			path = integration;
-			sourceTree = "<group>";
-		};
-		9D3DA5B4976CD79AF4EA23E1 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				E4276A5BBCE8215AB2FF355E /* UITests */,
-			);
-			path = Test;
 			sourceTree = "<group>";
 		};
 		9F03D05E9C732CD895B720E1 /* GoogleMaps.framework */ = {
@@ -1989,6 +1949,7 @@
 			isa = PBXGroup;
 			children = (
 				81905295EFF5A578FE79C570 /* Source */,
+				8C32ECD706E90EC0744B4895 /* Test */,
 			);
 			path = macOSApp;
 			sourceTree = "<group>";
@@ -2048,7 +2009,6 @@
 				5A5A811BF5F66F76E15F0F48 /* applebin_ios-ios_x86_64-dbg-ST-f36cb6fd42a0 */,
 				27F41C7D4288937843D6E3E5 /* applebin_macos-darwin_x86_64-dbg-ST-0ee56dce8f77 */,
 				F9F27ADA1A933C84884F305F /* applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7 */,
-				778247E92388349743FB292D /* applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c */,
 				0E7AF432E5EA4647E5D85754 /* applebin_tvos-tvos_arm64-dbg-ST-357261695a5c */,
 				8CED760FDF5D60548A6C1292 /* applebin_tvos-tvos_x86_64-dbg-ST-fc698be45e1c */,
 				8562B717AE0A338980475C2D /* applebin_watchos-watchos_arm64_32-dbg-ST-9a4c12e75ccd */,
@@ -2073,14 +2033,6 @@
 				8C8DADAE97FBA2E049CD1A49 /* rules_xcodeproj */,
 			);
 			path = iMessageApp;
-			sourceTree = "<group>";
-		};
-		C75FDCACFE12E0533A6EB56C /* integration */ = {
-			isa = PBXGroup;
-			children = (
-				40D8A5D90C9C26C92E87DB06 /* macOSApp */,
-			);
-			path = integration;
 			sourceTree = "<group>";
 		};
 		C97B88D412323DB59FB9A94F /* watchOSAppExtension */ = {
@@ -2229,6 +2181,22 @@
 			path = integration;
 			sourceTree = "<group>";
 		};
+		E18459F01071A2D808A6137F /* macOSAppUITests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				E0600491B672467EFC98D231 /* Info.plist */,
+			);
+			path = macOSAppUITests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
+		E1B591D8E15069158FAB407D /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				60E457D4EB1E041E893881E2 /* rules_xcodeproj */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
 		E1E334A67815E03BB8EDDC08 /* applebin_watchos-watchos_x86_64-dbg-ST-461d90178fcd */ = {
 			isa = PBXGroup;
 			children = (
@@ -2243,14 +2211,6 @@
 				D09112779FC87F46E6AB1459 /* integration */,
 			);
 			path = examples;
-			sourceTree = "<group>";
-		};
-		E4276A5BBCE8215AB2FF355E /* UITests */ = {
-			isa = PBXGroup;
-			children = (
-				6C52BE6AA03FFBA889217D92 /* rules_xcodeproj */,
-			);
-			path = UITests;
 			sourceTree = "<group>";
 		};
 		E62829933EAD27504A1ABD51 /* Source */ = {
@@ -4482,11 +4442,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c";
+				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/integration/macOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7/bin/examples/integration/macOSApp/Test/UITests";
+				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -4497,9 +4457,9 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/examples/integration/macOSApp/Test/UITests/macOSAppUITests.link.params";
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7/examples/integration/macOSApp/Test/UITests/macOSAppUITests.link.params";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.macosapp.uitests;
@@ -4515,7 +4475,7 @@
 				TEST_TARGET_NAME = macOSApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7/bin",
 				);
 			};
 			name = Debug;
