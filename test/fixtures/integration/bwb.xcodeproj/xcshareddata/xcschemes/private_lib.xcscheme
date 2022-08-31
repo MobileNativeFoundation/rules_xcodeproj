@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "92F2759EFF02B65CC2F3D56A"
-                     BuildableName = "lib_impl (4d0a7)"
-                     BlueprintName = "lib_impl (4d0a7)"
-                     ReferencedContainer = "container:test/fixtures/integration/bwx.xcodeproj">
+                     BlueprintIdentifier = "EAFF1E96A87B75E6BA080719"
+                     BuildableName = "private_lib"
+                     BlueprintName = "private_lib"
+                     ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -25,15 +25,15 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for lib_impl (4d0a7)"
+               title = "Set Bazel Build Output Groups for private_lib"
                scriptText = "echo &quot;$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "92F2759EFF02B65CC2F3D56A"
-                     BuildableName = "lib_impl (4d0a7)"
-                     BlueprintName = "lib_impl (4d0a7)"
-                     ReferencedContainer = "container:test/fixtures/integration/bwx.xcodeproj">
+                     BlueprintIdentifier = "EAFF1E96A87B75E6BA080719"
+                     BuildableName = "private_lib"
+                     BlueprintName = "private_lib"
+                     ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -48,10 +48,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92F2759EFF02B65CC2F3D56A"
-               BuildableName = "lib_impl (4d0a7)"
-               BlueprintName = "lib_impl (4d0a7)"
-               ReferencedContainer = "container:test/fixtures/integration/bwx.xcodeproj">
+               BlueprintIdentifier = "EAFF1E96A87B75E6BA080719"
+               BuildableName = "private_lib"
+               BlueprintName = "private_lib"
+               ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

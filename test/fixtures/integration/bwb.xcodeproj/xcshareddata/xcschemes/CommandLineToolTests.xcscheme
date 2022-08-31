@@ -15,7 +15,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "5826810F86C049E80D55353A"
-                     BuildableName = "CommandLineToolTests"
+                     BuildableName = "CommandLineToolTests.xctest"
                      BlueprintName = "CommandLineToolTests"
                      ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
                   </BuildableReference>
@@ -31,7 +31,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "5826810F86C049E80D55353A"
-                     BuildableName = "CommandLineToolTests"
+                     BuildableName = "CommandLineToolTests.xctest"
                      BlueprintName = "CommandLineToolTests"
                      ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
                   </BuildableReference>
@@ -49,7 +49,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5826810F86C049E80D55353A"
-               BuildableName = "CommandLineToolTests"
+               BuildableName = "CommandLineToolTests.xctest"
                BlueprintName = "CommandLineToolTests"
                ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
             </BuildableReference>
@@ -61,9 +61,40 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "NO">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5826810F86C049E80D55353A"
+            BuildableName = "CommandLineToolTests.xctest"
+            BlueprintName = "CommandLineToolTests"
+            ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5826810F86C049E80D55353A"
+               BuildableName = "CommandLineToolTests.xctest"
+               BlueprintName = "CommandLineToolTests"
+               ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(BUILT_PRODUCTS_DIR)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -76,6 +107,27 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5826810F86C049E80D55353A"
+            BuildableName = "CommandLineToolTests.xctest"
+            BlueprintName = "CommandLineToolTests"
+            ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(BUILT_PRODUCTS_DIR)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"

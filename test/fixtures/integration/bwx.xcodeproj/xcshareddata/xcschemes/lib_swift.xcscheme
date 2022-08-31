@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "F41C4D179947CC8484EB1B68"
-                     BuildableName = "c_lib (5e4f2)"
-                     BlueprintName = "c_lib (5e4f2)"
-                     ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
+                     BlueprintIdentifier = "195FCD65F4EB377830E3E996"
+                     BuildableName = "lib_swift"
+                     BlueprintName = "lib_swift"
+                     ReferencedContainer = "container:test/fixtures/integration/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -25,15 +25,15 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for c_lib (5e4f2)"
+               title = "Set Bazel Build Output Groups for lib_swift"
                scriptText = "echo &quot;$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "F41C4D179947CC8484EB1B68"
-                     BuildableName = "c_lib (5e4f2)"
-                     BlueprintName = "c_lib (5e4f2)"
-                     ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
+                     BlueprintIdentifier = "195FCD65F4EB377830E3E996"
+                     BuildableName = "lib_swift"
+                     BlueprintName = "lib_swift"
+                     ReferencedContainer = "container:test/fixtures/integration/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -48,10 +48,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F41C4D179947CC8484EB1B68"
-               BuildableName = "c_lib (5e4f2)"
-               BlueprintName = "c_lib (5e4f2)"
-               ReferencedContainer = "container:test/fixtures/integration/bwb.xcodeproj">
+               BlueprintIdentifier = "195FCD65F4EB377830E3E996"
+               BuildableName = "lib_swift"
+               BlueprintName = "lib_swift"
+               ReferencedContainer = "container:test/fixtures/integration/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
