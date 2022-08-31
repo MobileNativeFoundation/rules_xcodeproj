@@ -2,6 +2,7 @@
 
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
+    "AppleBinaryInfo",
     "AppleBundleInfo",
 )
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
@@ -41,6 +42,9 @@ def _should_skip_target(*, ctx, target):
     Returns:
         `True` if `target` should be skipped for target generation.
     """
+    if AppleBinaryInfo in target and "deps" not in dir(ctx.rule.attr):
+        return True
+
     return targets.is_test_bundle(
         target = target,
         deps = getattr(ctx.rule.attr, "deps", None),
