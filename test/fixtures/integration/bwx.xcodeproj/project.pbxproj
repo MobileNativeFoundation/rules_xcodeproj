@@ -568,6 +568,7 @@
 		5F99A7D79C5DEADA3086ADE2 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		60DE0E8C2F7A6546F4339850 /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
 		6317914598F88833C27BF95E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6394DCADD4F14CF72CE46173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		68652C7445FC8000318F2652 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6D5888B4265C8D0E4116A28F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		714F4CDA20A0822521C3B389 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
@@ -627,7 +628,6 @@
 		CD4F1AA94FD7CEE74CDD4300 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CED34C264D5F93F1B52D2A31 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		D414344F3A06519105B24ABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D47E9315463DF1962DB167A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D505FD2382216B171E84468D /* watchOSAppExtensionUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watchOSAppExtensionUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D632B7FA5241FA8F757E2832 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D76D2C3E02897E2ED28A8958 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -743,6 +743,14 @@
 				95A5CEC36DFCD8E9405557B7 /* CryptoSwift.framework */,
 			);
 			path = "watchos-arm64_32_armv7k";
+			sourceTree = "<group>";
+		};
+		0100FFC2C89DC1844A0E30A2 /* macOSAppUITests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				6394DCADD4F14CF72CE46173 /* Info.plist */,
+			);
+			path = macOSAppUITests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		011BA068342BDB69121D369A /* bin */ = {
@@ -879,14 +887,6 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		0F2E66600E8E937B4066DF8D /* macOSApp */ = {
-			isa = PBXGroup;
-			children = (
-				6DFD37806DD7D498B5307BB7 /* Test */,
-			);
-			path = macOSApp;
-			sourceTree = "<group>";
-		};
 		115CDDCB3D71532F4A370DEF /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -987,12 +987,12 @@
 			path = CryptoSwift.xcframework;
 			sourceTree = "<group>";
 		};
-		23F4D72FE3F19F18B301C7E7 /* rules_xcodeproj */ = {
+		22393B281FDA1CE067414563 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				8E4C7AE5DEF2182B0BB9629A /* macOSAppUITests.__internal__.__test_bundle */,
+				F4AB001AC1E8994A67836849 /* UITests */,
 			);
-			path = rules_xcodeproj;
+			path = Test;
 			sourceTree = "<group>";
 		};
 		2448375ACB1448B810929F3A /* watchOSAppExtension */ = {
@@ -1092,6 +1092,7 @@
 			isa = PBXGroup;
 			children = (
 				AFAE576447B7A42CA3DDBDFC /* Source */,
+				22393B281FDA1CE067414563 /* Test */,
 			);
 			path = macOSApp;
 			sourceTree = "<group>";
@@ -1546,14 +1547,6 @@
 			path = watchOSAppExtension;
 			sourceTree = "<group>";
 		};
-		6DFD37806DD7D498B5307BB7 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				817698FF9792D6387BC2924F /* UITests */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
 		7044B8807E0979EF35957266 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1695,14 +1688,6 @@
 			path = PreviewContent;
 			sourceTree = "<group>";
 		};
-		817698FF9792D6387BC2924F /* UITests */ = {
-			isa = PBXGroup;
-			children = (
-				23F4D72FE3F19F18B301C7E7 /* rules_xcodeproj */,
-			);
-			path = UITests;
-			sourceTree = "<group>";
-		};
 		81AD65B873210ABF8B4C0134 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1805,28 +1790,12 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		8E4C7AE5DEF2182B0BB9629A /* macOSAppUITests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				D47E9315463DF1962DB167A5 /* Info.plist */,
-			);
-			path = macOSAppUITests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
 		90EFA2E5B01DC8C1210A0B70 /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb */ = {
 			isa = PBXGroup;
 			children = (
 				ABD996A64F8B6450D584ED92 /* bin */,
 			);
 			path = "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb";
-			sourceTree = "<group>";
-		};
-		94D1B7341B8C79F3FB26AB46 /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				BE30BAD8C3568289DE59BE84 /* integration */,
-			);
-			path = examples;
 			sourceTree = "<group>";
 		};
 		96158888AA46ACB6527B0965 /* watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08 */ = {
@@ -1879,14 +1848,6 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		A59C5D74181A3DDCE0ACFE7C /* applebin_macos-darwin_x86_64-dbg-ST-450091386d5c */ = {
-			isa = PBXGroup;
-			children = (
-				DAF4B76C7AB07061CFF42043 /* bin */,
-			);
-			path = "applebin_macos-darwin_x86_64-dbg-ST-450091386d5c";
-			sourceTree = "<group>";
-		};
 		A59D245E5775D0D285C8AAB6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -1901,7 +1862,6 @@
 				126B82B3FCFBE88BE73CF734 /* applebin_ios-ios_arm64-dbg-ST-1b4223f3338c */,
 				6377AA73DA72F8EA76A4FB58 /* applebin_ios-ios_x86_64-dbg-ST-132246d86df4 */,
 				312154ADF562D71E3AE9FCE0 /* applebin_macos-darwin_x86_64-dbg-ST-8143dd6ed004 */,
-				A59C5D74181A3DDCE0ACFE7C /* applebin_macos-darwin_x86_64-dbg-ST-450091386d5c */,
 				4BD606DDA91046410BD4A697 /* applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2 */,
 				51B8254979CF60C5C169DA4F /* applebin_tvos-tvos_arm64-dbg-ST-7839a2751710 */,
 				8C8F133759A9643C6958B72F /* applebin_tvos-tvos_x86_64-dbg-ST-57405dc02cbb */,
@@ -2034,6 +1994,14 @@
 			path = "applebin_watchos-watchos_arm64_32-dbg-ST-225f14c89e08";
 			sourceTree = "<group>";
 		};
+		B0D0DBD41BECB1C8D5D24524 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				0100FFC2C89DC1844A0E30A2 /* macOSAppUITests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		B785C1903884A75F03ED630D /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -2055,14 +2023,6 @@
 			isa = PBXGroup;
 			children = (
 				32804DCC4BF7E3C9BE9E3DF2 /* macOSApp */,
-			);
-			path = integration;
-			sourceTree = "<group>";
-		};
-		BE30BAD8C3568289DE59BE84 /* integration */ = {
-			isa = PBXGroup;
-			children = (
-				0F2E66600E8E937B4066DF8D /* macOSApp */,
 			);
 			path = integration;
 			sourceTree = "<group>";
@@ -2262,14 +2222,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DAF4B76C7AB07061CFF42043 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				94D1B7341B8C79F3FB26AB46 /* examples */,
-			);
-			path = bin;
 			sourceTree = "<group>";
 		};
 		DC8114E8438B458CAF2542AC /* AppClip */ = {
@@ -2487,6 +2439,14 @@
 				F525EC507438470C28AB883D /* Test */,
 			);
 			path = tvOSApp;
+			sourceTree = "<group>";
+		};
+		F4AB001AC1E8994A67836849 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				B0D0DBD41BECB1C8D5D24524 /* rules_xcodeproj */,
+			);
+			path = UITests;
 			sourceTree = "<group>";
 		};
 		F4AFA702850C38794BB8251E /* PreviewContent */ = {
@@ -4328,10 +4288,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c";
+				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/integration/macOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-450091386d5c";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2/bin/examples/integration/macOSApp/Test/UITests";
+				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -4342,9 +4302,9 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/examples/integration/macOSApp/Test/UITests/macOSAppUITests.link.params";
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2/examples/integration/macOSApp/Test/UITests/macOSAppUITests.link.params";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.macosapp.uitests;
@@ -4360,7 +4320,7 @@
 				TEST_TARGET_NAME = macOSApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-450091386d5c/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-b3ff25aa4da2/bin",
 				);
 			};
 			name = Debug;

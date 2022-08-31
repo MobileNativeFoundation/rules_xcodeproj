@@ -118,8 +118,8 @@ _SETTINGS = {
 
     ]
   },
-  "x86_64-apple-macosx15.0.0 macOSAppUITests.xctest/Contents/MacOS/macOSAppUITests" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min15.0-applebin_macos-darwin_x86_64-dbg-ST-e33b8db88e1c/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+  "x86_64-apple-macosx12.0.0 macOSAppUITests.xctest/Contents/MacOS/macOSAppUITests" : {
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-4f8ba90877f7/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
       "$(PLATFORM_DIR)/Developer/Library/Frameworks",
       "$(SDKROOT)/Developer/Library/Frameworks"
