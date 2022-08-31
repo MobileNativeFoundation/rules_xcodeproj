@@ -39,9 +39,6 @@ final class CreateProjectTests: XCTestCase {
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
-                "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
-$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
-""",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
@@ -50,7 +47,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
-                "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
@@ -154,9 +150,6 @@ $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
                 "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CXX": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
                 "CODE_SIGNING_ALLOWED": false,
-                "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
-$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
-""",
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
@@ -168,7 +161,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
                 "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
-                "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
