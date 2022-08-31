@@ -703,21 +703,19 @@ private extension ConsolidatedTargetLinkerInputs {
 
 private extension ConsolidatedTargetOutputs {
     func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
-        // TODO: Re-enable for Swift diagnostics replay
-//        if buildMode.usesBazelModeBuildScripts, hasSwiftOutputs {
-//            return [.internal(Generator.bazelForcedSwiftCompilePath)]
-//        }
+       if buildMode.usesBazelModeBuildScripts, hasSwiftOutputs {
+           return [.internal(Generator.bazelForcedSwiftCompilePath)]
+       }
 
         return []
     }
 
     var outputPaths: [String] {
-        // TODO: Re-enable for Swift diagnostics replay
-//        if hasSwiftOutputs {
-//            return [
-//                "$(DERIVED_FILE_DIR)/\(Generator.bazelForcedSwiftCompilePath)",
-//            ]
-//        }
+       if hasSwiftOutputs {
+           return [
+               "$(DERIVED_FILE_DIR)/\(Generator.bazelForcedSwiftCompilePath)",
+           ]
+       }
 
         return []
     }

@@ -1025,10 +1025,9 @@ private extension Inputs {
 
 private extension Outputs {
     func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
-        // TODO: Re-enable for Swift diagnostics replay
-//        if buildMode.usesBazelModeBuildScripts, swift != nil {
-//            return [.internal(Generator.bazelForcedSwiftCompilePath)]
-//        }
+       if buildMode.usesBazelModeBuildScripts, swift != nil {
+           return [.internal(Generator.bazelForcedSwiftCompilePath)]
+       }
 
         return []
     }
