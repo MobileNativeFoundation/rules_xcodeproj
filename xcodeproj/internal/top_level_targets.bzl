@@ -294,8 +294,8 @@ def process_top_level_target(
 
     deps_infos = [
         dep[XcodeProjInfo]
-        # TODO: Get attr name from `XcodeProjAutomaticTargetProcessingInfo`
-        for dep in getattr(ctx.rule.attr, "deps", [])
+        for attr in automatic_target_info.deps
+        for dep in getattr(ctx.rule.attr, attr, [])
     ]
 
     compilation_providers = comp_providers.merge(

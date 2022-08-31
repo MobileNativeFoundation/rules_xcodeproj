@@ -30,6 +30,10 @@ An attribute name (or `None`) to collect the bundle id string from.
         "codesignopts": """\
 An attribute name (or `None`) to collect the `codesignopts` `list` from.
 """,
+        "deps": """\
+A sequence of attribute names to collect `Target`s from for `deps`-like
+attributes.
+""",
         "entitlements": """\
 An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.

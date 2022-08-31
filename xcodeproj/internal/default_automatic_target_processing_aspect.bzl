@@ -67,6 +67,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     app_icons = None
     bundle_id = None
     codesignopts = None
+    deps = ["deps"]
     entitlements = None
     exported_symbols_lists = []
     infoplists = []
@@ -127,6 +128,12 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if "watch_application" in attrs:
             xcode_targets["watch_application"] = [target_type.compile]
     elif AppleBinaryInfo in target:
+        if "binary" in attrs:
+            deps_attr = "binary"
+        else:
+            deps_attr = "deps"
+        deps = [deps_attr]
+
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"
         if "exported_symbols_lists" in attrs:
@@ -136,7 +143,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if "launchdplists" in attrs:
             launchdplists = ["launchdplists"]
         xcode_targets = {
-            "deps": [target_type.compile, None],
+            deps_attr: [target_type.compile, None],
         }
     elif AppleFrameworkImportInfo in target:
         xcode_targets = {"deps": [target_type.compile]}
@@ -172,6 +179,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             bazel_build_mode_error = bazel_build_mode_error,
             bundle_id = bundle_id,
             codesignopts = codesignopts,
+            deps = deps,
             entitlements = entitlements,
             exported_symbols_lists = exported_symbols_lists,
             infoplists = infoplists,
