@@ -4,6 +4,3 @@ startup --output_base=bazel-output-base
 
 # Enabling archived bundles for fixture coverage
 build:rules_xcodeproj --define=apple.experimental.tree_artifact_outputs=0
-
-# For debugging purposes we want to see the full logs when generating
-build:rules_xcodeproj_generator --ui_event_filters=+INFO,+WARNING
