@@ -188,14 +188,16 @@ def _similar_platforms(platform):
         return _SIMULATOR_PLATFORMS
     return _DEVICE_PLATFORMS
 
-def _main(objroot, base_objroot, scheme_target_id_file, prefix):
+def _main(action, objroot, base_objroot, scheme_target_id_file, prefixes_str):
     if not os.path.exists(scheme_target_id_file):
         return
 
     with open(scheme_target_id_file, encoding = "utf-8") as f:
         scheme_target_ids = set(f.read().splitlines())
 
-    if prefix == "i":
+    prefixes = prefixes_str.split(",")
+
+    if action == "indexbuild":
         # buildRequest for Index Build includes all targets, so we have to
         # fall back to the scheme target ids (which are actually set by the
         # "Copy Bazel Outputs" script)
@@ -221,8 +223,10 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.""",
                 guid_target_ids,
             )
 
-    print("\n".join([f"{prefix} {id}" for id in target_ids]))
+    print("\n".join(
+        [f"{prefix} {id}" for id in target_ids for prefix in prefixes],
+    ))
 
 
 if __name__ == "__main__":
-    _main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    _main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])

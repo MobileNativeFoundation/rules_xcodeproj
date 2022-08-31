@@ -376,7 +376,7 @@ def _collect(
                 dep_compilation_providers = dep_compilation_providers,
             )
 
-            unfocused_generated = transitive_libraries
+            unfocused_generated_linking = transitive_libraries
 
             unfocused = bool(direct_libraries)
             if unfocused:
@@ -388,11 +388,16 @@ def _collect(
                     ],
                 )
         else:
-            unfocused_generated = (
+            unfocused_generated_linking = (
                 linker_input_files.get_transitive_static_libraries(
                     linker_inputs = linker_inputs,
                 )
             )
+
+        if unfocused_generated_linking:
+            unfocused_generated_linking = tuple(unfocused_generated_linking)
+        else:
+            unfocused_generated_linking = None
 
         is_swift = SwiftInfo in target
 
@@ -414,18 +419,21 @@ def _collect(
             unfocused_swift_info_modules = target[SwiftInfo].transitive_modules
         else:
             unfocused_swift_info_modules = non_target_swift_info_modules
+
+        unfocused_generated_compiling = []
         for module in unfocused_swift_info_modules.to_list():
-            unfocused_generated.extend(
+            unfocused_generated_compiling.extend(
                 swift_to_list(parse_swift_info_module(module)),
             )
 
-        if unfocused_generated:
-            unfocused_generated = tuple(unfocused_generated)
+        if unfocused_generated_compiling:
+            unfocused_generated_compiling = tuple(unfocused_generated_compiling)
         else:
-            unfocused_generated = None
+            unfocused_generated_compiling = None
     else:
         non_target_swift_info_modules = depset()
-        unfocused_generated = None
+        unfocused_generated_compiling = None
+        unfocused_generated_linking = None
 
     important_generated = [
         file
@@ -444,10 +452,15 @@ def _collect(
     )
 
     if id:
-        output_group_name = "g {}".format(id)
-        direct_group_list = [(output_group_name, generated_depset)]
+        compiling_output_group_name = "xc {}".format(id)
+        linking_output_group_name = "xl {}".format(id)
+        direct_group_list = [
+            (compiling_output_group_name, generated_depset),
+            (linking_output_group_name, depset()),
+        ]
     else:
-        output_group_name = None
+        compiling_output_group_name = None
+        linking_output_group_name = None
         direct_group_list = None
 
     if not unfocused_libraries:
@@ -585,7 +598,8 @@ def _collect(
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
-        unfocused_generated = unfocused_generated,
+        unfocused_generated_compiling = unfocused_generated_compiling,
+        unfocused_generated_linking = unfocused_generated_linking,
         has_generated_files = bool(generated) or bool([
             True
             for attr, info in transitive_infos
@@ -612,7 +626,8 @@ def _collect(
             ],
         ),
         unfocused_libraries = unfocused_libraries,
-        output_group_name = output_group_name,
+        compiling_output_group_name = compiling_output_group_name,
+        linking_output_group_name = linking_output_group_name,
     )
 
 def _from_resource_bundle(bundle):
@@ -639,7 +654,8 @@ def _from_resource_bundle(bundle):
         extra_files = depset(),
         uncategorized = depset(),
         unfocused_libraries = depset(),
-        output_group_name = None,
+        compiling_output_group_name = None,
+        linking_output_group_name = None,
     )
 
 def _merge(*, transitive_infos, extra_generated = None):
@@ -748,7 +764,8 @@ def _merge(*, transitive_infos, extra_generated = None):
                 for _, info in transitive_infos
             ],
         ),
-        output_group_name = None,
+        compiling_output_group_name = None,
+        linking_output_group_name = None,
     )
 
 def _to_dto(inputs):
@@ -849,10 +866,28 @@ def _to_output_groups_fields(
         )])
         for name, files in all_files.items()
     }
-    output_groups["all_generated_inputs"] = depset([output_group_map.write_map(
+    output_groups["all_xc"] = depset([output_group_map.write_map(
         ctx = ctx,
-        name = "all_generated_inputs",
-        files = depset(transitive = all_files.values()),
+        name = "all_xc",
+        files = depset(
+            transitive = [
+                files
+                for name, files in all_files.items()
+                if name.startswith("xc")
+            ],
+        ),
+        toplevel_cache_buster = toplevel_cache_buster,
+    )])
+    output_groups["all_xl"] = depset([output_group_map.write_map(
+        ctx = ctx,
+        name = "all_xl",
+        files = depset(
+            transitive = [
+                files
+                for name, files in all_files.items()
+                if name.startswith("xl")
+            ],
+        ),
         toplevel_cache_buster = toplevel_cache_buster,
     )])
 

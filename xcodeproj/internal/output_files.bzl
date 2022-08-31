@@ -35,31 +35,26 @@ def _create(
         An opaque `struct` representing the internal data structure of the
         `output_files` module.
     """
-    direct_build = []
+    direct_products = []
+    direct_compiles = []
 
     if infoplist:
-        direct_build.append(infoplist)
+        direct_products.append(infoplist)
 
     if direct_outputs:
-        direct_index = []
-
         swift = direct_outputs.swift
         if swift:
-            # TODO: Determine which of these are actually needed for each
-            swift_list = swift_to_list(swift)
-            direct_build.extend(swift_list)
-            direct_index.extend(swift_list)
+            direct_compiles.extend(swift_to_list(swift))
 
         if direct_outputs.product:
-            direct_build.append(direct_outputs.product)
+            direct_products.append(direct_outputs.product)
     else:
-        direct_index = None
         swift = None
 
-    transitive_build = depset(
-        direct_build if direct_build else None,
+    transitive_compiles = depset(
+        direct_compiles if direct_compiles else None,
         transitive = [
-            info.outputs._transitive_build
+            info.outputs._transitive_compiles
             for attr, info in transitive_infos
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
@@ -68,10 +63,10 @@ def _create(
                 ))
         ],
     )
-    transitive_index = depset(
-        direct_index,
+    transitive_products = depset(
+        direct_products if direct_products else None,
         transitive = [
-            info.outputs._transitive_index
+            info.outputs._transitive_products
             for attr, info in transitive_infos
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
@@ -94,13 +89,13 @@ def _create(
     )
 
     if should_produce_output_groups and direct_outputs:
-        build_output_group_name = "b {}".format(direct_outputs.id)
+        products_output_group_name = "bp {}".format(direct_outputs.id)
         direct_group_list = [
-            (build_output_group_name, transitive_build),
-            ("i {}".format(direct_outputs.id), transitive_index),
+            ("bc {}".format(direct_outputs.id), transitive_compiles),
+            (products_output_group_name, transitive_products),
         ]
     else:
-        build_output_group_name = None
+        products_output_group_name = None
         direct_group_list = None
 
     output_group_list = depset(
@@ -119,10 +114,10 @@ def _create(
     return struct(
         _direct_outputs = direct_outputs if should_produce_dto else None,
         _output_group_list = output_group_list,
-        _transitive_build = transitive_build,
-        _transitive_index = transitive_index,
+        _transitive_compiles = transitive_compiles,
+        _transitive_products = transitive_products,
         _transitive_swift = transitive_swift,
-        build_output_group_name = build_output_group_name,
+        products_output_group_name = products_output_group_name,
     )
 
 def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
@@ -350,9 +345,9 @@ def _to_output_groups_fields(
         )])
         for name, files in all_files.items()
     }
-    output_groups["all_output_files"] = depset([output_group_map.write_map(
+    output_groups["all_b"] = depset([output_group_map.write_map(
         ctx = ctx,
-        name = "all_output_files",
+        name = "all_b",
         files = depset(transitive = all_files.values()),
         toplevel_cache_buster = toplevel_cache_buster,
     )])
