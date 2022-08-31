@@ -2,7 +2,7 @@ load("@build_bazel_rules_apple//apple:macos.bzl", "macos_command_line_applicatio
 load("@rules_cc//cc:defs.bzl", "objc_library")
 
 macos_command_line_application(
-    name = "tool",
+    name = "CommandLineTool",
     bundle_id = "io.buildbuddy.example",
     codesignopts = ["-v"],
     exported_symbols_lists = [
@@ -21,7 +21,7 @@ objc_library(
     enable_modules = True,
     tags = ["manual"],
     deps = [
-        "//examples/command_line/lib",
+        "//examples/integration/CommandLine/CommandLineToolLib",
         "@examples_command_line_external//:ExternalFramework",
     ],
 )

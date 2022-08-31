@@ -43,10 +43,10 @@ swift_library(
         ":private_lib",
         ":private_swift_lib",
     ],
-    visibility = ["//examples/command_line/Tests:__subpackages__"],
+    visibility = ["//examples/integration/CommandLine/Tests:__subpackages__"],
     deps = [
         ":lib_impl",
-        "//examples/command_line/swift_c_module",
+        "//examples/integration/CommandLine/swift_c_module",
         "@examples_command_line_external//:ExternalFramework",
         "@examples_command_line_external//:Library",
     ],
@@ -65,7 +65,7 @@ objc_library(
 )
 
 alias(
-    name = "lib",
+    name = "CommandLineToolLib",
     actual = ":lib_headers",
     visibility = ["//visibility:public"],
 )

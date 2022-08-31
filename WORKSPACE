@@ -34,8 +34,8 @@ local_repository(
 
 new_local_repository(
     name = "examples_command_line_external",
-    build_file = "examples/command_line/external/BUILD.tpl",
-    path = "examples/command_line/external",
+    build_file = "examples/integration/CommandLine/external/BUILD.tpl",
+    path = "examples/integration/CommandLine/external",
 )
 
 load(

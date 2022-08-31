@@ -2,23 +2,22 @@ load("@build_bazel_rules_apple//apple:macos.bzl", "macos_unit_test")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
-    name = "LibSwiftTestsLib",
+    name = "CommandLineLibSwiftTestsLib",
     testonly = True,
     srcs = glob(["*.swift"]),
     module_name = "LibSwiftTestsLib",
     deps = [
-        "//examples/command_line/lib:lib_swift",
+        "//examples/integration/CommandLine/CommandLineToolLib:lib_swift",
     ],
 )
 
 macos_unit_test(
-    name = "LibSwiftTests",
+    name = "CommandLineToolLibSwiftTests",
     minimum_os_version = "11.0",
     visibility = [
-        "//examples/command_line:__subpackages__",
-        "//test/fixtures/command_line:__subpackages__",
+        "//visibility:public",
     ],
     deps = [
-        ":LibSwiftTestsLib",
+        ":CommandLineLibSwiftTestsLib",
     ],
 )

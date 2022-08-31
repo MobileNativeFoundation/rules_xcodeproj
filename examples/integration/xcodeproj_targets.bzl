@@ -6,6 +6,8 @@ load(
 )
 
 XCODEPROJ_TARGETS = [
+    "//examples/integration/CommandLine/CommandLineTool",
+    "//examples/integration/CommandLine/Tests:CommandLineToolLibSwiftTests",
     "//examples/integration/iMessageApp",
     top_level_target(
         label = "//examples/integration/iOSApp",
