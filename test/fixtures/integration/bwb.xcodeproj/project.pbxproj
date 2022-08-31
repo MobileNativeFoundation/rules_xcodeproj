@@ -496,7 +496,6 @@
 		178B274052D020AA03B97B16 /* CommandLineToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommandLineToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BC390C15FC3276F07EAE90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1C0291BB208FF518C9301DF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		1CC8933FF15BA9DF08DC7F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1E5432E1B302C52C02FBAD32 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		219ABBB9256199A9EA467207 /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		21B075DF13D48A7176B9FD50 /* AppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -555,7 +554,6 @@
 		70E5420CAA25A2FBCA7814A0 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7163D09D7B5CCA2FB781C8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		734F110EEDB385778A2BB22A /* UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
-		73C299D6BC69CE792AA4D9A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		73D130A5A0A5CC8C116142CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7401FDA68482F8B5BE018478 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		75883B55DEB08A2A33F4E956 /* ExtensionAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ExtensionAssets.xcassets; sourceTree = "<group>"; };
@@ -592,6 +590,7 @@
 		A38209C696775D7AD7D376DB /* watchOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watchOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43730A9AAFAA4DB6A1AB84F /* UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A67D05E20727DC46E8FA4A1B /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		A731DF99AFB825BD4A3EB4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A7A9E9B9B4B299161719D17D /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
 		A932896928FD2AE23803E120 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA8B40F3394AF193E0043C9C /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
@@ -641,6 +640,7 @@
 		EA7A876FCB128D7558E1D401 /* private_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = private_lib.c; sourceTree = "<group>"; };
 		EB442E1C5B6990D3DBB6E423 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB8ED945CC031308ACE64D4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF39FEED1C8F254881FAA8E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F2C5B2788C12EC855F7616A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F55D7B1D0F7983620F586C68 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F93835BAA75A671D6D3361A9 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/examples/integration/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -743,6 +743,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01311158BB4603414E0F05B4 /* applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209 */ = {
+			isa = PBXGroup;
+			children = (
+				A2FC91836E3BC40B85A59FD8 /* bin */,
+			);
+			path = "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+			sourceTree = "<group>";
+		};
 		02DC7C61713B29D66A69D988 /* integration */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,6 +944,15 @@
 			path = "watchos-arm64_i386_x86_64-simulator";
 			sourceTree = "<group>";
 		};
+		1F00A92863BD6C8369E5A8B0 /* macOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				303823D7659F5EB0055C024F /* Source */,
+				D815DB1239F320C9D63922E3 /* Test */,
+			);
+			path = macOSApp;
+			sourceTree = "<group>";
+		};
 		1F75B84D472E4F903E58A310 /* apple */ = {
 			isa = PBXGroup;
 			children = (
@@ -961,18 +978,18 @@
 			path = examples_command_line_external;
 			sourceTree = "<group>";
 		};
-		2563D038C3CCD6B1DE93FA9C /* bin */ = {
+		23A7970CE48468B76B012C08 /* integration */ = {
 			isa = PBXGroup;
 			children = (
-				329E962B0B11AAAA8D2FD5FE /* examples */,
+				1F00A92863BD6C8369E5A8B0 /* macOSApp */,
 			);
-			path = bin;
+			path = integration;
 			sourceTree = "<group>";
 		};
-		264507A903EBB8A00A7B2D96 /* UITests */ = {
+		26F255E80203490B6980F089 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				B4995F7C820DD6FA51946F14 /* rules_xcodeproj */,
+				852A3DDBF5CB6728A4587FAA /* rules_xcodeproj */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -991,6 +1008,14 @@
 				8C43304B1A372343725C28B6 /* Info.plist */,
 			);
 			path = watchOSAppUITests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
+		2B87A1B0C08DA31E42062F25 /* macOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				EF39FEED1C8F254881FAA8E9 /* Info.plist */,
+			);
+			path = macOSApp;
 			sourceTree = "<group>";
 		};
 		2BC87EB224FC96F70CCD2145 /* Source */ = {
@@ -1058,14 +1083,6 @@
 			path = WidgetExtension;
 			sourceTree = "<group>";
 		};
-		2FE3CB99C65FDBB8D57F6D77 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				264507A903EBB8A00A7B2D96 /* UITests */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
 		2FE83C4D37378ED277C071D6 /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1074,12 +1091,12 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		329E962B0B11AAAA8D2FD5FE /* examples */ = {
+		303823D7659F5EB0055C024F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				8B1CB1DD9E916082BA6F47B1 /* integration */,
+				8F562D9C4DE454CD905D947D /* rules_xcodeproj */,
 			);
-			path = examples;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		3325E410A3F58A6FC5C91BE5 /* Lib */ = {
@@ -1677,14 +1694,6 @@
 			path = "watchos-arm64_32_armv7k";
 			sourceTree = "<group>";
 		};
-		748325164D6E1273F3055A3E /* macOSApp */ = {
-			isa = PBXGroup;
-			children = (
-				73C299D6BC69CE792AA4D9A6 /* Info.plist */,
-			);
-			path = macOSApp;
-			sourceTree = "<group>";
-		};
 		76542B3D92B94E06FBCA8F3E /* UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1720,14 +1729,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		7D65900277C54E233F2505A1 /* applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d */ = {
-			isa = PBXGroup;
-			children = (
-				2563D038C3CCD6B1DE93FA9C /* bin */,
-			);
-			path = "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d";
-			sourceTree = "<group>";
-		};
 		7F7A078E416E2D92BDFCBC1B /* third_party */ = {
 			isa = PBXGroup;
 			children = (
@@ -1753,12 +1754,12 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		84AE4E0A250F85958A69BE40 /* Source */ = {
+		852A3DDBF5CB6728A4587FAA /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				921D86EE2F8B6A769D2748B6 /* rules_xcodeproj */,
+				C0B86CC6345BADC7A2C00182 /* macOSAppUITests.__internal__.__test_bundle */,
 			);
-			path = Source;
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		8684FAFEC9E111A6E8DA2353 /* bin */ = {
@@ -1802,14 +1803,6 @@
 			path = GoogleMaps.xcframework;
 			sourceTree = "<group>";
 		};
-		8B1CB1DD9E916082BA6F47B1 /* integration */ = {
-			isa = PBXGroup;
-			children = (
-				8F608AC944C2C3912457530F /* macOSApp */,
-			);
-			path = integration;
-			sourceTree = "<group>";
-		};
 		8C838D1FED4BAB0CE5D4C813 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1834,13 +1827,12 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
-		8F608AC944C2C3912457530F /* macOSApp */ = {
+		8F562D9C4DE454CD905D947D /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				84AE4E0A250F85958A69BE40 /* Source */,
-				2FE3CB99C65FDBB8D57F6D77 /* Test */,
+				2B87A1B0C08DA31E42062F25 /* macOSApp */,
 			);
-			path = macOSApp;
+			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		911E5699877F72D05A808E6B /* iOSApp */ = {
@@ -1863,14 +1855,6 @@
 				50CDB2B23BF017667DA68BB4 /* integration */,
 			);
 			path = examples;
-			sourceTree = "<group>";
-		};
-		921D86EE2F8B6A769D2748B6 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				748325164D6E1273F3055A3E /* macOSApp */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		93C28E191EB91B45C7244271 /* Test */ = {
@@ -2007,6 +1991,14 @@
 			path = examples;
 			sourceTree = "<group>";
 		};
+		A2FC91836E3BC40B85A59FD8 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				A60C9D7AECA66D43C2B77097 /* examples */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
 		A4289E194DE72201F5F3841B /* applebin_watchos-watchos_x86_64-dbg-ST-9e98962c108c */ = {
 			isa = PBXGroup;
 			children = (
@@ -2031,6 +2023,14 @@
 				2DF9E0E11A2ACC537A1DB97E /* UITestsLaunchTests.swift */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		A60C9D7AECA66D43C2B77097 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				23A7970CE48468B76B012C08 /* integration */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 		A691FD0184306D31C57D3812 /* examples */ = {
@@ -2165,14 +2165,6 @@
 			path = watchOSApp;
 			sourceTree = "<group>";
 		};
-		B4995F7C820DD6FA51946F14 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				BCE231E93F67FD580B12E2EB /* macOSAppUITests.__internal__.__test_bundle */,
-			);
-			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
 		B6D0E0E2167B45B8AB30C94C /* integration */ = {
 			isa = PBXGroup;
 			children = (
@@ -2240,14 +2232,6 @@
 			path = watchOSAppExtension;
 			sourceTree = "<group>";
 		};
-		BCE231E93F67FD580B12E2EB /* macOSAppUITests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				1CC8933FF15BA9DF08DC7F72 /* Info.plist */,
-			);
-			path = macOSAppUITests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
 		BD12410C0CD3F438BE6CA6A5 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -2296,6 +2280,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C0B86CC6345BADC7A2C00182 /* macOSAppUITests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				A731DF99AFB825BD4A3EB4E3 /* Info.plist */,
+			);
+			path = macOSAppUITests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
 		C26793587707FDF81A2B8D99 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -2327,7 +2319,7 @@
 				2D2AF20B2B4815B84CAC6425 /* applebin_ios-ios_arm64-dbg-ST-6c470b23a109 */,
 				4F5888AC1A066FA46F9FCF30 /* applebin_ios-ios_x86_64-dbg-ST-a0d637e005aa */,
 				04848BC414658561EA1CB102 /* applebin_macos-darwin_x86_64-dbg-ST-a28b42520847 */,
-				7D65900277C54E233F2505A1 /* applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d */,
+				01311158BB4603414E0F05B4 /* applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209 */,
 				F433F6A60699380B26E1CC03 /* applebin_tvos-tvos_arm64-dbg-ST-0b13f0c00ad6 */,
 				D7E2B357908E41411E67C855 /* applebin_tvos-tvos_x86_64-dbg-ST-42d0652d7895 */,
 				51D4F03BF86F97438DD3E780 /* applebin_watchos-watchos_arm64_32-dbg-ST-6bac5db4c77b */,
@@ -2449,6 +2441,14 @@
 				E7501D775A4DEAEBA0A50676 /* bin */,
 			);
 			path = "applebin_tvos-tvos_x86_64-dbg-ST-42d0652d7895";
+			sourceTree = "<group>";
+		};
+		D815DB1239F320C9D63922E3 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				26F255E80203490B6980F089 /* UITests */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		D8D7A1C65333C6F0A3479507 /* watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6bac5db4c77b */ = {
@@ -3700,7 +3700,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -euo pipefail\n\n# In Xcode 14 the \"Index\" directory was renamed to \"Index.noindex\".\n# `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can\n# use it to determine the name of the directory regardless of Xcode version.\nreadonly index_dir=\"${INDEX_DATA_STORE_DIR%/*}\"\nreadonly index_dir_name=\"${index_dir##*/}\"\n\n# Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for\n# previews. So we need to look in the non-preview build directory for this file.\nreadonly non_preview_objroot=\"${OBJROOT/\\/Intermediates.noindex\\/Previews\\/*//Intermediates.noindex}\"\nreadonly base_objroot=\"${non_preview_objroot/\\/$index_dir_name\\/Build\\/Intermediates.noindex//Build/Intermediates.noindex}\"\nreadonly scheme_target_ids_file=\"$non_preview_objroot/scheme_target_ids\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  readonly output_group_prefix=i\nelse\n  readonly output_group_prefix=b\nfi\n\n# We need to read from `$output_groups_file` as soon as possible, as concurrent\n# writes to it can happen during indexing, which breaks the off-by-one-by-design\n# nature of it\nIFS=$'\\n' read -r -d '' -a output_groups < \\\n  <( \"$CALCULATE_OUTPUT_GROUPS_SCRIPT\" \\\n       \"$non_preview_objroot\" \\\n       \"$base_objroot\" \\\n       \"$scheme_target_ids_file\" \\\n       $output_group_prefix \\\n       && printf '\\0' )\n\nif [ -z \"${output_groups:-}\" ]; then\n  if [ \"$ACTION\" == \"indexbuild\" ]; then\n    echo \"error: Can't yet determine Index Build output group. Next build should succeed. If not, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  else\n    echo \"error: BazelDependencies invoked without any output groups set. Please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\nfi\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\nbazelrcs=(\n  --noworkspace_rc\n  \"--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj.bazelrc\"\n)\nif [[ -s \".bazelrc\" ]]; then\n  bazelrcs+=(\"--bazelrc=.bazelrc\")\nfi\nif [[ -s \"$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc\" ]]; then\n  bazelrcs+=(\"--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc\")\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  \"${bazelrcs[@]}\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --config=rules_xcodeproj_info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  --bes_backend= \\\n  --bes_results_url= \\\n  output_path)\nexec_root=\"${output_path%/*}\"\n\nif [[ \"$ACTION\" != \"indexbuild\" && \"${ENABLE_PREVIEWS:-}\" != \"YES\" ]]; then\n  \"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh\" \"$exec_root\" \"examples_command_line_external/ImportableLibrary\" \"$SRCROOT/examples/integration/CommandLine/external/ImportableLibrary\" > \"$BAZEL_LLDB_INIT\"\nfi\n\nif [[ \"${BAZEL_OUT:0:1}\" == '/' ]]; then\n  bazel_out_prefix=\nelse\n  bazel_out_prefix=\"$SRCROOT/\"\nfi\n\nabsolute_bazel_out=\"${bazel_out_prefix}$BAZEL_OUT\"\n\nif [[ \"$output_path\" != \"$absolute_bazel_out\" ]]; then\n  # Use current path for bazel-out\n  # This fixes Index Build to use its version of generated files\n  roots=\"{\\\"external-contents\\\": \\\"$output_path\\\",\\\"name\\\": \\\"$absolute_bazel_out\\\",\\\"type\\\": \\\"directory-remap\\\"}\"\nelse\n  roots=\nfi\n\n# Map `$BUILD_DIR` to execroot, to fix SwiftUI Previews and indexing edge cases\nroots=\"${roots:+${roots},}{\\\"external-contents\\\": \\\"$exec_root\\\",\\\"name\\\": \\\"$BUILD_DIR\\\",\\\"type\\\": \\\"directory-remap\\\"}\"\n\ncat > \"$OBJROOT/bazel-out-overlay.yaml\" <<EOF\n{\"case-sensitive\": \"false\", \"fallthrough\": true, \"roots\": [$roots],\"version\": 0}\nEOF\n\ncd \"$SRCROOT\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  config=rules_xcodeproj_indexbuild\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  config=rules_xcodeproj_swiftuipreviews\nelse\n  config=rules_xcodeproj_build\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nbuild_marker=\"$OBJROOT/bazel_build_start\"\ntouch \"$build_marker\"\n\nlog=$(mktemp)\n\"$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py\" env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  \"${bazelrcs[@]}\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --config=$config \\\n  --color=yes \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  \"$output_groups_flag\" \\\n  //test/fixtures/integration:xcodeproj_bwb.generator \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwb.generator-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-dbg-ST-d53d69b6b8c1/bin/test/fixtures/integration/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$build_marker\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n";
+			shellScript = "set -euo pipefail\n\n# In Xcode 14 the \"Index\" directory was renamed to \"Index.noindex\".\n# `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can\n# use it to determine the name of the directory regardless of Xcode version.\nreadonly index_dir=\"${INDEX_DATA_STORE_DIR%/*}\"\nreadonly index_dir_name=\"${index_dir##*/}\"\n\n# Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for\n# previews. So we need to look in the non-preview build directory for this file.\nreadonly non_preview_objroot=\"${OBJROOT/\\/Intermediates.noindex\\/Previews\\/*//Intermediates.noindex}\"\nreadonly base_objroot=\"${non_preview_objroot/\\/$index_dir_name\\/Build\\/Intermediates.noindex//Build/Intermediates.noindex}\"\nreadonly scheme_target_ids_file=\"$non_preview_objroot/scheme_target_ids\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  readonly output_group_prefix=i\nelse\n  readonly output_group_prefix=b\nfi\n\n# We need to read from `$output_groups_file` as soon as possible, as concurrent\n# writes to it can happen during indexing, which breaks the off-by-one-by-design\n# nature of it\nIFS=$'\\n' read -r -d '' -a output_groups < \\\n  <( \"$CALCULATE_OUTPUT_GROUPS_SCRIPT\" \\\n       \"$non_preview_objroot\" \\\n       \"$base_objroot\" \\\n       \"$scheme_target_ids_file\" \\\n       $output_group_prefix \\\n       && printf '\\0' )\n\nif [ -z \"${output_groups:-}\" ]; then\n  if [ \"$ACTION\" == \"indexbuild\" ]; then\n    echo \"error: Can't yet determine Index Build output group. Next build should succeed. If not, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  else\n    echo \"error: BazelDependencies invoked without any output groups set. Please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\nfi\noutput_groups_flag=\"--output_groups=$(IFS=, ; echo \"${output_groups[*]}\")\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  # We use a different output base for Index Build to prevent normal builds and\n  # indexing waiting on bazel locks from the other\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nif [[ \"${COLOR_DIAGNOSTICS:-NO}\" == \"YES\" ]]; then\n  color=yes\nelse\n  color=no\nfi\n\nbazelrcs=(\n  --noworkspace_rc\n  \"--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj.bazelrc\"\n)\nif [[ -s \".bazelrc\" ]]; then\n  bazelrcs+=(\"--bazelrc=.bazelrc\")\nfi\nif [[ -s \"$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc\" ]]; then\n  bazelrcs+=(\"--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc\")\nfi\n\noutput_path=$(env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  \"${bazelrcs[@]}\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  info \\\n  --config=rules_xcodeproj_info \\\n  --color=\"$color\" \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  --bes_backend= \\\n  --bes_results_url= \\\n  output_path)\nexec_root=\"${output_path%/*}\"\n\nif [[ \"$ACTION\" != \"indexbuild\" && \"${ENABLE_PREVIEWS:-}\" != \"YES\" ]]; then\n  \"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh\" \"$exec_root\" \"examples_command_line_external/ImportableLibrary\" \"$SRCROOT/examples/integration/CommandLine/external/ImportableLibrary\" > \"$BAZEL_LLDB_INIT\"\nfi\n\nif [[ \"${BAZEL_OUT:0:1}\" == '/' ]]; then\n  bazel_out_prefix=\nelse\n  bazel_out_prefix=\"$SRCROOT/\"\nfi\n\nabsolute_bazel_out=\"${bazel_out_prefix}$BAZEL_OUT\"\n\nif [[ \"$output_path\" != \"$absolute_bazel_out\" ]]; then\n  # Use current path for bazel-out\n  # This fixes Index Build to use its version of generated files\n  roots=\"{\\\"external-contents\\\": \\\"$output_path\\\",\\\"name\\\": \\\"$absolute_bazel_out\\\",\\\"type\\\": \\\"directory-remap\\\"}\"\nelse\n  roots=\nfi\n\n# Map `$BUILD_DIR` to execroot, to fix SwiftUI Previews and indexing edge cases\nroots=\"${roots:+${roots},}{\\\"external-contents\\\": \\\"$exec_root\\\",\\\"name\\\": \\\"$BUILD_DIR\\\",\\\"type\\\": \\\"directory-remap\\\"}\"\n\ncat > \"$OBJROOT/bazel-out-overlay.yaml\" <<EOF\n{\"case-sensitive\": \"false\", \"fallthrough\": true, \"roots\": [$roots],\"version\": 0}\nEOF\n\ncd \"$SRCROOT\"\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  config=rules_xcodeproj_indexbuild\nelif [ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]; then\n  config=rules_xcodeproj_swiftuipreviews\nelse\n  config=rules_xcodeproj_build\nfi\n\ndate +%s > \"$INTERNAL_DIR/toplevel_cache_buster\"\n\nbuild_marker=\"$OBJROOT/bazel_build_start\"\ntouch \"$build_marker\"\n\nlog=$(mktemp)\n\"$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py\" env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  \"${bazelrcs[@]}\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  --config=$config \\\n  --color=yes \\\n  --experimental_convenience_symlinks=ignore \\\n  --symlink_prefix=/ \\\n  \"$output_groups_flag\" \\\n  //test/fixtures/integration:xcodeproj_bwb.generator \\\n  2>&1 | tee -i \"$log\"\n\nfor output_group in \"${output_groups[@]}\"; do\n  filelist=\"xcodeproj_bwb.generator-${output_group//\\//_}\"\n  filelist=\"${filelist/#/$output_path/darwin_x86_64-dbg-ST-8c3043bbe824/bin/test/fixtures/integration/}\"\n  filelist=\"${filelist/%/.filelist}\"\n  if [[ \"$filelist\" -ot \"$build_marker\" ]]; then\n    echo \"error: Bazel didn't generate the correct files (it should have generated outputs for output group \\\"$output_group\\\", but the timestamp for \\\"$filelist\\\" was from before the build). Please regenerate the project to fix this.\" >&2\n    echo \"error: If your bazel version is less than 5.2, you may need to \\`bazel clean\\` and/or \\`bazel shutdown\\` to work around a bug in project generation.\" >&2\n    echo \"error: If you are still getting this error after all of that, please file a bug report here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.\" >&2\n    exit 1\n  fi\ndone\n";
 			showEnvVarsInLog = 0;
 		};
 		9EC6982379C470A7EBAB3F05 /* Create link.params */ = {
@@ -5274,11 +5274,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d";
+				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests";
+				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -5289,8 +5289,8 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/examples/integration/macOSApp/Test/UITests/macOSAppUITests.link.params";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/examples/integration/macOSApp/Test/UITests/macOSAppUITests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
@@ -5307,7 +5307,7 @@
 				TEST_TARGET_NAME = macOSApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
 				);
 			};
 			name = Debug;
@@ -5816,11 +5816,11 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d";
+				BAZEL_COMPILE_TARGET_ID = "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/macOSApp.zip";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source";
-				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/macOSApp.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source";
+				BAZEL_TARGET_ID = "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -5830,12 +5830,12 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = examples/integration/macOSApp/third_party;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/examples/integration/macOSApp/Source/macOSApp.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/examples/integration/macOSApp/Source/macOSApp.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=examples/integration/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexamples/integration/macOSApp/third_party -static";
@@ -5851,7 +5851,7 @@
 				TARGET_NAME = macOSApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
 				);
 			};
 			name = Debug;

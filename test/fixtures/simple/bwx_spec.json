@@ -10,7 +10,7 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "configuration": "darwin_x86_64-dbg-ST-d53d69b6b8c1",
+    "configuration": "darwin_x86_64-dbg-ST-8c3043bbe824",
     "custom_xcode_schemes": [],
     "extra_files": [
         "examples/simple/BUILD",
@@ -24,7 +24,7 @@
     "target_hosts": [],
     "target_merges": [],
     "targets": [
-        "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-074b4a56b56e",
+        "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-ae3222c40402",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -38,7 +38,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-dbg-ST-074b4a56b56e",
+            "configuration": "darwin_x86_64-dbg-ST-ae3222c40402",
             "inputs": {
                 "srcs": [
                     "examples/simple/main.swift"
@@ -55,11 +55,11 @@
             "name": "SwiftBin",
             "outputs": {
                 "p": {
-                    "_": "darwin_x86_64-dbg-ST-074b4a56b56e/bin/examples/simple/SwiftBin",
+                    "_": "darwin_x86_64-dbg-ST-ae3222c40402/bin/examples/simple/SwiftBin",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-074b4a56b56e/bin/examples/simple",
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-ae3222c40402/bin/examples/simple",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "12.0",
@@ -70,7 +70,7 @@
                 "executable_name": "SwiftBin",
                 "name": "SwiftBin",
                 "path": {
-                    "_": "darwin_x86_64-dbg-ST-074b4a56b56e/bin/examples/simple/SwiftBin",
+                    "_": "darwin_x86_64-dbg-ST-ae3222c40402/bin/examples/simple/SwiftBin",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.tool"
@@ -79,7 +79,7 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "darwin_x86_64-dbg-ST-074b4a56b56e/bin",
+                        "_": "darwin_x86_64-dbg-ST-ae3222c40402/bin",
                         "t": "g"
                     }
                 ]

@@ -122,7 +122,7 @@ _SETTINGS = {
     ]
   },
   "x86_64-apple-macosx12.0.0 macOSApp.app/Contents/MacOS/macOSApp" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin\" -fmodule-map-file=\"$(PROJECT_DIR)/examples/integration/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin\" -fmodule-map-file=\"$(PROJECT_DIR)/examples/integration/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
       "$(PROJECT_DIR)/examples/integration/macOSApp/third_party"
     ],
@@ -131,7 +131,7 @@ _SETTINGS = {
     ]
   },
   "x86_64-apple-macosx12.0.0 macOSAppUITests.xctest/Contents/MacOS/macOSAppUITests" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
       "$(PLATFORM_DIR)/Developer/Library/Frameworks",
       "$(SDKROOT)/Developer/Library/Frameworks"

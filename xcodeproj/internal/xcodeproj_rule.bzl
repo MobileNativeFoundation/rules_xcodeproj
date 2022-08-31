@@ -880,8 +880,7 @@ transitive dependencies of the targets specified in the
         ),
         "_generator": attr.label(
             cfg = "exec",
-            # TODO: Use universal generator when done debugging
-            default = Label("//tools/generator"),
+            default = Label("//tools/generator:universal_generator"),
             executable = True,
         ),
         "_install_path": attr.label(
