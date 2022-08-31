@@ -6,11 +6,11 @@ swift_library(
     testonly = True,
     srcs = glob(["*.swift"]),
     module_name = "LibSwiftTestsLib",
-    deps = [
-        "//examples/integration/CommandLine/CommandLineToolLib:lib_swift",
-    ],
     visibility = [
         "//visibility:public",
+    ],
+    deps = [
+        "//examples/integration/CommandLine/CommandLineToolLib:lib_swift",
     ],
 )
 

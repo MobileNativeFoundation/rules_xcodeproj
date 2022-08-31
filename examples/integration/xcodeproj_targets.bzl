@@ -7,7 +7,7 @@ load(
 
 XCODEPROJ_TARGETS = [
     top_level_target(
-        label =  "//examples/integration/CommandLine/CommandLineTool",
+        label = "//examples/integration/CommandLine/CommandLineTool",
         target_environments = ["device"],
     ),
     top_level_target(
