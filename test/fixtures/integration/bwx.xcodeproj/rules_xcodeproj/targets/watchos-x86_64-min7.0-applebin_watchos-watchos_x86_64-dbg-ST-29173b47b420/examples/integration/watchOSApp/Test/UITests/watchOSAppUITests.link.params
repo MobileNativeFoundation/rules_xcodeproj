@@ -1,9 +1,0 @@
--L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-29173b47b420/bin/examples/integration/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule
--ObjC
--L/usr/lib/swift
--L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator
--Wl,-rpath,/usr/lib/swift
--headerpad_max_install_names
--no-canonical-prefixes
--lc++

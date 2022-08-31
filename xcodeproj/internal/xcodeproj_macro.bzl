@@ -2,6 +2,7 @@
 
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
+load(":logging.bzl", "warn")
 load(":xcode_schemes.bzl", "xcode_schemes")
 load(":xcodeproj_rule.bzl", _xcodeproj = "xcodeproj")
 load(":xcodeproj_runner.bzl", "xcodeproj_runner")
@@ -9,6 +10,7 @@ load(":xcodeproj_runner.bzl", "xcodeproj_runner")
 def xcodeproj(
         *,
         name,
+        archived_bundles_allowed = None,
         bazel_path = "bazel",
         build_mode = "xcode",
         focused_targets = [],
@@ -34,6 +36,11 @@ def xcodeproj(
 
     Args:
         name: A unique name for this target.
+        archived_bundles_allowed: This argument is deprecated and is now a
+            no-op. It will be removed in a future release. Adjust the setting of
+            `--define=apple.experimental.tree_artifact_outputs` on
+            `build:rules_xcodeproj` in your `.bazelrc` or `xcodeproj.bazelrc`
+            file.
         bazel_path: Optional. The path the `bazel` binary or wrapper script. If
             the path is relative it will be resolved using the `PATH`
             environment variable (which is set to
@@ -144,6 +151,13 @@ def xcodeproj(
             rule specified by `xcodeproj_rule`.
     """
     testonly = kwargs.pop("testonly", True)
+
+    if archived_bundles_allowed != None:
+        warn("""\
+`archived_bundles_allowed` is deprecated and is now a no-op. It will be \
+removed in a future release. Adjust the setting of \
+`--define=apple.experimental.tree_artifact_outputs` on `build:rules_xcodeproj` \
+in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
 
     # Apply defaults
     if not bazel_path:

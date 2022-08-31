@@ -11,6 +11,12 @@ common:rules_xcodeproj --verbose_failures
 # We default to `dbg` since debugging is broken otherwise
 build:rules_xcodeproj --compilation_mode=dbg
 
+# Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow (we
+# have to unzip an archive on each build). If this doesn't work for your
+# project, you can set `--define=apple.experimental.tree_artifact_outputs=0`
+# on `build:rules_xcodeproj` in your `.bazelrc` or `xcodeproj.bazelrc` file.
+build:rules_xcodeproj --define=apple.experimental.tree_artifact_outputs=1
+
 # Fix Test Issue navigation
 build:rules_xcodeproj --features=apple.swizzle_absolute_xcttestsourcelocation
 

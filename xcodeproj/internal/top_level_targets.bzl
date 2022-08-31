@@ -1,7 +1,6 @@
 """ Functions for processing top level targets """
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":app_icons.bzl", "app_icons")
 load(
@@ -57,14 +56,6 @@ def get_tree_artifact_enabled(*, ctx, bundle_info):
             .lower() in
         ("true", "yes", "1")
     )
-
-    if not ctx.attr._archived_bundles_allowed[BuildSettingInfo].value:
-        if not tree_artifact_enabled:
-            fail("""\
-Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow. If \
-you can't set that flag, you can set `archived_bundles_allowed = True` on the \
-`xcodeproj` rule to have it unarchive bundles when installing them.
-""")
 
     return tree_artifact_enabled
 

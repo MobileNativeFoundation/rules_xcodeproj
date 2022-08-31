@@ -483,15 +483,7 @@ def _write_installer(
 # Transition
 
 def _base_target_transition_impl(_settings, attr):
-    if attr.build_mode == "bazel":
-        archived_bundles_allowed = attr.archived_bundles_allowed
-    else:
-        archived_bundles_allowed = True
-
     return {
-        "//xcodeproj/internal:archived_bundles_allowed": (
-            archived_bundles_allowed
-        ),
         "//xcodeproj/internal:build_mode": attr.build_mode,
     }
 
@@ -547,7 +539,6 @@ _TRANSITION_ATTR = {
         "//command_line_option:cpu",
     ],
     "outputs": [
-        "//xcodeproj/internal:archived_bundles_allowed",
         "//xcodeproj/internal:build_mode",
         # Simulator and Device support
         "//command_line_option:ios_multi_cpus",
@@ -684,9 +675,6 @@ def _xcodeproj_impl(ctx):
 
 def make_xcodeproj_rule(*, xcodeproj_transition = None):
     attrs = {
-        "archived_bundles_allowed": attr.bool(
-            default = False,
-        ),
         "bazel_path": attr.string(
             doc = """\
 The path to the `bazel` binary or wrapper script. If the path is relative it
