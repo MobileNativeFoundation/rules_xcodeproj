@@ -109,18 +109,6 @@ _SETTINGS = {
       "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/examples/integration/CommandLine/CommandLineToolLib"
     ]
   },
-  "x86_64-apple-macosx11.0.0 CommandLineToolLibSwiftTests.xctest/Contents/MacOS/CommandLineToolLibSwiftTests" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin\" -iquote \"$(BAZEL_EXTERNAL)/examples_command_line_external\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/external/examples_command_line_external\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/examples/integration/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap\" -fmodule-map-file=\"$(PROJECT_DIR)/examples/integration/CommandLine/swift_c_module/c_lib.modulemap\" -fmodule-map-file=\"$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/external/examples_command_line_external/Library.swift.modulemap\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/examples/integration/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin\" -iquote \"$(BAZEL_EXTERNAL)/examples_command_line_external\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/external/examples_command_line_external\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/examples/integration/CommandLine/CommandLineToolLib/private_lib.swift.modulemap\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin\" -O0 -fstack-protector -fstack-protector-all",
-    "frameworks" : [
-      "$(PLATFORM_DIR)/Developer/Library/Frameworks",
-      "$(SDKROOT)/Developer/Library/Frameworks",
-      "$(BAZEL_EXTERNAL)/examples_command_line_external"
-    ],
-    "includes" : [
-      "$(PLATFORM_DIR)/Developer/usr/lib",
-      "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-a28b42520847/bin/examples/integration/CommandLine/CommandLineToolLib"
-    ]
-  },
   "x86_64-apple-macosx12.0.0 macOSApp.app/Contents/MacOS/macOSApp" : {
     "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin\" -fmodule-map-file=\"$(PROJECT_DIR)/examples/integration/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [

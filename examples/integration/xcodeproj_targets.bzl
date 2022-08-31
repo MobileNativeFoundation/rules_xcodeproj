@@ -11,7 +11,7 @@ XCODEPROJ_TARGETS = [
         target_environments = ["device"],
     ),
     top_level_target(
-        label = "//examples/integration/CommandLine/Tests:CommandLineToolLibSwiftTests",
+        label = "//examples/integration/CommandLine/Tests:CommandLineToolTests",
         target_environments = ["device"],
     ),
     "//examples/integration/iMessageApp",
