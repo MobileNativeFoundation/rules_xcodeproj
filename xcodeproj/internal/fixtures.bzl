@@ -12,7 +12,7 @@ def _fixtures_transition_impl(_settings, _attr):
         "//command_line_option:cpu": "darwin_x86_64",
         "//command_line_option:ios_minimum_os": "14.1",
         "//command_line_option:macos_cpus": "x86_64",
-        "//command_line_option:macos_minimum_os": "11.0",
+        "//command_line_option:macos_minimum_os": "12.0",
         "//command_line_option:tvos_minimum_os": "9.2",
         "//command_line_option:watchos_minimum_os": "7.6.2",
     }

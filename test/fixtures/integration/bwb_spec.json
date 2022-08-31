@@ -10,7 +10,7 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "configuration": "darwin_x86_64-dbg-ST-1b9bd654f600",
+    "configuration": "darwin_x86_64-dbg-ST-d53d69b6b8c1",
     "custom_xcode_schemes": [],
     "extra_files": [
         {
@@ -108,7 +108,7 @@
         "examples/integration/macOSApp/third_party/BUILD",
         "examples/integration/macOSApp/Source/Info.plist",
         {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
+            "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
             "t": "g"
         },
         "examples/integration/macOSApp/Source/PreviewContent/Preview Assets.xcassets",
@@ -119,7 +119,7 @@
             "t": "e"
         },
         {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
+            "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
         {
@@ -273,7 +273,7 @@
     "replacement_labels": [
         "//examples/integration/CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-a28b42520847",
         "//examples/integration/CommandLine/Tests:CommandLineToolTests",
-        "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+        "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
         "//examples/integration/macOSApp/Test/UITests:macOSAppUITests",
         "//examples/integration/tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-42d0652d7895",
         "//examples/integration/tvOSApp/Test/UITests:tvOSAppUITests",
@@ -352,13 +352,13 @@
         [
             "//examples/integration/iOSApp:iOSApp applebin_ios-ios_x86_64-dbg-ST-a0d637e005aa"
         ],
-        "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+        "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
         [
-            "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209"
+            "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d"
         ],
-        "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+        "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
         [
-            "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209"
+            "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d"
         ],
         "//examples/integration/tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-0b13f0c00ad6",
         [
@@ -4285,7 +4285,7 @@
                 }
             ]
         },
-        "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+        "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
         {
             "build_settings": {
                 "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
@@ -4298,12 +4298,12 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
             "dependencies": [
-                "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209"
+                "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d"
             ],
             "info_plist": {
-                "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
+                "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
@@ -4313,7 +4313,7 @@
                     "examples/integration/macOSApp/third_party/ExampleFramework.framework"
                 ],
                 "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/macOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/macOSApp.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
@@ -4324,7 +4324,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/libmacOSApp.library.a",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/libmacOSApp.library.a",
                         "t": "g"
                     }
                 ]
@@ -4344,7 +4344,7 @@
                         "q": [
                             ".",
                             {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
                                 "t": "g"
                             }
                         ]
@@ -4357,11 +4357,11 @@
             "name": "macOSApp",
             "outputs": {
                 "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/macOSApp.zip",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/macOSApp.zip",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source",
+            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "12.0",
@@ -4372,7 +4372,7 @@
                 "executable_name": "macOSApp",
                 "name": "macOSApp",
                 "path": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/macOSApp_archive-root/Payload/macOSApp.app",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/macOSApp_archive-root/Payload/macOSApp.app",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.application"
@@ -4384,17 +4384,17 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
                         "t": "g"
                     },
                     {
-                        "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
                         "t": "g"
                     }
                 ]
             }
         },
-        "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+        "//examples/integration/macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -4408,7 +4408,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+            "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
             "inputs": {
                 "srcs": [
                     "examples/integration/macOSApp/Source/ContentView.swift",
@@ -4423,20 +4423,20 @@
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/macOSApp.swiftdoc",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/macOSApp.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/macOSApp.swiftmodule",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/macOSApp.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/macOSApp.swiftsourceinfo",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/macOSApp.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source",
+            "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "12.0",
@@ -4447,7 +4447,7 @@
                 "executable_name": null,
                 "name": "macOSApp.library",
                 "path": {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Source/libmacOSApp.library.a",
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Source/libmacOSApp.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -4459,13 +4459,13 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
                         "t": "g"
                     }
                 ]
             }
         },
-        "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+        "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
         {
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
@@ -4477,13 +4477,13 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
             "dependencies": [
-                "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
-                "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209"
+                "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
+                "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d"
             ],
             "info_plist": {
-                "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
+                "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
                 "t": "g"
             },
             "is_swift": false,
@@ -4492,7 +4492,7 @@
             "linker_inputs": {
                 "linkopts": [
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
-                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
@@ -4503,7 +4503,7 @@
                 ],
                 "static_libraries": [
                     {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/libmacOSAppUITests.library.a",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/libmacOSAppUITests.library.a",
                         "t": "g"
                     }
                 ]
@@ -4520,7 +4520,7 @@
                         "q": [
                             ".",
                             {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
                                 "t": "g"
                             }
                         ]
@@ -4530,11 +4530,11 @@
             "name": "macOSAppUITests.__internal__.__test_bundle",
             "outputs": {
                 "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests",
+            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "12.0",
@@ -4545,7 +4545,7 @@
                 "executable_name": "macOSAppUITests",
                 "name": "macOSAppUITests",
                 "path": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle_archive-root/macOSAppUITests.xctest",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle_archive-root/macOSAppUITests.xctest",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.bundle.ui-testing"
@@ -4554,14 +4554,14 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
                         "t": "g"
                     }
                 ]
             },
-            "test_host": "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209"
+            "test_host": "//examples/integration/macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d"
         },
-        "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+        "//examples/integration/macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -4575,7 +4575,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209",
+            "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d",
             "inputs": {
                 "srcs": [
                     "examples/integration/macOSApp/Test/UITests/UITests.swift",
@@ -4588,20 +4588,20 @@
             "outputs": {
                 "s": {
                     "d": {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.swiftdoc",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.swiftdoc",
                         "t": "g"
                     },
                     "m": {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.swiftmodule",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.swiftmodule",
                         "t": "g"
                     },
                     "s": {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.swiftsourceinfo",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/macOSAppUITests.swiftsourceinfo",
                         "t": "g"
                     }
                 }
             },
-            "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests",
+            "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "12.0",
@@ -4612,7 +4612,7 @@
                 "executable_name": null,
                 "name": "macOSAppUITests.library",
                 "path": {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/examples/integration/macOSApp/Test/UITests/libmacOSAppUITests.library.a",
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin/examples/integration/macOSApp/Test/UITests/libmacOSAppUITests.library.a",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.library.static"
@@ -4621,7 +4621,7 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-cb117280f48d/bin",
                         "t": "g"
                     }
                 ]
