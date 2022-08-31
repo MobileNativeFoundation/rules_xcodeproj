@@ -14,7 +14,7 @@ _BUNDLE_EXTENSIONS = [
 
 _SETTINGS = {
   "x86_64-apple-macosx11.0.0 SwiftBin" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-aedfd39dd677/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3e0dd315ada8/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
 
     ],

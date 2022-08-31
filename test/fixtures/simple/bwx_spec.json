@@ -24,7 +24,7 @@
     "target_hosts": [],
     "target_merges": [],
     "targets": [
-        "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-a93f0e642138",
+        "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-136fdd25d5b3",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -38,7 +38,7 @@
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5"
             },
-            "configuration": "darwin_x86_64-dbg-ST-a93f0e642138",
+            "configuration": "darwin_x86_64-dbg-ST-136fdd25d5b3",
             "inputs": {
                 "srcs": [
                     "examples/simple/main.swift"
@@ -55,11 +55,11 @@
             "name": "SwiftBin",
             "outputs": {
                 "p": {
-                    "_": "darwin_x86_64-dbg-ST-a93f0e642138/bin/examples/simple/SwiftBin",
+                    "_": "darwin_x86_64-dbg-ST-136fdd25d5b3/bin/examples/simple/SwiftBin",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-a93f0e642138/bin/examples/simple",
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-136fdd25d5b3/bin/examples/simple",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "11.0",
@@ -70,7 +70,7 @@
                 "executable_name": "SwiftBin",
                 "name": "SwiftBin",
                 "path": {
-                    "_": "darwin_x86_64-dbg-ST-a93f0e642138/bin/examples/simple/SwiftBin",
+                    "_": "darwin_x86_64-dbg-ST-136fdd25d5b3/bin/examples/simple/SwiftBin",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.tool"
@@ -79,7 +79,7 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "darwin_x86_64-dbg-ST-a93f0e642138/bin",
+                        "_": "darwin_x86_64-dbg-ST-136fdd25d5b3/bin",
                         "t": "g"
                     }
                 ]
