@@ -4,7 +4,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 macos_ui_test(
     name = "macOSAppUITests",
     bundle_id = "io.buildbuddy.macosapp.uitests",
-    minimum_os_version = = "12.0",
+    minimum_os_version = "12.0",
     # xctestrunner does not support macOS. So, don't try to run this.
     tags = ["manual"],
     test_host = "//examples/integration/macOSApp/Source:macOSApp",
