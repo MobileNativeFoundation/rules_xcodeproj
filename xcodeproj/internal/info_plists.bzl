@@ -10,7 +10,7 @@ def _get_file(target):
     if AppleBundleInfo in target:
         return target[AppleBundleInfo].infoplist
     elif AppleBinaryInfo in target:
-        return target[AppleBinaryInfo].infoplist
+        return getattr(target[AppleBinaryInfo], "infoplist", None)
     return None
 
 def _adjust_for_xcode(file, default_app_icon_path, *, ctx):
