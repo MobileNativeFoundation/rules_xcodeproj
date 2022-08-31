@@ -6,8 +6,14 @@ load(
 )
 
 XCODEPROJ_TARGETS = [
-    "//examples/integration/CommandLine/CommandLineTool",
-    "//examples/integration/CommandLine/Tests:CommandLineToolLibSwiftTests",
+    top_level_target(
+        label =  "//examples/integration/CommandLine/CommandLineTool",
+        target_environments = ["device"],
+    ),
+    top_level_target(
+        label = "//examples/integration/CommandLine/Tests:CommandLineToolLibSwiftTests",
+        target_environments = ["device"],
+    ),
     "//examples/integration/iMessageApp",
     top_level_target(
         label = "//examples/integration/iOSApp",
@@ -21,10 +27,6 @@ XCODEPROJ_TARGETS = [
     ),
     "//examples/integration/tvOSApp/Test/UITests:tvOSAppUITests",
     "//examples/integration/tvOSApp/Test/UnitTests:tvOSAppUnitTests",
-    top_level_target(
-        label = "//examples/integration/Tool",
-        target_environments = ["device"],
-    ),
     "//examples/integration/watchOSApp/Test/UITests:watchOSAppUITests",
     "//examples/integration/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
 ]
