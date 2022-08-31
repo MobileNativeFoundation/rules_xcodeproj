@@ -59,6 +59,10 @@ env -i \
             name: "Debug",
             buildSettings: [
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+                "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
+$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
+""",
+                "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
                 // We have to support only a single platform to prevent issues
                 // with duplicated outputs during Index Build, but it also
                 // has to be a platform that one of the targets uses, otherwise
