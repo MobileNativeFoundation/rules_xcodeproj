@@ -1,4 +1,5 @@
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library", "swift_test")
+load("@build_bazel_rules_apple//apple:macos.bzl", "macos_unit_test")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "tests.library",
@@ -11,8 +12,9 @@ swift_library(
     ],
 )
 
-swift_test(
+macos_unit_test(
     name = "tests",
+    minimum_os_version = "12.0",
     visibility = [
         "//test:__subpackages__",
         "//tools/generator:__subpackages__",
