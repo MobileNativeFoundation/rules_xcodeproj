@@ -132,7 +132,7 @@ def _target_info_fields(
         "xcode_targets": xcode_targets,
     }
 
-def _skip_target(*, target, deps, transitive_infos):
+def _skip_target(*, target, deps, deps_attrs, transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
@@ -140,7 +140,9 @@ def _skip_target(*, target, deps, transitive_infos):
 
     Args:
         target: The `Target` to skip.
-        deps: `ctx.attr.deps` for the target.
+        deps: `Target`s collected from `ctx.attr.deps`.
+        deps_attrs: A sequence of attribute names to collect `Target`s from for
+            `deps`-like attributes.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of the target.
 
@@ -208,7 +210,9 @@ def _skip_target(*, target, deps, transitive_infos):
             [
                 struct(id = info.xcode_target.id, label = target.label)
                 for attr, info in transitive_infos
-                if target and attr == "deps" and info.xcode_target
+                if (target and
+                    attr in deps_attrs and
+                    info.xcode_target)
             ],
             transitive = [
                 info.replacement_labels
@@ -230,12 +234,19 @@ def _skip_target(*, target, deps, transitive_infos):
         ),
     )
 
-def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
+def _create_xcodeprojinfo(
+        *,
+        ctx,
+        target,
+        transitive_infos,
+        automatic_target_info):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
 
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
             dependencies of `target`.
 
@@ -243,8 +254,6 @@ def _create_xcodeprojinfo(*, ctx, target, transitive_infos):
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields`.
     """
-    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
-
     if (
         automatic_target_info.bazel_build_mode_error and
         should_bundle_resources(ctx = ctx)
@@ -375,16 +384,24 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
         An `XcodeProjInfo` populated with information from `target` and
         `transitive_infos`.
     """
+    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
+
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(
             target = target,
-            deps = getattr(ctx.rule.attr, "deps", []),
+            deps = [
+                dep
+                for attr in automatic_target_info.deps
+                for dep in getattr(ctx.rule.attr, attr, [])
+            ],
+            deps_attrs = automatic_target_info.deps,
             transitive_infos = transitive_infos,
         )
     else:
         info_fields = _create_xcodeprojinfo(
             ctx = ctx,
             target = target,
+            automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
 
