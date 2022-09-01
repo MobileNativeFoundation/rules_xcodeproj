@@ -134,8 +134,8 @@ targets.
                 additional_compiling_files.append(
                     depset(unfocused_compiling_files),
                 )
-            if additional_linking_files:
-                additional_compiling_files.append(
+            if unfocused_linking_files:
+                additional_linking_files.append(
                     depset(unfocused_linking_files),
                 )
 
