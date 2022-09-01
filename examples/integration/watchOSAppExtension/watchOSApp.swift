@@ -1,4 +1,5 @@
 import SwiftUI
+import watchOSAppExtensionLib
 
 @main
 struct watchOSApp: App {
