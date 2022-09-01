@@ -3261,7 +3261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		03D78A6AF4BF88D31B5A73A0 /* Create linking dependencies */ = {
@@ -3278,7 +3278,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		0B546160B72F6932B2E80ACC /* Create linking dependencies */ = {
@@ -3295,7 +3295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */ = {
@@ -3329,7 +3329,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6273313C4955CFA2FF09BB5F /* Create linking dependencies */ = {
@@ -3346,7 +3346,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		755BE1A07AB48CCBA936E166 /* Create linking dependencies */ = {
@@ -3363,7 +3363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
@@ -3417,7 +3417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B43600A65808622189B23F12 /* Create linking dependencies */ = {
@@ -3434,7 +3434,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BC748BEFF6C8DE6895092931 /* Create linking dependencies */ = {
@@ -3451,7 +3451,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CA28FFA4C7BA640F9B019429 /* Create linking dependencies */ = {
@@ -3468,7 +3468,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CFF69E2E8383FDD4CBDEEDFA /* Create linking dependencies */ = {
@@ -3485,7 +3485,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA9D59F71B3003C604D55396 /* Create linking dependencies */ = {
@@ -3502,7 +3502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DFC7E9339093C92AA26D63DC /* Create linking dependencies */ = {
@@ -3519,7 +3519,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F54D13C4BABB8D4BACF36A16 /* Create linking dependencies */ = {
@@ -3536,7 +3536,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FED90F1BECB04CC2A4AD4C32 /* Create linking dependencies */ = {
@@ -3553,7 +3553,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF5BC946887446687790F9EE /* Create linking dependencies */ = {
@@ -3570,7 +3570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

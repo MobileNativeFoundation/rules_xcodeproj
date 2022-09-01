@@ -1235,7 +1235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
@@ -1272,7 +1272,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F3CC5C342E03D318BD22F1E3 /* Create linking dependencies */ = {
@@ -1289,7 +1289,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FFBEC27DCB58A5E3CEB06010 /* Create linking dependencies */ = {
@@ -1306,7 +1306,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
