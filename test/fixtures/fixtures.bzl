@@ -3,7 +3,6 @@
 _FIXTURE_BASENAMES = [
     "cc",
     "generator",
-    "integration",
     "simple",
 ]
 

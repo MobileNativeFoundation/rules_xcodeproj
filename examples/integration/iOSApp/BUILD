@@ -8,7 +8,7 @@ load(
     "xcode_provisioning_profile",
 )
 load(
-    "//examples/integration:xcodeproj_targets.bzl",
+    "//:xcodeproj_targets.bzl",
     "IOS_BUNDLE_ID",
     "TEAMID",
 )
@@ -31,18 +31,18 @@ apple_bundle_version(
     name = "Version",
     build_version = "123.4.5",
     short_version_string = "123.4",
-    visibility = ["//examples/integration:__subpackages__"],
+    visibility = ["//:__subpackages__"],
 )
 
 ios_application(
     name = "iOSApp",
-    app_clips = ["//examples/integration/AppClip"],
+    app_clips = ["//AppClip"],
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = IOS_BUNDLE_ID,
     bundle_name = "iOSApp",
-    extensions = ["//examples/integration/WidgetExtension"],
+    extensions = ["//WidgetExtension"],
     families = ["iphone"],
-    frameworks = ["//examples/integration/Lib:LibFramework"],
+    frameworks = ["//Lib:LibFramework"],
     infoplists = [":Info.plist"],
     launch_images = glob(["launch_images_ios.xcassets/**"]),
     minimum_os_version = "15.0",
@@ -53,7 +53,7 @@ ios_application(
     resources = [":ResourceGroup"],
     version = ":Version",
     visibility = ["//visibility:public"],
-    watch_application = "//examples/integration/watchOSApp",
+    watch_application = "//watchOSApp",
     deps = [":iOSApp.library"],
 )
 
@@ -91,7 +91,7 @@ swift_library(
     module_name = "iOSApp",
     tags = ["manual"],
     deps = [
-        "//examples/integration/Lib",
+        "//Lib",
         "@com_google_google_maps//:GoogleMaps",
     ],
 )

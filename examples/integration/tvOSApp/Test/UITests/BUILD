@@ -7,7 +7,7 @@ tvos_ui_test(
     minimum_os_version = "15.0",
     # xctestrunner does not support tvOS. So, don't try to run this.
     tags = ["manual"],
-    test_host = "//examples/integration/tvOSApp/Source:tvOSApp",
+    test_host = "//tvOSApp/Source:tvOSApp",
     visibility = ["//visibility:public"],
     deps = [":tvOSAppUITests.library"],
 )

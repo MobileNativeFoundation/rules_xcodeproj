@@ -4,7 +4,7 @@ load(
     "ios_imessage_extension",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-load("//examples/integration:xcodeproj_targets.bzl", "IOS_BUNDLE_ID")
+load("//:xcodeproj_targets.bzl", "IOS_BUNDLE_ID")
 
 IMESSAGE_APP_BUNDLE_ID = "{}.imessage-app".format(IOS_BUNDLE_ID)
 
@@ -26,7 +26,7 @@ ios_imessage_application(
     families = ["iphone"],
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
-    version = "//examples/integration/iOSApp:Version",
+    version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
 )
 
@@ -37,7 +37,7 @@ ios_imessage_extension(
     infoplists = ["Info.extension.plist"],
     minimum_os_version = "15.0",
     resources = glob(["*.lproj/**"]),
-    version = "//examples/integration/iOSApp:Version",
+    version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
     deps = [":iMessageAppExtension.library"],
 )
@@ -49,6 +49,6 @@ swift_library(
     module_name = "iMessageAppExtension",
     tags = ["manual"],
     deps = [
-        "//examples/integration/Lib",
+        "//Lib",
     ],
 )

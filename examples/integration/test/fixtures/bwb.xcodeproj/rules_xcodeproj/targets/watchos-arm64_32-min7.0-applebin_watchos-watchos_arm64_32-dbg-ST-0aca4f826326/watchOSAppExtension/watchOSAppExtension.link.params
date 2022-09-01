@@ -1,0 +1,11 @@
+-Wl,-add_ast_path,$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-0aca4f826326/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-0aca4f826326/bin/Lib/Lib.swiftmodule
+-ObjC
+-L/usr/lib/swift
+-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos
+-Wl,-rpath,/usr/lib/swift
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++
+-force_load
+$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-0aca4f826326/bin/Lib/libLib.a

@@ -5,7 +5,7 @@ load(
     "xcode_provisioning_profile",
 )
 load(
-    "//examples/integration:xcodeproj_targets.bzl",
+    "//:xcodeproj_targets.bzl",
     "IOS_BUNDLE_ID",
     "TEAMID",
     "WATCHOS_BUNDLE_ID",
@@ -22,14 +22,14 @@ watchos_application(
     name = "watchOSApp",
     app_icons = ["AppIcon.xcassets"],
     bundle_id = WATCHOS_BUNDLE_ID,
-    extension = "//examples/integration/watchOSAppExtension",
+    extension = "//watchOSAppExtension",
     infoplists = [":infoplist"],
     minimum_os_version = "8.0",
     provisioning_profile = select({
         ":device_build": ":xcode_profile",
         "//conditions:default": None,
     }),
-    version = "//examples/integration/iOSApp:Version",
+    version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
 )
 

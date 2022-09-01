@@ -32,94 +32,9 @@ local_repository(
     path = "examples/cc/external",
 )
 
-new_local_repository(
-    name = "examples_command_line_external",
-    build_file = "examples/integration/CommandLine/external/BUILD.tpl",
-    path = "examples/integration/CommandLine/external",
-)
-
-load(
-    "@build_bazel_rules_apple//apple:apple.bzl",
-    "provisioning_profile_repository",
-)
-
-provisioning_profile_repository(
-    name = "local_provisioning_profiles",
-)
+# Setup Swift Custom Dump test dependency
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "com_google_google_maps",
-    build_file_content = """\
-load(
-    "@build_bazel_rules_apple//apple:apple.bzl",
-    "apple_static_xcframework_import",
-)
-
-apple_static_xcframework_import(
-    name = "GoogleMaps",
-    sdk_frameworks = ["SystemConfiguration"],
-    xcframework_imports = glob(
-        ["GoogleMaps.xcframework/**"],
-        exclude = ["**/.*"],
-    ),
-    visibility = ["//visibility:public"],
-    deps = [":GoogleMapsCore"],
-)
-
-apple_static_xcframework_import(
-    name = "GoogleMapsBase",
-    sdk_dylibs = [
-        "c++",
-        "z",
-    ],
-    sdk_frameworks = [
-        "CoreLocation",
-        "CoreTelephony",
-    ],
-    xcframework_imports = glob(
-        ["GoogleMapsBase.xcframework/**"],
-        exclude = ["**/.*"],
-    ),
-)
-
-apple_static_xcframework_import(
-    name = "GoogleMapsCore",
-    xcframework_imports = glob(
-        ["GoogleMapsCore.xcframework/**"],
-        exclude = ["**/.*"],
-    ),
-    deps = [":GoogleMapsBase"],
-)
-""",
-    sha256 = "2308155fc29655ee3722e1829bd2c1b09f457b7140bc65cad6116dd8a4ca8bff",
-    strip_prefix = "GoogleMaps-6.2.1-beta",
-    url = "https://dl.google.com/geosdk/GoogleMaps-6.2.1-beta.tar.gz",
-)
-
-http_archive(
-    name = "com_github_krzyzanowskim_cryptoswift",
-    build_file_content = """\
-load(
-    "@build_bazel_rules_apple//apple:apple.bzl",
-    "apple_dynamic_xcframework_import",
-)
-
-apple_dynamic_xcframework_import(
-    name = "CryptoSwift",
-    xcframework_imports = glob(
-        ["CryptoSwift.xcframework/**"],
-        exclude = ["**/.*"],
-    ),
-    visibility = ["//visibility:public"],
-)
-""",
-    sha256 = "b251155dce1e5f705f40bf1d531d56851b90f1907a8ff07d0e0c471f12316515",
-    url = "https://github.com/krzyzanowskim/CryptoSwift/releases/download/1.5.1/CryptoSwift.xcframework.zip",
-)
-
-# Setup Swift Custom Dump test dependency
 
 http_archive(
     name = "com_github_pointfreeco_xctest_dynamic_overlay",

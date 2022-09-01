@@ -26,7 +26,7 @@ ios_framework(
     families = ["iphone"],
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
-    version = "//examples/integration/iOSApp:Version",
+    version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
     deps = [":Lib"],
 )

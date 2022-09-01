@@ -14,7 +14,7 @@ apple_bundle_version(
     name = "Version",
     build_version = "123.4.5",
     short_version_string = "123.4",
-    visibility = ["//examples/integration:__subpackages__"],
+    visibility = ["//:__subpackages__"],
 )
 
 macos_application(
@@ -50,7 +50,7 @@ swift_library(
     module_name = "macOSApp",
     tags = ["manual"],
     deps = [
-        "//examples/integration/macOSApp/third_party:ExampleFramework",
+        "//macOSApp/third_party:ExampleFramework",
     ],
 )
 

@@ -7,28 +7,28 @@ load(
 
 XCODEPROJ_TARGETS = [
     top_level_target(
-        label = "//examples/integration/CommandLine/CommandLineTool",
+        label = "//CommandLine/CommandLineTool",
         target_environments = ["device"],
     ),
     top_level_target(
-        label = "//examples/integration/CommandLine/Tests:CommandLineToolTests",
+        label = "//CommandLine/Tests:CommandLineToolTests",
         target_environments = ["device"],
     ),
-    "//examples/integration/iMessageApp",
+    "//iMessageApp",
     top_level_target(
-        label = "//examples/integration/iOSApp",
+        label = "//iOSApp",
         target_environments = ["device", "simulator"],
     ),
-    "//examples/integration/macOSApp/Source:macOSApp",
-    "//examples/integration/macOSApp/Test/UITests:macOSAppUITests",
+    "//macOSApp/Source:macOSApp",
+    "//macOSApp/Test/UITests:macOSAppUITests",
     top_level_target(
-        label = "//examples/integration/tvOSApp",
+        label = "//tvOSApp",
         target_environments = ["device", "simulator"],
     ),
-    "//examples/integration/tvOSApp/Test/UITests:tvOSAppUITests",
-    "//examples/integration/tvOSApp/Test/UnitTests:tvOSAppUnitTests",
-    "//examples/integration/watchOSApp/Test/UITests:watchOSAppUITests",
-    "//examples/integration/watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
+    "//tvOSApp/Test/UITests:tvOSAppUITests",
+    "//tvOSApp/Test/UnitTests:tvOSAppUnitTests",
+    "//watchOSApp/Test/UITests:watchOSAppUITests",
+    "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
 ]
 
 IOS_BUNDLE_ID = "io.buildbuddy.example"
