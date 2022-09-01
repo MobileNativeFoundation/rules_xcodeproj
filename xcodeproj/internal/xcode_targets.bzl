@@ -92,7 +92,6 @@ def _make(
         _search_paths = search_paths,
         _modulemaps = modulemaps,
         _swiftmodules = tuple(swiftmodules),
-        _linker_inputs = linker_inputs,
         _watch_application = watch_application,
         _extensions = tuple(extensions),
         _app_clips = tuple(app_clips),
@@ -101,6 +100,7 @@ def _make(
         id = id,
         label = label,
         product = product,
+        linker_inputs = linker_inputs,
         inputs = inputs,
         outputs = outputs,
         infoplist = infoplist,
@@ -175,7 +175,7 @@ def _to_dto(
     set_if_true(
         dto,
         "linker_inputs",
-        linker_input_files.to_dto(xcode_target._linker_inputs),
+        linker_input_files.to_dto(xcode_target.linker_inputs),
     )
     set_if_true(
         dto,

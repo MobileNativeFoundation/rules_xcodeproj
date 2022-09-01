@@ -131,7 +131,8 @@ enum Fixtures {
                 name: "b",
                 path: .generated("a/b.framework")
             ),
-            inputs: .init(srcs: ["z.h", "z.mm"], hdrs: ["d.h"])
+            inputs: .init(srcs: ["z.h", "z.mm"], hdrs: ["d.h"]),
+            dependencies: ["A 1"]
         ),
         // "B 2" not having a link on "A 1" represents a bundle_loader like
         // relationship. This allows "A 1" to merge into "A 2".
@@ -2538,6 +2539,8 @@ $(MACOSX_FILES)
             .addDependency(target: pbxTargets["C 1"]!)
         _ = try! pbxTargets.nativeTarget("A 2")!
             .addDependency(target: pbxTargets["R 1"]!)
+        _ = try! pbxTargets.nativeTarget("B 1")!
+            .addDependency(target: pbxTargets["A 1"]!)
         _ = try! pbxTargets.nativeTarget("B 2")!
             .addDependency(target: pbxTargets["A 2"]!)
         _ = try! pbxTargets.nativeTarget("B 2")!
