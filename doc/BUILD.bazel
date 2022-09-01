@@ -42,9 +42,8 @@ write_file(
     content = [
         "#!/usr/bin/env bash",
         "set -euo pipefail",
-        "cd $BUILD_WORKSPACE_DIRECTORY",
     ] + [
-        "cp -fv bazel-bin/doc/{src}.md doc/rules-{dst}.md".format(
+        'cp -fv doc/{src}.md "$BUILD_WORKSPACE_DIRECTORY/doc/rules-{dst}.md"'.format(
             src = file,
             dst = file.replace(".doc", ""),
         )
