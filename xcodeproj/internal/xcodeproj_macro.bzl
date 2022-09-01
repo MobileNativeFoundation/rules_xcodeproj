@@ -12,7 +12,7 @@ def xcodeproj(
         name,
         archived_bundles_allowed = None,
         bazel_path = "bazel",
-        build_mode = "xcode",
+        build_mode = "bazel",
         focused_targets = [],
         ios_device_cpus = "arm64",
         ios_simulator_cpus = None,
