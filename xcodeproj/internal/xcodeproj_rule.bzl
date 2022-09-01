@@ -9,6 +9,7 @@ load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
+load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "output_files")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
@@ -113,6 +114,7 @@ targets.
     has_unfocused_targets = bool(unfocused_targets)
 
     targets = {}
+    target_dtos = {}
     additional_generated = {}
     additional_outputs = {}
     for xcode_target in actual_targets:
@@ -179,7 +181,8 @@ targets.
             )
         )
 
-        targets[xcode_target.id] = xcode_targets.to_dto(
+        targets[xcode_target.id] = xcode_target
+        target_dtos[xcode_target.id] = xcode_targets.to_dto(
             xcode_target = xcode_target,
             include_lldb_context = (
                 has_unfocused_targets or
@@ -190,7 +193,7 @@ targets.
             unfocused_targets = unfocused_targets,
         )
 
-    return (targets, additional_generated, additional_outputs)
+    return (targets, target_dtos, additional_generated, additional_outputs)
 
 # Actions
 
@@ -200,6 +203,7 @@ def _write_json_spec(
         project_name,
         configuration,
         targets,
+        target_dtos,
         has_focused_targets,
         inputs,
         infos):
@@ -224,11 +228,38 @@ def _write_json_spec(
         target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
 
     target_merges = {}
+    target_merge_srcs_by_label = {}
     for dest, src_ids in target_merge_dests.items():
         if len(src_ids) > 1:
             # We can only merge targets with a single library dependency
             continue
-        target_merges.setdefault(src_ids[0], []).append(dest)
+        src = src_ids[0]
+        src_target = targets[src]
+        target_merges.setdefault(src, []).append(dest)
+        target_merge_srcs_by_label.setdefault(src_target.label, []).append(src)
+
+    non_mergable_targets = {}
+    for src, dests in target_merges.items():
+        src_target = targets[src]
+        for dest in dests:
+            dest_target = targets[dest]
+            for library in linker_input_files.get_top_level_static_libraries(
+                dest_target.linker_inputs,
+            ):
+                if library.owner == src_target.label:
+                    continue
+
+                # Other libraries that are not being merged into `dest_target`
+                # can't merge into other targets
+                non_mergable_targets[file_path(library)] = None
+
+    for src in target_merges.keys():
+        src_target = targets[src]
+        if src_target.product.path in non_mergable_targets:
+            # Prevent any version of `src` from merging, to prevent odd
+            # target consolidation issues
+            for id in target_merge_srcs_by_label[src_target.label]:
+                target_merges.pop(id, None)
 
     # `target_hosts`
     hosted_targets = depset(
@@ -303,7 +334,7 @@ def _write_json_spec(
         target_merges = json.encode(
             flattened_key_values.to_list(target_merges),
         ),
-        targets = json.encode(flattened_key_values.to_list(targets)),
+        targets = json.encode(flattened_key_values.to_list(target_dtos)),
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))
@@ -623,7 +654,12 @@ def _xcodeproj_impl(ctx):
         transitive_infos = [(None, info) for info in infos],
     )
 
-    targets, additional_generated, additional_outputs = _process_targets(
+    (
+        targets,
+        target_dtos,
+        additional_generated,
+        additional_outputs,
+    ) = _process_targets(
         build_mode = build_mode,
         focused_labels = focused_labels,
         unfocused_labels = unfocused_labels,
@@ -636,6 +672,7 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         configuration = configuration,
         targets = targets,
+        target_dtos = target_dtos,
         has_focused_targets = sets.length(focused_labels) > 0,
         inputs = inputs,
         infos = infos,
