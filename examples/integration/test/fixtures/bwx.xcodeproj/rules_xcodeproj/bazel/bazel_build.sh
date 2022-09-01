@@ -153,7 +153,7 @@ cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
 EOF
 
 if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
-  source "$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh"
+  source "$INTERNAL_DIR/create_xcode_overlay.sh"
 fi
 
 # Build
