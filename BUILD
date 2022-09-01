@@ -23,6 +23,7 @@ COPYFILE_DISABLE=1 tar czvfh "$${outs[0]}" \
   *
 shasum -a 256 "$${outs[0]}" > "$${outs[1]}"
     """,
+    tags = ["manual"],
 )
 
 filegroup(
@@ -54,6 +55,7 @@ buildifier(
     lint_mode = "warn",
     lint_warnings = _BUILDIFIER_WARNINGS,
     mode = "diff",
+    tags = ["manual"],
 )
 
 buildifier(
@@ -62,4 +64,5 @@ buildifier(
     lint_mode = "fix",
     lint_warnings = _BUILDIFIER_WARNINGS,
     mode = "fix",
+    tags = ["manual"],
 )
