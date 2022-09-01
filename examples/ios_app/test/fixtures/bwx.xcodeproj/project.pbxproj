@@ -814,7 +814,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58AEFBF047A17A45682036D5 /* Build configuration list for PBXNativeTarget "ExampleObjcTests" */;
 			buildPhases = (
-				4EF06A50D337382A5319B57A /* Create link.params */,
+				FFBEC27DCB58A5E3CEB06010 /* Create linking dependencies */,
 				048E369DBDF9AF1401991326 /* Sources */,
 				ECF1A6B679AC176F0081CA29 /* Resources */,
 			);
@@ -885,7 +885,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61DE4199B1A5CD840CBE5936 /* Build configuration list for PBXNativeTarget "ExampleTests" */;
 			buildPhases = (
-				916375E568B5DCC38DE5B06C /* Create link.params */,
+				76A9126A4C60AB4369BE419C /* Create linking dependencies */,
 				CB8AB7D1543020F00097DBF0 /* Sources */,
 				CA1DAD6B9A1452E111144786 /* Resources */,
 			);
@@ -937,7 +937,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6A9520E4E640351CDDD995F /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
-				B53A70A8850ED09CF7C2348A /* Create link.params */,
+				F3CC5C342E03D318BD22F1E3 /* Create linking dependencies */,
 				158225A69996B833609C215D /* Sources */,
 				EC82FDE86D73A4710E6DBDE5 /* Resources */,
 			);
@@ -974,7 +974,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FB39583646574C3204F817B3 /* Build configuration list for PBXNativeTarget "ExampleUITests" */;
 			buildPhases = (
-				73D877B3DBEB236B190B36FB /* Create link.params */,
+				AF29BE4E3886CCEDCAF6D46D /* Create linking dependencies */,
 				4FB0F65207D21A288CE24A4E /* Sources */,
 				EB6F083A17401F481FA423AB /* Resources */,
 			);
@@ -1221,7 +1221,7 @@
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4EF06A50D337382A5319B57A /* Create link.params */ = {
+		76A9126A4C60AB4369BE419C /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1229,30 +1229,13 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73D877B3DBEB236B190B36FB /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
@@ -1275,7 +1258,7 @@
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/bazel_build.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		916375E568B5DCC38DE5B06C /* Create link.params */ = {
+		AF29BE4E3886CCEDCAF6D46D /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1283,16 +1266,16 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
-		B53A70A8850ED09CF7C2348A /* Create link.params */ = {
+		F3CC5C342E03D318BD22F1E3 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1300,13 +1283,30 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			showEnvVarsInLog = 0;
+		};
+		FFBEC27DCB58A5E3CEB06010 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

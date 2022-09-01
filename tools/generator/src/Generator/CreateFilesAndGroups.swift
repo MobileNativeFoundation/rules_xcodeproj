@@ -35,7 +35,7 @@ extension File {
 
 extension Generator {
     static let bazelForcedSwiftCompilePath: Path = "_BazelForcedCompile_.swift"
-    static let compileStubPath: Path = "CompileStub.m"
+    static let compileStubPath: Path = "_CompileStub_.m"
     static let externalFileListPath: Path = "external.xcfilelist"
     static let appRsyncExcludeFileListPath: Path = "app.exclude.rsynclist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
@@ -510,8 +510,11 @@ extension Generator {
             }
         }
 
-        // Fix sourceTree of `bazelForcedSwiftCompilePath`
+        // Fix sourceTree of `bazelForcedSwiftCompilePath` and `compileStubPath`
         if let element = fileReferences[.internal(bazelForcedSwiftCompilePath)] {
+            element.sourceTree = .custom("DERIVED_FILE_DIR")
+        }
+        if let element = fileReferences[.internal(compileStubPath)] {
             element.sourceTree = .custom("DERIVED_FILE_DIR")
         }
 
@@ -523,11 +526,7 @@ extension Generator {
 
         var files: [FilePath: File] = [:]
         for (filePath, fileReference) in fileReferences {
-            if filePath == .internal(compileStubPath) {
-                files[filePath] = .reference(fileReference, content: "")
-            } else {
-                files[filePath] = .reference(fileReference)
-            }
+            files[filePath] = .reference(fileReference)
         }
         for (filePath, group) in groups {
             if let variantGroup = group as? PBXVariantGroup {

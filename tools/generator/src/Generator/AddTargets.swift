@@ -30,6 +30,15 @@ Product for target "\(key)" not found in `products`
 """)
             }
 
+            let compileSources = try createCompileSourcesPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                inputs: inputs,
+                outputs: outputs,
+                files: files
+            )
+
             let buildPhases = [
                 try createCopyBazelOutputsScript(
                     in: pbxProj,
@@ -39,8 +48,9 @@ Product for target "\(key)" not found in `products`
                     outputs: outputs,
                     filePathResolver: filePathResolver
                 ),
-                try createLinkParamsScript(
+                try createLinkingDependenciesScript(
                     in: pbxProj,
+                    hasCompileStub: compileSources?.hasCompileStub == true,
                     hasLinkerFlags: target.hasLinkerFlags
                 ),
                 try createHeadersPhase(
@@ -49,14 +59,7 @@ Product for target "\(key)" not found in `products`
                     inputs: inputs,
                     files: files
                 ),
-                try createCompileSourcesPhase(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    productType: productType,
-                    inputs: inputs,
-                    outputs: outputs,
-                    files: files
-                ),
+                compileSources?.phase,
                 try createCopyGeneratedHeaderScript(
                     in: pbxProj,
                     buildMode: buildMode,
@@ -170,23 +173,36 @@ Product for target "\(key)" not found in `products`
         return script
     }
 
-    private static func createLinkParamsScript(
+    private static func createLinkingDependenciesScript(
         in pbxProj: PBXProj,
+        hasCompileStub: Bool,
         hasLinkerFlags: Bool
     ) throws -> PBXShellScriptBuildPhase? {
         guard hasLinkerFlags else {
             return nil
         }
 
-        let script = PBXShellScriptBuildPhase(
-            name: "Create link.params",
-            inputPaths: ["$(LINK_PARAMS_FILE)"],
-            outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
-            shellScript: #"""
+        var shellScriptComponents = [#"""
 perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
 
-"""#,
+"""#]
+
+        var outputsPaths = ["$(DERIVED_FILE_DIR)/link.params"]
+        if hasCompileStub {
+            outputsPaths.append("$(DERIVED_FILE_DIR)/_CompileStub_.m")
+            shellScriptComponents.append(#"""
+touch "$SCRIPT_OUTPUT_FILE_1"
+
+"""#)
+        }
+
+
+        let script = PBXShellScriptBuildPhase(
+            name: "Create linking dependencies",
+            inputPaths: ["$(LINK_PARAMS_FILE)"],
+            outputPaths: outputsPaths,
+            shellScript: shellScriptComponents.joined(separator: "\n"),
             showEnvVarsInLog: false
         )
         pbxProj.add(object: script)
@@ -246,7 +262,7 @@ File "\(headerFile.filePath)" not found in `files`
         inputs: ConsolidatedTargetInputs,
         outputs: ConsolidatedTargetOutputs,
         files: [FilePath: File]
-    ) throws -> PBXSourcesBuildPhase? {
+    ) throws -> (phase: PBXSourcesBuildPhase, hasCompileStub: Bool)? {
         let forcedBazelCompileFiles = outputs
             .forcedBazelCompileFiles(buildMode: buildMode)
         let sources = forcedBazelCompileFiles.map(SourceFile.init) +
@@ -276,8 +292,10 @@ File "\(sourceFile.filePath)" not found in `files`
             return pbxBuildFile
         }
 
+        let hasCompileStub = sources.isEmpty
+
         let sourceFiles: [SourceFile]
-        if sources.isEmpty {
+        if hasCompileStub {
             sourceFiles = [SourceFile(.internal(compileStubPath))]
         } else {
             sourceFiles = sources
@@ -288,7 +306,7 @@ File "\(sourceFile.filePath)" not found in `files`
         )
         pbxProj.add(object: buildPhase)
 
-        return buildPhase
+        return (buildPhase, hasCompileStub)
     }
 
     private static func createCopyGeneratedHeaderScript(

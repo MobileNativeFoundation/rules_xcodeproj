@@ -60,7 +60,6 @@
 		1DE26605A4AFBA9D044551B7 /* XCSchemeInfo+HostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B194639E9B15A5EBF6F2B8 /* XCSchemeInfo+HostInfo.swift */; };
 		1DFEAA851DC58E54D5FDC4D5 /* XCSchemeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B31DAEE7BDD3FB52C89121 /* XCSchemeInfo.swift */; };
 		1E3DC0A6287F260FE33F89CE /* Path+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597D69F32EE134D35CA5EED /* Path+Extras.swift */; };
-		1F0BF4776B54936E8152F2E7 /* CompileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */; };
 		209E823873EA39D5C6A8EF66 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3D4E7C841C2C89DF095466 /* Logger.swift */; };
 		219C3E15651600D4892C4387 /* CollectionDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9525BCADA7A75978D1FCC /* CollectionDifference.swift */; };
 		21EFB487A4B2DCA0539113C6 /* BuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE677C0FD789C4A0ADDC1901 /* BuildPhase.swift */; };
@@ -82,6 +81,7 @@
 		30641992040B785DB00E790C /* XCScheme+LocationScenarioReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FBA88B39294943DB5E5A4 /* XCScheme+LocationScenarioReference.swift */; };
 		30D51D7450B1E5BC999396AC /* AnyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A79739F778E13D555285 /* AnyType.swift */; };
 		30F0C043E51363669C0D7E43 /* XCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC44F6F9D5F1EBF4D7110DD /* XCConfig.swift */; };
+		34B28ED816174289FCA87229 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 15240A701E6FED89576025D5 /* _CompileStub_.m */; };
 		3549F29F57882F4922629FB8 /* XcodeSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2482AD02D4DC6C0AE14BBED3 /* XcodeSchemeTests.swift */; };
 		36161192BE3C16570649BB90 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C89E41DF806BDFD0AF9A374 /* Photos.swift */; };
 		379B88D547F660FC8CD65C0D /* XcodeScheme+BuildFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5674A308EB495272E069F /* XcodeScheme+BuildFor.swift */; };
@@ -461,6 +461,7 @@
 		11EF80F5B25255A95D7D8D66 /* OrderedDictionary+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Values.swift"; sourceTree = "<group>"; };
 		1311F2E17F171A48A8E3B180 /* Dictionary+Enumerate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Enumerate.swift"; sourceTree = "<group>"; };
 		133D091B34B3EB60A9400C02 /* PBXShellScriptBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXShellScriptBuildPhase.swift; sourceTree = "<group>"; };
+		15240A701E6FED89576025D5 /* _CompileStub_.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _CompileStub_.m; sourceTree = DERIVED_FILE_DIR; };
 		16F8C4C7C2081CE4ED3E6131 /* BuildSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildSetting.swift; sourceTree = "<group>"; };
 		173203DBAEA88407DBBF109D /* Dump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dump.swift; sourceTree = "<group>"; };
 		186B5A6EAA26C6BCB1FE6773 /* TargetIDConsolidatedTargetKeyDictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TargetIDConsolidatedTargetKeyDictionary+Extensions.swift"; sourceTree = "<group>"; };
@@ -700,7 +701,6 @@
 		DFB50D8D42412EB98A465DED /* OrderedDictionary+Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Elements.swift"; sourceTree = "<group>"; };
 		DFD9A9F50CD3972B0F674265 /* XCSchemeInfo+ProfileActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+ProfileActionInfoTests.swift"; sourceTree = "<group>"; };
 		E0413D918157ADBE8DAEA92D /* Mirror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mirror.swift; sourceTree = "<group>"; };
-		E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompileStub.m; sourceTree = "<group>"; };
 		E2BC73B37056313056FED47E /* LLDBContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLDBContext.swift; sourceTree = "<group>"; };
 		E37E1D8F0FD9F2FEEC62C2B3 /* BazelLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BazelLabelTests.swift; sourceTree = "<group>"; };
 		E4142BB8EF88F4DD2D5440E4 /* OrderedDictionary+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+CustomStringConvertible.swift"; sourceTree = "<group>"; };
@@ -1401,7 +1401,7 @@
 		D182AF8E059C5832405A845F /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				E06CA54BB3677E9BBC8A5D94 /* CompileStub.m */,
+				15240A701E6FED89576025D5 /* _CompileStub_.m */,
 			);
 			name = rules_xcodeproj;
 			path = test/fixtures/generator/bwb.xcodeproj/rules_xcodeproj;
@@ -1591,7 +1591,7 @@
 			buildConfigurationList = 9C3B0DA5FF54217998FA354A /* Build configuration list for PBXNativeTarget "generator" */;
 			buildPhases = (
 				EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */,
-				C86F590B80722C1AB822CF3A /* Create link.params */,
+				8F85B1482AB82E3C5B71ADB3 /* Create linking dependencies */,
 				42A070DBC30FFCFC46CB6D1F /* Sources */,
 			);
 			buildRules = (
@@ -1610,7 +1610,7 @@
 			buildConfigurationList = 2AE3F241DE7B5C62A4FBFD3F /* Build configuration list for PBXNativeTarget "tests" */;
 			buildPhases = (
 				3C2F7597AADF65DD2B4DA5CC /* Copy Bazel Outputs */,
-				8DFB0415CDA55D86F71ED5C8 /* Create link.params */,
+				9C04E03F3B44A0E00C9DE6DD /* Create linking dependencies */,
 				90B131D058F213F9EE1D4E2A /* Sources */,
 			);
 			buildRules = (
@@ -1833,7 +1833,7 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libCustomDump.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DFB0415CDA55D86F71ED5C8 /* Create link.params */ = {
+		8F85B1482AB82E3C5B71ADB3 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1841,13 +1841,14 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
+				"$(DERIVED_FILE_DIR)/_CompileStub_.m",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		90B04C8AB5A07A2ECF257268 /* Copy Bazel Outputs */ = {
@@ -1886,6 +1887,23 @@
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/bazel_build.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9C04E03F3B44A0E00C9DE6DD /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			showEnvVarsInLog = 0;
+		};
 		BF93DFB380D1CC637B96A769 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1900,23 +1918,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libgenerator.library.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C86F590B80722C1AB822CF3A /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */ = {
@@ -1966,7 +1967,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F0BF4776B54936E8152F2E7 /* CompileStub.m in Sources */,
+				34B28ED816174289FCA87229 /* _CompileStub_.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

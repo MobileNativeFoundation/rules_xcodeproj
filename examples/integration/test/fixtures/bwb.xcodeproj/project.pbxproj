@@ -2430,7 +2430,7 @@
 			buildConfigurationList = 22D078ED36B85E0A40CC6AF8 /* Build configuration list for PBXNativeTarget "WidgetExtension" */;
 			buildPhases = (
 				87D2EB6131DC54924D3FA46F /* Copy Bazel Outputs */,
-				3814AF42FEC0097CAA68D5F7 /* Create link.params */,
+				E1A1A11A75DFBF854FAFA10E /* Create linking dependencies */,
 				49E604CF100EF12B62E4F2B0 /* Sources */,
 				5A9B409C6B42AC407CAEA800 /* Frameworks */,
 			);
@@ -2450,7 +2450,7 @@
 			buildConfigurationList = 90F3B40579D75847186F27C6 /* Build configuration list for PBXNativeTarget "AppClip" */;
 			buildPhases = (
 				B5F59F69B53E4CD6B729C3DE /* Copy Bazel Outputs */,
-				FB65161C8FCA2C7A0E62AB8C /* Create link.params */,
+				4A50E185DA5DF9C9FA565E9A /* Create linking dependencies */,
 				F90AB663AB242C7317551B94 /* Sources */,
 				F1A4B37998EBB24708A708B2 /* Frameworks */,
 			);
@@ -2470,7 +2470,7 @@
 			buildConfigurationList = E8A489D2F21C3EBA9BFFC31B /* Build configuration list for PBXNativeTarget "iOSApp" */;
 			buildPhases = (
 				9F6AC3E78F25E23948AED368 /* Copy Bazel Outputs */,
-				8DDDFE85880761F7AD213706 /* Create link.params */,
+				98A71FDC2C7B65B80CB267C4 /* Create linking dependencies */,
 				B0BD8F7B441AB01986AB1F93 /* Sources */,
 				673AEE26CBCA5AC37617E7DD /* Frameworks */,
 				7C574200BE46B3AB33851AA4 /* Embed Watch Content */,
@@ -2496,7 +2496,7 @@
 			buildConfigurationList = A8F09F14F4463A8E11725B7D /* Build configuration list for PBXNativeTarget "CommandLineTool" */;
 			buildPhases = (
 				BF56D416F70A066FD9011FA8 /* Copy Bazel Outputs */,
-				3B549C81C6056E7D45C6C997 /* Create link.params */,
+				DE5C59A752329AE16229AE59 /* Create linking dependencies */,
 				315271AE75D672025F1A9942 /* Sources */,
 				D5673909E06C36E3D882D363 /* Frameworks */,
 			);
@@ -2516,7 +2516,7 @@
 			buildConfigurationList = 75EB161EFF626458F41F0CA7 /* Build configuration list for PBXNativeTarget "iMessageAppExtension" */;
 			buildPhases = (
 				56BD3A38019D94C340B5A25C /* Copy Bazel Outputs */,
-				B66E710FB51ED33D34EF4690 /* Create link.params */,
+				68138666CD6CDC373430A762 /* Create linking dependencies */,
 				E14B9C7D8D225FBE66CC100E /* Sources */,
 				CF5D574E9B6152A6F916506C /* Frameworks */,
 			);
@@ -2536,7 +2536,7 @@
 			buildConfigurationList = 543335B1028B94071588C31E /* Build configuration list for PBXNativeTarget "watchOSAppExtension" */;
 			buildPhases = (
 				656CED3E4E2349D88BAA2EF6 /* Copy Bazel Outputs */,
-				8538D19F44864ED0B39A9F18 /* Create link.params */,
+				868BBA44BDD2BE4A39BFEDEC /* Create linking dependencies */,
 				B09B81014BDBFBE263449393 /* Sources */,
 				14A52D246AC24EAA653CD2FC /* Frameworks */,
 			);
@@ -2556,7 +2556,7 @@
 			buildConfigurationList = D879581B52FB0834A869F005 /* Build configuration list for PBXNativeTarget "iMessageApp" */;
 			buildPhases = (
 				C7E5D6A63B206760804A009C /* Copy Bazel Outputs */,
-				8610BED72838B5EFB0BFEBFA /* Create link.params */,
+				DD9CC37462811E6A32A1ED0C /* Create linking dependencies */,
 				73209A42106E6D9F8C2F204A /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -2590,7 +2590,7 @@
 			buildConfigurationList = 97899584D8C8DDB9E465F124 /* Build configuration list for PBXNativeTarget "tvOSAppUITests" */;
 			buildPhases = (
 				1B771FA00F3E6B0CB6A9F992 /* Copy Bazel Outputs */,
-				E886B76D3E568EB9788539AA /* Create link.params */,
+				9FDE065FCA9AAC5A0A44A11F /* Create linking dependencies */,
 				A3ABE31C07348FDEF2A3137C /* Sources */,
 			);
 			buildRules = (
@@ -2609,7 +2609,7 @@
 			buildConfigurationList = BB6B08948EB403DD7CEC76D8 /* Build configuration list for PBXNativeTarget "CommandLineToolTests" */;
 			buildPhases = (
 				E4DFB42E1E6C49238D7B8878 /* Copy Bazel Outputs */,
-				AF94C54A2FA70602B8210F46 /* Create link.params */,
+				172D472463796AAA86DE3F16 /* Create linking dependencies */,
 				8386C3E1D1885B4412A44CE2 /* Sources */,
 				9914D5AEA900C95BD667AFAA /* Frameworks */,
 			);
@@ -2646,7 +2646,7 @@
 			buildConfigurationList = 8A037957A7D43A07EB471C2A /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
 				DF8E9D9CD1E839DFDDC57F9F /* Copy Bazel Outputs */,
-				AB1DBF50C14F6FCB70D4D66D /* Create link.params */,
+				FE20253D7BB9C5EA483F09D0 /* Create linking dependencies */,
 				D6600EEE440B5DA4ECED5B88 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -2665,7 +2665,7 @@
 			buildConfigurationList = 8D0A215926F86AD18BB722CD /* Build configuration list for PBXNativeTarget "tvOSAppUnitTests" */;
 			buildPhases = (
 				283DCDF5399761BAD0DB8923 /* Copy Bazel Outputs */,
-				063BC57F1E957D593EF3E269 /* Create link.params */,
+				8E99904A6B322FD8DC0AE06D /* Create linking dependencies */,
 				D891ADC38CB5CD0B471E2DC5 /* Sources */,
 			);
 			buildRules = (
@@ -2736,7 +2736,7 @@
 			buildConfigurationList = A15233C41919C9274111E7C0 /* Build configuration list for PBXNativeTarget "tvOSApp" */;
 			buildPhases = (
 				C3B530109FE5F98A1693F0A1 /* Copy Bazel Outputs */,
-				F756044929EF411B664BDC35 /* Create link.params */,
+				EC6016F1A034F70C0846B131 /* Create linking dependencies */,
 				F7BFBB107A12DCC806E6F7F2 /* Sources */,
 				A5090B3AA4DCA8AF69C219DD /* Frameworks */,
 			);
@@ -2756,7 +2756,7 @@
 			buildConfigurationList = 87D9009B2B4262A0AB6BD640 /* Build configuration list for PBXNativeTarget "macOSApp" */;
 			buildPhases = (
 				1305E71B397AAD0342B70DA2 /* Copy Bazel Outputs */,
-				327EFD10AF45EFBA39464469 /* Create link.params */,
+				1AD5775B0403CB13FDE5DBD3 /* Create linking dependencies */,
 				D4F44477F89180BAF6091C50 /* Sources */,
 				6BBC64058F88BC8C000A5516 /* Frameworks */,
 			);
@@ -2790,7 +2790,7 @@
 			buildConfigurationList = F3AA4A2F83FB2192FC9A66F2 /* Build configuration list for PBXNativeTarget "watchOSAppUITests" */;
 			buildPhases = (
 				9EC7DF73E6DD86C7F36AD07E /* Copy Bazel Outputs */,
-				C12F36923381B5124A0A4379 /* Create link.params */,
+				B440756585E1B5533B61172E /* Create linking dependencies */,
 				7B9872096BDAC4771EFE0835 /* Sources */,
 			);
 			buildRules = (
@@ -2809,7 +2809,7 @@
 			buildConfigurationList = FC8A81AA2F847EAD3AE8E98A /* Build configuration list for PBXNativeTarget "watchOSAppExtensionUnitTests" */;
 			buildPhases = (
 				6F779F048E8A5225FE34F009 /* Copy Bazel Outputs */,
-				0F627D13FB93DA17B8A062F9 /* Create link.params */,
+				4C341ABC34320ACDF155DD4F /* Create linking dependencies */,
 				4759015F86C47FF8B0A12DC7 /* Sources */,
 				984FDDB3D0DCB385902DF1B4 /* Frameworks */,
 			);
@@ -2829,7 +2829,7 @@
 			buildConfigurationList = 18EF7843D6E94C377EDEE92D /* Build configuration list for PBXNativeTarget "macOSAppUITests" */;
 			buildPhases = (
 				0656B49A53F93D698072C775 /* Copy Bazel Outputs */,
-				9EC6982379C470A7EBAB3F05 /* Create link.params */,
+				4B6FABDE2D99154A7BCA0EAC /* Create linking dependencies */,
 				64C52A16C95418B1B8C91D75 /* Sources */,
 			);
 			buildRules = (
@@ -3032,23 +3032,6 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		063BC57F1E957D593EF3E269 /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0656B49A53F93D698072C775 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -3064,23 +3047,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"macOSAppUITests.xctest\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0F627D13FB93DA17B8A062F9 /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1305E71B397AAD0342B70DA2 /* Copy Bazel Outputs */ = {
@@ -3114,6 +3080,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
+			showEnvVarsInLog = 0;
+		};
+		172D472463796AAA86DE3F16 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			showEnvVarsInLog = 0;
+		};
+		1AD5775B0403CB13FDE5DBD3 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		1B771FA00F3E6B0CB6A9F992 /* Copy Bazel Outputs */ = {
@@ -3183,7 +3183,7 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libprivate_swift_lib.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		327EFD10AF45EFBA39464469 /* Create link.params */ = {
+		4A50E185DA5DF9C9FA565E9A /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3191,16 +3191,16 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
-		3814AF42FEC0097CAA68D5F7 /* Create link.params */ = {
+		4B6FABDE2D99154A7BCA0EAC /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3208,16 +3208,16 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
-		3B549C81C6056E7D45C6C997 /* Create link.params */ = {
+		4C341ABC34320ACDF155DD4F /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3225,13 +3225,13 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		56BD3A38019D94C340B5A25C /* Copy Bazel Outputs */ = {
@@ -3268,6 +3268,23 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSAppExtension.appex\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
+		68138666CD6CDC373430A762 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			showEnvVarsInLog = 0;
+		};
 		68B35B01A8AD784A09E66060 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -3301,7 +3318,7 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSAppExtensionUnitTests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8538D19F44864ED0B39A9F18 /* Create link.params */ = {
+		868BBA44BDD2BE4A39BFEDEC /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3309,30 +3326,13 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8610BED72838B5EFB0BFEBFA /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		87D2EB6131DC54924D3FA46F /* Copy Bazel Outputs */ = {
@@ -3352,7 +3352,7 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"WidgetExtension.appex\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DDDFE85880761F7AD213706 /* Create link.params */ = {
+		8E99904A6B322FD8DC0AE06D /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3360,13 +3360,30 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			showEnvVarsInLog = 0;
+		};
+		98A71FDC2C7B65B80CB267C4 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
@@ -3387,23 +3404,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/bazel_build.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9EC6982379C470A7EBAB3F05 /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9EC7DF73E6DD86C7F36AD07E /* Copy Bazel Outputs */ = {
@@ -3440,7 +3440,7 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AB1DBF50C14F6FCB70D4D66D /* Create link.params */ = {
+		9FDE065FCA9AAC5A0A44A11F /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3448,13 +3448,13 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		AB210238BCC4289F92AC7979 /* Copy Bazel Outputs */ = {
@@ -3473,7 +3473,7 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libwatchOSAppExtensionLib.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF94C54A2FA70602B8210F46 /* Create link.params */ = {
+		B440756585E1B5533B61172E /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3481,13 +3481,13 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		B5F59F69B53E4CD6B729C3DE /* Copy Bazel Outputs */ = {
@@ -3507,23 +3507,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"AppClip.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B66E710FB51ED33D34EF4690 /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BF56D416F70A066FD9011FA8 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -3538,23 +3521,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"CommandLineTool\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C12F36923381B5124A0A4379 /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C3B530109FE5F98A1693F0A1 /* Copy Bazel Outputs */ = {
@@ -3607,6 +3573,40 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"liblib_swift.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DD9CC37462811E6A32A1ED0C /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			showEnvVarsInLog = 0;
+		};
+		DE5C59A752329AE16229AE59 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
+			showEnvVarsInLog = 0;
+		};
 		DF8E9D9CD1E839DFDDC57F9F /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -3622,6 +3622,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1A1A11A75DFBF854FAFA10E /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		E4DFB42E1E6C49238D7B8878 /* Copy Bazel Outputs */ = {
@@ -3641,7 +3658,7 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"CommandLineToolTests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E886B76D3E568EB9788539AA /* Create link.params */ = {
+		EC6016F1A034F70C0846B131 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3649,16 +3666,16 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
-		F756044929EF411B664BDC35 /* Create link.params */ = {
+		FE20253D7BB9C5EA483F09D0 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3666,30 +3683,13 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB65161C8FCA2C7A0E62AB8C /* Create link.params */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create link.params";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

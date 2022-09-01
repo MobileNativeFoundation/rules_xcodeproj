@@ -83,6 +83,7 @@
 		37B871D3339996C12526978C /* XCScheme+TestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0BD1CBCC9A4B6877AA90F0 /* XCScheme+TestAction.swift */; };
 		37D980D7EF5382A6BB2247E3 /* SetTargetConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280848D0817DF92FDA8FBCE5 /* SetTargetConfigurations.swift */; };
 		38AE84880236CAE285E3EAB0 /* OrderedSet+Diffing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1168458212BA2875894C312C /* OrderedSet+Diffing.swift */; };
+		3923531348904B44EC050F3E /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = C1427F45C783EFE20E49B1E4 /* _CompileStub_.m */; };
 		39F5E28C6FE936CA12EE0D71 /* OrderedSet+ExpressibleByArrayLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11ACB222035337C305B1ED6 /* OrderedSet+ExpressibleByArrayLiteral.swift */; };
 		3AC6936A00E842FC9B99D112 /* ProcessTargetMerges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEEDE29672654306B1EF30 /* ProcessTargetMerges.swift */; };
 		3AF702D3EEB45A95468F844D /* CustomDumpStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4412107ACE8EBEC22DB50106 /* CustomDumpStringConvertible.swift */; };
@@ -234,7 +235,6 @@
 		BF4002DC57D0DFBAC2B78B6E /* NSRecursiveLock+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56255215C39346FDD418691E /* NSRecursiveLock+Sync.swift */; };
 		C12EDE78A425CD8F29EF9E2C /* XcodeScheme+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A11691B2EE7577F0E9A1C3 /* XcodeScheme+Extensions.swift */; };
 		C49FF9B99082756D5EC994AC /* XCSchemeInfo+BuildTargetInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54917E30A695186D9D5F27DA /* XCSchemeInfo+BuildTargetInfoTests.swift */; };
-		C7180C1FF7BDD138B29D1533 /* CompileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9ACBD60C49872D43B34A8 /* CompileStub.m */; };
 		C71B0D3BF08FA0D6A81C69E8 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C89A8E11498D40AEF873719 /* OrderedDictionary.swift */; };
 		C83B7926404866B9FDA64B96 /* OrderedSet+RandomAccessCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E252313444698DA3574515 /* OrderedSet+RandomAccessCollection.swift */; };
 		C8739D353CD5E68DD39107CD /* XCScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C17692FC25C9277D739EDD /* XCScheme.swift */; };
@@ -461,7 +461,6 @@
 		1168458212BA2875894C312C /* OrderedSet+Diffing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Diffing.swift"; sourceTree = "<group>"; };
 		11A9D8A89C2E98C67BF8A8AD /* PBXObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXObjects.swift; sourceTree = "<group>"; };
 		1267D8B9A2E0172402C0AD0C /* XCScheme+Runnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+Runnable.swift"; sourceTree = "<group>"; };
-		14C9ACBD60C49872D43B34A8 /* CompileStub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompileStub.m; sourceTree = "<group>"; };
 		14F770CF5035EED0B12C3D5E /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
 		159077487BA2582632AE5FCB /* CustomDumpReflectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDumpReflectable.swift; sourceTree = "<group>"; };
 		15B947E1837B5A93F9780BD6 /* OrderedDictionary+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Values.swift"; sourceTree = "<group>"; };
@@ -672,6 +671,7 @@
 		BF689834C09921E2FD1AF2C5 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		C019F3F4CCAA69A6F5565C0D /* LinkerInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkerInputs.swift; sourceTree = "<group>"; };
 		C0277C77247B53722A111757 /* Path+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+Extras.swift"; sourceTree = "<group>"; };
+		C1427F45C783EFE20E49B1E4 /* _CompileStub_.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _CompileStub_.m; sourceTree = DERIVED_FILE_DIR; };
 		C1A11691B2EE7577F0E9A1C3 /* XcodeScheme+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+Extensions.swift"; sourceTree = "<group>"; };
 		C317990707348C85FF38D389 /* XCScheme+TestableReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+TestableReference.swift"; sourceTree = "<group>"; };
 		C3779D7A3D483AEB25462E7D /* XCSchemeInfo+BuildActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+BuildActionInfo.swift"; sourceTree = "<group>"; };
@@ -1151,7 +1151,7 @@
 		6AF936B6BAFAF10DCDAE73D3 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				14C9ACBD60C49872D43B34A8 /* CompileStub.m */,
+				C1427F45C783EFE20E49B1E4 /* _CompileStub_.m */,
 			);
 			name = rules_xcodeproj;
 			path = test/fixtures/generator/bwx.xcodeproj/rules_xcodeproj;
@@ -1572,7 +1572,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 098ECC207AD7CA38CAB13ADA /* Build configuration list for PBXNativeTarget "generator" */;
 			buildPhases = (
-				622B48F68197B4404F5C2432 /* Create link.params */,
+				2873C638E3CBD8B23D24AC62 /* Create linking dependencies */,
 				A20A184C7539826C418740CC /* Sources */,
 			);
 			buildRules = (
@@ -1654,7 +1654,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7565EB0FDBA3197145536CA /* Build configuration list for PBXNativeTarget "tests" */;
 			buildPhases = (
-				08D5F15852E09D8D4445A88C /* Create link.params */,
+				70EEEFD103E781D8A11D78F7 /* Create linking dependencies */,
 				71CF0D539853CEF8920D6197 /* Sources */,
 			);
 			buildRules = (
@@ -1743,7 +1743,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08D5F15852E09D8D4445A88C /* Create link.params */ = {
+		2873C638E3CBD8B23D24AC62 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1751,13 +1751,14 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
+				"$(DERIVED_FILE_DIR)/_CompileStub_.m",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */ = {
@@ -1777,7 +1778,7 @@
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		622B48F68197B4404F5C2432 /* Create link.params */ = {
+		70EEEFD103E781D8A11D78F7 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1785,13 +1786,13 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create link.params";
+			name = "Create linking dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"";
 			showEnvVarsInLog = 0;
 		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
@@ -1942,7 +1943,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7180C1FF7BDD138B29D1533 /* CompileStub.m in Sources */,
+				3923531348904B44EC050F3E /* _CompileStub_.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

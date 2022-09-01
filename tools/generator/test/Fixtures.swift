@@ -955,19 +955,19 @@ enum Fixtures {
             path: "T"
         )
 
-        // `internal`/CompileStub.m
+        // `internal`/_CompileStub_.m
 
-        elements[.internal("CompileStub.m")] = PBXFileReference(
-            sourceTree: .group,
+        elements[.internal("_CompileStub_.m")] = PBXFileReference(
+            sourceTree: .custom("DERIVED_FILE_DIR"),
             lastKnownFileType: "sourcecode.c.objc",
-            path: "CompileStub.m"
+            path: "_CompileStub_.m"
         )
 
         // `internal`
 
         elements[.internal("")] = PBXGroup(
             children: [
-                elements[.internal("CompileStub.m")]!,
+                elements[.internal("_CompileStub_.m")]!,
             ],
             sourceTree: .group,
             name: internalDirectoryName,
@@ -995,11 +995,7 @@ enum Fixtures {
         var files: [FilePath: File] = [:]
         for (filePath, element) in elements {
             if let reference = element as? PBXFileReference {
-                if filePath == .internal("CompileStub.m") {
-                    files[filePath] = .reference(reference, content: "")
-                } else {
-                    files[filePath] = .reference(reference)
-                }
+                files[filePath] = .reference(reference)
             } else if let variantGroup = element as? PBXVariantGroup {
                 files[filePath] = .variantGroup(variantGroup)
             } else if let xcVersionGroup = element as? XCVersionGroup {
@@ -1575,19 +1571,24 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             ],
             "A 2": [
                 PBXShellScriptBuildPhase(
-                    name: "Create link.params",
+                    name: "Create linking dependencies",
                     inputPaths: ["$(LINK_PARAMS_FILE)"],
-                    outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
+                    outputPaths: [
+                        "$(DERIVED_FILE_DIR)/link.params",
+                        "$(DERIVED_FILE_DIR)/_CompileStub_.m",
+                    ],
                     shellScript: #"""
 perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+
+touch "$SCRIPT_OUTPUT_FILE_1"
 
 """#,
                     showEnvVarsInLog: false
                 ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.m")]!
+                        file: elements[.internal("_CompileStub_.m")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -1623,7 +1624,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             "AC": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.m")]!
+                        file: elements[.internal("_CompileStub_.m")]!
                     )])
                 ),
             ],
@@ -1646,7 +1647,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             "B 2": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.m")]!
+                        file: elements[.internal("_CompileStub_.m")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -1658,7 +1659,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             "B 3": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.m")]!
+                        file: elements[.internal("_CompileStub_.m")]!
                     )])
                 ),
                 PBXFrameworksBuildPhase(
@@ -1676,7 +1677,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             ],
             "C 2": [
                 PBXShellScriptBuildPhase(
-                    name: "Create link.params",
+                    name: "Create linking dependencies",
                     inputPaths: ["$(LINK_PARAMS_FILE)"],
                     outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
                     shellScript: #"""
@@ -1711,7 +1712,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             "I": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.m")]!
+                        file: elements[.internal("_CompileStub_.m")]!
                     )])
                 ),
                 PBXCopyFilesBuildPhase(
@@ -1803,14 +1804,14 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             "WDKE": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.m")]!
+                        file: elements[.internal("_CompileStub_.m")]!
                     )])
                 ),
             ],
             "WKE": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("CompileStub.m")]!
+                        file: elements[.internal("_CompileStub_.m")]!
                     )])
                 ),
             ],
