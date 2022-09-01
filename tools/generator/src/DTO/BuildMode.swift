@@ -13,28 +13,6 @@ extension BuildMode {
         }
     }
 
-    var buildOutputGroupPrefixes: String {
-        switch self {
-        case .xcode:
-            // Inputs for compiling, inputs for linking
-            return "xc,xl"
-        case .bazel:
-            // Compiled outputs (i.e. swiftmodules) and products (i.e. bundles)
-            return "bc,bp"
-        }
-    }
-
-    var indexBuildOutputGroupPrefixes: String {
-        switch self {
-        case .xcode:
-            // Inputs for compiling
-            return "xc"
-        case .bazel:
-            // Compiled outputs (i.e. swiftmodules)
-            return "bc"
-        }
-    }
-
     /// `true` if when building with Bazel we use run scripts.
     ///
     /// Building with Bazel via a proxy doesn't use run scripts.
