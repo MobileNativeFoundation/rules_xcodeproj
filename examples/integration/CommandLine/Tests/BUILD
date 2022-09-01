@@ -10,7 +10,7 @@ swift_library(
         "//visibility:public",
     ],
     deps = [
-        "//examples/integration/CommandLine/CommandLineToolLib:lib_swift",
+        "//CommandLine/CommandLineToolLib:lib_swift",
     ],
 )
 

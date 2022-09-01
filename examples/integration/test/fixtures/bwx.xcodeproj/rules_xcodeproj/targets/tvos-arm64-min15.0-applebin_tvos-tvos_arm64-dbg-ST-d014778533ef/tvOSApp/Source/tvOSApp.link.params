@@ -1,0 +1,11 @@
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d014778533ef/bin/tvOSApp/Source/tvOSApp.swiftmodule/arm64-apple-tvos.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d014778533ef/bin/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule
+-ObjC
+-L/usr/lib/swift
+-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos
+-Wl,-rpath,/usr/lib/swift
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++
+-force_load
+$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-d014778533ef/bin/Lib/libLib.a

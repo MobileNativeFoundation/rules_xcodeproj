@@ -7,7 +7,7 @@ load(
     "xcode_provisioning_profile",
 )
 load(
-    "//examples/integration:xcodeproj_targets.bzl",
+    "//:xcodeproj_targets.bzl",
     "APP_CLIP_BUNDLE_ID",
     "IOS_BUNDLE_ID",
     "TEAMID",
@@ -41,7 +41,7 @@ ios_app_clip(
         "//conditions:default": None,
     }),
     resources = [":ResourceGroup"],
-    version = "//examples/integration/iOSApp:Version",
+    version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
     deps = [":AppClip.library"],
 )
@@ -96,7 +96,7 @@ swift_library(
     module_name = "AppClip",
     tags = ["manual"],
     deps = [
-        "//examples/integration/Lib",
+        "//Lib",
     ],
 )
 

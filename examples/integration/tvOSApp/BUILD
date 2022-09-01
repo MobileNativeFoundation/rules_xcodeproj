@@ -1,5 +1,5 @@
 alias(
     name = "tvOSApp",
-    actual = "//examples/integration/tvOSApp/Source:tvOSApp",
+    actual = "//tvOSApp/Source:tvOSApp",
     visibility = ["//visibility:public"],
 )

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "9999"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Initialize Bazel Build Output Groups File"
+               scriptText = "mkdir -p &quot;${SCHEME_TARGET_IDS_FILE%/*}&quot;&#10;if [[ -s &quot;$SCHEME_TARGET_IDS_FILE&quot; ]]; then&#10;    rm &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTests"
+                     ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Set Bazel Build Output Groups for watchOSAppExtensionUnitTests"
+               scriptText = "echo &quot;$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTests"
+                     ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+               BuildableName = "watchOSAppExtensionUnitTests.xctest"
+               BlueprintName = "watchOSAppExtensionUnitTests"
+               ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+            BuildableName = "watchOSAppExtensionUnitTests.xctest"
+            BlueprintName = "watchOSAppExtensionUnitTests"
+            ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+               BuildableName = "watchOSAppExtensionUnitTests.xctest"
+               BlueprintName = "watchOSAppExtensionUnitTests"
+               ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+            BuildableName = "watchOSAppExtensionUnitTests.xctest"
+            BlueprintName = "watchOSAppExtensionUnitTests"
+            ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Debug"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Debug"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

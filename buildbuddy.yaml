@@ -26,7 +26,22 @@ actions:
       - "test --config=workflows //examples/... //tools/... //test/..."
       - "run --config=workflows //test/fixtures:validate"
 
-  - name: Integration Test
+  - name: Integration Test - "examples/integration"
+    os: "darwin"
+    triggers:
+      push:
+        branches:
+          - "main"
+      pull_request:
+        branches:
+          - "*"
+    git_clean_exclude:
+      - examples/integration/bazel-output-base
+    bazel_workspace_dir: examples/integration
+    bazel_commands:
+      - "run --config=workflows //test/fixtures:validate"
+
+  - name: Integration Test - "examples/ios_app"
     os: "darwin"
     triggers:
       push:

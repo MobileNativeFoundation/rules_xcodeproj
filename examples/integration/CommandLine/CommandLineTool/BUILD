@@ -21,7 +21,7 @@ objc_library(
     enable_modules = True,
     tags = ["manual"],
     deps = [
-        "//examples/integration/CommandLine/CommandLineToolLib",
+        "//CommandLine/CommandLineToolLib",
         "@examples_command_line_external//:ExternalFramework",
     ],
 )

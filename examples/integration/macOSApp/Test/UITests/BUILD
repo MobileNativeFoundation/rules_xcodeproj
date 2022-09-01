@@ -7,7 +7,7 @@ macos_ui_test(
     minimum_os_version = "12.0",
     # xctestrunner does not support macOS. So, don't try to run this.
     tags = ["manual"],
-    test_host = "//examples/integration/macOSApp/Source:macOSApp",
+    test_host = "//macOSApp/Source:macOSApp",
     visibility = ["//visibility:public"],
     deps = [":macOSAppUITests.library"],
 )

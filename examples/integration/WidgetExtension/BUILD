@@ -11,7 +11,7 @@ load(
     "xcode_provisioning_profile",
 )
 load(
-    "//examples/integration:xcodeproj_targets.bzl",
+    "//:xcodeproj_targets.bzl",
     "IOS_BUNDLE_ID",
     "TEAMID",
 )
@@ -34,7 +34,7 @@ ios_extension(
         "//conditions:default": None,
     }),
     resources = [":ResourceGroup"],
-    version = "//examples/integration/iOSApp:Version",
+    version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
     deps = [":WidgetExtension.library"],
 )
@@ -63,9 +63,9 @@ swift_library(
     srcs = glob(["**/*.swift"]) + [":Intents"],
     module_name = "WidgetExtension",
     tags = ["manual"],
-    visibility = ["//examples/integration:__subpackages__"],
+    visibility = ["//:__subpackages__"],
     deps = [
-        "//examples/integration/Lib",
+        "//Lib",
     ],
 )
 

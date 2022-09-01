@@ -7,7 +7,7 @@ load(
     "xcode_provisioning_profile",
 )
 load(
-    "//examples/integration:xcodeproj_targets.bzl",
+    "//:xcodeproj_targets.bzl",
     "TEAMID",
     "WATCHOS_BUNDLE_ID",
 )
@@ -37,7 +37,7 @@ watchos_extension(
         "//conditions:default": None,
     }),
     resources = [":ResourceGroup"],
-    version = "//examples/integration/iOSApp:Version",
+    version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
     deps = [":watchOSAppExtension.library"],
 )
@@ -77,9 +77,9 @@ swift_library(
     }),
     module_name = "watchOSAppExtension",
     tags = ["manual"],
-    visibility = ["//examples/integration:__subpackages__"],
+    visibility = ["//:__subpackages__"],
     deps = [
-        "//examples/integration/Lib",
+        "//Lib",
     ],
 )
 

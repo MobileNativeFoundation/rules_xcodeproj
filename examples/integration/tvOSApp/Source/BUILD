@@ -6,7 +6,7 @@ load(
     "xcode_provisioning_profile",
 )
 load(
-    "//examples/integration:xcodeproj_targets.bzl",
+    "//:xcodeproj_targets.bzl",
     "TEAMID",
     "TVOS_BUNDLE_ID",
 )
@@ -35,7 +35,7 @@ tvos_application(
         ":device_build": ":xcode_profile",
         "//conditions:default": None,
     }),
-    resources = ["//examples/integration/tvOSApp/Resources:ResourceGroup"],
+    resources = ["//tvOSApp/Resources:ResourceGroup"],
     visibility = ["//visibility:public"],
     deps = [":tvOSApp.library"],
 )
@@ -59,12 +59,12 @@ swift_library(
     srcs = glob(["*.swift"]),
     data = select({
         ":release_build": [],
-        "//conditions:default": ["//examples/integration/tvOSApp/Resources:PreviewContent"],
+        "//conditions:default": ["//tvOSApp/Resources:PreviewContent"],
     }),
     module_name = "tvOSApp",
     tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = [
-        "//examples/integration/Lib",
+        "//Lib",
     ],
 )

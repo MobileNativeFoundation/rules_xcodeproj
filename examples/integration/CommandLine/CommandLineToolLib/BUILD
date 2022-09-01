@@ -43,10 +43,10 @@ swift_library(
         ":private_lib",
         ":private_swift_lib",
     ],
-    visibility = ["//examples/integration/CommandLine/Tests:__subpackages__"],
+    visibility = ["//CommandLine/Tests:__subpackages__"],
     deps = [
         ":lib_impl",
-        "//examples/integration/CommandLine/swift_c_module",
+        "//CommandLine/swift_c_module",
         "@examples_command_line_external//:ExternalFramework",
         "@examples_command_line_external//:Library",
     ],
