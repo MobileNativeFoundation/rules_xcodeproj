@@ -39,6 +39,7 @@ extension Generator {
     static let externalFileListPath: Path = "external.xcfilelist"
     static let appRsyncExcludeFileListPath: Path = "app.exclude.rsynclist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
+    static let createXcodeOverlayScriptPath: Path = "create_xcode_overlay.sh"
     static let lldbSwiftSettingsModulePath: Path = "swift_debug_settings.py"
 
     private static let localizedGroupExtensions: Set<String> = [
@@ -110,7 +111,7 @@ extension Generator {
 
                     if isGroup {
                         resolvedExternalRepositories.append(
-                            (filePath.path, "$SRCROOT" + relativePath)
+                            (filePath.path, "$(SRCROOT)" + relativePath)
                         )
                     }
 
@@ -588,6 +589,51 @@ extension Generator {
 
         // Write target internal files
 
+        let hasBazelDependencies = needsBazelDependenciesTarget(
+            buildMode: buildMode,
+            forceBazelDependencies: forceBazelDependencies,
+            files: files,
+            hasTargets: !targets.isEmpty
+        )
+
+        // - `xcode-overlay.yaml`
+
+        if hasBazelDependencies && buildMode == .xcode {
+            let roots = try targets.values
+                .compactMap { $0.outputs.swift?.generatedHeader }
+                .map { filepath -> String in
+                    let bazelOut = try filePathResolver.resolve(
+                        filepath,
+                        useBazelOut: true,
+                        mode: .script
+                    )
+                    let buildDir = try filePathResolver.resolve(
+                        filepath,
+                        useBazelOut: false,
+                        mode: .script
+                    )
+                    return #"""
+{"external-contents": "\#(buildDir)","name": "${bazel_out_prefix}\#(bazelOut)","type": "file"}
+"""#
+                }
+                .joined(separator: ",")
+
+            files[.internal(createXcodeOverlayScriptPath)] =
+                .nonReferencedContent(#"""
+#!/bin/bash
+
+# Look up Swift generated headers in `$BUILD_DIR` first, then fall through to
+# `$BAZEL_OUT`
+# `${bazel_out_prefix}` comes from sourcing script
+cat > "$OBJROOT/xcode-overlay.yaml" <<EOF
+{"case-sensitive": "false", "fallthrough": true, "roots": [\#(roots)],"version": 0}
+EOF
+
+"""#)
+        }
+
+        // - `lldbSwiftSettingsModule`
+
         var xcodeGeneratedFiles: Set<FilePath> = []
         switch buildMode {
         case .xcode:
@@ -604,13 +650,6 @@ extension Generator {
         default:
             break
         }
-
-        let hasBazelDependencies = needsBazelDependenciesTarget(
-            buildMode: buildMode,
-            forceBazelDependencies: forceBazelDependencies,
-            files: files,
-            hasTargets: !targets.isEmpty
-        )
 
         var lldbSettingsMap: [String: LLDBSettings] = [:]
         for target in targets.values {

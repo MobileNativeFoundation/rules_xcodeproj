@@ -2,15 +2,6 @@ import PathKit
 import XcodeProj
 
 extension Generator {
-    private static let bazelExec = #"""
-env -i \
-  DEVELOPER_DIR="$DEVELOPER_DIR" \
-  HOME="$HOME" \
-  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
-  USER="$USER" \
-  "$BAZEL_PATH"
-"""#
-
     static func needsBazelDependenciesTarget(
         buildMode: BuildMode,
         forceBazelDependencies: Bool,
@@ -62,7 +53,18 @@ env -i \
                 "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
 $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
+                "GENERATOR_LABEL": xcodeprojBazelLabel,
+                "GENERATOR_PACKAGE_BIN_DIR": """
+\(xcodeprojConfiguration)/bin/\(xcodeprojBazelLabel.package)
+""",
+                "GENERATOR_TARGET_NAME": xcodeprojBazelLabel.name,
                 "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
+                "RESOLVED_EXTERNAL_REPOSITORIES": resolvedExternalRepositories
+                    // Sorted by length to ensure that subdirectories are listed first
+                    .sorted { $0.0.string.count > $1.0.string.count }
+                    .map { #""\#($0)" "\#($1)""# }
+                    .joined(separator: " "),
+                "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
                 // We have to support only a single platform to prevent issues
                 // with duplicated outputs during Index Build, but it also
                 // has to be a platform that one of the targets uses, otherwise
@@ -87,7 +89,6 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
                 .flatMap { $0.sortedTargets },
             files: files,
             filePathResolver: filePathResolver,
-            resolvedExternalRepositories: resolvedExternalRepositories,
             xcodeprojBazelLabel: xcodeprojBazelLabel,
             xcodeprojConfiguration: xcodeprojConfiguration
         )
@@ -125,7 +126,6 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         targets: [Target],
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        resolvedExternalRepositories: [(Path, Path)],
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String
     ) throws -> PBXShellScriptBuildPhase {
@@ -154,32 +154,13 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             name = "Fetch External Repositories"
         }
 
-        let xcodeprojBazelTargetName = xcodeprojBazelLabel.name
-
-        let xcodeprojBinDir = calculateBinDir(
-            xcodeprojBazelLabel: xcodeprojBazelLabel,
-            xcodeprojConfiguration: xcodeprojConfiguration
-        )
-
-        let shellScript = [
-            try bazelSetupCommand(
-                buildMode: buildMode,
-                targets: targets,
-                filePathResolver: filePathResolver,
-                resolvedExternalRepositories: resolvedExternalRepositories
-            ),
-            bazelBuildCommand(
-                xcodeprojBazelLabel: xcodeprojBazelLabel,
-                xcodeprojBazelTargetName: xcodeprojBazelTargetName,
-                xcodeprojBinDir: xcodeprojBinDir
-            ),
-        ].compactMap { $0 }.joined(separator: "\n")
-
         let script = PBXShellScriptBuildPhase(
             name: name,
             outputFileListPaths: outputFileListPaths,
-            shellPath: "/bin/bash",
-            shellScript: shellScript,
+            shellScript: """
+"$BAZEL_INTEGRATION_DIR/bazel_build.sh"
+
+""",
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
         )
@@ -210,254 +191,6 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
         pbxProj.add(object: script)
 
         return script
-    }
-
-    private static func bazelSetupCommand(
-        buildMode: BuildMode,
-        targets: [Target],
-        filePathResolver: FilePathResolver,
-        resolvedExternalRepositories: [(Path, Path)]
-    ) throws -> String {
-        let bazelRoots: String
-        if buildMode != .xcode {
-            bazelRoots = #"""
-
-# Map `$BUILD_DIR` to execroot, to fix SwiftUI Previews and indexing edge cases
-roots="${roots:+${roots},}{\"external-contents\": \"$exec_root\",\"name\": \"$BUILD_DIR\",\"type\": \"directory-remap\"}"
-
-"""#
-        } else {
-            bazelRoots = ""
-        }
-
-        var overlays: [String] = [#"""
-
-if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-  bazel_out_prefix=
-else
-  bazel_out_prefix="$SRCROOT/"
-fi
-
-absolute_bazel_out="${bazel_out_prefix}$BAZEL_OUT"
-
-if [[ "$output_path" != "$absolute_bazel_out" ]]; then
-  # Use current path for bazel-out
-  # This fixes Index Build to use its version of generated files
-  roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"}"
-else
-  roots=
-fi
-\#(bazelRoots)\#
-
-cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [$roots],"version": 0}
-EOF
-
-"""#]
-
-        let indexBuildNoOutputGroups: String
-        if buildMode == .xcode {
-            indexBuildNoOutputGroups = #"""
-    output_groups=("all_xc")
-"""#
-
-            let roots = try targets
-                .compactMap { $0.outputs.swift?.generatedHeader }
-                .map { filepath -> String in
-                    let bazelOut = try filePathResolver.resolve(
-                        filepath,
-                        useBazelOut: true,
-                        mode: .script
-                    )
-                    let buildDir = try filePathResolver.resolve(
-                        filepath,
-                        useBazelOut: false,
-                        mode: .script
-                    )
-                    return #"""
-{"external-contents": "\#(buildDir)","name": "${bazel_out_prefix}\#(bazelOut)","type": "file"}
-"""#
-                }
-                .joined(separator: ",")
-
-            overlays.append(#"""
-# Look up Swift generated headers in `$BUILD_DIR` first, then fall through to \#
-`$BAZEL_OUT`
-cat > "$OBJROOT/xcode-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [\#(roots)],"version": 0}
-EOF
-
-"""#)
-        } else {
-            indexBuildNoOutputGroups = #"""
-    echo "error: Can't yet determine Index Build output group. \#
-Next build should succeed. If not, please file a bug report here: \#
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
-    exit 1
-"""#
-        }
-
-        let resolvedExternalRepositoriesArguments = resolvedExternalRepositories
-            // Sorted by length to ensure that subdirectories are listed first
-            .sorted { $0.0.string.count > $1.0.string.count }
-            .map { #""\#($0)" "\#($1)""# }
-            .joined(separator: " ")
-
-        return #"""
-set -euo pipefail
-
-# In Xcode 14 the "Index" directory was renamed to "Index.noindex".
-# `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can
-# use it to determine the name of the directory regardless of Xcode version.
-readonly index_dir="${INDEX_DATA_STORE_DIR%/*}"
-readonly index_dir_name="${index_dir##*/}"
-
-# Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for
-# previews. So we need to look in the non-preview build directory for this file.
-readonly non_preview_objroot="${OBJROOT/\/Intermediates.noindex\/Previews\/*//Intermediates.noindex}"
-readonly base_objroot="${non_preview_objroot/\/$index_dir_name\/Build\/Intermediates.noindex//Build/Intermediates.noindex}"
-readonly scheme_target_ids_file="$non_preview_objroot/scheme_target_ids"
-
-if [ "$ACTION" == "indexbuild" ]; then
-  readonly output_group_prefixes=\#(buildMode.indexBuildOutputGroupPrefixes)
-else
-  readonly output_group_prefixes=\#(buildMode.buildOutputGroupPrefixes)
-fi
-
-# We need to read from `$output_groups_file` as soon as possible, as concurrent
-# writes to it can happen during indexing, which breaks the off-by-one-by-design
-# nature of it
-IFS=$'\n' read -r -d '' -a output_groups < \
-  <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
-       "$ACTION" \
-       "$non_preview_objroot" \
-       "$base_objroot" \
-       "$scheme_target_ids_file" \
-       $output_group_prefixes \
-       && printf '\0' )
-
-if [ -z "${output_groups:-}" ]; then
-  if [ "$ACTION" == "indexbuild" ]; then
-\#(indexBuildNoOutputGroups)
-  else
-    echo "error: BazelDependencies invoked without any output groups set. \#
-Please file a bug report here: \#
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." >&2
-    exit 1
-  fi
-fi
-output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
-
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other
-  output_base="$OBJROOT/bazel_output_base"
-fi
-
-if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
-  color=yes
-else
-  color=no
-fi
-
-bazelrcs=(
-  --noworkspace_rc
-  "--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj.bazelrc"
-)
-if [[ -s ".bazelrc" ]]; then
-  bazelrcs+=("--bazelrc=.bazelrc")
-fi
-if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
-  bazelrcs+=("--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc")
-fi
-
-output_path=$(\#(bazelExec) \
-  "${bazelrcs[@]}" \
-  ${output_base:+--output_base "$output_base"} \
-  info \
-  --config=rules_xcodeproj_info \
-  --color="$color" \
-  --experimental_convenience_symlinks=ignore \
-  --symlink_prefix=/ \
-  --bes_backend= \
-  --bes_results_url= \
-  output_path)
-exec_root="${output_path%/*}"
-
-if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
-  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" "$exec_root" \#(resolvedExternalRepositoriesArguments) > "$BAZEL_LLDB_INIT"
-fi
-\#(overlays.joined(separator: "\n"))\#
-
-"""#
-    }
-
-    private static func bazelBuildCommand(
-        xcodeprojBazelLabel: BazelLabel,
-        xcodeprojBazelTargetName: String,
-        xcodeprojBinDir: String
-    ) -> String {
-        return #"""
-cd "$SRCROOT"
-
-if [ "$ACTION" == "indexbuild" ]; then
-  config=rules_xcodeproj_indexbuild
-elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
-  config=rules_xcodeproj_swiftuipreviews
-else
-  config=rules_xcodeproj_build
-fi
-
-date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
-
-build_marker="$OBJROOT/bazel_build_start"
-touch "$build_marker"
-
-log=$(mktemp)
-"$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \#(bazelExec) \
-  "${bazelrcs[@]}" \
-  ${output_base:+--output_base "$output_base"} \
-  build \
-  --config=$config \
-  --color=yes \
-  --experimental_convenience_symlinks=ignore \
-  --symlink_prefix=/ \
-  "$output_groups_flag" \
-  \#(xcodeprojBazelLabel) \
-  2>&1 | tee -i "$log"
-
-for output_group in "${output_groups[@]}"; do
-  filelist="\#(xcodeprojBazelTargetName)-${output_group//\//_}"
-  filelist="${filelist/#/$output_path/\#(xcodeprojBinDir)/}"
-  filelist="${filelist/%/.filelist}"
-  if [[ "$filelist" -ot "$build_marker" ]]; then
-    echo "error: Bazel didn't generate the correct files (it should have \#
-generated outputs for output group \"$output_group\", but the timestamp for \#
-\"$filelist\" was from before the build). Please regenerate the project to \#
-fix this." >&2
-    echo "error: If your bazel version is less than 5.2, you may need to \#
-\`bazel clean\` and/or \`bazel shutdown\` to work around a bug in project \#
-generation." >&2
-    echo "error: If you are still getting this error after all of that, \#
-please file a bug report here: \#
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \#
->&2
-    exit 1
-  fi
-done
-
-"""#
-    }
-
-    private static func calculateBinDir(
-        xcodeprojBazelLabel: BazelLabel,
-        xcodeprojConfiguration: String
-    ) -> String {
-        let packageDirectory = xcodeprojBazelLabel.package
-
-        return (
-            Path("\(xcodeprojConfiguration)/bin") + String(packageDirectory)
-        ).string
     }
 }
 
