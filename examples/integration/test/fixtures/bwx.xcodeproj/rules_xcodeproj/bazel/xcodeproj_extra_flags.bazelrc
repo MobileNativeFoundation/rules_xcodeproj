@@ -1,4 +1,4 @@
 build:rules_xcodeproj --config=cache
 build:rules_xcodeproj_build --noverbose_failures
-build:rules_xcodeproj_indexbuild -noverbose_failures
+build:rules_xcodeproj_indexbuild --noverbose_failures
 build:rules_xcodeproj_swiftuipreviews --noverbose_failures
