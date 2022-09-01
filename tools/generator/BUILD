@@ -62,7 +62,6 @@ apple_universal_binary(
 
 xcodeproj(
     name = "xcodeproj",
-    build_mode = "bazel",
     project_name = "generator",
     scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
