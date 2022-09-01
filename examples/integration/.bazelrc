@@ -8,7 +8,7 @@ build --define=apple.experimental.tree_artifact_outputs=1
 build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'
 build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_generator_flags='--noverbose_failures'
 build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_build_flags='--noverbose_failures'
-build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_indexbuild_flags='-no-verbose_failures'
+build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_indexbuild_flags='-noverbose_failures'
 build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_swiftuipreviews_flags='--noverbose_failures'
 
 # Use a user.bazelrc if it exists
