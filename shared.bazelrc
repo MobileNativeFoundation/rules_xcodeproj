@@ -1,5 +1,5 @@
 build --incompatible_disallow_empty_glob
-build --use_top_level_targets_for_symlinks
+build --experimental_convenience_symlinks=ignore
 
 build --remote_default_exec_properties=OSFamily=darwin
 build --remote_default_exec_properties=cache_bust=macOS_12.0/3
