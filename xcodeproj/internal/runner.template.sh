@@ -25,17 +25,14 @@ readonly extra_flags_bazelrc="$PWD/%extra_flags_bazelrc%"
 installer_flags=(--extra_flags_bazelrc "$extra_flags_bazelrc")
 
 while (("$#")); do
-  case "${1}" in
+  case "$1" in
     "--build_output_groups")
-      build_output_groups="${2}"
-      shift 2
-      ;;
-    "--destination")
-      installer_flags+=(--destination "${2}")
+      build_output_groups="$2"
       shift 2
       ;;
     *)
-      fail "Unrecognized argument: ${1}"
+      installer_flags+=("$1")
+      shift
       ;;
   esac
 done

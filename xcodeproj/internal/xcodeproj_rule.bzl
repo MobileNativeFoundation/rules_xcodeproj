@@ -490,6 +490,7 @@ def _write_installer(
         ctx,
         name = None,
         install_path,
+        spec_file,
         xcodeproj):
     installer = ctx.actions.declare_file(
         "{}-installer.sh".format(name or ctx.attr.name),
@@ -503,6 +504,7 @@ def _write_installer(
             "%bazel_path%": ctx.attr.bazel_path,
             "%output_path%": install_path,
             "%source_path%": xcodeproj.short_path,
+            "%spec_path%": spec_file.short_path,
         },
     )
 
@@ -662,6 +664,7 @@ def _xcodeproj_impl(ctx):
     installer = _write_installer(
         ctx = ctx,
         install_path = install_path,
+        spec_file = spec_file,
         xcodeproj = xcodeproj,
     )
 
@@ -690,10 +693,10 @@ def _xcodeproj_impl(ctx):
         DefaultInfo(
             executable = installer,
             files = depset(
-                [xcodeproj],
+                [spec_file, xcodeproj],
                 transitive = [inputs.important_generated],
             ),
-            runfiles = ctx.runfiles(files = [xcodeproj]),
+            runfiles = ctx.runfiles(files = [spec_file, xcodeproj]),
         ),
         OutputGroupInfo(
             all_targets = depset(

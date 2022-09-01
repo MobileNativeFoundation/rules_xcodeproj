@@ -18,6 +18,8 @@ fail() {
 
 # Process Args
 
+include_spec=0
+
 while (("$#")); do
   case "${1}" in
     "--destination")
@@ -27,6 +29,10 @@ while (("$#")); do
     "--extra_flags_bazelrc")
       extra_flags_bazelrc="${2}"
       shift 2
+      ;;
+    "--include_spec")
+      include_spec=1
+      shift
       ;;
     *)
       fail "Unrecognized argument: ${1}"
@@ -46,6 +52,13 @@ dest_dir="$(dirname "${dest}")"
 [[ -d "${dest_dir}" ]] || \
   fail "The destination directory does not exist or is not a directory" \
     "${dest_dir}"
+
+# Sync over spec if requested
+if [[ $include_spec -eq 1 ]]; then
+  readonly spec_src="$PWD/%spec_path%"
+  readonly spec_dest="${dest%.xcodeproj}_spec.json"
+  python3 -m json.tool "$spec_src" > "$spec_dest"
+fi
 
 # Sync over the project, changing the permissions to be writable
 
