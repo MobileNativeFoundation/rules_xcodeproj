@@ -166,8 +166,6 @@ else
   config=rules_xcodeproj_build
 fi
 
-date +%s > "$INTERNAL_DIR/toplevel_cache_buster"
-
 build_marker="$OBJROOT/bazel_build_start"
 touch "$build_marker"
 
@@ -175,6 +173,8 @@ log=$(mktemp)
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \
+  --stamp \
+  --embed_label=$(date +%s) \
   --config=$config \
   --color=yes \
   --experimental_convenience_symlinks=ignore \

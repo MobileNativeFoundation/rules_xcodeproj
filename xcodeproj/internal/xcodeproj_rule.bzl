@@ -709,13 +709,13 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         inputs = inputs,
         additional_generated = additional_generated,
-        toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+        toplevel_cache_buster = [ctx.info_file],
     )
     output_files_output_groups = output_files.to_output_groups_fields(
         ctx = ctx,
         outputs = outputs,
         additional_outputs = additional_outputs,
-        toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+        toplevel_cache_buster = [ctx.info_file],
     )
 
     if build_mode == "xcode":
@@ -842,11 +842,6 @@ as two separate but similar Xcode targets.
             cfg = _simulator_transition,
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
-        ),
-        "toplevel_cache_buster": attr.label_list(
-            doc = "For internal use only. Do not set this value yourself.",
-            allow_empty = True,
-            allow_files = True,
         ),
         "unfocused_targets": attr.string_list(
             doc = """\
