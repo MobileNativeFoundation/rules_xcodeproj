@@ -421,6 +421,7 @@ def merge_xcodeprojinfos(infos):
     info_fields = _skip_target(
         target = None,
         deps = [],
+        deps_attrs = [],
         transitive_infos = [(None, info) for info in infos],
     )
     return XcodeProjInfo(
