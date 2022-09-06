@@ -1088,7 +1088,7 @@ Failed to register Swift debug options stop hook:
 
 {res.GetError()}
 Please file a bug report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
 """)
         return
 
