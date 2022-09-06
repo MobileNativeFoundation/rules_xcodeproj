@@ -84,7 +84,7 @@ warning: Failed to parse '{build_request_file}':
 {type(error).__name__}: {error}.
 
 warning: Using scheme target ids as a fallback. Please file a bug report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.""",
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
         return scheme_target_ids
@@ -95,7 +95,7 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.""",
 warning: Couldn't deteremine target ids from PIFCache ({target_ids})
 
 warning: Using scheme target ids as a fallback. Please file a bug report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.""",
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
         target_ids = scheme_target_ids
@@ -212,7 +212,7 @@ def _main(action, objroot, base_objroot, scheme_target_id_file, prefixes_str):
 warning: Failed to calculate target ids from PIFCache:
 {traceback.format_exc()}
 warning: Using scheme target ids as a fallback. Please file a bug report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md.""",
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
                 file = sys.stderr,
             )
             target_ids = scheme_target_ids
