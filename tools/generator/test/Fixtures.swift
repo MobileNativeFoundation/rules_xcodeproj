@@ -2090,6 +2090,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "BAZEL_TARGET_ID": "A 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["A 1"]!.name,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "10.0",
                 "OTHER_SWIFT_FLAGS": #"""
@@ -2108,6 +2109,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
                 "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION": "YES",
                 "CODE_SIGN_ENTITLEMENTS": "app.entitlements",
+                "COMPILE_TARGET_NAME": targets["A 2"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_NAME": "A_ExecutableName",
                 "GENERATE_INFOPLIST_FILE": "YES",
@@ -2140,6 +2142,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "AC",
                 "BAZEL_TARGET_ID[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["AC"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
@@ -2166,6 +2169,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "BAZEL_TARGET_ID": "B 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["B 1"]!.name,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
@@ -2188,6 +2192,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "BAZEL_TARGET_ID": "B 2",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
                 "BUNDLE_LOADER": "$(TEST_HOST)",
+                "COMPILE_TARGET_NAME": targets["B 2"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
@@ -2217,6 +2222,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "BAZEL_TARGET_ID": "B 3",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
                 "CODE_SIGNING_ALLOWED": "YES",
+                "COMPILE_TARGET_NAME": targets["B 3"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
@@ -2239,6 +2245,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "BAZEL_TARGET_ID": "C 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["C 1"]!.name,
                 "EXECUTABLE_EXTENSION": "lo",
                 "GCC_PREFIX_HEADER": "a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
@@ -2262,6 +2269,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "C 2",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["C 2"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "",
                 "GENERATE_INFOPLIST_FILE": "YES",
@@ -2288,6 +2296,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
                 "BAZEL_TARGET_ID": "E1",
                 "BAZEL_TARGET_ID[sdk=watchos*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["E1"]!.name,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": #"""
 -Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
@@ -2307,6 +2316,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
                 "BAZEL_TARGET_ID": "E2",
                 "BAZEL_TARGET_ID[sdk=appletvos*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["E2"]!.name,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": #"""
 -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
@@ -2323,6 +2333,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "I",
                 "BAZEL_TARGET_ID[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["I"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "FRAMEWORK_SEARCH_PATHS": """
 $(BAZEL_OUT)/some/framework/parent/dir
@@ -2363,6 +2374,7 @@ $(BAZEL_OUT)/some/quote/includes/parent/dir
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "BAZEL_TARGET_ID": "R 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                "COMPILE_TARGET_NAME": targets["R 1"]!.name,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
@@ -2393,6 +2405,7 @@ bazel-out/a1b2c/bin/T 2
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
                 "BAZEL_TARGET_ID[sdk=iphoneos*]": "T 1",
                 "BAZEL_TARGET_ID[sdk=iphonesimulator*]": "T 2",
+                "COMPILE_TARGET_NAME": targets["T 1"]!.name,
                 "EXCLUDED_SOURCE_FILE_NAMES": """
 $(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) $(MACOSX_FILES)
 """,
@@ -2434,6 +2447,7 @@ $(MACOSX_FILES)
                 "BAZEL_TARGET_ID": "W",
                 "BAZEL_TARGET_ID[sdk=watchos*]": "$(BAZEL_TARGET_ID)",
                 "BAZEL_HOST_TARGET_ID_0": "I",
+                "COMPILE_TARGET_NAME": targets["W"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_CFLAGS": [
@@ -2457,6 +2471,7 @@ $(MACOSX_FILES)
                 "BAZEL_TARGET_ID": "WDKE",
                 "BAZEL_TARGET_ID[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
                 "BAZEL_HOST_TARGET_ID_0": "I",
+                "COMPILE_TARGET_NAME": targets["WDKE"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
@@ -2486,6 +2501,7 @@ $(MACOSX_FILES)
                 "BAZEL_TARGET_ID": "WKE",
                 "BAZEL_TARGET_ID[sdk=watchos*]": "$(BAZEL_TARGET_ID)",
                 "BAZEL_HOST_TARGET_ID_0": "W",
+                "COMPILE_TARGET_NAME": targets["WKE"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LD_RUNPATH_SEARCH_PATHS": [

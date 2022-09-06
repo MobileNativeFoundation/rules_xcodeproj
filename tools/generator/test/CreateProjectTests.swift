@@ -68,7 +68,7 @@ $(OBJROOT)/scheme_target_ids
                 "SUPPORTS_MACCATALYST": false,
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "TARGET_TEMP_DIR": """
-$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
+$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
             ]) { $1 }
         )
@@ -184,7 +184,7 @@ $(OBJROOT)/scheme_target_ids
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_USE_INTEGRATED_DRIVER": false,
                 "TARGET_TEMP_DIR": """
-$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
+$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
             ]) { $1 }
         )

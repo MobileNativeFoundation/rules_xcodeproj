@@ -45,7 +45,7 @@ exist
                 targets.removeValue(forKey: source)
 
                 // Set compile target id (used for "Compile File" command)
-                merged.compileTargetID = source
+                merged.compileTarget = .init(id: source, name: merging.name)
 
                 // Update Package Bin Dir
                 // We take on the libraries bazel-out directory to prevent

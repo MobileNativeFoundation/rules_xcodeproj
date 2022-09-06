@@ -4,7 +4,7 @@ struct Target: Equatable {
     var name: String
     var label: BazelLabel
     let configuration: String
-    var compileTargetID: TargetID? = nil
+    var compileTarget: CompileTarget? = nil
     var packageBinDir: Path
     var platform: Platform
     let product: Product
@@ -27,6 +27,11 @@ struct Target: Equatable {
     var outputs: Outputs
     let lldbContext: LLDBContext?
     let isUnfocusedDependency: Bool
+}
+
+struct CompileTarget: Equatable {
+    let id: TargetID
+    let name: String
 }
 
 extension Target {
