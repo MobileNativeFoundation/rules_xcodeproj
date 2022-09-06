@@ -4,11 +4,15 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 ios_unit_test(
     name = "ExampleTests",
     bundle_id = "io.buildbuddy.example.tests",
+    infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     resources = ["//ExampleResources:exported_resources"],
     test_host = "//Example",
     visibility = ["//visibility:public"],
-    deps = [":ExampleTests.library"],
+    deps = [
+        ":ExampleTests.library",
+        "//XCTestFix",
+    ],
 )
 
 swift_library(
