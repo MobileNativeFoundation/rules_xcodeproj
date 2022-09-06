@@ -4202,6 +4202,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
+				COMPILE_TARGET_NAME = iOSApp.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
@@ -4285,6 +4286,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
+				COMPILE_TARGET_NAME = tool.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -4385,6 +4387,7 @@
 				BAZEL_TARGET_ID = "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -4436,6 +4439,7 @@
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = watchOSAppExtensionUnitTests.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -4488,6 +4492,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
+				COMPILE_TARGET_NAME = watchOSAppExtension.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
@@ -4555,6 +4560,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = tvOSAppUnitTests.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -4596,6 +4602,7 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -4638,6 +4645,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=appletvos*]" = Automatic;
+				COMPILE_TARGET_NAME = tvOSApp.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
@@ -4696,6 +4704,7 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -4748,6 +4757,7 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				COMPILE_TARGET_NAME = lib_impl;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4833,6 +4843,7 @@
 				BAZEL_TARGET_ID = "//watchOSAppExtension:watchOSAppExtensionLib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "//watchOSAppExtension:watchOSAppExtensionLib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = watchOSAppExtensionLib;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -4889,6 +4900,7 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/AppClip/Entitlements.withbundleid.plist";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
+				COMPILE_TARGET_NAME = AppClip.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
@@ -4961,6 +4973,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
@@ -5033,6 +5046,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = macOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -5075,6 +5089,7 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iMessageAppExtension.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -5124,6 +5139,7 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iMessageApp;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -5198,7 +5214,7 @@
 				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc.py";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_USE_INTEGRATED_DRIVER = NO;
-				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)";
+				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
 			};
@@ -5212,6 +5228,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				COMPILE_TARGET_NAME = c_lib;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -5275,6 +5292,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = watchOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -5324,6 +5342,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
+				COMPILE_TARGET_NAME = WidgetExtension.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
@@ -5393,6 +5412,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = tvOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -5434,6 +5454,7 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = CommandLineLibSwiftTestsLib;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -5478,6 +5499,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				COMPILE_TARGET_NAME = private_lib;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -5541,6 +5563,7 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = macOSApp.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
@@ -5591,6 +5614,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
+				COMPILE_TARGET_NAME = watchOSApp;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;

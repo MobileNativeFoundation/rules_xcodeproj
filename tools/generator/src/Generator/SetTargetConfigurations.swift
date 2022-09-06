@@ -238,12 +238,17 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         )
         buildSettings.set("TARGET_NAME", to: target.name)
 
-        if let compileTargetID = target.compileTargetID {
+        let compileTargetName: String
+        if let compileTarget = target.compileTarget {
             buildSettings.set(
                 "BAZEL_COMPILE_TARGET_ID",
-                to: compileTargetID.rawValue
+                to: compileTarget.id.rawValue
             )
+            compileTargetName = compileTarget.name
+        } else {
+            compileTargetName = target.name
         }
+        buildSettings.set("COMPILE_TARGET_NAME", to: compileTargetName)
 
         buildSettings.set(
             target.platform.os.deploymentTargetBuildSettingKey,

@@ -64,7 +64,7 @@ $(OBJROOT)/scheme_target_ids
             // Needed as the default otherwise `ENABLE_PREIVEWS` isn't set
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "TARGET_TEMP_DIR": """
-$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)
+$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
         ], uniquingKeysWith: { _, r in r })
 
