@@ -113,14 +113,14 @@ output_path=$("${bazel_cmd[@]}" \
   --bes_backend= \
   --bes_results_url= \
   output_path)
-exec_root="${output_path%/*}"
+execution_root="${output_path%/*}"
 
 # Create `bazel.lldbinit``
 
 if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
   # shellcheck disable=SC2046
   "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" \
-    "$exec_root" \
+    "$execution_root" \
     $(xargs -n1 <<< "${RESOLVED_EXTERNAL_REPOSITORIES:-}") \
     > "$BAZEL_LLDB_INIT"
 fi
@@ -143,9 +143,9 @@ else
   roots=
 fi
 if [[ "$RULES_XCODEPROJ_BUILD_MODE" != "xcode" ]]; then
-  # Map `$BUILD_DIR` to execroot, to fix SwiftUI Previews and indexing edge
-  # cases
-  roots="${roots:+${roots},}{\"external-contents\": \"$exec_root\",\"name\": \"$BUILD_DIR\",\"type\": \"directory-remap\"}"
+  # Map `$BUILD_DIR` to execution_root, to fix SwiftUI Previews and indexing
+  # edge cases
+  roots="${roots:+${roots},}{\"external-contents\": \"$execution_root\",\"name\": \"$BUILD_DIR\",\"type\": \"directory-remap\"}"
 fi
 
 cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
