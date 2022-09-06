@@ -287,7 +287,7 @@ $(CONFIGURATION_BUILD_DIR)
 
         if let infoPlist = target.infoPlist {
             let infoPlistPath = try filePathResolver
-                .resolve(infoPlist, useBazelOut: true).string.quoted
+                .resolve(infoPlist, useBazelOut: true).string
             buildSettings.set("INFOPLIST_FILE", to: infoPlistPath)
         } else if buildMode.allowsGeneratedInfoPlists {
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
@@ -295,7 +295,7 @@ $(CONFIGURATION_BUILD_DIR)
 
         if let entitlements = target.inputs.entitlements {
             let entitlementsPath = try filePathResolver
-                .resolve(entitlements, useBazelOut: true).string.quoted
+                .resolve(entitlements, useBazelOut: true).string
             buildSettings.set(
                 "CODE_SIGN_ENTITLEMENTS",
                 to: entitlementsPath
@@ -316,7 +316,7 @@ $(CONFIGURATION_BUILD_DIR)
 
         if let pch = target.inputs.pch {
             let pchPath = try filePathResolver
-                .resolve(pch, useBazelOut: true).string.quoted
+                .resolve(pch, useBazelOut: true).string
             buildSettings.set("GCC_PREFIX_HEADER", to: pchPath)
         }
 

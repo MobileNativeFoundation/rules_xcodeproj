@@ -14,7 +14,7 @@ ios_application(
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = "io.buildbuddy.example",
     bundle_name = "Example",
-    entitlements = "app.entitlements",
+    entitlements = "ios app.entitlements",
     executable_name = "Example_ExecutableName",
     families = ["iphone"],
     infoplists = [":Info.plist"],
