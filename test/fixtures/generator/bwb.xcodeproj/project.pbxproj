@@ -514,7 +514,6 @@
 		4348B7A354BE51B128A97DFF /* Platform+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+Extensions.swift"; sourceTree = "<group>"; };
 		439D2933B9E3441BC2F21F92 /* TargetIDTargetDictionary+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TargetIDTargetDictionary+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		4427E84F30EE600A2E568520 /* XCSwiftPackageProductDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCSwiftPackageProductDependency.swift; sourceTree = "<group>"; };
-		44D4406104B7B5E69B1C96ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		457C541A86E3F05E0865CB70 /* XCScheme+ExecutionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+ExecutionAction.swift"; sourceTree = "<group>"; };
 		45BA1D7F6DDD6AC3C4D830F3 /* AddTargets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTargets.swift; sourceTree = "<group>"; };
 		465DE36011B6355F1ECACA1B /* XcodeScheme+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+Extensions.swift"; sourceTree = "<group>"; };
@@ -524,6 +523,7 @@
 		48F07848723835EC26C2340C /* XCScheme+EnvironmentVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+EnvironmentVariable.swift"; sourceTree = "<group>"; };
 		493423CD8285C46D06C4169D /* PathExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtensionsTests.swift; sourceTree = "<group>"; };
 		49B3B73668D297F26F66A5E7 /* XCSchemeInfo+LaunchActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+LaunchActionInfoTests.swift"; sourceTree = "<group>"; };
+		49DC34A91F8DD27F3788A429 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4A6A84F2CC6A006E28720D2B /* XCScheme+Runnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+Runnable.swift"; sourceTree = "<group>"; };
 		4E25F4B3B5010A82A8E2A0CF /* PBXProductType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXProductType+Extensions.swift"; sourceTree = "<group>"; };
 		4E71E5D5A3ED7BDF0B859C36 /* SearchPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPaths.swift; sourceTree = "<group>"; };
@@ -546,8 +546,8 @@
 		5A0D02295BBDD7113D940406 /* ReferenceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceGenerator.swift; sourceTree = "<group>"; };
 		5C0C928BAD312B54B2B60DFC /* XCSchemeInfo+TestActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+TestActionInfoTests.swift"; sourceTree = "<group>"; };
 		5E517675E70186E73924EB60 /* XCScheme+TestableReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+TestableReference.swift"; sourceTree = "<group>"; };
-		5E7B2DB807B1509ABDD69E31 /* libXCTestDynamicOverlay.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libXCTestDynamicOverlay.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FBDAA5A97ECD9AA378B9305 /* libCustomDump.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCustomDump.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E7B2DB807B1509ABDD69E31 /* libXCTestDynamicOverlay.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libXCTestDynamicOverlay.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FBDAA5A97ECD9AA378B9305 /* libCustomDump.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCustomDump.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FED5A3DD441A96F8D87D685 /* XcodeScheme+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		6115DA196ED2ABFA8FCB7BD1 /* _HashTable+Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Bucket.swift"; sourceTree = "<group>"; };
 		6130F9568982104094E3C618 /* Bool+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extras.swift"; sourceTree = "<group>"; };
@@ -596,7 +596,7 @@
 		86B194639E9B15A5EBF6F2B8 /* XCSchemeInfo+HostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+HostInfo.swift"; sourceTree = "<group>"; };
 		86D81D32EB64919C01CE7321 /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
 		87C0073B2B714F5319BE5A11 /* _HashTable+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Testing.swift"; sourceTree = "<group>"; };
-		87D5D2AB0B152D5CA6FB9ADF /* libgenerator.library.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libgenerator.library.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/tools/generator/libgenerator.library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87D5D2AB0B152D5CA6FB9ADF /* libgenerator.library.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libgenerator.library.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/libgenerator.library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		889B803E192ED98560009C6D /* OrderedSet+Partial SetAlgebra+Basics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Basics.swift"; sourceTree = "<group>"; };
 		88CFB36E6D7371DC64BD3D3D /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
 		8986F9BDAD8DB56D61CBB787 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -624,7 +624,7 @@
 		9F395A784F145A641B09FC95 /* PBXBatchUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXBatchUpdater.swift; sourceTree = "<group>"; };
 		9F4365A36FFD6C0FE9B703B9 /* CreateAutogeneratedXCSchemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAutogeneratedXCSchemes.swift; sourceTree = "<group>"; };
 		A0C6BD71C5B59C200AE8F91C /* PBXFileReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXFileReference.swift; sourceTree = "<group>"; };
-		A0ED50B45C327F01289522B0 /* libPathKit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libPathKit.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_kylef_pathkit/libPathKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0ED50B45C327F01289522B0 /* libPathKit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libPathKit.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_kylef_pathkit/libPathKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B9525BCADA7A75978D1FCC /* CollectionDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDifference.swift; sourceTree = "<group>"; };
 		A20E781CE891F4AB4B0E4C30 /* Dictionary+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extras.swift"; sourceTree = "<group>"; };
 		A3483283D4E32D0BCB74B78A /* Target+LinkerFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Target+LinkerFlags.swift"; sourceTree = "<group>"; };
@@ -676,7 +676,7 @@
 		C680A79739F778E13D555285 /* AnyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyType.swift; sourceTree = "<group>"; };
 		C6E1E2200AB2DCA91F4999CE /* FilePathResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathResolver.swift; sourceTree = "<group>"; };
 		C6F678888C41776A8A45A7BC /* CreateProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProject.swift; sourceTree = "<group>"; };
-		C7281BBDA526D590DB2E6B19 /* libXcodeProj.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libXcodeProj.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7281BBDA526D590DB2E6B19 /* libXcodeProj.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libXcodeProj.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E7CBE278241683B615924F /* ConsolidateTargetsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidateTargetsTest.swift; sourceTree = "<group>"; };
 		C8FF7F282D79BCC8C890152C /* OrderedSet+Partial SetAlgebra+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Operations.swift"; sourceTree = "<group>"; };
 		C9B9DF12DB21E355D72FC72A /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
@@ -725,7 +725,7 @@
 		F238F3E44302DBE53FF70525 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		F298521A3DBBAD2961DF8973 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		F2C81405CA830285CE772318 /* TargetID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetID.swift; sourceTree = "<group>"; };
-		F30BDE4E484ED0AD847BE4C5 /* libOrderedCollections.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libOrderedCollections.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_apple_swift_collections/libOrderedCollections.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30BDE4E484ED0AD847BE4C5 /* libOrderedCollections.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libOrderedCollections.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/libOrderedCollections.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37821F06B32120001F7E12D /* PBXLegacyTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXLegacyTarget.swift; sourceTree = "<group>"; };
 		F4541A6CA919F8EC829FE0B0 /* WriteXcodeProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteXcodeProj.swift; sourceTree = "<group>"; };
 		F4ABCD1903D2A2F3FAE064BC /* WorkspaceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSettings.swift; sourceTree = "<group>"; };
@@ -740,22 +740,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		01311158BB4603414E0F05B4 /* applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209 */ = {
-			isa = PBXGroup;
-			children = (
-				A2FC91836E3BC40B85A59FD8 /* bin */,
-			);
-			path = "applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
-			sourceTree = "<group>";
-		};
-		0763F9EAF5D253AF023A2D8F /* tests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				44D4406104B7B5E69B1C96ED /* Info.plist */,
-			);
-			path = tests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
 		07671B3685AFF2D6FBC54376 /* SwiftPackage */ = {
 			isa = PBXGroup;
 			children = (
@@ -849,14 +833,6 @@
 				4FBEE702AF377A840BE7137B /* Sources */,
 			);
 			path = com_github_pointfreeco_xctest_dynamic_overlay;
-			sourceTree = "<group>";
-		};
-		27F4ED9359B6F9D8C7D4FEF0 /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				F6F09F62B743BEF08683FAAA /* generator */,
-			);
-			path = tools;
 			sourceTree = "<group>";
 		};
 		2E6D9E4BA36A87B56922910C /* fixtures */ = {
@@ -990,14 +966,6 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		57275FEB4289F37AD652C1B1 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				61C20C6F665E2D4987DED8BA /* rules_xcodeproj */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
 		593E7C82FAAD94A7E6A04318 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1013,6 +981,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5B200F4516EED6D78DD78BD3 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				8393D7C587E6A8E9029B6C59 /* rules_xcodeproj */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		61AD97755080C09562F102AE /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
@@ -1024,14 +1000,6 @@
 				748E5C2D56A2ED06BF8F5D39 /* XCWorkspaceDataGroup.swift */,
 			);
 			path = Workspace;
-			sourceTree = "<group>";
-		};
-		61C20C6F665E2D4987DED8BA /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				0763F9EAF5D253AF023A2D8F /* tests.__internal__.__test_bundle */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		68A1D737225E7A97337523DE /* test */ = {
@@ -1075,6 +1043,30 @@
 			isa = PBXGroup;
 			children = (
 				926156400E723502E6048C74 /* generator */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		7752E225BFA02EC8D41568DD /* tests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				49DC34A91F8DD27F3788A429 /* Info.plist */,
+			);
+			path = tests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
+		8393D7C587E6A8E9029B6C59 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				7752E225BFA02EC8D41568DD /* tests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		8B0C08154712E3FB4173D899 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				BF5F5C54EDFE5E79F2AC0FD9 /* generator */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -1161,20 +1153,20 @@
 			path = "bazel-output-base/external";
 			sourceTree = "<group>";
 		};
+		98EB7C1365B0DAEC16FDE8B9 /* applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000 */ = {
+			isa = PBXGroup;
+			children = (
+				BD98E0C01C49F0BD1FF312A1 /* bin */,
+			);
+			path = "applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
+			sourceTree = "<group>";
+		};
 		9CFB3134561D99EEDB0FD551 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				3CD4C9DD5760967263828581 /* CustomDump */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		A2FC91836E3BC40B85A59FD8 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				27F4ED9359B6F9D8C7D4FEF0 /* tools */,
-			);
-			path = bin;
 			sourceTree = "<group>";
 		};
 		A403C77530EAF2A33B494AAD /* BuildPhase */ = {
@@ -1319,6 +1311,22 @@
 			path = testing;
 			sourceTree = "<group>";
 		};
+		BD98E0C01C49F0BD1FF312A1 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				8B0C08154712E3FB4173D899 /* tools */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		BF5F5C54EDFE5E79F2AC0FD9 /* generator */ = {
+			isa = PBXGroup;
+			children = (
+				5B200F4516EED6D78DD78BD3 /* test */,
+			);
+			path = generator;
+			sourceTree = "<group>";
+		};
 		BFEF2AFA44EC1F7171860831 /* com_github_apple_swift_collections */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,7 +1345,7 @@
 		C407A8E68D8C611448A3E699 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
-				01311158BB4603414E0F05B4 /* applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209 */,
+				98EB7C1365B0DAEC16FDE8B9 /* applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
@@ -1524,14 +1532,6 @@
 				9610CD0DCAEE9236869A4628 /* OrderedSet+UnstableInternals.swift */,
 			);
 			path = OrderedSet;
-			sourceTree = "<group>";
-		};
-		F6F09F62B743BEF08683FAAA /* generator */ = {
-			isa = PBXGroup;
-			children = (
-				57275FEB4289F37AD652C1B1 /* test */,
-			);
-			path = generator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2409,8 +2409,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_kylef_pathkit";
-				BAZEL_TARGET_ID = "@com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_kylef_pathkit";
+				BAZEL_TARGET_ID = "@com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -2429,7 +2429,7 @@
 				TARGET_NAME = PathKit;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
 			name = Debug;
@@ -2440,7 +2440,7 @@
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				GENERATOR_LABEL = "//test/fixtures/generator:xcodeproj_bwb.generator";
-				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-8c3043bbe824/bin/test/fixtures/generator";
+				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures/generator";
 				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				RESOLVED_EXTERNAL_REPOSITORIES = "";
@@ -2455,8 +2455,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_tuist_xcodeproj";
-				BAZEL_TARGET_ID = "@com_github_tuist_xcodeproj//:XcodeProj macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_tuist_xcodeproj";
+				BAZEL_TARGET_ID = "@com_github_tuist_xcodeproj//:XcodeProj macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -2469,14 +2469,14 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_tadija_aexml $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_kylef_pathkit";
+				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_tadija_aexml $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_kylef_pathkit";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = XcodeProj;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
 			name = Debug;
@@ -2532,8 +2532,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
-				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
+				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -2552,7 +2552,7 @@
 				TARGET_NAME = XCTestDynamicOverlay;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
 			name = Debug;
@@ -2561,8 +2561,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_pointfreeco_swift_custom_dump";
-				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_pointfreeco_swift_custom_dump";
+				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -2575,14 +2575,14 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
+				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = CustomDump;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
 			name = Debug;
@@ -2591,11 +2591,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_COMPILE_TARGET_ID = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/tools/generator/test";
-				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/test";
+				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -2605,8 +2605,8 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/tools/generator/test/tests.link.params";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/tools/generator/test/tests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
@@ -2616,14 +2616,14 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_apple_swift_collections $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_kylef_pathkit $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_tadija_aexml $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_tuist_xcodeproj $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/tools/generator $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_pointfreeco_xctest_dynamic_overlay $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_pointfreeco_swift_custom_dump";
+				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_kylef_pathkit $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_tadija_aexml $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_tuist_xcodeproj $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_pointfreeco_xctest_dynamic_overlay $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_pointfreeco_swift_custom_dump";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = tests;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
 			name = Debug;
@@ -2632,8 +2632,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_apple_swift_collections";
-				BAZEL_TARGET_ID = "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections";
+				BAZEL_TARGET_ID = "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -2652,7 +2652,7 @@
 				TARGET_NAME = OrderedCollections;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
 			name = Debug;
@@ -2661,9 +2661,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/tools/generator/generator";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/generator";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator";
+				BAZEL_TARGET_ID = "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2671,7 +2671,7 @@
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/tools/generator/generator.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/tools/generator/generator.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -2691,7 +2691,7 @@
 				TARGET_NAME = generator;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+					"$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
 			name = Debug;
@@ -2700,8 +2700,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator";
+				BAZEL_TARGET_ID = "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -2714,14 +2714,14 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_apple_swift_collections $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_kylef_pathkit $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_tadija_aexml $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin/external/com_github_tuist_xcodeproj";
+				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_kylef_pathkit $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_tadija_aexml $(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_tuist_xcodeproj";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
 				TARGET_NAME = generator.library;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c70783d5b209/bin",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
 			name = Debug;

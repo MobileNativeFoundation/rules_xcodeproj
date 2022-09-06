@@ -173,8 +173,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-ae3222c40402/bin/examples/simple";
-				BAZEL_TARGET_ID = "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-ae3222c40402";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/examples/simple";
+				BAZEL_TARGET_ID = "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-3688109ddba2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -184,7 +184,7 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-ae3222c40402/examples/simple/SwiftBin.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-3688109ddba2/examples/simple/SwiftBin.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -199,7 +199,7 @@
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
 					.,
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-ae3222c40402/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
 				);
 			};
 			name = Debug;
