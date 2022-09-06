@@ -264,9 +264,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-6afa20b9e364/bin/examples/simple/SwiftBin";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-6afa20b9e364/bin/examples/simple";
-				BAZEL_TARGET_ID = "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-6afa20b9e364";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-0e5ef877669f/bin/examples/simple/SwiftBin";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-0e5ef877669f/bin/examples/simple";
+				BAZEL_TARGET_ID = "//examples/simple:SwiftBin darwin_x86_64-dbg-ST-0e5ef877669f";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -275,7 +275,7 @@
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-6afa20b9e364/examples/simple/SwiftBin.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-0e5ef877669f/examples/simple/SwiftBin.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -290,7 +290,7 @@
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-6afa20b9e364/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-0e5ef877669f/bin",
 				);
 			};
 			name = Debug;
@@ -301,7 +301,7 @@
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				GENERATOR_LABEL = "//test/fixtures/simple:xcodeproj_bwb.generator";
-				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-8c3043bbe824/bin/test/fixtures/simple";
+				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures/simple";
 				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				RESOLVED_EXTERNAL_REPOSITORIES = "";

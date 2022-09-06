@@ -1,0 +1,9 @@
+-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/macOSApp/Test/UITests/macOSAppUITests.swiftmodule/x86_64-apple-macos.swiftmodule
+-ObjC
+-L/usr/lib/swift
+-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx
+-Wl,-rpath,/usr/lib/swift
+-headerpad_max_install_names
+-no-canonical-prefixes
+-lc++
