@@ -53,14 +53,14 @@ if [ -z "${output_groups:-}" ]; then
     else
       echo "error: Can't yet determine Index Build output group." \
 "Next build should succeed. If not, please file a bug report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \
+"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
         >&2
       exit 1
     fi
   else
     echo "error: BazelDependencies invoked without any output groups set." \
 "Please file a bug report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \
+"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
     exit 1
   fi
@@ -197,7 +197,7 @@ for output_group in "${output_groups[@]}"; do
 "generation." >&2
     echo "error: If you are still getting this error after all of that," \
 "please file a bug report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md." \
+"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
     exit 1
   fi
