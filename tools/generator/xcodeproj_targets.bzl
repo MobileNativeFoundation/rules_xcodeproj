@@ -2,6 +2,12 @@
 
 load("//xcodeproj:xcodeproj.bzl", "xcode_schemes")
 
+FOCUSED_TARGETS = [
+    "//tools/generator:generator",
+    "//tools/generator:generator.library",
+    "//tools/generator/test:tests",
+    "//tools/generator/test:tests.library",
+]
 UNFOCUSED_TARGETS = [
     "@com_github_tadija_aexml//:AEXML",
 ]

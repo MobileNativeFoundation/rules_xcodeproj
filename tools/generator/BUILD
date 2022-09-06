@@ -11,6 +11,7 @@ load(
 load("//xcodeproj:xcodeproj.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
+    "FOCUSED_TARGETS",
     "SCHEME_AUTOGENERATION_MODE",
     "TOP_LEVEL_TARGETS",
     "UNFOCUSED_TARGETS",
@@ -62,6 +63,7 @@ apple_universal_binary(
 
 xcodeproj(
     name = "xcodeproj",
+    focused_targets = FOCUSED_TARGETS,
     project_name = "generator",
     scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
