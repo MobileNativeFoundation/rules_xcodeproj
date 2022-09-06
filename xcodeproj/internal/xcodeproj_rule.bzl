@@ -715,13 +715,13 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         inputs = inputs,
         additional_generated = additional_generated,
-        toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+        top_level_cache_buster = ctx.file._top_level_cache_buster,
     )
     output_files_output_groups = output_files.to_output_groups_fields(
         ctx = ctx,
         outputs = outputs,
         additional_outputs = additional_outputs,
-        toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+        top_level_cache_buster = ctx.file._top_level_cache_buster,
     )
 
     if build_mode == "xcode":
@@ -849,11 +849,6 @@ as two separate but similar Xcode targets.
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
         ),
-        "toplevel_cache_buster": attr.label_list(
-            doc = "For internal use only. Do not set this value yourself.",
-            allow_empty = True,
-            allow_files = True,
-        ),
         "unfocused_targets": attr.string_list(
             doc = """\
 A `list` of target labels as `string` values. Any targets in the transitive
@@ -969,6 +964,19 @@ transitive dependencies of the targets specified in the
         "_installer_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:installer.template.sh"),
+        ),
+        "_top_level_cache_buster": attr.label(
+            doc = """\
+We control an input file to force downloading of top-level outputs, without
+having them be declared as the exact top level outputs. This makes the BEP a lot
+smaller and the UI output cleaner.
+
+See `//xcodeproj/internal:output_files.bzl` for more details.
+""",
+            allow_single_file = True,
+            default = Label(
+                "@rules_xcodeproj_top_level_cache_buster//:top_level_cache_buster",
+            ),
         ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",

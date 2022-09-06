@@ -48,6 +48,7 @@ pass `ignore_version_differences = True` to `xcodeproj_rules_dependencies()`.
 
     repo_rule(name = name, **kwargs)
 
+# buildifier: disable=unnamed-macro
 def xcodeproj_rules_dependencies(
         ignore_version_differences = False,
         use_dev_patches = False):
@@ -186,4 +187,12 @@ swift_library(
         strip_prefix = "swift-collections-1.0.2",
         url = "https://github.com/apple/swift-collections/archive/refs/tags/1.0.2.tar.gz",
         ignore_version_differences = ignore_version_differences,
+    )
+
+    native.new_local_repository(
+        name = "rules_xcodeproj_top_level_cache_buster",
+        build_file_content = """\
+exports_files(["top_level_cache_buster"])
+""",
+        path = "/tmp/rules_xcodeproj",
     )
