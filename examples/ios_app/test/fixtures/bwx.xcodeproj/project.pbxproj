@@ -259,7 +259,6 @@
 		087B3E45AA9A7430D1BEC9B8 /* ExampleResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4BE40B12E61F0EBADF1EF0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		104ECD97B1C1B9C4DF3F9949 /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1114222EF47A93F0F39BC416 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		147E33BBAF4F6DCF2F01C37A /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		181A626E7874B82CF2F6E536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D174B1D4C25E9FD21719679 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +282,7 @@
 		44BB25020D8FACC865B72D37 /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		450DDFA2991ACF0EBEF5E70A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = es; path = es.lproj/unprocessed.json; sourceTree = "<group>"; };
 		4EFD481E747FFE235872FEBE /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
+		55CC74F5E0412443DAF35567 /* ios app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios app.entitlements"; sourceTree = "<group>"; };
 		56019D124B91E38AF4906E11 /* ExternalResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExternalResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CABDA09B231335D1A65F54 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		572A4FC363A6C77141DFAA96 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
@@ -665,12 +665,12 @@
 			children = (
 				D71EB598E6B4BE7F35063F30 /* nested */,
 				E3C90F22A5DD89C34CFED453 /* PreviewContent */,
-				1114222EF47A93F0F39BC416 /* app.entitlements */,
 				213259970531EA32B992572A /* Assets.xcassets */,
 				66FD903A85D9EC8C1EBDC3C2 /* BUILD */,
 				A6F89F28CB6CFCADEC31B05F /* ContentView.swift */,
 				56CABDA09B231335D1A65F54 /* ExampleApp.swift */,
 				DE4E55DA7325F65B7598D64D /* Info.plist */,
+				55CC74F5E0412443DAF35567 /* ios app.entitlements */,
 				36ADEE0564C8CDF14759480E /* Launch.storyboard */,
 				3D76639B60E2E2CA3019CBCA /* Localizable.strings */,
 				404E7E43544B7F938886B554 /* Model.xcdatamodeld */,
@@ -2002,7 +2002,7 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = Example/app.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Example/ios app.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = Example.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;

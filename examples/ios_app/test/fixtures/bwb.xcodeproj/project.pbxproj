@@ -195,6 +195,7 @@
 		55E65A7323E456CDEBA791E6 /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
 		577BC07B4F6E580BDB13B5B1 /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
 		58871954650EF44D04DCC91B /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
+		5EA2EFA34A3438F8EB16D1A9 /* ios app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios app.entitlements"; sourceTree = "<group>"; };
 		62BA266605A71726F9EF2A78 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		63886B704AAC05F6AD1B1E8F /* FXPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		6602B63E152B03A28F98567A /* merge.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = merge.sh; sourceTree = "<group>"; };
@@ -205,7 +206,6 @@
 		89A9ECE837F4AC1C251945EE /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		8ADB9E176B3AB4F6354A1167 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F8B001AB6315D99F13FAC92 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/CoreUtilsObjC/libCoreUtilsObjC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		936C89D0AECF460936BF9489 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		9BF5CE4ADD5163F5308F8626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D61CBAFE2C78BDC7960D5A4 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		9E2AD3FF7B70CC8C730B7A22 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -479,12 +479,12 @@
 			children = (
 				B97C2835F125F69B2FDF8477 /* nested */,
 				1B8846860A494D5FC82D2072 /* PreviewContent */,
-				936C89D0AECF460936BF9489 /* app.entitlements */,
 				1F2546A475C2CA76D8E89436 /* Assets.xcassets */,
 				3044751746014D22D03BB28E /* BUILD */,
 				8ADB9E176B3AB4F6354A1167 /* ContentView.swift */,
 				DC51A4085F05FC61686E7785 /* ExampleApp.swift */,
 				A619B11AC2106BAC08FA7DB0 /* Info.plist */,
+				5EA2EFA34A3438F8EB16D1A9 /* ios app.entitlements */,
 				89A9ECE837F4AC1C251945EE /* Launch.storyboard */,
 				ECC63D78B0A2D399B5E493C5 /* Localizable.strings */,
 				76E7868858212743220B114A /* Model.xcdatamodeld */,
@@ -1935,7 +1935,7 @@
 				BAZEL_TARGET_ID = "//Example:Example applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGN_ENTITLEMENTS = Example/app.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Example/ios app.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = Example.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
