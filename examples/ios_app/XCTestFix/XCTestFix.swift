@@ -2,7 +2,7 @@ import Foundation
 import XCTest
 
 // NOTE: This path has to start with a / for fileURLWithPath to resolve it correctly as an absolute path
-public let kSourceRoot = ProcessInfo.processInfo.environment["SRCROOT"]!
+public let kSourceRoot = ProcessInfo.processInfo.environment["BUILD_WORKSPACE_DIRECTORY"]!
 
 private func remapFileURL(_ fileURL: URL) -> URL {
     if fileURL.path.hasPrefix(kSourceRoot) {
@@ -22,8 +22,8 @@ private extension XCTSourceCodeLocation {
 
 func swizzleXCTSourceCodeLocationIfNeeded() {
     // NOTE: Make sure our "Expand Variables Based On" is set correctly
-    if kSourceRoot == "$(SRCROOT)" {
-        fatalError("Got unsubstituted SRCROOT")
+    if kSourceRoot == "$(BUILD_WORKSPACE_DIRECTORY)" {
+        fatalError("Got unsubstituted BUILD_WORKSPACE_DIRECTORY")
     }
 
     let originalSelector = #selector(XCTSourceCodeLocation.init(fileURL:lineNumber:))
