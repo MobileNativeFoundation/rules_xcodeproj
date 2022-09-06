@@ -70,7 +70,17 @@ def _process_targets(
         resource_bundle_xcode_targets,
         transitive = [info.xcode_targets for info in infos],
     ).to_list()
-    targets_labels = sets.make([str(t.label) for t in targets_list])
+
+    replacement_labels = {
+        r.id: r.label
+        for r in depset(
+            transitive = [info.replacement_labels for info in infos],
+        ).to_list()
+    }
+    targets_labels = sets.make([
+        str(replacement_labels.get(t.id, t.label))
+        for t in targets_list
+    ])
 
     invalid_focused_targets = sets.to_list(
         sets.difference(focused_labels, targets_labels),
@@ -91,7 +101,11 @@ targets.
     unfocused_targets = {}
     infoplists = {}
     for xcode_target in targets_list:
-        label_str = str(xcode_target.label)
+        label = replacement_labels.get(
+            xcode_target.id,
+            xcode_target.label,
+        )
+        label_str = str(label)
         if (sets.contains(unfocused_labels, label_str) or
             (has_focused_labels and
              not sets.contains(focused_labels, label_str))):
@@ -102,7 +116,7 @@ targets.
 
         infoplist = xcode_target.infoplist
         if infoplist:
-            infoplists.setdefault(xcode_target.label, []).append(infoplist)
+            infoplists.setdefault(label, []).append(infoplist)
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
@@ -149,7 +163,11 @@ targets.
                 additional_compiling_files,
             )
 
-        target_infoplists = infoplists.get(xcode_target.label)
+        label = replacement_labels.get(
+            xcode_target.id,
+            xcode_target.label,
+        )
+        target_infoplists = infoplists.get(label)
         if target_infoplists:
             infoplists_depset = depset(target_infoplists)
             additional_linking_files.append(infoplists_depset)
@@ -193,7 +211,13 @@ targets.
             unfocused_targets = unfocused_targets,
         )
 
-    return (targets, target_dtos, additional_generated, additional_outputs)
+    return (
+        targets,
+        target_dtos,
+        additional_generated,
+        additional_outputs,
+        has_focused_labels,
+    )
 
 # Actions
 
@@ -376,26 +400,7 @@ def _write_xccurrentversions(*, ctx, xccurrentversion_files):
 
     return output
 
-def _write_extensionpointidentifiers(
-        *,
-        ctx,
-        extension_infoplists,
-        focused_labels,
-        unfocused_labels):
-    has_focused_labels = sets.length(focused_labels) > 0
-    if sets.length(unfocused_labels):
-        extension_infoplists = [
-            s
-            for s in extension_infoplists
-            if not sets.contains(unfocused_labels, s.id)
-        ]
-    if has_focused_labels:
-        extension_infoplists = [
-            s
-            for s in extension_infoplists
-            if sets.contains(focused_labels, s.id)
-        ]
-
+def _write_extensionpointidentifiers(*, ctx, extension_infoplists):
     targetids_file = ctx.actions.declare_file(
         "{}_extensionpointidentifiers_targetids".format(ctx.attr.name),
     )
@@ -623,8 +628,6 @@ _device_transition = transition(
 def _xcodeproj_impl(ctx):
     build_mode = ctx.attr.build_mode
     project_name = ctx.attr.project_name
-    focused_labels = sets.make(ctx.attr.focused_targets)
-    unfocused_labels = sets.make(ctx.attr.unfocused_targets)
     infos = [
         dep[XcodeProjInfo]
         for dep in (
@@ -637,13 +640,6 @@ def _xcodeproj_impl(ctx):
     outputs = output_files.merge(
         automatic_target_info = None,
         transitive_infos = [(None, info) for info in infos],
-    )
-
-    extension_infoplists = depset(
-        transitive = [
-            info.extension_infoplists
-            for info in infos
-        ],
     )
 
     bazel_integration_files = list(ctx.files._base_integration_files)
@@ -659,13 +655,25 @@ def _xcodeproj_impl(ctx):
         target_dtos,
         additional_generated,
         additional_outputs,
+        has_focused_targets,
     ) = _process_targets(
         build_mode = build_mode,
-        focused_labels = focused_labels,
-        unfocused_labels = unfocused_labels,
+        focused_labels = sets.make(ctx.attr.focused_targets),
+        unfocused_labels = sets.make(ctx.attr.unfocused_targets),
         inputs = inputs,
         infos = infos,
     )
+
+    extension_infoplists = [
+        s
+        for s in depset(
+            transitive = [
+                info.extension_infoplists
+                for info in infos
+            ],
+        ).to_list()
+        if s.id in targets
+    ]
 
     spec_file = _write_json_spec(
         ctx = ctx,
@@ -673,7 +681,7 @@ def _xcodeproj_impl(ctx):
         configuration = configuration,
         targets = targets,
         target_dtos = target_dtos,
-        has_focused_targets = sets.length(focused_labels) > 0,
+        has_focused_targets = has_focused_targets,
         inputs = inputs,
         infos = infos,
     )
@@ -684,9 +692,7 @@ def _xcodeproj_impl(ctx):
     )
     extensionpointidentifiers_file = _write_extensionpointidentifiers(
         ctx = ctx,
-        extension_infoplists = extension_infoplists.to_list(),
-        focused_labels = focused_labels,
-        unfocused_labels = unfocused_labels,
+        extension_infoplists = extension_infoplists,
     )
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
