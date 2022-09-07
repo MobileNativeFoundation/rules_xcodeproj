@@ -309,7 +309,7 @@ def _to_output_groups_fields(
         ctx,
         outputs,
         additional_outputs = {},
-        toplevel_cache_buster):
+        top_level_cache_buster):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
@@ -318,8 +318,8 @@ def _to_output_groups_fields(
         additional_outputs: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
             into the output group map for that output group name.
-        toplevel_cache_buster: A `list` of `File`s that change with each build,
-            and are used as inputs to the output map generation, to ensure that
+        top_level_cache_buster: A `File` that changes with each build, and is
+            used as an input to the output map generation, to ensure that
             the files references by the output map are always downloaded from
             the remote cache, even when using `--remote_download_toplevel`.
 
@@ -341,7 +341,7 @@ def _to_output_groups_fields(
             ctx = ctx,
             name = name.replace("/", "_"),
             files = files,
-            toplevel_cache_buster = toplevel_cache_buster,
+            top_level_cache_buster = top_level_cache_buster,
         )])
         for name, files in all_files.items()
     }
@@ -349,7 +349,7 @@ def _to_output_groups_fields(
         ctx = ctx,
         name = "all_b",
         files = depset(transitive = all_files.values()),
-        toplevel_cache_buster = toplevel_cache_buster,
+        top_level_cache_buster = top_level_cache_buster,
     )])
 
     return output_groups

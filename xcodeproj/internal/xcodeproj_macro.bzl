@@ -208,28 +208,15 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
             )
         schemes_json = json.encode(schemes)
 
-    if kwargs.get("toplevel_cache_buster"):
-        fail("`toplevel_cache_buster` is for internal use only")
-
-    # We control an input file to force downloading of top-level outputs,
-    # without having them be declared as the exact top level outputs. This makes
-    # the BEP a lot smaller and the UI output cleaner.
-    # See `//xcodeproj/internal:output_files.bzl` for more details.
-    toplevel_cache_buster = native.glob(
-        [
-            "{}.xcodeproj/rules_xcodeproj/toplevel_cache_buster".format(
-                project_name,
-            ),
-        ],
-        allow_empty = True,
-    )
-
     generator_name = "{}.generator".format(name)
 
     xcodeproj_rule = kwargs.pop("xcodeproj_rule", _xcodeproj)
 
     tags = kwargs.pop("tags", [])
 
+    # The runner needs to ensure that the
+    # `rules_xcodeproj_top_level_cache_buster` repository is properly created,
+    # so don't allow people to accidentally try to build the generator.
     generator_tags = list(tags)
     if "manual" not in generator_tags:
         generator_tags.append("manual")
@@ -248,7 +235,6 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,
         top_level_simulator_targets = top_level_simulator_targets,
-        toplevel_cache_buster = toplevel_cache_buster,
         tvos_device_cpus = tvos_device_cpus,
         tvos_simulator_cpus = tvos_simulator_cpus,
         unfocused_targets = unfocused_targets,

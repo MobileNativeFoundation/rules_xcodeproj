@@ -50,6 +50,10 @@ if [[ -s "$extra_flags_bazelrc" ]]; then
   bazelrcs+=("--bazelrc=$extra_flags_bazelrc")
 fi
 
+# Ensure that our top-level cache buster `new_local_repository` is valid
+mkdir -p /tmp/rules_xcodeproj
+date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
+
 if [[ -z "${build_output_groups:-}" ]]; then
   echo
   echo 'Generating "%project_name%.xcodeproj"'
