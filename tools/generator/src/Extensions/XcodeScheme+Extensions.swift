@@ -168,7 +168,7 @@ extension XcodeScheme {
     var allBazelLabels: Set<BazelLabel> {
         var labels = Set<BazelLabel>()
         if let buildAction = buildAction {
-            labels.formUnion(buildAction.targets.map(\.label))
+            labels.formUnion(buildAction.targets.map(\.label) +  buildAction.preActions.map(\.target) + buildAction.postActions.map(\.target))
         }
         if let testAction = testAction {
             labels.formUnion(testAction.targets)

@@ -6,7 +6,15 @@ load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 
 _DEFAULT_BUILD_CONFIGURATION_NAME = "Debug"
 
-def focus_schemes(schemes, focused_targets):
+def _focus_actions(build_targets, actions):
+    focussed_actions = []
+    build_target_labels = [target.label for target in build_targets]
+    for action in actions:
+        if action.target in build_target_labels:
+            focussed_actions.append(action)
+    return focussed_actions
+
+def _focus_schemes(schemes, focused_targets):
     """Filter/adjust a `sequence` of schemes to only include focused targets.
 
     Args:
@@ -34,6 +42,8 @@ def focus_schemes(schemes, focused_targets):
             if build_targets:
                 build_action = xcode_schemes_internal.build_action(
                     targets = build_targets,
+                    pre_actions = _focus_actions(build_targets, build_action.pre_actions),
+                    post_actions = _focus_actions(build_targets, build_action.post_actions),
                 )
             else:
                 build_action = None
@@ -105,6 +115,8 @@ def unfocus_schemes(schemes, unfocused_targets):
             if build_targets:
                 build_action = xcode_schemes_internal.build_action(
                     targets = build_targets,
+                    pre_actions = _focus_actions(build_targets, build_action.pre_actions),
+                    post_actions = _focus_actions(build_targets, build_action.post_actions),
                 )
             else:
                 build_action = None
@@ -147,6 +159,13 @@ def unfocus_schemes(schemes, unfocused_targets):
 
     return focused_schemes
 
+def _pre_post_action(name, target, script_contents):
+    return struct(
+        name = name,
+        target = target,
+        script_contents = script_contents
+    )
+
 def make_xcode_schemes(bazel_labels):
     """Create an `xcode_schemes` module.
 
@@ -157,7 +176,7 @@ def make_xcode_schemes(bazel_labels):
         A `struct` that can be used as a `xcode_schemes` module.
     """
 
-    def _build_action(targets):
+    def _build_action(targets, pre_actions = [], post_actions = []):
         """Constructs a build action for an Xcode scheme.
 
         Args:
@@ -168,11 +187,22 @@ def make_xcode_schemes(bazel_labels):
         Returns:
             A `struct` representing a build action.
         """
+        def _pre_post_actions(actions):
+            return [
+                _pre_post_action(
+                    action.name,
+                    bazel_labels.normalize(action.target),
+                    action.script_contents,
+                )
+                for action in actions
+            ]
         return xcode_schemes_internal.build_action(
             targets = [
                 _build_target(target) if type(target) == "string" else target
                 for target in targets
             ],
+            pre_actions = _pre_post_actions(pre_actions),
+            post_actions = _pre_post_actions(post_actions),
         )
 
     def _build_target(label, build_for = None):
@@ -273,6 +303,8 @@ def make_xcode_schemes(bazel_labels):
         test_action = _test_action,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
         BUILD_FOR_ALL_ENABLED = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED,
+        pre_action = _pre_post_action,
+        post_action = _pre_post_action,
     )
 
 xcode_schemes = make_xcode_schemes(

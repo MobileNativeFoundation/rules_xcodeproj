@@ -101,7 +101,9 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
 
             // Create a new build action which includes all of the referenced labels as build targets
             // We must do this after processing all of the other actions.
-            let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values)
+            let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values,
+                                                             preActions: buildAction?.preActions ?? [],
+                                                             postActions: buildAction?.postActions ?? [])
 
             return try .init(
                 name: name,
@@ -132,11 +134,21 @@ extension XcodeScheme {
 }
 
 extension XcodeScheme {
+    struct PrePostAction: Equatable, Decodable {
+        let name: String
+        let target: BazelLabel
+        let scriptContents: String
+    }
+    
     struct BuildAction: Equatable, Decodable {
         let targets: Set<XcodeScheme.BuildTarget>
+        let preActions: [PrePostAction]
+        let postActions: [PrePostAction]
 
         init<BuildTargets: Sequence>(
-            targets: BuildTargets
+            targets: BuildTargets,
+            preActions: [PrePostAction] = [],
+            postActions: [PrePostAction] = []
         ) throws where BuildTargets.Element == XcodeScheme.BuildTarget {
             let targetsByLabel = Dictionary(grouping: targets, by: \.label)
             guard !targetsByLabel.isEmpty else {
@@ -152,6 +164,8 @@ Found a duplicate label \(label) in provided `XcodeScheme.BuildTarget` values.
                 }
             }
             self.targets = Set(targets)
+            self.preActions = preActions
+            self.postActions = postActions
         }
     }
 }

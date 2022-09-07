@@ -38,7 +38,7 @@ extension Generator {
                 let schemeInfo = try XCSchemeInfo(
                     buildActionInfo: .init(targets: [
                         .init(targetInfo: targetInfo, buildFor: .allEnabled),
-                    ]),
+                    ], preActions: [], postActions: []),
                     testActionInfo: shouldCreateTestAction ?
                         .init(
                             buildConfigurationName: buildConfigurationName,

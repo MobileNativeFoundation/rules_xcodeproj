@@ -28,7 +28,7 @@ def _scheme(
         launch_action = launch_action,
     )
 
-def _build_action(targets):
+def _build_action(targets, pre_actions, post_actions):
     """Constructs a build action for an Xcode scheme.
 
     Args:
@@ -40,6 +40,8 @@ def _build_action(targets):
     """
     return struct(
         targets = targets,
+        pre_actions = pre_actions,
+        post_actions = post_actions,
     )
 
 def _build_target(label, build_for = None):

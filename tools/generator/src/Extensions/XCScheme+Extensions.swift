@@ -87,7 +87,8 @@ extension XCScheme.BuildAction {
     ) throws {
         self.init(
             buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
+            preActions: try buildActionInfo.preActions.map(\.executionAction) + buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
+            postActions: buildActionInfo.postActions.map(\.executionAction),
             parallelizeBuild: true,
             buildImplicitDependencies: true
         )
