@@ -132,8 +132,8 @@ swift_library(
     else:
         xcodeproj_patches = []
 
-    # Main branch as of 2022-08-15. Contains Hashable implementation for
-    # XCScheme.BuildableReference
+    # Main branch as of 2022-09-07. Contains implementation for
+    # XCScheme.ExecutionAction.shellToInvoke
     xcodeproj_git_sha = "b7e93122d08e59497211ea12f4da73e6a4d7d598"
     _maybe(
         http_archive,
