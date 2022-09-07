@@ -228,6 +228,12 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
 
     xcodeproj_rule = kwargs.pop("xcodeproj_rule", _xcodeproj)
 
+    tags = kwargs.pop("tags", [])
+
+    generator_tags = list(tags)
+    if "manual" not in generator_tags:
+        generator_tags.append("manual")
+
     xcodeproj_rule(
         name = generator_name,
         build_mode = build_mode,
@@ -238,6 +244,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         project_name = project_name,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
+        tags = generator_tags,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,
         top_level_simulator_targets = top_level_simulator_targets,
@@ -254,6 +261,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         name = name,
         bazel_path = bazel_path,
         project_name = project_name,
+        tags = tags,
         testonly = testonly,
         xcodeproj_target = bazel_labels.normalize(generator_name),
         visibility = kwargs.get("visibility"),
