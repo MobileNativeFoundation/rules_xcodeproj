@@ -172,7 +172,6 @@ date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
 build_marker="$OBJROOT/bazel_build_start"
 touch "$build_marker"
 
-log=$(mktemp)
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \
@@ -182,7 +181,7 @@ log=$(mktemp)
   --symlink_prefix=/ \
   "$output_groups_flag" \
   "$GENERATOR_LABEL" \
-  2>&1 | tee -i "$log"
+  2>&1
 
 for output_group in "${output_groups[@]}"; do
   filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"
