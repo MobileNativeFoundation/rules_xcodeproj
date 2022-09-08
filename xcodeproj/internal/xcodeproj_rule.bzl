@@ -195,7 +195,7 @@ targets.
                 xcode_target.id,
             ) or sets.contains(
                 unfocused_libraries,
-                xcode_target.product.path,
+                xcode_target.product.file_path,
             )
         )
 
@@ -279,7 +279,7 @@ def _write_json_spec(
 
     for src in target_merges.keys():
         src_target = targets[src]
-        if src_target.product.path in non_mergable_targets:
+        if src_target.product.file_path in non_mergable_targets:
             # Prevent any version of `src` from merging, to prevent odd
             # target consolidation issues
             for id in target_merge_srcs_by_label[src_target.label]:

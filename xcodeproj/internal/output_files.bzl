@@ -120,7 +120,7 @@ def _create(
         products_output_group_name = products_output_group_name,
     )
 
-def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
+def _get_outputs(*, id, product, swift_info):
     """Collects the output files for a given target.
 
     The outputs are bucketed into two categories: build and index. The build
@@ -129,11 +129,9 @@ def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
     indexing process.
 
     Args:
-        target_files: The `files` attribute of the target. This should be `[]`
-            if `bundle_info` is not `None`.
-        bundle_info: The `AppleBundleInfo` provider for the target, or `None`.
         id: The unique identifier of the target.
-        default_info: The `DefaultInfo` provider for the target, or `None`.
+        product: A value returned from `process_product`, or `None` if the
+            target isn't a top level target.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
 
     Returns:
@@ -146,34 +144,6 @@ def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
             `None`.
         *   `swift`: A value returned from `parse_swift_info_module`.
     """
-
-    # TODO: Deduplicate work here and in `_process_top_level_target`.
-    xctest = None
-    for file in target_files:
-        if ".xctest/" in file.short_path:
-            xctest = file
-            break
-
-    product_file_path = None
-    if bundle_info:
-        product = bundle_info.archive
-    elif xctest:
-        product = xctest
-
-        # "some/test.xctest/binary" -> "some/test.xctest"
-        xctest_path = xctest.path
-        product_file_path = file_path(
-            xctest,
-            path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)],
-        )
-    elif default_info and default_info.files_to_run.executable:
-        product = default_info.files_to_run.executable
-    else:
-        product = None
-
-    if product and not product_file_path:
-        product_file_path = file_path(product)
-
     swift = None
     if swift_info:
         # TODO: Actually handle more than one module?
@@ -184,8 +154,8 @@ def _get_outputs(*, target_files, bundle_info, id, default_info, swift_info):
 
     return struct(
         id = id,
-        product = product,
-        product_file_path = product_file_path,
+        product = product.file if product else None,
+        product_file_path = product.actual_file_path if product else None,
         swift = swift,
     )
 
@@ -209,11 +179,9 @@ def _swift_to_dto(swift):
 
 def _collect(
         *,
-        target_files,
-        bundle_info,
-        default_info,
-        swift_info,
         id,
+        swift_info,
+        top_level_product = None,
         infoplist = None,
         transitive_infos,
         should_produce_dto,
@@ -221,12 +189,10 @@ def _collect(
     """Collects the outputs of a target.
 
     Args:
-        target_files: The `files` attribute of the target. This should be `[]`
-            if `bundle_info` is not `None`.
-        bundle_info: The `AppleBundleInfo` provider for  the target, or `None`.
-        default_info: The `DefaultInfo` provider for the target, or `None`.
-        swift_info: The `SwiftInfo` provider for the target, or `None`.
         id: A unique identifier for the target.
+        swift_info: The `SwiftInfo` provider for the target, or `None`.
+        top_level_product: A value returned from `process_product`, or `None` if
+            the target isn't a top level target.
         infoplist: A `File` or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
@@ -243,10 +209,8 @@ def _collect(
         `output_files.to_output_groups_fields`.
     """
     outputs = _get_outputs(
-        target_files = target_files,
-        bundle_info = bundle_info,
         id = id,
-        default_info = default_info,
+        product = top_level_product,
         swift_info = swift_info,
     )
 

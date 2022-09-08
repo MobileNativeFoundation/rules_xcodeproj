@@ -85,8 +85,11 @@ def process_top_level_properties(
         product_name = bundle_name
         product_type = bundle_info.product_type
 
+        bundle_file = bundle_info.archive
+        archive_file_path = file_path(bundle_file)
+
         if tree_artifact_enabled:
-            bundle_file_path = file_path(bundle_info.archive)
+            bundle_file_path = archive_file_path
         else:
             bundle_extension = bundle_info.bundle_extension
             bundle = "{}{}".format(bundle_name, bundle_extension)
@@ -99,7 +102,7 @@ def process_top_level_properties(
             else:
                 bundle_path = paths.join(bundle_info.archive_root, bundle)
             bundle_file_path = file_path(
-                bundle_info.archive,
+                bundle_file,
                 path = bundle_path,
             )
 
@@ -108,27 +111,31 @@ def process_top_level_properties(
         executable_name = target_name
         product_name = target_name
 
-        xctest = None
+        bundle_file = None
         for file in target_files:
             if ".xctest/" in file.path:
-                xctest = file
+                bundle_file = file
                 break
-        if xctest:
+        if bundle_file:
             # This is something like `swift_test`: it creates an xctest bundle
             product_type = "com.apple.product-type.bundle.unit-test"
 
             # "some/test.xctest/binary" -> "some/test.xctest"
-            xctest_path = xctest.path
+            xctest_path = bundle_file.path
             path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)]
             bundle_file_path = file_path(
-                xctest,
+                bundle_file,
                 path = path,
             )
+            archive_file_path = bundle_file_path
         else:
             product_type = "com.apple.product-type.tool"
             bundle_file_path = None
+            archive_file_path = None
 
     return struct(
+        archive_file_path = archive_file_path,
+        bundle_file = bundle_file,
         bundle_file_path = bundle_file_path,
         executable_name = executable_name,
         product_name = product_name,
@@ -313,6 +320,18 @@ def process_top_level_target(
         avoid_compilation_providers = avoid_compilation_providers,
     )
 
+    product = process_product(
+        ctx = ctx,
+        target = target,
+        product_name = props.product_name,
+        product_type = props.product_type,
+        bundle_file = props.bundle_file,
+        bundle_file_path = props.bundle_file_path,
+        archive_file_path = props.archive_file_path,
+        executable_name = props.executable_name,
+        linker_inputs = linker_inputs,
+    )
+
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
@@ -327,11 +346,9 @@ def process_top_level_target(
         avoid_deps = avoid_deps,
     )
     outputs = output_files.collect(
-        target_files = target_files,
-        bundle_info = bundle_info,
-        default_info = target[DefaultInfo],
-        swift_info = swift_info,
         id = id,
+        swift_info = swift_info,
+        top_level_product = product,
         infoplist = infoplist,
         transitive_infos = transitive_infos,
         should_produce_dto = should_include_outputs(ctx = ctx),
@@ -348,7 +365,7 @@ def process_top_level_target(
             struct(
                 src = struct(
                     id = mergeable_target.id,
-                    product_path = mergeable_target.product.path,
+                    product_path = mergeable_target.product.file_path,
                 ),
                 dest = id,
             )
@@ -383,15 +400,6 @@ def process_top_level_target(
         build_settings["DEBUG_INFORMATION_FORMAT"] = ""
     elif not cpp.apple_generate_dsym:
         build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf"
-
-    product = process_product(
-        target = target,
-        product_name = props.product_name,
-        product_type = props.product_type,
-        bundle_file_path = props.bundle_file_path,
-        executable_name = props.executable_name,
-        linker_inputs = linker_inputs,
-    )
 
     set_if_true(
         build_settings,
