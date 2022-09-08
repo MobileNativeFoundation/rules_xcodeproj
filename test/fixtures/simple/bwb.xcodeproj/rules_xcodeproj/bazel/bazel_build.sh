@@ -69,12 +69,6 @@ output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 
 # Set `bazel_cmd` for calling `bazel`
 
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other
-  output_base="$OBJROOT/bazel_output_base"
-fi
-
 bazelrcs=(
   --noworkspace_rc
   "--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj.bazelrc"
@@ -93,10 +87,21 @@ bazel_cmd=(
   USER="$USER"
   "$BAZEL_PATH"
   "${bazelrcs[@]}"
-  ${output_base:+--output_base "$output_base"}
 )
 
 # Determine Bazel output_path
+
+if [ "$ACTION" == "indexbuild" ]; then
+  # We use a different output base for Index Build to prevent normal builds and
+  # indexing waiting on bazel locks from the other. We nest it inside of the
+  # normal output base directory so that it's not cleaned up when running
+  # `bazel clean`, but is when running `bazel clean --expunge`. This matches
+  # Xcode behavior of not cleaning the Index Build outputs by default.
+
+  bazel_cmd+=(
+    --output_base "${BAZEL_OUT%/*/*/*}/rules_xcodeproj/indexbuild_output_base"
+  )
+fi
 
 if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
   color=yes
