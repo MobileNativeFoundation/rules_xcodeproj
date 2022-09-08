@@ -123,7 +123,7 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
 extension XcodeScheme {
     struct PrePostAction: Equatable, Decodable {
         let name: String
-        let target: BazelLabel
+        let expandVariablesBasedOn: VariableExpansionContext?
         let script: String
     }
 }
@@ -199,6 +199,15 @@ extension XcodeScheme {
     enum VariableExpansionContext: Equatable, Decodable {
         case none
         case target(BazelLabel)
+    }
+}
+
+extension XcodeScheme.VariableExpansionContext {
+    var targetLabel: BazelLabel? {
+        guard case let .target(targetLabel) = self else {
+            return nil
+        }
+        return targetLabel
     }
 }
 

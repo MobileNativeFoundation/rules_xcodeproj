@@ -37,13 +37,13 @@ extension XCSchemeInfo.BuildActionInfo {
         
         try self.init(
             targets: original.targets.map { buildTarget in
-                    .init(
-                        targetInfo: .init(
-                            resolveHostFor: buildTarget.targetInfo,
-                            topLevelTargetInfos: topLevelTargetInfos
-                        ),
-                        buildFor: buildTarget.buildFor
-                    )
+                .init(
+                    targetInfo: .init(
+                        resolveHostFor: buildTarget.targetInfo,
+                        topLevelTargetInfos: topLevelTargetInfos
+                    ),
+                    buildFor: buildTarget.buildFor
+                )
             },
             preActions: try original.preActions.resolveHosts(topLevelTargetInfos: topLevelTargetInfos),
             postActions: try original.postActions.resolveHosts(topLevelTargetInfos: topLevelTargetInfos)
@@ -85,6 +85,7 @@ extension XCSchemeInfo.BuildActionInfo {
                         targetResolver: targetResolver,
                         targetIDsByLabel: targetIDsByLabel,
                         context: context
-                      ))
+                      )
+        )
     }
 }

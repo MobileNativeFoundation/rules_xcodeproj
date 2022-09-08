@@ -7,10 +7,13 @@ load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 _DEFAULT_BUILD_CONFIGURATION_NAME = "Debug"
 
 def _focus_actions(build_targets, actions):
+    # TODO:
     focused_actions = []
     build_target_labels = [target.label for target in build_targets]
     for action in actions:
-        if action.target in build_target_labels:
+        if action.expand_variables_based_on == None:
+            focused_actions.append(action)
+        if action.expand_variables_based_on in build_target_labels:
             focused_actions.append(action)
     return focused_actions
 
@@ -159,11 +162,21 @@ def unfocus_schemes(schemes, unfocused_targets):
 
     return focused_schemes
 
-def _pre_post_action(name, target, script):
+def _pre_post_action(script, expand_variables_based_on, name = "Run Script"):
+    """Constructs a "Pre | Post action" for the "Build | Run | Test | Profile | Archive" step of the Scheme.
+
+    Args:
+        script: script text.
+        expand_variables_based_on: Optional. One of the specified target labels.
+        name: name of the action.
+
+    Returns:
+        A `struct` representing a Scheme's step "Pre | Post" action.
+    """
     return struct(
+        script = script,
+        expand_variables_based_on = expand_variables_based_on,
         name = name,
-        target = target,
-        script = script
     )
 
 def make_xcode_schemes(bazel_labels):
@@ -183,19 +196,25 @@ def make_xcode_schemes(bazel_labels):
             targets: A `sequence` of elements that are either `struct` values as
                 created by `xcode_schemes.build_target`, or a target label as a
                 `string` value.
+            pre_actions: A `sequence` of `struct` values as created by
+                `xcode_schemes._pre_post_action`.
+            post_actions: A `sequence` of `struct` values as created by
+                `xcode_schemes._pre_post_action`.
 
         Returns:
             A `struct` representing a build action.
         """
+
         def _pre_post_actions(actions):
             return [
                 _pre_post_action(
-                    action.name,
-                    bazel_labels.normalize(action.target),
-                    action.script,
+                    script = action.script,
+                    expand_variables_based_on = bazel_labels.normalize(action.expand_variables_based_on) if action.expand_variables_based_on else action.expand_variables_based_on,
+                    name = action.name,
                 )
                 for action in actions
             ]
+
         return xcode_schemes_internal.build_action(
             targets = [
                 _build_target(target) if type(target) == "string" else target
