@@ -45,9 +45,11 @@ def get_xcode_schemes():
                     ),
                 ],
                 pre_actions = [
-                    xcode_schemes.pre_action("Example: Start build time tracking...",
-                    _APP_TARGET,
-                    "echo 'Building target: generator'"),
+                    xcode_schemes.pre_action(
+                        name = "Example: Start build time tracking...",
+                        target = _APP_TARGET,
+                        script = "echo 'Building target: generator'",
+                    ),
                 ],
                 post_actions = [
                     xcode_schemes.post_action("Example: Stop build time tracking...",

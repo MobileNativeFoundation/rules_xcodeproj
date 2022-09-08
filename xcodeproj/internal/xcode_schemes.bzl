@@ -7,12 +7,12 @@ load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 _DEFAULT_BUILD_CONFIGURATION_NAME = "Debug"
 
 def _focus_actions(build_targets, actions):
-    focussed_actions = []
+    focused_actions = []
     build_target_labels = [target.label for target in build_targets]
     for action in actions:
         if action.target in build_target_labels:
-            focussed_actions.append(action)
-    return focussed_actions
+            focused_actions.append(action)
+    return focused_actions
 
 def _focus_schemes(schemes, focused_targets):
     """Filter/adjust a `sequence` of schemes to only include focused targets.
@@ -159,7 +159,7 @@ def unfocus_schemes(schemes, unfocused_targets):
 
     return focused_schemes
 
-def _pre_post_action(name, target, script_contents):
+def _pre_post_action(name, target, script):
     return struct(
         name = name,
         target = target,
@@ -176,7 +176,7 @@ def make_xcode_schemes(bazel_labels):
         A `struct` that can be used as a `xcode_schemes` module.
     """
 
-    def _build_action(targets, pre_actions = [], post_actions = []):
+    def _build_action(targets, *, pre_actions = [], post_actions = []):
         """Constructs a build action for an Xcode scheme.
 
         Args:

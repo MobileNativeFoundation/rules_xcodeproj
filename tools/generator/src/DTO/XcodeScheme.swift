@@ -101,9 +101,11 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
 
             // Create a new build action which includes all of the referenced labels as build targets
             // We must do this after processing all of the other actions.
-            let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values,
-                                                             preActions: buildAction?.preActions ?? [],
-                                                             postActions: buildAction?.postActions ?? [])
+            let newBuildAction = try XcodeScheme.BuildAction(
+                targets: buildTargets.values,
+                preActions: buildAction?.preActions ?? [],
+                postActions: buildAction?.postActions ?? []
+            )
 
             return try .init(
                 name: name,
