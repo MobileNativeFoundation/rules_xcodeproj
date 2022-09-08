@@ -10,7 +10,7 @@ load(":linker_input_files.bzl", "linker_input_files")
 def _codesign_executable(*, ctx, executable):
     executable_path = "rules_xcodeproj/{}/{}".format(
         ctx.rule.attr.name,
-        executable.basename
+        executable.basename,
     )
     entitlements = ctx.actions.declare_file(
         "{}.entitlements".format(executable_path),
