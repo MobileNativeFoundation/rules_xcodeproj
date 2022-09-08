@@ -104,10 +104,10 @@ def process_library_target(
 
     platform = platform_info.collect(ctx = ctx)
     product = process_product(
+        ctx = ctx,
         target = target,
         product_name = product_name,
         product_type = "com.apple.product-type.library.static",
-        bundle_file_path = None,
         linker_inputs = linker_inputs,
     )
 
@@ -127,11 +127,8 @@ def process_library_target(
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(
-        target_files = [],
-        bundle_info = None,
-        default_info = target[DefaultInfo],
-        swift_info = swift_info,
         id = id,
+        swift_info = swift_info,
         transitive_infos = transitive_infos,
         should_produce_dto = should_include_outputs(ctx = ctx),
         should_produce_output_groups = should_include_outputs_output_groups(
@@ -170,7 +167,7 @@ def process_library_target(
         compilation_providers = compilation_providers,
         dependencies = dependencies,
         inputs = inputs,
-        library = linker_input_files.get_primary_static_library(linker_inputs),
+        library = product.file,
         lldb_context = lldb_context,
         outputs = outputs,
         search_paths = search_paths,

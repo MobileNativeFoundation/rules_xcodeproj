@@ -32,19 +32,18 @@ def _process_resource_bundle(bundle, *, information):
     ))
 
     product = process_product(
+        ctx = None,
         target = None,
         product_name = name,
         product_type = "com.apple.product-type.bundle",
+        bundle_file = None,
         bundle_file_path = bundle_file_path,
         linker_inputs = None,
     )
 
     outputs = output_files.collect(
-        target_files = [],
-        bundle_info = None,
-        default_info = None,
-        swift_info = None,
         id = id,
+        swift_info = None,
         transitive_infos = [],
         should_produce_dto = False,
         should_produce_output_groups = False,
