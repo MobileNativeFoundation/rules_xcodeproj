@@ -118,6 +118,33 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
     }
 }
 
+// MARK: PrePostAction
+
+extension XcodeScheme {
+    struct PrePostAction: Equatable, Decodable {
+        let name: String
+        let target: BazelLabel
+        let script: String
+    }
+}
+
+extension Sequence where Element == XcodeScheme.PrePostAction {
+    func resolve(
+        targetResolver: TargetResolver,
+        targetIDsByLabel: [BazelLabel: TargetID],
+        context: String
+    ) throws -> [XCSchemeInfo.PrePostActionInfo] {
+        try map {
+            try XCSchemeInfo.PrePostActionInfo.init(
+                prePostAction: $0,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel,
+                context: context
+            )
+        }
+    }
+}
+
 // MARK: BuildAction
 
 extension XcodeScheme {
@@ -136,12 +163,6 @@ extension XcodeScheme {
 }
 
 extension XcodeScheme {
-    struct PrePostAction: Equatable, Decodable {
-        let name: String
-        let target: BazelLabel
-        let scriptContents: String
-    }
-    
     struct BuildAction: Equatable, Decodable {
         let targets: Set<XcodeScheme.BuildTarget>
         let preActions: [PrePostAction]

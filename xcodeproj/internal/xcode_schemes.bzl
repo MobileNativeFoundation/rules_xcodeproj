@@ -163,7 +163,7 @@ def _pre_post_action(name, target, script):
     return struct(
         name = name,
         target = target,
-        script_contents = script_contents
+        script = script
     )
 
 def make_xcode_schemes(bazel_labels):
@@ -192,7 +192,7 @@ def make_xcode_schemes(bazel_labels):
                 _pre_post_action(
                     action.name,
                     bazel_labels.normalize(action.target),
-                    action.script_contents,
+                    action.script,
                 )
                 for action in actions
             ]
