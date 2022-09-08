@@ -137,29 +137,27 @@ if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
 else
   bazel_out_prefix="$SRCROOT/"
 fi
-
 absolute_bazel_out="${bazel_out_prefix}$BAZEL_OUT"
+
+if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
+  source "$INTERNAL_DIR/create_xcode_overlay.sh"
+
+  roots=
+else
+  # Map `$BUILD_DIR` to execution_root, to fix SwiftUI Previews and indexing
+  # edge cases
+  roots="{\"external-contents\": \"$execution_root\",\"name\": \"$BUILD_DIR\",\"type\": \"directory-remap\"}"
+fi
 
 if [[ "$output_path" != "$absolute_bazel_out" ]]; then
   # Use current path for bazel-out
   # This fixes Index Build to use its version of generated files
-  roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"}"
-else
-  roots=
-fi
-if [[ "$RULES_XCODEPROJ_BUILD_MODE" != "xcode" ]]; then
-  # Map `$BUILD_DIR` to execution_root, to fix SwiftUI Previews and indexing
-  # edge cases
-  roots="${roots:+${roots},}{\"external-contents\": \"$execution_root\",\"name\": \"$BUILD_DIR\",\"type\": \"directory-remap\"}"
+  roots="${roots:+${roots},}{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"}"
 fi
 
 cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
 {"case-sensitive": "false", "fallthrough": true, "roots": [$roots],"version": 0}
 EOF
-
-if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
-  source "$INTERNAL_DIR/create_xcode_overlay.sh"
-fi
 
 # Build
 
