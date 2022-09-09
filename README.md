@@ -41,7 +41,7 @@ for details on progress towards the 1.0 release. Here are a few of the remaining
 planned high level features:
 
 - [ ] [Supporting all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/4)
-- [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/9)
+- [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/17)
 - [ ] [Frameworks](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/14)
 
 We've also documented the [high level design](/doc/design/high-level.md) of the
