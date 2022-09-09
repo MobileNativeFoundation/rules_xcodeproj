@@ -5,6 +5,8 @@ load(
     "top_level_target",
 )
 
+CONFIG = "rules_xcodeproj_integration"
+
 XCODEPROJ_TARGETS = [
     top_level_target(
         label = "//CommandLine/CommandLineTool",

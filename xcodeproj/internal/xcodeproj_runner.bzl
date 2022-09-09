@@ -109,7 +109,7 @@ def _write_runner(
 
 def _xcodeproj_runner_impl(ctx):
     bazelrc = ctx.file._bazelrc
-    config = "rules_xcodeproj"
+    config = ctx.attr.config
     project_name = ctx.attr.project_name
 
     extra_flags_bazelrc = _write_extra_flags_bazelrc(
