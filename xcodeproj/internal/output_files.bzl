@@ -37,6 +37,7 @@ def _create(
     """
     direct_products = []
     direct_compiles = []
+    indexstore = None
 
     if infoplist:
         direct_products.append(infoplist)
@@ -44,7 +45,8 @@ def _create(
     if direct_outputs:
         swift = direct_outputs.swift
         if swift:
-            direct_compiles.extend(swift_to_list(swift))
+            compiles, indexstore = swift_to_outputs(swift)
+            direct_compiles.extend(compiles)
 
         if direct_outputs.product:
             direct_products.append(direct_outputs.product)
@@ -55,6 +57,18 @@ def _create(
         direct_compiles if direct_compiles else None,
         transitive = [
             info.outputs._transitive_compiles
+            for attr, info in transitive_infos
+            if (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                ))
+        ],
+    )
+    transitive_indexestores = depset(
+        [indexstore] if indexstore else None,
+        transitive = [
+            info.outputs._transitive_indexestores
             for attr, info in transitive_infos
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
@@ -92,6 +106,7 @@ def _create(
         products_output_group_name = "bp {}".format(direct_outputs.id)
         direct_group_list = [
             ("bc {}".format(direct_outputs.id), transitive_compiles),
+            ("bi {}".format(direct_outputs.id), transitive_indexestores),
             (products_output_group_name, transitive_products),
         ]
     else:
@@ -115,6 +130,7 @@ def _create(
         _direct_outputs = direct_outputs if should_produce_dto else None,
         _output_group_list = output_group_list,
         _transitive_compiles = transitive_compiles,
+        _transitive_indexestores = transitive_indexestores,
         _transitive_products = transitive_products,
         _transitive_swift = transitive_swift,
         products_output_group_name = products_output_group_name,
@@ -348,31 +364,33 @@ def parse_swift_info_module(module):
         generated_header = generated_header,
     )
 
-def swift_to_list(swift):
-    """Converts a Swift output struct to a list of `File`s.
+def swift_to_outputs(swift):
+    """Converts a Swift output struct to more easily consumable outputs.
 
     Args:
         swift: A value returned from `parse_swift_info_module`.
 
     Returns:
-        A `list` of `File`s.
-    """
-    ret = []
+        A `tuple` containing two elements:
 
+        *   A `list` of `File`s that can be used for future compiles (e.g.
+            `.swiftmodule`, `-Swift.h`).
+        *   A `File`s that represent generated index store data, or `None`.
+    """
     if not swift:
-        return ret
+        return ([], None)
 
     module = swift.module
-    ret.append(module.swiftdoc)
-    ret.append(module.swiftmodule)
-    if module.swiftsourceinfo:
-        ret.append(module.swiftsourceinfo)
-    if module.swiftinterface:
-        ret.append(module.swiftinterface)
-    if swift.generated_header:
-        ret.append(swift.generated_header)
 
-    return ret
+    compiles = [module.swiftdoc, module.swiftmodule]
+    if module.swiftsourceinfo:
+        compiles.append(module.swiftsourceinfo)
+    if module.swiftinterface:
+        compiles.append(module.swiftinterface)
+    if swift.generated_header:
+        compiles.append(swift.generated_header)
+
+    return (compiles, getattr(module, "indexstore", None))
 
 output_files = struct(
     collect = _collect,

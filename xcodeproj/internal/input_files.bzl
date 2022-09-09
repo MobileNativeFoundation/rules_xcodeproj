@@ -17,7 +17,7 @@ load(
     "parsed_file_path",
 )
 load(":linker_input_files.bzl", "linker_input_files")
-load(":output_files.bzl", "parse_swift_info_module", "swift_to_list")
+load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
 load(":output_group_map.bzl", "output_group_map")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resources.bzl", "collect_resources")
@@ -357,6 +357,7 @@ def _collect(
         ))
 
     # Collect unfocused target info
+    indexstores = []
     unfocused_libraries = None
     if should_include_non_xcode_outputs(ctx = ctx):
         if unfocused == None:
@@ -413,7 +414,12 @@ def _collect(
                 ],
             )
         for module in non_target_swift_info_modules.to_list():
-            generated.extend(swift_to_list(parse_swift_info_module(module)))
+            compiled, indexstore = swift_to_outputs(
+                parse_swift_info_module(module),
+            )
+            generated.extend(compiled)
+            if indexstore:
+                indexstores.append(indexstore)
 
         if is_swift:
             unfocused_swift_info_modules = target[SwiftInfo].transitive_modules
@@ -421,18 +427,29 @@ def _collect(
             unfocused_swift_info_modules = non_target_swift_info_modules
 
         unfocused_generated_compiling = []
+        unfocused_generated_indexstores = []
         for module in unfocused_swift_info_modules.to_list():
-            unfocused_generated_compiling.extend(
-                swift_to_list(parse_swift_info_module(module)),
+            compiled, indexstore = swift_to_outputs(
+                parse_swift_info_module(module),
             )
+            unfocused_generated_compiling.extend(compiled)
+            if indexstore:
+                unfocused_generated_indexstores.append(indexstore)
 
         if unfocused_generated_compiling:
             unfocused_generated_compiling = tuple(unfocused_generated_compiling)
         else:
             unfocused_generated_compiling = None
+        if unfocused_generated_indexstores:
+            unfocused_generated_indexstores = tuple(
+                unfocused_generated_indexstores,
+            )
+        else:
+            unfocused_generated_indexstores = None
     else:
         non_target_swift_info_modules = depset()
         unfocused_generated_compiling = None
+        unfocused_generated_indexstores = None
         unfocused_generated_linking = None
 
     important_generated = [
@@ -450,16 +467,28 @@ def _collect(
                 automatic_target_info.xcode_targets.get(attr, [None]))
         ],
     )
+    indexstores_depset = depset(
+        indexstores if indexstores else None,
+        transitive = [
+            info.inputs.indexstores
+            for attr, info in transitive_infos
+            if (info.target_type in
+                automatic_target_info.xcode_targets.get(attr, [None]))
+        ],
+    )
 
     if id:
         compiling_output_group_name = "xc {}".format(id)
+        indexstores_output_group_name = "xi {}".format(id)
         linking_output_group_name = "xl {}".format(id)
         direct_group_list = [
             (compiling_output_group_name, generated_depset),
+            (indexstores_output_group_name, indexstores_depset),
             (linking_output_group_name, depset()),
         ]
     else:
         compiling_output_group_name = None
+        indexstores_output_group_name = None
         linking_output_group_name = None
         direct_group_list = None
 
@@ -599,6 +628,7 @@ def _collect(
             ],
         ),
         unfocused_generated_compiling = unfocused_generated_compiling,
+        unfocused_generated_indexstores = unfocused_generated_indexstores,
         unfocused_generated_linking = unfocused_generated_linking,
         has_generated_files = bool(generated) or bool([
             True
@@ -607,6 +637,7 @@ def _collect(
                 (info.target_type in
                  automatic_target_info.xcode_targets.get(attr, [None])))
         ]),
+        indexstores = indexstores_depset,
         extra_files = depset(
             [(id, tuple(extra_files))] if (id and extra_files) else None,
             transitive = [
@@ -627,6 +658,7 @@ def _collect(
         ),
         unfocused_libraries = unfocused_libraries,
         compiling_output_group_name = compiling_output_group_name,
+        indexstores_output_group_name = indexstores_output_group_name,
         linking_output_group_name = linking_output_group_name,
     )
 
@@ -650,11 +682,15 @@ def _from_resource_bundle(bundle):
         xccurrentversions = depset(),
         generated = depset(),
         important_generated = depset(),
-        unfocused_generated = None,
+        unfocused_generated_compiling = None,
+        unfocused_generated_indexstores = None,
+        unfocused_generated_linking = None,
+        indexstores = depset(),
         extra_files = depset(),
         uncategorized = depset(),
         unfocused_libraries = depset(),
         compiling_output_group_name = None,
+        indexstores_output_group_name = None,
         linking_output_group_name = None,
     )
 
@@ -740,12 +776,20 @@ def _merge(*, transitive_infos, extra_generated = None):
                 for _, info in transitive_infos
             ],
         ),
-        unfocused_generated = None,
+        unfocused_generated_compiling = None,
+        unfocused_generated_indexstores = None,
+        unfocused_generated_linking = None,
         has_generated_files = bool([
             True
             for _, info in transitive_infos
             if info.inputs.has_generated_files
         ]),
+        indexstores = depset(
+            transitive = [
+                info.inputs.indexstores
+                for _, info in transitive_infos
+            ],
+        ),
         extra_files = depset(
             transitive = [
                 info.inputs.extra_files
@@ -765,6 +809,7 @@ def _merge(*, transitive_infos, extra_generated = None):
             ],
         ),
         compiling_output_group_name = None,
+        indexstores_output_group_name = None,
         linking_output_group_name = None,
     )
 
@@ -874,6 +919,18 @@ def _to_output_groups_fields(
                 files
                 for name, files in all_files.items()
                 if name.startswith("xc")
+            ],
+        ),
+        top_level_cache_buster = top_level_cache_buster,
+    )])
+    output_groups["all_xi"] = depset([output_group_map.write_map(
+        ctx = ctx,
+        name = "all_xi",
+        files = depset(
+            transitive = [
+                files
+                for name, files in all_files.items()
+                if name.startswith("xi")
             ],
         ),
         top_level_cache_buster = top_level_cache_buster,

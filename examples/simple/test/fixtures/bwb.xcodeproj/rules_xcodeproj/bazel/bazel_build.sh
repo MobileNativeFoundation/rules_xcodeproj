@@ -26,11 +26,12 @@ if [ "$ACTION" == "indexbuild" ]; then
   fi
 else
   if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
-    # Inputs for compiling, inputs for linking
-    readonly output_group_prefixes="xc,xl"
+    # Inputs for compiling, inputs for linking, and index store data
+    readonly output_group_prefixes="xc,xl,xi"
   else
-    # Compiled outputs (i.e. swiftmodules) and products (i.e. bundles)
-    readonly output_group_prefixes="bc,bp"
+    # Compiled outputs (i.e. swiftmodules), products (i.e. bundles), and index
+    # store data
+    readonly output_group_prefixes="bc,bp,bi"
   fi
 fi
 
@@ -196,10 +197,16 @@ touch "$build_marker"
   "$GENERATOR_LABEL" \
   2>&1
 
+indexstores_filelists=()
 for output_group in "${output_groups[@]}"; do
   filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"
   filelist="${filelist/#/$output_path/$GENERATOR_PACKAGE_BIN_DIR/}"
   filelist="${filelist/%/.filelist}"
+
+  if [[ "$output_group" =~ ^(xi|bi) ]]; then
+    indexstores_filelists+=("$filelist")
+  fi
+
   if [[ "$filelist" -ot "$build_marker" ]]; then
     echo "error: Bazel didn't generate the correct files (it should have" \
 "generated outputs for output group \"$output_group\", but the timestamp for" \
@@ -215,3 +222,32 @@ for output_group in "${output_groups[@]}"; do
     exit 1
   fi
 done
+
+# Async actions
+#
+# For these commands to run in the background, both stdout and stderr need to be
+# redirected, otherwise Xcode will block the run script.
+
+log_dir="$OBJROOT/rules_xcodeproj_logs"
+mkdir -p "$log_dir"
+
+# Report errors from previous async actions
+shopt -s nullglob
+for log in "$log_dir"/*.async.log; do
+  if [[ -s "$log" ]]; then
+    command=$(basename "${log%.async.log}")
+    echo "warning: Previous run of \"$command\" had output:" >&2
+    sed "s|^|warning: |" "$log" >&2
+    echo "warning: If you believe this is a bug, please file a report here:" \
+"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
+      >&2
+  fi
+done
+
+# Import indexes
+if [ -n "${indexstores_filelists:-}" ]; then
+  "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
+    "$execution_root" \
+    "${indexstores_filelists[@]}" \
+    >"$log_dir/import_indexstores.async.log" 2>&1 &
+fi

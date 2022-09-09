@@ -328,6 +328,10 @@
         "test/fixtures/BUILD"
     ],
     "force_bazel_dependencies": true,
+    "index_import": {
+        "t": "g",
+        "_": "darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/build_bazel_rules_swift_index_import/index-import"
+    },
     "label": "//test/fixtures:xcodeproj_bwb.generator",
     "name": "bwb",
     "replacement_labels": [

@@ -81,6 +81,27 @@ def xcodeproj_rules_dependencies(
         ignore_version_differences = ignore_version_differences,
     )
 
+    # `rules_swift` depends on `build_bazel_rules_swift_index_import`, and we
+    # also need to use `index-import`, so we declare the same dependency here,
+    # in case `rules_swift` stops depending on it in the future
+    _maybe(
+        http_archive,
+        name = "build_bazel_rules_swift_index_import",
+        build_file_content = """\
+load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
+
+native_binary(
+    name = "index_import",
+    src = "index-import",
+    out = "index-import",
+    visibility = ["//visibility:public"],
+)
+""",
+        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.5/index-import.tar.gz",
+        sha256 = "8048d5b6bb3c3b85ce828a73a8c16921c7bb7e1bf5ce1a1910288d5aef5388bb",
+        ignore_version_differences = ignore_version_differences,
+    )
+
     _maybe(
         http_archive,
         name = "build_bazel_rules_apple",
