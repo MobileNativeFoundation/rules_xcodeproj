@@ -1,6 +1,5 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "string_setting")
-load(":extra_flags_bazelrc.bzl", "extra_flags_bazelrc")
 
 bzl_library(
     name = "bazel_tools",
@@ -32,12 +31,6 @@ exports_files([
     "updater.template.sh",
     "xcodeproj.bazelrc",
 ])
-
-extra_flags_bazelrc(
-    name = "extra_flags_bazelrc",
-    # This is made public for internal use only
-    visibility = ["//visibility:public"],
-)
 
 string_setting(
     name = "install_path",

@@ -84,7 +84,7 @@ fi
 # require setting ` --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_*_flags`
 # flags, which thrashes the analysis cache
 if [[ -s "${extra_flags_bazelrc:-}" ]]; then
-  cp "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/"
+  cp "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
   chmod u+w "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
 fi
 
