@@ -1,8 +1,8 @@
 
 #include <stdio.h>
 
-#include "examples/cc/lib/lib.h"
-#include "examples/cc/lib2/includes/lib.h"
+#include "lib/lib.h"
+#include "lib2/includes/lib.h"
 #include "lib.h"
 
 int main(int argc, char *argv[]) {

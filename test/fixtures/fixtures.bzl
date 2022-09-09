@@ -1,9 +1,7 @@
 """Constants for fixture declarations."""
 
 _FIXTURE_BASENAMES = [
-    "cc",
     "generator",
-    "simple",
 ]
 
 _FIXTURE_SUFFIXES = ["bwx", "bwb"]
