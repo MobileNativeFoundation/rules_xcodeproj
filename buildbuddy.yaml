@@ -1,16 +1,4 @@
 actions:
-  - name: Build
-    os: "darwin"
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    bazel_commands:
-      - "build --config=workflows //..."
-
   - name: Test
     os: "darwin"
     triggers:
