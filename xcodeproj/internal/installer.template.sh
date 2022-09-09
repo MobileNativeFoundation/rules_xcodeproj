@@ -22,6 +22,10 @@ include_spec=0
 
 while (("$#")); do
   case "${1}" in
+    "--bazelrc")
+      bazelrc="${2}"
+      shift 2
+      ;;
     "--destination")
       dest="${2}"
       shift 2
@@ -78,6 +82,10 @@ if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
   shopt -s nullglob
   chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
 fi
+
+# Copy over xcodeproj.bazelrc
+cp "$bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
+chmod u+w "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 
 # Copy over xcodeproj_extra_flags.bazelrc if it exists
 # We can't include this file as an input to the generator, because it would

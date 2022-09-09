@@ -78,5 +78,7 @@ build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-private-imports
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-dynamic-replacement-chaining
 
+### Project specific configs
+
 # Import `xcodeproj.bazelrc` if it exists
 try-import %workspace%/xcodeproj.bazelrc

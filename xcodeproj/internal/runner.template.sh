@@ -21,7 +21,10 @@ fail() {
 readonly bazelrc="$PWD/%bazelrc%"
 readonly extra_flags_bazelrc="$PWD/%extra_flags_bazelrc%"
 
-installer_flags=(--extra_flags_bazelrc "$extra_flags_bazelrc")
+installer_flags=(
+  --bazelrc "$bazelrc"
+  --extra_flags_bazelrc "$extra_flags_bazelrc"
+)
 
 while (("$#")); do
   case "$1" in

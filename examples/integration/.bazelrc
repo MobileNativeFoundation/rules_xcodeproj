@@ -11,5 +11,7 @@ build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_build_flags='
 build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_indexbuild_flags='--noverbose_failures'
 build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_swiftuipreviews_flags='--noverbose_failures'
 
+build:rules_xcodeproj_integration --define=foo=bar
+
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc
