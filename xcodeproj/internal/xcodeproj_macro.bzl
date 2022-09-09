@@ -66,7 +66,7 @@ def xcodeproj(
             `rules_xcodeproj_build`, `rules_xcodeproj_indexbuild`,
             `rules_xcodeproj_info`, and `rules_xcodeproj_swiftuipreviews`.
 
-            See the [baseline `xcodeproj.bazelrc` file](../xcodeproj/internal:xcodeproj.template.bazelrc)
+            See the [baseline `xcodeproj.bazelrc` file](../xcodeproj/internal/xcodeproj.template.bazelrc)
             that is used for more information on these configs.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
