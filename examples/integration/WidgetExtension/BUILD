@@ -7,7 +7,7 @@ load(
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:experimental.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
     "xcode_provisioning_profile",
 )
 load(

@@ -1,7 +1,7 @@
 load("@build_bazel_rules_apple//apple:apple.bzl", "local_provisioning_profile")
 load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_application")
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:experimental.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
     "xcode_provisioning_profile",
 )
 load(
