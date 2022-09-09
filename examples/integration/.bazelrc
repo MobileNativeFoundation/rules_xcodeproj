@@ -1,8 +1,6 @@
 # Import parent workspace settings
 import %workspace%/../../shared.bazelrc
 
-build --define=apple.experimental.tree_artifact_outputs=1
-
 # Exercise the extra flags feature
 
 build --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'
