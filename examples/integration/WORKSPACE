@@ -38,7 +38,27 @@ load(
 
 apple_support_dependencies()
 
+# rules_apple_linker used for testing using a different linker
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "rules_apple_linker",
+    sha256 = "988979ad64ab210a9e952622398f37cd1f768ff5e51fd526ba1c5ac78a2480aa",
+    strip_prefix = "rules_apple_linker-0.1.3",
+    url = "https://github.com/keith/rules_apple_linker/archive/refs/tags/0.1.3.tar.gz",
+)
+
+load("@rules_apple_linker//:deps.bzl", "rules_apple_linker_deps")
+
+rules_apple_linker_deps()
+
 # External repos for examples
+
+local_repository(
+    name = "examples_ios_app_external",
+    path = "iOSApp/external",
+)
 
 new_local_repository(
     name = "examples_command_line_external",
@@ -54,8 +74,6 @@ load(
 provisioning_profile_repository(
     name = "local_provisioning_profiles",
 )
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "com_google_google_maps",
@@ -125,4 +143,22 @@ apple_dynamic_xcframework_import(
 """,
     sha256 = "b251155dce1e5f705f40bf1d531d56851b90f1907a8ff07d0e0c471f12316515",
     url = "https://github.com/krzyzanowskim/CryptoSwift/releases/download/1.5.1/CryptoSwift.xcframework.zip",
+)
+
+http_archive(
+    name = "FXPageControl",
+    build_file_content = """
+objc_library(
+    name = "FXPageControl",
+    module_name = "FXPageControl",
+    hdrs = ["FXPageControl/FXPageControl.h"],
+    srcs = ["FXPageControl/FXPageControl.m"],
+    visibility = [
+        "//visibility:public",
+    ]
+)
+""",
+    sha256 = "1610603d6ccfbc80b17aa2944c2587f4800c06a4e229303f431091e4e2e7a6d1",
+    strip_prefix = "FXPageControl-1.5",
+    url = "https://github.com/nicklockwood/FXPageControl/archive/refs/tags/1.5.tar.gz",
 )

@@ -42,22 +42,6 @@ actions:
       - "run --config=workflows //test/fixtures:validate"
       - "test --config=workflows //..."
 
-  - name: Integration Test - "examples/ios_app"
-    os: "darwin"
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - examples/ios_app/bazel-output-base
-    bazel_workspace_dir: examples/ios_app
-    bazel_commands:
-      - "run --config=workflows //test/fixtures:validate"
-      - "test --config=workflows //..."
-
   - name: Buildifier Lint
     triggers:
       push:
