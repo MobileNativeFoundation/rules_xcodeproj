@@ -1,0 +1,90 @@
+{
+    "bazel_config": "rules_xcodeproj",
+    "bazel_workspace_name": "__main__",
+    "build_settings": {
+        "ALWAYS_SEARCH_USER_PATHS": false,
+        "BAZEL_PATH": "bazel",
+        "CLANG_ENABLE_OBJC_ARC": true,
+        "CLANG_MODULES_AUTOLINK": false,
+        "COPY_PHASE_STRIP": false,
+        "ONLY_ACTIVE_ARCH": true,
+        "USE_HEADERMAP": false,
+        "VALIDATE_WORKSPACE": false
+    },
+    "configuration": "darwin_x86_64-dbg-ST-14942f8a2d44",
+    "custom_xcode_schemes": [],
+    "extra_files": [
+        "BUILD",
+        "test/fixtures/BUILD"
+    ],
+    "force_bazel_dependencies": false,
+    "label": "//test/fixtures:xcodeproj_bwx.generator",
+    "name": "bwx",
+    "replacement_labels": [],
+    "scheme_autogeneration_mode": "auto",
+    "target_hosts": [],
+    "target_merges": [],
+    "targets": [
+        "//:SwiftBin darwin_x86_64-dbg-ST-3688109ddba2",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+                "PRODUCT_MODULE_NAME": "SwiftBinModuleName",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG HI",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5"
+            },
+            "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+            "inputs": {
+                "srcs": [
+                    "main.swift"
+                ]
+            },
+            "label": "//:SwiftBin",
+            "linker_inputs": {
+                "linkopts": [
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
+            "name": "SwiftBin",
+            "outputs": {
+                "p": {
+                    "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/rules_xcodeproj/SwiftBin/SwiftBin",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "12.0",
+                "os": "macos",
+                "variant": "macosx"
+            },
+            "product": {
+                "executable_name": "SwiftBin",
+                "name": "SwiftBin",
+                "path": {
+                    "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/rules_xcodeproj/SwiftBin/SwiftBin",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.tool"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        }
+    ]
+}

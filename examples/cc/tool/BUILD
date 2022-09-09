@@ -3,8 +3,8 @@ cc_binary(
     srcs = ["main.c"],
     visibility = ["//visibility:public"],
     deps = [
-        "//examples/cc/lib",
-        "//examples/cc/lib2",
+        "//lib",
+        "//lib2",
         "@examples_cc_external//:lib",
     ],
 )
