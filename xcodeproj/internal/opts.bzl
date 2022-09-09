@@ -34,6 +34,7 @@ _SWIFTC_SKIP_OPTS = {
     "-emit-module-path": 2,
     "-emit-object": 1,
     "-enable-batch-mode": 1,
+    "-enable-bare-slash-regex": 1,
     # TODO: See if we need to support this
     "-gline-tables-only": 1,
     "-module-name": 2,
