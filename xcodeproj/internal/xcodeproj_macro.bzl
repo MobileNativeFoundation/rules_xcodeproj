@@ -62,16 +62,11 @@ def xcodeproj(
             project or invoking `bazel` inside of Xcode. This is the basename of
             multiple configurations. For example, if this is set to
             `"rules_xcodeproj"`, then the following configurations will be valid
-            for you to extend in your `.bazelrc` file:
+            for you to extend in your `.bazelrc` file: `rules_xcodeproj`,
+            `rules_xcodeproj_build`, `rules_xcodeproj_indexbuild`,
+            `rules_xcodeproj_info`, and `rules_xcodeproj_swiftuipreviews`.
 
-            - rules_xcodeproj
-            - rules_xcodeproj_build
-            - rules_xcodeproj_generator
-            - rules_xcodeproj_indexbuild
-            - rules_xcodeproj_info
-            - rules_xcodeproj_swiftuipreviews
-
-            See the [baseline `xcodeproj.bazelrc` file](../xcodeproj/internal/bazel_integration_files/xcodeproj.bazelrc)
+            See the [baseline `xcodeproj.bazelrc` file](../xcodeproj/internal:xcodeproj.template.bazelrc)
             that is used for more information on these configs.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
