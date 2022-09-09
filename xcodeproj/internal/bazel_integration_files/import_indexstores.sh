@@ -35,7 +35,7 @@ fi
 
 # Set remaps
 
-# Since users can override `--output_base`, all we know if that the
+# Since users can override `--output_base`, all we know is that the
 # execution_root fits the format of `/OUTPUT_BASE/execroot/WORKSPACE_NAME`
 readonly execution_root_regex='.*?/[^/]+/execroot/[^/]+'
 
