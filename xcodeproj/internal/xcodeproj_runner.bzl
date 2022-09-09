@@ -12,14 +12,14 @@ def _process_extra_flags(*, attr, content, setting, config, config_suffix):
 
         if config != "rules_xcodeproj" and not config_suffix:
             content.append(
-            """\
+                """\
 build:{config}_build --config={config}
 build:{config}_generator --config={config}
 build:{config}_indexbuild --config={config}
 build:{config}_info --config={config}
 build:{config}_swiftuipreviews --config={config}\
 """.format(config = config),
-        )
+            )
 
 def _write_extra_flags_bazelrc(name, actions, attr, config):
     output = actions.declare_file("{}-extra-flags.bazelrc".format(name))
