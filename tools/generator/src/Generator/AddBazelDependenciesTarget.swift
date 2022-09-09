@@ -25,6 +25,7 @@ extension Generator {
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         resolvedExternalRepositories: [(Path, Path)],
+        bazelConfig: String,
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String,
         consolidatedTargets: ConsolidatedTargets
@@ -49,6 +50,7 @@ extension Generator {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: [
+                "BAZEL_CONFIG": bazelConfig,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
                 "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
 $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py

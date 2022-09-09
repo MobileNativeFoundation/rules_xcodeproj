@@ -1,6 +1,7 @@
 struct Project: Equatable, Decodable {
     let name: String
     let bazelWorkspaceName: String
+    let bazelConfig: String
     let label: BazelLabel
     let configuration: String
     let buildSettings: [String: BuildSetting]

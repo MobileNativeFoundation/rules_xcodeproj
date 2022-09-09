@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-
 # Functions
 
 # Echos the provided message to stderr and exits with an error (1)
@@ -22,7 +21,10 @@ fail() {
 readonly bazelrc="$PWD/%bazelrc%"
 readonly extra_flags_bazelrc="$PWD/%extra_flags_bazelrc%"
 
-installer_flags=(--extra_flags_bazelrc "$extra_flags_bazelrc")
+installer_flags=(
+  --bazelrc "$bazelrc"
+  --extra_flags_bazelrc "$extra_flags_bazelrc"
+)
 
 while (("$#")); do
   case "$1" in
@@ -61,7 +63,7 @@ if [[ -z "${build_output_groups:-}" ]]; then
   "%bazel_path%" \
     "${bazelrcs[@]}" \
     run \
-    --config=rules_xcodeproj_generator \
+    "--config=%config%_generator" \
     %extra_generator_flags% \
     "%generator_label%" \
     -- "${installer_flags[@]}"
@@ -71,7 +73,7 @@ else
   "%bazel_path%" \
     "${bazelrcs[@]}" \
     build \
-    --config=rules_xcodeproj_build \
+    "--config=%config%_build" \
     --output_groups="$build_output_groups" \
     "%generator_label%"
 fi

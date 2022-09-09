@@ -12,6 +12,7 @@ final class GeneratorTests: XCTestCase {
         let project = Project(
             name: "P",
             bazelWorkspaceName: "bazel_workspace",
+            bazelConfig: "rules_xcodeproj_test",
             label: "//a/P:xcodeproj",
             configuration: "abc123",
             buildSettings: [:],
@@ -466,6 +467,7 @@ final class GeneratorTests: XCTestCase {
             let forceBazelDependencies: Bool
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
+            let bazelConfig: String
             let xcodeprojBazelLabel: BazelLabel
             let xcodeprojConfiguration: String
             let consolidatedTargets: ConsolidatedTargets
@@ -480,6 +482,7 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             resolvedExternalRepositories: [(Path, Path)],
+            bazelConfig: String,
             xcodeprojBazelLabel: BazelLabel,
             xcodeprojConfiguration: String,
             consolidatedTargets: ConsolidatedTargets
@@ -490,6 +493,7 @@ final class GeneratorTests: XCTestCase {
                 forceBazelDependencies: forceBazelDependencies,
                 files: files,
                 filePathResolver: filePathResolver,
+                bazelConfig: bazelConfig,
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
                 xcodeprojConfiguration: xcodeprojConfiguration,
                 consolidatedTargets: consolidatedTargets
@@ -504,6 +508,7 @@ final class GeneratorTests: XCTestCase {
                 forceBazelDependencies: project.forceBazelDependencies,
                 files: files,
                 filePathResolver: filePathResolver,
+                bazelConfig: project.bazelConfig,
                 xcodeprojBazelLabel: project.label,
                 xcodeprojConfiguration: project.configuration,
                 consolidatedTargets: consolidatedTargets

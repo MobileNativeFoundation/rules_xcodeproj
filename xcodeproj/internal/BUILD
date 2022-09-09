@@ -29,7 +29,7 @@ exports_files([
     "installer.template.sh",
     "runner.template.sh",
     "updater.template.sh",
-    "xcodeproj.bazelrc",
+    "xcodeproj.template.bazelrc",
 ])
 
 string_setting(
@@ -55,8 +55,8 @@ filegroup(
         exclude = [
             "fixtures.bzl",
             "updater.template.sh",
-            "xcodeproj_tests.bzl",
             "validator.template.sh",
+            "xcodeproj_tests.bzl",
         ],
     ) + [
         "//" + package_name() + "/bazel_integration_files:release_files",

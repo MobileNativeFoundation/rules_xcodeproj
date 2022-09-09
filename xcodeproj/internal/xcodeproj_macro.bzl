@@ -13,6 +13,7 @@ def xcodeproj(
         archived_bundles_allowed = None,
         bazel_path = "bazel",
         build_mode = "bazel",
+        config = "rules_xcodeproj",
         focused_targets = [],
         ios_device_cpus = "arm64",
         ios_simulator_cpus = None,
@@ -57,6 +58,16 @@ def xcodeproj(
             If this is set to `"bazel"`, the project will use Bazel to build
             targets, inside of Xcode. The Xcode build system still unavoidably
             orchestrates some things at a high level.
+        config: Optional. The Bazel configuration to use when generating the
+            project or invoking `bazel` inside of Xcode. This is the basename of
+            multiple configurations. For example, if this is set to
+            `"rules_xcodeproj"`, then the following configurations will be valid
+            for you to extend in your `.bazelrc` file: `rules_xcodeproj`,
+            `rules_xcodeproj_build`, `rules_xcodeproj_indexbuild`,
+            `rules_xcodeproj_info`, and `rules_xcodeproj_swiftuipreviews`.
+
+            See the [baseline `xcodeproj.bazelrc` file](../xcodeproj/internal:xcodeproj.template.bazelrc)
+            that is used for more information on these configs.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
             project; all other targets will be excluded, as if they were
@@ -225,6 +236,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         name = generator_name,
         build_mode = build_mode,
         bazel_path = bazel_path,
+        config = config,
         focused_targets = focused_targets,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
@@ -246,6 +258,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
     xcodeproj_runner(
         name = name,
         bazel_path = bazel_path,
+        config = config,
         project_name = project_name,
         tags = tags,
         testonly = testonly,

@@ -10,6 +10,39 @@ def _process_extra_flags(*, attr, content, setting, config, config_suffix):
             "build:{}{} {}".format(config, config_suffix, extra_flags),
         )
 
+def _write_xcodeproj_bazelrc(name, actions, config, template):
+    output = actions.declare_file("{}.bazelrc".format(name))
+
+    if config != "rules_xcodeproj":
+        project_configs = """
+# Set `--verbose_failures` on `info` as the closest to a "no-op" config as
+# possible, until https://github.com/bazelbuild/bazel/issues/12844 is fixed
+info:{config} --verbose_failures
+
+build:{config}_build --config=rules_xcodeproj_build
+build:{config}_build --config={config}
+build:{config}_generator --config=rules_xcodeproj_generator
+build:{config}_generator --config={config}
+build:{config}_indexbuild --config=rules_xcodeproj_indexbuild
+build:{config}_indexbuild --config={config}
+info:{config}_info --config=rules_xcodeproj_info
+info:{config}_info --config={config}
+build:{config}_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews
+build:{config}_swiftuipreviews --config={config}
+""".format(config = config)
+    else:
+        project_configs = ""
+
+    actions.expand_template(
+        template = template,
+        output = output,
+        substitutions = {
+            "%project_configs%": project_configs,
+        },
+    )
+
+    return output
+
 def _write_extra_flags_bazelrc(name, actions, attr, config):
     output = actions.declare_file("{}-extra-flags.bazelrc".format(name))
 
@@ -86,10 +119,15 @@ def _write_runner(
     return output
 
 def _xcodeproj_runner_impl(ctx):
-    bazelrc = ctx.file._bazelrc
-    config = "rules_xcodeproj"
+    config = ctx.attr.config
     project_name = ctx.attr.project_name
 
+    bazelrc = _write_xcodeproj_bazelrc(
+        name = ctx.attr.name,
+        actions = ctx.actions,
+        config = config,
+        template = ctx.file._bazelrc_template,
+    )
     extra_flags_bazelrc = _write_extra_flags_bazelrc(
         name = ctx.attr.name,
         actions = ctx.actions,
@@ -115,7 +153,9 @@ def _xcodeproj_runner_impl(ctx):
     return [
         DefaultInfo(
             executable = runner,
-            runfiles = ctx.runfiles(files = [bazelrc, extra_flags_bazelrc]),
+            runfiles = ctx.runfiles(
+                files = [bazelrc, extra_flags_bazelrc],
+            ),
         ),
         XcodeProjRunnerOutputInfo(
             project_name = project_name,
@@ -129,15 +169,18 @@ xcodeproj_runner = rule(
         "bazel_path": attr.string(
             mandatory = True,
         ),
+        "config": attr.string(
+            mandatory = True,
+        ),
         "project_name": attr.string(
             mandatory = True,
         ),
         "xcodeproj_target": attr.string(
             mandatory = True,
         ),
-        "_bazelrc": attr.label(
+        "_bazelrc_template": attr.label(
             allow_single_file = True,
-            default = Label("//xcodeproj/internal/bazel_integration_files:xcodeproj.bazelrc"),
+            default = Label("//xcodeproj/internal:xcodeproj.template.bazelrc"),
         ),
         "_extra_build_flags": attr.label(
             default = Label("//xcodeproj:extra_build_flags"),

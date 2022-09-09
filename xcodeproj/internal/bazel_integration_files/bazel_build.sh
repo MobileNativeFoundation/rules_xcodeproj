@@ -111,7 +111,7 @@ fi
 
 output_path=$("${bazel_cmd[@]}" \
   info \
-  --config=rules_xcodeproj_info \
+  --config="${BAZEL_CONFIG}_info" \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
@@ -162,11 +162,11 @@ EOF
 # Build
 
 if [ "$ACTION" == "indexbuild" ]; then
-  config=rules_xcodeproj_indexbuild
+  config="${BAZEL_CONFIG}_indexbuild"
 elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
-  config=rules_xcodeproj_swiftuipreviews
+  config="${BAZEL_CONFIG}_swiftuipreviews"
 else
-  config=rules_xcodeproj_build
+  config="${BAZEL_CONFIG}_build"
 fi
 
 mkdir -p /tmp/rules_xcodeproj
@@ -178,7 +178,7 @@ touch "$build_marker"
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \
-  --config=$config \
+  --config="$config" \
   --color=yes \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \

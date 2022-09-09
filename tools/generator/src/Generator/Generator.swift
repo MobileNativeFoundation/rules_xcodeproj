@@ -129,6 +129,7 @@ class Generator {
             files,
             filePathResolver,
             resolvedExternalRepositories,
+            project.bazelConfig,
             project.label,
             project.configuration,
             consolidatedTargets
