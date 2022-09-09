@@ -135,7 +135,7 @@ extension Sequence where Element == XcodeScheme.PrePostAction {
         context: String
     ) throws -> [XCSchemeInfo.PrePostActionInfo] {
         try map {
-            try XCSchemeInfo.PrePostActionInfo.init(
+            try XCSchemeInfo.PrePostActionInfo(
                 prePostAction: $0,
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel,

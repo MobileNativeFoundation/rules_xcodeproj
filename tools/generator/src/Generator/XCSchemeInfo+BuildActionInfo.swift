@@ -5,7 +5,7 @@ extension XCSchemeInfo {
         let targets: Set<XCSchemeInfo.BuildTargetInfo>
         let preActions: [PrePostActionInfo]
         let postActions: [PrePostActionInfo]
-        
+
         init<BuildTargetInfos: Sequence>(
             targets: BuildTargetInfos,
             preActions: [PrePostActionInfo] = [],
@@ -34,7 +34,7 @@ extension XCSchemeInfo.BuildActionInfo {
         guard let original = buildActionInfo else {
             return nil
         }
-        
+
         try self.init(
             targets: original.targets.map { buildTarget in
                 .init(
@@ -74,18 +74,17 @@ extension XCSchemeInfo.BuildActionInfo {
                     buildFor: buildTarget.buildFor
                 )
             }
-        
+
         try self.init(targets: buildTargetInfos,
                       preActions: buildAction.preActions.resolve(
-                        targetResolver: targetResolver,
-                        targetIDsByLabel: targetIDsByLabel,
-                        context: context
+                          targetResolver: targetResolver,
+                          targetIDsByLabel: targetIDsByLabel,
+                          context: context
                       ),
                       postActions: buildAction.postActions.resolve(
-                        targetResolver: targetResolver,
-                        targetIDsByLabel: targetIDsByLabel,
-                        context: context
-                      )
-        )
+                          targetResolver: targetResolver,
+                          targetIDsByLabel: targetIDsByLabel,
+                          context: context
+                      ))
     }
 }

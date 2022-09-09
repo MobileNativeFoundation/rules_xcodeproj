@@ -41,7 +41,6 @@ extension XCSchemeInfo.PrePostActionInfo {
     }
 }
 
-
 extension Sequence where Element == XCSchemeInfo.PrePostActionInfo {
     func resolveHosts<TargetInfos: Sequence>(
         topLevelTargetInfos: TargetInfos
@@ -55,7 +54,8 @@ extension Sequence where Element == XCSchemeInfo.PrePostActionInfo {
                             topLevelTargetInfos: topLevelTargetInfos
                         )
                 },
-                script: action.script)
+                script: action.script
+            )
         }
     }
 }

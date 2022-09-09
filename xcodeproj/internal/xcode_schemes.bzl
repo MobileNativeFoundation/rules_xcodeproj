@@ -167,7 +167,7 @@ def _pre_post_action(script, expand_variables_based_on, name = "Run Script"):
 
     Args:
         script: script text.
-        expand_variables_based_on: Optional. One of the specified target labels.
+        expand_variables_based_on: Optional. One of the specified target labels .
         name: name of the action.
 
     Returns:
@@ -197,9 +197,9 @@ def make_xcode_schemes(bazel_labels):
                 created by `xcode_schemes.build_target`, or a target label as a
                 `string` value.
             pre_actions: A `sequence` of `struct` values as created by
-                `xcode_schemes._pre_post_action`.
+                `xcode_schemes.pre_action`.
             post_actions: A `sequence` of `struct` values as created by
-                `xcode_schemes._pre_post_action`.
+                `xcode_schemes.post_action`.
 
         Returns:
             A `struct` representing a build action.
@@ -209,7 +209,7 @@ def make_xcode_schemes(bazel_labels):
             return [
                 _pre_post_action(
                     script = action.script,
-                    expand_variables_based_on = bazel_labels.normalize(action.expand_variables_based_on) if action.expand_variables_based_on else action.expand_variables_based_on,
+                    expand_variables_based_on = bazel_labels.normalize(action.expand_variables_based_on) if action.expand_variables_based_on else None,
                     name = action.name,
                 )
                 for action in actions
