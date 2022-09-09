@@ -159,6 +159,15 @@ cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
 {"case-sensitive": "false", "fallthrough": true, "roots": [$roots],"version": 0}
 EOF
 
+# Custom Swift toolchains
+
+if [[ -n "${TOOLCHAINS-}" ]]; then
+  toolchain="${TOOLCHAINS%% *}"
+  if [[ "$toolchain" == "com.apple.dt.toolchain.XcodeDefault" ]]; then
+    unset toolchain
+  fi
+fi
+
 # Build
 
 if [ "$ACTION" == "indexbuild" ]; then
@@ -180,6 +189,7 @@ touch "$build_marker"
   build \
   --config="$config" \
   --color=yes \
+  ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
   "$output_groups_flag" \
