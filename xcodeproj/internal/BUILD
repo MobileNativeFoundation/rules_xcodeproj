@@ -25,12 +25,7 @@ bzl_library(
     ],
 )
 
-exports_files([
-    "installer.template.sh",
-    "runner.template.sh",
-    "updater.template.sh",
-    "xcodeproj.template.bazelrc",
-])
+exports_files(glob(["*.template.*"]))
 
 string_setting(
     name = "install_path",
