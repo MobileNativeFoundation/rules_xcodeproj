@@ -10,10 +10,32 @@ def _process_extra_flags(*, attr, content, setting, config, config_suffix):
             "build:{}{} {}".format(config, config_suffix, extra_flags),
         )
 
+        if config != "rules_xcodeproj" and not config_suffix:
+            content.append(
+            """\
+build:{config}_build --config={config}
+build:{config}_generator --config={config}
+build:{config}_indexbuild --config={config}
+build:{config}_info --config={config}
+build:{config}_swiftuipreviews --config={config}\
+""".format(config = config),
+        )
+
 def _write_extra_flags_bazelrc(name, actions, attr, config):
     output = actions.declare_file("{}-extra-flags.bazelrc".format(name))
 
     content = []
+
+    if config != "rules_xcodeproj":
+        content.append(
+            """\
+build:{config}_build --config=rules_xcodeproj_build
+build:{config}_generator --config=rules_xcodeproj_generator
+build:{config}_indexbuild --config=rules_xcodeproj_indexbuild
+build:{config}_info --config=rules_xcodeproj_info
+build:{config}_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews\
+""".format(config = config),
+        )
 
     _process_extra_flags(
         attr = attr,
@@ -127,6 +149,9 @@ xcodeproj_runner = rule(
     implementation = _xcodeproj_runner_impl,
     attrs = {
         "bazel_path": attr.string(
+            mandatory = True,
+        ),
+        "config": attr.string(
             mandatory = True,
         ),
         "project_name": attr.string(

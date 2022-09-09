@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-
 # Functions
 
 # Echos the provided message to stderr and exits with an error (1)
@@ -61,7 +60,7 @@ if [[ -z "${build_output_groups:-}" ]]; then
   "%bazel_path%" \
     "${bazelrcs[@]}" \
     run \
-    --config=rules_xcodeproj_generator \
+    "--config=%config%_generator" \
     %extra_generator_flags% \
     "%generator_label%" \
     -- "${installer_flags[@]}"
@@ -71,7 +70,7 @@ else
   "%bazel_path%" \
     "${bazelrcs[@]}" \
     build \
-    --config=rules_xcodeproj_build \
+    "--config=%config%_build" \
     --output_groups="$build_output_groups" \
     "%generator_label%"
 fi

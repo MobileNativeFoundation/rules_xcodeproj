@@ -225,6 +225,7 @@ def _write_json_spec(
         *,
         ctx,
         project_name,
+        config,
         configuration,
         targets,
         target_dtos,
@@ -316,6 +317,7 @@ def _write_json_spec(
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     spec_json = """\
 {{\
+"bazel_config":"{bazel_config}",\
 "bazel_workspace_name":"{bazel_workspace_name}",\
 "build_settings":{{\
 "ALWAYS_SEARCH_USER_PATHS":false,\
@@ -340,6 +342,7 @@ def _write_json_spec(
 "targets":{targets}\
 }}
 """.format(
+        bazel_config = config,
         bazel_path = ctx.attr.bazel_path,
         bazel_workspace_name = ctx.workspace_name,
         configuration = configuration,
@@ -678,6 +681,7 @@ def _xcodeproj_impl(ctx):
     spec_file = _write_json_spec(
         ctx = ctx,
         project_name = project_name,
+        config = ctx.attr.config,
         configuration = configuration,
         targets = targets,
         target_dtos = target_dtos,
@@ -778,6 +782,9 @@ high level.
 """,
             mandatory = True,
             values = ["xcode", "bazel"],
+        ),
+        "config": attr.string(
+            mandatory = True,
         ),
         "focused_targets": attr.string_list(
             doc = """\
