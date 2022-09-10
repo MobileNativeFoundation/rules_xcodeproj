@@ -129,7 +129,7 @@ extension XcodeScheme {
 }
 
 extension Sequence where Element == XcodeScheme.PrePostAction {
-    func resolve(
+    func prePostActionInfos(
         targetResolver: TargetResolver,
         targetIDsByLabel: [BazelLabel: TargetID],
         context: String

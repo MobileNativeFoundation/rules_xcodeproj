@@ -75,16 +75,18 @@ extension XCSchemeInfo.BuildActionInfo {
                 )
             }
 
-        try self.init(targets: buildTargetInfos,
-                      preActions: buildAction.preActions.resolve(
-                          targetResolver: targetResolver,
-                          targetIDsByLabel: targetIDsByLabel,
-                          context: context
-                      ),
-                      postActions: buildAction.postActions.resolve(
-                          targetResolver: targetResolver,
-                          targetIDsByLabel: targetIDsByLabel,
-                          context: context
-                      ))
+        try self.init(
+            targets: buildTargetInfos,
+            preActions: buildAction.preActions.prePostActionInfos(
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel,
+                context: context
+            ),
+            postActions: buildAction.postActions.prePostActionInfos(
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel,
+                context: context
+            )
+        )
     }
 }

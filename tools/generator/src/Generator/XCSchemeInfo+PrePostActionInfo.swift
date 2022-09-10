@@ -3,7 +3,7 @@ import XcodeProj
 extension XCSchemeInfo {
     struct PrePostActionInfo: Equatable {
         let name: String
-        let targetInfo: TargetInfo?
+        let expandVariablesBasedOn: VariableExpansionContextInfo
         let script: String
     }
 }
@@ -12,7 +12,7 @@ extension XCSchemeInfo.PrePostActionInfo {
     var executionAction: XCScheme.ExecutionAction {
         XCScheme.ExecutionAction(scriptText: script,
                                  title: name,
-                                 environmentBuildable: targetInfo?.buildableReference)
+                                 environmentBuildable: expandVariablesBasedOn.targetInfo?.buildableReference)
     }
 }
 
@@ -26,7 +26,7 @@ extension XCSchemeInfo.PrePostActionInfo {
         guard let originalTargetLabel = prePostAction.expandVariablesBasedOn?.targetLabel else {
             self.init(
                 name: prePostAction.name,
-                targetInfo: nil,
+                expandVariablesBasedOn: .none,
                 script: prePostAction.script
             )
             return
@@ -35,8 +35,11 @@ extension XCSchemeInfo.PrePostActionInfo {
             for: originalTargetLabel,
             context: context
         )
+        let expandVariablesBasedOn = XCSchemeInfo.VariableExpansionContextInfo.target(
+            try targetResolver.targetInfo(targetID: targetID)
+        )
         self.init(name: prePostAction.name,
-                  targetInfo: try targetResolver.targetInfo(targetID: targetID),
+                  expandVariablesBasedOn: expandVariablesBasedOn,
                   script: prePostAction.script)
     }
 }
@@ -45,15 +48,13 @@ extension Sequence where Element == XCSchemeInfo.PrePostActionInfo {
     func resolveHosts<TargetInfos: Sequence>(
         topLevelTargetInfos: TargetInfos
     ) throws -> [XCSchemeInfo.PrePostActionInfo] where TargetInfos.Element == XCSchemeInfo.TargetInfo {
-        map { action in
+        try map { action in
             XCSchemeInfo.PrePostActionInfo(
                 name: action.name,
-                targetInfo: action.targetInfo.map { target in
-                        .init(
-                            resolveHostFor: target,
-                            topLevelTargetInfos: topLevelTargetInfos
-                        )
-                },
+                expandVariablesBasedOn: try .init(
+                    resolveHostsFor: action.expandVariablesBasedOn,
+                    topLevelTargetInfos: topLevelTargetInfos
+                ),
                 script: action.script
             )
         }

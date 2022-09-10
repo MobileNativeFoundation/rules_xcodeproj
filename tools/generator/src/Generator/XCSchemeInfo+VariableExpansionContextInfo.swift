@@ -5,6 +5,15 @@ extension XCSchemeInfo {
     }
 }
 
+extension XCSchemeInfo.VariableExpansionContextInfo {
+    var targetInfo: XCSchemeInfo.TargetInfo? {
+        guard case let .target(targetInfo) = self else {
+            return nil
+        }
+        return targetInfo
+    }
+}
+
 // MARK: Host Resolution Initializer
 
 extension XCSchemeInfo.VariableExpansionContextInfo {

@@ -49,6 +49,24 @@ extension XCSchemeInfoVariableExpansionContextInfoTests {
     }
 }
 
+extension XCSchemeInfoVariableExpansionContextInfoTests {
+    func test_targetInfo() {
+        // given
+        let contextInfo = XCSchemeInfo.VariableExpansionContextInfo.target(unitTestTargetInfo)
+
+        // then
+        XCTAssertEqual(contextInfo.targetInfo, unitTestTargetInfo)
+    }
+
+    func test_targetInfo_none() {
+        // given
+        let contextInfo = XCSchemeInfo.VariableExpansionContextInfo.none
+
+        // then
+        XCTAssertEqual(contextInfo.targetInfo, .none)
+    }
+}
+
 // swiftlint:disable:next type_name
 class XCSchemeInfoVariableExpansionContextInfoTests: XCTestCase {
     lazy var filePathResolver = FilePathResolver(
