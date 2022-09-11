@@ -13,12 +13,6 @@ string_flag(
 )
 
 string_flag(
-    name = "extra_build_flags",
-    build_setting_default = "",
-    visibility = ["//visibility:public"],
-)
-
-string_flag(
     name = "extra_indexbuild_flags",
     build_setting_default = "",
     visibility = ["//visibility:public"],

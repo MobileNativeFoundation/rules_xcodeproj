@@ -73,7 +73,7 @@ else
   "%bazel_path%" \
     "${bazelrcs[@]}" \
     build \
-    "--config=%config%_build" \
+    "--config=_%config%_build" \
     --output_groups="$build_output_groups" \
     "%generator_label%"
 fi
