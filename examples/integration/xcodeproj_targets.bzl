@@ -20,6 +20,7 @@ XCODEPROJ_TARGETS = [
     top_level_target(
         label = "//iOSApp",
         target_environments = ["device", "simulator"],
+        extra_files = ["//iOSApp:ownership.yaml"],
     ),
     "//macOSApp/Source:macOSApp",
     "//macOSApp/Test/UITests:macOSAppUITests",
