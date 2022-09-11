@@ -8,6 +8,7 @@ xcodeproj(
     name = "xcodeproj",
     build_mode = "xcode",
     config = CONFIG,
+    extra_files = ["README.md"],
     project_name = "Integration",
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,
