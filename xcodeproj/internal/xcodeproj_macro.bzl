@@ -225,7 +225,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
     for target in top_level_targets:
         if target.extra_files:
             for f in target.extra_files:
-                owned_extra_files[f] = target.label
+                owned_extra_files[f] = bazel_labels.normalize(target.label)
 
     schemes_json = None
     if schemes:
