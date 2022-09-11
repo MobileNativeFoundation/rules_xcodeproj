@@ -18,7 +18,7 @@ XCODEPROJ_TARGETS = [
     ),
     "//iMessageApp",
     top_level_target(
-        label = "//iOSApp",
+        label = "//iOSApp/Source:iOSApp",
         target_environments = ["device", "simulator"],
         extra_files = ["//iOSApp:ownership.yaml"],
     ),
