@@ -6,7 +6,7 @@ load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 
 _DEFAULT_BUILD_CONFIGURATION_NAME = "Debug"
 
-def _focus_schemes(schemes, focused_targets):
+def focus_schemes(schemes, focused_targets):
     """Filter/adjust a `sequence` of schemes to only include focused targets.
 
     Args:
@@ -77,7 +77,7 @@ def _focus_schemes(schemes, focused_targets):
 
     return focused_schemes
 
-def _unfocus_schemes(schemes, unfocused_targets):
+def unfocus_schemes(schemes, unfocused_targets):
     """Filter/adjust a `sequence` of schemes to exclude unfocused targets.
 
     Args:
@@ -154,7 +154,7 @@ def make_xcode_schemes(bazel_labels):
         bazel_labels: A `bazel_labels` module.
 
     Returns:
-        A `struct` that can be used as a `bazel_labels` module.
+        A `struct` that can be used as a `xcode_schemes` module.
     """
 
     def _build_action(targets):
@@ -271,8 +271,6 @@ def make_xcode_schemes(bazel_labels):
         build_for_values = xcode_schemes_internal.build_for_values,
         test_action = _test_action,
         launch_action = _launch_action,
-        focus_schemes = _focus_schemes,
-        unfocus_schemes = _unfocus_schemes,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
         BUILD_FOR_ALL_ENABLED = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED,
     )

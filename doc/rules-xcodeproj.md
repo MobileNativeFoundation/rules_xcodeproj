@@ -267,58 +267,6 @@ Constructs a launch action for an Xcode scheme.
 A `struct` representing a launch action.
 
 
-<a id="xcode_schemes.focus_schemes"></a>
-
-## xcode_schemes.focus_schemes
-
-<pre>
-xcode_schemes.focus_schemes(<a href="#xcode_schemes.focus_schemes-schemes">schemes</a>, <a href="#xcode_schemes.focus_schemes-focused_targets">focused_targets</a>)
-</pre>
-
-Filter/adjust a `sequence` of schemes to only include focused targets.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.focus_schemes-schemes"></a>schemes |  A <code>sequence</code> of values returned by <code>xcode_schemes.scheme</code>.   |  none |
-| <a id="xcode_schemes.focus_schemes-focused_targets"></a>focused_targets |  A <code>sequence</code> of <code>string</code> values representing Bazel labels of focused targets.   |  none |
-
-**RETURNS**
-
-A `sequence` of values returned by `xcode_schemes.scheme`.
-  Will only include schemes that have at least one target in
-  `focused_targets`. Some actions might be removed if they reference
-  unfocused targets.
-
-
-<a id="xcode_schemes.unfocus_schemes"></a>
-
-## xcode_schemes.unfocus_schemes
-
-<pre>
-xcode_schemes.unfocus_schemes(<a href="#xcode_schemes.unfocus_schemes-schemes">schemes</a>, <a href="#xcode_schemes.unfocus_schemes-unfocused_targets">unfocused_targets</a>)
-</pre>
-
-Filter/adjust a `sequence` of schemes to exclude unfocused targets.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.unfocus_schemes-schemes"></a>schemes |  A <code>sequence</code> of values returned by <code>xcode_schemes.scheme</code>.   |  none |
-| <a id="xcode_schemes.unfocus_schemes-unfocused_targets"></a>unfocused_targets |  A <code>sequence</code> of <code>string</code> values representing Bazel labels of unfocused targets.   |  none |
-
-**RETURNS**
-
-A `sequence` of values returned by `xcode_schemes.scheme`.
-  Will only include schemes that have at least one target not in
-  `unfocused_targets`. Some actions might be removed if they reference
-  unfocused targets.
-
-
 <a id="xcodeproj"></a>
 
 ## xcodeproj
