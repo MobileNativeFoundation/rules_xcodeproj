@@ -64,10 +64,14 @@ From the
 [release you wish to use](https://github.com/buildbuddy-io/rules_xcodeproj/releases),
 copy the WORKSPACE snippet into your `WORKSPACE` file.
 
-## Examples
+## Usage
 
-Minimal example:
+Please see the documentation in the [docs](docs/README.md) directory and
+examples in the [examples](examples/README.md) directory.
 
+### Simple iOS example
+
+Given a root level `BUILD` file:
 ```python
 load(
   "@build_bazel_rules_apple//apple:ios.bzl",
@@ -126,6 +130,5 @@ You can then create the Xcode project with:
 bazel run //:xcodeproj
 ```
 
-The generated project will be in the workspace at `App.xcodeproj`.
-
-See the [examples](examples) directory for sample setups.
+The generated project will be in the workspace next to the `BUILD` file at
+`App.xcodeproj`.
