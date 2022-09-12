@@ -1,6 +1,6 @@
 # Examples
 
-This directory holds several examples using rules_xcodeproj. To open and example run the respective `xcodeproj` generate command from each directory.
+This directory holds several examples using rules_xcodeproj. To open an example, run the `bazel run //:xcodeproj` command from within each directory, then run `xed .` to open the generated project.
 
 * **cc**
     <br> Contains a command line tool written purely in C, exercising many possible use cases of the [cc rules in Bazel](https://bazel.build/reference/be/c-cpp) (consumes `cc_binary`, `cc_library`, external `cc_library`).
