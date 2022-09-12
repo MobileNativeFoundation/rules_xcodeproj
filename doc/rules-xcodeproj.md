@@ -22,9 +22,9 @@ rule, unless you want to enable Xcode's "Automatic Code Signing" feature. If you
 are using a `File`, then this rule is needed in order to set the
 `DEVELOPER_TEAM` build setting via the `team_id` attribute.
 
-## Example
+**EXAMPLE**
 
-```python
+```starlark
 ios_application(
    ...
    provisioning_profile = ":xcode_profile",
@@ -337,6 +337,20 @@ This is a wrapper macro for the
 can't be used directly. All public API is documented below. The `kwargs`
 argument will pass forward values for globally available attributes (e.g.
 `visibility`, `features`, etc.) to the underlying rule.
+
+**EXAMPLE**
+
+```starlark
+xcodeproj(
+    name = "xcodeproj",
+    project_name = "App",
+    tags = ["manual"],
+    top_level_targets = [
+        top_level_target(":App", target_environments = ["device", "simulator"]),
+        ":Tests",
+    ],
+)
+```
 
 
 **PARAMETERS**
