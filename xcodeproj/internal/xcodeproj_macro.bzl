@@ -63,11 +63,11 @@ def xcodeproj(
             configs. For example, if this is set to `"projectx_xcodeproj"`, then
             the following configs will be available for you to adjust in your
             `.bazelrc` file: `projectx_xcodeproj`,
-            `projectx_xcodeproj_generator`, `rules_xcodeproj_indexbuild`, and
-            `rules_xcodeproj_swiftuipreviews`.
+            `projectx_xcodeproj_generator`, `projectx_xcodeproj_indexbuild`, and
+            `projectx_xcodeproj_swiftuipreviews`.
 
-            See the [usage guide](usage.md#bazel-configs) for more
-            information about adjusting Bazel configs.
+            See the [usage guide](usage.md#bazel-configs) for more information
+            on adjusting Bazel configs.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
             project; all other targets will be excluded, as if they were

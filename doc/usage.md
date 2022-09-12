@@ -14,8 +14,8 @@ can be customized with configs in `.bazelrc` files.
 
 ### `rules_xcodeproj`
 
-The `rules_xcodeproj` config is used when building the project normally inside
-of Xcode. It is also inherited by all of the other `rules_xcodeproj_*` configs.
+The `rules_xcodeproj` config is used when building the project inside of Xcode.
+It's also inherited by all of the other `rules_xcodeproj_*` configs.
 
 > **Warning**
 >
@@ -26,7 +26,7 @@ of Xcode. It is also inherited by all of the other `rules_xcodeproj_*` configs.
 ### `rules_xcodeproj_generator`
 
 The `rules_xcodeproj_generator` config is used when generating the project (i.e.
-when you use `bazel run //:xcodeproj`).
+when you run `bazel run //:xcodeproj`).
 
 The types of things you might want to adjust on this config are non-build
 affecting, like adjusting build log output.
@@ -75,10 +75,10 @@ project-level configs, these flags adjust those instead of the base configs.
 - `extra_common_flags`: Applied to the parent config (i.e. `rules_xcodeproj`)
 - `extra_generator_flags`: Applied to the generator config (i.e.
   `rules_xcodeproj_generator`)
-- `extra_generator_flags`: Applied to the Index Build config (i.e.
+- `extra_indexbuild_flags`: Applied to the Index Build config (i.e.
   `rules_xcodeproj_indexbuild`)
-- `extra_generator_flags`: Applied to the SwiftUI Previews build config (i.e.
-  `rules_xcodeproj_swiftuipreviews`)
+- `extra_swiftuipreviews_flags`: Applied to the SwiftUI Previews build config
+  (i.e. `rules_xcodeproj_swiftuipreviews`)
 
 ## `.bazelrc` files
 
