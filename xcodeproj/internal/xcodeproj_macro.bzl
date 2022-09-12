@@ -58,16 +58,16 @@ def xcodeproj(
             If this is set to `"bazel"`, the project will use Bazel to build
             targets, inside of Xcode. The Xcode build system still unavoidably
             orchestrates some things at a high level.
-        config: Optional. The Bazel configuration to use when generating the
-            project or invoking `bazel` inside of Xcode. This is the basename of
-            multiple configurations. For example, if this is set to
-            `"rules_xcodeproj"`, then the following configurations will be valid
-            for you to extend in your `.bazelrc` file: `rules_xcodeproj`,
-            `rules_xcodeproj_build`, `rules_xcodeproj_indexbuild`,
-            `rules_xcodeproj_info`, and `rules_xcodeproj_swiftuipreviews`.
+        config: Optional. The Bazel config to use when generating the project or
+            invoking `bazel` inside of Xcode. This is the basename of multiple
+            configs. For example, if this is set to `"projectx_xcodeproj"`, then
+            the following configs will be available for you to adjust in your
+            `.bazelrc` file: `projectx_xcodeproj`,
+            `projectx_xcodeproj_generator`, `projectx_xcodeproj_indexbuild`, and
+            `projectx_xcodeproj_swiftuipreviews`.
 
-            See the [baseline `xcodeproj.bazelrc` file](../xcodeproj/internal/xcodeproj.template.bazelrc)
-            that is used for more information on these configs.
+            See the [usage guide](usage.md#bazel-configs) for more information
+            on adjusting Bazel configs.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
             project; all other targets will be excluded, as if they were

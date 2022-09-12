@@ -19,8 +19,7 @@ def _write_xcodeproj_bazelrc(name, actions, config, template):
 # possible, until https://github.com/bazelbuild/bazel/issues/12844 is fixed
 info:{config} --verbose_failures
 
-build:{config}_build --config=rules_xcodeproj_build
-build:{config}_build --config={config}
+# Inherit from base configs
 build:{config}_generator --config=rules_xcodeproj_generator
 build:{config}_generator --config={config}
 build:{config}_indexbuild --config=rules_xcodeproj_indexbuild
@@ -29,6 +28,11 @@ info:{config}_info --config=rules_xcodeproj_info
 info:{config}_info --config={config}
 build:{config}_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews
 build:{config}_swiftuipreviews --config={config}
+
+# Private implementation detail. Don't adjust this config, adjust
+# `{config}` instead.
+build:_{config}_build --config=_rules_xcodeproj_build
+build:_{config}_build --config={config}
 """.format(config = config)
     else:
         project_configs = ""
@@ -54,13 +58,6 @@ def _write_extra_flags_bazelrc(name, actions, attr, config):
         setting = "_extra_common_flags",
         config = config,
         config_suffix = "",
-    )
-    _process_extra_flags(
-        attr = attr,
-        content = content,
-        setting = "_extra_build_flags",
-        config = config,
-        config_suffix = "_build",
     )
     _process_extra_flags(
         attr = attr,
@@ -181,10 +178,6 @@ xcodeproj_runner = rule(
         "_bazelrc_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:xcodeproj.template.bazelrc"),
-        ),
-        "_extra_build_flags": attr.label(
-            default = Label("//xcodeproj:extra_build_flags"),
-            providers = [BuildSettingInfo],
         ),
         "_extra_common_flags": attr.label(
             default = Label("//xcodeproj:extra_common_flags"),

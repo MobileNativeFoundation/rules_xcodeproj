@@ -110,14 +110,7 @@ else
 fi
 
 output_path=$("${bazel_cmd[@]}" \
-  info \
-  --config="${BAZEL_CONFIG}_info" \
-  --color="$color" \
-  --experimental_convenience_symlinks=ignore \
-  --symlink_prefix=/ \
-  --bes_backend= \
-  --bes_results_url= \
-  output_path)
+  info --config="${BAZEL_CONFIG}_info" --color="$color" output_path)
 execution_root="${output_path%/*}"
 
 # Create `bazel.lldbinit``
@@ -175,7 +168,7 @@ if [ "$ACTION" == "indexbuild" ]; then
 elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
   config="${BAZEL_CONFIG}_swiftuipreviews"
 else
-  config="${BAZEL_CONFIG}_build"
+  config="_${BAZEL_CONFIG}_build"
 fi
 
 mkdir -p /tmp/rules_xcodeproj
