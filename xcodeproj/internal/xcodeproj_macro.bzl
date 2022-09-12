@@ -35,6 +35,20 @@ def xcodeproj(
     argument will pass forward values for globally available attributes (e.g.
     `visibility`, `features`, etc.) to the underlying rule.
 
+    **EXAMPLE**
+
+    ```starlark
+    xcodeproj(
+        name = "xcodeproj",
+        project_name = "App",
+        tags = ["manual"],
+        top_level_targets = [
+            top_level_target(":App", target_environments = ["device", "simulator"]),
+            ":Tests",
+        ],
+    )
+    ```
+
     Args:
         name: A unique name for this target.
         archived_bundles_allowed: This argument is deprecated and is now a

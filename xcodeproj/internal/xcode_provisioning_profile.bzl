@@ -55,9 +55,9 @@ rule, unless you want to enable Xcode's "Automatic Code Signing" feature. If you
 are using a `File`, then this rule is needed in order to set the
 `DEVELOPER_TEAM` build setting via the `team_id` attribute.
 
-## Example
+**EXAMPLE**
 
-```python
+```starlark
 ios_application(
    ...
    provisioning_profile = ":xcode_profile",
