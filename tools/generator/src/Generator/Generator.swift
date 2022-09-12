@@ -126,6 +126,7 @@ class Generator {
             pbxProj,
             buildMode,
             project.forceBazelDependencies,
+            project.indexImport,
             files,
             filePathResolver,
             resolvedExternalRepositories,

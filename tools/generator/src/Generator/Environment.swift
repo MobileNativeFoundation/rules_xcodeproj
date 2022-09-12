@@ -64,6 +64,7 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ buildMode: BuildMode,
         _ forceBazelDependencies: Bool,
+        _ indexImport: FilePath,
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
         _ resolvedExternalRepositories: [(Path, Path)],

@@ -22,6 +22,7 @@ extension Generator {
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         forceBazelDependencies: Bool,
+        indexImport: FilePath,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         resolvedExternalRepositories: [(Path, Path)],
@@ -61,6 +62,8 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
                 "GENERATOR_TARGET_NAME": xcodeprojBazelLabel.name,
                 "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
+                "INDEX_IMPORT":try filePathResolver
+                    .resolve(indexImport, useBazelOut: true).string,
                 "RESOLVED_EXTERNAL_REPOSITORIES": resolvedExternalRepositories
                     // Sorted by length to ensure that subdirectories are listed first
                     .sorted { $0.0.string.count > $1.0.string.count }

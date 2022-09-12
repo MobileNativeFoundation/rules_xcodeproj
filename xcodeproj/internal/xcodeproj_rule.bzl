@@ -147,6 +147,7 @@ targets.
     additional_outputs = {}
     for xcode_target in focused_targets:
         additional_compiling_files = []
+        additional_indexstores_files = []
         additional_linking_files = []
         for dependency in xcode_target.transitive_dependencies.to_list():
             unfocused_dependency = unfocused_dependencies.get(dependency)
@@ -155,12 +156,19 @@ targets.
             unfocused_compiling_files = (
                 unfocused_dependency.inputs.unfocused_generated_compiling
             )
+            unfocused_indexstores_files = (
+                unfocused_dependency.inputs.unfocused_generated_indexstores
+            )
             unfocused_linking_files = (
                 unfocused_dependency.inputs.unfocused_generated_linking
             )
             if unfocused_compiling_files:
                 additional_compiling_files.append(
                     depset(unfocused_compiling_files),
+                )
+            if unfocused_indexstores_files:
+                additional_indexstores_files.append(
+                    depset(unfocused_indexstores_files),
                 )
             if unfocused_linking_files:
                 additional_linking_files.append(
@@ -170,11 +178,20 @@ targets.
         compiling_output_group_name = (
             xcode_target.inputs.compiling_output_group_name
         )
+        indexstores_output_group_name = (
+            xcode_target.inputs.indexstores_output_group_name
+        )
         if compiling_output_group_name:
             set_if_true(
                 additional_generated,
                 compiling_output_group_name,
                 additional_compiling_files,
+            )
+        if indexstores_output_group_name:
+            set_if_true(
+                additional_generated,
+                indexstores_output_group_name,
+                additional_indexstores_files,
             )
 
         label = replacement_labels.get(
@@ -337,6 +354,7 @@ def _write_json_spec(
 "custom_xcode_schemes":{custom_xcode_schemes},\
 "extra_files":{extra_files},\
 "force_bazel_dependencies":{force_bazel_dependencies},\
+"index_import":{index_import},\
 "label":"{label}",\
 "name":"{name}",\
 "replacement_labels":{replacement_labels},\
@@ -354,6 +372,9 @@ def _write_json_spec(
         extra_files = json.encode(extra_files_dto),
         force_bazel_dependencies = json.encode(
             has_focused_targets or inputs.has_generated_files,
+        ),
+        index_import = file_path_to_dto(
+            file_path(ctx.executable._index_import),
         ),
         label = ctx.label,
         name = project_name,
@@ -518,6 +539,7 @@ def _write_xcodeproj(
             extensionpointidentifiers_file,
         ] + bazel_integration_files,
         outputs = [xcodeproj],
+        tools = [ctx.attr._index_import[DefaultInfo].files_to_run],
         execution_requirements = {
             # Projects can be rather large, and take almost no time to generate
             # This also works around any RBC tree artifact issues
@@ -723,18 +745,25 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         inputs = inputs,
         additional_generated = additional_generated,
-        top_level_cache_buster = ctx.file._top_level_cache_buster,
+        additional_output_map_inputs = [
+            ctx.file._top_level_cache_buster,
+            ctx.executable._index_import,
+        ],
     )
     output_files_output_groups = output_files.to_output_groups_fields(
         ctx = ctx,
         outputs = outputs,
         additional_outputs = additional_outputs,
-        top_level_cache_buster = ctx.file._top_level_cache_buster,
+        additional_output_map_inputs = [
+            ctx.file._top_level_cache_buster,
+            ctx.executable._index_import,
+        ],
     )
 
     if build_mode == "xcode":
         all_targets_files = [
             input_files_output_groups["all_xc"],
+            input_files_output_groups["all_xi"],
             input_files_output_groups["all_xl"],
         ]
     else:
@@ -966,6 +995,11 @@ transitive dependencies of the targets specified in the
         "_generator": attr.label(
             cfg = "exec",
             default = Label("//tools/generator:universal_generator"),
+            executable = True,
+        ),
+        "_index_import": attr.label(
+            cfg = "exec",
+            default = Label("@rules_xcodeproj_index_import//:index_import"),
             executable = True,
         ),
         "_install_path": attr.label(

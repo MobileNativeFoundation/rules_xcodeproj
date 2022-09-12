@@ -37,6 +37,8 @@ _SWIFTC_SKIP_OPTS = {
     "-enable-batch-mode": 1,
     # TODO: See if we need to support this
     "-gline-tables-only": 1,
+    "-index-ignore-system-modules": 1,
+    "-index-store-path": 2,
     "-module-name": 2,
     "-num-threads": 2,
     "-output-file-map": 2,
