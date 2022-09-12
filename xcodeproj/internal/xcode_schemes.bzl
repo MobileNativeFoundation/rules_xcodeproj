@@ -258,7 +258,7 @@ def make_xcode_schemes(bazel_labels):
             target = bazel_labels.normalize(target),
             args = args,
             env = env,
-            working_directory = working_directory
+            working_directory = working_directory,
         )
 
     return struct(
