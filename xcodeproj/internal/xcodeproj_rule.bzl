@@ -223,6 +223,15 @@ targets.
                 additional_linking_files,
             )
 
+        invalid_extra_files_targets = sets.to_list(
+            sets.difference(sets.make(owned_extra_files.values()), targets_labels),
+        )
+        if invalid_extra_files_targets:
+            fail("""\
+Are you using an `alias`? `top_level_target` requires labels of the actual \
+targets: {}
+""".format(invalid_extra_files_targets))
+
         for file, owner_label in owned_extra_files.items():
             if str(label) == str(owner_label):
                 for f in file.files.to_list():

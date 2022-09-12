@@ -25,7 +25,7 @@ XCODEPROJ_TARGETS = [
     "//macOSApp/Source:macOSApp",
     "//macOSApp/Test/UITests:macOSAppUITests",
     top_level_target(
-        label = "//tvOSApp",
+        label = "//tvOSApp/Source:tvOSApp",
         target_environments = ["device", "simulator"],
     ),
     "//tvOSApp/Test/UITests:tvOSAppUITests",
