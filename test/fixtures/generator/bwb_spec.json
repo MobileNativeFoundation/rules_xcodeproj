@@ -44,7 +44,7 @@
                     "CUSTOM_ENV_VAR": "hello"
                 },
                 "target": "//tools/generator:generator",
-                "working_directory": "$BUILD_WORKSPACE_DIRECTORY"
+                "working_directory": "$(BUILD_WORKSPACE_DIRECTORY)"
             },
             "name": "generator",
             "test_action": {
