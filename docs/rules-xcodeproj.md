@@ -71,7 +71,7 @@ XcodeProjAutomaticTargetProcessingInfo(<a href="#XcodeProjAutomaticTargetProcess
 Provides needed information about a target to allow rules_xcodeproj to
 automatically process it.
 
-If you need more control over how a target or it's dependencies are processed,
+If you need more control over how a target or its dependencies are processed,
 return a `XcodeProjInfo` provider instance instead.
 
 
