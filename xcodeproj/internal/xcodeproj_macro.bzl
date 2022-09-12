@@ -4,7 +4,7 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":logging.bzl", "warn")
 load(":top_level_target.bzl", "top_level_target")
-load(":xcode_schemes.bzl", "xcode_schemes")
+load(":xcode_schemes.bzl", "focus_schemes", "unfocus_schemes")
 load(":xcodeproj_rule.bzl", _xcodeproj = "xcodeproj")
 load(":xcodeproj_runner.bzl", "xcodeproj_runner")
 
@@ -223,12 +223,12 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
     schemes_json = None
     if schemes:
         if unfocused_targets:
-            schemes = xcode_schemes.unfocus_schemes(
+            schemes = unfocus_schemes(
                 schemes = schemes,
                 unfocused_targets = unfocused_targets,
             )
         if focused_targets:
-            schemes = xcode_schemes.focus_schemes(
+            schemes = focus_schemes(
                 schemes = schemes,
                 focused_targets = focused_targets,
             )
