@@ -1,9 +1,4 @@
-"""Defines providers used throughout the rules in this repository.
-
-Most users will not need to use these providers to simply create Xcode projects,
-but if you want to write your own custom rules that interact with these
-rules, then you will use these providers to communicate between them.
-"""
+"""Providers that are used throughout the rules."""
 
 XcodeProjAutomaticTargetProcessingInfo = provider(
     """\
