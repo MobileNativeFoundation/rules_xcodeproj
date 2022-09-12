@@ -191,7 +191,6 @@ extension XCScheme.LaunchAction {
             with: launchActionInfo.env.asLaunchEnvironmentVariables()
         )
 
-        // GH933: Add support for custom working directory once it is available in tuist/XcodeProj.
         self.init(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
@@ -199,6 +198,8 @@ extension XCScheme.LaunchAction {
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,
+            customWorkingDirectory: launchActionInfo.workingDirectory,
+            useCustomWorkingDirectory: launchActionInfo.workingDirectory != nil,
             commandlineArguments: commandlineArguments,
             environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
             launchAutomaticallySubstyle: launchActionInfo.targetInfo.productType
