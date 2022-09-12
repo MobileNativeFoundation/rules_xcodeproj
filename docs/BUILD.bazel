@@ -19,7 +19,7 @@ _DOC_SRCS = [
 ]
 
 # Help developers who get a red CI result by telling them how to fix it
-_failure_message = "\nPlease update the docs by running\n    bazel run //doc:update"
+_failure_message = "\nPlease update the docs by running\n    bazel run //docs:update"
 
 [
     diff_test(
@@ -43,7 +43,7 @@ write_file(
         "#!/usr/bin/env bash",
         "set -euo pipefail",
     ] + [
-        'cp -fv doc/{src}.md "$BUILD_WORKSPACE_DIRECTORY/doc/rules-{dst}.md"'.format(
+        'cp -fv docs/{src}.md "$BUILD_WORKSPACE_DIRECTORY/docs/rules-{dst}.md"'.format(
             src = file,
             dst = file.replace(".doc", ""),
         )

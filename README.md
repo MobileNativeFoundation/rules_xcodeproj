@@ -8,7 +8,7 @@ This repository contains rules for [Bazel](https://bazel.build) that can be
 used to generate Xcode projects from targets in your workspace.
 
 If you run into any problems with these rules, please check our
-[FAQ](/doc/faq.md), check if [another issue already exists][issues] and comment
+[FAQ](/docs/faq.md), check if [another issue already exists][issues] and comment
 on it, or [file a new issue][file-an-issue]!
 
 [issues]: https://github.com/buildbuddy-io/rules_xcodeproj/issues
