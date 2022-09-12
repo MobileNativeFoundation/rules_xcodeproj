@@ -9,4 +9,4 @@ This directory holds several examples using rules_xcodeproj. To open an example,
     <br> Contains many targets to exercise all of the [rules_apple](https://github.com/bazelbuild/rules_apple/tree/master/doc) rules, along with various ways of using rules_xcodeproj itself (e.g. multi-platform consolidated targets, SwiftUI Previews, device support, etc.).
 
 * **simple**
-    <br> Contains a "Hello World" `swift_binary` target. This examples main purpose is to have a target without `Bazel External Repositories` or `Bazel Generated Files` groups in Xcode, and no `BazelDependencies` target in BwX mode.
+    <br> Contains a "Hello World" `swift_binary` target. This example's main purpose is to have a target without `Bazel External Repositories` or `Bazel Generated Files` groups in Xcode, and no `BazelDependencies` target in BwX mode.
