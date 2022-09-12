@@ -58,6 +58,7 @@ def get_xcode_schemes():
                 # This is not necessary for the generator. It is here to help
                 # verify that custom environment variables are passed along.
                 env = {"CUSTOM_ENV_VAR": "hello"},
+                working_directory = "$BUILD_WORKSPACE_DIRECTORY",
             ),
             test_action = xcode_schemes.test_action(
                 [_TEST_TARGET],
