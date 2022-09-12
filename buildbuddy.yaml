@@ -82,4 +82,4 @@ actions:
         branches:
           - "*"
     bazel_commands:
-      - "test --config=workflows //doc:diff_test"
+      - "test --config=workflows //docs:diff_test"
