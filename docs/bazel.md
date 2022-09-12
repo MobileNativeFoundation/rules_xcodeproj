@@ -165,7 +165,7 @@ A `struct` representing an Xcode scheme.
 ## xcode_schemes.build_action
 
 <pre>
-xcode_schemes.build_action(<a href="#xcode_schemes.build_action-targets">targets</a>)
+xcode_schemes.build_action(<a href="#xcode_schemes.build_action-targets">targets</a>, <a href="#xcode_schemes.build_action-pre_actions">pre_actions</a>, <a href="#xcode_schemes.build_action-post_actions">post_actions</a>)
 </pre>
 
 Constructs a build action for an Xcode scheme.
@@ -176,6 +176,8 @@ Constructs a build action for an Xcode scheme.
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.build_action-targets"></a>targets |  A <code>sequence</code> of elements that are either <code>struct</code> values as created by <code>xcode_schemes.build_target</code>, or a target label as a <code>string</code> value.   |  none |
+| <a id="xcode_schemes.build_action-pre_actions"></a>pre_actions |  A <code>sequence</code> of <code>struct</code> values as created by <code>xcode_schemes.pre_action</code>.   |  <code>[]</code> |
+| <a id="xcode_schemes.build_action-post_actions"></a>post_actions |  A <code>sequence</code> of <code>struct</code> values as created by <code>xcode_schemes.post_action</code>.   |  <code>[]</code> |
 
 **RETURNS**
 
@@ -279,6 +281,30 @@ Constructs a test action for an Xcode scheme.
 **RETURNS**
 
 A `struct` representing a test action.
+
+
+<a id="xcode_schemes.pre_post_action"></a>
+
+## xcode_schemes.pre_post_action
+
+<pre>
+xcode_schemes.pre_post_action(<a href="#xcode_schemes.pre_post_action-name">name</a>, <a href="#xcode_schemes.pre_post_action-script">script</a>, <a href="#xcode_schemes.pre_post_action-expand_variables_based_on">expand_variables_based_on</a>)
+</pre>
+
+Constructs a pre or post action for a step of the scheme.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.pre_post_action-name"></a>name |  Title of the script.   |  <code>"Run Script"</code> |
+| <a id="xcode_schemes.pre_post_action-script"></a>script |  The script text.   |  none |
+| <a id="xcode_schemes.pre_post_action-expand_variables_based_on"></a>expand_variables_based_on |  Optional. The label of the target that environment variables will expand based on.   |  none |
+
+**RETURNS**
+
+A `struct` representing a scheme's step pre or post action.
 
 
 # Xcode build settings

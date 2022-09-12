@@ -45,8 +45,10 @@ extension XCSchemeInfo.BuildActionInfo {
                     buildFor: buildTarget.buildFor
                 )
             },
-            preActions: try original.preActions.resolveHosts(topLevelTargetInfos: topLevelTargetInfos),
-            postActions: try original.postActions.resolveHosts(topLevelTargetInfos: topLevelTargetInfos)
+            preActions: try original.preActions
+                .resolveHosts(topLevelTargetInfos: topLevelTargetInfos),
+            postActions: try original.postActions
+                .resolveHosts(topLevelTargetInfos: topLevelTargetInfos)
         )
     }
 }
@@ -62,12 +64,11 @@ extension XCSchemeInfo.BuildActionInfo {
         guard let buildAction = buildAction else {
             return nil
         }
-        let context = "creating a `BuildActionInfo`"
         let buildTargetInfos: [XCSchemeInfo.BuildTargetInfo] = try buildAction.targets
             .map { buildTarget in
                 let targetID = try targetIDsByLabel.value(
                     for: buildTarget.label,
-                    context: context
+                    context: "creating a `BuildActionInfo`"
                 )
                 return XCSchemeInfo.BuildTargetInfo(
                     targetInfo: try targetResolver.targetInfo(targetID: targetID),
@@ -80,12 +81,12 @@ extension XCSchemeInfo.BuildActionInfo {
             preActions: buildAction.preActions.prePostActionInfos(
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel,
-                context: context
+                context: "creating a pre-action `PrePostActionInfo`"
             ),
             postActions: buildAction.postActions.prePostActionInfos(
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel,
-                context: context
+                context: "creating a post-action `PrePostActionInfo`"
             )
         )
     }

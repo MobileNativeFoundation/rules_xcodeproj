@@ -52,7 +52,8 @@ extension XCSchemeInfoVariableExpansionContextInfoTests {
 extension XCSchemeInfoVariableExpansionContextInfoTests {
     func test_targetInfo() {
         // given
-        let contextInfo = XCSchemeInfo.VariableExpansionContextInfo.target(unitTestTargetInfo)
+        let contextInfo = XCSchemeInfo.VariableExpansionContextInfo
+            .target(unitTestTargetInfo)
 
         // then
         XCTAssertEqual(contextInfo.targetInfo, unitTestTargetInfo)

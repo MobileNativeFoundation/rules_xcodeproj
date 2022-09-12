@@ -17,7 +17,7 @@ def _focus_actions(build_targets, actions):
             focused_actions.append(action)
     return focused_actions
 
-def _focus_schemes(schemes, focused_targets):
+def focus_schemes(schemes, focused_targets):
     """Filter/adjust a `sequence` of schemes to only include focused targets.
 
     Args:
@@ -162,16 +162,17 @@ def unfocus_schemes(schemes, unfocused_targets):
 
     return focused_schemes
 
-def _pre_post_action(script, expand_variables_based_on, name = "Run Script"):
-    """Constructs a "Pre | Post action" for the "Build | Run | Test | Profile | Archive" step of the Scheme.
+def _pre_post_action(*, name = "Run Script", script, expand_variables_based_on):
+    """Constructs a pre or post action for a step of the scheme.
 
     Args:
-        script: script text.
-        expand_variables_based_on: Optional. One of the specified target labels .
-        name: name of the action.
+        name: Title of the script.
+        script: The script text.
+        expand_variables_based_on: Optional. The label of the target that
+            environment variables will expand based on.
 
     Returns:
-        A `struct` representing a Scheme's step "Pre | Post" action.
+        A `struct` representing a scheme's step pre or post action.
     """
     return struct(
         script = script,
@@ -320,10 +321,9 @@ def make_xcode_schemes(bazel_labels):
         build_for_values = xcode_schemes_internal.build_for_values,
         launch_action = _launch_action,
         test_action = _test_action,
+        pre_post_action = _pre_post_action,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
         BUILD_FOR_ALL_ENABLED = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED,
-        pre_action = _pre_post_action,
-        post_action = _pre_post_action,
     )
 
 xcode_schemes = make_xcode_schemes(

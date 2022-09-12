@@ -35,9 +35,9 @@ def _build_action(targets, pre_actions, post_actions):
         targets: A `sequence` of `struct` values as created by
             `xcode_schemes.build_target`.
         pre_actions: A `sequence` of `struct` values as created by
-            `xcode_schemes.pre_action`.
+            `xcode_schemes.pre_post_action`.
         post_actions: A `sequence` of `struct` values as created by
-            `xcode_schemes.post_action`.
+            `xcode_schemes.pre_post_action`.
 
     Returns:
         A `struct` representing a build action.

@@ -10,9 +10,12 @@ extension XCSchemeInfo {
 
 extension XCSchemeInfo.PrePostActionInfo {
     var executionAction: XCScheme.ExecutionAction {
-        XCScheme.ExecutionAction(scriptText: script,
-                                 title: name,
-                                 environmentBuildable: expandVariablesBasedOn.targetInfo?.buildableReference)
+        XCScheme.ExecutionAction(
+            scriptText: script,
+            title: name,
+            environmentBuildable: expandVariablesBasedOn
+                .targetInfo?.buildableReference
+        )
     }
 }
 
@@ -23,7 +26,9 @@ extension XCSchemeInfo.PrePostActionInfo {
         targetIDsByLabel: [BazelLabel: TargetID],
         context: String
     ) throws {
-        guard let originalTargetLabel = prePostAction.expandVariablesBasedOn?.targetLabel else {
+        guard let originalTargetLabel =
+            prePostAction.expandVariablesBasedOn?.targetLabel
+        else {
             self.init(
                 name: prePostAction.name,
                 expandVariablesBasedOn: .none,
@@ -35,19 +40,21 @@ extension XCSchemeInfo.PrePostActionInfo {
             for: originalTargetLabel,
             context: context
         )
-        let expandVariablesBasedOn = XCSchemeInfo.VariableExpansionContextInfo.target(
-            try targetResolver.targetInfo(targetID: targetID)
+        let expandVariablesBasedOn = XCSchemeInfo.VariableExpansionContextInfo
+            .target(try targetResolver.targetInfo(targetID: targetID))
+        self.init(
+            name: prePostAction.name,
+            expandVariablesBasedOn: expandVariablesBasedOn,
+            script: prePostAction.script
         )
-        self.init(name: prePostAction.name,
-                  expandVariablesBasedOn: expandVariablesBasedOn,
-                  script: prePostAction.script)
     }
 }
 
 extension Sequence where Element == XCSchemeInfo.PrePostActionInfo {
     func resolveHosts<TargetInfos: Sequence>(
         topLevelTargetInfos: TargetInfos
-    ) throws -> [XCSchemeInfo.PrePostActionInfo] where TargetInfos.Element == XCSchemeInfo.TargetInfo {
+    ) throws -> [XCSchemeInfo.PrePostActionInfo]
+    where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         try map { action in
             XCSchemeInfo.PrePostActionInfo(
                 name: action.name,

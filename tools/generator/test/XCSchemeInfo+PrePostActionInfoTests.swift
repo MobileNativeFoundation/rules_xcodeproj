@@ -12,8 +12,10 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
     lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
         // swiftlint:disable:next force_try
-        buildAction: try! .init(targets: [.init(label: targetResolver.targets["A 2"]!.label),
-                                          .init(label: targetResolver.targets["W"]!.label)]),
+        buildAction: try! .init(targets: [
+            .init(label: targetResolver.targets["A 2"]!.label),
+            .init(label: targetResolver.targets["W"]!.label),
+        ]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
     
@@ -213,7 +215,8 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
 
         // when
-        let resolvedPrePostActionInfos = try [prePostActionInfo].resolveHosts(topLevelTargetInfos: [])
+        let resolvedPrePostActionInfos = try [prePostActionInfo]
+            .resolveHosts(topLevelTargetInfos: [])
 
         // then
         XCTAssertEqual(resolvedPrePostActionInfos, [prePostActionInfo])
@@ -296,8 +299,10 @@ extension XCSchemeInfoPrePostActionInfoTests {
 
         // then
         resolvedPrePostActionInfos.forEach { actionInfo in
-            XCTAssertEqual(actionInfo.expandVariablesBasedOn.targetInfo?.hostResolution,
-                           XCSchemeInfo.HostResolution.none)
+            XCTAssertEqual(
+                actionInfo.expandVariablesBasedOn.targetInfo?.hostResolution,
+                XCSchemeInfo.HostResolution.none
+            )
         }
     }
 }

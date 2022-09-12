@@ -63,7 +63,8 @@ extension XCSchemeExtensionsTests {
         // then
         let expected = XCScheme.BuildAction(
             buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions: try preActions.map(\.executionAction) + buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
+            preActions: try preActions.map(\.executionAction) +
+                buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
             postActions: postActions.map(\.executionAction),
             parallelizeBuild: true,
             buildImplicitDependencies: true
