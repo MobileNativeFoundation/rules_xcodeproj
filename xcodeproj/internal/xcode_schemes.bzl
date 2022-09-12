@@ -248,7 +248,8 @@ def make_xcode_schemes(bazel_labels):
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
             working_directory: Optional. A `string` that will be set as the custom
-                 working directory in the Xcode scheme's launch action.
+                 working directory in the Xcode scheme's launch action. Relative
+                 paths will be relative to value of BUILT_PRODUCTS_DIRECTORY.
 
         Returns:
             A `struct` representing a launch action.
