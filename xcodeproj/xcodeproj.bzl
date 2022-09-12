@@ -6,8 +6,8 @@ load(
 )
 load(
     "//xcodeproj/internal:providers.bzl",
-    _XcodeProjInfo = "XcodeProjInfo",
     _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
+    _XcodeProjInfo = "XcodeProjInfo",
 )
 load(
     "//xcodeproj/internal:xcode_provisioning_profile.bzl",
