@@ -1,6 +1,10 @@
 """Public rules, macros, and libraries."""
 
 load(
+    "//xcodeproj/internal:top_level_target.bzl",
+    _top_level_target = "top_level_target",
+)
+load(
     "//xcodeproj/internal:providers.bzl",
     _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
 )
@@ -11,7 +15,6 @@ load(
 load("//xcodeproj/internal:xcode_schemes.bzl", _xcode_schemes = "xcode_schemes")
 load(
     "//xcodeproj/internal:xcodeproj_macro.bzl",
-    _top_level_target = "top_level_target",
     _xcodeproj = "xcodeproj",
 )
 
