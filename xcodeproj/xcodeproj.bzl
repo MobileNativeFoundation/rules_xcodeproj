@@ -20,13 +20,13 @@ load(
 )
 
 # Re-exporting providers
-XcodeProjInfo = _XcodeProjInfo
 XcodeProjAutomaticTargetProcessingInfo = _XcodeProjAutomaticTargetProcessingInfo
+XcodeProjInfo = _XcodeProjInfo
 
 # Re-exporting rules
+top_level_target = _top_level_target
 xcodeproj = _xcodeproj
 xcode_provisioning_profile = _xcode_provisioning_profile
-top_level_target = _top_level_target
 
 # Re-exporting APIs
 xcode_schemes = _xcode_schemes

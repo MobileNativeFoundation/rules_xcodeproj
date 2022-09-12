@@ -1,40 +1,63 @@
-load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 
-_DOC_SRCS = [
-    "experimental.doc",
+# Generating
+
+_DOC_COMPONENTS = [
+    "providers",
+    "top_level_target",
+    "xcode_build_settings",
+    "xcode_schemes",
     "xcodeproj",
 ]
 
 [
     stardoc(
-        name = file + "_doc",
-        out = file + ".md",
-        input = "//xcodeproj:%s.bzl" % file,
+        name = component,
+        out = "{}.md".format(component),
+        input = "//xcodeproj/internal/docs:{}.bzl".format(component),
         tags = ["no-sandbox"],  # https://github.com/bazelbuild/stardoc/issues/112
         deps = ["//xcodeproj/internal:xcodeproj_internal"],
     )
-    for file in _DOC_SRCS
+    for component in _DOC_COMPONENTS
 ]
 
-# Help developers who get a red CI result by telling them how to fix it
-_failure_message = "\nPlease update the docs by running\n    bazel run //docs:update"
+genrule(
+    name = "bazel",
+    srcs = [
+        "//xcodeproj/internal/docs:bazel.header.md",
+        ":xcodeproj",
+        ":top_level_target",
+        ":xcode_schemes",
+        ":xcode_build_settings",
+        ":providers",
+    ],
+    outs = ["bazel.generated.md"],
+    cmd = """\
+srcs=($(SRCS))
 
-[
-    diff_test(
-        name = "check_" + file,
-        failure_message = _failure_message,
-        file1 = file + ".md",
-        file2 = "rules-%s.md" % file.replace(".doc", ""),
-    )
-    for file in _DOC_SRCS
-]
-
-test_suite(
-    name = "diff_test",
-    tests = ["check_" + file for file in _DOC_SRCS],
+cat "$${srcs[0]}" > $@
+for src in "$${srcs[@]:1}"; do
+  sed '1,2d' "$$src" >> $@
+done
+""",
 )
+
+# Tests
+
+diff_test(
+    name = "diff_test",
+    failure_message = "\nPlease update the docs by running\n    bazel run //docs:update",
+    file1 = "bazel.generated.md",
+    file2 = "bazel.md",
+)
+
+# Updating
+
+_DOCS = [
+    "bazel",
+]
 
 write_file(
     name = "gen_update",
@@ -43,16 +66,16 @@ write_file(
         "#!/usr/bin/env bash",
         "set -euo pipefail",
     ] + [
-        'cp -fv docs/{src}.md "$BUILD_WORKSPACE_DIRECTORY/docs/rules-{dst}.md"'.format(
-            src = file,
-            dst = file.replace(".doc", ""),
+        'cp -fv docs/{src}.generated.md "$BUILD_WORKSPACE_DIRECTORY/docs/{dst}.md"'.format(
+            src = doc,
+            dst = doc,
         )
-        for file in _DOC_SRCS
+        for doc in _DOCS
     ],
 )
 
 sh_binary(
     name = "update",
     srcs = ["update.sh"],
-    data = [file + ".md" for file in _DOC_SRCS],
+    data = ["{}.generated.md".format(doc) for doc in _DOCS],
 )
