@@ -1,36 +1,36 @@
-# Custom Xcode Schemes
+# Custom Xcode schemes
 
 > **Last Updated: July 29, 2022**
 
-This document is a proposal for how custom Xcode schemes can be defined and implemented in
-`rules_xcodeproj`.
+This document is a proposal for how custom Xcode schemes can be defined and
+implemented in `rules_xcodeproj`.
 
 ## Contents
 
-* [Automatic Scheme Generation](#automatic-scheme-generation)
-* [Introduction of Custom Xcode Schemes](#introduction-of-custom-xcode-schemes)
-  * [Defining a Simple Xcode Scheme](#defining-a-simple-xcode-scheme)
-  * [Specifying a Launch Target](#specifying-a-launch-target)
-  * [Specifying Launch Arguments, Environment Variables and a Custom Working Directory](#specifying-launch-arguments-environment-variables-and-a-custom-working-directory)
-    * [Note about Working Directory Support](#note-about-working-directory-support)
-* [Introduction of Scheme Autogeneration Mode](#introduction-of-scheme-autogeneration-mode)
-* [Implementation Changes](#implementation-changes)
-  * [xcode\_schemes Module](#xcode_schemes-module)
-  * [Changes to \_xcodeproj Rule](#changes-to-_xcodeproj-rule)
-    * [scheme\_autogeneration\_mode Attribute](#scheme_autogeneration_mode-attribute)
-    * [schemes Attribute](#schemes-attribute)
-  * [Changes to xcodeproj Macro](#changes-to-xcodeproj-macro)
-    * [Top\-Level Library Target](#top-level-library-target)
-    * [Collecting Targets from Schemes](#collecting-targets-from-schemes)
-* [Configuration and Target Selection in Schemes](#configuration-and-target-selection-in-schemes)
-* [Build for Configuration Logic](#build-for-configuration-logic)
-* [Outstanding Questions](#outstanding-questions)
+* [Automatic scheme generation](#automatic-scheme-generation)
+* [Introduction of custom Xcode schemes](#introduction-of-custom-xcode-schemes)
+  * [Defining a simple Xcode scheme](#defining-a-simple-xcode-scheme)
+  * [Specifying a launch target](#specifying-a-launch-target)
+  * [Specifying launch arguments, environment variables and a custom working directory](#specifying-launch-arguments-environment-variables-and-a-custom-working-directory)
+    * [Note about working directory support](#note-about-working-directory-support)
+* [Introduction of scheme auto-generation Mode](#introduction-of-scheme-auto-generation-mode)
+* [Implementation changes](#implementation-changes)
+  * [`xcode_schemes` module](#xcode_schemes-module)
+  * [Changes to `xcodeproj` rule](#changes-to-_xcodeproj-rule)
+    * [`scheme_autogeneration_mode` attribute](#scheme_autogeneration_mode-attribute)
+    * [`schemes` attribute](#schemes-attribute)
+  * [Changes to `xcodeproj` macro](#changes-to-xcodeproj-macro)
+    * [Top-level library target](#top-level-library-target)
+    * [Collecting targets from schemes](#collecting-targets-from-schemes)
+* [Configuration and target selection in schemes](#configuration-and-target-selection-in-schemes)
+* [Build for configuration logic](#build-for-configuration-logic)
+* [Outstanding questions](#outstanding-questions)
 
-## Automatic Scheme Generation
+## Automatic scheme generation
 
-As of this writing, the `rules_xcodeproj` ruleset generates an Xcode scheme for every buildable
-target provided to the `xcodeproj` rule. This allows a client to quickly define an `xcodeproj`
-target and generate an Xcode project.
+As of this writing, the `rules_xcodeproj` ruleset generates an Xcode scheme for
+every buildable target provided to the `xcodeproj` rule. This allows a client to
+quickly define an `xcodeproj` target and generate an Xcode project.
 
 Let's start with an example.
 
@@ -50,20 +50,21 @@ xcodeproj(
 ```
 
 The above declaration generates two schemes: `Foo` and
-`FooTests.__internal__.__test_bundle`. The `Foo` scheme contains configuration that builds
-`//Sources/Foo`, but has no configuration for test, launch or any of the other actions. The
-`FooTests.__internal__.__test_bundle` scheme contains configuration that builds `//Tests/FooTests`
-and executes `//Tests/FooTests` when testing is requested.
+`FooTests.__internal__.__test_bundle`. The `Foo` scheme contains configuration
+that builds `//Sources/Foo`, but has no configuration for test, launch or any of
+the other actions. The `FooTests.__internal__.__test_bundle` scheme contains
+configuration that builds `//Tests/FooTests` and executes `//Tests/FooTests`
+when testing is requested.
 
-## Introduction of Custom Xcode Schemes
+## Introduction of custom Xcode schemes
 
-A new Starlark module called, `xcode_schemes`, provides functions for defining custom, Xcode
-schemes.
+A new Starlark module called, `xcode_schemes`, provides functions for defining
+custom, Xcode schemes.
 
-### Defining a Simple Xcode Scheme
+### Defining a simple Xcode scheme
 
-Building on the previous example, let's define a scheme that combines the two targets,
-`//Sources/Foo` and `//Tests/FooTests`.
+Building on the previous example, let's define a scheme that combines the two
+targets, `//Sources/Foo` and `//Tests/FooTests`.
 
 ```python
 load(
@@ -88,17 +89,19 @@ xcodeproj(
 )
 ```
 
-The `xcode_schemes.scheme` function call defines a scheme with a user visible name of `Foo Module`.
-It is configured to build `//Sources/Foo` and `//Tests/FooTests`. (Targets listed in the
-test action and launch action are automatically added to the build action.) The scheme is also
-configured to execute the `//Tests/FooTests` target when testing is requested.
+The `xcode_schemes.scheme` function call defines a scheme with a user visible
+name of `Foo Module`. It is configured to build `//Sources/Foo` and
+`//Tests/FooTests`. (Targets listed in the test action and launch action are
+automatically added to the build action.) The scheme is also configured to
+execute the `//Tests/FooTests` target when testing is requested.
 
-The result of the function is wrapped in a `list` and passed to the `schemes` parameter of the
-`xcodeproj` macro.
+The result of the function is wrapped in a `list` and passed to the `schemes`
+parameter of the `xcodeproj` macro.
 
-### Specifying a Launch Target
+### Specifying a launch target
 
-Let's continue our example. We will add an `ios_application` and a `ios_ui_test` to the mix.
+Let's continue our example. We will add an `ios_application` and a `ios_ui_test`
+to the mix.
 
 ```python
 # Assumptions
@@ -137,14 +140,16 @@ xcodeproj(
 )
 ```
 
-The above example adds a second scheme called `My Application`. It is configured with two test targets
-and a single launch target. All three targets are implicitly included in the build list.
+The above example adds a second scheme called `My Application`. It is configured
+with two test targets and a single launch target. All three targets are
+implicitly included in the build list.
 
-### Specifying Launch Arguments, Environment Variables and a Custom Working Directory
+### Specifying launch arguments, environment variables and a custom working directory
 
-There are times when it is desirable to customize the launch action with arguments, environment
-variables and/or a custom working direectory. This can be accomplished by specifying them as
-parameters to the `xcode_schemes.launch_action` function call.
+There are times when it is desirable to customize the launch action with
+arguments, environment variables and/or a custom working directory. This can be
+accomplished by specifying them as parameters to the
+`xcode_schemes.launch_action` function call.
 
 ```python
 # Assumptions
@@ -193,12 +198,13 @@ xcodeproj(
 )
 ```
 
-This example is the same as the previous one except arguments, environment variables, and a custom
-working directory are defined for the launch action.
+This example is the same as the previous one except arguments, environment
+variables, and a custom working directory are defined for the launch action.
 
-#### Note about Working Directory Support
+#### Note about working directory support
 
-Here is an example of a launch action with a custom working directory as written by Xcode.
+Here is an example of a launch action with a custom working directory as written
+by Xcode.
 
 ```xml
 <LaunchAction
@@ -225,35 +231,39 @@ Here is an example of a launch action with a custom working directory as written
 </LaunchAction>
 ```
 
-Note that the `useCustomWorkingDirectory` is set to `YES` and `customWorkingDirectory` is set to the
-custom working directory value.
+Note that the `useCustomWorkingDirectory` is set to `YES` and
+`customWorkingDirectory` is set to the custom working directory value.
 
 It appears that `tuist/XcodeProj` supports
 [`useCustomWorkingDirectory`](https://github.com/tuist/XcodeProj/blob/3a93b47a34860a4d7dbcd9cc0ae8e9543c179c61/Sources/XcodeProj/Scheme/XCScheme%2BLaunchAction.swift#L45)
 but does not support [`customWorkingDirectory` in the data
 model](https://github.com/tuist/XcodeProj/search?q=customWorkingDirectory).
 
-It looks like we will need to put up a PR to `tuist/XcodeProj` to add `customWorkingDirectory`.
+It looks like we will need to put up a PR to `tuist/XcodeProj` to add
+`customWorkingDirectory`.
 
-## Introduction of Scheme Autogeneration Mode
+## Introduction of scheme auto-generation mode
 
-With this proposal, it is now possible to control how Xcode scheme autogeneration works using
-the `scheme_autogeneration_mode` attribute on `_xcodeproj`.
+With this proposal, it is now possible to control how Xcode scheme
+auto-generation works using the `scheme_autogeneration_mode` attribute on
+`_xcodeproj`.
 
 __Values__
-- `auto`: If no custom schemes are provided, an Xcode scheme will be created for every buildable
-  target. If custom schemes are provided, no autogenerated schemes will be created.
+- `auto`: If no custom schemes are provided, an Xcode scheme will be created for
+  every buildable target. If custom schemes are provided, no autogenerated
+  schemes will be created.
 - `none`: No schemes are automatically generated.
-- `all`: A scheme is generated for every buildable target even if custom schemes are provided.
-- `top_level_only`: A scheme is generated for every top-level target even if custom schemes are
-  provided. A top-level target in this context is one that is not depended upon by any other target
-  in the Xcode project.
+- `all`: A scheme is generated for every buildable target even if custom schemes
+  are provided.
+- `top_level_only`: A scheme is generated for every top-level target even if
+  custom schemes are provided. A top-level target in this context is one that is
+  not depended upon by any other target in the Xcode project.
 
 The default value for `scheme_autogeneration_mode` is `auto`.
 
-## Implementation Changes
+## Implementation changes
 
-### `xcode_schemes` Module
+### `xcode_schemes` module
 
 ```python
 def _scheme(
@@ -325,21 +335,22 @@ xcode_schemes = struct(
 
 ```
 
-### Changes to `_xcodeproj` Rule
+### Changes to `xcodeproj` rule
 
-#### `scheme_autogeneration_mode` Attribute
+#### `scheme_autogeneration_mode` attribute
 
-The `scheme_autogeneration_mode` attribute determines how Xcode scheme autogeneration will occur.
-It's behavior is described in [Introduction of Scheme Autogeneration
-Mode](#introduction-of-scheme-autogeneration-mode).
+The `scheme_autogeneration_mode` attribute determines how Xcode scheme
+auto-generation will occur. It's behavior is described in
+[Introduction of scheme auto-generation mode](#introduction-of-scheme-auto-generation-mode).
 
-#### `schemes` Attribute
+#### `schemes` attribute
 
 The `schemes` attribute accepts a `sequence` of JSON `string` values returned by
-`xcode_schemes.scheme`. The values are parsed and passed along to the scheme generation code in
-`rules_xcodeproj`. An Xcode scheme is generated for each entry in the list.
+`xcode_schemes.scheme`. The values are parsed and passed along to the scheme
+generation code in `rules_xcodeproj`. An Xcode scheme is generated for each
+entry in the list.
 
-### Changes to `xcodeproj` Macro
+### Changes to `xcodeproj` macro
 
 The `xcodeproj` macro will gain two parameters: `targets` and `schemes`.
 
@@ -365,26 +376,27 @@ def xcodeproj(*,
     pass
 ```
 
-In addition to what the `xcodeproj` macro does today, if a value is provided for the `schemes`
-parameter, the macro will:
+In addition to what the `xcodeproj` macro does today, if a value is provided for
+the `schemes` parameter, the macro will:
 1. Collect all of the targets listed in the test and launch actions (not the
    build action) and add them to the overall targets list.
-2. Serialize the scheme `struct` values to JSON and set those values in the `schemes` attribute of
-   `_xcodeproj`.
+2. Serialize the scheme `struct` values to JSON and set those values in the
+   `schemes` attribute of the `xcodeproj` rule.
 
-We only collect targets from the test action and launch action because the target list for
-`xcodeproj` should only contain top-level or leaf-nodes (i.e., not depeneded upon by other targets
-in the Xcode project).
+We only collect targets from the test action and launch action because the
+target list for the `xcodeproj` macro should only contain top-level or
+leaf-nodes (i.e., not depeneded upon by other targets in the Xcode project).
 
-_NOTE: If desired, we can leave the signature of `xcodeproj` as it is today. If we go that route, we
-will retrieve the parameters from the `kwargs`._
+_NOTE: If desired, we can leave the signature of the `xcodeproj` macro as it is
+today. If we go that route, we will retrieve the parameters from the `kwargs`._
 
-#### Top-Level Library Target
+#### Top-level library target
 
-There are situations where a library target might be a top-level target (i.e., no test target or
-launch target).  To ensure that it is included in the Xcode project properly, one will need to
-specify the library target in the `targets` list for `xcodeproj` and any schemes that should include
-it. The following shows an example.
+There are situations where a library target might be a top-level target (i.e.,
+no test target or launch target).  To ensure that it is included in the Xcode
+project properly, one will need to specify the library target in the `targets`
+list for the `xcodeproj` macro and any schemes that should include it. The
+following shows an example.
 
 ```python
 load(
@@ -411,10 +423,11 @@ xcodeproj(
 )
 ```
 
-#### Collecting Targets from Schemes
+#### Collecting targets from schemes
 
-Let's look at an example that illustrates how targets are collected. The following is the example
-from earlier with two schemes and some overlapping targets.
+Let's look at an example that illustrates how targets are collected. The
+following is the example from earlier with two schemes and some overlapping
+targets.
 
 ```python
 # Assumptions
@@ -453,7 +466,8 @@ xcodeproj(
 )
 ```
 
-After evaluation of the macro, the declaration for `_xcodeproj` will look like the following:
+After evaluation of the macro, the declaration for the `xcodeproj` rule will
+look like the following:
 
 ```python
 _xcodeproj(
@@ -474,8 +488,8 @@ _xcodeproj(
 )
 ```
 
-Note that the `targets` list is a deduplicated, sorted list of the targets that were provided from
-the schemes and directly in the `targets` parameter.
+Note that the `targets` list is a deduplicated, sorted list of the targets that
+were provided from the schemes and directly in the `targets` parameter.
 
 The JSON representation of `Foo Module` will look like the following:
 
@@ -495,8 +509,8 @@ The JSON representation of `Foo Module` will look like the following:
 }
 ```
 
-Note that the build action targets list contains the targets from the build action declaration and
-the test action declaration.
+Note that the build action targets list contains the targets from the build
+action declaration and the test action declaration.
 
 The JSON representation of `My Application` will look like the following:
 
@@ -515,42 +529,47 @@ The JSON representation of `My Application` will look like the following:
 }
 ```
 
-## Configuration and Target Selection in Schemes
+## Configuration and target selection in schemes
 
-Throughout this proposal, the syntax for listing targets in the schemes shows simple Bazel target
-syntax. However, underneath the covers, there is some magic that occurs.
+Throughout this proposal, the syntax for listing targets in the schemes shows
+simple Bazel target syntax. However, underneath the covers, there is some magic
+that occurs.
 
-Every Bazel target can map to one or more buildable targets inside `rules_xcodeproj`. These
-buildable targets consist of the Bazel target along with any configuration variations that are
-required to build any specified leaf nodes. For instance, the configuration for a module being
-tested by a unit test using the iOS simulator is different than the configuration for the module
-when it is used by an iOS application targeted for a device.
+Every Bazel target can map to one or more buildable targets inside
+`rules_xcodeproj`. These buildable targets consist of the Bazel target along
+with any configuration variations that are required to build any specified leaf
+nodes. For instance, the configuration for a module being tested by a unit test
+using the iOS simulator is different than the configuration for the module when
+it is used by an iOS application targeted for a device.
 
-To simplify the syntax for specifying targets for schemes, we have opted to allow targets to be
-specified by their Bazel target only. The logic inside `rules_xcodeproj` will select the correct
-configuration variant based upon the leaf nodes that are included in the scheme.
+To simplify the syntax for specifying targets for schemes, we have opted to
+allow targets to be specified by their Bazel target only. The logic inside
+`rules_xcodeproj` will select the correct configuration variant based upon the
+leaf nodes that are included in the scheme.
 
-## Build for Configuration Logic
+## Build for configuration logic
 
-Xcode schemes support configuration that dictates when a target is built. In the `tuist/XcodeProj`
-data model, this is modeled under
+Xcode schemes support configuration that dictates when a target is built. In the
+`tuist/XcodeProj` data model, this is modeled under
 [`XCScheme.BuildAction.Entry.BuildFor`](https://github.com/tuist/XcodeProj/blob/3a93b47a34860a4d7dbcd9cc0ae8e9543c179c61/Sources/XcodeProj/Scheme/XCScheme%2BBuildAction.swift#L8-L13).
 
-The following will be the logic used to set the `BuildFor` for targets listed in custom schemes:
+The following will be the logic used to set the `BuildFor` for targets listed in
+custom schemes:
 
 - Anything in `test_action` gets `.testing`.
-- Anything in `launch_action` or `build_action` gets `[.running, .profiling, .archiving, .analyzing]`.
+- Anything in `launch_action` or `build_action` gets
+  `[.running, .profiling, .archiving, .analyzing]`.
 - Thus being in both gets all of the values.
 
-## Outstanding Questions
+## Outstanding questions
 
 ### Do we need to support [Make variable](https://bazel.build/reference/be/make-variables) for the JSON strings provided to the `schemes` attribute?
 
-If we do support it, it will make it difficult to specify Xcode-specific variables (e.g.
-[`$(PROJECT_DIR)`](https://stackoverflow.com/questions/67235826/how-do-i-use-an-environment-variable-in-the-xcode-scheme-arguments-passed-on-lau/67235841#67235841))
+If we do support it, it will make it difficult to specify Xcode-specific
+variables (e.g. [`$(PROJECT_DIR)`](https://stackoverflow.com/questions/67235826/how-do-i-use-an-environment-variable-in-the-xcode-scheme-arguments-passed-on-lau/67235841#67235841))
 in values like the custom working directory.
 
-If we do end up adding support for [make variable](https://bazel.build/reference/be/make-variables),
-I believe that we can use
-[expand_make_vars](https://github.com/aspect-build/bazel-lib/blob/main/docs/expand_make_vars.md) to
-implement it.
+If we do end up adding support for
+[make variable](https://bazel.build/reference/be/make-variables), I believe that
+we can use [expand_make_vars](https://github.com/aspect-build/bazel-lib/blob/main/docs/expand_make_vars.md)
+to implement it.

@@ -1,4 +1,4 @@
-# High Level Design
+# High level design goals
 
 > **Last Updated: April 23, 2022**
 
