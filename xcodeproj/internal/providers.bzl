@@ -1,7 +1,4 @@
-"""# Providers
-
-Defines providers and related types used throughout the rules in this
-repository.
+"""Defines providers used throughout the rules in this repository.
 
 Most users will not need to use these providers to simply create Xcode projects,
 but if you want to write your own custom rules that interact with these
@@ -13,7 +10,7 @@ XcodeProjAutomaticTargetProcessingInfo = provider(
 Provides needed information about a target to allow rules_xcodeproj to
 automatically process it.
 
-If you need more control over how a target or it's dependencies are processed,
+If you need more control over how a target or its dependencies are processed,
 return a `XcodeProjInfo` provider instance instead.
 """,
     fields = {
