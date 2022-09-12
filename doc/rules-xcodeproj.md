@@ -98,6 +98,41 @@ return a `XcodeProjInfo` provider instance instead.
 | <a id="XcodeProjAutomaticTargetProcessingInfo-xcode_targets"></a>xcode_targets |  A <code>dict</code> mapping attribute names to target type strings (i.e. "resource" or "compile"). Only Xcode targets from the specified attributes with the specified target type are allowed to propagate.    |
 
 
+<a id="XcodeProjInfo"></a>
+
+## XcodeProjInfo
+
+<pre>
+XcodeProjInfo(<a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-dependencies">dependencies</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>, <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>, <a href="#XcodeProjInfo-inputs">inputs</a>,
+              <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-potential_target_merges">potential_target_merges</a>, <a href="#XcodeProjInfo-outputs">outputs</a>, <a href="#XcodeProjInfo-replacement_labels">replacement_labels</a>,
+              <a href="#XcodeProjInfo-resource_bundle_informations">resource_bundle_informations</a>, <a href="#XcodeProjInfo-search_paths">search_paths</a>, <a href="#XcodeProjInfo-target_type">target_type</a>, <a href="#XcodeProjInfo-transitive_dependencies">transitive_dependencies</a>,
+              <a href="#XcodeProjInfo-xcode_target">xcode_target</a>, <a href="#XcodeProjInfo-xcode_targets">xcode_targets</a>)
+</pre>
+
+Provides information needed to generate an Xcode project.
+
+**FIELDS**
+
+
+| Name  | Description |
+| :------------- | :------------- |
+| <a id="XcodeProjInfo-compilation_providers"></a>compilation_providers |  A value returned from <code>compilation_providers.collect_for_{non_,}top_level</code>.    |
+| <a id="XcodeProjInfo-dependencies"></a>dependencies |  A <code>depset</code> of target ids (see the <code>target</code> <code>struct</code>) that this target directly depends on.    |
+| <a id="XcodeProjInfo-extension_infoplists"></a>extension_infoplists |  A <code>depset</code> of <code>struct</code>s with 'id' and 'infoplist' fields. The 'id' field is the target id of the application extension target. The 'infoplist' field is a <code>File</code> for the Info.plist for the target.    |
+| <a id="XcodeProjInfo-hosted_targets"></a>hosted_targets |  A <code>depset</code> of <code>struct</code>s with 'host' and 'hosted' fields. The 'host' field is the target id of the hosting target. The 'hosted' field is the target id of the hosted target.    |
+| <a id="XcodeProjInfo-inputs"></a>inputs |  A value returned from <code>input_files.collect</code>, that contains the input files for this target. It also includes the two extra fields that collect all of the generated <code>Files</code> and all of the <code>Files</code> that should be added to the Xcode project, but are not associated with any targets.    |
+| <a id="XcodeProjInfo-lldb_context"></a>lldb_context |  A value returned from <code>lldb_context.collect</code>.    |
+| <a id="XcodeProjInfo-potential_target_merges"></a>potential_target_merges |  A <code>depset</code> of <code>struct</code>s with 'src' and 'dest' fields. The 'src' field is the id of the target that can be merged into the target with the id of the 'dest' field.    |
+| <a id="XcodeProjInfo-outputs"></a>outputs |  A value returned from <code>output_files.collect</code>, that contains information about the output files for this target and its transitive dependencies.    |
+| <a id="XcodeProjInfo-replacement_labels"></a>replacement_labels |  A <code>depset</code> of <code>struct</code>s with <code>id</code> and <code>label</code> fields. The <code>id</code> field is the target id of the target that have its label (and name) be replaced with the label in the <code>label</code> field.    |
+| <a id="XcodeProjInfo-resource_bundle_informations"></a>resource_bundle_informations |  A <code>depset</code> of <code>struct</code>s with information used to generate resource bundles, which couldn't be collected from <code>AppleResourceInfo</code> alone.    |
+| <a id="XcodeProjInfo-search_paths"></a>search_paths |  A value returned from <code>_process_search_paths</code>, that contains the search paths needed by this target. These search paths should be added to the search paths of any target that depends on this target.    |
+| <a id="XcodeProjInfo-target_type"></a>target_type |  A string that categorizes the type of the current target. This will be one of "compile", "resources", or <code>None</code>. Even if this target doesn't produce an Xcode target, it can still have a non-<code>None</code> value for this field.    |
+| <a id="XcodeProjInfo-transitive_dependencies"></a>transitive_dependencies |  A <code>depset</code> of target ids (see the <code>target</code> <code>struct</code>) that this target transitively depends on.    |
+| <a id="XcodeProjInfo-xcode_target"></a>xcode_target |  An optional value returned from <code>xcode_targets.make</code>.    |
+| <a id="XcodeProjInfo-xcode_targets"></a>xcode_targets |  A <code>depset</code> of values returned from <code>xcode_targets.make</code>, which potentially will become targets in the Xcode project.    |
+
+
 <a id="top_level_target"></a>
 
 ## top_level_target

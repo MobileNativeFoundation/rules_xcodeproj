@@ -6,6 +6,7 @@ load(
 )
 load(
     "//xcodeproj/internal:providers.bzl",
+    _XcodeProjInfo = "XcodeProjInfo",
     _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
 )
 load(
@@ -19,6 +20,7 @@ load(
 )
 
 # Re-exporting providers
+XcodeProjInfo = _XcodeProjInfo
 XcodeProjAutomaticTargetProcessingInfo = _XcodeProjAutomaticTargetProcessingInfo
 
 # Re-exporting rules
