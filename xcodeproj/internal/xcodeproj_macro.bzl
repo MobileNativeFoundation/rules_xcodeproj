@@ -84,6 +84,7 @@ def xcodeproj(
 
             See the [usage guide](usage.md#bazel-configs) for more information
             on adjusting Bazel configs.
+        extra_files: Optional. A `list` of extra files to be added to the project.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
             project; all other targets will be excluded, as if they were

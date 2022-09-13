@@ -342,6 +342,7 @@ def _write_json_spec(
     # `extra_files`
     extra_files = inputs.extra_files.to_list()
     extra_files.append((None, [parsed_file_path(ctx.build_file_path)]))
+
     # Add unowned extra files.
     for file in ctx.attr.unowned_extra_files:
         for f in file.files.to_list():
@@ -869,7 +870,7 @@ labels must match transitive dependencies of the targets specified in the
 An optional dictionary of files to be added to the project. The key represents
 the file and the value is the label of the target it should be associated with.
 These files won't be added to the project if the target is unfocused.
-"""
+""",
         ),
         "project_name": attr.string(
             doc = """\
@@ -945,7 +946,7 @@ targets specified in the `focused_targets` attribute.
             doc = """\
 An optional list of files to be added to the project but not associated with any
 targets.
-"""
+""",
         ),
         "ios_device_cpus": attr.string(
             doc = """\
