@@ -5,11 +5,12 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 
 _VALID_TARGET_ENVIRONMENTS = sets.make(["device", "simulator"])
 
-def top_level_target(label, *, target_environments = ["simulator"]):
+def top_level_target(label, extra_files = None, *, target_environments = ["simulator"]):
     """Constructs a top-level target for use in `xcodeproj.top_level_targets`.
 
     Args:
         label: A `Label` or label-like string for the target.
+        extra_files: Optional. A `list` of extra files to be added to the project.
         target_environments: Optional. A `list` of target environment strings
             (see `@build_bazel_apple_support//constraints:target_environment`;
             `"catalyst"` is not currently supported). The target will be
@@ -40,5 +41,6 @@ def top_level_target(label, *, target_environments = ["simulator"]):
 
     return struct(
         label = label,
+        extra_files = extra_files,
         target_environments = target_environments,
     )
