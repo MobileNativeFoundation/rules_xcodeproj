@@ -867,7 +867,8 @@ labels must match transitive dependencies of the targets specified in the
             allow_files = True,
             doc = """\
 An optional dictionary of files to be added to the project. The key represents
-the file and the value is the label it should be associated with.
+the file and the value is the label of the target it should be associated with.
+These files won't be added to the project if the target is unfocused.
 """
         ),
         "project_name": attr.string(
@@ -930,13 +931,6 @@ as two separate but similar Xcode targets.
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
         ),
-        "unowned_extra_files": attr.label_list(
-            allow_files = True,
-            doc = """\
-An optional list of files to be added to the project but not associated with any
-targets.
-"""
-        ),
         "unfocused_targets": attr.string_list(
             doc = """\
 A `list` of target labels as `string` values. Any targets in the transitive
@@ -945,6 +939,13 @@ a matching label will be excluded from the generated project. This overrides any
 targets specified in the `focused_targets` attribute.
 """,
             default = [],
+        ),
+        "unowned_extra_files": attr.label_list(
+            allow_files = True,
+            doc = """\
+An optional list of files to be added to the project but not associated with any
+targets.
+"""
         ),
         "ios_device_cpus": attr.string(
             doc = """\
