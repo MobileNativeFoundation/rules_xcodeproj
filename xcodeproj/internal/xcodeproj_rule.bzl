@@ -320,6 +320,11 @@ def _write_json_spec(
     # `extra_files`
     extra_files = inputs.extra_files.to_list()
     extra_files.append((None, [parsed_file_path(ctx.build_file_path)]))
+    # Add unowned extra files.
+    for file in ctx.attr.unowned_extra_files:
+        for f in file.files.to_list():
+            extra_files.append((None, [file_path(f)]))
+
     extra_files = [
         file
         for id, files in extra_files
@@ -829,6 +834,13 @@ labels must match transitive dependencies of the targets specified in the
 """,
             default = [],
         ),
+        "owned_extra_files": attr.label_keyed_string_dict(
+            allow_files = True,
+            doc = """\
+An optional dictionary of files to be added to the project. The key represents
+the file and the value is the label it should be associated with.
+"""
+        ),
         "project_name": attr.string(
             doc = """\
 The name to use for the `.xcodeproj` file.
@@ -888,6 +900,13 @@ as two separate but similar Xcode targets.
             cfg = _simulator_transition,
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
+        ),
+        "unowned_extra_files": attr.label_list(
+            allow_files = True,
+            doc = """\
+An optional list of files to be added to the project but not associated with any
+targets.
+"""
         ),
         "unfocused_targets": attr.string_list(
             doc = """\
