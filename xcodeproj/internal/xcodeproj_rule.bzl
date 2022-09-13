@@ -22,35 +22,44 @@ def _calculate_unfocused_dependencies(
         *,
         build_mode,
         targets,
+        focused_targets,
+        unfocused_libraries,
         unfocused_targets):
-    if not unfocused_targets or build_mode != "xcode":
-        return sets.make()
+    if build_mode != "xcode":
+        return {}
 
-    focused_dependencies = sets.make(
-        depset(
-            transitive = [
-                xcode_target.transitive_dependencies
-                for xcode_target in targets
-            ],
-        ).to_list(),
-    )
-    important_unfocused_target_ids = sets.intersection(
-        focused_dependencies,
-        sets.make(unfocused_targets.keys()),
-    )
-
-    transitive_dependencies = []
-    for xcode_target in unfocused_targets.values():
-        if sets.contains(important_unfocused_target_ids, xcode_target.id):
-            transitive_dependencies.append(
+    automatic_unfocused_dependencies = []
+    transitive_focused_dependencies = []
+    if unfocused_targets or sets.length(unfocused_libraries) > 0:
+        for xcode_target in focused_targets:
+            transitive_focused_dependencies.append(
                 xcode_target.transitive_dependencies,
             )
+            if sets.contains(
+                unfocused_libraries,
+                xcode_target.product.file_path,
+            ):
+                automatic_unfocused_dependencies.append(xcode_target.id)
 
-    return sets.make(
-        depset(
+    transitive_dependencies = []
+    if unfocused_targets:
+        focused_dependencies = sets.make(
+            depset(transitive = transitive_focused_dependencies).to_list(),
+        )
+        for xcode_target in unfocused_targets.values():
+            automatic_unfocused_dependencies.append(xcode_target.id)
+            if sets.contains(focused_dependencies, xcode_target.id):
+                transitive_dependencies.append(
+                    xcode_target.transitive_dependencies,
+                )
+
+    return {
+        id: targets[id]
+        for id in depset(
+            automatic_unfocused_dependencies,
             transitive = transitive_dependencies,
-        ).to_list(),
-    )
+        ).to_list()
+    }
 
 def _process_targets(
         *,
@@ -97,7 +106,7 @@ targets.
     unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
     has_focused_labels = sets.length(focused_labels) > 0
 
-    actual_targets = []
+    focused_targets = []
     unfocused_targets = {}
     infoplists = {}
     for xcode_target in targets_list:
@@ -112,7 +121,7 @@ targets.
             unfocused_targets[xcode_target.id] = xcode_target
             continue
 
-        actual_targets.append(xcode_target)
+        focused_targets.append(xcode_target)
 
         infoplist = xcode_target.infoplist
         if infoplist:
@@ -120,22 +129,27 @@ targets.
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
-        targets = actual_targets,
+        targets = {
+            xcode_target.id: xcode_target
+            for xcode_target in targets_list
+        },
+        focused_targets = focused_targets,
+        unfocused_libraries = unfocused_libraries,
         unfocused_targets = unfocused_targets,
     )
 
-    has_unfocused_libraries = sets.length(unfocused_libraries) > 0
+    has_automatic_unfocused_targets = sets.length(unfocused_libraries) > 0
     has_unfocused_targets = bool(unfocused_targets)
 
     targets = {}
     target_dtos = {}
     additional_generated = {}
     additional_outputs = {}
-    for xcode_target in actual_targets:
+    for xcode_target in focused_targets:
         additional_compiling_files = []
         additional_linking_files = []
         for dependency in xcode_target.transitive_dependencies.to_list():
-            unfocused_dependency = unfocused_targets.get(dependency)
+            unfocused_dependency = unfocused_dependencies.get(dependency)
             if not unfocused_dependency:
                 continue
             unfocused_compiling_files = (
@@ -189,25 +203,15 @@ targets.
                 additional_linking_files,
             )
 
-        is_unfocused_dependency = (
-            sets.contains(
-                unfocused_dependencies,
-                xcode_target.id,
-            ) or sets.contains(
-                unfocused_libraries,
-                xcode_target.product.file_path,
-            )
-        )
-
         targets[xcode_target.id] = xcode_target
         target_dtos[xcode_target.id] = xcode_targets.to_dto(
             xcode_target = xcode_target,
             include_lldb_context = (
                 has_unfocused_targets or
-                has_unfocused_libraries or
+                has_automatic_unfocused_targets or
                 build_mode != "xcode"
             ),
-            is_unfocused_dependency = is_unfocused_dependency,
+            is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
             unfocused_targets = unfocused_targets,
         )
 
