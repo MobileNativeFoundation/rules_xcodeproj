@@ -271,7 +271,6 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         build_mode = build_mode,
         bazel_path = bazel_path,
         config = config,
-        unowned_extra_files = extra_files,
         focused_targets = focused_targets,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
@@ -286,6 +285,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         tvos_device_cpus = tvos_device_cpus,
         tvos_simulator_cpus = tvos_simulator_cpus,
         unfocused_targets = unfocused_targets,
+        unowned_extra_files = extra_files,
         watchos_device_cpus = watchos_device_cpus,
         watchos_simulator_cpus = watchos_simulator_cpus,
         **kwargs
