@@ -231,7 +231,7 @@ targets.
         )
         if invalid_extra_files_targets:
             fail("""\
-Are you using an `alias`? `top_level_target` requires labels of the actual \
+Are you using an `alias`? `associated_extra_files` requires labels of the actual \
 targets: {}
 """.format(invalid_extra_files_targets))
 
