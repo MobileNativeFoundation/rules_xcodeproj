@@ -43,9 +43,12 @@ readonly execution_root_regex='.*?/[^/]+/execroot/[^/]+'
 # removed in the Project navigator.
 readonly xcode_execution_root="${execution_root#/private}"
 
-if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
-  # In BwX mode, Xcode uses `-index-unit-output-path` to create hermetic object
-  # file paths. We need to remap the same way to get unit file hash matches.
+if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" && \
+      "$XCODE_VERSION_ACTUAL" -gt "1330" ]]
+then
+  # In BwX mode, Xcode 13.3+ uses `-index-unit-output-path` to create hermetic
+  # object file paths. We need to remap the same way to get unit file hash
+  # matches.
   readonly object_file_prefix="/${PROJECT_TEMP_DIR##*/}"
 else
   readonly object_file_prefix="$PROJECT_TEMP_DIR"
