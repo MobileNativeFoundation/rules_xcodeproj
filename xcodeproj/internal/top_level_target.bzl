@@ -5,7 +5,7 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 
 _VALID_TARGET_ENVIRONMENTS = sets.make(["device", "simulator"])
 
-def top_level_target(label, extra_files = None, *, target_environments = ["simulator"]):
+def top_level_target(label, *, extra_files = None, target_environments = ["simulator"]):
     """Constructs a top-level target for use in `xcodeproj.top_level_targets`.
 
     Args:
