@@ -43,6 +43,14 @@ readonly execution_root_regex='.*?/[^/]+/execroot/[^/]+'
 # removed in the Project navigator.
 readonly xcode_execution_root="${execution_root#/private}"
 
+if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
+  # In BwX mode, Xcode uses `-index-unit-output-path` to create hermetic object
+  # file paths. We need to remap the same way to get unit file hash matches.
+  readonly object_file_prefix="/${PROJECT_TEMP_DIR##*/}"
+else
+  readonly object_file_prefix="$PROJECT_TEMP_DIR"
+fi
+
 # The order of remaps is important. The first match is used. So we try the most
 # specific first. This also allows us to assume previous matches have taken care
 # of those types of files, so more general matches still work later.
@@ -56,7 +64,7 @@ remaps=(
   # When we add support for C-based index imports we will have to use another
   # pattern:
   # https://github.com/bazelbuild/bazel/blob/c4a1ab8b6577c4376aaaa5c3c2d4ef07d524175c/src/main/java/com/google/devtools/build/lib/rules/cpp/CcCompilationHelper.java#L1358
-  -remap "^(?:$execution_root_regex/)?(bazel-out/[^/]+/bin/)(?:_swift_incremental/)?(.*?)([^/]+)_objs/.*?([^/]+?)(?:\.swift)?\\.o\$=$PROJECT_TEMP_DIR/\$1\$2\$3/Objects-normal/$ARCHS/\$4.o"
+  -remap "^(?:$execution_root_regex/)?(bazel-out/[^/]+/bin/)(?:_swift_incremental/)?(.*?)([^/]+)_objs/.*?([^/]+?)(?:\.swift)?\\.o\$=$object_file_prefix/\$1\$2\$3/Objects-normal/$ARCHS/\$4.o"
 
   # Generated sources and swiftmodules
   #
