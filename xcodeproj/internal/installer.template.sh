@@ -148,8 +148,13 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
     bazelrcs+=("--bazelrc=.bazelrc")
   fi
 
+  xcode_build_version=$(/usr/bin/xcodebuild -version | tail -1 | cut -d " " -f3)
+
   bazel_out=$("%bazel_path%" "${bazelrcs[@]}" \
-    info --config=rules_xcodeproj_info output_path)
+    info \
+    "--repo_env=USE_CLANG_CL=$xcode_build_version" \
+    --config=rules_xcodeproj_info \
+    output_path)
 
   # Create directory structure in bazel-out
   cd "$bazel_out"
