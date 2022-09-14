@@ -221,6 +221,12 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         for t in unfocused_targets
     ]
 
+    owned_extra_files = {}
+    for target in top_level_targets:
+        if target.extra_files:
+            for f in target.extra_files:
+                owned_extra_files[f] = target.label
+
     schemes_json = None
     if schemes:
         if unfocused_targets:
@@ -257,6 +263,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         focused_targets = focused_targets,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
+        owned_extra_files = owned_extra_files,
         project_name = project_name,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,

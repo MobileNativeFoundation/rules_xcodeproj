@@ -67,7 +67,8 @@ def _process_targets(
         focused_labels,
         unfocused_labels,
         inputs,
-        infos):
+        infos,
+        owned_extra_files):
     resource_bundle_xcode_targets = process_resource_bundles(
         bundles = inputs.resource_bundles.to_list(),
         resource_bundle_informations = depset(
@@ -137,6 +138,8 @@ targets.
         unfocused_libraries = unfocused_libraries,
         unfocused_targets = unfocused_targets,
     )
+
+    focused_targets_extra_files = []
 
     has_automatic_unfocused_targets = sets.length(unfocused_libraries) > 0
     has_unfocused_targets = bool(unfocused_targets)
@@ -220,6 +223,11 @@ targets.
                 additional_linking_files,
             )
 
+        for file, owner_label in owned_extra_files.items():
+            if str(label) == str(owner_label):
+                for f in file.files.to_list():
+                    focused_targets_extra_files.append((None, [file_path(f)]))  # FIXME: should use label instead of None
+
         targets[xcode_target.id] = xcode_target
         target_dtos[xcode_target.id] = xcode_targets.to_dto(
             xcode_target = xcode_target,
@@ -238,6 +246,7 @@ targets.
         additional_generated,
         additional_outputs,
         has_focused_labels,
+        focused_targets_extra_files,
     )
 
 # Actions
@@ -252,7 +261,8 @@ def _write_json_spec(
         target_dtos,
         has_focused_targets,
         inputs,
-        infos):
+        infos,
+        focused_targets_extra_files):
     # `replacement_labels`
     replacement_labels = {
         r.id: str(r.label)
@@ -324,6 +334,10 @@ def _write_json_spec(
     for file in ctx.attr.unowned_extra_files:
         for f in file.files.to_list():
             extra_files.append((None, [file_path(f)]))
+
+    # Add processed owned extra files.
+    for f in focused_targets_extra_files:
+        extra_files.append(f)
 
     extra_files = [
         file
@@ -690,12 +704,14 @@ def _xcodeproj_impl(ctx):
         additional_generated,
         additional_outputs,
         has_focused_targets,
+        focused_targets_extra_files,
     ) = _process_targets(
         build_mode = build_mode,
         focused_labels = sets.make(ctx.attr.focused_targets),
         unfocused_labels = sets.make(ctx.attr.unfocused_targets),
         inputs = inputs,
         infos = infos,
+        owned_extra_files = ctx.attr.owned_extra_files,
     )
 
     extension_infoplists = [
@@ -719,6 +735,7 @@ def _xcodeproj_impl(ctx):
         has_focused_targets = has_focused_targets,
         inputs = inputs,
         infos = infos,
+        focused_targets_extra_files = focused_targets_extra_files,
     )
     root_dirs_file = _write_root_dirs(ctx = ctx)
     xccurrentversions_file = _write_xccurrentversions(
