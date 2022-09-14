@@ -148,6 +148,7 @@ targets.
     target_dtos = {}
     additional_generated = {}
     additional_outputs = {}
+    label_to_id = {}
     for xcode_target in focused_targets:
         additional_compiling_files = []
         additional_indexstores_files = []
@@ -223,6 +224,8 @@ targets.
                 additional_linking_files,
             )
 
+        label_to_id[label] = xcode_target.id
+
         invalid_extra_files_targets = sets.to_list(
             sets.difference(sets.make(owned_extra_files.values()), targets_labels),
         )
@@ -235,7 +238,7 @@ targets: {}
         for file, owner_label in owned_extra_files.items():
             if str(label) == str(owner_label):
                 for f in file.files.to_list():
-                    focused_targets_extra_files.append((None, [file_path(f)]))  # FIXME: should use label instead of None
+                    focused_targets_extra_files.append((label_to_id[label], [file_path(f)]))
 
         targets[xcode_target.id] = xcode_target
         target_dtos[xcode_target.id] = xcode_targets.to_dto(
