@@ -12,6 +12,7 @@ def xcodeproj(
         *,
         name,
         archived_bundles_allowed = None,
+        associated_extra_files = {},
         bazel_path = "bazel",
         build_mode = "bazel",
         config = "rules_xcodeproj",
@@ -58,6 +59,10 @@ def xcodeproj(
             `--define=apple.experimental.tree_artifact_outputs` on
             `build:rules_xcodeproj` in your `.bazelrc` or `xcodeproj.bazelrc`
             file.
+        associated_extra_files: An optional dictionary of files to be added to
+            the project. The key represents the label of the target it should
+            be associated with and the value is a list of files.
+            These files won't be added to the project if the target is unfocused.
         bazel_path: Optional. The path the `bazel` binary or wrapper script. If
             the path is relative it will be resolved using the `PATH`
             environment variable (which is set to
@@ -228,6 +233,10 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         if target.extra_files:
             for f in target.extra_files:
                 owned_extra_files[f] = bazel_labels.normalize(target.label)
+
+    for label, files in associated_extra_files.items():
+        for f in files:
+            owned_extra_files[f] = bazel_labels.normalize(label)
 
     schemes_json = None
     if schemes:

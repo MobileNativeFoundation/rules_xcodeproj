@@ -6,6 +6,9 @@ load(":xcodeproj_targets.bzl", "CONFIG", "XCODEPROJ_TARGETS")
 
 xcodeproj(
     name = "xcodeproj",
+    associated_extra_files = {
+        "//Lib": ["//Lib:README.md"],
+    },
     build_mode = "xcode",
     config = CONFIG,
     extra_files = ["README.md"],
