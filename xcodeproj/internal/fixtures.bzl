@@ -144,6 +144,7 @@ def xcodeproj_fixture(
         *,
         name = "xcodeproj",
         modes_and_suffixes = [("xcode", "bwx"), ("bazel", "bwb")],
+        associated_extra_files = {},
         config = "rules_xcodeproj",
         top_level_targets = [],
         focused_targets = [],
@@ -160,6 +161,7 @@ def xcodeproj_fixture(
         modes_and_suffixes: A `list` of `tuple`s of `build_mode` and `suffix`.
             The `build_mode` will be pass to `xcodeproj.build_mode` and the
             `suffix` will be used as the suffix of the project and spec files.
+        associated_extra_files: Maps to `xcodeproj.associated_extra_files`.
         config: Maps to `xcodeproj.config`.
         top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
@@ -183,6 +185,7 @@ def xcodeproj_fixture(
 
         xcodeproj(
             name = fixture_name,
+            associated_extra_files = associated_extra_files,
             build_mode = mode,
             config = config,
             focused_targets = focused_targets,

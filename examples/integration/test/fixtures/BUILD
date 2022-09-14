@@ -7,6 +7,10 @@ load(
 load("//:xcodeproj_targets.bzl", "CONFIG", "XCODEPROJ_TARGETS")
 
 xcodeproj_fixture(
+    associated_extra_files = {
+        "//Lib": ["//Lib:README.md"],
+        "//iOSApp/Source:iOSApp": ["//iOSApp:ownership.yaml"],
+    },
     config = CONFIG,
     top_level_targets = XCODEPROJ_TARGETS,
 )
