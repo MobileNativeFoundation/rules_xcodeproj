@@ -47,9 +47,9 @@ def get_xcode_schemes():
                 _APP_TARGET,
                 args = [
                     "/tmp/spec.json",
-                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_root_dirs",
-                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_xccurrentversions",
-                    "bazel-out/darwin_arm64-fastbuild/bin/tools/generator/xcodeproj_extensionpointidentifiers",
+                    "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_root_dirs",
+                    "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_xccurrentversions",
+                    "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers",
                     "xcodeproj/internal/bazel_integration_files",
                     "/tmp/out.xcodeproj",
                     "/tmp/out.final.xcodeproj",
