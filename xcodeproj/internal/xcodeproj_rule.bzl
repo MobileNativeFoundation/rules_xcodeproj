@@ -167,13 +167,13 @@ targets.
                     depset(unfocused_linking_files),
                 )
 
-        coompiling_output_group_name = (
+        compiling_output_group_name = (
             xcode_target.inputs.compiling_output_group_name
         )
-        if coompiling_output_group_name:
+        if compiling_output_group_name:
             set_if_true(
                 additional_generated,
-                coompiling_output_group_name,
+                compiling_output_group_name,
                 additional_compiling_files,
             )
 
