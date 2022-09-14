@@ -105,6 +105,16 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
 def _calculate_guid_target_ids(base_objroot):
     pif_cache = f"{base_objroot}/XCBuildData/PIFCache"
 
+    # For the first build, the PIFCache might not exist yet, so we wait a bit=
+    # for it to exist
+    wait_counter = 0
+    time_to_wait = 10
+    while not os.path.exists(pif_cache):
+        time.sleep(1)
+        wait_counter += 1
+        if wait_counter > time_to_wait:
+            break
+
     project_pif = max(
         glob.iglob(f"{pif_cache}/project/*"),
         key = os.path.getctime,
