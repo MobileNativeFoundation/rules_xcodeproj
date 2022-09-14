@@ -8,6 +8,7 @@ xcodeproj(
     name = "xcodeproj",
     associated_extra_files = {
         "//Lib": ["//Lib:README.md"],
+        "//iOSApp/Source:iOSApp": ["//iOSApp:ownership.yaml"],
     },
     build_mode = "xcode",
     config = CONFIG,

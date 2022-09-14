@@ -230,11 +230,6 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
     ]
 
     owned_extra_files = {}
-    for target in top_level_targets:
-        if target.extra_files:
-            for f in target.extra_files:
-                owned_extra_files[f] = bazel_labels.normalize(target.label)
-
     for label, files in associated_extra_files.items():
         for f in files:
             owned_extra_files[f] = bazel_labels.normalize(label)
