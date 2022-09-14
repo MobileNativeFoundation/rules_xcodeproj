@@ -59,10 +59,11 @@ def xcodeproj(
             `--define=apple.experimental.tree_artifact_outputs` on
             `build:rules_xcodeproj` in your `.bazelrc` or `xcodeproj.bazelrc`
             file.
-        associated_extra_files: An optional dictionary of files to be added to
-            the project. The key represents the label of the target it should
-            be associated with and the value is a list of files.
-            These files won't be added to the project if the target is unfocused.
+        associated_extra_files: Optional. A `dict` of files to be added to the
+            project. The key is a `string` value representing the label of the
+            target the files should be associated with, and the value is a
+            `list` of `File`s. These files won't be added to the project if the
+            target is unfocused.
         bazel_path: Optional. The path the `bazel` binary or wrapper script. If
             the path is relative it will be resolved using the `PATH`
             environment variable (which is set to
@@ -89,8 +90,8 @@ def xcodeproj(
 
             See the [usage guide](usage.md#bazel-configs) for more information
             on adjusting Bazel configs.
-        extra_files: Optional. A `list` of extra files to be added to the project.
-            These files won't be added to the project if this target is unfocused.
+        extra_files: Optional. A `list` of extra `File`s to be added to the
+            project.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
             project; all other targets will be excluded, as if they were
