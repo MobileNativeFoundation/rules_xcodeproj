@@ -659,6 +659,7 @@
 		087B3E45AA9A7430D1BEC9B8 /* ExampleResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		08BC408C75C2ECC754662C32 /* watchOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watchOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D42BCA5FDB51EB6719F182 /* tvOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0ABC651560D154D4BD0E2446 /* ownership.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = ownership.yaml; sourceTree = "<group>"; };
 		0CE9DBB05CE3778EE481C9B5 /* CommandLineTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DBFC9CAC3DF8E34D9C26686 /* dir */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dir; sourceTree = "<group>"; };
 		0DE470F853163270AE068F71 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
@@ -730,6 +731,7 @@
 		6024BE681BD1B639F193B1D5 /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
 		61914F15A0A8BB472DF52BE7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		61D4E93D586B426B1BE67C73 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-7ab8ee5d0803/bin/CommandLine/CommandLineToolLib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		631BA00664D8DD1FAA88F784 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		65757D8CE42B00E7C1504904 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		65BDA11492FD6E048A2FDDFA /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
 		66F0C3E3B07C2183208B4129 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 		83725B51E3CA6DD91F7D6BFF /* macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSApp.swift; sourceTree = "<group>"; };
 		8385925C8B361A6CD26BA84C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		86F50F41BBDDA3171907AF22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		87E8CF468F3D55CF53153D02 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C01ADC4F2024DFCF66480B6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		8D530FB466B524D1F48E99FE /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		8EFBED04C91A5F0CC62736F4 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -1165,6 +1168,7 @@
 				59CE791198A5F49EB2AE83DF /* Resources */,
 				172ECE9262707058838E8649 /* Source */,
 				162CBBCC8FC8B9BFBDE2A108 /* BUILD */,
+				0ABC651560D154D4BD0E2446 /* ownership.yaml */,
 			);
 			path = iOSApp;
 			sourceTree = "<group>";
@@ -1704,6 +1708,7 @@
 			isa = PBXGroup;
 			children = (
 				7D1D42F28CEB98B4F7056FBB /* BUILD */,
+				87E8CF468F3D55CF53153D02 /* README.md */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -1789,6 +1794,7 @@
 				FD6AE4A16B63A0E9D8B42800 /* watchOSApp */,
 				F7B8E0DD0D759FB2EBBDDB4E /* watchOSAppExtension */,
 				9AC7C3047452318464E721D2 /* WidgetExtension */,
+				631BA00664D8DD1FAA88F784 /* README.md */,
 				85F708DD1F5484A0D5558108 /* Bazel External Repositories */,
 				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
 				462C3519CA354BE1B04D4855 /* Products */,

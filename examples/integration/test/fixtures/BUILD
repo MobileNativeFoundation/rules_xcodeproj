@@ -4,10 +4,18 @@ load(
     "validate_fixtures",
     "xcodeproj_fixture",
 )
-load("//:xcodeproj_targets.bzl", "CONFIG", "XCODEPROJ_TARGETS")
+load(
+    "//:xcodeproj_targets.bzl",
+    "ASSOCIATED_EXTRA_FILES",
+    "CONFIG",
+    "EXTRA_FILES",
+    "XCODEPROJ_TARGETS",
+)
 
 xcodeproj_fixture(
+    associated_extra_files = ASSOCIATED_EXTRA_FILES,
     config = CONFIG,
+    extra_files = EXTRA_FILES,
     top_level_targets = XCODEPROJ_TARGETS,
 )
 

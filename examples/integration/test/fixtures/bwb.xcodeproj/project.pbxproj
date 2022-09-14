@@ -509,6 +509,7 @@
 		2E063D559D363D5771226A03 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		2F371150CFABA7C7408108C8 /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		2F73B1C8F0356F7CDBB70B47 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		31B867D8B23B22316F286C0F /* ownership.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = ownership.yaml; sourceTree = "<group>"; };
 		3333170CE926366B0A03CBF1 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		33ADB94E73E1189BFFE03729 /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
 		33B334A92D54486DC669EC4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -525,6 +526,7 @@
 		4343F7B09A2FA27EB201D46D /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		4357BEA3307CB3945803A0B1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		4476EF7C707FF85B9BCC90DD /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
+		45DFB3CD348AAC1998F1CEF4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		46448FB2679EF0B8EB40F601 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		46727B73048E62208E0FADAD /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		4711C175E35C34ACDFE7FB3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 		8F51FE5E0D007C522EC4D6B7 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		8F55A2BE8D7CCF0BE66FBA97 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		9032AC682FB92A6CF71CE0BF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9213816AD54921A542FE95CA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		92B7C543E55E05B9DD5AEF92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		94BEEB36D3E48677861539C1 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalFramework.framework; path = CommandLine/external/ExternalFramework.framework; sourceTree = SOURCE_ROOT; };
 		96CAD0CE45BDEE4CEFE8653A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1423,6 +1426,7 @@
 			isa = PBXGroup;
 			children = (
 				360D2994FCD36EAEC984E677 /* BUILD */,
+				9213816AD54921A542FE95CA /* README.md */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -2435,6 +2439,7 @@
 				034A7E7C765EA6F7E2B820DC /* watchOSApp */,
 				7C32048235159ADD45C61DBE /* watchOSAppExtension */,
 				4731E7480E0566A3E718456C /* WidgetExtension */,
+				45DFB3CD348AAC1998F1CEF4 /* README.md */,
 				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
 				C407A8E68D8C611448A3E699 /* Bazel Generated Files */,
 				593E7C82FAAD94A7E6A04318 /* Products */,
@@ -2565,6 +2570,7 @@
 				F813D3EF59D5AB66A8CBAE5D /* Resources */,
 				A537619AFFDD6698FF207CB2 /* Source */,
 				809ED236B24555089FC34999 /* BUILD */,
+				31B867D8B23B22316F286C0F /* ownership.yaml */,
 			);
 			path = iOSApp;
 			sourceTree = "<group>";

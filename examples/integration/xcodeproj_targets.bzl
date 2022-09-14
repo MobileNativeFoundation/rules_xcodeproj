@@ -7,6 +7,15 @@ load(
 
 CONFIG = "rules_xcodeproj_integration"
 
+EXTRA_FILES = [
+    "//:README.md",
+]
+
+ASSOCIATED_EXTRA_FILES = {
+    "//iOSApp/Source:iOSApp": ["//iOSApp:ownership.yaml"],
+    "//Lib": ["//Lib:README.md"],
+}
+
 XCODEPROJ_TARGETS = [
     top_level_target(
         label = "//CommandLine/CommandLineTool",

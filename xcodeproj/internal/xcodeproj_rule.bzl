@@ -67,7 +67,8 @@ def _process_targets(
         focused_labels,
         unfocused_labels,
         inputs,
-        infos):
+        infos,
+        owned_extra_files):
     resource_bundle_xcode_targets = process_resource_bundles(
         bundles = inputs.resource_bundles.to_list(),
         resource_bundle_informations = depset(
@@ -138,6 +139,8 @@ targets.
         unfocused_targets = unfocused_targets,
     )
 
+    focused_targets_extra_files = []
+
     has_automatic_unfocused_targets = sets.length(unfocused_libraries) > 0
     has_unfocused_targets = bool(unfocused_targets)
 
@@ -145,6 +148,7 @@ targets.
     target_dtos = {}
     additional_generated = {}
     additional_outputs = {}
+    label_to_id = {}
     for xcode_target in focused_targets:
         additional_compiling_files = []
         additional_indexstores_files = []
@@ -220,6 +224,22 @@ targets.
                 additional_linking_files,
             )
 
+        label_to_id[label] = xcode_target.id
+
+        invalid_extra_files_targets = sets.to_list(
+            sets.difference(sets.make(owned_extra_files.values()), targets_labels),
+        )
+        if invalid_extra_files_targets:
+            fail("""\
+Are you using an `alias`? `associated_extra_files` requires labels of the actual \
+targets: {}
+""".format(invalid_extra_files_targets))
+
+        for file, owner_label in owned_extra_files.items():
+            if str(label) == str(owner_label):
+                for f in file.files.to_list():
+                    focused_targets_extra_files.append((label_to_id[label], [file_path(f)]))
+
         targets[xcode_target.id] = xcode_target
         target_dtos[xcode_target.id] = xcode_targets.to_dto(
             xcode_target = xcode_target,
@@ -238,6 +258,7 @@ targets.
         additional_generated,
         additional_outputs,
         has_focused_labels,
+        focused_targets_extra_files,
     )
 
 # Actions
@@ -252,7 +273,8 @@ def _write_json_spec(
         target_dtos,
         has_focused_targets,
         inputs,
-        infos):
+        infos,
+        focused_targets_extra_files):
     # `replacement_labels`
     replacement_labels = {
         r.id: str(r.label)
@@ -320,6 +342,16 @@ def _write_json_spec(
     # `extra_files`
     extra_files = inputs.extra_files.to_list()
     extra_files.append((None, [parsed_file_path(ctx.build_file_path)]))
+
+    # Add unowned extra files
+    for file in ctx.attr.unowned_extra_files:
+        for f in file.files.to_list():
+            extra_files.append((None, [file_path(f)]))
+
+    # Add processed owned extra files
+    for f in focused_targets_extra_files:
+        extra_files.append(f)
+
     extra_files = [
         file
         for id, files in extra_files
@@ -685,12 +717,14 @@ def _xcodeproj_impl(ctx):
         additional_generated,
         additional_outputs,
         has_focused_targets,
+        focused_targets_extra_files,
     ) = _process_targets(
         build_mode = build_mode,
         focused_labels = sets.make(ctx.attr.focused_targets),
         unfocused_labels = sets.make(ctx.attr.unfocused_targets),
         inputs = inputs,
         infos = infos,
+        owned_extra_files = ctx.attr.owned_extra_files,
     )
 
     extension_infoplists = [
@@ -714,6 +748,7 @@ def _xcodeproj_impl(ctx):
         has_focused_targets = has_focused_targets,
         inputs = inputs,
         infos = infos,
+        focused_targets_extra_files = focused_targets_extra_files,
     )
     root_dirs_file = _write_root_dirs(ctx = ctx)
     xccurrentversions_file = _write_xccurrentversions(
@@ -829,6 +864,14 @@ labels must match transitive dependencies of the targets specified in the
 """,
             default = [],
         ),
+        "owned_extra_files": attr.label_keyed_string_dict(
+            allow_files = True,
+            doc = """\
+An optional dictionary of files to be added to the project. The key represents
+the file and the value is the label of the target it should be associated with.
+These files won't be added to the project if the target is unfocused.
+""",
+        ),
         "project_name": attr.string(
             doc = """\
 The name to use for the `.xcodeproj` file.
@@ -897,6 +940,13 @@ a matching label will be excluded from the generated project. This overrides any
 targets specified in the `focused_targets` attribute.
 """,
             default = [],
+        ),
+        "unowned_extra_files": attr.label_list(
+            allow_files = True,
+            doc = """\
+An optional list of files to be added to the project but not associated with any
+targets.
+""",
         ),
         "ios_device_cpus": attr.string(
             doc = """\

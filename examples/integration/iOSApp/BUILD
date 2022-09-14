@@ -1,5 +1,7 @@
 load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
 
+exports_files(["ownership.yaml"])
+
 alias(
     name = "iOSApp",
     actual = "//iOSApp/Source:iOSApp",
