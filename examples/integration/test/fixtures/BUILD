@@ -4,13 +4,10 @@ load(
     "validate_fixtures",
     "xcodeproj_fixture",
 )
-load("//:xcodeproj_targets.bzl", "CONFIG", "XCODEPROJ_TARGETS")
+load("//:xcodeproj_targets.bzl", "ASSOCIATED_EXTRA_FILES", "CONFIG", "XCODEPROJ_TARGETS")
 
 xcodeproj_fixture(
-    associated_extra_files = {
-        "//Lib": ["//Lib:README.md"],
-        "//iOSApp/Source:iOSApp": ["//iOSApp:ownership.yaml"],
-    },
+    associated_extra_files = ASSOCIATED_EXTRA_FILES,
     config = CONFIG,
     top_level_targets = XCODEPROJ_TARGETS,
 )
