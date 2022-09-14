@@ -35,7 +35,8 @@ enum Fixtures {
         ],
         schemeAutogenerationMode: .auto,
         customXcodeSchemes: [],
-        forceBazelDependencies: false
+        forceBazelDependencies: false,
+        indexImport: "/tmp/index-import"
     )
 
     static let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier] = [

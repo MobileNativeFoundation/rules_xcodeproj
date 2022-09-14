@@ -10,7 +10,7 @@
 # TODO: Use a different value for different types of outputs.
 _SHARD_SIZE = 75
 
-def _write_sharded_maps(*, ctx, name, files, top_level_cache_buster):
+def _write_sharded_maps(*, ctx, name, files, additional_inputs):
     files_list = files.to_list()
     length = len(files_list)
     shard_count = length // _SHARD_SIZE
@@ -25,7 +25,7 @@ def _write_sharded_maps(*, ctx, name, files, top_level_cache_buster):
                 shard = None,
                 shard_count = 1,
                 files = files,
-                top_level_cache_buster = top_level_cache_buster,
+                additional_inputs = additional_inputs,
             ),
         ]
 
@@ -41,7 +41,7 @@ def _write_sharded_maps(*, ctx, name, files, top_level_cache_buster):
                 shard = shard + 1,
                 shard_count = shard_count,
                 files = sharded_inputs,
-                top_level_cache_buster = top_level_cache_buster,
+                additional_inputs = additional_inputs,
             ),
         )
 
@@ -54,7 +54,7 @@ def _write_sharded_map(
         shard,
         shard_count,
         files,
-        top_level_cache_buster):
+        additional_inputs):
     args = ctx.actions.args()
     args.use_param_file("%s", use_always = True)
     args.set_param_file_format("multiline")
@@ -96,7 +96,7 @@ fi
         ],
         # Include files as inputs to cause them to be built or downloaded,
         # even if they aren't top level targets
-        inputs = depset([top_level_cache_buster], transitive = [files]),
+        inputs = depset(additional_inputs, transitive = [files]),
         mnemonic = "XcodeProjOutputMap",
         progress_message = progress_message,
         outputs = [output],
@@ -113,7 +113,7 @@ fi
 
     return output
 
-def _write_map(*, ctx, name, files, top_level_cache_buster):
+def _write_map(*, ctx, name, files, additional_inputs):
     if files == None:
         files = depset()
 
@@ -121,7 +121,7 @@ def _write_map(*, ctx, name, files, top_level_cache_buster):
         ctx = ctx,
         name = name,
         files = files,
-        top_level_cache_buster = top_level_cache_buster,
+        additional_inputs = additional_inputs,
     )
     if len(files_list) == 1:
         # If only one shared output map was generated, we use it as is
@@ -148,7 +148,7 @@ cat "$@" > "$output"
         ],
         # Include files as inputs to cause them to be built or downloaded,
         # even if they aren't top level targets
-        inputs = depset([top_level_cache_buster], transitive = [files]),
+        inputs = depset(additional_inputs, transitive = [files]),
         mnemonic = "XcodeProjOutputMapMerge",
         progress_message = "Merging '{}-{}' output map".format(
             ctx.attr.name,

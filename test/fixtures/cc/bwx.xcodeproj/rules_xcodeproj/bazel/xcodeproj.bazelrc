@@ -1,16 +1,15 @@
 ### `--config=rules_xcodeproj`
 #
-# Used directly when doing a normal build, but it is also the base config of all
-# the `rules_xcodeproj_*` configs. Adjust this config if you want something to
-# apply to all builds (which should be most settings).
+# `rules_xcodeproj` is the base config of `rules_xcodeproj_*` configs.
+# Add to this config if you want something to apply to all builds (which should
+# be most settings), as the various configs (e.g. `rules_xcodeproj_indexbuild`)
+# don't inherit from `rules_xcodeproj_build`. This allows
+# `rules_xcodeproj_build` to strictly apply to the normal build.
 
 common:rules_xcodeproj --verbose_failures
 
 # We default to `dbg` since debugging is broken otherwise
 build:rules_xcodeproj --compilation_mode=dbg
-
-# Xcode builds shouldn't mess with the workspace's symlinks
-build:rules_xcodeproj --experimental_convenience_symlinks=ignore
 
 # Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow (we
 # have to unzip an archive on each build). If this doesn't work for your
@@ -36,10 +35,10 @@ build:rules_xcodeproj --features=relative_ast_path
 build:rules_xcodeproj --features=swift.cacheable_swiftmodules
 
 # `swift.index-while-building` passes `-index-store-path` to `swiftc`, which
-# generates index store data. We enable this globally, and don't disable it in
-# `rules_xcodeproj_indexbuild`, even though we only need it for the normal
-# build, because it's better to get cache hits between normal and Index Build
-# builds than it is to save some time in an uncached Index Build build. We only
+# generates index store data. We enable this globally, even though we only need
+# it for the normal build, since it's better to get cache hits between normal
+# and Index Build builds than it is to save some time in an uncached Index Store
+# build. It also makes it easier to disable in your `.bazelrc` files. We only
 # download the outputs in the normal build though, saving some bandwidth/disk
 # space.
 build:rules_xcodeproj --features=swift.index_while_building
@@ -63,9 +62,15 @@ info:rules_xcodeproj_info --config=rules_xcodeproj
 # Filter out extra noise
 info:rules_xcodeproj_info --ui_event_filters=-INFO,-WARNING
 
+### `--config=rules_xcodeproj_build`
+#
+# Used when doing a normal build.
+
+build:rules_xcodeproj_build --config=rules_xcodeproj
+
 ### `--config=rules_xcodeproj_indexbuild`
 #
-# Used when doing an Index Build.
+# Used when doing an Index build.
 
 build:rules_xcodeproj_indexbuild --config=rules_xcodeproj
 
@@ -87,15 +92,7 @@ build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable
 # we already have cache misses from the `swiftc` flags above
 build:rules_xcodeproj_swiftuipreviews --features=-swift.index_while_building
 
-### `--config=_rules_xcodeproj_build`
-#
-# Private implementation detail. Don't adjust this config, adjust
-# `rules_xcodeproj` instead. This config exists solely to allow project-level
-# configs to work correctly.
-
-build:_rules_xcodeproj_build --config=rules_xcodeproj
-
 ### Project specific configs
-%project_configs%
+
 # Import `xcodeproj.bazelrc` if it exists
 try-import %workspace%/xcodeproj.bazelrc

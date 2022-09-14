@@ -25,7 +25,8 @@ final class GeneratorTests: XCTestCase {
             extraFiles: [],
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: [],
-            forceBazelDependencies: false
+            forceBazelDependencies: false,
+            indexImport: "/tmp/index-import"
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
@@ -465,6 +466,7 @@ final class GeneratorTests: XCTestCase {
             let pbxProj: PBXProj
             let buildMode: BuildMode
             let forceBazelDependencies: Bool
+            let indexImport: FilePath
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
             let bazelConfig: String
@@ -479,6 +481,7 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             buildMode: BuildMode,
             forceBazelDependencies: Bool,
+            indexImport: FilePath,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             resolvedExternalRepositories: [(Path, Path)],
@@ -491,6 +494,7 @@ final class GeneratorTests: XCTestCase {
                 pbxProj: pbxProj,
                 buildMode: buildMode,
                 forceBazelDependencies: forceBazelDependencies,
+                indexImport: indexImport,
                 files: files,
                 filePathResolver: filePathResolver,
                 bazelConfig: bazelConfig,
@@ -506,6 +510,7 @@ final class GeneratorTests: XCTestCase {
                 pbxProj: pbxProj,
                 buildMode: buildMode,
                 forceBazelDependencies: project.forceBazelDependencies,
+                indexImport: project.indexImport,
                 files: files,
                 filePathResolver: filePathResolver,
                 bazelConfig: project.bazelConfig,
