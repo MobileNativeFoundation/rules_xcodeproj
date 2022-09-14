@@ -52,6 +52,17 @@ if [[ -s "$extra_flags_bazelrc" ]]; then
   bazelrcs+=("--bazelrc=$extra_flags_bazelrc")
 fi
 
+xcode_build_version=$(/usr/bin/xcodebuild -version | tail -1 | cut -d " " -f3)
+pre_config_flags=(
+  # Be explicit about our desired Xcode version
+  "--xcode_version=$xcode_build_version"
+
+  # Work around https://github.com/bazelbuild/bazel/issues/8902
+  # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
+  # re-evaluate the cc_toolchain for a different Xcode version
+  "--repo_env=USE_CLANG_CL=$xcode_build_version"
+)
+
 # Ensure that our top-level cache buster `new_local_repository` is valid
 mkdir -p /tmp/rules_xcodeproj
 date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
@@ -63,6 +74,7 @@ if [[ -z "${build_output_groups:-}" ]]; then
   "%bazel_path%" \
     "${bazelrcs[@]}" \
     run \
+    "${pre_config_flags[@]}" \
     "--config=%config%_generator" \
     %extra_generator_flags% \
     "%generator_label%" \
@@ -73,6 +85,7 @@ else
   "%bazel_path%" \
     "${bazelrcs[@]}" \
     build \
+    "${pre_config_flags[@]}" \
     "--config=_%config%_build" \
     --output_groups="$build_output_groups" \
     "%generator_label%"

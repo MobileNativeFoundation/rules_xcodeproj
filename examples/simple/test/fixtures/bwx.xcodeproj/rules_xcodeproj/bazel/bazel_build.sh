@@ -89,6 +89,15 @@ bazel_cmd=(
   "$BAZEL_PATH"
   "${bazelrcs[@]}"
 )
+pre_config_flags=(
+  # Be explicit about our desired Xcode version
+  "--xcode_version=$XCODE_PRODUCT_BUILD_VERSION"
+
+  # Work around https://github.com/bazelbuild/bazel/issues/8902
+  # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
+  # re-evaluate the cc_toolchain for a different Xcode version
+  "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
+)
 
 # Determine Bazel output_path
 
@@ -111,7 +120,11 @@ else
 fi
 
 output_path=$("${bazel_cmd[@]}" \
-  info --config="${BAZEL_CONFIG}_info" --color="$color" output_path)
+  info \
+  "${pre_config_flags[@]}" \
+  --config="${BAZEL_CONFIG}_info" \
+  --color="$color" \
+  output_path)
 execution_root="${output_path%/*}"
 
 # Create `bazel.lldbinit``
@@ -181,6 +194,7 @@ touch "$build_marker"
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \
+  "${pre_config_flags[@]}" \
   --config="$config" \
   --color=yes \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
