@@ -343,12 +343,12 @@ def _write_json_spec(
     extra_files = inputs.extra_files.to_list()
     extra_files.append((None, [parsed_file_path(ctx.build_file_path)]))
 
-    # Add unowned extra files.
+    # Add unowned extra files
     for file in ctx.attr.unowned_extra_files:
         for f in file.files.to_list():
             extra_files.append((None, [file_path(f)]))
 
-    # Add processed owned extra files.
+    # Add processed owned extra files
     for f in focused_targets_extra_files:
         extra_files.append(f)
 

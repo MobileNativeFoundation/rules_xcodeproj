@@ -7,8 +7,8 @@ load(":xcodeproj_targets.bzl", "CONFIG", "XCODEPROJ_TARGETS")
 xcodeproj(
     name = "xcodeproj",
     associated_extra_files = {
-        "//Lib": ["//Lib:README.md"],
         "//iOSApp/Source:iOSApp": ["//iOSApp:ownership.yaml"],
+        "//Lib": ["//Lib:README.md"],
     },
     build_mode = "xcode",
     config = CONFIG,
