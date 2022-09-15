@@ -37,8 +37,9 @@ def focus_schemes(schemes, focused_targets):
                     pre_actions = [
                         pre_action
                         for pre_action in build_action.pre_actions
-                        if (not pre_action.expand_variables_based_on
-                            or sets.contains(
+                        if (
+                            not pre_action.expand_variables_based_on or
+                            sets.contains(
                                 focused_targets,
                                 pre_action.expand_variables_based_on,
                             )
@@ -47,8 +48,9 @@ def focus_schemes(schemes, focused_targets):
                     post_actions = [
                         post_action
                         for post_action in build_action.post_actions
-                        if (not post_action.expand_variables_based_on
-                            or sets.contains(
+                        if (
+                            not post_action.expand_variables_based_on or
+                            sets.contains(
                                 focused_targets,
                                 post_action.expand_variables_based_on,
                             )
@@ -128,7 +130,8 @@ def unfocus_schemes(schemes, unfocused_targets):
                     pre_actions = [
                         pre_action
                         for pre_action in build_action.pre_actions
-                        if (not pre_action.expand_variables_based_on or
+                        if (
+                            not pre_action.expand_variables_based_on or
                             not sets.contains(
                                 unfocused_targets,
                                 pre_action.expand_variables_based_on,
@@ -138,7 +141,8 @@ def unfocus_schemes(schemes, unfocused_targets):
                     post_actions = [
                         post_action
                         for post_action in build_action.post_actions
-                        if (not post_action.expand_variables_based_on or
+                        if (
+                            not post_action.expand_variables_based_on or
                             not sets.contains(
                                 unfocused_targets,
                                 post_action.expand_variables_based_on,
@@ -235,7 +239,11 @@ def make_xcode_schemes(bazel_labels):
             return [
                 _pre_post_action(
                     script = action.script,
-                    expand_variables_based_on = bazel_labels.normalize(action.expand_variables_based_on) if action.expand_variables_based_on else None,
+                    expand_variables_based_on = (
+                        bazel_labels.normalize(
+                            action.expand_variables_based_on,
+                        ) if action.expand_variables_based_on else None
+                    ),
                     name = action.name,
                 )
                 for action in actions
@@ -277,14 +285,14 @@ def make_xcode_schemes(bazel_labels):
 
         Args:
             target: A target label as a `string` value.
-            args: Optional. A `list` of `string` arguments that should be passed to
-                the target when executed.
+            args: Optional. A `list` of `string` arguments that should be passed
+                to the target when executed.
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
-            working_directory: Optional. A `string` that will be set as the custom
-                 working directory in the Xcode scheme's launch action. Relative
-                 paths will be relative to the value of `target`'s
-                 `BUILT_PRODUCTS_DIR`, which is unique to it.
+            working_directory: Optional. A `string` that will be set as the
+                custom working directory in the Xcode scheme's launch action.
+                Relative paths will be relative to the value of `target`'s
+                `BUILT_PRODUCTS_DIR`, which is unique to it.
 
         Returns:
             A `struct` representing a launch action.
@@ -306,13 +314,14 @@ def make_xcode_schemes(bazel_labels):
 
         Args:
             targets: A `sequence` of target labels as `string` values.
-            args: Optional. A `list` of `string` arguments that should be passed to
-                the target when executed.
+            args: Optional. A `list` of `string` arguments that should be passed
+                to the target when executed.
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
-            expand_variables_based_on: Optional. One of the specified test target labels.
-                If no value is provided, one of the test targets will be selected.
-                If no expansion context is desired, use the `string` value `none`.
+            expand_variables_based_on: Optional. One of the specified test
+                target labels. If no value is provided, one of the test targets
+                will be selected. If no expansion context is desired, use the
+                `string` value `none`.
 
         Returns:
             A `struct` representing a test action.
