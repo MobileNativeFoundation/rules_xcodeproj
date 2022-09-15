@@ -254,9 +254,8 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
 
     tags = kwargs.pop("tags", [])
 
-    # The runner needs to ensure that the
-    # `rules_xcodeproj_top_level_cache_buster` repository is properly created,
-    # so don't allow people to accidentally try to build the generator.
+    # The generator should always have its config applied, so add `manual` to
+    # the tag to prevent accidental building with `//...`
     generator_tags = list(tags)
     if "manual" not in generator_tags:
         generator_tags.append("manual")

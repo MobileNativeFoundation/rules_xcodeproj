@@ -776,23 +776,22 @@ def _xcodeproj_impl(ctx):
         xcodeproj = xcodeproj,
     )
 
+    additional_output_map_inputs = [
+        ctx.file._top_level_cache_buster,
+        ctx.executable._index_import,
+    ]
+
     input_files_output_groups = input_files.to_output_groups_fields(
         ctx = ctx,
         inputs = inputs,
         additional_generated = additional_generated,
-        additional_output_map_inputs = [
-            ctx.file._top_level_cache_buster,
-            ctx.executable._index_import,
-        ],
+        additional_output_map_inputs = additional_output_map_inputs,
     )
     output_files_output_groups = output_files.to_output_groups_fields(
         ctx = ctx,
         outputs = outputs,
         additional_outputs = additional_outputs,
-        additional_output_map_inputs = [
-            ctx.file._top_level_cache_buster,
-            ctx.executable._index_import,
-        ],
+        additional_output_map_inputs = additional_output_map_inputs,
     )
 
     if build_mode == "xcode":

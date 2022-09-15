@@ -60,8 +60,10 @@ pre_config_flags=(
   "--repo_env=USE_CLANG_CL=$xcode_build_version"
 )
 
-# Ensure that our top-level cache buster `new_local_repository` is valid
+# Ensure that our top-level cache buster `override_repository` is valid
 mkdir -p /tmp/rules_xcodeproj
+touch /tmp/rules_xcodeproj/WORKSPACE
+echo 'exports_files(["top_level_cache_buster"])' > /tmp/rules_xcodeproj/BUILD
 date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
 
 if [[ -z "${build_output_groups:-}" ]]; then
