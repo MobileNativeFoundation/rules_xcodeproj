@@ -67,10 +67,11 @@ def _process_dep(dep):
     if not info.is_top_level_target:
         fail("""
 '{label}' is not a top-level target, but was listed in `top_level_targets`. \
-Only list top-level targets (e.g. binaries, apps, or tests) in \
-`top_level_targets`. Schemes and `focused_targets`/`unfocused_targets` can \
-refer to dependencies of targets listed in `top_level_targets`, and don't need \
-to be listed in `top_level_targets` themselves.
+Only list top-level targets (e.g. binaries, apps, tests, or distributable \
+frameworks) in `top_level_targets`. Schemes and \
+`focused_targets`/`unfocused_targets` can refer to dependencies of targets \
+listed in `top_level_targets`, and don't need to be listed in \
+`top_level_targets` themselves.
 
 If you feel this is an error, and `{kind}` targets should be recognized as \
 top-level targets, file a bug report here: \
