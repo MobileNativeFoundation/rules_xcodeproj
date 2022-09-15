@@ -126,9 +126,7 @@ targets.
             continue
         dest_target = unprocessed_targets[dest]
         dest_label = str(replacement_labels.get(dest, dest_target.label))
-        print("Processing", dest_label)
         if not sets.contains(focused_labels, dest_label):
-            print("Skipping", dest_label, focused_labels)
             continue
         src = src_ids[0]
         src_target = unprocessed_targets[src]
