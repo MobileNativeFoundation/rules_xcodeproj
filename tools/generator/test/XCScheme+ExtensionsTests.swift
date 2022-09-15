@@ -35,6 +35,43 @@ extension XCSchemeExtensionsTests {
         XCTAssertEqual(buildAction, expected)
     }
 
+    func test_BuildAction_init_preActions_postActions() throws {
+        // given
+        let preActions = [
+            prePostActionInfoWithNoTargetInfo,
+            prePostActionInfoWithTargetInfo,
+        ]
+        let postActions = [
+            prePostActionInfoWithNoTargetInfo,
+            prePostActionInfoWithTargetInfo,
+        ]
+        // swiftlint:disable:next force_try
+        let buildActionInfo = try! XCSchemeInfo.BuildActionInfo(
+            resolveHostsFor: .init(
+                targets: [libraryTargetInfo, anotherLibraryTargetInfo].map {
+                    .init(targetInfo: $0, buildFor: .allEnabled)
+                },
+                preActions: preActions,
+                postActions: postActions
+            ),
+            topLevelTargetInfos: []
+        )!
+
+        // when
+        let buildAction = try XCScheme.BuildAction(buildActionInfo: buildActionInfo)
+
+        // then
+        let expected = XCScheme.BuildAction(
+            buildActionEntries: try buildActionInfo.targets.buildActionEntries,
+            preActions: try preActions.map(\.executionAction) +
+                buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
+            postActions: postActions.map(\.executionAction),
+            parallelizeBuild: true,
+            buildImplicitDependencies: true
+        )
+        XCTAssertEqual(buildAction, expected)
+    }
+
     func test_BuildAction_init_buildModeXcode() throws {
         let buildAction = try XCScheme.BuildAction(buildActionInfo: buildActionInfo)
         let expected = XCScheme.BuildAction(
@@ -437,7 +474,16 @@ class XCSchemeExtensionsTests: XCTestCase {
         hostInfos: [],
         extensionPointIdentifiers: []
     )
-
+    lazy var prePostActionInfoWithNoTargetInfo = XCSchemeInfo.PrePostActionInfo(
+        name: "Run Script",
+        expandVariablesBasedOn: .none,
+        script: "script text"
+    )
+    lazy var prePostActionInfoWithTargetInfo = XCSchemeInfo.PrePostActionInfo(
+        name: "Run Script",
+        expandVariablesBasedOn: .target(libraryTargetInfo),
+        script: "script text"
+    )
     // swiftlint:disable:next force_try
     lazy var buildActionInfo = try! XCSchemeInfo.BuildActionInfo(
         resolveHostsFor: .init(

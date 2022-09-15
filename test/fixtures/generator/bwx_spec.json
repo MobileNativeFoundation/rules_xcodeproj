@@ -15,6 +15,20 @@
     "custom_xcode_schemes": [
         {
             "build_action": {
+                "post_actions": [
+                    {
+                        "expand_variables_based_on": "//tools/generator:generator",
+                        "name": "Example: Stop build time tracking...",
+                        "script": "echo 'Completed Building target: generator'"
+                    }
+                ],
+                "pre_actions": [
+                    {
+                        "expand_variables_based_on": "//tools/generator:generator",
+                        "name": "Example: Start build time tracking...",
+                        "script": "echo 'Building target: generator'"
+                    }
+                ],
                 "targets": [
                     {
                         "build_for": {
@@ -418,6 +432,7 @@
                     "tools/generator/test/XCSchemeInfo+BuildTargetInfoTests.swift",
                     "tools/generator/test/XCSchemeInfo+HostInfoTests.swift",
                     "tools/generator/test/XCSchemeInfo+LaunchActionInfoTests.swift",
+                    "tools/generator/test/XCSchemeInfo+PrePostActionInfoTests.swift",
                     "tools/generator/test/XCSchemeInfo+ProfileActionInfoTests.swift",
                     "tools/generator/test/XCSchemeInfo+TargetInfoTests.swift",
                     "tools/generator/test/XCSchemeInfo+TestActionInfoTests.swift",
@@ -773,6 +788,7 @@
                     "tools/generator/src/Generator/XCSchemeInfo+HostInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+LaunchActionInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+OtherActionInfos.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+PrePostActionInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+ProfileActionInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+TargetInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+TestActionInfo.swift",

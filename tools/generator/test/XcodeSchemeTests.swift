@@ -49,6 +49,17 @@ extension XcodeSchemeTests {
             try BazelLabel(labelString)
         ))
     }
+
+    func test_VariableExpansionContext_target() {
+        let targetLabel = BazelLabel("//path/to/target:target")
+        let context = XcodeScheme.VariableExpansionContext.target(targetLabel)
+        XCTAssertEqual(context.targetLabel, targetLabel)
+    }
+    
+    func test_VariableExpansionContext_noTarget() {
+        let context = XcodeScheme.VariableExpansionContext.none
+        XCTAssertNil(context.targetLabel)
+    }
 }
 
 // MARK: `TestAction.init` Tests

@@ -101,7 +101,11 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
 
             // Create a new build action which includes all of the referenced labels as build targets
             // We must do this after processing all of the other actions.
-            let newBuildAction = try XcodeScheme.BuildAction(targets: buildTargets.values)
+            let newBuildAction = try XcodeScheme.BuildAction(
+                targets: buildTargets.values,
+                preActions: buildAction?.preActions ?? [],
+                postActions: buildAction?.postActions ?? []
+            )
 
             return try .init(
                 name: name,
@@ -109,6 +113,33 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
                 testAction: testAction,
                 launchAction: launchAction,
                 profileAction: newProfileAction
+            )
+        }
+    }
+}
+
+// MARK: PrePostAction
+
+extension XcodeScheme {
+    struct PrePostAction: Equatable, Decodable {
+        let name: String
+        let expandVariablesBasedOn: VariableExpansionContext?
+        let script: String
+    }
+}
+
+extension Sequence where Element == XcodeScheme.PrePostAction {
+    func prePostActionInfos(
+        targetResolver: TargetResolver,
+        targetIDsByLabel: [BazelLabel: TargetID],
+        context: String
+    ) throws -> [XCSchemeInfo.PrePostActionInfo] {
+        try map {
+            try XCSchemeInfo.PrePostActionInfo(
+                prePostAction: $0,
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel,
+                context: context
             )
         }
     }
@@ -134,9 +165,13 @@ extension XcodeScheme {
 extension XcodeScheme {
     struct BuildAction: Equatable, Decodable {
         let targets: Set<XcodeScheme.BuildTarget>
+        let preActions: [PrePostAction]
+        let postActions: [PrePostAction]
 
         init<BuildTargets: Sequence>(
-            targets: BuildTargets
+            targets: BuildTargets,
+            preActions: [PrePostAction] = [],
+            postActions: [PrePostAction] = []
         ) throws where BuildTargets.Element == XcodeScheme.BuildTarget {
             let targetsByLabel = Dictionary(grouping: targets, by: \.label)
             guard !targetsByLabel.isEmpty else {
@@ -152,6 +187,8 @@ Found a duplicate label \(label) in provided `XcodeScheme.BuildTarget` values.
                 }
             }
             self.targets = Set(targets)
+            self.preActions = preActions
+            self.postActions = postActions
         }
     }
 }
@@ -162,6 +199,15 @@ extension XcodeScheme {
     enum VariableExpansionContext: Equatable, Decodable {
         case none
         case target(BazelLabel)
+    }
+}
+
+extension XcodeScheme.VariableExpansionContext {
+    var targetLabel: BazelLabel? {
+        guard case let .target(targetLabel) = self else {
+            return nil
+        }
+        return targetLabel
     }
 }
 

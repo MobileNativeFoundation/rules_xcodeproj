@@ -3,12 +3,17 @@ import XcodeProj
 extension XCSchemeInfo {
     struct BuildActionInfo: Equatable {
         let targets: Set<XCSchemeInfo.BuildTargetInfo>
+        let preActions: [PrePostActionInfo]
+        let postActions: [PrePostActionInfo]
 
         init<BuildTargetInfos: Sequence>(
-            targets: BuildTargetInfos
+            targets: BuildTargetInfos,
+            preActions: [PrePostActionInfo] = [],
+            postActions: [PrePostActionInfo] = []
         ) throws where BuildTargetInfos.Element == XCSchemeInfo.BuildTargetInfo {
             self.targets = Set(targets)
-
+            self.preActions = preActions
+            self.postActions = postActions
             guard !self.targets.isEmpty else {
                 throw PreconditionError(message: """
 An `XCSchemeInfo.BuildActionInfo` should have at least one `XCSchemeInfo.BuildTargetInfo`.
@@ -29,6 +34,7 @@ extension XCSchemeInfo.BuildActionInfo {
         guard let original = buildActionInfo else {
             return nil
         }
+
         try self.init(
             targets: original.targets.map { buildTarget in
                 .init(
@@ -38,7 +44,11 @@ extension XCSchemeInfo.BuildActionInfo {
                     ),
                     buildFor: buildTarget.buildFor
                 )
-            }
+            },
+            preActions: try original.preActions
+                .resolveHosts(topLevelTargetInfos: topLevelTargetInfos),
+            postActions: try original.postActions
+                .resolveHosts(topLevelTargetInfos: topLevelTargetInfos)
         )
     }
 }
@@ -65,6 +75,19 @@ extension XCSchemeInfo.BuildActionInfo {
                     buildFor: buildTarget.buildFor
                 )
             }
-        try self.init(targets: buildTargetInfos)
+
+        try self.init(
+            targets: buildTargetInfos,
+            preActions: buildAction.preActions.prePostActionInfos(
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel,
+                context: "creating a pre-action `PrePostActionInfo`"
+            ),
+            postActions: buildAction.postActions.prePostActionInfos(
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel,
+                context: "creating a post-action `PrePostActionInfo`"
+            )
+        )
     }
 }

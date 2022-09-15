@@ -9,6 +9,22 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
+               title = "Example: Start build time tracking..."
+               scriptText = "echo &apos;Building target: generator&apos;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "85C876DB90D51CD225023BB2"
+                     BuildableName = "generator"
+                     BlueprintName = "generator"
+                     ReferencedContainer = "container:test/fixtures/generator/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
                title = "Initialize Bazel Build Output Groups File"
                scriptText = "mkdir -p &quot;${SCHEME_TARGET_IDS_FILE%/*}&quot;&#10;if [[ -s &quot;$SCHEME_TARGET_IDS_FILE&quot; ]]; then&#10;    rm &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;fi&#10;">
                <EnvironmentBuildable>
@@ -55,6 +71,24 @@
             </ActionContent>
          </ExecutionAction>
       </PreActions>
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Example: Stop build time tracking..."
+               scriptText = "echo &apos;Completed Building target: generator&apos;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "85C876DB90D51CD225023BB2"
+                     BuildableName = "generator"
+                     BlueprintName = "generator"
+                     ReferencedContainer = "container:test/fixtures/generator/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "NO"

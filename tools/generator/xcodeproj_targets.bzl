@@ -37,12 +37,28 @@ def get_xcode_schemes():
             # The build_action in this example is not necessary for the scheme
             # to work. It is here to test that customized build_for settings
             # propagate properly.
-            build_action = xcode_schemes.build_action([
-                xcode_schemes.build_target(
-                    _APP_TARGET,
-                    xcode_schemes.build_for(archiving = True),
-                ),
-            ]),
+            build_action = xcode_schemes.build_action(
+                targets = [
+                    xcode_schemes.build_target(
+                        _APP_TARGET,
+                        xcode_schemes.build_for(archiving = True),
+                    ),
+                ],
+                pre_actions = [
+                    xcode_schemes.pre_post_action(
+                        script = "echo 'Building target: generator'",
+                        name = "Example: Start build time tracking...",
+                        expand_variables_based_on = _APP_TARGET,
+                    ),
+                ],
+                post_actions = [
+                    xcode_schemes.pre_post_action(
+                        script = "echo 'Completed Building target: generator'",
+                        name = "Example: Stop build time tracking...",
+                        expand_variables_based_on = _APP_TARGET,
+                    ),
+                ],
+            ),
             launch_action = xcode_schemes.launch_action(
                 _APP_TARGET,
                 args = [

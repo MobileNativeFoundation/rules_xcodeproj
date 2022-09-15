@@ -140,6 +140,8 @@ def _build_action_test(ctx):
             xcode_schemes.build_target(bazel_labels.normalize("//Sources/Bar")),
             xcode_schemes.build_target(bazel_labels.normalize("//Sources/Foo")),
         ],
+        pre_actions = [],
+        post_actions = [],
     )
     asserts.equals(env, expected, actual)
 
