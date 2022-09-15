@@ -6,17 +6,6 @@ load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 
 _DEFAULT_BUILD_CONFIGURATION_NAME = "Debug"
 
-def _focus_actions(build_targets, actions):
-    # TODO:
-    focused_actions = []
-    build_target_labels = [target.label for target in build_targets]
-    for action in actions:
-        if action.expand_variables_based_on == None:
-            focused_actions.append(action)
-        if action.expand_variables_based_on in build_target_labels:
-            focused_actions.append(action)
-    return focused_actions
-
 def focus_schemes(schemes, focused_targets):
     """Filter/adjust a `sequence` of schemes to only include focused targets.
 
@@ -45,8 +34,26 @@ def focus_schemes(schemes, focused_targets):
             if build_targets:
                 build_action = xcode_schemes_internal.build_action(
                     targets = build_targets,
-                    pre_actions = _focus_actions(build_targets, build_action.pre_actions),
-                    post_actions = _focus_actions(build_targets, build_action.post_actions),
+                    pre_actions = [
+                        pre_action
+                        for pre_action in build_action.pre_actions
+                        if (not pre_action.expand_variables_based_on
+                            or sets.contains(
+                                focused_targets,
+                                pre_action.expand_variables_based_on,
+                            )
+                        )
+                    ],
+                    post_actions = [
+                        post_action
+                        for post_action in build_action.post_actions
+                        if (not post_action.expand_variables_based_on
+                            or sets.contains(
+                                focused_targets,
+                                post_action.expand_variables_based_on,
+                            )
+                        )
+                    ],
                 )
             else:
                 build_action = None
@@ -118,8 +125,26 @@ def unfocus_schemes(schemes, unfocused_targets):
             if build_targets:
                 build_action = xcode_schemes_internal.build_action(
                     targets = build_targets,
-                    pre_actions = _focus_actions(build_targets, build_action.pre_actions),
-                    post_actions = _focus_actions(build_targets, build_action.post_actions),
+                    pre_actions = [
+                        pre_action
+                        for pre_action in build_action.pre_actions
+                        if (not pre_action.expand_variables_based_on or
+                            not sets.contains(
+                                unfocused_targets,
+                                pre_action.expand_variables_based_on,
+                            )
+                        )
+                    ],
+                    post_actions = [
+                        post_action
+                        for post_action in build_action.post_actions
+                        if (not post_action.expand_variables_based_on or
+                            not sets.contains(
+                                unfocused_targets,
+                                post_action.expand_variables_based_on,
+                            )
+                        )
+                    ],
                 )
             else:
                 build_action = None
