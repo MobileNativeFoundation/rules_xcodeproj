@@ -212,10 +212,16 @@ swift_library(
         ignore_version_differences = ignore_version_differences,
     )
 
-    native.new_local_repository(
+    _cache_buster_repository(
         name = "rules_xcodeproj_top_level_cache_buster",
-        build_file_content = """\
-exports_files(["top_level_cache_buster"])
-""",
-        path = "/tmp/rules_xcodeproj",
     )
+
+def _cache_buster_repository_impl(repository_ctx):
+    repository_ctx.file("BUILD", """\
+exports_files(["top_level_cache_buster"])
+""")
+    repository_ctx.file("top_level_cache_buster", "")
+
+_cache_buster_repository = repository_rule(
+    implementation = _cache_buster_repository_impl,
+)

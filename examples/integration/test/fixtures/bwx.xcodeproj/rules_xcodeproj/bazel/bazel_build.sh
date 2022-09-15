@@ -185,7 +185,10 @@ else
   config="_${BAZEL_CONFIG}_build"
 fi
 
+# Ensure that our top-level cache buster `override_repository` is valid
 mkdir -p /tmp/rules_xcodeproj
+touch /tmp/rules_xcodeproj/WORKSPACE
+echo 'exports_files(["top_level_cache_buster"])' > /tmp/rules_xcodeproj/BUILD
 date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
 
 build_marker="$OBJROOT/bazel_build_start"
