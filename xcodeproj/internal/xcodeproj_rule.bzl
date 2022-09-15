@@ -107,6 +107,34 @@ Are you using an `alias`? `focused_targets` requires labels of the actual \
 targets.
 """.format(invalid_focused_targets))
 
+    potential_target_merges = depset(
+        transitive = [info.potential_target_merges for info in infos],
+    ).to_list()
+
+    target_merge_dests = {}
+    for merge in potential_target_merges:
+        src_target = unprocessed_targets[merge.src.id]
+        dest_target = unprocessed_targets[merge.dest]
+        if (sets.contains(unfocused_labels, str(src_target.label)) or
+            sets.contains(unfocused_labels, str(dest_target.label))):
+            continue
+        target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
+
+    for dest, src_ids in target_merge_dests.items():
+        if len(src_ids) > 1:
+            # We can only merge targets with a single library dependency
+            continue
+        dest_target = unprocessed_targets[dest]
+        dest_label = str(replacement_labels.get(dest, dest_target.label))
+        print("Processing", dest_label)
+        if not sets.contains(focused_labels, dest_label):
+            print("Skipping", dest_label, focused_labels)
+            continue
+        src = src_ids[0]
+        src_target = unprocessed_targets[src]
+        src_label = str(replacement_labels.get(src, src_target.label))
+        sets.insert(focused_labels, src_label)
+
     unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
     has_focused_labels = sets.length(focused_labels) > 0
 
@@ -252,48 +280,21 @@ targets: {}
             unfocused_targets = unfocused_targets,
         )
 
-    return (
-        targets,
-        target_dtos,
-        additional_generated,
-        additional_outputs,
-        has_focused_labels,
-        focused_targets_extra_files,
-    )
-
-# Actions
-
-def _write_json_spec(
-        *,
-        ctx,
-        project_name,
-        config,
-        configuration,
-        targets,
-        target_dtos,
-        has_focused_targets,
-        inputs,
-        infos,
-        focused_targets_extra_files):
-    # `replacement_labels`
-    replacement_labels = {
-        r.id: str(r.label)
-        for r in depset(
-            transitive = [info.replacement_labels for info in infos],
-        ).to_list()
-        if r.id in targets
-    }
-
-    # `target_merges`
-    potential_target_merges = depset(
-        transitive = [info.potential_target_merges for info in infos],
-    ).to_list()
-
-    target_merge_dests = {}
-    for merge in potential_target_merges:
-        if merge.src.id not in targets or merge.dest not in targets:
-            continue
-        target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
+    # Filter `target_merge_dests` after processing focused targets
+    if has_unfocused_targets:
+        for dest, src_ids in target_merge_dests.items():
+            if dest not in targets:
+                target_merge_dests.pop(dest)
+                continue
+            new_srcs_ids = [
+                id
+                for id in src_ids
+                if id in targets
+            ]
+            if not new_srcs_ids:
+                target_merge_dests.pop(dest)
+                continue
+            target_merge_dests[dest] = new_srcs_ids
 
     target_merges = {}
     target_merge_srcs_by_label = {}
@@ -328,6 +329,40 @@ def _write_json_spec(
             # target consolidation issues
             for id in target_merge_srcs_by_label[src_target.label]:
                 target_merges.pop(id, None)
+
+    return (
+        targets,
+        target_dtos,
+        target_merges,
+        additional_generated,
+        additional_outputs,
+        has_focused_labels,
+        focused_targets_extra_files,
+    )
+
+# Actions
+
+def _write_json_spec(
+        *,
+        ctx,
+        project_name,
+        config,
+        configuration,
+        targets,
+        target_dtos,
+        target_merges,
+        has_focused_targets,
+        inputs,
+        infos,
+        focused_targets_extra_files):
+    # `replacement_labels`
+    replacement_labels = {
+        r.id: str(r.label)
+        for r in depset(
+            transitive = [info.replacement_labels for info in infos],
+        ).to_list()
+        if r.id in targets
+    }
 
     # `target_hosts`
     hosted_targets = depset(
@@ -714,6 +749,7 @@ def _xcodeproj_impl(ctx):
     (
         targets,
         target_dtos,
+        target_merges,
         additional_generated,
         additional_outputs,
         has_focused_targets,
@@ -745,6 +781,7 @@ def _xcodeproj_impl(ctx):
         configuration = configuration,
         targets = targets,
         target_dtos = target_dtos,
+        target_merges = target_merges,
         has_focused_targets = has_focused_targets,
         inputs = inputs,
         infos = infos,
