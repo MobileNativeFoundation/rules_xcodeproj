@@ -57,11 +57,13 @@ def _target_info_fields(
         extension_infoplists,
         hosted_targets,
         inputs,
+        is_top_level_target,
         lldb_context,
         outputs,
         potential_target_merges,
         replacement_labels,
         resource_bundle_informations,
+        rule_kind,
         search_paths,
         target_type,
         transitive_dependencies,
@@ -79,6 +81,8 @@ def _target_info_fields(
             field.
         hosted_targets: Maps to the `XcodeProjInfo.hosted_targets` field.
         inputs: Maps to the `XcodeProjInfo.inputs` field.
+        is_top_level_target: Maps to the `XcodeProjInfo.is_top_level_target`
+            field.
         lldb_context: Maps to the `XcodeProjInfo.lldb_context` field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
@@ -87,6 +91,7 @@ def _target_info_fields(
             field.
         resource_bundle_informations: Maps to the
             `XcodeProjInfo.resource_bundle_informations` field.
+        rule_kind: Maps to the `XcodeProjInfo.rule_kind` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
         transitive_dependencies: Maps to the
@@ -103,11 +108,13 @@ def _target_info_fields(
         *   `generated_inputs`
         *   `hosted_targets`
         *   `inputs`
+        *   `is_top_level_target`
         *   `lldb_context`
         *   `outputs`
         *   `potential_target_merges`
         *   `replacement_labels`
         *   `resource_bundle_informations`
+        *   `rule_kind`
         *   `search_paths`
         *   `target_type`
         *   `transitive_dependencies`
@@ -120,11 +127,13 @@ def _target_info_fields(
         "extension_infoplists": extension_infoplists,
         "hosted_targets": hosted_targets,
         "inputs": inputs,
+        "is_top_level_target": is_top_level_target,
         "lldb_context": lldb_context,
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
         "replacement_labels": replacement_labels,
         "resource_bundle_informations": resource_bundle_informations,
+        "rule_kind": rule_kind,
         "search_paths": search_paths,
         "target_type": target_type,
         "transitive_dependencies": transitive_dependencies,
@@ -132,7 +141,7 @@ def _target_info_fields(
         "xcode_targets": xcode_targets,
     }
 
-def _skip_target(*, target, deps, deps_attrs, transitive_infos):
+def _skip_target(*, target, rule_kind, deps, deps_attrs, transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
@@ -140,6 +149,7 @@ def _skip_target(*, target, deps, deps_attrs, transitive_infos):
 
     Args:
         target: The `Target` to skip.
+        rule_kind: `ctx.rule.kind`.
         deps: `Target`s collected from `ctx.attr.deps`.
         deps_attrs: A sequence of attribute names to collect `Target`s from for
             `deps`-like attributes.
@@ -187,6 +197,7 @@ def _skip_target(*, target, deps, deps_attrs, transitive_infos):
         inputs = input_files.merge(
             transitive_infos = transitive_infos,
         ),
+        is_top_level_target = True,
         lldb_context = lldb_contexts.collect(
             id = None,
             is_swift = False,
@@ -225,6 +236,7 @@ def _skip_target(*, target, deps, deps_attrs, transitive_infos):
                 for _, info in transitive_infos
             ],
         ),
+        rule_kind = rule_kind,
         search_paths = search_paths,
         target_type = target_type.compile,
         transitive_dependencies = transitive_dependencies,
@@ -319,6 +331,7 @@ def _create_xcodeprojinfo(
             ],
         ),
         inputs = processed_target.inputs,
+        is_top_level_target = processed_target.is_top_level_target,
         lldb_context = processed_target.lldb_context,
         outputs = processed_target.outputs,
         potential_target_merges = depset(
@@ -351,6 +364,7 @@ def _create_xcodeprojinfo(
                     ))
             ],
         ),
+        rule_kind = ctx.rule.kind,
         search_paths = processed_target.search_paths,
         target_type = processed_target.automatic_target_info.target_type,
         transitive_dependencies = processed_target.transitive_dependencies,
@@ -389,6 +403,7 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(
             target = target,
+            rule_kind = ctx.rule.kind,
             deps = [
                 dep
                 for attr in automatic_target_info.deps

@@ -102,6 +102,13 @@ this target. It also includes the two extra fields that collect all of the
 generated `Files` and all of the `Files` that should be added to the Xcode
 project, but are not associated with any targets.
 """,
+        "is_top_level_target": """\
+Whether this target is a top-level target. Top-level targets are targets that
+are valid to be listed in the `top_level_targets` attribute of `xcodeproj`.
+In particular, this means that they aren't library targets, which when
+specified in `top_level_targets` cause duplicate mis-configured targets to be
+added to the project.
+""",
         "lldb_context": "A value returned from `lldb_context.collect`.",
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
@@ -121,6 +128,7 @@ label in the `label` field.
 A `depset` of `struct`s with information used to generate resource bundles,
 which couldn't be collected from `AppleResourceInfo` alone.
 """,
+        "rule_kind": "The ctx.rule.kind of the target.",
         "search_paths": """\
 A value returned from `_process_search_paths`, that contains the search paths
 needed by this target. These search paths should be added to the search paths of

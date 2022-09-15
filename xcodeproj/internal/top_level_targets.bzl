@@ -452,6 +452,7 @@ def process_top_level_target(
         extension_infoplists = extension_infoplists,
         hosted_targets = hosted_targets,
         inputs = inputs,
+        is_top_level_target = True,
         lldb_context = lldb_context,
         outputs = outputs,
         potential_target_merges = potential_target_merges,

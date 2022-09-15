@@ -32,12 +32,9 @@ of view of Xcode, they will be separate Xcode targets.
 <img src="https://user-images.githubusercontent.com/158658/189945581-6cf0908b-e8a3-4e97-9440-93f42b5e2767.png" height="86">
 
 If you have multiple _unexpected_ versions of some targets, usually with a
-hash after their name, then this unexpected. Check to make sure you only list
-binaries, apps, or tests in `top_level_targets`. Listing libraries can lead
-to these duplicated mis-configured targets. If you have custom schemes, they can
-still reference targets that are dependencies of the targets listed in
-`top_level_targets`, you don't need to re-list this targets individually in
-`top_level_targets`.
+hash after their name, then this unexpected. Check to see if your build is
+adding multiple configurations of the same targets to the build graph. If you
+need help, reach out to us.
 
 ## My Xcode project seems to be of of sync with my Bazel project. What should I do?
 
