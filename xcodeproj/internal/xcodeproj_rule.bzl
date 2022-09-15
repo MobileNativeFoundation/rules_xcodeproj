@@ -76,10 +76,13 @@ def _process_targets(
         ).to_list(),
     )
 
-    targets_list = depset(
-        resource_bundle_xcode_targets,
-        transitive = [info.xcode_targets for info in infos],
-    ).to_list()
+    unprocessed_targets = {
+        xcode_target.id: xcode_target
+        for xcode_target in depset(
+            resource_bundle_xcode_targets,
+            transitive = [info.xcode_targets for info in infos],
+        ).to_list()
+    }
 
     replacement_labels = {
         r.id: r.label
@@ -89,7 +92,7 @@ def _process_targets(
     }
     targets_labels = sets.make([
         str(replacement_labels.get(t.id, t.label))
-        for t in targets_list
+        for t in unprocessed_targets.values()
     ])
 
     invalid_focused_targets = sets.to_list(
@@ -110,7 +113,7 @@ targets.
     focused_targets = []
     unfocused_targets = {}
     infoplists = {}
-    for xcode_target in targets_list:
+    for xcode_target in unprocessed_targets.values():
         label = replacement_labels.get(
             xcode_target.id,
             xcode_target.label,
@@ -130,10 +133,7 @@ targets.
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
-        targets = {
-            xcode_target.id: xcode_target
-            for xcode_target in targets_list
-        },
+        targets = unprocessed_targets,
         focused_targets = focused_targets,
         unfocused_libraries = unfocused_libraries,
         unfocused_targets = unfocused_targets,
