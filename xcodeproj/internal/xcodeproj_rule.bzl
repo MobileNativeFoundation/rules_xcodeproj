@@ -61,6 +61,25 @@ def _calculate_unfocused_dependencies(
         ).to_list()
     }
 
+def _process_dep(dep):
+    info = dep[XcodeProjInfo]
+
+    if not info.is_top_level_target:
+        fail("""
+'{label}' is not a top-level target, but was listed in `top_level_targets`. \
+Only list top-level targets (e.g. binaries, apps, tests, or distributable \
+frameworks) in `top_level_targets`. Schemes and \
+`focused_targets`/`unfocused_targets` can refer to dependencies of targets \
+listed in `top_level_targets`, and don't need to be listed in \
+`top_level_targets` themselves.
+
+If you feel this is an error, and `{kind}` targets should be recognized as \
+top-level targets, file a bug report here: \
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
+""".format(label = dep.label, kind = info.rule_kind))
+
+    return info
+
 def _process_targets(
         *,
         build_mode,
@@ -723,7 +742,7 @@ def _xcodeproj_impl(ctx):
     build_mode = ctx.attr.build_mode
     project_name = ctx.attr.project_name
     infos = [
-        dep[XcodeProjInfo]
+        _process_dep(dep)
         for dep in (
             ctx.attr.top_level_simulator_targets +
             ctx.attr.top_level_device_targets
