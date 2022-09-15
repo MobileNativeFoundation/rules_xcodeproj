@@ -624,6 +624,9 @@ under {}""".format(opt, package_bin_dir))
         if opt == "-emit-objc-header-path":
             # Handled in `previous_opt` check above
             return True
+        if opt.startswith("-strict-concurrency="):
+            build_settings["SWIFT_STRICT_CONCURRENCY"] = opt[20:]
+            return True
         if opt.startswith("-D"):
             defines.append(opt[2:])
             return True
