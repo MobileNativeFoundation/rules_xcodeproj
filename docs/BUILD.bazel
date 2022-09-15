@@ -51,6 +51,7 @@ diff_test(
     failure_message = "\nPlease update the docs by running\n    bazel run //docs:update",
     file1 = "bazel.generated.md",
     file2 = "bazel.md",
+    tags = ["manual"],
 )
 
 # Updating
