@@ -5,7 +5,7 @@
 To use these rules and macros in your `BUILD` files, `load` them from
 `xcodeproj/xcodeproj.bzl`.
 
-For example, to use the `xcodeproj` rule, you would need to use
+For example, to use the [`xcodeproj`](#xcodeproj) rule, you would need to use
 this `load` statement:
 
 ```starlark
