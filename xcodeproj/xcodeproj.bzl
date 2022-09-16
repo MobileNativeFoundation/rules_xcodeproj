@@ -1,32 +1,45 @@
-"""Public rules, macros, and libraries."""
+""""""
 
-load(
-    "//xcodeproj/internal:top_level_target.bzl",
-    _top_level_target = "top_level_target",
-)
-load(
-    "//xcodeproj/internal:providers.bzl",
-    _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
-    _XcodeProjInfo = "XcodeProjInfo",
-)
-load(
-    "//xcodeproj/internal:xcode_provisioning_profile.bzl",
-    _xcode_provisioning_profile = "xcode_provisioning_profile",
-)
-load("//xcodeproj/internal:xcode_schemes.bzl", _xcode_schemes = "xcode_schemes")
-load(
-    "//xcodeproj/internal:xcodeproj_macro.bzl",
-    _xcodeproj = "xcodeproj",
-)
+# TODO: Remove these by the 1.0 release
 
-# Re-exporting providers
-XcodeProjAutomaticTargetProcessingInfo = _XcodeProjAutomaticTargetProcessingInfo
-XcodeProjInfo = _XcodeProjInfo
+def _moved(name, type):
+    fail("""\
+The `{name}` {type} has moved to \
+`@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl`. Please update \
+your `load` statements to use the new path.
+""".format(name = name, type = type))
 
-# Re-exporting rules
-top_level_target = _top_level_target
-xcodeproj = _xcodeproj
-xcode_provisioning_profile = _xcode_provisioning_profile
+# buildifier: disable=unused-variable
+def top_level_target(**kwargs):
+    _moved(name = "top_level_target", type = "function")
 
-# Re-exporting APIs
-xcode_schemes = _xcode_schemes
+# buildifier: disable=unused-variable
+def xcodeproj(**kwargs):
+    _moved(name = "xcodeproj", type = "rule")
+
+# buildifier: disable=unused-variable
+def xcode_provisioning_profile(**kwargs):
+    _moved(name = "xcode_provisioning_profile", type = "rule")
+
+# buildifier: disable=unused-variable
+def XcodeProjAutomaticTargetProcessingInfo(**kwargs):
+    _moved(name = "XcodeProjAutomaticTargetProcessingInfo", type = "provider")
+
+# buildifier: disable=unused-variable
+def XcodeProjInfo(**kwargs):
+    _moved(name = "XcodeProjInfo", type = "provider")
+
+# buildifier: disable=unused-variable
+def _xcode_schemes_function(**kwargs):
+    _moved(name = "xcode_schemes", type = "module")
+
+xcode_schemes = struct(
+    scheme = _xcode_schemes_function,
+    build_action = _xcode_schemes_function,
+    build_target = _xcode_schemes_function,
+    build_for = _xcode_schemes_function,
+    build_for_values = _xcode_schemes_function,
+    launch_action = _xcode_schemes_function,
+    test_action = _xcode_schemes_function,
+    pre_post_action = _xcode_schemes_function,
+)

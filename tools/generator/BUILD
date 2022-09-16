@@ -8,7 +8,7 @@ load(
     "swift_binary",
     "swift_library",
 )
-load("//xcodeproj:xcodeproj.bzl", "xcodeproj")
+load("//xcodeproj:defs.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
     "SCHEME_AUTOGENERATION_MODE",

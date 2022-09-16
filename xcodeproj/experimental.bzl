@@ -14,6 +14,6 @@ device_and_simulator = _device_and_simulator
 def xcode_provisioning_profile(**kwargs):
     fail("""\
 The `xcode_provisioning_profile` rule has moved to \
-`@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl`. Please \
-update your `load` statements to use the new path.
+`@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl`. Please update \
+your `load` statements to use the new path.
 """)

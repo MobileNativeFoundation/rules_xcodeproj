@@ -3,14 +3,14 @@
 ### Usage
 
 To use these rules and macros in your `BUILD` files, `load` them from
-`xcodeproj/xcodeproj.bzl`.
+`xcodeproj/defs.bzl`.
 
 For example, to use the [`xcodeproj`](#xcodeproj) rule, you would need to use
 this `load` statement:
 
 ```starlark
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcodeproj",
 )
 ```
@@ -125,11 +125,11 @@ A `struct` containing fields for the provided arguments.
 # Custom Xcode schemes
 
 To use these functions, `load` the `xcode_schemes` module from
-`xcodeproj/xcodeproj.bzl`:
+`xcodeproj/defs.bzl`:
 
 ```starlark
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcode_schemes",
 )
 ```

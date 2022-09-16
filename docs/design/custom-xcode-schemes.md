@@ -68,7 +68,7 @@ targets, `//Sources/Foo` and `//Tests/FooTests`.
 
 ```python
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcode_schemes",
     "xcodeproj",
 )
@@ -111,7 +111,7 @@ to the mix.
 #   //Sources/AppUITests = ios_ui_test
 
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcode_schemes",
     "xcodeproj",
 )
@@ -159,7 +159,7 @@ accomplished by specifying them as parameters to the
 #   //Sources/AppUITests = ios_ui_test
 
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcode_schemes",
     "xcodeproj",
 )
@@ -400,7 +400,7 @@ following shows an example.
 
 ```python
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcode_schemes",
     "xcodeproj",
 )
@@ -437,7 +437,7 @@ targets.
 #   //Sources/AppUITests = ios_ui_test
 
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcode_schemes",
     "xcodeproj",
 )

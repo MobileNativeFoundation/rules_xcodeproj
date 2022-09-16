@@ -24,13 +24,6 @@ string_flag(
     visibility = ["//visibility:public"],
 )
 
-# Required for stardoc integration
-
-exports_files([
-    "experimental.doc.bzl",
-    "xcodeproj.bzl",
-])
-
 # Release
 
 filegroup(

@@ -1,5 +1,5 @@
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcodeproj",
 )
 load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
