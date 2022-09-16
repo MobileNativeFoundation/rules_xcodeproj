@@ -15,7 +15,7 @@ exports_files(["README.md"])
 xcodeproj(
     name = "xcodeproj",
     associated_extra_files = ASSOCIATED_EXTRA_FILES,
-    build_mode = "xcode",
+    build_mode = "bazel",
     config = CONFIG,
     extra_files = EXTRA_FILES,
     project_name = "Integration",
