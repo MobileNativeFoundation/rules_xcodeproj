@@ -1,6 +1,6 @@
 """Exposes targets used by `xcodeproj` to allow use in fixture tests."""
 
-load("//xcodeproj:xcodeproj.bzl", "xcode_schemes")
+load("//xcodeproj:defs.bzl", "xcode_schemes")
 
 UNFOCUSED_TARGETS = [
     "@com_github_tadija_aexml//:AEXML",
