@@ -13,9 +13,15 @@ swift_binary(
     visibility = ["//visibility:public"],
 )
 
+filegroup(
+    name = "pre_build",
+    srcs = ["pre build.sh"],
+)
+
 xcodeproj(
     name = "xcodeproj",
     build_mode = "bazel",
+    pre_build = ":pre_build",
     project_name = "Simple",
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,

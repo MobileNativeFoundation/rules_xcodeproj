@@ -29,6 +29,8 @@ extension Generator {
         bazelConfig: String,
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String,
+        preBuildScript: FilePath?,
+        postBuildScript: FilePath?,
         consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
         guard needsBazelDependenciesTarget(
@@ -104,13 +106,41 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
                 filePathResolver: filePathResolver
             )
 
+        var buildPhases = [
+            bazelBuildScript,
+            createLLDBSettingsModuleScript,
+        ]
+
+        if let preBuildScript = preBuildScript {
+            let scriptPath = try filePathResolver
+                .resolve(preBuildScript,
+                         forceAbsoluteProjectPath: true,
+                         mode: .script).string
+            let script = try createBuildScript(
+                in: pbxProj,
+                name: "Pre-build",
+                scriptPath: scriptPath
+            )
+            buildPhases.insert(script, at: 0)
+        }
+
+        if let postBuildScript = postBuildScript {
+            let scriptPath = try filePathResolver
+                .resolve(postBuildScript,
+                         forceAbsoluteProjectPath: true,
+                         mode: .script).string
+            let script = try createBuildScript(
+                in: pbxProj,
+                name: "Post-build",
+                scriptPath: scriptPath
+            )
+            buildPhases.append(script)
+        }
+
         let pbxTarget = PBXAggregateTarget(
             name: "BazelDependencies",
             buildConfigurationList: configurationList,
-            buildPhases: [
-                bazelBuildScript,
-                createLLDBSettingsModuleScript,
-            ],
+            buildPhases: buildPhases,
             productName: "BazelDependencies"
         )
         pbxProj.add(object: pbxTarget)
@@ -191,6 +221,21 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
 
 """#,
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
+    private static func createBuildScript(
+        in pbxProj: PBXProj,
+        name: String,
+        scriptPath: String
+    ) throws -> PBXShellScriptBuildPhase {
+        let script = PBXShellScriptBuildPhase(
+            name: "\(name) Run Script",
+            shellScript: scriptPath.quoted,
             showEnvVarsInLog: false
         )
         pbxProj.add(object: script)
