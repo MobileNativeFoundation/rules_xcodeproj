@@ -448,7 +448,7 @@ Resource bundle product reference with key \(key) not found in `products`
         files: [FilePath: File]
     ) throws -> PBXCopyFilesBuildPhase? {
         guard !buildMode.usesBazelModeBuildScripts,
-            productType.isBundle,
+            productType.embedsFrameworks,
             !frameworks.isEmpty
         else {
             return nil

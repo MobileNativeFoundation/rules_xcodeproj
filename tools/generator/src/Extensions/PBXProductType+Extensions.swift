@@ -188,6 +188,35 @@ extension PBXProductType {
         }
     }
 
+    var embedsFrameworks: Bool {
+        switch self {
+        case .application,
+             .bundle,
+             .unitTestBundle,
+             .uiTestBundle,
+             .appExtension,
+             .extensionKitExtension,
+             .watchApp,
+             .watch2App,
+             .watch2AppContainer,
+             .watchExtension,
+             .watch2Extension,
+             .tvExtension,
+             .messagesApplication,
+             .messagesExtension,
+             .stickerPack,
+             .xpcService,
+             .ocUnitTestBundle,
+             .xcodeExtension,
+             .instrumentsPackage,
+             .intentsServiceExtension,
+             .onDemandInstallCapableApplication:
+            return true
+        default:
+            return false
+        }
+    }
+
     var fileType: String? {
         switch self {
         case .application: return "wrapper.application"
