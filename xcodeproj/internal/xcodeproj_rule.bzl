@@ -441,7 +441,6 @@ def _write_json_spec(
 "index_import":{index_import},\
 "label":"{label}",\
 "name":"{name}",\
-"post_build_script":{post_build_script},\
 "pre_build_script":{pre_build_script},\
 "replacement_labels":{replacement_labels},\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
@@ -464,9 +463,6 @@ def _write_json_spec(
         ),
         label = ctx.label,
         name = project_name,
-        post_build_script = json.encode(file_path_to_dto(
-            file_path(ctx.file.post_build),
-        )),
         pre_build_script = json.encode(file_path_to_dto(
             file_path(ctx.file.pre_build),
         )),
@@ -932,9 +928,6 @@ An optional dictionary of files to be added to the project. The key represents
 the file and the value is the label of the target it should be associated with.
 These files won't be added to the project if the target is unfocused.
 """,
-        ),
-        "post_build": attr.label(
-            allow_single_file = True,
         ),
         "pre_build": attr.label(
             allow_single_file = True,

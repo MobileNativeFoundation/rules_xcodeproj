@@ -30,7 +30,6 @@ extension Generator {
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String,
         preBuildScript: FilePath?,
-        postBuildScript: FilePath?,
         consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
         guard needsBazelDependenciesTarget(
@@ -122,19 +121,6 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
                 scriptPath: scriptPath
             )
             buildPhases.insert(script, at: 0)
-        }
-
-        if let postBuildScript = postBuildScript {
-            let scriptPath = try filePathResolver
-                .resolve(postBuildScript,
-                         forceAbsoluteProjectPath: true,
-                         mode: .script).string
-            let script = try createBuildScript(
-                in: pbxProj,
-                name: "Post-build",
-                scriptPath: scriptPath
-            )
-            buildPhases.append(script)
         }
 
         let pbxTarget = PBXAggregateTarget(

@@ -134,7 +134,6 @@ class Generator {
             project.label,
             project.configuration,
             project.preBuildScript,
-            project.postBuildScript,
             consolidatedTargets
         )
         let pbxTargets = try environment.addTargets(
