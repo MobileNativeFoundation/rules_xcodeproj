@@ -113,9 +113,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 
         if let preBuildScript = preBuildScript {
             let scriptPath = try filePathResolver
-                .resolve(preBuildScript,
-                         forceAbsoluteProjectPath: true,
-                         mode: .script).string
+                .resolve(preBuildScript, mode: .script).string
             let script = try createBuildScript(
                 in: pbxProj,
                 name: "Pre-build",
