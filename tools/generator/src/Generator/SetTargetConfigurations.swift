@@ -358,11 +358,13 @@ $(CONFIGURATION_BUILD_DIR)
             )
         }
         
-        // Xcode 14 defaults this value to YES, and iOS bundles do not need to be signed
-        if target.product.type == .bundle {
-            buildSettings["CODE_SIGNING_ALLOWED"] = false
+        if buildMode == .xcode && target.platform.os == .iOS {
+            // Xcode 14 defaults this value to YES, and iOS bundles do not need to be signed
+            if target.product.type == .bundle {
+                buildSettings["CODE_SIGNING_ALLOWED"] = false
+            }
         }
-
+        
         // Set VFS overlays
 
         if hasBazelDependencies {
