@@ -36,7 +36,7 @@ def _process_compiler_opts_test_impl(ctx):
         "GCC_OPTIMIZATION_LEVEL": "0",
         "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-        "SWIFT_VERSION": "5",
+        "SWIFT_VERSION": "5.0",
     }
     expected_build_settings.update(ctx.attr.expected_build_settings)
 
