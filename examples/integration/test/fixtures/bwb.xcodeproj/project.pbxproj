@@ -493,6 +493,7 @@
 		0153118F47B86FB396BCC5B1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		01DF3D4FE1F5937FDFD980A5 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		024E194287BFAE0BA6D08AD1 /* libprivate_swift_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_swift_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03076FA0CBC1AD0B85C49CBF /* AltIcon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AltIcon-60@2x.png"; sourceTree = "<group>"; };
 		05C750379D432978E48C6C4D /* export_symbol_list.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = export_symbol_list.exp; sourceTree = "<group>"; };
 		092A136C930726E4493139F3 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		0A28B0C57116CD7C30CE38DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -655,6 +656,7 @@
 		D75394279554A62DCDF2F00B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D801D9858F9C634482392981 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D964635EDA0229002695980A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DB523F21B928894B3F187719 /* AltIcon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AltIcon-60@3x.png"; sourceTree = "<group>"; };
 		DBF917653F9E4EBBEDB863FD /* Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
 		DE0CE7943AF5979A7C719F96 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DEC59E4B64F13412F8B7EFF1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -805,6 +807,14 @@
 				A5203621714586D83119CF82 /* Info.plist */,
 			);
 			path = watchOSApp;
+			sourceTree = "<group>";
+		};
+		0BD88058F52CBF8FAA1FA93F /* AltIcons */ = {
+			isa = PBXGroup;
+			children = (
+				3997934A8F0F20936FBBC12E /* AltIcon-60.alticon */,
+			);
+			path = AltIcons;
 			sourceTree = "<group>";
 		};
 		0CC1FDD1EE3A00446BFE2B9C /* applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1 */ = {
@@ -1056,6 +1066,15 @@
 				1AB4BCBC56521C450C88CA9B /* private_lib.swift.modulemap */,
 			);
 			path = CommandLineToolLib;
+			sourceTree = "<group>";
+		};
+		3997934A8F0F20936FBBC12E /* AltIcon-60.alticon */ = {
+			isa = PBXGroup;
+			children = (
+				03076FA0CBC1AD0B85C49CBF /* AltIcon-60@2x.png */,
+				DB523F21B928894B3F187719 /* AltIcon-60@3x.png */,
+			);
+			path = "AltIcon-60.alticon";
 			sourceTree = "<group>";
 		};
 		39EAE156E3A18083E5D1204C /* Source */ = {
@@ -1887,6 +1906,7 @@
 		A537619AFFDD6698FF207CB2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0BD88058F52CBF8FAA1FA93F /* AltIcons */,
 				46727B73048E62208E0FADAD /* nested */,
 				C3B4DDB4C29BC4E15227AF48 /* PreviewContent */,
 				BB9810D09EC8A18B33D9243E /* Assets.xcassets */,

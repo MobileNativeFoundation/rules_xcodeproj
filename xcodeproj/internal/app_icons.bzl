@@ -48,7 +48,7 @@ def _find_default_icon_path(set_path, app_icon_files):
     return None
 
 def _get_app_icon_info(ctx, automatic_target_info):
-    """Attempts to find the applicaiton icon name.
+    """Attempts to find the application icon name.
 
     Args:
         ctx: The aspect context.
