@@ -931,6 +931,12 @@ These files won't be added to the project if the target is unfocused.
         ),
         "pre_build": attr.label(
             allow_single_file = True,
+            doc = """\
+A `Label` representing a shell script that should be run before the build.
+
+Note: Since this is referenced and run outside of the Bazel context, this
+cannot be a Bazel-generated file.
+""",
         ),
         "project_name": attr.string(
             doc = """\

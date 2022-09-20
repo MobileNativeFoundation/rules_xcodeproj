@@ -20,6 +20,7 @@ def xcodeproj(
         focused_targets = [],
         ios_device_cpus = "arm64",
         ios_simulator_cpus = None,
+        pre_build = None,
         project_name = None,
         scheme_autogeneration_mode = "auto",
         schemes = [],
@@ -120,6 +121,11 @@ def xcodeproj(
             hash of all transitive dependencies of the targets specified in the
             `top_level_targets` argument with the `"simulator"`
             `target_environment`, even if they aren't iOS targets.
+        pre_build: A `Label` representing a shell script that should be run
+            before the build.
+
+            Note: Since this is referenced and run outside of the Bazel
+            context, this cannot be a Bazel-generated file.
         project_name: Optional. The name to use for the `.xcodeproj` file. If
             not specified, the value of the `name` argument is used.
         scheme_autogeneration_mode: Optional. Specifies how Xcode schemes are
@@ -269,6 +275,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
         owned_extra_files = owned_extra_files,
+        pre_build = pre_build,
         project_name = project_name,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
