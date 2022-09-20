@@ -3,3 +3,5 @@
 XCODEPROJ_TARGETS = [
     "//:SwiftBin",
 ]
+
+PRE_BUILD = "pre-build w spaces.sh"
