@@ -26,7 +26,8 @@ final class GeneratorTests: XCTestCase {
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: [],
             forceBazelDependencies: false,
-            indexImport: "/tmp/index-import"
+            indexImport: "/tmp/index-import",
+            preBuildScript: "pre-build.sh"
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
@@ -472,6 +473,7 @@ final class GeneratorTests: XCTestCase {
             let bazelConfig: String
             let xcodeprojBazelLabel: BazelLabel
             let xcodeprojConfiguration: String
+            let preBuildScript: FilePath?
             let consolidatedTargets: ConsolidatedTargets
         }
 
@@ -488,6 +490,7 @@ final class GeneratorTests: XCTestCase {
             bazelConfig: String,
             xcodeprojBazelLabel: BazelLabel,
             xcodeprojConfiguration: String,
+            preBuildScript: FilePath?,
             consolidatedTargets: ConsolidatedTargets
         ) throws -> PBXAggregateTarget? {
             addBazelDependenciesTargetCalled.append(.init(
@@ -500,6 +503,7 @@ final class GeneratorTests: XCTestCase {
                 bazelConfig: bazelConfig,
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
                 xcodeprojConfiguration: xcodeprojConfiguration,
+                preBuildScript: preBuildScript,
                 consolidatedTargets: consolidatedTargets
             ))
             return bazelDependenciesTarget
@@ -516,6 +520,7 @@ final class GeneratorTests: XCTestCase {
                 bazelConfig: project.bazelConfig,
                 xcodeprojBazelLabel: project.label,
                 xcodeprojConfiguration: project.configuration,
+                preBuildScript: project.preBuildScript,
                 consolidatedTargets: consolidatedTargets
             ),
         ]
