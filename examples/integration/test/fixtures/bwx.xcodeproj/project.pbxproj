@@ -4636,6 +4636,7 @@
 				BAZEL_TARGET_ID = "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = ExampleNestedResources;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -4710,6 +4711,7 @@
 				BAZEL_TARGET_ID = "//iOSApp/Resources/ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Resources/ExampleResources:ExampleResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = ExampleResources;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES)";
 				GENERATE_INFOPLIST_FILE = YES;
