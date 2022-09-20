@@ -166,6 +166,7 @@ def xcodeproj_fixture(
         associated_extra_files: Maps to `xcodeproj.associated_extra_files`.
         config: Maps to `xcodeproj.config`.
         extra_files: Maps to `xcodeproj.extra_files`.
+        pre_build: Maps to `xcodeproj.pre_build`.
         top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
         unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
