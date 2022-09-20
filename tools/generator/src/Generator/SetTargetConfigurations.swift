@@ -144,6 +144,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         return buildSettings
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private static func calculateBuildSettings(
         for target: Target,
         id: TargetID,
