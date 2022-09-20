@@ -123,6 +123,7 @@ private func processLinkoptComponent(
             if let `extension` = filePath.path.extension,
                `extension` == "swiftmodule"
             {
+                // swiftlint:disable:next shorthand_operator
                 filePath = filePath + "\(swiftTriple).swiftmodule"
             }
         }

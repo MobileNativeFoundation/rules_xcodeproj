@@ -1,10 +1,16 @@
 disabled_rules:
+  - function_body_length
+  - function_parameter_count
+  - identifier_name
+  - large_tuple
   - todo
 
 excluded:
   # Exclude test files
-  - "**/test/**/*.swift"
-  - "**/*Tests/*.swift"
+  - "**/test"
+  - "**/*Tests"
+  # Exclude external files
+  - "**/bazel-output-base"
 
 trailing_comma:
   # Multi-line collection literals should have trailing commas.

@@ -11,6 +11,7 @@ extension Generator {
     ///   - logger: A `Logger` to output warnings to when certain configuration
     ///     prevents a consolidation.
     static func consolidateTargets(
+        // swiftlint:disable:previous cyclomatic_complexity
         _ targets: [TargetID: Target],
         logger: Logger
     ) throws -> ConsolidatedTargets {

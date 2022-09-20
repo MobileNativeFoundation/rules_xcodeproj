@@ -1,3 +1,4 @@
+// swiftlint:disable file_length
 import Foundation
 import PathKit
 import XcodeProj
@@ -63,6 +64,7 @@ extension Generator {
 
     // Most of the logic here is a modified version of
     // https://github.com/tuist/tuist/blob/a76be1d1df2ec912cbf5c4ba91a167fb1dfd0098/Sources/TuistGenerator/Generator/ProjectFileElements.swift
+    // swiftlint:disable:next cyclomatic_complexity
     static func createFilesAndGroups(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
@@ -454,6 +456,7 @@ extension Generator {
             var coreDataContainer: XCVersionGroup?
             let components = fullFilePath.path.components
             for (offset, component) in components.enumerated() {
+                // swiftlint:disable:next shorthand_operator
                 filePath = filePath + component
                 let isLeaf = offset == components.count - 1
                 filePath.isFolder = isLeaf && fullFilePath.isFolder
