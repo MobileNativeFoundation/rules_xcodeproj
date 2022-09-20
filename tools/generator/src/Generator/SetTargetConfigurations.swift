@@ -206,7 +206,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             target.modulemaps
                 .map { filePath -> String in
                     let modulemap = try filePathResolver
-                        .resolve(filePath, useBazelOut: true)
+                        .resolve(filePath, useBazelOut: true, forceAbsoluteProjectPath: true)
                         .string.quoted
                     return "-Xcc -fmodule-map-file=\(modulemap)"
                 }
