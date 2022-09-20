@@ -63,6 +63,7 @@ apple_universal_binary(
 xcodeproj(
     name = "xcodeproj",
     project_name = "generator",
+    pre_build = "//:swiftlint",
     scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
     tags = ["manual"],

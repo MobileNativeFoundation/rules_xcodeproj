@@ -4,6 +4,10 @@ disabled_rules:
   - identifier_name
   - large_tuple
   - todo
+  - identifier_name
+  - large_tuple
+  - function_body_length
+  - function_parameter_count
 
 excluded:
   # Exclude test files
