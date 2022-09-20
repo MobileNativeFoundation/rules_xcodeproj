@@ -18,7 +18,6 @@ extension Generator {
                 files.containsGeneratedFiles)
     }
 
-    // swiftlint:disable:next function_parameter_count
     static func addBazelDependenciesTarget(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
