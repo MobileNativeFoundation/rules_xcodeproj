@@ -21,7 +21,7 @@ filegroup(
 xcodeproj(
     name = "xcodeproj",
     build_mode = "bazel",
-    pre_build = ":pre_build",
+    pre_build = "pre build.sh",
     project_name = "Simple",
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,
