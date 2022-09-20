@@ -357,6 +357,11 @@ $(CONFIGURATION_BUILD_DIR)
                 to: ldRunpathSearchPaths
             )
         }
+        
+        // Xcode 14 defaults this value to YES, and iOS bundles do not need to be signed
+        if target.product.type == .bundle {
+            buildSettings["CODE_SIGNING_ALLOWED"] = false
+        }
 
         // Set VFS overlays
 
