@@ -25,6 +25,7 @@
     "label": "//test/fixtures:xcodeproj_bwx.generator",
     "name": "bwx",
     "pre_build_script": "test/fixtures/pre-build w spaces.sh",
+    "post_build_script": "test/fixtures/post-build w spaces.sh",
     "replacement_labels": [],
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [],

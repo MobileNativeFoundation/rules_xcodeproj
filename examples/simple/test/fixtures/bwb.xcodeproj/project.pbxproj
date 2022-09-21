@@ -14,6 +14,7 @@
 				922073A986018654923053B1 /* Pre-build Run Script */,
 				9A630CF63C380FAE522825A9 /* Bazel Build */,
 				20BEB4AE7798C11A8A904F5E /* Create swift_debug_settings.py */,
+				3D71E6BCCD3DE986783AF2C9 /* Post-build Run Script */,
 			);
 			dependencies = (
 			);
@@ -178,6 +179,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3D71E6BCCD3DE986783AF2C9 /* Post-build Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Post-build Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PROJECT_DIR/test/fixtures/post-build w spaces.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		922073A986018654923053B1 /* Pre-build Run Script */ = {
