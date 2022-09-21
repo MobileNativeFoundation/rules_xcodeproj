@@ -16,6 +16,12 @@ do
   *.o)
     break
     ;;
+  -v)
+    DEV_DIR_PREFIX=$(awk '{ sub(/.*-isysroot /, ""); sub(/.Contents\/Developer.*/, ""); print}' <<< "${@:1}")
+    clang="$DEV_DIR_PREFIX/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang"
+    "$clang" "${@:1}"
+    break
+    ;;
   esac
 
   shift
