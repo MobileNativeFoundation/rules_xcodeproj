@@ -66,3 +66,10 @@ buildifier(
     mode = "fix",
     tags = ["manual"],
 )
+
+# IDE Tools
+
+exports_files([
+    "swiftformat",
+    "swiftlint",
+])

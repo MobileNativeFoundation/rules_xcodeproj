@@ -3,7 +3,7 @@ load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcodeproj",
 )
-load(":xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
+load("//:xcodeproj_targets.bzl", "PRE_BUILD", "XCODEPROJ_TARGETS")
 
 swift_binary(
     name = "SwiftBin",
@@ -16,6 +16,7 @@ swift_binary(
 xcodeproj(
     name = "xcodeproj",
     build_mode = "bazel",
+    pre_build = PRE_BUILD,
     project_name = "Simple",
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,

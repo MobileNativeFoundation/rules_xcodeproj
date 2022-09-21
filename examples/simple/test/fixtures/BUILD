@@ -4,9 +4,10 @@ load(
     "validate_fixtures",
     "xcodeproj_fixture",
 )
-load("//:xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
+load("//:xcodeproj_targets.bzl", "PRE_BUILD", "XCODEPROJ_TARGETS")
 
 xcodeproj_fixture(
+    pre_build = PRE_BUILD,
     top_level_targets = XCODEPROJ_TARGETS,
 )
 

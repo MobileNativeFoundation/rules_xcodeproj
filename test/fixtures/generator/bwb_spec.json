@@ -94,6 +94,7 @@
     },
     "label": "//test/fixtures/generator:xcodeproj_bwb.generator",
     "name": "bwb",
+    "pre_build_script": "swiftlint",
     "replacement_labels": [
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
         "//tools/generator/test:tests"
