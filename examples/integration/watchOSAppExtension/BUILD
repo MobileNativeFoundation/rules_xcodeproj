@@ -73,24 +73,7 @@ swift_library(
     srcs = ["watchOSApp.swift"],
     module_name = "watchOSAppExtension",
     tags = ["manual"],
-    deps = [
-        ":watchOSAppExtensionLib",
-    ],
-)
-
-swift_library(
-    name = "watchOSAppExtensionLib",
-    srcs = ["ContentView.swift"],
-    data = select({
-        ":release_build": [],
-        "//conditions:default": [":PreviewContent"],
-    }),
-    module_name = "watchOSAppExtensionLib",
-    tags = ["manual"],
-    visibility = ["//:__subpackages__"],
-    deps = [
-        "//Lib",
-    ],
+    deps = ["//UI"],
 )
 
 filegroup(

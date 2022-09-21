@@ -1,5 +1,5 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule
--Wl,-add_ast_path,$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/watchOSAppExtension/watchOSAppExtensionLib.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/UI/UI.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.swiftmodule
 -ObjC
 -L/usr/lib/swift
@@ -8,6 +8,7 @@
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
-$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/watchOSAppExtension/libwatchOSAppExtensionLib.a
+-force_load
+$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/UI/libUI.a
 -force_load
 $(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/libLib.a

@@ -23,6 +23,8 @@ watchos_application(
     app_icons = ["AppIcon.xcassets"],
     bundle_id = WATCHOS_BUNDLE_ID,
     extension = "//watchOSAppExtension",
+    # TODO: Add support for frameworks
+    # frameworks = ["//UI:UIFramework.watchOS"],
     infoplists = [":infoplist"],
     minimum_os_version = "8.0",
     provisioning_profile = select({

@@ -2,45 +2,39 @@ load("@build_bazel_rules_apple//apple:ios.bzl", "ios_framework")
 load("@build_bazel_rules_apple//apple:tvos.bzl", "tvos_framework")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-exports_files(["README.md"])
-
 swift_library(
-    name = "Lib",
-    srcs = [":gen_Lib.swift"],
-    module_name = "Lib",
+    name = "UI",
+    srcs = glob(["*.swift"]),
+    module_name = "UI",
     tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_krzyzanowskim_cryptoswift//:CryptoSwift",
+        "//Lib",
     ],
     alwayslink = True,
 )
 
-genrule(
-    name = "gen_Lib.swift",
-    outs = ["Lib.swift"],
-    cmd = "echo 'public let greeting = \"Hello, world!\"' > $@",
-)
-
 ios_framework(
-    name = "LibFramework.iOS",
-    bundle_id = "io.budilebuddy.LibFramework",
+    name = "UIFramework.iOS",
+    bundle_id = "io.budilebuddy.UIFramework",
     extension_safe = True,
     families = ["iphone"],
+    frameworks = ["//Lib:LibFramework.iOS"],
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
-    deps = [":Lib"],
+    deps = [":UI"],
 )
 
 tvos_framework(
-    name = "LibFramework.tvOS",
-    bundle_id = "io.budilebuddy.LibFramework",
+    name = "UIFramework.tvOS",
+    bundle_id = "io.budilebuddy.UIFramework",
     extension_safe = True,
+    frameworks = ["//Lib:LibFramework.tvOS"],
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
-    deps = [":Lib"],
+    deps = [":UI"],
 )
