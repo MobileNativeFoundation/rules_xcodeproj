@@ -17,14 +17,27 @@ extension Generator {
         let mainGroup = PBXGroup(sourceTree: .group)
         pbxProj.add(object: mainGroup)
 
+        let bazelOut: Path
+        if filePathResolver.bazelOutDirectory.isRelative {
+            bazelOut = "$(PROJECT_DIR)" + filePathResolver.bazelOutDirectory
+        } else {
+            bazelOut = filePathResolver.bazelOutDirectory
+        }
+
+        let external: Path
+        if filePathResolver.externalDirectory.isRelative {
+            external = "$(PROJECT_DIR)" + filePathResolver.externalDirectory
+        } else {
+            external = filePathResolver.externalDirectory
+        }
+
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
-            "BAZEL_EXEC_ROOT": filePathResolver.bazelOutDirectory
-                .parent().normalize().string,
-            "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
+            "BAZEL_EXEC_ROOT": bazelOut.parent().string,
+            "BAZEL_EXTERNAL": external.string,
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-            "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
+            "BAZEL_OUT": bazelOut.string,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
             // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
