@@ -11,6 +11,7 @@ load(
 load("//xcodeproj:defs.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
+    "PRE_BUILD",
     "SCHEME_AUTOGENERATION_MODE",
     "TOP_LEVEL_TARGETS",
     "UNFOCUSED_TARGETS",
@@ -62,7 +63,7 @@ apple_universal_binary(
 
 xcodeproj(
     name = "xcodeproj",
-    pre_build = "//:swiftlint",
+    pre_build = PRE_BUILD,
     project_name = "generator",
     scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
