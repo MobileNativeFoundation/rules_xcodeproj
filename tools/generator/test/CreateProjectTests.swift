@@ -147,8 +147,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
-                "CC": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
-                "CXX": "$(BAZEL_INTEGRATION_DIR)/cc.sh",
+                "CC": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
+                "CXX": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
                 "CODE_SIGNING_ALLOWED": false,
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
