@@ -475,7 +475,6 @@ final class GeneratorTests: XCTestCase {
             let xcodeprojBazelLabel: BazelLabel
             let xcodeprojConfiguration: String
             let preBuildScript: FilePath?
-            let postBuildScript: FilePath?
             let consolidatedTargets: ConsolidatedTargets
         }
 
@@ -493,7 +492,6 @@ final class GeneratorTests: XCTestCase {
             xcodeprojBazelLabel: BazelLabel,
             xcodeprojConfiguration: String,
             preBuildScript: FilePath?,
-            postBuildScript: FilePath?,
             consolidatedTargets: ConsolidatedTargets
         ) throws -> PBXAggregateTarget? {
             addBazelDependenciesTargetCalled.append(.init(
@@ -507,7 +505,6 @@ final class GeneratorTests: XCTestCase {
                 xcodeprojBazelLabel: xcodeprojBazelLabel,
                 xcodeprojConfiguration: xcodeprojConfiguration,
                 preBuildScript: preBuildScript,
-                postBuildScript: postBuildScript,
                 consolidatedTargets: consolidatedTargets
             ))
             return bazelDependenciesTarget
@@ -525,7 +522,6 @@ final class GeneratorTests: XCTestCase {
                 xcodeprojBazelLabel: project.label,
                 xcodeprojConfiguration: project.configuration,
                 preBuildScript: project.preBuildScript,
-                postBuildScript: project.postBuildScript,
                 consolidatedTargets: consolidatedTargets
             ),
         ]
@@ -539,6 +535,7 @@ final class GeneratorTests: XCTestCase {
             let products: Products
             let files: [FilePath: File]
             let filePathResolver: FilePathResolver
+            let postBuildScript: FilePath?
             let bazelDependenciesTarget: PBXAggregateTarget?
         }
 
@@ -550,6 +547,7 @@ final class GeneratorTests: XCTestCase {
             products: Products,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
+            postBuildScript: FilePath?,
             bazelDependenciesTarget: PBXAggregateTarget?
         ) throws -> [ConsolidatedTarget.Key: PBXTarget] {
             addTargetsCalled.append(.init(
@@ -559,6 +557,7 @@ final class GeneratorTests: XCTestCase {
                 products: products,
                 files: files,
                 filePathResolver: filePathResolver,
+                postBuildScript: postBuildScript,
                 bazelDependenciesTarget: bazelDependenciesTarget
             ))
             return pbxTargets
@@ -571,6 +570,7 @@ final class GeneratorTests: XCTestCase {
             products: products,
             files: files,
             filePathResolver: filePathResolver,
+            postBuildScript: project.postBuildScript,
             bazelDependenciesTarget: bazelDependenciesTarget
         )]
 

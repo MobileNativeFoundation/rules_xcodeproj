@@ -72,7 +72,6 @@ struct Environment {
         _ xcodeprojBazelLabel: BazelLabel,
         _ xcodeprojConfiguration: String,
         _ preBuildScript: FilePath?,
-        _ postBuildScript: FilePath?,
         _ consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget?
 
@@ -83,6 +82,7 @@ struct Environment {
         _ products: Products,
         _ files: [FilePath: File],
         _ filePathResolver: FilePathResolver,
+        _ postBuildScript: FilePath?,
         _ bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> [ConsolidatedTarget.Key: PBXTarget]
 

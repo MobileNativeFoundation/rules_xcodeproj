@@ -11,6 +11,7 @@ load(
 load("//xcodeproj:defs.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
+    "POST_BUILD",
     "PRE_BUILD",
     "SCHEME_AUTOGENERATION_MODE",
     "TOP_LEVEL_TARGETS",
@@ -63,6 +64,7 @@ apple_universal_binary(
 
 xcodeproj(
     name = "xcodeproj",
+    post_build = POST_BUILD,
     pre_build = PRE_BUILD,
     project_name = "generator",
     scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,

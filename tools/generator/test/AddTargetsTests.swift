@@ -22,6 +22,7 @@ final class AddTargetsTests: XCTestCase {
         let bazelOutDirectory: Path = "/some/bazel11/bazel-out"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
+        let postBuildScriptPath: FilePath = "post-build.sh"
 
         let filePathResolver = FilePathResolver(
             workspaceDirectory: workspaceDirectory,
@@ -65,6 +66,9 @@ final class AddTargetsTests: XCTestCase {
             disambiguatedTargets: disambiguatedTargets,
             files: expectedFiles,
             products: expectedProducts,
+            postBuildScriptPath: try filePathResolver
+                .resolve(postBuildScriptPath, mode: .script)
+                .string,
             bazelDependenciesTarget: expectedBazelDependenciesTarget
         )
 
@@ -77,6 +81,7 @@ final class AddTargetsTests: XCTestCase {
             products: products,
             files: files,
             filePathResolver: filePathResolver,
+            postBuildScript: postBuildScriptPath,
             bazelDependenciesTarget: bazelDependenciesTarget
         )
 
