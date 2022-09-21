@@ -150,8 +150,8 @@ def xcodeproj_fixture(
         top_level_targets = [],
         focused_targets = [],
         unfocused_targets = [],
-        pre_build = None,
         post_build = None,
+        pre_build = None,
         schemes = None,
         scheme_autogeneration_mode = None):
     """Creates the fixture for an existing `xcodeproj` target.
@@ -167,8 +167,8 @@ def xcodeproj_fixture(
         associated_extra_files: Maps to `xcodeproj.associated_extra_files`.
         config: Maps to `xcodeproj.config`.
         extra_files: Maps to `xcodeproj.extra_files`.
-        pre_build: Maps to `xcodeproj.pre_build`.
         post_build: Maps to `xcodeproj.post_build`.
+        pre_build: Maps to `xcodeproj.pre_build`.
         top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
         unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
@@ -196,8 +196,8 @@ def xcodeproj_fixture(
             config = config,
             extra_files = extra_files,
             focused_targets = focused_targets,
-            pre_build = pre_build,
             post_build = post_build,
+            pre_build = pre_build,
             project_name = suffix,
             top_level_targets = top_level_targets,
             scheme_autogeneration_mode = scheme_autogeneration_mode,
