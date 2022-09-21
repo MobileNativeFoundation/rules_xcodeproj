@@ -1525,7 +1525,6 @@ env -i \
         disambiguatedTargets: DisambiguatedTargets,
         files: [FilePath: File],
         products: Products,
-        postBuildScriptPath: String? = nil,
         bazelDependenciesTarget: PBXAggregateTarget
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
         // Build phases
@@ -1562,7 +1561,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 
         let elements = files.mapValues(\.fileElement)
 
-        var buildPhases: [ConsolidatedTarget.Key: [PBXBuildPhase]] = [
+        let buildPhases: [ConsolidatedTarget.Key: [PBXBuildPhase]] = [
             "A 1": [
                 PBXSourcesBuildPhase(
                     files: buildFiles([
@@ -1822,20 +1821,8 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
                 ),
             ],
         ]
-
-        buildPhases.forEach { key, phase in
-            phase.forEach { pbxProj.add(object: $0) }
-
-            if let scriptPath = postBuildScriptPath {
-                let script = PBXShellScriptBuildPhase(
-                    name: "Post-build Run Script",
-                    shellScript: #""\#(scriptPath)""#,
-                    showEnvVarsInLog: false
-                )
-
-                pbxProj.add(object: script)
-                buildPhases[key]!.append(script)
-            }
+        buildPhases.values.forEach { buildPhases in
+            buildPhases.forEach { pbxProj.add(object: $0) }
         }
 
         // Targets

@@ -9,7 +9,6 @@ extension Generator {
         products: Products,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        postBuildScript: FilePath?,
         bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> [ConsolidatedTarget.Key: PBXTarget] {
         let pbxProject = pbxProj.rootObject!
@@ -40,7 +39,7 @@ Product for target "\(key)" not found in `products`
                 files: files
             )
 
-            var buildPhases = [
+            let buildPhases = [
                 try createCopyBazelOutputsScript(
                     in: pbxProj,
                     buildMode: buildMode,
@@ -114,15 +113,6 @@ Product for target "\(key)" not found in `products`
                     targetKeys: disambiguatedTargets.keys
                 ),
             ]
-
-            if let postBuildScript = postBuildScript {
-                let script = try createPostBuildScript(
-                    in: pbxProj,
-                    scriptPath: postBuildScript,
-                    filePathResolver: filePathResolver
-                )
-                buildPhases.append(script)
-            }
 
             let pbxTarget = PBXNativeTarget(
                 name: disambiguatedTarget.name,
@@ -634,24 +624,6 @@ App clip product reference with key \(key) not found in `products`
         pbxProj.add(object: buildPhase)
 
         return buildPhase
-    }
-
-    private static func createPostBuildScript(
-        in pbxProj: PBXProj,
-        scriptPath: FilePath,
-        filePathResolver: FilePathResolver
-    ) throws -> PBXShellScriptBuildPhase {
-        let scriptPath = try filePathResolver
-            .resolve(scriptPath, mode: .script)
-            .string
-        let script = PBXShellScriptBuildPhase(
-            name: "Post-build Run Script",
-            shellScript: #""\#(scriptPath)""#,
-            showEnvVarsInLog: false
-        )
-        pbxProj.add(object: script)
-
-        return script
     }
 }
 

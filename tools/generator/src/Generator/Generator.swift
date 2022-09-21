@@ -134,6 +134,7 @@ class Generator {
             project.label,
             project.configuration,
             project.preBuildScript,
+            project.postBuildScript,
             consolidatedTargets
         )
         let pbxTargets = try environment.addTargets(
@@ -143,7 +144,6 @@ class Generator {
             products,
             files,
             filePathResolver,
-            project.postBuildScript,
             bazelDependencies
         )
         try environment.setTargetConfigurations(
