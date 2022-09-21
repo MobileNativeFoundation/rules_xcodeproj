@@ -2,8 +2,6 @@
 
 load("//xcodeproj:defs.bzl", "xcode_schemes")
 
-PRE_BUILD = "//:swiftlint"
-
 UNFOCUSED_TARGETS = [
     "@com_github_tadija_aexml//:AEXML",
 ]
