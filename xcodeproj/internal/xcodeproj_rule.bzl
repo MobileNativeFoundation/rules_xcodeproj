@@ -442,6 +442,7 @@ def _write_json_spec(
 "label":"{label}",\
 "name":"{name}",\
 "pre_build_script":{pre_build_script},\
+"post_build_script":{post_build_script},\
 "replacement_labels":{replacement_labels},\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
 "target_hosts":{target_hosts},\
@@ -465,6 +466,9 @@ def _write_json_spec(
         name = project_name,
         pre_build_script = json.encode(file_path_to_dto(
             file_path(ctx.file.pre_build),
+        )),
+        post_build_script = json.encode(file_path_to_dto(
+            file_path(ctx.file.post_build),
         )),
         replacement_labels = json.encode(
             flattened_key_values.to_list(replacement_labels),
@@ -933,6 +937,15 @@ These files won't be added to the project if the target is unfocused.
             allow_single_file = True,
             doc = """\
 A `Label` representing a shell script that should be run before the build.
+
+Note: Since this is referenced and run outside of the Bazel context, this
+cannot be a Bazel-generated file.
+""",
+        ),
+        "post_build": attr.label(
+            allow_single_file = True,
+            doc = """\
+A `Label` representing a shell script that should be run after the build.
 
 Note: Since this is referenced and run outside of the Bazel context, this
 cannot be a Bazel-generated file.
