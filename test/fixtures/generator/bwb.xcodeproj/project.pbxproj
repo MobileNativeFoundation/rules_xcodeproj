@@ -2497,11 +2497,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BAZEL_EXEC_ROOT = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
-				BAZEL_EXTERNAL = "bazel-output-base/external";
+				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
+				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
+				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";
