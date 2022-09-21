@@ -576,10 +576,10 @@ def _process_full_swiftcopts(
         *   A `bool` indicting if the target has debug info enabled.
     """
 
-    # Xcode needs a value for SWIFT_VERSION, so we set it to "5" by default.
+    # Xcode needs a value for SWIFT_VERSION, so we set it to "5.0" by default.
     # We will have to figure out a way to detect what the default is before
     # Swift 6 (which will probably have a new language version).
-    build_settings["SWIFT_VERSION"] = "5"
+    build_settings["SWIFT_VERSION"] = "5.0"
 
     # Default to not creating the Swift generated header.
     build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
