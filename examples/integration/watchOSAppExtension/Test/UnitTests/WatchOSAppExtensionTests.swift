@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import watchOSAppExtensionLib
+@testable import UI
 
 class ExampleTests: XCTestCase {
     override func setUpWithError() throws {

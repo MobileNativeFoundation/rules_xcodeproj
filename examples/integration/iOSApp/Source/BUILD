@@ -36,7 +36,7 @@ ios_application(
     executable_name = "iOSApp_ExecutableName",
     extensions = ["//WidgetExtension"],
     families = ["iphone"],
-    frameworks = ["//Lib:LibFramework"],
+    frameworks = ["//UI:UIFramework.iOS"],
     infoplists = [":Info.plist"],
     launch_images = select({
         ":device_build": glob(["launch_images_ios.xcassets/**"]),
@@ -109,7 +109,7 @@ swift_library(
     tags = ["manual"],
     visibility = ["//iOSApp/Test:__subpackages__"],
     deps = [
-        "//Lib",
+        "//UI",
         "@com_google_google_maps//:GoogleMaps",
     ],
 )

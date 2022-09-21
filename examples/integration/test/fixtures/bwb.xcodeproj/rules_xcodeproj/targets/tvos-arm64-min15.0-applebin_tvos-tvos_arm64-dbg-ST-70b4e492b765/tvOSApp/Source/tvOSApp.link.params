@@ -1,4 +1,5 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/tvOSApp/Source/tvOSApp.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/UI/UI.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/Lib.swiftmodule
 -ObjC
 -L/usr/lib/swift
@@ -7,5 +8,7 @@
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
+-force_load
+$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/UI/libUI.a
 -force_load
 $(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/libLib.a

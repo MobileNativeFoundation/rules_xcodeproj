@@ -29,6 +29,7 @@ tvos_application(
     name = "tvOSApp",
     bundle_id = TVOS_BUNDLE_ID,
     bundle_name = "tvOSApp",
+    frameworks = ["//UI:UIFramework.tvOS"],
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
     provisioning_profile = select({
@@ -65,6 +66,6 @@ swift_library(
     tags = ["manual"],
     visibility = ["//visibility:public"],
     deps = [
-        "//Lib",
+        "//UI",
     ],
 )

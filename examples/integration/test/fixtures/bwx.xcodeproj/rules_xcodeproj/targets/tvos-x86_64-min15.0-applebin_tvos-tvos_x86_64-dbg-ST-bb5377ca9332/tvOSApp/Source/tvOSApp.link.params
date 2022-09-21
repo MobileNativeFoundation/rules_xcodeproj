@@ -1,4 +1,5 @@
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/tvOSApp/Source/tvOSApp.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/UI/UI.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule
 -ObjC
 -L/usr/lib/swift
@@ -7,5 +8,7 @@
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
+-force_load
+$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/UI/libUI.a
 -force_load
 $(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/Lib/libLib.a
