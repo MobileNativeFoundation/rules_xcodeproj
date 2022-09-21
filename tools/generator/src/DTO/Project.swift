@@ -15,4 +15,5 @@ struct Project: Equatable, Decodable {
     let forceBazelDependencies: Bool
     let indexImport: FilePath
     let preBuildScript: FilePath?
+    let postBuildScript: FilePath?
 }

@@ -31,6 +31,7 @@ extension Generator {
         xcodeprojBazelLabel: BazelLabel,
         xcodeprojConfiguration: String,
         preBuildScript: FilePath?,
+        postBuildScript: FilePath?,
         consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
         guard needsBazelDependenciesTarget(
@@ -112,14 +113,23 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         ]
 
         if let preBuildScript = preBuildScript {
-            let scriptPath = try filePathResolver
-                .resolve(preBuildScript, mode: .script).string
             let script = try createBuildScript(
                 in: pbxProj,
                 name: "Pre-build",
-                scriptPath: scriptPath
+                scriptPath: preBuildScript,
+                filePathResolver: filePathResolver
             )
             buildPhases.insert(script, at: 0)
+        }
+
+        if let postBuildScript = postBuildScript {
+            let script = try createBuildScript(
+                in: pbxProj,
+                name: "Post-build",
+                scriptPath: postBuildScript,
+                filePathResolver: filePathResolver
+            )
+            buildPhases.append(script)
         }
 
         let pbxTarget = PBXAggregateTarget(
@@ -216,8 +226,12 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
     private static func createBuildScript(
         in pbxProj: PBXProj,
         name: String,
-        scriptPath: String
+        scriptPath: FilePath,
+        filePathResolver: FilePathResolver
     ) throws -> PBXShellScriptBuildPhase {
+        let scriptPath = try filePathResolver
+            .resolve(scriptPath, mode: .script)
+            .string
         let script = PBXShellScriptBuildPhase(
             name: "\(name) Run Script",
             shellScript: #""\#(scriptPath)""#,

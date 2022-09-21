@@ -94,6 +94,7 @@
     },
     "label": "//test/fixtures/generator:xcodeproj_bwx.generator",
     "name": "bwx",
+    "post_build_script": null,
     "pre_build_script": "swiftlint",
     "replacement_labels": [
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",

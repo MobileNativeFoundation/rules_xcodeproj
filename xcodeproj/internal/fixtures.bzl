@@ -150,6 +150,7 @@ def xcodeproj_fixture(
         top_level_targets = [],
         focused_targets = [],
         unfocused_targets = [],
+        post_build = None,
         pre_build = None,
         schemes = None,
         scheme_autogeneration_mode = None):
@@ -166,6 +167,7 @@ def xcodeproj_fixture(
         associated_extra_files: Maps to `xcodeproj.associated_extra_files`.
         config: Maps to `xcodeproj.config`.
         extra_files: Maps to `xcodeproj.extra_files`.
+        post_build: Maps to `xcodeproj.post_build`.
         pre_build: Maps to `xcodeproj.pre_build`.
         top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
@@ -194,6 +196,7 @@ def xcodeproj_fixture(
             config = config,
             extra_files = extra_files,
             focused_targets = focused_targets,
+            post_build = post_build,
             pre_build = pre_build,
             project_name = suffix,
             top_level_targets = top_level_targets,
