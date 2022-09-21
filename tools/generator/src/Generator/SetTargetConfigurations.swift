@@ -357,7 +357,11 @@ $(CONFIGURATION_BUILD_DIR)
                 to: ldRunpathSearchPaths
             )
         }
-
+        
+        if buildMode == .xcode && target.shouldDisableCodeSigning {
+           buildSettings["CODE_SIGNING_ALLOWED"] = false
+        }
+        
         // Set VFS overlays
 
         if hasBazelDependencies {
@@ -624,6 +628,11 @@ extension Target {
 
     func linkParamsFilePath() throws -> FilePath {
         return try .internal(internalTargetFilesPath() + "\(name).link.params")
+    }
+    
+    // Used to work around CODE_SIGNING_ENABLED = YES in Xcode 14
+    var shouldDisableCodeSigning: Bool {
+        return platform.os == .iOS && product.type == .bundle
     }
 }
 
