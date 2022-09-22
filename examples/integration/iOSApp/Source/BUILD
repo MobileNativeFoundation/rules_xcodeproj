@@ -28,6 +28,7 @@ config_setting(
 
 ios_application(
     name = "iOSApp",
+    alternate_icons = glob(["AltIcons/AltIcon-60.alticon/**"]),
     app_clips = ["//AppClip"],
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = IOS_BUNDLE_ID,

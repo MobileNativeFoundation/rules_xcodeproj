@@ -64,6 +64,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     else:
         srcs = []
 
+    alternate_icons = None
     app_icons = None
     bundle_id = None
     codesignopts = None
@@ -109,6 +110,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
+        if "alternate_icons" in attrs:
+            alternate_icons = "alternate_icons"
         if "app_clips" in attrs:
             xcode_targets["app_clips"] = [target_type.compile]
         if "app_icons" in attrs:
@@ -175,6 +178,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
     return [
         XcodeProjAutomaticTargetProcessingInfo(
+            alternate_icons = alternate_icons,
             app_icons = app_icons,
             bazel_build_mode_error = bazel_build_mode_error,
             bundle_id = bundle_id,

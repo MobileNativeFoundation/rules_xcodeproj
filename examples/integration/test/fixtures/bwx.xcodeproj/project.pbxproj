@@ -64,6 +64,7 @@
 		57020F3D49287832FE59E70D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A654779A8A096C76BA6E6063 /* Assets.xcassets */; };
 		57B5DBF853C48F559C43D2F7 /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE326DA949264866C88EDA /* SwiftGreetingsTests.swift */; };
 		596F67C6D0FF1EEAD6A7B4D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 244E2707FB6A753B6FAA6317 /* Preview Assets.xcassets */; };
+		5D92A287B558AE3F6616221D /* AltIcon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6ED0CB2494372465AE21A46 /* AltIcon-60@3x.png */; };
 		60777C5827074DAC40492910 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 92B5D8AC74143F0FC92E142F /* Model.xcdatamodeld */; };
 		63D5686734712406F04578F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A026E022EE18E3D73915E1B0 /* Assets.xcassets */; };
 		6878EA54E943131A838F824B /* WatchOSAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB265EDEAD6F8B50AC8EE60A /* WatchOSAppUITestsLaunchTests.swift */; };
@@ -78,6 +79,7 @@
 		76EBD2A85F8B00A3AC785D91 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 714F4CDA20A0822521C3B389 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		79B7C5A659E99494C2DE8CA4 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 714F4CDA20A0822521C3B389 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CC5D5ADD1512CBD7146C5CC /* WatchOSAppExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B218A5ABDAE4874D95C93B /* WatchOSAppExtensionTests.swift */; };
+		7DB75EFC83D0E6BF459CDBAD /* AltIcon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A58D8893BD2FBD17F6365C /* AltIcon-60@2x.png */; };
 		7E67547F812C4CB430B3E719 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33769C19E5BDFCC804DB871 /* Lib.swift */; };
 		7FBA65F5399D7FAEB6BDA26D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E3BE71A1A719357D8F185 /* GoogleMaps.bundle */; };
 		7FF7776FC3F129AFB68C6F64 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17541ACBEA7FB964E0BD7798 /* Preview Assets.xcassets */; };
@@ -789,6 +791,7 @@
 		A4B9C08059A6D7570552A207 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		A64E82DCF9CD209DC5E8DA47 /* iMessageAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMessageAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A654779A8A096C76BA6E6063 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A6ED0CB2494372465AE21A46 /* AltIcon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AltIcon-60@3x.png"; sourceTree = "<group>"; };
 		A957CB5D0B1F7573BD54BC7E /* UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AB265EDEAD6F8B50AC8EE60A /* WatchOSAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		ABC4F68DB69D524793B69BAA /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
@@ -799,6 +802,7 @@
 		B493504613AAC3A2B277F21B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B4945564FB57B2AAF142EFC4 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		B7460163239595E240435120 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
+		B7A58D8893BD2FBD17F6365C /* AltIcon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AltIcon-60@2x.png"; sourceTree = "<group>"; };
 		B8D55A3E05F6B936D9BE5085 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		B8EE097BA523AA6A79268BDA /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB3FEFDDC446650CC1EA639 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
@@ -1043,6 +1047,7 @@
 		172ECE9262707058838E8649 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A7CC0856FDD702E78604E054 /* AltIcons */,
 				4631C286EA03DBB429708FD7 /* nested */,
 				470F5822BC30EFC596A71B74 /* PreviewContent */,
 				7A8C0E241B1307FE7464ADF2 /* Assets.xcassets */,
@@ -1723,6 +1728,15 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		6DC6523D06AC966497824A3E /* AltIcon-60.alticon */ = {
+			isa = PBXGroup;
+			children = (
+				B7A58D8893BD2FBD17F6365C /* AltIcon-60@2x.png */,
+				A6ED0CB2494372465AE21A46 /* AltIcon-60@3x.png */,
+			);
+			path = "AltIcon-60.alticon";
+			sourceTree = "<group>";
+		};
 		6DF53DD9CCC3B998B2C2C35A /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -2148,6 +2162,14 @@
 				FB492F22844E45E807F4C0AC /* Info.plist */,
 			);
 			path = watchOSAppUITests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
+		A7CC0856FDD702E78604E054 /* AltIcons */ = {
+			isa = PBXGroup;
+			children = (
+				6DC6523D06AC966497824A3E /* AltIcon-60.alticon */,
+			);
+			path = AltIcons;
 			sourceTree = "<group>";
 		};
 		A7F6F1E00107B13F9FCE7CA7 /* ios-arm64_armv7 */ = {
@@ -3512,6 +3534,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DB75EFC83D0E6BF459CDBAD /* AltIcon-60@2x.png in Resources */,
+				5D92A287B558AE3F6616221D /* AltIcon-60@3x.png in Resources */,
 				A2881D00B6B4998713F69CDB /* Assets.xcassets in Resources */,
 				BEAC2699E6D09C918480F691 /* ExampleNestedResources.bundle in Resources */,
 				225B94C4FEA8FB5DD03102A9 /* ExampleResources.bundle in Resources */,
