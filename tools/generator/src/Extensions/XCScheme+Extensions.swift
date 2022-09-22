@@ -164,7 +164,7 @@ echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
             scriptText: #"""
 if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
     dest="$BAZEL_INTEGRATION_DIR/../lib"
-    DEV_LIB_DIR="$SYSTEM_DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+    DEV_LIB_DIR="$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib"
     ln -sF "$DEV_LIB_DIR" "$dest"
 fi
 """#,
