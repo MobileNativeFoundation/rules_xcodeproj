@@ -149,6 +149,7 @@ class Generator {
         try environment.setTargetConfigurations(
             pbxProj,
             disambiguatedTargets,
+            targets,
             buildMode,
             pbxTargets,
             project.targetHosts,

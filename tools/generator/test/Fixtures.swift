@@ -2092,6 +2092,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
         let buildSettings: [ConsolidatedTarget.Key: [String: Any]] = [
             "A 1": targets["A 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:a",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 1",
                 "BAZEL_TARGET_ID": "A 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
@@ -2108,6 +2109,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:A",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/A 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "A 2",
@@ -2143,6 +2145,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
             ]) { $1 },
             "AC": targets["AC"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:AC",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/AC",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "AC",
@@ -2171,6 +2174,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
             ]) { $1 },
             "B 1": targets["B 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:b",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 1",
                 "BAZEL_TARGET_ID": "B 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
@@ -2192,6 +2196,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
             ]) { $1 },
             "B 2": targets["B 2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:B",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "B 2",
@@ -2222,6 +2227,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
             ]) { $1 },
             "B 3": targets["B 3"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:B3",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/B 3",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "B 3",
@@ -2247,6 +2253,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
             ]) { $1 },
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:c",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 1",
                 "BAZEL_TARGET_ID": "C 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
@@ -2270,6 +2277,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
             ]) { $1 },
             "C 2": targets["C 2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:d",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/C 2",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "C 2",
@@ -2298,6 +2306,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
             ]) { $1 },
             "E1": targets["E1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "x86_64",
+                "BAZEL_LABEL": "//some/package:E1",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E1",
                 "BAZEL_TARGET_ID": "E1",
                 "BAZEL_TARGET_ID[sdk=watchos*]": "$(BAZEL_TARGET_ID)",
@@ -2318,6 +2327,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
             ]) { $1 },
             "E2": targets["E2"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:E2",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/E2",
                 "BAZEL_TARGET_ID": "E2",
                 "BAZEL_TARGET_ID[sdk=appletvos*]": "$(BAZEL_TARGET_ID)",
@@ -2334,6 +2344,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
             ]) { $1 },
             "I": targets["I"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:I",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/I",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "I",
@@ -2376,6 +2387,7 @@ $(BAZEL_OUT)/some/quote/includes/parent/dir
             ]) { $1 },
             "R 1": targets["R 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:R 1",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/R 1",
                 "BAZEL_TARGET_ID": "R 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
@@ -2399,6 +2411,7 @@ $(BAZEL_OUT)/some/quote/includes/parent/dir
                 .asDictionary.merging(
             [
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:t",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/T 3",
                 "BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]": """
 bazel-out/a1b2c/bin/T 1
@@ -2447,10 +2460,12 @@ $(MACOSX_FILES)
             ]) { $1 },
             "W": targets["W"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:W",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/W",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "W",
                 "BAZEL_TARGET_ID[sdk=watchos*]": "$(BAZEL_TARGET_ID)",
+                "BAZEL_HOST_LABEL_0": "//some/package:I",
                 "BAZEL_HOST_TARGET_ID_0": "I",
                 "COMPILE_TARGET_NAME": targets["W"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
@@ -2471,10 +2486,12 @@ $(MACOSX_FILES)
             ]) { $1 },
             "WDKE": targets["WDKE"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:WDKE",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/WDKE",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "WDKE",
                 "BAZEL_TARGET_ID[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
+                "BAZEL_HOST_LABEL_0": "//some/package:I",
                 "BAZEL_HOST_TARGET_ID_0": "I",
                 "COMPILE_TARGET_NAME": targets["WDKE"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
@@ -2501,10 +2518,12 @@ $(MACOSX_FILES)
             ]) { $1 },
             "WKE": targets["WKE"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
+                "BAZEL_LABEL": "//some/package:WKE",
                 "BAZEL_PACKAGE_BIN_DIR": "bazel-out/a1b2c/bin/WKE",
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "WKE",
                 "BAZEL_TARGET_ID[sdk=watchos*]": "$(BAZEL_TARGET_ID)",
+                "BAZEL_HOST_LABEL_0": "//some/package:W",
                 "BAZEL_HOST_TARGET_ID_0": "W",
                 "COMPILE_TARGET_NAME": targets["WKE"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",

@@ -272,6 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_LABEL = "//:SwiftBin";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/rules_xcodeproj/SwiftBin/SwiftBin";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin";
 				BAZEL_TARGET_ID = "//:SwiftBin darwin_x86_64-dbg-ST-a9822d5480e1";

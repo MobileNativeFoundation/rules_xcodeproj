@@ -503,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_LABEL = "//lib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib";
 				BAZEL_TARGET_ID = "//lib:lib_impl darwin_x86_64-dbg-ST-3688109ddba2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
@@ -573,6 +574,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_LABEL = "//lib2:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2";
 				BAZEL_TARGET_ID = "//lib2:lib_impl darwin_x86_64-dbg-ST-3688109ddba2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
@@ -680,6 +682,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_LABEL = "//tool:tool";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/tool";
 				BAZEL_TARGET_ID = "//tool:tool darwin_x86_64-dbg-ST-3688109ddba2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
@@ -759,6 +762,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
+				BAZEL_LABEL = "@examples_cc_external//:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external";
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-3688109ddba2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";

@@ -40,6 +40,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         try Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
+            targets: Fixtures.targets,
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: Fixtures.project.targetHosts,
@@ -177,6 +178,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         try Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
+            targets: [:],
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
@@ -229,6 +231,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         try Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
+            targets: [:],
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
@@ -283,6 +286,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         try Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
+            targets: [:],
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
@@ -408,6 +412,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         try Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
+            targets: [:],
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],

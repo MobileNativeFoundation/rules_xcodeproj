@@ -89,6 +89,7 @@ struct Environment {
     let setTargetConfigurations: (
         _ pbxProj: PBXProj,
         _ disambiguatedTargets: DisambiguatedTargets,
+        _ targets: [TargetID: Target],
         _ buildMode: BuildMode,
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],

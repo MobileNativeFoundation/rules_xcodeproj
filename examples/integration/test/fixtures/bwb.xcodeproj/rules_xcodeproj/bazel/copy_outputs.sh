@@ -11,7 +11,7 @@ readonly exclude_list="$3"
 
 if [[ "$ACTION" == indexbuild ]]; then
   # Write to "$SCHEME_TARGET_IDS_FILE" to allow next index to catch up
-  echo "$BAZEL_TARGET_ID" > "$SCHEME_TARGET_IDS_FILE"
+  echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" > "$SCHEME_TARGET_IDS_FILE"
 else
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
