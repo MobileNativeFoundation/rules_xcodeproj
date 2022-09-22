@@ -26,7 +26,7 @@ extension XCScheme {
     ) throws {
         let buildAction: XCScheme.BuildAction?
         if let buildActionInfo = schemeInfo.buildActionInfo {
-            var otherPreActions = [XCScheme.ExecutionAction]()
+            var otherPreActions: [XCScheme.ExecutionAction] = []
             if buildMode != .xcode,
                let launchableTarget = buildActionInfo.launchableTargets.first {
                 otherPreActions.append(
