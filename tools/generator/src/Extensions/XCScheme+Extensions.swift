@@ -171,7 +171,7 @@ if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
     ln -sF "$src" "$dest"
 fi
 """#,
-            title: "Symlink Default Toolchain /usr/lib directory",
+            title: "Symlink Toolchain /usr/lib directory",
             environmentBuildable: buildableReference
         )
     }
