@@ -38,7 +38,7 @@ fi
 # We need to read from `$output_groups_file` as soon as possible, as concurrent
 # writes to it can happen during indexing, which breaks the off-by-one-by-design
 # nature of it
-IFS=$'\n' read -r -d '' -a output_groups < \
+IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
   <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
        "$ACTION" \
        "$non_preview_objroot" \
@@ -46,6 +46,14 @@ IFS=$'\n' read -r -d '' -a output_groups < \
        "$scheme_target_ids_file" \
        $output_group_prefixes \
        && printf '\0' )
+
+labels=()
+output_groups=()
+for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
+  labels+=("${labels_and_output_groups[i]}")
+  output_groups+=("${labels_and_output_groups[i+1]}")
+done
+labels=("$(printf "%s\n" "${labels[@]}" | sort -u)")
 
 if [ -z "${output_groups:-}" ]; then
   if [ "$ACTION" == "indexbuild" ]; then
@@ -206,6 +214,7 @@ touch "$build_marker"
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
   "$output_groups_flag" \
+  "${labels[@]}" \
   "$GENERATOR_LABEL" \
   2>&1
 

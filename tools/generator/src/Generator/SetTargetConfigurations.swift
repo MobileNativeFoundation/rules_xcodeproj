@@ -11,6 +11,7 @@ extension Generator {
     static func setTargetConfigurations(
         in pbxProj: PBXProj,
         for disambiguatedTargets: DisambiguatedTargets,
+        targets: [TargetID: Target],
         buildMode: BuildMode,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
@@ -37,6 +38,7 @@ Target "\(key)" not found in `pbxTargets`
             var buildSettings = try calculateBuildSettings(
                 for: target,
                 buildMode: buildMode,
+                targets: targets,
                 hostIDs: hostIDs,
                 hasBazelDependencies: hasBazelDependencies,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
@@ -71,6 +73,7 @@ Target "\(key)" not found in `pbxTargets`
     private static func calculateBuildSettings(
         for consolidatedTarget: ConsolidatedTarget,
         buildMode: BuildMode,
+        targets: [TargetID: Target],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool,
         xcodeGeneratedFiles: Set<FilePath>,
@@ -85,6 +88,7 @@ Target "\(key)" not found in `pbxTargets`
             var targetBuildSettings = try calculateBuildSettings(
                 for: target,
                 id: id,
+                targets: targets,
                 hostIDs: hostIDs[id, default: []],
                 buildMode: buildMode,
                 hasBazelDependencies: hasBazelDependencies,
@@ -148,6 +152,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     private static func calculateBuildSettings(
         for target: Target,
         id: TargetID,
+        targets: [TargetID: Target],
         hostIDs: [TargetID],
         buildMode: BuildMode,
         hasBazelDependencies: Bool,
@@ -226,6 +231,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         buildSettings.set("ARCHS", to: target.platform.arch)
+        buildSettings.set("BAZEL_LABEL", to: target.label.description)
         buildSettings.set(
             "BAZEL_PACKAGE_BIN_DIR",
             to: target.packageBinDir.string
@@ -274,6 +280,14 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         for (index, id) in hostIDs.enumerated() {
+            let hostTarget = try targets.value(
+                for: id,
+                context: "looking up host target"
+            )
+            buildSettings.set(
+                "BAZEL_HOST_LABEL_\(index)",
+                to: hostTarget.label.description
+            )
             buildSettings.set("BAZEL_HOST_TARGET_ID_\(index)", to: id.rawValue)
         }
 

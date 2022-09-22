@@ -579,6 +579,7 @@ final class GeneratorTests: XCTestCase {
         struct SetTargetConfigurationsCalled: Equatable {
             let pbxProj: PBXProj
             let disambiguatedTargets: DisambiguatedTargets
+            let targets: [TargetID: Target]
             let buildMode: BuildMode
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let hostIDs: [TargetID: [TargetID]]
@@ -591,6 +592,7 @@ final class GeneratorTests: XCTestCase {
         func setTargetConfigurations(
             in pbxProj: PBXProj,
             for disambiguatedTargets: DisambiguatedTargets,
+            targets: [TargetID: Target],
             buildMode: BuildMode,
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
@@ -601,6 +603,7 @@ final class GeneratorTests: XCTestCase {
             setTargetConfigurationsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
+                targets: targets,
                 buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
@@ -614,6 +617,7 @@ final class GeneratorTests: XCTestCase {
             SetTargetConfigurationsCalled(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
+                targets: mergedTargets,
                 buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,

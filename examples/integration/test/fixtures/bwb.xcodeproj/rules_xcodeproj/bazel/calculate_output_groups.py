@@ -32,9 +32,10 @@ def _calculate_build_request_file(objroot):
         build_request_id = f.read().decode('ASCII')
     return f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
 
-def _calculate_output_group_target_ids(
+def _calculate_label_and_target_ids(
         build_request_file,
-        scheme_target_ids,
+        scheme_labels_and_target_ids,
+        guid_labels,
         guid_target_ids):
     try:
         # The first time a certain buildRequest is used, the buildRequest.json
@@ -64,8 +65,9 @@ def _calculate_output_group_target_ids(
             build_request["parameters"]["activeRunDestination"]["platform"]
         )
 
-        target_ids = []
+        labels_and_target_ids = []
         for target in build_request["configuredTargets"]:
+            label = guid_labels[target["guid"]]
             full_target_target_ids = guid_target_ids[target["guid"]]
             target_target_ids = (
                 full_target_target_ids.get(command) or
@@ -73,36 +75,36 @@ def _calculate_output_group_target_ids(
                 # isn't a different compile target id
                 full_target_target_ids["build"]
             )
-            target_ids.append(_select_target_id(
-                target_target_ids,
-                platform,
-            ))
+            target_id = _select_target_id(target_target_ids, platform)
+            labels_and_target_ids.append((label, target_id))
     except Exception as error:
         print(
             f"""\
 warning: Failed to parse '{build_request_file}':
 {type(error).__name__}: {error}.
 
-warning: Using scheme target ids as a fallback. Please file a bug report here: \
+warning: Using scheme labels and target ids as a fallback. Please file a bug \
+report here: \
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
-        return scheme_target_ids
+        return scheme_labels_and_target_ids
 
-    if not target_ids:
+    if not labels_and_target_ids:
         print(
             f"""\
-warning: Couldn't deteremine target ids from PIFCache ({target_ids})
+warning: Couldn't determine labels and target ids from PIFCache
 
-warning: Using scheme target ids as a fallback. Please file a bug report here: \
+warning: Using scheme labels and target ids as a fallback. Please file a bug \
+report here: \
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
-        target_ids = scheme_target_ids
+        labels_and_target_ids = scheme_labels_and_target_ids
 
-    return target_ids
+    return labels_and_target_ids
 
-def _calculate_guid_target_ids(base_objroot):
+def _calculate_guid_labels_and_target_ids(base_objroot):
     pif_cache = f"{base_objroot}/XCBuildData/PIFCache"
 
     # For the first build, the PIFCache might not exist yet, so we wait a bit=
@@ -120,13 +122,14 @@ def _calculate_guid_target_ids(base_objroot):
         key = os.path.getctime,
     )
 
-    guid_target_ids_parent = f"{base_objroot}/guid_target_ids"
-    guid_target_ids_path = f"""\
-{guid_target_ids_parent}/{os.path.basename(project_pif)}_v2.json"""
+    guid_payload_parent = f"{base_objroot}/guid_payload"
+    guid_payload_path = f"""\
+{guid_payload_parent}/{os.path.basename(project_pif)}.json"""
 
-    if os.path.exists(guid_target_ids_path):
-        with open(guid_target_ids_path, encoding = "utf-8") as f:
-            return json.load(f)
+    if os.path.exists(guid_payload_path):
+        with open(guid_payload_path, encoding = "utf-8") as f:
+            payload = json.load(f)
+            return payload["labels"], payload["targetIds"]
 
     with open(project_pif, encoding = "utf-8") as f:
         project_pif = json.load(f)
@@ -135,12 +138,14 @@ def _calculate_guid_target_ids(base_objroot):
 
     target_cache = f"{pif_cache}/target"
 
+    guid_labels = {}
     guid_target_ids = {}
     for target_name in targets:
         target_file = f"{target_cache}/{target_name}-json"
         with open(target_file, encoding = "utf-8") as f:
             target_pif = json.load(f)
 
+        label = None
         build_target_ids = {"key": "BAZEL_TARGET_ID"}
         compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_ID"}
         for configuration in target_pif["buildConfigurations"]:
@@ -149,6 +154,8 @@ def _calculate_guid_target_ids(base_objroot):
                     build_target_ids[_platform_from_build_key(key)] = value
                 elif key.startswith("BAZEL_COMPILE_TARGET_ID"):
                     compile_target_ids[_platform_from_compile_key(key)] = value
+                elif key == "BAZEL_LABEL":
+                    label = value
 
         target_ids = {
             "build": build_target_ids,
@@ -156,13 +163,19 @@ def _calculate_guid_target_ids(base_objroot):
         if len(compile_target_ids) > 1:
             target_ids["buildFiles"] = compile_target_ids
 
-        guid_target_ids[target_pif["guid"]] = target_ids
+        guid = target_pif["guid"]
+        guid_labels[guid] = label
+        guid_target_ids[guid] = target_ids
 
-    os.makedirs(guid_target_ids_parent, exist_ok = True)
-    with open(guid_target_ids_path, "w", encoding = "utf-8") as f:
-        json.dump(guid_target_ids, f)
+    os.makedirs(guid_payload_parent, exist_ok = True)
+    with open(guid_payload_path, "w", encoding = "utf-8") as f:
+        payload = {
+            "labels": guid_labels,
+            "targetIds": guid_target_ids,
+        }
+        json.dump(payload, f)
 
-    return guid_target_ids
+    return guid_labels, guid_target_ids
 
 def _platform_from_build_key(key):
     if key.startswith("BAZEL_TARGET_ID[sdk="):
@@ -203,38 +216,49 @@ def _main(action, objroot, base_objroot, scheme_target_id_file, prefixes_str):
         return
 
     with open(scheme_target_id_file, encoding = "utf-8") as f:
-        scheme_target_ids = set(f.read().splitlines())
+        scheme_label_and_target_ids = []
+        for label_and_target_id in set(f.read().splitlines()):
+            components = label_and_target_id.split(",")
+            scheme_label_and_target_ids.append((components[0], components[1]))
 
     prefixes = prefixes_str.split(",")
 
     if action == "indexbuild":
         # buildRequest for Index Build includes all targets, so we have to
-        # fall back to the scheme target ids (which are actually set by the
-        # "Copy Bazel Outputs" script)
-        target_ids = scheme_target_ids
+        # fall back to the scheme labels and target ids (which are actually set
+        # by the "Copy Bazel Outputs" script)
+        labels_and_target_ids = scheme_label_and_target_ids
     else:
         try:
             build_request_file = _calculate_build_request_file(objroot)
-            guid_target_ids = _calculate_guid_target_ids(base_objroot)
+            guid_labels, guid_target_ids = (
+                _calculate_guid_labels_and_target_ids(base_objroot)
+            )
         except Exception:
             print(
                 f"""\
-warning: Failed to calculate target ids from PIFCache:
+warning: Failed to calculate labels and target ids from PIFCache:
 {traceback.format_exc()}
-warning: Using scheme target ids as a fallback. Please file a bug report here: \
+warning: Using scheme labels and target ids as a fallback. Please file a bug \
+report here: \
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
                 file = sys.stderr,
             )
-            target_ids = scheme_target_ids
+            labels_and_target_ids = scheme_label_and_target_ids
         else:
-            target_ids = _calculate_output_group_target_ids(
+            labels_and_target_ids = _calculate_label_and_target_ids(
                 build_request_file,
-                scheme_target_ids,
+                scheme_label_and_target_ids,
+                guid_labels,
                 guid_target_ids,
             )
 
     print("\n".join(
-        [f"{prefix} {id}" for id in target_ids for prefix in prefixes],
+        [
+            f"{label}\n{prefix} {id}"
+            for label, id in labels_and_target_ids
+            for prefix in prefixes
+        ],
     ))
 
 
