@@ -27,7 +27,8 @@ extension XCScheme {
         let buildAction: XCScheme.BuildAction?
         if let buildActionInfo = schemeInfo.buildActionInfo {
             var otherPreActions = [XCScheme.ExecutionAction]()
-            if let launchableTarget = buildActionInfo.launchableTargets.first {
+            if buildMode != .xcode,
+               let launchableTarget = buildActionInfo.launchableTargets.first {
                 otherPreActions.append(
                     .symlinkDefaultToolchainUsrLibDirectory(
                         buildableReference: launchableTarget.targetInfo.buildableReference
@@ -100,7 +101,8 @@ extension XCScheme.BuildAction {
     ) throws {
         self.init(
             buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions:  try buildActionInfo.preActions.map(\.executionAction) + buildActionInfo.targets.map(\.targetInfo).buildPreActions() +
+            preActions:  try buildActionInfo.preActions.map(\.executionAction) + 
+                buildActionInfo.targets.map(\.targetInfo).buildPreActions() +
                 otherPreActions,
             postActions: buildActionInfo.postActions.map(\.executionAction),
             parallelizeBuild: true,

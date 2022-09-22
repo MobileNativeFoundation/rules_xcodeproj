@@ -70,22 +70,6 @@
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Symlink Default Toolchain /usr/lib directory"
-               scriptText = "if [ &quot;${ENABLE_THREAD_SANITIZER:-}&quot; == &quot;YES&quot; ]; then&#10;    dest=&quot;$BAZEL_INTEGRATION_DIR/../lib&quot;&#10;    DEV_LIB_DIR=&quot;$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib&quot;&#10;    ln -sF &quot;$DEV_LIB_DIR&quot; &quot;$dest&quot;&#10;fi">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "2FED647E7A6091DF616D345B"
-                     BuildableName = "generator"
-                     BlueprintName = "generator"
-                     ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
       </PreActions>
       <PostActions>
          <ExecutionAction
