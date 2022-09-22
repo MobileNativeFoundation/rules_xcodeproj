@@ -163,9 +163,10 @@ echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
         return .init(
             scriptText: #"""
 if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
+    # TODO: Support custom toolchains once clang.sh supports them 
+    src="$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib"
     dest="$BAZEL_INTEGRATION_DIR/../lib"
-    DEV_LIB_DIR="$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib"
-    ln -sF "$DEV_LIB_DIR" "$dest"
+    ln -sF "$src" "$dest"
 fi
 """#,
             title: "Symlink Default Toolchain /usr/lib directory",
