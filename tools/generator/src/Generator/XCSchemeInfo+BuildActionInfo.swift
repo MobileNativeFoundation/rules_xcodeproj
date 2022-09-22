@@ -91,3 +91,9 @@ extension XCSchemeInfo.BuildActionInfo {
         )
     }
 }
+
+extension XCSchemeInfo.BuildActionInfo {
+    var launchableTargets: Set<XCSchemeInfo.BuildTargetInfo> {
+        targets.filter { $0.targetInfo.productType.isLaunchable }
+    }
+}

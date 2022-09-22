@@ -38,6 +38,22 @@
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Symlink Default Toolchain /usr/lib directory"
+               scriptText = "if [ &quot;${ENABLE_THREAD_SANITIZER:-}&quot; == &quot;YES&quot; ]; then&#10;    dest=&quot;$BAZEL_INTEGRATION_DIR/../lib&quot;&#10;    DEV_LIB_DIR=&quot;$SYSTEM_DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib&quot;&#10;    ln -sF &quot;$DEV_LIB_DIR&quot; &quot;$dest&quot;&#10;fi">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "364D5AA9408E41F7F9C99C9B"
+                     BuildableName = "SwiftBin"
+                     BlueprintName = "SwiftBin"
+                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
       </PreActions>
       <BuildActionEntries>
          <BuildActionEntry

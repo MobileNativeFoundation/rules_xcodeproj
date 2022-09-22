@@ -167,9 +167,4 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   done
 fi
 
-# TODO: Get this approach validated and find the right location to add this, if this approach is approved.
-touch "$dest/rules_xcodeproj/lib"
-DEV_LIB_DIR="$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/lib"
-ln -sF "$DEV_LIB_DIR" "$dest/rules_xcodeproj/lib"
-
 echo 'Updated project at "%output_path%"'

@@ -88,13 +88,6 @@ build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-private-imports
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-dynamic-replacement-chaining
 
-### `--config=rules_xcodeproj_tsan`
-#
-# Used when building with Thread Sanitizer enabled.
-
-build:rules_xcodeproj_tsan --config=rules_xcodeproj
-build:rules_xcodeproj_tsan --features=tsan
-
 # Unset `swift.index-while-building` since we don't need index store data, and
 # we already have cache misses from the `swiftc` flags above
 build:rules_xcodeproj_swiftuipreviews --features=-swift.index_while_building
