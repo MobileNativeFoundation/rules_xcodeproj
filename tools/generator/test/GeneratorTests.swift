@@ -783,6 +783,7 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             internalDirectoryName: String,
             bazelIntegrationDirectory: Path,
+            swiftcStub: Path,
             to outputPath: Path
         ) {
             writeXcodeProjCalled.append(.init(
@@ -790,6 +791,7 @@ final class GeneratorTests: XCTestCase {
                 files: files,
                 internalDirectoryName: internalDirectoryName,
                 bazelIntegrationDirectory: bazelIntegrationDirectory,
+                swiftcStub: swiftcStub,
                 outputPath: outputPath
             ))
         }
@@ -799,6 +801,7 @@ final class GeneratorTests: XCTestCase {
             files: files,
             internalDirectoryName: internalDirectoryName,
             bazelIntegrationDirectory: bazelIntegrationDirectory,
+            swiftcStub: swiftcStub,
             outputPath: outputPath
         )]
 
@@ -843,7 +846,8 @@ final class GeneratorTests: XCTestCase {
             internalDirectoryName: internalDirectoryName,
             bazelIntegrationDirectory: bazelIntegrationDirectory,
             workspaceOutputPath: workspaceOutputPath,
-            outputPath: outputPath
+            outputPath: outputPath,
+            swiftcStub: swiftcStub
         )
 
         // Assert

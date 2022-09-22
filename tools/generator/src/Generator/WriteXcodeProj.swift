@@ -8,6 +8,7 @@ extension Generator {
         files: [FilePath: File],
         internalDirectoryName: String,
         bazelIntegrationDirectory: Path,
+        swiftcStub: Path,
         to outputPath: Path
     ) throws {
         try xcodeProj.write(path: outputPath)
@@ -30,6 +31,7 @@ extension Generator {
         let dest = internalOutputPath + "bazel"
         try internalOutputPath.mkpath()
         try bazelIntegrationDirectory.copy(dest)
+        try swiftcStub.copy(dest + "swiftc")
     }
 }
 
