@@ -13,6 +13,8 @@ def _main() -> None:
     args = sys.argv
 
     if args[1:] == ["-v"]:
+        # TODO: Make this be the correct swiftc (see `DEVELOPER_DIR` and
+        # custom toolchain comment below)
         os.system("swiftc -v")
         return
 
