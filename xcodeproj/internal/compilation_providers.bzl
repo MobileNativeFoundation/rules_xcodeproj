@@ -22,11 +22,13 @@ def _collect(*, cc_info, objc, swift_info, is_xcode_target):
         _is_top_level = False,
         _is_xcode_library_target = is_xcode_library_target,
         _objc = objc,
+        _propagated_objc = objc,
         _transitive_compilation_providers = (),
     )
 
 def _merge(
         *,
+        apple_dynamic_framework_info = None,
         cc_info = None,
         objc = None,
         swift_info = None,
@@ -34,12 +36,14 @@ def _merge(
     """Merges compilation providers from the deps of a target.
 
     Args:
+        apple_dynamic_framework_info: The
+            `apple_common.AppleDynamicFrameworkInfo` of the target, or `None`.
         cc_info: The `CcInfo` of the target, or `None`.
         objc: The `ObjcProvider` of the target, or `None`.
         swift_info: The `SwiftInfo` of the target, or `None`.
         transitive_compilation_providers: A `list` of
-            `(xcode_target, XcodeProjInfo)` tuples of transitive dependencies that
-            should have compilation providers merged.
+            `(xcode_target, XcodeProjInfo)` tuples of transitive dependencies
+            that should have compilation providers merged.
 
     Returns:
         A value similar to the one returned from
@@ -54,14 +58,19 @@ def _merge(
         ],
     )
 
+    propagated_objc = objc
     if not objc:
         maybe_objc_providers = [
-            providers._objc if providers._objc else _to_objc(providers._cc_info)
+            _to_objc(providers._propagated_objc, providers._cc_info)
             for _, providers in transitive_compilation_providers
         ]
         objc_providers = [objc for objc in maybe_objc_providers if objc]
         if objc_providers:
             objc = apple_common.new_objc_provider(providers = objc_providers)
+        if apple_dynamic_framework_info:
+            propagated_objc = apple_dynamic_framework_info.objc
+        else:
+            propagated_objc = objc
 
     return struct(
         _cc_info = cc_info,
@@ -69,12 +78,15 @@ def _merge(
         _is_top_level = True,
         _is_xcode_library_target = False,
         _objc = objc,
+        _propagated_objc = propagated_objc,
         _transitive_compilation_providers = tuple(
             transitive_compilation_providers,
         ),
     )
 
-def _to_objc(cc_info):
+def _to_objc(objc, cc_info):
+    if objc:
+        return objc
     if not cc_info:
         return None
 

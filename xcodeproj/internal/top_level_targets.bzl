@@ -299,6 +299,13 @@ def process_top_level_target(
     else:
         objc = None
 
+    if apple_common.AppleDynamicFramework in target:
+        apple_dynamic_framework_info = (
+            target[apple_common.AppleDynamicFramework]
+        )
+    else:
+        apple_dynamic_framework_info = None
+
     deps_infos = [
         dep[XcodeProjInfo]
         for attr in automatic_target_info.deps
@@ -306,6 +313,7 @@ def process_top_level_target(
     ]
 
     compilation_providers = comp_providers.merge(
+        apple_dynamic_framework_info = apple_dynamic_framework_info,
         cc_info = target[CcInfo] if CcInfo in target else None,
         objc = objc,
         swift_info = target[SwiftInfo] if SwiftInfo in target else None,
