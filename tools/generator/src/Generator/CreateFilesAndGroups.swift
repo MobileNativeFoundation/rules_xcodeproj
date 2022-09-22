@@ -563,6 +563,7 @@ extension Generator {
         {
             files[.internal(appRsyncExcludeFileListPath)] =
                 .nonReferencedContent(#"""
+/*.app/Frameworks/libclang_rt.tsan*.dylib
 /*.app/Frameworks/libXCTestBundleInject.dylib
 /*.app/Frameworks/libXCTestSwiftSupport.dylib
 /*.app/Frameworks/XCTAutomationSupport.framework
