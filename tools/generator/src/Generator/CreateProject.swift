@@ -90,7 +90,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
-                "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
+                "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",
                 "SWIFT_USE_INTEGRATED_DRIVER": false,
             ], uniquingKeysWith: { _, r in r })
         }

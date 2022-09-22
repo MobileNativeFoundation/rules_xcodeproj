@@ -77,10 +77,10 @@ rsync \
   --delete \
   "$src/" "$dest/"
 
-# Make scripts runnable
+# Make executables runnable
 if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
   shopt -s nullglob
-  chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
+  chmod u+x "$dest/rules_xcodeproj/bazel/"*
 fi
 
 # Copy over xcodeproj.bazelrc

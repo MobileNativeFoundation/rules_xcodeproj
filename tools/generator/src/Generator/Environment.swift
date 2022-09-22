@@ -132,6 +132,7 @@ struct Environment {
         _ files: [FilePath: File],
         _ internalDirectoryName: String,
         _ bazelIntegrationDirectory: Path,
+        _ swiftcStub: Path,
         _ outputPath: Path
     ) throws -> Void
 }

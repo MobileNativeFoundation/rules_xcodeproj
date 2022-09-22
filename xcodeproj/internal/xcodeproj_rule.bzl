@@ -615,7 +615,8 @@ def _write_xcodeproj(
         bazel_integration_files,
         xccurrentversions_file,
         extensionpointidentifiers_file,
-        build_mode):
+        build_mode,
+        swiftc_stub):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
     )
@@ -636,6 +637,7 @@ def _write_xcodeproj(
     args.add(xcodeproj.path)
     args.add(install_path)
     args.add(build_mode)
+    args.add(swiftc_stub)
 
     ctx.actions.run(
         executable = ctx.attr._generator[DefaultInfo].files_to_run,
@@ -783,6 +785,7 @@ def _xcodeproj_impl(ctx):
     bazel_integration_files = list(ctx.files._base_integration_files)
     if build_mode != "xcode":
         bazel_integration_files.extend(ctx.files._bazel_integration_files)
+        bazel_integration_files.append(ctx.executable._swiftc_stub)
 
     inputs = input_files.merge(
         transitive_infos = [(None, info) for info in infos],
@@ -867,6 +870,7 @@ def _xcodeproj_impl(ctx):
         extensionpointidentifiers_file = extensionpointidentifiers_file,
         bazel_integration_files = bazel_integration_files,
         build_mode = ctx.attr.build_mode,
+        swiftc_stub = ctx.executable._swiftc_stub,
     )
     installer = _write_installer(
         ctx = ctx,
@@ -1169,6 +1173,11 @@ transitive dependencies of the targets specified in the
         "_installer_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:installer.template.sh"),
+        ),
+        "_swiftc_stub": attr.label(
+            cfg = "exec",
+            default = Label("//xcodeproj/internal/bazel_integration_files:swiftc"),
+            executable = True,
         ),
         "_top_level_cache_buster": attr.label(
             doc = """\

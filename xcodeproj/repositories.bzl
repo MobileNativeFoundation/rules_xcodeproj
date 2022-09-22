@@ -212,6 +212,29 @@ swift_library(
         ignore_version_differences = ignore_version_differences,
     )
 
+    _maybe(
+        http_archive,
+        build_file_content = """\
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "json",
+    srcs = glob(
+        ["include/nlohmann/**/*.hpp"],
+        exclude = ["include/nlohmann/json.hpp"],
+    ),
+    hdrs = ["include/nlohmann/json.hpp"],
+    includes = ["include"],
+)
+""",
+        name = "com_github_nlohmann_json",
+        urls = [
+            "https://github.com/nlohmann/json/releases/download/v3.6.1/include.zip",
+        ],
+        sha256 = "69cc88207ce91347ea530b227ff0776db82dcb8de6704e1a3d74f4841bc651cf",
+        ignore_version_differences = ignore_version_differences,
+    )
+
     _cache_buster_repository(
         name = "rules_xcodeproj_top_level_cache_buster",
     )

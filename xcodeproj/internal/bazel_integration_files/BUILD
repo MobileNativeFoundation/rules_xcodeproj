@@ -30,3 +30,12 @@ filegroup(
     srcs = glob(["**"]),
     visibility = ["//visibility:public"],
 )
+
+cc_binary(
+    name = "swiftc",
+    srcs = ["swiftc.cc"],
+    copts = ["-std=c++17"],
+    # This is made public for internal use only
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_nlohmann_json//:json"],
+)
