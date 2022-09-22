@@ -28,6 +28,8 @@ info:{config}_info --config=rules_xcodeproj_info
 info:{config}_info --config={config}
 build:{config}_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews
 build:{config}_swiftuipreviews --config={config}
+build:{config}_tsan --config=rules_xcodeproj_tsan
+build:{config}_tsan --config={config}
 
 # Private implementation detail. Don't adjust this config, adjust
 # `{config}` instead.

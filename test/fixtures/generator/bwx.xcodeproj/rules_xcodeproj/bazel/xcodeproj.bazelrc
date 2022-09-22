@@ -92,6 +92,13 @@ build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable
 # we already have cache misses from the `swiftc` flags above
 build:rules_xcodeproj_swiftuipreviews --features=-swift.index_while_building
 
+### `--config=rules_xcodeproj_tsan`
+#
+# Used when building with Thread Sanitizer enabled.
+
+build:rules_xcodeproj_tsan --config=rules_xcodeproj
+build:rules_xcodeproj_tsan --features=tsan
+
 ### `--config=_rules_xcodeproj_build`
 #
 # Private implementation detail. Don't adjust this config, adjust
