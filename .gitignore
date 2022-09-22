@@ -4,4 +4,7 @@
 **/*.xcodeproj/project.xcworkspace/xcuserdata/*
 **/*.xcodeproj/*
 
+# Symlink to `$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib`
+**/*.xcodeproj/rules_xcodeproj/lib
+
 user.bazelrc

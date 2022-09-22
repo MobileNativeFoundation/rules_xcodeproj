@@ -26,7 +26,20 @@ extension XCScheme {
     ) throws {
         let buildAction: XCScheme.BuildAction?
         if let buildActionInfo = schemeInfo.buildActionInfo {
-            buildAction = try .init(buildActionInfo: buildActionInfo)
+            var otherPreActions: [XCScheme.ExecutionAction] = []
+            if buildMode != .xcode,
+               let launchableTarget = buildActionInfo.launchableTargets.first {
+                otherPreActions.append(
+                    .symlinkDefaultToolchainUsrLibDirectory(
+                        buildableReference: launchableTarget.targetInfo.buildableReference
+                    )
+                )
+            }
+            buildAction = try .init(
+                buildActionInfo: buildActionInfo,
+                otherPreActions: otherPreActions
+            )
+            
         } else {
             buildAction = .init(
                 parallelizeBuild: true,
@@ -83,11 +96,14 @@ extension XCScheme {
 
 extension XCScheme.BuildAction {
     convenience init(
-        buildActionInfo: XCSchemeInfo.BuildActionInfo
+        buildActionInfo: XCSchemeInfo.BuildActionInfo,
+        otherPreActions: [XCScheme.ExecutionAction] = []
     ) throws {
         self.init(
             buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions: try buildActionInfo.preActions.map(\.executionAction) + buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
+            preActions:  try buildActionInfo.preActions.map(\.executionAction) + 
+                buildActionInfo.targets.map(\.targetInfo).buildPreActions() +
+                otherPreActions,
             postActions: buildActionInfo.postActions.map(\.executionAction),
             parallelizeBuild: true,
             buildImplicitDependencies: true
@@ -140,6 +156,24 @@ echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
         self.init(
             scriptText: scriptText,
             title: "Set Bazel Build Output Groups for \(name)",
+            environmentBuildable: buildableReference
+        )
+    }
+    
+    /// Symlinks `$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib` to `$(BAZEL_INTEGRATION_DIR)/lib` so that Xcode can copy sanitizers' dylibs.
+    static func symlinkDefaultToolchainUsrLibDirectory(
+        buildableReference: XCScheme.BuildableReference
+    ) -> XCScheme.ExecutionAction {
+        return .init(
+            scriptText: #"""
+if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
+    # TODO: Support custom toolchains once clang.sh supports them 
+    src="$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+    dest="$BAZEL_INTEGRATION_DIR/../lib"
+    ln -sF "$src" "$dest"
+fi
+"""#,
+            title: "Symlink Toolchain /usr/lib directory",
             environmentBuildable: buildableReference
         )
     }
