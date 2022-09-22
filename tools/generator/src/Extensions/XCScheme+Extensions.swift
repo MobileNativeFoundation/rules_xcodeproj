@@ -34,8 +34,10 @@ extension XCScheme {
                     )
                 )
             }
-            buildAction = try .init(buildActionInfo: buildActionInfo,
-                                    otherPreActions: otherPreActions)
+            buildAction = try .init(
+                buildActionInfo: buildActionInfo,
+                otherPreActions: otherPreActions
+            )
             
         } else {
             buildAction = .init(
