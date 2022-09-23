@@ -47,13 +47,17 @@ IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
        $output_group_prefixes \
        && printf '\0' )
 
-labels=()
+raw_labels=()
 output_groups=()
 for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
-  labels+=("${labels_and_output_groups[i]}")
+  raw_labels+=("${labels_and_output_groups[i]}")
   output_groups+=("${labels_and_output_groups[i+1]}")
 done
-labels=("$(printf "%s\n" "${labels[@]}" | sort -u)")
+
+labels=()
+while IFS= read -r -d '' label; do
+  labels+=("$label")
+done < <(printf "%s\0" "${raw_labels[@]}" | sort -uz)
 
 if [ -z "${output_groups:-}" ]; then
   if [ "$ACTION" == "indexbuild" ]; then
