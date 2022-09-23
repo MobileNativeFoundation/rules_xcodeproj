@@ -40,7 +40,7 @@ struct Environment {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
-        xcodeGeneratedFiles: Set<FilePath>,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     )
 
@@ -94,7 +94,7 @@ struct Environment {
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool,
-        _ xcodeGeneratedFiles: Set<FilePath>,
+        _ xcodeGeneratedFiles: [FilePath: FilePath],
         _ filePathResolver: FilePathResolver
     ) throws -> Void
 

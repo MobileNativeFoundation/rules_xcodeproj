@@ -77,7 +77,7 @@ extension Generator {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
-        xcodeGeneratedFiles: Set<FilePath>,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
@@ -637,7 +637,7 @@ EOF
 
         // - `lldbSwiftSettingsModule`
 
-        var xcodeGeneratedFiles: Set<FilePath> = []
+        var xcodeGeneratedFiles: [FilePath: FilePath] = [:]
         switch buildMode {
         case .xcode:
             for (_, target) in targets {
@@ -645,9 +645,12 @@ EOF
                     continue
                 }
 
-                xcodeGeneratedFiles.insert(target.product.path)
+                xcodeGeneratedFiles[target.product.path] = target.product.path
+                for filePath in target.product.additionalPaths {
+                    xcodeGeneratedFiles[filePath] = target.product.path
+                }
                 if let filePath = target.outputs.swift?.module {
-                    xcodeGeneratedFiles.insert(filePath)
+                    xcodeGeneratedFiles[filePath] = filePath
                 }
             }
         default:
@@ -703,8 +706,8 @@ EOF
                         return try filePathResolver
                             .resolve(
                                 dir,
-                                useBazelOut:
-                                    !xcodeGeneratedFiles.contains(filePath),
+                                useBazelOut: !xcodeGeneratedFiles.keys
+                                    .contains(filePath),
                                 forceAbsoluteProjectPath: true
                             )
                             .string

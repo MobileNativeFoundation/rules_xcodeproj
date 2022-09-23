@@ -9,7 +9,7 @@ extension Target {
     }
 
     func allLinkerFlags(
-        xcodeGeneratedFiles: Set<FilePath>,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws -> [String] {
         var flags = try processLinkopts(
@@ -24,7 +24,8 @@ extension Target {
                 return try filePathResolver
                     .resolve(
                         filePath,
-                        useBazelOut: !xcodeGeneratedFiles.contains(filePath)
+                        useBazelOut: !xcodeGeneratedFiles.keys
+                            .contains(filePath)
                     )
                     .string.quoted
             }
@@ -37,7 +38,8 @@ extension Target {
                     try filePathResolver
                         .resolve(
                             filePath,
-                            useBazelOut: !xcodeGeneratedFiles.contains(filePath)
+                            useBazelOut: !xcodeGeneratedFiles.keys
+                                .contains(filePath)
                         )
                         .string.quoted,
                 ]
@@ -60,7 +62,7 @@ extension Target {
 private func processLinkopts(
     _ linkopts: [String],
     swiftTriple: String,
-    xcodeGeneratedFiles: Set<FilePath>,
+    xcodeGeneratedFiles: [FilePath: FilePath],
     filePathResolver: FilePathResolver
 ) throws -> [String] {
     return try linkopts
@@ -77,7 +79,7 @@ private func processLinkopts(
 private func processLinkopt(
     _ linkopt: String,
     swiftTriple: String,
-    xcodeGeneratedFiles: Set<FilePath>,
+    xcodeGeneratedFiles: [FilePath: FilePath],
     filePathResolver: FilePathResolver
 ) throws -> String {
     return try linkopt
@@ -97,7 +99,7 @@ private func processLinkopt(
 private func processLinkoptComponent(
     _ opt: String,
     swiftTriple: String,
-    xcodeGeneratedFiles: Set<FilePath>,
+    xcodeGeneratedFiles: [FilePath: FilePath],
     filePathResolver: FilePathResolver
 ) throws -> String {
     let extracted = extractOptValue(opt)
@@ -117,7 +119,7 @@ private func processLinkoptComponent(
     }
 
     if var filePath = filePath {
-        let xcodeGenerated = xcodeGeneratedFiles.contains(filePath)
+        let xcodeGenerated = xcodeGeneratedFiles.keys.contains(filePath)
 
         if xcodeGenerated {
             if let `extension` = filePath.path.extension,
