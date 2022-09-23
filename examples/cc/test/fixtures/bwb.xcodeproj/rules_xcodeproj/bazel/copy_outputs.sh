@@ -56,6 +56,22 @@ else
       --out-format="%n%L" \
       "$product_basename" \
       "$TARGET_BUILD_DIR"
+
+    # SwiftUI Previews has a hard time finding frameworks (`@rpath`) when using
+    # framework schemes, so let's copy them to `$BUILD_DIR`
+    if [[ "${ENABLE_PREVIEWS:-}" == "YES" && \
+          -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
+      # shellcheck disable=SC2046
+      rsync \
+        --copy-links \
+        --recursive \
+        --times \
+        --delete \
+        --chmod=u+w \
+        --out-format="%n%L" \
+        $(xargs -n1 <<< "$PREVIEW_FRAMEWORK_PATHS") \
+        "$BUILD_DIR"
+    fi
   fi
 fi
 
