@@ -333,6 +333,10 @@ $(CONFIGURATION_BUILD_DIR)
             }
         }
 
+        if buildMode == .xcode && target.shouldDisableCodeSigning {
+           buildSettings["CODE_SIGNING_ALLOWED"] = false
+        }
+
         if let pch = target.inputs.pch {
             let pchPath = try filePathResolver
                 .resolve(pch, useBazelOut: true).string
@@ -373,10 +377,6 @@ $(CONFIGURATION_BUILD_DIR)
                 "LD_RUNPATH_SEARCH_PATHS",
                 to: ldRunpathSearchPaths
             )
-        }
-        
-        if buildMode == .xcode && target.shouldDisableCodeSigning {
-           buildSettings["CODE_SIGNING_ALLOWED"] = false
         }
         
         // Set VFS overlays
