@@ -29,10 +29,3 @@ swift_library(
     tags = ["manual"],
     visibility = ["//:__subpackages__"],
 )
-
-xcodeproj(
-    name = "xcodeproj",
-    project_name = "Sanitizers",
-    tags = ["manual"],
-    top_level_targets = XCODEPROJ_TARGETS,
-)
