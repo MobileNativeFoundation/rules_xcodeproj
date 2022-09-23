@@ -28,10 +28,15 @@ extension XCScheme {
         if let buildActionInfo = schemeInfo.buildActionInfo {
             var otherPreActions: [XCScheme.ExecutionAction] = []
             if buildMode != .xcode,
-               let launchableTarget = buildActionInfo.launchableTargets.first {
+               let launchableTarget = buildActionInfo.launchableTargets
+                .lazy
+                .sortedLocalizedStandard(\.targetInfo.pbxTarget.name)
+                .first
+            {
                 otherPreActions.append(
                     .symlinkDefaultToolchainUsrLibDirectory(
-                        buildableReference: launchableTarget.targetInfo.buildableReference
+                        buildableReference: launchableTarget.targetInfo
+                            .buildableReference
                     )
                 )
             }
