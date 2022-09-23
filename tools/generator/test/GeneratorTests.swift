@@ -357,7 +357,7 @@ final class GeneratorTests: XCTestCase {
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement],
-            xcodeGeneratedFiles: Set<FilePath>,
+            xcodeGeneratedFiles: [FilePath: FilePath],
             resolvedExternalRepositories: [(Path, Path)]
         ) {
             createFilesAndGroupsCalled.append(.init(
@@ -584,7 +584,7 @@ final class GeneratorTests: XCTestCase {
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let hostIDs: [TargetID: [TargetID]]
             let hasBazelDependencies: Bool
-            let xcodeGeneratedFiles: Set<FilePath>
+            let xcodeGeneratedFiles: [FilePath: FilePath]
             let filePathResolver: FilePathResolver
         }
 
@@ -597,7 +597,7 @@ final class GeneratorTests: XCTestCase {
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
             hasBazelDependencies: Bool,
-            xcodeGeneratedFiles: Set<FilePath>,
+            xcodeGeneratedFiles: [FilePath: FilePath],
             filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(

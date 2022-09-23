@@ -118,12 +118,6 @@ extension Platform {
     }
 }
 
-extension Product {
-    init(type: PBXProductType, name: String, path: FilePath) {
-        self.init(type: type, name: name, path: path, executableName: nil)
-    }
-}
-
 extension ConsolidatedTargets {
     init(targets: [TargetID: Target]) {
         var keys: [TargetID: ConsolidatedTarget.Key] = [:]

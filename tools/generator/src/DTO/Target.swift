@@ -7,7 +7,7 @@ struct Target: Equatable {
     var compileTarget: CompileTarget? = nil
     var packageBinDir: Path
     var platform: Platform
-    let product: Product
+    var product: Product
     var isTestonly: Bool
     var isSwift: Bool
     let testHost: TargetID?

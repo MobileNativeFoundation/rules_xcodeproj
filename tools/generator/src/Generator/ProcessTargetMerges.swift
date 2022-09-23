@@ -47,6 +47,12 @@ exist
                 // Set compile target id (used for "Compile File" command)
                 merged.compileTarget = .init(id: source, name: merging.name)
 
+                // Update product
+                merged.product.merge(
+                    oldPackageBinDir: merged.packageBinDir,
+                    newPackageBinDir: merging.packageBinDir
+                )
+
                 // Update Package Bin Dir
                 // We take on the libraries bazel-out directory to prevent
                 // issues with search paths that are calculated in Starlark.

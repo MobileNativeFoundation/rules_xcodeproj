@@ -428,7 +428,7 @@ enum Fixtures {
     ) -> (
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
-        xcodeGeneratedFiles: Set<FilePath>,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
@@ -1162,26 +1162,26 @@ class StopHook:
 
         // `xcodegeneratedfiles`
 
-        let xcodeGeneratedFiles: Set<FilePath> = [
-            .generated("z/A.a"),
-            .generated("x/y.swiftmodule"),
-            .generated("z/A.app"),
-            .generated("z/AC.app"),
-            .generated("a/b.framework"),
-            .generated("B.xctest"),
-            .generated("B3.xctest"),
-            .generated("a/c.lo"),
-            .generated("d"),
-            .generated("e1/E.a"),
-            .generated("e2/E.a"),
-            .generated("z/I.app"),
-            .generated("r1/R1.bundle"),
-            .generated("T/T 1/T.a"),
-            .generated("T/T 2/T.a"),
-            .generated("T/T 3/T.a"),
-            .generated("z/W.app"),
-            .generated("z/WDK.appex"),
-            .generated("z/WK.appex"),
+        let xcodeGeneratedFiles: [FilePath: FilePath] = [
+            .generated("z/A.a"): .generated("z/A.a"),
+            .generated("x/y.swiftmodule"): .generated("x/y.swiftmodule"),
+            .generated("z/A.app"): .generated("z/A.app"),
+            .generated("z/AC.app"): .generated("z/AC.app"),
+            .generated("a/b.framework"): .generated("a/b.framework"),
+            .generated("B.xctest"): .generated("B.xctest"),
+            .generated("B3.xctest"): .generated("B3.xctest"),
+            .generated("a/c.lo"): .generated("a/c.lo"),
+            .generated("d"): .generated("d"),
+            .generated("e1/E.a"): .generated("e1/E.a"),
+            .generated("e2/E.a"): .generated("e2/E.a"),
+            .generated("z/I.app"): .generated("z/I.app"),
+            .generated("r1/R1.bundle"): .generated("r1/R1.bundle"),
+            .generated("T/T 1/T.a"): .generated("T/T 1/T.a"),
+            .generated("T/T 2/T.a"): .generated("T/T 2/T.a"),
+            .generated("T/T 3/T.a"): .generated("T/T 3/T.a"),
+            .generated("z/W.app"): .generated("z/W.app"),
+            .generated("z/WDK.appex"): .generated("z/WDK.appex"),
+            .generated("z/WK.appex"): .generated("z/WK.appex"),
         ]
 
         return (files, elements, xcodeGeneratedFiles, [])
@@ -2013,7 +2013,7 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
     ) -> (
         [ConsolidatedTarget.Key: PBXTarget],
         DisambiguatedTargets,
-        Set<FilePath>
+        [FilePath: FilePath]
     ) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!

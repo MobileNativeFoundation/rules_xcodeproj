@@ -323,7 +323,9 @@ extension ConsolidatedTarget {
             name: aTarget.product.name,
             type: aTarget.product.type,
             basename: aTarget.product.path.path.lastComponent,
-            paths: Set(targets.values.map(\.product.path))
+            paths: Set(targets.values.flatMap { target in
+                return [target.product.path] + target.product.additionalPaths
+            })
         )
         isSwift = aTarget.isSwift
 

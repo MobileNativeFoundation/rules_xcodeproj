@@ -4,6 +4,7 @@ load(
     ":files.bzl",
     "file_path",
     "file_path_to_dto",
+    "normalized_file_path",
 )
 load(":linker_input_files.bzl", "linker_input_files")
 
@@ -116,9 +117,17 @@ def process_product(
     if not fp:
         fail("Could not find product for target {}".format(target.label))
 
+    if target and apple_common.AppleDynamicFramework in target:
+        linker_files = (
+            target[apple_common.AppleDynamicFramework].framework_files
+        )
+    else:
+        linker_files = depset()
+
     return struct(
         executable_name = executable_name,
         name = product_name,
+        linker_files = linker_files,
         file = file,
         file_path = fp,
         actual_file_path = actual_fp,
@@ -128,6 +137,10 @@ def process_product(
 # TODO: Make this into a module
 def product_to_dto(product):
     return {
+        "additional_paths": [
+            file_path_to_dto(normalized_file_path(file))
+            for file in product.linker_files.to_list()
+        ],
         "executable_name": product.executable_name,
         "name": product.name,
         "path": (

@@ -16,7 +16,7 @@ extension Generator {
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool,
-        xcodeGeneratedFiles: Set<FilePath>,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws {
         for (key, disambiguatedTarget) in disambiguatedTargets.targets {
@@ -76,7 +76,7 @@ Target "\(key)" not found in `pbxTargets`
         targets: [TargetID: Target],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool,
-        xcodeGeneratedFiles: Set<FilePath>,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
         var anyBuildSettings: [String: BuildSetting] = [:]
@@ -156,7 +156,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         hostIDs: [TargetID],
         buildMode: BuildMode,
         hasBazelDependencies: Bool,
-        xcodeGeneratedFiles: Set<FilePath>,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
@@ -339,12 +339,11 @@ $(CONFIGURATION_BUILD_DIR)
         if !swiftmodules.isEmpty {
             let includePaths = try swiftmodules
                 .map { filePath -> String in
-                    var dir = filePath
-                    dir.path = dir.path.parent().normalize()
                     return try filePathResolver
                         .resolve(
-                            dir,
-                            useBazelOut: !xcodeGeneratedFiles.contains(filePath)
+                            filePath.parent(),
+                            useBazelOut: !xcodeGeneratedFiles.keys
+                                .contains(filePath)
                         )
                         .string.quoted
                 }
