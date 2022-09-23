@@ -69,7 +69,7 @@ else
         --delete \
         --chmod=u+w \
         --out-format="%n%L" \
-        $(xargs -n1 <<< "${PREVIEW_FRAMEWORK_PATHS:-}") \
+        $(xargs -n1 <<< "$PREVIEW_FRAMEWORK_PATHS") \
         "$BUILD_DIR"
     fi
   fi
