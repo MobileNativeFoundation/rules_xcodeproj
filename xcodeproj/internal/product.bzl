@@ -66,6 +66,7 @@ def process_product(
         target,
         product_name,
         product_type,
+        is_resource_bundle = False,
         bundle_file = None,
         bundle_file_path = None,
         archive_file_path = None,
@@ -81,6 +82,7 @@ def process_product(
         product_type: A PBXProductType string. See
             https://github.com/tuist/XcodeProj/blob/main/Sources/XcodeProj/Objects/Targets/PBXProductType.swift
             for examples.
+        is_resource_bundle: Whether the product is a resource bundle.
         bundle_file: If the product is a bundle, this is `File` for the bundle,
             otherwise `None`.
         bundle_file_path: If the product is a bundle, this is the `file_path` to
@@ -132,6 +134,7 @@ def process_product(
         file_path = fp,
         actual_file_path = actual_fp,
         type = product_type,
+        is_resource_bundle = is_resource_bundle,
     )
 
 # TODO: Make this into a module
@@ -142,6 +145,7 @@ def product_to_dto(product):
             for file in product.linker_files.to_list()
         ],
         "executable_name": product.executable_name,
+        "is_resource_bundle": product.is_resource_bundle,
         "name": product.name,
         "path": (
             file_path_to_dto(product.file_path) if product.file_path else None

@@ -231,7 +231,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         buildSettings.set("ARCHS", to: target.platform.arch)
-        buildSettings.set("BAZEL_LABEL", to: target.label.description)
         buildSettings.set(
             "BAZEL_PACKAGE_BIN_DIR",
             to: target.packageBinDir.string
@@ -244,6 +243,12 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             to: target.platform.variant.rawValue
         )
         buildSettings.set("TARGET_NAME", to: target.name)
+
+        if !target.product.isResourceBundle {
+            // This is used in `calculate_output_groups.py`. We only want to set
+            // it on buildable targets
+            buildSettings.set("BAZEL_LABEL", to: target.label.description)
+        }
 
         let compileTargetName: String
         if let compileTarget = target.compileTarget {
@@ -333,8 +338,9 @@ $(CONFIGURATION_BUILD_DIR)
             }
         }
 
-        if buildMode == .xcode && target.shouldDisableCodeSigning {
-           buildSettings["CODE_SIGNING_ALLOWED"] = false
+        if buildMode == .xcode && target.product.isResourceBundle {
+            // Used to work around CODE_SIGNING_ENABLED = YES in Xcode 14
+            buildSettings["CODE_SIGNING_ALLOWED"] = false
         }
 
         if let pch = target.inputs.pch {
@@ -673,11 +679,6 @@ extension Target {
 
     func linkParamsFilePath() throws -> FilePath {
         return try .internal(internalTargetFilesPath() + "\(name).link.params")
-    }
-    
-    // Used to work around CODE_SIGNING_ENABLED = YES in Xcode 14
-    var shouldDisableCodeSigning: Bool {
-        return platform.os == .iOS && product.type == .bundle
     }
 }
 
