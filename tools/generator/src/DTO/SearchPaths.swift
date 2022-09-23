@@ -1,8 +1,8 @@
 struct SearchPaths: Equatable {
     let frameworkIncludes: [FilePath]
-    let quoteIncludes: [FilePath]
-    let includes: [FilePath]
-    let systemIncludes: [FilePath]
+    var quoteIncludes: [FilePath]
+    var includes: [FilePath]
+    var systemIncludes: [FilePath]
 
     init(
         frameworkIncludes: [FilePath] = [],
@@ -14,6 +14,20 @@ struct SearchPaths: Equatable {
         self.quoteIncludes = quoteIncludes
         self.includes = includes
         self.systemIncludes = systemIncludes
+    }
+}
+
+extension SearchPaths {
+    mutating func merge(_ other: SearchPaths) {
+        quoteIncludes = other.quoteIncludes
+        includes = other.includes
+        systemIncludes = other.systemIncludes
+    }
+
+    func merging(_ other: SearchPaths) -> SearchPaths {
+        var searchPaths = self
+        searchPaths.merge(other)
+        return searchPaths
     }
 }
 

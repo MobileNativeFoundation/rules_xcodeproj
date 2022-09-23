@@ -70,7 +70,7 @@ exist
                 merged.buildSettings.merge(merging.buildSettings) { _, r in r }
 
                 // Update search paths
-                merged.searchPaths = merging.searchPaths
+                merged.searchPaths.merge(merging.searchPaths)
 
                 // Update modulemaps
                 merged.modulemaps = merging.modulemaps
