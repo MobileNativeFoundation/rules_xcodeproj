@@ -29,6 +29,7 @@ on it, or [file a new issue][file-an-issue]!
   - [x] Test selection and running
   - [x] Embedded Targets (App Clips, App Extensions, and Watch Apps)
   - [x] SwiftUI Previews
+  - [x] Thread Sanitizer (more sanitizers coming soon)
 - [x] Focused Projects
   - [x] Include a subset of your targets in Xcode
   - [x] Unfocused targets are built with Bazel
@@ -40,20 +41,20 @@ don't have full support yet. See the
 for details on progress towards the 1.0 release. Here are a few of the remaining
 planned high level features:
 
+- [ ] [Frameworks](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/14)
 - [ ] [Supporting all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/4)
 - [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/17)
-- [ ] [Frameworks](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/14)
 
 We've also documented the [high level design](/doc/design/high-level.md) of the
 rules.
 
 ## Compatibility
 
-- macOS 12.0-12.5.1
+- macOS 12.0-12.6
 - Xcode 13.0-14.0
-- Bazel 5.2.0-5.3.0
-- rules_swift 1.0.0-1.1.1
-- rules_apple 1.0.1-1.1.1
+- Bazel 5.2.0-5.3.1
+- rules_swift 1.0.0-1.2.0
+- rules_apple 1.0.1-1.1.2
 
 More versions of these tools and rulesets might be supported, but these are the
 ones we've officially tested with.
