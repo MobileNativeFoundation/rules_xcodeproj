@@ -149,7 +149,8 @@ enum Fixtures {
             ),
             testHost: "A 2",
             linkerInputs: .init(
-                staticFrameworks: ["a/StaticFram.framework"]
+                staticFrameworks: ["a/StaticFram.framework"],
+                dynamicFrameworks: [.generated("a/b.framework")]
             ),
             dependencies: ["A 2", "B 1"]
         ),
@@ -1656,8 +1657,23 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                     )])
                 ),
                 PBXFrameworksBuildPhase(
+                    files: buildFiles([
+                        PBXBuildFile(file: elements["a/StaticFram.framework"]!),
+                        PBXBuildFile(file: products
+                            .byFilePath[.generated("a/b.framework")]!
+                        )
+                    ])
+                ),
+                PBXCopyFilesBuildPhase(
+                    dstPath: "",
+                    dstSubfolderSpec: .frameworks,
+                    name: "Embed Frameworks",
                     files: buildFiles([PBXBuildFile(
-                        file: elements["a/StaticFram.framework"]!
+                        file: products.byFilePath[.generated("a/b.framework")]!,
+                        settings: ["ATTRIBUTES": [
+                            "CodeSignOnCopy",
+                            "RemoveHeadersOnCopy",
+                        ]]
                     )])
                 ),
             ],
