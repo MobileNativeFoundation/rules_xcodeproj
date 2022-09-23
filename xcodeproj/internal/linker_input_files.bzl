@@ -142,9 +142,6 @@ def _extract_top_level_values(
 `avoid_compilation_providers` doesn't have `ObjcProvider`, but \
 `compilation_providers` does
 """)
-            avoid_dynamic_framework_files = sets.make(
-                avoid_objc.dynamic_framework_file.to_list(),
-            )
             avoid_static_framework_files = sets.make(
                 avoid_objc.static_framework_file.to_list(),
             )
@@ -155,7 +152,6 @@ def _extract_top_level_values(
                 ]).to_list(),
             )
         else:
-            avoid_dynamic_framework_files = sets.make()
             avoid_static_framework_files = sets.make()
             avoid_static_libraries = sets.make()
 
@@ -174,8 +170,7 @@ def _extract_top_level_values(
         dynamic_frameworks = [
             file
             for file in objc.dynamic_framework_file.to_list()
-            if (file.is_source and
-                not sets.contains(avoid_dynamic_framework_files, file))
+            if file.is_source
         ]
         static_frameworks = [
             file
