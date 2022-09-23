@@ -68,6 +68,7 @@ Product for target "\(key)" not found in `products`
                 try createFrameworksPhase(
                     in: pbxProj,
                     frameworks: target.linkerInputs.frameworks,
+                    products: products,
                     files: files
                 ),
                 try createResourcesPhase(
@@ -86,6 +87,7 @@ Product for target "\(key)" not found in `products`
                     buildMode: buildMode,
                     productType: productType,
                     frameworks: target.linkerInputs.embeddable,
+                    products: products,
                     files: files
                 ),
                 try createEmbedWatchContentPhase(
@@ -346,16 +348,20 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
     private static func createFrameworksPhase(
         in pbxProj: PBXProj,
         frameworks: [FilePath],
+        products: Products,
         files: [FilePath: File]
     ) throws -> PBXFrameworksBuildPhase? {
         guard !frameworks.isEmpty else {
             return nil
         }
 
-        func buildFile(filePath: FilePath) throws -> PBXBuildFile {
+        func fileElement(filePath: FilePath) throws -> PBXFileElement {
+            if let fileElement = products.byFilePath[filePath] {
+                return fileElement
+            }
             guard let framework = files[filePath] else {
                 throw PreconditionError(message: """
-Framework with file path "\(filePath)" not found in `files`
+Framework with file path "\(filePath)" not found in `products` or `files`
 """)
             }
             guard let fileElement = framework.fileElement else {
@@ -363,13 +369,17 @@ Framework with file path "\(filePath)" not found in `files`
 Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
 """)
             }
+            return fileElement
+        }
+
+        func buildFile(fileElement: PBXFileElement) throws -> PBXBuildFile {
             let pbxBuildFile = PBXBuildFile(file: fileElement)
             pbxProj.add(object: pbxBuildFile)
             return pbxBuildFile
         }
 
         let buildPhase = PBXFrameworksBuildPhase(
-            files: try frameworks.map(buildFile)
+            files: try frameworks.map(fileElement).uniqued().map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 
@@ -445,6 +455,7 @@ Resource bundle product reference with key \(key) not found in `products`
         buildMode: BuildMode,
         productType: PBXProductType,
         frameworks: [FilePath],
+        products: Products,
         files: [FilePath: File]
     ) throws -> PBXCopyFilesBuildPhase? {
         guard !buildMode.usesBazelModeBuildScripts,
@@ -454,10 +465,13 @@ Resource bundle product reference with key \(key) not found in `products`
             return nil
         }
 
-        func buildFile(filePath: FilePath) throws -> PBXBuildFile {
+        func fileElement(filePath: FilePath) throws -> PBXFileElement {
+            if let fileElement = products.byFilePath[filePath] {
+                return fileElement
+            }
             guard let framework = files[filePath] else {
                 throw PreconditionError(message: """
-Framework with file path "\(filePath)" not found in `files`
+Framework with file path "\(filePath)" not found in `products` or `files`
 """)
             }
             guard let fileElement = framework.fileElement else {
@@ -465,6 +479,10 @@ Framework with file path "\(filePath)" not found in `files`
 Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
 """)
             }
+            return fileElement
+        }
+
+        func buildFile(fileElement: PBXFileElement) throws -> PBXBuildFile {
             let pbxBuildFile = PBXBuildFile(
                 file: fileElement,
                 settings: [
@@ -479,7 +497,7 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
             dstPath: "",
             dstSubfolderSpec: .frameworks,
             name: "Embed Frameworks",
-            files: try frameworks.map(buildFile)
+            files: try frameworks.map(fileElement).uniqued().map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 
