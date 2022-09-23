@@ -378,6 +378,17 @@ $(CONFIGURATION_BUILD_DIR)
                 to: ldRunpathSearchPaths
             )
         }
+
+        if buildMode != .xcode && target.product.type.isFramework {
+            try buildSettings.set(
+                "PREVIEW_FRAMEWORK_PATHS",
+                to: target.linkerInputs.dynamicFrameworks.map { filePath in
+                    return #"""
+"\#(try filePathResolver.resolve(filePath, useBazelOut: true))"
+"""#
+                }
+            )
+        }
         
         // Set VFS overlays
 
