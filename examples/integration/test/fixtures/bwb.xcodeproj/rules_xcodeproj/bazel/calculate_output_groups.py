@@ -67,11 +67,14 @@ def _calculate_label_and_target_ids(
 
         labels_and_target_ids = []
         for target in build_request["configuredTargets"]:
-            label = guid_labels[target["guid"]]
+            label = guid_labels.get(target["guid"])
+            if not label:
+                # `BazelDependency` and the like
+                continue
             full_target_target_ids = guid_target_ids[target["guid"]]
             target_target_ids = (
                 full_target_target_ids.get(command) or
-                # Will only be `null` if `command == "buildFiles"`` and there
+                # Will only be `null` if `command == "buildFiles"` and there
                 # isn't a different compile target id
                 full_target_target_ids["build"]
             )
@@ -156,6 +159,10 @@ def _calculate_guid_labels_and_target_ids(base_objroot):
                     compile_target_ids[_platform_from_compile_key(key)] = value
                 elif key == "BAZEL_LABEL":
                     label = value
+
+        if not label:
+            # `BazelDependency` and the like
+            continue
 
         target_ids = {
             "build": build_target_ids,
