@@ -373,10 +373,27 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let ldRunpathSearchPaths = target.ldRunpathSearchPaths {
-            buildSettings.set(
-                "LD_RUNPATH_SEARCH_PATHS",
-                to: ldRunpathSearchPaths
-            )
+            if buildMode == .xcode && target.product.type.isFramework {
+                buildSettings.set("LD_RUNPATH_SEARCH_PATHS", to: [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
+                ])
+                buildSettings.set("PREVIEWS_LD_RUNPATH_SEARCH_PATHS__", to: [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                ])
+                buildSettings.set(
+                    "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO",
+                    to: ldRunpathSearchPaths
+                )
+                buildSettings.set("PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES", to: [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                    "$(FRAMEWORK_SEARCH_PATHS)",
+                ])
+            } else {
+                buildSettings.set(
+                    "LD_RUNPATH_SEARCH_PATHS",
+                    to: ldRunpathSearchPaths
+                )
+            }
         }
 
         if buildMode != .xcode && target.product.type.isFramework {
