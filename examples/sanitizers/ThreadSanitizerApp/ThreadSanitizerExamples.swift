@@ -1,7 +1,6 @@
 import Foundation
 
 struct ThreadSanitizerExamples {
-    
     func run() {
         example1()
     }

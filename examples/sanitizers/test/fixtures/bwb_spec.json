@@ -48,7 +48,7 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.examples.sanitizers",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -117,7 +117,7 @@
             },
             "product": {
                 "additional_paths": [],
-                "executable_name": "ThreadSanitizerApp_ExecutableName",
+                "executable_name": "ThreadSanitizerApp",
                 "name": "ThreadSanitizerApp",
                 "path": {
                     "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/ThreadSanitizerApp/ThreadSanitizerApp_archive-root/Payload/ThreadSanitizerApp.app",
