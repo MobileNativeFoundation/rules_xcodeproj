@@ -58,7 +58,139 @@ final class SetTargetConfigurationsTests: XCTestCase {
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }
 
-    func test_ldRunpathSearchPaths() throws {
+    func test_ldRunpathSearchPaths_xcode() throws {
+        // Arrange
+
+        let key = "LD_RUNPATH_SEARCH_PATHS"
+        let pbxProj = Fixtures.pbxProj()
+
+        let (
+            disambiguatedTargets,
+            pbxTargets,
+            expectedLdRunpathSearchPaths
+        ) = Self.createFixtures([
+            // Applications
+            ([.macOS], .application, [key: [
+                "$(inherited)",
+                "@executable_path/../Frameworks",
+            ]]),
+            ([.iOS], .application, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+            ]]),
+            ([.iOS], .onDemandInstallCapableApplication, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+            ]]),
+            ([.watchOS], .application, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+            ]]),
+            ([.tvOS], .application, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+            ]]),
+
+            // Frameworks
+            ([.macOS], .framework, [key: [
+                "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
+            ]]),
+            ([.iOS], .framework, [key: [
+                "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
+            ]]),
+            ([.watchOS], .framework, [key: [
+                "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
+            ]]),
+            ([.tvOS], .framework, [key: [
+                "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
+            ]]),
+
+            // App Extensions
+            ([.macOS], .appExtension, [key: [
+                "$(inherited)",
+                "@executable_path/../Frameworks",
+                "@executable_path/../../../../Frameworks",
+            ]]),
+            ([.macOS], .xcodeExtension, [key: [
+                "$(inherited)",
+                "@executable_path/../Frameworks",
+                "@executable_path/../../../../Frameworks",
+            ]]),
+            ([.iOS], .appExtension, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+            ]]),
+            ([.iOS], .messagesExtension, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+            ]]),
+            ([.iOS], .intentsServiceExtension, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+            ]]),
+
+            ([.watchOS], .appExtension, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+                "@executable_path/../../../../Frameworks",
+            ]]),
+            ([.watchOS], .watchExtension, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+            ]]),
+            ([.watchOS], .watch2Extension, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+            ]]),
+            ([.tvOS], .tvExtension, [key: [
+                "$(inherited)",
+                "@executable_path/Frameworks",
+                "@executable_path/../../Frameworks",
+            ]]),
+
+            // NOT set
+            ([.macOS], .commandLineTool, [:]),
+            ([.macOS], .unitTestBundle, [:]),
+            ([.iOS], .uiTestBundle, [:]),
+            ([.watchOS], .watchApp, [:]),
+            ([.watchOS], .watch2App, [:]),
+            ([.iOS], .watch2AppContainer, [:]),
+            ([.tvOS], .staticLibrary, [:]),
+            ([.iOS], .staticFramework, [:]),
+        ])
+
+        // Act
+
+        try Generator.setTargetConfigurations(
+            in: pbxProj,
+            for: disambiguatedTargets,
+            targets: [:],
+            buildMode: .xcode,
+            pbxTargets: pbxTargets,
+            hostIDs: [:],
+            hasBazelDependencies: false,
+            xcodeGeneratedFiles: [:],
+            filePathResolver: Self.filePathResolverFixture
+        )
+
+        let ldRunpathSearchPaths: [ConsolidatedTarget.Key: [String: [String]]] =
+            try Self.getBuildSettings(key, from: pbxTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            ldRunpathSearchPaths,
+            expectedLdRunpathSearchPaths
+        )
+    }
+
+    func test_ldRunpathSearchPaths_bazel() throws {
         // Arrange
 
         let key = "LD_RUNPATH_SEARCH_PATHS"
@@ -179,7 +311,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             in: pbxProj,
             for: disambiguatedTargets,
             targets: [:],
-            buildMode: .xcode,
+            buildMode: .bazel,
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false,
@@ -195,6 +327,144 @@ final class SetTargetConfigurationsTests: XCTestCase {
         XCTAssertNoDifference(
             ldRunpathSearchPaths,
             expectedLdRunpathSearchPaths
+        )
+    }
+
+    func test_previewsLdRunpathSearchPaths_xcode() throws {
+        // Arrange
+
+        let key = "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__"
+        let pbxProj = Fixtures.pbxProj()
+
+        let (
+            disambiguatedTargets,
+            pbxTargets,
+            expectedPreviewsLdRunpathSearchPaths
+        ) = Self.createFixtures([
+            ([.macOS], .framework, [
+                key: [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                ],
+                "\(key)NO": [
+                    "$(inherited)",
+                    "@executable_path/../Frameworks",
+                    "@loader_path/Frameworks",
+                ],
+                "\(key)YES": [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                    "$(FRAMEWORK_SEARCH_PATHS)",
+                ],
+            ]),
+            ([.iOS], .framework, [
+                key: [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                ],
+                "\(key)NO": [
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@loader_path/Frameworks",
+                ],
+                "\(key)YES": [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                    "$(FRAMEWORK_SEARCH_PATHS)",
+                ],
+            ]),
+            ([.watchOS], .framework, [
+                key: [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                ],
+                "\(key)NO": [
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@loader_path/Frameworks",
+                ],
+                "\(key)YES": [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                    "$(FRAMEWORK_SEARCH_PATHS)",
+                ],
+            ]),
+            ([.tvOS], .framework, [
+                key: [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                ],
+                "\(key)NO": [
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@loader_path/Frameworks",
+                ],
+                "\(key)YES": [
+                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+                    "$(FRAMEWORK_SEARCH_PATHS)",
+                ],
+            ]),
+        ])
+
+        // Act
+
+        try Generator.setTargetConfigurations(
+            in: pbxProj,
+            for: disambiguatedTargets,
+            targets: [:],
+            buildMode: .xcode,
+            pbxTargets: pbxTargets,
+            hostIDs: [:],
+            hasBazelDependencies: false,
+            xcodeGeneratedFiles: [:],
+            filePathResolver: Self.filePathResolverFixture
+        )
+
+        let previewsLdRunpathSearchPaths: [
+            ConsolidatedTarget.Key: [String: [String]]
+        ] = try Self.getBuildSettings(key, from: pbxTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            previewsLdRunpathSearchPaths,
+            expectedPreviewsLdRunpathSearchPaths
+        )
+    }
+
+    func test_previewsLdRunpathSearchPaths_bazel() throws {
+        // Arrange
+
+        let key = "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__"
+        let pbxProj = Fixtures.pbxProj()
+
+        let (
+            disambiguatedTargets,
+            pbxTargets,
+            expectedPreviewsLdRunpathSearchPaths
+        ) = Self.createFixtures([
+            ([.macOS], .framework, [String: [String]]()),
+            ([.iOS], .framework, [String: [String]]()),
+            ([.watchOS], .framework, [String: [String]]()),
+            ([.tvOS], .framework, [String: [String]]()),
+        ])
+
+        // Act
+
+        try Generator.setTargetConfigurations(
+            in: pbxProj,
+            for: disambiguatedTargets,
+            targets: [:],
+            buildMode: .bazel,
+            pbxTargets: pbxTargets,
+            hostIDs: [:],
+            hasBazelDependencies: false,
+            xcodeGeneratedFiles: [:],
+            filePathResolver: Self.filePathResolverFixture
+        )
+
+        let previewsLdRunpathSearchPaths: [
+            ConsolidatedTarget.Key: [String: [String]]
+        ] = try Self.getBuildSettings(key, from: pbxTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            previewsLdRunpathSearchPaths,
+            expectedPreviewsLdRunpathSearchPaths
         )
     }
 
@@ -510,9 +780,50 @@ final class SetTargetConfigurationsTests: XCTestCase {
         )
     }
 
+    static func getBuildSettings(
+        _ keyPrefix: String,
+        from pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> [ConsolidatedTarget.Key: [String: [String]]] {
+        var selectedBuildSettings: [
+            ConsolidatedTarget.Key: [String: [String]]
+        ] = [:]
+        for (key, pbxTarget) in pbxTargets {
+            let buildSettings = try XCTUnwrap(
+                pbxTarget
+                    .buildConfigurationList?
+                    .buildConfigurations
+                    .first?
+                    .buildSettings,
+                file: file,
+                line: line
+            )
+            selectedBuildSettings[key] = try buildSettings
+                .filter { key, _ in key.hasPrefix(keyPrefix) }
+                .mapValues { anyBuildSetting in
+                    let buildSetting: [String]
+                    if let stringBuildSetting = anyBuildSetting as? String {
+                        buildSetting = [stringBuildSetting]
+                    } else {
+                        buildSetting = try XCTUnwrap(
+                            anyBuildSetting as? [String],
+                            file: file,
+                            line: line
+                        )
+                    }
+
+                    return buildSetting
+                }
+        }
+        return selectedBuildSettings
+    }
+
     static func getBuildSettings<BuildSettingType>(
         _ keyPrefix: String,
-        from pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
+        from pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        file: StaticString = #filePath,
+        line: UInt = #line
     ) throws -> [ConsolidatedTarget.Key: [String: BuildSettingType]] {
         var selectedBuildSettings: [
             ConsolidatedTarget.Key: [String: BuildSettingType]
@@ -523,12 +834,23 @@ final class SetTargetConfigurationsTests: XCTestCase {
                     .buildConfigurationList?
                     .buildConfigurations
                     .first?
-                    .buildSettings
+                    .buildSettings,
+                file: file,
+                line: line
             )
             selectedBuildSettings[key] = try buildSettings
-                .filter { key, _ in key.starts(with: keyPrefix) }
+                .filter { key, _ in key.hasPrefix(keyPrefix) }
                 .mapValues { buildSetting in
-                    return try XCTUnwrap(buildSetting as? BuildSettingType)
+
+
+                    return try XCTUnwrap(
+                        buildSetting as? BuildSettingType,
+                        """
+Build setting value \(buildSetting) had incorrect type
+""",
+                        file: file,
+                        line: line
+                    )
                 }
         }
         return selectedBuildSettings
