@@ -45,6 +45,22 @@ actions:
     bazel_commands:
       - "run --config=workflows //test/fixtures:validate"
       - "test --config=workflows //..."
+  
+  - name: Integration Test - "examples/sanitizers"
+    os: "darwin"
+    triggers:
+      push:
+        branches:
+          - "main"
+      pull_request:
+        branches:
+          - "*"
+    git_clean_exclude:
+      - examples/sanitizers/bazel-output-base
+    bazel_workspace_dir: examples/sanitizers
+    bazel_commands:
+      - "run --config=workflows //test/fixtures:validate"
+      - "build --config=workflows //..."
 
   - name: Integration Test - "examples/simple"
     os: "darwin"
