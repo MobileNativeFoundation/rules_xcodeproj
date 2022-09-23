@@ -6198,6 +6198,12 @@
             "is_testonly": true,
             "label": "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle",
             "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
                 "linkopts": [
                     "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftmodule",

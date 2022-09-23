@@ -78,6 +78,7 @@
 		7588D7A77F079A22223A4CD9 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E03EA73D2F5DAB6EDED34595 /* CryptoSwift.framework */; };
 		76EBD2A85F8B00A3AC785D91 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 714F4CDA20A0822521C3B389 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		79B7C5A659E99494C2DE8CA4 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 714F4CDA20A0822521C3B389 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7A89F29A836A7DB1D3EF7667 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 161FCC8E16610CC731029DF1 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CC5D5ADD1512CBD7146C5CC /* WatchOSAppExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B218A5ABDAE4874D95C93B /* WatchOSAppExtensionTests.swift */; };
 		7DB75EFC83D0E6BF459CDBAD /* AltIcon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A58D8893BD2FBD17F6365C /* AltIcon-60@2x.png */; };
 		7E67547F812C4CB430B3E719 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33769C19E5BDFCC804DB871 /* Lib.swift */; };
@@ -94,6 +95,7 @@
 		9EBD12B9600E371A1CDC1090 /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1A77D43C2AC29495314BE08 /* Utils.bundle */; };
 		A1015778E645BAF13F1E3EB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F5C9ECA94AABFD6812E7930 /* Localizable.strings */; };
 		A1736C708A752DBF8E79E4B1 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F25FDB1425AC4C3D5829AD6 /* Launch.storyboard */; };
+		A225636FE42CBCBD21146A91 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161FCC8E16610CC731029DF1 /* CryptoSwift.framework */; };
 		A2881D00B6B4998713F69CDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A8C0E241B1307FE7464ADF2 /* Assets.xcassets */; };
 		A3981F7E03800ED5F1A4CE70 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = 810E2D447FCAC7D533DFF6D2 /* lib.m */; };
 		A6753619C6B486331D39C220 /* AppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B85F05863EF8DE04D82121 /* AppClip.swift */; };
@@ -572,6 +574,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6D2E1B47A7BF182F648958B4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7A89F29A836A7DB1D3EF7667 /* CryptoSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75774963D17D570D0DAF085D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -920,6 +933,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F3484C7F2A4F19417D4F2B /* ExternalFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CC387A8C29E692EDE26A70A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A225636FE42CBCBD21146A91 /* CryptoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3170,6 +3191,8 @@
 			buildPhases = (
 				755BE1A07AB48CCBA936E166 /* Create linking dependencies */,
 				EB0951B0308737E469AF753E /* Sources */,
+				9CC387A8C29E692EDE26A70A /* Frameworks */,
+				6D2E1B47A7BF182F648958B4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

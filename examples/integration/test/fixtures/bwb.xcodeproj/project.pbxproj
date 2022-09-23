@@ -48,6 +48,7 @@
 		4B9D7C7D6D5DDACAF5F87255 /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B67D228CAE7657B7CF96BCD /* watchOSApp.swift */; };
 		4DCE1596464F993C9A745426 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF522B1DF94A22805CFB159 /* Lib.swift */; };
 		5003A996FFB25A6D500F8312 /* iMessageAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E332411DCE28305063274CDF /* iMessageAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		50132650EEA27019BCA2E293 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48754296ACA596286860C0BF /* CryptoSwift.framework */; };
 		511CD055B798496C846A5E4D /* WatchOSAppExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B97B63749CB7B8FCC4C6CD /* WatchOSAppExtensionTests.swift */; };
 		511EF1749DC18A6D29600755 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FBAFC44AF745D83B41AC29 /* ContentView.swift */; };
 		526815DB742350C83EB04495 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401FDA68482F8B5BE018478 /* CryptoSwift.framework */; };
@@ -750,6 +751,14 @@
 			files = (
 				17D28C4F6071247D8148BE16 /* CryptoSwift.framework in Frameworks */,
 				1345A48101C47E242F430CD8 /* CryptoSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACEE7EB126C3F28C8C05B7C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50132650EEA27019BCA2E293 /* CryptoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2859,6 +2868,7 @@
 				283DCDF5399761BAD0DB8923 /* Copy Bazel Outputs */,
 				8E99904A6B322FD8DC0AE06D /* Create linking dependencies */,
 				D891ADC38CB5CD0B471E2DC5 /* Sources */,
+				ACEE7EB126C3F28C8C05B7C9 /* Frameworks */,
 			);
 			buildRules = (
 			);
