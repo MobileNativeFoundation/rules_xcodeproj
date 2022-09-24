@@ -220,6 +220,8 @@ touch "$build_marker"
   "$GENERATOR_LABEL" \
   2>&1
 
+touch "$OBJROOT/bazel_build_finish"
+
 indexstores_filelists=()
 for output_group in "${output_groups[@]}"; do
   filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"

@@ -13,6 +13,35 @@ if [[ "$ACTION" == indexbuild ]]; then
   # Write to "$SCHEME_TARGET_IDS_FILE" to allow next index to catch up
   echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" > "$SCHEME_TARGET_IDS_FILE"
 else
+  # If this is the requesting target, wait for Bazel build to finish
+  should_wait_for_bazel=false
+  while IFS= read -r line; do
+    if [[ "$line" == "$BAZEL_LABEL,$BAZEL_TARGET_ID" ]]; then
+      should_wait_for_bazel=true
+      break
+    fi
+  done < "$SCHEME_TARGET_IDS_FILE"
+
+  if [[ "$should_wait_for_bazel" == true ]]; then
+    bazel_build_start_marker="$OBJROOT/bazel_build_start"
+    bazel_build_finish_marker="$OBJROOT/bazel_build_finish"
+    bazel_build_output="$OBJROOT/bazel_build_output"
+
+    while [[ ! -f "$bazel_build_finish_marker" ]] || [[ "$bazel_build_start_marker" -nt "$bazel_build_finish_marker" ]]; do
+      if [[ -f "$bazel_build_output" ]] && \
+        [[ "$bazel_build_start_marker" -ot "$bazel_build_output" ]] && \
+        [[ "$(tail -n 1 "$bazel_build_output")" == *"FAILED: Build did NOT complete successfully" ]]; then
+          cat "$bazel_build_output"
+          exit 1
+      fi
+
+      echo "Waiting for Bazel build to finish..."
+      sleep 5
+    done
+
+    cat "$bazel_build_output"
+  fi
+
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
     if [[ "$BAZEL_OUTPUTS_PRODUCT" = *.ipa ]]; then

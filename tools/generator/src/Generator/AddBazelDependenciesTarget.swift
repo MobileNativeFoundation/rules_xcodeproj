@@ -186,7 +186,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             name: name,
             outputFileListPaths: outputFileListPaths,
             shellScript: """
-"$BAZEL_INTEGRATION_DIR/bazel_build.sh"
+"$BAZEL_INTEGRATION_DIR/bazel_build.sh" > "$OBJROOT/bazel_build_output" 2>&1 &
 
 """,
             showEnvVarsInLog: false,
