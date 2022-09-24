@@ -36,6 +36,7 @@ def _process_resource_bundle(bundle, *, information):
         target = None,
         product_name = name,
         product_type = "com.apple.product-type.bundle",
+        is_resource_bundle = True,
         bundle_file = None,
         bundle_file_path = bundle_file_path,
         linker_inputs = None,
