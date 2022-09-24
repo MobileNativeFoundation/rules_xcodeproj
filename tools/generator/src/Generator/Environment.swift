@@ -71,8 +71,8 @@ struct Environment {
         _ bazelConfig: String,
         _ xcodeprojBazelLabel: BazelLabel,
         _ xcodeprojConfiguration: String,
-        _ preBuildScript: FilePath?,
-        _ postBuildScript: FilePath?,
+        _ preBuildScript: String?,
+        _ postBuildScript: String?,
         _ consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget?
 
