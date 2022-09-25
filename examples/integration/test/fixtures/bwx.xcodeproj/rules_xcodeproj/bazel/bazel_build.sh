@@ -193,10 +193,10 @@ if [ "$ACTION" == "indexbuild" ]; then
   config="${BAZEL_CONFIG}_indexbuild"
 elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
   config="${BAZEL_CONFIG}_swiftuipreviews"
-elif [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
-  config="${BAZEL_CONFIG}_tsan"
 elif [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
   config="${BAZEL_CONFIG}_asan"
+elif [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
+  config="${BAZEL_CONFIG}_tsan"
 else
   config="_${BAZEL_CONFIG}_build"
 fi

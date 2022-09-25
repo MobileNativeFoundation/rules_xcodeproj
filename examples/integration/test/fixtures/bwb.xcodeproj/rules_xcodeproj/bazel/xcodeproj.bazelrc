@@ -92,19 +92,19 @@ build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable
 # we already have cache misses from the `swiftc` flags above
 build:rules_xcodeproj_swiftuipreviews --features=-swift.index_while_building
 
-### `--config=rules_xcodeproj_tsan`
-#
-# Used when building with Thread Sanitizer enabled.
-
-build:rules_xcodeproj_tsan --config=rules_xcodeproj
-build:rules_xcodeproj_tsan --features=tsan
-
 ### `--config=rules_xcodeproj_asan`
 #
 # Used when building with Address Sanitizer enabled.
 
 build:rules_xcodeproj_asan --config=rules_xcodeproj
 build:rules_xcodeproj_asan --features=asan
+
+### `--config=rules_xcodeproj_tsan`
+#
+# Used when building with Thread Sanitizer enabled.
+
+build:rules_xcodeproj_tsan --config=rules_xcodeproj
+build:rules_xcodeproj_tsan --features=tsan
 
 ### `--config=_rules_xcodeproj_build`
 #
@@ -129,10 +129,10 @@ info:rules_xcodeproj_integration_info --config=rules_xcodeproj_info
 info:rules_xcodeproj_integration_info --config=rules_xcodeproj_integration
 build:rules_xcodeproj_integration_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews
 build:rules_xcodeproj_integration_swiftuipreviews --config=rules_xcodeproj_integration
-build:rules_xcodeproj_integration_tsan --config=rules_xcodeproj_tsan
-build:rules_xcodeproj_integration_tsan --config=rules_xcodeproj_integration
 build:rules_xcodeproj_integration_asan --config=rules_xcodeproj_asan
 build:rules_xcodeproj_integration_asan --config=rules_xcodeproj_integration
+build:rules_xcodeproj_integration_tsan --config=rules_xcodeproj_tsan
+build:rules_xcodeproj_integration_tsan --config=rules_xcodeproj_integration
 
 # Private implementation detail. Don't adjust this config, adjust
 # `rules_xcodeproj_integration` instead.
