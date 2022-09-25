@@ -171,7 +171,7 @@ echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
     ) -> XCScheme.ExecutionAction {
         return .init(
             scriptText: #"""
-if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
+if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ] || [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
     # TODO: Support custom toolchains once clang.sh supports them 
     src="$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib"
     dest="$BAZEL_INTEGRATION_DIR/../lib"
