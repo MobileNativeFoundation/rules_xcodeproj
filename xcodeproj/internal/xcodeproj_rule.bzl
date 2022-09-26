@@ -938,7 +938,7 @@ These files won't be added to the project if the target is unfocused.
 An optional path to an excutable file that should be run after the build. You
 can specify a workspace-relative path (e.g. `./post-build.sh`), or an absolute
 path using an Xcode-provided environment variable (e.g.
-`${PROJECT_DIR}/post-build.sh`).
+`"$PROJECT_DIR/post-build.sh"`).
 """,
         ),
         "pre_build": attr.string(
