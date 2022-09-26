@@ -79,11 +79,9 @@
             },
             "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
             "inputs": {
-                "hdrs": [
-                    "lib2/includes/lib.h"
-                ],
                 "srcs": [
-                    "lib2/lib.c"
+                    "lib2/lib.c",
+                    "lib2/includes/lib.h"
                 ]
             },
             "is_swift": false,
@@ -386,12 +384,6 @@
             },
             "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
             "inputs": {
-                "hdrs": [
-                    {
-                        "_": "examples_cc_external/private/private.inc",
-                        "t": "e"
-                    }
-                ],
                 "srcs": [
                     {
                         "_": "examples_cc_external/lib.c",

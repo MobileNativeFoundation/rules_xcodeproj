@@ -1650,11 +1650,9 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197",
             "inputs": {
-                "hdrs": [
-                    "CommandLine/CommandLineToolLib/private_lib.h"
-                ],
                 "srcs": [
-                    "CommandLine/CommandLineToolLib/private_lib.c"
+                    "CommandLine/CommandLineToolLib/private_lib.c",
+                    "CommandLine/CommandLineToolLib/private_lib.h"
                 ]
             },
             "is_swift": false,
@@ -2169,11 +2167,9 @@
             },
             "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197",
             "inputs": {
-                "hdrs": [
-                    "CommandLine/swift_c_module/c_lib.h"
-                ],
                 "srcs": [
-                    "CommandLine/swift_c_module/c_lib.c"
+                    "CommandLine/swift_c_module/c_lib.c",
+                    "CommandLine/swift_c_module/c_lib.h"
                 ]
             },
             "is_swift": false,
