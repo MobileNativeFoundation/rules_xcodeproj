@@ -30,6 +30,7 @@ final class ConsolidateTargetsTests: XCTestCase {
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
@@ -68,6 +69,7 @@ final class ConsolidateTargetsTests: XCTestCase {
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
@@ -129,6 +131,7 @@ final class ConsolidateTargetsTests: XCTestCase {
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
@@ -169,6 +172,7 @@ final class ConsolidateTargetsTests: XCTestCase {
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
@@ -205,6 +209,7 @@ final class ConsolidateTargetsTests: XCTestCase {
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
@@ -258,6 +263,7 @@ final class ConsolidateTargetsTests: XCTestCase {
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
@@ -323,6 +329,7 @@ final class ConsolidateTargetsTests: XCTestCase {
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
@@ -430,6 +437,7 @@ conditional `deps`
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
@@ -551,6 +559,7 @@ conditional `test_host`
         let logger = StubLogger()
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
+            [:],
             logger: logger
         )
 
