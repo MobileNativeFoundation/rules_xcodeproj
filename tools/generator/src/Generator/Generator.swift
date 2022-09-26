@@ -88,11 +88,6 @@ class Generator {
             targets[id]!.dependencies.subtract(isUnfocusedDependencyTargetIDs)
         }
 
-        let consolidatedTargets = try environment.consolidateTargets(
-            targets,
-            logger
-        )
-
         let (
             files,
             rootElements,
@@ -106,6 +101,12 @@ class Generator {
             project.extraFiles,
             xccurrentversions,
             filePathResolver,
+            logger
+        )
+
+        let consolidatedTargets = try environment.consolidateTargets(
+            targets,
+            xcodeGeneratedFiles,
             logger
         )
         let (products, productsGroup) = environment.createProducts(

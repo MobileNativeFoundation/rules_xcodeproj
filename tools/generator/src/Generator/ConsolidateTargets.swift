@@ -13,6 +13,7 @@ extension Generator {
     static func consolidateTargets(
         // swiftlint:disable:previous cyclomatic_complexity
         _ targets: [TargetID: Target],
+        _ xcodeGeneratedFiles: [FilePath : FilePath],
         logger: Logger
     ) throws -> ConsolidatedTargets {
         // First pass
@@ -187,7 +188,10 @@ Target "\(targetID)" not found in `consolidateTargets().targets`
                 cTargets[targetID] = target
             }
 
-            consolidatedTargets[key] = ConsolidatedTarget(targets: cTargets)
+            consolidatedTargets[key] = ConsolidatedTarget(
+                targets: cTargets,
+                xcodeGeneratedFiles: xcodeGeneratedFiles
+            )
         }
 
         return ConsolidatedTargets(
@@ -313,7 +317,10 @@ Target \(key)'s dependency on "\(targetID)" not found in `keys`
 }
 
 extension ConsolidatedTarget {
-    init(targets: [TargetID: Target]) {
+    init(
+        targets: [TargetID: Target],
+        xcodeGeneratedFiles: [FilePath: FilePath]
+    ) {
         self.targets = targets
         let aTarget = self.targets.first!.value
 
@@ -338,14 +345,20 @@ extension ConsolidatedTarget {
         inputs = Self.consolidateInputs(targets: sortedTargets)
         linkerInputs = Self.consolidateLinkerInputs(targets: sortedTargets)
 
-        var baselineFiles: Set<FilePath> = aTarget.allExcludableFiles
+        var baselineFiles: Set<FilePath> = aTarget
+            .allExcludableFiles(xcodeGeneratedFiles: xcodeGeneratedFiles)
         for target in targets.values {
-            baselineFiles.formIntersection(target.allExcludableFiles)
+            baselineFiles.formIntersection(
+                target.allExcludableFiles(
+                    xcodeGeneratedFiles: xcodeGeneratedFiles
+                )
+            )
         }
 
         var uniqueFiles: [TargetID: Set<FilePath>] = [:]
         for (id, target) in targets {
-            uniqueFiles[id] = target.allExcludableFiles
+            uniqueFiles[id] = target
+                .allExcludableFiles(xcodeGeneratedFiles: xcodeGeneratedFiles)
                 .subtracting(baselineFiles)
         }
         self.uniqueFiles = uniqueFiles
@@ -483,15 +496,24 @@ extension ConsolidatedTarget.Key {
 // MARK: - Private extensions
 
 private extension Target {
-    var allExcludableFiles: Set<FilePath> {
+    func allExcludableFiles(
+        xcodeGeneratedFiles: [FilePath: FilePath]
+    ) -> Set<FilePath> {
         var files = inputs.all
-        files.formUnion(linkerInputs.allExcludableFiles)
+        files.formUnion(
+            linkerInputs
+                .allExcludableFiles(xcodeGeneratedFiles: xcodeGeneratedFiles)
+        )
         return files
     }
 }
 
 private extension LinkerInputs {
-    var allExcludableFiles: Set<FilePath> {
-        return Set(dynamicFrameworks)
+    func allExcludableFiles(
+        xcodeGeneratedFiles: [FilePath: FilePath]
+    ) -> Set<FilePath> {
+        return Set(
+            dynamicFrameworks.filter { !xcodeGeneratedFiles.keys.contains($0) }
+        )
     }
 }
