@@ -193,7 +193,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PROJECT_DIR/post-build w spaces.sh\"\n";
+			shellScript = "\"$PROJECT_DIR/post-build w spaces.sh\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 		922073A986018654923053B1 /* Pre-build Run Script */ = {
@@ -208,7 +208,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo 'Pre-building...'";
+			shellScript = "echo 'Pre-building...'\n";
 			showEnvVarsInLog = 0;
 		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
