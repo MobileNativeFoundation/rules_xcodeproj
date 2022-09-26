@@ -946,7 +946,7 @@ path using an Xcode-provided environment variable (e.g.
 An optional path to an excutable file that should be run before the build. You
 can specify a workspace-relative path (e.g. `./pre-build.sh`), or an absolute
 path using an Xcode-provided environment variable (e.g.
-`${PROJECT_DIR}/pre-build.sh`).
+`"$PROJECT_DIR/pre-build.sh"`).
 """,
         ),
         "project_name": attr.string(
