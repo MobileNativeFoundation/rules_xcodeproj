@@ -54,11 +54,6 @@ for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
   output_groups+=("${labels_and_output_groups[i+1]}")
 done
 
-labels=()
-while IFS= read -r -d '' label; do
-  labels+=("$label")
-done < <(printf "%s\0" "${raw_labels[@]}" | sort -uz)
-
 if [ -z "${output_groups:-}" ]; then
   if [ "$ACTION" == "indexbuild" ]; then
     if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
@@ -77,6 +72,11 @@ if [ -z "${output_groups:-}" ]; then
       >&2
     exit 1
   fi
+else
+  labels=()
+  while IFS= read -r -d '' label; do
+    labels+=("$label")
+  done < <(printf "%s\0" "${raw_labels[@]}" | sort -uz)
 fi
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 
@@ -220,7 +220,7 @@ touch "$build_marker"
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
   "$output_groups_flag" \
-  "${labels[@]}" \
+  ${labels:+"${labels[@]}"} \
   "$GENERATOR_LABEL" \
   2>&1
 
