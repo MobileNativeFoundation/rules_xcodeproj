@@ -355,7 +355,7 @@
 				BAZEL_COMPILE_TARGET_ID = "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "//ThreadSanitizerApp:ThreadSanitizerApp";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp";
 				BAZEL_TARGET_ID = "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
@@ -372,12 +372,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/ThreadSanitizerApp/ThreadSanitizerApp.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/ThreadSanitizerApp/ThreadSanitizerApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATHS__ = "$(PREVIEWS_SWIFT_INCLUDE_PATHS__NO)";
 				PREVIEWS_SWIFT_INCLUDE_PATHS__NO = "";
-				PREVIEWS_SWIFT_INCLUDE_PATHS__YES = "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp $(PREVIEWS_SWIFT_INCLUDE_PATHS__NO)";
+				PREVIEWS_SWIFT_INCLUDE_PATHS__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp/ThreadSanitizerApp_archive-root/Payload $(PREVIEWS_SWIFT_INCLUDE_PATHS__NO)";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = ThreadSanitizerApp;
 				PRODUCT_NAME = ThreadSanitizerApp;

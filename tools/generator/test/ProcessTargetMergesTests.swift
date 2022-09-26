@@ -39,9 +39,9 @@ final class TargetMergingTests: XCTestCase {
         expectedTargets.removeValue(forKey: "B 1")
         expectedTargets["A 2"] = Target.mock(
             compileTarget: .init(id: "A 1", name: targets["A 1"]!.name),
-            packageBinDir: targets["A 1"]!.packageBinDir,
+            packageBinDir: targets["A 2"]!.packageBinDir,
             platform: targets["A 1"]!.platform,
-            product: targets["A 2"]!.product,
+            product: targets["A 2"]!.product.merging(targets["A 1"]!.product),
             isSwift: targets["A 1"]!.isSwift,
             buildSettings: [
                 // Inherited "A 1"s `PRODUCT_MODULE_NAME`
@@ -72,9 +72,9 @@ final class TargetMergingTests: XCTestCase {
         )
         expectedTargets["B 2"] = Target.mock(
             compileTarget: .init(id: "B 1", name: targets["B 1"]!.name),
-            packageBinDir: targets["B 1"]!.packageBinDir,
+            packageBinDir: targets["B 2"]!.packageBinDir,
             platform: targets["B 1"]!.platform,
-            product: targets["B 2"]!.product,
+            product: targets["B 2"]!.product.merging(targets["B 1"]!.product),
             isSwift: targets["B 1"]!.isSwift,
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
@@ -95,9 +95,9 @@ final class TargetMergingTests: XCTestCase {
         )
         expectedTargets["B 3"] = Target.mock(
             compileTarget: .init(id: "B 1", name: targets["B 1"]!.name),
-            packageBinDir: targets["B 1"]!.packageBinDir,
+            packageBinDir: targets["B 3"]!.packageBinDir,
             platform: targets["B 1"]!.platform,
-            product: targets["B 3"]!.product,
+            product: targets["B 3"]!.product.merging(targets["B 1"]!.product),
             isSwift: targets["B 1"]!.isSwift,
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,

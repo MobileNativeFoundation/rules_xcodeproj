@@ -48,17 +48,7 @@ exist
                 merged.compileTarget = .init(id: source, name: merging.name)
 
                 // Update product
-                merged.product.merge(
-                    oldPackageBinDir: merged.packageBinDir,
-                    newPackageBinDir: merging.packageBinDir
-                )
-
-                // Update Package Bin Dir
-                // We take on the libraries bazel-out directory to prevent
-                // issues with search paths that are calculated in Starlark.
-                // We could instead push that calculation into the generator,
-                // but that currently seems like too much work.
-                merged.packageBinDir = merging.packageBinDir
+                merged.product.merge(merging.product)
 
                 // Update platform
                 merged.platform = merging.platform
