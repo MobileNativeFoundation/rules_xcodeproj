@@ -11,8 +11,21 @@ actions:
     git_clean_exclude:
       - bazel-output-base
     bazel_commands:
-      - "run --config=workflows //test/fixtures:validate"
       - "test --config=workflows //..."
+
+  - name: Integration Test - Root
+    os: "darwin"
+    triggers:
+      push:
+        branches:
+          - "main"
+      pull_request:
+        branches:
+          - "*"
+    git_clean_exclude:
+      - bazel-output-base
+    bazel_commands:
+      - "run --config=workflows //test/fixtures:validate"
 
   - name: Integration Test - "examples/cc"
     os: "darwin"
@@ -45,7 +58,7 @@ actions:
     bazel_commands:
       - "run --config=workflows //test/fixtures:validate"
       - "test --config=workflows //..."
-  
+
   - name: Integration Test - "examples/sanitizers"
     os: "darwin"
     triggers:
