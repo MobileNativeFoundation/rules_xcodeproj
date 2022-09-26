@@ -161,6 +161,18 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
 
+        var frameworkSearchPaths: [FilePath: [Bool: FilePath]] = [:]
+        for filePath in target.linkerInputs.dynamicFrameworks {
+            let searchFilePath = filePath.parent()
+            if let xcodeFilePath = xcodeGeneratedFiles[filePath] {
+                frameworkSearchPaths[searchFilePath, default: [:]][false] =
+                    xcodeFilePath.parent()
+            } else {
+                frameworkSearchPaths[searchFilePath, default: [:]][true] =
+                    searchFilePath
+            }
+        }
+
         func handleSearchPath(filePath: FilePath) throws -> String {
             let path = try filePathResolver
                 .resolve(filePath, useBazelOut: true)
@@ -171,12 +183,35 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             return path
         }
 
+        func handleFrameworkSearchPath(filePath: FilePath) throws -> [String] {
+            if let searchFilePaths = frameworkSearchPaths[filePath] {
+                var searchPaths: [String] = []
+                if let xcodeFilePath = searchFilePaths[false] {
+                    searchPaths.append(
+                        try filePathResolver
+                            .resolve(xcodeFilePath, useBazelOut: false)
+                            .string.quoted
+                    )
+                }
+                if let bazelFilePath = searchFilePaths[true] {
+                    searchPaths.append(
+                        try filePathResolver
+                            .resolve(bazelFilePath, useBazelOut: true)
+                            .string.quoted
+                    )
+                }
+                return searchPaths
+            } else {
+                return [try handleSearchPath(filePath: filePath)]
+            }
+        }
+
         let frameworkIncludes = target.searchPaths.frameworkIncludes
         let hasFrameworkIncludes = !frameworkIncludes.isEmpty
         if hasFrameworkIncludes {
             try buildSettings.prepend(
                 onKey: "FRAMEWORK_SEARCH_PATHS",
-                frameworkIncludes.map(handleSearchPath)
+                frameworkIncludes.flatMap(handleFrameworkSearchPath)
             )
         }
 
