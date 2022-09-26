@@ -37,9 +37,11 @@ def _create(
     """
     direct_products = []
     direct_compiles = []
+    direct_infoplists = []
     indexstore = None
 
     if infoplist:
+        direct_infoplists.append(infoplist)
         direct_products.append(infoplist)
 
     if direct_outputs:
@@ -77,6 +79,18 @@ def _create(
                 ))
         ],
     )
+    transitive_infoplists = depset(
+        direct_infoplists if direct_infoplists else None,
+        transitive = [
+            info.outputs._transitive_infoplists
+            for attr, info in transitive_infos
+            if (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                ))
+        ],
+    )
     transitive_products = depset(
         direct_products if direct_products else None,
         transitive = [
@@ -103,9 +117,12 @@ def _create(
     )
 
     if should_produce_output_groups and direct_outputs:
+        # TODO: Make this a generated files output group
+        infoplists_output_group_name = "bg {}".format(direct_outputs.id)
         products_output_group_name = "bp {}".format(direct_outputs.id)
         direct_group_list = [
             ("bc {}".format(direct_outputs.id), transitive_compiles),
+            ("bg {}".format(direct_outputs.id), transitive_infoplists),
             ("bi {}".format(direct_outputs.id), transitive_indexestores),
             (products_output_group_name, transitive_products),
         ]
@@ -130,6 +147,7 @@ def _create(
         _direct_outputs = direct_outputs if should_produce_dto else None,
         _output_group_list = output_group_list,
         _transitive_compiles = transitive_compiles,
+        _transitive_infoplists = transitive_infoplists,
         _transitive_indexestores = transitive_indexestores,
         _transitive_products = transitive_products,
         _transitive_swift = transitive_swift,

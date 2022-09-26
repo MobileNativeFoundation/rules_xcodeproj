@@ -22,6 +22,10 @@ else
     fi
   done < "$SCHEME_TARGET_IDS_FILE"
 
+  if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]] && [[ "$BAZEL_OUTPUTS_PRODUCT" == *.appex ]]; then
+    should_wait_for_bazel=true
+  fi
+
   if [[ "$should_wait_for_bazel" == true ]]; then
     bazel_build_start_marker="$OBJROOT/bazel_build_start"
     bazel_build_finish_marker="$OBJROOT/bazel_build_finish"

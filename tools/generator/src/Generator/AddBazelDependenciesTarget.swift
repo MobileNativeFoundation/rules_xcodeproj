@@ -90,6 +90,20 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         )
         pbxProj.add(object: configurationList)
 
+        // Workaround for the inability to disable Xcode's ProcessInfoPlistFile
+        // action. Without this, ProcessInfoPlistFile will fail because the
+        // input of the action doesn't exist.
+        let bazelGenerateInfoPlistsScript = try createBazelGenerateInfoPlistsScript(
+            in: pbxProj,
+            buildMode: buildMode,
+            targets: consolidatedTargets.targets.values
+                .flatMap { $0.sortedTargets },
+            files: files,
+            filePathResolver: filePathResolver,
+            xcodeprojBazelLabel: xcodeprojBazelLabel,
+            xcodeprojConfiguration: xcodeprojConfiguration
+        )
+
         let bazelBuildScript = try createBazelBuildScript(
             in: pbxProj,
             buildMode: buildMode,
@@ -108,6 +122,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             )
 
         var buildPhases = [
+            bazelGenerateInfoPlistsScript,
             bazelBuildScript,
             createLLDBSettingsModuleScript,
         ]
@@ -148,6 +163,33 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         return pbxTarget
     }
 
+    private static func createBazelGenerateInfoPlistsScript(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        targets: [Target],
+        files: [FilePath: File],
+        filePathResolver: FilePathResolver,
+        xcodeprojBazelLabel: BazelLabel,
+        xcodeprojConfiguration: String
+    ) throws -> PBXShellScriptBuildPhase {
+        // TODO: Add Info.plists file paths
+        var outputFileListPaths: [String] = []
+
+        let script = PBXShellScriptBuildPhase(
+            name: "Generate Info.plists",
+            outputFileListPaths: outputFileListPaths,
+            shellScript: """
+"$BAZEL_INTEGRATION_DIR/bazel_generate_files.sh"
+
+""",
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: true
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
     private static func createBazelBuildScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
@@ -181,7 +223,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         } else {
             name = "Fetch External Repositories"
         }
-
+        
         let script = PBXShellScriptBuildPhase(
             name: name,
             outputFileListPaths: outputFileListPaths,
