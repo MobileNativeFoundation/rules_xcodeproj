@@ -92,7 +92,9 @@ enum Fixtures {
                 path: .generated("z/A.app"),
                 executableName: "A_ExecutableName"
             ),
+            isSwift: true,
             buildSettings: [
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "T": .string("43"),
                 "Z": .string("0"),
             ],
@@ -117,7 +119,15 @@ enum Fixtures {
                 forceLoad: [.generated("a/c.lo")]
             ),
             resourceBundleDependencies: ["R 1"],
-            dependencies: ["C 1", "A 1", "R 1"]
+            dependencies: ["C 1", "A 1", "R 1"],
+            outputs: .init(
+                product: nil,
+                swift: .init(
+                    module: .generated("x/A.swiftmodule"),
+                    doc: .generated("x/A.swiftdoc"),
+                    sourceInfo: .generated("x/A.swiftsourceinfo")
+                )
+            )
         ),
         "AC": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/AC",
@@ -211,7 +221,15 @@ enum Fixtures {
             isSwift: true,
             modulemaps: ["a/module.modulemap"],
             swiftmodules: [.generated("x/y.swiftmodule")],
-            inputs: .init(srcs: [.external("a_repo/a.swift")])
+            inputs: .init(srcs: [.external("a_repo/a.swift")]),
+            outputs: .init(
+              product: nil,
+              swift: .init(
+                  module: .generated("x/E.swiftmodule"),
+                  doc: .generated("x/E.swiftdoc"),
+                  sourceInfo: .generated("x/E.swiftsourceinfo")
+              )
+            )
         ),
         "E2": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/E2",
@@ -1165,6 +1183,7 @@ class StopHook:
 
         let xcodeGeneratedFiles: [FilePath: FilePath] = [
             .generated("z/A.a"): .generated("z/A.a"),
+            .generated("x/A.swiftmodule"): .generated("x/A.swiftmodule"),
             .generated("x/y.swiftmodule"): .generated("x/y.swiftmodule"),
             .generated("z/A.app"): .generated("z/A.app"),
             .generated("z/AC.app"): .generated("z/AC.app"),
@@ -1174,6 +1193,7 @@ class StopHook:
             .generated("a/c.lo"): .generated("a/c.lo"),
             .generated("d"): .generated("d"),
             .generated("e1/E.a"): .generated("e1/E.a"),
+            .generated("x/E.swiftmodule"): .generated("x/E.swiftmodule"),
             .generated("e2/E.a"): .generated("e2/E.a"),
             .generated("z/I.app"): .generated("z/I.app"),
             .generated("r1/R1.bundle"): .generated("r1/R1.bundle"),
@@ -2144,19 +2164,15 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                     "@executable_path/../Frameworks",
                 ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
+                "OTHER_SWIFT_FLAGS": #"""
+-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
+"""#,
+                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "PRODUCT_NAME": "A",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
-                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
                 "TARGET_NAME": targets["A 2"]!.name,
             ]) { $1 },
             "AC": targets["AC"]!.buildSettings.asDictionary.merging([

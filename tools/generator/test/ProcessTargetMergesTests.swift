@@ -46,7 +46,9 @@ final class TargetMergingTests: XCTestCase {
             buildSettings: [
                 // Inherited "A 1"s `PRODUCT_MODULE_NAME`
                 "PRODUCT_MODULE_NAME": .string("A"),
-                // Inherited "A 1"'s `T`, `Y`, `Z`
+                // Inherited "A 1"'s `SWIFT_OBJC_INTERFACE_HEADER_NAME`, `T`,
+                // `Y`, and `Z`
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "T": .string("42"),
                 "Y": .bool(true),
                 "Z": .string("0"),
@@ -73,7 +75,7 @@ final class TargetMergingTests: XCTestCase {
             packageBinDir: targets["B 1"]!.packageBinDir,
             platform: targets["B 1"]!.platform,
             product: targets["B 2"]!.product,
-            isSwift: targets["A 2"]!.isSwift,
+            isSwift: targets["B 1"]!.isSwift,
             testHost: "A 2",
             modulemaps: targets["B 1"]!.modulemaps,
             swiftmodules: targets["B 1"]!.swiftmodules,
