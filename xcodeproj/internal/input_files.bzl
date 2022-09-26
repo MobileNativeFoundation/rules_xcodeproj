@@ -343,13 +343,8 @@ def _collect(
     if CcInfo in target:
         compilation_context = target[CcInfo].compilation_context
         srcs.extend(_process_cc_info_headers(
-            compilation_context.direct_private_headers,
-            output_files = output_files,
-            pch = pch,
-            generated = generated,
-        ))
-        hdrs.extend(_process_cc_info_headers(
-            (compilation_context.direct_public_headers +
+            (compilation_context.direct_private_headers +
+             compilation_context.direct_public_headers +
              compilation_context.direct_textual_headers),
             output_files = output_files,
             pch = pch,

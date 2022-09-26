@@ -1,7 +1,7 @@
 struct Inputs: Equatable {
     var srcs: [FilePath]
     var nonArcSrcs: [FilePath]
-    var hdrs: Set<FilePath>
+    let hdrs: Set<FilePath>
     var pch: FilePath?
     var resources: Set<FilePath>
     var entitlements: FilePath?
@@ -30,7 +30,6 @@ extension Inputs {
     mutating func merge(_ other: Inputs) {
         srcs = other.srcs
         nonArcSrcs = other.nonArcSrcs
-        hdrs = other.hdrs
         pch = other.pch
         resources.formUnion(other.resources)
     }
