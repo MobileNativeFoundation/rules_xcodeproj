@@ -419,6 +419,10 @@ def _write_json_spec(
     else:
         custom_xcode_schemes_json = ctx.attr.schemes_json
 
+    # Have to do this dance because attr.string's default is ""
+    post_build_script = json.encode(ctx.attr.post_build) if ctx.attr.post_build else "null"
+    pre_build_script = json.encode(ctx.attr.pre_build) if ctx.attr.pre_build else "null"
+
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     spec_json = """\
 {{\
@@ -464,12 +468,8 @@ def _write_json_spec(
         ),
         label = ctx.label,
         name = project_name,
-        post_build_script = json.encode(file_path_to_dto(
-            file_path(ctx.file.post_build),
-        )),
-        pre_build_script = json.encode(file_path_to_dto(
-            file_path(ctx.file.pre_build),
-        )),
+        post_build_script = post_build_script,
+        pre_build_script = pre_build_script,
         replacement_labels = json.encode(
             flattened_key_values.to_list(replacement_labels),
         ),
@@ -933,22 +933,16 @@ the file and the value is the label of the target it should be associated with.
 These files won't be added to the project if the target is unfocused.
 """,
         ),
-        "post_build": attr.label(
-            allow_single_file = True,
+        "post_build": attr.string(
             doc = """\
-A `Label` representing a shell script that should be run after the build.
-
-Note: Since this is referenced and run outside of the Bazel context, this
-cannot be a Bazel-generated file.
+The text of a script that will be run after the build. For example:
+`./post-build.sh`, `"$PROJECT_DIR/post-build.sh"`.
 """,
         ),
-        "pre_build": attr.label(
-            allow_single_file = True,
+        "pre_build": attr.string(
             doc = """\
-A `Label` representing a shell script that should be run before the build.
-
-Note: Since this is referenced and run outside of the Bazel context, this
-cannot be a Bazel-generated file.
+The text of a script that will be run before the build. For example:
+`./pre-build.sh`, `"$PROJECT_DIR/pre-build.sh"`.
 """,
         ),
         "project_name": attr.string(
