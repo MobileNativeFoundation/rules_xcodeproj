@@ -405,11 +405,12 @@ $(CONFIGURATION_BUILD_DIR)
                 "SWIFT_INCLUDE_PATHS" : "PREVIEWS_SWIFT_INCLUDE_PATHS__NO"
 
             func handleSwiftModule(_ filePath: FilePath) throws -> String {
+                let xcodeFilePath = xcodeGeneratedFiles[filePath]
+                let filePath = xcodeFilePath ?? filePath
                 return try filePathResolver
                     .resolve(
                         filePath.parent(),
-                        useBazelOut: !xcodeGeneratedFiles.keys
-                            .contains(filePath)
+                        useBazelOut: xcodeFilePath == nil
                     )
                     .string.quoted
             }

@@ -1183,8 +1183,8 @@ class StopHook:
 
         let xcodeGeneratedFiles: [FilePath: FilePath] = [
             .generated("z/A.a"): .generated("z/A.a"),
-            .generated("x/A.swiftmodule"): .generated("x/A.swiftmodule"),
-            .generated("x/y.swiftmodule"): .generated("x/y.swiftmodule"),
+            .generated("x/A.swiftmodule"): .generated("z/A.swiftmodule"),
+            .generated("x/y.swiftmodule"): .generated("z/y.swiftmodule"),
             .generated("z/A.app"): .generated("z/A.app"),
             .generated("z/AC.app"): .generated("z/AC.app"),
             .generated("a/b.framework"): .generated("a/b.framework"),
@@ -1193,7 +1193,7 @@ class StopHook:
             .generated("a/c.lo"): .generated("a/c.lo"),
             .generated("d"): .generated("d"),
             .generated("e1/E.a"): .generated("e1/E.a"),
-            .generated("x/E.swiftmodule"): .generated("x/E.swiftmodule"),
+            .generated("x/E.swiftmodule"): .generated("e1/E.swiftmodule"),
             .generated("e2/E.a"): .generated("e2/E.a"),
             .generated("z/I.app"): .generated("z/I.app"),
             .generated("r1/R1.bundle"): .generated("r1/R1.bundle"),
@@ -2168,7 +2168,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "OTHER_SWIFT_FLAGS": #"""
 -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
 """#,
-                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
+                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/z",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "PRODUCT_NAME": "A",
                 "SDKROOT": "macosx",
@@ -2354,7 +2354,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "PRODUCT_NAME": "E1",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
-                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/x",
+                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/z",
                 "TARGET_NAME": targets["E1"]!.name,
                 "WATCHOS_DEPLOYMENT_TARGET": "9.1",
             ]) { $1 },

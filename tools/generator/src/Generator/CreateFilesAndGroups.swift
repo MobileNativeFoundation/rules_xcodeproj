@@ -651,7 +651,8 @@ EOF
                     xcodeGeneratedFiles[filePath] = target.product.path
                 }
                 if let filePath = target.outputs.swift?.module {
-                    xcodeGeneratedFiles[filePath] = filePath
+                    xcodeGeneratedFiles[filePath] = target
+                        .xcodeSwiftModuleFilePath(filePath)
                 }
             }
         default:
@@ -953,6 +954,14 @@ private extension Target {
 \(platform.targetTriple) \(product.path.path.lastComponent)
 """
         return lldbSettingsKey(baseKey: baseKey)
+    }
+
+    func xcodeSwiftModuleFilePath(_ filePath: FilePath) -> FilePath {
+        if product.type.isFramework {
+            return product.path + "Modules/\(filePath.path.lastComponent)"
+        } else {
+            return product.path.parent() + filePath.path.lastComponent
+        }
     }
 }
 

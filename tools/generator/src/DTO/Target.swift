@@ -5,7 +5,7 @@ struct Target: Equatable {
     var label: BazelLabel
     let configuration: String
     var compileTarget: CompileTarget? = nil
-    var packageBinDir: Path
+    let packageBinDir: Path
     var platform: Platform
     var product: Product
     var isTestonly: Bool
