@@ -1,3 +1,4 @@
+import OrderedCollections
 import PathKit
 import XcodeProj
 
@@ -384,21 +385,55 @@ $(CONFIGURATION_BUILD_DIR)
             buildSettings.set("GCC_PREFIX_HEADER", to: pchPath)
         }
 
-        let swiftmodules = target.swiftmodules
-        if !swiftmodules.isEmpty {
-            let includePaths = try swiftmodules
-                .map { filePath -> String in
-                    return try filePathResolver
-                        .resolve(
-                            filePath.parent(),
-                            useBazelOut: !xcodeGeneratedFiles.keys
-                                .contains(filePath)
-                        )
-                        .string.quoted
+        if let swiftmodule = target.outputs.swift?.module {
+            let includePaths: OrderedSet =
+                .init(try target.swiftmodules.map(handleSwiftModule))
+
+            let previewsInclude: String?
+            if target.product.type.isBundle {
+                let selfInclude = try handleSwiftModule(swiftmodule)
+                if !includePaths.contains(selfInclude) {
+                    previewsInclude = selfInclude
+                } else {
+                    previewsInclude = nil
                 }
-                .uniqued()
-                .joined(separator: " ")
-            buildSettings.set("SWIFT_INCLUDE_PATHS", to: includePaths)
+            } else {
+                previewsInclude = nil
+            }
+
+            let key = previewsInclude == nil ?
+                "SWIFT_INCLUDE_PATHS" : "PREVIEWS_SWIFT_INCLUDE_PATHS__NO"
+
+            func handleSwiftModule(_ filePath: FilePath) throws -> String {
+                return try filePathResolver
+                    .resolve(
+                        filePath.parent(),
+                        useBazelOut: !xcodeGeneratedFiles.keys
+                            .contains(filePath)
+                    )
+                    .string.quoted
+            }
+
+            if !includePaths.isEmpty || previewsInclude != nil {
+                buildSettings.set(
+                    key,
+                    to: includePaths.elements.uniqued().joined(separator: " ")
+                )
+            }
+
+            if let previewsInclude = previewsInclude {
+                // SwiftUI Previews need to find the current target's
+                // swiftmodule
+                buildSettings.set(
+                    "PREVIEWS_SWIFT_INCLUDE_PATHS__YES",
+                    to: "\(previewsInclude) $(PREVIEWS_SWIFT_INCLUDE_PATHS__NO)"
+                )
+
+                buildSettings["SWIFT_INCLUDE_PATHS"] =
+                "$(PREVIEWS_SWIFT_INCLUDE_PATHS__$(ENABLE_PREVIEWS))"
+                buildSettings["PREVIEWS_SWIFT_INCLUDE_PATHS__"] =
+                "$(PREVIEWS_SWIFT_INCLUDE_PATHS__NO)"
+            }
         }
 
         if let productOutput = target.outputs.product,

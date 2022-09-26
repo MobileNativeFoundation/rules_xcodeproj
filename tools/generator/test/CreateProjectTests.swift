@@ -46,6 +46,7 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
+                "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "INDEXING_BUILT_PRODUCTS_DIR__": """
@@ -157,6 +158,7 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
+                "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
