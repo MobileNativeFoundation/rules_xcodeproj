@@ -228,7 +228,7 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
     ) throws -> PBXShellScriptBuildPhase {
         let script = PBXShellScriptBuildPhase(
             name: "\(name) Run Script",
-            shellScript: script,
+            shellScript: "\(script)\n",
             showEnvVarsInLog: false
         )
         pbxProj.add(object: script)
