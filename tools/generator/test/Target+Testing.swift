@@ -118,8 +118,17 @@ extension Platform {
     }
 }
 
-extension ConsolidatedTargets {
+extension ConsolidatedTarget {
     init(targets: [TargetID: Target]) {
+        self.init(targets: targets, xcodeGeneratedFiles: [:])
+    }
+}
+
+extension ConsolidatedTargets {
+    init(
+        targets: [TargetID: Target],
+        xcodeGeneratedFiles: [FilePath: FilePath] = [:]
+    ) {
         var keys: [TargetID: ConsolidatedTarget.Key] = [:]
         var consolidatedTargets: [ConsolidatedTarget.Key: ConsolidatedTarget] =
             [:]
@@ -127,13 +136,20 @@ extension ConsolidatedTargets {
         for (id, target) in targets {
             let key = ConsolidatedTarget.Key([id])
             keys[id] = key
-            consolidatedTargets[key] = ConsolidatedTarget(targets: [id: target])
+            consolidatedTargets[key] = ConsolidatedTarget(
+                targets: [id: target],
+                xcodeGeneratedFiles: xcodeGeneratedFiles
+            )
         }
 
         self.init(keys: keys, targets: consolidatedTargets)
     }
 
-    init(allTargets: [TargetID: Target], keys: Set<Set<TargetID>>) {
+    init(
+        allTargets: [TargetID: Target],
+        keys: Set<Set<TargetID>>,
+        xcodeGeneratedFiles: [FilePath: FilePath] = [:]
+    ) {
         var mapping: [TargetID: ConsolidatedTarget.Key] = [:]
         var consolidatedTargets: [ConsolidatedTarget.Key: ConsolidatedTarget] =
             [:]
@@ -144,7 +160,8 @@ extension ConsolidatedTargets {
                 mapping[targetID] = key
             }
             consolidatedTargets[key] = ConsolidatedTarget(
-                targets: allTargets.filter { id, _ in targetIDs.contains(id) }
+                targets: allTargets.filter { id, _ in targetIDs.contains(id) },
+                xcodeGeneratedFiles: xcodeGeneratedFiles
             )
         }
 

@@ -128,7 +128,7 @@ extension FilePath {
     func parent() -> FilePath {
         return FilePath(
             type: type,
-            path: path.parent(),
+            path: path.parent().normalize(),
             isFolder: false,
             includeInNavigator: includeInNavigator,
             forceGroupCreation: forceGroupCreation

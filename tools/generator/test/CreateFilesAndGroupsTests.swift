@@ -186,7 +186,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles.map(KeyAndValue.init).sorted(),
             expectedFiles.map(KeyAndValue.init).sorted()
         )
-        XCTAssertNoDifference(xcodeGeneratedFiles, expectedXcodeGeneratedFiles)
+        XCTAssertNoDifference(
+            xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
+            expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
+        )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }

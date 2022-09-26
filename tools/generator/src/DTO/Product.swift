@@ -5,7 +5,7 @@ struct Product: Equatable, Decodable {
     let type: PBXProductType
     let isResourceBundle: Bool
     let name: String
-    var path: FilePath
+    let path: FilePath
     var additionalPaths: [FilePath]
     let executableName: String?
 
@@ -28,42 +28,14 @@ struct Product: Equatable, Decodable {
 }
 
 extension Product {
-    mutating func merge(oldPackageBinDir: Path, newPackageBinDir: Path) {
-        let oldPath = path
-        path.replacePackageBinDir(old: oldPackageBinDir, new: newPackageBinDir)
-
-        if oldPath != path {
-            additionalPaths.append(oldPath)
-        }
+    mutating func merge(_ other: Product) {
+        additionalPaths.append(other.path)
+        additionalPaths.append(contentsOf: other.additionalPaths)
     }
 
-    func merging(oldPackageBinDir: Path, newPackageBinDir: Path) -> Product {
+    func merging(_ other: Product) -> Product {
         var product = self
-        product.merge(
-            oldPackageBinDir: oldPackageBinDir,
-            newPackageBinDir: newPackageBinDir
-        )
+        product.merge(other)
         return product
-    }
-}
-
-private extension FilePath {
-    mutating func replacePackageBinDir(old: Path, new: Path) {
-        guard type == .generated else {
-            return
-        }
-
-        // Remove `bazel-out/` from path
-        let old = old.string.dropFirst(10)
-
-        let pathString = path.string
-        guard pathString.hasPrefix(old) else {
-            return
-        }
-
-        // Remove `bazel-out/` from path
-        let new = new.string.dropFirst(10)
-
-        path = Path("\(new)\(pathString.dropFirst(old.count))")
     }
 }

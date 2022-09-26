@@ -95,7 +95,7 @@ final class ConsolidatedTargetTests: XCTestCase {
         )
     }
 
-    func test_uniqueFiles() {
+    func test_uniqueFiles_xcode() {
         // Arrange
 
         let targets = Self.targets
@@ -107,7 +107,37 @@ final class ConsolidatedTargetTests: XCTestCase {
 
         // Act
 
-        let consolidatedTarget = ConsolidatedTarget(targets: targets)
+        let consolidatedTarget = ConsolidatedTarget(
+            targets: targets,
+            // Non-empty `xcodeGeneratedFiles` -> `buildMode == .xcode`
+            xcodeGeneratedFiles: ["": ""]
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            consolidatedTarget.uniqueFiles,
+            expectedUniqueFiles
+        )
+    }
+
+    func test_uniqueFiles_bazel() {
+        // Arrange
+
+        let targets = Self.targets
+        let expectedUniqueFiles: [TargetID: Set<FilePath>] = [
+            "A": ["0", "123"],
+            "B": ["1", "456", "cc", "aaa"],
+            "C": ["2", "789", "bb", "ccc"]
+        ]
+
+        // Act
+
+        let consolidatedTarget = ConsolidatedTarget(
+            targets: targets,
+            // Empty `xcodeGeneratedFiles` -> `buildMode == .bazel`
+            xcodeGeneratedFiles: [:]
+        )
 
         // Assert
 

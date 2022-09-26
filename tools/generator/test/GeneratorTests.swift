@@ -311,27 +311,6 @@ final class GeneratorTests: XCTestCase {
             targetMerges: project.targetMerges
         )]
 
-        // MARK: consolidateTargets()
-
-        struct ConsolidateTargetsCalled: Equatable {
-            let targets: [TargetID: Target]
-        }
-
-        var consolidateTargetsCalled: [ConsolidateTargetsCalled] = []
-        func consolidateTargets(
-            _ targets: [TargetID: Target],
-            logger _: Logger
-        ) -> ConsolidatedTargets {
-            consolidateTargetsCalled.append(.init(
-                targets: targets
-            ))
-            return consolidatedTargets
-        }
-
-        let expectedConsolidateTargetsCalled = [ConsolidateTargetsCalled(
-            targets: mergedTargets
-        )]
-
         // MARK: createFilesAndGroups()
 
         struct CreateFilesAndGroupsCalled: Equatable {
@@ -385,6 +364,31 @@ final class GeneratorTests: XCTestCase {
             extraFiles: project.extraFiles,
             xccurrentversions: xccurrentversions,
             filePathResolver: filePathResolver
+        )]
+
+        // MARK: consolidateTargets()
+
+        struct ConsolidateTargetsCalled: Equatable {
+            let targets: [TargetID: Target]
+            let xcodeGeneratedFiles: [FilePath: FilePath]
+        }
+
+        var consolidateTargetsCalled: [ConsolidateTargetsCalled] = []
+        func consolidateTargets(
+            _ targets: [TargetID: Target],
+            _ xcodeGeneratedFiles: [FilePath: FilePath],
+            logger _: Logger
+        ) -> ConsolidatedTargets {
+            consolidateTargetsCalled.append(.init(
+                targets: targets,
+                xcodeGeneratedFiles: xcodeGeneratedFiles
+            ))
+            return consolidatedTargets
+        }
+
+        let expectedConsolidateTargetsCalled = [ConsolidateTargetsCalled(
+            targets: mergedTargets,
+            xcodeGeneratedFiles: xcodeGeneratedFiles
         )]
 
         // MARK: createProducts()
