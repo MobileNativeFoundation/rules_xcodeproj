@@ -512,6 +512,12 @@ private extension LinkerInputs {
     func allExcludableFiles(
         xcodeGeneratedFiles: [FilePath: FilePath]
     ) -> Set<FilePath> {
+        guard !xcodeGeneratedFiles.isEmpty else {
+            // Proxy for `buildMode == .xcode`. In BwB mode we don't need to
+            // list any dynamic frameworks, since we aren't embedding them.
+            return []
+        }
+
         return Set(
             dynamicFrameworks.filter { !xcodeGeneratedFiles.keys.contains($0) }
         )
