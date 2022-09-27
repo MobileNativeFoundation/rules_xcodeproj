@@ -7,6 +7,7 @@ exports_files(["README.md"])
 swift_library(
     name = "Lib",
     srcs = [":gen_Lib.swift"],
+    copts = ["-application-extension"],
     module_name = "Lib",
     tags = ["manual"],
     visibility = ["//visibility:public"],

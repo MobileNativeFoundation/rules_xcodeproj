@@ -107,6 +107,11 @@ def process_top_level_properties(
             )
 
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
+        set_if_true(
+            build_settings,
+            "APPLICATION_EXTENSION_API_ONLY",
+            getattr(bundle_info, "extension_safe", False),
+        )
     else:
         executable_name = target_name
         product_name = target_name

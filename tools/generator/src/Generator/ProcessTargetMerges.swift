@@ -57,7 +57,14 @@ exist
                 merged.isSwift = merging.isSwift
 
                 // Merge build settings
-                merged.buildSettings.merge(merging.buildSettings) { _, r in r }
+                //
+                // We remove `APPLICATION_EXTENSION_API_ONLY` from
+                // `buildSettings`, as only the value from the top-level target
+                // is valid
+                var buildSettings = merging.buildSettings
+                buildSettings
+                    .removeValue(forKey: "APPLICATION_EXTENSION_API_ONLY")
+                merged.buildSettings.merge(buildSettings) { _, r in r }
 
                 // Update search paths
                 merged.searchPaths.merge(merging.searchPaths)

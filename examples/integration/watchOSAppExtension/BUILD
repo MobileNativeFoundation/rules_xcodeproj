@@ -71,6 +71,7 @@ apple_resource_group(
 swift_library(
     name = "watchOSAppExtension.library",
     srcs = ["watchOSApp.swift"],
+    copts = ["-application-extension"],
     module_name = "watchOSAppExtension",
     tags = ["manual"],
     deps = ["//UI"],
