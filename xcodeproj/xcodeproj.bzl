@@ -30,7 +30,7 @@ def XcodeProjInfo(**kwargs):
     _moved(name = "XcodeProjInfo", type = "provider")
 
 # buildifier: disable=unused-variable
-def _xcode_schemes_function(**kwargs):
+def _xcode_schemes_function(a = None, b = None, c = None, d = None, **kwargs):
     _moved(name = "xcode_schemes", type = "module")
 
 xcode_schemes = struct(
