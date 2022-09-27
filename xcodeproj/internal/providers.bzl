@@ -66,6 +66,10 @@ collected and shown in the Xcode project.
 A sequence of attribute names to collect `File`s from for `srcs`-like
 attributes.
 """,
+        "strings": """\
+An attribute name (or `None`) to collect `File`s from for the `strings`-like
+attribute.
+        """,
         "target_type": "See `XcodeProjInfo.target_type`.",
         "xcode_targets": """\
 A `dict` mapping attribute names to target type strings (i.e. "resource" or

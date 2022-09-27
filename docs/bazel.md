@@ -389,7 +389,8 @@ XcodeProjAutomaticTargetProcessingInfo(<a href="#XcodeProjAutomaticTargetProcess
                                        <a href="#XcodeProjAutomaticTargetProcessingInfo-bundle_id">bundle_id</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-codesignopts">codesignopts</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-deps">deps</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-entitlements">entitlements</a>,
                                        <a href="#XcodeProjAutomaticTargetProcessingInfo-exported_symbols_lists">exported_symbols_lists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-infoplists">infoplists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-launchdplists">launchdplists</a>,
                                        <a href="#XcodeProjAutomaticTargetProcessingInfo-non_arc_srcs">non_arc_srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-pch">pch</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-provisioning_profile">provisioning_profile</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-should_generate_target">should_generate_target</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-srcs">srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-target_type">target_type</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-xcode_targets">xcode_targets</a>)
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-should_generate_target">should_generate_target</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-srcs">srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-strings">strings</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-target_type">target_type</a>,
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-xcode_targets">xcode_targets</a>)
 </pre>
 
 Provides needed information about a target to allow rules_xcodeproj to
@@ -419,6 +420,7 @@ return a `XcodeProjInfo` provider instance instead.
 | <a id="XcodeProjAutomaticTargetProcessingInfo-provisioning_profile"></a>provisioning_profile |  An attribute name (or <code>None</code>) to collect <code>File</code>s from for the <code>provisioning_profile</code>-like attribute.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-should_generate_target"></a>should_generate_target |  Whether or an Xcode target should be generated for this target. Even if this value is <code>False</code>, setting values for the other attributes can cause inputs to be collected and shown in the Xcode project.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-srcs"></a>srcs |  A sequence of attribute names to collect <code>File</code>s from for <code>srcs</code>-like attributes.    |
+| <a id="XcodeProjAutomaticTargetProcessingInfo-strings"></a>strings |  An attribute name (or <code>None</code>) to collect <code>File</code>s from for the <code>strings</code>-like attribute.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-target_type"></a>target_type |  See <code>XcodeProjInfo.target_type</code>.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-xcode_targets"></a>xcode_targets |  A <code>dict</code> mapping attribute names to target type strings (i.e. "resource" or "compile"). Only Xcode targets from the specified attributes with the specified target type are allowed to propagate.    |
 
