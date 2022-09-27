@@ -77,7 +77,6 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     non_arc_srcs = []
     pch = None
     provisioning_profile = None
-    strings = None
 
     attrs = dir(ctx.rule.attr)
 
@@ -129,8 +128,6 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             infoplists = ["infoplists"]
         if "provisioning_profile" in attrs:
             provisioning_profile = "provisioning_profile"
-        if "strings" in attrs:
-            strings = "strings"
         if "watch_application" in attrs:
             xcode_targets["watch_application"] = [target_type.compile]
     elif AppleBinaryInfo in target:
@@ -196,7 +193,6 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             provisioning_profile = provisioning_profile,
             should_generate_target = should_generate_target,
             srcs = srcs,
-            strings = strings,
             target_type = this_target_type,
             xcode_targets = xcode_targets,
         ),
