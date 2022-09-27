@@ -300,6 +300,8 @@ def process_compiler_opts_test_suite(name):
             "-passthrough",
             "-debug-prefix-map",
             "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
+            "-file-prefix-map",
+            "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
             "-emit-module-path",
             "path",
             "-passthrough",
