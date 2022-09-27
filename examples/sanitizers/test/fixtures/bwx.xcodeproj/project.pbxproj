@@ -22,12 +22,22 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		35AB3BD68F5FB4F736B6E2A2 /* AddressSanitizerExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD20E5E290D99A0950B3170F /* AddressSanitizerExamples.swift */; };
+		63EF2CD7B92D04B366777BE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553540A086F6A1C1B34D9FFD /* ContentView.swift */; };
 		6D9E4F102F4C4860CD35D77B /* ThreadSanitizerExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4151C01B89D55346060A70 /* ThreadSanitizerExamples.swift */; };
 		6FD653DC005D5040058082BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4CDFA2DB2240A7876CCCF /* ContentView.swift */; };
 		84000B13FAC1BF709CEFCCD6 /* ThreadSanitizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5354F45B895C34AC1E22203E /* ThreadSanitizerApp.swift */; };
+		A8740C6EBAFEBE7BA2CC1D11 /* AddressSanitizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBFA15DE3AB409D346C7C0 /* AddressSanitizerApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		14DF5AD2DADD0BC55908C6A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
 		FA587BA0C641234037D32695 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -40,12 +50,19 @@
 /* Begin PBXFileReference section */
 		44BAB1CBCBF61A8FD7891DE3 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5354F45B895C34AC1E22203E /* ThreadSanitizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSanitizerApp.swift; sourceTree = "<group>"; };
+		553540A086F6A1C1B34D9FFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5B4151C01B89D55346060A70 /* ThreadSanitizerExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSanitizerExamples.swift; sourceTree = "<group>"; };
+		670F93CC36DEE4A3E81ABD3D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7A4E8244AA32AE04D23B06A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		91D247EBC4E9656FC80B0E34 /* AddressSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94BBFA15DE3AB409D346C7C0 /* AddressSanitizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSanitizerApp.swift; sourceTree = "<group>"; };
 		97ADB761BAE21D828622D393 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B14030E28AEC60D674861538 /* ThreadSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9820E0AD53B8D61FAD8E30C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EAE4CDFA2DB2240A7876CCCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EF40894F935DE611D8DA51A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F8CE55A2C2C0A38D04D9C992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FD20E5E290D99A0950B3170F /* AddressSanitizerExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSanitizerExamples.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -76,14 +93,24 @@
 		462C3519CA354BE1B04D4855 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				91D247EBC4E9656FC80B0E34 /* AddressSanitizerApp.app */,
 				B14030E28AEC60D674861538 /* ThreadSanitizerApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
+		67883DF65EBA956F0085B0E5 /* AddressSanitizerApp */ = {
+			isa = PBXGroup;
+			children = (
+				EF40894F935DE611D8DA51A2 /* Info.plist */,
+			);
+			path = AddressSanitizerApp;
+			sourceTree = "<group>";
+		};
 		77E0714FDD425211EBA209DF = {
 			isa = PBXGroup;
 			children = (
+				E7887F034DAF3F0502AC2938 /* AddressSanitizerApp */,
 				D2C8CC455B9D27F28D323622 /* test */,
 				992BCA016CF388EC3E3D52F2 /* ThreadSanitizerApp */,
 				A5A3DECCB7E56F0EA3676D12 /* Bazel Generated Files */,
@@ -92,9 +119,18 @@
 			);
 			sourceTree = "<group>";
 		};
+		869F4E0790019FCCF60ED23F /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				67883DF65EBA956F0085B0E5 /* AddressSanitizerApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		9586E9FDDEFA835A6B44D71C /* bin */ = {
 			isa = PBXGroup;
 			children = (
+				EF5DA4E7707087C68BD6653D /* AddressSanitizerApp */,
 				DF19025439C1510AEA0D5ACD /* ThreadSanitizerApp */,
 			);
 			path = bin;
@@ -152,9 +188,46 @@
 			path = ThreadSanitizerApp;
 			sourceTree = "<group>";
 		};
+		E7887F034DAF3F0502AC2938 /* AddressSanitizerApp */ = {
+			isa = PBXGroup;
+			children = (
+				94BBFA15DE3AB409D346C7C0 /* AddressSanitizerApp.swift */,
+				FD20E5E290D99A0950B3170F /* AddressSanitizerExamples.swift */,
+				670F93CC36DEE4A3E81ABD3D /* BUILD */,
+				553540A086F6A1C1B34D9FFD /* ContentView.swift */,
+				C9820E0AD53B8D61FAD8E30C /* Info.plist */,
+			);
+			path = AddressSanitizerApp;
+			sourceTree = "<group>";
+		};
+		EF5DA4E7707087C68BD6653D /* AddressSanitizerApp */ = {
+			isa = PBXGroup;
+			children = (
+				869F4E0790019FCCF60ED23F /* rules_xcodeproj */,
+			);
+			path = AddressSanitizerApp;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3EAFF74229A8CE2544154BF9 /* AddressSanitizerApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BE00A149812934FA86F8678 /* Build configuration list for PBXNativeTarget "AddressSanitizerApp" */;
+			buildPhases = (
+				5E351775A9D4F280A4CF47A2 /* Create linking dependencies */,
+				CA1A90C1E573DF82AAA9E452 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDB6627492E6ED161AC62CB6 /* PBXTargetDependency */,
+			);
+			name = AddressSanitizerApp;
+			productName = AddressSanitizerApp;
+			productReference = 91D247EBC4E9656FC80B0E34 /* AddressSanitizerApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E0A7BFDFC0C3D6AB230925A8 /* ThreadSanitizerApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFC73C679A7E0F171E6E990A /* Build configuration list for PBXNativeTarget "ThreadSanitizerApp" */;
@@ -182,6 +255,10 @@
 				LastSwiftUpdateCheck = 9999;
 				LastUpgradeCheck = 9999;
 				TargetAttributes = {
+					3EAFF74229A8CE2544154BF9 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 9999;
+					};
 					E0A7BFDFC0C3D6AB230925A8 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
@@ -205,6 +282,7 @@
 			projectRoot = "";
 			targets = (
 				FE59281FE487F27A37DC2EE7 /* BazelDependencies */,
+				3EAFF74229A8CE2544154BF9 /* AddressSanitizerApp */,
 				E0A7BFDFC0C3D6AB230925A8 /* ThreadSanitizerApp */,
 			);
 		};
@@ -245,6 +323,23 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5E351775A9D4F280A4CF47A2 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -267,6 +362,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CA1A90C1E573DF82AAA9E452 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8740C6EBAFEBE7BA2CC1D11 /* AddressSanitizerApp.swift in Sources */,
+				35AB3BD68F5FB4F736B6E2A2 /* AddressSanitizerExamples.swift in Sources */,
+				63EF2CD7B92D04B366777BE3 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC62A2AC37691AEA4041381D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,6 +390,12 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = FA587BA0C641234037D32695 /* PBXContainerItemProxy */;
+		};
+		DDB6627492E6ED161AC62CB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 14DF5AD2DADD0BC55908C6A1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -305,6 +416,56 @@
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
+			};
+			name = Debug;
+		};
+		6B31E39AA453F8E107939198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353";
+				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
+				BAZEL_LABEL = "//AddressSanitizerApp:AddressSanitizerApp";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp";
+				BAZEL_TARGET_ID = "//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = AddressSanitizerApp.library;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = NO;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/AddressSanitizerApp/AddressSanitizerApp.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				PREVIEWS_SWIFT_INCLUDE_PATHS__ = "$(PREVIEWS_SWIFT_INCLUDE_PATHS__NO)";
+				PREVIEWS_SWIFT_INCLUDE_PATHS__NO = "";
+				PREVIEWS_SWIFT_INCLUDE_PATHS__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/AddressSanitizerApp_archive-root/Payload $(PREVIEWS_SWIFT_INCLUDE_PATHS__NO)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
+				PRODUCT_MODULE_NAME = AddressSanitizerApp;
+				PRODUCT_NAME = AddressSanitizerApp;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATHS__$(ENABLE_PREVIEWS))";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TARGET_NAME = AddressSanitizerApp;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXEC_ROOT)",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -401,6 +562,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8BE00A149812934FA86F8678 /* Build configuration list for PBXNativeTarget "AddressSanitizerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B31E39AA453F8E107939198 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
