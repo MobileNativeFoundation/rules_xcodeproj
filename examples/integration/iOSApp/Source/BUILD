@@ -31,7 +31,6 @@ ios_application(
     alternate_icons = glob(["AltIcons/AltIcon-60.alticon/**"]),
     app_clips = ["//AppClip"],
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
-    strings = glob(["*.lproj/Localizable.strings"]),
     bundle_id = IOS_BUNDLE_ID,
     bundle_name = "iOSApp",
     entitlements = "ios app.entitlements",
@@ -57,10 +56,11 @@ ios_application(
         [
             "Assets.xcassets/**",
             "Model.xcdatamodeld/**",
-            "*.lproj/unprocessed.json"
+            "*.lproj/unprocessed.json",
         ],
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
     ),
+    strings = glob(["*.lproj/Localizable.strings"]),
     version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
     watch_application = "//watchOSApp",
