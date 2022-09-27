@@ -56,10 +56,11 @@ ios_application(
         [
             "Assets.xcassets/**",
             "Model.xcdatamodeld/**",
-            "*.lproj/**",
+            "*.lproj/unprocessed.json",
         ],
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
     ),
+    strings = glob(["*.lproj/Localizable.strings"]),
     version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
     watch_application = "//watchOSApp",
