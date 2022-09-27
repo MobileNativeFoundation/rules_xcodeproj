@@ -33,6 +33,7 @@ _SWIFTC_SKIP_OPTS = {
     "-debug-prefix-map": 2,
     "-emit-module-path": 2,
     "-emit-object": 1,
+    "-enable-bare-slash-regex": 1,
     "-enable-batch-mode": 1,
     "-file-prefix-map": 2,
     # TODO: See if we need to support this
