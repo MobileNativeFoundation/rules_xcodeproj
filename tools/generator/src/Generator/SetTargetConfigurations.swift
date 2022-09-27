@@ -385,12 +385,14 @@ $(CONFIGURATION_BUILD_DIR)
             buildSettings.set("GCC_PREFIX_HEADER", to: pchPath)
         }
 
-        if let swiftmodule = target.outputs.swift?.module {
+        if target.isSwift {
             let includePaths: OrderedSet =
                 .init(try target.swiftmodules.map(handleSwiftModule))
 
             let previewsInclude: String?
-            if target.product.type.isBundle {
+            if target.product.type.isBundle,
+               let swiftmodule = target.outputs.swift?.module
+            {
                 let selfInclude = try handleSwiftModule(swiftmodule)
                 if !includePaths.contains(selfInclude) {
                     previewsInclude = selfInclude
