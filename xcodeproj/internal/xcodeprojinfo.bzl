@@ -141,7 +141,7 @@ def _target_info_fields(
         "xcode_targets": xcode_targets,
     }
 
-def _skip_target(*, target, rule_kind, deps, deps_attrs, transitive_infos):
+def _skip_target(*, target, deps, deps_attrs, transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
@@ -149,7 +149,6 @@ def _skip_target(*, target, rule_kind, deps, deps_attrs, transitive_infos):
 
     Args:
         target: The `Target` to skip.
-        rule_kind: `ctx.rule.kind`.
         deps: `Target`s collected from `ctx.attr.deps`.
         deps_attrs: A sequence of attribute names to collect `Target`s from for
             `deps`-like attributes.
@@ -236,7 +235,7 @@ def _skip_target(*, target, rule_kind, deps, deps_attrs, transitive_infos):
                 for _, info in transitive_infos
             ],
         ),
-        rule_kind = rule_kind,
+        rule_kind = None,
         search_paths = search_paths,
         target_type = target_type.compile,
         transitive_dependencies = transitive_dependencies,
@@ -403,7 +402,6 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(
             target = target,
-            rule_kind = ctx.rule.kind,
             deps = [
                 dep
                 for attr in automatic_target_info.deps
