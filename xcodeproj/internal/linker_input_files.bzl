@@ -167,11 +167,7 @@ def _extract_top_level_values(
             sets.make(force_load_libraries),
         )
 
-        dynamic_frameworks = [
-            file
-            for file in objc.dynamic_framework_file.to_list()
-            if file.is_source
-        ]
+        dynamic_frameworks = objc.dynamic_framework_file.to_list()
         static_frameworks = [
             file
             for file in objc.static_framework_file.to_list()

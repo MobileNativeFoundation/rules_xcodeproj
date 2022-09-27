@@ -42,6 +42,7 @@ struct Environment {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         xcodeGeneratedFiles: [FilePath: FilePath],
+        bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     )
 
@@ -96,6 +97,7 @@ struct Environment {
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool,
         _ xcodeGeneratedFiles: [FilePath: FilePath],
+        _ bazelRemappedFiles: [FilePath: FilePath],
         _ filePathResolver: FilePathResolver
     ) throws -> Void
 

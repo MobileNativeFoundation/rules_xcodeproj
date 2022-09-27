@@ -171,6 +171,13 @@ def process_top_level_target(
         transitive_infos = transitive_infos,
     )
 
+    frameworks = getattr(ctx.rule.attr, "frameworks", [])
+    framework_infos = [
+        framework[XcodeProjInfo]
+        for framework in frameworks
+    ]
+    avoid_deps = list(frameworks)
+
     test_host_target = getattr(ctx.rule.attr, "test_host", None)
     test_host_target_info = (
         test_host_target[XcodeProjInfo] if test_host_target else None
@@ -178,7 +185,8 @@ def process_top_level_target(
     test_host = (
         test_host_target_info.xcode_target.id if test_host_target_info else None
     )
-    avoid_deps = [test_host_target] if test_host_target else []
+    if test_host_target:
+        avoid_deps.append(test_host_target)
 
     app_clip_targets = getattr(ctx.rule.attr, "app_clips", [])
     app_clips = [
@@ -295,10 +303,23 @@ def process_top_level_target(
         build_settings = build_settings,
     )
 
+    avoid_compilation_providers_list = [
+        (info.xcode_target, info.compilation_providers)
+        for info in framework_infos
+    ]
+
     if (test_host_target_info and
         props.product_type == "com.apple.product-type.bundle.unit-test"):
-        avoid_compilation_providers = (
-            test_host_target_info.compilation_providers
+        avoid_compilation_providers_list.append(
+            (
+                test_host_target_info.xcode_target,
+                test_host_target_info.compilation_providers,
+            ),
+        )
+
+    if avoid_compilation_providers_list:
+        avoid_compilation_providers = comp_providers.merge(
+            transitive_compilation_providers = avoid_compilation_providers_list,
         )
     else:
         avoid_compilation_providers = None
@@ -328,7 +349,7 @@ def process_top_level_target(
         swift_info = target[SwiftInfo] if SwiftInfo in target else None,
         transitive_compilation_providers = [
             (info.xcode_target, info.compilation_providers)
-            for info in deps_infos
+            for info in (deps_infos + framework_infos)
         ],
     )
     linker_inputs = linker_input_files.collect(
@@ -355,6 +376,7 @@ def process_top_level_target(
         id = id,
         platform = platform,
         is_bundle = is_bundle,
+        product = product,
         linker_inputs = linker_inputs,
         bundle_resources = bundle_resources,
         automatic_target_info = automatic_target_info,

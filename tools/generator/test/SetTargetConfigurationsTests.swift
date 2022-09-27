@@ -25,7 +25,8 @@ final class SetTargetConfigurationsTests: XCTestCase {
         let (
             pbxTargets,
             disambiguatedTargets,
-            xcodeGeneratedFiles
+            xcodeGeneratedFiles,
+            bazelRemappedFiles
         ) = Fixtures.pbxTargets(
             in: pbxProj,
             consolidatedTargets: consolidatedTargets
@@ -46,6 +47,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             hostIDs: Fixtures.project.targetHosts,
             hasBazelDependencies: true,
             xcodeGeneratedFiles: xcodeGeneratedFiles,
+            bazelRemappedFiles: bazelRemappedFiles,
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -176,6 +178,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             hostIDs: [:],
             hasBazelDependencies: false,
             xcodeGeneratedFiles: [:],
+            bazelRemappedFiles: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -316,6 +319,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             hostIDs: [:],
             hasBazelDependencies: false,
             xcodeGeneratedFiles: [:],
+            bazelRemappedFiles: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -410,6 +414,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             hostIDs: [:],
             hasBazelDependencies: false,
             xcodeGeneratedFiles: [:],
+            bazelRemappedFiles: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -453,6 +458,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             hostIDs: [:],
             hasBazelDependencies: false,
             xcodeGeneratedFiles: [:],
+            bazelRemappedFiles: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -507,6 +513,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             hostIDs: [:],
             hasBazelDependencies: false,
             xcodeGeneratedFiles: [:],
+            bazelRemappedFiles: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -562,6 +569,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             hostIDs: [:],
             hasBazelDependencies: false,
             xcodeGeneratedFiles: [:],
+            bazelRemappedFiles: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -688,6 +696,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             hostIDs: [:],
             hasBazelDependencies: false,
             xcodeGeneratedFiles: [:],
+            bazelRemappedFiles: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 

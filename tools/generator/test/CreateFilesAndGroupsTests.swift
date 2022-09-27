@@ -58,6 +58,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles,
             createdRootElements,
             _,
+            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -88,7 +89,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }
 
-    func test_integration() throws {
+    func test_integration_xcode() throws {
         // Arrange
 
         let pbxProj = Fixtures.pbxProj()
@@ -117,9 +118,11 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFiles,
             expectedElements,
             expectedXcodeGeneratedFiles,
+            expectedBazelRemappedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
+            buildMode: .xcode,
             externalDirectory: externalDirectory,
             bazelOutDirectory: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
@@ -160,6 +163,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles,
             createdRootElements,
             xcodeGeneratedFiles,
+            bazelRemappedFiles,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -189,6 +193,123 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         XCTAssertNoDifference(
             xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
             expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            bazelRemappedFiles.map(KeyAndValue.init).sorted(),
+            expectedBazelRemappedFiles.map(KeyAndValue.init).sorted()
+        )
+
+        XCTAssertNoDifference(pbxProj, expectedPBXProj)
+    }
+
+    func test_integration_bazel() throws {
+        // Arrange
+
+        let pbxProj = Fixtures.pbxProj()
+        let mainGroup = pbxProj.rootObject!.mainGroup!
+        let expectedPBXProj = Fixtures.pbxProj()
+        let expectedMainGroup = expectedPBXProj.rootObject!.mainGroup!
+
+        let targets = Fixtures.targets
+        let extraFiles = Fixtures.project.extraFiles
+        let xccurrentversions = Fixtures.xccurrentversions
+        let workspaceDirectory: Path = "/Users/TimApple/app"
+        let externalDirectory: Path = "/some/bazel15/external"
+        let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
+        let internalDirectoryName = "rules_xcp"
+        let workspaceOutputPath: Path = "Project.xcodeproj"
+
+        let filePathResolver = FilePathResolver(
+            workspaceDirectory: workspaceDirectory,
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+
+        let (
+            expectedFiles,
+            expectedElements,
+            expectedXcodeGeneratedFiles,
+            expectedBazelRemappedFiles,
+            _
+        ) = Fixtures.files(
+            in: expectedPBXProj,
+            buildMode: .bazel,
+            externalDirectory: externalDirectory,
+            bazelOutDirectory: bazelOutDirectory,
+            internalDirectoryName: internalDirectoryName,
+            workspaceOutputPath: workspaceOutputPath
+        )
+
+        let expectedRootElements: [PBXFileElement] = [
+            // Root group that holds "a/b/c.m" and "a/a.h"
+            expectedElements["a"]!,
+            // Root group that holds "r1/X.txt" and others
+            expectedElements["r1"]!,
+            expectedElements["T"]!,
+            // Root group that holds "x/y.swift"
+            expectedElements["x"]!,
+            // Files are sorted below groups
+            expectedElements["app.entitlements"]!,
+            expectedElements["Assets.xcassets"]!,
+            expectedElements["b.c"]!,
+            expectedElements["d.h"]!,
+            expectedElements["Example.xib"]!,
+            expectedElements["Localized.strings"]!,
+            expectedElements["z.h"]!,
+            expectedElements["z.mm"]!,
+            // Then Bazel External Repositories
+            expectedElements[.external("")]!,
+            // Then Bazel Generated Files
+            expectedElements[.generated("")]!,
+            // And finally the internal (rules_xcodeproj) group
+            expectedElements[.internal("")]!,
+        ]
+        expectedMainGroup.addChildren(expectedRootElements)
+
+        expectedPBXProj.rootObject!.knownRegions = ["en", "es", "Base"]
+
+        // Act
+
+        let (
+            createdFiles,
+            createdRootElements,
+            xcodeGeneratedFiles,
+            bazelRemappedFiles,
+            _
+        ) = try Generator.createFilesAndGroups(
+            in: pbxProj,
+            buildMode: .bazel,
+            forceBazelDependencies: false,
+            targets: targets,
+            extraFiles: extraFiles,
+            xccurrentversions: xccurrentversions,
+            filePathResolver: filePathResolver,
+            logger: StubLogger()
+        )
+
+        // We need to add the `rootElements` to a group to allow references to
+        // become fixed
+        mainGroup.addChildren(createdRootElements)
+
+        try pbxProj.fixReferences()
+        try expectedPBXProj.fixReferences()
+
+        // Assert
+
+        XCTAssertNoDifference(createdRootElements, expectedRootElements)
+        XCTAssertNoDifference(
+            createdFiles.map(KeyAndValue.init).sorted(),
+            expectedFiles.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
+            expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            bazelRemappedFiles.map(KeyAndValue.init).sorted(),
+            expectedBazelRemappedFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)

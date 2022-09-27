@@ -4,7 +4,6 @@ load(":collections.bzl", "set_if_true")
 load(
     ":files.bzl",
     "file_path_to_dto",
-    "is_generated_file_path",
     "parsed_file_path",
 )
 
@@ -104,7 +103,6 @@ def _to_dto(search_paths):
             [
                 file_path_to_dto(fp)
                 for fp in framework_file_paths
-                if not is_generated_file_path(fp)
             ],
         )
 

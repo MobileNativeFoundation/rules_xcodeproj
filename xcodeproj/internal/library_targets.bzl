@@ -121,6 +121,7 @@ def process_library_target(
         platform = platform,
         bundle_resources = bundle_resources,
         is_bundle = False,
+        product = product,
         linker_inputs = linker_inputs,
         automatic_target_info = automatic_target_info,
         additional_files = list(modulemaps.files),
