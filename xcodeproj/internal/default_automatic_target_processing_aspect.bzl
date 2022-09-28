@@ -71,6 +71,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     deps = ["deps"]
     entitlements = None
     exported_symbols_lists = []
+    hdrs = []
     infoplists = []
     launchdplists = []
     bazel_build_mode_error = None
@@ -126,6 +127,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             xcode_targets["extensions"] = [target_type.compile]
         if "frameworks" in attrs:
             xcode_targets["frameworks"] = [target_type.compile]
+        if "hdrs" in attrs:
+            hdrs = ["hdrs"]
         if "infoplists" in attrs:
             infoplists = ["infoplists"]
         if "provisioning_profile" in attrs:
@@ -188,6 +191,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             deps = deps,
             entitlements = entitlements,
             exported_symbols_lists = exported_symbols_lists,
+            hdrs = hdrs,
             infoplists = infoplists,
             launchdplists = launchdplists,
             non_arc_srcs = non_arc_srcs,

@@ -17,6 +17,7 @@ swift_library(
 
 ios_framework(
     name = "UIFramework.iOS",
+    hdrs = ["UI.h"],
     bundle_id = "io.budilebuddy.UIFramework",
     extension_safe = True,
     families = ["iphone"],

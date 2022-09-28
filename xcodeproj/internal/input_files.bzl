@@ -70,6 +70,8 @@ def _is_categorized_attr(attr, *, automatic_target_info):
         return True
     elif attr in automatic_target_info.non_arc_srcs:
         return True
+    elif attr in automatic_target_info.hdrs:
+        return True
     elif attr == automatic_target_info.pch:
         return True
     elif attr in automatic_target_info.infoplists:
@@ -143,10 +145,10 @@ def _collect(
 
         *   `srcs`: A `depset` of `File`s that are inputs to `target`'s
             `srcs`-like attributes.
-        *   `hdrs`: A `depset` of `File`s that are inputs to `target`'s
-            `hdrs`-like attributes.
         *   `non_arc_srcs`: A `depset` of `File`s that are inputs to
             `target`'s `non_arc_srcs`-like attributes.
+        *   `hdrs`: A `depset` of `File`s that are inputs to `target`'s
+            `hdrs`-like attributes.
         *   `resources`: A `depset` of `FilePath`s that are inputs to `target`'s
             `resources`-like and `structured_resources`-like attributes.
         *   `xccurrentversions`: A `depset` of `.xccurrentversion` `File`s that
@@ -196,6 +198,8 @@ def _collect(
             srcs.append(file)
         elif attr in automatic_target_info.non_arc_srcs:
             non_arc_srcs.append(file)
+        elif attr in automatic_target_info.hdrs:
+            hdrs.append(file)
         elif attr == automatic_target_info.pch:
             # We use `append` instead of setting a single value because
             # assigning to `pch` creates a new local variable instead of
