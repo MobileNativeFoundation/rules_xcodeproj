@@ -22,12 +22,12 @@ objc_library(
 
 ios_framework(
     name = "FrameworkCoreUtilsObjC",
+    hdrs = ["CoreUtils/Answers.h"],
     bundle_id = "io.budilebuddy.CoreUtilsObjC",
     bundle_name = "CoreUtilsObjC",
     families = ["iphone"],
-    hdrs = ["CoreUtils/Answers.h"],
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
-    deps = [":CoreUtilsObjC"],
     visibility = ["//visibility:public"],
+    deps = [":CoreUtilsObjC"],
 )

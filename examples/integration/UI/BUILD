@@ -17,11 +17,11 @@ swift_library(
 
 ios_framework(
     name = "UIFramework.iOS",
+    hdrs = ["UI.h"],
     bundle_id = "io.budilebuddy.UIFramework",
     extension_safe = True,
     families = ["iphone"],
     frameworks = ["//Lib:LibFramework.iOS"],
-    hdrs = ["UI.h"],
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
