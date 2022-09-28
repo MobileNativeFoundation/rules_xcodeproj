@@ -15,6 +15,7 @@ if [[ "$ACTION" == indexbuild ]]; then
 else
   # If this is the requesting target, wait for Bazel build to finish
   should_wait_for_bazel=false
+  should_print_bazel_output=true
   while IFS= read -r line; do
     if [[ "$line" == "$BAZEL_LABEL,$BAZEL_TARGET_ID" ]]; then
       should_wait_for_bazel=true
@@ -22,8 +23,11 @@ else
     fi
   done < "$SCHEME_TARGET_IDS_FILE"
 
-  if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]] && [[ "$BAZEL_OUTPUTS_PRODUCT" == *.appex ]]; then
-    should_wait_for_bazel=true
+  if [[ "$should_wait_for_bazel" == false ]] && \
+    [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]] && \
+    [[ "$BAZEL_OUTPUTS_PRODUCT" == *.appex ]]; then
+      should_wait_for_bazel=true
+      should_print_bazel_output=false
   fi
 
   if [[ "$should_wait_for_bazel" == true ]]; then
@@ -32,7 +36,8 @@ else
     bazel_build_output="$OBJROOT/bazel_build_output"
 
     while [[ ! -f "$bazel_build_finish_marker" ]] || [[ "$bazel_build_start_marker" -nt "$bazel_build_finish_marker" ]]; do
-      if [[ -f "$bazel_build_output" ]] && \
+      if [[ "$should_print_bazel_output" == true ]] && \
+        [[ -f "$bazel_build_output" ]] && \
         [[ "$bazel_build_start_marker" -ot "$bazel_build_output" ]] && \
         [[ "$(tail -n 1 "$bazel_build_output")" == *"FAILED: Build did NOT complete successfully" ]]; then
           cat "$bazel_build_output"
@@ -43,7 +48,9 @@ else
       sleep 5
     done
 
-    cat "$bazel_build_output"
+    if [[ "$should_print_bazel_output" == true ]]; then
+      cat "$bazel_build_output"
+    fi
   fi
 
   # Copy product
