@@ -5072,6 +5072,7 @@
 		0DDE3088BC6E5EF76ABFD56D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_LABEL = "//UI:UI";
@@ -6178,6 +6179,7 @@
 			buildSettings = {
 				APPLETVOS_FILES = "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-252684668b52/bin/Lib/Lib.swift";
 				APPLETVSIMULATOR_FILES = "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/Lib/Lib.swift";
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
@@ -6364,6 +6366,7 @@
 		BD961BB3494F78569D130037 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_LABEL = "//Lib:Lib";
