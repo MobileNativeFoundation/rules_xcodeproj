@@ -30,7 +30,6 @@ def _merge(
         *,
         apple_dynamic_framework_info = None,
         cc_info = None,
-        objc = None,
         swift_info = None,
         transitive_compilation_providers):
     """Merges compilation providers from the deps of a target.
@@ -39,7 +38,6 @@ def _merge(
         apple_dynamic_framework_info: The
             `apple_common.AppleDynamicFrameworkInfo` of the target, or `None`.
         cc_info: The `CcInfo` of the target, or `None`.
-        objc: The `ObjcProvider` of the target, or `None`.
         swift_info: The `SwiftInfo` of the target, or `None`.
         transitive_compilation_providers: A `list` of
             `(xcode_target, XcodeProjInfo)` tuples of transitive dependencies
@@ -58,19 +56,18 @@ def _merge(
         ],
     )
 
-    propagated_objc = objc
-    if not objc:
-        maybe_objc_providers = [
-            _to_objc(providers._propagated_objc, providers._cc_info)
-            for _, providers in transitive_compilation_providers
-        ]
-        objc_providers = [objc for objc in maybe_objc_providers if objc]
-        if objc_providers:
-            objc = apple_common.new_objc_provider(providers = objc_providers)
-        if apple_dynamic_framework_info:
-            propagated_objc = apple_dynamic_framework_info.objc
-        else:
-            propagated_objc = objc
+    objc = None
+    maybe_objc_providers = [
+        _to_objc(providers._propagated_objc, providers._cc_info)
+        for _, providers in transitive_compilation_providers
+    ]
+    objc_providers = [objc for objc in maybe_objc_providers if objc]
+    if objc_providers:
+        objc = apple_common.new_objc_provider(providers = objc_providers)
+    if apple_dynamic_framework_info:
+        propagated_objc = apple_dynamic_framework_info.objc
+    else:
+        propagated_objc = objc
 
     return struct(
         _cc_info = cc_info,
