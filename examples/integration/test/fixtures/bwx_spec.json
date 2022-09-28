@@ -384,6 +384,22 @@
         [
             "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-7ab8ee5d0803"
         ],
+        "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+        [
+            "//Lib:LibFramework.iOS applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd"
+        ],
+        "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+        [
+            "//Lib:LibFramework.iOS applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
+        ],
+        "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-252684668b52",
+        [
+            "//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-ST-252684668b52"
+        ],
+        "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332",
+        [
+            "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332"
+        ],
         "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
         [
             "//UI:UIFramework.iOS applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd"

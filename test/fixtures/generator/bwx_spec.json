@@ -106,6 +106,10 @@
         "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
         [
             "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889"
+        ],
+        "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
+        [
+            "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889"
         ]
     ],
     "targets": [

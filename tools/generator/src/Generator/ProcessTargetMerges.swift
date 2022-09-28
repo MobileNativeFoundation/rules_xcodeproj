@@ -26,12 +26,22 @@ extension Generator {
         targets: inout [TargetID: Target],
         targetMerges: [TargetID: Set<TargetID>]
     ) throws {
+        var mergedInto: [TargetID: TargetID] = [:]
+        for (source, destinations) in targetMerges {
+            for destination in destinations {
+                mergedInto[destination] = source
+            }
+        }
+
+        var fullyMerged: Set<TargetID> = []
         for (source, destinations) in targetMerges {
             guard let merging = targets[source] else {
                 throw PreconditionError(message: """
 `targetMerges.key` (\(source)) references target that doesn't exist
 """)
             }
+
+            fullyMerged.insert(source)
 
             for destination in destinations {
                 guard var merged = targets[destination] else {
@@ -40,9 +50,6 @@ extension Generator {
 exist
 """)
                 }
-
-                // Remove src
-                targets.removeValue(forKey: source)
 
                 // Set compile target id (used for "Compile File" command)
                 merged.compileTarget = .init(id: source, name: merging.name)
@@ -83,7 +90,15 @@ exist
                 merged.linkerInputs.forceLoad.remove(merging.product.path)
 
                 // Update dependencies
+                merged.dependencies.remove(source)
                 merged.dependencies.formUnion(merging.dependencies)
+
+                if merged.product.type != .uiTestBundle,
+                   let testHost = merged.testHost,
+                   let mergedTestHostLibrary = mergedInto[testHost]
+                {
+                    merged.dependencies.remove(mergedTestHostLibrary)
+                }
 
                 // Update outputs
                 merged.outputs.merge(merging.outputs)
@@ -93,14 +108,20 @@ exist
             }
         }
 
-        // Update all targets
+        // Remove targets that are fully merged
         for (id, target) in targets {
-            // Dependencies
+            if fullyMerged.contains(id) {
+                continue
+            }
             for dependency in target.dependencies {
                 if targetMerges[dependency] != nil {
-                    targets[id]!.dependencies.remove(dependency)
+                    // Still used somewhere, so not fully merged
+                    fullyMerged.remove(dependency)
                 }
             }
+        }
+        for id in fullyMerged {
+            targets.removeValue(forKey: id)
         }
     }
 }

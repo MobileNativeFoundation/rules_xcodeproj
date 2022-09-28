@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "12DB4C040F56113D380794C3"
-                     BuildableName = "UI"
-                     BlueprintName = "UI"
-                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+                     BlueprintIdentifier = "A0257519AD63A69C6DF51958"
+                     BuildableName = "CoreUtilsObjC"
+                     BlueprintName = "CoreUtilsObjC"
+                     ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -25,15 +25,15 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for UI"
+               title = "Set Bazel Build Output Groups for CoreUtilsObjC"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "12DB4C040F56113D380794C3"
-                     BuildableName = "UI"
-                     BlueprintName = "UI"
-                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+                     BlueprintIdentifier = "A0257519AD63A69C6DF51958"
+                     BuildableName = "CoreUtilsObjC"
+                     BlueprintName = "CoreUtilsObjC"
+                     ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -48,10 +48,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "12DB4C040F56113D380794C3"
-               BuildableName = "UI"
-               BlueprintName = "UI"
-               ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+               BlueprintIdentifier = "A0257519AD63A69C6DF51958"
+               BuildableName = "CoreUtilsObjC"
+               BlueprintName = "CoreUtilsObjC"
+               ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

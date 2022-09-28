@@ -314,38 +314,11 @@ targets: {}
             target_merge_dests[dest] = new_srcs_ids
 
     target_merges = {}
-    target_merge_srcs_by_label = {}
     for dest, src_ids in target_merge_dests.items():
         if len(src_ids) > 1:
             # We can only merge targets with a single library dependency
             continue
-        src = src_ids[0]
-        src_target = targets[src]
-        target_merges.setdefault(src, []).append(dest)
-        target_merge_srcs_by_label.setdefault(src_target.label, []).append(src)
-
-    non_mergable_targets = {}
-    for src, dests in target_merges.items():
-        src_target = targets[src]
-        for dest in dests:
-            dest_target = targets[dest]
-            for library in linker_input_files.get_top_level_static_libraries(
-                dest_target.linker_inputs,
-            ):
-                if library.owner == src_target.label:
-                    continue
-
-                # Other libraries that are not being merged into `dest_target`
-                # can't merge into other targets
-                non_mergable_targets[file_path(library)] = None
-
-    for src in target_merges.keys():
-        src_target = targets[src]
-        if src_target.product.file_path in non_mergable_targets:
-            # Prevent any version of `src` from merging, to prevent odd
-            # target consolidation issues
-            for id in target_merge_srcs_by_label[src_target.label]:
-                target_merges.pop(id, None)
+        target_merges.setdefault(src_ids[0], []).append(dest)
 
     return (
         targets,
