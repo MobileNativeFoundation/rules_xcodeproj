@@ -329,11 +329,6 @@ def process_top_level_target(
     else:
         avoid_compilation_providers = None
 
-    if apple_common.Objc in target:
-        objc = target[apple_common.Objc]
-    else:
-        objc = None
-
     if apple_common.AppleDynamicFramework in target:
         apple_dynamic_framework_info = (
             target[apple_common.AppleDynamicFramework]
