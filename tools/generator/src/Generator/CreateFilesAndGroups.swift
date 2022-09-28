@@ -709,11 +709,9 @@ EOF
 
                 let includes = try lldbContext.swiftmodules
                     .map { filePath -> String in
-                        var dir = filePath
-                        dir.path = dir.path.parent().normalize()
                         return try filePathResolver
                             .resolve(
-                                dir,
+                                filePath.parent(),
                                 useBazelOut: !xcodeGeneratedFiles.keys
                                     .contains(filePath),
                                 forceAbsoluteProjectPath: true
@@ -1029,7 +1027,7 @@ private extension LLDBContext.Clang {
             buildMode == .xcode &&
             !modulemaps.isEmpty &&
             !onceOtherFlags.contains(Self.overlayFlags)
-            {
+        {
             onceOtherFlags.insert(Self.overlayFlags)
             overlayArgs = [Self.overlayFlags]
         } else {
