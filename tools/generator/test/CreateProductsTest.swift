@@ -41,12 +41,12 @@ final class CreateProductsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            createdProducts.byFilePath,
-            expectedProducts.byFilePath
+            createdProducts.byFilePath.map(KeyAndValue.init).sorted(),
+            expectedProducts.byFilePath.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            createdProducts.byTarget,
-            expectedProducts.byTarget
+            createdProducts.byTarget.map(KeyAndValue.init).sorted(),
+            expectedProducts.byTarget.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(createdProductsGroup, expectedProductsGroup)
 

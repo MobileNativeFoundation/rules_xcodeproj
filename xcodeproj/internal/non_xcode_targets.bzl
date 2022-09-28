@@ -108,6 +108,7 @@ rules_xcodeproj requires {} to have `{}` set.
             platform = None,
             bundle_resources = False,
             is_bundle = False,
+            product = None,
             linker_inputs = linker_inputs,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,

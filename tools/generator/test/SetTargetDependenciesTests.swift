@@ -12,7 +12,7 @@ final class SetTargetDependenciesTests: XCTestCase {
 
         let consolidatedTargets = Fixtures.consolidatedTargets
 
-        let (pbxTargets, disambiguatedTargets, _) = Fixtures.pbxTargets(
+        let (pbxTargets, disambiguatedTargets, _, _) = Fixtures.pbxTargets(
             in: pbxProj,
             consolidatedTargets: consolidatedTargets
         )

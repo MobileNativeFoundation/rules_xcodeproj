@@ -92,6 +92,7 @@ class Generator {
             files,
             rootElements,
             xcodeGeneratedFiles,
+            bazelRemappedFiles,
             resolvedExternalRepositories
         ) = try environment.createFilesAndGroups(
             pbxProj,
@@ -156,6 +157,7 @@ class Generator {
             project.targetHosts,
             bazelDependencies != nil,
             xcodeGeneratedFiles,
+            bazelRemappedFiles,
             filePathResolver
         )
         try environment.setTargetDependencies(

@@ -31,12 +31,14 @@ final class AddTargetsTests: XCTestCase {
             workspaceOutputPath: workspaceOutputPath
         )
 
-        let (files, _, _, _) = Fixtures.files(
+        let (files, _, _, _, _) = Fixtures.files(
             in: pbxProj,
+            buildMode: .xcode,
             parentGroup: mainGroup
         )
-        let (expectedFiles, _, _, _) = Fixtures.files(
+        let (expectedFiles, _, _, _, _) = Fixtures.files(
             in: expectedPBXProj,
+            buildMode: .xcode,
             parentGroup: expectedMainGroup
         )
 
@@ -86,8 +88,8 @@ final class AddTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            createdTargets.map(KeyAndValue.init).sorted { $0.key < $1.key },
-            expectedTargets.map(KeyAndValue.init).sorted { $0.key < $1.key }
+            createdTargets.map(KeyAndValue.init).sorted(),
+            expectedTargets.map(KeyAndValue.init).sorted()
         )
 
         // We only need the rest of the asserts if the targets are equivalent

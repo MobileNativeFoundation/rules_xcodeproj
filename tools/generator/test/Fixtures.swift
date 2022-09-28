@@ -143,7 +143,8 @@ enum Fixtures {
             product: .init(
                 type: .staticFramework,
                 name: "b",
-                path: .generated("a/b.framework")
+                path: .generated("a/b.framework"),
+                additionalPaths: [.generated("a/frameworks/b.framework")]
             ),
             inputs: .init(srcs: ["z.h", "z.mm"], hdrs: ["d.h"]),
             dependencies: ["A 1"]
@@ -160,7 +161,7 @@ enum Fixtures {
             testHost: "A 2",
             linkerInputs: .init(
                 staticFrameworks: ["a/StaticFram.framework"],
-                dynamicFrameworks: [.generated("a/b.framework")]
+                dynamicFrameworks: [.generated("a/frameworks/b.framework")]
             ),
             dependencies: ["A 2", "B 1"]
         ),
@@ -439,6 +440,7 @@ enum Fixtures {
 
     static func files(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         parentGroup group: PBXGroup? = nil,
         externalDirectory: Path = "/some/bazel77/external",
         bazelOutDirectory: Path = "/some/bazel77/bazel-out",
@@ -448,6 +450,7 @@ enum Fixtures {
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
         xcodeGeneratedFiles: [FilePath: FilePath],
+        bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
@@ -1042,10 +1045,30 @@ $(BAZEL_OUT)/v/a.txt
 
 """)
 
+        if buildMode != .xcode {
+            files[.internal("app.exclude.rsynclist")] = .nonReferencedContent(
+"""
+/*.app/Frameworks/libclang_rt.asan*.dylib
+/*.app/Frameworks/libclang_rt.tsan*.dylib
+/*.app/Frameworks/libXCTestBundleInject.dylib
+/*.app/Frameworks/libXCTestSwiftSupport.dylib
+/*.app/Frameworks/XCTAutomationSupport.framework
+/*.app/Frameworks/XCTest.framework
+/*.app/Frameworks/XCTestCore.framework
+/*.app/Frameworks/XCUIAutomation.framework
+/*.app/Frameworks/XCUnit.framework
+/*.app/PlugIns
+/*.app/Watch
+
+""")
+        }
+
         // link.params
 
-        files[.internal("targets/a1b2c/A 2/A.link.params")] =
-            .nonReferencedContent("""
+        switch buildMode {
+        case .xcode:
+            files[.internal("targets/a1b2c/A 2/A.link.params")] =
+                .nonReferencedContent("""
 $(BUILD_DIR)/bazel-out/z/A.a
 a/imported.a
 -force_load
@@ -1053,17 +1076,35 @@ $(BUILD_DIR)/bazel-out/a/c.lo
 
 """)
 
-        files[.internal("targets/a1b2c/C 2/d.link.params")] =
-            .nonReferencedContent("""
+            files[.internal("targets/a1b2c/C 2/d.link.params")] =
+                .nonReferencedContent("""
 -force_load
 $(BUILD_DIR)/bazel-out/a/c.lo
 
 """)
+        case .bazel:
+            files[.internal("targets/a1b2c/A 2/A.link.params")] =
+                .nonReferencedContent("""
+$(BAZEL_OUT)/z/A.a
+a/imported.a
+-force_load
+$(BAZEL_OUT)/a/c.lo
+
+""")
+
+            files[.internal("targets/a1b2c/C 2/d.link.params")] =
+                .nonReferencedContent("""
+-force_load
+$(BAZEL_OUT)/a/c.lo
+
+""")
+        }
 
         // create_xcode_overlay.sh
 
-        files[.internal("create_xcode_overlay.sh")] =
-            .nonReferencedContent(#"""
+        if buildMode == .xcode {
+            files[.internal("create_xcode_overlay.sh")] =
+                .nonReferencedContent(#"""
 #!/bin/bash
 
 # Look up Swift generated headers in `$BUILD_DIR` first, then fall through to
@@ -1074,6 +1115,7 @@ cat > "$OBJROOT/xcode-overlay.yaml" <<EOF
 EOF
 
 """#)
+        }
 
         // swift_debug_settings.py
 
@@ -1179,33 +1221,45 @@ class StopHook:
 
 """#)
 
-        // `xcodegeneratedfiles`
+        // `xcodeGeneratedfiles`/`bazelRemappedFiles`
 
-        let xcodeGeneratedFiles: [FilePath: FilePath] = [
-            .generated("z/A.a"): .generated("z/A.a"),
-            .generated("x/A.swiftmodule"): .generated("z/A.swiftmodule"),
-            .generated("x/y.swiftmodule"): .generated("z/y.swiftmodule"),
-            .generated("z/A.app"): .generated("z/A.app"),
-            .generated("z/AC.app"): .generated("z/AC.app"),
-            .generated("a/b.framework"): .generated("a/b.framework"),
-            .generated("B.xctest"): .generated("B.xctest"),
-            .generated("B3.xctest"): .generated("B3.xctest"),
-            .generated("a/c.lo"): .generated("a/c.lo"),
-            .generated("d"): .generated("d"),
-            .generated("e1/E.a"): .generated("e1/E.a"),
-            .generated("x/E.swiftmodule"): .generated("e1/E.swiftmodule"),
-            .generated("e2/E.a"): .generated("e2/E.a"),
-            .generated("z/I.app"): .generated("z/I.app"),
-            .generated("r1/R1.bundle"): .generated("r1/R1.bundle"),
-            .generated("T/T 1/T.a"): .generated("T/T 1/T.a"),
-            .generated("T/T 2/T.a"): .generated("T/T 2/T.a"),
-            .generated("T/T 3/T.a"): .generated("T/T 3/T.a"),
-            .generated("z/W.app"): .generated("z/W.app"),
-            .generated("z/WDK.appex"): .generated("z/WDK.appex"),
-            .generated("z/WK.appex"): .generated("z/WK.appex"),
-        ]
+        let xcodeGeneratedFiles: [FilePath: FilePath]
+        let bazelRemappedFiles: [FilePath: FilePath]
+        switch buildMode {
+        case .xcode:
+            xcodeGeneratedFiles = [
+                .generated("z/A.a"): .generated("z/A.a"),
+                .generated("x/A.swiftmodule"): .generated("z/A.swiftmodule"),
+                .generated("x/y.swiftmodule"): .generated("z/y.swiftmodule"),
+                .generated("z/A.app"): .generated("z/A.app"),
+                .generated("z/AC.app"): .generated("z/AC.app"),
+                .generated("a/b.framework"): .generated("a/b.framework"),
+                .generated("a/frameworks/b.framework"): .generated("a/b.framework"),
+                .generated("B.xctest"): .generated("B.xctest"),
+                .generated("B3.xctest"): .generated("B3.xctest"),
+                .generated("a/c.lo"): .generated("a/c.lo"),
+                .generated("d"): .generated("d"),
+                .generated("e1/E.a"): .generated("e1/E.a"),
+                .generated("x/E.swiftmodule"): .generated("e1/E.swiftmodule"),
+                .generated("e2/E.a"): .generated("e2/E.a"),
+                .generated("z/I.app"): .generated("z/I.app"),
+                .generated("r1/R1.bundle"): .generated("r1/R1.bundle"),
+                .generated("T/T 1/T.a"): .generated("T/T 1/T.a"),
+                .generated("T/T 2/T.a"): .generated("T/T 2/T.a"),
+                .generated("T/T 3/T.a"): .generated("T/T 3/T.a"),
+                .generated("z/W.app"): .generated("z/W.app"),
+                .generated("z/WDK.appex"): .generated("z/WDK.appex"),
+                .generated("z/WK.appex"): .generated("z/WK.appex"),
+            ]
+            bazelRemappedFiles = [:]
+        case .bazel:
+            xcodeGeneratedFiles = [:]
+            bazelRemappedFiles = [
+                .generated("a/frameworks/b.framework"): .generated("a/b.framework"),
+            ]
+        }
 
-        return (files, elements, xcodeGeneratedFiles, [])
+        return (files, elements, xcodeGeneratedFiles, bazelRemappedFiles, [])
     }
 
     static func products(
@@ -1244,7 +1298,10 @@ class StopHook:
             ),
             Products.ProductKeys(
                 targetKey: "B 1",
-                filePaths: [.generated("a/b.framework")]
+                filePaths: [
+                    .generated("a/b.framework"),
+                    .generated("a/frameworks/b.framework"),
+                ]
             ): PBXFileReference(
                 sourceTree: .buildProductsDir,
                 explicitFileType: PBXProductType.staticFramework.fileType,
@@ -2045,11 +2102,13 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
 
     static func pbxTargets(
         in pbxProj: PBXProj,
+        buildMode: BuildMode = .xcode,
         consolidatedTargets: ConsolidatedTargets
     ) -> (
-        [ConsolidatedTarget.Key: PBXTarget],
-        DisambiguatedTargets,
-        [FilePath: FilePath]
+        pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
+        disambiguatedTargets: DisambiguatedTargets,
+        xcodeGeneratedFiles: [FilePath: FilePath],
+        bazelRemappedFiles: [FilePath: FilePath]
     ) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
@@ -2058,8 +2117,13 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             files,
             _,
             xcodeGeneratedFiles,
+            bazelRemappedFiles,
             _
-        ) = Fixtures.files(in: pbxProj, parentGroup: mainGroup)
+        ) = Fixtures.files(
+            in: pbxProj,
+            buildMode: buildMode,
+            parentGroup: mainGroup
+        )
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
 
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
@@ -2079,15 +2143,22 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
             bazelDependenciesTarget: bazelDependenciesTarget
         )
 
-        return (pbxTargets, disambiguatedTargets, xcodeGeneratedFiles)
+        return (
+            pbxTargets,
+            disambiguatedTargets,
+            xcodeGeneratedFiles,
+            bazelRemappedFiles
+        )
     }
 
     static func pbxTargetsWithConfigurations(
         in pbxProj: PBXProj,
+        buildMode: BuildMode = .xcode,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
-        let (pbxTargets, _, _) = Fixtures.pbxTargets(
+        let (pbxTargets, _, _, _) = Fixtures.pbxTargets(
             in: pbxProj,
+            buildMode: buildMode,
             consolidatedTargets: consolidatedTargets
         )
 
@@ -2602,7 +2673,7 @@ $(MACOSX_FILES)
         in pbxProj: PBXProj,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
-        let (pbxTargets, _, _) = Fixtures.pbxTargets(
+        let (pbxTargets, _, _,_ ) = Fixtures.pbxTargets(
             in: pbxProj,
             consolidatedTargets: consolidatedTargets
         )

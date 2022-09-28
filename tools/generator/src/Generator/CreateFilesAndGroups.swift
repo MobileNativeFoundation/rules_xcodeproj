@@ -78,6 +78,7 @@ extension Generator {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         xcodeGeneratedFiles: [FilePath: FilePath],
+        bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
@@ -639,6 +640,7 @@ EOF
         // - `lldbSwiftSettingsModule`
 
         var xcodeGeneratedFiles: [FilePath: FilePath] = [:]
+        var bazelRemappedFiles: [FilePath: FilePath] = [:]
         switch buildMode {
         case .xcode:
             for (_, target) in targets {
@@ -655,8 +657,12 @@ EOF
                         .xcodeSwiftModuleFilePath(filePath)
                 }
             }
-        default:
-            break
+        case .bazel:
+            for (_, target) in targets {
+                for filePath in target.product.additionalPaths {
+                    bazelRemappedFiles[filePath] = target.product.path
+                }
+            }
         }
 
         var lldbSettingsMap: [String: LLDBSettings] = [:]
@@ -879,6 +885,7 @@ class StopHook:
             files,
             rootElements,
             xcodeGeneratedFiles,
+            bazelRemappedFiles,
             resolvedExternalRepositories
         )
     }

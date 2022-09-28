@@ -185,9 +185,11 @@ final class GeneratorTests: XCTestCase {
             files,
             filesAndGroups,
             xcodeGeneratedFiles,
+            bazelRemappedFiles,
             resolvedExternalRepositories
         ) = Fixtures.files(
             in: pbxProj,
+            buildMode: buildMode,
             internalDirectoryName: internalDirectoryName,
             workspaceOutputPath: workspaceOutputPath
         )
@@ -337,6 +339,7 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             rootElements: [PBXFileElement],
             xcodeGeneratedFiles: [FilePath: FilePath],
+            bazelRemappedFiles: [FilePath: FilePath],
             resolvedExternalRepositories: [(Path, Path)]
         ) {
             createFilesAndGroupsCalled.append(.init(
@@ -352,6 +355,7 @@ final class GeneratorTests: XCTestCase {
                 files,
                 rootElements,
                 xcodeGeneratedFiles,
+                bazelRemappedFiles,
                 resolvedExternalRepositories
             )
         }
@@ -589,6 +593,7 @@ final class GeneratorTests: XCTestCase {
             let hostIDs: [TargetID: [TargetID]]
             let hasBazelDependencies: Bool
             let xcodeGeneratedFiles: [FilePath: FilePath]
+            let bazelRemappedFiles: [FilePath: FilePath]
             let filePathResolver: FilePathResolver
         }
 
@@ -602,6 +607,7 @@ final class GeneratorTests: XCTestCase {
             hostIDs: [TargetID: [TargetID]],
             hasBazelDependencies: Bool,
             xcodeGeneratedFiles: [FilePath: FilePath],
+            bazelRemappedFiles: [FilePath: FilePath],
             filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(
@@ -613,6 +619,7 @@ final class GeneratorTests: XCTestCase {
                 hostIDs: hostIDs,
                 hasBazelDependencies: hasBazelDependencies,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
+                bazelRemappedFiles: bazelRemappedFiles,
                 filePathResolver: filePathResolver
             ))
         }
@@ -627,6 +634,7 @@ final class GeneratorTests: XCTestCase {
                 hostIDs: project.targetHosts,
                 hasBazelDependencies: true,
                 xcodeGeneratedFiles: xcodeGeneratedFiles,
+                bazelRemappedFiles: bazelRemappedFiles,
                 filePathResolver: filePathResolver
             ),
         ]
