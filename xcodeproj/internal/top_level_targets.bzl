@@ -350,7 +350,6 @@ def process_top_level_target(
     compilation_providers = comp_providers.merge(
         apple_dynamic_framework_info = apple_dynamic_framework_info,
         cc_info = target[CcInfo] if CcInfo in target else None,
-        objc = objc,
         swift_info = target[SwiftInfo] if SwiftInfo in target else None,
         transitive_compilation_providers = [
             (info.xcode_target, info.compilation_providers)
