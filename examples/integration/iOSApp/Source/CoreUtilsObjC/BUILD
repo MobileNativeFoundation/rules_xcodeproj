@@ -1,3 +1,5 @@
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_framework")
+
 objc_library(
     name = "CoreUtilsObjC",
     srcs = glob(
@@ -9,11 +11,23 @@ objc_library(
         ],
         allow_empty = True,
     ),
-    hdrs = glob(["**/*.h"]),
+    hdrs = ["CoreUtils/Answers.h"],
     includes = [""],
     module_name = "CoreUtils",
     pch = "CoreUtils/CoreUtils.pch",
     sdk_dylibs = ["c++"],
     tags = ["manual"],
+    visibility = ["//visibility:public"],
+)
+
+ios_framework(
+    name = "FrameworkCoreUtilsObjC",
+    bundle_id = "io.budilebuddy.CoreUtilsObjC",
+    bundle_name = "CoreUtilsObjC",
+    families = ["iphone"],
+    hdrs = ["CoreUtils/Answers.h"],
+    infoplists = ["Info.plist"],
+    minimum_os_version = "15.0",
+    deps = [":CoreUtilsObjC"],
     visibility = ["//visibility:public"],
 )

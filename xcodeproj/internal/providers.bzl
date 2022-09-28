@@ -37,6 +37,10 @@ An attribute name (or `None`) to collect `File`s from for the
 A sequence of attribute names to collect `File`s from for the
 `exported_symbols_lists`-like attributes.
 """,
+        "hdrs": """\
+A sequence of attribute names to collect `File`s from for `hdrs`-like
+attributes.
+""",
         "infoplists": """\
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.

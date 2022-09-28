@@ -21,6 +21,7 @@ ios_framework(
     extension_safe = True,
     families = ["iphone"],
     frameworks = ["//Lib:LibFramework.iOS"],
+    hdrs = ["UI.h"],
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",

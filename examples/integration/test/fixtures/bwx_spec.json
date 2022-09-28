@@ -39,6 +39,7 @@
         },
         "AppClip/Entitlements.entitlements",
         "UI/BUILD",
+        "iOSApp/Source/CoreUtilsObjC/BUILD",
         {
             "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework",
             "t": "e"
@@ -48,6 +49,10 @@
             "t": "e"
         },
         "iOSApp/Source/BUILD",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+            "t": "g"
+        },
         {
             "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
             "t": "e"
@@ -61,6 +66,11 @@
         "WidgetExtension/Info.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
+            "t": "g"
+        },
+        "iOSApp/Source/CoreUtilsObjC/Info.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "t": "g"
         },
         "Lib/Info.plist",
@@ -230,11 +240,19 @@
             "t": "e"
         },
         {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+            "t": "g"
+        },
+        {
             "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
             "t": "e"
         },
         {
             "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "t": "g"
         },
         {
@@ -393,6 +411,14 @@
         "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
         [
             "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
+        ],
+        "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+        [
+            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd"
+        ],
+        "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+        [
+            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
         ],
         "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
         [
@@ -3384,6 +3410,11 @@
                 "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
                 "t": "g"
             },
+            "inputs": {
+                "hdrs": [
+                    "UI/UI.h"
+                ]
+            },
             "is_swift": false,
             "label": "//UI:UIFramework.iOS",
             "linker_inputs": {
@@ -3494,6 +3525,11 @@
             "info_plist": {
                 "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
                 "t": "g"
+            },
+            "inputs": {
+                "hdrs": [
+                    "UI/UI.h"
+                ]
             },
             "is_swift": false,
             "label": "//UI:UIFramework.iOS",
@@ -4689,6 +4725,422 @@
                 "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
             ]
         },
+        "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+                "CLANG_CXX_LIBRARY": "libc++",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "OS_IOS",
+                    "DEBUG=1"
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "PRODUCT_MODULE_NAME": "CoreUtils",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+            "inputs": {
+                "pch": "iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
+                "srcs": [
+                    "iOSApp/Source/CoreUtilsObjC/Answers.mm",
+                    "iOSApp/Source/CoreUtilsObjC/CoreUtils/Answers.h",
+                    "iOSApp/Source/CoreUtilsObjC/CoreUtils/RealAnswer.h"
+                ]
+            },
+            "is_swift": false,
+            "label": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC",
+            "name": "CoreUtilsObjC",
+            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC",
+            "platform": {
+                "arch": "arm64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphoneos"
+            },
+            "product": {
+                "additional_paths": [],
+                "executable_name": null,
+                "is_resource_bundle": false,
+                "name": "CoreUtilsObjC",
+                "path": {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "includes": [
+                    "iOSApp/Source/CoreUtilsObjC",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+                "CLANG_CXX_LIBRARY": "libc++",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "OS_IOS",
+                    "DEBUG=1"
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fexceptions",
+                    "-fasm-blocks",
+                    "-fobjc-abi-version=2",
+                    "-fobjc-legacy-dispatch",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fexceptions",
+                    "-fasm-blocks",
+                    "-fobjc-abi-version=2",
+                    "-fobjc-legacy-dispatch",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "PRODUCT_MODULE_NAME": "CoreUtils",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+            "inputs": {
+                "pch": "iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
+                "srcs": [
+                    "iOSApp/Source/CoreUtilsObjC/Answers.mm",
+                    "iOSApp/Source/CoreUtilsObjC/CoreUtils/Answers.h",
+                    "iOSApp/Source/CoreUtilsObjC/CoreUtils/RealAnswer.h"
+                ]
+            },
+            "is_swift": false,
+            "label": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC",
+            "name": "CoreUtilsObjC",
+            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphonesimulator"
+            },
+            "product": {
+                "additional_paths": [],
+                "executable_name": null,
+                "is_resource_bundle": false,
+                "name": "CoreUtilsObjC",
+                "path": {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "includes": [
+                    "iOSApp/Source/CoreUtilsObjC",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+        {
+            "build_settings": {
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.CoreUtilsObjC",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0",
+                "TARGETED_DEVICE_FAMILY": "1"
+            },
+            "configuration": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+            "dependencies": [
+                "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd"
+            ],
+            "info_plist": {
+                "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "hdrs": [
+                    "iOSApp/Source/CoreUtilsObjC/CoreUtils/Answers.h"
+                ]
+            },
+            "is_swift": false,
+            "label": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
+            "linker_inputs": {
+                "linkopts": [
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "name": "FrameworkCoreUtilsObjC",
+            "outputs": {
+                "p": {
+                    "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC",
+            "platform": {
+                "arch": "arm64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphoneos"
+            },
+            "product": {
+                "additional_paths": [
+                    {
+                        "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/frameworks/CoreUtilsObjC.framework",
+                        "t": "g"
+                    }
+                ],
+                "executable_name": "CoreUtilsObjC",
+                "is_resource_bundle": false,
+                "name": "CoreUtilsObjC",
+                "path": {
+                    "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.framework"
+            },
+            "search_paths": {
+                "includes": [
+                    "iOSApp/Source/CoreUtilsObjC",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+        {
+            "build_settings": {
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.CoreUtilsObjC",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0",
+                "TARGETED_DEVICE_FAMILY": "1"
+            },
+            "configuration": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+            "dependencies": [
+                "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
+            ],
+            "info_plist": {
+                "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
+                "t": "g"
+            },
+            "inputs": {
+                "hdrs": [
+                    "iOSApp/Source/CoreUtilsObjC/CoreUtils/Answers.h"
+                ]
+            },
+            "is_swift": false,
+            "label": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
+            "linker_inputs": {
+                "linkopts": [
+                    "-lc++",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ],
+                "static_libraries": [
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC.a",
+                        "t": "g"
+                    }
+                ]
+            },
+            "name": "FrameworkCoreUtilsObjC",
+            "outputs": {
+                "p": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphonesimulator"
+            },
+            "product": {
+                "additional_paths": [
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/frameworks/CoreUtilsObjC.framework",
+                        "t": "g"
+                    }
+                ],
+                "executable_name": "CoreUtilsObjC",
+                "is_resource_bundle": false,
+                "name": "CoreUtilsObjC",
+                "path": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.framework"
+            },
+            "search_paths": {
+                "includes": [
+                    "iOSApp/Source/CoreUtilsObjC",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
+                        "t": "g"
+                    },
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
         "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
         {
             "app_clips": [
@@ -4712,6 +5164,7 @@
                 "//AppClip:AppClip applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
                 "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
                 "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+                "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
                 "//UI:UIFramework.iOS applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
                 "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-8e65bd00489d"
             ],
@@ -4756,6 +5209,10 @@
                     {
                         "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
                         "t": "e"
+                    },
+                    {
+                        "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/frameworks/CoreUtilsObjC.framework",
+                        "t": "g"
                     },
                     {
                         "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/UI/frameworks/UIFramework.iOS.framework",
@@ -4856,11 +5313,22 @@
                         "t": "e"
                     },
                     {
+                        "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
+                        "t": "g"
+                    },
+                    {
                         "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/UI/frameworks",
                         "t": "g"
                     },
                     {
                         "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/Lib/frameworks",
+                        "t": "g"
+                    }
+                ],
+                "includes": [
+                    "iOSApp/Source/CoreUtilsObjC",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC",
                         "t": "g"
                     }
                 ],
@@ -4873,6 +5341,11 @@
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/external/com_github_krzyzanowskim_cryptoswift",
                         "t": "g"
                     },
+                    ".",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
+                        "t": "g"
+                    },
                     {
                         "_": "com_google_google_maps",
                         "t": "e"
@@ -4881,7 +5354,6 @@
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/external/com_google_google_maps",
                         "t": "g"
                     },
-                    ".",
                     {
                         "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
                         "t": "g"
@@ -4912,6 +5384,7 @@
                 "//AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
                 "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
                 "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+                "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
                 "//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
                 "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-2f849b1d5a93"
             ],
@@ -4956,6 +5429,10 @@
                     {
                         "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
                         "t": "e"
+                    },
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/frameworks/CoreUtilsObjC.framework",
+                        "t": "g"
                     },
                     {
                         "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/frameworks/UIFramework.iOS.framework",
@@ -5056,11 +5533,22 @@
                         "t": "e"
                     },
                     {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
+                        "t": "g"
+                    },
+                    {
                         "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/frameworks",
                         "t": "g"
                     },
                     {
                         "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/Lib/frameworks",
+                        "t": "g"
+                    }
+                ],
+                "includes": [
+                    "iOSApp/Source/CoreUtilsObjC",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC",
                         "t": "g"
                     }
                 ],
@@ -5073,6 +5561,11 @@
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/external/com_github_krzyzanowskim_cryptoswift",
                         "t": "g"
                     },
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
+                        "t": "g"
+                    },
                     {
                         "_": "com_google_google_maps",
                         "t": "e"
@@ -5081,7 +5574,6 @@
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/external/com_google_google_maps",
                         "t": "g"
                     },
-                    ".",
                     {
                         "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
                         "t": "g"
@@ -5106,7 +5598,8 @@
             },
             "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
             "dependencies": [
-                "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd"
+                "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+                "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd"
             ],
             "inputs": {
                 "srcs": [
@@ -5118,6 +5611,10 @@
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
                     "t": "e"
+                },
+                {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                    "t": "g"
                 },
                 {
                     "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap",
@@ -5186,6 +5683,13 @@
                         "t": "e"
                     }
                 ],
+                "includes": [
+                    "iOSApp/Source/CoreUtilsObjC",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
                 "quote_includes": [
                     {
                         "_": "com_github_krzyzanowskim_cryptoswift",
@@ -5195,17 +5699,17 @@
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/external/com_github_krzyzanowskim_cryptoswift",
                         "t": "g"
                     },
+                    ".",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
+                        "t": "g"
+                    },
                     {
                         "_": "com_google_google_maps",
                         "t": "e"
                     },
                     {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/external/com_google_google_maps",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
                         "t": "g"
                     }
                 ]
@@ -5237,7 +5741,8 @@
             },
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
             "dependencies": [
-                "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
+                "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+                "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
             ],
             "inputs": {
                 "srcs": [
@@ -5249,6 +5754,10 @@
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
                     "t": "e"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
+                    "t": "g"
                 },
                 {
                     "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap",
@@ -5317,6 +5826,13 @@
                         "t": "e"
                     }
                 ],
+                "includes": [
+                    "iOSApp/Source/CoreUtilsObjC",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC",
+                        "t": "g"
+                    }
+                ],
                 "quote_includes": [
                     {
                         "_": "com_github_krzyzanowskim_cryptoswift",
@@ -5326,17 +5842,17 @@
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/external/com_github_krzyzanowskim_cryptoswift",
                         "t": "g"
                     },
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
+                        "t": "g"
+                    },
                     {
                         "_": "com_google_google_maps",
                         "t": "e"
                     },
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/external/com_google_google_maps",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
                         "t": "g"
                     }
                 ]
