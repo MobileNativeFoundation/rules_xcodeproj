@@ -353,7 +353,7 @@ targets: {}
         target_merges,
         additional_generated,
         additional_outputs,
-        has_focused_labels,
+        has_unfocused_targets,
         focused_targets_extra_files,
     )
 
@@ -368,7 +368,7 @@ def _write_json_spec(
         targets,
         target_dtos,
         target_merges,
-        has_focused_targets,
+        has_unfocused_targets,
         inputs,
         infos,
         focused_targets_extra_files):
@@ -461,7 +461,7 @@ def _write_json_spec(
         custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(extra_files_dto),
         force_bazel_dependencies = json.encode(
-            has_focused_targets or inputs.has_generated_files,
+            has_unfocused_targets or inputs.has_generated_files,
         ),
         index_import = file_path_to_dto(
             file_path(ctx.executable._index_import),
@@ -777,7 +777,7 @@ def _xcodeproj_impl(ctx):
         target_merges,
         additional_generated,
         additional_outputs,
-        has_focused_targets,
+        has_unfocused_targets,
         focused_targets_extra_files,
     ) = _process_targets(
         build_mode = build_mode,
@@ -807,7 +807,7 @@ def _xcodeproj_impl(ctx):
         targets = targets,
         target_dtos = target_dtos,
         target_merges = target_merges,
-        has_focused_targets = has_focused_targets,
+        has_unfocused_targets = has_unfocused_targets,
         inputs = inputs,
         infos = infos,
         focused_targets_extra_files = focused_targets_extra_files,
