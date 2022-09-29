@@ -226,7 +226,6 @@ def _collect(
             generated.append(file)
 
     transitive_extra_files = []
-    transitive_unowned_extra_files = []
 
     # buildifier: disable=uninitialized
     def _handle_dep(dep, *, attr):
@@ -239,9 +238,6 @@ def _collect(
             )):
             return
         transitive_extra_files.append(dep[XcodeProjInfo].inputs.uncategorized)
-        transitive_unowned_extra_files.append(
-            dep[XcodeProjInfo].inputs._unowned_uncategorized,
-        )
 
     for attr in dir(ctx.rule.files):
         if _should_ignore_attr(attr):
@@ -291,6 +287,7 @@ def _collect(
         extra_files.append(normalized_file_path(file))
 
     is_resource_bundle_consuming = is_bundle and AppleResourceInfo in target
+    label = target.label
 
     resources = None
     resource_bundles = None
@@ -346,10 +343,10 @@ def _collect(
         else:
             extra_files.extend(resources_result.resources)
             transitive_extra_files.extend([
-                # TODO: Use bundle.id here
+                # TODO: Use bundle.label here
                 # We need to adjust BwB to show resource bundle targets
                 # as unfocused dependency targets.
-                depset([(id, bundle.resources)])
+                depset([(label, bundle.resources)])
                 for bundle in resources_result.bundles
             ])
     else:
@@ -548,49 +545,6 @@ def _collect(
             ],
         )
 
-    if id:
-        extra_files.extend(
-            depset(
-                transitive = [
-                    info.inputs._unowned_extra_files
-                    for attr, info in transitive_infos
-                    if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
-                ] + transitive_unowned_extra_files,
-            ).to_list(),
-        )
-        uncategorized.extend(
-            depset(
-                transitive = [
-                    info.inputs._unowned_uncategorized
-                    for attr, info in transitive_infos
-                    if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
-                ],
-            ).to_list(),
-        )
-        unowned_extra_files = depset()
-        unowned_uncategorized = depset()
-    else:
-        unowned_extra_files = depset(
-            extra_files if extra_files else None,
-            transitive = [
-                info.inputs._unowned_extra_files
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None]))
-            ] + transitive_unowned_extra_files,
-        )
-        unowned_uncategorized = depset(
-            uncategorized if uncategorized else None,
-            transitive = [
-                info.inputs._unowned_uncategorized
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None]))
-            ],
-        )
-
     return struct(
         _non_target_swift_info_modules = non_target_swift_info_modules,
         _output_group_list = depset(
@@ -605,8 +559,6 @@ def _collect(
         _product_linker_files = product_linker_files,
         _resource_bundle_labels = resource_bundle_labels,
         _resource_bundle_uncategorized = resource_bundle_uncategorized,
-        _unowned_extra_files = unowned_extra_files,
-        _unowned_uncategorized = unowned_uncategorized,
         srcs = depset(srcs),
         non_arc_srcs = depset(non_arc_srcs),
         hdrs = depset(hdrs),
@@ -657,16 +609,16 @@ def _collect(
         ]),
         indexstores = indexstores_depset,
         extra_files = depset(
-            [(id, tuple(extra_files))] if (id and extra_files) else None,
+            [(label, tuple(extra_files))] if extra_files else None,
             transitive = [
-                _collect_transitive_extra_files(id, info)
+                _collect_transitive_extra_files(label, info)
                 for attr, info in transitive_infos
                 if (info.target_type in
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ] + transitive_extra_files,
         ),
         uncategorized = depset(
-            [(id, tuple(uncategorized))] if (id and uncategorized) else None,
+            [(label, tuple(uncategorized))] if uncategorized else None,
             transitive = [
                 _collect_transitive_uncategorized(info)
                 for attr, info in transitive_infos
@@ -687,8 +639,6 @@ def _from_resource_bundle(bundle):
         _product_linker_files = depset(),
         _resource_bundle_labels = depset(),
         _resource_bundle_uncategorized = depset(),
-        _unowned_extra_files = depset(),
-        _unowned_uncategorized = depset(),
         srcs = depset(),
         non_arc_srcs = depset(),
         hdrs = depset(),
@@ -754,18 +704,6 @@ def _merge(*, transitive_infos, extra_generated = None):
         _resource_bundle_uncategorized = depset(
             transitive = [
                 info.inputs._resource_bundle_uncategorized
-                for _, info in transitive_infos
-            ],
-        ),
-        _unowned_extra_files = depset(
-            transitive = [
-                info.inputs._unowned_extra_files
-                for _, info in transitive_infos
-            ],
-        ),
-        _unowned_uncategorized = depset(
-            transitive = [
-                info.inputs._unowned_uncategorized
                 for _, info in transitive_infos
             ],
         ),

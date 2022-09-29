@@ -20,6 +20,7 @@
         },
         "Lib/BUILD",
         "iMessageApp/BUILD",
+        "iOSApp/BUILD",
         "iMessageApp/Info.extension.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
@@ -27,7 +28,6 @@
         },
         "iMessageApp/ExtensionAssets.xcassets",
         "iMessageApp/Base.lproj/MainInterface.storyboard",
-        "iOSApp/BUILD",
         "iMessageApp/Info.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
@@ -35,6 +35,7 @@
         },
         "iMessageApp/Assets.xcassets",
         "AppClip/BUILD",
+        "AppClip/Entitlements.entitlements",
         "AppClip/Info.plist",
         {
             "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
@@ -42,7 +43,11 @@
         },
         "AppClip/PreviewContent/Preview Assets.xcassets",
         "AppClip/Assets.xcassets",
-        "AppClip/Entitlements.entitlements",
+        "iOSApp/Resources/ExampleNestedResources/BUILD",
+        "iOSApp/Resources/ExampleNestedResources/Info.plist",
+        "iOSApp/Resources/ExampleResources/BUILD",
+        "iOSApp/Resources/ExampleResources/Info.plist",
+        "iOSApp/Source/BUILD",
         "UI/BUILD",
         "iOSApp/Source/CoreUtilsObjC/BUILD",
         {
@@ -53,7 +58,6 @@
             "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework",
             "t": "e"
         },
-        "iOSApp/Source/BUILD",
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
             "t": "g"
@@ -62,10 +66,6 @@
             "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
             "t": "e"
         },
-        "iOSApp/Resources/ExampleNestedResources/BUILD",
-        "iOSApp/Resources/ExampleNestedResources/Info.plist",
-        "iOSApp/Resources/ExampleResources/BUILD",
-        "iOSApp/Resources/ExampleResources/Info.plist",
         "WidgetExtension/BUILD",
         "WidgetExtension/WidgetExtension.intentdefinition",
         "WidgetExtension/Info.plist",
@@ -89,11 +89,13 @@
             "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "t": "g"
         },
+        "watchOSApp/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
         "watchOSAppExtension/BUILD",
+        "watchOSAppExtension/Info.plist",
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
@@ -103,8 +105,7 @@
             "t": "g"
         },
         "watchOSAppExtension/Assets.xcassets",
-        "watchOSAppExtension/Info.plist",
-        "watchOSApp/BUILD",
+        "watchOSApp/Info.plist",
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-3df60cf154e9/bin/watchOSApp/Info.withbundleid.plist",
             "t": "g"
@@ -114,7 +115,6 @@
             "t": "g"
         },
         "watchOSApp/Assets.xcassets",
-        "watchOSApp/Info.plist",
         "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
         "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
         "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
@@ -173,9 +173,9 @@
         },
         "iOSApp/Source/en.lproj/unprocessed.json",
         "iOSApp/Source/es.lproj/unprocessed.json",
-        "macOSApp/third_party/ExampleFramework.framework",
         "macOSApp/Source/BUILD",
         "macOSApp/third_party/BUILD",
+        "macOSApp/third_party/ExampleFramework.framework",
         "macOSApp/Source/Info.plist",
         {
             "_": "applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
@@ -192,12 +192,12 @@
             "_": "applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
+        "tvOSApp/Resources/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
         "tvOSApp/Source/BUILD",
-        "tvOSApp/Resources/BUILD",
         {
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "t": "g"
@@ -379,10 +379,10 @@
             "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "t": "g"
         },
-        "test/fixtures/BUILD",
-        "README.md",
         "Lib/README.md",
-        "iOSApp/ownership.yaml"
+        "iOSApp/ownership.yaml",
+        "test/fixtures/BUILD",
+        "README.md"
     ],
     "force_bazel_dependencies": true,
     "index_import": {

@@ -116,6 +116,7 @@ In particular, this means that they aren't library targets, which when
 specified in `top_level_targets` cause duplicate mis-configured targets to be
 added to the project.
 """,
+        "label": "The `Label` of the target.",
         "lldb_context": "A value returned from `lldb_context.collect`.",
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
