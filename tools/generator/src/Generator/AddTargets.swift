@@ -65,12 +65,6 @@ Product for target "\(key)" not found in `products`
                     buildMode: buildMode,
                     generatesSwiftHeader: target.generatesSwiftHeader
                 ),
-                try createFrameworksPhase(
-                    in: pbxProj,
-                    frameworks: target.linkerInputs.frameworks,
-                    products: products,
-                    files: files
-                ),
                 try createResourcesPhase(
                     in: pbxProj,
                     buildMode: buildMode,
@@ -343,47 +337,6 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         pbxProj.add(object: shellScript)
 
         return shellScript
-    }
-
-    private static func createFrameworksPhase(
-        in pbxProj: PBXProj,
-        frameworks: [FilePath],
-        products: Products,
-        files: [FilePath: File]
-    ) throws -> PBXFrameworksBuildPhase? {
-        guard !frameworks.isEmpty else {
-            return nil
-        }
-
-        func fileElement(filePath: FilePath) throws -> PBXFileElement {
-            if let fileElement = products.byFilePath[filePath] {
-                return fileElement
-            }
-            guard let framework = files[filePath] else {
-                throw PreconditionError(message: """
-Framework with file path "\(filePath)" not found in `products` or `files`
-""")
-            }
-            guard let fileElement = framework.fileElement else {
-                throw PreconditionError(message: """
-Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
-""")
-            }
-            return fileElement
-        }
-
-        func buildFile(fileElement: PBXFileElement) throws -> PBXBuildFile {
-            let pbxBuildFile = PBXBuildFile(file: fileElement)
-            pbxProj.add(object: pbxBuildFile)
-            return pbxBuildFile
-        }
-
-        let buildPhase = PBXFrameworksBuildPhase(
-            files: try frameworks.map(fileElement).uniqued().map(buildFile)
-        )
-        pbxProj.add(object: buildPhase)
-
-        return buildPhase
     }
 
     private static func createResourcesPhase(
