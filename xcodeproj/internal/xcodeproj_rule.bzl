@@ -80,11 +80,53 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
 
     return info
 
+def _process_extra_files(
+        *,
+        ctx,
+        focused_labels,
+        unfocused_labels,
+        replacement_labels_by_label,
+        inputs,
+        focused_targets_extra_files):
+    extra_files = inputs.extra_files.to_list()
+
+    # Add processed owned extra files
+    extra_files.extend(focused_targets_extra_files)
+
+    # Apply replacement labels
+    extra_files = [
+        (str(replacement_labels_by_label.get(label, label)), files)
+        for label, files in extra_files
+    ]
+
+    # Filter out unfocused labels
+    has_focused_labels = sets.length(focused_labels) > 0
+    extra_files = [
+        file
+        for label, files in extra_files
+        for file in files
+        if not label or not (
+            sets.contains(unfocused_labels, label) or
+            (has_focused_labels and not sets.contains(focused_labels, label))
+        )
+    ]
+
+    # Add unowned extra files
+    extra_files.append(parsed_file_path(ctx.build_file_path))
+    for target in ctx.attr.unowned_extra_files:
+        extra_files.extend([
+            file_path(file)
+            for file in target.files.to_list()
+        ])
+
+    return uniq(extra_files)
+
 def _process_targets(
         *,
         build_mode,
         focused_labels,
         unfocused_labels,
+        replacement_labels,
         inputs,
         infos,
         owned_extra_files):
@@ -103,12 +145,11 @@ def _process_targets(
         ).to_list()
     }
 
-    replacement_labels = {
-        r.id: r.label
-        for r in depset(
-            transitive = [info.replacement_labels for info in infos],
-        ).to_list()
+    replacement_labels_by_label = {
+        unprocessed_targets[id].label: label
+        for id, label in replacement_labels.items()
     }
+
     targets_labels = sets.make([
         str(replacement_labels.get(t.id, t.label))
         for t in unprocessed_targets.values()
@@ -193,7 +234,6 @@ targets.
     target_dtos = {}
     additional_generated = {}
     additional_outputs = {}
-    label_to_id = {}
     for xcode_target in focused_targets:
         additional_compiling_files = []
         additional_indexstores_files = []
@@ -269,8 +309,6 @@ targets.
                 additional_linking_files,
             )
 
-        label_to_id[label] = xcode_target.id
-
         invalid_extra_files_targets = sets.to_list(
             sets.difference(sets.make(owned_extra_files.values()), targets_labels),
         )
@@ -283,7 +321,7 @@ targets: {}
         for file, owner_label in owned_extra_files.items():
             if str(label) == str(owner_label):
                 for f in file.files.to_list():
-                    focused_targets_extra_files.append((label_to_id[label], [file_path(f)]))
+                    focused_targets_extra_files.append((label, [file_path(f)]))
 
         targets[xcode_target.id] = xcode_target
         target_dtos[xcode_target.id] = xcode_targets.to_dto(
@@ -355,6 +393,7 @@ targets: {}
         additional_outputs,
         has_unfocused_targets,
         focused_targets_extra_files,
+        replacement_labels_by_label,
     )
 
 # Actions
@@ -369,18 +408,10 @@ def _write_json_spec(
         target_dtos,
         target_merges,
         has_unfocused_targets,
+        replacement_labels,
         inputs,
-        infos,
-        focused_targets_extra_files):
-    # `replacement_labels`
-    replacement_labels = {
-        r.id: str(r.label)
-        for r in depset(
-            transitive = [info.replacement_labels for info in infos],
-        ).to_list()
-        if r.id in targets
-    }
-
+        extra_files,
+        infos):
     # `target_hosts`
     hosted_targets = depset(
         transitive = [info.hosted_targets for info in infos],
@@ -390,28 +421,6 @@ def _write_json_spec(
         if s.host not in targets or s.hosted not in targets:
             continue
         target_hosts.setdefault(s.hosted, []).append(s.host)
-
-    # `extra_files`
-    extra_files = inputs.extra_files.to_list()
-    extra_files.append((None, [parsed_file_path(ctx.build_file_path)]))
-
-    # Add unowned extra files
-    for file in ctx.attr.unowned_extra_files:
-        for f in file.files.to_list():
-            extra_files.append((None, [file_path(f)]))
-
-    # Add processed owned extra files
-    for f in focused_targets_extra_files:
-        extra_files.append(f)
-
-    extra_files = [
-        file
-        for id, files in extra_files
-        for file in files
-        if not id or id in targets
-    ]
-    extra_files = uniq(extra_files)
-    extra_files_dto = [file_path_to_dto(file) for file in extra_files]
 
     # `custom_xcode_schemes`
     if ctx.attr.schemes_json == "":
@@ -459,7 +468,9 @@ def _write_json_spec(
         bazel_workspace_name = ctx.workspace_name,
         configuration = configuration,
         custom_xcode_schemes = custom_xcode_schemes_json,
-        extra_files = json.encode(extra_files_dto),
+        extra_files = json.encode(
+            [file_path_to_dto(file) for file in extra_files],
+        ),
         force_bazel_dependencies = json.encode(
             has_unfocused_targets or inputs.has_generated_files,
         ),
@@ -471,7 +482,13 @@ def _write_json_spec(
         post_build_script = post_build_script,
         pre_build_script = pre_build_script,
         replacement_labels = json.encode(
-            flattened_key_values.to_list(replacement_labels),
+            flattened_key_values.to_list(
+                {
+                    id: str(label)
+                    for id, label in replacement_labels.items()
+                    if id in targets
+                },
+            ),
         ),
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
         target_hosts = json.encode(flattened_key_values.to_list(target_hosts)),
@@ -770,6 +787,14 @@ def _xcodeproj_impl(ctx):
     inputs = input_files.merge(
         transitive_infos = [(None, info) for info in infos],
     )
+    focused_labels = sets.make(ctx.attr.focused_targets)
+    unfocused_labels = sets.make(ctx.attr.unfocused_targets)
+    replacement_labels = {
+        r.id: r.label
+        for r in depset(
+            transitive = [info.replacement_labels for info in infos],
+        ).to_list()
+    }
 
     (
         targets,
@@ -779,13 +804,24 @@ def _xcodeproj_impl(ctx):
         additional_outputs,
         has_unfocused_targets,
         focused_targets_extra_files,
+        replacement_labels_by_label,
     ) = _process_targets(
         build_mode = build_mode,
-        focused_labels = sets.make(ctx.attr.focused_targets),
-        unfocused_labels = sets.make(ctx.attr.unfocused_targets),
+        focused_labels = focused_labels,
+        unfocused_labels = unfocused_labels,
+        replacement_labels = replacement_labels,
         inputs = inputs,
         infos = infos,
         owned_extra_files = ctx.attr.owned_extra_files,
+    )
+
+    extra_files = _process_extra_files(
+        ctx = ctx,
+        focused_labels = focused_labels,
+        unfocused_labels = unfocused_labels,
+        replacement_labels_by_label = replacement_labels_by_label,
+        inputs = inputs,
+        focused_targets_extra_files = focused_targets_extra_files,
     )
 
     extension_infoplists = [
@@ -808,9 +844,10 @@ def _xcodeproj_impl(ctx):
         target_dtos = target_dtos,
         target_merges = target_merges,
         has_unfocused_targets = has_unfocused_targets,
+        replacement_labels = replacement_labels,
         inputs = inputs,
+        extra_files = extra_files,
         infos = infos,
-        focused_targets_extra_files = focused_targets_extra_files,
     )
     root_dirs_file = _write_root_dirs(ctx = ctx)
     xccurrentversions_file = _write_xccurrentversions(

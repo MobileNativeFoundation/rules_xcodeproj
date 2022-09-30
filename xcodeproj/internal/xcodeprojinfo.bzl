@@ -419,6 +419,7 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
         )
 
     return XcodeProjInfo(
+        label = target.label,
         **info_fields
     )
 
@@ -438,5 +439,6 @@ def merge_xcodeprojinfos(infos):
         transitive_infos = [(None, info) for info in infos],
     )
     return XcodeProjInfo(
+        label = None,
         **info_fields
     )
