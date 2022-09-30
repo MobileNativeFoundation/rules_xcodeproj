@@ -39,14 +39,32 @@ def _calculate_label_and_target_ids(
         guid_target_ids):
     try:
         # The first time a certain buildRequest is used, the buildRequest.json
-        # might not exist yet, so we wait a bit for it to exist
+        # might not exist yet, so we for it to exist
         wait_counter = 0
-        time_to_wait = 10
         while not os.path.exists(build_request_file):
+            if wait_counter == 0:
+                print(
+                        f"""\
+note: "{build_request_file}" doesn't exist yet, waiting for it to be \
+created...""",
+                        file = sys.stderr,
+                )
+            if wait_counter == 10:
+                print(
+                        f"""\
+warning: "{build_request_file}" still doesn't exist after 10 seconds. If happens \
+frequently, or the cache is never created, please file a bug report here: \
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
+                        file = sys.stderr,
+                )
             time.sleep(1)
             wait_counter += 1
-            if wait_counter > time_to_wait:
-                break
+        if wait_counter > 0:
+            print(
+                    f"""\
+note: "{build_request_file}" created after {wait_counter} seconds.""",
+                    file = sys.stderr,
+            )
 
         with open(build_request_file, encoding = "utf-8") as f:
             # Parse the build-request.json file
@@ -109,19 +127,27 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
 
 def _calculate_guid_labels_and_target_ids(base_objroot):
     pif_cache = f"{base_objroot}/XCBuildData/PIFCache"
+    project_cache = f"{pif_cache}/project"
+    target_cache = f"{pif_cache}/target"
 
-    # For the first build, the PIFCache might not exist yet, so we wait a bit=
-    # for it to exist
-    wait_counter = 0
-    time_to_wait = 10
-    while not os.path.exists(pif_cache):
-        time.sleep(1)
-        wait_counter += 1
-        if wait_counter > time_to_wait:
-            break
+    # The PIF cache will only be created before the `SetSessionUserInfo`
+    # command, which normally happens when a project is opened. If Derived Data
+    # is cleared  while the project is open
+    if not (os.path.exists(project_cache) and os.path.exists(target_cache)):
+        print(
+            f"""\
+error: PIFCache ({pif_cache}) doesn't exist. If you manually cleared Derived \
+Data, you need to close and re-open the project for the PIFCache to be created \
+again. Using the "Clean Build Folder" command instead (⇧ ⌘ K) won't trigger \
+this error. If this error still happens after re-opening the project, please \
+file a bug report here: \
+https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
+            file = sys.stderr,
+        )
+        sys.exit(1)
 
     project_pif = max(
-        glob.iglob(f"{pif_cache}/project/*"),
+        glob.iglob(f"{project_cache}/*"),
         key = os.path.getctime,
     )
 
@@ -138,8 +164,6 @@ def _calculate_guid_labels_and_target_ids(base_objroot):
         project_pif = json.load(f)
 
     targets = project_pif["targets"]
-
-    target_cache = f"{pif_cache}/target"
 
     guid_labels = {}
     guid_target_ids = {}
