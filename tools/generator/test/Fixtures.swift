@@ -1073,6 +1073,24 @@ $(BUILD_DIR)/bazel-out/z/A.a
 a/imported.a
 -force_load
 $(BUILD_DIR)/bazel-out/a/c.lo
+-framework
+Fram
+
+""")
+
+            files[.internal("targets/a1b2c/B 2/B.link.params")] =
+                .nonReferencedContent("""
+-framework
+StaticFram
+-framework
+b
+
+""")
+
+            files[.internal("targets/a1b2c/B 3/B3.link.params")] =
+                .nonReferencedContent("""
+-framework
+StaticFram
 
 """)
 
@@ -1089,6 +1107,24 @@ $(BAZEL_OUT)/z/A.a
 a/imported.a
 -force_load
 $(BAZEL_OUT)/a/c.lo
+-framework
+Fram
+
+""")
+
+            files[.internal("targets/a1b2c/B 2/B.link.params")] =
+                .nonReferencedContent("""
+-framework
+StaticFram
+-framework
+b
+
+""")
+
+            files[.internal("targets/a1b2c/B 3/B3.link.params")] =
+                .nonReferencedContent("""
+-framework
+StaticFram
 
 """)
 
@@ -1608,7 +1644,7 @@ env -i \
         // Build phases
 
         func createGeneratedHeaderShellScript() -> PBXShellScriptBuildPhase {
-            let shellScript = PBXShellScriptBuildPhase(
+            return PBXShellScriptBuildPhase(
                 name: "Copy Swift Generated Header",
                 inputPaths: [
                     "$(DERIVED_FILE_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
@@ -1628,8 +1664,34 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
 """#,
                 showEnvVarsInLog: false
             )
-            pbxProj.add(object: shellScript)
-            return shellScript
+        }
+
+        func createCreateLinkingDependenciesShellScript(
+            hasCompileStub: Bool = false
+        ) -> PBXShellScriptBuildPhase {
+            var outputPaths = ["$(DERIVED_FILE_DIR)/link.params"]
+            var shellScript = #"""
+perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
+  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+
+"""#
+
+            if hasCompileStub {
+                outputPaths.append("$(DERIVED_FILE_DIR)/_CompileStub_.m")
+                shellScript.append(#"""
+
+touch "$SCRIPT_OUTPUT_FILE_1"
+
+"""#)
+            }
+
+            return PBXShellScriptBuildPhase(
+                name: "Create linking dependencies",
+                inputPaths: ["$(LINK_PARAMS_FILE)"],
+                outputPaths: outputPaths,
+                shellScript: shellScript,
+                showEnvVarsInLog: false
+            )
         }
 
         func buildFiles(_ buildFiles: [PBXBuildFile]) -> [PBXBuildFile] {
@@ -1653,30 +1715,12 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
                 createGeneratedHeaderShellScript(),
             ],
             "A 2": [
-                PBXShellScriptBuildPhase(
-                    name: "Create linking dependencies",
-                    inputPaths: ["$(LINK_PARAMS_FILE)"],
-                    outputPaths: [
-                        "$(DERIVED_FILE_DIR)/link.params",
-                        "$(DERIVED_FILE_DIR)/_CompileStub_.m",
-                    ],
-                    shellScript: #"""
-perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
-  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
-
-touch "$SCRIPT_OUTPUT_FILE_1"
-
-"""#,
-                    showEnvVarsInLog: false
+                createCreateLinkingDependenciesShellScript(
+                    hasCompileStub: true
                 ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.internal("_CompileStub_.m")]!
-                    )])
-                ),
-                PBXFrameworksBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements["a/Fram.framework"]!
                     )])
                 ),
                 PBXResourcesBuildPhase(
@@ -1728,18 +1772,13 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "B 2": [
+                createCreateLinkingDependenciesShellScript(
+                    hasCompileStub: true
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.internal("_CompileStub_.m")]!
                     )])
-                ),
-                PBXFrameworksBuildPhase(
-                    files: buildFiles([
-                        PBXBuildFile(file: elements["a/StaticFram.framework"]!),
-                        PBXBuildFile(file: products
-                            .byFilePath[.generated("a/b.framework")]!
-                        )
-                    ])
                 ),
                 PBXCopyFilesBuildPhase(
                     dstPath: "",
@@ -1755,14 +1794,12 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "B 3": [
+                createCreateLinkingDependenciesShellScript(
+                    hasCompileStub: true
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.internal("_CompileStub_.m")]!
-                    )])
-                ),
-                PBXFrameworksBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements["a/StaticFram.framework"]!
                     )])
                 ),
             ],
@@ -1774,17 +1811,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "C 2": [
-                PBXShellScriptBuildPhase(
-                    name: "Create linking dependencies",
-                    inputPaths: ["$(LINK_PARAMS_FILE)"],
-                    outputPaths: ["$(DERIVED_FILE_DIR)/link.params"],
-                    shellScript: #"""
-perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
-  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
-
-"""#,
-                    showEnvVarsInLog: false
-                ),
+                createCreateLinkingDependenciesShellScript(),
                 PBXSourcesBuildPhase(
                     files: buildFiles([
                         PBXBuildFile(file: elements["a/b/d.m"]!),
@@ -2314,6 +2341,9 @@ $(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/z
                 "COMPILE_TARGET_NAME": targets["B 2"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "LINK_PARAMS_FILE": """
+$(INTERNAL_DIR)/targets/a1b2c/B 2/B.link.params
+""",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
@@ -2323,6 +2353,7 @@ $(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/z
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
                 ],
+                "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "B",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2345,6 +2376,9 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "COMPILE_TARGET_NAME": targets["B 3"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "LINK_PARAMS_FILE": """
+$(INTERNAL_DIR)/targets/a1b2c/B 3/B3.link.params
+""",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
@@ -2354,6 +2388,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
                 ],
+                "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "B3",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",

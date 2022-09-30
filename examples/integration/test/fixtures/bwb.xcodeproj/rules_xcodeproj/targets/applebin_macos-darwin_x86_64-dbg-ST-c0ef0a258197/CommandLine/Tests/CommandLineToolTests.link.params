@@ -22,3 +22,5 @@ $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a2581
 $(BAZEL_EXTERNAL)/examples_command_line_external/ImportableLibrary/libImportableLibrary.a
 -force_load
 $(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/ExternalFramework
+-framework
+ExternalFramework

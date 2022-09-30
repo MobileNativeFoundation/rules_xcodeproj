@@ -8,3 +8,5 @@
 -lc++
 -force_load
 $(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/libLib.a
+-framework
+CryptoSwift

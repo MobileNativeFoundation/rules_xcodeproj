@@ -6,6 +6,8 @@ extension Target {
             || !linkerInputs.staticLibraries.isEmpty
             || !inputs.exportedSymbolsLists.isEmpty
             || !linkerInputs.forceLoad.isEmpty
+            || !linkerInputs.staticFrameworks.isEmpty
+            || !linkerInputs.dynamicFrameworks.isEmpty
     }
 
     func allLinkerFlags(
@@ -19,29 +21,39 @@ extension Target {
             filePathResolver: filePathResolver
         )
 
-        flags.append(contentsOf: try linkerInputs.staticLibraries
-            .map { filePath in
+        func handleFilePath(
+            _ filePath: FilePath,
+            useFilename: Bool
+        ) throws -> String {
+            // TODO: Bake this into `filePathResolver`
+            let xcodeFilePath = xcodeGeneratedFiles[filePath]
+            let filePath = xcodeFilePath ?? filePath
+
+            if useFilename {
+                return filePath.path.lastComponentWithoutExtension
+            } else {
                 return try filePathResolver
                     .resolve(
                         filePath,
-                        useBazelOut: !xcodeGeneratedFiles.keys
-                            .contains(filePath)
+                        useBazelOut: xcodeFilePath == nil
                     )
                     .string.quoted
             }
+        }
+
+        func handleFilePath(_ filePath: FilePath) throws -> String {
+            return try handleFilePath(filePath, useFilename: false)
+        }
+
+        flags.append(
+            contentsOf: try linkerInputs.staticLibraries.map(handleFilePath)
         )
 
         flags.append(contentsOf: try linkerInputs.forceLoad
             .flatMap { filePath in
                 return [
                     "-force_load",
-                    try filePathResolver
-                        .resolve(
-                            filePath,
-                            useBazelOut: !xcodeGeneratedFiles.keys
-                                .contains(filePath)
-                        )
-                        .string.quoted,
+                    try handleFilePath(filePath),
                 ]
             }
         )
@@ -51,6 +63,26 @@ extension Target {
                 return [
                     "-exported_symbols_list",
                     try filePathResolver.resolve(filePath).string.quoted,
+                ]
+            }
+        )
+
+        // Frameworks being last here matches what the behavior should/will be:
+        // https://github.com/bazelbuild/bazel/pull/16342
+        flags.append(contentsOf: try linkerInputs.staticFrameworks
+            .flatMap { filePath in
+                return [
+                    "-framework",
+                    try handleFilePath(filePath, useFilename: true),
+                ]
+            }
+        )
+
+        flags.append(contentsOf: try linkerInputs.dynamicFrameworks
+            .flatMap { filePath in
+                return [
+                    "-framework",
+                    try handleFilePath(filePath, useFilename: true),
                 ]
             }
         )
