@@ -483,7 +483,11 @@ def _write_json_spec(
         pre_build_script = pre_build_script,
         replacement_labels = json.encode(
             flattened_key_values.to_list(
-                {id: str(label) for id, label in replacement_labels.items()},
+                {
+                    id: str(label)
+                    for id, label in replacement_labels.items()
+                    if id in targets
+                },
             ),
         ),
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
