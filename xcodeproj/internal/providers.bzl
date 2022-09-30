@@ -151,6 +151,11 @@ target, it can still have a non-`None` value for this field.
 A `depset` of target ids (see the `target` `struct`) that this target
 transitively depends on.
 """,
+        "xcode_required_targets": """\
+A `depset` of values returned from `xcode_targets.make` for targets that need to
+be in projects that have `build_mode = "xcode"`. This means that they can't be
+unfocused in BwX mode, and if requested it will be ignored.
+""",
         "xcode_target": """\
 An optional value returned from `xcode_targets.make`.
 """,

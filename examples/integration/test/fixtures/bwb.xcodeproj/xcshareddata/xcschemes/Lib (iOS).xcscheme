@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "9D6BB9A04FEC771667C78F54"
-                     BuildableName = "Lib (iOS, tvOS)"
-                     BlueprintName = "Lib (iOS, tvOS)"
+                     BlueprintIdentifier = "F5BF80BFBFC7570B02664402"
+                     BuildableName = "Lib (iOS)"
+                     BlueprintName = "Lib (iOS)"
                      ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for Lib (iOS, tvOS)"
+               title = "Set Bazel Build Output Groups for Lib (iOS)"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "9D6BB9A04FEC771667C78F54"
-                     BuildableName = "Lib (iOS, tvOS)"
-                     BlueprintName = "Lib (iOS, tvOS)"
+                     BlueprintIdentifier = "F5BF80BFBFC7570B02664402"
+                     BuildableName = "Lib (iOS)"
+                     BlueprintName = "Lib (iOS)"
                      ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9D6BB9A04FEC771667C78F54"
-               BuildableName = "Lib (iOS, tvOS)"
-               BlueprintName = "Lib (iOS, tvOS)"
+               BlueprintIdentifier = "F5BF80BFBFC7570B02664402"
+               BuildableName = "Lib (iOS)"
+               BlueprintName = "Lib (iOS)"
                ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

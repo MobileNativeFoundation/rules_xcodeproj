@@ -7,6 +7,7 @@ load(
     "ASSOCIATED_EXTRA_FILES",
     "CONFIG",
     "EXTRA_FILES",
+    "UNFOCUSED_TARGETS",
     "XCODEPROJ_TARGETS",
 )
 
@@ -21,4 +22,5 @@ xcodeproj(
     project_name = "Integration",
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,
+    unfocused_targets = UNFOCUSED_TARGETS,
 )

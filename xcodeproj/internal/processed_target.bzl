@@ -11,6 +11,7 @@ def processed_target(
         hosted_targets = None,
         inputs,
         is_top_level_target = False,
+        is_xcode_required = False,
         library = None,
         lldb_context,
         outputs,
@@ -35,6 +36,7 @@ def processed_target(
         inputs: A value as returned from `input_files.collect` that will
             provide values for the `XcodeProjInfo.inputs` field.
         is_top_level_target: If `True`, the target is a top-level target.
+        is_xcode_required: If `True`, the target is required in BwX mode.
         library: A `File` for the static library produced by this target, or
             `None`.
         lldb_context: A value as returned from `lldb_context.collect`.
@@ -61,6 +63,7 @@ def processed_target(
         hosted_targets = hosted_targets,
         inputs = inputs,
         is_top_level_target = is_top_level_target,
+        is_xcode_required = is_xcode_required,
         library = library,
         lldb_context = lldb_context,
         outputs = outputs,
