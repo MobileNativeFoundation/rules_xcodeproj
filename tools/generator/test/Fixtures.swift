@@ -2239,9 +2239,14 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "OTHER_SWIFT_FLAGS": #"""
 -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
 """#,
-                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/z",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "$(BUILD_DIR)/bazel-out/z",
                 "PRODUCT_NAME": "A",
+                "SWIFT_INCLUDE_PATHS": """
+$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/z
+""",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["A 2"]!.name,
