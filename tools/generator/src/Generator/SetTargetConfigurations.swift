@@ -408,6 +408,8 @@ $(CONFIGURATION_BUILD_DIR)
             if target.product.type.isBundle,
                let swiftmodule = target.outputs.swift?.module
             {
+                // SwiftUI Previews need to find the current target's
+                // swiftmodule
                 let selfInclude = try handleSwiftModule(swiftmodule)
                 buildSettings["PREVIEWS_SWIFT_INCLUDE_PATH__"] = ""
                 buildSettings["PREVIEWS_SWIFT_INCLUDE_PATH__NO"] = ""
