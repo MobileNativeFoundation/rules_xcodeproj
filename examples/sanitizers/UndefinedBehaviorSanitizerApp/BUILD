@@ -21,4 +21,5 @@ objc_library(
         "Sources/main.m",
     ],
     sdk_frameworks = ["UIKit"],
+    tags = ["manual"],
 )

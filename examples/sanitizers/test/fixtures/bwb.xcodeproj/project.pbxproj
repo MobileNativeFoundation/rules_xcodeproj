@@ -60,28 +60,36 @@
 		1AE026F917B2710D6C999ADE /* ThreadSanitizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSanitizerApp.swift; sourceTree = "<group>"; };
 		1B6E86525CF42B0DBC06EF8C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		296EE8C78855506377A7AEBA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		30EC36E5D352E14B28030FF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2B42652E5B67184D38091FD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		36B74CDD9E74890EDEE6D3C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4A0E1C1B65F657FF20BAB331 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5202C52638AEAF71ED534FF3 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5352DD14AB81EC9A68F1F45C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		57CFBF7D48B180C738FB2366 /* ThreadSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58EBCCB950049E1A18D059D9 /* AddressSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B44CC51016EEA4E4A297D0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5C6178C1AFF59CDE09E764D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		68756A77949C86917FEB04E7 /* ThreadSanitizerExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSanitizerExamples.swift; sourceTree = "<group>"; };
 		6B254EAD3CAD86A9C7D83538 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		830EAAF8A0DAF799CFF313D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		861585BAF05AE50ACE1A2F09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		889E4FB1EEA2569BE64B03B9 /* UndefinedBehaviorSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UndefinedBehaviorSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A203BC864749E0547EB8D5F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		9CD7C8B8DDF381B9499135E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C09292DFA09BA37265C228B2 /* AddressSanitizerExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSanitizerExamples.swift; sourceTree = "<group>"; };
-		CF1E291372B5A6FF3128B115 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DD875AE2D05250902E95237C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		EDEE0E1A80C49B3E9E90BE09 /* AddressSanitizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSanitizerApp.swift; sourceTree = "<group>"; };
 		F9DE6E9EB1D4F15BD617AD9A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		063A3F0100925008A0B143CB /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				43E7813EF52C4BBC25CD49F5 /* UndefinedBehaviorSanitizerApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		18D9D976A459949E7947BB6E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,14 +98,6 @@
 				296EE8C78855506377A7AEBA /* main.m */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		1B71F9C5944DDCF0FA5547BD /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				C40FBF2C9A827C0C82CE5411 /* ThreadSanitizerApp */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		2E6D9E4BA36A87B56922910C /* fixtures */ = {
@@ -118,6 +118,38 @@
 			path = UndefinedBehaviorSanitizerApp;
 			sourceTree = "<group>";
 		};
+		3D09D68D107067B31A32C96F /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				A97D04204051C24EB480C190 /* ThreadSanitizerApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		43E7813EF52C4BBC25CD49F5 /* UndefinedBehaviorSanitizerApp */ = {
+			isa = PBXGroup;
+			children = (
+				5B44CC51016EEA4E4A297D0E /* Info.plist */,
+			);
+			path = UndefinedBehaviorSanitizerApp;
+			sourceTree = "<group>";
+		};
+		4A23A44C84AAA3B581A60F09 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				7E893463CF85080D8B9E44CA /* AddressSanitizerApp */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		587F00395265AFD727048D86 /* ThreadSanitizerApp */ = {
+			isa = PBXGroup;
+			children = (
+				3D09D68D107067B31A32C96F /* rules_xcodeproj */,
+			);
+			path = ThreadSanitizerApp;
+			sourceTree = "<group>";
+		};
 		593E7C82FAAD94A7E6A04318 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,14 +158,6 @@
 				889E4FB1EEA2569BE64B03B9 /* UndefinedBehaviorSanitizerApp.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		66F87576D94D81BD9767D295 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				EE69159BC228E0CB71B9E7D4 /* AddressSanitizerApp */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		68A1D737225E7A97337523DE /* test */ = {
@@ -156,14 +180,12 @@
 			path = AddressSanitizerApp;
 			sourceTree = "<group>";
 		};
-		7B5334C042292AA616C39B2A /* bin */ = {
+		7E893463CF85080D8B9E44CA /* AddressSanitizerApp */ = {
 			isa = PBXGroup;
 			children = (
-				A5B4640C1F6CE4FEAEE074D5 /* AddressSanitizerApp */,
-				A62CF691A4E79C9770B76FAD /* ThreadSanitizerApp */,
-				DE36F17A2088829161FA5A86 /* UndefinedBehaviorSanitizerApp */,
+				830EAAF8A0DAF799CFF313D6 /* Info.plist */,
 			);
-			path = bin;
+			path = AddressSanitizerApp;
 			sourceTree = "<group>";
 		};
 		8FF22E939A4FE043C61895F3 /* ThreadSanitizerApp */ = {
@@ -178,20 +200,20 @@
 			path = ThreadSanitizerApp;
 			sourceTree = "<group>";
 		};
-		A5B4640C1F6CE4FEAEE074D5 /* AddressSanitizerApp */ = {
+		A97D04204051C24EB480C190 /* ThreadSanitizerApp */ = {
 			isa = PBXGroup;
 			children = (
-				66F87576D94D81BD9767D295 /* rules_xcodeproj */,
-			);
-			path = AddressSanitizerApp;
-			sourceTree = "<group>";
-		};
-		A62CF691A4E79C9770B76FAD /* ThreadSanitizerApp */ = {
-			isa = PBXGroup;
-			children = (
-				1B71F9C5944DDCF0FA5547BD /* rules_xcodeproj */,
+				2B42652E5B67184D38091FD4 /* Info.plist */,
 			);
 			path = ThreadSanitizerApp;
+			sourceTree = "<group>";
+		};
+		B82E1F52B2C8ECF5DFD7E674 /* UndefinedBehaviorSanitizerApp */ = {
+			isa = PBXGroup;
+			children = (
+				063A3F0100925008A0B143CB /* rules_xcodeproj */,
+			);
+			path = UndefinedBehaviorSanitizerApp;
 			sourceTree = "<group>";
 		};
 		C047AF1D451C7E165914273D /* Frameworks */ = {
@@ -204,34 +226,26 @@
 		C407A8E68D8C611448A3E699 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
-				FFE3FB22584DC7827831474B /* applebin_ios-ios_x86_64-dbg-ST-f096b57e3011 */,
+				D308305EB44933FCF28725BC /* applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-output-base/execroot/__main__/bazel-out";
 			sourceTree = "<group>";
 		};
-		C40FBF2C9A827C0C82CE5411 /* ThreadSanitizerApp */ = {
+		D11D8A623D8736DF294E22E4 /* AddressSanitizerApp */ = {
 			isa = PBXGroup;
 			children = (
-				30EC36E5D352E14B28030FF1 /* Info.plist */,
+				4A23A44C84AAA3B581A60F09 /* rules_xcodeproj */,
 			);
-			path = ThreadSanitizerApp;
+			path = AddressSanitizerApp;
 			sourceTree = "<group>";
 		};
-		DE36F17A2088829161FA5A86 /* UndefinedBehaviorSanitizerApp */ = {
+		D308305EB44933FCF28725BC /* applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56 */ = {
 			isa = PBXGroup;
 			children = (
-				F353E3CFF84A04F2273B28A1 /* rules_xcodeproj */,
+				EE5C632F687B3B2B8B51EFC6 /* bin */,
 			);
-			path = UndefinedBehaviorSanitizerApp;
-			sourceTree = "<group>";
-		};
-		E13B3DCC1FD954C0D48BDE57 /* UndefinedBehaviorSanitizerApp */ = {
-			isa = PBXGroup;
-			children = (
-				CF1E291372B5A6FF3128B115 /* Info.plist */,
-			);
-			path = UndefinedBehaviorSanitizerApp;
+			path = "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 			sourceTree = "<group>";
 		};
 		EC6FEE5AC277A3FEEA95510A = {
@@ -247,28 +261,14 @@
 			);
 			sourceTree = "<group>";
 		};
-		EE69159BC228E0CB71B9E7D4 /* AddressSanitizerApp */ = {
+		EE5C632F687B3B2B8B51EFC6 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				9CD7C8B8DDF381B9499135E2 /* Info.plist */,
+				D11D8A623D8736DF294E22E4 /* AddressSanitizerApp */,
+				587F00395265AFD727048D86 /* ThreadSanitizerApp */,
+				B82E1F52B2C8ECF5DFD7E674 /* UndefinedBehaviorSanitizerApp */,
 			);
-			path = AddressSanitizerApp;
-			sourceTree = "<group>";
-		};
-		F353E3CFF84A04F2273B28A1 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				E13B3DCC1FD954C0D48BDE57 /* UndefinedBehaviorSanitizerApp */,
-			);
-			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		FFE3FB22584DC7827831474B /* applebin_ios-ios_x86_64-dbg-ST-f096b57e3011 */ = {
-			isa = PBXGroup;
-			children = (
-				7B5334C042292AA616C39B2A /* bin */,
-			);
-			path = "applebin_ios-ios_x86_64-dbg-ST-f096b57e3011";
+			path = bin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,12 +575,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f096b57e3011";
+				BAZEL_COMPILE_TARGET_ID = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.ipa";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/UndefinedBehaviorSanitizerApp";
-				BAZEL_TARGET_ID = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-ST-f096b57e3011";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.ipa";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UndefinedBehaviorSanitizerApp";
+				BAZEL_TARGET_ID = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -596,13 +596,13 @@
 					OS_IOS,
 					"DEBUG=1",
 				);
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
@@ -674,7 +674,7 @@
 				TARGET_NAME = UndefinedBehaviorSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
 				);
 			};
 			name = Debug;
@@ -750,12 +750,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f096b57e3011";
+				BAZEL_COMPILE_TARGET_ID = "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "//ThreadSanitizerApp:ThreadSanitizerApp";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/ThreadSanitizerApp/ThreadSanitizerApp.ipa";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/ThreadSanitizerApp";
-				BAZEL_TARGET_ID = "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-ST-f096b57e3011";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/ThreadSanitizerApp/ThreadSanitizerApp.ipa";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/ThreadSanitizerApp";
+				BAZEL_TARGET_ID = "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -765,18 +765,18 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/ThreadSanitizerApp/ThreadSanitizerApp.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/ThreadSanitizerApp/ThreadSanitizerApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
-				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/ThreadSanitizerApp";
+				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/ThreadSanitizerApp";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = ThreadSanitizerApp;
 				PRODUCT_NAME = ThreadSanitizerApp;
@@ -792,7 +792,7 @@
 				TARGET_NAME = ThreadSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
 				);
 			};
 			name = Debug;
@@ -801,12 +801,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f096b57e3011";
+				BAZEL_COMPILE_TARGET_ID = "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "//AddressSanitizerApp:AddressSanitizerApp";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/AddressSanitizerApp/AddressSanitizerApp.ipa";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/AddressSanitizerApp";
-				BAZEL_TARGET_ID = "//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-ST-f096b57e3011";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AddressSanitizerApp/AddressSanitizerApp.ipa";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AddressSanitizerApp";
+				BAZEL_TARGET_ID = "//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -816,18 +816,18 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/AddressSanitizerApp/AddressSanitizerApp.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/AddressSanitizerApp/AddressSanitizerApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
-				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin/AddressSanitizerApp";
+				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AddressSanitizerApp";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
 				PRODUCT_MODULE_NAME = AddressSanitizerApp;
 				PRODUCT_NAME = AddressSanitizerApp;
@@ -843,7 +843,7 @@
 				TARGET_NAME = AddressSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-f096b57e3011/bin",
+					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
 				);
 			};
 			name = Debug;
