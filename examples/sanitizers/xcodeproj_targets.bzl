@@ -3,4 +3,5 @@
 XCODEPROJ_TARGETS = [
     "//AddressSanitizerApp",
     "//ThreadSanitizerApp",
+    "//UndefinedBehaviorSanitizerApp",
 ]
