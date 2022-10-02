@@ -22,4 +22,3 @@ objc_library(
     ],
     sdk_frameworks = ["UIKit"],
 )
-
