@@ -240,6 +240,9 @@ extension XCScheme.LaunchAction {
             askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,
             customWorkingDirectory: launchActionInfo.workingDirectory,
             useCustomWorkingDirectory: launchActionInfo.workingDirectory != nil,
+            enableAddressSanitizer: launchActionInfo.diagnostics?.enableAddressSanitizer ?? false,
+            enableThreadSanitizer: launchActionInfo.diagnostics?.enableThreadSanitizer ?? false,
+            enableUBSanitizer: launchActionInfo.diagnostics?.enableUndefinedBehaviorSanitizer ?? false,
             commandlineArguments: commandlineArguments,
             environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
             launchAutomaticallySubstyle: launchActionInfo.targetInfo.productType

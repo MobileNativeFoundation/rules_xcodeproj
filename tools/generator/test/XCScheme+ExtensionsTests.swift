@@ -494,3 +494,54 @@ class XCSchemeExtensionsTests: XCTestCase {
         topLevelTargetInfos: []
     ).orThrow()
 }
+
+
+// MARK: XCScheme.LaunchAction Diagnostics Tests
+
+extension XCSchemeExtensionsTests {
+    func test_LaunchAction_init_diagnostics() throws {
+        // given
+        let diagnostics = XCSchemeInfo.DiagnosticsInfo(
+            enableAddressSanitizer: true,
+            enableThreadSanitizer: false,
+            enableUndefinedBehaviorSanitizer: true)
+        let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfo: appTargetInfo,
+                args: [],
+                env: [:],
+                diagnostics: diagnostics
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let launchActionInfo = launchActionInfo else {
+            XCTFail("Expected a `LaunchActionInfo`")
+            return
+        }
+
+        let productType = launchActionInfo.targetInfo.productType
+        
+        // when
+        let launchAction = try XCScheme.LaunchAction(
+            buildMode: .xcode,
+            launchActionInfo: launchActionInfo
+        )
+        
+        // then
+        let expected = XCScheme.LaunchAction(
+            runnable: launchActionInfo.runnable,
+            buildConfiguration: launchActionInfo.buildConfigurationName,
+            macroExpansion: try launchActionInfo.macroExpansion,
+            selectedDebuggerIdentifier: launchActionInfo.debugger,
+            selectedLauncherIdentifier: launchActionInfo.launcher,
+            askForAppToLaunch: nil,
+            enableAddressSanitizer: true,
+            enableThreadSanitizer: false,
+            enableUBSanitizer: true,
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        XCTAssertEqual(launchAction, expected)
+    }
+}

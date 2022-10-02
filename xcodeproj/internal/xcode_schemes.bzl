@@ -276,11 +276,37 @@ def make_xcode_schemes(bazel_labels):
             build_for = build_for,
         )
 
+    def _diagnostics(
+            enable_address_sanitizer = False,
+            enable_thread_sanitizer = False,
+            enable_undefined_behavior_sanitizer = False):
+        """Constructs the scheme's diagnostics.
+
+        Args:
+            enable_address_sanitizer: Optional. A boolean value representing
+                whether the address sanitizer should be enabled or not.
+            enable_thread_sanitizer: Optional. A boolean value representing
+                whether the thread sanitizer should be enabled or not.
+            enable_undefined_behavior_sanitizer: Optional. A boolean value representing
+                whether the undefined behavior sanitizer should be enabled or not.
+
+        Returns:
+            A `struct` representing scheme's diagnostics.
+        """
+        if enable_address_sanitizer and enable_thread_sanitizer:
+            fail("Address Sanitizer cannot be used together with Thread Sanitizer.")
+        return struct(
+            enable_address_sanitizer = enable_address_sanitizer,
+            enable_thread_sanitizer = enable_thread_sanitizer,
+            enable_undefined_behavior_sanitizer = enable_undefined_behavior_sanitizer,
+        )
+
     def _launch_action(
             target,
             args = None,
             env = None,
-            working_directory = None):
+            working_directory = None,
+            diagnostics = None):
         """Constructs a launch action for an Xcode scheme.
 
         Args:
@@ -293,6 +319,7 @@ def make_xcode_schemes(bazel_labels):
                 custom working directory in the Xcode scheme's launch action.
                 Relative paths will be relative to the value of `target`'s
                 `BUILT_PRODUCTS_DIR`, which is unique to it.
+            diagnostics: Optional. A `struct` representing Xcode scheme's diagnostics.
 
         Returns:
             A `struct` representing a launch action.
@@ -303,6 +330,7 @@ def make_xcode_schemes(bazel_labels):
             args = args,
             env = env,
             working_directory = working_directory,
+            diagnostics = diagnostics,
         )
 
     def _test_action(
@@ -355,6 +383,7 @@ def make_xcode_schemes(bazel_labels):
         build_for_values = xcode_schemes_internal.build_for_values,
         launch_action = _launch_action,
         test_action = _test_action,
+        diagnostics = _diagnostics,
         pre_post_action = _pre_post_action,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
         BUILD_FOR_ALL_ENABLED = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED,

@@ -7,13 +7,15 @@ extension XCSchemeInfo {
         let args: [String]
         let env: [String: String]
         let workingDirectory: String?
+        let diagnostics: DiagnosticsInfo?
 
         init(
             buildConfigurationName: String,
             targetInfo: XCSchemeInfo.TargetInfo,
             args: [String] = [],
             env: [String: String] = [:],
-            workingDirectory: String? = nil
+            workingDirectory: String? = nil,
+            diagnostics: DiagnosticsInfo? = nil
         ) throws {
             guard targetInfo.productType.isLaunchable else {
                 throw PreconditionError(message: """
@@ -25,6 +27,7 @@ An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.Target
             self.args = args
             self.env = env
             self.workingDirectory = workingDirectory
+            self.diagnostics = diagnostics
         }
     }
 }
@@ -48,7 +51,8 @@ extension XCSchemeInfo.LaunchActionInfo {
             ),
             args: original.args,
             env: original.env,
-            workingDirectory: original.workingDirectory
+            workingDirectory: original.workingDirectory,
+            diagnostics: original.diagnostics
         )
     }
 }
@@ -140,7 +144,10 @@ extension XCSchemeInfo.LaunchActionInfo {
             ),
             args: launchAction.args,
             env: launchAction.env,
-            workingDirectory: launchAction.workingDirectory
+            workingDirectory: launchAction.workingDirectory,
+            diagnostics: XCSchemeInfo.DiagnosticsInfo(
+                diagnostics: launchAction.diagnostics
+            )
         )
     }
 }
