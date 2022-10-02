@@ -99,6 +99,13 @@ build:rules_xcodeproj_swiftuipreviews --features=-swift.index_while_building
 build:rules_xcodeproj_asan --config=rules_xcodeproj
 build:rules_xcodeproj_asan --features=asan
 
+### `--config=rules_xcodeproj_ubsan`
+#
+# Used when building with Undefined Behavior Sanitizer enabled.
+
+build:rules_xcodeproj_ubsan --config=rules_xcodeproj
+build:rules_xcodeproj_ubsan --features=ubsan
+
 ### `--config=rules_xcodeproj_tsan`
 #
 # Used when building with Thread Sanitizer enabled.
@@ -133,6 +140,8 @@ build:rules_xcodeproj_integration_asan --config=rules_xcodeproj_asan
 build:rules_xcodeproj_integration_asan --config=rules_xcodeproj_integration
 build:rules_xcodeproj_integration_tsan --config=rules_xcodeproj_tsan
 build:rules_xcodeproj_integration_tsan --config=rules_xcodeproj_integration
+build:rules_xcodeproj_integration_ubsan --config=rules_xcodeproj_ubsan
+build:rules_xcodeproj_integration_ubsan --config=rules_xcodeproj_integration
 
 # Private implementation detail. Don't adjust this config, adjust
 # `rules_xcodeproj_integration` instead.

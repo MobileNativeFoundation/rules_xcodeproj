@@ -32,6 +32,8 @@ build:{config}_asan --config=rules_xcodeproj_asan
 build:{config}_asan --config={config}
 build:{config}_tsan --config=rules_xcodeproj_tsan
 build:{config}_tsan --config={config}
+build:{config}_ubsan --config=rules_xcodeproj_ubsan
+build:{config}_ubsan --config={config}
 
 # Private implementation detail. Don't adjust this config, adjust
 # `{config}` instead.
