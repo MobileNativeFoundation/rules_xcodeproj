@@ -218,6 +218,7 @@ def _launch_action_test(ctx):
         args = args,
         env = env,
         working_directory = None,
+        diagnostics = None,
     )
     asserts.equals(test_env, expected, actual)
 

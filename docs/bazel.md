@@ -240,7 +240,7 @@ A `struct`.
 ## xcode_schemes.launch_action
 
 <pre>
-xcode_schemes.launch_action(<a href="#xcode_schemes.launch_action-target">target</a>, <a href="#xcode_schemes.launch_action-args">args</a>, <a href="#xcode_schemes.launch_action-env">env</a>, <a href="#xcode_schemes.launch_action-working_directory">working_directory</a>)
+xcode_schemes.launch_action(<a href="#xcode_schemes.launch_action-target">target</a>, <a href="#xcode_schemes.launch_action-args">args</a>, <a href="#xcode_schemes.launch_action-env">env</a>, <a href="#xcode_schemes.launch_action-working_directory">working_directory</a>, <a href="#xcode_schemes.launch_action-diagnostics">diagnostics</a>)
 </pre>
 
 Constructs a launch action for an Xcode scheme.
@@ -254,6 +254,7 @@ Constructs a launch action for an Xcode scheme.
 | <a id="xcode_schemes.launch_action-args"></a>args |  Optional. A <code>list</code> of <code>string</code> arguments that should be passed to the target when executed.   |  <code>None</code> |
 | <a id="xcode_schemes.launch_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed.   |  <code>None</code> |
 | <a id="xcode_schemes.launch_action-working_directory"></a>working_directory |  Optional. A <code>string</code> that will be set as the custom working directory in the Xcode scheme's launch action. Relative paths will be relative to the value of <code>target</code>'s <code>BUILT_PRODUCTS_DIR</code>, which is unique to it.   |  <code>None</code> |
+| <a id="xcode_schemes.launch_action-diagnostics"></a>diagnostics |  Optional. A <code>struct</code> representing Xcode scheme's diagnostics.   |  <code>None</code> |
 
 **RETURNS**
 
@@ -283,6 +284,31 @@ Constructs a test action for an Xcode scheme.
 **RETURNS**
 
 A `struct` representing a test action.
+
+
+<a id="xcode_schemes.diagnostics"></a>
+
+## xcode_schemes.diagnostics
+
+<pre>
+xcode_schemes.diagnostics(<a href="#xcode_schemes.diagnostics-enable_address_sanitizer">enable_address_sanitizer</a>, <a href="#xcode_schemes.diagnostics-enable_thread_sanitizer">enable_thread_sanitizer</a>,
+                          <a href="#xcode_schemes.diagnostics-enable_undefined_behavior_sanitizer">enable_undefined_behavior_sanitizer</a>)
+</pre>
+
+Constructs the scheme's diagnostics.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.diagnostics-enable_address_sanitizer"></a>enable_address_sanitizer |  Optional. A boolean value representing whether the address sanitizer should be enabled or not.   |  <code>False</code> |
+| <a id="xcode_schemes.diagnostics-enable_thread_sanitizer"></a>enable_thread_sanitizer |  Optional. A boolean value representing whether the thread sanitizer should be enabled or not.   |  <code>False</code> |
+| <a id="xcode_schemes.diagnostics-enable_undefined_behavior_sanitizer"></a>enable_undefined_behavior_sanitizer |  Optional. A boolean value representing whether the undefined behavior sanitizer should be enabled or not.   |  <code>False</code> |
+
+**RETURNS**
+
+A `struct` representing scheme's diagnostics.
 
 
 <a id="xcode_schemes.pre_post_action"></a>
