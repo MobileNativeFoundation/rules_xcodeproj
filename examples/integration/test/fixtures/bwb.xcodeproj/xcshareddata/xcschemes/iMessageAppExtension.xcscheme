@@ -43,7 +43,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Symlink Toolchain /usr/lib directory"
-               scriptText = "if [ &quot;${ENABLE_ADDRESS_SANITIZER:-}&quot; == &quot;YES&quot; ] || [ &quot;${ENABLE_THREAD_SANITIZER:-}&quot; == &quot;YES&quot; ]; then&#10;    # TODO: Support custom toolchains once clang.sh supports them &#10;    src=&quot;$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib&quot;&#10;    dest=&quot;$BAZEL_INTEGRATION_DIR/../lib&quot;&#10;    ln -sF &quot;$src&quot; &quot;$dest&quot;&#10;fi">
+               scriptText = "            &#10;if [ &quot;${ENABLE_ADDRESS_SANITIZER:-}&quot; == &quot;YES&quot; ] || [ &quot;${ENABLE_THREAD_SANITIZER:-}&quot; == &quot;YES&quot; ] || [ &quot;${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}&quot; == &quot;YES&quot; ]; then&#10;    # TODO: Support custom toolchains once clang.sh supports them &#10;    src=&quot;$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib&quot;&#10;    dest=&quot;$BAZEL_INTEGRATION_DIR/../lib&quot;&#10;    ln -sF &quot;$src&quot; &quot;$dest&quot;&#10;fi">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

@@ -193,6 +193,8 @@ elif [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
   config="${BAZEL_CONFIG}_asan"
 elif [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
   config="${BAZEL_CONFIG}_tsan"
+elif [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
+  config="${BAZEL_CONFIG}_ubsan"
 else
   config="_${BAZEL_CONFIG}_build"
 fi
