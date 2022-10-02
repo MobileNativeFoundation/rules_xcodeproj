@@ -1050,6 +1050,7 @@ $(BAZEL_OUT)/v/a.txt
 """
 /*.app/Frameworks/libclang_rt.asan*.dylib
 /*.app/Frameworks/libclang_rt.tsan*.dylib
+/*.app/Frameworks/libclang_rt.ubsan*.dylib
 /*.app/Frameworks/libXCTestBundleInject.dylib
 /*.app/Frameworks/libXCTestSwiftSupport.dylib
 /*.app/Frameworks/XCTAutomationSupport.framework
