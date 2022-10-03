@@ -2,14 +2,14 @@ struct Outputs: Equatable {
     struct Swift: Equatable {
         let module: FilePath
         let doc: FilePath
-        let sourceInfo: FilePath
+        let sourceInfo: FilePath?
         let interface: FilePath?
         let generatedHeader: FilePath?
 
         init(
             module: FilePath,
             doc: FilePath,
-            sourceInfo: FilePath,
+            sourceInfo: FilePath? = nil,
             interface: FilePath? = nil,
             generatedHeader: FilePath? = nil
         ) {
@@ -87,7 +87,10 @@ extension Outputs.Swift: Decodable {
 
         module = try container.decode(FilePath.self, forKey: .module)
         doc = try container.decode(FilePath.self, forKey: .doc)
-        sourceInfo = try container.decode(FilePath.self, forKey: .sourceinfo)
+        sourceInfo = try container.decodeIfPresent(
+            FilePath.self,
+            forKey: .sourceinfo
+        )
         interface = try container.decodeIfPresent(
             FilePath.self,
             forKey: .interface
