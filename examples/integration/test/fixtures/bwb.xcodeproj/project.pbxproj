@@ -663,7 +663,6 @@
 		AD7B1E2294A1539647E04002 /* tvOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADBEAB2C84FEA499584D9C18 /* watchOSAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = watchOSAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF2DAFB9141E941BE0B725EF /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
-		AF71D1229FFB604BC0C4C350 /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B009A457A14579548C634B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B167EA0A63CB550592A1A7EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B28790441A2C90C7FEA3E8DC /* macOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -674,6 +673,7 @@
 		BB279662E03CAB3AD8B23D7C /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		BB3DC02BD769EC7A61C9D7D7 /* AppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClip.swift; sourceTree = "<group>"; };
 		BB9810D09EC8A18B33D9243E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BBE9D6155A57920073AE95F0 /* UIFramework.watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIFramework.watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE9744A1DD96904BAD95D61 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		BF0A94CFC7FE6694FBBD6DEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BF108DD9E7994AE813AAFEA9 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
@@ -1444,9 +1444,9 @@
 				8F49CCC488DBF944363A76E3 /* tvOSApp.app */,
 				AD7B1E2294A1539647E04002 /* tvOSAppUITests.xctest */,
 				841E8485F994DFDC5A4C498D /* tvOSAppUnitTests.xctest */,
-				AF71D1229FFB604BC0C4C350 /* UI.framework */,
 				09D60E14FC71B3F5273333D0 /* UIFramework.iOS.framework */,
 				2BF15815BABED2C2DBB76EB8 /* UIFramework.tvOS.framework */,
+				BBE9D6155A57920073AE95F0 /* UIFramework.watchOS.framework */,
 				B3F2BB6661347D1891100734 /* watchOSApp.app */,
 				ADBEAB2C84FEA499584D9C18 /* watchOSAppExtension.appex */,
 				CF448994F1984B660C071093 /* watchOSAppExtensionUnitTests.xctest */,
@@ -3450,8 +3450,8 @@
 				78242F154CC2B22A31B356C2 /* PBXTargetDependency */,
 			);
 			name = UIFramework.watchOS;
-			productName = UI;
-			productReference = AF71D1229FFB604BC0C4C350 /* UI.framework */;
+			productName = UIFramework.watchOS;
+			productReference = BBE9D6155A57920073AE95F0 /* UIFramework.watchOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		FB5A7F9FB506F44F296BDD73 /* private_swift_lib */ = {
@@ -3765,7 +3765,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"UI.framework\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"UIFramework.watchOS.framework\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1DC3EC3B8C42B6B47B583001 /* Copy Bazel Outputs */ = {
@@ -5080,8 +5080,8 @@
 				"BAZEL_COMPILE_TARGET_ID[sdk=watchos*]" = "//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90";
 				"BAZEL_COMPILE_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "//UI:UIFramework.watchOS";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/UI/UI.framework";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/UI/UI.framework";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/UI/UIFramework.watchOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/UI/UIFramework.watchOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/UI";
 				BAZEL_TARGET_ID = "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32";
@@ -5128,7 +5128,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
 				PRODUCT_MODULE_NAME = UI;
-				PRODUCT_NAME = UI;
+				PRODUCT_NAME = UIFramework.watchOS;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;

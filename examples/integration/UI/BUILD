@@ -45,7 +45,6 @@ tvos_framework(
 watchos_framework(
     name = "UIFramework.watchOS",
     bundle_id = "io.budilebuddy.UIFramework",
-    bundle_name = "UI",
     extension_safe = True,
     frameworks = ["//Lib:LibFramework.watchOS"],
     infoplists = ["Info.plist"],
