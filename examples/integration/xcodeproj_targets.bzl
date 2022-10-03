@@ -3,6 +3,7 @@
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "top_level_target",
+    "top_level_targets",
 )
 
 CONFIG = "rules_xcodeproj_integration"
@@ -29,29 +30,19 @@ XCODEPROJ_TARGETS = [
         label = "//CommandLine/Tests:CommandLineToolTests",
         target_environments = ["device"],
     ),
+    top_level_targets(
+        labels = [
+            "//iOSApp",
+            "//Lib:Lib.framework.iOS",
+            "//Lib:Lib.framework.tvOS",
+            "//Lib:Lib.framework.watchOS",
+            "//tvOSApp",
+        ],
+        target_environments = ["device", "simulator"],
+    ),
     "//iMessageApp",
-    top_level_target(
-        label = "//iOSApp",
-        target_environments = ["device", "simulator"],
-    ),
-    top_level_target(
-        label = "//Lib:Lib.framework.iOS",
-        target_environments = ["device", "simulator"],
-    ),
-    top_level_target(
-        label = "//Lib:Lib.framework.tvOS",
-        target_environments = ["device", "simulator"],
-    ),
-    top_level_target(
-        label = "//Lib:Lib.framework.watchOS",
-        target_environments = ["device", "simulator"],
-    ),
     "//macOSApp/Source:macOSApp",
     "//macOSApp/Test/UITests:macOSAppUITests",
-    top_level_target(
-        label = "//tvOSApp",
-        target_environments = ["device", "simulator"],
-    ),
     "//tvOSApp/Test/UITests:tvOSAppUITests",
     "//tvOSApp/Test/UnitTests:tvOSAppUnitTests",
     "//watchOSApp/Test/UITests:watchOSAppUITests",
