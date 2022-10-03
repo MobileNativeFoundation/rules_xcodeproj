@@ -17,6 +17,11 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 exports_files(["README.md"])
 
+exports_files(
+    ["Info.plist"],
+    visibility = ["//Lib:__subpackages__"],
+)
+
 swift_library(
     name = "Lib",
     srcs = [":gen_Lib.swift"],

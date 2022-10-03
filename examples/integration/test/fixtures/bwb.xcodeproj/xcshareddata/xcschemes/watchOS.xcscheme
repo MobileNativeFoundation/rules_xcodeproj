@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1191F5736EEAAF9DE801B070"
+                     BlueprintIdentifier = "656BB6FF8F9415647D9307E7"
                      BuildableName = "Lib.framework"
-                     BlueprintName = "Lib.framework.watchOS"
-                     ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+                     BlueprintName = "watchOS"
+                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -25,15 +25,15 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for Lib.framework.watchOS"
+               title = "Set Bazel Build Output Groups for watchOS"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1191F5736EEAAF9DE801B070"
+                     BlueprintIdentifier = "656BB6FF8F9415647D9307E7"
                      BuildableName = "Lib.framework"
-                     BlueprintName = "Lib.framework.watchOS"
-                     ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+                     BlueprintName = "watchOS"
+                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -48,10 +48,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1191F5736EEAAF9DE801B070"
+               BlueprintIdentifier = "656BB6FF8F9415647D9307E7"
                BuildableName = "Lib.framework"
-               BlueprintName = "Lib.framework.watchOS"
-               ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+               BlueprintName = "watchOS"
+               ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -33,9 +33,9 @@ XCODEPROJ_TARGETS = [
     top_level_targets(
         labels = [
             "//iOSApp",
-            "//Lib:Lib.framework.iOS",
-            "//Lib:Lib.framework.tvOS",
-            "//Lib:Lib.framework.watchOS",
+            "//Lib/dist/dynamic:iOS",
+            "//Lib/dist/dynamic:tvOS",
+            "//Lib/dist/dynamic:watchOS",
             "//tvOSApp",
         ],
         target_environments = ["device", "simulator"],
