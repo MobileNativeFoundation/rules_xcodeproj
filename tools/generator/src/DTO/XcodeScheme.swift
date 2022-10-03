@@ -277,7 +277,7 @@ extension XcodeScheme {
             let thread: Bool
             let undefinedBehavior: Bool
         }
-        let sanitizers: Sanitizers
+        let sanitizers: Sanitizers?
     }
 }
 

@@ -23,9 +23,9 @@ extension XCSchemeInfo.DiagnosticsInfo {
             return nil
         }
         let sanitizers = XCSchemeInfo.DiagnosticsInfo.Sanitizers(
-            address: diagnostics.sanitizers.address,
-            thread: diagnostics.sanitizers.thread,
-            undefinedBehavior: diagnostics.sanitizers.undefinedBehavior
+            address: diagnostics.sanitizers?.address ?? false,
+            thread: diagnostics.sanitizers?.thread ?? false,
+            undefinedBehavior: diagnostics.sanitizers?.undefinedBehavior ?? false
         )
         self.init(
             sanitizers: sanitizers
