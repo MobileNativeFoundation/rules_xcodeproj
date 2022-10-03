@@ -116,6 +116,8 @@ def process_top_level_properties(
                 path = bundle_file.dirname,
             )
             bundle_file_path = archive_file_path
+        else:
+            fail("`AppleBundleInfo.archive` not set for {}".format(target_name))
 
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
         set_if_true(
