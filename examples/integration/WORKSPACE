@@ -5,6 +5,7 @@ local_repository(
 
 # TODO: Remove when `repositories.bzl` bumps to include the below commit
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
 http_archive(
     name = "build_bazel_rules_apple",
     sha256 = "8686b2bf081e94f87da2d0238abbe728bff421a31d0fa666a63662facec52005",
