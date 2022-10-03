@@ -17,7 +17,6 @@ ASSOCIATED_EXTRA_FILES = {
 }
 
 UNFOCUSED_TARGETS = [
-    # TODO: Change to "//Lib:LibFramework.watchOS" when that exists
     "//Lib:LibFramework.iOS",
 ]
 

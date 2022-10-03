@@ -1,5 +1,6 @@
 load("@build_bazel_rules_apple//apple:ios.bzl", "ios_framework")
 load("@build_bazel_rules_apple//apple:tvos.bzl", "tvos_framework")
+load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_framework")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 exports_files(["README.md"])
@@ -41,6 +42,17 @@ tvos_framework(
     extension_safe = True,
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
+    version = "//iOSApp:Version",
+    visibility = ["//visibility:public"],
+    deps = [":Lib"],
+)
+
+watchos_framework(
+    name = "LibFramework.watchOS",
+    bundle_id = "io.budilebuddy.LibFramework",
+    extension_safe = True,
+    infoplists = ["Info.plist"],
+    minimum_os_version = "7.0",
     version = "//iOSApp:Version",
     visibility = ["//visibility:public"],
     deps = [":Lib"],

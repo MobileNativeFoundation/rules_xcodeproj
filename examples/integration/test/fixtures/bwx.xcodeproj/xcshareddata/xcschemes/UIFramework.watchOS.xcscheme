@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "49BB1280EE4B2FB636FBB36E"
-                     BuildableName = "UI"
-                     BlueprintName = "UI"
+                     BlueprintIdentifier = "A55B010C52011358056D2692"
+                     BuildableName = "UIFramework.watchOS.framework"
+                     BlueprintName = "UIFramework.watchOS"
                      ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for UI"
+               title = "Set Bazel Build Output Groups for UIFramework.watchOS"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "49BB1280EE4B2FB636FBB36E"
-                     BuildableName = "UI"
-                     BlueprintName = "UI"
+                     BlueprintIdentifier = "A55B010C52011358056D2692"
+                     BuildableName = "UIFramework.watchOS.framework"
+                     BlueprintName = "UIFramework.watchOS"
                      ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "49BB1280EE4B2FB636FBB36E"
-               BuildableName = "UI"
-               BlueprintName = "UI"
+               BlueprintIdentifier = "A55B010C52011358056D2692"
+               BuildableName = "UIFramework.watchOS.framework"
+               BlueprintName = "UIFramework.watchOS"
                ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

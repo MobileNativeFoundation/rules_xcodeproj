@@ -1,4 +1,3 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-899e4c5ca1ae/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule/arm64_32-apple-watchos.swiftmodule
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-899e4c5ca1ae/bin/UI/UI.swiftmodule/arm64_32-apple-watchos.swiftmodule
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-899e4c5ca1ae/bin/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule
 -ObjC
@@ -10,7 +9,5 @@
 -lc++
 -framework
 CryptoSwift
--framework
-UIFramework.watchOS
 -framework
 LibFramework.watchOS
