@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "469DDB537DCBED783EA330DB"
-                     BuildableName = "AddressSanitizerApp.app"
-                     BlueprintName = "AddressSanitizerApp"
+                     BlueprintIdentifier = "BFCA7B92B9E6FD90B736F080"
+                     BuildableName = "UndefinedBehaviorSanitizerApp.app"
+                     BlueprintName = "UndefinedBehaviorSanitizerApp"
                      ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for AddressSanitizerApp"
+               title = "Set Bazel Build Output Groups for UndefinedBehaviorSanitizerApp"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "469DDB537DCBED783EA330DB"
-                     BuildableName = "AddressSanitizerApp.app"
-                     BlueprintName = "AddressSanitizerApp"
+                     BlueprintIdentifier = "BFCA7B92B9E6FD90B736F080"
+                     BuildableName = "UndefinedBehaviorSanitizerApp.app"
+                     BlueprintName = "UndefinedBehaviorSanitizerApp"
                      ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -46,9 +46,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "469DDB537DCBED783EA330DB"
-                     BuildableName = "AddressSanitizerApp.app"
-                     BlueprintName = "AddressSanitizerApp"
+                     BlueprintIdentifier = "BFCA7B92B9E6FD90B736F080"
+                     BuildableName = "UndefinedBehaviorSanitizerApp.app"
+                     BlueprintName = "UndefinedBehaviorSanitizerApp"
                      ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -57,16 +57,16 @@
       </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "469DDB537DCBED783EA330DB"
-               BuildableName = "AddressSanitizerApp.app"
-               BlueprintName = "AddressSanitizerApp"
+               BlueprintIdentifier = "BFCA7B92B9E6FD90B736F080"
+               BuildableName = "UndefinedBehaviorSanitizerApp.app"
+               BlueprintName = "UndefinedBehaviorSanitizerApp"
                ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -91,14 +91,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      enableUBSanitizer = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "469DDB537DCBED783EA330DB"
-            BuildableName = "AddressSanitizerApp.app"
-            BlueprintName = "AddressSanitizerApp"
+            BlueprintIdentifier = "BFCA7B92B9E6FD90B736F080"
+            BuildableName = "UndefinedBehaviorSanitizerApp.app"
+            BlueprintName = "UndefinedBehaviorSanitizerApp"
             ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -125,9 +126,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "469DDB537DCBED783EA330DB"
-            BuildableName = "AddressSanitizerApp.app"
-            BlueprintName = "AddressSanitizerApp"
+            BlueprintIdentifier = "BFCA7B92B9E6FD90B736F080"
+            BuildableName = "UndefinedBehaviorSanitizerApp.app"
+            BlueprintName = "UndefinedBehaviorSanitizerApp"
             ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
