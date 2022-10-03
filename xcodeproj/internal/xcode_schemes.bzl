@@ -316,22 +316,22 @@ def make_xcode_schemes(bazel_labels):
     def _launch_action(
             target,
             args = None,
+            diagnostics = None,
             env = None,
-            working_directory = None,
-            diagnostics = None):
+            working_directory = None):
         """Constructs a launch action for an Xcode scheme.
 
         Args:
             target: A target label as a `string` value.
             args: Optional. A `list` of `string` arguments that should be passed
                 to the target when executed.
+            diagnostics: Optional. A `struct` representing Xcode scheme's diagnostics.
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
             working_directory: Optional. A `string` that will be set as the
                 custom working directory in the Xcode scheme's launch action.
                 Relative paths will be relative to the value of `target`'s
                 `BUILT_PRODUCTS_DIR`, which is unique to it.
-            diagnostics: Optional. A `struct` representing Xcode scheme's diagnostics.
 
         Returns:
             A `struct` representing a launch action.
@@ -340,9 +340,9 @@ def make_xcode_schemes(bazel_labels):
             build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
             target = bazel_labels.normalize(target),
             args = args,
+            diagnostics = diagnostics,
             env = env,
             working_directory = working_directory,
-            diagnostics = diagnostics,
         )
 
     def _test_action(

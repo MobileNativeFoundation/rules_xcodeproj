@@ -5,17 +5,17 @@ extension XCSchemeInfo {
         let buildConfigurationName: String
         let targetInfo: XCSchemeInfo.TargetInfo
         let args: [String]
+        let diagnostics: DiagnosticsInfo?
         let env: [String: String]
         let workingDirectory: String?
-        let diagnostics: DiagnosticsInfo?
 
         init(
             buildConfigurationName: String,
             targetInfo: XCSchemeInfo.TargetInfo,
             args: [String] = [],
+            diagnostics: DiagnosticsInfo? = nil,
             env: [String: String] = [:],
-            workingDirectory: String? = nil,
-            diagnostics: DiagnosticsInfo? = nil
+            workingDirectory: String? = nil
         ) throws {
             guard targetInfo.productType.isLaunchable else {
                 throw PreconditionError(message: """
@@ -25,9 +25,9 @@ An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.Target
             self.buildConfigurationName = buildConfigurationName
             self.targetInfo = targetInfo
             self.args = args
+            self.diagnostics = diagnostics
             self.env = env
             self.workingDirectory = workingDirectory
-            self.diagnostics = diagnostics
         }
     }
 }
@@ -50,9 +50,9 @@ extension XCSchemeInfo.LaunchActionInfo {
                 topLevelTargetInfos: topLevelTargetInfos
             ),
             args: original.args,
+            diagnostics: original.diagnostics,
             env: original.env,
-            workingDirectory: original.workingDirectory,
-            diagnostics: original.diagnostics
+            workingDirectory: original.workingDirectory
         )
     }
 }
@@ -143,11 +143,11 @@ extension XCSchemeInfo.LaunchActionInfo {
                 )
             ),
             args: launchAction.args,
-            env: launchAction.env,
-            workingDirectory: launchAction.workingDirectory,
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: launchAction.diagnostics
-            )
+            ),
+            env: launchAction.env,
+            workingDirectory: launchAction.workingDirectory
         )
     }
 }

@@ -288,24 +288,24 @@ extension XcodeScheme {
         let buildConfigurationName: String
         let target: BazelLabel
         let args: [String]
+        let diagnostics: Diagnostics?
         let env: [String: String]
         let workingDirectory: String?
-        let diagnostics: Diagnostics?
 
         init(
             target: BazelLabel,
             buildConfigurationName: String = .defaultBuildConfigurationName,
             args: [String] = [],
+            diagnostics: Diagnostics? = nil,
             env: [String: String] = [:],
-            workingDirectory: String? = nil,
-            diagnostics: Diagnostics? = nil
+            workingDirectory: String? = nil
         ) {
             self.target = target
             self.buildConfigurationName = buildConfigurationName
             self.args = args
+            self.diagnostics = diagnostics
             self.env = env
             self.workingDirectory = workingDirectory
-            self.diagnostics = diagnostics
         }
     }
 }

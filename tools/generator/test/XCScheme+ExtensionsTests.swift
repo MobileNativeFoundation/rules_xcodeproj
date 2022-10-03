@@ -514,8 +514,8 @@ extension XCSchemeExtensionsTests {
                 buildConfigurationName: "Foo",
                 targetInfo: appTargetInfo,
                 args: [],
-                env: [:],
-                diagnostics: diagnostics
+                diagnostics: diagnostics,
+                env: [:]
             ),
             topLevelTargetInfos: []
         )
