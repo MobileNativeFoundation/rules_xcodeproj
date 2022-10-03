@@ -124,6 +124,29 @@ Constructs a top-level target for use in `xcodeproj.top_level_targets`.
 A `struct` containing fields for the provided arguments.
 
 
+<a id="top_level_targets"></a>
+
+## top_level_targets
+
+<pre>
+top_level_targets(<a href="#top_level_targets-labels">labels</a>, <a href="#top_level_targets-target_environments">target_environments</a>)
+</pre>
+
+Constructs a list of top-level target for use in     `xcodeproj.top_level_targets`.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="top_level_targets-labels"></a>labels |  A <code>list</code> of <code>Label</code> or label-like string for the targets.   |  none |
+| <a id="top_level_targets-target_environments"></a>target_environments |  Optional. See [<code>top_level_target.target_environments</code>](#top_level_target-target_environments).   |  <code>["simulator"]</code> |
+
+**RETURNS**
+
+A `list` of values returned from `top_level_target`.
+
+
 # Custom Xcode schemes
 
 To use these functions, `load` the `xcode_schemes` module from
