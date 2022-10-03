@@ -573,6 +573,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -687,6 +689,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -2501,6 +2505,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -2603,6 +2609,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -2704,6 +2712,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -2805,6 +2815,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -2906,6 +2918,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -3007,6 +3021,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -3109,6 +3125,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -3211,6 +3229,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -3312,6 +3332,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -3413,6 +3435,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -3514,6 +3538,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -3615,6 +3641,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -4304,6 +4332,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -4421,6 +4451,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -4532,6 +4564,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -4643,6 +4677,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -4754,6 +4790,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -4865,6 +4903,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -4978,6 +5018,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -5087,6 +5129,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -5379,6 +5423,8 @@
             "label": "//iMessageApp:iMessageApp",
             "linker_inputs": {
                 "linkopts": [
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -5469,6 +5515,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -6077,6 +6125,8 @@
             "linker_inputs": {
                 "linkopts": [
                     "-lc++",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -6170,6 +6220,8 @@
             "linker_inputs": {
                 "linkopts": [
                     "-lc++",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -6331,6 +6383,8 @@
                     "CoreTelephony",
                     "-lc++",
                     "-lz",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -6551,6 +6605,8 @@
                     "CoreTelephony",
                     "-lc++",
                     "-lz",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -7324,6 +7380,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -7444,6 +7502,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -7742,6 +7802,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -7898,6 +7960,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -8095,6 +8159,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -8244,6 +8310,8 @@
             "label": "//watchOSApp:watchOSApp",
             "linker_inputs": {
                 "linkopts": [
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -8317,6 +8385,8 @@
             "label": "//watchOSApp:watchOSApp",
             "linker_inputs": {
                 "linkopts": [
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -8405,6 +8475,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -8626,6 +8698,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
@@ -8746,6 +8820,8 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
