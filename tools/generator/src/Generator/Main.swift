@@ -31,8 +31,7 @@ extension Generator {
                 internalDirectoryName: "rules_xcodeproj",
                 bazelIntegrationDirectory: arguments.bazelIntegrationDirectory,
                 workspaceOutputPath: arguments.workspaceOutputPath,
-                outputPath: arguments.outputPath,
-                swiftcStub: arguments.swiftcStub
+                outputPath: arguments.outputPath
             )
         } catch {
             logger.logError(error.localizedDescription)
@@ -50,17 +49,15 @@ extension Generator {
         let workspaceOutputPath: Path
         let projectRootDirectory: Path
         let buildMode: BuildMode
-        let swiftcStub: Path
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count == 10 else {
+        guard arguments.count == 9 else {
             throw UsageError(message: """
 Usage: \(arguments[0]) <path/to/project.json> <path/to/root_dirs> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/bazel/integration/dir> <path/to/output/project.xcodeproj> \
-<workspace/relative/output/path> (xcode|bazel) \
-<path/to/swiftc_stub>
+<workspace/relative/output/path> (xcode|bazel)
 """)
         }
 
@@ -91,8 +88,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             outputPath: Path(arguments[6]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
-            buildMode: buildMode,
-            swiftcStub: Path(arguments[9])
+            buildMode: buildMode
         )
     }
 

@@ -38,6 +38,10 @@ while (("$#")); do
       include_spec=1
       shift
       ;;
+    "--swiftc_stub")
+      swiftc_stub="${2}"
+      shift 2
+      ;;
     *)
       fail "Unrecognized argument: ${1}"
       ;;
@@ -77,15 +81,18 @@ rsync \
   --delete \
   "$src/" "$dest/"
 
-# Make executables runnable
+# Make scripts runnable
 if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
   shopt -s nullglob
-  chmod u+x "$dest/rules_xcodeproj/bazel/"*
+  chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
 fi
 
 # Copy over xcodeproj.bazelrc
 cp "$bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 chmod u+w "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
+
+# Copy over swiftc stub executable
+cp "$swiftc_stub" "$dest/rules_xcodeproj/bazel/swiftc"
 
 # Copy over xcodeproj_extra_flags.bazelrc if it exists
 # We can't include this file as an input to the generator, because it would

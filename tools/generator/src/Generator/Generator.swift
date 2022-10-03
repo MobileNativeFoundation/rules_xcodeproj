@@ -51,8 +51,7 @@ class Generator {
         internalDirectoryName: String,
         bazelIntegrationDirectory: Path,
         workspaceOutputPath: Path,
-        outputPath: Path,
-        swiftcStub: Path
+        outputPath: Path
     ) throws {
         let filePathResolver = FilePathResolver(
             workspaceDirectory: workspaceDirectory,
@@ -195,7 +194,6 @@ class Generator {
             files,
             internalDirectoryName,
             bazelIntegrationDirectory,
-            swiftcStub,
             outputPath
         )
     }

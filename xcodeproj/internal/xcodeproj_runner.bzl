@@ -101,6 +101,7 @@ def _write_runner(
         extra_generator_flags,
         generator_label,
         project_name,
+        swiftc_stub,
         template):
     output = actions.declare_file("{}-runner.sh".format(name))
 
@@ -116,6 +117,7 @@ def _write_runner(
             "%extra_generator_flags%": extra_generator_flags,
             "%generator_label%": generator_label,
             "%project_name%": project_name,
+            "%swiftc_stub%": swiftc_stub.short_path,
         },
     )
 
@@ -150,6 +152,7 @@ def _xcodeproj_runner_impl(ctx):
         ),
         generator_label = ctx.attr.xcodeproj_target,
         project_name = project_name,
+        swiftc_stub = ctx.executable._swiftc_stub,
         template = ctx.file._runner_template,
     )
 
@@ -157,7 +160,11 @@ def _xcodeproj_runner_impl(ctx):
         DefaultInfo(
             executable = runner,
             runfiles = ctx.runfiles(
-                files = [bazelrc, extra_flags_bazelrc],
+                files = [
+                    bazelrc,
+                    extra_flags_bazelrc,
+                    ctx.executable._swiftc_stub,
+                ],
             ),
         ),
         XcodeProjRunnerOutputInfo(
@@ -204,6 +211,11 @@ xcodeproj_runner = rule(
         "_runner_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:runner.template.sh"),
+        ),
+        "_swiftc_stub": attr.label(
+            cfg = "exec",
+            default = Label("//xcodeproj/internal/bazel_integration_files:swiftc"),
+            executable = True,
         ),
     },
     executable = True,
