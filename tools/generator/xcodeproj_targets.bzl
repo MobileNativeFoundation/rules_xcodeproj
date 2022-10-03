@@ -8,8 +8,9 @@ UNFOCUSED_TARGETS = [
 
 _APP_TARGET = "//tools/generator"
 _TEST_TARGET = "//tools/generator/test:tests"
+_TOOL_TARGET = "//xcodeproj/internal/bazel_integration_files:swiftc"
 
-TOP_LEVEL_TARGETS = [_APP_TARGET, _TEST_TARGET]
+TOP_LEVEL_TARGETS = [_APP_TARGET, _TEST_TARGET, _TOOL_TARGET]
 
 SCHEME_AUTOGENERATION_MODE = "none"
 
@@ -81,6 +82,16 @@ def get_xcode_schemes():
                 # This is not necessary for the generator tests. It is here to help
                 # verify that custom environment variables are passed along.
                 env = {"CUSTOM_ENV_VAR": "goodbye"},
+            ),
+        ),
+        xcode_schemes.scheme(
+            name = "swiftc",
+            build_action = xcode_schemes.build_action(
+                targets = [
+                    xcode_schemes.build_target(
+                        _TOOL_TARGET,
+                    ),
+                ],
             ),
         ),
     ]

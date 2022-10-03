@@ -54,6 +54,7 @@ final class GeneratorTests: XCTestCase {
         let workspaceOutputPath: Path = "P.xcodeproj"
         let bazelIntegrationDirectory: Path = "stubs"
         let outputPath: Path = "P.xcodeproj"
+        let swiftcStub: Path = "swiftc"
 
         let filePathResolver = FilePathResolver(
             workspaceDirectory: workspaceDirectory,
@@ -774,6 +775,7 @@ final class GeneratorTests: XCTestCase {
             let files: [FilePath: File]
             let internalDirectoryName: String
             let bazelIntegrationDirectory: Path
+            let swiftcStub: Path
             let outputPath: Path
         }
 

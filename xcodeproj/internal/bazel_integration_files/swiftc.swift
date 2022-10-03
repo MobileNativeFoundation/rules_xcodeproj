@@ -28,17 +28,42 @@ func findPath(key: String, from args: [String]) -> URL? {
     return nil
 }
 
+func isWMO(args: [String]) -> Bool {
+    return args.contains("-wmo") || args.contains("-whole-module-optimization")
+}
+
 /// Touch the Xcode-required .d files
 func touchDepsFiles(_ args: [String]) throws {
     guard let outputFileMapPath = findPath(key: "-output-file-map", from: args)
     else { return }
 
-    let dFile = String(outputFileMapPath.path.dropLast("-OutputFileMap.json".count) + "-master.d")
-    var url = URL(fileURLWithPath: dFile)
-    try url.touch()
+    if isWMO(args: args) {
+        let dFile = String(outputFileMapPath.path.dropLast("-OutputFileMap.json".count) + "-master.d")
+        var url = URL(fileURLWithPath: dFile)
+        try url.touch()
+    } else {
+        var swiftFileListPath: String?
+        for arg in args {
+            if arg.hasPrefix("@") {
+                swiftFileListPath = String(arg.dropFirst())
+                break
+            }
+        }
+
+        let parentDir = outputFileMapPath.deletingLastPathComponent()
+        let swiftFilenames = try String(contentsOfFile: swiftFileListPath!, encoding: .utf8)
+            .components(separatedBy: .newlines)
+            .compactMap { $0.components(separatedBy: "/").last }
+
+        for filename in swiftFilenames {
+            let dFileBasename = filename.dropLast(".swift".count) + ".d" as String
+            var url = URL(fileURLWithPath: dFileBasename, relativeTo: parentDir)
+            try url.touch()
+        }
+    }
 }
 
-/// Touch the Xcode-required .d files
+/// Touch the Xcode-required .swift{module,doc,sourceinfo} files"
 func touchSwiftmoduleArtifacts(_ args: [String]) throws {
     if var swiftmodulePath = findPath(key: "-emit-module-path", from: args) {
         var swiftdocPath = swiftmodulePath.deletingPathExtension().appendingPathExtension("swiftdoc")
