@@ -4,9 +4,12 @@ import Foundation
 
 extension XCSchemeInfo {
     struct DiagnosticsInfo: Equatable, Decodable {
-        let enableAddressSanitizer: Bool
-        let enableThreadSanitizer: Bool
-        let enableUndefinedBehaviorSanitizer: Bool
+        struct Sanitizers: Equatable, Decodable {
+            let address: Bool
+            let thread: Bool
+            let undefinedBehavior: Bool
+        }
+        let sanitizers: Sanitizers
     }
 }
 
@@ -19,10 +22,13 @@ extension XCSchemeInfo.DiagnosticsInfo {
         guard let diagnostics = diagnostics else {
             return nil
         }
+        let sanitizers = XCSchemeInfo.DiagnosticsInfo.Sanitizers(
+            address: diagnostics.sanitizers.address,
+            thread: diagnostics.sanitizers.thread,
+            undefinedBehavior: diagnostics.sanitizers.undefinedBehavior
+        )
         self.init(
-            enableAddressSanitizer: diagnostics.enableAddressSanitizer,
-            enableThreadSanitizer: diagnostics.enableThreadSanitizer,
-            enableUndefinedBehaviorSanitizer: diagnostics.enableUndefinedBehaviorSanitizer
+            sanitizers: sanitizers
         )
     }
 }

@@ -501,10 +501,14 @@ class XCSchemeExtensionsTests: XCTestCase {
 extension XCSchemeExtensionsTests {
     func test_LaunchAction_init_diagnostics() throws {
         // given
+        let sanitizers = XCSchemeInfo.DiagnosticsInfo.Sanitizers(
+            address: true,
+            thread: false,
+            undefinedBehavior: true
+        )
         let diagnostics = XCSchemeInfo.DiagnosticsInfo(
-            enableAddressSanitizer: true,
-            enableThreadSanitizer: false,
-            enableUndefinedBehaviorSanitizer: true)
+            sanitizers: sanitizers
+        )
         let launchActionInfo = try XCSchemeInfo.LaunchActionInfo(
             resolveHostsFor: .init(
                 buildConfigurationName: "Foo",

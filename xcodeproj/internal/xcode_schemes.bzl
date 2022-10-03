@@ -276,29 +276,41 @@ def make_xcode_schemes(bazel_labels):
             build_for = build_for,
         )
 
+    def _sanitizers(
+            address = False,
+            thread = False,
+            undefined_behavior = False):
+        """Constructs the scheme's sanitizers' default state. The state can also be modified in Xcode.
+
+        Args:
+            address: Optional. A boolean value representing
+                whether the address sanitizer should be enabled or not.
+            thread: Optional. A boolean value representing
+                whether the thread sanitizer should be enabled or not.
+            undefined_behavior: Optional. A boolean value representing
+                whether the undefined behavior sanitizer should be enabled or not.
+        """
+        if address and thread:
+            fail("Address Sanitizer cannot be used together with Thread Sanitizer.")
+        return struct(
+            address = address,
+            thread = thread,
+            undefined_behavior = undefined_behavior,
+        )
+
     def _diagnostics(
-            enable_address_sanitizer = False,
-            enable_thread_sanitizer = False,
-            enable_undefined_behavior_sanitizer = False):
+            sanitizers = None):
         """Constructs the scheme's diagnostics.
 
         Args:
-            enable_address_sanitizer: Optional. A boolean value representing
-                whether the address sanitizer should be enabled or not.
-            enable_thread_sanitizer: Optional. A boolean value representing
-                whether the thread sanitizer should be enabled or not.
-            enable_undefined_behavior_sanitizer: Optional. A boolean value representing
-                whether the undefined behavior sanitizer should be enabled or not.
+            sanitizers: Optional. A `struct` value as created by
+                `xcode_schemes.sanitizers`.
 
         Returns:
             A `struct` representing scheme's diagnostics.
         """
-        if enable_address_sanitizer and enable_thread_sanitizer:
-            fail("Address Sanitizer cannot be used together with Thread Sanitizer.")
         return struct(
-            enable_address_sanitizer = enable_address_sanitizer,
-            enable_thread_sanitizer = enable_thread_sanitizer,
-            enable_undefined_behavior_sanitizer = enable_undefined_behavior_sanitizer,
+            sanitizers = sanitizers,
         )
 
     def _launch_action(
@@ -383,6 +395,7 @@ def make_xcode_schemes(bazel_labels):
         build_for_values = xcode_schemes_internal.build_for_values,
         launch_action = _launch_action,
         test_action = _test_action,
+        sanitizers = _sanitizers,
         diagnostics = _diagnostics,
         pre_post_action = _pre_post_action,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,

@@ -286,13 +286,32 @@ Constructs a test action for an Xcode scheme.
 A `struct` representing a test action.
 
 
+<a id="xcode_schemes.sanitizers"></a>
+
+## xcode_schemes.sanitizers
+
+<pre>
+xcode_schemes.sanitizers(<a href="#xcode_schemes.sanitizers-address">address</a>, <a href="#xcode_schemes.sanitizers-thread">thread</a>, <a href="#xcode_schemes.sanitizers-undefined_behavior">undefined_behavior</a>)
+</pre>
+
+Constructs the scheme's sanitizers' default state. The state can also be modified in Xcode.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.sanitizers-address"></a>address |  Optional. A boolean value representing whether the address sanitizer should be enabled or not.   |  <code>False</code> |
+| <a id="xcode_schemes.sanitizers-thread"></a>thread |  Optional. A boolean value representing whether the thread sanitizer should be enabled or not.   |  <code>False</code> |
+| <a id="xcode_schemes.sanitizers-undefined_behavior"></a>undefined_behavior |  Optional. A boolean value representing whether the undefined behavior sanitizer should be enabled or not.   |  <code>False</code> |
+
+
 <a id="xcode_schemes.diagnostics"></a>
 
 ## xcode_schemes.diagnostics
 
 <pre>
-xcode_schemes.diagnostics(<a href="#xcode_schemes.diagnostics-enable_address_sanitizer">enable_address_sanitizer</a>, <a href="#xcode_schemes.diagnostics-enable_thread_sanitizer">enable_thread_sanitizer</a>,
-                          <a href="#xcode_schemes.diagnostics-enable_undefined_behavior_sanitizer">enable_undefined_behavior_sanitizer</a>)
+xcode_schemes.diagnostics(<a href="#xcode_schemes.diagnostics-sanitizers">sanitizers</a>)
 </pre>
 
 Constructs the scheme's diagnostics.
@@ -302,9 +321,7 @@ Constructs the scheme's diagnostics.
 
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.diagnostics-enable_address_sanitizer"></a>enable_address_sanitizer |  Optional. A boolean value representing whether the address sanitizer should be enabled or not.   |  <code>False</code> |
-| <a id="xcode_schemes.diagnostics-enable_thread_sanitizer"></a>enable_thread_sanitizer |  Optional. A boolean value representing whether the thread sanitizer should be enabled or not.   |  <code>False</code> |
-| <a id="xcode_schemes.diagnostics-enable_undefined_behavior_sanitizer"></a>enable_undefined_behavior_sanitizer |  Optional. A boolean value representing whether the undefined behavior sanitizer should be enabled or not.   |  <code>False</code> |
+| <a id="xcode_schemes.diagnostics-sanitizers"></a>sanitizers |  Optional. A <code>struct</code> value as created by <code>xcode_schemes.sanitizers</code>.   |  <code>None</code> |
 
 **RETURNS**
 

@@ -272,9 +272,12 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 
 extension XcodeScheme {
     struct Diagnostics: Equatable, Decodable {
-        let enableAddressSanitizer: Bool
-        let enableThreadSanitizer: Bool
-        let enableUndefinedBehaviorSanitizer: Bool
+        struct Sanitizers: Equatable, Decodable {
+            let address: Bool
+            let thread: Bool
+            let undefinedBehavior: Bool
+        }
+        let sanitizers: Sanitizers
     }
 }
 
