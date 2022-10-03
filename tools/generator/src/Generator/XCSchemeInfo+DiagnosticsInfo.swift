@@ -9,7 +9,7 @@ extension XCSchemeInfo {
             let thread: Bool
             let undefinedBehavior: Bool
         }
-        let sanitizers: Sanitizers
+        let sanitizers: Sanitizers?
     }
 }
 
@@ -22,11 +22,13 @@ extension XCSchemeInfo.DiagnosticsInfo {
         guard let diagnostics = diagnostics else {
             return nil
         }
-        let sanitizers = XCSchemeInfo.DiagnosticsInfo.Sanitizers(
-            address: diagnostics.sanitizers?.address ?? false,
-            thread: diagnostics.sanitizers?.thread ?? false,
-            undefinedBehavior: diagnostics.sanitizers?.undefinedBehavior ?? false
-        )
+        let sanitizers = diagnostics.sanitizers.map {
+            XCSchemeInfo.DiagnosticsInfo.Sanitizers(
+                address: $0.address,
+                thread: $0.thread,
+                undefinedBehavior: $0.undefinedBehavior
+            )
+        }
         self.init(
             sanitizers: sanitizers
         )
