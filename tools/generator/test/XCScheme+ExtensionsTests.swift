@@ -495,7 +495,6 @@ class XCSchemeExtensionsTests: XCTestCase {
     ).orThrow()
 }
 
-
 // MARK: XCScheme.LaunchAction Diagnostics Tests
 
 extension XCSchemeExtensionsTests {
