@@ -34,6 +34,18 @@ XCODEPROJ_TARGETS = [
         label = "//iOSApp",
         target_environments = ["device", "simulator"],
     ),
+    top_level_target(
+        label = "//Lib:Lib.framework.iOS",
+        target_environments = ["device", "simulator"],
+    ),
+    top_level_target(
+        label = "//Lib:Lib.framework.tvOS",
+        target_environments = ["device", "simulator"],
+    ),
+    top_level_target(
+        label = "//Lib:Lib.framework.watchOS",
+        target_environments = ["device", "simulator"],
+    ),
     "//macOSApp/Source:macOSApp",
     "//macOSApp/Test/UITests:macOSAppUITests",
     top_level_target(
