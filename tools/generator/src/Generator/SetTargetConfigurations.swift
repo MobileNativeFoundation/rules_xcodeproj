@@ -291,6 +291,12 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             buildSettings.set("BAZEL_LABEL", to: target.label.description)
         }
 
+        if target.product.type == .staticFramework {
+            // We set the `productType` to `.framework` to get the better
+            // looking icon, so we need to manually set `MACH_O_TYPE`
+            buildSettings["MACH_O_TYPE"] = "staticlib"
+        }
+
         let compileTargetName: String
         if let compileTarget = target.compileTarget {
             buildSettings.set(

@@ -116,7 +116,7 @@ Product for target "\(key)" not found in `products`
                 productName: target.product.name,
                 product: productType.setsAssociatedProduct ?
                     product : nil,
-                productType: productType
+                productType: productType.forXcode
             )
             pbxProj.add(object: pbxTarget)
             pbxProject.targets.append(pbxTarget)

@@ -295,6 +295,13 @@ extension PBXProductType {
         return isLaunchable || isBundle
     }
 
+    var forXcode: Self {
+        if self == .staticFramework {
+            return .framework
+        }
+        return self
+    }
+
     // MARK: Schemes
 
     var canUseDebugLauncher: Bool {

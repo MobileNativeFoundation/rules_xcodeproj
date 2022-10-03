@@ -1976,7 +1976,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 buildPhases: buildPhases["B 1"] ?? [],
                 productName: "b",
                 product: products.byTarget["B 1"],
-                productType: .staticFramework
+                productType: .framework
             ),
             "B 2": PBXNativeTarget(
                 name: disambiguatedTargets.targets["B 2"]!.name,
@@ -2318,6 +2318,7 @@ $(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/z
                 "COMPILE_TARGET_NAME": targets["B 1"]!.name,
                 "DYLIB_INSTALL_NAME_BASE": "@rpath",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "MACH_O_TYPE": "staticlib",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
