@@ -2,7 +2,6 @@
 
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
-load(":collections.bzl", "flatten")
 load(":logging.bzl", "warn")
 load(":top_level_target.bzl", "top_level_target")
 load(":xcode_schemes.bzl", "focus_schemes", "unfocus_schemes")
