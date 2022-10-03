@@ -3,6 +3,8 @@
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos
 -Wl,-rpath,/usr/lib/swift
+-framework
+UIKit
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
