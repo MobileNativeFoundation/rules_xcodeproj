@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "3EAFF74229A8CE2544154BF9"
+                     BlueprintIdentifier = "469DDB537DCBED783EA330DB"
                      BuildableName = "AddressSanitizerApp.app"
                      BlueprintName = "AddressSanitizerApp"
-                     ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -30,10 +30,26 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "3EAFF74229A8CE2544154BF9"
+                     BlueprintIdentifier = "469DDB537DCBED783EA330DB"
                      BuildableName = "AddressSanitizerApp.app"
                      BlueprintName = "AddressSanitizerApp"
-                     ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Symlink Toolchain /usr/lib directory"
+               scriptText = "if [ &quot;${ENABLE_ADDRESS_SANITIZER:-}&quot; == &quot;YES&quot; ] || [ &quot;${ENABLE_THREAD_SANITIZER:-}&quot; == &quot;YES&quot; ] || [ &quot;${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}&quot; == &quot;YES&quot; ]; then&#10;    # TODO: Support custom toolchains once clang.sh supports them &#10;    src=&quot;$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib&quot;&#10;    dest=&quot;$BAZEL_INTEGRATION_DIR/../lib&quot;&#10;    ln -sF &quot;$src&quot; &quot;$dest&quot;&#10;fi">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "469DDB537DCBED783EA330DB"
+                     BuildableName = "AddressSanitizerApp.app"
+                     BlueprintName = "AddressSanitizerApp"
+                     ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -41,17 +57,17 @@
       </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3EAFF74229A8CE2544154BF9"
+               BlueprintIdentifier = "469DDB537DCBED783EA330DB"
                BuildableName = "AddressSanitizerApp.app"
                BlueprintName = "AddressSanitizerApp"
-               ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+               ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -75,17 +91,30 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      enableAddressSanitizer = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3EAFF74229A8CE2544154BF9"
+            BlueprintIdentifier = "469DDB537DCBED783EA330DB"
             BuildableName = "AddressSanitizerApp.app"
             BlueprintName = "AddressSanitizerApp"
-            ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+            ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(BUILT_PRODUCTS_DIR)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
@@ -97,10 +126,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3EAFF74229A8CE2544154BF9"
+            BlueprintIdentifier = "469DDB537DCBED783EA330DB"
             BuildableName = "AddressSanitizerApp.app"
             BlueprintName = "AddressSanitizerApp"
-            ReferencedContainer = "container:test/fixtures/bwx.xcodeproj">
+            ReferencedContainer = "container:test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

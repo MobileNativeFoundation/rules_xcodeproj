@@ -4,9 +4,16 @@ load(
     "validate_fixtures",
     "xcodeproj_fixture",
 )
-load("//:xcodeproj_targets.bzl", "XCODEPROJ_TARGETS")
+load(
+    "//:xcodeproj_targets.bzl",
+    "SCHEME_AUTOGENERATION_MODE",
+    "XCODEPROJ_TARGETS",
+    "get_xcode_schemes",
+)
 
 xcodeproj_fixture(
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
+    schemes = get_xcode_schemes(),
     top_level_targets = XCODEPROJ_TARGETS,
 )
 
