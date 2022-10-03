@@ -182,7 +182,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 $(OBJROOT)/scheme_target_ids
 """,
                 "SUPPORTS_MACCATALYST": false,
-                "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc.py",
+                "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_USE_INTEGRATED_DRIVER": false,
                 "TARGET_TEMP_DIR": """
