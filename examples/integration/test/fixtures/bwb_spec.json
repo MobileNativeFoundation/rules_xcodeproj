@@ -14,27 +14,13 @@
     "configuration": "darwin_x86_64-dbg-ST-14942f8a2d44",
     "custom_xcode_schemes": [],
     "extra_files": [
+        "AppClip/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
         "Lib/BUILD",
-        "iMessageApp/BUILD",
         "iOSApp/BUILD",
-        "iMessageApp/Info.extension.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
-            "t": "g"
-        },
-        "iMessageApp/ExtensionAssets.xcassets",
-        "iMessageApp/Base.lproj/MainInterface.storyboard",
-        "iMessageApp/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
-            "t": "g"
-        },
-        "iMessageApp/Assets.xcassets",
-        "AppClip/BUILD",
         "AppClip/Entitlements.entitlements",
         "AppClip/Info.plist",
         {
@@ -193,6 +179,37 @@
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/rules_xcodeproj/Lib.framework",
             "t": "g"
         },
+        "tvOSApp/Resources/BUILD",
+        "tvOSApp/Source/BUILD",
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
+            "t": "g"
+        },
+        "tvOSApp/Source/Info.plist",
+        {
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
+            "t": "g"
+        },
+        "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
+        "tvOSApp/Resources/Assets.xcassets",
+        "iMessageApp/BUILD",
+        "iMessageApp/Info.extension.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
+            "t": "g"
+        },
+        "iMessageApp/ExtensionAssets.xcassets",
+        "iMessageApp/Base.lproj/MainInterface.storyboard",
+        "iMessageApp/Info.plist",
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
+            "t": "g"
+        },
+        "iMessageApp/Assets.xcassets",
         "macOSApp/Source/BUILD",
         "macOSApp/third_party/BUILD",
         "macOSApp/third_party/ExampleFramework.framework",
@@ -212,23 +229,6 @@
             "_": "applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
-        "tvOSApp/Resources/BUILD",
-        "tvOSApp/Source/BUILD",
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
-            "t": "g"
-        },
-        "tvOSApp/Source/Info.plist",
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
-            "t": "g"
-        },
-        "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
-        "tvOSApp/Resources/Assets.xcassets",
         "tvOSApp/Test/UITests/BUILD",
         {
             "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
