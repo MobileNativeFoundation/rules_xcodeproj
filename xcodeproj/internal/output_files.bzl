@@ -353,7 +353,7 @@ def parse_swift_info_module(module):
         return None
 
     clang = module.clang
-    if clang.compilation_context.direct_public_headers:
+    if clang and clang.compilation_context.direct_public_headers:
         generated_header = (
             clang.compilation_context.direct_public_headers[0]
         )
