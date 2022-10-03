@@ -137,8 +137,9 @@ def xcodeproj(
             `scheme_autogeneration_mode` argument together customize how
             schemes for those targets are generated.
         top_level_targets: A `list` of a list of top-level targets. Each target
-            can be specified as either a `Label` (or label-like `string`), or a
-            value returned by `top_level_target`.
+            can be specified as either a `Label` (or label-like `string`), a
+            value returned by `top_level_target`, or a value returned by
+            `top_level_targets`.
         tvos_device_cpus: Optional. The value to use for `--tvos_cpus` when
             building the transitive dependencies of the targets specified in the
             `top_level_targets` argument with the `"device"`
@@ -211,18 +212,23 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
     if not top_level_targets:
         fail("`top_level_targets` cannot be empty.")
 
-    top_level_targets = [
-        top_level_target(target) if type(target) == "string" else target
-        for target in top_level_targets
-    ]
+    actual_top_level_targets = []
+    for target in top_level_targets:
+        if type(target) == "string":
+            actual_top_level_targets.append(top_level_target(target))
+        elif type(target) == "list":
+            actual_top_level_targets.extend(target)
+        else:
+            actual_top_level_targets.append(target)
+
     top_level_device_targets = [
         top_level_target.label
-        for top_level_target in top_level_targets
+        for top_level_target in actual_top_level_targets
         if sets.contains(top_level_target.target_environments, "device")
     ]
     top_level_simulator_targets = [
         top_level_target.label
-        for top_level_target in top_level_targets
+        for top_level_target in actual_top_level_targets
         if sets.contains(top_level_target.target_environments, "simulator")
     ]
 

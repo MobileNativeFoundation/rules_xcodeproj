@@ -3,6 +3,7 @@
 load(
     "//xcodeproj/internal:top_level_target.bzl",
     _top_level_target = "top_level_target",
+    _top_level_targets = "top_level_targets",
 )
 load(
     "//xcodeproj/internal:providers.bzl",
@@ -25,6 +26,7 @@ XcodeProjInfo = _XcodeProjInfo
 
 # Re-exporting rules
 top_level_target = _top_level_target
+top_level_targets = _top_level_targets
 xcodeproj = _xcodeproj
 xcode_provisioning_profile = _xcode_provisioning_profile
 

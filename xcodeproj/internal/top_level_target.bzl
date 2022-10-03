@@ -42,3 +42,20 @@ def top_level_target(label, *, target_environments = ["simulator"]):
         label = label,
         target_environments = target_environments,
     )
+
+def top_level_targets(labels, *, target_environments = ["simulator"]):
+    """Constructs a list of top-level target for use in \
+    `xcodeproj.top_level_targets`.
+
+    Args:
+        labels: A `list` of `Label` or label-like string for the targets.
+        target_environments: Optional. See
+            [`top_level_target.target_environments`](#top_level_target-target_environments).
+
+    Returns:
+        A `list` of values returned from `top_level_target`.
+    """
+    return [
+        top_level_target(label, target_environments = target_environments)
+        for label in labels
+    ]

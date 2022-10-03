@@ -20,6 +20,7 @@ load(
 - [Core](#core)
   - [`xcodeproj`](#xcodeproj)
   - [`top_level_target`](#top_level_target)
+  - [`top_level_targets`](#top_level_targets)
 - [Custom Xcode schemes](#custom-xcode-schemes)
   - [`xcode_schemes.scheme`](#xcode_schemes.scheme)
   - [`xcode_schemes.build_action`](#xcode_schemes.build_action)
@@ -27,6 +28,9 @@ load(
   - [`xcode_schemes.build_for`](#xcode_schemes.build_for)
   - [`xcode_schemes.launch_action`](#xcode_schemes.launch_action)
   - [`xcode_schemes.test_action`](#xcode_schemes.test_action)
+  - [`xcode_schemes.diagnostics`](#xcode_schemes.diagnostics)
+  - [`xcode_schemes.sanitizers`](#xcode_schemes.sanitizers)
+  - [`xcode_schemes.pre_post_action`](#xcode_schemes.pre_post_action)
 - [Xcode build settings](#xcode-build-settings)
   - [`xcode_provisioning_profile`](#xcode_provisioning_profile)
 - [Providers](#providers)
@@ -90,7 +94,7 @@ xcodeproj(
 | <a id="xcodeproj-project_name"></a>project_name |  Optional. The name to use for the <code>.xcodeproj</code> file. If not specified, the value of the <code>name</code> argument is used.   |  <code>None</code> |
 | <a id="xcodeproj-scheme_autogeneration_mode"></a>scheme_autogeneration_mode |  Optional. Specifies how Xcode schemes are automatically generated.   |  <code>"auto"</code> |
 | <a id="xcodeproj-schemes"></a>schemes |  Optional. A <code>list</code> of values returned by <code>xcode_schemes.scheme</code>. Target labels listed in the schemes need to be from the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument. This and the <code>scheme_autogeneration_mode</code> argument together customize how schemes for those targets are generated.   |  <code>[]</code> |
-| <a id="xcodeproj-top_level_targets"></a>top_level_targets |  A <code>list</code> of a list of top-level targets. Each target can be specified as either a <code>Label</code> (or label-like <code>string</code>), or a value returned by <code>top_level_target</code>.   |  none |
+| <a id="xcodeproj-top_level_targets"></a>top_level_targets |  A <code>list</code> of a list of top-level targets. Each target can be specified as either a <code>Label</code> (or label-like <code>string</code>), a value returned by <code>top_level_target</code>, or a value returned by <code>top_level_targets</code>.   |  none |
 | <a id="xcodeproj-tvos_device_cpus"></a>tvos_device_cpus |  Optional. The value to use for <code>--tvos_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>.<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>, even if they aren't tvOS targets.   |  <code>"arm64"</code> |
 | <a id="xcodeproj-tvos_simulator_cpus"></a>tvos_simulator_cpus |  Optional. The value to use for <code>--tvos_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>.<br><br>If no value is specified, it defaults to the simulator cpu that goes with <code>--host_cpu</code> (i.e. <code>sim_arm64</code> on Apple Silicon and <code>x86_64</code> on Intel).<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>, even if they aren't tvOS targets.   |  <code>None</code> |
 | <a id="xcodeproj-unfocused_targets"></a>unfocused_targets |  Optional. A <code>list</code> of target labels as <code>string</code> values. Any targets in the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with a matching label will be excluded from the generated project. This overrides any targets specified in the <code>focused_targets</code> argument.   |  <code>[]</code> |
@@ -122,6 +126,29 @@ Constructs a top-level target for use in `xcodeproj.top_level_targets`.
 **RETURNS**
 
 A `struct` containing fields for the provided arguments.
+
+
+<a id="top_level_targets"></a>
+
+## top_level_targets
+
+<pre>
+top_level_targets(<a href="#top_level_targets-labels">labels</a>, <a href="#top_level_targets-target_environments">target_environments</a>)
+</pre>
+
+Constructs a list of top-level target for use in     `xcodeproj.top_level_targets`.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="top_level_targets-labels"></a>labels |  A <code>list</code> of <code>Label</code> or label-like string for the targets.   |  none |
+| <a id="top_level_targets-target_environments"></a>target_environments |  Optional. See [<code>top_level_target.target_environments</code>](#top_level_target-target_environments).   |  <code>["simulator"]</code> |
+
+**RETURNS**
+
+A `list` of values returned from `top_level_target`.
 
 
 # Custom Xcode schemes
