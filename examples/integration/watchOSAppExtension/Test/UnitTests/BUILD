@@ -3,6 +3,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 watchos_unit_test(
     name = "watchOSAppExtensionUnitTests",
+    frameworks = ["//UI:UIFramework.watchOS"],
     minimum_os_version = "7.0",
     tags = ["manual"],
     visibility = ["//visibility:public"],
