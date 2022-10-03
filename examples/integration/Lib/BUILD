@@ -1,17 +1,17 @@
 load(
     "@build_bazel_rules_apple//apple:ios.bzl",
-    "ios_framework",
     "ios_dynamic_framework",
+    "ios_framework",
 )
 load(
     "@build_bazel_rules_apple//apple:tvos.bzl",
-    "tvos_framework",
     "tvos_dynamic_framework",
+    "tvos_framework",
 )
 load(
     "@build_bazel_rules_apple//apple:watchos.bzl",
-    "watchos_framework",
     "watchos_dynamic_framework",
+    "watchos_framework",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
