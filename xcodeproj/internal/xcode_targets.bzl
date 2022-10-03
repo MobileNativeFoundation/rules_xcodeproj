@@ -90,7 +90,6 @@ def _make(
         _package_bin_dir = package_bin_dir,
         _platform = platform,
         _is_testonly = is_testonly,
-        _is_swift = is_swift,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
         _search_paths = search_paths,
@@ -106,6 +105,7 @@ def _make(
         product = product,
         linker_inputs = linker_inputs,
         inputs = inputs,
+        is_swift = is_swift,
         outputs = outputs,
         infoplist = infoplist,
         transitive_dependencies = transitive_dependencies,
@@ -132,7 +132,7 @@ def _to_dto(
     if xcode_target._is_testonly:
         dto["is_testonly"] = True
 
-    if not xcode_target._is_swift:
+    if not xcode_target.is_swift:
         dto["is_swift"] = False
 
     if is_unfocused_dependency:
