@@ -119,7 +119,11 @@ def process_top_level_properties(
         else:
             fail("`AppleBundleInfo.archive` not set for {}".format(target_name))
 
-        build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
+        set_if_true(
+            build_settings,
+            "PRODUCT_BUNDLE_IDENTIFIER",
+            getattr(bundle_info, "bundle_id", None),
+        )
         set_if_true(
             build_settings,
             "APPLICATION_EXTENSION_API_ONLY",
