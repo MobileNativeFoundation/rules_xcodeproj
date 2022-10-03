@@ -216,6 +216,7 @@ def _launch_action_test(ctx):
         build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
         target = bazel_labels.normalize(target),
         args = args,
+        diagnostics = None,
         env = env,
         working_directory = None,
     )

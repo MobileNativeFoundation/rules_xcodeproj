@@ -54,6 +54,7 @@
                     "bazel"
                 ],
                 "build_configuration_name": "Debug",
+                "diagnostics": null,
                 "env": {
                     "CUSTOM_ENV_VAR": "hello"
                 },
@@ -793,6 +794,7 @@
                     "tools/generator/src/Generator/WriteXcodeProj.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+BuildActionInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+BuildTargetInfo.swift",
+                    "tools/generator/src/Generator/XCSchemeInfo+DiagnosticsInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+HostInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+LaunchActionInfo.swift",
                     "tools/generator/src/Generator/XCSchemeInfo+OtherActionInfos.swift",

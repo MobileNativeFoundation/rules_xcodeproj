@@ -162,6 +162,7 @@ def _launch_action(
         target,
         build_configuration_name,
         args = None,
+        diagnostics = None,
         env = None,
         working_directory = None):
     """Constructs a launch action for an Xcode scheme.
@@ -172,6 +173,7 @@ def _launch_action(
             `string` value.
         args: Optional. A `list` of `string` arguments that should be passed to
             the target when executed.
+        diagnostics: Optional. A `struct` representing Xcode scheme's diagnostics.
         env: Optional. A `dict` of `string` values that will be set as
             environment variables when the target is executed.
         working_directory: Optional. A `string` that will be set as the custom
@@ -184,6 +186,7 @@ def _launch_action(
         target = target,
         build_configuration_name = build_configuration_name,
         args = args if args != None else [],
+        diagnostics = diagnostics,
         env = env if env != None else {},
         working_directory = working_directory,
     )

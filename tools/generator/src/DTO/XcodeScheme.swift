@@ -268,6 +268,19 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
     }
 }
 
+// MARK: Diagnostics
+
+extension XcodeScheme {
+    struct Diagnostics: Equatable, Decodable {
+        struct Sanitizers: Equatable, Decodable {
+            let address: Bool
+            let thread: Bool
+            let undefinedBehavior: Bool
+        }
+        let sanitizers: Sanitizers?
+    }
+}
+
 // MARK: LaunchAction
 
 extension XcodeScheme {
@@ -275,6 +288,7 @@ extension XcodeScheme {
         let buildConfigurationName: String
         let target: BazelLabel
         let args: [String]
+        let diagnostics: Diagnostics?
         let env: [String: String]
         let workingDirectory: String?
 
@@ -282,12 +296,14 @@ extension XcodeScheme {
             target: BazelLabel,
             buildConfigurationName: String = .defaultBuildConfigurationName,
             args: [String] = [],
+            diagnostics: Diagnostics? = nil,
             env: [String: String] = [:],
             workingDirectory: String? = nil
         ) {
             self.target = target
             self.buildConfigurationName = buildConfigurationName
             self.args = args
+            self.diagnostics = diagnostics
             self.env = env
             self.workingDirectory = workingDirectory
         }

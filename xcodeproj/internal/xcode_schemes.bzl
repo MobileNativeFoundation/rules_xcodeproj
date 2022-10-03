@@ -276,9 +276,47 @@ def make_xcode_schemes(bazel_labels):
             build_for = build_for,
         )
 
+    def _sanitizers(
+            address = False,
+            thread = False,
+            undefined_behavior = False):
+        """Constructs the scheme's sanitizers' default state. The state can also be modified in Xcode.
+
+        Args:
+            address: Optional. A boolean value representing
+                whether the address sanitizer should be enabled or not.
+            thread: Optional. A boolean value representing
+                whether the thread sanitizer should be enabled or not.
+            undefined_behavior: Optional. A boolean value representing
+                whether the undefined behavior sanitizer should be enabled or not.
+        """
+        if address and thread:
+            fail("Address Sanitizer cannot be used together with Thread Sanitizer.")
+        return struct(
+            address = address,
+            thread = thread,
+            undefined_behavior = undefined_behavior,
+        )
+
+    def _diagnostics(
+            sanitizers = None):
+        """Constructs the scheme's diagnostics.
+
+        Args:
+            sanitizers: Optional. A `struct` value as created by
+                `xcode_schemes.sanitizers`.
+
+        Returns:
+            A `struct` representing scheme's diagnostics.
+        """
+        return struct(
+            sanitizers = sanitizers,
+        )
+
     def _launch_action(
             target,
             args = None,
+            diagnostics = None,
             env = None,
             working_directory = None):
         """Constructs a launch action for an Xcode scheme.
@@ -287,6 +325,7 @@ def make_xcode_schemes(bazel_labels):
             target: A target label as a `string` value.
             args: Optional. A `list` of `string` arguments that should be passed
                 to the target when executed.
+            diagnostics: Optional. A `struct` representing Xcode scheme's diagnostics.
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
             working_directory: Optional. A `string` that will be set as the
@@ -301,6 +340,7 @@ def make_xcode_schemes(bazel_labels):
             build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
             target = bazel_labels.normalize(target),
             args = args,
+            diagnostics = diagnostics,
             env = env,
             working_directory = working_directory,
         )
@@ -355,6 +395,8 @@ def make_xcode_schemes(bazel_labels):
         build_for_values = xcode_schemes_internal.build_for_values,
         launch_action = _launch_action,
         test_action = _test_action,
+        diagnostics = _diagnostics,
+        sanitizers = _sanitizers,
         pre_post_action = _pre_post_action,
         DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
         BUILD_FOR_ALL_ENABLED = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED,
