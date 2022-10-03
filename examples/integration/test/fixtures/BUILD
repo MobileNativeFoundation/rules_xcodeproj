@@ -9,6 +9,7 @@ load(
     "ASSOCIATED_EXTRA_FILES",
     "CONFIG",
     "EXTRA_FILES",
+    "UNFOCUSED_TARGETS",
     "XCODEPROJ_TARGETS",
 )
 
@@ -17,6 +18,7 @@ xcodeproj_fixture(
     config = CONFIG,
     extra_files = EXTRA_FILES,
     top_level_targets = XCODEPROJ_TARGETS,
+    unfocused_targets = UNFOCUSED_TARGETS,
 )
 
 _FIXTURES = [

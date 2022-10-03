@@ -16,6 +16,11 @@ ASSOCIATED_EXTRA_FILES = {
     "//Lib": ["//Lib:README.md"],
 }
 
+UNFOCUSED_TARGETS = [
+    # TODO: Change to "//Lib:LibFramework.watchOS" when that exists
+    "//Lib:LibFramework.iOS",
+]
+
 XCODEPROJ_TARGETS = [
     top_level_target(
         label = "//CommandLine/CommandLineTool",
