@@ -24,12 +24,12 @@ on it, or [file a new issue][file-an-issue]!
   - [x] Indexing (i.e. autocomplete, syntax highlighting, jump to
     definition)
   - [x] Debugging
+  - [x] Runtime sanitizers
   - [x] Inline warnings and errors
   - [x] Fix-its (currently only BwX)
   - [x] Test selection and running
   - [x] Embedded Targets (App Clips, App Extensions, and Watch Apps)
   - [x] SwiftUI Previews
-  - [x] Thread Sanitizer (more sanitizers coming soon)
 - [x] Focused Projects
   - [x] Include a subset of your targets in Xcode
   - [x] Unfocused targets are built with Bazel
