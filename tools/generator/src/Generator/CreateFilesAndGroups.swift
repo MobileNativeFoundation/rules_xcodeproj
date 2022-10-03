@@ -654,8 +654,14 @@ EOF
                     xcodeGeneratedFiles[filePath] = target.product.path
                 }
                 if let filePath = target.outputs.swift?.module {
-                    xcodeGeneratedFiles[filePath] = target
-                        .xcodeSwiftModuleFilePath(filePath)
+                    let value = target.xcodeSwiftModuleFilePath(filePath)
+                    if let existingValue = xcodeGeneratedFiles[filePath] {
+                        throw PreconditionError(message: """
+Tried to set `xcodeGeneratedFiles[\(filePath)]` to `\(value)`, but it already \
+was set to `\(existingValue)`.
+""")
+                    }
+                    xcodeGeneratedFiles[filePath] = value
                 }
             }
         case .bazel:

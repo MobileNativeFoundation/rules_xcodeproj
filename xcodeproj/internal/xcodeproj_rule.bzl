@@ -18,6 +18,12 @@ load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
 # Utility
 
+# TODO: Non-test_host applications should be terminal as well
+_TERMINAL_PRODUCT_TYPES = {
+    "com.apple.product-type.bundle.unit-test": None,
+    "com.apple.product-type.bundle.ui-testing": None,
+}
+
 def _calculate_unfocused_dependencies(
         *,
         build_mode,
@@ -401,11 +407,22 @@ targets: {}
         target_merges.setdefault(src, []).append(dest)
         target_merge_srcs_by_label.setdefault(src_target.label, []).append(src)
 
-    non_mergable_targets = {}
+    non_mergable_targets = sets.make()
+    non_terminal_dests = {}
     for src, dests in target_merges.items():
         src_target = targets[src]
+
+        if not src_target.is_swift:
+            # Only swiftmodule search paths are an issue for target merging.
+            # If the target isn't Swift, merge away!
+            continue
+
         for dest in dests:
             dest_target = targets[dest]
+
+            if dest_target.product.type not in _TERMINAL_PRODUCT_TYPES:
+                non_terminal_dests.setdefault(src, []).append(dest)
+
             for library in linker_input_files.get_top_level_static_libraries(
                 dest_target.linker_inputs,
             ):
@@ -414,11 +431,12 @@ targets: {}
 
                 # Other libraries that are not being merged into `dest_target`
                 # can't merge into other targets
-                non_mergable_targets[file_path(library)] = None
+                sets.insert(non_mergable_targets, file_path(library))
 
     for src in target_merges.keys():
         src_target = targets[src]
-        if src_target.product.file_path in non_mergable_targets:
+        if (len(non_terminal_dests.get(src, [])) > 1 or
+            sets.contains(non_mergable_targets, src_target.product.file_path)):
             # Prevent any version of `src` from merging, to prevent odd
             # target consolidation issues
             for id in target_merge_srcs_by_label[src_target.label]:
