@@ -8,9 +8,9 @@
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
--force_load
-$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/UI/libUI.a
--force_load
-$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/Lib/libLib.a
 -framework
 CryptoSwift
+-framework
+UIFramework.watchOS
+-framework
+LibFramework.watchOS
