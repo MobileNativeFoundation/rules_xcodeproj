@@ -491,6 +491,7 @@ def process_top_level_target(
         hosted_targets = hosted_targets,
         inputs = inputs,
         is_top_level_target = True,
+        is_xcode_required = True,
         lldb_context = lldb_context,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
@@ -521,5 +522,13 @@ def process_top_level_target(
             transitive_dependencies = transitive_dependencies,
             outputs = outputs,
             lldb_context = lldb_context,
+            xcode_required_targets = depset(
+                transitive = [
+                    info.xcode_required_targets
+                    for attr, info in transitive_infos
+                    if (info.target_type in
+                        automatic_target_info.xcode_targets.get(attr, [None]))
+                ],
+            ),
         ),
     )

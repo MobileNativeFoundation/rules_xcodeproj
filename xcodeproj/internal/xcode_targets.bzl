@@ -35,7 +35,8 @@ def _make(
         dependencies,
         transitive_dependencies,
         outputs,
-        lldb_context = None):
+        lldb_context = None,
+        xcode_required_targets = depset()):
     """Creates the internal data structure of the `xcode_targets` module.
 
     Args:
@@ -76,6 +77,9 @@ def _make(
             that this target depends on.
         outputs: A value returned from `output_files.collect`.
         lldb_context: A value returned from `lldb_contexts.collect`.
+        xcode_required_targets: A `depset` of values returned from
+            `xcode_targets.make`, which represent targets that are required in
+            BwX mode.
 
     Returns:
         A mostly opaque `struct` that can be passed to `xcode_targets.to_dto`.
@@ -105,6 +109,7 @@ def _make(
         outputs = outputs,
         infoplist = infoplist,
         transitive_dependencies = transitive_dependencies,
+        xcode_required_targets = xcode_required_targets,
     )
 
 def _to_dto(

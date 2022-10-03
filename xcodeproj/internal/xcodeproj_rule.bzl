@@ -130,6 +130,8 @@ def _process_targets(
         inputs,
         infos,
         owned_extra_files):
+    # TODO: Do this at the `top_level_targets` level, to allow marking as
+    # required for BwX
     resource_bundle_xcode_targets = process_resource_bundles(
         bundles = inputs.resource_bundles.to_list(),
         resource_bundle_informations = depset(
@@ -167,6 +169,58 @@ Are you using an `alias`? `focused_targets` requires labels of the actual \
 targets.
 """.format(invalid_focused_targets))
 
+    unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
+    has_focused_labels = sets.length(focused_labels) > 0
+
+    transitive_focused_targets = []
+    unfocused_targets = {}
+    for xcode_target in unprocessed_targets.values():
+        label = replacement_labels.get(
+            xcode_target.id,
+            xcode_target.label,
+        )
+        label_str = str(label)
+        if (sets.contains(unfocused_labels, label_str) or
+            (has_focused_labels and
+             not sets.contains(focused_labels, label_str))):
+            unfocused_targets[xcode_target.id] = xcode_target
+            continue
+
+        transitive_focused_targets.append(
+            depset(
+                [xcode_target],
+                transitive = [
+                    xcode_target.xcode_required_targets,
+                ] if build_mode == "xcode" else [],
+            ),
+        )
+
+    focused_targets = {
+        xcode_target.id: xcode_target
+        for xcode_target in depset(
+            transitive = transitive_focused_targets,
+        ).to_list()
+    }
+
+    infoplists = {}
+    for xcode_target in focused_targets.values():
+        label = replacement_labels.get(
+            xcode_target.id,
+            xcode_target.label,
+        )
+        label_str = str(label)
+
+        # Remove from unfocused (to support `xcode_required_targets`)
+        unfocused_targets.pop(xcode_target.id, default = None)
+
+        # Adjust `unfocused_labels` for `extra_files` logic later
+        if sets.contains(unfocused_labels, label_str):
+            sets.remove(unfocused_labels, label_str)
+
+        infoplist = xcode_target.infoplist
+        if infoplist:
+            infoplists.setdefault(label, []).append(infoplist)
+
     potential_target_merges = depset(
         transitive = [info.potential_target_merges for info in infos],
     ).to_list()
@@ -191,36 +245,21 @@ targets.
         src = src_ids[0]
         src_target = unprocessed_targets[src]
         src_label = str(replacement_labels.get(src, src_target.label))
-        sets.insert(focused_labels, src_label)
 
-    unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
-    has_focused_labels = sets.length(focused_labels) > 0
+        # Always include src of target merge if dest is included
+        focused_targets[src] = src_target
 
-    focused_targets = []
-    unfocused_targets = {}
-    infoplists = {}
-    for xcode_target in unprocessed_targets.values():
-        label = replacement_labels.get(
-            xcode_target.id,
-            xcode_target.label,
-        )
-        label_str = str(label)
-        if (sets.contains(unfocused_labels, label_str) or
-            (has_focused_labels and
-             not sets.contains(focused_labels, label_str))):
-            unfocused_targets[xcode_target.id] = xcode_target
-            continue
+        # Remove from unfocused (to support `xcode_required_targets`)
+        unfocused_targets.pop(src, default = None)
 
-        focused_targets.append(xcode_target)
-
-        infoplist = xcode_target.infoplist
-        if infoplist:
-            infoplists.setdefault(label, []).append(infoplist)
+        # Adjust `unfocused_labels` for `extra_files` logic later
+        if sets.contains(unfocused_labels, src_label):
+            sets.remove(unfocused_labels, src_label)
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
         targets = unprocessed_targets,
-        focused_targets = focused_targets,
+        focused_targets = focused_targets.values(),
         unfocused_libraries = unfocused_libraries,
         unfocused_targets = unfocused_targets,
     )
@@ -234,7 +273,7 @@ targets.
     target_dtos = {}
     additional_generated = {}
     additional_outputs = {}
-    for xcode_target in focused_targets:
+    for xcode_target in focused_targets.values():
         additional_compiling_files = []
         additional_indexstores_files = []
         additional_linking_files = []

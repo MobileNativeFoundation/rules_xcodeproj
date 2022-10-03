@@ -68,7 +68,8 @@ def _target_info_fields(
         target_type,
         transitive_dependencies,
         xcode_target,
-        xcode_targets):
+        xcode_targets,
+        xcode_required_targets):
     """Generates target specific fields for the `XcodeProjInfo`.
 
     This should be merged with other fields to fully create an `XcodeProjInfo`.
@@ -98,6 +99,8 @@ def _target_info_fields(
             `XcodeProjInfo.transitive_dependencies` field.
         xcode_target: Maps to the `XcodeProjInfo.xcode_target` field.
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
+        xcode_required_targets: Maps to the
+            `XcodeProjInfo.xcode_required_targets` field.
 
     Returns:
         A `dict` containing the following fields:
@@ -120,6 +123,7 @@ def _target_info_fields(
         *   `transitive_dependencies`
         *   `xcode_target`
         *   `xcode_targets`
+        *   `xcode_required_targets`
     """
     return {
         "compilation_providers": compilation_providers,
@@ -139,6 +143,7 @@ def _target_info_fields(
         "transitive_dependencies": transitive_dependencies,
         "xcode_target": xcode_target,
         "xcode_targets": xcode_targets,
+        "xcode_required_targets": xcode_required_targets,
     }
 
 def _skip_target(*, target, deps, deps_attrs, transitive_infos):
@@ -242,6 +247,12 @@ def _skip_target(*, target, deps, deps_attrs, transitive_infos):
         xcode_target = None,
         xcode_targets = depset(
             transitive = [info.xcode_targets for _, info in transitive_infos],
+        ),
+        xcode_required_targets = depset(
+            transitive = [
+                info.xcode_required_targets
+                for _, info in transitive_infos
+            ],
         ),
     )
 
@@ -372,6 +383,18 @@ def _create_xcodeprojinfo(
             processed_target.xcode_targets,
             transitive = [
                 info.xcode_targets
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    processed_target.automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
+            ],
+        ),
+        xcode_required_targets = depset(
+            processed_target.xcode_targets if processed_target.is_xcode_required else None,
+            transitive = [
+                info.xcode_required_targets
                 for attr, info in transitive_infos
                 if (info.target_type in
                     processed_target.automatic_target_info.xcode_targets.get(
