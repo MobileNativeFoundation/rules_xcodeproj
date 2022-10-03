@@ -163,8 +163,9 @@
         },
         "iOSApp/Source/en.lproj/unprocessed.json",
         "iOSApp/Source/es.lproj/unprocessed.json",
+        "Lib/dist/dynamic/BUILD",
         {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/rules_xcodeproj/Lib.framework",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "t": "g"
         },
         {
@@ -172,11 +173,11 @@
             "t": "e"
         },
         {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/rules_xcodeproj/Lib.framework",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/rules_xcodeproj/Lib.framework",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "t": "g"
         },
         "tvOSApp/Resources/BUILD",
@@ -384,7 +385,7 @@
             "t": "e"
         },
         {
-            "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/rules_xcodeproj/Lib.framework",
+            "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "t": "g"
         },
         {
@@ -392,11 +393,11 @@
             "t": "e"
         },
         {
-            "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/rules_xcodeproj/Lib.framework",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/rules_xcodeproj/Lib.framework",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "t": "g"
         },
         {
@@ -2323,6 +2324,860 @@
                 ]
             }
         },
+        "//Lib/dist/dynamic:iOS applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",
+        {
+            "build_settings": {
+                "APPLICATION_EXTENSION_API_ONLY": true,
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0",
+                "TARGETED_DEVICE_FAMILY": "1"
+            },
+            "configuration": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",
+            "dependencies": [
+                "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00"
+            ],
+            "info_plist": {
+                "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
+                "t": "g"
+            },
+            "is_swift": false,
+            "label": "//Lib/dist/dynamic:iOS",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "force_load": [
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "m": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
+                                "t": "e"
+                            }
+                        ],
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift",
+                                "t": "e"
+                            },
+                            {
+                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/external/com_github_krzyzanowskim_cryptoswift",
+                                "t": "g"
+                            },
+                            ".",
+                            {
+                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "f": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
+                        "t": "e"
+                    }
+                ]
+            },
+            "name": "iOS",
+            "outputs": {
+                "p": {
+                    "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/dist/dynamic",
+            "platform": {
+                "arch": "arm64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphoneos"
+            },
+            "product": {
+                "additional_paths": [
+                    {
+                        "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/dist/dynamic/frameworks/Lib.framework",
+                        "t": "g"
+                    }
+                ],
+                "executable_name": "Lib",
+                "is_resource_bundle": false,
+                "name": "Lib",
+                "path": {
+                    "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.framework"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+        {
+            "build_settings": {
+                "APPLICATION_EXTENSION_API_ONLY": true,
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0",
+                "TARGETED_DEVICE_FAMILY": "1"
+            },
+            "configuration": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+            "dependencies": [
+                "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56"
+            ],
+            "info_plist": {
+                "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
+                "t": "g"
+            },
+            "is_swift": false,
+            "label": "//Lib/dist/dynamic:iOS",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "force_load": [
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/Lib.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "m": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
+                                "t": "e"
+                            }
+                        ],
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift",
+                                "t": "e"
+                            },
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/com_github_krzyzanowskim_cryptoswift",
+                                "t": "g"
+                            },
+                            ".",
+                            {
+                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "f": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ]
+            },
+            "name": "iOS",
+            "outputs": {
+                "p": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/dist/dynamic",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphonesimulator"
+            },
+            "product": {
+                "additional_paths": [
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/dist/dynamic/frameworks/Lib.framework",
+                        "t": "g"
+                    }
+                ],
+                "executable_name": "Lib",
+                "is_resource_bundle": false,
+                "name": "Lib",
+                "path": {
+                    "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.framework"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//Lib/dist/dynamic:tvOS applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765",
+        {
+            "build_settings": {
+                "APPLICATION_EXTENSION_API_ONLY": true,
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765",
+            "dependencies": [
+                "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765"
+            ],
+            "info_plist": {
+                "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
+                "t": "g"
+            },
+            "is_swift": false,
+            "label": "//Lib/dist/dynamic:tvOS",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "force_load": [
+                    {
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/Lib.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "m": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap",
+                                "t": "e"
+                            }
+                        ],
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift",
+                                "t": "e"
+                            },
+                            {
+                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/external/com_github_krzyzanowskim_cryptoswift",
+                                "t": "g"
+                            },
+                            ".",
+                            {
+                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "f": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
+                        "t": "e"
+                    }
+                ]
+            },
+            "name": "tvOS",
+            "outputs": {
+                "p": {
+                    "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/dist/dynamic",
+            "platform": {
+                "arch": "arm64",
+                "minimum_os_version": "15.0",
+                "os": "tvos",
+                "variant": "appletvos"
+            },
+            "product": {
+                "additional_paths": [
+                    {
+                        "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/dist/dynamic/frameworks/Lib.framework",
+                        "t": "g"
+                    }
+                ],
+                "executable_name": "Lib",
+                "is_resource_bundle": false,
+                "name": "Lib",
+                "path": {
+                    "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.framework"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//Lib/dist/dynamic:tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+        {
+            "build_settings": {
+                "APPLICATION_EXTENSION_API_ONLY": true,
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+            "dependencies": [
+                "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2"
+            ],
+            "info_plist": {
+                "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
+                "t": "g"
+            },
+            "is_swift": false,
+            "label": "//Lib/dist/dynamic:tvOS",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "force_load": [
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "m": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
+                                "t": "e"
+                            }
+                        ],
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift",
+                                "t": "e"
+                            },
+                            {
+                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/external/com_github_krzyzanowskim_cryptoswift",
+                                "t": "g"
+                            },
+                            ".",
+                            {
+                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "f": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
+                        "t": "e"
+                    }
+                ]
+            },
+            "name": "tvOS",
+            "outputs": {
+                "p": {
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/dist/dynamic",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "tvos",
+                "variant": "appletvsimulator"
+            },
+            "product": {
+                "additional_paths": [
+                    {
+                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/dist/dynamic/frameworks/Lib.framework",
+                        "t": "g"
+                    }
+                ],
+                "executable_name": "Lib",
+                "is_resource_bundle": false,
+                "name": "Lib",
+                "path": {
+                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.framework"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//Lib/dist/dynamic:watchOS applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90",
+        {
+            "build_settings": {
+                "APPLICATION_EXTENSION_API_ONLY": true,
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90",
+            "dependencies": [
+                "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90"
+            ],
+            "info_plist": {
+                "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
+                "t": "g"
+            },
+            "is_swift": false,
+            "label": "//Lib/dist/dynamic:watchOS",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "force_load": [
+                    {
+                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "m": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap",
+                                "t": "e"
+                            }
+                        ],
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift",
+                                "t": "e"
+                            },
+                            {
+                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/external/com_github_krzyzanowskim_cryptoswift",
+                                "t": "g"
+                            },
+                            ".",
+                            {
+                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "f": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
+                        "t": "e"
+                    }
+                ]
+            },
+            "name": "watchOS",
+            "outputs": {
+                "p": {
+                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/dist/dynamic",
+            "platform": {
+                "arch": "arm64_32",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchos"
+            },
+            "product": {
+                "additional_paths": [
+                    {
+                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/dist/dynamic/frameworks/Lib.framework",
+                        "t": "g"
+                    }
+                ],
+                "executable_name": "Lib",
+                "is_resource_bundle": false,
+                "name": "Lib",
+                "path": {
+                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.framework"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//Lib/dist/dynamic:watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+        {
+            "build_settings": {
+                "APPLICATION_EXTENSION_API_ONLY": true,
+                "CODE_SIGN_STYLE": "Manual",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+            "dependencies": [
+                "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32"
+            ],
+            "info_plist": {
+                "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
+                "t": "g"
+            },
+            "is_swift": false,
+            "label": "//Lib/dist/dynamic:watchOS",
+            "linker_inputs": {
+                "dynamic_frameworks": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
+                        "t": "e"
+                    }
+                ],
+                "force_load": [
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/libLib.a",
+                        "t": "g"
+                    }
+                ],
+                "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/Lib.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
+                    "-Wl,-rpath,/usr/lib/swift",
+                    "-framework",
+                    "UIKit",
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
+                ]
+            },
+            "lldb_context": {
+                "c": [
+                    {
+                        "m": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
+                                "t": "e"
+                            }
+                        ],
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            {
+                                "_": "com_github_krzyzanowskim_cryptoswift",
+                                "t": "e"
+                            },
+                            {
+                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/external/com_github_krzyzanowskim_cryptoswift",
+                                "t": "g"
+                            },
+                            ".",
+                            {
+                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin",
+                                "t": "g"
+                            }
+                        ]
+                    }
+                ],
+                "f": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ]
+            },
+            "name": "watchOS",
+            "outputs": {
+                "p": {
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                }
+            },
+            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/dist/dynamic",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "7.0",
+                "os": "watchos",
+                "variant": "watchsimulator"
+            },
+            "product": {
+                "additional_paths": [
+                    {
+                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/dist/dynamic/frameworks/Lib.framework",
+                        "t": "g"
+                    }
+                ],
+                "executable_name": "Lib",
+                "is_resource_bundle": false,
+                "name": "Lib",
+                "path": {
+                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/dist/dynamic/Lib.framework",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.framework"
+            },
+            "search_paths": {
+                "framework_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                        "t": "e"
+                    }
+                ],
+                "quote_includes": [
+                    {
+                        "_": "com_github_krzyzanowskim_cryptoswift",
+                        "t": "e"
+                    },
+                    {
+                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/external/com_github_krzyzanowskim_cryptoswift",
+                        "t": "g"
+                    },
+                    ".",
+                    {
+                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
         "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",
         {
             "build_settings": {
@@ -2858,860 +3713,6 @@
                     ".",
                     {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
-        "//Lib:Lib.framework.iOS applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",
-        {
-            "build_settings": {
-                "APPLICATION_EXTENSION_API_ONLY": true,
-                "CODE_SIGN_STYLE": "Manual",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0",
-                "TARGETED_DEVICE_FAMILY": "1"
-            },
-            "configuration": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",
-            "dependencies": [
-                "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00"
-            ],
-            "info_plist": {
-                "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/rules_xcodeproj/Lib.framework.iOS/Info.plist",
-                "t": "g"
-            },
-            "is_swift": false,
-            "label": "//Lib:Lib.framework.iOS",
-            "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
-                        "t": "e"
-                    }
-                ],
-                "force_load": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
-                "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.swiftmodule",
-                    "-ObjC",
-                    "-L/usr/lib/swift",
-                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
-                    "-Wl,-rpath,/usr/lib/swift",
-                    "-framework",
-                    "UIKit",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ]
-            },
-            "lldb_context": {
-                "c": [
-                    {
-                        "m": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
-                                "t": "e"
-                            }
-                        ],
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ],
-                "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ]
-            },
-            "name": "Lib.framework.iOS",
-            "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.framework",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib",
-            "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "15.0",
-                "os": "ios",
-                "variant": "iphoneos"
-            },
-            "product": {
-                "additional_paths": [
-                    {
-                        "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/frameworks/Lib.framework",
-                        "t": "g"
-                    }
-                ],
-                "executable_name": "Lib",
-                "is_resource_bundle": false,
-                "name": "Lib",
-                "path": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.framework",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.framework"
-            },
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
-        "//Lib:Lib.framework.iOS applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
-        {
-            "build_settings": {
-                "APPLICATION_EXTENSION_API_ONLY": true,
-                "CODE_SIGN_STYLE": "Manual",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0",
-                "TARGETED_DEVICE_FAMILY": "1"
-            },
-            "configuration": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
-            "dependencies": [
-                "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56"
-            ],
-            "info_plist": {
-                "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/rules_xcodeproj/Lib.framework.iOS/Info.plist",
-                "t": "g"
-            },
-            "is_swift": false,
-            "label": "//Lib:Lib.framework.iOS",
-            "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
-                        "t": "e"
-                    }
-                ],
-                "force_load": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
-                "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/Lib.swiftmodule",
-                    "-ObjC",
-                    "-L/usr/lib/swift",
-                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                    "-Wl,-rpath,/usr/lib/swift",
-                    "-framework",
-                    "UIKit",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ]
-            },
-            "lldb_context": {
-                "c": [
-                    {
-                        "m": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
-                                "t": "e"
-                            }
-                        ],
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ],
-                "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ]
-            },
-            "name": "Lib.framework.iOS",
-            "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/Lib.framework",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib",
-            "platform": {
-                "arch": "x86_64",
-                "minimum_os_version": "15.0",
-                "os": "ios",
-                "variant": "iphonesimulator"
-            },
-            "product": {
-                "additional_paths": [
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/frameworks/Lib.framework",
-                        "t": "g"
-                    }
-                ],
-                "executable_name": "Lib",
-                "is_resource_bundle": false,
-                "name": "Lib",
-                "path": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/Lib.framework",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.framework"
-            },
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
-        "//Lib:Lib.framework.tvOS applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765",
-        {
-            "build_settings": {
-                "APPLICATION_EXTENSION_API_ONLY": true,
-                "CODE_SIGN_STYLE": "Manual",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
-            },
-            "configuration": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765",
-            "dependencies": [
-                "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765"
-            ],
-            "info_plist": {
-                "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/rules_xcodeproj/Lib.framework.tvOS/Info.plist",
-                "t": "g"
-            },
-            "is_swift": false,
-            "label": "//Lib:Lib.framework.tvOS",
-            "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
-                        "t": "e"
-                    }
-                ],
-                "force_load": [
-                    {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
-                "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/Lib.swiftmodule",
-                    "-ObjC",
-                    "-L/usr/lib/swift",
-                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
-                    "-Wl,-rpath,/usr/lib/swift",
-                    "-framework",
-                    "UIKit",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ]
-            },
-            "lldb_context": {
-                "c": [
-                    {
-                        "m": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap",
-                                "t": "e"
-                            }
-                        ],
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ],
-                "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
-                ]
-            },
-            "name": "Lib.framework.tvOS",
-            "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/Lib.framework",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib",
-            "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "15.0",
-                "os": "tvos",
-                "variant": "appletvos"
-            },
-            "product": {
-                "additional_paths": [
-                    {
-                        "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/frameworks/Lib.framework",
-                        "t": "g"
-                    }
-                ],
-                "executable_name": "Lib",
-                "is_resource_bundle": false,
-                "name": "Lib",
-                "path": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/Lib.framework",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.framework"
-            },
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
-        "//Lib:Lib.framework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
-        {
-            "build_settings": {
-                "APPLICATION_EXTENSION_API_ONLY": true,
-                "CODE_SIGN_STYLE": "Manual",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
-            },
-            "configuration": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
-            "dependencies": [
-                "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2"
-            ],
-            "info_plist": {
-                "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/rules_xcodeproj/Lib.framework.tvOS/Info.plist",
-                "t": "g"
-            },
-            "is_swift": false,
-            "label": "//Lib:Lib.framework.tvOS",
-            "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
-                        "t": "e"
-                    }
-                ],
-                "force_load": [
-                    {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
-                "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.swiftmodule",
-                    "-ObjC",
-                    "-L/usr/lib/swift",
-                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-                    "-Wl,-rpath,/usr/lib/swift",
-                    "-framework",
-                    "UIKit",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ]
-            },
-            "lldb_context": {
-                "c": [
-                    {
-                        "m": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
-                                "t": "e"
-                            }
-                        ],
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ],
-                "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
-                ]
-            },
-            "name": "Lib.framework.tvOS",
-            "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.framework",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib",
-            "platform": {
-                "arch": "x86_64",
-                "minimum_os_version": "15.0",
-                "os": "tvos",
-                "variant": "appletvsimulator"
-            },
-            "product": {
-                "additional_paths": [
-                    {
-                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/frameworks/Lib.framework",
-                        "t": "g"
-                    }
-                ],
-                "executable_name": "Lib",
-                "is_resource_bundle": false,
-                "name": "Lib",
-                "path": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.framework",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.framework"
-            },
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
-        "//Lib:Lib.framework.watchOS applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90",
-        {
-            "build_settings": {
-                "APPLICATION_EXTENSION_API_ONLY": true,
-                "CODE_SIGN_STYLE": "Manual",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
-            },
-            "configuration": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90",
-            "dependencies": [
-                "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90"
-            ],
-            "info_plist": {
-                "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/rules_xcodeproj/Lib.framework.watchOS/Info.plist",
-                "t": "g"
-            },
-            "is_swift": false,
-            "label": "//Lib:Lib.framework.watchOS",
-            "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
-                        "t": "e"
-                    }
-                ],
-                "force_load": [
-                    {
-                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
-                "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.swiftmodule",
-                    "-ObjC",
-                    "-L/usr/lib/swift",
-                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
-                    "-Wl,-rpath,/usr/lib/swift",
-                    "-framework",
-                    "UIKit",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ]
-            },
-            "lldb_context": {
-                "c": [
-                    {
-                        "m": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap",
-                                "t": "e"
-                            }
-                        ],
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ],
-                "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
-                ]
-            },
-            "name": "Lib.framework.watchOS",
-            "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.framework",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib",
-            "platform": {
-                "arch": "arm64_32",
-                "minimum_os_version": "7.0",
-                "os": "watchos",
-                "variant": "watchos"
-            },
-            "product": {
-                "additional_paths": [
-                    {
-                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/frameworks/Lib.framework",
-                        "t": "g"
-                    }
-                ],
-                "executable_name": "Lib",
-                "is_resource_bundle": false,
-                "name": "Lib",
-                "path": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.framework",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.framework"
-            },
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin",
-                        "t": "g"
-                    }
-                ]
-            }
-        },
-        "//Lib:Lib.framework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
-        {
-            "build_settings": {
-                "APPLICATION_EXTENSION_API_ONLY": true,
-                "CODE_SIGN_STYLE": "Manual",
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.LibFramework",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
-            },
-            "configuration": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
-            "dependencies": [
-                "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32"
-            ],
-            "info_plist": {
-                "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/rules_xcodeproj/Lib.framework.watchOS/Info.plist",
-                "t": "g"
-            },
-            "is_swift": false,
-            "label": "//Lib:Lib.framework.watchOS",
-            "linker_inputs": {
-                "dynamic_frameworks": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
-                        "t": "e"
-                    }
-                ],
-                "force_load": [
-                    {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
-                "linkopts": [
-                    "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/Lib.swiftmodule",
-                    "-ObjC",
-                    "-L/usr/lib/swift",
-                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
-                    "-Wl,-rpath,/usr/lib/swift",
-                    "-framework",
-                    "UIKit",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ]
-            },
-            "lldb_context": {
-                "c": [
-                    {
-                        "m": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
-                                "t": "e"
-                            }
-                        ],
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ],
-                "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ]
-            },
-            "name": "Lib.framework.watchOS",
-            "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/Lib.framework",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib",
-            "platform": {
-                "arch": "x86_64",
-                "minimum_os_version": "7.0",
-                "os": "watchos",
-                "variant": "watchsimulator"
-            },
-            "product": {
-                "additional_paths": [
-                    {
-                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/frameworks/Lib.framework",
-                        "t": "g"
-                    }
-                ],
-                "executable_name": "Lib",
-                "is_resource_bundle": false,
-                "name": "Lib",
-                "path": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/Lib.framework",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.framework"
-            },
-            "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift",
-                        "t": "e"
-                    },
-                    {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/external/com_github_krzyzanowskim_cryptoswift",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin",
                         "t": "g"
                     }
                 ]
