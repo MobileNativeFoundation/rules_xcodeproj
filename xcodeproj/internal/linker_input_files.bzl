@@ -15,10 +15,6 @@ _LD_SKIP_OPTS = {
     "-target": 2,
 }
 
-_CC_LD_SKIP_OPTS = {
-    "-framework": 2,
-}
-
 _SKIP_INPUT_EXTENSIONS = {
     "a": None,
     "app": None,
@@ -264,7 +260,8 @@ def _extract_top_level_values(
             action_name = "c++-link-executable",
             variables = variables,
         )
-        raw_linkopts.extend(_process_cc_linkopts(cc_linkopts))
+
+        raw_linkopts.extend(cc_linkopts)
 
         linkopts = _process_linkopts(raw_linkopts)
     else:
@@ -349,22 +346,6 @@ def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
     )
 
     return (direct, transitive)
-
-def _process_cc_linkopts(linkopts):
-    ret = []
-    skip_next = 0
-    for linkopt in linkopts:
-        if skip_next:
-            skip_next -= 1
-            continue
-        skip_next = _CC_LD_SKIP_OPTS.get(linkopt, 0)
-        if skip_next:
-            skip_next -= 1
-            continue
-
-        ret.append(linkopt)
-
-    return ret
 
 def _process_linkopts(linkopts):
     ret = []
