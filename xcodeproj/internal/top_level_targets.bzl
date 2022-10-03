@@ -86,25 +86,36 @@ def process_top_level_properties(
         product_type = bundle_info.product_type
 
         bundle_file = bundle_info.archive
-        archive_file_path = file_path(bundle_file)
 
-        if tree_artifact_enabled:
-            bundle_file_path = archive_file_path
-        else:
-            bundle_extension = bundle_info.bundle_extension
-            bundle = "{}{}".format(bundle_name, bundle_extension)
-            if bundle_extension == ".app":
-                bundle_path = paths.join(
-                    bundle_info.archive_root,
-                    "Payload",
-                    bundle,
-                )
+        bundle_file = bundle_info.archive
+        if bundle_file:
+            archive_file_path = file_path(bundle_file)
+
+            if tree_artifact_enabled:
+                bundle_file_path = archive_file_path
             else:
-                bundle_path = paths.join(bundle_info.archive_root, bundle)
-            bundle_file_path = file_path(
+                bundle_extension = bundle_info.bundle_extension
+                bundle = "{}{}".format(bundle_name, bundle_extension)
+                if bundle_extension == ".app":
+                    bundle_path = paths.join(
+                        bundle_info.archive_root,
+                        "Payload",
+                        bundle,
+                    )
+                else:
+                    bundle_path = paths.join(bundle_info.archive_root, bundle)
+                bundle_file_path = file_path(
+                    bundle_file,
+                    path = bundle_path,
+                )
+        elif product_type.startswith("com.apple.product-type.framework"):
+            # Some rules only set the binary for static frameworks
+            bundle_file = bundle_info.binary
+            archive_file_path = file_path(
                 bundle_file,
-                path = bundle_path,
+                path = bundle_file.dirname,
             )
+            bundle_file_path = archive_file_path
 
         build_settings["PRODUCT_BUNDLE_IDENTIFIER"] = bundle_info.bundle_id
         set_if_true(
