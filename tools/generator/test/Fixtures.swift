@@ -9,7 +9,8 @@ enum Fixtures {
         name: "Bazel",
         bazelWorkspaceName: "bazel_workspace",
         bazelConfig: "rules_xcodeproj_fixtures",
-        label: "//:xcodeproj",
+        generatorLabel: "//:xcodeproj.generator",
+        runnerLabel: "//:xcodeproj",
         configuration: "z3y2z",
         buildSettings: [
             "ALWAYS_SEARCH_USER_PATHS": .bool(false),
@@ -1506,8 +1507,8 @@ class StopHook:
 
     static func bazelDependenciesTarget(
         in pbxProj: PBXProj,
-        xcodeprojBazelLabel: String,
-        xcodeprojConfiguration: String
+        generatorLabel: String,
+        generatorConfiguration: String
     ) -> PBXAggregateTarget {
         let allPlatforms = """
 watchsimulator \
@@ -1602,8 +1603,8 @@ env -i \
   --color="$color" \
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
-  '--output_groups=generated_inputs \#(xcodeprojConfiguration)' \
-  \#(xcodeprojBazelLabel)
+  '--output_groups=generated_inputs \#(generatorConfiguration)' \
+  \#(generatorLabel)
 
 """#,
             showEnvVarsInLog: false,
@@ -2156,8 +2157,8 @@ touch "$SCRIPT_OUTPUT_FILE_1"
 
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: pbxProj,
-            xcodeprojBazelLabel: "//:xcodeproj",
-            xcodeprojConfiguration: "xyz321"
+            generatorLabel: "//:xcodeproj",
+            generatorConfiguration: "xyz321"
         )
 
         let disambiguatedTargets = Fixtures.disambiguatedTargets(

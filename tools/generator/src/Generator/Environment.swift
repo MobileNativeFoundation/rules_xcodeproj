@@ -71,8 +71,8 @@ struct Environment {
         _ filePathResolver: FilePathResolver,
         _ resolvedExternalRepositories: [(Path, Path)],
         _ bazelConfig: String,
-        _ xcodeprojBazelLabel: BazelLabel,
-        _ xcodeprojConfiguration: String,
+        _ generatorLabel: BazelLabel,
+        _ generatorConfiguration: String,
         _ preBuildScript: String?,
         _ postBuildScript: String?,
         _ consolidatedTargets: ConsolidatedTargets

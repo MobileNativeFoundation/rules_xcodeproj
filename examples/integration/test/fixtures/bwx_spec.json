@@ -355,11 +355,11 @@
         "README.md"
     ],
     "force_bazel_dependencies": true,
+    "generator_label": "//test/fixtures:xcodeproj_bwx.generator",
     "index_import": {
         "t": "g",
         "_": "darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import"
     },
-    "label": "//test/fixtures:xcodeproj_bwx.generator",
     "name": "bwx",
     "post_build_script": null,
     "pre_build_script": null,
@@ -377,6 +377,7 @@
         "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0",
         "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests"
     ],
+    "runner_label": "//test/fixtures:xcodeproj_bwx",
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [
         "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",

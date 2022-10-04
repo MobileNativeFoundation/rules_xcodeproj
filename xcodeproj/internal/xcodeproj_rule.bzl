@@ -508,12 +508,13 @@ def _write_json_spec(
 "custom_xcode_schemes":{custom_xcode_schemes},\
 "extra_files":{extra_files},\
 "force_bazel_dependencies":{force_bazel_dependencies},\
+"generator_label":"{generator_label}",\
 "index_import":{index_import},\
-"label":"{label}",\
 "name":"{name}",\
 "post_build_script":{post_build_script},\
 "pre_build_script":{pre_build_script},\
 "replacement_labels":{replacement_labels},\
+"runner_label":"{runner_label}",\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
 "target_hosts":{target_hosts},\
 "target_merges":{target_merges},\
@@ -531,10 +532,10 @@ def _write_json_spec(
         force_bazel_dependencies = json.encode(
             has_unfocused_targets or inputs.has_generated_files,
         ),
+        generator_label = ctx.label,
         index_import = file_path_to_dto(
             file_path(ctx.executable._index_import),
         ),
-        label = ctx.label,
         name = project_name,
         post_build_script = post_build_script,
         pre_build_script = pre_build_script,
@@ -547,6 +548,7 @@ def _write_json_spec(
                 },
             ),
         ),
+        runner_label = ctx.attr.runner_label,
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
         target_hosts = json.encode(flattened_key_values.to_list(target_hosts)),
         target_merges = json.encode(
@@ -1040,11 +1042,10 @@ The text of a script that will be run before the build. For example:
 """,
         ),
         "project_name": attr.string(
-            doc = """\
-The name to use for the `.xcodeproj` file.
-""",
+            doc = "The name to use for the `.xcodeproj` file.",
             mandatory = True,
         ),
+        "runner_label": attr.string(doc = "The label of the runner target."),
         "scheme_autogeneration_mode": attr.string(
             doc = "Specifies how Xcode schemes are automatically generated.",
             default = "auto",

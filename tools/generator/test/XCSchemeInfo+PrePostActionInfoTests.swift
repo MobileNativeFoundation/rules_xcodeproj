@@ -6,8 +6,7 @@ import XCTest
 // MARK: XCSchemeInfoPrePostActionInfoTests
 
 final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
-    
-    let xcodeprojBazelLabel = BazelLabel("//foo")
+    let runnerLabel = BazelLabel("//foo")
 
     lazy var xcodeScheme = try! XcodeScheme(
         name: "My Scheme",
@@ -152,7 +151,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             targetResolver: targetResolver,
             targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                runnerLabel: runnerLabel
             ),
             context: "Building PrePostAction Info"
         )
@@ -183,7 +182,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
                 targetResolver: self.targetResolver,
                 targetIDsByLabel: try self.xcodeScheme.resolveTargetIDs(
                     targetResolver: self.targetResolver,
-                    xcodeprojBazelLabel: self.xcodeprojBazelLabel
+                    runnerLabel: self.runnerLabel
                 ),
                 context: "Building PrePostAction Info"
             )
@@ -209,7 +208,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             targetResolver: targetResolver,
             targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                runnerLabel: runnerLabel
             ),
             context: "Building PrePostAction Info"
         )
@@ -235,7 +234,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             targetResolver: targetResolver,
             targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                runnerLabel: runnerLabel
             ),
             context: "Building PrePostAction Info"
         )
@@ -287,7 +286,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             targetResolver: targetResolver,
             targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                runnerLabel: runnerLabel
             ),
             context: "Building PrePostAction Info"
         )

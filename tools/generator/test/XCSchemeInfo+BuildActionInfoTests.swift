@@ -50,7 +50,7 @@ extension XCSchemeInfoBuildActionInfoTests {
             targetResolver: targetResolver,
             targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                runnerLabel: runnerLabel
             )
         )
         let expected = try XCSchemeInfo.BuildActionInfo(
@@ -68,7 +68,7 @@ extension XCSchemeInfoBuildActionInfoTests {
 // MARK: - Test Data
 
 class XCSchemeInfoBuildActionInfoTests: XCTestCase {
-    let xcodeprojBazelLabel = BazelLabel("//foo")
+    let runnerLabel = BazelLabel("//foo")
 
     lazy var filePathResolver = FilePathResolver(
         workspaceDirectory: "/Users/TimApple/app",

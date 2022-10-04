@@ -41,7 +41,7 @@ extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withToolScheme() throws {
         let actual = try toolScheme.resolveTargetIDs(
             targetResolver: targetResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            runnerLabel: runnerLabel
         )
         let expected = [
             libLabel: libmacOSx8664TargetID,
@@ -58,7 +58,7 @@ extension XcodeSchemeExtensionsTests {
         // selected.
         let actual = try iOSAppScheme.resolveTargetIDs(
             targetResolver: targetResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            runnerLabel: runnerLabel
         )
         let expected = [
             libLabel: libiOSx8664TargetID,
@@ -73,7 +73,7 @@ extension XcodeSchemeExtensionsTests {
         // Prefer the TargetID values for the simulator.
         let actual = try tvOSAppScheme.resolveTargetIDs(
             targetResolver: targetResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            runnerLabel: runnerLabel
         )
         let expected = [
             libLabel: libtvOSx8664TargetID,
@@ -123,7 +123,7 @@ extension XcodeSchemeExtensionsTests {
 
 // swiftlint:disable:next type_body_length
 class XcodeSchemeExtensionsTests: XCTestCase {
-    let xcodeprojBazelLabel = BazelLabel("//foo")
+    let runnerLabel = BazelLabel("//foo")
 
     // Labels
 

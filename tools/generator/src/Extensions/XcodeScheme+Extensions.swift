@@ -25,12 +25,12 @@ extension XcodeScheme {
     /// Represents a configuration string (Target.configuration).
     typealias Configuration = String
 
-    func aliasErrorMessage(xcodeprojBazelLabel: BazelLabel, missingLabel: BazelLabel) -> String {
+    func aliasErrorMessage(runnerLabel: BazelLabel, missingLabel: BazelLabel) -> String {
         return """
-Target \(missingLabel) was not found in the transitive dependencies of \(xcodeprojBazelLabel)'s \
+Target \(missingLabel) was not found in the transitive dependencies of \(runnerLabel)'s \
 `top_level_targets` attribute. Did you reference an alias (only actual target labels are \
 supported in Scheme definitions)? Check that \(missingLabel) is spelled correctly, and if it is, \
-add it or a target that depends on it to \(xcodeprojBazelLabel)'s `top_level_targets` attribute.
+add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` attribute.
 """
     }
 
@@ -38,7 +38,7 @@ add it or a target that depends on it to \(xcodeprojBazelLabel)'s `top_level_tar
     /// configuration.
     func resolveTargetIDs(
         targetResolver: TargetResolver,
-        xcodeprojBazelLabel: BazelLabel
+        runnerLabel: BazelLabel
     ) throws -> [BazelLabel: TargetID] {
         var resolvedTargetIDs = [BazelLabel: TargetID]()
 
@@ -55,7 +55,7 @@ add it or a target that depends on it to \(xcodeprojBazelLabel)'s `top_level_tar
             let labelTargetInfo = try labelTargetInfos.value(
                 for: label,
                 message: aliasErrorMessage(
-                    xcodeprojBazelLabel: xcodeprojBazelLabel,
+                    runnerLabel: runnerLabel,
                     missingLabel: label
                 )
             )
@@ -74,7 +74,7 @@ add it or a target that depends on it to \(xcodeprojBazelLabel)'s `top_level_tar
             let labelTargetInfo = try labelTargetInfos.value(
                 for: label,
                 message: aliasErrorMessage(
-                    xcodeprojBazelLabel: xcodeprojBazelLabel,
+                    runnerLabel: runnerLabel,
                     missingLabel: label
                 )
             )
