@@ -41,3 +41,7 @@ flag to ensure all invocations will use the same configuration.
 
 While developing, you might need to regenerate the test fixtures.
 You can do so with `./test/update_all_fixtures.sh`.
+
+All `bwb.xcodeproj` projects in the test fixtures aren't buildable, because we
+use a fake `swiftc` stub binary for the testing purpose. If you need to verify
+anything in those projects, regenerate them locally.

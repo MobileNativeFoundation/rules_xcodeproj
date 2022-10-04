@@ -18,7 +18,7 @@ fail() {
 
 # Process Args
 
-include_spec=0
+for_fixture=0
 
 while (("$#")); do
   case "${1}" in
@@ -34,9 +34,13 @@ while (("$#")); do
       extra_flags_bazelrc="${2}"
       shift 2
       ;;
-    "--include_spec")
-      include_spec=1
+    "--for_fixture")
+      for_fixture=1
       shift
+      ;;
+    "--swiftc_stub")
+      swiftc_stub="${2}"
+      shift 2
       ;;
     *)
       fail "Unrecognized argument: ${1}"
@@ -58,7 +62,7 @@ dest_dir="$(dirname "${dest}")"
     "${dest_dir}"
 
 # Sync over spec if requested
-if [[ $include_spec -eq 1 ]]; then
+if [[ $for_fixture -eq 1 ]]; then
   readonly spec_src="$PWD/%spec_path%"
   readonly spec_dest="${dest%.xcodeproj}_spec.json"
   python3 -m json.tool "$spec_src" > "$spec_dest"
@@ -86,6 +90,15 @@ fi
 # Copy over xcodeproj.bazelrc
 cp "$bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 chmod u+w "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
+
+# Copy over swiftc stub executable
+readonly swiftc_stub_dest="$dest/rules_xcodeproj/bazel/swiftc"
+if [[ $for_fixture -eq 1 ]]; then
+  # TODO: Create a relative symlink
+  touch "$swiftc_stub_dest"
+else
+  cp -c "$swiftc_stub" "$swiftc_stub_dest"
+fi
 
 # Copy over xcodeproj_extra_flags.bazelrc if it exists
 # We can't include this file as an input to the generator, because it would

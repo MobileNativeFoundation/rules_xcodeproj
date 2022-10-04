@@ -20,10 +20,12 @@ fail() {
 
 readonly bazelrc="$PWD/%bazelrc%"
 readonly extra_flags_bazelrc="$PWD/%extra_flags_bazelrc%"
+readonly swiftc_stub="$PWD/%swiftc_stub%"
 
 installer_flags=(
   --bazelrc "$bazelrc"
   --extra_flags_bazelrc "$extra_flags_bazelrc"
+  --swiftc_stub "$swiftc_stub"
 )
 
 while (("$#")); do
