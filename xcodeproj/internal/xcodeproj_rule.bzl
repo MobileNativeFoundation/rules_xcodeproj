@@ -4,6 +4,7 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
@@ -101,7 +102,12 @@ def _process_extra_files(
 
     # Apply replacement labels
     extra_files = [
-        (str(replacement_labels_by_label.get(label, label)), files)
+        (
+            bazel_labels.normalize(
+                replacement_labels_by_label.get(label, label),
+            ),
+            files,
+        )
         for label, files in extra_files
     ]
 
@@ -159,7 +165,7 @@ def _process_targets(
     }
 
     targets_labels = sets.make([
-        str(replacement_labels.get(t.id, t.label))
+        bazel_labels.normalize(replacement_labels.get(t.id, t.label))
         for t in unprocessed_targets.values()
     ])
 
@@ -185,7 +191,7 @@ targets.
             xcode_target.id,
             xcode_target.label,
         )
-        label_str = str(label)
+        label_str = bazel_labels.normalize(label)
         if (sets.contains(unfocused_labels, label_str) or
             (has_focused_labels and
              not sets.contains(focused_labels, label_str))):
@@ -214,7 +220,7 @@ targets.
             xcode_target.id,
             xcode_target.label,
         )
-        label_str = str(label)
+        label_str = bazel_labels.normalize(label)
 
         # Remove from unfocused (to support `xcode_required_targets`)
         unfocused_targets.pop(xcode_target.id, default = None)
@@ -234,9 +240,11 @@ targets.
     target_merge_dests = {}
     for merge in potential_target_merges:
         src_target = unprocessed_targets[merge.src.id]
+        src_label = bazel_labels.normalize(src_target.label)
         dest_target = unprocessed_targets[merge.dest]
-        if (sets.contains(unfocused_labels, str(src_target.label)) or
-            sets.contains(unfocused_labels, str(dest_target.label))):
+        dest_label = bazel_labels.normalize(dest_target.label)
+        if (sets.contains(unfocused_labels, src_label) or
+            sets.contains(unfocused_labels, dest_label)):
             continue
         target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
 
@@ -245,12 +253,16 @@ targets.
             # We can only merge targets with a single library dependency
             continue
         dest_target = unprocessed_targets[dest]
-        dest_label = str(replacement_labels.get(dest, dest_target.label))
+        dest_label = bazel_labels.normalize(
+            replacement_labels.get(dest, dest_target.label),
+        )
         if not sets.contains(focused_labels, dest_label):
             continue
         src = src_ids[0]
         src_target = unprocessed_targets[src]
-        src_label = str(replacement_labels.get(src, src_target.label))
+        src_label = bazel_labels.normalize(
+            replacement_labels.get(src, src_target.label),
+        )
 
         # Always include src of target merge if dest is included
         focused_targets[src] = src_target
@@ -363,8 +375,9 @@ Are you using an `alias`? `associated_extra_files` requires labels of the actual
 targets: {}
 """.format(invalid_extra_files_targets))
 
+        label_str = bazel_labels.normalize(label)
         for file, owner_label in owned_extra_files.items():
-            if str(label) == str(owner_label):
+            if label_str == owner_label:
                 for f in file.files.to_list():
                     focused_targets_extra_files.append((label, [file_path(f)]))
 
@@ -542,7 +555,7 @@ def _write_json_spec(
         replacement_labels = json.encode(
             flattened_key_values.to_list(
                 {
-                    id: str(label)
+                    id: bazel_labels.normalize(label)
                     for id, label in replacement_labels.items()
                     if id in targets
                 },

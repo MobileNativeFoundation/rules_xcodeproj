@@ -26,7 +26,7 @@ extension CreateCustomXCSchemesTests {
 }
 
 class CreateCustomXCSchemesTests: XCTestCase {
-    let runnerLabel = BazelLabel("//foo")
+    let runnerLabel = BazelLabel("@//foo")
 
     let filePathResolver = FilePathResolver(
         workspaceDirectory: "/Users/TimApple/app",

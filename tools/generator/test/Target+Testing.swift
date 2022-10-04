@@ -33,7 +33,7 @@ extension Target {
     ) -> Self {
         return Target(
             name: product.name,
-            label: label ?? .init(nilIfInvalid: "//some/package:\(product.name)")!,
+            label: label ?? .init(nilIfInvalid: "@//some/package:\(product.name)")!,
             configuration: configuration,
             compileTarget: compileTarget,
             packageBinDir: packageBinDir,

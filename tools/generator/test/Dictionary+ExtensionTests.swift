@@ -11,7 +11,7 @@ extension DictionaryExtensionTests {
     func test_value_keyDoesNotExist_noContext() throws {
         var thrown: Error?
         XCTAssertThrowsError(
-            try targetIDsByLabel.value(for: "//:does_not_exist")
+            try targetIDsByLabel.value(for: "@//:does_not_exist")
         ) {
             thrown = $0
         }
@@ -20,10 +20,12 @@ extension DictionaryExtensionTests {
             return
         }
         let expectedMainMsg = """
-Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist".
+Unable to find the `TargetID` for the `BazelLabel`, "@//:does_not_exist".
 """
         XCTAssertTrue(error.message.contains(expectedMainMsg))
-        let expectedPostMsgFragment = "function: test_value_keyDoesNotExist_noContext()"
+        let expectedPostMsgFragment = """
+function: test_value_keyDoesNotExist_noContext()
+"""
         XCTAssertTrue(error.message.contains(expectedPostMsgFragment))
     }
 
@@ -31,7 +33,7 @@ Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist".
         var thrown: Error?
         XCTAssertThrowsError(
             try targetIDsByLabel.value(
-                for: "//:does_not_exist",
+                for: "@//:does_not_exist",
                 context: "performing a test"
             )
         ) {
@@ -42,7 +44,8 @@ Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist".
             return
         }
         XCTAssertEqual(error.message, """
-Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist", while performing a test.
+Unable to find the `TargetID` for the `BazelLabel`, "@//:does_not_exist", \
+while performing a test.
 """)
     }
 
@@ -50,7 +53,10 @@ Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist", while p
         let customErrorMessage = "Custom error message."
         var thrown: Error?
         XCTAssertThrowsError(
-            try targetIDsByLabel.value(for: "//:does_not_exist", message: customErrorMessage)
+            try targetIDsByLabel.value(
+                for: "@//:does_not_exist",
+                message: customErrorMessage
+            )
         ) {
             thrown = $0
         }
@@ -63,7 +69,7 @@ Unable to find the `TargetID` for the `BazelLabel`, "//:does_not_exist", while p
 }
 
 class DictionaryExtensionTests: XCTestCase {
-    let labelA: BazelLabel = "//:A"
+    let labelA: BazelLabel = "@//:A"
     let targetA: TargetID = "targetA"
 
     lazy var targetIDsByLabel: [BazelLabel: TargetID] = [labelA: targetA]

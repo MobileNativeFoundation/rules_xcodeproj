@@ -26,7 +26,7 @@ def _relative_label_test(ctx):
 
     value = ":chicken"
     actual = bazel_labels.normalize(value)
-    expected = "//Sources/Foo:chicken"
+    expected = "@//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
     return unittest.end(env)
@@ -50,7 +50,7 @@ def _absolute_label_without_repo_name_test(ctx):
 
     value = "//Sources/Foo:chicken"
     actual = bazel_labels.normalize(value)
-    expected = "//Sources/Foo:chicken"
+    expected = "@//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
     return unittest.end(env)

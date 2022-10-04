@@ -6,7 +6,7 @@ import XCTest
 extension XcodeSchemeTests {
     func test_BuildAction_init_noDuplicateLabels() throws {
         let buildTarget = try XcodeScheme.BuildAction(
-            targets: [.init(label: "//foo"), .init(label: "//bar")]
+            targets: [.init(label: "@//foo"), .init(label: "@//bar")]
         )
         XCTAssertEqual(buildTarget.targets.count, 2)
     }
@@ -14,18 +14,21 @@ extension XcodeSchemeTests {
     func test_BuildAction_init_withDuplicateLabels() throws {
         assertPreconditionError(
             try XcodeScheme.BuildAction(
-                targets: [.init(label: "//foo"), .init(label: "//foo")]
+                targets: [.init(label: "@//foo"), .init(label: "@//foo")]
             ),
             expectedMessage: """
-Found a duplicate label //foo:foo in provided `XcodeScheme.BuildTarget` values.
+Found a duplicate label @//foo:foo in provided `XcodeScheme.BuildTarget` values.
 """
         )
     }
 
     func test_BuildAction_init_noTargets() throws {
-        assertPreconditionError(try XcodeScheme.BuildAction(targets: []), expectedMessage: """
+        assertPreconditionError(
+            try XcodeScheme.BuildAction(targets: []),
+            expectedMessage: """
 No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
-""")
+"""
+        )
     }
 }
 
@@ -43,8 +46,10 @@ extension XcodeSchemeTests {
     }
 
     func test_VariableExpansionContext_rawValue_labelString() throws {
-        let labelString = "//path/to/target:target"
-        let context = XcodeScheme.VariableExpansionContext(rawValue: labelString)
+        let labelString = "@//path/to/target:target"
+        let context = XcodeScheme.VariableExpansionContext(
+            rawValue: labelString
+        )
         XCTAssertEqual(context, XcodeScheme.VariableExpansionContext.target(
             try BazelLabel(labelString)
         ))
@@ -66,13 +71,18 @@ extension XcodeSchemeTests {
 
 extension XcodeSchemeTests {
     func test_TestAction_init_noTargets() throws {
-        assertPreconditionError(try XcodeScheme.TestAction(targets: []), expectedMessage: """
+        assertPreconditionError(
+            try XcodeScheme.TestAction(targets: []),
+            expectedMessage: """
 No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
-""")
+"""
+        )
     }
 
     func test_TestAction_init_withTargets() throws {
-        let actual = try XcodeScheme.TestAction(targets: [unitTestLabel, uiTestLabel])
+        let actual = try XcodeScheme.TestAction(
+            targets: [unitTestLabel, uiTestLabel]
+        )
         XCTAssertEqual(actual.targets, [unitTestLabel, uiTestLabel])
         XCTAssertEqual(actual.args, [])
         XCTAssertEqual(actual.env, [:])
@@ -96,9 +106,12 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 
 extension XcodeSchemeTests {
     func test_XcodeScheme_init_noActions() throws {
-        assertPreconditionError(try XcodeScheme(name: "Foo"), expectedMessage: """
+        assertPreconditionError(
+            try XcodeScheme(name: "Foo"),
+            expectedMessage: """
 No actions were provided for the scheme "Foo".
-""")
+"""
+        )
     }
 }
 
@@ -145,11 +158,18 @@ extension XcodeSchemeTests {
                 targets: [
                     .init(
                         label: macOSAppLabel,
-                        buildFor: .init(running: .enabled, archiving: .enabled, analyzing: .enabled)
+                        buildFor: .init(
+                            running: .enabled,
+                            archiving: .enabled,
+                            analyzing: .enabled
+                        )
                     ),
                     .init(
                         label: iOSAppLabel,
-                        buildFor: .init(profiling: .enabled, analyzing: .enabled)
+                        buildFor: .init(
+                            profiling: .enabled,
+                            analyzing: .enabled
+                        )
                     ),
                 ]
             ),
@@ -175,9 +195,15 @@ extension XcodeSchemeTests {
         let expected = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
-                .init(label: macOSAppLabel, buildFor: .init(
-                    running: .enabled, profiling: .enabled, archiving: .enabled, analyzing: .enabled
-                )),
+                .init(
+                    label: macOSAppLabel,
+                    buildFor: .init(
+                        running: .enabled,
+                        profiling: .enabled,
+                        archiving: .enabled,
+                        analyzing: .enabled
+                    )
+                ),
             ]),
             launchAction: .init(target: macOSAppLabel),
             profileAction: .init(target: macOSAppLabel)
@@ -216,42 +242,63 @@ extension XcodeSchemeTests {
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
-                .init(label: macOSAppLabel, buildFor: .init(running: .disabled)),
+                .init(
+                    label: macOSAppLabel,
+                    buildFor: .init(running: .disabled)
+                ),
             ]),
             launchAction: .init(target: macOSAppLabel)
         )
-        assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
-The `build_for` value, "running", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
-disabled, but the target is referenced in the scheme's launch action.
-""")
+        assertUsageError(
+            try xcodeScheme.withDefaults,
+            expectedMessage: """
+The `build_for` value, "running", for "\(macOSAppLabel)" in the \
+"\(schemeName)" Xcode scheme was disabled, but the target is referenced in the \
+scheme's launch action.
+"""
+        )
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withProifle_profilingDisabled() throws {
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
-                .init(label: macOSAppLabel, buildFor: .init(profiling: .disabled)),
+                .init(
+                    label: macOSAppLabel,
+                    buildFor: .init(profiling: .disabled)
+                ),
             ]),
             profileAction: .init(target: macOSAppLabel)
         )
-        assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
-The `build_for` value, "profiling", for "\(macOSAppLabel)" in the "\(schemeName)" Xcode scheme was \
-disabled, but the target is referenced in the scheme's profile action.
-""")
+        assertUsageError(
+            try xcodeScheme.withDefaults,
+            expectedMessage: """
+The `build_for` value, "profiling", for "\(macOSAppLabel)" in the \
+"\(schemeName)" Xcode scheme was disabled, but the target is referenced in the \
+scheme's profile action.
+"""
+        )
     }
 
     func test_XcodeScheme_withDefaults_withBuild_withTest_testingDisabled() throws {
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
             buildAction: try .init(targets: [
-                .init(label: unitTestLabel, buildFor: .init(testing: .disabled)),
+                .init(
+                    label: unitTestLabel,
+                    buildFor: .init(testing: .disabled)
+                ),
             ]),
             testAction: .init(targets: [unitTestLabel])
         )
-        assertUsageError(try xcodeScheme.withDefaults, expectedMessage: """
-The `build_for` value, "testing", for "\(unitTestLabel)" in the "\(schemeName)" Xcode scheme was \
-disabled, but the target is referenced in the scheme's test action.
-""")
+        assertUsageError(
+            try xcodeScheme.withDefaults,
+            expectedMessage: """
+The `build_for` value, "testing", for "\(unitTestLabel)" in the \
+"\(schemeName)" Xcode scheme was disabled, but the target is referenced in the \
+scheme's test action.
+"""
+        )
     }
 
     func test_XcodeScheme_withDefaults_noTargetsWithRunningEnabled() throws {
@@ -309,7 +356,12 @@ extension XcodeSchemeTests {
             )
             return
         }
-        XCTAssertEqual(usageError.message, expectedMessage, file: file, line: line)
+        XCTAssertEqual(
+            usageError.message,
+            expectedMessage,
+            file: file,
+            line: line
+        )
     }
 
     func assertPreconditionError<T>(
@@ -324,13 +376,19 @@ extension XcodeSchemeTests {
         }
         guard let preconditionError = thrown as? PreconditionError else {
             XCTFail(
-                "Expected `PreconditionError`, but was \(String(describing: thrown)).",
+                """
+Expected `PreconditionError`, but was \(String(describing: thrown)).
+""",
                 file: file,
                 line: line
             )
             return
         }
-        XCTAssertEqual(preconditionError.message, expectedMessage, file: file, line: line)
+        XCTAssertEqual(
+            preconditionError.message, expectedMessage,
+            file: file,
+            line: line
+        )
     }
 }
 

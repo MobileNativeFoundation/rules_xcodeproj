@@ -14,7 +14,7 @@ final class AddTargetsTests: XCTestCase {
         let expectedPBXProj = Fixtures.pbxProj()
         let expectedMainGroup = expectedPBXProj.rootObject!.mainGroup!
 
-        let generatorLabel = "//:project"
+        let generatorLabel = "@//:project"
         let generatorConfiguration = "1234zyx"
         let consolidatedTargets = Fixtures.consolidatedTargets
         let workspaceDirectory: Path = "/app-project"

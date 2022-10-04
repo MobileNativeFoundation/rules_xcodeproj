@@ -107,10 +107,10 @@ class TargetIDTargetDictionaryExtensionsTests: XCTestCase {
     //       E
     // Targets C and E have the same label, but different configurations
 
-    let fooLabel: BazelLabel = "//:foo"
-    let barLabel: BazelLabel = "//:bar"
-    let helloLabel: BazelLabel = "//:hello"
-    let goodbyeLabel: BazelLabel = "//:goodbye"
+    let fooLabel: BazelLabel = "@//:foo"
+    let barLabel: BazelLabel = "@//:bar"
+    let helloLabel: BazelLabel = "@//:hello"
+    let goodbyeLabel: BazelLabel = "@//:goodbye"
 
     let chickenConfiguration = "chicken"
     let beefConfiguration = "beef"

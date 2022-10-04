@@ -272,7 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_LABEL = "//:SwiftBin";
+				BAZEL_LABEL = "@//:SwiftBin";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/rules_xcodeproj/SwiftBin/SwiftBin";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin";
 				BAZEL_TARGET_ID = "//:SwiftBin darwin_x86_64-dbg-ST-a9822d5480e1";
@@ -311,7 +311,7 @@
 				BAZEL_CONFIG = rules_xcodeproj;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
-				GENERATOR_LABEL = "//test/fixtures:xcodeproj_bwb.generator";
+				GENERATOR_LABEL = "@//test/fixtures:xcodeproj_bwb.generator";
 				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures";
 				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";

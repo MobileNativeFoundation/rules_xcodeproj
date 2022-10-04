@@ -428,19 +428,19 @@
     "pre_build_script": null,
     "replacement_labels": [
         "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197",
-        "//CommandLine/Tests:CommandLineToolTests",
+        "@//CommandLine/Tests:CommandLineToolTests",
         "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1",
-        "//macOSApp/Test/UITests:macOSAppUITests",
+        "@//macOSApp/Test/UITests:macOSAppUITests",
         "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
-        "//tvOSApp/Test/UITests:tvOSAppUITests",
+        "@//tvOSApp/Test/UITests:tvOSAppUITests",
         "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
-        "//tvOSApp/Test/UnitTests:tvOSAppUnitTests",
+        "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests",
         "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
-        "//watchOSApp/Test/UITests:watchOSAppUITests",
+        "@//watchOSApp/Test/UITests:watchOSAppUITests",
         "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
-        "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests"
+        "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests"
     ],
-    "runner_label": "//test/fixtures:xcodeproj_bwb",
+    "runner_label": "@//test/fixtures:xcodeproj_bwb",
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [
         "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",

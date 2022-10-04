@@ -17,14 +17,14 @@
             "build_action": {
                 "post_actions": [
                     {
-                        "expand_variables_based_on": "//tools/generator:generator",
+                        "expand_variables_based_on": "@//tools/generator:generator",
                         "name": "Example: Stop build time tracking...",
                         "script": "echo 'Completed Building target: generator'"
                     }
                 ],
                 "pre_actions": [
                     {
-                        "expand_variables_based_on": "//tools/generator:generator",
+                        "expand_variables_based_on": "@//tools/generator:generator",
                         "name": "Example: Start build time tracking...",
                         "script": "echo 'Building target: generator'"
                     }
@@ -38,7 +38,7 @@
                             "running": "unspecified",
                             "testing": "unspecified"
                         },
-                        "label": "//tools/generator:generator"
+                        "label": "@//tools/generator:generator"
                     }
                 ]
             },
@@ -58,7 +58,7 @@
                 "env": {
                     "CUSTOM_ENV_VAR": "hello"
                 },
-                "target": "//tools/generator:generator",
+                "target": "@//tools/generator:generator",
                 "working_directory": "$(BUILD_WORKSPACE_DIRECTORY)"
             },
             "name": "generator",
@@ -70,7 +70,7 @@
                 },
                 "expand_variables_based_on": null,
                 "targets": [
-                    "//tools/generator/test:tests"
+                    "@//tools/generator/test:tests"
                 ]
             }
         },
@@ -87,7 +87,7 @@
                             "running": "enabled",
                             "testing": "enabled"
                         },
-                        "label": "//xcodeproj/internal/bazel_integration_files:swiftc"
+                        "label": "@//xcodeproj/internal/bazel_integration_files:swiftc"
                     }
                 ]
             },
@@ -121,9 +121,9 @@
     "pre_build_script": null,
     "replacement_labels": [
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
-        "//tools/generator/test:tests"
+        "@//tools/generator/test:tests"
     ],
-    "runner_label": "//test/fixtures/generator:xcodeproj_bwx",
+    "runner_label": "@//test/fixtures/generator:xcodeproj_bwx",
     "scheme_autogeneration_mode": "none",
     "target_hosts": [],
     "target_merges": [

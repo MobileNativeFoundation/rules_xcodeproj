@@ -577,7 +577,7 @@
 				ARCHS = x86_64;
 				BAZEL_COMPILE_TARGET_ID = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_LABEL = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp";
+				BAZEL_LABEL = "@//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UndefinedBehaviorSanitizerApp";
 				BAZEL_TARGET_ID = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
@@ -685,7 +685,7 @@
 				BAZEL_CONFIG = rules_xcodeproj;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
-				GENERATOR_LABEL = "//test/fixtures:xcodeproj_bwb.generator";
+				GENERATOR_LABEL = "@//test/fixtures:xcodeproj_bwb.generator";
 				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures";
 				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
@@ -752,7 +752,7 @@
 				ARCHS = x86_64;
 				BAZEL_COMPILE_TARGET_ID = "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_LABEL = "//ThreadSanitizerApp:ThreadSanitizerApp";
+				BAZEL_LABEL = "@//ThreadSanitizerApp:ThreadSanitizerApp";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/ThreadSanitizerApp/ThreadSanitizerApp.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/ThreadSanitizerApp";
 				BAZEL_TARGET_ID = "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
@@ -803,7 +803,7 @@
 				ARCHS = x86_64;
 				BAZEL_COMPILE_TARGET_ID = "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_LABEL = "//AddressSanitizerApp:AddressSanitizerApp";
+				BAZEL_LABEL = "@//AddressSanitizerApp:AddressSanitizerApp";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AddressSanitizerApp/AddressSanitizerApp.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AddressSanitizerApp";
 				BAZEL_TARGET_ID = "//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";

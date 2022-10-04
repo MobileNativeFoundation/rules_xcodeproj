@@ -27,7 +27,7 @@
     "post_build_script": "\"$PROJECT_DIR/post-build w spaces.sh\"\n",
     "pre_build_script": "echo 'Pre-building...'",
     "replacement_labels": [],
-    "runner_label": "//test/fixtures:xcodeproj_bwb",
+    "runner_label": "@//test/fixtures:xcodeproj_bwb",
     "scheme_autogeneration_mode": "auto",
     "target_hosts": [],
     "target_merges": [],

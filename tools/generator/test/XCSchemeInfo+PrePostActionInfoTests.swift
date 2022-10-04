@@ -138,7 +138,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
 
     func test_customInit_validActionTargetInfo() throws {
         // given
-        let targetBazelLabel = BazelLabel("//some/package:A")
+        let targetBazelLabel = BazelLabel("@//some/package:A")
         let prePostAction = XcodeScheme.PrePostAction(
             name: "Run Script",
             expandVariablesBasedOn: .target(targetBazelLabel),
@@ -223,7 +223,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
 
     func test_resolveHosts_validActionTargetInfo_withTopLevelTargetInfos() throws {
         // given
-        let targetBazelLabel = BazelLabel("//some/package:W")
+        let targetBazelLabel = BazelLabel("@//some/package:W")
         let prePostAction = XcodeScheme.PrePostAction(
             name: "Run Script",
             expandVariablesBasedOn: .target(targetBazelLabel),
@@ -275,7 +275,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
 
     func test_resolveHosts_validActionTargetInfo_withoutHostInfos_withoutTopLevelTargetInfos() throws {
         // given
-        let targetBazelLabel = BazelLabel("//some/package:A")
+        let targetBazelLabel = BazelLabel("@//some/package:A")
         let prePostAction = XcodeScheme.PrePostAction(
             name: "Run Script",
             expandVariablesBasedOn: .target(targetBazelLabel),
