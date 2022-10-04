@@ -1544,69 +1544,7 @@ appletvos
                 "$(INTERNAL_DIR)/external.xcfilelist",
                 "$(INTERNAL_DIR)/generated.xcfilelist",
             ],
-            shellScript: #"""
-set -euo pipefail
-
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other
-  output_base="$OBJROOT/bazel_output_base"
-fi
-
-if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
-  color=yes
-else
-  color=no
-fi
-
-output_path=$(env -i \
-  DEVELOPER_DIR="$DEVELOPER_DIR" \
-  HOME="$HOME" \
-  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-  USER="$USER" \
-  "$BAZEL_PATH" \
-  ${output_base:+--output_base "$output_base"} \
-  info \
-  --color="$color" \
-  --experimental_convenience_symlinks=ignore \
-  --symlink_prefix=/ \
-  output_path)
-external="${output_path%/*/*/*}/external"
-
-# Create parent directories of generated files, so the project navigator works
-# better faster
-
-mkdir -p bazel-out
-cd bazel-out
-
-sed 's|\/[^\/]*$||' \
-  "$INTERNAL_DIR/generated.rsynclist" \
-  | uniq \
-  | while IFS= read -r dir
-do
-  mkdir -p "$dir"
-done
-
-cd "$SRCROOT"
-
-mkdir -p /tmp/rules_xcodeproj
-date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
-
-env -i \
-  DEVELOPER_DIR="$DEVELOPER_DIR" \
-  HOME="$HOME" \
-  PATH="${PATH//\/usr\/local\/bin//opt/homebrew/bin:/usr/local/bin}" \
-  USER="$USER" \
-  "$BAZEL_PATH" \
-  ${output_base:+--output_base "$output_base"} \
-  build \
-  --color="$color" \
-  --experimental_convenience_symlinks=ignore \
-  --symlink_prefix=/ \
-  '--output_groups=generated_inputs \#(generatorConfiguration)' \
-  \#(generatorLabel)
-
-"""#,
+            shellScript: "\n",
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
         )
