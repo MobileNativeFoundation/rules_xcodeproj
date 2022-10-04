@@ -8,7 +8,7 @@ extension CreateCustomXCSchemesTests {
             schemes: [],
             buildMode: .bazel,
             targetResolver: targetResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            runnerLabel: runnerLabel
         )
         XCTAssertEqual(actual, [])
     }
@@ -18,7 +18,7 @@ extension CreateCustomXCSchemesTests {
             schemes: [schemeA, schemeB],
             buildMode: .bazel,
             targetResolver: targetResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            runnerLabel: runnerLabel
         )
         XCTAssertEqual(actual.count, 2)
         XCTAssertEqual(actual.map(\.name), [schemeA.name, schemeB.name])
@@ -26,7 +26,7 @@ extension CreateCustomXCSchemesTests {
 }
 
 class CreateCustomXCSchemesTests: XCTestCase {
-    let xcodeprojBazelLabel = BazelLabel("//foo")
+    let runnerLabel = BazelLabel("//foo")
 
     let filePathResolver = FilePathResolver(
         workspaceDirectory: "/Users/TimApple/app",

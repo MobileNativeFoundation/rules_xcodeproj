@@ -2,7 +2,8 @@ struct Project: Equatable, Decodable {
     let name: String
     let bazelWorkspaceName: String
     let bazelConfig: String
-    let label: BazelLabel
+    let generatorLabel: BazelLabel
+    let runnerLabel: BazelLabel
     let configuration: String
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]

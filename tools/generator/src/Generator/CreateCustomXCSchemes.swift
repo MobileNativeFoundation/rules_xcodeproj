@@ -7,13 +7,13 @@ extension Generator {
         schemes: [XcodeScheme],
         buildMode: BuildMode,
         targetResolver: TargetResolver,
-        xcodeprojBazelLabel: BazelLabel
+        runnerLabel: BazelLabel
     ) throws -> [XCScheme] {
         return try schemes.map { scheme in
             let schemeInfo = try XCSchemeInfo(
                 scheme: scheme,
                 targetResolver: targetResolver,
-                xcodeprojBazelLabel: xcodeprojBazelLabel
+                runnerLabel: runnerLabel
             )
             return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
         }

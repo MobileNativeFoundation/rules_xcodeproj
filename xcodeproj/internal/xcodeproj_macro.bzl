@@ -284,6 +284,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         post_build = post_build,
         pre_build = pre_build,
         project_name = project_name,
+        runner_label = bazel_labels.normalize(name),
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
         tags = generator_tags,

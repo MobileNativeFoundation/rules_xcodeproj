@@ -28,8 +28,8 @@ extension Generator {
         filePathResolver: FilePathResolver,
         resolvedExternalRepositories: [(Path, Path)],
         bazelConfig: String,
-        xcodeprojBazelLabel: BazelLabel,
-        xcodeprojConfiguration: String,
+        generatorLabel: BazelLabel,
+        generatorConfiguration: String,
         preBuildScript: String?,
         postBuildScript: String?,
         consolidatedTargets: ConsolidatedTargets
@@ -59,11 +59,11 @@ extension Generator {
                 "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
 $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
-                "GENERATOR_LABEL": xcodeprojBazelLabel,
+                "GENERATOR_LABEL": generatorLabel,
                 "GENERATOR_PACKAGE_BIN_DIR": """
-\(xcodeprojConfiguration)/bin/\(xcodeprojBazelLabel.package)
+\(generatorConfiguration)/bin/\(generatorLabel.package)
 """,
-                "GENERATOR_TARGET_NAME": xcodeprojBazelLabel.name,
+                "GENERATOR_TARGET_NAME": generatorLabel.name,
                 "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
                 "INDEX_IMPORT":try filePathResolver
                     .resolve(indexImport, useBazelOut: true).string,
@@ -97,8 +97,8 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
                 .flatMap { $0.sortedTargets },
             files: files,
             filePathResolver: filePathResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel,
-            xcodeprojConfiguration: xcodeprojConfiguration
+            generatorLabel: generatorLabel,
+            generatorConfiguration: generatorConfiguration
         )
 
         let createLLDBSettingsModuleScript =
@@ -154,8 +154,8 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         targets: [Target],
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
-        xcodeprojBazelLabel: BazelLabel,
-        xcodeprojConfiguration: String
+        generatorLabel: BazelLabel,
+        generatorConfiguration: String
     ) throws -> PBXShellScriptBuildPhase {
         let hasGeneratedFiles = files.containsGeneratedFiles
 

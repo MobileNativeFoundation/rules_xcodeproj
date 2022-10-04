@@ -119,11 +119,11 @@ extension XCSchemeInfo {
     init(
         scheme: XcodeScheme,
         targetResolver: TargetResolver,
-        xcodeprojBazelLabel: BazelLabel
+        runnerLabel: BazelLabel
     ) throws {
         let targetIDsByLabel = try scheme.resolveTargetIDs(
             targetResolver: targetResolver,
-            xcodeprojBazelLabel: xcodeprojBazelLabel
+            runnerLabel: runnerLabel
         )
         let schemeWithDefaults = try scheme.withDefaults
         try self.init(

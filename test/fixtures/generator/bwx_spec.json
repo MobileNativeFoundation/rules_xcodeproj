@@ -89,11 +89,11 @@
         "test/fixtures/generator/BUILD"
     ],
     "force_bazel_dependencies": true,
+    "generator_label": "//test/fixtures/generator:xcodeproj_bwx.generator",
     "index_import": {
         "t": "g",
         "_": "darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import"
     },
-    "label": "//test/fixtures/generator:xcodeproj_bwx.generator",
     "name": "bwx",
     "post_build_script": null,
     "pre_build_script": null,
@@ -101,6 +101,7 @@
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
         "//tools/generator/test:tests"
     ],
+    "runner_label": "//test/fixtures/generator:xcodeproj_bwx",
     "scheme_autogeneration_mode": "none",
     "target_hosts": [],
     "target_merges": [
