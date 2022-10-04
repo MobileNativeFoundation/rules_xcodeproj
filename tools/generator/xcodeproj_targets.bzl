@@ -8,7 +8,7 @@ UNFOCUSED_TARGETS = [
 
 _APP_TARGET = "//tools/generator"
 _TEST_TARGET = "//tools/generator/test:tests"
-_TOOL_TARGET = "//xcodeproj/internal/bazel_integration_files:swiftc"
+_TOOL_TARGET = "//tools/swiftc_stub:swiftc"
 
 TOP_LEVEL_TARGETS = [_APP_TARGET, _TEST_TARGET, _TOOL_TARGET]
 
