@@ -22,6 +22,10 @@ for_fixture=0
 
 while (("$#")); do
   case "${1}" in
+    "--bazel_path")
+      bazel_path="${2}"
+      shift 2
+      ;;
     "--bazelrc")
       bazelrc="${2}"
       shift 2
@@ -47,6 +51,10 @@ while (("$#")); do
       ;;
   esac
 done
+
+if [[ -z "${bazel_path:-}" ]]; then
+  fail "Missing required argument: --bazel_path"
+fi
 
 # Resolve the source
 readonly src="$PWD/%source_path%"
@@ -163,7 +171,7 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
 
   xcode_build_version=$(/usr/bin/xcodebuild -version | tail -1 | cut -d " " -f3)
 
-  bazel_out=$("%bazel_path%" "${bazelrcs[@]}" \
+  bazel_out=$("$bazel_path" "${bazelrcs[@]}" \
     info \
     "--repo_env=USE_CLANG_CL=$xcode_build_version" \
     --config=rules_xcodeproj_info \

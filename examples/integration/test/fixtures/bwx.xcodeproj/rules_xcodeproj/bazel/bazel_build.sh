@@ -97,6 +97,7 @@ bazel_cmd=(
   env -i
   HOME="$HOME"
   PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  TERM="$TERM"
   USER="$USER"
   "$BAZEL_PATH"
   "${bazelrcs[@]}"
