@@ -43,6 +43,13 @@ done
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
+# Resolve path to bazel before changing the env variable. This allows bazelisk
+# downloaded bazel to be found. This won't call `tools/bazel` if it exists,
+# which we should find a fix for (e.g. by finding a way to resolve to bazelisk
+# instead of the downloaded bazel).
+bazel_path=$(which "%bazel_path%")
+installer_flags+=(--bazel_path "$bazel_path")
+
 bazelrcs=(
   --noworkspace_rc
   "--bazelrc=$bazelrc"
@@ -62,6 +69,19 @@ pre_config_flags=(
   "--repo_env=USE_CLANG_CL=$xcode_build_version"
 )
 
+# We do want the `tools/bazel` to run if possible
+unset BAZELISK_SKIP_WRAPPER
+
+readonly bazel_cmd=(
+  env -i
+  HOME="$HOME"
+  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  TERM="$TERM"
+  USER="$USER"
+  "$bazel_path"
+  "${bazelrcs[@]}"
+)
+
 # Ensure that our top-level cache buster `override_repository` is valid
 mkdir -p /tmp/rules_xcodeproj
 touch /tmp/rules_xcodeproj/WORKSPACE
@@ -72,8 +92,7 @@ if [[ -z "${build_output_groups:-}" ]]; then
   echo
   echo 'Generating "%project_name%.xcodeproj"'
 
-  "%bazel_path%" \
-    "${bazelrcs[@]}" \
+  "${bazel_cmd[@]}" \
     run \
     "${pre_config_flags[@]}" \
     "--config=%config%_generator" \
@@ -83,8 +102,7 @@ if [[ -z "${build_output_groups:-}" ]]; then
 else
   echo "Building \"%generator_label% --output_groups=$build_output_groups\""
 
-  "%bazel_path%" \
-    "${bazelrcs[@]}" \
+  "${bazel_cmd[@]}" \
     build \
     "${pre_config_flags[@]}" \
     "--config=_%config%_build" \

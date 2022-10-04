@@ -747,7 +747,6 @@ def _write_installer(
         output = installer,
         is_executable = True,
         substitutions = {
-            "%bazel_path%": ctx.attr.bazel_path,
             "%output_path%": install_path,
             "%source_path%": xcodeproj.short_path,
             "%spec_path%": spec_file.short_path,
