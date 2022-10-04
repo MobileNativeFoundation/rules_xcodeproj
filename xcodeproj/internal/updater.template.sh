@@ -42,10 +42,7 @@ for i in "${!updated_xcodeprojs[@]}"; do
     exit 1
   fi
 
-
-  # Exclude swiftc diff for now since this can be different when built with
-  # different Xcode versions.
-  diff=$(git diff -- ":(exclude)*/swiftc" "$xcodeproj")
+  diff=$(git diff "$xcodeproj")
   if [[ -n "$diff" ]]; then
     echo
     echo ".xcodeproj doesn't match expected:"
