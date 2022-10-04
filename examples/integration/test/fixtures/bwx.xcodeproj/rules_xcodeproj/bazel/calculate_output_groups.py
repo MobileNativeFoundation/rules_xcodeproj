@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import datetime
 import glob
 import json
 import os
@@ -43,26 +44,30 @@ def _calculate_label_and_target_ids(
         wait_counter = 0
         while not os.path.exists(build_request_file):
             if wait_counter == 0:
+                now = datetime.datetime.now().strftime('%H:%M:%S')
                 print(
                         f"""\
-note: "{build_request_file}" doesn't exist yet, waiting for it to be \
+note: ({now}) "{build_request_file}" doesn't exist yet, waiting for it to be \
 created...""",
                         file = sys.stderr,
                 )
             if wait_counter == 10:
+                now = datetime.datetime.now().strftime('%H:%M:%S')
                 print(
                         f"""\
-warning: "{build_request_file}" still doesn't exist after 10 seconds. If happens \
-frequently, or the cache is never created, please file a bug report here: \
+warning: ({now}) "{build_request_file}" still doesn't exist after 10 seconds. \
+If happens frequently, or the cache is never created, please file a bug \
+report here: \
 https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
                         file = sys.stderr,
                 )
             time.sleep(1)
             wait_counter += 1
         if wait_counter > 0:
+            now = datetime.datetime.now().strftime('%H:%M:%S')
             print(
                     f"""\
-note: "{build_request_file}" created after {wait_counter} seconds.""",
+note: ({now}) "{build_request_file}" created after {wait_counter} seconds.""",
                     file = sys.stderr,
             )
 
