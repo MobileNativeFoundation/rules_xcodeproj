@@ -10,39 +10,39 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Arrange
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
-                label: "//a:A",
+                label: "@//a:A",
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2": Target.mock(
-                label: "//b:A",
+                label: "@//b:A",
                 product: .init(type: .application, name: "A", path: "")
             ),
             "A 3": Target.mock(
-                label: "//b:A",
+                label: "@//b:A",
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "B": Target.mock(
-                label: "//a:B",
+                label: "@//a:B",
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
             // The following targets only differ by case
             "C 1": Target.mock(
-                label: "//c:A",
+                label: "@//c:A",
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "C 2": Target.mock(
-                label: "//c:a",
+                label: "@//c:a",
                 product: .init(type: .application, name: "a", path: "")
             ),
         ]
         let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
-            "A 1": "//a:A",
-            "A 2": "//b:A (App)",
-            "A 3": "//b:A (Library)",
+            "A 1": "@//a:A",
+            "A 2": "@//b:A (App)",
+            "A 3": "@//b:A (Library)",
             "B": "B",
-            "C 1": "//c:A (Library)",
-            "C 2": "//c:a (App)",
+            "C 1": "@//c:A (Library)",
+            "C 2": "@//c:a (App)",
         ]
 
         // Act

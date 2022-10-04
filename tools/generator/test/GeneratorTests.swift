@@ -13,8 +13,8 @@ final class GeneratorTests: XCTestCase {
             name: "P",
             bazelWorkspaceName: "bazel_workspace",
             bazelConfig: "rules_xcodeproj_test",
-            generatorLabel: "//a/P:xcodeproj.gen",
-            runnerLabel: "//a/P:xcodeproj",
+            generatorLabel: "@//a/P:xcodeproj.gen",
+            runnerLabel: "@//a/P:xcodeproj",
             configuration: "abc123",
             buildSettings: [:],
             targets: Fixtures.targets,
@@ -65,22 +65,22 @@ final class GeneratorTests: XCTestCase {
 
         let replacedLabelsTargets: [TargetID: Target] = [
             "I 0": Target.mock(
-                label: "//:I0",
+                label: "@//:I0",
                 configuration: "1a2b3",
                 product: .init(type: .staticLibrary, name: "I 0", path: "")
             ),
             "I 1": Target.mock(
-                label: "//:I1",
+                label: "@//:I1",
                 configuration: "1a2b3",
                 product: .init(type: .application, name: "I 1", path: "")
             ),
             "I 2": Target.mock(
-                label: "//:I2",
+                label: "@//:I2",
                 configuration: "1a2b3",
                 product: .init(type: .application, name: "I 2", path: "")
             ),
             "WKE": Target.mock(
-                label: "//:WKE",
+                label: "@//:WKE",
                 platform: .device(os: .watchOS),
                 product: .init(
                     type: .watch2Extension,
@@ -89,29 +89,29 @@ final class GeneratorTests: XCTestCase {
                 )
             ),
             "Y": Target.mock(
-                label: "//:Y",
+                label: "@//:Y",
                 configuration: "a1b2c",
                 product: .init(type: .staticLibrary, name: "Y", path: "")
             ),
             "Z": Target.mock(
-                label: "//:Z",
+                label: "@//:Z",
                 configuration: "1a2b3",
                 product: .init(type: .application, name: "Z", path: "")
             ),
         ]
         let mergedTargets: [TargetID: Target] = [
             "I 1": Target.mock(
-                label: "//:I1",
+                label: "@//:I1",
                 configuration: "1a2b3",
                 product: .init(type: .application, name: "I 1", path: "")
             ),
             "I 2": Target.mock(
-                label: "//:I2",
+                label: "@//:I2",
                 configuration: "1a2b3",
                 product: .init(type: .application, name: "I 2", path: "")
             ),
             "WKE": Target.mock(
-                label: "//:WKE",
+                label: "@//:WKE",
                 platform: .device(os: .watchOS),
                 product: .init(
                     type: .watch2Extension,
@@ -120,12 +120,12 @@ final class GeneratorTests: XCTestCase {
                 )
             ),
             "Y": Target.mock(
-                label: "//:Y",
+                label: "@//:Y",
                 configuration: "a1b2c",
                 product: .init(type: .staticLibrary, name: "Y", path: "")
             ),
             "Z": Target.mock(
-                label: "//:Z",
+                label: "@//:Z",
                 configuration: "1a2b3",
                 product: .init(type: .application, name: "Z", path: "")
             ),

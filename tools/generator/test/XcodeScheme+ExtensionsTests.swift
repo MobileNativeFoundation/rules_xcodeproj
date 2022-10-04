@@ -87,7 +87,7 @@ extension XcodeSchemeExtensionsTests {
 
 extension XcodeSchemeExtensionsTests {
     func test_LabelTargetInfo_best_noTargets() throws {
-        let targetInfo = XcodeScheme.LabelTargetInfo(label: "//foo", isTopLevel: false)
+        let targetInfo = XcodeScheme.LabelTargetInfo(label: "@//foo", isTopLevel: false)
 
         var thrown: Error?
         XCTAssertThrowsError(try targetInfo.best) {
@@ -98,7 +98,7 @@ extension XcodeSchemeExtensionsTests {
             return
         }
         XCTAssertEqual(preconditionError.message, """
-Unable to find the best `TargetWithID` for "//foo:foo"
+Unable to find the best `TargetWithID` for "@//foo:foo"
 """)
     }
 
@@ -127,12 +127,12 @@ class XcodeSchemeExtensionsTests: XCTestCase {
 
     // Labels
 
-    let libLabel: BazelLabel = "//examples/integration/Lib:Lib"
-    let libTestsLabel: BazelLabel = "//examples/integration/LibTests:LibTests.__internal__.__test_bundle"
-    let toolLabel: BazelLabel = "//examples/integration/Tool:Tool"
-    let iOSAppLabel: BazelLabel = "//examples/integration/iOSApp:iOSApp"
-    let tvOSAppLabel: BazelLabel = "//examples/integration/tvOSApp:tvOSApp"
-    let watchOSAppLabel: BazelLabel = "//examples/integration/watchOSApp:watchOSApp"
+    let libLabel: BazelLabel = "@//examples/integration/Lib:Lib"
+    let libTestsLabel: BazelLabel = "@//examples/integration/LibTests:LibTests.__internal__.__test_bundle"
+    let toolLabel: BazelLabel = "@//examples/integration/Tool:Tool"
+    let iOSAppLabel: BazelLabel = "@//examples/integration/iOSApp:iOSApp"
+    let tvOSAppLabel: BazelLabel = "@//examples/integration/tvOSApp:tvOSApp"
+    let watchOSAppLabel: BazelLabel = "@//examples/integration/watchOSApp:watchOSApp"
 
     // Configurations
 

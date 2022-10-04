@@ -149,7 +149,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_LABEL = "//:SwiftBin";
+				BAZEL_LABEL = "@//:SwiftBin";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin";
 				BAZEL_TARGET_ID = "//:SwiftBin darwin_x86_64-dbg-ST-3688109ddba2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";

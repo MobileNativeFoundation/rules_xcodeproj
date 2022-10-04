@@ -2576,7 +2576,7 @@
 				BAZEL_CONFIG = rules_xcodeproj;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
-				GENERATOR_LABEL = "//test/fixtures/generator:xcodeproj_bwb.generator";
+				GENERATOR_LABEL = "@//test/fixtures/generator:xcodeproj_bwb.generator";
 				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures/generator";
 				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
@@ -2595,7 +2595,7 @@
 				ARCHS = x86_64;
 				BAZEL_COMPILE_TARGET_ID = "//xcodeproj/internal/bazel_integration_files:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_LABEL = "//xcodeproj/internal/bazel_integration_files:swiftc";
+				BAZEL_LABEL = "@//xcodeproj/internal/bazel_integration_files:swiftc";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc/swiftc";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files";
 				BAZEL_TARGET_ID = "//xcodeproj/internal/bazel_integration_files:swiftc applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
@@ -2778,7 +2778,7 @@
 				ARCHS = x86_64;
 				BAZEL_COMPILE_TARGET_ID = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_LABEL = "//tools/generator/test:tests";
+				BAZEL_LABEL = "@//tools/generator/test:tests";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/test";
 				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
@@ -2853,7 +2853,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_LABEL = "//tools/generator:generator";
+				BAZEL_LABEL = "@//tools/generator:generator";
 				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/rules_xcodeproj/generator/generator";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator";
 				BAZEL_TARGET_ID = "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
@@ -2894,7 +2894,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_LABEL = "//tools/generator:generator.library";
+				BAZEL_LABEL = "@//tools/generator:generator.library";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator";
 				BAZEL_TARGET_ID = "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";

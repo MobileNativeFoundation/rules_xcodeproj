@@ -6,7 +6,7 @@ class ConsolidatedTargetExtensionsTests: XCTestCase {
     let consolidatedTarget = ConsolidatedTarget(
         targets: [
             "id": Target.mock(
-                label: "//a:FooBar",
+                label: "@//a:FooBar",
                 product: .init(type: .staticLibrary, name: "FooBar", path: "")
             ),
         ]
@@ -17,6 +17,6 @@ class ConsolidatedTargetExtensionsTests: XCTestCase {
     }
 
     func test_normalizedLabel() throws {
-        XCTAssertEqual(consolidatedTarget.normalizedLabel, "//a:foobar")
+        XCTAssertEqual(consolidatedTarget.normalizedLabel, "@//a:foobar")
     }
 }
