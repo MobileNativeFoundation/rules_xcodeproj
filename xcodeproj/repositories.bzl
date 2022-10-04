@@ -67,17 +67,17 @@ def xcodeproj_rules_dependencies(
     _maybe(
         http_archive,
         name = "bazel_skylib",
-        url = "https://github.com/bazelbuild/bazel-skylib/archive/df3c9e2735f02a7fe8cd80db4db00fec8e13d25f.tar.gz",
-        strip_prefix = "bazel-skylib-df3c9e2735f02a7fe8cd80db4db00fec8e13d25f",
         sha256 = "58f558d04a936cade1d4744d12661317e51f6a21e3dd7c50b96dc14f3fa3b87d",
+        strip_prefix = "bazel-skylib-df3c9e2735f02a7fe8cd80db4db00fec8e13d25f",
+        url = "https://github.com/bazelbuild/bazel-skylib/archive/df3c9e2735f02a7fe8cd80db4db00fec8e13d25f.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
     _maybe(
         http_archive,
         name = "build_bazel_rules_swift",
-        url = "https://github.com/bazelbuild/rules_swift/releases/download/1.2.0/rules_swift.1.2.0.tar.gz",
         sha256 = "51efdaf85e04e51174de76ef563f255451d5a5cd24c61ad902feeadafc7046d9",
+        url = "https://github.com/bazelbuild/rules_swift/releases/download/1.2.0/rules_swift.1.2.0.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
@@ -99,16 +99,16 @@ native_binary(
     visibility = ["//visibility:public"],
 )
 """,
-        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.5.3.1/index-import.tar.gz",
         sha256 = "176ec3bf1e7ea4a0f5e320fc2fc666f4c736fb51d21a99a8ef134e19ed51ef5f",
+        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.5.3.1/index-import.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
     _maybe(
         http_archive,
         name = "build_bazel_rules_apple",
-        url = "https://github.com/bazelbuild/rules_apple/releases/download/1.1.2/rules_apple.1.1.2.tar.gz",
         sha256 = "90e3b5e8ff942be134e64a83499974203ea64797fd620eddeb71b3a8e1bff681",
+        url = "https://github.com/bazelbuild/rules_apple/releases/download/1.1.2/rules_apple.1.1.2.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
