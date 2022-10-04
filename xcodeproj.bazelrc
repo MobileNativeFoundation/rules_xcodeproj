@@ -1,6 +1,2 @@
-# In-repo output_base makes fixtures relative
-# Having a separate output_base also reduces analysis cache thrashing
-startup --output_base=bazel-output-base
-
 # Enabling archived bundles for fixture coverage
 build:rules_xcodeproj --define=apple.experimental.tree_artifact_outputs=0

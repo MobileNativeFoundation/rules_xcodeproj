@@ -50,6 +50,11 @@ cd "$BUILD_WORKSPACE_DIRECTORY"
 bazel_path=$(which "%bazel_path%")
 installer_flags+=(--bazel_path "$bazel_path")
 
+output_path=$("$bazel_path" info output_path)
+
+readonly nested_output_base_prefix="$output_path/_rules_xcodeproj"
+readonly nested_output_base="$nested_output_base_prefix/build_output_base"
+
 bazelrcs=(
   --noworkspace_rc
   "--bazelrc=$bazelrc"
@@ -90,6 +95,7 @@ readonly bazel_cmd=(
   "${passthrough_envs[@]}"
   "$bazel_path"
   "${bazelrcs[@]}"
+  --output_base "$nested_output_base"
 )
 
 # Ensure that our top-level cache buster `override_repository` is valid

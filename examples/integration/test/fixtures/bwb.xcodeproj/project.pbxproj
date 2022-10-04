@@ -2194,7 +2194,7 @@
 				BEFC18878DC5748769CC7D24 /* examples_ios_app_external */,
 			);
 			name = "Bazel External Repositories";
-			path = "bazel-output-base/external";
+			path = "bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/external";
 			sourceTree = "<group>";
 		};
 		98EF34BC907E91C8A24D2D8C /* dynamic */ = {
@@ -2668,7 +2668,7 @@
 				F42C67C6B7361A26AE646E15 /* watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32 */,
 			);
 			name = "Bazel Generated Files";
-			path = "bazel-output-base/execroot/__main__/bazel-out";
+			path = "bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
 			sourceTree = "<group>";
 		};
 		C830494187F23C2ACF6D66AA /* PreviewContent */ = {
@@ -7332,11 +7332,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__";
-				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/external";
+				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/execroot/__main__";
+				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out";
+				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";

@@ -177,7 +177,7 @@
 				C0094871AF8AEE1DBE5F47F3 /* examples_cc_external */,
 			);
 			name = "Bazel External Repositories";
-			path = "bazel-output-base/external";
+			path = "bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/external";
 			sourceTree = "<group>";
 		};
 		C0094871AF8AEE1DBE5F47F3 /* examples_cc_external */ = {
@@ -643,11 +643,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__";
-				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/external";
+				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/execroot/__main__";
+				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out";
+				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";

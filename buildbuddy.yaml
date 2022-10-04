@@ -99,6 +99,8 @@ actions:
       pull_request:
         branches:
           - "*"
+    git_clean_exclude:
+      - bazel-output-base
     bazel_commands:
       - "run --config=workflows //:buildifier.check"
 
@@ -110,5 +112,7 @@ actions:
       pull_request:
         branches:
           - "*"
+    git_clean_exclude:
+      - bazel-output-base
     bazel_commands:
       - "test --config=workflows //docs:diff_test"
