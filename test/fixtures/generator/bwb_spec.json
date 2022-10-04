@@ -121,11 +121,7 @@
     "pre_build_script": null,
     "replacement_labels": [
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
-        "//tools/generator/test:tests",
-        "//xcodeproj/internal/bazel_integration_files:swiftc_stub macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4",
-        "//xcodeproj/internal/bazel_integration_files:swiftc",
-        "//xcodeproj/internal/bazel_integration_files:swiftc_stub macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609",
-        "//xcodeproj/internal/bazel_integration_files:swiftc"
+        "//tools/generator/test:tests"
     ],
     "runner_label": "//test/fixtures/generator:xcodeproj_bwb",
     "scheme_autogeneration_mode": "none",
@@ -134,6 +130,10 @@
         "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
         [
             "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000"
+        ],
+        "//xcodeproj/internal/bazel_integration_files:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
+        [
+            "//xcodeproj/internal/bazel_integration_files:swiftc applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000"
         ]
     ],
     "targets": [
@@ -899,115 +899,44 @@
                 }
             ]
         },
-        "//xcodeproj/internal/bazel_integration_files:swiftc_stub macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4",
+        "//xcodeproj/internal/bazel_integration_files:swiftc applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
         {
             "build_settings": {
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
-                "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
-                "PRODUCT_MODULE_NAME": "xcodeproj_internal_bazel_integration_files_swiftc_stub",
-                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0"
             },
-            "configuration": "macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4",
-            "inputs": {
-                "srcs": [
-                    "xcodeproj/internal/bazel_integration_files/swiftc.swift"
-                ]
-            },
-            "label": "//xcodeproj/internal/bazel_integration_files:swiftc_stub",
+            "configuration": "applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
+            "dependencies": [
+                "//xcodeproj/internal/bazel_integration_files:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000"
+            ],
+            "is_swift": false,
+            "label": "//xcodeproj/internal/bazel_integration_files:swiftc",
             "linker_inputs": {
                 "linkopts": [
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/xcodeproj_internal_bazel_integration_files_swiftc_stub_library.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
+                    "-ObjC",
+                    "-L/usr/lib/swift",
+                    "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                    "-Wl,-rpath,/usr/lib/swift",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-lc++"
-                ]
-            },
-            "lldb_context": {
-                "c": [
+                ],
+                "static_libraries": [
                     {
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            ".",
-                            {
-                                "_": "macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "name": "swiftc_stub",
-            "outputs": {
-                "p": {
-                    "_": "macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc_stub/swiftc_stub",
-                    "t": "g"
-                }
-            },
-            "package_bin_dir": "bazel-out/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/bin/xcodeproj/internal/bazel_integration_files",
-            "platform": {
-                "arch": "arm64",
-                "minimum_os_version": "12.0",
-                "os": "macos",
-                "variant": "macosx"
-            },
-            "product": {
-                "additional_paths": [],
-                "executable_name": "swiftc_stub",
-                "is_resource_bundle": false,
-                "name": "swiftc_stub",
-                "path": {
-                    "_": "macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc_stub/swiftc_stub",
-                    "t": "g"
-                },
-                "type": "com.apple.product-type.tool"
-            },
-            "search_paths": {
-                "quote_includes": [
-                    ".",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/libswiftc_stub.library.a",
+                        "t": "g"
+                    },
                     {
-                        "_": "macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/bin",
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/libOrderedCollections.a",
                         "t": "g"
                     }
                 ]
-            }
-        },
-        "//xcodeproj/internal/bazel_integration_files:swiftc_stub macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609",
-        {
-            "build_settings": {
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "ENABLE_BITCODE": false,
-                "ENABLE_TESTABILITY": true,
-                "GCC_OPTIMIZATION_LEVEL": "0",
-                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
-                "PRODUCT_MODULE_NAME": "xcodeproj_internal_bazel_integration_files_swiftc_stub",
-                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
-            },
-            "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609",
-            "inputs": {
-                "srcs": [
-                    "xcodeproj/internal/bazel_integration_files/swiftc.swift"
-                ]
-            },
-            "label": "//xcodeproj/internal/bazel_integration_files:swiftc_stub",
-            "linker_inputs": {
-                "linkopts": [
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
-                ]
             },
             "lldb_context": {
                 "c": [
@@ -1021,21 +950,42 @@
                         "q": [
                             ".",
                             {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/bin",
+                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
+                                "t": "g"
+                            }
+                        ]
+                    },
+                    {
+                        "o": [
+                            "-O0",
+                            "-DDEBUG=1",
+                            "-fstack-protector",
+                            "-fstack-protector-all"
+                        ],
+                        "q": [
+                            ".",
+                            {
+                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
                                 "t": "g"
                             }
                         ]
                     }
+                ],
+                "s": [
+                    {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
+                        "t": "g"
+                    }
                 ]
             },
-            "name": "swiftc_stub",
+            "name": "swiftc",
             "outputs": {
                 "p": {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc_stub/swiftc_stub",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc/swiftc",
                     "t": "g"
                 }
             },
-            "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/bin/xcodeproj/internal/bazel_integration_files",
+            "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files",
             "platform": {
                 "arch": "x86_64",
                 "minimum_os_version": "12.0",
@@ -1044,11 +994,11 @@
             },
             "product": {
                 "additional_paths": [],
-                "executable_name": "swiftc_stub",
+                "executable_name": "swiftc",
                 "is_resource_bundle": false,
-                "name": "swiftc_stub",
+                "name": "swiftc",
                 "path": {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc_stub/swiftc_stub",
+                    "_": "applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc/swiftc",
                     "t": "g"
                 },
                 "type": "com.apple.product-type.tool"
@@ -1057,11 +1007,86 @@
                 "quote_includes": [
                     ".",
                     {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/bin",
+                        "_": "applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
                         "t": "g"
                     }
                 ]
             }
+        },
+        "//xcodeproj/internal/bazel_integration_files:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PRODUCT_MODULE_NAME": "xcodeproj_internal_bazel_integration_files_swiftc_stub_library",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
+            "dependencies": [
+                "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000"
+            ],
+            "inputs": {
+                "srcs": [
+                    "xcodeproj/internal/bazel_integration_files/main.swift"
+                ]
+            },
+            "label": "//xcodeproj/internal/bazel_integration_files:swiftc_stub.library",
+            "name": "swiftc_stub.library",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/xcodeproj_internal_bazel_integration_files_swiftc_stub_library.swiftdoc",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/xcodeproj_internal_bazel_integration_files_swiftc_stub_library.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/xcodeproj_internal_bazel_integration_files_swiftc_stub_library.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "12.0",
+                "os": "macos",
+                "variant": "macosx"
+            },
+            "product": {
+                "additional_paths": [],
+                "executable_name": null,
+                "is_resource_bundle": false,
+                "name": "swiftc_stub.library",
+                "path": {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/libswiftc_stub.library.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
+                        "t": "g"
+                    }
+                ]
+            },
+            "swiftmodules": [
+                {
+                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
+                    "t": "g"
+                }
+            ]
         },
         "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
         {

@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "75FCA0FA99838B7987E0D937"
-                     BuildableName = "swiftc_stub"
-                     BlueprintName = "swiftc (arm64)"
+                     BlueprintIdentifier = "A4BAFFA66EE5607F05D752C1"
+                     BuildableName = "swiftc"
+                     BlueprintName = "swiftc"
                      ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for swiftc (arm64)"
+               title = "Set Bazel Build Output Groups for swiftc"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "75FCA0FA99838B7987E0D937"
-                     BuildableName = "swiftc_stub"
-                     BlueprintName = "swiftc (arm64)"
+                     BlueprintIdentifier = "A4BAFFA66EE5607F05D752C1"
+                     BuildableName = "swiftc"
+                     BlueprintName = "swiftc"
                      ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "75FCA0FA99838B7987E0D937"
-               BuildableName = "swiftc_stub"
-               BlueprintName = "swiftc (arm64)"
+               BlueprintIdentifier = "A4BAFFA66EE5607F05D752C1"
+               BuildableName = "swiftc"
+               BlueprintName = "swiftc"
                ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

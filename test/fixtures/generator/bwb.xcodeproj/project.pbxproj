@@ -81,7 +81,6 @@
 		30641992040B785DB00E790C /* XCScheme+LocationScenarioReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FBA88B39294943DB5E5A4 /* XCScheme+LocationScenarioReference.swift */; };
 		30D51D7450B1E5BC999396AC /* AnyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A79739F778E13D555285 /* AnyType.swift */; };
 		30F0C043E51363669C0D7E43 /* XCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC44F6F9D5F1EBF4D7110DD /* XCConfig.swift */; };
-		33366036CC1C26FE64C8F6BC /* swiftc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD9BAD745B2ABAB5A867C4C /* swiftc.swift */; };
 		34B28ED816174289FCA87229 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 15240A701E6FED89576025D5 /* _CompileStub_.m */; };
 		3549F29F57882F4922629FB8 /* XcodeSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2482AD02D4DC6C0AE14BBED3 /* XcodeSchemeTests.swift */; };
 		36161192BE3C16570649BB90 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C89E41DF806BDFD0AF9A374 /* Photos.swift */; };
@@ -99,6 +98,7 @@
 		3F2995EB81E92469E7E2D50D /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC947C625E7E6B30468D77B8 /* Target.swift */; };
 		3FFED7370399E11F4214680A /* OrderedSet+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A39D49FD8DA86F447684A /* OrderedSet+Codable.swift */; };
 		40EAC86C29279A4490B72640 /* XCSchemeInfo+ProfileActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DFC10F60508ACDCC0E0C85 /* XCSchemeInfo+ProfileActionInfo.swift */; };
+		41F8F932350F7BD291DB2A74 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64CFD7146E96D7BA38077EF /* main.swift */; };
 		4200D6B211458A558E256181 /* OrderedDictionary+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F33013AF820E4A2208AA350 /* OrderedDictionary+Equatable.swift */; };
 		42EFDAABD5E997C0347FFE60 /* XCSchemeEnvironmentVariablesExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F397DBABDC12E41113B99 /* XCSchemeEnvironmentVariablesExtensionsTests.swift */; };
 		46565E40B8D7CA2247DF23BF /* OrderedSet+Partial SetAlgebra+Predicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C469D688DDD60A2D8A17B76 /* OrderedSet+Partial SetAlgebra+Predicates.swift */; };
@@ -147,7 +147,6 @@
 		6A8B43D7AB579FFA4EA560A8 /* CustomDumpReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFFE6348E347FF9ED001081 /* CustomDumpReflectable.swift */; };
 		6BD6785813F2AC9561F5C197 /* PBXProj+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0B7B94D16AAD3979ACCEFA /* PBXProj+Testing.swift */; };
 		6BEEFB6F9ABBD9DE61F18D20 /* CreateFilesAndGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42EAB1A5AEF651AF8F6F865 /* CreateFilesAndGroupsTests.swift */; };
-		6E3C66B093F0369263CC915F /* swiftc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD9BAD745B2ABAB5A867C4C /* swiftc.swift */; };
 		71F8B1DD599EA5B0F2D03626 /* _HashTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61319B361ABA09FD294600A /* _HashTable.swift */; };
 		72A3C7DA6BF74DE5F2EFC28C /* CreateProductsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40EB7581064768B08E6C529 /* CreateProductsTest.swift */; };
 		72C95B9913557F8ABDA0C644 /* XCScheme+AnalyzeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0E83DF369E5ED390CA3A /* XCScheme+AnalyzeAction.swift */; };
@@ -322,13 +321,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		110CA51CCA88FB36E469317F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
 		1B37F14BCD93FD7AB94FD7E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -371,13 +363,6 @@
 			remoteGlobalIDString = 302F4C6E9EE3F09D4809EF0A;
 			remoteInfo = CustomDump;
 		};
-		46E7A1C0678B1224DC44C023 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
 		5DC7EE59040383A84FE9D924 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -399,12 +384,26 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		949CEC4E64C1A7BF55310B83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
 		9C160353EC1D44BF4328F010 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
+		};
+		BF36AD0A5A4AED10E71323F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 023B2C041CD79AF5B2FDAFE1;
+			remoteInfo = OrderedCollections;
 		};
 		CB296530EA22D256448D26E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -545,9 +544,7 @@
 		493423CD8285C46D06C4169D /* PathExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtensionsTests.swift; sourceTree = "<group>"; };
 		49B3B73668D297F26F66A5E7 /* XCSchemeInfo+LaunchActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+LaunchActionInfoTests.swift"; sourceTree = "<group>"; };
 		49DC34A91F8DD27F3788A429 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		4A3254A3960F8B28EA0FC051 /* swiftc_stub */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swiftc_stub; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A6A84F2CC6A006E28720D2B /* XCScheme+Runnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+Runnable.swift"; sourceTree = "<group>"; };
-		4AD9BAD745B2ABAB5A867C4C /* swiftc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftc.swift; sourceTree = "<group>"; };
 		4E25F4B3B5010A82A8E2A0CF /* PBXProductType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXProductType+Extensions.swift"; sourceTree = "<group>"; };
 		4E71E5D5A3ED7BDF0B859C36 /* SearchPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPaths.swift; sourceTree = "<group>"; };
 		4F1423CE1647443474F47591 /* XCSchemeInfo+VariableExpansionContextInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+VariableExpansionContextInfoTests.swift"; sourceTree = "<group>"; };
@@ -617,6 +614,7 @@
 		817B04CE0868E15EFE7D8C44 /* OrderedDictionary+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Hashable.swift"; sourceTree = "<group>"; };
 		8645BE71A723C3736CCE7131 /* OrderedSet+Initializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Initializers.swift"; sourceTree = "<group>"; };
 		86549ABD234E1583AA0655DE /* XCCurrentVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCCurrentVersion.swift; sourceTree = "<group>"; };
+		8679D1AFD0E0A57CD3673F24 /* swiftc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swiftc; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B194639E9B15A5EBF6F2B8 /* XCSchemeInfo+HostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+HostInfo.swift"; sourceTree = "<group>"; };
 		86D81D32EB64919C01CE7321 /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
 		87C0073B2B714F5319BE5A11 /* _HashTable+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Testing.swift"; sourceTree = "<group>"; };
@@ -624,7 +622,6 @@
 		889B803E192ED98560009C6D /* OrderedSet+Partial SetAlgebra+Basics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Basics.swift"; sourceTree = "<group>"; };
 		88CFB36E6D7371DC64BD3D3D /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
 		8986F9BDAD8DB56D61CBB787 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		89BA7E8B9101D629B167EC39 /* swiftc_stub */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swiftc_stub; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A718E3E604EF56C4193D1A3 /* OrderedDictionary+Elements+SubSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Elements+SubSequence.swift"; sourceTree = "<group>"; };
 		8B75524B71F7B49A73BD453D /* CreateFilesAndGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFilesAndGroups.swift; sourceTree = "<group>"; };
 		8CC6B4134D1C3D9BDE2F56F1 /* XCSchemeInfo+BuildTargetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+BuildTargetInfo.swift"; sourceTree = "<group>"; };
@@ -756,6 +753,7 @@
 		F4541A6CA919F8EC829FE0B0 /* WriteXcodeProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteXcodeProj.swift; sourceTree = "<group>"; };
 		F4ABCD1903D2A2F3FAE064BC /* WorkspaceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSettings.swift; sourceTree = "<group>"; };
 		F5A9B6F5C64958B1D054D3A6 /* PBXTarget+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXTarget+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		F64CFD7146E96D7BA38077EF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F8C59EAFFB7EF2605BF76058 /* XCVersionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCVersionGroup.swift; sourceTree = "<group>"; };
 		F972F9B12146B979CA3E0318 /* PBXProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXProject.swift; sourceTree = "<group>"; };
 		F9D15BC7ED54D7EBC0111629 /* ConsolidatedTargetExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidatedTargetExtensionsTests.swift; sourceTree = "<group>"; };
@@ -1010,8 +1008,7 @@
 				A0ED50B45C327F01289522B0 /* libPathKit.a */,
 				C7281BBDA526D590DB2E6B19 /* libXcodeProj.a */,
 				5E7B2DB807B1509ABDD69E31 /* libXCTestDynamicOverlay.a */,
-				4A3254A3960F8B28EA0FC051 /* swiftc_stub */,
-				89BA7E8B9101D629B167EC39 /* swiftc_stub */,
+				8679D1AFD0E0A57CD3673F24 /* swiftc */,
 				028AFCA25E6642D1781D7370 /* tests.xctest */,
 			);
 			name = Products;
@@ -1079,7 +1076,7 @@
 			isa = PBXGroup;
 			children = (
 				61A16D64699A4CA4D2A82440 /* BUILD */,
-				4AD9BAD745B2ABAB5A867C4C /* swiftc.swift */,
+				F64CFD7146E96D7BA38077EF /* main.swift */,
 			);
 			path = bazel_integration_files;
 			sourceTree = "<group>";
@@ -1610,6 +1607,25 @@
 			productName = OrderedCollections;
 			productType = "com.apple.product-type.library.static";
 		};
+		2CF4E33AE578202202C2EC87 /* swiftc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC0536A4C7A1B96FDA8E9898 /* Build configuration list for PBXNativeTarget "swiftc" */;
+			buildPhases = (
+				3AE71DFCC6866ED2B9F05CD1 /* Copy Bazel Outputs */,
+				9335DA9C69E988484C66D986 /* Create linking dependencies */,
+				5750FD43A546D41B2C47CBF8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8BE6663A5B31E53FCAE3B12 /* PBXTargetDependency */,
+				47357EBD708980C5634325DE /* PBXTargetDependency */,
+			);
+			name = swiftc;
+			productName = swiftc;
+			productReference = 8679D1AFD0E0A57CD3673F24 /* swiftc */;
+			productType = "com.apple.product-type.tool";
+		};
 		302F4C6E9EE3F09D4809EF0A /* CustomDump */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2103FB87F295A76D072C9F /* Build configuration list for PBXNativeTarget "CustomDump" */;
@@ -1715,42 +1731,6 @@
 			productName = XcodeProj;
 			productType = "com.apple.product-type.library.static";
 		};
-		A9FA1FCE469E7F398E16D570 /* swiftc (x86_64) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8A8F84E9F60EDB718C176471 /* Build configuration list for PBXNativeTarget "swiftc (x86_64)" */;
-			buildPhases = (
-				4A10293896CEF06C78AA5718 /* Copy Bazel Outputs */,
-				6146E61FA82D429774470F74 /* Create linking dependencies */,
-				6805A9D8682F770F66C448DE /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D59281B7CD6042AD0410A766 /* PBXTargetDependency */,
-			);
-			name = "swiftc (x86_64)";
-			productName = swiftc_stub;
-			productReference = 89BA7E8B9101D629B167EC39 /* swiftc_stub */;
-			productType = "com.apple.product-type.tool";
-		};
-		D34B45A01B9464FD0DED912B /* swiftc (arm64) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8F7E48F5B99AEC78345C0E40 /* Build configuration list for PBXNativeTarget "swiftc (arm64)" */;
-			buildPhases = (
-				CBB93B235DCF7B3626E43D1B /* Copy Bazel Outputs */,
-				4ABE70FE6319580B3F6E6E4C /* Create linking dependencies */,
-				ABC19DDE7F5A0E29EB51D468 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				48548972208BB078736D75F3 /* PBXTargetDependency */,
-			);
-			name = "swiftc (arm64)";
-			productName = swiftc_stub;
-			productReference = 4A3254A3960F8B28EA0FC051 /* swiftc_stub */;
-			productType = "com.apple.product-type.tool";
-		};
 		F12050E30563A81EEBB2EA9B /* generator.library */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 537F24897CAC8E48070BBA94 /* Build configuration list for PBXNativeTarget "generator.library" */;
@@ -1784,6 +1764,10 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
+					2CF4E33AE578202202C2EC87 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 9999;
+					};
 					302F4C6E9EE3F09D4809EF0A = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
@@ -1808,14 +1792,6 @@
 						LastSwiftMigration = 9999;
 					};
 					A09CE18EBBDAC65CD0C6B7D1 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 9999;
-					};
-					A9FA1FCE469E7F398E16D570 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 9999;
-					};
-					D34B45A01B9464FD0DED912B = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
@@ -1844,8 +1820,7 @@
 				F12050E30563A81EEBB2EA9B /* generator.library */,
 				023B2C041CD79AF5B2FDAFE1 /* OrderedCollections */,
 				4A2EC1B2D6969F717CB890DE /* PathKit */,
-				D34B45A01B9464FD0DED912B /* swiftc (arm64) */,
-				A9FA1FCE469E7F398E16D570 /* swiftc (x86_64) */,
+				2CF4E33AE578202202C2EC87 /* swiftc */,
 				979D12680661F4B864602CE6 /* tests */,
 				A09CE18EBBDAC65CD0C6B7D1 /* XcodeProj */,
 				9DF90F35406923EA23C68CFC /* XCTestDynamicOverlay */,
@@ -1869,6 +1844,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3AE71DFCC6866ED2B9F05CD1 /* Copy Bazel Outputs */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"swiftc\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3B581A2D7C1575EF22D8ECDA /* Copy Bazel Outputs */ = {
@@ -1904,39 +1895,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"tests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4A10293896CEF06C78AA5718 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"swiftc_stub\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4ABE70FE6319580B3F6E6E4C /* Create linking dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create linking dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 		552BD18EE10BBA93EBBDB88E /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1951,23 +1909,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libPathKit.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6146E61FA82D429774470F74 /* Create linking dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create linking dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8AD6171C2CD18BEE615F0279 /* Copy Bazel Outputs */ = {
@@ -2018,6 +1959,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libOrderedCollections.a\" \\\n  \"\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9335DA9C69E988484C66D986 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A630CF63C380FAE522825A9 /* Bazel Build */ = {
@@ -2073,22 +2031,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libgenerator.library.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CBB93B235DCF7B3626E43D1B /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"swiftc_stub\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -2140,11 +2082,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6805A9D8682F770F66C448DE /* Sources */ = {
+		5750FD43A546D41B2C47CBF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3C66B093F0369263CC915F /* swiftc.swift in Sources */,
+				41F8F932350F7BD291DB2A74 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2304,14 +2246,6 @@
 				DC69A9A145F602CB5EAF30D3 /* XcodeScheme+BuildForTests.swift in Sources */,
 				2C1B9D8CC53EA9F00CC34580 /* XcodeScheme+ExtensionsTests.swift in Sources */,
 				3549F29F57882F4922629FB8 /* XcodeSchemeTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABC19DDE7F5A0E29EB51D468 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33366036CC1C26FE64C8F6BC /* swiftc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2536,11 +2470,11 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = CB296530EA22D256448D26E6 /* PBXContainerItemProxy */;
 		};
-		48548972208BB078736D75F3 /* PBXTargetDependency */ = {
+		47357EBD708980C5634325DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 46E7A1C0678B1224DC44C023 /* PBXContainerItemProxy */;
+			name = OrderedCollections;
+			target = 023B2C041CD79AF5B2FDAFE1 /* OrderedCollections */;
+			targetProxy = BF36AD0A5A4AED10E71323F9 /* PBXContainerItemProxy */;
 		};
 		49193367A3BB0A1F434F8451 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2584,17 +2518,17 @@
 			target = 023B2C041CD79AF5B2FDAFE1 /* OrderedCollections */;
 			targetProxy = D5437FAEB47AEF0B67E5BB23 /* PBXContainerItemProxy */;
 		};
-		D59281B7CD6042AD0410A766 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 110CA51CCA88FB36E469317F /* PBXContainerItemProxy */;
-		};
 		E018DF11F7B6F56C49542FBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 9C160353EC1D44BF4328F010 /* PBXContainerItemProxy */;
+		};
+		F8BE6663A5B31E53FCAE3B12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 949CEC4E64C1A7BF55310B83 /* PBXContainerItemProxy */;
 		};
 		F95C6EAD9F7184C6730E9F61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2652,6 +2586,46 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
+			};
+			name = Debug;
+		};
+		5E0BAD16EDE1CB9B8D90D599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_ID = "//xcodeproj/internal/bazel_integration_files:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
+				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
+				BAZEL_LABEL = "//xcodeproj/internal/bazel_integration_files:swiftc";
+				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc/swiftc";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/xcodeproj/internal/bazel_integration_files";
+				BAZEL_TARGET_ID = "//xcodeproj/internal/bazel_integration_files:swiftc applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				COMPILE_TARGET_NAME = swiftc_stub.library;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = NO;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_EXTENSION = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/xcodeproj/internal/bazel_integration_files/swiftc.link.params";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				PRODUCT_MODULE_NAME = xcodeproj_internal_bazel_integration_files_swiftc_stub_library;
+				PRODUCT_NAME = swiftc;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = swiftc;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXEC_ROOT)",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -2844,43 +2818,6 @@
 			};
 			name = Debug;
 		};
-		D0E16004631A9F6D9324B281 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "//xcodeproj/internal/bazel_integration_files:swiftc";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc_stub/swiftc_stub";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/bin/xcodeproj/internal/bazel_integration_files";
-				BAZEL_TARGET_ID = "//xcodeproj/internal/bazel_integration_files:swiftc_stub macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				COMPILE_TARGET_NAME = swiftc;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEPLOYMENT_LOCATION = NO;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/xcodeproj/internal/bazel_integration_files/swiftc.link.params";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
-				PRODUCT_MODULE_NAME = xcodeproj_internal_bazel_integration_files_swiftc_stub;
-				PRODUCT_NAME = swiftc_stub;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = swiftc;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-7e5a447eb609/bin",
-				);
-			};
-			name = Debug;
-		};
 		D1929457CE76F5F01B63B2D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2949,43 +2886,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXEC_ROOT)",
 					"$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
-				);
-			};
-			name = Debug;
-		};
-		DD4577AE3673BEEFF6F2FD24 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				BAZEL_LABEL = "//xcodeproj/internal/bazel_integration_files:swiftc";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/bin/xcodeproj/internal/bazel_integration_files/rules_xcodeproj/swiftc_stub/swiftc_stub";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/bin/xcodeproj/internal/bazel_integration_files";
-				BAZEL_TARGET_ID = "//xcodeproj/internal/bazel_integration_files:swiftc_stub macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				COMPILE_TARGET_NAME = swiftc;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEPLOYMENT_LOCATION = NO;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/xcodeproj/internal/bazel_integration_files/swiftc.link.params";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
-				PRODUCT_MODULE_NAME = xcodeproj_internal_bazel_integration_files_swiftc_stub;
-				PRODUCT_NAME = swiftc_stub;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = swiftc;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXEC_ROOT)",
-					"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-9b78e635e2f4/bin",
 				);
 			};
 			name = Debug;
@@ -3065,22 +2965,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		8A8F84E9F60EDB718C176471 /* Build configuration list for PBXNativeTarget "swiftc (x86_64)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D0E16004631A9F6D9324B281 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		8F7E48F5B99AEC78345C0E40 /* Build configuration list for PBXNativeTarget "swiftc (arm64)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DD4577AE3673BEEFF6F2FD24 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		914277EC9F57B808A8817CF5 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3101,6 +2985,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC1884C822C7D3AD5CAA6B9E /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AC0536A4C7A1B96FDA8E9898 /* Build configuration list for PBXNativeTarget "swiftc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E0BAD16EDE1CB9B8D90D599 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

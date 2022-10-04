@@ -214,7 +214,7 @@ xcodeproj_runner = rule(
         ),
         "_swiftc_stub": attr.label(
             cfg = "exec",
-            default = Label("//xcodeproj/internal/bazel_integration_files:swiftc"),
+            default = Label("//xcodeproj/internal/bazel_integration_files:universal_swiftc_stub"),
             executable = True,
         ),
     },

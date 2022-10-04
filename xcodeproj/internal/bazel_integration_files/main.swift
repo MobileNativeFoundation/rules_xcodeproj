@@ -1,4 +1,5 @@
 import Foundation
+import OrderedCollections
 
 // MARK: - Helpers
 
@@ -15,7 +16,7 @@ extension URL {
     }
 }
 
-func findPath(key: String, from args: [String]) -> URL? {
+func findPath(key: String, from args: OrderedSet<String>) -> URL? {
     var found = false
     for arg in args {
         if found {
@@ -28,12 +29,12 @@ func findPath(key: String, from args: [String]) -> URL? {
     return nil
 }
 
-func isWMO(args: [String]) -> Bool {
+func isWMO(args: OrderedSet<String>) -> Bool {
     return args.contains("-wmo") || args.contains("-whole-module-optimization")
 }
 
 /// Touch the Xcode-required .d files
-func touchDepsFiles(_ args: [String]) throws {
+func touchDepsFiles(_ args: OrderedSet<String>) throws {
     guard let outputFileMapPath = findPath(key: "-output-file-map", from: args)
     else { return }
 
@@ -44,7 +45,7 @@ func touchDepsFiles(_ args: [String]) throws {
     } else {
         var swiftFileListPath: String?
         for arg in args {
-            if arg.hasPrefix("@") {
+            if arg.hasPrefix("@"), arg.hasSuffix(".SwiftFileList") {
                 swiftFileListPath = String(arg.dropFirst())
                 break
             }
@@ -64,7 +65,7 @@ func touchDepsFiles(_ args: [String]) throws {
 }
 
 /// Touch the Xcode-required .swift{module,doc,sourceinfo} files"
-func touchSwiftmoduleArtifacts(_ args: [String]) throws {
+func touchSwiftmoduleArtifacts(_ args: OrderedSet<String>) throws {
     if var swiftmodulePath = findPath(key: "-emit-module-path", from: args) {
         var swiftdocPath = swiftmodulePath.deletingPathExtension().appendingPathExtension("swiftdoc")
         var swiftsourceinfoPath = swiftmodulePath.deletingPathExtension().appendingPathExtension("swiftsourceinfo")
@@ -81,10 +82,10 @@ func touchSwiftmoduleArtifacts(_ args: [String]) throws {
     }
 }
 
-func runSubProcess(args: [String]) throws -> Int32 {
+func runSubProcess(executable: String, args: [String]) throws -> Int32 {
     let task = Process()
-    task.launchPath = args.first
-    task.arguments = Array(args.dropFirst())
+    task.launchPath = executable
+    task.arguments = args
     try task.run()
     task.waitUntilExit()
     return task.terminationStatus
@@ -92,24 +93,37 @@ func runSubProcess(args: [String]) throws -> Int32 {
 
 // MARK: - Main
 
-let args = CommandLine.arguments
+let args = OrderedSet(CommandLine.arguments)
 
-if args.count == 1, args.last == "-v" {
-    exit(try runSubProcess(args: ["swiftc", "-v"]))
+if args.count == 2, args.last == "-v" {
+    exit(try runSubProcess(executable: "swiftc", args: ["-v"]))
 }
 
 for arg in args {
     // Pass through for SwiftUI Preview thunk compilation
     if arg.hasSuffix(".preview-thunk.swift"), args.contains("-output-file-map") {
-        guard let sdkPath = findPath(key: "-sdk", from: args)?.path else { break }
+        guard let sdkPath = findPath(key: "-sdk", from: args)?.path
+        else {
+            print("warning: No such argument '-sdk'")
+            exit(try runSubProcess(executable: "swiftc", args: Array(args.dropFirst())))
+        }
+
+        // TODO: Make this work with custom toolchains
+        // We could produce this file at the start of the build?
         let fullRange = NSRange(sdkPath.startIndex..., in: sdkPath)
         let matches = try NSRegularExpression(pattern: #".*?/Contents/Developer)/.*"#)
             .matches(in: sdkPath, range: fullRange)
-        guard let developerDir = matches.first else { break }
-        let swiftc = "\(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
-        exit(try runSubProcess(args: [swiftc] + args.dropFirst()))
-    }
+        guard let developerDir = matches.first else {
+            print("warning: Failed to parse DEVELOPER_DIR from '-sdk'")
+            exit(try runSubProcess(executable: "swiftc", args: Array(args.dropFirst())))
+        }
 
-    try touchDepsFiles(args)
-    try touchSwiftmoduleArtifacts(args)
+        exit(try runSubProcess(
+            executable: "\(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+            args: Array(args.dropFirst())
+        ))
+    }
 }
+
+try touchDepsFiles(args)
+try touchSwiftmoduleArtifacts(args)
