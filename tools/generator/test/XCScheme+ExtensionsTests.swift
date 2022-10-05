@@ -30,7 +30,7 @@ extension XCSchemeExtensionsTests {
             buildActionEntries: try buildActionInfo.targets.buildActionEntries,
             preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
             parallelizeBuild: true,
-            buildImplicitDependencies: true
+            buildImplicitDependencies: false
         )
         XCTAssertEqual(buildAction, expected)
     }
@@ -67,7 +67,7 @@ extension XCSchemeExtensionsTests {
                 buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
             postActions: postActions.map(\.executionAction),
             parallelizeBuild: true,
-            buildImplicitDependencies: true
+            buildImplicitDependencies: false
         )
         XCTAssertEqual(buildAction, expected)
     }
@@ -78,7 +78,7 @@ extension XCSchemeExtensionsTests {
             buildActionEntries: try buildActionInfo.targets.buildActionEntries,
             preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
             parallelizeBuild: true,
-            buildImplicitDependencies: true
+            buildImplicitDependencies: false
         )
         XCTAssertEqual(buildAction, expected)
     }
