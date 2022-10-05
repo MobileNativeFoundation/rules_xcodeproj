@@ -186,18 +186,29 @@ fi
 
 # Build
 
+apply_sanitizers=1
 if [ "$ACTION" == "indexbuild" ]; then
   config="${BAZEL_CONFIG}_indexbuild"
+
+  # Index Build doesn't need sanitizers
+  apply_sanitizers=0
 elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
   config="${BAZEL_CONFIG}_swiftuipreviews"
-elif [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
-  config="${BAZEL_CONFIG}_asan"
-elif [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
-  config="${BAZEL_CONFIG}_tsan"
-elif [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
-  config="${BAZEL_CONFIG}_ubsan"
 else
   config="_${BAZEL_CONFIG}_build"
+fi
+
+# Runtime Sanitizers
+if [[ $apply_sanitizers -eq 1 ]]; then
+  if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
+    pre_config_flags+=(--features=asan)
+  fi
+  if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
+    pre_config_flags+=(--features=tsan)
+  fi
+  if [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
+    pre_config_flags+=(--features=ubsan)
+  fi
 fi
 
 # Ensure that our top-level cache buster `override_repository` is valid
