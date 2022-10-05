@@ -426,13 +426,6 @@
 			remoteGlobalIDString = 3A4021D8F5FC68CD4FB8B6F1;
 			remoteInfo = generator.library;
 		};
-		AC7B037F2A656361C03E0B19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B0128CCFCF9E56DA6D808193;
-			remoteInfo = OrderedCollections;
-		};
 		CFBF834907E2F47679529098 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -1653,7 +1646,6 @@
 			);
 			dependencies = (
 				F5D388BC3954D759E29006FE /* PBXTargetDependency */,
-				485ED12E0979370E7C9CE402 /* PBXTargetDependency */,
 			);
 			name = swiftc;
 			productName = swiftc;
@@ -2276,12 +2268,6 @@
 			target = 299DA591171C10F8AF73F244 /* PathKit */;
 			targetProxy = 3A1A9FA674016F6D082BD8E2 /* PBXContainerItemProxy */;
 		};
-		485ED12E0979370E7C9CE402 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OrderedCollections;
-			target = B0128CCFCF9E56DA6D808193 /* OrderedCollections */;
-			targetProxy = AC7B037F2A656361C03E0B19 /* PBXContainerItemProxy */;
-		};
 		4AA89D33E273962408747D43 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = XcodeProj;
@@ -2592,7 +2578,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_apple_swift_collections";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

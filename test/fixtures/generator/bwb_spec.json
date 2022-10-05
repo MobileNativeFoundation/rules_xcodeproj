@@ -918,7 +918,6 @@
             "linker_inputs": {
                 "linkopts": [
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/swiftc_stub/tools_swiftc_stub_swiftc_stub_library.swiftmodule",
-                    "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
@@ -930,10 +929,6 @@
                 "static_libraries": [
                     {
                         "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/swiftc_stub/libswiftc_stub.library.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/libOrderedCollections.a",
                         "t": "g"
                     }
                 ]
@@ -954,27 +949,6 @@
                                 "t": "g"
                             }
                         ]
-                    },
-                    {
-                        "o": [
-                            "-O0",
-                            "-DDEBUG=1",
-                            "-fstack-protector",
-                            "-fstack-protector-all"
-                        ],
-                        "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
-                                "t": "g"
-                            }
-                        ]
-                    }
-                ],
-                "s": [
-                    {
-                        "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
-                        "t": "g"
                     }
                 ]
             },
@@ -1028,9 +1002,6 @@
                 "SWIFT_VERSION": "5.0"
             },
             "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
-            "dependencies": [
-                "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000"
-            ],
             "inputs": {
                 "srcs": [
                     "tools/swiftc_stub/main.swift"
@@ -1080,13 +1051,7 @@
                         "t": "g"
                     }
                 ]
-            },
-            "swiftmodules": [
-                {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000",
         {

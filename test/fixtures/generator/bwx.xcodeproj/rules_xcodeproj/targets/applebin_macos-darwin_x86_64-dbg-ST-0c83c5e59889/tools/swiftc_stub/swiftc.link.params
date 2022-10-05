@@ -1,5 +1,4 @@
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/swiftc_stub/tools_swiftc_stub_swiftc_stub_library.swiftmodule/x86_64-apple-macos.swiftmodule
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule/x86_64-apple-macos.swiftmodule
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx
@@ -7,4 +6,3 @@
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
-$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_apple_swift_collections/libOrderedCollections.a
