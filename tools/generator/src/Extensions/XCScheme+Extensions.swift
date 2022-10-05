@@ -48,7 +48,7 @@ extension XCScheme {
         } else {
             buildAction = .init(
                 parallelizeBuild: true,
-                buildImplicitDependencies: true
+                buildImplicitDependencies: false
             )
         }
 
@@ -111,7 +111,7 @@ extension XCScheme.BuildAction {
                 otherPreActions,
             postActions: buildActionInfo.postActions.map(\.executionAction),
             parallelizeBuild: true,
-            buildImplicitDependencies: true
+            buildImplicitDependencies: false
         )
     }
 }
