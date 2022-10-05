@@ -21,8 +21,8 @@ if [ "$ACTION" == "indexbuild" ]; then
     # Inputs for compiling
     readonly output_group_prefixes="xc"
   else
-    # Compiled outputs (i.e. swiftmodules)
-    readonly output_group_prefixes="bc"
+    # Compiled outputs (i.e. swiftmodules), and generated inputs
+    readonly output_group_prefixes="bc,bg"
   fi
 else
   if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
