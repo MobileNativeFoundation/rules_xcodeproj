@@ -72,12 +72,22 @@ pre_config_flags=(
 # We do want the `tools/bazel` to run if possible
 unset BAZELISK_SKIP_WRAPPER
 
+passthrough_envs=(
+  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+)
+if [[ -n "${HOME:-}" ]]; then
+  passthrough_envs+=(HOME="$HOME")
+fi
+if [[ -n "${TERM:-}" ]]; then
+  passthrough_envs+=(TERM="$TERM")
+fi
+if [[ -n "${USER:-}" ]]; then
+  passthrough_envs+=(USER="$USER")
+fi
+
 readonly bazel_cmd=(
   env -i
-  HOME="$HOME"
-  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-  TERM="$TERM"
-  USER="$USER"
+  "${passthrough_envs[@]}"
   "$bazel_path"
   "${bazelrcs[@]}"
 )
