@@ -65,6 +65,17 @@ def _create(
                 ))
         ],
     )
+    transitive_generated_srcs = depset(
+        transitive = [
+            info.inputs.generated
+            for attr, info in transitive_infos
+            if (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                ))
+        ],
+    )
     transitive_indexestores = depset(
         [indexstore] if indexstore else None,
         transitive = [
@@ -106,6 +117,7 @@ def _create(
         products_output_group_name = "bp {}".format(direct_outputs.id)
         direct_group_list = [
             ("bc {}".format(direct_outputs.id), transitive_compiles),
+            ("bg {}".format(direct_outputs.id), transitive_generated_srcs),
             ("bi {}".format(direct_outputs.id), transitive_indexestores),
             (products_output_group_name, transitive_products),
         ]
