@@ -51,7 +51,8 @@ then
   # matches.
   readonly object_file_prefix="/${PROJECT_TEMP_DIR##*/}"
 else
-  readonly object_file_prefix="$PROJECT_TEMP_DIR"
+  # Remove SwiftUI Previews part of path
+  readonly object_file_prefix="${PROJECT_TEMP_DIR/\/Intermediates.noindex\/Previews\/*\/Intermediates.noindex\///Intermediates.noindex/}"
 fi
 
 # The order of remaps is important. The first match is used. So we try the most
@@ -67,7 +68,7 @@ remaps=(
   # When we add support for C-based index imports we will have to use another
   # pattern:
   # https://github.com/bazelbuild/bazel/blob/c4a1ab8b6577c4376aaaa5c3c2d4ef07d524175c/src/main/java/com/google/devtools/build/lib/rules/cpp/CcCompilationHelper.java#L1358
-  -remap "^(?:$execution_root_regex/)?(bazel-out/[^/]+/bin/)(?:_swift_incremental/)?(.*?)([^/]+)_objs/.*?([^/]+?)(?:\.swift)?\\.o\$=$object_file_prefix/\$1\$2\$3/Objects-normal/$ARCHS/\$4.o"
+  -remap "^(?:$execution_root_regex/)?(bazel-out/[^/]+/bin/)(?:_swift_incremental/)?(.*?)([^/]+)_objs/.*?([^/]+?)(?:\.swift)?\.o\$=$object_file_prefix/\$1\$2\$3/Objects-normal/$ARCHS/\$4.o"
 
   # Generated sources and swiftmodules
   #

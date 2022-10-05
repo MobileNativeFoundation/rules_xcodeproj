@@ -88,10 +88,6 @@ build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-private-imports
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-dynamic-replacement-chaining
 
-# Unset `swift.index-while-building` since we don't need index store data, and
-# we already have cache misses from the `swiftc` flags above
-build:rules_xcodeproj_swiftuipreviews --features=-swift.index_while_building
-
 ### `--config=rules_xcodeproj_asan`
 #
 # Used when building with Address Sanitizer enabled.
