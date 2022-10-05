@@ -29,9 +29,9 @@ else
     # Inputs for compiling, inputs for linking, and index store data
     readonly output_group_prefixes="xc,xl,xi"
   else
-    # Compiled outputs (i.e. swiftmodules), products (i.e. bundles), and index
-    # store data
-    readonly output_group_prefixes="bc,bp,bi"
+    # Compiled outputs (i.e. swiftmodules), products (i.e. bundles), generated
+    # inputs, and index store data
+    readonly output_group_prefixes="bc,bp,bg,bi"
   fi
 fi
 
