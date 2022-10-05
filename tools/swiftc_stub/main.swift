@@ -90,14 +90,6 @@ func touchSwiftmoduleArtifacts(_ args: [String]) throws {
 }
 
 func runSubProcess(executable: String, args: [String]) throws -> Int32 {
-    // Write developerDir to /tmp/hello
-    let developerDirPath = URL(fileURLWithPath: "/tmp/hello")
-    try "\(executable) \(args.joined(separator: " "))".write(
-        to: developerDirPath,
-        atomically: true,
-        encoding: .utf8
-    )
-
     let task = Process()
     task.launchPath = executable
     task.arguments = args
