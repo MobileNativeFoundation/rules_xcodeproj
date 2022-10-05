@@ -88,27 +88,6 @@ build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-private-imports
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-dynamic-replacement-chaining
 
-### `--config=rules_xcodeproj_asan`
-#
-# Used when building with Address Sanitizer enabled.
-
-build:rules_xcodeproj_asan --config=rules_xcodeproj
-build:rules_xcodeproj_asan --features=asan
-
-### `--config=rules_xcodeproj_ubsan`
-#
-# Used when building with Undefined Behavior Sanitizer enabled.
-
-build:rules_xcodeproj_ubsan --config=rules_xcodeproj
-build:rules_xcodeproj_ubsan --features=ubsan
-
-### `--config=rules_xcodeproj_tsan`
-#
-# Used when building with Thread Sanitizer enabled.
-
-build:rules_xcodeproj_tsan --config=rules_xcodeproj
-build:rules_xcodeproj_tsan --features=tsan
-
 ### `--config=_rules_xcodeproj_build`
 #
 # Private implementation detail. Don't adjust this config, adjust
