@@ -26,9 +26,6 @@ macos_command_line_application(
 swift_library(
     name = "swiftc_stub.library",
     srcs = ["main.swift"],
-    deps = [
-        "@com_github_apple_swift_collections//:OrderedCollections",
-    ],
 )
 
 swift_binary(

@@ -1,5 +1,4 @@
 import Foundation
-import OrderedCollections
 
 // MARK: - Helpers
 
@@ -16,7 +15,7 @@ extension URL {
     }
 }
 
-func findPath(key: String, from args: OrderedSet<String>) -> URL? {
+func findPath(key: String, from args: [String]) -> URL? {
     var found = false
     for arg in args {
         if found {
@@ -29,16 +28,16 @@ func findPath(key: String, from args: OrderedSet<String>) -> URL? {
     return nil
 }
 
-func isWMO(args: OrderedSet<String>) -> Bool {
+func isWMO(args: Set<String>) -> Bool {
     return args.contains("-wmo") || args.contains("-whole-module-optimization")
 }
 
 /// Touch the Xcode-required .d files
-func touchDepsFiles(_ args: OrderedSet<String>) throws {
+func touchDepsFiles(args: [String], argsSet: Set<String>) throws {
     guard let outputFileMapPath = findPath(key: "-output-file-map", from: args)
     else { return }
 
-    if isWMO(args: args) {
+    if isWMO(args: argsSet) {
         let dPath = String(
             outputFileMapPath.path.dropLast("-OutputFileMap.json".count) +
             "-master.d"
@@ -67,7 +66,7 @@ func touchDepsFiles(_ args: OrderedSet<String>) throws {
 }
 
 /// Touch the Xcode-required .swift{module,doc,sourceinfo} files"
-func touchSwiftmoduleArtifacts(_ args: OrderedSet<String>) throws {
+func touchSwiftmoduleArtifacts(_ args: [String]) throws {
     if var swiftmodulePath = findPath(key: "-emit-module-path", from: args) {
         var swiftdocPath = swiftmodulePath.deletingPathExtension()
             .appendingPathExtension("swiftdoc")
@@ -99,7 +98,7 @@ func runSubProcess(executable: String, args: [String]) throws -> Int32 {
     return task.terminationStatus
 }
 
-func handleSwiftUIPreviewThunk(_ args: OrderedSet<String>) throws {
+func handleSwiftUIPreviewThunk(_ args: [String]) throws {
     guard let sdkPath = findPath(key: "-sdk", from: args)?.path
     else {
         print("warning: No such argument '-sdk'")
@@ -113,15 +112,18 @@ func handleSwiftUIPreviewThunk(_ args: OrderedSet<String>) throws {
     // We could produce this file at the start of the build?
     let fullRange = NSRange(sdkPath.startIndex..., in: sdkPath)
     let matches = try NSRegularExpression(
-        pattern: #".*?/Contents/Developer)/.*"#
+        pattern: #"(.*?/Contents/Developer)/.*"#
     ).matches(in: sdkPath, range: fullRange)
-    guard let developerDir = matches.first else {
+    guard let match = matches.first,
+        let range = Range(match.range(at: 1), in: sdkPath)
+    else {
         print("warning: Failed to parse DEVELOPER_DIR from '-sdk'")
         exit(try runSubProcess(
             executable: "swiftc",
             args: Array(args.dropFirst())
         ))
     }
+    let developerDir = sdkPath[range]
 
     exit(try runSubProcess(
         executable: """
@@ -133,19 +135,21 @@ func handleSwiftUIPreviewThunk(_ args: OrderedSet<String>) throws {
 
 // MARK: - Main
 
-let args = OrderedSet(CommandLine.arguments)
+let args = CommandLine.arguments
+let argsSet = Set(args)
 
 if args.count == 2, args.last == "-v" {
     exit(try runSubProcess(executable: "swiftc", args: ["-v"]))
 }
 
 for arg in args {
-    if arg.hasSuffix(".preview-thunk.swift"), args.contains("-output-file-map")
+    if arg.hasSuffix(".preview-thunk.swift"),
+        !argsSet.contains("-output-file-map")
     {
         // Pass through for SwiftUI Preview thunk compilation
         try handleSwiftUIPreviewThunk(args)
     }
 }
 
-try touchDepsFiles(args)
+try touchDepsFiles(args: args, argsSet: argsSet)
 try touchSwiftmoduleArtifacts(args)
