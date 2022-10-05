@@ -74,10 +74,10 @@ unset BAZELISK_SKIP_WRAPPER
 
 readonly bazel_cmd=(
   env -i
-  HOME="$HOME"
+  HOME="${HOME:-}"
   PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-  TERM="$TERM"
-  USER="$USER"
+  TERM="${TERM:-}"
+  USER="${USER:-}"
   "$bazel_path"
   "${bazelrcs[@]}"
 )
