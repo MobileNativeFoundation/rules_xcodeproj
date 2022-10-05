@@ -209,6 +209,9 @@ date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
 build_marker="$OBJROOT/bazel_build_start"
 touch "$build_marker"
 
+# TODO: Include labels in some sort of BES metadata
+# See https://github.com/buildbuddy-io/rules_xcodeproj/issues/1224 for why we
+# don't set the labels in the target pattern
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \
@@ -219,7 +222,6 @@ touch "$build_marker"
   --experimental_convenience_symlinks=ignore \
   --symlink_prefix=/ \
   "$output_groups_flag" \
-  ${labels:+"${labels[@]}"} \
   "$GENERATOR_LABEL" \
   2>&1
 
