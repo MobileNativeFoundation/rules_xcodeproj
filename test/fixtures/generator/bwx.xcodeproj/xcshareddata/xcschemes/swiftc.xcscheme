@@ -75,7 +75,18 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      enableAddressSanitizer = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A4BAFFA66EE5607F05D752C1"
+            BuildableName = "swiftc"
+            BlueprintName = "swiftc"
+            ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
@@ -83,6 +94,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A4BAFFA66EE5607F05D752C1"
+            BuildableName = "swiftc"
+            BlueprintName = "swiftc"
+            ReferencedContainer = "container:test/fixtures/generator/bwx.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

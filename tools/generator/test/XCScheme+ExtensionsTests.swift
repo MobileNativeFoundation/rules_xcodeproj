@@ -549,3 +549,53 @@ extension XCSchemeExtensionsTests {
         XCTAssertNoDifference(launchAction, expected)
     }
 }
+
+// MARK: XCScheme.TestAction Diagnostics Tests
+
+extension XCSchemeExtensionsTests {
+    func test_TestAction_init_diagnostics() throws {
+        // given
+        let buildConfigurationName = "Foo"
+        let sanitizers = XCSchemeInfo.DiagnosticsInfo.Sanitizers(
+            address: true,
+            thread: false,
+            undefinedBehavior: true
+        )
+        let diagnostics = XCSchemeInfo.DiagnosticsInfo(
+            sanitizers: sanitizers
+        )
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
+                diagnostics: diagnostics
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let testActionInfo = testActionInfo else {
+            XCTFail("Expected a `TestActionInfo`")
+            return
+        }
+
+        // when
+        let testAction = try XCScheme.TestAction(
+            buildMode: .xcode,
+            testActionInfo: testActionInfo
+        )
+        
+        // then
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: unitTestTargetInfo.buildableReference,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            enableAddressSanitizer: true,
+            enableThreadSanitizer: false,
+            enableUBSanitizer: true,
+            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+        )
+        XCTAssertNoDifference(testAction, expected)
+    }
+}

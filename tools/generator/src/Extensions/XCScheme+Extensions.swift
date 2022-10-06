@@ -219,6 +219,12 @@ extension XCScheme.TestAction {
                 .sortedLocalizedStandard(\.pbxTarget.name)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
             shouldUseLaunchSchemeArgsEnv: shouldUseLaunchSchemeArgsEnv,
+            enableAddressSanitizer: testActionInfo.diagnostics.sanitizers
+                .address,
+            enableThreadSanitizer: testActionInfo.diagnostics.sanitizers
+                .thread,
+            enableUBSanitizer: testActionInfo.diagnostics.sanitizers
+                .undefinedBehavior,
             commandlineArguments: commandlineArguments,
             environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile

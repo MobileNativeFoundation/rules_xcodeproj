@@ -156,9 +156,12 @@ def _test_action_test(ctx):
 
     actual = xcode_schemes.test_action(targets)
     expected = struct(
-        build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
+        build_configuration_name = (
+            xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME
+        ),
         targets = [bazel_labels.normalize(t) for t in targets],
         args = [],
+        diagnostics = None,
         env = {},
         expand_variables_based_on = None,
     )
@@ -168,33 +171,58 @@ def _test_action_test(ctx):
     custom_env = {"CUSTOM_ENV_VAR": "goodbye"}
     actual = xcode_schemes.test_action(targets, args = args, env = custom_env)
     expected = struct(
-        build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
+        build_configuration_name = (
+            xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME
+        ),
         targets = [bazel_labels.normalize(t) for t in targets],
         args = args,
+        diagnostics = None,
         env = custom_env,
         expand_variables_based_on = None,
     )
     asserts.equals(env, expected, actual, "with custom values")
 
-    actual = xcode_schemes.test_action(targets, expand_variables_based_on = "None")
+    actual = xcode_schemes.test_action(
+        targets,
+        expand_variables_based_on = "None",
+    )
     expected = struct(
-        build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
+        build_configuration_name = (
+            xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME
+        ),
         targets = [bazel_labels.normalize(t) for t in targets],
         args = [],
+        diagnostics = None,
         env = {},
         expand_variables_based_on = "none",
     )
-    asserts.equals(env, expected, actual, "expand_variables_based_on set to 'none'")
+    asserts.equals(
+        env,
+        expected,
+        actual,
+        "expand_variables_based_on set to 'none'",
+    )
 
-    actual = xcode_schemes.test_action(targets, expand_variables_based_on = targets[0])
+    actual = xcode_schemes.test_action(
+        targets,
+        expand_variables_based_on = targets[0],
+    )
     expected = struct(
-        build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
+        build_configuration_name = (
+            xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME
+        ),
         targets = [bazel_labels.normalize(t) for t in targets],
         args = [],
+        diagnostics = None,
         env = {},
         expand_variables_based_on = bazel_labels.normalize(targets[0]),
     )
-    asserts.equals(env, expected, actual, "expand_variables_based_on set to test target")
+    asserts.equals(
+        env,
+        expected,
+        actual,
+        "expand_variables_based_on set to test target",
+    )
 
     return unittest.end(env)
 
@@ -213,7 +241,9 @@ def _launch_action_test(ctx):
         env = env,
     )
     expected = struct(
-        build_configuration_name = xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME,
+        build_configuration_name = (
+            xcode_schemes.DEFAULT_BUILD_CONFIGURATION_NAME
+        ),
         target = bazel_labels.normalize(target),
         args = args,
         diagnostics = None,

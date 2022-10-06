@@ -7,8 +7,8 @@ import XCTest
 
 extension XcodeSchemeExtensionsTests {
     func test_allBazelLabels_doNotOverwriteTopLevel() throws {
-        // Ensure that toolLabel comes through as top-level even though it
-        // is specified in build action as well.
+        // Ensure that toolLabel comes through as top-level even though it is
+        // specified in build action as well.
         let scheme = try XcodeScheme(
             name: "Foo",
             buildAction: try .init(targets: [libLabel, toolLabel].map {
@@ -54,8 +54,8 @@ extension XcodeSchemeExtensionsTests {
         // Confirm that a scheme with multiple top-level targets works.
         // Both the device and simulator TargetID values are available.
         // Prefer the TargetID values for the simulator.
-        // We are also ensuring that the watchOS app that is a dependency of this iOS app is not
-        // selected.
+        // We are also ensuring that the watchOS app that is a dependency of
+        // this iOS app is not selected.
         let actual = try iOSAppScheme.resolveTargetIDs(
             targetResolver: targetResolver,
             runnerLabel: runnerLabel
@@ -87,7 +87,10 @@ extension XcodeSchemeExtensionsTests {
 
 extension XcodeSchemeExtensionsTests {
     func test_LabelTargetInfo_best_noTargets() throws {
-        let targetInfo = XcodeScheme.LabelTargetInfo(label: "@//foo", isTopLevel: false)
+        let targetInfo = XcodeScheme.LabelTargetInfo(
+            label: "@//foo",
+            isTopLevel: false
+        )
 
         var thrown: Error?
         XCTAssertThrowsError(try targetInfo.best) {
@@ -103,18 +106,23 @@ Unable to find the best `TargetWithID` for "@//foo:foo"
     }
 
     func test_LabelTargetInfo_best_withTargets() throws {
-        XCTAssertEqual(try iOSAppLabelTargetInfo.best, iOSAppiOSx8664TargetWithID)
+        XCTAssertEqual(
+            try iOSAppLabelTargetInfo.best,
+            iOSAppiOSx8664TargetWithID
+        )
     }
 }
 
 extension XcodeSchemeExtensionsTests {
     func test_LabelTargetInfo_firstCompatibleWith_withCompatibleTarget() throws {
-        let actual = iOSAppLabelTargetInfo.firstCompatibleWith(anyOf: [iphoneOSPlatform])
+        let actual = iOSAppLabelTargetInfo
+            .firstCompatibleWith(anyOf: [iphoneOSPlatform])
         XCTAssertEqual(actual, iOSAppiOSarm64TargetWithID)
     }
 
     func test_LabelTargetInfo_firstCompatibleWith_noCompatibleTarget() throws {
-        let actual = iOSAppLabelTargetInfo.firstCompatibleWith(anyOf: [appletvOSPlatform])
+        let actual = iOSAppLabelTargetInfo
+            .firstCompatibleWith(anyOf: [appletvOSPlatform])
         XCTAssertNil(actual)
     }
 }
@@ -199,7 +207,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
 
     // Targets and TargetIDs
 
-    lazy var libiOSarm64TargetID: TargetID = .init("\(libLabel) \(iOSarm64Configuration)")
+    lazy var libiOSarm64TargetID: TargetID =
+        .init("\(libLabel) \(iOSarm64Configuration)")
     lazy var libiOSarm64Target = Target.mock(
         label: libLabel,
         configuration: iOSarm64Configuration,
@@ -211,7 +220,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var libiOSx8664TargetID: TargetID = .init("\(libLabel) \(iOSx8664Configuration)")
+    lazy var libiOSx8664TargetID: TargetID =
+        .init("\(libLabel) \(iOSx8664Configuration)")
     lazy var libiOSx8664Target = Target.mock(
         label: libLabel,
         configuration: iOSx8664Configuration,
@@ -223,7 +233,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var libtvOSarm64TargetID: TargetID = .init("\(libLabel) \(tvOSarm64Configuration)")
+    lazy var libtvOSarm64TargetID: TargetID =
+        .init("\(libLabel) \(tvOSarm64Configuration)")
     lazy var libtvOSarm64Target = Target.mock(
         label: libLabel,
         configuration: tvOSarm64Configuration,
@@ -235,7 +246,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var libtvOSx8664TargetID: TargetID = .init("\(libLabel) \(tvOSx8664Configuration)")
+    lazy var libtvOSx8664TargetID: TargetID =
+        .init("\(libLabel) \(tvOSx8664Configuration)")
     lazy var libtvOSx8664Target = Target.mock(
         label: libLabel,
         configuration: tvOSx8664Configuration,
@@ -247,7 +259,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var libwatchOSarm64TargetID: TargetID = .init("\(libLabel) \(watchOSarm64Configuration)")
+    lazy var libwatchOSarm64TargetID: TargetID =
+        .init("\(libLabel) \(watchOSarm64Configuration)")
     lazy var libwatchOSarm64Target = Target.mock(
         label: libLabel,
         configuration: watchOSarm64Configuration,
@@ -259,7 +272,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var libwatchOSx8664TargetID: TargetID = .init("\(libLabel) \(watchOSx8664Configuration)")
+    lazy var libwatchOSx8664TargetID: TargetID =
+        .init("\(libLabel) \(watchOSx8664Configuration)")
     lazy var libwatchOSx8664Target = Target.mock(
         label: libLabel,
         configuration: watchOSx8664Configuration,
@@ -271,7 +285,8 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         )
     )
 
-    lazy var libmacOSx8664TargetID: TargetID = .init("\(libLabel) \(macOSx8664Configuration)")
+    lazy var libmacOSx8664TargetID: TargetID =
+        .init("\(libLabel) \(macOSx8664Configuration)")
     lazy var libmacOSx8664Target = Target.mock(
         label: libLabel,
         configuration: macOSx8664Configuration,
@@ -414,23 +429,32 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         watchOSAppwatchOSx8664TargetID: watchOSAppwatchOSx8664Target,
     ]
 
-    lazy var iOSAppConsolidatedTargetKey = ConsolidatedTarget.Key(
-        [iOSAppiOSarm64TargetID, iOSAppiOSx8664TargetID])
+    lazy var iOSAppConsolidatedTargetKey = ConsolidatedTarget.Key([
+        iOSAppiOSarm64TargetID,
+        iOSAppiOSx8664TargetID,
+    ])
 
-    lazy var libTestsConsolidatedTargetKey = ConsolidatedTarget.Key([libTestsiOSx8664TargetID])
+    lazy var libTestsConsolidatedTargetKey =
+        ConsolidatedTarget.Key([libTestsiOSx8664TargetID])
 
-    lazy var libiOSConsolidatedTargetKey = ConsolidatedTarget.Key(
-        [libiOSarm64TargetID, libiOSx8664TargetID])
+    lazy var libiOSConsolidatedTargetKey = ConsolidatedTarget.Key([
+        libiOSarm64TargetID,
+        libiOSx8664TargetID,
+    ])
 
-    lazy var libmacOSConsolidatedTargetKey = ConsolidatedTarget.Key([libmacOSx8664TargetID])
+    lazy var libmacOSConsolidatedTargetKey =
+        ConsolidatedTarget.Key([libmacOSx8664TargetID])
 
     lazy var libtvOSConsolidatedTargetKey = ConsolidatedTarget.Key(
         [libtvOSarm64TargetID, libtvOSx8664TargetID])
 
-    lazy var libwatchOSConsolidatedTargetKey = ConsolidatedTarget.Key(
-        [libwatchOSarm64TargetID, libwatchOSx8664TargetID])
+    lazy var libwatchOSConsolidatedTargetKey = ConsolidatedTarget.Key([
+        libwatchOSarm64TargetID,
+        libwatchOSx8664TargetID,
+    ])
 
-    lazy var toolmacOSConsolidatedTargetKey = ConsolidatedTarget.Key([toolmacOSx8664TargetID])
+    lazy var toolmacOSConsolidatedTargetKey =
+        ConsolidatedTarget.Key([toolmacOSx8664TargetID])
 
     lazy var tvOSAppConsolidatedTargetKey = ConsolidatedTarget.Key(
         [tvOSApptvOSarm64TargetID, tvOSApptvOSx8664TargetID])
@@ -457,15 +481,24 @@ class XcodeSchemeExtensionsTests: XCTestCase {
     ]
 
     lazy var pbxTargets: [ConsolidatedTarget.Key: PBXTarget] = [
-        iOSAppConsolidatedTargetKey: .init(name: "iOSApp", productType: .application),
-        libTestsConsolidatedTargetKey: .init(name: "libTests", productType: .unitTestBundle),
-        libiOSConsolidatedTargetKey: .init(name: "libiOS", productType: .staticLibrary),
-        libmacOSConsolidatedTargetKey: .init(name: "libmacOS", productType: .staticLibrary),
-        libtvOSConsolidatedTargetKey: .init(name: "libtvOS", productType: .staticLibrary),
-        libwatchOSConsolidatedTargetKey: .init(name: "libwatchOS", productType: .staticLibrary),
-        toolmacOSConsolidatedTargetKey: .init(name: "toolmacOS", productType: .commandLineTool),
-        tvOSAppConsolidatedTargetKey: .init(name: "tvOSApp", productType: .application),
-        watchOSAppConsolidatedTargetKey: .init(name: "watchOSApp", productType: .watch2App),
+        iOSAppConsolidatedTargetKey:
+            .init(name: "iOSApp", productType: .application),
+        libTestsConsolidatedTargetKey:
+            .init(name: "libTests", productType: .unitTestBundle),
+        libiOSConsolidatedTargetKey:
+            .init(name: "libiOS", productType: .staticLibrary),
+        libmacOSConsolidatedTargetKey:
+            .init(name: "libmacOS", productType: .staticLibrary),
+        libtvOSConsolidatedTargetKey:
+            .init(name: "libtvOS", productType: .staticLibrary),
+        libwatchOSConsolidatedTargetKey:
+            .init(name: "libwatchOS", productType: .staticLibrary),
+        toolmacOSConsolidatedTargetKey:
+            .init(name: "toolmacOS", productType: .commandLineTool),
+        tvOSAppConsolidatedTargetKey:
+            .init(name: "tvOSApp", productType: .application),
+        watchOSAppConsolidatedTargetKey:
+            .init(name: "watchOSApp", productType: .watch2App),
     ]
 
     lazy var filePathResolver = FilePathResolver(
@@ -496,23 +529,20 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         testAction: nil,
         launchAction: .init(
             target: toolLabel,
-            buildConfigurationName: buildConfigurationName,
-            args: [],
-            env: [:],
-            workingDirectory: nil
+            buildConfigurationName: buildConfigurationName
         )
     )
 
     lazy var iOSAppScheme = try! XcodeScheme(
         name: "iOSApp",
         buildAction: try! .init(targets: [.init(label: libLabel)]),
-        testAction: try! .init(targets: [libTestsLabel], buildConfigurationName: buildConfigurationName),
+        testAction: try! .init(
+            targets: [libTestsLabel],
+            buildConfigurationName: buildConfigurationName
+        ),
         launchAction: .init(
             target: iOSAppLabel,
-            buildConfigurationName: buildConfigurationName,
-            args: [],
-            env: [:],
-            workingDirectory: nil
+            buildConfigurationName: buildConfigurationName
         )
     )
 
@@ -522,10 +552,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         testAction: nil,
         launchAction: .init(
             target: tvOSAppLabel,
-            buildConfigurationName: buildConfigurationName,
-            args: [],
-            env: [:],
-            workingDirectory: nil
+            buildConfigurationName: buildConfigurationName
         )
     )
 
@@ -538,7 +565,10 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         target: iOSAppiOSx8664Target
     )
     lazy var iOSAppLabelTargetInfo: XcodeScheme.LabelTargetInfo = {
-        var targetInfo = XcodeScheme.LabelTargetInfo(label: iOSAppLabel, isTopLevel: false)
+        var targetInfo = XcodeScheme.LabelTargetInfo(
+            label: iOSAppLabel,
+            isTopLevel: false
+        )
         targetInfo.add(iOSAppiOSarm64TargetWithID)
         targetInfo.add(iOSAppiOSx8664TargetWithID)
         return targetInfo

@@ -279,7 +279,7 @@ Constructs a launch action for an Xcode scheme.
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.launch_action-target"></a>target |  A target label as a <code>string</code> value.   |  none |
 | <a id="xcode_schemes.launch_action-args"></a>args |  Optional. A <code>list</code> of <code>string</code> arguments that should be passed to the target when executed.   |  <code>None</code> |
-| <a id="xcode_schemes.launch_action-diagnostics"></a>diagnostics |  Optional. A <code>struct</code> representing Xcode scheme's diagnostics.   |  <code>None</code> |
+| <a id="xcode_schemes.launch_action-diagnostics"></a>diagnostics |  Optional. A value returned by <code>xcode_schemes.diagnostics</code>.   |  <code>None</code> |
 | <a id="xcode_schemes.launch_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed.   |  <code>None</code> |
 | <a id="xcode_schemes.launch_action-working_directory"></a>working_directory |  Optional. A <code>string</code> that will be set as the custom working directory in the Xcode scheme's launch action. Relative paths will be relative to the value of <code>target</code>'s <code>BUILT_PRODUCTS_DIR</code>, which is unique to it.   |  <code>None</code> |
 
@@ -293,7 +293,7 @@ A `struct` representing a launch action.
 ## xcode_schemes.test_action
 
 <pre>
-xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-env">env</a>, <a href="#xcode_schemes.test_action-expand_variables_based_on">expand_variables_based_on</a>)
+xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.test_action-env">env</a>, <a href="#xcode_schemes.test_action-expand_variables_based_on">expand_variables_based_on</a>)
 </pre>
 
 Constructs a test action for an Xcode scheme.
@@ -305,6 +305,7 @@ Constructs a test action for an Xcode scheme.
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.test_action-targets"></a>targets |  A <code>sequence</code> of target labels as <code>string</code> values.   |  none |
 | <a id="xcode_schemes.test_action-args"></a>args |  Optional. A <code>list</code> of <code>string</code> arguments that should be passed to the target when executed.   |  <code>None</code> |
+| <a id="xcode_schemes.test_action-diagnostics"></a>diagnostics |  Optional. A value returned by <code>xcode_schemes.diagnostics</code>.   |  <code>None</code> |
 | <a id="xcode_schemes.test_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed.   |  <code>None</code> |
 | <a id="xcode_schemes.test_action-expand_variables_based_on"></a>expand_variables_based_on |  Optional. One of the specified test target labels. If no value is provided, one of the test targets will be selected. If no expansion context is desired, use the <code>string</code> value <code>none</code>.   |  <code>None</code> |
 

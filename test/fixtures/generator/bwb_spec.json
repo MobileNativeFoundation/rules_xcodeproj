@@ -54,7 +54,13 @@
                     "bazel"
                 ],
                 "build_configuration_name": "Debug",
-                "diagnostics": null,
+                "diagnostics": {
+                    "sanitizers": {
+                        "address": true,
+                        "thread": false,
+                        "undefined_behavior": false
+                    }
+                },
                 "env": {
                     "CUSTOM_ENV_VAR": "hello"
                 },
@@ -65,6 +71,7 @@
             "test_action": {
                 "args": [],
                 "build_configuration_name": "Debug",
+                "diagnostics": null,
                 "env": {
                     "CUSTOM_ENV_VAR": "goodbye"
                 },
@@ -91,7 +98,20 @@
                     }
                 ]
             },
-            "launch_action": null,
+            "launch_action": {
+                "args": [],
+                "build_configuration_name": "Debug",
+                "diagnostics": {
+                    "sanitizers": {
+                        "address": true,
+                        "thread": false,
+                        "undefined_behavior": false
+                    }
+                },
+                "env": {},
+                "target": "@//tools/swiftc_stub:swiftc",
+                "working_directory": null
+            },
             "name": "swiftc",
             "test_action": null
         }

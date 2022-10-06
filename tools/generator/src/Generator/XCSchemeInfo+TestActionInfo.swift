@@ -5,6 +5,7 @@ extension XCSchemeInfo {
         let buildConfigurationName: String
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
         let args: [String]
+        let diagnostics: DiagnosticsInfo
         let env: [String: String]
         let expandVariablesBasedOn: VariableExpansionContextInfo
 
@@ -13,23 +14,28 @@ extension XCSchemeInfo {
             buildConfigurationName: String,
             targetInfos: TargetInfos,
             args: [String] = [],
+            diagnostics: DiagnosticsInfo = .init(diagnostics: .init()),
             env: [String: String] = [:],
-            expandVariablesBasedOn: XCSchemeInfo.VariableExpansionContextInfo = .none
+            expandVariablesBasedOn: XCSchemeInfo.VariableExpansionContextInfo =
+                .none
         ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
             self.buildConfigurationName = buildConfigurationName
             self.targetInfos = Set(targetInfos)
             self.args = args
+            self.diagnostics = diagnostics
             self.env = env
             self.expandVariablesBasedOn = expandVariablesBasedOn
 
             guard !self.targetInfos.isEmpty else {
                 throw PreconditionError(message: """
-An `XCSchemeInfo.TestActionInfo` should have at least one `XCSchemeInfo.TargetInfo`.
+An `XCSchemeInfo.TestActionInfo` should have at least one \
+`XCSchemeInfo.TargetInfo`.
 """)
             }
             guard self.targetInfos.allSatisfy(\.pbxTarget.isTestable) else {
                 throw PreconditionError(message: """
-An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.TargetInfo` values.
+An `XCSchemeInfo.TestActionInfo` should only contain testable \
+`XCSchemeInfo.TargetInfo` values.
 """)
             }
         }
@@ -39,7 +45,8 @@ An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.Targ
 // MARK: Host Resolution Initializer
 
 extension XCSchemeInfo.TestActionInfo {
-    /// Create a copy of the test action info with host in the target infos resolved
+    /// Create a copy of the test action info with host in the target infos
+    /// resolved.
     init?<TargetInfos: Sequence>(
         resolveHostsFor testActionInfo: XCSchemeInfo.TestActionInfo?,
         topLevelTargetInfos: TargetInfos
@@ -50,9 +57,13 @@ extension XCSchemeInfo.TestActionInfo {
         try self.init(
             buildConfigurationName: original.buildConfigurationName,
             targetInfos: original.targetInfos.map {
-                .init(resolveHostFor: $0, topLevelTargetInfos: topLevelTargetInfos)
+                .init(
+                    resolveHostFor: $0,
+                    topLevelTargetInfos: topLevelTargetInfos
+                )
             },
             args: original.args,
+            diagnostics: original.diagnostics,
             env: original.env,
             expandVariablesBasedOn: .init(
                 resolveHostsFor: original.expandVariablesBasedOn,
@@ -75,8 +86,9 @@ extension XCSchemeInfo.TestActionInfo {
         }
         let expandVariablesBasedOn = try testAction.expandVariablesBasedOn ??
             .target(
-                testAction.targets.sortedLocalizedStandard().first
-                    .orThrow("Expected at least one target in `TestAction.targets`")
+                testAction.targets.sortedLocalizedStandard().first.orThrow("""
+Expected at least one target in `TestAction.targets`
+""")
             )
 
         try self.init(
@@ -90,6 +102,9 @@ extension XCSchemeInfo.TestActionInfo {
                 )
             },
             args: testAction.args,
+            diagnostics: XCSchemeInfo.DiagnosticsInfo(
+                diagnostics: testAction.diagnostics
+            ),
             env: testAction.env,
             expandVariablesBasedOn: try .init(
                 context: expandVariablesBasedOn,
@@ -106,7 +121,8 @@ extension XCSchemeInfo.TestActionInfo {
     var macroExpansion: XCScheme.BuildableReference? {
         get throws {
             // Sort the target infos so that we receive a consistent value
-            let sortedTargetInfos = targetInfos.sortedLocalizedStandard(\.pbxTarget.name)
+            let sortedTargetInfos = targetInfos
+                .sortedLocalizedStandard(\.pbxTarget.name)
             guard let targetInfo = sortedTargetInfos.first else {
                 return nil
             }
