@@ -119,6 +119,7 @@ def _test_action(
         targets,
         build_configuration_name,
         args = None,
+        diagnostics = None,
         env = None,
         expand_variables_based_on = None):
     """Constructs a test action for an Xcode scheme.
@@ -129,6 +130,7 @@ def _test_action(
             `string` value.
         args: Optional. A `list` of `string` arguments that should be passed to
             the target when executed.
+        diagnostics: Optional. A value returned by `xcode_schemes.diagnostics`.
         env: Optional. A `dict` of `string` values that will be set as
             environment variables when the target is executed.
         expand_variables_based_on: Optional. One of the specified test target labels.
@@ -154,6 +156,7 @@ or one of the test targets.
         targets = targets,
         build_configuration_name = build_configuration_name,
         args = args if args != None else [],
+        diagnostics = diagnostics,
         env = env if env != None else {},
         expand_variables_based_on = expand_variables_based_on,
     )
@@ -173,7 +176,7 @@ def _launch_action(
             `string` value.
         args: Optional. A `list` of `string` arguments that should be passed to
             the target when executed.
-        diagnostics: Optional. A `struct` representing Xcode scheme's diagnostics.
+        diagnostics: Optional. A value returned by `xcode_schemes.diagnostics`.
         env: Optional. A `dict` of `string` values that will be set as
             environment variables when the target is executed.
         working_directory: Optional. A `string` that will be set as the custom

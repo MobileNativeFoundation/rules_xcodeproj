@@ -298,8 +298,7 @@ def make_xcode_schemes(bazel_labels):
             undefined_behavior = undefined_behavior,
         )
 
-    def _diagnostics(
-            sanitizers = None):
+    def _diagnostics(sanitizers = None):
         """Constructs the scheme's diagnostics.
 
         Args:
@@ -325,7 +324,8 @@ def make_xcode_schemes(bazel_labels):
             target: A target label as a `string` value.
             args: Optional. A `list` of `string` arguments that should be passed
                 to the target when executed.
-            diagnostics: Optional. A `struct` representing Xcode scheme's diagnostics.
+            diagnostics: Optional. A value returned by
+                `xcode_schemes.diagnostics`.
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
             working_directory: Optional. A `string` that will be set as the
@@ -348,6 +348,7 @@ def make_xcode_schemes(bazel_labels):
     def _test_action(
             targets,
             args = None,
+            diagnostics = None,
             env = None,
             expand_variables_based_on = None):
         """Constructs a test action for an Xcode scheme.
@@ -356,6 +357,8 @@ def make_xcode_schemes(bazel_labels):
             targets: A `sequence` of target labels as `string` values.
             args: Optional. A `list` of `string` arguments that should be passed
                 to the target when executed.
+            diagnostics: Optional. A value returned by
+                `xcode_schemes.diagnostics`.
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed.
             expand_variables_based_on: Optional. One of the specified test
@@ -383,6 +386,7 @@ def make_xcode_schemes(bazel_labels):
             ],
             build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
             args = args,
+            diagnostics = diagnostics,
             env = env,
             expand_variables_based_on = expand_variables_based_on,
         )

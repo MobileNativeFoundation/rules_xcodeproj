@@ -75,6 +75,11 @@ def get_xcode_schemes():
                 # This is not necessary for the generator. It is here to help
                 # verify that custom environment variables are passed along.
                 env = {"CUSTOM_ENV_VAR": "hello"},
+                diagnostics = xcode_schemes.diagnostics(
+                    sanitizers = xcode_schemes.sanitizers(
+                        address = True,
+                    ),
+                ),
                 working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
             ),
             test_action = xcode_schemes.test_action(
@@ -82,6 +87,11 @@ def get_xcode_schemes():
                 # This is not necessary for the generator tests. It is here to help
                 # verify that custom environment variables are passed along.
                 env = {"CUSTOM_ENV_VAR": "goodbye"},
+                diagnostics = xcode_schemes.diagnostics(
+                    sanitizers = xcode_schemes.sanitizers(
+                        address = True,
+                    ),
+                ),
             ),
         ),
         xcode_schemes.scheme(
@@ -92,6 +102,14 @@ def get_xcode_schemes():
                         _TOOL_TARGET,
                     ),
                 ],
+            ),
+            launch_action = xcode_schemes.launch_action(
+                _TOOL_TARGET,
+                diagnostics = xcode_schemes.diagnostics(
+                    sanitizers = xcode_schemes.sanitizers(
+                        address = True,
+                    ),
+                ),
             ),
         ),
     ]

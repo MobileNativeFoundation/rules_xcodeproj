@@ -239,10 +239,11 @@ extension XcodeScheme.VariableExpansionContext: RawRepresentable {
 // MARK: TestAction
 
 extension XcodeScheme {
-    struct TestAction: Equatable, Decodable {
+    struct TestAction: Equatable {
         let buildConfigurationName: String
         let targets: Set<BazelLabel>
         let args: [String]
+        let diagnostics: Diagnostics
         let env: [String: String]
         let expandVariablesBasedOn: VariableExpansionContext?
 
@@ -250,12 +251,14 @@ extension XcodeScheme {
             targets: Targets,
             buildConfigurationName: String = .defaultBuildConfigurationName,
             args: [String] = [],
+            diagnostics: Diagnostics = .init(),
             env: [String: String] = [:],
             expandVariablesBasedOn: VariableExpansionContext? = nil
         ) throws where Targets.Element == BazelLabel {
             self.targets = Set(targets)
             self.buildConfigurationName = buildConfigurationName
             self.args = args
+            self.diagnostics = diagnostics
             self.env = env
             self.expandVariablesBasedOn = expandVariablesBasedOn
 
@@ -265,6 +268,41 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 """)
             }
         }
+    }
+}
+
+extension XcodeScheme.TestAction: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case buildConfigurationName
+        case targets
+        case args
+        case diagnostics
+        case env
+        case expandVariablesBasedOn
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        buildConfigurationName = try container
+            .decodeIfPresent(String.self, forKey: .buildConfigurationName) ??
+            .defaultBuildConfigurationName
+        targets = try container
+            .decodeIfPresent(Set<BazelLabel>.self, forKey: .targets) ?? []
+        args = try container
+            .decodeIfPresent([String].self, forKey: .args) ?? []
+        diagnostics = try container
+            .decodeIfPresent(
+                XcodeScheme.Diagnostics.self,
+                forKey: .diagnostics
+            ) ?? .init()
+        env = try container
+            .decodeIfPresent([String: String].self, forKey: .env) ?? [:]
+        expandVariablesBasedOn = try container
+            .decodeIfPresent(
+                XcodeScheme.VariableExpansionContext.self,
+                forKey: .expandVariablesBasedOn
+            )
     }
 }
 
