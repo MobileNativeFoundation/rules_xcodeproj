@@ -44,3 +44,11 @@ apple_universal_binary(
     platform_type = "macos",
     visibility = ["//visibility:public"],
 )
+
+# Release
+
+filegroup(
+    name = "release_files",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)
