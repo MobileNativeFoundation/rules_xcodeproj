@@ -271,24 +271,70 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 // MARK: Diagnostics
 
 extension XcodeScheme {
-    struct Diagnostics: Equatable, Decodable {
-        struct Sanitizers: Equatable, Decodable {
+    struct Diagnostics: Equatable {
+        struct Sanitizers: Equatable {
             let address: Bool
             let thread: Bool
             let undefinedBehavior: Bool
+
+            init(
+                address: Bool = false,
+                thread: Bool = false,
+                undefinedBehavior: Bool = false
+            ) {
+                self.address = address
+                self.thread = thread
+                self.undefinedBehavior = undefinedBehavior
+            }
         }
-        let sanitizers: Sanitizers?
+        let sanitizers: Sanitizers
+
+        init(sanitizers: Sanitizers = .init()) {
+            self.sanitizers = sanitizers
+        }
+    }
+}
+
+extension XcodeScheme.Diagnostics: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case sanitizers
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        sanitizers = try container
+            .decodeIfPresent(Sanitizers.self, forKey: .sanitizers) ?? .init()
+    }
+}
+
+extension XcodeScheme.Diagnostics.Sanitizers: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case address
+        case thread
+        case undefinedBehavior
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        address = try container
+            .decodeIfPresent(Bool.self, forKey: .address) ?? false
+        thread = try container
+            .decodeIfPresent(Bool.self, forKey: .thread) ?? false
+        undefinedBehavior = try container
+            .decodeIfPresent(Bool.self, forKey: .undefinedBehavior) ?? false
     }
 }
 
 // MARK: LaunchAction
 
 extension XcodeScheme {
-    struct LaunchAction: Equatable, Decodable {
+    struct LaunchAction: Equatable {
         let buildConfigurationName: String
         let target: BazelLabel
         let args: [String]
-        let diagnostics: Diagnostics?
+        let diagnostics: Diagnostics
         let env: [String: String]
         let workingDirectory: String?
 
@@ -296,7 +342,7 @@ extension XcodeScheme {
             target: BazelLabel,
             buildConfigurationName: String = .defaultBuildConfigurationName,
             args: [String] = [],
-            diagnostics: Diagnostics? = nil,
+            diagnostics: Diagnostics = .init(),
             env: [String: String] = [:],
             workingDirectory: String? = nil
         ) {
@@ -307,6 +353,37 @@ extension XcodeScheme {
             self.env = env
             self.workingDirectory = workingDirectory
         }
+    }
+}
+
+extension XcodeScheme.LaunchAction: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case buildConfigurationName
+        case target
+        case args
+        case diagnostics
+        case env
+        case workingDirectory
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        buildConfigurationName = try container
+            .decodeIfPresent(String.self, forKey: .buildConfigurationName) ??
+            .defaultBuildConfigurationName
+        target = try container.decode(BazelLabel.self, forKey: .target)
+        args = try container
+            .decodeIfPresent([String].self, forKey: .args) ?? []
+        diagnostics = try container
+            .decodeIfPresent(
+                XcodeScheme.Diagnostics.self,
+                forKey: .diagnostics
+            ) ?? .init()
+        env = try container
+            .decodeIfPresent([String: String].self, forKey: .env) ?? [:]
+        workingDirectory = try container
+            .decodeIfPresent(String.self, forKey: .workingDirectory)
     }
 }
 

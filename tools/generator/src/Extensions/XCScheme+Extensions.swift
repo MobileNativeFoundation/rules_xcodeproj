@@ -244,9 +244,12 @@ extension XCScheme.LaunchAction {
             askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,
             customWorkingDirectory: launchActionInfo.workingDirectory,
             useCustomWorkingDirectory: launchActionInfo.workingDirectory != nil,
-            enableAddressSanitizer: launchActionInfo.diagnostics?.sanitizers?.address ?? false,
-            enableThreadSanitizer: launchActionInfo.diagnostics?.sanitizers?.thread ?? false,
-            enableUBSanitizer: launchActionInfo.diagnostics?.sanitizers?.undefinedBehavior ?? false,
+            enableAddressSanitizer: launchActionInfo.diagnostics.sanitizers
+                .address,
+            enableThreadSanitizer: launchActionInfo.diagnostics.sanitizers
+                .thread,
+            enableUBSanitizer: launchActionInfo.diagnostics.sanitizers
+                .undefinedBehavior,
             commandlineArguments: commandlineArguments,
             environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
             launchAutomaticallySubstyle: launchActionInfo.targetInfo.productType
