@@ -3,32 +3,27 @@ import Foundation
 // MARK: DiagnosticsInfo
 
 extension XCSchemeInfo {
-    struct DiagnosticsInfo: Equatable, Decodable {
-        struct Sanitizers: Equatable, Decodable {
+    struct DiagnosticsInfo: Equatable {
+        struct Sanitizers: Equatable {
             let address: Bool
             let thread: Bool
             let undefinedBehavior: Bool
         }
-        let sanitizers: Sanitizers?
+        let sanitizers: Sanitizers
     }
 }
 
 // MARK: Custom Diagnostics Initializer
 
 extension XCSchemeInfo.DiagnosticsInfo {
-    init?(
-        diagnostics: XcodeScheme.Diagnostics?
+    init(
+        diagnostics: XcodeScheme.Diagnostics
     ) {
-        guard let diagnostics = diagnostics else {
-            return nil
-        }
-        let sanitizers = diagnostics.sanitizers.map {
-            XCSchemeInfo.DiagnosticsInfo.Sanitizers(
-                address: $0.address,
-                thread: $0.thread,
-                undefinedBehavior: $0.undefinedBehavior
-            )
-        }
+        let sanitizers = XCSchemeInfo.DiagnosticsInfo.Sanitizers(
+            address: diagnostics.sanitizers.address,
+            thread: diagnostics.sanitizers.thread,
+            undefinedBehavior: diagnostics.sanitizers.undefinedBehavior
+        )
         self.init(
             sanitizers: sanitizers
         )

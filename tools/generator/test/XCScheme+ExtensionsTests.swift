@@ -1,3 +1,4 @@
+import CustomDump
 import XcodeProj
 import XCTest
 
@@ -545,6 +546,6 @@ extension XCSchemeExtensionsTests {
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
         )
-        XCTAssertEqual(launchAction, expected)
+        XCTAssertNoDifference(launchAction, expected)
     }
 }

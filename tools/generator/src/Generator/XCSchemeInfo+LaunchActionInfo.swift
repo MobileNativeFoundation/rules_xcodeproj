@@ -5,7 +5,7 @@ extension XCSchemeInfo {
         let buildConfigurationName: String
         let targetInfo: XCSchemeInfo.TargetInfo
         let args: [String]
-        let diagnostics: DiagnosticsInfo?
+        let diagnostics: DiagnosticsInfo
         let env: [String: String]
         let workingDirectory: String?
 
@@ -13,13 +13,14 @@ extension XCSchemeInfo {
             buildConfigurationName: String,
             targetInfo: XCSchemeInfo.TargetInfo,
             args: [String] = [],
-            diagnostics: DiagnosticsInfo? = nil,
+            diagnostics: DiagnosticsInfo = .init(diagnostics: .init()),
             env: [String: String] = [:],
             workingDirectory: String? = nil
         ) throws {
             guard targetInfo.productType.isLaunchable else {
                 throw PreconditionError(message: """
-An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.TargetInfo` value.
+An `XCSchemeInfo.LaunchActionInfo` should have a launchable \
+`XCSchemeInfo.TargetInfo` value.
 """)
             }
             self.buildConfigurationName = buildConfigurationName
@@ -35,7 +36,8 @@ An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.Target
 // MARK: Host Resolution Initializer
 
 extension XCSchemeInfo.LaunchActionInfo {
-    /// Create a copy of the `LaunchActionInfo` with the host in the `TargetInfo` resolved.
+    /// Create a copy of the `LaunchActionInfo` with the host in the
+    /// `TargetInfo` resolved.
     init?<TargetInfos: Sequence>(
         resolveHostsFor launchActionInfo: XCSchemeInfo.LaunchActionInfo?,
         topLevelTargetInfos: TargetInfos
@@ -61,8 +63,8 @@ extension XCSchemeInfo.LaunchActionInfo {
 
 extension XCSchemeInfo.LaunchActionInfo {
     var runnable: XCScheme.Runnable? {
-        // We want to provide a `LaunchActionInfo`, but we do not want to provide a `runnable`, if
-        // it is testable.
+        // We want to provide a `LaunchActionInfo`, but we do not want to
+        // provide a `runnable`, if it is testable.
         if targetInfo.pbxTarget.isTestable {
             return nil
         }
