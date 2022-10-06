@@ -34,10 +34,10 @@ ios_application(
     executable_name = "iOSApp_ExecutableName",
     extensions = ["//WidgetExtension"],
     families = ["iphone"],
-    frameworks = [
-        "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
-        "//UI:UIFramework.iOS",
-    ],
+    # frameworks = [
+    #     "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
+    #     "//UI:UIFramework.iOS",
+    # ],
     infoplists = [":Info.plist"],
     launch_images = select({
         ":device_build": glob(["launch_images_ios.xcassets/**"]),
