@@ -165,17 +165,21 @@ echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
         )
     }
     
-    /// Symlinks `$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib` to `$(BAZEL_INTEGRATION_DIR)/lib` so that Xcode can copy sanitizers' dylibs.
+    /// Symlinks `$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib` to
+    /// `$(BAZEL_INTEGRATION_DIR)/../lib` so that Xcode can copy sanitizers'
+    /// dylibs.
     static func symlinkDefaultToolchainUsrLibDirectory(
         buildableReference: XCScheme.BuildableReference
     ) -> XCScheme.ExecutionAction {
         return .init(
             scriptText: #"""
-if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ] || [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ] || [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
-    # TODO: Support custom toolchains once clang.sh supports them 
-    src="$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib"
-    dest="$BAZEL_INTEGRATION_DIR/../lib"
-    ln -sF "$src" "$dest"
+if [[ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" || \
+      "${ENABLE_THREAD_SANITIZER:-}" == "YES" || \
+      "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]]
+then
+    # TODO: Support custom toolchains once clang.sh supports them
+    cd "$INTERNAL_DIRECTORY" || exit 1
+    ln -sf "$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib" lib
 fi
 """#,
             title: "Symlink Toolchain /usr/lib directory",
