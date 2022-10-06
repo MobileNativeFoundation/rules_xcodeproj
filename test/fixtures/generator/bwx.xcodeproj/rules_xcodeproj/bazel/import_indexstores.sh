@@ -35,9 +35,9 @@ fi
 
 # Set remaps
 
-# Since users can override `--output_base`, all we know is that the
-# execution_root fits the format of `/OUTPUT_BASE/execroot/WORKSPACE_NAME`
-readonly execution_root_regex='.*?/[^/]+/execroot/[^/]+'
+# We only support importing indexes built with rules_xcodeproj, and we override
+# our output bases, so we know the the ending of the execution root
+readonly execution_root_regex='.*/[^/]+/(?:_)?rules_xcodeproj/[^/]+_output_base/execroot/[^/]+'
 
 # We remove any `/private` prefix from the current execution_root, since it's
 # removed in the Project navigator.
