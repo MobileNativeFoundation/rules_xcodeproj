@@ -29,6 +29,7 @@ on it, or [file a new issue][file-an-issue]!
   - [x] Fix-its (currently only BwX)
   - [x] Test selection and running
   - [x] Embedded Targets (App Clips, App Extensions, and Watch Apps)
+  - [X] Dynamic frameworks
   - [x] SwiftUI Previews
 - [x] Focused Projects
   - [x] Include a subset of your targets in Xcode
@@ -41,8 +42,8 @@ don't have full support yet. See the
 for details on progress towards the 1.0 release. Here are a few of the remaining
 planned high level features:
 
-- [ ] [Frameworks](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/14)
 - [ ] [Supporting all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/4)
+- [ ] [Distribution rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/18)
 - [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/17)
 
 We've also documented the [high level design](/doc/design/high-level.md) of the
