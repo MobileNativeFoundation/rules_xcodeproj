@@ -42,10 +42,6 @@ while (("$#")); do
       for_fixture=1
       shift
       ;;
-    "--swiftc_stub")
-      swiftc_stub="${2}"
-      shift 2
-      ;;
     *)
       fail "Unrecognized argument: ${1}"
       ;;
@@ -56,8 +52,9 @@ if [[ -z "${bazel_path:-}" ]]; then
   fail "Missing required argument: --bazel_path"
 fi
 
-# Resolve the source
+# Resolve the inputs
 readonly src="$PWD/%source_path%"
+readonly swiftc_stub="$PWD/%swiftc_stub%"
 
 # Resolve the destination
 [[ -z "${dest:-}" ]] \
