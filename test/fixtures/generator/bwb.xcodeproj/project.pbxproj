@@ -1572,7 +1572,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF2FE5363352BCC115DD4145 /* Build configuration list for PBXNativeTarget "OrderedCollections" */;
 			buildPhases = (
-				90B04C8AB5A07A2ECF257268 /* Copy Bazel Outputs */,
 				D463D3FD3995A74AFC639D34 /* Sources */,
 			);
 			buildRules = (
@@ -1606,7 +1605,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2103FB87F295A76D072C9F /* Build configuration list for PBXNativeTarget "CustomDump" */;
 			buildPhases = (
-				8AD6171C2CD18BEE615F0279 /* Copy Bazel Outputs */,
 				ECA0F39C31AA33C5A27E2A13 /* Sources */,
 			);
 			buildRules = (
@@ -1623,7 +1621,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CACF77A1FAAA2F54E5824DC5 /* Build configuration list for PBXNativeTarget "PathKit" */;
 			buildPhases = (
-				552BD18EE10BBA93EBBDB88E /* Copy Bazel Outputs */,
 				CEFFF3DAD94295451F05F496 /* Sources */,
 			);
 			buildRules = (
@@ -1678,7 +1675,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6151A35A4285123290BF712B /* Build configuration list for PBXNativeTarget "XCTestDynamicOverlay" */;
 			buildPhases = (
-				3B581A2D7C1575EF22D8ECDA /* Copy Bazel Outputs */,
 				3902E6234DBCF661FBA29FE8 /* Sources */,
 			);
 			buildRules = (
@@ -1694,7 +1690,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 961CB57C52E0929989B5B13A /* Build configuration list for PBXNativeTarget "XcodeProj" */;
 			buildPhases = (
-				F5738A25C92C3E659EB1C474 /* Copy Bazel Outputs */,
 				831BF4DD9F4124A081FB32B3 /* Sources */,
 			);
 			buildRules = (
@@ -1711,7 +1706,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 537F24897CAC8E48070BBA94 /* Build configuration list for PBXNativeTarget "generator.library" */;
 			buildPhases = (
-				BF93DFB380D1CC637B96A769 /* Copy Bazel Outputs */,
 				CD48CA78C6E062C9AC7C30B5 /* Sources */,
 			);
 			buildRules = (
@@ -1838,22 +1832,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"swiftc\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3B581A2D7C1575EF22D8ECDA /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libXCTestDynamicOverlay.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3C2F7597AADF65DD2B4DA5CC /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1869,38 +1847,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"tests.xctest\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		552BD18EE10BBA93EBBDB88E /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libPathKit.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8AD6171C2CD18BEE615F0279 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libCustomDump.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8F85B1482AB82E3C5B71ADB3 /* Create linking dependencies */ = {
@@ -1919,22 +1865,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
-			showEnvVarsInLog = 0;
-		};
-		90B04C8AB5A07A2ECF257268 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libOrderedCollections.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9335DA9C69E988484C66D986 /* Create linking dependencies */ = {
@@ -1991,22 +1921,6 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BF93DFB380D1CC637B96A769 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libgenerator.library.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -2021,22 +1935,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"generator\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F5738A25C92C3E659EB1C474 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libXcodeProj.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

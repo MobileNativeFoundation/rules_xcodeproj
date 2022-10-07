@@ -371,6 +371,7 @@ extension ConsolidatedTarget {
         allDependencies = aTarget.allDependencies
         outputs = ConsolidatedTargetOutputs(
             hasOutputs: self.targets.values.contains { $0.outputs.hasOutputs },
+            hasProductOutput: self.targets.values.contains { $0.outputs.hasProductOutput },
             hasSwiftOutputs: self.targets.values
                 .contains { $0.outputs.hasSwiftOutputs }
         )
@@ -484,6 +485,7 @@ struct ConsolidatedTargetLinkerInputs: Equatable {
 
 struct ConsolidatedTargetOutputs: Equatable {
     let hasOutputs: Bool
+    let hasProductOutput: Bool
     let hasSwiftOutputs: Bool
 }
 
