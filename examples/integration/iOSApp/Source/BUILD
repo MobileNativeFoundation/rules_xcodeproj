@@ -115,9 +115,9 @@ swift_library(
     visibility = ["//iOSApp/Test:__subpackages__"],
     deps = [
         "//UI",
+        "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
         "//iOSApp/Source/CoreUtilsObjC",
         "@com_google_google_maps//:GoogleMaps",
-        "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
     ],
 )
 
