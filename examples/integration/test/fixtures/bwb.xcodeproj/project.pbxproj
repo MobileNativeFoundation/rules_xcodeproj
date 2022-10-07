@@ -2285,7 +2285,7 @@
 				BEFC18878DC5748769CC7D24 /* examples_ios_app_external */,
 			);
 			name = "Bazel External Repositories";
-			path = "bazel-output-base/external";
+			path = "bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/external";
 			sourceTree = "<group>";
 		};
 		98EF34BC907E91C8A24D2D8C /* dynamic */ = {
@@ -2773,7 +2773,7 @@
 				F42C67C6B7361A26AE646E15 /* watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32 */,
 			);
 			name = "Bazel Generated Files";
-			path = "bazel-output-base/execroot/__main__/bazel-out";
+			path = "bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
 			sourceTree = "<group>";
 		};
 		C830494187F23C2ACF6D66AA /* PreviewContent */ = {
@@ -3735,7 +3735,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFD92156A876B6D6FFBB6CA8 /* Build configuration list for PBXNativeTarget "Lib (watchOS)" */;
 			buildPhases = (
-				1688E39CDF556E908D89600C /* Copy Bazel Outputs */,
 				D9176A0A70D09FD506167F09 /* Sources */,
 			);
 			buildRules = (
@@ -3751,7 +3750,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 426DF0C057EB275136F4B9DC /* Build configuration list for PBXNativeTarget "lib_swift" */;
 			buildPhases = (
-				CF5964970607E7A9795E2A66 /* Copy Bazel Outputs */,
 				18F25BCCAD587CF0E7BE2E95 /* Sources */,
 			);
 			buildRules = (
@@ -3771,7 +3769,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BFE395FEB493780D77AE664 /* Build configuration list for PBXNativeTarget "Lib (iOS, tvOS)" */;
 			buildPhases = (
-				68B35B01A8AD784A09E66060 /* Copy Bazel Outputs */,
 				376387525A0E44A3FF8EFBE1 /* Sources */,
 			);
 			buildRules = (
@@ -4021,7 +4018,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C52C33AC1575AF1A3BA03A91 /* Build configuration list for PBXNativeTarget "private_swift_lib" */;
 			buildPhases = (
-				299C08C28223D3237360513C /* Copy Bazel Outputs */,
 				481A5BE8481DD1BD3CF39B15 /* Sources */,
 			);
 			buildRules = (
@@ -4276,22 +4272,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"macOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1688E39CDF556E908D89600C /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		172D472463796AAA86DE3F16 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4463,22 +4443,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"tvOSAppUnitTests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		299C08C28223D3237360513C /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libprivate_swift_lib.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4A50E185DA5DF9C9FA565E9A /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4614,22 +4578,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		68B35B01A8AD784A09E66060 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6F779F048E8A5225FE34F009 /* Copy Bazel Outputs */ = {
@@ -5025,22 +4973,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iMessageApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CF5964970607E7A9795E2A66 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"liblib_swift.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DD9CC37462811E6A32A1ED0C /* Create linking dependencies */ = {
@@ -7545,11 +7477,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__";
-				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/external";
+				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/execroot/__main__";
+				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out";
+				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/__main__/bazel-out/_rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";

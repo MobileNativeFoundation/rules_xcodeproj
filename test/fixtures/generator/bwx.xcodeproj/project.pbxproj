@@ -1262,7 +1262,7 @@
 				FDA6D5213A699DBCBE8C3656 /* com_github_tuist_xcodeproj */,
 			);
 			name = "Bazel External Repositories";
-			path = "bazel-output-base/external";
+			path = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/external";
 			sourceTree = "<group>";
 		};
 		99F2704C9CFA066AF152A571 /* applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */ = {
@@ -1298,7 +1298,7 @@
 				99F2704C9CFA066AF152A571 /* applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */,
 			);
 			name = "Bazel Generated Files";
-			path = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
+			path = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 			sourceTree = "<group>";
 		};
 		A61FCE87C253B18D1339CA0F /* Scheme */ = {
@@ -2702,11 +2702,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
-				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/external";
+				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
+				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
+				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";

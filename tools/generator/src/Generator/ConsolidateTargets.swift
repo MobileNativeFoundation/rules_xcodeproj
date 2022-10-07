@@ -266,13 +266,12 @@ struct ConsolidatedTarget: Equatable {
     let isSwift: Bool
     let inputs: ConsolidatedTargetInputs
     let linkerInputs: ConsolidatedTargetLinkerInputs
+    let hasLinkerFlags: Bool
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
     let extensions: Set<TargetID>
     let appClips: Set<TargetID>
     let outputs: ConsolidatedTargetOutputs
-
-    let hasLinkerFlags: Bool
 
     /// The `Set` of `FilePath`s that each target references above the baseline.
     ///
@@ -344,6 +343,7 @@ extension ConsolidatedTarget {
             .map { $1 }
         inputs = Self.consolidateInputs(targets: sortedTargets)
         linkerInputs = Self.consolidateLinkerInputs(targets: sortedTargets)
+        hasLinkerFlags = aTarget.hasLinkerFlags
 
         var baselineFiles: Set<FilePath> = aTarget
             .allExcludableFiles(xcodeGeneratedFiles: xcodeGeneratedFiles)
@@ -371,11 +371,10 @@ extension ConsolidatedTarget {
         allDependencies = aTarget.allDependencies
         outputs = ConsolidatedTargetOutputs(
             hasOutputs: self.targets.values.contains { $0.outputs.hasOutputs },
+            hasProductOutput: self.targets.values.contains { $0.outputs.hasProductOutput },
             hasSwiftOutputs: self.targets.values
                 .contains { $0.outputs.hasSwiftOutputs }
         )
-
-        hasLinkerFlags = aTarget.hasLinkerFlags
     }
 
     private static func consolidateInputs(
@@ -484,6 +483,7 @@ struct ConsolidatedTargetLinkerInputs: Equatable {
 
 struct ConsolidatedTargetOutputs: Equatable {
     let hasOutputs: Bool
+    let hasProductOutput: Bool
     let hasSwiftOutputs: Bool
 }
 

@@ -1,8 +1,14 @@
 build --incompatible_disallow_empty_glob
 build --experimental_convenience_symlinks=ignore
 
+# Work around https://github.com/bazelbuild/bazel/issues/13912
+build --experimental_action_cache_store_output_metadata
+
 build --remote_default_exec_properties=OSFamily=darwin
 build --remote_default_exec_properties=cache_bust=macOS_12.0/3
+
+# In-repo output_base makes fixtures relative
+startup --output_base=bazel-output-base
 
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
