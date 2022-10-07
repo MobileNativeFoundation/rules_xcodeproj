@@ -413,12 +413,17 @@ extension XCSchemeExtensionsTests {
 // MARK: - Test Data
 
 class XCSchemeExtensionsTests: XCTestCase {
-    lazy var filePathResolver = FilePathResolver(
-        workspaceDirectory: "/Users/TimApple/app",
-        externalDirectory: "/some/bazel3/external",
-        bazelOutDirectory: "/some/bazel3/bazel-out",
+    let directories = FilePathResolver.Directories(
+        workspace: "/Users/TimApple/app",
+        projectRoot: "/Users/TimApple",
+        external: "/some/bazel3/external",
+        bazelOut: "/some/bazel3/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
-        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+        bazelIntegration: "bazel",
+        workspaceOutput: "examples/foo/Foo.xcodeproj"
+    )
+    lazy var filePathResolver = FilePathResolver(
+        directories: directories
     )
 
     lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =

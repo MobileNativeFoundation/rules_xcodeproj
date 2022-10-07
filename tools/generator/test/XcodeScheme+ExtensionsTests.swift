@@ -501,12 +501,17 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             .init(name: "watchOSApp", productType: .watch2App),
     ]
 
-    lazy var filePathResolver = FilePathResolver(
-        workspaceDirectory: "/Users/TimApple/app",
-        externalDirectory: "/some/bazel10/external",
-        bazelOutDirectory: "/some/bazel10/bazel-out",
+    let directories = FilePathResolver.Directories(
+        workspace: "/Users/TimApple/app",
+        projectRoot: "/Users/TimApple",
+        external: "/some/bazel10/external",
+        bazelOut: "/some/bazel10/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
-        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+        bazelIntegration: "stubs",
+        workspaceOutput: "examples/foo/Foo.xcodeproj"
+    )
+    lazy var filePathResolver = FilePathResolver(
+        directories: directories
     )
 
     // swiftlint:disable:next force_try

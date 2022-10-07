@@ -9,8 +9,7 @@ extension Generator {
     static func createProject(
         buildMode: BuildMode,
         project: Project,
-        projectRootDirectory: Path,
-        filePathResolver: FilePathResolver
+        directories: FilePathResolver.Directories
     ) -> PBXProj {
         let pbxProj = PBXProj()
 
@@ -18,17 +17,17 @@ extension Generator {
         pbxProj.add(object: mainGroup)
 
         let bazelOut: Path
-        if filePathResolver.bazelOutDirectory.isRelative {
-            bazelOut = "$(PROJECT_DIR)" + filePathResolver.bazelOutDirectory
+        if directories.bazelOut.isRelative {
+            bazelOut = "$(PROJECT_DIR)" + directories.bazelOut
         } else {
-            bazelOut = filePathResolver.bazelOutDirectory
+            bazelOut = directories.bazelOut
         }
 
         let external: Path
-        if filePathResolver.externalDirectory.isRelative {
-            external = "$(PROJECT_DIR)" + filePathResolver.externalDirectory
+        if directories.external.isRelative {
+            external = "$(PROJECT_DIR)" + directories.external
         } else {
-            external = filePathResolver.externalDirectory
+            external = directories.external
         }
 
         var buildSettings = project.buildSettings.asDictionary
@@ -68,7 +67,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INDEXING_DEPLOYMENT_LOCATION__YES": false,
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": """
-$(PROJECT_FILE_PATH)/\(filePathResolver.internalDirectoryName)
+$(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
 """,
             "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -124,7 +123,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             // TODO: Make this configurable?
             // Normal Xcode projects set this to `""` when at the workspace
             // level. Maybe we should as well?
-            projectDirPath: projectRootDirectory.normalize().string,
+            projectDirPath: directories.projectRoot.normalize().string,
             attributes: attributes
         )
         pbxProj.add(object: pbxProject)

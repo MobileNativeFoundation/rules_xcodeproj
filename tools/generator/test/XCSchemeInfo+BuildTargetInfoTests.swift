@@ -20,12 +20,17 @@ extension XCSchemeInfoBuildTargetInfoTests {
 // MARK: Test Data
 
 class XCSchemeInfoBuildTargetInfoTests: XCTestCase {
-    lazy var filePathResolver = FilePathResolver(
-        workspaceDirectory: "/Users/TimApple/app",
-        externalDirectory: "/some/bazel4/external",
-        bazelOutDirectory: "/some/bazel4/bazel-out",
+    let directories = FilePathResolver.Directories(
+        workspace: "/Users/TimApple/app",
+        projectRoot: "/Users/TimApple",
+        external: "/some/bazel4/external",
+        bazelOut: "/some/bazel4/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
-        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+        bazelIntegration: "bazel",
+        workspaceOutput: "examples/foo/Foo.xcodeproj"
+    )
+    lazy var filePathResolver = FilePathResolver(
+        directories: directories
     )
 
     lazy var targetResolver = Fixtures.targetResolver(

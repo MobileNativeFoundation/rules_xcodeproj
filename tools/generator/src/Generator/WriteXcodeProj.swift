@@ -5,14 +5,13 @@ extension Generator {
     /// Writes the ".xcodeproj" file to disk.
     static func writeXcodeProj(
         _ xcodeProj: XcodeProj,
+        directories: FilePathResolver.Directories,
         files: [FilePath: File],
-        internalDirectoryName: String,
-        bazelIntegrationDirectory: Path,
         to outputPath: Path
     ) throws {
         try xcodeProj.write(path: outputPath)
 
-        let internalOutputPath = outputPath + internalDirectoryName
+        let internalOutputPath = outputPath + directories.internalDirectoryName
 
         for (filePath, file) in files.filter(\.key.isInternal) {
             guard case let .reference(_, maybeContent) = file else {
@@ -29,7 +28,7 @@ extension Generator {
 
         let dest = internalOutputPath + "bazel"
         try internalOutputPath.mkpath()
-        try bazelIntegrationDirectory.copy(dest)
+        try directories.bazelIntegration.copy(dest)
     }
 }
 

@@ -9,8 +9,7 @@ struct Environment {
     let createProject: (
         _ buildMode: BuildMode,
         _ project: Project,
-        _ projectRootDirectory: Path,
-        _ filePathResolver: FilePathResolver
+        _ directories: FilePathResolver.Directories
     ) -> PBXProj
 
     let processReplacementLabels: (
@@ -36,11 +35,12 @@ struct Environment {
         _ targets: [TargetID: Target],
         _ extraFiles: Set<FilePath>,
         _ xccurrentversions: [XCCurrentVersion],
-        _ filePathResolver: FilePathResolver,
+        _ directories: FilePathResolver.Directories,
         _ logger: Logger
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
+        filePathResolver: FilePathResolver,
         xcodeGeneratedFiles: [FilePath: FilePath],
         bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
@@ -129,9 +129,8 @@ struct Environment {
 
     let writeXcodeProj: (
         _ xcodeProj: XcodeProj,
+        _ directories: FilePathResolver.Directories,
         _ files: [FilePath: File],
-        _ internalDirectoryName: String,
-        _ bazelIntegrationDirectory: Path,
         _ outputPath: Path
     ) throws -> Void
 }

@@ -44,28 +44,13 @@ class Generator {
         project: Project,
         xccurrentversions: [XCCurrentVersion],
         extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
-        workspaceDirectory: Path,
-        projectRootDirectory: Path,
-        externalDirectory: Path,
-        bazelOutDirectory: Path,
-        internalDirectoryName: String,
-        bazelIntegrationDirectory: Path,
-        workspaceOutputPath: Path,
+        directories: FilePathResolver.Directories,
         outputPath: Path
     ) throws {
-        let filePathResolver = FilePathResolver(
-            workspaceDirectory: workspaceDirectory,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
-            internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
-        )
-
         let pbxProj = environment.createProject(
             buildMode,
             project,
-            projectRootDirectory,
-            filePathResolver
+            directories
         )
         guard let pbxProject = pbxProj.rootObject else {
             throw PreconditionError(message: """
@@ -91,6 +76,7 @@ class Generator {
         let (
             files,
             rootElements,
+            filePathResolver,
             xcodeGeneratedFiles,
             bazelRemappedFiles,
             resolvedExternalRepositories
@@ -101,7 +87,7 @@ class Generator {
             targets,
             project.extraFiles,
             xccurrentversions,
-            filePathResolver,
+            directories,
             logger
         )
 
@@ -191,9 +177,8 @@ class Generator {
         let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)
         try environment.writeXcodeProj(
             xcodeProj,
+            directories,
             files,
-            internalDirectoryName,
-            bazelIntegrationDirectory,
             outputPath
         )
     }

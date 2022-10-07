@@ -7,44 +7,58 @@ struct FilePathResolver: Equatable {
         case srcRoot
     }
 
-    let workspaceDirectoryComponents: [String]
-    
-    let externalDirectory: Path
-    let absoluteExternalDirectory: Path
-    let bazelOutDirectory: Path
+    struct Directories: Equatable {
+        let workspaceComponents: [String]
+        fileprivate let workspaceOutput: Path
 
-    let internalDirectoryName: String
-    private let workspaceOutputPath: Path
-    let internalDirectory: Path
-    private let linksDirectory: Path
+        let internalDirectoryName: String
+        let `internal`: Path
+        let bazelIntegration: Path
+
+        let projectRoot: Path
+        let external: Path
+        let absoluteExternal: Path
+        let bazelOut: Path
+
+        init(
+            workspace: Path,
+            projectRoot: Path,
+            external: Path,
+            bazelOut: Path,
+            internalDirectoryName: String,
+            bazelIntegration: Path,
+            workspaceOutput: Path
+        ) {
+            workspaceComponents = workspace.components
+            self.workspaceOutput = workspaceOutput
+
+            self.internalDirectoryName = internalDirectoryName
+            `internal` = workspaceOutput + internalDirectoryName
+            self.bazelIntegration = bazelIntegration
+
+            self.projectRoot = projectRoot
+            self.external = external
+            self.bazelOut = bazelOut
+
+            if external.isRelative {
+                absoluteExternal = workspace + external
+            } else {
+                absoluteExternal = external
+            }
+        }
+    }
+
+    private let directories: Directories
 
     /// In XcodeProj, a `referencedContainer` in a `XCScheme.BuildableReference`
     /// accepts a string in the format `container:<path-to-xcodeproj-dir>`. This
     /// property provides the value.
     let containerReference: String
 
-    init(
-        workspaceDirectory: Path,
-        externalDirectory: Path,
-        bazelOutDirectory: Path,
-        internalDirectoryName: String,
-        workspaceOutputPath: Path
-    ) {
-        self.workspaceDirectoryComponents = workspaceDirectory.components
-        self.externalDirectory = externalDirectory
-        self.bazelOutDirectory = bazelOutDirectory
-        self.internalDirectoryName = internalDirectoryName
-        self.workspaceOutputPath = workspaceOutputPath
-        internalDirectory = workspaceOutputPath + internalDirectoryName
-        linksDirectory = internalDirectory + "links"
-        containerReference = "container:\(workspaceOutputPath)"
+    init(directories: Directories) {
+        self.directories = directories
 
-        if externalDirectory.isRelative {
-            self.absoluteExternalDirectory = workspaceDirectory +
-                externalDirectory
-        } else {
-            self.absoluteExternalDirectory = externalDirectory
-        }
+        containerReference = "container:\(directories.workspaceOutput)"
     }
 
     func resolve(
@@ -73,7 +87,7 @@ struct FilePathResolver: Equatable {
             case .script:
                 externalDir = "$BAZEL_EXTERNAL"
             case .srcRoot:
-                externalDir = externalDirectory
+                externalDir = directories.external
             }
             return externalDir + filePath.path
         case .generated:
@@ -85,7 +99,7 @@ struct FilePathResolver: Equatable {
                 case .script:
                     bazelOutDir = "$BAZEL_OUT"
                 case .srcRoot:
-                    bazelOutDir = bazelOutDirectory
+                    bazelOutDir = directories.bazelOut
                 }
                 return bazelOutDir + filePath.path
             } else {
@@ -110,7 +124,7 @@ struct FilePathResolver: Equatable {
             case .script:
                 internalDir = "$INTERNAL_DIR"
             case .srcRoot:
-                internalDir = internalDirectory
+                internalDir = directories.internal
             }
             return internalDir + filePath.path
         }

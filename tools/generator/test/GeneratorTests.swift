@@ -55,12 +55,17 @@ final class GeneratorTests: XCTestCase {
         let bazelIntegrationDirectory: Path = "stubs"
         let outputPath: Path = "P.xcodeproj"
 
-        let filePathResolver = FilePathResolver(
-            workspaceDirectory: workspaceDirectory,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
+        let directories = FilePathResolver.Directories(
+            workspace: workspaceDirectory,
+            projectRoot: projectRootDirectory,
+            external: externalDirectory,
+            bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            bazelIntegration: bazelIntegrationDirectory,
+            workspaceOutput: workspaceOutputPath
+        )
+        let filePathResolver = FilePathResolver(
+            directories: directories
         )
 
         let replacedLabelsTargets: [TargetID: Target] = [
@@ -236,22 +241,19 @@ final class GeneratorTests: XCTestCase {
         struct CreateProjectCalled: Equatable {
             let buildMode: BuildMode
             let project: Project
-            let projectRootDirectory: Path
-            let filePathResolver: FilePathResolver
+            let directories: FilePathResolver.Directories
         }
 
         var createProjectCalled: [CreateProjectCalled] = []
         func createProject(
             buildMode: BuildMode,
             project: Project,
-            projectRootDirectory: Path,
-            filePathResolver: FilePathResolver
+            directories: FilePathResolver.Directories
         ) -> PBXProj {
             createProjectCalled.append(.init(
                 buildMode: buildMode,
                 project: project,
-                projectRootDirectory: projectRootDirectory,
-                filePathResolver: filePathResolver
+                directories: directories
             ))
             return pbxProj
         }
@@ -259,8 +261,7 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateProjectCalled = [CreateProjectCalled(
             buildMode: buildMode,
             project: project,
-            projectRootDirectory: projectRootDirectory,
-            filePathResolver: filePathResolver
+            directories: directories
         )]
 
         // MARK: processReplacementLabels()
@@ -323,7 +324,7 @@ final class GeneratorTests: XCTestCase {
             let targets: [TargetID: Target]
             let extraFiles: Set<FilePath>
             let xccurrentversions: [XCCurrentVersion]
-            let filePathResolver: FilePathResolver
+            let directories: FilePathResolver.Directories
         }
 
         var createFilesAndGroupsCalled: [CreateFilesAndGroupsCalled] = []
@@ -334,11 +335,12 @@ final class GeneratorTests: XCTestCase {
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
             xccurrentversions: [XCCurrentVersion],
-            filePathResolver: FilePathResolver,
+            directories: FilePathResolver.Directories,
             logger _: Logger
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement],
+            filePathResolver: FilePathResolver,
             xcodeGeneratedFiles: [FilePath: FilePath],
             bazelRemappedFiles: [FilePath: FilePath],
             resolvedExternalRepositories: [(Path, Path)]
@@ -350,11 +352,12 @@ final class GeneratorTests: XCTestCase {
                 targets: targets,
                 extraFiles: extraFiles,
                 xccurrentversions: xccurrentversions,
-                filePathResolver: filePathResolver
+                directories: directories
             ))
             return (
                 files,
                 rootElements,
+                filePathResolver,
                 xcodeGeneratedFiles,
                 bazelRemappedFiles,
                 resolvedExternalRepositories
@@ -368,7 +371,7 @@ final class GeneratorTests: XCTestCase {
             targets: mergedTargets,
             extraFiles: project.extraFiles,
             xccurrentversions: xccurrentversions,
-            filePathResolver: filePathResolver
+            directories: directories
         )]
 
         // MARK: consolidateTargets()
@@ -771,34 +774,30 @@ final class GeneratorTests: XCTestCase {
 
         struct WriteXcodeProjCalled: Equatable {
             let xcodeProj: XcodeProj
+            let directories: FilePathResolver.Directories
             let files: [FilePath: File]
-            let internalDirectoryName: String
-            let bazelIntegrationDirectory: Path
             let outputPath: Path
         }
 
         var writeXcodeProjCalled: [WriteXcodeProjCalled] = []
         func writeXcodeProj(
             xcodeProj: XcodeProj,
+            directories: FilePathResolver.Directories,
             files: [FilePath: File],
-            internalDirectoryName: String,
-            bazelIntegrationDirectory: Path,
             to outputPath: Path
         ) {
             writeXcodeProjCalled.append(.init(
                 xcodeProj: xcodeProj,
+                directories: directories,
                 files: files,
-                internalDirectoryName: internalDirectoryName,
-                bazelIntegrationDirectory: bazelIntegrationDirectory,
                 outputPath: outputPath
             ))
         }
 
         let expectedWriteXcodeProjCalled = [WriteXcodeProjCalled(
             xcodeProj: xcodeProj,
+            directories: directories,
             files: files,
-            internalDirectoryName: internalDirectoryName,
-            bazelIntegrationDirectory: bazelIntegrationDirectory,
             outputPath: outputPath
         )]
 
@@ -836,13 +835,7 @@ final class GeneratorTests: XCTestCase {
             project: project,
             xccurrentversions: xccurrentversions,
             extensionPointIdentifiers: extensionPointIdentifiers,
-            workspaceDirectory: workspaceDirectory,
-            projectRootDirectory: projectRootDirectory,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
-            internalDirectoryName: internalDirectoryName,
-            bazelIntegrationDirectory: bazelIntegrationDirectory,
-            workspaceOutputPath: workspaceOutputPath,
+            directories: directories,
             outputPath: outputPath
         )
 
