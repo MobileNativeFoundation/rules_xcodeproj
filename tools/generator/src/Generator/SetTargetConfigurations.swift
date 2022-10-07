@@ -17,7 +17,6 @@ extension Generator {
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool,
-        xcodeGeneratedFiles: [FilePath: FilePath],
         bazelRemappedFiles: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws {
@@ -43,7 +42,6 @@ Target "\(key)" not found in `pbxTargets`
                 targets: targets,
                 hostIDs: hostIDs,
                 hasBazelDependencies: hasBazelDependencies,
-                xcodeGeneratedFiles: xcodeGeneratedFiles,
                 bazelRemappedFiles: bazelRemappedFiles,
                 filePathResolver: filePathResolver
             )
@@ -79,7 +77,6 @@ Target "\(key)" not found in `pbxTargets`
         targets: [TargetID: Target],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool,
-        xcodeGeneratedFiles: [FilePath: FilePath],
         bazelRemappedFiles: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
@@ -96,7 +93,6 @@ Target "\(key)" not found in `pbxTargets`
                 hostIDs: hostIDs[id, default: []],
                 buildMode: buildMode,
                 hasBazelDependencies: hasBazelDependencies,
-                xcodeGeneratedFiles: xcodeGeneratedFiles,
                 bazelRemappedFiles: bazelRemappedFiles,
                 filePathResolver: filePathResolver
             )
@@ -161,7 +157,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         hostIDs: [TargetID],
         buildMode: BuildMode,
         hasBazelDependencies: Bool,
-        xcodeGeneratedFiles: [FilePath: FilePath],
         bazelRemappedFiles: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws -> [String: BuildSetting] {
@@ -170,7 +165,9 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         var frameworkSearchPaths: [FilePath: [Bool: FilePath]] = [:]
         for filePath in target.linkerInputs.dynamicFrameworks {
             let searchFilePath = filePath.parent()
-            if let xcodeFilePath = xcodeGeneratedFiles[filePath] {
+            if let xcodeFilePath = filePathResolver
+                .xcodeGeneratedFiles[filePath]
+            {
                 frameworkSearchPaths[searchFilePath, default: [:]][false] =
                     xcodeFilePath.parent()
             } else {
@@ -253,7 +250,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             target.modulemaps
                 .map { filePath -> String in
                     let modulemap = try filePathResolver
-                        .resolve(filePath, useBazelOut: true, forceAbsoluteProjectPath: true)
+                        .resolve(
+                            filePath,
+                            useBazelOut: true,
+                            forceAbsoluteProjectPath: true
+                        )
                         .string.quoted
                     return "-Xcc -fmodule-map-file=\(modulemap)"
                 }
@@ -398,7 +399,8 @@ $(CONFIGURATION_BUILD_DIR)
 
         if target.isSwift {
             func handleSwiftModule(_ filePath: FilePath) throws -> String {
-                let xcodeFilePath = xcodeGeneratedFiles[filePath]
+                let xcodeFilePath = filePathResolver
+                    .xcodeGeneratedFiles[filePath]
                 let filePath = xcodeFilePath ?? filePath
                 return try filePathResolver
                     .resolve(

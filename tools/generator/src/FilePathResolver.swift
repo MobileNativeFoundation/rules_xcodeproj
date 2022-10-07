@@ -9,7 +9,7 @@ struct FilePathResolver: Equatable {
 
     struct Directories: Equatable {
         let workspaceComponents: [String]
-        fileprivate let workspaceOutput: Path
+        let workspaceOutput: Path
 
         let internalDirectoryName: String
         let `internal`: Path
@@ -55,15 +55,21 @@ struct FilePathResolver: Equatable {
     /// property provides the value.
     let containerReference: String
 
-    init(directories: Directories) {
+    let xcodeGeneratedFiles: [FilePath: FilePath]
+
+    init(
+        directories: Directories,
+        xcodeGeneratedFiles: [FilePath: FilePath] = [:]
+    ) {
         self.directories = directories
+        self.xcodeGeneratedFiles = xcodeGeneratedFiles
 
         containerReference = "container:\(directories.workspaceOutput)"
     }
 
     func resolve(
         _ filePath: FilePath,
-        useBazelOut: Bool = false,
+        useBazelOut: Bool? = nil,
         forceAbsoluteProjectPath: Bool = false,
         mode: Mode = .buildSetting
     ) throws -> Path {
@@ -91,7 +97,20 @@ struct FilePathResolver: Equatable {
             }
             return externalDir + filePath.path
         case .generated:
-            if useBazelOut {
+            let actuallyUseBazelOut: Bool
+            let generatedFilePath: FilePath
+            if let useBazelOut = useBazelOut {
+                actuallyUseBazelOut = useBazelOut
+                generatedFilePath = filePath
+            } else if let xcodeFilePath = xcodeGeneratedFiles[filePath] {
+                actuallyUseBazelOut = false
+                generatedFilePath = xcodeFilePath
+            } else {
+                actuallyUseBazelOut = true
+                generatedFilePath = filePath
+            }
+
+            if actuallyUseBazelOut {
                 let bazelOutDir: Path
                 switch mode {
                 case .buildSetting:
@@ -101,7 +120,7 @@ struct FilePathResolver: Equatable {
                 case .srcRoot:
                     bazelOutDir = directories.bazelOut
                 }
-                return bazelOutDir + filePath.path
+                return bazelOutDir + generatedFilePath.path
             } else {
                 let buildDir: Path
                 switch mode {
@@ -114,7 +133,7 @@ struct FilePathResolver: Equatable {
 `useBuildDir = true` and `mode` == `.srcRoot`
 """)
                 }
-                return buildDir + "bazel-out" + filePath.path
+                return buildDir + "bazel-out" + generatedFilePath.path
             }
         case .internal:
             let internalDir: Path

@@ -442,15 +442,12 @@ enum Fixtures {
     static func files(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
-        parentGroup group: PBXGroup? = nil,
-        externalDirectory: Path = "/some/bazel77/external",
-        bazelOutDirectory: Path = "/some/bazel77/bazel-out",
-        internalDirectoryName: String = "rules_xcodeproj",
-        workspaceOutputPath: Path = "some/Project.xcodeproj"
+        directories: FilePathResolver.Directories,
+        parentGroup group: PBXGroup? = nil
     ) -> (
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
-        xcodeGeneratedFiles: [FilePath: FilePath],
+        filePathResolver: FilePathResolver,
         bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
@@ -508,9 +505,9 @@ enum Fixtures {
                 elements[.generated("a1b2c")]!,
                 elements[.generated("v", isFolder: true)]!,
             ],
-            sourceTree: bazelOutDirectory.isAbsolute ? .absolute : .group,
+            sourceTree: directories.bazelOut.isAbsolute ? .absolute : .group,
             name: "Bazel Generated Files",
-            path: bazelOutDirectory.string
+            path: directories.bazelOut.string
         )
 
         // external/a_repo/a.swift
@@ -546,9 +543,9 @@ enum Fixtures {
                 elements[.external("a_repo")]!,
                 elements[.external("another_repo")]!,
             ],
-            sourceTree: externalDirectory.isAbsolute ? .absolute : .group,
+            sourceTree: directories.external.isAbsolute ? .absolute : .group,
             name: "Bazel External Repositories",
-            path: externalDirectory.string
+            path: directories.external.string
         )
 
         // a/a.h
@@ -997,8 +994,9 @@ enum Fixtures {
                 elements[.internal("_CompileStub_.m")]!,
             ],
             sourceTree: .group,
-            name: internalDirectoryName,
-            path: (workspaceOutputPath + internalDirectoryName).string
+            name: directories.internalDirectoryName,
+            path: (directories.workspaceOutput +
+                   directories.internalDirectoryName).string
         )
 
         elements.values.forEach { element in
@@ -1297,7 +1295,12 @@ class StopHook:
             ]
         }
 
-        return (files, elements, xcodeGeneratedFiles, bazelRemappedFiles, [])
+        let filePathResolver = FilePathResolver(
+            directories: directories,
+            xcodeGeneratedFiles: xcodeGeneratedFiles
+        )
+
+        return (files, elements, filePathResolver, bazelRemappedFiles, [])
     }
 
     static func products(
@@ -2070,11 +2073,12 @@ touch "$SCRIPT_OUTPUT_FILE_1"
     static func pbxTargets(
         in pbxProj: PBXProj,
         buildMode: BuildMode = .xcode,
+        directories: FilePathResolver.Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> (
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         disambiguatedTargets: DisambiguatedTargets,
-        xcodeGeneratedFiles: [FilePath: FilePath],
+        filePathResolver: FilePathResolver,
         bazelRemappedFiles: [FilePath: FilePath]
     ) {
         let pbxProject = pbxProj.rootObject!
@@ -2083,12 +2087,13 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         let (
             files,
             _,
-            xcodeGeneratedFiles,
+            filePathResolver,
             bazelRemappedFiles,
             _
         ) = Fixtures.files(
             in: pbxProj,
             buildMode: buildMode,
+            directories: directories,
             parentGroup: mainGroup
         )
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
@@ -2113,7 +2118,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         return (
             pbxTargets,
             disambiguatedTargets,
-            xcodeGeneratedFiles,
+            filePathResolver,
             bazelRemappedFiles
         )
     }
@@ -2121,11 +2126,13 @@ touch "$SCRIPT_OUTPUT_FILE_1"
     static func pbxTargetsWithConfigurations(
         in pbxProj: PBXProj,
         buildMode: BuildMode = .xcode,
+        directories: FilePathResolver.Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
         let (pbxTargets, _, _, _) = Fixtures.pbxTargets(
             in: pbxProj,
             buildMode: buildMode,
+            directories: directories,
             consolidatedTargets: consolidatedTargets
         )
 
@@ -2652,10 +2659,12 @@ $(MACOSX_FILES)
 
     static func pbxTargetsWithDependencies(
         in pbxProj: PBXProj,
+        directories: FilePathResolver.Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
         let (pbxTargets, _, _,_ ) = Fixtures.pbxTargets(
             in: pbxProj,
+            directories: directories,
             consolidatedTargets: consolidatedTargets
         )
 
@@ -2694,7 +2703,10 @@ $(MACOSX_FILES)
         return XCSharedData(schemes: schemes)
     }
 
-    static func targetResolver(referencedContainer: String) -> TargetResolver {
+    static func targetResolver(
+        directories: FilePathResolver.Directories,
+        referencedContainer: String
+    ) -> TargetResolver {
         // swiftlint:disable:next force_try
         return try! .init(
             referencedContainer: referencedContainer,
@@ -2704,6 +2716,7 @@ $(MACOSX_FILES)
             consolidatedTargetKeys: Fixtures.consolidatedTargets.keys,
             pbxTargets: Fixtures.pbxTargets(
                 in: Fixtures.pbxProj(),
+                directories: directories,
                 consolidatedTargets: Fixtures.consolidatedTargets
             ).0
         )

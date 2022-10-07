@@ -223,6 +223,7 @@ class XCSchemeInfoTests: XCTestCase {
     )
 
     lazy var targetResolver = Fixtures.targetResolver(
+        directories: directories,
         referencedContainer: filePathResolver.containerReference
     )
 

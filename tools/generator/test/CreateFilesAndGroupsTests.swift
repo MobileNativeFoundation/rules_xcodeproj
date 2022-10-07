@@ -63,7 +63,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdRootElements,
             _,
             _,
-            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -126,16 +125,13 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            expectedXcodeGeneratedFiles,
+            expectedFilePathResolver,
             expectedBazelRemappedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
             buildMode: .xcode,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
-            internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            directories: directories
         )
 
         let expectedRootElements: [PBXFileElement] = [
@@ -171,8 +167,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
-            _,
-            xcodeGeneratedFiles,
+            filePathResolver,
             bazelRemappedFiles,
             _
         ) = try Generator.createFilesAndGroups(
@@ -201,8 +196,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFiles.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
-            expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
+            filePathResolver.xcodeGeneratedFiles
+                .map(KeyAndValue.init).sorted(),
+            expectedFilePathResolver.xcodeGeneratedFiles
+                .map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
             bazelRemappedFiles.map(KeyAndValue.init).sorted(),
@@ -244,16 +241,13 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            expectedXcodeGeneratedFiles,
+            expectedFilePathResolver,
             expectedBazelRemappedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
             buildMode: .bazel,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
-            internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            directories: directories
         )
 
         let expectedRootElements: [PBXFileElement] = [
@@ -289,8 +283,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
-            _,
-            xcodeGeneratedFiles,
+            filePathResolver,
             bazelRemappedFiles,
             _
         ) = try Generator.createFilesAndGroups(
@@ -319,8 +312,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFiles.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
-            expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
+            filePathResolver.xcodeGeneratedFiles
+                .map(KeyAndValue.init).sorted(),
+            expectedFilePathResolver.xcodeGeneratedFiles
+                .map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
             bazelRemappedFiles.map(KeyAndValue.init).sorted(),

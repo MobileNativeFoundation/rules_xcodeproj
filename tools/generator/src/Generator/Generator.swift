@@ -77,7 +77,6 @@ class Generator {
             files,
             rootElements,
             filePathResolver,
-            xcodeGeneratedFiles,
             bazelRemappedFiles,
             resolvedExternalRepositories
         ) = try environment.createFilesAndGroups(
@@ -93,7 +92,7 @@ class Generator {
 
         let consolidatedTargets = try environment.consolidateTargets(
             targets,
-            xcodeGeneratedFiles,
+            filePathResolver.xcodeGeneratedFiles,
             logger
         )
         let (products, productsGroup) = environment.createProducts(
@@ -142,7 +141,6 @@ class Generator {
             pbxTargets,
             project.targetHosts,
             bazelDependencies != nil,
-            xcodeGeneratedFiles,
             bazelRemappedFiles,
             filePathResolver
         )

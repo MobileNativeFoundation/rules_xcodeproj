@@ -429,6 +429,7 @@ class XCSchemeExtensionsTests: XCTestCase {
     lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
         Fixtures.pbxTargets(
             in: Fixtures.pbxProj(),
+            directories: directories,
             consolidatedTargets: Fixtures.consolidatedTargets
         )
         .0

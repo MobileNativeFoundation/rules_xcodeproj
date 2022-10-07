@@ -78,7 +78,6 @@ extension Generator {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         filePathResolver: FilePathResolver,
-        xcodeGeneratedFiles: [FilePath: FilePath],
         bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
@@ -541,11 +540,46 @@ extension Generator {
             }
         }
 
-        // Write xcfilelists
+        // `filePathResolver`
+
+        var xcodeGeneratedFiles: [FilePath: FilePath] = [:]
+        var bazelRemappedFiles: [FilePath: FilePath] = [:]
+        switch buildMode {
+        case .xcode:
+            for (_, target) in targets {
+                guard !target.isUnfocusedDependency else {
+                    continue
+                }
+
+                xcodeGeneratedFiles[target.product.path] = target.product.path
+                for filePath in target.product.additionalPaths {
+                    xcodeGeneratedFiles[filePath] = target.product.path
+                }
+                if let filePath = target.outputs.swift?.module {
+                    let value = target.xcodeSwiftModuleFilePath(filePath)
+                    if let existingValue = xcodeGeneratedFiles[filePath] {
+                        throw PreconditionError(message: """
+Tried to set `xcodeGeneratedFiles[\(filePath)]` to `\(value)`, but it already \
+was set to `\(existingValue)`.
+""")
+                    }
+                    xcodeGeneratedFiles[filePath] = value
+                }
+            }
+        case .bazel:
+            for (_, target) in targets {
+                for filePath in target.product.additionalPaths {
+                    bazelRemappedFiles[filePath] = target.product.path
+                }
+            }
+        }
 
         let filePathResolver = FilePathResolver(
-            directories: directories
+            directories: directories,
+            xcodeGeneratedFiles: xcodeGeneratedFiles
         )
+
+        // Write xcfilelists
 
         let fileListFileFilePaths = fileReferences
             .filter { filePath, _ in
@@ -645,45 +679,10 @@ EOF
 
         // - `lldbSwiftSettingsModule`
 
-        var xcodeGeneratedFiles: [FilePath: FilePath] = [:]
-        var bazelRemappedFiles: [FilePath: FilePath] = [:]
-        switch buildMode {
-        case .xcode:
-            for (_, target) in targets {
-                guard !target.isUnfocusedDependency else {
-                    continue
-                }
-
-                xcodeGeneratedFiles[target.product.path] = target.product.path
-                for filePath in target.product.additionalPaths {
-                    xcodeGeneratedFiles[filePath] = target.product.path
-                }
-                if let filePath = target.outputs.swift?.module {
-                    let value = target.xcodeSwiftModuleFilePath(filePath)
-                    if let existingValue = xcodeGeneratedFiles[filePath] {
-                        throw PreconditionError(message: """
-Tried to set `xcodeGeneratedFiles[\(filePath)]` to `\(value)`, but it already \
-was set to `\(existingValue)`.
-""")
-                    }
-                    xcodeGeneratedFiles[filePath] = value
-                }
-            }
-        case .bazel:
-            for (_, target) in targets {
-                for filePath in target.product.additionalPaths {
-                    bazelRemappedFiles[filePath] = target.product.path
-                }
-            }
-        }
-
         var lldbSettingsMap: [String: LLDBSettings] = [:]
         for target in targets.values {
             let linkopts = try target
-                .allLinkerFlags(
-                    xcodeGeneratedFiles: xcodeGeneratedFiles,
-                    filePathResolver: filePathResolver
-                )
+                .allLinkerFlags(filePathResolver: filePathResolver)
                 .map { "\($0)\n" }
             if !linkopts.isEmpty {
                 files[try target.linkParamsFilePath()] =
@@ -895,7 +894,6 @@ class StopHook:
             files,
             rootElements,
             filePathResolver,
-            xcodeGeneratedFiles,
             bazelRemappedFiles,
             resolvedExternalRepositories
         )
