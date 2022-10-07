@@ -1,8 +1,6 @@
 """Module containing functions dealing with target linker input files."""
 
 load("@bazel_skylib//lib:sets.bzl", "sets")
-load("@bazel_skylib//lib:collections.bzl", "collections")
-load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":collections.bzl", "flatten", "set_if_true", "uniq")
 load(":files.bzl", "file_path", "file_path_to_dto")
 
@@ -10,9 +8,19 @@ load(":files.bzl", "file_path", "file_path_to_dto")
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _LD_SKIP_OPTS = {
+    "-bundle": 2,
+    "-dynamiclib": 1,
+    "-e": 2,
+    "-fapplication-extension": 1,
     "-isysroot": 2,
+    "-filelist": 2,
     "-fobjc-link-runtime": 1,
+    "-o": 2,
+    "-static": 1,
     "-target": 2,
+
+    # TODO: Remove this filter once we move path logic out of the generator
+    "-force_load": 2,
 }
 
 _SKIP_INPUT_EXTENSIONS = {
@@ -27,11 +35,15 @@ _SKIP_INPUT_EXTENSIONS = {
     "xctest": None,
 }
 
-def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
+def _collect(
+        *,
+        target,
+        compilation_providers,
+        avoid_compilation_providers = None):
     """Collects linker input files for a target.
 
     Args:
-        ctx: The aspect context.
+        target: The `Target`.
         compilation_providers: A value returned by
             `compilation_providers.collect`.
         avoid_compilation_providers: A value returned from
@@ -50,7 +62,7 @@ def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
     if compilation_providers._is_top_level:
         primary_static_library = None
         top_level_values = _extract_top_level_values(
-            ctx = ctx,
+            target = target,
             compilation_providers = compilation_providers,
             avoid_compilation_providers = avoid_compilation_providers,
             objc_libraries = objc_libraries,
@@ -76,7 +88,10 @@ def _collect(*, ctx, compilation_providers, avoid_compilation_providers = None):
     )
 
 def _merge(*, compilation_providers):
-    return _collect(ctx = None, compilation_providers = compilation_providers)
+    return _collect(
+        target = None,
+        compilation_providers = compilation_providers,
+    )
 
 def _compute_primary_static_library(
         *,
@@ -124,7 +139,7 @@ def _extract_libraries(compilation_providers):
 
 def _extract_top_level_values(
         *,
-        ctx,
+        target,
         compilation_providers,
         avoid_compilation_providers,
         objc_libraries,
@@ -176,21 +191,6 @@ def _extract_top_level_values(
             if not sets.contains(avoid_static_libraries, file)
         ]
 
-        user_linkopts = []
-        raw_linkopts = objc.linkopt.to_list()
-        raw_linkopts.extend(collections.before_each(
-            "-framework",
-            objc.sdk_framework.to_list(),
-        ))
-        raw_linkopts.extend(collections.before_each(
-            "-weak_framework",
-            objc.weak_sdk_framework.to_list(),
-        ))
-        raw_linkopts.extend([
-            "-l" + dylib
-            for dylib in objc.sdk_dylib.to_list()
-        ])
-
         additional_input_files = _process_additional_inputs(
             objc.link_inputs.to_list(),
         )
@@ -215,14 +215,11 @@ def _extract_top_level_values(
 
         force_load_libraries = []
         static_libraries = []
-        raw_linkopts = []
-        user_linkopts = []
         additional_input_files = []
         for input in cc_linker_inputs:
             additional_input_files.extend(_process_additional_inputs(
                 input.additional_inputs,
             ))
-            user_linkopts.extend(input.user_link_flags)
             for library in input.libraries:
                 if sets.contains(avoid_libraries, library):
                     continue
@@ -237,33 +234,13 @@ def _extract_top_level_values(
     else:
         return None
 
-    if ctx:
-        cc_toolchain = find_cpp_toolchain(ctx)
-
-        feature_configuration = cc_common.configure_features(
-            ctx = ctx,
-            cc_toolchain = cc_toolchain,
-            requested_features = ctx.features,
-            unsupported_features = ctx.disabled_features + ["link_libc++"],
-        )
-        variables = cc_common.create_link_variables(
-            feature_configuration = feature_configuration,
-            cc_toolchain = cc_toolchain,
-            user_link_flags = user_linkopts,
-        )
-
-        cc_linkopts = cc_common.get_memory_inefficient_command_line(
-            feature_configuration = feature_configuration,
-            # TODO: Use "objc++-executable".
-            # We currently can't because it breaks when `--apple_generate_dsym`
-            # is used. This results in slightly different flags.
-            action_name = "c++-link-executable",
-            variables = variables,
-        )
-
-        raw_linkopts.extend(cc_linkopts)
-
-        linkopts = _process_linkopts(raw_linkopts)
+    if target:
+        # TODO: Make this configurable with `XcodeProjAutomaticTargetProcessingInfo`
+        linkopts = []
+        for action in target.actions:
+            if action.mnemonic in ("ObjcLink", "CppLink"):
+                linkopts = _process_linkopts(action.argv[1:])
+                break
     else:
         linkopts = []
 
@@ -350,13 +327,17 @@ def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
 def _process_linkopts(linkopts):
     ret = []
     skip_next = 0
-    for linkopt in linkopts:
+    for idx, linkopt in enumerate(linkopts):
         if skip_next:
             skip_next -= 1
             continue
         skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
         if skip_next:
             skip_next -= 1
+            continue
+
+        if linkopt == "-Xlinker" and linkopts[idx + 1] == "-objc_abi_version":
+            skip_next = 3
             continue
 
         linkopt = _process_linkopt(linkopt)
@@ -370,9 +351,27 @@ def _process_linkopt(linkopt):
         return None
     if linkopt == "-Wl,-objc_abi_version,2":
         return None
-    if linkopt.startswith("-F__BAZEL_"):
+    if linkopt.startswith("-Wl,-exported_symbols_list,"):
+        return None
+    if linkopt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
         return None
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
+        return None
+    if linkopt.startswith("-stdlib=") or linkopt.startswith("-std="):
+        return None
+    if linkopt.endswith(".o"):
+        return None
+
+    # TODO: Remove these filter once we move path logic out of the generator
+    if linkopt.startswith("-F"):
+        return None
+    if linkopt.startswith("-Wl,-rpath,@"):
+        return None
+    if linkopt.startswith("-Wl,-install_name,"):
+        return None
+    if linkopt.startswith("@"):
+        return None
+    if linkopt.endswith(".a") or linkopt.endswith(".lo"):
         return None
 
     # Use Xcode set `DEVELOPER_DIR`

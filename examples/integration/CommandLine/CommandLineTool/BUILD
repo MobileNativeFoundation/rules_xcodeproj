@@ -10,6 +10,7 @@ macos_command_line_application(
     ],
     infoplists = ["Info.plist"],
     launchdplists = ["Launchd.plist"],
+    linkopts = ["-dead_strip"],
     minimum_os_version = "11.0",
     visibility = ["//visibility:public"],
     deps = [":tool.library"],

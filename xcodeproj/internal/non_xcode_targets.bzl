@@ -82,7 +82,7 @@ rules_xcodeproj requires {} to have `{}` set.
         is_xcode_target = False,
     )
     linker_inputs = linker_input_files.collect(
-        ctx = ctx,
+        target = target,
         compilation_providers = compilation_providers,
     )
     search_paths = target_search_paths.make(

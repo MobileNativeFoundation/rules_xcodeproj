@@ -6,8 +6,6 @@ extension Target {
             || !linkerInputs.staticLibraries.isEmpty
             || !inputs.exportedSymbolsLists.isEmpty
             || !linkerInputs.forceLoad.isEmpty
-            || !linkerInputs.staticFrameworks.isEmpty
-            || !linkerInputs.dynamicFrameworks.isEmpty
     }
 
     func allLinkerFlags(filePathResolver: FilePathResolver) throws -> [String] {
@@ -52,26 +50,6 @@ extension Target {
                 return [
                     "-exported_symbols_list",
                     try filePathResolver.resolve(filePath).string.quoted,
-                ]
-            }
-        )
-
-        // Frameworks being last here matches what the behavior should/will be:
-        // https://github.com/bazelbuild/bazel/pull/16342
-        flags.append(contentsOf: try linkerInputs.staticFrameworks
-            .flatMap { filePath in
-                return [
-                    "-framework",
-                    try handleFilePath(filePath, useFilename: true),
-                ]
-            }
-        )
-
-        flags.append(contentsOf: try linkerInputs.dynamicFrameworks
-            .flatMap { filePath in
-                return [
-                    "-framework",
-                    try handleFilePath(filePath, useFilename: true),
                 ]
             }
         )
