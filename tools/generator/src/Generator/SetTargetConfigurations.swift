@@ -399,13 +399,10 @@ $(CONFIGURATION_BUILD_DIR)
 
         if target.isSwift {
             func handleSwiftModule(_ filePath: FilePath) throws -> String {
-                let xcodeFilePath = filePathResolver
-                    .xcodeGeneratedFiles[filePath]
-                let filePath = xcodeFilePath ?? filePath
                 return try filePathResolver
                     .resolve(
-                        filePath.parent(),
-                        useBazelOut: xcodeFilePath == nil
+                        filePath,
+                        transform: { $0.parent() }
                     )
                     .string.quoted
             }

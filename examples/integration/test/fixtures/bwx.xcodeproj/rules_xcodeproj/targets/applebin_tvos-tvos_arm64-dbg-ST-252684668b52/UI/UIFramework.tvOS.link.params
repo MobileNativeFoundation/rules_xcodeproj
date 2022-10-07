@@ -1,4 +1,4 @@
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-252684668b52/bin/UI/UI.swiftmodule/arm64-apple-tvos.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-ST-252684668b52/bin/UI/UIFramework.tvOS.framework/Modules/UI.swiftmodule/arm64-apple-tvos.swiftmodule
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-252684668b52/bin/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule
 -ObjC
 -L/usr/lib/swift

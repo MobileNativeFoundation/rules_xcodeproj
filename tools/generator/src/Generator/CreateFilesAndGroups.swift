@@ -722,9 +722,8 @@ EOF
                     .map { filePath -> String in
                         return try filePathResolver
                             .resolve(
-                                filePath.parent(),
-                                useBazelOut: !xcodeGeneratedFiles.keys
-                                    .contains(filePath),
+                                filePath,
+                                transform: { $0.parent() },
                                 forceAbsoluteProjectPath: true
                             )
                             .string
