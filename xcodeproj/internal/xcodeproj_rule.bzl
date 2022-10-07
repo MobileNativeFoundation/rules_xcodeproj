@@ -367,12 +367,15 @@ targets.
             )
 
         invalid_extra_files_targets = sets.to_list(
-            sets.difference(sets.make(owned_extra_files.values()), targets_labels),
+            sets.difference(
+                sets.make(owned_extra_files.values()),
+                targets_labels,
+            ),
         )
         if invalid_extra_files_targets:
             fail("""\
-Are you using an `alias`? `associated_extra_files` requires labels of the actual \
-targets: {}
+Are you using an `alias`? `associated_extra_files` requires labels of the \
+actual targets: {}
 """.format(invalid_extra_files_targets))
 
         label_str = bazel_labels.normalize(label)
@@ -499,8 +502,12 @@ def _write_json_spec(
         custom_xcode_schemes_json = ctx.attr.schemes_json
 
     # Have to do this dance because attr.string's default is ""
-    post_build_script = json.encode(ctx.attr.post_build) if ctx.attr.post_build else "null"
-    pre_build_script = json.encode(ctx.attr.pre_build) if ctx.attr.pre_build else "null"
+    post_build_script = (
+        json.encode(ctx.attr.post_build) if ctx.attr.post_build else "null"
+    )
+    pre_build_script = (
+        json.encode(ctx.attr.pre_build) if ctx.attr.pre_build else "null"
+    )
 
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     spec_json = """\
@@ -984,7 +991,9 @@ def _xcodeproj_impl(ctx):
                 [spec_file, xcodeproj],
                 transitive = [inputs.important_generated],
             ),
-            runfiles = ctx.runfiles(files = [spec_file, swiftc_stub, xcodeproj]),
+            runfiles = ctx.runfiles(
+                files = [spec_file, swiftc_stub, xcodeproj],
+            ),
         ),
         OutputGroupInfo(
             all_targets = depset(
