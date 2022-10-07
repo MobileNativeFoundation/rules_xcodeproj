@@ -10,14 +10,10 @@ extension Target {
             || !linkerInputs.dynamicFrameworks.isEmpty
     }
 
-    func allLinkerFlags(
-        xcodeGeneratedFiles: [FilePath: FilePath],
-        filePathResolver: FilePathResolver
-    ) throws -> [String] {
+    func allLinkerFlags(filePathResolver: FilePathResolver) throws -> [String] {
         var flags = try processLinkopts(
             linkerInputs.linkopts,
             swiftTriple: platform.swiftTriple,
-            xcodeGeneratedFiles: xcodeGeneratedFiles,
             filePathResolver: filePathResolver
         )
 
@@ -25,19 +21,12 @@ extension Target {
             _ filePath: FilePath,
             useFilename: Bool
         ) throws -> String {
-            // TODO: Bake this into `filePathResolver`
-            let xcodeFilePath = xcodeGeneratedFiles[filePath]
-            let filePath = xcodeFilePath ?? filePath
+            let path = try filePathResolver.resolve(filePath)
 
             if useFilename {
-                return filePath.path.lastComponentWithoutExtension
+                return path.lastComponentWithoutExtension
             } else {
-                return try filePathResolver
-                    .resolve(
-                        filePath,
-                        useBazelOut: xcodeFilePath == nil
-                    )
-                    .string.quoted
+                return path.string.quoted
             }
         }
 
@@ -94,7 +83,6 @@ extension Target {
 private func processLinkopts(
     _ linkopts: [String],
     swiftTriple: String,
-    xcodeGeneratedFiles: [FilePath: FilePath],
     filePathResolver: FilePathResolver
 ) throws -> [String] {
     return try linkopts
@@ -102,7 +90,6 @@ private func processLinkopts(
             return try processLinkopt(
                 linkopt,
                 swiftTriple: swiftTriple,
-                xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             )
         }
@@ -111,7 +98,6 @@ private func processLinkopts(
 private func processLinkopt(
     _ linkopt: String,
     swiftTriple: String,
-    xcodeGeneratedFiles: [FilePath: FilePath],
     filePathResolver: FilePathResolver
 ) throws -> String {
     return try linkopt
@@ -121,7 +107,6 @@ private func processLinkopt(
             return try processLinkoptComponent(
                 opt,
                 swiftTriple: swiftTriple,
-                xcodeGeneratedFiles: xcodeGeneratedFiles,
                 filePathResolver: filePathResolver
             )
         }
@@ -131,7 +116,6 @@ private func processLinkopt(
 private func processLinkoptComponent(
     _ opt: String,
     swiftTriple: String,
-    xcodeGeneratedFiles: [FilePath: FilePath],
     filePathResolver: FilePathResolver
 ) throws -> String {
     let extracted = extractOptValue(opt)
@@ -151,7 +135,8 @@ private func processLinkoptComponent(
     }
 
     if var filePath = filePath {
-        let xcodeGenerated = xcodeGeneratedFiles.keys.contains(filePath)
+        let xcodeGenerated = filePathResolver.xcodeGeneratedFiles.keys
+            .contains(filePath)
 
         if xcodeGenerated {
             if let `extension` = filePath.path.extension,

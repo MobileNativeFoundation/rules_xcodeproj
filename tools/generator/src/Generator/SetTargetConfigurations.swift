@@ -165,7 +165,9 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         var frameworkSearchPaths: [FilePath: [Bool: FilePath]] = [:]
         for filePath in target.linkerInputs.dynamicFrameworks {
             let searchFilePath = filePath.parent()
-            if let xcodeFilePath = xcodeGeneratedFiles[filePath] {
+            if let xcodeFilePath = filePathResolver
+                .xcodeGeneratedFiles[filePath]
+            {
                 frameworkSearchPaths[searchFilePath, default: [:]][false] =
                     xcodeFilePath.parent()
             } else {
@@ -248,7 +250,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             target.modulemaps
                 .map { filePath -> String in
                     let modulemap = try filePathResolver
-                        .resolve(filePath, useBazelOut: true, forceAbsoluteProjectPath: true)
+                        .resolve(
+                            filePath,
+                            useBazelOut: true,
+                            forceAbsoluteProjectPath: true
+                        )
                         .string.quoted
                     return "-Xcc -fmodule-map-file=\(modulemap)"
                 }
