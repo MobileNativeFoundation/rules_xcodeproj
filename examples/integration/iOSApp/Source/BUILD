@@ -117,6 +117,7 @@ swift_library(
         "//UI",
         "//iOSApp/Source/CoreUtilsObjC",
         "@com_google_google_maps//:GoogleMaps",
+        "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
     ],
 )
 

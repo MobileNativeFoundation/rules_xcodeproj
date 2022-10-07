@@ -1,4 +1,5 @@
 -Wl,-add_ast_path,$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/iOSApp.swiftmodule
+-Wl,-add_ast_path,$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule
 --ld-path=$(BAZEL_EXTERNAL)/rules_apple_linker_lld/ld64.lld
 -Wl,-add_ast_path,$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/UI/UI.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.swiftmodule
@@ -19,6 +20,8 @@ UIKit
 -headerpad_max_install_names
 -no-canonical-prefixes
 -lc++
+$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a
+$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a
 -framework
 GoogleMaps
 -framework
