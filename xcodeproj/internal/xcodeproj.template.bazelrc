@@ -9,6 +9,9 @@ common:rules_xcodeproj --verbose_failures
 # We default to `dbg` since debugging is broken otherwise
 build:rules_xcodeproj --compilation_mode=dbg
 
+# Work around https://github.com/bazelbuild/bazel/issues/13912
+build:rules_xcodeproj --experimental_action_cache_store_output_metadata
+
 # Xcode builds shouldn't mess with the workspace's symlinks
 build:rules_xcodeproj --experimental_convenience_symlinks=ignore
 
