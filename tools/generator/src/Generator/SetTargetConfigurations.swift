@@ -162,18 +162,20 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
 
-        var frameworkSearchPaths: [FilePath: [Bool: FilePath]] = [:]
+        var frameworkSearchPaths: [FilePath: [Bool: Path]] = [:]
         for filePath in target.linkerInputs.dynamicFrameworks {
             let searchFilePath = filePath.parent()
-            if let xcodeFilePath = filePathResolver
-                .xcodeGeneratedFiles[filePath]
-            {
-                frameworkSearchPaths[searchFilePath, default: [:]][false] =
-                    xcodeFilePath.parent()
-            } else {
-                frameworkSearchPaths[searchFilePath, default: [:]][true] =
-                    searchFilePath
-            }
+            var useBazelOut: Bool = true
+            let path = try filePathResolver.resolve(
+                filePath,
+                transform: { _ in searchFilePath },
+                xcodeGeneratedTransform:  { filePath in
+                    useBazelOut = false
+                    return filePath.parent()
+                }
+            )
+            frameworkSearchPaths[searchFilePath, default: [:]][useBazelOut] =
+                path
         }
 
         func handleSearchPath(filePath: FilePath) throws -> String {
@@ -189,19 +191,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         func handleFrameworkSearchPath(filePath: FilePath) throws -> [String] {
             if let searchFilePaths = frameworkSearchPaths[filePath] {
                 var searchPaths: [String] = []
-                if let xcodeFilePath = searchFilePaths[false] {
-                    searchPaths.append(
-                        try filePathResolver
-                            .resolve(xcodeFilePath, useBazelOut: false)
-                            .string.quoted
-                    )
+                if let xcodePath = searchFilePaths[false] {
+                    searchPaths.append(xcodePath.string.quoted)
                 }
-                if let bazelFilePath = searchFilePaths[true] {
-                    searchPaths.append(
-                        try filePathResolver
-                            .resolve(bazelFilePath, useBazelOut: true)
-                            .string.quoted
-                    )
+                if let bazelPath = searchFilePaths[true] {
+                    searchPaths.append(bazelPath.string.quoted)
                 }
                 return searchPaths
             } else {
@@ -214,7 +208,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         if hasFrameworkIncludes {
             try buildSettings.prepend(
                 onKey: "FRAMEWORK_SEARCH_PATHS",
-                frameworkIncludes.flatMap(handleFrameworkSearchPath)
+                frameworkIncludes.flatMap(handleFrameworkSearchPath).uniqued()
             )
         }
 
