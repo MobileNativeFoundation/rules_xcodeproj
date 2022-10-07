@@ -10,6 +10,11 @@ build --remote_default_exec_properties=cache_bust=macOS_12.0/3
 # In-repo output_base makes fixtures relative
 startup --output_base=bazel-output-base
 
+build --nobuild_runfile_links
+build --experimental_inmemory_jdeps_files
+build --experimental_inmemory_dotd_files
+build --remote_download_outputs=minimal
+
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
 build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
@@ -31,7 +36,6 @@ build:remote --remote_executor=grpcs://remote.buildbuddy.io
 build:workflows --config=cache
 build:workflows --build_metadata=ROLE=CI
 build:workflows --build_metadata=VISIBILITY=PUBLIC
-build:workflows --remote_download_toplevel
 build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
 build:workflows --color=yes
 build:workflows --terminal_columns=120

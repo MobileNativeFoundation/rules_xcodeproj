@@ -59,6 +59,21 @@ common:rules_xcodeproj --override_repository=rules_xcodeproj_top_level_cache_bus
 
 build:rules_xcodeproj_generator --config=rules_xcodeproj
 
+# Work around https://github.com/bazelbuild/bazel/issues/11920
+#
+# If you see a warning like:
+#
+#  WARNING: option '--remote_download_outputs' was expanded to from both option '--remote_download_minimal' (source /$WORKSPACE/.bazelrc) and option '--config=rules_xcodeproj_generator' (source command line options)
+#
+# Then you should change your use of `--remote_download_minimal` to these
+# individual flags:
+#
+#  --nobuild_runfile_links (don't set this one if using `--remote_download_toplevel`)
+#  --experimental_inmemory_jdeps_files
+#  --experimental_inmemory_dotd_files
+#
+run:rules_xcodeproj_generator --remote_download_outputs=all
+
 # `--show_result=0` prevents intermediate outputs from displaying in the logs
 build:rules_xcodeproj_generator --show_result=0
 

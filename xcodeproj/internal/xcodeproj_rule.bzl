@@ -737,6 +737,7 @@ def _write_installer(
         name = None,
         install_path,
         spec_file,
+        swiftc_stub,
         xcodeproj):
     installer = ctx.actions.declare_file(
         "{}-installer.sh".format(name or ctx.attr.name),
@@ -750,6 +751,7 @@ def _write_installer(
             "%output_path%": install_path,
             "%source_path%": xcodeproj.short_path,
             "%spec_path%": spec_file.short_path,
+            "%swiftc_stub%": swiftc_stub.short_path,
         },
     )
 
@@ -837,6 +839,7 @@ _device_transition = transition(
 def _xcodeproj_impl(ctx):
     build_mode = ctx.attr.build_mode
     project_name = ctx.attr.project_name
+    swiftc_stub = ctx.executable._swiftc_stub
     infos = [
         _process_dep(dep)
         for dep in (
@@ -943,6 +946,7 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         install_path = install_path,
         spec_file = spec_file,
+        swiftc_stub = swiftc_stub,
         xcodeproj = xcodeproj,
     )
 
@@ -980,7 +984,7 @@ def _xcodeproj_impl(ctx):
                 [spec_file, xcodeproj],
                 transitive = [inputs.important_generated],
             ),
-            runfiles = ctx.runfiles(files = [spec_file, xcodeproj]),
+            runfiles = ctx.runfiles(files = [spec_file, swiftc_stub, xcodeproj]),
         ),
         OutputGroupInfo(
             all_targets = depset(
@@ -1239,6 +1243,12 @@ transitive dependencies of the targets specified in the
         "_installer_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:installer.template.sh"),
+        ),
+        "_swiftc_stub": attr.label(
+            # Not "exec", because it's really for the host machine
+            cfg = "host",
+            default = Label("//tools/swiftc_stub:universal_swiftc_stub"),
+            executable = True,
         ),
         "_top_level_cache_buster": attr.label(
             doc = """\
