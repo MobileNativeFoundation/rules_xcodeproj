@@ -134,21 +134,19 @@ private func processLinkoptComponent(
         filePath = nil
     }
 
-    if var filePath = filePath {
-        let xcodeGenerated = filePathResolver.xcodeGeneratedFiles.keys
-            .contains(filePath)
-
-        if xcodeGenerated {
-            if let `extension` = filePath.path.extension,
-               `extension` == "swiftmodule"
-            {
-                // swiftlint:disable:next shorthand_operator
-                filePath = filePath + "\(swiftTriple).swiftmodule"
-            }
-        }
-
+    if let filePath = filePath {
         value = try filePathResolver
-            .resolve(filePath, useBazelOut: !xcodeGenerated)
+            .resolve(
+                filePath,
+                xcodeGeneratedTransform: { filePath in
+                    guard let `extension` = filePath.path.extension,
+                       `extension` == "swiftmodule" else {
+                        return filePath
+                    }
+                    // swiftlint:disable:next shorthand_operator
+                    return filePath + "\(swiftTriple).swiftmodule"
+                }
+            )
             .string.quoted
     }
 

@@ -1,5 +1,5 @@
 -L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/tvOSApp/Test/UITests/tvOSAppUITests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/tvOSApp/Test/UITests/tvOSAppUITests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator

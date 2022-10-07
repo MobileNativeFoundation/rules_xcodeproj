@@ -69,6 +69,8 @@ struct FilePathResolver: Equatable {
 
     func resolve(
         _ filePath: FilePath,
+        transform: (_ filePath: FilePath) -> FilePath = { $0 },
+        xcodeGeneratedTransform: ((_ filePath: FilePath) -> FilePath)? = nil,
         useBazelOut: Bool? = nil,
         forceAbsoluteProjectPath: Bool = false,
         mode: Mode = .buildSetting
@@ -84,7 +86,7 @@ struct FilePathResolver: Equatable {
             case .srcRoot:
                 projectDir = ""
             }
-            return projectDir + filePath.path
+            return projectDir + transform(filePath).path
         case .external:
             let externalDir: Path
             switch mode {
@@ -95,19 +97,24 @@ struct FilePathResolver: Equatable {
             case .srcRoot:
                 externalDir = directories.external
             }
-            return externalDir + filePath.path
+            return externalDir + transform(filePath).path
         case .generated:
             let actuallyUseBazelOut: Bool
             let generatedFilePath: FilePath
             if let useBazelOut = useBazelOut {
                 actuallyUseBazelOut = useBazelOut
-                generatedFilePath = filePath
+                generatedFilePath = transform(filePath)
             } else if let xcodeFilePath = xcodeGeneratedFiles[filePath] {
                 actuallyUseBazelOut = false
-                generatedFilePath = xcodeFilePath
+
+                if let xcodeGeneratedTransform = xcodeGeneratedTransform {
+                    generatedFilePath = xcodeGeneratedTransform(xcodeFilePath)
+                } else {
+                    generatedFilePath = transform(xcodeFilePath)
+                }
             } else {
                 actuallyUseBazelOut = true
-                generatedFilePath = filePath
+                generatedFilePath = transform(filePath)
             }
 
             if actuallyUseBazelOut {
@@ -145,7 +152,7 @@ struct FilePathResolver: Equatable {
             case .srcRoot:
                 internalDir = directories.internal
             }
-            return internalDir + filePath.path
+            return internalDir + transform(filePath).path
         }
     }
 }
