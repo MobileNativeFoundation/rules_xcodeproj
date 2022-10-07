@@ -716,7 +716,7 @@ private extension ConsolidatedTargetOutputs {
         productBasename: String,
         filePathResolver: FilePathResolver
     ) throws -> String? {
-        guard hasOutputs else {
+        guard hasProductOutput else {
             return nil
         }
 

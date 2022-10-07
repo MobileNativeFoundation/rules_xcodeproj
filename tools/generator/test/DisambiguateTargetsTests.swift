@@ -54,12 +54,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -104,12 +106,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -145,12 +149,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -188,12 +194,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -231,12 +239,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -274,12 +284,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -317,12 +329,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -364,12 +378,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -407,12 +423,14 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -457,12 +475,14 @@ A (Library) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -510,12 +530,14 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -588,12 +610,14 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -653,12 +677,14 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -724,12 +750,14 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -791,12 +819,14 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -838,12 +868,14 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 
@@ -892,12 +924,14 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Assert
 
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.name),
-            expectedTargetNames
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            disambiguatedTargets.targets.mapValues(\.target),
-            consolidatedTargets.targets
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
         )
     }
 }
