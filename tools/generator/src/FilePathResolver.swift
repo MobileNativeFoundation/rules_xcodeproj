@@ -9,7 +9,7 @@ struct FilePathResolver: Equatable {
 
     struct Directories: Equatable {
         let workspaceComponents: [String]
-        fileprivate let workspaceOutput: Path
+        let workspaceOutput: Path
 
         let internalDirectoryName: String
         let `internal`: Path

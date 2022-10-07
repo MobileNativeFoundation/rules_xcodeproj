@@ -78,7 +78,6 @@ extension Generator {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         filePathResolver: FilePathResolver,
-        xcodeGeneratedFiles: [FilePath: FilePath],
         bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
@@ -895,7 +894,6 @@ class StopHook:
             files,
             rootElements,
             filePathResolver,
-            xcodeGeneratedFiles,
             bazelRemappedFiles,
             resolvedExternalRepositories
         )

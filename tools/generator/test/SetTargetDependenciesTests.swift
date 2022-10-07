@@ -10,14 +10,26 @@ final class SetTargetDependenciesTests: XCTestCase {
         let pbxProj = Fixtures.pbxProj()
         let expectedPBXProj = Fixtures.pbxProj()
 
+        let directories = FilePathResolver.Directories(
+            workspace: "/Users/TimApple/app",
+            projectRoot: "/Users/TimApple",
+            external: "/some/bazel81/external",
+            bazelOut: "/some/bazel81/bazel-out",
+            internalDirectoryName: "rules_xcodeproj",
+            bazelIntegration: "stubs",
+            workspaceOutput: "out/p.xcodeproj"
+        )
+
         let consolidatedTargets = Fixtures.consolidatedTargets
 
         let (pbxTargets, disambiguatedTargets, _, _) = Fixtures.pbxTargets(
             in: pbxProj,
+            directories: directories,
             consolidatedTargets: consolidatedTargets
         )
         let expectedPBXTargets = Fixtures.pbxTargetsWithDependencies(
             in: expectedPBXProj,
+            directories: directories,
             consolidatedTargets: consolidatedTargets
         )
 
