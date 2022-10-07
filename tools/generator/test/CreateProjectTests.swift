@@ -10,14 +10,16 @@ final class CreateProjectTests: XCTestCase {
         // Arrange
 
         let project = Fixtures.project
-        let projectRootDirectory: Path = "~/Developer/project"
+        let projectRootDirectory: Path = "/Users/TimApple"
 
-        let filePathResolver = FilePathResolver(
-            workspaceDirectory: "/Users/TimApple/app",
-            externalDirectory: "/some/bazel13/external",
-            bazelOutDirectory: "/some/bazel13/bazel-out",
+        let directories = FilePathResolver.Directories(
+            workspace: "/Users/TimApple/app",
+            projectRoot: projectRootDirectory,
+            external: "/some/bazel13/external",
+            bazelOut: "/some/bazel13/bazel-out",
             internalDirectoryName: "r_xcp",
-            workspaceOutputPath: "X.xcodeproj"
+            bazelIntegration: "stubs",
+            workspaceOutput: "X.xcodeproj"
         )
 
         let expectedPBXProj = PBXProj()
@@ -28,11 +30,10 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
-                "BAZEL_EXEC_ROOT": filePathResolver.externalDirectory
-                    .parent().string,
-                "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
+                "BAZEL_EXEC_ROOT": directories.external.parent().string,
+                "BAZEL_EXTERNAL": directories.external.string,
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-                "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
+                "BAZEL_OUT": directories.bazelOut.string,
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
@@ -103,8 +104,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let createdPBXProj = Generator.createProject(
             buildMode: .xcode,
             project: project,
-            projectRootDirectory: projectRootDirectory,
-            filePathResolver: filePathResolver
+            directories: directories
         )
 
         try createdPBXProj.fixReferences()
@@ -119,14 +119,16 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         // Arrange
 
         let project = Fixtures.project
-        let projectRootDirectory: Path = "~/Developer/project"
+        let projectRootDirectory: Path = "/Users/TimApple"
 
-        let filePathResolver = FilePathResolver(
-            workspaceDirectory: "/Users/TimApple/app",
-            externalDirectory: "/some/bazel16/external",
-            bazelOutDirectory: "/some/bazel16/bazel-out",
+        let directories = FilePathResolver.Directories(
+            workspace: "/Users/TimApple/app",
+            projectRoot: projectRootDirectory,
+            external: "/some/bazel16/external",
+            bazelOut: "/some/bazel16/bazel-out",
             internalDirectoryName: "r_xcp",
-            workspaceOutputPath: "X.xcodeproj"
+            bazelIntegration: "stubs",
+            workspaceOutput: "X.xcodeproj"
         )
 
         let expectedPBXProj = PBXProj()
@@ -137,11 +139,10 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
-                "BAZEL_EXEC_ROOT": filePathResolver.externalDirectory
-                    .parent().string,
-                "BAZEL_EXTERNAL": filePathResolver.externalDirectory.string,
+                "BAZEL_EXEC_ROOT": directories.external.parent().string,
+                "BAZEL_EXTERNAL": directories.external.string,
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-                "BAZEL_OUT": filePathResolver.bazelOutDirectory.string,
+                "BAZEL_OUT": directories.bazelOut.string,
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
@@ -220,8 +221,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let createdPBXProj = Generator.createProject(
             buildMode: .bazel,
             project: project,
-            projectRootDirectory: projectRootDirectory,
-            filePathResolver: filePathResolver
+            directories: directories
         )
 
         try createdPBXProj.fixReferences()

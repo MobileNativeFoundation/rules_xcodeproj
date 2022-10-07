@@ -23,17 +23,21 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let extraFiles: Set<FilePath> = []
         let xccurrentversions: [XCCurrentVersion] = []
         let workspaceDirectory: Path = "/app-project"
+        let projectRootDirectory: Path = "/"
         let externalDirectory: Path = "/some/bazel12/external"
         let bazelOutDirectory: Path = "/some/bazel12/bazel-out"
         let internalDirectoryName = "rules_xcp"
+        let bazelIntegrationDirectory: Path = "bazel"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let filePathResolver = FilePathResolver(
-            workspaceDirectory: workspaceDirectory,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
+        let directories = FilePathResolver.Directories(
+            workspace: workspaceDirectory,
+            projectRoot: projectRootDirectory,
+            external: externalDirectory,
+            bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            bazelIntegration: bazelIntegrationDirectory,
+            workspaceOutput: workspaceOutputPath
         )
 
         let expectedFiles: [FilePath: File] = [
@@ -59,6 +63,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdRootElements,
             _,
             _,
+            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -67,7 +72,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             targets: targets,
             extraFiles: extraFiles,
             xccurrentversions: xccurrentversions,
-            filePathResolver: filePathResolver,
+            directories: directories,
             logger: StubLogger()
         )
 
@@ -101,17 +106,21 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let extraFiles = Fixtures.project.extraFiles
         let xccurrentversions = Fixtures.xccurrentversions
         let workspaceDirectory: Path = "/Users/TimApple/app"
+        let projectRootDirectory: Path = "/Users/TimApple"
         let externalDirectory: Path = "/some/bazel15/external"
         let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
         let internalDirectoryName = "rules_xcp"
+        let bazelIntegrationDirectory: Path = "bazel"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let filePathResolver = FilePathResolver(
-            workspaceDirectory: workspaceDirectory,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
+        let directories = FilePathResolver.Directories(
+            workspace: workspaceDirectory,
+            projectRoot: projectRootDirectory,
+            external: externalDirectory,
+            bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            bazelIntegration: bazelIntegrationDirectory,
+            workspaceOutput: workspaceOutputPath
         )
 
         let (
@@ -162,6 +171,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
+            _,
             xcodeGeneratedFiles,
             bazelRemappedFiles,
             _
@@ -172,7 +182,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             targets: targets,
             extraFiles: extraFiles,
             xccurrentversions: xccurrentversions,
-            filePathResolver: filePathResolver,
+            directories: directories,
             logger: StubLogger()
         )
 
@@ -214,17 +224,21 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let extraFiles = Fixtures.project.extraFiles
         let xccurrentversions = Fixtures.xccurrentversions
         let workspaceDirectory: Path = "/Users/TimApple/app"
+        let projectRootDirectory: Path = "/Users/TimApple"
         let externalDirectory: Path = "/some/bazel15/external"
         let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
         let internalDirectoryName = "rules_xcp"
+        let bazelIntegrationDirectory: Path = "bazel"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let filePathResolver = FilePathResolver(
-            workspaceDirectory: workspaceDirectory,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
+        let directories = FilePathResolver.Directories(
+            workspace: workspaceDirectory,
+            projectRoot: projectRootDirectory,
+            external: externalDirectory,
+            bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            bazelIntegration: bazelIntegrationDirectory,
+            workspaceOutput: workspaceOutputPath
         )
 
         let (
@@ -275,6 +289,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
+            _,
             xcodeGeneratedFiles,
             bazelRemappedFiles,
             _
@@ -285,7 +300,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             targets: targets,
             extraFiles: extraFiles,
             xccurrentversions: xccurrentversions,
-            filePathResolver: filePathResolver,
+            directories: directories,
             logger: StubLogger()
         )
 

@@ -28,12 +28,17 @@ extension CreateCustomXCSchemesTests {
 class CreateCustomXCSchemesTests: XCTestCase {
     let runnerLabel = BazelLabel("@//foo")
 
-    let filePathResolver = FilePathResolver(
-        workspaceDirectory: "/Users/TimApple/app",
-        externalDirectory: "/private/var/tmp/_bazel_rx/H/execroot/R2/external",
-        bazelOutDirectory: "/private/var/tmp/_bazel_rx/H/execroot/R2/bazel-out",
+    let directories = FilePathResolver.Directories(
+        workspace: "/Users/TimApple/app",
+        projectRoot: "/Users/TimApple",
+        external: "/private/var/tmp/_bazel_rx/H/execroot/R1/external",
+        bazelOut: "/private/var/tmp/_bazel_rx/H/execroot/R1/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
-        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+        bazelIntegration: "bazel",
+        workspaceOutput: "examples/foo/Foo.xcodeproj"
+    )
+    lazy var filePathResolver = FilePathResolver(
+        directories: directories
     )
 
     lazy var targetResolver = Fixtures.targetResolver(

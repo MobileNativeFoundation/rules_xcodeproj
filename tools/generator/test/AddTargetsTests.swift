@@ -18,17 +18,24 @@ final class AddTargetsTests: XCTestCase {
         let generatorConfiguration = "1234zyx"
         let consolidatedTargets = Fixtures.consolidatedTargets
         let workspaceDirectory: Path = "/app-project"
+        let projectRootDirectory: Path = "~/Developer/project"
         let externalDirectory: Path = "/some/bazel11/external"
         let bazelOutDirectory: Path = "/some/bazel11/bazel-out"
         let internalDirectoryName = "rules_xcp"
+        let bazelIntegrationDirectory: Path = "stubs"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let filePathResolver = FilePathResolver(
-            workspaceDirectory: workspaceDirectory,
-            externalDirectory: externalDirectory,
-            bazelOutDirectory: bazelOutDirectory,
+        let directories = FilePathResolver.Directories(
+            workspace: workspaceDirectory,
+            projectRoot: projectRootDirectory,
+            external: externalDirectory,
+            bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            workspaceOutputPath: workspaceOutputPath
+            bazelIntegration: bazelIntegrationDirectory,
+            workspaceOutput: workspaceOutputPath
+        )
+        let filePathResolver = FilePathResolver(
+            directories: directories
         )
 
         let (files, _, _, _, _) = Fixtures.files(

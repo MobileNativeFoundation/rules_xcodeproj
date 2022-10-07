@@ -18,19 +18,22 @@ extension Generator {
             let extensionPointIdentifiers = try readExtensionPointIdentifiers(
                 path: arguments.extensionPointIdentifiersPath
             )
+            let directories = FilePathResolver.Directories(
+                workspace: rootDirs.workspaceDirectory,
+                projectRoot: arguments.projectRootDirectory,
+                external: rootDirs.externalDirectory,
+                bazelOut: rootDirs.bazelOutDirectory,
+                internalDirectoryName: "rules_xcodeproj",
+                bazelIntegration: arguments.bazelIntegrationDirectory,
+                workspaceOutput: arguments.workspaceOutputPath
+            )
 
             try Generator(logger: logger).generate(
                 buildMode: arguments.buildMode,
                 project: project,
                 xccurrentversions: xccurrentversions,
                 extensionPointIdentifiers: extensionPointIdentifiers,
-                workspaceDirectory: rootDirs.workspaceDirectory,
-                projectRootDirectory: arguments.projectRootDirectory,
-                externalDirectory: rootDirs.externalDirectory,
-                bazelOutDirectory: rootDirs.bazelOutDirectory,
-                internalDirectoryName: "rules_xcodeproj",
-                bazelIntegrationDirectory: arguments.bazelIntegrationDirectory,
-                workspaceOutputPath: arguments.workspaceOutputPath,
+                directories: directories,
                 outputPath: arguments.outputPath
             )
         } catch {

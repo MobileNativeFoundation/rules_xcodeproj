@@ -6,12 +6,17 @@ import XCTest
 @testable import generator
 
 final class SetTargetConfigurationsTests: XCTestCase {
+    private static let directories = FilePathResolver.Directories(
+        workspace: "/Users/TimApple/app",
+        projectRoot: "/Users/TimApple",
+        external: "/some/bazel14/external",
+        bazelOut: "/some/bazel14/bazel-out",
+        internalDirectoryName: "rules_xcodeproj",
+        bazelIntegration: "stubs",
+        workspaceOutput: "out/p.xcodeproj"
+    )
     private static let filePathResolverFixture = FilePathResolver(
-        workspaceDirectory: "/Users/TimApple/app",
-        externalDirectory: "/some/bazel14/external",
-        bazelOutDirectory: "/some/bazel14/bazel-out",
-        internalDirectoryName: "rules_xcp",
-        workspaceOutputPath: "out/p.xcodeproj"
+        directories: directories
     )
 
     func test_integration() throws {

@@ -81,12 +81,17 @@ class XCSchemeInfoHostInfoTests: XCTestCase {
     let iOSDevicePlatform = Platform.device(os: .iOS)
     let iOSSimulatorPlatform = Platform.simulator(os: .iOS)
 
-    lazy var filePathResolver = FilePathResolver(
-        workspaceDirectory: "/Users/TimApple/app",
-        externalDirectory: "/some/bazel17/external",
-        bazelOutDirectory: "/some/bazel17/bazel-out",
+    let directories = FilePathResolver.Directories(
+        workspace: "/Users/TimApple/app",
+        projectRoot: "/Users/TimApple",
+        external: "/some/bazel17/external",
+        bazelOut: "/some/bazel17/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
-        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+        bazelIntegration: "bazel",
+        workspaceOutput: "examples/foo/Foo.xcodeproj"
+    )
+    lazy var filePathResolver = FilePathResolver(
+        directories: directories
     )
 
     lazy var targetResolver = Fixtures.targetResolver(

@@ -72,11 +72,12 @@ extension Generator {
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
         xccurrentversions: [XCCurrentVersion],
-        filePathResolver: FilePathResolver,
+        directories: FilePathResolver.Directories,
         logger: Logger
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
+        filePathResolver: FilePathResolver,
         xcodeGeneratedFiles: [FilePath: FilePath],
         bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
@@ -98,14 +99,14 @@ extension Generator {
             if filePath.type == .external &&
                 filePath.path.components.count <= 2,
                let symlinkDest = try? (
-                filePathResolver.absoluteExternalDirectory + filePath.path
+                directories.absoluteExternal + filePath.path
                ).symlinkDestination()
             {
-                let workspaceDirectoryComponents = filePathResolver
-                    .workspaceDirectoryComponents
+                let workspaceDirectoryComponents = directories
+                    .workspaceComponents
                 let symlinkComponents = symlinkDest.components
                 if symlinkComponents.starts(
-                    with: filePathResolver.workspaceDirectoryComponents
+                    with: directories.workspaceComponents
                 ) {
                     let relativeComponents = symlinkComponents.suffix(
                         from: workspaceDirectoryComponents.count
@@ -358,9 +359,9 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: filePathResolver.externalDirectory.sourceTree,
+                sourceTree: directories.external.sourceTree,
                 name: "Bazel External Repositories",
-                path: filePathResolver.externalDirectory.string
+                path: directories.external.string
             )
             pbxProj.add(object: group)
             groups[.external("")] = group
@@ -376,9 +377,9 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: filePathResolver.bazelOutDirectory.sourceTree,
+                sourceTree: directories.bazelOut.sourceTree,
                 name: "Bazel Generated Files",
-                path: filePathResolver.bazelOutDirectory.string
+                path: directories.bazelOut.string
             )
             pbxProj.add(object: group)
             groups[.generated("")] = group
@@ -395,8 +396,8 @@ extension Generator {
 
             let group = PBXGroup(
                 sourceTree: .group,
-                name: filePathResolver.internalDirectoryName,
-                path: filePathResolver.internalDirectory.string
+                name: directories.internalDirectoryName,
+                path: directories.internal.string
             )
             pbxProj.add(object: group)
             groups[.internal("")] = group
@@ -541,6 +542,10 @@ extension Generator {
         }
 
         // Write xcfilelists
+
+        let filePathResolver = FilePathResolver(
+            directories: directories
+        )
 
         let fileListFileFilePaths = fileReferences
             .filter { filePath, _ in
@@ -889,6 +894,7 @@ class StopHook:
         return (
             files,
             rootElements,
+            filePathResolver,
             xcodeGeneratedFiles,
             bazelRemappedFiles,
             resolvedExternalRepositories

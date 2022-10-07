@@ -70,12 +70,17 @@ extension XCSchemeInfoVariableExpansionContextInfoTests {
 
 // swiftlint:disable:next type_name
 class XCSchemeInfoVariableExpansionContextInfoTests: XCTestCase {
-    lazy var filePathResolver = FilePathResolver(
-        workspaceDirectory: "/Users/TimApple/app",
-        externalDirectory: "/some/bazel8/external",
-        bazelOutDirectory: "/some/bazel8/bazel-out",
+    let directories = FilePathResolver.Directories(
+        workspace: "/Users/TimApple/app",
+        projectRoot: "/Users/TimApple",
+        external: "/some/bazel72/external",
+        bazelOut: "/some/bazel72/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
-        workspaceOutputPath: "examples/foo/Foo.xcodeproj"
+        bazelIntegration: "bazel",
+        workspaceOutput: "examples/foo/Foo.xcodeproj"
+    )
+    lazy var filePathResolver = FilePathResolver(
+        directories: directories
     )
 
     lazy var targetResolver = Fixtures.targetResolver(
