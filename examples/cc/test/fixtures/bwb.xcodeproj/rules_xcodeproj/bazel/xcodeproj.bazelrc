@@ -63,7 +63,7 @@ build:rules_xcodeproj_generator --config=rules_xcodeproj
 #
 # If you see a warning like:
 #
-#  WARNING: option '--remote_download_outputs' was expanded to from both option '--remote_download_minimal' (source /$WORKSPACE/.bazelrc) and option '--config=rules_xcodeproj_generator' (source command line options)
+#  WARNING: option '--remote_download_outputs' was expanded to from both option '--remote_download_minimal' (source $WORKSPACE/.bazelrc) and option '--config=rules_xcodeproj_generator' (source command line options)
 #
 # Then you should change your use of `--remote_download_minimal` to these
 # individual flags:

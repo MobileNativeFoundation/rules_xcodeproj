@@ -14,6 +14,7 @@ build --nobuild_runfile_links
 build --experimental_inmemory_jdeps_files
 build --experimental_inmemory_dotd_files
 build --remote_download_outputs=minimal
+test --remote_download_outputs=toplevel
 
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
