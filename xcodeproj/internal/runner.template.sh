@@ -95,6 +95,10 @@ readonly bazel_cmd=(
   env -i
   "${passthrough_envs[@]}"
   "$bazel_path"
+
+  # Restart Bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
+  "--host_jvm_args=-Xdock:name=$developer_dir"
+
   "${bazelrcs[@]}"
   --output_base "$nested_output_base"
 )
