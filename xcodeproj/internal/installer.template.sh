@@ -169,11 +169,18 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
     bazelrcs+=("--bazelrc=.bazelrc")
   fi
 
+  developer_dir=$(xcode-select -p)
   xcode_build_version=$(/usr/bin/xcodebuild -version | tail -1 | cut -d " " -f3)
 
-  bazel_out=$("$bazel_path" "${bazelrcs[@]}" \
+  # Re-export `DEVELOPER_DIR` in case a wrapper has wiped it away
+  export DEVELOPER_DIR="$developer_dir"
+
+  bazel_out=$("$bazel_path" \
+    "--host_jvm_args=-Xdock:name=$developer_dir" \
+    "${bazelrcs[@]}" \
     --output_base "$nested_output_base" \
     info \
+    "--repo_env=DEVELOPER_DIR=$developer_dir" \
     "--repo_env=USE_CLANG_CL=$xcode_build_version" \
     --config=rules_xcodeproj_info \
     output_path)

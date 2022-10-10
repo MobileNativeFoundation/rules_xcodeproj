@@ -95,11 +95,16 @@ fi
 
 bazel_cmd=(
   env -i
+  DEVELOPER_DIR="$DEVELOPER_DIR"
   HOME="$HOME"
   PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
   TERM="$TERM"
   USER="$USER"
   "$BAZEL_PATH"
+
+  # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
+  "--host_jvm_args=-Xdock:name=$DEVELOPER_DIR"
+
   "${bazelrcs[@]}"
 )
 pre_config_flags=(
@@ -109,6 +114,7 @@ pre_config_flags=(
   # Work around https://github.com/bazelbuild/bazel/issues/8902
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
+  "--repo_env=DEVELOPER_DIR=$DEVELOPER_DIR"
   "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
 )
 
@@ -236,8 +242,6 @@ touch "$build_marker"
   --config="$config" \
   --color=yes \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
-  --experimental_convenience_symlinks=ignore \
-  --symlink_prefix=/ \
   "$output_groups_flag" \
   "$GENERATOR_LABEL" \
   2>&1

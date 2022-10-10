@@ -179,13 +179,13 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         func handleSearchPath(filePath: FilePath) throws -> String {
-            let path = try filePathResolver
-                .resolve(filePath, useBazelOut: true)
+            return try filePathResolver
+                .resolve(
+                    filePath,
+                    useBazelOut: true,
+                    forceFullBuildSettingPath: true
+                )
                 .string.quoted
-            guard !hasBazelDependencies || path != "." else {
-                return "$(BAZEL_EXEC_ROOT)"
-            }
-            return path
         }
 
         func handleFrameworkSearchPath(filePath: FilePath) throws -> [String] {
@@ -247,7 +247,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                         .resolve(
                             filePath,
                             useBazelOut: true,
-                            forceAbsoluteProjectPath: true
+                            forceFullBuildSettingPath: true
                         )
                         .string.quoted
                     return "-Xcc -fmodule-map-file=\(modulemap)"

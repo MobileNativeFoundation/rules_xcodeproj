@@ -193,7 +193,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PROJECT_DIR/post-build w spaces.sh\"\n\n";
+			shellScript = "\"$SRCROOT/post-build w spaces.sh\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 		922073A986018654923053B1 /* Pre-build Run Script */ = {
@@ -299,7 +299,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXEC_ROOT)",
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 				);
 			};

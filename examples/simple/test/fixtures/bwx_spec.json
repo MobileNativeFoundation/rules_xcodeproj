@@ -24,7 +24,7 @@
         "_": "darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import"
     },
     "name": "bwx",
-    "post_build_script": "\"$PROJECT_DIR/post-build w spaces.sh\"\n",
+    "post_build_script": "\"$SRCROOT/post-build w spaces.sh\"\n",
     "pre_build_script": "echo 'Pre-building...'",
     "replacement_labels": [],
     "runner_label": "@//test/fixtures:xcodeproj_bwx",
