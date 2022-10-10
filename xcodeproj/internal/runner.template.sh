@@ -70,13 +70,15 @@ pre_config_flags=(
   # Work around https://github.com/bazelbuild/bazel/issues/8902
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
-  "--repo_env=USE_CLANG_CL=$developer_dir-$xcode_build_version"
+  "--repo_env=DEVELOPER_DIR=$developer_dir"
+  "--repo_env=USE_CLANG_CL=$xcode_build_version"
 )
 
 # We do want the `tools/bazel` to run if possible
 unset BAZELISK_SKIP_WRAPPER
 
 passthrough_envs=(
+  DEVELOPER_DIR="$developer_dir"
   PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 )
 if [[ -n "${HOME:-}" ]]; then
