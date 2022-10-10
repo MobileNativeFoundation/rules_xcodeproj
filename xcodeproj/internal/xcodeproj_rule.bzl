@@ -699,12 +699,10 @@ def _write_xcodeproj(
         "{}.xcodeproj".format(ctx.attr.name),
     )
 
-    install_path = ctx.attr._install_path[BuildSettingInfo].value
-    if not install_path:
-        install_path = paths.join(
-            paths.dirname(xcodeproj.short_path),
-            "{}.xcodeproj".format(project_name),
-        )
+    install_path = paths.join(
+        paths.dirname(xcodeproj.short_path),
+        "{}.xcodeproj".format(project_name),
+    )
 
     args = ctx.actions.args()
     args.add(spec_file.path)
@@ -1244,10 +1242,6 @@ transitive dependencies of the targets specified in the
             cfg = "exec",
             default = Label("@rules_xcodeproj_index_import//:index_import"),
             executable = True,
-        ),
-        "_install_path": attr.label(
-            default = Label("//xcodeproj/internal:install_path"),
-            providers = [BuildSettingInfo],
         ),
         "_installer_template": attr.label(
             allow_single_file = True,
