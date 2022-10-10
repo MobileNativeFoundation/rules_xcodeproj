@@ -713,7 +713,7 @@ EOF
                             .resolve(
                                 filePath,
                                 useBazelOut: true,
-                                forceAbsoluteProjectPath: true
+                                forceFullBuildSettingPath: true
                             )
                             .string
                     }
@@ -724,7 +724,7 @@ EOF
                             .resolve(
                                 filePath,
                                 transform: { $0.parent() },
-                                forceAbsoluteProjectPath: true
+                                forceFullBuildSettingPath: true
                             )
                             .string
                     }
@@ -998,7 +998,7 @@ private extension LLDBContext.Clang {
                 .resolve(
                     filePath,
                     useBazelOut: true,
-                    forceAbsoluteProjectPath: true
+                    forceFullBuildSettingPath: true
                 )
                 .string
             return #"-iquote "\#(path)""#
@@ -1015,7 +1015,7 @@ private extension LLDBContext.Clang {
                 .resolve(
                     filePath,
                     useBazelOut: true,
-                    forceAbsoluteProjectPath: true
+                    forceFullBuildSettingPath: true
                 )
                 .string
             includesArgs.append(#"-I "\#(path)""#)
@@ -1026,7 +1026,7 @@ private extension LLDBContext.Clang {
                 .resolve(
                     filePath,
                     useBazelOut: true,
-                    forceAbsoluteProjectPath: true
+                    forceFullBuildSettingPath: true
                 )
                 .string
             return #"-isystem "\#(path)""#
@@ -1055,7 +1055,7 @@ private extension LLDBContext.Clang {
                 .resolve(
                     filePath,
                     useBazelOut: true,
-                    forceAbsoluteProjectPath: true
+                    forceFullBuildSettingPath: true
                 )
                 .string
             modulemapArgs.append(#"-fmodule-map-file="\#(modulemap)""#)

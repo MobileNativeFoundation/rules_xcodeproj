@@ -72,7 +72,7 @@ struct FilePathResolver: Equatable {
         transform: (_ filePath: FilePath) -> FilePath = { $0 },
         xcodeGeneratedTransform: ((_ filePath: FilePath) -> FilePath)? = nil,
         useBazelOut: Bool? = nil,
-        forceAbsoluteProjectPath: Bool = false,
+        forceFullBuildSettingPath: Bool = false,
         mode: Mode = .buildSetting
     ) throws -> Path {
         switch filePath.type {
@@ -80,7 +80,7 @@ struct FilePathResolver: Equatable {
             let projectDir: Path
             switch mode {
             case .buildSetting:
-                projectDir = forceAbsoluteProjectPath ? "$(SRCROOT)" : ""
+                projectDir = forceFullBuildSettingPath ? "$(SRCROOT)" : ""
             case .script:
                 projectDir = "$SRCROOT"
             case .srcRoot:
