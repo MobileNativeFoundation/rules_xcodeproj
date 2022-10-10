@@ -117,7 +117,8 @@ enum Fixtures {
                     .generated("z/A.a"),
                     .project("a/imported.a"),
                 ],
-                forceLoad: [.generated("a/c.lo")]
+                forceLoad: [.generated("a/c.lo")],
+                linkopts: ["-framework", "Fram"]
             ),
             resourceBundleDependencies: ["R 1"],
             dependencies: ["C 1", "A 1", "R 1"],
@@ -162,7 +163,8 @@ enum Fixtures {
             testHost: "A 2",
             linkerInputs: .init(
                 staticFrameworks: ["a/StaticFram.framework"],
-                dynamicFrameworks: [.generated("a/frameworks/b.framework")]
+                dynamicFrameworks: [.generated("a/frameworks/b.framework")],
+                linkopts: ["-framework", "StaticFram", "-framework", "b"]
             ),
             dependencies: ["A 2", "B 1"]
         ),
@@ -175,7 +177,8 @@ enum Fixtures {
             ),
             testHost: "A 2",
             linkerInputs: .init(
-                staticFrameworks: ["a/StaticFram.framework"]
+                staticFrameworks: ["a/StaticFram.framework"],
+                linkopts: ["-framework", "StaticFram"]
             ),
             dependencies: ["A 2", "B 1"]
         ),
@@ -1069,12 +1072,12 @@ $(BAZEL_OUT)/v/a.txt
         case .xcode:
             files[.internal("targets/a1b2c/A 2/A.link.params")] =
                 .nonReferencedContent("""
+-framework
+Fram
 $(BUILD_DIR)/bazel-out/z/A.a
 a/imported.a
 -force_load
 $(BUILD_DIR)/bazel-out/a/c.lo
--framework
-Fram
 
 """)
 
@@ -1103,12 +1106,12 @@ $(BUILD_DIR)/bazel-out/a/c.lo
         case .bazel:
             files[.internal("targets/a1b2c/A 2/A.link.params")] =
                 .nonReferencedContent("""
+-framework
+Fram
 $(BAZEL_OUT)/z/A.a
 a/imported.a
 -force_load
 $(BAZEL_OUT)/a/c.lo
--framework
-Fram
 
 """)
 
