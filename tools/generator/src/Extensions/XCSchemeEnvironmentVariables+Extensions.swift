@@ -11,7 +11,7 @@ extension Array where Element == XCScheme.EnvironmentVariable {
     static let bazelLaunchEnvironmentVariables: [XCScheme.EnvironmentVariable] = [
         .init(
             variable: "BUILD_WORKSPACE_DIRECTORY",
-            value: "$(SRCROOT)",
+            value: "$(BUILD_WORKSPACE_DIRECTORY)",
             enabled: true
         ),
         .init(
