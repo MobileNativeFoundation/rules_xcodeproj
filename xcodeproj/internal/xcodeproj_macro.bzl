@@ -123,9 +123,9 @@ def xcodeproj(
             `top_level_targets` argument with the `"simulator"`
             `target_environment`, even if they aren't iOS targets.
         post_build: The text of a script that will be run after the build. For
-            example: `./post-build.sh`, `"$PROJECT_DIR/post-build.sh"`.
+            example: `./post-build.sh`, `"$SRCROOT/post-build.sh"`.
         pre_build: The text of a script that will be run before the build. For
-            example: `./pre-build.sh`, `"$PROJECT_DIR/pre-build.sh"`.
+            example: `./pre-build.sh`, `"$SRCROOT/pre-build.sh"`.
         project_name: Optional. The name to use for the `.xcodeproj` file. If
             not specified, the value of the `name` argument is used.
         scheme_autogeneration_mode: Optional. Specifies how Xcode schemes are
