@@ -866,6 +866,13 @@ def _xcodeproj_impl(ctx):
             transitive = [info.replacement_labels for info in infos],
         ).to_list()
     }
+    test_env = dict()
+    for env in depset(
+        transitive = [info.test_env for info in infos],
+    ).to_list():
+        dicts.add(test_env, env)
+
+    print(test_env)
 
     (
         targets,

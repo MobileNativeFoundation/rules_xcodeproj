@@ -66,6 +66,7 @@ def _target_info_fields(
         rule_kind,
         search_paths,
         target_type,
+        test_env,
         transitive_dependencies,
         xcode_target,
         xcode_targets,
@@ -95,6 +96,7 @@ def _target_info_fields(
         rule_kind: Maps to the `XcodeProjInfo.rule_kind` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
+        test_env: Maps to the `XcodeProjInfo.test_env` field.
         transitive_dependencies: Maps to the
             `XcodeProjInfo.transitive_dependencies` field.
         xcode_target: Maps to the `XcodeProjInfo.xcode_target` field.
@@ -120,6 +122,7 @@ def _target_info_fields(
         *   `rule_kind`
         *   `search_paths`
         *   `target_type`
+        *   `test_env`
         *   `transitive_dependencies`
         *   `xcode_target`
         *   `xcode_targets`
@@ -140,6 +143,7 @@ def _target_info_fields(
         "rule_kind": rule_kind,
         "search_paths": search_paths,
         "target_type": target_type,
+        "test_env": test_env,
         "transitive_dependencies": transitive_dependencies,
         "xcode_target": xcode_target,
         "xcode_targets": xcode_targets,
@@ -243,6 +247,12 @@ def _skip_target(*, target, deps, deps_attrs, transitive_infos):
         rule_kind = None,
         search_paths = search_paths,
         target_type = target_type.compile,
+        test_env = depset(
+            transitive = [
+                info.test_env
+                for _, info in transitive_infos
+            ],
+        ),
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
         xcode_targets = depset(
@@ -377,6 +387,12 @@ def _create_xcodeprojinfo(
         rule_kind = ctx.rule.kind,
         search_paths = processed_target.search_paths,
         target_type = processed_target.automatic_target_info.target_type,
+        test_env = depset(
+            transitive = [
+                info.test_env
+                for _, info in transitive_infos
+            ],
+        ),
         transitive_dependencies = processed_target.transitive_dependencies,
         xcode_target = processed_target.xcode_target,
         xcode_targets = depset(

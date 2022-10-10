@@ -71,6 +71,7 @@ A sequence of attribute names to collect `File`s from for `srcs`-like
 attributes.
 """,
         "target_type": "See `XcodeProjInfo.target_type`.",
+        "test_env": "WIP",
         "xcode_targets": """\
 A `dict` mapping attribute names to target type strings (i.e. "resource" or
 "compile"). Only Xcode targets from the specified attributes with the specified
@@ -147,6 +148,7 @@ A string that categorizes the type of the current target. This will be one of
 "compile", "resources", or `None`. Even if this target doesn't produce an Xcode
 target, it can still have a non-`None` value for this field.
 """,
+        "test_env": "WIP",
         "transitive_dependencies": """\
 A `depset` of target ids (see the `target` `struct`) that this target
 transitively depends on.

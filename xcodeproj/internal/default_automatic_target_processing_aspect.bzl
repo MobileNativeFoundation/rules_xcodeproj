@@ -78,6 +78,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     non_arc_srcs = []
     pch = None
     provisioning_profile = None
+    test_env = None
 
     attrs = dir(ctx.rule.attr)
 
@@ -111,6 +112,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
+            if "env" in attrs:
+                test_env = "env"
         if "alternate_icons" in attrs:
             alternate_icons = "alternate_icons"
         if "app_clips" in attrs:
@@ -200,6 +203,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             should_generate_target = should_generate_target,
             srcs = srcs,
             target_type = this_target_type,
+            test_env = test_env,
             xcode_targets = xcode_targets,
         ),
     ]

@@ -8,6 +8,9 @@ ios_unit_test(
     resources = ["//iOSApp/Resources/ExampleResources:exported_resources"],
     test_host = "//iOSApp",
     visibility = ["//visibility:public"],
+    env = {
+        "IOSAPPSWIFTUNITTESTS": "CUSTOM_ENV_VAR"
+    },
     deps = [":iOSAppSwiftUnitTests.library"],
 )
 
