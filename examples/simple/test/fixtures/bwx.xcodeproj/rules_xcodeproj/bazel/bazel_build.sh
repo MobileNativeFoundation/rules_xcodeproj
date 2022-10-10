@@ -236,7 +236,6 @@ touch "$build_marker"
   --config="$config" \
   --color=yes \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
-  --symlink_prefix=/ \
   "$output_groups_flag" \
   "$GENERATOR_LABEL" \
   2>&1
