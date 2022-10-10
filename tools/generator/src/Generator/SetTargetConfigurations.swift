@@ -179,13 +179,9 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         func handleSearchPath(filePath: FilePath) throws -> String {
-            let path = try filePathResolver
+            return try filePathResolver
                 .resolve(filePath, useBazelOut: true)
                 .string.quoted
-            guard !hasBazelDependencies || path != "." else {
-                return "$(BAZEL_EXEC_ROOT)"
-            }
-            return path
         }
 
         func handleFrameworkSearchPath(filePath: FilePath) throws -> [String] {
