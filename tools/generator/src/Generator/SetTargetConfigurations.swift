@@ -180,7 +180,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
 
         func handleSearchPath(filePath: FilePath) throws -> String {
             return try filePathResolver
-                .resolve(filePath, useBazelOut: true)
+                .resolve(
+                    filePath,
+                    useBazelOut: true,
+                    forceFullBuildSettingPath: true
+                )
                 .string.quoted
         }
 

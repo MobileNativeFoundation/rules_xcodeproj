@@ -580,7 +580,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = AddressSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
 				);
 			};
@@ -691,7 +691,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = UndefinedBehaviorSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
 				);
 			};
@@ -781,7 +781,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = ThreadSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
 				);
 			};

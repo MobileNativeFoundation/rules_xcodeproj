@@ -558,7 +558,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/external/examples_cc_external",
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 				);
 			};
@@ -636,12 +636,12 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					lib2/includes,
+					"$(SRCROOT)/lib2/includes",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/lib2/includes",
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 				);
 			};
@@ -708,12 +708,12 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					lib2/includes,
+					"$(SRCROOT)/lib2/includes",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/lib2/includes",
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/external/examples_cc_external",
@@ -793,7 +793,7 @@
 					"SECRET_3=\\\"Hello\\\"",
 				);
 				HEADER_SEARCH_PATHS = (
-					lib/private,
+					"$(SRCROOT)/lib/private",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -831,7 +831,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 				);
 			};

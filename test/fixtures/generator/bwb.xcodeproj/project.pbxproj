@@ -2432,7 +2432,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PathKit;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2490,7 +2490,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = swiftc;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2522,7 +2522,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = XcodeProj;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2601,7 +2601,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = XCTestDynamicOverlay;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2633,7 +2633,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CustomDump;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2679,7 +2679,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tests;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2710,7 +2710,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = OrderedCollections;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2751,7 +2751,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = generator;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2783,7 +2783,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = generator.library;
 				USER_HEADER_SEARCH_PATHS = (
-					.,
+					"$(SRCROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
