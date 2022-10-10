@@ -247,7 +247,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                         .resolve(
                             filePath,
                             useBazelOut: true,
-                            forceAbsoluteProjectPath: true
+                            forceFullBuildSettingPath: true
                         )
                         .string.quoted
                     return "-Xcc -fmodule-map-file=\(modulemap)"
