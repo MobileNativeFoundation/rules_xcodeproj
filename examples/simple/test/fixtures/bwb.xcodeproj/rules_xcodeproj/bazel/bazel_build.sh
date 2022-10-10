@@ -101,6 +101,10 @@ bazel_cmd=(
   TERM="$TERM"
   USER="$USER"
   "$BAZEL_PATH"
+
+  # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
+  "--host_jvm_args=-Xdock:name=$DEVELOPER_DIR"
+
   "${bazelrcs[@]}"
 )
 pre_config_flags=(

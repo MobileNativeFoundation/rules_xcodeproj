@@ -175,7 +175,9 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   # Re-export `DEVELOPER_DIR` in case a wrapper has wiped it away
   export DEVELOPER_DIR="$developer_dir"
 
-  bazel_out=$("$bazel_path" "${bazelrcs[@]}" \
+  bazel_out=$("$bazel_path" \
+    "--host_jvm_args=-Xdock:name=$developer_dir" \
+    "${bazelrcs[@]}" \
     --output_base "$nested_output_base" \
     info \
     "--repo_env=DEVELOPER_DIR=$developer_dir" \
