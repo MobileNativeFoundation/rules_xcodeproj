@@ -62,7 +62,8 @@ final class TargetMergingTests: XCTestCase {
                     .linkerInputs.dynamicFrameworks,
                 // Removed "A 1"'s product
                 staticLibraries: [.project("a/imported.a")],
-                forceLoad: [.generated("a/c.lo")]
+                forceLoad: [.generated("a/c.lo")],
+                linkopts: targets["A 2"]!.linkerInputs.linkopts
             ),
             resourceBundleDependencies: targets["A 2"]!
                 .resourceBundleDependencies,
@@ -85,7 +86,8 @@ final class TargetMergingTests: XCTestCase {
                 dynamicFrameworks: targets["B 2"]!
                     .linkerInputs.dynamicFrameworks,
                 // Removed "A 1"'s and "B 1"'s product
-                staticLibraries: []
+                staticLibraries: [],
+                linkopts: targets["B 2"]!.linkerInputs.linkopts
             ),
             resourceBundleDependencies: targets["B 2"]!
                 .resourceBundleDependencies,
@@ -108,7 +110,8 @@ final class TargetMergingTests: XCTestCase {
                 dynamicFrameworks: targets["B 3"]!
                     .linkerInputs.dynamicFrameworks,
                 // Removed "B 1"'s product
-                staticLibraries: []
+                staticLibraries: [],
+                linkopts: targets["B 3"]!.linkerInputs.linkopts
             ),
             resourceBundleDependencies: targets["B 3"]!
                 .resourceBundleDependencies,

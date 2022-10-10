@@ -1,6 +1,9 @@
+-ObjC
 -lc++
--framework
-UIKit
+-lc++
 -headerpad_max_install_names
 -no-canonical-prefixes
--lc++
+-framework
+Foundation
+-framework
+UIKit

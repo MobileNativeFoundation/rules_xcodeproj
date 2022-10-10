@@ -86,7 +86,7 @@ def process_library_target(
         is_xcode_target = True,
     )
     linker_inputs = linker_input_files.collect(
-        ctx = ctx,
+        target = target,
         compilation_providers = compilation_providers,
     )
 

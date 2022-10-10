@@ -55,9 +55,8 @@
             "label": "//:SwiftBin",
             "linker_inputs": {
                 "linkopts": [
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++"
+                    "-D",
+                    "-no_warning_for_no_symbols"
                 ]
             },
             "name": "SwiftBin",

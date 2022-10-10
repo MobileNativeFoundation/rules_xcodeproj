@@ -369,7 +369,7 @@ def process_top_level_target(
         ],
     )
     linker_inputs = linker_input_files.collect(
-        ctx = ctx,
+        target = target,
         compilation_providers = compilation_providers,
         avoid_compilation_providers = avoid_compilation_providers,
     )

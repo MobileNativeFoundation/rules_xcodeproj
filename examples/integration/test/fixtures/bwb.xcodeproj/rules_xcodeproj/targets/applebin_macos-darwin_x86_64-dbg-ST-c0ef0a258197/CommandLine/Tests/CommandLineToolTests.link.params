@@ -1,3 +1,10 @@
+-ObjC
+-framework
+Foundation
+-framework
+ExternalFramework
+-weak_framework
+SwiftUI
 -L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -Wl,-add_ast_path,$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/Tests/LibSwiftTestsLib.swiftmodule
 -Wl,-add_ast_path,$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule
@@ -7,13 +14,13 @@
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx
 -Wl,-rpath,/usr/lib/swift
+-lc++
+-headerpad_max_install_names
+-framework
+XCTest
+-no-canonical-prefixes
 -framework
 Foundation
--weak_framework
-SwiftUI
--headerpad_max_install_names
--no-canonical-prefixes
--lc++
 $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib/liblib_swift.a
 $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/swift_c_module/libc_lib.a
 $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib/libprivate_lib.a
@@ -22,5 +29,3 @@ $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a2581
 $(BAZEL_EXTERNAL)/examples_command_line_external/ImportableLibrary/libImportableLibrary.a
 -force_load
 $(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/ExternalFramework
--framework
-ExternalFramework

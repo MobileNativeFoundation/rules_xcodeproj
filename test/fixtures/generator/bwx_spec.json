@@ -182,6 +182,7 @@
             "label": "//tools/generator/test:tests.__internal__.__test_bundle",
             "linker_inputs": {
                 "linkopts": [
+                    "-ObjC",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/tests.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/generator.swiftmodule",
@@ -195,9 +196,13 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
                     "-headerpad_max_install_names",
+                    "-framework",
+                    "XCTest",
                     "-no-canonical-prefixes",
-                    "-lc++"
+                    "-framework",
+                    "Foundation"
                 ],
                 "static_libraries": [
                     {
@@ -591,6 +596,7 @@
             "label": "//tools/generator:generator",
             "linker_inputs": {
                 "linkopts": [
+                    "-ObjC",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/generator.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
@@ -600,9 +606,11 @@
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
-                    "-lc++"
+                    "-framework",
+                    "Foundation"
                 ],
                 "static_libraries": [
                     {
@@ -937,14 +945,17 @@
             "label": "//tools/swiftc_stub:swiftc",
             "linker_inputs": {
                 "linkopts": [
+                    "-ObjC",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/swiftc_stub/tools_swiftc_stub_swiftc_stub_library.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
                     "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
                     "-Wl,-rpath,/usr/lib/swift",
+                    "-lc++",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
-                    "-lc++"
+                    "-framework",
+                    "Foundation"
                 ],
                 "static_libraries": [
                     {
