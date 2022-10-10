@@ -110,7 +110,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "BUILD_WORKSPACE_DIRECTORY"
-            value = "$(SRCROOT)"
+            value = "$(BUILD_WORKSPACE_DIRECTORY)"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
