@@ -589,13 +589,21 @@ was set to `\(existingValue)`.
 
         let externalPaths = try fileListFileFilePaths
             .filter { $0.type == .external }
-            .map { try filePathResolver.resolve($0) }
+            .map { filePath in
+                return try filePathResolver
+                    .resolve(filePath, forceFullBuildSettingPath: true)
+            }
 
         let generatedFilePaths = fileListFileFilePaths
             .filter { $0.type == .generated && !$0.isFolder } + nonIncludedFiles
 
         let generatedPaths = try generatedFilePaths.map { filePath in
-            return try filePathResolver.resolve(filePath, useBazelOut: true)
+            return try filePathResolver
+                .resolve(
+                    filePath,
+                    useBazelOut: true,
+                    forceFullBuildSettingPath: true
+                )
         }
 
         if buildMode.usesBazelModeBuildScripts,
