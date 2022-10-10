@@ -109,7 +109,7 @@ pre_config_flags=(
   # Work around https://github.com/bazelbuild/bazel/issues/8902
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
-  "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
+  "--repo_env=USE_CLANG_CL=$DEVELOPER_DIR-$XCODE_PRODUCT_BUILD_VERSION"
 )
 
 # Determine Bazel output_path
