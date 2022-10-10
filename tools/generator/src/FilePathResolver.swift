@@ -80,9 +80,9 @@ struct FilePathResolver: Equatable {
             let projectDir: Path
             switch mode {
             case .buildSetting:
-                projectDir = forceAbsoluteProjectPath ? "$(PROJECT_DIR)" : ""
+                projectDir = forceAbsoluteProjectPath ? "$(SRCROOT)" : ""
             case .script:
-                projectDir = "$PROJECT_DIR"
+                projectDir = "$SRCROOT"
             case .srcRoot:
                 projectDir = ""
             }

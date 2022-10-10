@@ -185,7 +185,7 @@ _SCHEMES = [
             env = {
                 "RELEASE_THE_KRAKEN": "true",
             },
-            working_directory = "$(PROJECT_DIR)",
+            working_directory = "$(SRCROOT)",
         ),
     ),
 ]
@@ -566,7 +566,7 @@ custom schemes:
 ### Do we need to support [Make variable](https://bazel.build/reference/be/make-variables) for the JSON strings provided to the `schemes` attribute?
 
 If we do support it, it will make it difficult to specify Xcode-specific
-variables (e.g. [`$(PROJECT_DIR)`](https://stackoverflow.com/questions/67235826/how-do-i-use-an-environment-variable-in-the-xcode-scheme-arguments-passed-on-lau/67235841#67235841))
+variables (e.g. [`$(SRCROOT)`](https://stackoverflow.com/questions/67235826/how-do-i-use-an-environment-variable-in-the-xcode-scheme-arguments-passed-on-lau/67235841#67235841))
 in values like the custom working directory.
 
 If we do end up adding support for
