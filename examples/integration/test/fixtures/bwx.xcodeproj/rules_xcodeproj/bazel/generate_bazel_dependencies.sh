@@ -99,6 +99,8 @@ if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
 fi
 readonly bazelrcs
 
+# Set `output_base`
+
 # In `runner.template.sh` the generator has the build output base set inside
 # of the outer bazel's output path (`bazel-out/`). So here we need to make
 # our output base changes relative to that changed path.
@@ -159,17 +161,6 @@ output_path=$("${bazel_cmd[@]}" \
   --color="$info_color" \
   output_path)
 readonly output_path
-readonly execution_root="${output_path%/*}"
-
-# Create `bazel.lldbinit``
-
-if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
-  # shellcheck disable=SC2046
-  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" \
-    "$execution_root" \
-    $(xargs -n1 <<< "${RESOLVED_EXTERNAL_REPOSITORIES:-}") \
-    > "$BAZEL_LLDB_INIT"
-fi
 
 # Create VFS overlays
 
@@ -259,6 +250,8 @@ touch "$build_marker"
   "$GENERATOR_LABEL" \
   2>&1
 
+# Check filelists
+
 indexstores_filelists=()
 for output_group in "${output_groups[@]}"; do
   filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"
@@ -285,6 +278,18 @@ for output_group in "${output_groups[@]}"; do
   fi
 done
 readonly indexstores_filelists
+
+# Create `bazel.lldbinit``
+
+readonly execution_root="${output_path%/*}"
+
+if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
+  # shellcheck disable=SC2046
+  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" \
+    "$execution_root" \
+    $(xargs -n1 <<< "${RESOLVED_EXTERNAL_REPOSITORIES:-}") \
+    > "$BAZEL_LLDB_INIT"
+fi
 
 # Async actions
 #
