@@ -38,6 +38,9 @@ extension Generator {
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
             "BAZEL_OUT": bazelOut.string,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
+            "BUILD_DIR": """
+$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+""",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
             // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
             // `DEPLOYMENT_LOCATION` is set. It does prevent `DYLD_LIBRARY_PATH`
