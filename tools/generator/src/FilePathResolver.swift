@@ -8,6 +8,7 @@ struct FilePathResolver: Equatable {
     }
 
     struct Directories: Equatable {
+        let workspace: Path
         let workspaceComponents: [String]
         let workspaceOutput: Path
 
@@ -29,6 +30,7 @@ struct FilePathResolver: Equatable {
             bazelIntegration: Path,
             workspaceOutput: Path
         ) {
+            self.workspace = workspace
             workspaceComponents = workspace.components
             self.workspaceOutput = workspaceOutput
 
@@ -64,7 +66,18 @@ struct FilePathResolver: Equatable {
         self.directories = directories
         self.xcodeGeneratedFiles = xcodeGeneratedFiles
 
-        containerReference = "container:\(directories.workspaceOutput)"
+        let workspace: Path
+        if directories.bazelOut.isRelative {
+            workspace = Path(
+                components: (0 ..< (directories.bazelOut.components.count - 1))
+                    .map { _ in ".." }
+            )
+        } else {
+            workspace = directories.workspace
+        }
+        containerReference = """
+container:\(workspace + directories.workspaceOutput)
+"""
     }
 
     func resolve(
@@ -91,7 +104,8 @@ struct FilePathResolver: Equatable {
             let externalDir: Path
             switch mode {
             case .buildSetting:
-                externalDir = "$(BAZEL_EXTERNAL)"
+                externalDir = forceFullBuildSettingPath ?
+                    "$(BAZEL_EXTERNAL)" : "external"
             case .script:
                 externalDir = "$BAZEL_EXTERNAL"
             case .srcRoot:
@@ -121,7 +135,8 @@ struct FilePathResolver: Equatable {
                 let bazelOutDir: Path
                 switch mode {
                 case .buildSetting:
-                    bazelOutDir = "$(BAZEL_OUT)"
+                    bazelOutDir = forceFullBuildSettingPath ?
+                        "$(BAZEL_OUT)" : "bazel-out"
                 case .script:
                     bazelOutDir = "$BAZEL_OUT"
                 case .srcRoot:

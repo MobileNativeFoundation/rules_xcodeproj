@@ -508,9 +508,9 @@ enum Fixtures {
                 elements[.generated("a1b2c")]!,
                 elements[.generated("v", isFolder: true)]!,
             ],
-            sourceTree: directories.bazelOut.isAbsolute ? .absolute : .group,
+            sourceTree: .sourceRoot,
             name: "Bazel Generated Files",
-            path: directories.bazelOut.string
+            path: "bazel-out"
         )
 
         // external/a_repo/a.swift
@@ -546,9 +546,9 @@ enum Fixtures {
                 elements[.external("a_repo")]!,
                 elements[.external("another_repo")]!,
             ],
-            sourceTree: directories.external.isAbsolute ? .absolute : .group,
+            sourceTree: .sourceRoot,
             name: "Bazel External Repositories",
-            path: directories.external.string
+            path: "../../external"
         )
 
         // a/a.h
@@ -1108,10 +1108,10 @@ $(BUILD_DIR)/bazel-out/a/c.lo
                 .nonReferencedContent("""
 -framework
 Fram
-$(BAZEL_OUT)/z/A.a
+bazel-out/z/A.a
 a/imported.a
 -force_load
-$(BAZEL_OUT)/a/c.lo
+bazel-out/a/c.lo
 
 """)
 
@@ -1134,7 +1134,7 @@ StaticFram
             files[.internal("targets/a1b2c/C 2/d.link.params")] =
                 .nonReferencedContent("""
 -force_load
-$(BAZEL_OUT)/a/c.lo
+bazel-out/a/c.lo
 
 """)
         }

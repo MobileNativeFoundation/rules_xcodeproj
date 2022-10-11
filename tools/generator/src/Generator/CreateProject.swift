@@ -13,30 +13,37 @@ extension Generator {
     ) -> PBXProj {
         let pbxProj = PBXProj()
 
-        let mainGroup = PBXGroup(sourceTree: .group)
-        pbxProj.add(object: mainGroup)
-
-        let bazelOut: Path
+        let projectDir: Path
+        let srcRoot: String
+        let mainGroup: PBXGroup
         if directories.bazelOut.isRelative {
-            bazelOut = "$(PROJECT_DIR)" + directories.bazelOut
+            let relativeExecutionRoot = directories.bazelOut.parent()
+            projectDir = directories.projectRoot + relativeExecutionRoot
+            let srcRootPath = (0 ..< relativeExecutionRoot.components.count)
+                .map { _ in ".." }
+                .joined(separator: "/")
+            mainGroup = PBXGroup(
+                sourceTree: .group,
+                path: srcRootPath
+            )
+            srcRoot = "$(PROJECT_DIR)/\(srcRootPath)"
         } else {
-            bazelOut = directories.bazelOut
+            projectDir = directories.bazelOut.parent()
+            srcRoot = directories.workspace.string
+            mainGroup = PBXGroup(
+                sourceTree: .absolute,
+                path: srcRoot
+            )
         }
 
-        let external: Path
-        if directories.external.isRelative {
-            external = "$(PROJECT_DIR)" + directories.external
-        } else {
-            external = directories.external
-        }
+        pbxProj.add(object: mainGroup)
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
-            "BAZEL_EXEC_ROOT": bazelOut.parent().string,
-            "BAZEL_EXTERNAL": external.string,
+            "BAZEL_EXTERNAL": "$(PROJECT_DIR)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-            "BAZEL_OUT": bazelOut.string,
+            "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -72,6 +79,8 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
 """,
+            "SRCROOT": "$(_SRCROOT:standardizepath)",
+            "_SRCROOT": srcRoot,
             "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
@@ -123,10 +132,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             mainGroup: mainGroup,
             // TODO: Make developmentRegion configurable?
             developmentRegion: "en",
-            // TODO: Make this configurable?
-            // Normal Xcode projects set this to `""` when at the workspace
-            // level. Maybe we should as well?
-            projectDirPath: directories.projectRoot.normalize().string,
+            projectDirPath: projectDir.string,
             attributes: attributes
         )
         pbxProj.add(object: pbxProject)

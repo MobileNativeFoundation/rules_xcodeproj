@@ -190,6 +190,8 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             name: name,
             outputFileListPaths: outputFileListPaths,
             shellScript: """
+cd "$SRCROOT"
+
 "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 
 """,

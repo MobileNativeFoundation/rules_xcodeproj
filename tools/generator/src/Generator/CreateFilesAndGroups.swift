@@ -358,9 +358,9 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: directories.external.sourceTree,
+                sourceTree: .sourceRoot,
                 name: "Bazel External Repositories",
-                path: directories.external.string
+                path: "../../external"
             )
             pbxProj.add(object: group)
             groups[.external("")] = group
@@ -376,9 +376,9 @@ extension Generator {
             }
 
             let group = PBXGroup(
-                sourceTree: directories.bazelOut.sourceTree,
+                sourceTree: .sourceRoot,
                 name: "Bazel Generated Files",
-                path: directories.bazelOut.string
+                path: "bazel-out"
             )
             pbxProj.add(object: group)
             groups[.generated("")] = group
