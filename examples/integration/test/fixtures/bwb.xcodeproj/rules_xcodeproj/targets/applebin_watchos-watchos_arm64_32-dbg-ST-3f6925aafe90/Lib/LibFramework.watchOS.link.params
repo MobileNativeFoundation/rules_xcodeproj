@@ -1,7 +1,7 @@
 -ObjC
 -framework
 CryptoSwift
--Wl,-add_ast_path,$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.swiftmodule
+-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.swiftmodule
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos
@@ -14,4 +14,4 @@ Foundation
 -framework
 UIKit
 -force_load
-$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/libLib.a
+bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/libLib.a

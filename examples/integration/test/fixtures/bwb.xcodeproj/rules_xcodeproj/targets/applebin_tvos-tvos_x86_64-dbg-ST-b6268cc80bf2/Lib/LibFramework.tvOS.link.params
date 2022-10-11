@@ -1,7 +1,7 @@
 -ObjC
 -framework
 CryptoSwift
--Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.swiftmodule
+-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.swiftmodule
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator
@@ -14,4 +14,4 @@ Foundation
 -framework
 UIKit
 -force_load
-$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/libLib.a
+bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/libLib.a

@@ -22,10 +22,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		47A652C93D0ED0E4B3D9E7CF /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 48A78400BB5E1C20A3299A42 /* main.c */; };
-		4D7D6BF252B1F2BB8BCCA2B2 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = BF6AED364F6BEC4B651A5032 /* lib.c */; };
-		B32F269ED12B4DFACBB2A17F /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = A2B55BE680D0A09636C9B2B8 /* lib.c */; };
-		D8961DA25CBC1AF0367FBA37 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 26866FEDF67CD3FA66FFAB17 /* lib.c */; };
+		252B868DE8F4DDF1DDF32700 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = B1629890DE9BCEC907C2DA59 /* lib.c */; };
+		7349E9DEE4A1EEC7BEE66C38 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 323D9EE2F6ACBA08E07B24DC /* lib.c */; };
+		7BA1A2A4C4B4E8E2CF2A7D4C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 23AD2711E659E2337F70B990 /* main.c */; };
+		FABF4A34F1D3BA8C8CD30A87 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 0E025ACE6B28FF762A374087 /* lib.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,145 +81,146 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B6E86525CF42B0DBC06EF8C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		252388815FC72D44B8FB5A71 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		268081BB1DF68D819337131E /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
-		26866FEDF67CD3FA66FFAB17 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		295286D1006239978AF51215 /* liblib_impl.lo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.lo; path = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/lib/liblib_impl.lo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C80F439DD6B6A9F76C8BCC6 /* private.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.inc; sourceTree = "<group>"; };
-		3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		48A78400BB5E1C20A3299A42 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		89E36EEAF8D2A80B9CFBF60D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		8EEF31F83F9AF990435CC135 /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2B55BE680D0A09636C9B2B8 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		BF6AED364F6BEC4B651A5032 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		CDA701F96A5177E4188BEA69 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4FF1C5D081F72C452F9B333 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
-		E5D5198F6B5B74FA95B386A5 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
-		E8EC0FBB4B1FC3CF8BF27BFD /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		F360F9D030E464AA774319E0 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		0E025ACE6B28FF762A374087 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
+		10E727EFD49E19802BFBF34F /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		23AD2711E659E2337F70B990 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		26E52E2622232C7F5DBD0EBA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		323D9EE2F6ACBA08E07B24DC /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
+		34FBF674BD1DFBF1A7C6C446 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		3C566752AAA3E4D4AC6A2EF4 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		438F69323D1B35FBB9F4306D /* liblib_impl.lo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.lo; path = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/lib/liblib_impl.lo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63E5863250A638197F696F2C /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
+		6725272509105774D2AABABA /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
+		99AB88A2CE322B729FBFF71F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		ADD8ABEB8D669290B5896B15 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1629890DE9BCEC907C2DA59 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
+		B34994818F405F0719B61510 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCB1C1009185C2C138B9C6FA /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		EC96F39CC6EEDE23EF3715AA /* private.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.inc; sourceTree = "<group>"; };
+		F0DD82288FF884497E64E198 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		07FAB588F8230EA3664E958C /* private */ = {
+		154882505166854B87E8A3E3 /* examples_cc_external */ = {
 			isa = PBXGroup;
 			children = (
-				E4FF1C5D081F72C452F9B333 /* private.h */,
-			);
-			path = private;
-			sourceTree = "<group>";
-		};
-		2D3DFF4472B24F4AD7FC4D86 /* examples_cc_external */ = {
-			isa = PBXGroup;
-			children = (
-				E612587DC09602FB8217B300 /* private */,
-				26866FEDF67CD3FA66FFAB17 /* lib.c */,
-				F360F9D030E464AA774319E0 /* lib.h */,
+				5BFBE0CBCF7962FA1CEF0D48 /* private */,
+				B1629890DE9BCEC907C2DA59 /* lib.c */,
+				BCB1C1009185C2C138B9C6FA /* lib.h */,
 			);
 			name = examples_cc_external;
 			path = external;
 			sourceTree = SOURCE_ROOT;
 		};
-		2E6D9E4BA36A87B56922910C /* fixtures */ = {
+		1B090DEBA40C567745F9B83B /* test */ = {
 			isa = PBXGroup;
 			children = (
-				1B6E86525CF42B0DBC06EF8C /* BUILD */,
-			);
-			path = fixtures;
-			sourceTree = "<group>";
-		};
-		4CDF54236E377AE02D7E7A7F /* lib2 */ = {
-			isa = PBXGroup;
-			children = (
-				BC9D41B5104B7D51C3B01915 /* includes */,
-				89E36EEAF8D2A80B9CFBF60D /* BUILD */,
-				A2B55BE680D0A09636C9B2B8 /* lib.c */,
-			);
-			path = lib2;
-			sourceTree = "<group>";
-		};
-		593E7C82FAAD94A7E6A04318 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3FEB5348BF9F16CDB97FB486 /* liblib_impl.a */,
-				CDA701F96A5177E4188BEA69 /* liblib_impl.a */,
-				295286D1006239978AF51215 /* liblib_impl.lo */,
-				8EEF31F83F9AF990435CC135 /* tool */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		68A1D737225E7A97337523DE /* test */ = {
-			isa = PBXGroup;
-			children = (
-				2E6D9E4BA36A87B56922910C /* fixtures */,
+				B0C16C061816AA8C36F15831 /* fixtures */,
 			);
 			path = test;
 			sourceTree = "<group>";
 		};
-		7FAE228BE16508FE1557CD57 /* tool */ = {
+		2E32468127781347317AAFD5 /* private */ = {
 			isa = PBXGroup;
 			children = (
-				E8EC0FBB4B1FC3CF8BF27BFD /* BUILD */,
-				48A78400BB5E1C20A3299A42 /* main.c */,
+				63E5863250A638197F696F2C /* private.h */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
+		446BDAB1907BD1177767CFA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ADD8ABEB8D669290B5896B15 /* liblib_impl.a */,
+				B34994818F405F0719B61510 /* liblib_impl.a */,
+				438F69323D1B35FBB9F4306D /* liblib_impl.lo */,
+				6725272509105774D2AABABA /* tool */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		47EF56826264FB2094C7119B /* lib2 */ = {
+			isa = PBXGroup;
+			children = (
+				FA60C516924223581A6BA7E0 /* includes */,
+				34FBF674BD1DFBF1A7C6C446 /* BUILD */,
+				0E025ACE6B28FF762A374087 /* lib.c */,
+			);
+			path = lib2;
+			sourceTree = "<group>";
+		};
+		5BFBE0CBCF7962FA1CEF0D48 /* private */ = {
+			isa = PBXGroup;
+			children = (
+				EC96F39CC6EEDE23EF3715AA /* private.inc */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
+		6BC6B4D257714FF558826529 /* ../../../../../.. */ = {
+			isa = PBXGroup;
+			children = (
+				D5F5E5BB412E3E01F2B23218 /* lib */,
+				47EF56826264FB2094C7119B /* lib2 */,
+				1B090DEBA40C567745F9B83B /* test */,
+				C4502DF38AB858CC0AAE9089 /* tool */,
+				6D5711B2E31333E2B111FABD /* Bazel External Repositories */,
+				446BDAB1907BD1177767CFA0 /* Products */,
+				D29ED204A9CCE50C1A0DA760 /* Frameworks */,
+			);
+			path = ../../../../../..;
+			sourceTree = "<group>";
+		};
+		6D5711B2E31333E2B111FABD /* Bazel External Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				154882505166854B87E8A3E3 /* examples_cc_external */,
+			);
+			name = "Bazel External Repositories";
+			path = ../../external;
+			sourceTree = SOURCE_ROOT;
+		};
+		B0C16C061816AA8C36F15831 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				26E52E2622232C7F5DBD0EBA /* BUILD */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
+		C4502DF38AB858CC0AAE9089 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				3C566752AAA3E4D4AC6A2EF4 /* BUILD */,
+				23AD2711E659E2337F70B990 /* main.c */,
 			);
 			path = tool;
 			sourceTree = "<group>";
 		};
-		9811D2ED915829A1A7881AFD /* Bazel External Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				2D3DFF4472B24F4AD7FC4D86 /* examples_cc_external */,
-			);
-			name = "Bazel External Repositories";
-			path = "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external";
-			sourceTree = "<group>";
-		};
-		BC9D41B5104B7D51C3B01915 /* includes */ = {
-			isa = PBXGroup;
-			children = (
-				268081BB1DF68D819337131E /* lib.h */,
-			);
-			path = includes;
-			sourceTree = "<group>";
-		};
-		C047AF1D451C7E165914273D /* Frameworks */ = {
+		D29ED204A9CCE50C1A0DA760 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E612587DC09602FB8217B300 /* private */ = {
+		D5F5E5BB412E3E01F2B23218 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				3C80F439DD6B6A9F76C8BCC6 /* private.inc */,
-			);
-			path = private;
-			sourceTree = "<group>";
-		};
-		EA3CABF95B96FD404760D6F1 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				07FAB588F8230EA3664E958C /* private */,
-				252388815FC72D44B8FB5A71 /* BUILD */,
-				BF6AED364F6BEC4B651A5032 /* lib.c */,
-				E5D5198F6B5B74FA95B386A5 /* lib.h */,
+				2E32468127781347317AAFD5 /* private */,
+				99AB88A2CE322B729FBFF71F /* BUILD */,
+				323D9EE2F6ACBA08E07B24DC /* lib.c */,
+				F0DD82288FF884497E64E198 /* lib.h */,
 			);
 			path = lib;
 			sourceTree = "<group>";
 		};
-		EC6FEE5AC277A3FEEA95510A = {
+		FA60C516924223581A6BA7E0 /* includes */ = {
 			isa = PBXGroup;
 			children = (
-				EA3CABF95B96FD404760D6F1 /* lib */,
-				4CDF54236E377AE02D7E7A7F /* lib2 */,
-				68A1D737225E7A97337523DE /* test */,
-				7FAE228BE16508FE1557CD57 /* tool */,
-				9811D2ED915829A1A7881AFD /* Bazel External Repositories */,
-				593E7C82FAAD94A7E6A04318 /* Products */,
-				C047AF1D451C7E165914273D /* Frameworks */,
+				10E727EFD49E19802BFBF34F /* lib.h */,
 			);
+			path = includes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +259,7 @@
 			);
 			name = tool;
 			productName = tool;
-			productReference = 8EEF31F83F9AF990435CC135 /* tool */;
+			productReference = 6725272509105774D2AABABA /* tool */;
 			productType = "com.apple.product-type.tool";
 		};
 		4F1627B7F69F8B8097C47C79 /* @//lib:lib_impl */ = {
@@ -330,9 +331,9 @@
 				en,
 				Base,
 			);
-			mainGroup = EC6FEE5AC277A3FEEA95510A;
-			productRefGroup = 593E7C82FAAD94A7E6A04318 /* Products */;
-			projectDirPath = ../..;
+			mainGroup = 6BC6B4D257714FF558826529 /* ../../../../../.. */;
+			productRefGroup = 446BDAB1907BD1177767CFA0 /* Products */;
+			projectDirPath = "../../bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/__main__";
 			projectRoot = "";
 			targets = (
 				7E7D155EBCA520F35DEA3571 /* BazelDependencies */,
@@ -395,7 +396,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$BAZEL_INTEGRATION_DIR/bazel_build.sh\"\n";
+			shellScript = "cd \"$SRCROOT\"\n\n\"$BAZEL_INTEGRATION_DIR/bazel_build.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DC5C20F1CBE45FA898D3AC86 /* Copy Bazel Outputs */ = {
@@ -421,7 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8961DA25CBC1AF0367FBA37 /* lib.c in Sources */,
+				252B868DE8F4DDF1DDF32700 /* lib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D7D6BF252B1F2BB8BCCA2B2 /* lib.c in Sources */,
+				7349E9DEE4A1EEC7BEE66C38 /* lib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47A652C93D0ED0E4B3D9E7CF /* main.c in Sources */,
+				7BA1A2A4C4B4E8E2CF2A7D4C /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B32F269ED12B4DFACBB2A17F /* lib.c in Sources */,
+				FABF4A34F1D3BA8C8CD30A87 /* lib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +655,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//tool:tool";
-				BAZEL_OUTPUTS_PRODUCT = "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/tool/rules_xcodeproj/tool/tool";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/tool/rules_xcodeproj/tool/tool";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/tool";
 				BAZEL_TARGET_ID = "//tool:tool darwin_x86_64-dbg-ST-a9822d5480e1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
@@ -730,11 +731,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/__main__";
-				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external";
+				BAZEL_EXTERNAL = "$(PROJECT_DIR)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
+				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
@@ -765,6 +765,7 @@
 				LINKS_DIR = "$(INTERNAL_DIR)/links";
 				ONLY_ACTIVE_ARCH = YES;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
+				SRCROOT = "$(_SRCROOT:standardizepath)";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -772,6 +773,7 @@
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
+				_SRCROOT = "$(PROJECT_DIR)/../../../../../..";
 			};
 			name = Debug;
 		};

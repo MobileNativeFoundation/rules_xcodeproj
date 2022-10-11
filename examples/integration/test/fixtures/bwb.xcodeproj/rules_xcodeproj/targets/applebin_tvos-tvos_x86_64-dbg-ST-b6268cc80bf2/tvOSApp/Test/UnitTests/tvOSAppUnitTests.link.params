@@ -6,10 +6,10 @@ UIFramework.tvOS
 -framework
 LibFramework.tvOS
 -L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib
--Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftmodule
--Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Source/tvOSApp.swiftmodule
--Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/UI/UI.swiftmodule
--Wl,-add_ast_path,$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.swiftmodule
+-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftmodule
+-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Source/tvOSApp.swiftmodule
+-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/UI/UI.swiftmodule
+-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.swiftmodule
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator
@@ -19,7 +19,7 @@ LibFramework.tvOS
 -framework
 XCTest
 -bundle_loader
-$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Source/tvOSApp_lipobin
+bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Source/tvOSApp_lipobin
 -no-canonical-prefixes
 -framework
 Foundation

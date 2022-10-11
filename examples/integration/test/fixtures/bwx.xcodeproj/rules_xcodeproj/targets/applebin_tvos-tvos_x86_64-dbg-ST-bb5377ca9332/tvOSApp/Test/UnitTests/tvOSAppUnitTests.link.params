@@ -19,7 +19,7 @@ LibFramework.tvOS
 -framework
 XCTest
 -bundle_loader
-$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/tvOSApp/Source/tvOSApp_lipobin
+bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/tvOSApp/Source/tvOSApp_lipobin
 -no-canonical-prefixes
 -framework
 Foundation

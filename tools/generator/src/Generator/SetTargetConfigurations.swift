@@ -405,10 +405,7 @@ $(CONFIGURATION_BUILD_DIR)
         if target.isSwift {
             func handleSwiftModule(_ filePath: FilePath) throws -> String {
                 return try filePathResolver
-                    .resolve(
-                        filePath,
-                        transform: { $0.parent() }
-                    )
+                    .resolve(filePath, transform: { $0.parent() })
                     .string.quoted
             }
 

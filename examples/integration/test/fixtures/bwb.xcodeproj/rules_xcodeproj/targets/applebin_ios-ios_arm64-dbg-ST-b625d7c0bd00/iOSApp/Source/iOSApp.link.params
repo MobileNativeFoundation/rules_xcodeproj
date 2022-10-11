@@ -21,10 +21,10 @@ UIFramework.iOS
 LibFramework.iOS
 -lc++
 -lz
--Wl,-add_ast_path,$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/iOSApp.swiftmodule
---ld-path=$(BAZEL_EXTERNAL)/rules_apple_linker_lld/ld64.lld
--Wl,-add_ast_path,$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/UI/UI.swiftmodule
--Wl,-add_ast_path,$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.swiftmodule
+-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/iOSApp.swiftmodule
+--ld-path=external/rules_apple_linker_lld/ld64.lld
+-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/UI/UI.swiftmodule
+-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.swiftmodule
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos
