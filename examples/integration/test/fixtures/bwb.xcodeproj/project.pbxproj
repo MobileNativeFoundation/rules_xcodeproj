@@ -4645,7 +4645,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT\"\n\n\"$BAZEL_INTEGRATION_DIR/bazel_build.sh\"\n";
+			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9EC7DF73E6DD86C7F36AD07E /* Copy Bazel Outputs */ = {

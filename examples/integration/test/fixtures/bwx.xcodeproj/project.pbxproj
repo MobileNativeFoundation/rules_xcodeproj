@@ -4754,7 +4754,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT\"\n\n\"$BAZEL_INTEGRATION_DIR/bazel_build.sh\"\n";
+			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7FB2515EEDB3C90DED9829DF /* Create linking dependencies */ = {

@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+cd "$SRCROOT"
+
 # Calculate Bazel `--output_groups`
 
 # In Xcode 14 the "Index" directory was renamed to "Index.noindex".
