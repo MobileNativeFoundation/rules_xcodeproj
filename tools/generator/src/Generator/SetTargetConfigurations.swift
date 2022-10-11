@@ -531,8 +531,15 @@ $(CONFIGURATION_BUILD_DIR)
                         ["-ivfsoverlay", "$(OBJROOT)/xcode-overlay.yaml"]
                     )
                 }
-            default:
-                break
+            case .bazel:
+                if !target.modulemaps.isEmpty {
+                    try buildSettings.prepend(
+                        onKey: "OTHER_SWIFT_FLAGS",
+                        #"""
+-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml
+"""#
+                    )
+                }
             }
         }
 
