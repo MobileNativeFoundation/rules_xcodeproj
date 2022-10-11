@@ -1247,8 +1247,7 @@ transitive dependencies of the targets specified in the
             default = Label("//xcodeproj/internal:installer.template.sh"),
         ),
         "_swiftc_stub": attr.label(
-            # Not "exec", because it's really for the host machine
-            cfg = "host",
+            cfg = "exec",
             default = Label("//tools/swiftc_stub:universal_swiftc_stub"),
             executable = True,
         ),
