@@ -239,6 +239,17 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             )
         }
 
+        // Work around stubbed swiftc messing with Indexing setting of
+        // `-working-directory` incorrectly
+        if buildMode == .bazel {
+            try buildSettings.prepend(
+                onKey: "OTHER_SWIFT_FLAGS",
+                """
+-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)
+"""
+            )
+        }
+
         try buildSettings.prepend(
             onKey: "OTHER_SWIFT_FLAGS",
             target.modulemaps
